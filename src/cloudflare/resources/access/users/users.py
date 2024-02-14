@@ -2,42 +2,32 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+
 import httpx
 
-from .active_sessions import ActiveSessions, AsyncActiveSessions
-
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._compat import cached_property
-
-from .last_seen_identity import LastSeenIdentity, AsyncLastSeenIdentity
-
-from .failed_logins import FailedLogins, AsyncFailedLogins
-
-from ....types.access import UserListResponse
-
-from typing import Type, Optional
-
+from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
+from ...._wrappers import ResultWrapper
+from .failed_logins import (
+    FailedLogins,
+    AsyncFailedLogins,
+    FailedLoginsWithRawResponse,
+    AsyncFailedLoginsWithRawResponse,
+    FailedLoginsWithStreamingResponse,
+    AsyncFailedLoginsWithStreamingResponse,
 )
-from ....types import shared_params
+from ...._base_client import (
+    make_request_options,
+)
+from ....types.access import UserListResponse
 from .active_sessions import (
     ActiveSessions,
     AsyncActiveSessions,
@@ -54,17 +44,6 @@ from .last_seen_identity import (
     LastSeenIdentityWithStreamingResponse,
     AsyncLastSeenIdentityWithStreamingResponse,
 )
-from .failed_logins import (
-    FailedLogins,
-    AsyncFailedLogins,
-    FailedLoginsWithRawResponse,
-    AsyncFailedLoginsWithRawResponse,
-    FailedLoginsWithStreamingResponse,
-    AsyncFailedLoginsWithStreamingResponse,
-)
-from ...._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
 
 __all__ = ["Users", "AsyncUsers"]
 
