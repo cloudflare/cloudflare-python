@@ -2,17 +2,17 @@
 
 from __future__ import annotations
 
-from .colo_list_response import ColoListResponse as ColoListResponse
 from .colo_list_params import ColoListParams as ColoListParams
-from .http_test_get_response import HTTPTestGetResponse as HTTPTestGetResponse
-from .http_test_get_params import HTTPTestGetParams as HTTPTestGetParams
-from .test_list_response import TestListResponse as TestListResponse
 from .test_list_params import TestListParams as TestListParams
+from .colo_list_response import ColoListResponse as ColoListResponse
+from .test_list_response import TestListResponse as TestListResponse
+from .http_test_get_params import HTTPTestGetParams as HTTPTestGetParams
+from .http_test_get_response import HTTPTestGetResponse as HTTPTestGetResponse
+from .traceroute_test_get_params import TracerouteTestGetParams as TracerouteTestGetParams
 from .traceroute_test_get_response import TracerouteTestGetResponse as TracerouteTestGetResponse
+from .traceroute_test_percentiles_params import TracerouteTestPercentilesParams as TracerouteTestPercentilesParams
+from .traceroute_test_network_path_params import TracerouteTestNetworkPathParams as TracerouteTestNetworkPathParams
+from .traceroute_test_percentiles_response import TracerouteTestPercentilesResponse as TracerouteTestPercentilesResponse
 from .traceroute_test_network_path_response import (
     TracerouteTestNetworkPathResponse as TracerouteTestNetworkPathResponse,
 )
-from .traceroute_test_percentiles_response import TracerouteTestPercentilesResponse as TracerouteTestPercentilesResponse
-from .traceroute_test_get_params import TracerouteTestGetParams as TracerouteTestGetParams
-from .traceroute_test_network_path_params import TracerouteTestNetworkPathParams as TracerouteTestNetworkPathParams
-from .traceroute_test_percentiles_params import TracerouteTestPercentilesParams as TracerouteTestPercentilesParams

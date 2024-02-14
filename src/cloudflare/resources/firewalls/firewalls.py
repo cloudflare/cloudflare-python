@@ -2,40 +2,13 @@
 
 from __future__ import annotations
 
-from .lockdowns import Lockdowns, AsyncLockdowns
-
-from ..._compat import cached_property
-
-from .rules import Rules, AsyncRules
-
-from .access_rules import AccessRules, AsyncAccessRules
-
-from .ua_rules import UaRules, AsyncUaRules
-
-from .waf.waf import WAF, AsyncWAF
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from .lockdowns import (
-    Lockdowns,
-    AsyncLockdowns,
-    LockdownsWithRawResponse,
-    AsyncLockdownsWithRawResponse,
-    LockdownsWithStreamingResponse,
-    AsyncLockdownsWithStreamingResponse,
+from .waf import (
+    WAF,
+    AsyncWAF,
+    WAFWithRawResponse,
+    AsyncWAFWithRawResponse,
+    WAFWithStreamingResponse,
+    AsyncWAFWithStreamingResponse,
 )
 from .rules import (
     Rules,
@@ -45,14 +18,7 @@ from .rules import (
     RulesWithStreamingResponse,
     AsyncRulesWithStreamingResponse,
 )
-from .access_rules import (
-    AccessRules,
-    AsyncAccessRules,
-    AccessRulesWithRawResponse,
-    AsyncAccessRulesWithRawResponse,
-    AccessRulesWithStreamingResponse,
-    AsyncAccessRulesWithStreamingResponse,
-)
+from .waf.waf import WAF, AsyncWAF
 from .ua_rules import (
     UaRules,
     AsyncUaRules,
@@ -61,15 +27,24 @@ from .ua_rules import (
     UaRulesWithStreamingResponse,
     AsyncUaRulesWithStreamingResponse,
 )
-from .waf import (
-    WAF,
-    AsyncWAF,
-    WAFWithRawResponse,
-    AsyncWAFWithRawResponse,
-    WAFWithStreamingResponse,
-    AsyncWAFWithStreamingResponse,
+from ..._compat import cached_property
+from .lockdowns import (
+    Lockdowns,
+    AsyncLockdowns,
+    LockdownsWithRawResponse,
+    AsyncLockdownsWithRawResponse,
+    LockdownsWithStreamingResponse,
+    AsyncLockdownsWithStreamingResponse,
 )
-from ..._wrappers import ResultWrapper
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from .access_rules import (
+    AccessRules,
+    AsyncAccessRules,
+    AccessRulesWithRawResponse,
+    AsyncAccessRulesWithRawResponse,
+    AccessRulesWithStreamingResponse,
+    AsyncAccessRulesWithStreamingResponse,
+)
 
 __all__ = ["Firewalls", "AsyncFirewalls"]
 

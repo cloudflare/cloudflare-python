@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless.
 
 from typing import Generic, TypeVar
+
 from ._models import GenericModel
 
 __all__ = ["ResultWrapper"]

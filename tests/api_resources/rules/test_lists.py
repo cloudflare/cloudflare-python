@@ -2,26 +2,20 @@
 
 from __future__ import annotations
 
-from typing import Optional, Any, cast
-
-from cloudflare.types.rules import (
-    ListUpdateResponse,
-    ListDeleteResponse,
-    ListGetResponse,
-    ListListsCreateAListResponse,
-    ListListsGetListsResponse,
-)
-
 import os
+from typing import Any, Optional, cast
+
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.rules import list_update_params
-from cloudflare.types.rules import list_lists_create_a_list_params
+from cloudflare.types.rules import (
+    ListGetResponse,
+    ListDeleteResponse,
+    ListUpdateResponse,
+    ListListsGetListsResponse,
+    ListListsCreateAListResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
