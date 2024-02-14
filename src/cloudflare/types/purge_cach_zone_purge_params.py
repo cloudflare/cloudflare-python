@@ -2,41 +2,36 @@
 
 from __future__ import annotations
 
-from typing import List, Union
 from typing_extensions import TypedDict
 
-__all__ = [
-    "PurgeCachZonePurgeParams",
-    "DRfY4fceFlex",
-    "DRfY4fceEverything",
-    "DRfY4fceFiles",
-    "DRfY4fceFilesFile",
-    "DRfY4fceFilesFileDRfY4fceURLAndHeaders",
-]
+from typing import List, Union
 
+from typing import List, Union, Dict, Optional
+from typing_extensions import Literal, TypedDict, Required, Annotated
+from .._types import FileTypes
+from .._utils import PropertyInfo
+from ..types import shared_params
 
-class DRfY4fceFlex(TypedDict, total=False):
+__all__ = ["PurgeCachZonePurgeParams", "_2RAgAwD3Flex", "_2RAgAwD3Everything", "_2RAgAwD3Files", "2RAgAwD3FilesFile", "2RAgAwD3FilesFile_2RAgAwD3URLAndHeaders"]
+
+class _2RAgAwD3Flex(TypedDict, total=False):
     hosts: List[str]
 
     prefixes: List[str]
 
     tags: List[str]
 
-
-class DRfY4fceEverything(TypedDict, total=False):
+class _2RAgAwD3Everything(TypedDict, total=False):
     purge_everything: bool
 
+class _2RAgAwD3Files(TypedDict, total=False):
+    files: List[2RAgAwD3FilesFile]
 
-class DRfY4fceFiles(TypedDict, total=False):
-    files: List[DRfY4fceFilesFile]
-
-
-class DRfY4fceFilesFileDRfY4fceURLAndHeaders(TypedDict, total=False):
+class 2RAgAwD3FilesFile_2RAgAwD3URLAndHeaders(TypedDict, total=False):
     headers: object
 
     url: str
 
+2RAgAwD3FilesFile = Union[str, 2RAgAwD3FilesFile_2RAgAwD3URLAndHeaders]
 
-DRfY4fceFilesFile = Union[str, DRfY4fceFilesFileDRfY4fceURLAndHeaders]
-
-PurgeCachZonePurgeParams = Union[DRfY4fceFlex, DRfY4fceEverything, DRfY4fceFiles]
+PurgeCachZonePurgeParams = Union[_2RAgAwD3Flex, _2RAgAwD3Everything, _2RAgAwD3Files]
