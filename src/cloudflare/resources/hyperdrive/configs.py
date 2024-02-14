@@ -2,57 +2,33 @@
 
 from __future__ import annotations
 
+from typing import Any, Type, Optional, cast
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._compat import cached_property
-
-from ...types.hyperdrive import (
-    ConfigCreateResponse,
-    ConfigUpdateResponse,
-    ConfigListResponse,
-    ConfigDeleteResponse,
-    ConfigGetResponse,
-)
-
-from typing import Type, Optional
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types.hyperdrive import config_create_params
-from ...types.hyperdrive import config_update_params
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ..._base_client import (
+    make_request_options,
+)
+from ...types.hyperdrive import (
+    ConfigGetResponse,
+    ConfigListResponse,
+    ConfigCreateResponse,
+    ConfigDeleteResponse,
+    ConfigUpdateResponse,
+    config_create_params,
+    config_update_params,
+)
 
 __all__ = ["Configs", "AsyncConfigs"]
 
@@ -70,7 +46,7 @@ class Configs(SyncAPIResource):
         self,
         account_id: str,
         *,
-        password: str,
+        origin: config_create_params.Origin,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -84,9 +60,6 @@ class Configs(SyncAPIResource):
         Args:
           account_id: Identifier
 
-          password: The password required to access your origin database. This value is write-only
-              and never returned by the API.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -99,7 +72,7 @@ class Configs(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
             f"/accounts/{account_id}/hyperdrive/configs",
-            body=maybe_transform({"password": password}, config_create_params.ConfigCreateParams),
+            body=maybe_transform({"origin": origin}, config_create_params.ConfigCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -115,7 +88,7 @@ class Configs(SyncAPIResource):
         hyperdrive_id: str,
         *,
         account_id: str,
-        password: str,
+        origin: config_update_params.Origin,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -131,9 +104,6 @@ class Configs(SyncAPIResource):
 
           hyperdrive_id: Identifier
 
-          password: The password required to access your origin database. This value is write-only
-              and never returned by the API.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -148,7 +118,7 @@ class Configs(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `hyperdrive_id` but received {hyperdrive_id!r}")
         return self._put(
             f"/accounts/{account_id}/hyperdrive/configs/{hyperdrive_id}",
-            body=maybe_transform({"password": password}, config_update_params.ConfigUpdateParams),
+            body=maybe_transform({"origin": origin}, config_update_params.ConfigUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -305,7 +275,7 @@ class AsyncConfigs(AsyncAPIResource):
         self,
         account_id: str,
         *,
-        password: str,
+        origin: config_create_params.Origin,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -319,9 +289,6 @@ class AsyncConfigs(AsyncAPIResource):
         Args:
           account_id: Identifier
 
-          password: The password required to access your origin database. This value is write-only
-              and never returned by the API.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -334,7 +301,7 @@ class AsyncConfigs(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/hyperdrive/configs",
-            body=maybe_transform({"password": password}, config_create_params.ConfigCreateParams),
+            body=maybe_transform({"origin": origin}, config_create_params.ConfigCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -350,7 +317,7 @@ class AsyncConfigs(AsyncAPIResource):
         hyperdrive_id: str,
         *,
         account_id: str,
-        password: str,
+        origin: config_update_params.Origin,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -366,9 +333,6 @@ class AsyncConfigs(AsyncAPIResource):
 
           hyperdrive_id: Identifier
 
-          password: The password required to access your origin database. This value is write-only
-              and never returned by the API.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -383,7 +347,7 @@ class AsyncConfigs(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `hyperdrive_id` but received {hyperdrive_id!r}")
         return await self._put(
             f"/accounts/{account_id}/hyperdrive/configs/{hyperdrive_id}",
-            body=maybe_transform({"password": password}, config_update_params.ConfigUpdateParams),
+            body=maybe_transform({"origin": origin}, config_update_params.ConfigUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

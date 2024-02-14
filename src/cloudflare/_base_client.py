@@ -61,7 +61,7 @@ from ._types import (
     RequestOptions,
     ModelBuilderProtocol,
 )
-from ._utils import is_dict, is_given, is_mapping, is_list
+from ._utils import is_dict, is_list, is_given, is_mapping
 from ._compat import model_copy, model_dump
 from ._models import GenericModel, FinalRequestOptions, validate_type, construct_type
 from ._response import (
@@ -70,13 +70,12 @@ from ._response import (
     AsyncAPIResponse,
     extract_response_type,
 )
-from ._legacy_response import LegacyAPIResponse
 from ._constants import (
     DEFAULT_LIMITS,
-    DEFAULT_MAX_RETRIES,
     DEFAULT_TIMEOUT,
-    INITIAL_RETRY_DELAY,
     MAX_RETRY_DELAY,
+    DEFAULT_MAX_RETRIES,
+    INITIAL_RETRY_DELAY,
     RAW_RESPONSE_HEADER,
     OVERRIDE_CAST_TO_HEADER,
 )

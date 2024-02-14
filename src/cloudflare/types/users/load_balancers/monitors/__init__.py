@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
-from .preview_load_balancer_monitors_preview_monitor_response import (
-    PreviewLoadBalancerMonitorsPreviewMonitorResponse as PreviewLoadBalancerMonitorsPreviewMonitorResponse,
-)
 from .preview_load_balancer_monitors_preview_monitor_params import (
     PreviewLoadBalancerMonitorsPreviewMonitorParams as PreviewLoadBalancerMonitorsPreviewMonitorParams,
+)
+from .preview_load_balancer_monitors_preview_monitor_response import (
+    PreviewLoadBalancerMonitorsPreviewMonitorResponse as PreviewLoadBalancerMonitorsPreviewMonitorResponse,
 )
 from .reference_load_balancer_monitors_list_monitor_references_response import (
     ReferenceLoadBalancerMonitorsListMonitorReferencesResponse as ReferenceLoadBalancerMonitorsListMonitorReferencesResponse,
