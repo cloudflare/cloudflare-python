@@ -1,13 +1,5 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from .ai import (
-    AI,
-    AsyncAI,
-    AIWithRawResponse,
-    AsyncAIWithRawResponse,
-    AIWithStreamingResponse,
-    AsyncAIWithStreamingResponse,
-)
 from .d1 import (
     D1,
     AsyncD1,
@@ -902,12 +894,6 @@ __all__ = [
     "AsyncZonesWithRawResponse",
     "ZonesWithStreamingResponse",
     "AsyncZonesWithStreamingResponse",
-    "AI",
-    "AsyncAI",
-    "AIWithRawResponse",
-    "AsyncAIWithRawResponse",
-    "AIWithStreamingResponse",
-    "AsyncAIWithStreamingResponse",
     "LoadBalancers",
     "AsyncLoadBalancers",
     "LoadBalancersWithRawResponse",
