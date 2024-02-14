@@ -1,0 +1,73 @@
+# File generated from our OpenAPI spec by Stainless.
+
+from __future__ import annotations
+
+from .cf_interconnect_update_response import CfInterconnectUpdateResponse as CfInterconnectUpdateResponse
+from .cf_interconnect_get_response import CfInterconnectGetResponse as CfInterconnectGetResponse
+from .cf_interconnect_magic_interconnects_list_interconnects_response import (
+    CfInterconnectMagicInterconnectsListInterconnectsResponse as CfInterconnectMagicInterconnectsListInterconnectsResponse,
+)
+from .cf_interconnect_magic_interconnects_update_multiple_interconnects_response import (
+    CfInterconnectMagicInterconnectsUpdateMultipleInterconnectsResponse as CfInterconnectMagicInterconnectsUpdateMultipleInterconnectsResponse,
+)
+from .cf_interconnect_update_params import CfInterconnectUpdateParams as CfInterconnectUpdateParams
+from .cf_interconnect_magic_interconnects_update_multiple_interconnects_params import (
+    CfInterconnectMagicInterconnectsUpdateMultipleInterconnectsParams as CfInterconnectMagicInterconnectsUpdateMultipleInterconnectsParams,
+)
+from .gre_tunnel_update_response import GreTunnelUpdateResponse as GreTunnelUpdateResponse
+from .gre_tunnel_delete_response import GreTunnelDeleteResponse as GreTunnelDeleteResponse
+from .gre_tunnel_get_response import GreTunnelGetResponse as GreTunnelGetResponse
+from .gre_tunnel_magic_gre_tunnels_create_gre_tunnels_response import (
+    GreTunnelMagicGreTunnelsCreateGreTunnelsResponse as GreTunnelMagicGreTunnelsCreateGreTunnelsResponse,
+)
+from .gre_tunnel_magic_gre_tunnels_list_gre_tunnels_response import (
+    GreTunnelMagicGreTunnelsListGreTunnelsResponse as GreTunnelMagicGreTunnelsListGreTunnelsResponse,
+)
+from .gre_tunnel_magic_gre_tunnels_update_multiple_gre_tunnels_response import (
+    GreTunnelMagicGreTunnelsUpdateMultipleGreTunnelsResponse as GreTunnelMagicGreTunnelsUpdateMultipleGreTunnelsResponse,
+)
+from .gre_tunnel_update_params import GreTunnelUpdateParams as GreTunnelUpdateParams
+from .gre_tunnel_magic_gre_tunnels_create_gre_tunnels_params import (
+    GreTunnelMagicGreTunnelsCreateGreTunnelsParams as GreTunnelMagicGreTunnelsCreateGreTunnelsParams,
+)
+from .gre_tunnel_magic_gre_tunnels_update_multiple_gre_tunnels_params import (
+    GreTunnelMagicGreTunnelsUpdateMultipleGreTunnelsParams as GreTunnelMagicGreTunnelsUpdateMultipleGreTunnelsParams,
+)
+from .ipsec_tunnel_update_response import IpsecTunnelUpdateResponse as IpsecTunnelUpdateResponse
+from .ipsec_tunnel_delete_response import IpsecTunnelDeleteResponse as IpsecTunnelDeleteResponse
+from .ipsec_tunnel_get_response import IpsecTunnelGetResponse as IpsecTunnelGetResponse
+from .ipsec_tunnel_magic_i_psec_tunnels_create_i_psec_tunnels_response import (
+    IpsecTunnelMagicIPsecTunnelsCreateIPsecTunnelsResponse as IpsecTunnelMagicIPsecTunnelsCreateIPsecTunnelsResponse,
+)
+from .ipsec_tunnel_magic_i_psec_tunnels_list_i_psec_tunnels_response import (
+    IpsecTunnelMagicIPsecTunnelsListIPsecTunnelsResponse as IpsecTunnelMagicIPsecTunnelsListIPsecTunnelsResponse,
+)
+from .ipsec_tunnel_magic_i_psec_tunnels_update_multiple_i_psec_tunnels_response import (
+    IpsecTunnelMagicIPsecTunnelsUpdateMultipleIPsecTunnelsResponse as IpsecTunnelMagicIPsecTunnelsUpdateMultipleIPsecTunnelsResponse,
+)
+from .ipsec_tunnel_update_params import IpsecTunnelUpdateParams as IpsecTunnelUpdateParams
+from .ipsec_tunnel_magic_i_psec_tunnels_create_i_psec_tunnels_params import (
+    IpsecTunnelMagicIPsecTunnelsCreateIPsecTunnelsParams as IpsecTunnelMagicIPsecTunnelsCreateIPsecTunnelsParams,
+)
+from .ipsec_tunnel_magic_i_psec_tunnels_update_multiple_i_psec_tunnels_params import (
+    IpsecTunnelMagicIPsecTunnelsUpdateMultipleIPsecTunnelsParams as IpsecTunnelMagicIPsecTunnelsUpdateMultipleIPsecTunnelsParams,
+)
+from .route_update_response import RouteUpdateResponse as RouteUpdateResponse
+from .route_delete_response import RouteDeleteResponse as RouteDeleteResponse
+from .route_get_response import RouteGetResponse as RouteGetResponse
+from .route_magic_static_routes_create_routes_response import (
+    RouteMagicStaticRoutesCreateRoutesResponse as RouteMagicStaticRoutesCreateRoutesResponse,
+)
+from .route_magic_static_routes_list_routes_response import (
+    RouteMagicStaticRoutesListRoutesResponse as RouteMagicStaticRoutesListRoutesResponse,
+)
+from .route_magic_static_routes_update_many_routes_response import (
+    RouteMagicStaticRoutesUpdateManyRoutesResponse as RouteMagicStaticRoutesUpdateManyRoutesResponse,
+)
+from .route_update_params import RouteUpdateParams as RouteUpdateParams
+from .route_magic_static_routes_create_routes_params import (
+    RouteMagicStaticRoutesCreateRoutesParams as RouteMagicStaticRoutesCreateRoutesParams,
+)
+from .route_magic_static_routes_update_many_routes_params import (
+    RouteMagicStaticRoutesUpdateManyRoutesParams as RouteMagicStaticRoutesUpdateManyRoutesParams,
+)

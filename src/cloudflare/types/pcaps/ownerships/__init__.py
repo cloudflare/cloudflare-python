@@ -1,0 +1,10 @@
+# File generated from our OpenAPI spec by Stainless.
+
+from __future__ import annotations
+
+from .validate_magic_pcap_collection_validate_buckets_for_full_packet_captures_response import (
+    ValidateMagicPcapCollectionValidateBucketsForFullPacketCapturesResponse as ValidateMagicPcapCollectionValidateBucketsForFullPacketCapturesResponse,
+)
+from .validate_magic_pcap_collection_validate_buckets_for_full_packet_captures_params import (
+    ValidateMagicPcapCollectionValidateBucketsForFullPacketCapturesParams as ValidateMagicPcapCollectionValidateBucketsForFullPacketCapturesParams,
+)

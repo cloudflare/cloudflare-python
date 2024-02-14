@@ -1,0 +1,7 @@
+# File generated from our OpenAPI spec by Stainless.
+
+from __future__ import annotations
+
+from .advertisement_magic_network_monitoring_rules_update_advertisement_for_rule_response import (
+    AdvertisementMagicNetworkMonitoringRulesUpdateAdvertisementForRuleResponse as AdvertisementMagicNetworkMonitoringRulesUpdateAdvertisementForRuleResponse,
+)

@@ -1,0 +1,328 @@
+# File generated from our OpenAPI spec by Stainless.
+
+from __future__ import annotations
+
+import httpx
+
+from ..._compat import cached_property
+
+from ...types.settings import RocketLoaderUpdateResponse, RocketLoaderGetResponse, rocket_loader_update_params
+
+from typing import Type, Optional
+
+from ..._response import (
+    to_raw_response_wrapper,
+    async_to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._base_client import (
+    SyncAPIClient,
+    AsyncAPIClient,
+    _merge_mappings,
+    AsyncPaginator,
+    make_request_options,
+    HttpxBinaryResponseContent,
+)
+from ...types import shared_params
+from ...types.settings import rocket_loader_update_params
+from ..._wrappers import ResultWrapper
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+
+__all__ = ["RocketLoader", "AsyncRocketLoader"]
+
+
+class RocketLoader(SyncAPIResource):
+    @cached_property
+    def with_raw_response(self) -> RocketLoaderWithRawResponse:
+        return RocketLoaderWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> RocketLoaderWithStreamingResponse:
+        return RocketLoaderWithStreamingResponse(self)
+
+    def update(
+        self,
+        zone_id: str,
+        *,
+        value: rocket_loader_update_params.Value,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RocketLoaderUpdateResponse]:
+        """
+        Rocket Loader is a general-purpose asynchronous JavaScript optimisation that
+        prioritises rendering your content while loading your site's Javascript
+        asynchronously. Turning on Rocket Loader will immediately improve a web page's
+        rendering time sometimes measured as Time to First Paint (TTFP), and also the
+        `window.onload` time (assuming there is JavaScript on the page). This can have a
+        positive impact on your Google search ranking. When turned on, Rocket Loader
+        will automatically defer the loading of all Javascript referenced in your HTML,
+        with no configuration required. Refer to
+        [Understanding Rocket Loader](https://support.cloudflare.com/hc/articles/200168056)
+        for more information.
+
+        Args:
+          zone_id: Identifier
+
+          value: Rocket Loader is a general-purpose asynchronous JavaScript optimisation that
+              prioritises rendering your content while loading your site's Javascript
+              asynchronously. Turning on Rocket Loader will immediately improve a web page's
+              rendering time sometimes measured as Time to First Paint (TTFP), and also the
+              `window.onload` time (assuming there is JavaScript on the page). This can have a
+              positive impact on your Google search ranking. When turned on, Rocket Loader
+              will automatically defer the loading of all Javascript referenced in your HTML,
+              with no configuration required. Refer to
+              [Understanding Rocket Loader](https://support.cloudflare.com/hc/articles/200168056)
+              for more information.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return self._patch(
+            f"/zones/{zone_id}/settings/rocket_loader",
+            body=maybe_transform({"value": value}, rocket_loader_update_params.RocketLoaderUpdateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[RocketLoaderUpdateResponse]], ResultWrapper[RocketLoaderUpdateResponse]),
+        )
+
+    def get(
+        self,
+        zone_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RocketLoaderGetResponse]:
+        """
+        Rocket Loader is a general-purpose asynchronous JavaScript optimisation that
+        prioritises rendering your content while loading your site's Javascript
+        asynchronously. Turning on Rocket Loader will immediately improve a web page's
+        rendering time sometimes measured as Time to First Paint (TTFP), and also the
+        `window.onload` time (assuming there is JavaScript on the page). This can have a
+        positive impact on your Google search ranking. When turned on, Rocket Loader
+        will automatically defer the loading of all Javascript referenced in your HTML,
+        with no configuration required. Refer to
+        [Understanding Rocket Loader](https://support.cloudflare.com/hc/articles/200168056)
+        for more information.
+
+        Args:
+          zone_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return self._get(
+            f"/zones/{zone_id}/settings/rocket_loader",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[RocketLoaderGetResponse]], ResultWrapper[RocketLoaderGetResponse]),
+        )
+
+
+class AsyncRocketLoader(AsyncAPIResource):
+    @cached_property
+    def with_raw_response(self) -> AsyncRocketLoaderWithRawResponse:
+        return AsyncRocketLoaderWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncRocketLoaderWithStreamingResponse:
+        return AsyncRocketLoaderWithStreamingResponse(self)
+
+    async def update(
+        self,
+        zone_id: str,
+        *,
+        value: rocket_loader_update_params.Value,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RocketLoaderUpdateResponse]:
+        """
+        Rocket Loader is a general-purpose asynchronous JavaScript optimisation that
+        prioritises rendering your content while loading your site's Javascript
+        asynchronously. Turning on Rocket Loader will immediately improve a web page's
+        rendering time sometimes measured as Time to First Paint (TTFP), and also the
+        `window.onload` time (assuming there is JavaScript on the page). This can have a
+        positive impact on your Google search ranking. When turned on, Rocket Loader
+        will automatically defer the loading of all Javascript referenced in your HTML,
+        with no configuration required. Refer to
+        [Understanding Rocket Loader](https://support.cloudflare.com/hc/articles/200168056)
+        for more information.
+
+        Args:
+          zone_id: Identifier
+
+          value: Rocket Loader is a general-purpose asynchronous JavaScript optimisation that
+              prioritises rendering your content while loading your site's Javascript
+              asynchronously. Turning on Rocket Loader will immediately improve a web page's
+              rendering time sometimes measured as Time to First Paint (TTFP), and also the
+              `window.onload` time (assuming there is JavaScript on the page). This can have a
+              positive impact on your Google search ranking. When turned on, Rocket Loader
+              will automatically defer the loading of all Javascript referenced in your HTML,
+              with no configuration required. Refer to
+              [Understanding Rocket Loader](https://support.cloudflare.com/hc/articles/200168056)
+              for more information.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return await self._patch(
+            f"/zones/{zone_id}/settings/rocket_loader",
+            body=maybe_transform({"value": value}, rocket_loader_update_params.RocketLoaderUpdateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[RocketLoaderUpdateResponse]], ResultWrapper[RocketLoaderUpdateResponse]),
+        )
+
+    async def get(
+        self,
+        zone_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RocketLoaderGetResponse]:
+        """
+        Rocket Loader is a general-purpose asynchronous JavaScript optimisation that
+        prioritises rendering your content while loading your site's Javascript
+        asynchronously. Turning on Rocket Loader will immediately improve a web page's
+        rendering time sometimes measured as Time to First Paint (TTFP), and also the
+        `window.onload` time (assuming there is JavaScript on the page). This can have a
+        positive impact on your Google search ranking. When turned on, Rocket Loader
+        will automatically defer the loading of all Javascript referenced in your HTML,
+        with no configuration required. Refer to
+        [Understanding Rocket Loader](https://support.cloudflare.com/hc/articles/200168056)
+        for more information.
+
+        Args:
+          zone_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return await self._get(
+            f"/zones/{zone_id}/settings/rocket_loader",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[RocketLoaderGetResponse]], ResultWrapper[RocketLoaderGetResponse]),
+        )
+
+
+class RocketLoaderWithRawResponse:
+    def __init__(self, rocket_loader: RocketLoader) -> None:
+        self._rocket_loader = rocket_loader
+
+        self.update = to_raw_response_wrapper(
+            rocket_loader.update,
+        )
+        self.get = to_raw_response_wrapper(
+            rocket_loader.get,
+        )
+
+
+class AsyncRocketLoaderWithRawResponse:
+    def __init__(self, rocket_loader: AsyncRocketLoader) -> None:
+        self._rocket_loader = rocket_loader
+
+        self.update = async_to_raw_response_wrapper(
+            rocket_loader.update,
+        )
+        self.get = async_to_raw_response_wrapper(
+            rocket_loader.get,
+        )
+
+
+class RocketLoaderWithStreamingResponse:
+    def __init__(self, rocket_loader: RocketLoader) -> None:
+        self._rocket_loader = rocket_loader
+
+        self.update = to_streamed_response_wrapper(
+            rocket_loader.update,
+        )
+        self.get = to_streamed_response_wrapper(
+            rocket_loader.get,
+        )
+
+
+class AsyncRocketLoaderWithStreamingResponse:
+    def __init__(self, rocket_loader: AsyncRocketLoader) -> None:
+        self._rocket_loader = rocket_loader
+
+        self.update = async_to_streamed_response_wrapper(
+            rocket_loader.update,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            rocket_loader.get,
+        )

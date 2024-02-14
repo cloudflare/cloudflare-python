@@ -1,0 +1,33 @@
+# File generated from our OpenAPI spec by Stainless.
+
+from typing_extensions import Literal
+
+from typing import Optional
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+from ..._models import BaseModel
+from ...types import shared
+
+__all__ = ["OwnershipMagicPcapCollectionAddBucketsForFullPacketCapturesResponse"]
+
+
+class OwnershipMagicPcapCollectionAddBucketsForFullPacketCapturesResponse(BaseModel):
+    id: str
+    """The bucket ID associated with the packet captures API."""
+
+    destination_conf: str
+    """The full URI for the bucket. This field only applies to `full` packet captures."""
+
+    filename: str
+    """The ownership challenge filename stored in the bucket."""
+
+    status: Literal["pending", "success", "failed"]
+    """The status of the ownership challenge. Can be pending, success or failed."""
+
+    submitted: str
+    """The RFC 3339 timestamp when the bucket was added to packet captures API."""
+
+    validated: Optional[str] = None
+    """The RFC 3339 timestamp when the bucket was validated."""

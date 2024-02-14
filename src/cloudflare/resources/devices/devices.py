@@ -1,0 +1,547 @@
+# File generated from our OpenAPI spec by Stainless.
+
+from __future__ import annotations
+
+import httpx
+
+from .dex_tests import DEXTests, AsyncDEXTests
+
+from ..._compat import cached_property
+
+from .networks import Networks, AsyncNetworks
+
+from .policies.policies import Policies, AsyncPolicies
+
+from .postures.postures import Postures, AsyncPostures
+
+from .revokes import Revokes, AsyncRevokes
+
+from .settings import Settings, AsyncSettings
+
+from .unrevokes import Unrevokes, AsyncUnrevokes
+
+from .override_codes import OverrideCodes, AsyncOverrideCodes
+
+from ...types import DeviceDevicesListDevicesResponse, DeviceGetResponse
+
+from typing import Type, Optional
+
+from ..._response import (
+    to_raw_response_wrapper,
+    async_to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._base_client import (
+    SyncAPIClient,
+    AsyncAPIClient,
+    _merge_mappings,
+    AsyncPaginator,
+    make_request_options,
+    HttpxBinaryResponseContent,
+)
+from ...types import shared_params
+from .dex_tests import (
+    DEXTests,
+    AsyncDEXTests,
+    DEXTestsWithRawResponse,
+    AsyncDEXTestsWithRawResponse,
+    DEXTestsWithStreamingResponse,
+    AsyncDEXTestsWithStreamingResponse,
+)
+from .networks import (
+    Networks,
+    AsyncNetworks,
+    NetworksWithRawResponse,
+    AsyncNetworksWithRawResponse,
+    NetworksWithStreamingResponse,
+    AsyncNetworksWithStreamingResponse,
+)
+from .policies import (
+    Policies,
+    AsyncPolicies,
+    PoliciesWithRawResponse,
+    AsyncPoliciesWithRawResponse,
+    PoliciesWithStreamingResponse,
+    AsyncPoliciesWithStreamingResponse,
+)
+from .postures import (
+    Postures,
+    AsyncPostures,
+    PosturesWithRawResponse,
+    AsyncPosturesWithRawResponse,
+    PosturesWithStreamingResponse,
+    AsyncPosturesWithStreamingResponse,
+)
+from .revokes import (
+    Revokes,
+    AsyncRevokes,
+    RevokesWithRawResponse,
+    AsyncRevokesWithRawResponse,
+    RevokesWithStreamingResponse,
+    AsyncRevokesWithStreamingResponse,
+)
+from .settings import (
+    Settings,
+    AsyncSettings,
+    SettingsWithRawResponse,
+    AsyncSettingsWithRawResponse,
+    SettingsWithStreamingResponse,
+    AsyncSettingsWithStreamingResponse,
+)
+from .unrevokes import (
+    Unrevokes,
+    AsyncUnrevokes,
+    UnrevokesWithRawResponse,
+    AsyncUnrevokesWithRawResponse,
+    UnrevokesWithStreamingResponse,
+    AsyncUnrevokesWithStreamingResponse,
+)
+from .override_codes import (
+    OverrideCodes,
+    AsyncOverrideCodes,
+    OverrideCodesWithRawResponse,
+    AsyncOverrideCodesWithRawResponse,
+    OverrideCodesWithStreamingResponse,
+    AsyncOverrideCodesWithStreamingResponse,
+)
+from ..._wrappers import ResultWrapper
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+
+__all__ = ["Devices", "AsyncDevices"]
+
+
+class Devices(SyncAPIResource):
+    @cached_property
+    def dex_tests(self) -> DEXTests:
+        return DEXTests(self._client)
+
+    @cached_property
+    def networks(self) -> Networks:
+        return Networks(self._client)
+
+    @cached_property
+    def policies(self) -> Policies:
+        return Policies(self._client)
+
+    @cached_property
+    def postures(self) -> Postures:
+        return Postures(self._client)
+
+    @cached_property
+    def revokes(self) -> Revokes:
+        return Revokes(self._client)
+
+    @cached_property
+    def settings(self) -> Settings:
+        return Settings(self._client)
+
+    @cached_property
+    def unrevokes(self) -> Unrevokes:
+        return Unrevokes(self._client)
+
+    @cached_property
+    def override_codes(self) -> OverrideCodes:
+        return OverrideCodes(self._client)
+
+    @cached_property
+    def with_raw_response(self) -> DevicesWithRawResponse:
+        return DevicesWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> DevicesWithStreamingResponse:
+        return DevicesWithStreamingResponse(self)
+
+    def devices_list_devices(
+        self,
+        identifier: object,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[DeviceDevicesListDevicesResponse]:
+        """
+        Fetches a list of enrolled devices.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get(
+            f"/accounts/{identifier}/devices",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(
+                Type[Optional[DeviceDevicesListDevicesResponse]], ResultWrapper[DeviceDevicesListDevicesResponse]
+            ),
+        )
+
+    def get(
+        self,
+        uuid: str,
+        *,
+        identifier: object,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[DeviceGetResponse]:
+        """
+        Fetches details for a single device.
+
+        Args:
+          uuid: Device ID.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not uuid:
+            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        return cast(
+            Optional[DeviceGetResponse],
+            self._get(
+                f"/accounts/{identifier}/devices/{uuid}",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[DeviceGetResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
+        )
+
+
+class AsyncDevices(AsyncAPIResource):
+    @cached_property
+    def dex_tests(self) -> AsyncDEXTests:
+        return AsyncDEXTests(self._client)
+
+    @cached_property
+    def networks(self) -> AsyncNetworks:
+        return AsyncNetworks(self._client)
+
+    @cached_property
+    def policies(self) -> AsyncPolicies:
+        return AsyncPolicies(self._client)
+
+    @cached_property
+    def postures(self) -> AsyncPostures:
+        return AsyncPostures(self._client)
+
+    @cached_property
+    def revokes(self) -> AsyncRevokes:
+        return AsyncRevokes(self._client)
+
+    @cached_property
+    def settings(self) -> AsyncSettings:
+        return AsyncSettings(self._client)
+
+    @cached_property
+    def unrevokes(self) -> AsyncUnrevokes:
+        return AsyncUnrevokes(self._client)
+
+    @cached_property
+    def override_codes(self) -> AsyncOverrideCodes:
+        return AsyncOverrideCodes(self._client)
+
+    @cached_property
+    def with_raw_response(self) -> AsyncDevicesWithRawResponse:
+        return AsyncDevicesWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncDevicesWithStreamingResponse:
+        return AsyncDevicesWithStreamingResponse(self)
+
+    async def devices_list_devices(
+        self,
+        identifier: object,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[DeviceDevicesListDevicesResponse]:
+        """
+        Fetches a list of enrolled devices.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._get(
+            f"/accounts/{identifier}/devices",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(
+                Type[Optional[DeviceDevicesListDevicesResponse]], ResultWrapper[DeviceDevicesListDevicesResponse]
+            ),
+        )
+
+    async def get(
+        self,
+        uuid: str,
+        *,
+        identifier: object,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[DeviceGetResponse]:
+        """
+        Fetches details for a single device.
+
+        Args:
+          uuid: Device ID.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not uuid:
+            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        return cast(
+            Optional[DeviceGetResponse],
+            await self._get(
+                f"/accounts/{identifier}/devices/{uuid}",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[DeviceGetResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
+        )
+
+
+class DevicesWithRawResponse:
+    def __init__(self, devices: Devices) -> None:
+        self._devices = devices
+
+        self.devices_list_devices = to_raw_response_wrapper(
+            devices.devices_list_devices,
+        )
+        self.get = to_raw_response_wrapper(
+            devices.get,
+        )
+
+    @cached_property
+    def dex_tests(self) -> DEXTestsWithRawResponse:
+        return DEXTestsWithRawResponse(self._devices.dex_tests)
+
+    @cached_property
+    def networks(self) -> NetworksWithRawResponse:
+        return NetworksWithRawResponse(self._devices.networks)
+
+    @cached_property
+    def policies(self) -> PoliciesWithRawResponse:
+        return PoliciesWithRawResponse(self._devices.policies)
+
+    @cached_property
+    def postures(self) -> PosturesWithRawResponse:
+        return PosturesWithRawResponse(self._devices.postures)
+
+    @cached_property
+    def revokes(self) -> RevokesWithRawResponse:
+        return RevokesWithRawResponse(self._devices.revokes)
+
+    @cached_property
+    def settings(self) -> SettingsWithRawResponse:
+        return SettingsWithRawResponse(self._devices.settings)
+
+    @cached_property
+    def unrevokes(self) -> UnrevokesWithRawResponse:
+        return UnrevokesWithRawResponse(self._devices.unrevokes)
+
+    @cached_property
+    def override_codes(self) -> OverrideCodesWithRawResponse:
+        return OverrideCodesWithRawResponse(self._devices.override_codes)
+
+
+class AsyncDevicesWithRawResponse:
+    def __init__(self, devices: AsyncDevices) -> None:
+        self._devices = devices
+
+        self.devices_list_devices = async_to_raw_response_wrapper(
+            devices.devices_list_devices,
+        )
+        self.get = async_to_raw_response_wrapper(
+            devices.get,
+        )
+
+    @cached_property
+    def dex_tests(self) -> AsyncDEXTestsWithRawResponse:
+        return AsyncDEXTestsWithRawResponse(self._devices.dex_tests)
+
+    @cached_property
+    def networks(self) -> AsyncNetworksWithRawResponse:
+        return AsyncNetworksWithRawResponse(self._devices.networks)
+
+    @cached_property
+    def policies(self) -> AsyncPoliciesWithRawResponse:
+        return AsyncPoliciesWithRawResponse(self._devices.policies)
+
+    @cached_property
+    def postures(self) -> AsyncPosturesWithRawResponse:
+        return AsyncPosturesWithRawResponse(self._devices.postures)
+
+    @cached_property
+    def revokes(self) -> AsyncRevokesWithRawResponse:
+        return AsyncRevokesWithRawResponse(self._devices.revokes)
+
+    @cached_property
+    def settings(self) -> AsyncSettingsWithRawResponse:
+        return AsyncSettingsWithRawResponse(self._devices.settings)
+
+    @cached_property
+    def unrevokes(self) -> AsyncUnrevokesWithRawResponse:
+        return AsyncUnrevokesWithRawResponse(self._devices.unrevokes)
+
+    @cached_property
+    def override_codes(self) -> AsyncOverrideCodesWithRawResponse:
+        return AsyncOverrideCodesWithRawResponse(self._devices.override_codes)
+
+
+class DevicesWithStreamingResponse:
+    def __init__(self, devices: Devices) -> None:
+        self._devices = devices
+
+        self.devices_list_devices = to_streamed_response_wrapper(
+            devices.devices_list_devices,
+        )
+        self.get = to_streamed_response_wrapper(
+            devices.get,
+        )
+
+    @cached_property
+    def dex_tests(self) -> DEXTestsWithStreamingResponse:
+        return DEXTestsWithStreamingResponse(self._devices.dex_tests)
+
+    @cached_property
+    def networks(self) -> NetworksWithStreamingResponse:
+        return NetworksWithStreamingResponse(self._devices.networks)
+
+    @cached_property
+    def policies(self) -> PoliciesWithStreamingResponse:
+        return PoliciesWithStreamingResponse(self._devices.policies)
+
+    @cached_property
+    def postures(self) -> PosturesWithStreamingResponse:
+        return PosturesWithStreamingResponse(self._devices.postures)
+
+    @cached_property
+    def revokes(self) -> RevokesWithStreamingResponse:
+        return RevokesWithStreamingResponse(self._devices.revokes)
+
+    @cached_property
+    def settings(self) -> SettingsWithStreamingResponse:
+        return SettingsWithStreamingResponse(self._devices.settings)
+
+    @cached_property
+    def unrevokes(self) -> UnrevokesWithStreamingResponse:
+        return UnrevokesWithStreamingResponse(self._devices.unrevokes)
+
+    @cached_property
+    def override_codes(self) -> OverrideCodesWithStreamingResponse:
+        return OverrideCodesWithStreamingResponse(self._devices.override_codes)
+
+
+class AsyncDevicesWithStreamingResponse:
+    def __init__(self, devices: AsyncDevices) -> None:
+        self._devices = devices
+
+        self.devices_list_devices = async_to_streamed_response_wrapper(
+            devices.devices_list_devices,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            devices.get,
+        )
+
+    @cached_property
+    def dex_tests(self) -> AsyncDEXTestsWithStreamingResponse:
+        return AsyncDEXTestsWithStreamingResponse(self._devices.dex_tests)
+
+    @cached_property
+    def networks(self) -> AsyncNetworksWithStreamingResponse:
+        return AsyncNetworksWithStreamingResponse(self._devices.networks)
+
+    @cached_property
+    def policies(self) -> AsyncPoliciesWithStreamingResponse:
+        return AsyncPoliciesWithStreamingResponse(self._devices.policies)
+
+    @cached_property
+    def postures(self) -> AsyncPosturesWithStreamingResponse:
+        return AsyncPosturesWithStreamingResponse(self._devices.postures)
+
+    @cached_property
+    def revokes(self) -> AsyncRevokesWithStreamingResponse:
+        return AsyncRevokesWithStreamingResponse(self._devices.revokes)
+
+    @cached_property
+    def settings(self) -> AsyncSettingsWithStreamingResponse:
+        return AsyncSettingsWithStreamingResponse(self._devices.settings)
+
+    @cached_property
+    def unrevokes(self) -> AsyncUnrevokesWithStreamingResponse:
+        return AsyncUnrevokesWithStreamingResponse(self._devices.unrevokes)
+
+    @cached_property
+    def override_codes(self) -> AsyncOverrideCodesWithStreamingResponse:
+        return AsyncOverrideCodesWithStreamingResponse(self._devices.override_codes)

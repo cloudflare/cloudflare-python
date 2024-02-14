@@ -1,0 +1,7 @@
+# File generated from our OpenAPI spec by Stainless.
+
+from __future__ import annotations
+
+from .psk_generate_magic_i_psec_tunnels_generate_pre_shared_key_psk_for_i_psec_tunnels_response import (
+    PskGenerateMagicIPsecTunnelsGeneratePreSharedKeyPskForIPsecTunnelsResponse as PskGenerateMagicIPsecTunnelsGeneratePreSharedKeyPskForIPsecTunnelsResponse,
+)
