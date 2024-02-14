@@ -2,6 +2,25 @@
 
 from __future__ import annotations
 
+from .tops.tops import Tops, AsyncTops
+
+from ...._compat import cached_property
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._base_client import (
+    SyncAPIClient,
+    AsyncAPIClient,
+    _merge_mappings,
+    AsyncPaginator,
+    make_request_options,
+    HttpxBinaryResponseContent,
+)
+from ....types import shared_params
 from .tops import (
     Tops,
     AsyncTops,
@@ -10,9 +29,7 @@ from .tops import (
     TopsWithStreamingResponse,
     AsyncTopsWithStreamingResponse,
 )
-from .tops.tops import Tops, AsyncTops
-from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._wrappers import ResultWrapper
 
 __all__ = ["VerifiedBots", "AsyncVerifiedBots"]
 

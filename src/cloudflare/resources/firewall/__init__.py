@@ -1,16 +1,9 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from .waf import (
-    WAF,
-    AsyncWAF,
-    WAFWithRawResponse,
-    AsyncWAFWithRawResponse,
-    WAFWithStreamingResponse,
-    AsyncWAFWithStreamingResponse,
-)
+from .waf import WAF, AsyncWAF
+from .waf import WAFWithRawResponse, AsyncWAFWithRawResponse, WAFWithStreamingResponse, AsyncWAFWithStreamingResponse
+from .firewall import Firewall, AsyncFirewall
 from .firewall import (
-    Firewall,
-    AsyncFirewall,
     FirewallWithRawResponse,
     AsyncFirewallWithRawResponse,
     FirewallWithStreamingResponse,
