@@ -2,14 +2,19 @@
 
 from __future__ import annotations
 
-import os
+from cloudflare.types import UserUserEditUserResponse, UserUserUserDetailsResponse
+
 from typing import Any, cast
 
+import os
 import pytest
-
+import httpx
+from typing_extensions import get_args
+from typing import Optional
+from respx import MockRouter
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types import UserUserEditUserResponse, UserUserUserDetailsResponse
+from cloudflare.types import user_user_edit_user_params
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
