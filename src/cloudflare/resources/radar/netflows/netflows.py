@@ -2,35 +2,6 @@
 
 from __future__ import annotations
 
-from .timeseries import Timeseries, AsyncTimeseries
-
-from ...._compat import cached_property
-
-from .tops.tops import Tops, AsyncTops
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ....types import shared_params
-from .timeseries import (
-    Timeseries,
-    AsyncTimeseries,
-    TimeseriesWithRawResponse,
-    AsyncTimeseriesWithRawResponse,
-    TimeseriesWithStreamingResponse,
-    AsyncTimeseriesWithStreamingResponse,
-)
 from .tops import (
     Tops,
     AsyncTops,
@@ -39,7 +10,17 @@ from .tops import (
     TopsWithStreamingResponse,
     AsyncTopsWithStreamingResponse,
 )
-from ...._wrappers import ResultWrapper
+from .tops.tops import Tops, AsyncTops
+from ...._compat import cached_property
+from .timeseries import (
+    Timeseries,
+    AsyncTimeseries,
+    TimeseriesWithRawResponse,
+    AsyncTimeseriesWithRawResponse,
+    TimeseriesWithStreamingResponse,
+    AsyncTimeseriesWithStreamingResponse,
+)
+from ...._resource import SyncAPIResource, AsyncAPIResource
 
 __all__ = ["Netflows", "AsyncNetflows"]
 

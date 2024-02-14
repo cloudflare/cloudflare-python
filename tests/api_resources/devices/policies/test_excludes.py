@@ -2,26 +2,18 @@
 
 from __future__ import annotations
 
-from typing import Optional, Any, cast
-
-from cloudflare.types.devices.policies import (
-    ExcludeDevicesGetSplitTunnelExcludeListResponse,
-    ExcludeDevicesGetSplitTunnelExcludeListForADeviceSettingsPolicyResponse,
-    ExcludeDevicesSetSplitTunnelExcludeListResponse,
-    ExcludeDevicesSetSplitTunnelExcludeListForADeviceSettingsPolicyResponse,
-)
-
 import os
+from typing import Any, Optional, cast
+
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.devices.policies import exclude_devices_set_split_tunnel_exclude_list_params
 from cloudflare.types.devices.policies import (
-    exclude_devices_set_split_tunnel_exclude_list_for_a_device_settings_policy_params,
+    ExcludeDevicesGetSplitTunnelExcludeListResponse,
+    ExcludeDevicesSetSplitTunnelExcludeListResponse,
+    ExcludeDevicesGetSplitTunnelExcludeListForADeviceSettingsPolicyResponse,
+    ExcludeDevicesSetSplitTunnelExcludeListForADeviceSettingsPolicyResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")

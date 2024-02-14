@@ -2,59 +2,6 @@
 
 from __future__ import annotations
 
-from .dmarc import Dmarc, AsyncDmarc
-
-from ....._compat import cached_property
-
-from .malicious import Malicious, AsyncMalicious
-
-from .spam import Spam, AsyncSpam
-
-from .spf import SPF, AsyncSPF
-
-from .threat_category import ThreatCategory, AsyncThreatCategory
-
-from .top.top import Top, AsyncTop
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ....._resource import SyncAPIResource, AsyncAPIResource
-from ....._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from .....types import shared_params
-from .dmarc import (
-    Dmarc,
-    AsyncDmarc,
-    DmarcWithRawResponse,
-    AsyncDmarcWithRawResponse,
-    DmarcWithStreamingResponse,
-    AsyncDmarcWithStreamingResponse,
-)
-from .malicious import (
-    Malicious,
-    AsyncMalicious,
-    MaliciousWithRawResponse,
-    AsyncMaliciousWithRawResponse,
-    MaliciousWithStreamingResponse,
-    AsyncMaliciousWithStreamingResponse,
-)
-from .spam import (
-    Spam,
-    AsyncSpam,
-    SpamWithRawResponse,
-    AsyncSpamWithRawResponse,
-    SpamWithStreamingResponse,
-    AsyncSpamWithStreamingResponse,
-)
 from .spf import (
     SPF,
     AsyncSPF,
@@ -62,14 +9,6 @@ from .spf import (
     AsyncSPFWithRawResponse,
     SPFWithStreamingResponse,
     AsyncSPFWithStreamingResponse,
-)
-from .threat_category import (
-    ThreatCategory,
-    AsyncThreatCategory,
-    ThreatCategoryWithRawResponse,
-    AsyncThreatCategoryWithRawResponse,
-    ThreatCategoryWithStreamingResponse,
-    AsyncThreatCategoryWithStreamingResponse,
 )
 from .top import (
     Top,
@@ -79,7 +18,41 @@ from .top import (
     TopWithStreamingResponse,
     AsyncTopWithStreamingResponse,
 )
-from ....._wrappers import ResultWrapper
+from .spam import (
+    Spam,
+    AsyncSpam,
+    SpamWithRawResponse,
+    AsyncSpamWithRawResponse,
+    SpamWithStreamingResponse,
+    AsyncSpamWithStreamingResponse,
+)
+from .dmarc import (
+    Dmarc,
+    AsyncDmarc,
+    DmarcWithRawResponse,
+    AsyncDmarcWithRawResponse,
+    DmarcWithStreamingResponse,
+    AsyncDmarcWithStreamingResponse,
+)
+from .top.top import Top, AsyncTop
+from .malicious import (
+    Malicious,
+    AsyncMalicious,
+    MaliciousWithRawResponse,
+    AsyncMaliciousWithRawResponse,
+    MaliciousWithStreamingResponse,
+    AsyncMaliciousWithStreamingResponse,
+)
+from ....._compat import cached_property
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from .threat_category import (
+    ThreatCategory,
+    AsyncThreatCategory,
+    ThreatCategoryWithRawResponse,
+    AsyncThreatCategoryWithRawResponse,
+    ThreatCategoryWithStreamingResponse,
+    AsyncThreatCategoryWithStreamingResponse,
+)
 
 __all__ = ["Security", "AsyncSecurity"]
 
