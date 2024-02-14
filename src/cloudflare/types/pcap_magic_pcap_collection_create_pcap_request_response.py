@@ -7,14 +7,14 @@ from .._models import BaseModel
 
 __all__ = [
     "PcapMagicPcapCollectionCreatePcapRequestResponse",
-    "Nyslc8GBPcapsResponseSimple",
-    "Nyslc8GBPcapsResponseSimpleFilterV1",
-    "Nyslc8GBPcapsResponseFull",
-    "Nyslc8GBPcapsResponseFullFilterV1",
+    "_7JdQoMbwPcapsResponseSimple",
+    "_7JdQoMbwPcapsResponseSimpleFilterV1",
+    "_7JdQoMbwPcapsResponseFull",
+    "_7JdQoMbwPcapsResponseFullFilterV1",
 ]
 
 
-class Nyslc8GBPcapsResponseSimpleFilterV1(BaseModel):
+class _7JdQoMbwPcapsResponseSimpleFilterV1(BaseModel):
     destination_address: Optional[str] = None
     """The destination IP address of the packet."""
 
@@ -31,11 +31,11 @@ class Nyslc8GBPcapsResponseSimpleFilterV1(BaseModel):
     """The source port of the packet."""
 
 
-class Nyslc8GBPcapsResponseSimple(BaseModel):
+class _7JdQoMbwPcapsResponseSimple(BaseModel):
     id: Optional[str] = None
     """The ID for the packet capture."""
 
-    filter_v1: Optional[Nyslc8GBPcapsResponseSimpleFilterV1] = None
+    filter_v1: Optional[_7JdQoMbwPcapsResponseSimpleFilterV1] = None
     """The packet capture filter. When this field is empty, all packets are captured."""
 
     status: Optional[
@@ -62,7 +62,7 @@ class Nyslc8GBPcapsResponseSimple(BaseModel):
     """
 
 
-class Nyslc8GBPcapsResponseFullFilterV1(BaseModel):
+class _7JdQoMbwPcapsResponseFullFilterV1(BaseModel):
     destination_address: Optional[str] = None
     """The destination IP address of the packet."""
 
@@ -79,7 +79,7 @@ class Nyslc8GBPcapsResponseFullFilterV1(BaseModel):
     """The source port of the packet."""
 
 
-class Nyslc8GBPcapsResponseFull(BaseModel):
+class _7JdQoMbwPcapsResponseFull(BaseModel):
     id: Optional[str] = None
     """The ID for the packet capture."""
 
@@ -105,7 +105,7 @@ class Nyslc8GBPcapsResponseFull(BaseModel):
     This field only applies to `full` packet captures.
     """
 
-    filter_v1: Optional[Nyslc8GBPcapsResponseFullFilterV1] = None
+    filter_v1: Optional[_7JdQoMbwPcapsResponseFullFilterV1] = None
     """The packet capture filter. When this field is empty, all packets are captured."""
 
     status: Optional[
@@ -132,4 +132,4 @@ class Nyslc8GBPcapsResponseFull(BaseModel):
     """
 
 
-PcapMagicPcapCollectionCreatePcapRequestResponse = Union[Nyslc8GBPcapsResponseSimple, Nyslc8GBPcapsResponseFull]
+PcapMagicPcapCollectionCreatePcapRequestResponse = Union[_7JdQoMbwPcapsResponseSimple, _7JdQoMbwPcapsResponseFull]
