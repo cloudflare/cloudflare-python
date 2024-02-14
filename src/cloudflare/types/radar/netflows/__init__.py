@@ -2,5 +2,5 @@
 
 from __future__ import annotations
 
-from .timesery_list_params import TimeseryListParams as TimeseryListParams
 from .timesery_list_response import TimeseryListResponse as TimeseryListResponse
+from .timesery_list_params import TimeseryListParams as TimeseryListParams

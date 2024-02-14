@@ -2,19 +2,24 @@
 
 from __future__ import annotations
 
+from cloudflare.types import (
+    OriginTLSClientAuthCreateResponse,
+    OriginTLSClientAuthListResponse,
+    OriginTLSClientAuthDeleteResponse,
+    OriginTLSClientAuthGetResponse,
+)
+
+from typing import Any, cast, Optional
+
 import os
-from typing import Any, Optional, cast
-
 import pytest
-
+import httpx
+from typing_extensions import get_args
+from typing import Optional
+from respx import MockRouter
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types import (
-    OriginTLSClientAuthGetResponse,
-    OriginTLSClientAuthListResponse,
-    OriginTLSClientAuthCreateResponse,
-    OriginTLSClientAuthDeleteResponse,
-)
+from cloudflare.types import origin_tls_client_auth_create_params
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

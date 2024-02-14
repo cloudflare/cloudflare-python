@@ -2,19 +2,24 @@
 
 from __future__ import annotations
 
-from typing import Union
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import TypedDict, Required, Literal
+
+from typing import List, Union, Dict, Optional
+from typing_extensions import Literal, TypedDict, Required, Annotated
+from .._types import FileTypes
+from .._utils import PropertyInfo
+from ..types import shared_params
 
 __all__ = [
     "PcapMagicPcapCollectionCreatePcapRequestParams",
-    "UuvhQEsmPcapsRequestSimple",
-    "UuvhQEsmPcapsRequestSimpleFilterV1",
-    "UuvhQEsmPcapsRequestFull",
-    "UuvhQEsmPcapsRequestFullFilterV1",
+    "OZ852JWkPcapsRequestSimple",
+    "Oz852JWkPcapsRequestSimpleFilterV1",
+    "OZ852JWkPcapsRequestFull",
+    "Oz852JWkPcapsRequestFullFilterV1",
 ]
 
 
-class UuvhQEsmPcapsRequestSimple(TypedDict, total=False):
+class OZ852JWkPcapsRequestSimple(TypedDict, total=False):
     packet_limit: Required[float]
     """The limit of packets contained in a packet capture."""
 
@@ -31,11 +36,11 @@ class UuvhQEsmPcapsRequestSimple(TypedDict, total=False):
     non-sampled packets.
     """
 
-    filter_v1: UuvhQEsmPcapsRequestSimpleFilterV1
+    filter_v1: Oz852JWkPcapsRequestSimpleFilterV1
     """The packet capture filter. When this field is empty, all packets are captured."""
 
 
-class UuvhQEsmPcapsRequestSimpleFilterV1(TypedDict, total=False):
+class Oz852JWkPcapsRequestSimpleFilterV1(TypedDict, total=False):
     destination_address: str
     """The destination IP address of the packet."""
 
@@ -52,7 +57,7 @@ class UuvhQEsmPcapsRequestSimpleFilterV1(TypedDict, total=False):
     """The source port of the packet."""
 
 
-class UuvhQEsmPcapsRequestFull(TypedDict, total=False):
+class OZ852JWkPcapsRequestFull(TypedDict, total=False):
     colo_name: Required[str]
     """The name of the data center used for the packet capture.
 
@@ -82,14 +87,14 @@ class UuvhQEsmPcapsRequestFull(TypedDict, total=False):
     This field only applies to `full` packet captures.
     """
 
-    filter_v1: UuvhQEsmPcapsRequestFullFilterV1
+    filter_v1: Oz852JWkPcapsRequestFullFilterV1
     """The packet capture filter. When this field is empty, all packets are captured."""
 
     packet_limit: float
     """The limit of packets contained in a packet capture."""
 
 
-class UuvhQEsmPcapsRequestFullFilterV1(TypedDict, total=False):
+class Oz852JWkPcapsRequestFullFilterV1(TypedDict, total=False):
     destination_address: str
     """The destination IP address of the packet."""
 
@@ -106,4 +111,4 @@ class UuvhQEsmPcapsRequestFullFilterV1(TypedDict, total=False):
     """The source port of the packet."""
 
 
-PcapMagicPcapCollectionCreatePcapRequestParams = Union[UuvhQEsmPcapsRequestSimple, UuvhQEsmPcapsRequestFull]
+PcapMagicPcapCollectionCreatePcapRequestParams = Union[OZ852JWkPcapsRequestSimple, OZ852JWkPcapsRequestFull]

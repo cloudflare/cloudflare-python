@@ -1,16 +1,3 @@
 # File generated from our OpenAPI spec by Stainless.
 
 from __future__ import annotations
-
-from .force_notify_secondary_dns_primary_zone_force_dns_notify_response import (
-    ForceNotifySecondaryDNSPrimaryZoneForceDNSNotifyResponse as ForceNotifySecondaryDNSPrimaryZoneForceDNSNotifyResponse,
-)
-from .enable_secondary_dns_primary_zone_enable_outgoing_zone_transfers_response import (
-    EnableSecondaryDNSPrimaryZoneEnableOutgoingZoneTransfersResponse as EnableSecondaryDNSPrimaryZoneEnableOutgoingZoneTransfersResponse,
-)
-from .disable_secondary_dns_primary_zone_disable_outgoing_zone_transfers_response import (
-    DisableSecondaryDNSPrimaryZoneDisableOutgoingZoneTransfersResponse as DisableSecondaryDNSPrimaryZoneDisableOutgoingZoneTransfersResponse,
-)
-from .status_secondary_dns_primary_zone_get_outgoing_zone_transfer_status_response import (
-    StatusSecondaryDNSPrimaryZoneGetOutgoingZoneTransferStatusResponse as StatusSecondaryDNSPrimaryZoneGetOutgoingZoneTransferStatusResponse,
-)
