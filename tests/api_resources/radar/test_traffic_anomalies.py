@@ -36,7 +36,7 @@ class TestTrafficAnomalies:
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         traffic_anomaly = client.radar.traffic_anomalies.list(
-            asn=174,
+            asn=0,
             date_end=parse_datetime("2023-09-01T11:41:33.782Z"),
             date_range="7d",
             date_start=parse_datetime("2023-09-01T11:41:33.782Z"),
@@ -84,7 +84,7 @@ class TestAsyncTrafficAnomalies:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         traffic_anomaly = await async_client.radar.traffic_anomalies.list(
-            asn=174,
+            asn=0,
             date_end=parse_datetime("2023-09-01T11:41:33.782Z"),
             date_range="7d",
             date_start=parse_datetime("2023-09-01T11:41:33.782Z"),

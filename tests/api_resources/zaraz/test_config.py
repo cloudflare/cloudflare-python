@@ -28,14 +28,14 @@ class TestConfig:
         config = client.zaraz.config.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             data_layer=True,
-            debug_key="string",
+            debug_key="my-debug-key",
             settings={"auto_inject_script": True},
             tools={
-                "foo": {
+                "aJvt": {
                     "blocking_triggers": ["string", "string", "string"],
-                    "default_fields": {"foo": "string"},
+                    "default_fields": {"testKey": "TEST123456"},
                     "enabled": True,
-                    "name": "string",
+                    "name": "Facebook Pixel",
                     "library": "string",
                     "neo_events": [
                         {
@@ -58,7 +58,7 @@ class TestConfig:
                 }
             },
             triggers={
-                "foo": {
+                "ktBn": {
                     "exclude_rules": [
                         {
                             "id": "string",
@@ -103,13 +103,13 @@ class TestConfig:
                 }
             },
             variables={
-                "foo": {
-                    "name": "string",
+                "Autd": {
+                    "name": "ip",
                     "type": "string",
-                    "value": "string",
+                    "value": "{{ system.device.ip }}",
                 }
             },
-            zaraz_version=0,
+            zaraz_version=43,
         )
         assert_matches_type(ConfigUpdateResponse, config, path=["response"])
 
@@ -119,7 +119,7 @@ class TestConfig:
         config = client.zaraz.config.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             data_layer=True,
-            debug_key="string",
+            debug_key="my-debug-key",
             settings={
                 "auto_inject_script": True,
                 "context_enricher": {
@@ -133,19 +133,19 @@ class TestConfig:
                 "hide_ip_address": True,
                 "hide_query_params": True,
                 "hide_user_agent": True,
-                "init_path": "string",
+                "init_path": "/i",
                 "inject_iframes": True,
                 "mc_root_path": "string",
                 "script_path": "string",
                 "track_path": "string",
             },
             tools={
-                "foo": {
+                "aJvt": {
                     "blocking_triggers": ["string", "string", "string"],
-                    "default_fields": {"foo": "string"},
+                    "default_fields": {"testKey": "TEST123456"},
                     "default_purpose": "string",
                     "enabled": True,
-                    "name": "string",
+                    "name": "Facebook Pixel",
                     "library": "string",
                     "neo_events": [
                         {
@@ -168,7 +168,7 @@ class TestConfig:
                 }
             },
             triggers={
-                "foo": {
+                "ktBn": {
                     "description": "string",
                     "exclude_rules": [
                         {
@@ -215,13 +215,13 @@ class TestConfig:
                 }
             },
             variables={
-                "foo": {
-                    "name": "string",
+                "Autd": {
+                    "name": "ip",
                     "type": "string",
-                    "value": "string",
+                    "value": "{{ system.device.ip }}",
                 }
             },
-            zaraz_version=0,
+            zaraz_version=43,
             consent={
                 "button_text_translations": {
                     "accept_all": {"foo": "string"},
@@ -233,11 +233,11 @@ class TestConfig:
                 "company_street_address": "string",
                 "consent_modal_intro_html": "string",
                 "consent_modal_intro_html_with_translations": {"foo": "string"},
-                "cookie_name": "string",
+                "cookie_name": "zaraz-consent",
                 "custom_css": "string",
                 "custom_intro_disclaimer_dismissed": True,
                 "default_language": "string",
-                "enabled": True,
+                "enabled": False,
                 "hide_modal": True,
                 "purposes": {
                     "foo": {
@@ -263,14 +263,14 @@ class TestConfig:
         response = client.zaraz.config.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             data_layer=True,
-            debug_key="string",
+            debug_key="my-debug-key",
             settings={"auto_inject_script": True},
             tools={
-                "foo": {
+                "aJvt": {
                     "blocking_triggers": ["string", "string", "string"],
-                    "default_fields": {"foo": "string"},
+                    "default_fields": {"testKey": "TEST123456"},
                     "enabled": True,
-                    "name": "string",
+                    "name": "Facebook Pixel",
                     "library": "string",
                     "neo_events": [
                         {
@@ -293,7 +293,7 @@ class TestConfig:
                 }
             },
             triggers={
-                "foo": {
+                "ktBn": {
                     "exclude_rules": [
                         {
                             "id": "string",
@@ -338,13 +338,13 @@ class TestConfig:
                 }
             },
             variables={
-                "foo": {
-                    "name": "string",
+                "Autd": {
+                    "name": "ip",
                     "type": "string",
-                    "value": "string",
+                    "value": "{{ system.device.ip }}",
                 }
             },
-            zaraz_version=0,
+            zaraz_version=43,
         )
 
         assert response.is_closed is True
@@ -358,14 +358,14 @@ class TestConfig:
         with client.zaraz.config.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             data_layer=True,
-            debug_key="string",
+            debug_key="my-debug-key",
             settings={"auto_inject_script": True},
             tools={
-                "foo": {
+                "aJvt": {
                     "blocking_triggers": ["string", "string", "string"],
-                    "default_fields": {"foo": "string"},
+                    "default_fields": {"testKey": "TEST123456"},
                     "enabled": True,
-                    "name": "string",
+                    "name": "Facebook Pixel",
                     "library": "string",
                     "neo_events": [
                         {
@@ -388,7 +388,7 @@ class TestConfig:
                 }
             },
             triggers={
-                "foo": {
+                "ktBn": {
                     "exclude_rules": [
                         {
                             "id": "string",
@@ -433,13 +433,13 @@ class TestConfig:
                 }
             },
             variables={
-                "foo": {
-                    "name": "string",
+                "Autd": {
+                    "name": "ip",
                     "type": "string",
-                    "value": "string",
+                    "value": "{{ system.device.ip }}",
                 }
             },
-            zaraz_version=0,
+            zaraz_version=43,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -456,14 +456,14 @@ class TestConfig:
             client.zaraz.config.with_raw_response.update(
                 "",
                 data_layer=True,
-                debug_key="string",
+                debug_key="my-debug-key",
                 settings={"auto_inject_script": True},
                 tools={
-                    "foo": {
+                    "aJvt": {
                         "blocking_triggers": ["string", "string", "string"],
-                        "default_fields": {"foo": "string"},
+                        "default_fields": {"testKey": "TEST123456"},
                         "enabled": True,
-                        "name": "string",
+                        "name": "Facebook Pixel",
                         "library": "string",
                         "neo_events": [
                             {
@@ -486,7 +486,7 @@ class TestConfig:
                     }
                 },
                 triggers={
-                    "foo": {
+                    "ktBn": {
                         "exclude_rules": [
                             {
                                 "id": "string",
@@ -531,13 +531,13 @@ class TestConfig:
                     }
                 },
                 variables={
-                    "foo": {
-                        "name": "string",
+                    "Autd": {
+                        "name": "ip",
                         "type": "string",
-                        "value": "string",
+                        "value": "{{ system.device.ip }}",
                     }
                 },
-                zaraz_version=0,
+                zaraz_version=43,
             )
 
     @pytest.mark.skip()
@@ -592,14 +592,14 @@ class TestAsyncConfig:
         config = await async_client.zaraz.config.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             data_layer=True,
-            debug_key="string",
+            debug_key="my-debug-key",
             settings={"auto_inject_script": True},
             tools={
-                "foo": {
+                "aJvt": {
                     "blocking_triggers": ["string", "string", "string"],
-                    "default_fields": {"foo": "string"},
+                    "default_fields": {"testKey": "TEST123456"},
                     "enabled": True,
-                    "name": "string",
+                    "name": "Facebook Pixel",
                     "library": "string",
                     "neo_events": [
                         {
@@ -622,7 +622,7 @@ class TestAsyncConfig:
                 }
             },
             triggers={
-                "foo": {
+                "ktBn": {
                     "exclude_rules": [
                         {
                             "id": "string",
@@ -667,13 +667,13 @@ class TestAsyncConfig:
                 }
             },
             variables={
-                "foo": {
-                    "name": "string",
+                "Autd": {
+                    "name": "ip",
                     "type": "string",
-                    "value": "string",
+                    "value": "{{ system.device.ip }}",
                 }
             },
-            zaraz_version=0,
+            zaraz_version=43,
         )
         assert_matches_type(ConfigUpdateResponse, config, path=["response"])
 
@@ -683,7 +683,7 @@ class TestAsyncConfig:
         config = await async_client.zaraz.config.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             data_layer=True,
-            debug_key="string",
+            debug_key="my-debug-key",
             settings={
                 "auto_inject_script": True,
                 "context_enricher": {
@@ -697,19 +697,19 @@ class TestAsyncConfig:
                 "hide_ip_address": True,
                 "hide_query_params": True,
                 "hide_user_agent": True,
-                "init_path": "string",
+                "init_path": "/i",
                 "inject_iframes": True,
                 "mc_root_path": "string",
                 "script_path": "string",
                 "track_path": "string",
             },
             tools={
-                "foo": {
+                "aJvt": {
                     "blocking_triggers": ["string", "string", "string"],
-                    "default_fields": {"foo": "string"},
+                    "default_fields": {"testKey": "TEST123456"},
                     "default_purpose": "string",
                     "enabled": True,
-                    "name": "string",
+                    "name": "Facebook Pixel",
                     "library": "string",
                     "neo_events": [
                         {
@@ -732,7 +732,7 @@ class TestAsyncConfig:
                 }
             },
             triggers={
-                "foo": {
+                "ktBn": {
                     "description": "string",
                     "exclude_rules": [
                         {
@@ -779,13 +779,13 @@ class TestAsyncConfig:
                 }
             },
             variables={
-                "foo": {
-                    "name": "string",
+                "Autd": {
+                    "name": "ip",
                     "type": "string",
-                    "value": "string",
+                    "value": "{{ system.device.ip }}",
                 }
             },
-            zaraz_version=0,
+            zaraz_version=43,
             consent={
                 "button_text_translations": {
                     "accept_all": {"foo": "string"},
@@ -797,11 +797,11 @@ class TestAsyncConfig:
                 "company_street_address": "string",
                 "consent_modal_intro_html": "string",
                 "consent_modal_intro_html_with_translations": {"foo": "string"},
-                "cookie_name": "string",
+                "cookie_name": "zaraz-consent",
                 "custom_css": "string",
                 "custom_intro_disclaimer_dismissed": True,
                 "default_language": "string",
-                "enabled": True,
+                "enabled": False,
                 "hide_modal": True,
                 "purposes": {
                     "foo": {
@@ -827,14 +827,14 @@ class TestAsyncConfig:
         response = await async_client.zaraz.config.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             data_layer=True,
-            debug_key="string",
+            debug_key="my-debug-key",
             settings={"auto_inject_script": True},
             tools={
-                "foo": {
+                "aJvt": {
                     "blocking_triggers": ["string", "string", "string"],
-                    "default_fields": {"foo": "string"},
+                    "default_fields": {"testKey": "TEST123456"},
                     "enabled": True,
-                    "name": "string",
+                    "name": "Facebook Pixel",
                     "library": "string",
                     "neo_events": [
                         {
@@ -857,7 +857,7 @@ class TestAsyncConfig:
                 }
             },
             triggers={
-                "foo": {
+                "ktBn": {
                     "exclude_rules": [
                         {
                             "id": "string",
@@ -902,13 +902,13 @@ class TestAsyncConfig:
                 }
             },
             variables={
-                "foo": {
-                    "name": "string",
+                "Autd": {
+                    "name": "ip",
                     "type": "string",
-                    "value": "string",
+                    "value": "{{ system.device.ip }}",
                 }
             },
-            zaraz_version=0,
+            zaraz_version=43,
         )
 
         assert response.is_closed is True
@@ -922,14 +922,14 @@ class TestAsyncConfig:
         async with async_client.zaraz.config.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             data_layer=True,
-            debug_key="string",
+            debug_key="my-debug-key",
             settings={"auto_inject_script": True},
             tools={
-                "foo": {
+                "aJvt": {
                     "blocking_triggers": ["string", "string", "string"],
-                    "default_fields": {"foo": "string"},
+                    "default_fields": {"testKey": "TEST123456"},
                     "enabled": True,
-                    "name": "string",
+                    "name": "Facebook Pixel",
                     "library": "string",
                     "neo_events": [
                         {
@@ -952,7 +952,7 @@ class TestAsyncConfig:
                 }
             },
             triggers={
-                "foo": {
+                "ktBn": {
                     "exclude_rules": [
                         {
                             "id": "string",
@@ -997,13 +997,13 @@ class TestAsyncConfig:
                 }
             },
             variables={
-                "foo": {
-                    "name": "string",
+                "Autd": {
+                    "name": "ip",
                     "type": "string",
-                    "value": "string",
+                    "value": "{{ system.device.ip }}",
                 }
             },
-            zaraz_version=0,
+            zaraz_version=43,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1020,14 +1020,14 @@ class TestAsyncConfig:
             await async_client.zaraz.config.with_raw_response.update(
                 "",
                 data_layer=True,
-                debug_key="string",
+                debug_key="my-debug-key",
                 settings={"auto_inject_script": True},
                 tools={
-                    "foo": {
+                    "aJvt": {
                         "blocking_triggers": ["string", "string", "string"],
-                        "default_fields": {"foo": "string"},
+                        "default_fields": {"testKey": "TEST123456"},
                         "enabled": True,
-                        "name": "string",
+                        "name": "Facebook Pixel",
                         "library": "string",
                         "neo_events": [
                             {
@@ -1050,7 +1050,7 @@ class TestAsyncConfig:
                     }
                 },
                 triggers={
-                    "foo": {
+                    "ktBn": {
                         "exclude_rules": [
                             {
                                 "id": "string",
@@ -1095,13 +1095,13 @@ class TestAsyncConfig:
                     }
                 },
                 variables={
-                    "foo": {
-                        "name": "string",
+                    "Autd": {
+                        "name": "ip",
                         "type": "string",
-                        "value": "string",
+                        "value": "{{ system.device.ip }}",
                     }
                 },
-                zaraz_version=0,
+                zaraz_version=43,
             )
 
     @pytest.mark.skip()
