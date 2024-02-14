@@ -2,35 +2,6 @@
 
 from __future__ import annotations
 
-from .fields import Fields, AsyncFields
-
-from ...._compat import cached_property
-
-from .jobs import Jobs, AsyncJobs
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ....types import shared_params
-from .fields import (
-    Fields,
-    AsyncFields,
-    FieldsWithRawResponse,
-    AsyncFieldsWithRawResponse,
-    FieldsWithStreamingResponse,
-    AsyncFieldsWithStreamingResponse,
-)
 from .jobs import (
     Jobs,
     AsyncJobs,
@@ -39,7 +10,16 @@ from .jobs import (
     JobsWithStreamingResponse,
     AsyncJobsWithStreamingResponse,
 )
-from ...._wrappers import ResultWrapper
+from .fields import (
+    Fields,
+    AsyncFields,
+    FieldsWithRawResponse,
+    AsyncFieldsWithRawResponse,
+    FieldsWithStreamingResponse,
+    AsyncFieldsWithStreamingResponse,
+)
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
 
 __all__ = ["Datasets", "AsyncDatasets"]
 

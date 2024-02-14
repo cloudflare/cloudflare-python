@@ -2,30 +2,28 @@
 
 from __future__ import annotations
 
+from typing import List, Type, Optional, cast, overload
+
 import httpx
 
-from .._compat import cached_property
-
-from typing import List, Optional, Type
-
 from ..types import PurgeCachZonePurgeResponse, purge_cach_zone_purge_params
-
-from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from .._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from .._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._utils import maybe_transform
+from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
-from .._base_client import SyncAPIClient, AsyncAPIClient, _merge_mappings, AsyncPaginator, make_request_options, HttpxBinaryResponseContent
-from ..types import shared_params
-from ..types import purge_cach_zone_purge_params
+from .._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
 from .._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
+from .._base_client import (
+    make_request_options,
+)
 
 __all__ = ["PurgeCaches", "AsyncPurgeCaches"]
+
 
 class PurgeCaches(SyncAPIResource):
     @cached_property
@@ -37,18 +35,20 @@ class PurgeCaches(SyncAPIResource):
         return PurgeCachesWithStreamingResponse(self)
 
     @overload
-    def zone_purge(self,
-    identifier: str,
-    *,
-    hosts: List[str] | NotGiven = NOT_GIVEN,
-    prefixes: List[str] | NotGiven = NOT_GIVEN,
-    tags: List[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[PurgeCachZonePurgeResponse]:
+    def zone_purge(
+        self,
+        identifier: str,
+        *,
+        hosts: List[str] | NotGiven = NOT_GIVEN,
+        prefixes: List[str] | NotGiven = NOT_GIVEN,
+        tags: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[PurgeCachZonePurgeResponse]:
         """### Purge All Cached Content
 
         Removes ALL files from Cloudflare's cache.
@@ -90,17 +90,20 @@ class PurgeCaches(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
+
     @overload
-    def zone_purge(self,
-    identifier: str,
-    *,
-    purge_everything: bool | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[PurgeCachZonePurgeResponse]:
+    def zone_purge(
+        self,
+        identifier: str,
+        *,
+        purge_everything: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[PurgeCachZonePurgeResponse]:
         """### Purge All Cached Content
 
         Removes ALL files from Cloudflare's cache.
@@ -142,17 +145,20 @@ class PurgeCaches(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
+
     @overload
-    def zone_purge(self,
-    identifier: str,
-    *,
-    files: List[purge_cach_zone_purge_params.9XpUpQAxFilesFile] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[PurgeCachZonePurgeResponse]:
+    def zone_purge(
+        self,
+        identifier: str,
+        *,
+        files: List[purge_cach_zone_purge_params.DRfY4fceFilesFile] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[PurgeCachZonePurgeResponse]:
         """### Purge All Cached Content
 
         Removes ALL files from Cloudflare's cache.
@@ -194,36 +200,47 @@ class PurgeCaches(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-    def zone_purge(self,
-    identifier: str,
-    *,
-    hosts: List[str] | NotGiven = NOT_GIVEN,
-    prefixes: List[str] | NotGiven = NOT_GIVEN,
-    tags: List[str] | NotGiven = NOT_GIVEN,
-    purge_everything: bool | NotGiven = NOT_GIVEN,
-    files: List[purge_cach_zone_purge_params.9XpUpQAxFilesFile] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[PurgeCachZonePurgeResponse]:
+
+    def zone_purge(
+        self,
+        identifier: str,
+        *,
+        hosts: List[str] | NotGiven = NOT_GIVEN,
+        prefixes: List[str] | NotGiven = NOT_GIVEN,
+        tags: List[str] | NotGiven = NOT_GIVEN,
+        purge_everything: bool | NotGiven = NOT_GIVEN,
+        files: List[purge_cach_zone_purge_params.DRfY4fceFilesFile] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[PurgeCachZonePurgeResponse]:
         if not identifier:
-          raise ValueError(
-            f'Expected a non-empty value for `identifier` but received {identifier!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return self._post(
             f"/zones/{identifier}/purge_cache",
-            body=maybe_transform({
-                "hosts": hosts,
-                "prefixes": prefixes,
-                "tags": tags,
-                "purge_everything": purge_everything,
-                "files": files,
-            }, purge_cach_zone_purge_params.PurgeCachZonePurgeParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper._unwrapper),
+            body=maybe_transform(
+                {
+                    "hosts": hosts,
+                    "prefixes": prefixes,
+                    "tags": tags,
+                    "purge_everything": purge_everything,
+                    "files": files,
+                },
+                purge_cach_zone_purge_params.PurgeCachZonePurgeParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
             cast_to=cast(Type[Optional[PurgeCachZonePurgeResponse]], ResultWrapper[PurgeCachZonePurgeResponse]),
         )
+
 
 class AsyncPurgeCaches(AsyncAPIResource):
     @cached_property
@@ -235,18 +252,20 @@ class AsyncPurgeCaches(AsyncAPIResource):
         return AsyncPurgeCachesWithStreamingResponse(self)
 
     @overload
-    async def zone_purge(self,
-    identifier: str,
-    *,
-    hosts: List[str] | NotGiven = NOT_GIVEN,
-    prefixes: List[str] | NotGiven = NOT_GIVEN,
-    tags: List[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[PurgeCachZonePurgeResponse]:
+    async def zone_purge(
+        self,
+        identifier: str,
+        *,
+        hosts: List[str] | NotGiven = NOT_GIVEN,
+        prefixes: List[str] | NotGiven = NOT_GIVEN,
+        tags: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[PurgeCachZonePurgeResponse]:
         """### Purge All Cached Content
 
         Removes ALL files from Cloudflare's cache.
@@ -288,17 +307,20 @@ class AsyncPurgeCaches(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
+
     @overload
-    async def zone_purge(self,
-    identifier: str,
-    *,
-    purge_everything: bool | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[PurgeCachZonePurgeResponse]:
+    async def zone_purge(
+        self,
+        identifier: str,
+        *,
+        purge_everything: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[PurgeCachZonePurgeResponse]:
         """### Purge All Cached Content
 
         Removes ALL files from Cloudflare's cache.
@@ -340,17 +362,20 @@ class AsyncPurgeCaches(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
+
     @overload
-    async def zone_purge(self,
-    identifier: str,
-    *,
-    files: List[purge_cach_zone_purge_params.9XpUpQAxFilesFile] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[PurgeCachZonePurgeResponse]:
+    async def zone_purge(
+        self,
+        identifier: str,
+        *,
+        files: List[purge_cach_zone_purge_params.DRfY4fceFilesFile] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[PurgeCachZonePurgeResponse]:
         """### Purge All Cached Content
 
         Removes ALL files from Cloudflare's cache.
@@ -392,36 +417,47 @@ class AsyncPurgeCaches(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-    async def zone_purge(self,
-    identifier: str,
-    *,
-    hosts: List[str] | NotGiven = NOT_GIVEN,
-    prefixes: List[str] | NotGiven = NOT_GIVEN,
-    tags: List[str] | NotGiven = NOT_GIVEN,
-    purge_everything: bool | NotGiven = NOT_GIVEN,
-    files: List[purge_cach_zone_purge_params.9XpUpQAxFilesFile] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[PurgeCachZonePurgeResponse]:
+
+    async def zone_purge(
+        self,
+        identifier: str,
+        *,
+        hosts: List[str] | NotGiven = NOT_GIVEN,
+        prefixes: List[str] | NotGiven = NOT_GIVEN,
+        tags: List[str] | NotGiven = NOT_GIVEN,
+        purge_everything: bool | NotGiven = NOT_GIVEN,
+        files: List[purge_cach_zone_purge_params.DRfY4fceFilesFile] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[PurgeCachZonePurgeResponse]:
         if not identifier:
-          raise ValueError(
-            f'Expected a non-empty value for `identifier` but received {identifier!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return await self._post(
             f"/zones/{identifier}/purge_cache",
-            body=maybe_transform({
-                "hosts": hosts,
-                "prefixes": prefixes,
-                "tags": tags,
-                "purge_everything": purge_everything,
-                "files": files,
-            }, purge_cach_zone_purge_params.PurgeCachZonePurgeParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper._unwrapper),
+            body=maybe_transform(
+                {
+                    "hosts": hosts,
+                    "prefixes": prefixes,
+                    "tags": tags,
+                    "purge_everything": purge_everything,
+                    "files": files,
+                },
+                purge_cach_zone_purge_params.PurgeCachZonePurgeParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
             cast_to=cast(Type[Optional[PurgeCachZonePurgeResponse]], ResultWrapper[PurgeCachZonePurgeResponse]),
         )
+
 
 class PurgeCachesWithRawResponse:
     def __init__(self, purge_caches: PurgeCaches) -> None:
@@ -431,6 +467,7 @@ class PurgeCachesWithRawResponse:
             purge_caches.zone_purge,
         )
 
+
 class AsyncPurgeCachesWithRawResponse:
     def __init__(self, purge_caches: AsyncPurgeCaches) -> None:
         self._purge_caches = purge_caches
@@ -439,6 +476,7 @@ class AsyncPurgeCachesWithRawResponse:
             purge_caches.zone_purge,
         )
 
+
 class PurgeCachesWithStreamingResponse:
     def __init__(self, purge_caches: PurgeCaches) -> None:
         self._purge_caches = purge_caches
@@ -446,6 +484,7 @@ class PurgeCachesWithStreamingResponse:
         self.zone_purge = to_streamed_response_wrapper(
             purge_caches.zone_purge,
         )
+
 
 class AsyncPurgeCachesWithStreamingResponse:
     def __init__(self, purge_caches: AsyncPurgeCaches) -> None:
