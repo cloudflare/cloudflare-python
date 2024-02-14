@@ -2,19 +2,16 @@
 
 from __future__ import annotations
 
-from cloudflare.types.dlps.patterns import ValidateDLPPatternValidationValidatePatternResponse
-
+import os
 from typing import Any, cast
 
-import os
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.dlps.patterns import validate_dlp_pattern_validation_validate_pattern_params
+from cloudflare.types.dlps.patterns import (
+    ValidateDLPPatternValidationValidatePatternResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

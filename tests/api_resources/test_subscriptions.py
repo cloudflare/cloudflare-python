@@ -2,30 +2,22 @@
 
 from __future__ import annotations
 
+import os
+from typing import Any, Optional, cast
+
+import pytest
+
+from cloudflare import Cloudflare, AsyncCloudflare
+from tests.utils import assert_matches_type
 from cloudflare.types import (
-    SubscriptionUpdateResponse,
     SubscriptionDeleteResponse,
-    SubscriptionAccountSubscriptionsCreateSubscriptionResponse,
+    SubscriptionUpdateResponse,
     SubscriptionAccountSubscriptionsListSubscriptionsResponse,
+    SubscriptionAccountSubscriptionsCreateSubscriptionResponse,
     SubscriptionZoneSubscriptionCreateZoneSubscriptionResponse,
     SubscriptionZoneSubscriptionUpdateZoneSubscriptionResponse,
     SubscriptionZoneSubscriptionZoneSubscriptionDetailsResponse,
 )
-
-from typing import Any, cast, Optional
-
-import os
-import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
-from cloudflare import Cloudflare, AsyncCloudflare
-from tests.utils import assert_matches_type
-from cloudflare.types import subscription_update_params
-from cloudflare.types import subscription_account_subscriptions_create_subscription_params
-from cloudflare.types import subscription_zone_subscription_create_zone_subscription_params
-from cloudflare.types import subscription_zone_subscription_update_zone_subscription_params
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
