@@ -433,18 +433,6 @@ Methods:
 - <code title="get /zones/{zone_id}/hold">client.zones.hold.<a href="./src/cloudflare/resources/zones/hold.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/zones/hold_get_response.py">HoldGetResponse</a></code>
 - <code title="delete /zones/{zone_id}/hold">client.zones.hold.<a href="./src/cloudflare/resources/zones/hold.py">remove</a>(zone_id, \*\*<a href="src/cloudflare/types/zones/hold_remove_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/hold_remove_response.py">Optional</a></code>
 
-# AI
-
-Types:
-
-```python
-from cloudflare.types import AIRunResponse
-```
-
-Methods:
-
-- <code title="post /accounts/{account_identifier}/ai/run/{model_name}">client.ai.<a href="./src/cloudflare/resources/ai.py">run</a>(model_name, \*, account_identifier, \*\*<a href="src/cloudflare/types/ai_run_params.py">params</a>) -> <a href="./src/cloudflare/types/ai_run_response.py">object</a></code>
-
 # LoadBalancers
 
 Types:
