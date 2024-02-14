@@ -35,7 +35,7 @@ class TestPagerules:
     def test_method_create(self, client: Cloudflare) -> None:
         pagerule = client.pagerules.create(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            actions=[{}, {}, {}],
+            actions=[{}],
             targets=[
                 {
                     "constraint": {
@@ -60,21 +60,7 @@ class TestPagerules:
                         "type": "temporary",
                         "url": "http://www.example.com/somewhere/$1/astring/$2/anotherstring/$3",
                     },
-                },
-                {
-                    "name": "forward_url",
-                    "value": {
-                        "type": "temporary",
-                        "url": "http://www.example.com/somewhere/$1/astring/$2/anotherstring/$3",
-                    },
-                },
-                {
-                    "name": "forward_url",
-                    "value": {
-                        "type": "temporary",
-                        "url": "http://www.example.com/somewhere/$1/astring/$2/anotherstring/$3",
-                    },
-                },
+                }
             ],
             targets=[
                 {
@@ -95,7 +81,7 @@ class TestPagerules:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.pagerules.with_raw_response.create(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            actions=[{}, {}, {}],
+            actions=[{}],
             targets=[
                 {
                     "constraint": {
@@ -117,7 +103,7 @@ class TestPagerules:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.pagerules.with_streaming_response.create(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            actions=[{}, {}, {}],
+            actions=[{}],
             targets=[
                 {
                     "constraint": {
@@ -142,7 +128,7 @@ class TestPagerules:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.pagerules.with_raw_response.create(
                 "",
-                actions=[{}, {}, {}],
+                actions=[{}],
                 targets=[
                     {
                         "constraint": {
@@ -160,7 +146,7 @@ class TestPagerules:
         pagerule = client.pagerules.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            actions=[{}, {}, {}],
+            actions=[{}],
             targets=[
                 {
                     "constraint": {
@@ -186,21 +172,7 @@ class TestPagerules:
                         "type": "temporary",
                         "url": "http://www.example.com/somewhere/$1/astring/$2/anotherstring/$3",
                     },
-                },
-                {
-                    "name": "forward_url",
-                    "value": {
-                        "type": "temporary",
-                        "url": "http://www.example.com/somewhere/$1/astring/$2/anotherstring/$3",
-                    },
-                },
-                {
-                    "name": "forward_url",
-                    "value": {
-                        "type": "temporary",
-                        "url": "http://www.example.com/somewhere/$1/astring/$2/anotherstring/$3",
-                    },
-                },
+                }
             ],
             targets=[
                 {
@@ -222,7 +194,7 @@ class TestPagerules:
         response = client.pagerules.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            actions=[{}, {}, {}],
+            actions=[{}],
             targets=[
                 {
                     "constraint": {
@@ -245,7 +217,7 @@ class TestPagerules:
         with client.pagerules.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            actions=[{}, {}, {}],
+            actions=[{}],
             targets=[
                 {
                     "constraint": {
@@ -271,7 +243,7 @@ class TestPagerules:
             client.pagerules.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
-                actions=[{}, {}, {}],
+                actions=[{}],
                 targets=[
                     {
                         "constraint": {
@@ -287,7 +259,7 @@ class TestPagerules:
             client.pagerules.with_raw_response.update(
                 "",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                actions=[{}, {}, {}],
+                actions=[{}],
                 targets=[
                     {
                         "constraint": {
@@ -466,7 +438,7 @@ class TestAsyncPagerules:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         pagerule = await async_client.pagerules.create(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            actions=[{}, {}, {}],
+            actions=[{}],
             targets=[
                 {
                     "constraint": {
@@ -491,21 +463,7 @@ class TestAsyncPagerules:
                         "type": "temporary",
                         "url": "http://www.example.com/somewhere/$1/astring/$2/anotherstring/$3",
                     },
-                },
-                {
-                    "name": "forward_url",
-                    "value": {
-                        "type": "temporary",
-                        "url": "http://www.example.com/somewhere/$1/astring/$2/anotherstring/$3",
-                    },
-                },
-                {
-                    "name": "forward_url",
-                    "value": {
-                        "type": "temporary",
-                        "url": "http://www.example.com/somewhere/$1/astring/$2/anotherstring/$3",
-                    },
-                },
+                }
             ],
             targets=[
                 {
@@ -526,7 +484,7 @@ class TestAsyncPagerules:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.pagerules.with_raw_response.create(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            actions=[{}, {}, {}],
+            actions=[{}],
             targets=[
                 {
                     "constraint": {
@@ -548,7 +506,7 @@ class TestAsyncPagerules:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.pagerules.with_streaming_response.create(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            actions=[{}, {}, {}],
+            actions=[{}],
             targets=[
                 {
                     "constraint": {
@@ -573,7 +531,7 @@ class TestAsyncPagerules:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.pagerules.with_raw_response.create(
                 "",
-                actions=[{}, {}, {}],
+                actions=[{}],
                 targets=[
                     {
                         "constraint": {
@@ -591,7 +549,7 @@ class TestAsyncPagerules:
         pagerule = await async_client.pagerules.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            actions=[{}, {}, {}],
+            actions=[{}],
             targets=[
                 {
                     "constraint": {
@@ -617,21 +575,7 @@ class TestAsyncPagerules:
                         "type": "temporary",
                         "url": "http://www.example.com/somewhere/$1/astring/$2/anotherstring/$3",
                     },
-                },
-                {
-                    "name": "forward_url",
-                    "value": {
-                        "type": "temporary",
-                        "url": "http://www.example.com/somewhere/$1/astring/$2/anotherstring/$3",
-                    },
-                },
-                {
-                    "name": "forward_url",
-                    "value": {
-                        "type": "temporary",
-                        "url": "http://www.example.com/somewhere/$1/astring/$2/anotherstring/$3",
-                    },
-                },
+                }
             ],
             targets=[
                 {
@@ -653,7 +597,7 @@ class TestAsyncPagerules:
         response = await async_client.pagerules.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            actions=[{}, {}, {}],
+            actions=[{}],
             targets=[
                 {
                     "constraint": {
@@ -676,7 +620,7 @@ class TestAsyncPagerules:
         async with async_client.pagerules.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            actions=[{}, {}, {}],
+            actions=[{}],
             targets=[
                 {
                     "constraint": {
@@ -702,7 +646,7 @@ class TestAsyncPagerules:
             await async_client.pagerules.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
-                actions=[{}, {}, {}],
+                actions=[{}],
                 targets=[
                     {
                         "constraint": {
@@ -718,7 +662,7 @@ class TestAsyncPagerules:
             await async_client.pagerules.with_raw_response.update(
                 "",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                actions=[{}, {}, {}],
+                actions=[{}],
                 targets=[
                     {
                         "constraint": {
