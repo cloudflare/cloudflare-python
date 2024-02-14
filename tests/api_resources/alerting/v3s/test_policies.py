@@ -90,11 +90,9 @@ class TestPolicies:
                 "zones": ["string", "string", "string"],
             },
             mechanisms={
-                "foo": [
-                    {"id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415"},
-                    {"id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415"},
-                    {"id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415"},
-                ]
+                "email": [{"id": "test@example.com"}],
+                "pagerduty": [{"id": "e8133a15-00a4-4d69-aec1-32f70c51f6e5"}],
+                "webhooks": [{"id": "14cc1190-5d2b-4b98-a696-c424cb2ad05f"}],
             },
             name="SSL Notification Event Policy",
         )
@@ -254,7 +252,11 @@ class TestPolicies:
             "023e105f4ecef8ad9ca31a8372d0c353",
             alert_type="universal_ssl_event_type",
             enabled=True,
-            mechanisms={"foo": [{}, {}, {}]},
+            mechanisms={
+                "email": [{}],
+                "pagerduty": [{}],
+                "webhooks": [{}],
+            },
             name="SSL Notification Event Policy",
         )
         assert_matches_type(PolicyNotificationPoliciesCreateANotificationPolicyResponse, policy, path=["response"])
@@ -269,11 +271,9 @@ class TestPolicies:
             alert_type="universal_ssl_event_type",
             enabled=True,
             mechanisms={
-                "foo": [
-                    {"id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415"},
-                    {"id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415"},
-                    {"id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415"},
-                ]
+                "email": [{"id": "test@example.com"}],
+                "pagerduty": [{"id": "e8133a15-00a4-4d69-aec1-32f70c51f6e5"}],
+                "webhooks": [{"id": "14cc1190-5d2b-4b98-a696-c424cb2ad05f"}],
             },
             name="SSL Notification Event Policy",
             description="Something describing the policy.",
@@ -329,7 +329,11 @@ class TestPolicies:
             "023e105f4ecef8ad9ca31a8372d0c353",
             alert_type="universal_ssl_event_type",
             enabled=True,
-            mechanisms={"foo": [{}, {}, {}]},
+            mechanisms={
+                "email": [{}],
+                "pagerduty": [{}],
+                "webhooks": [{}],
+            },
             name="SSL Notification Event Policy",
         )
 
@@ -345,7 +349,11 @@ class TestPolicies:
             "023e105f4ecef8ad9ca31a8372d0c353",
             alert_type="universal_ssl_event_type",
             enabled=True,
-            mechanisms={"foo": [{}, {}, {}]},
+            mechanisms={
+                "email": [{}],
+                "pagerduty": [{}],
+                "webhooks": [{}],
+            },
             name="SSL Notification Event Policy",
         ) as response:
             assert not response.is_closed
@@ -364,7 +372,11 @@ class TestPolicies:
                 "",
                 alert_type="universal_ssl_event_type",
                 enabled=True,
-                mechanisms={"foo": [{}, {}, {}]},
+                mechanisms={
+                    "email": [{}],
+                    "pagerduty": [{}],
+                    "webhooks": [{}],
+                },
                 name="SSL Notification Event Policy",
             )
 
@@ -481,11 +493,9 @@ class TestAsyncPolicies:
                 "zones": ["string", "string", "string"],
             },
             mechanisms={
-                "foo": [
-                    {"id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415"},
-                    {"id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415"},
-                    {"id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415"},
-                ]
+                "email": [{"id": "test@example.com"}],
+                "pagerduty": [{"id": "e8133a15-00a4-4d69-aec1-32f70c51f6e5"}],
+                "webhooks": [{"id": "14cc1190-5d2b-4b98-a696-c424cb2ad05f"}],
             },
             name="SSL Notification Event Policy",
         )
@@ -647,7 +657,11 @@ class TestAsyncPolicies:
             "023e105f4ecef8ad9ca31a8372d0c353",
             alert_type="universal_ssl_event_type",
             enabled=True,
-            mechanisms={"foo": [{}, {}, {}]},
+            mechanisms={
+                "email": [{}],
+                "pagerduty": [{}],
+                "webhooks": [{}],
+            },
             name="SSL Notification Event Policy",
         )
         assert_matches_type(PolicyNotificationPoliciesCreateANotificationPolicyResponse, policy, path=["response"])
@@ -662,11 +676,9 @@ class TestAsyncPolicies:
             alert_type="universal_ssl_event_type",
             enabled=True,
             mechanisms={
-                "foo": [
-                    {"id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415"},
-                    {"id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415"},
-                    {"id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415"},
-                ]
+                "email": [{"id": "test@example.com"}],
+                "pagerduty": [{"id": "e8133a15-00a4-4d69-aec1-32f70c51f6e5"}],
+                "webhooks": [{"id": "14cc1190-5d2b-4b98-a696-c424cb2ad05f"}],
             },
             name="SSL Notification Event Policy",
             description="Something describing the policy.",
@@ -724,7 +736,11 @@ class TestAsyncPolicies:
             "023e105f4ecef8ad9ca31a8372d0c353",
             alert_type="universal_ssl_event_type",
             enabled=True,
-            mechanisms={"foo": [{}, {}, {}]},
+            mechanisms={
+                "email": [{}],
+                "pagerduty": [{}],
+                "webhooks": [{}],
+            },
             name="SSL Notification Event Policy",
         )
 
@@ -742,7 +758,11 @@ class TestAsyncPolicies:
             "023e105f4ecef8ad9ca31a8372d0c353",
             alert_type="universal_ssl_event_type",
             enabled=True,
-            mechanisms={"foo": [{}, {}, {}]},
+            mechanisms={
+                "email": [{}],
+                "pagerduty": [{}],
+                "webhooks": [{}],
+            },
             name="SSL Notification Event Policy",
         ) as response:
             assert not response.is_closed
@@ -764,7 +784,11 @@ class TestAsyncPolicies:
                     "",
                     alert_type="universal_ssl_event_type",
                     enabled=True,
-                    mechanisms={"foo": [{}, {}, {}]},
+                    mechanisms={
+                        "email": [{}],
+                        "pagerduty": [{}],
+                        "webhooks": [{}],
+                    },
                     name="SSL Notification Event Policy",
                 )
             )

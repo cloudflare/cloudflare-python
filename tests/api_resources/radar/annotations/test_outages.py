@@ -36,7 +36,7 @@ class TestOutages:
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         outage = client.radar.annotations.outages.list(
-            asn=174,
+            asn=0,
             date_end=parse_datetime("2023-09-01T11:41:33.782Z"),
             date_range="7d",
             date_start=parse_datetime("2023-09-01T11:41:33.782Z"),
@@ -83,7 +83,7 @@ class TestAsyncOutages:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         outage = await async_client.radar.annotations.outages.list(
-            asn=174,
+            asn=0,
             date_end=parse_datetime("2023-09-01T11:41:33.782Z"),
             date_range="7d",
             date_start=parse_datetime("2023-09-01T11:41:33.782Z"),
