@@ -2,21 +2,28 @@
 
 from __future__ import annotations
 
+from cloudflare.types.access.apps import (
+    PolicyCreateResponse,
+    PolicyUpdateResponse,
+    PolicyDeleteResponse,
+    PolicyAccessPoliciesCreateAnAccessPolicyResponse,
+    PolicyAccessPoliciesListAccessPoliciesResponse,
+    PolicyGetResponse,
+)
+
+from typing import Any, cast, Optional
+
 import os
-from typing import Any, Optional, cast
-
 import pytest
-
+import httpx
+from typing_extensions import get_args
+from typing import Optional
+from respx import MockRouter
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.access.apps import (
-    PolicyGetResponse,
-    PolicyCreateResponse,
-    PolicyDeleteResponse,
-    PolicyUpdateResponse,
-    PolicyAccessPoliciesListAccessPoliciesResponse,
-    PolicyAccessPoliciesCreateAnAccessPolicyResponse,
-)
+from cloudflare.types.access.apps import policy_create_params
+from cloudflare.types.access.apps import policy_update_params
+from cloudflare.types.access.apps import policy_access_policies_create_an_access_policy_params
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
