@@ -2,20 +2,30 @@
 
 from __future__ import annotations
 
-import os
+from cloudflare.types.api_gateways import (
+    SchemaUpdateResponse,
+    SchemaAPIShieldEndpointManagementGetOperationsAndFeaturesAsOpenAPISchemasResponse,
+    SchemaGetResponse,
+    SchemaUpdateMultipleResponse,
+)
+
 from typing import Any, cast
 
-import pytest
+from cloudflare.types.api_gateways.settings import APIShieldZoneSchemaValidationSettings
 
+import os
+import pytest
+import httpx
+from typing_extensions import get_args
+from typing import Optional
+from respx import MockRouter
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.types.api_gateways import schema_update_params
 from cloudflare.types.api_gateways import (
-    SchemaGetResponse,
-    SchemaUpdateResponse,
-    SchemaUpdateMultipleResponse,
-    SchemaAPIShieldEndpointManagementGetOperationsAndFeaturesAsOpenAPISchemasResponse,
+    schema_api_shield_endpoint_management_get_operations_and_features_as_open_api_schemas_params,
 )
-from cloudflare.types.api_gateways.settings import APIShieldZoneSchemaValidationSettings
+from cloudflare.types.api_gateways import schema_update_multiple_params
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

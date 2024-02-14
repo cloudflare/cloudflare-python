@@ -2,41 +2,36 @@
 
 from __future__ import annotations
 
-from typing import List, Union
 from typing_extensions import TypedDict
 
-__all__ = [
-    "PurgeCachZonePurgeParams",
-    "E1GoErmIFlex",
-    "E1GoErmIEverything",
-    "E1GoErmIFiles",
-    "E1GoErmIFilesFile",
-    "E1GoErmIFilesFileE1GoErmIURLAndHeaders",
-]
+from typing import List, Union
 
+from typing import List, Union, Dict, Optional
+from typing_extensions import Literal, TypedDict, Required, Annotated
+from .._types import FileTypes
+from .._utils import PropertyInfo
+from ..types import shared_params
 
-class E1GoErmIFlex(TypedDict, total=False):
+__all__ = ["PurgeCachZonePurgeParams", "_9XpUpQAxFlex", "_9XpUpQAxEverything", "_9XpUpQAxFiles", "9XpUpQAxFilesFile", "9XpUpQAxFilesFile_9XpUpQAxURLAndHeaders"]
+
+class _9XpUpQAxFlex(TypedDict, total=False):
     hosts: List[str]
 
     prefixes: List[str]
 
     tags: List[str]
 
-
-class E1GoErmIEverything(TypedDict, total=False):
+class _9XpUpQAxEverything(TypedDict, total=False):
     purge_everything: bool
 
+class _9XpUpQAxFiles(TypedDict, total=False):
+    files: List[9XpUpQAxFilesFile]
 
-class E1GoErmIFiles(TypedDict, total=False):
-    files: List[E1GoErmIFilesFile]
-
-
-class E1GoErmIFilesFileE1GoErmIURLAndHeaders(TypedDict, total=False):
+class 9XpUpQAxFilesFile_9XpUpQAxURLAndHeaders(TypedDict, total=False):
     headers: object
 
     url: str
 
+9XpUpQAxFilesFile = Union[str, 9XpUpQAxFilesFile_9XpUpQAxURLAndHeaders]
 
-E1GoErmIFilesFile = Union[str, E1GoErmIFilesFileE1GoErmIURLAndHeaders]
-
-PurgeCachZonePurgeParams = Union[E1GoErmIFlex, E1GoErmIEverything, E1GoErmIFiles]
+PurgeCachZonePurgeParams = Union[_9XpUpQAxFlex, _9XpUpQAxEverything, _9XpUpQAxFiles]
