@@ -7,14 +7,14 @@ from typing_extensions import Literal, Required, TypedDict
 
 __all__ = [
     "PcapMagicPcapCollectionCreatePcapRequestParams",
-    "Nyslc8GBPcapsRequestSimple",
-    "Nyslc8GBPcapsRequestSimpleFilterV1",
-    "Nyslc8GBPcapsRequestFull",
-    "Nyslc8GBPcapsRequestFullFilterV1",
+    "_7JdQoMbwPcapsRequestSimple",
+    "_7JdQoMbwPcapsRequestSimpleFilterV1",
+    "_7JdQoMbwPcapsRequestFull",
+    "_7JdQoMbwPcapsRequestFullFilterV1",
 ]
 
 
-class Nyslc8GBPcapsRequestSimple(TypedDict, total=False):
+class _7JdQoMbwPcapsRequestSimple(TypedDict, total=False):
     packet_limit: Required[float]
     """The limit of packets contained in a packet capture."""
 
@@ -31,11 +31,11 @@ class Nyslc8GBPcapsRequestSimple(TypedDict, total=False):
     non-sampled packets.
     """
 
-    filter_v1: Nyslc8GBPcapsRequestSimpleFilterV1
+    filter_v1: _7JdQoMbwPcapsRequestSimpleFilterV1
     """The packet capture filter. When this field is empty, all packets are captured."""
 
 
-class Nyslc8GBPcapsRequestSimpleFilterV1(TypedDict, total=False):
+class _7JdQoMbwPcapsRequestSimpleFilterV1(TypedDict, total=False):
     destination_address: str
     """The destination IP address of the packet."""
 
@@ -52,7 +52,7 @@ class Nyslc8GBPcapsRequestSimpleFilterV1(TypedDict, total=False):
     """The source port of the packet."""
 
 
-class Nyslc8GBPcapsRequestFull(TypedDict, total=False):
+class _7JdQoMbwPcapsRequestFull(TypedDict, total=False):
     colo_name: Required[str]
     """The name of the data center used for the packet capture.
 
@@ -82,14 +82,14 @@ class Nyslc8GBPcapsRequestFull(TypedDict, total=False):
     This field only applies to `full` packet captures.
     """
 
-    filter_v1: Nyslc8GBPcapsRequestFullFilterV1
+    filter_v1: _7JdQoMbwPcapsRequestFullFilterV1
     """The packet capture filter. When this field is empty, all packets are captured."""
 
     packet_limit: float
     """The limit of packets contained in a packet capture."""
 
 
-class Nyslc8GBPcapsRequestFullFilterV1(TypedDict, total=False):
+class _7JdQoMbwPcapsRequestFullFilterV1(TypedDict, total=False):
     destination_address: str
     """The destination IP address of the packet."""
 
@@ -106,4 +106,4 @@ class Nyslc8GBPcapsRequestFullFilterV1(TypedDict, total=False):
     """The source port of the packet."""
 
 
-PcapMagicPcapCollectionCreatePcapRequestParams = Union[Nyslc8GBPcapsRequestSimple, Nyslc8GBPcapsRequestFull]
+PcapMagicPcapCollectionCreatePcapRequestParams = Union[_7JdQoMbwPcapsRequestSimple, _7JdQoMbwPcapsRequestFull]
