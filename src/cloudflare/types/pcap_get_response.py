@@ -1,25 +1,20 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from typing import Optional
-
+from typing import Union, Optional
 from typing_extensions import Literal
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
 from .._models import BaseModel
-from ..types import shared
 
 __all__ = [
     "PcapGetResponse",
-    "_7dRf5S6WPcapsResponseSimple",
-    "_7dRf5S6WPcapsResponseSimpleFilterV1",
-    "_7dRf5S6WPcapsResponseFull",
-    "_7dRf5S6WPcapsResponseFullFilterV1",
+    "FPeBZr9dPcapsResponseSimple",
+    "FPeBZr9dPcapsResponseSimpleFilterV1",
+    "FPeBZr9dPcapsResponseFull",
+    "FPeBZr9dPcapsResponseFullFilterV1",
 ]
 
 
-class _7dRf5S6WPcapsResponseSimpleFilterV1(BaseModel):
+class FPeBZr9dPcapsResponseSimpleFilterV1(BaseModel):
     destination_address: Optional[str] = None
     """The destination IP address of the packet."""
 
@@ -36,11 +31,11 @@ class _7dRf5S6WPcapsResponseSimpleFilterV1(BaseModel):
     """The source port of the packet."""
 
 
-class _7dRf5S6WPcapsResponseSimple(BaseModel):
+class FPeBZr9dPcapsResponseSimple(BaseModel):
     id: Optional[str] = None
     """The ID for the packet capture."""
 
-    filter_v1: Optional[_7dRf5S6WPcapsResponseSimpleFilterV1] = None
+    filter_v1: Optional[FPeBZr9dPcapsResponseSimpleFilterV1] = None
     """The packet capture filter. When this field is empty, all packets are captured."""
 
     status: Optional[
@@ -67,7 +62,7 @@ class _7dRf5S6WPcapsResponseSimple(BaseModel):
     """
 
 
-class _7dRf5S6WPcapsResponseFullFilterV1(BaseModel):
+class FPeBZr9dPcapsResponseFullFilterV1(BaseModel):
     destination_address: Optional[str] = None
     """The destination IP address of the packet."""
 
@@ -84,7 +79,7 @@ class _7dRf5S6WPcapsResponseFullFilterV1(BaseModel):
     """The source port of the packet."""
 
 
-class _7dRf5S6WPcapsResponseFull(BaseModel):
+class FPeBZr9dPcapsResponseFull(BaseModel):
     id: Optional[str] = None
     """The ID for the packet capture."""
 
@@ -110,7 +105,7 @@ class _7dRf5S6WPcapsResponseFull(BaseModel):
     This field only applies to `full` packet captures.
     """
 
-    filter_v1: Optional[_7dRf5S6WPcapsResponseFullFilterV1] = None
+    filter_v1: Optional[FPeBZr9dPcapsResponseFullFilterV1] = None
     """The packet capture filter. When this field is empty, all packets are captured."""
 
     status: Optional[
@@ -137,4 +132,4 @@ class _7dRf5S6WPcapsResponseFull(BaseModel):
     """
 
 
-PcapGetResponse = Union[_7dRf5S6WPcapsResponseSimple, _7dRf5S6WPcapsResponseFull]
+PcapGetResponse = Union[FPeBZr9dPcapsResponseSimple, FPeBZr9dPcapsResponseFull]

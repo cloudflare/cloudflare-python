@@ -1,14 +1,16 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from .schedule import Schedule, AsyncSchedule
 from .schedule import (
+    Schedule,
+    AsyncSchedule,
     ScheduleWithRawResponse,
     AsyncScheduleWithRawResponse,
     ScheduleWithStreamingResponse,
     AsyncScheduleWithStreamingResponse,
 )
-from .speed_api import SpeedAPI, AsyncSpeedAPI
 from .speed_api import (
+    SpeedAPI,
+    AsyncSpeedAPI,
     SpeedAPIWithRawResponse,
     AsyncSpeedAPIWithRawResponse,
     SpeedAPIWithStreamingResponse,
