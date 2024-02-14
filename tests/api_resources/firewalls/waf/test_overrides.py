@@ -2,27 +2,20 @@
 
 from __future__ import annotations
 
-from typing import Optional, Any, cast
-
-from cloudflare.types.firewalls.waf import (
-    OverrideUpdateResponse,
-    OverrideDeleteResponse,
-    OverrideGetResponse,
-    OverrideWAFOverridesCreateAWAFOverrideResponse,
-    OverrideWAFOverridesListWAFOverridesResponse,
-)
-
 import os
+from typing import Any, Optional, cast
+
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.firewalls.waf import override_update_params
-from cloudflare.types.firewalls.waf import override_waf_overrides_create_a_waf_override_params
-from cloudflare.types.firewalls.waf import override_waf_overrides_list_waf_overrides_params
+from cloudflare.types.firewalls.waf import (
+    OverrideGetResponse,
+    OverrideDeleteResponse,
+    OverrideUpdateResponse,
+    OverrideWAFOverridesListWAFOverridesResponse,
+    OverrideWAFOverridesCreateAWAFOverrideResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

@@ -2,23 +2,16 @@
 
 from __future__ import annotations
 
-from cloudflare.types.web3s.hostnames.ipfs_universal_paths import (
-    ContentListWeb3HostnameIpfsUniversalPathGatewayContentListDetailsResponse,
-    ContentListWeb3HostnameUpdateIpfsUniversalPathGatewayContentListResponse,
-)
-
+import os
 from typing import Any, cast
 
-import os
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types.web3s.hostnames.ipfs_universal_paths import (
-    content_list_web3_hostname_update_ipfs_universal_path_gateway_content_list_params,
+    ContentListWeb3HostnameUpdateIpfsUniversalPathGatewayContentListResponse,
+    ContentListWeb3HostnameIpfsUniversalPathGatewayContentListDetailsResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
