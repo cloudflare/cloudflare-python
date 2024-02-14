@@ -2,27 +2,20 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
-
 from typing import List, Union
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from .._types import FileTypes
-from .._utils import PropertyInfo
-from ..types import shared_params
+from typing_extensions import TypedDict
 
 __all__ = [
     "PurgeCachZonePurgeParams",
-    "Ttm0zLoGFlex",
-    "Ttm0zLoGEverything",
-    "Ttm0zLoGFiles",
-    "Ttm0zLoGFilesFile",
-    "Ttm0zLoGFilesFileTtm0zLoGURLAndHeaders",
+    "FJgeoqXqFlex",
+    "FJgeoqXqEverything",
+    "FJgeoqXqFiles",
+    "FJgeoqXqFilesFile",
+    "FJgeoqXqFilesFileFJgeoqXqURLAndHeaders",
 ]
 
 
-class Ttm0zLoGFlex(TypedDict, total=False):
+class FJgeoqXqFlex(TypedDict, total=False):
     hosts: List[str]
 
     prefixes: List[str]
@@ -30,20 +23,20 @@ class Ttm0zLoGFlex(TypedDict, total=False):
     tags: List[str]
 
 
-class Ttm0zLoGEverything(TypedDict, total=False):
+class FJgeoqXqEverything(TypedDict, total=False):
     purge_everything: bool
 
 
-class Ttm0zLoGFiles(TypedDict, total=False):
-    files: List[Ttm0zLoGFilesFile]
+class FJgeoqXqFiles(TypedDict, total=False):
+    files: List[FJgeoqXqFilesFile]
 
 
-class Ttm0zLoGFilesFileTtm0zLoGURLAndHeaders(TypedDict, total=False):
+class FJgeoqXqFilesFileFJgeoqXqURLAndHeaders(TypedDict, total=False):
     headers: object
 
     url: str
 
 
-Ttm0zLoGFilesFile = Union[str, Ttm0zLoGFilesFileTtm0zLoGURLAndHeaders]
+FJgeoqXqFilesFile = Union[str, FJgeoqXqFilesFileFJgeoqXqURLAndHeaders]
 
-PurgeCachZonePurgeParams = Union[Ttm0zLoGFlex, Ttm0zLoGEverything, Ttm0zLoGFiles]
+PurgeCachZonePurgeParams = Union[FJgeoqXqFlex, FJgeoqXqEverything, FJgeoqXqFiles]

@@ -2,27 +2,20 @@
 
 from __future__ import annotations
 
-from typing import Optional, Any, cast
-
-from cloudflare.types import (
-    ZoneCreateResponse,
-    ZoneUpdateResponse,
-    ZoneListResponse,
-    ZoneDeleteResponse,
-    ZoneGetResponse,
-)
-
 import os
+from typing import Any, Optional, cast
+
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types import zone_create_params
-from cloudflare.types import zone_update_params
-from cloudflare.types import zone_list_params
+from cloudflare.types import (
+    ZoneGetResponse,
+    ZoneListResponse,
+    ZoneCreateResponse,
+    ZoneDeleteResponse,
+    ZoneUpdateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

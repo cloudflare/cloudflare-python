@@ -1,18 +1,20 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from .operations import Operations, AsyncOperations
-from .operations import (
-    OperationsWithRawResponse,
-    AsyncOperationsWithRawResponse,
-    OperationsWithStreamingResponse,
-    AsyncOperationsWithStreamingResponse,
-)
-from .discovery import Discovery, AsyncDiscovery
 from .discovery import (
+    Discovery,
+    AsyncDiscovery,
     DiscoveryWithRawResponse,
     AsyncDiscoveryWithRawResponse,
     DiscoveryWithStreamingResponse,
     AsyncDiscoveryWithStreamingResponse,
+)
+from .operations import (
+    Operations,
+    AsyncOperations,
+    OperationsWithRawResponse,
+    AsyncOperationsWithRawResponse,
+    OperationsWithStreamingResponse,
+    AsyncOperationsWithStreamingResponse,
 )
 
 __all__ = [
