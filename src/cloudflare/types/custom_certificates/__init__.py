@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from .prioritize_custom_ssl_for_a_zone_re_prioritize_ssl_certificates_response import (
-    PrioritizeCustomSSLForAZoneRePrioritizeSSLCertificatesResponse as PrioritizeCustomSSLForAZoneRePrioritizeSSLCertificatesResponse,
-)
 from .prioritize_custom_ssl_for_a_zone_re_prioritize_ssl_certificates_params import (
     PrioritizeCustomSSLForAZoneRePrioritizeSSLCertificatesParams as PrioritizeCustomSSLForAZoneRePrioritizeSSLCertificatesParams,
+)
+from .prioritize_custom_ssl_for_a_zone_re_prioritize_ssl_certificates_response import (
+    PrioritizeCustomSSLForAZoneRePrioritizeSSLCertificatesResponse as PrioritizeCustomSSLForAZoneRePrioritizeSSLCertificatesResponse,
 )
