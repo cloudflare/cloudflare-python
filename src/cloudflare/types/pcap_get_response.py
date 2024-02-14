@@ -7,14 +7,14 @@ from .._models import BaseModel
 
 __all__ = [
     "PcapGetResponse",
-    "FPeBZr9dPcapsResponseSimple",
-    "FPeBZr9dPcapsResponseSimpleFilterV1",
-    "FPeBZr9dPcapsResponseFull",
-    "FPeBZr9dPcapsResponseFullFilterV1",
+    "_2ljpZLrBPcapsResponseSimple",
+    "_2ljpZLrBPcapsResponseSimpleFilterV1",
+    "_2ljpZLrBPcapsResponseFull",
+    "_2ljpZLrBPcapsResponseFullFilterV1",
 ]
 
 
-class FPeBZr9dPcapsResponseSimpleFilterV1(BaseModel):
+class _2ljpZLrBPcapsResponseSimpleFilterV1(BaseModel):
     destination_address: Optional[str] = None
     """The destination IP address of the packet."""
 
@@ -31,11 +31,11 @@ class FPeBZr9dPcapsResponseSimpleFilterV1(BaseModel):
     """The source port of the packet."""
 
 
-class FPeBZr9dPcapsResponseSimple(BaseModel):
+class _2ljpZLrBPcapsResponseSimple(BaseModel):
     id: Optional[str] = None
     """The ID for the packet capture."""
 
-    filter_v1: Optional[FPeBZr9dPcapsResponseSimpleFilterV1] = None
+    filter_v1: Optional[_2ljpZLrBPcapsResponseSimpleFilterV1] = None
     """The packet capture filter. When this field is empty, all packets are captured."""
 
     status: Optional[
@@ -62,7 +62,7 @@ class FPeBZr9dPcapsResponseSimple(BaseModel):
     """
 
 
-class FPeBZr9dPcapsResponseFullFilterV1(BaseModel):
+class _2ljpZLrBPcapsResponseFullFilterV1(BaseModel):
     destination_address: Optional[str] = None
     """The destination IP address of the packet."""
 
@@ -79,7 +79,7 @@ class FPeBZr9dPcapsResponseFullFilterV1(BaseModel):
     """The source port of the packet."""
 
 
-class FPeBZr9dPcapsResponseFull(BaseModel):
+class _2ljpZLrBPcapsResponseFull(BaseModel):
     id: Optional[str] = None
     """The ID for the packet capture."""
 
@@ -105,7 +105,7 @@ class FPeBZr9dPcapsResponseFull(BaseModel):
     This field only applies to `full` packet captures.
     """
 
-    filter_v1: Optional[FPeBZr9dPcapsResponseFullFilterV1] = None
+    filter_v1: Optional[_2ljpZLrBPcapsResponseFullFilterV1] = None
     """The packet capture filter. When this field is empty, all packets are captured."""
 
     status: Optional[
@@ -132,4 +132,4 @@ class FPeBZr9dPcapsResponseFull(BaseModel):
     """
 
 
-PcapGetResponse = Union[FPeBZr9dPcapsResponseSimple, FPeBZr9dPcapsResponseFull]
+PcapGetResponse = Union[_2ljpZLrBPcapsResponseSimple, _2ljpZLrBPcapsResponseFull]
