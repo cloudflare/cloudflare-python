@@ -2,19 +2,83 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Union, cast
-from datetime import datetime
-from typing_extensions import Literal
-
 import httpx
 
-from .keys import (
-    Keys,
-    AsyncKeys,
-    KeysWithRawResponse,
-    AsyncKeysWithRawResponse,
-    KeysWithStreamingResponse,
-    AsyncKeysWithStreamingResponse,
+from .audio_tracks import AudioTracks, AsyncAudioTracks
+
+from ..._compat import cached_property
+
+from .videos import Videos, AsyncVideos
+
+from .clips import Clips, AsyncClips
+
+from .copies import Copies, AsyncCopies
+
+from .direct_uploads import DirectUploads, AsyncDirectUploads
+
+from .keys import Keys, AsyncKeys
+
+from .live_inputs.live_inputs import LiveInputs, AsyncLiveInputs
+
+from .watermarks import Watermarks, AsyncWatermarks
+
+from .webhooks import Webhooks, AsyncWebhooks
+
+from .captions import Captions, AsyncCaptions
+
+from .downloads import Downloads, AsyncDownloads
+
+from .embeds import Embeds, AsyncEmbeds
+
+from .tokens import Tokens, AsyncTokens
+
+from ...types import StreamUpdateResponse, StreamGetResponse, StreamStreamVideosListVideosResponse
+
+from typing import Type, List, Union
+
+from datetime import datetime
+
+from typing_extensions import Literal
+
+from ..._response import (
+    to_raw_response_wrapper,
+    async_to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._base_client import (
+    SyncAPIClient,
+    AsyncAPIClient,
+    _merge_mappings,
+    AsyncPaginator,
+    make_request_options,
+    HttpxBinaryResponseContent,
+)
+from ...types import shared_params
+from ...types import stream_update_params
+from ...types import stream_stream_videos_list_videos_params
+from .audio_tracks import (
+    AudioTracks,
+    AsyncAudioTracks,
+    AudioTracksWithRawResponse,
+    AsyncAudioTracksWithRawResponse,
+    AudioTracksWithStreamingResponse,
+    AsyncAudioTracksWithStreamingResponse,
+)
+from .videos import (
+    Videos,
+    AsyncVideos,
+    VideosWithRawResponse,
+    AsyncVideosWithRawResponse,
+    VideosWithStreamingResponse,
+    AsyncVideosWithStreamingResponse,
 )
 from .clips import (
     Clips,
@@ -32,6 +96,62 @@ from .copies import (
     CopiesWithStreamingResponse,
     AsyncCopiesWithStreamingResponse,
 )
+from .direct_uploads import (
+    DirectUploads,
+    AsyncDirectUploads,
+    DirectUploadsWithRawResponse,
+    AsyncDirectUploadsWithRawResponse,
+    DirectUploadsWithStreamingResponse,
+    AsyncDirectUploadsWithStreamingResponse,
+)
+from .keys import (
+    Keys,
+    AsyncKeys,
+    KeysWithRawResponse,
+    AsyncKeysWithRawResponse,
+    KeysWithStreamingResponse,
+    AsyncKeysWithStreamingResponse,
+)
+from .live_inputs import (
+    LiveInputs,
+    AsyncLiveInputs,
+    LiveInputsWithRawResponse,
+    AsyncLiveInputsWithRawResponse,
+    LiveInputsWithStreamingResponse,
+    AsyncLiveInputsWithStreamingResponse,
+)
+from .watermarks import (
+    Watermarks,
+    AsyncWatermarks,
+    WatermarksWithRawResponse,
+    AsyncWatermarksWithRawResponse,
+    WatermarksWithStreamingResponse,
+    AsyncWatermarksWithStreamingResponse,
+)
+from .webhooks import (
+    Webhooks,
+    AsyncWebhooks,
+    WebhooksWithRawResponse,
+    AsyncWebhooksWithRawResponse,
+    WebhooksWithStreamingResponse,
+    AsyncWebhooksWithStreamingResponse,
+)
+from .captions import (
+    Captions,
+    AsyncCaptions,
+    CaptionsWithRawResponse,
+    AsyncCaptionsWithRawResponse,
+    CaptionsWithStreamingResponse,
+    AsyncCaptionsWithStreamingResponse,
+)
+from .downloads import (
+    Downloads,
+    AsyncDownloads,
+    DownloadsWithRawResponse,
+    AsyncDownloadsWithRawResponse,
+    DownloadsWithStreamingResponse,
+    AsyncDownloadsWithStreamingResponse,
+)
 from .embeds import (
     Embeds,
     AsyncEmbeds,
@@ -48,92 +168,13 @@ from .tokens import (
     TokensWithStreamingResponse,
     AsyncTokensWithStreamingResponse,
 )
-from .videos import (
-    Videos,
-    AsyncVideos,
-    VideosWithRawResponse,
-    AsyncVideosWithRawResponse,
-    VideosWithStreamingResponse,
-    AsyncVideosWithStreamingResponse,
-)
-from ...types import (
-    StreamGetResponse,
-    StreamUpdateResponse,
-    StreamStreamVideosListVideosResponse,
-    stream_update_params,
-    stream_stream_videos_list_videos_params,
-)
-from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
-from ..._utils import maybe_transform
-from .captions import (
-    Captions,
-    AsyncCaptions,
-    CaptionsWithRawResponse,
-    AsyncCaptionsWithRawResponse,
-    CaptionsWithStreamingResponse,
-    AsyncCaptionsWithStreamingResponse,
-)
-from .webhooks import (
-    Webhooks,
-    AsyncWebhooks,
-    WebhooksWithRawResponse,
-    AsyncWebhooksWithRawResponse,
-    WebhooksWithStreamingResponse,
-    AsyncWebhooksWithStreamingResponse,
-)
-from ..._compat import cached_property
-from .downloads import (
-    Downloads,
-    AsyncDownloads,
-    DownloadsWithRawResponse,
-    AsyncDownloadsWithRawResponse,
-    DownloadsWithStreamingResponse,
-    AsyncDownloadsWithStreamingResponse,
-)
-from .watermarks import (
-    Watermarks,
-    AsyncWatermarks,
-    WatermarksWithRawResponse,
-    AsyncWatermarksWithRawResponse,
-    WatermarksWithStreamingResponse,
-    AsyncWatermarksWithStreamingResponse,
-)
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
 from ..._wrappers import ResultWrapper
-from .live_inputs import (
-    LiveInputs,
-    AsyncLiveInputs,
-    LiveInputsWithRawResponse,
-    AsyncLiveInputsWithRawResponse,
-    LiveInputsWithStreamingResponse,
-    AsyncLiveInputsWithStreamingResponse,
-)
-from .audio_tracks import (
-    AudioTracks,
-    AsyncAudioTracks,
-    AudioTracksWithRawResponse,
-    AsyncAudioTracksWithRawResponse,
-    AudioTracksWithStreamingResponse,
-    AsyncAudioTracksWithStreamingResponse,
-)
-from ..._base_client import (
-    make_request_options,
-)
-from .direct_uploads import (
-    DirectUploads,
-    AsyncDirectUploads,
-    DirectUploadsWithRawResponse,
-    AsyncDirectUploadsWithRawResponse,
-    DirectUploadsWithStreamingResponse,
-    AsyncDirectUploadsWithStreamingResponse,
-)
-from .live_inputs.live_inputs import LiveInputs, AsyncLiveInputs
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
 
 __all__ = ["Stream", "AsyncStream"]
 

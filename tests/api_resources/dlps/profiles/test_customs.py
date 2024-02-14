@@ -2,19 +2,25 @@
 
 from __future__ import annotations
 
+from cloudflare.types.dlps.profiles import (
+    CustomUpdateResponse,
+    CustomDeleteResponse,
+    CustomDLPProfilesCreateCustomProfilesResponse,
+    CustomGetResponse,
+)
+
+from typing import Any, cast, Optional
+
 import os
-from typing import Any, Optional, cast
-
 import pytest
-
+import httpx
+from typing_extensions import get_args
+from typing import Optional
+from respx import MockRouter
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.dlps.profiles import (
-    CustomGetResponse,
-    CustomDeleteResponse,
-    CustomUpdateResponse,
-    CustomDLPProfilesCreateCustomProfilesResponse,
-)
+from cloudflare.types.dlps.profiles import custom_update_params
+from cloudflare.types.dlps.profiles import custom_dlp_profiles_create_custom_profiles_params
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
