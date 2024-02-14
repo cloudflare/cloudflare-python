@@ -2,46 +2,21 @@
 
 from __future__ import annotations
 
+from typing import Type, cast
+
 import httpx
 
-from .revoke_users import RevokeUsers, AsyncRevokeUsers
-
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import maybe_transform
 from ...._compat import cached_property
-
-from ....types.access import (
-    OrganizationZeroTrustOrganizationCreateYourZeroTrustOrganizationResponse,
-    OrganizationZeroTrustOrganizationGetYourZeroTrustOrganizationResponse,
-    OrganizationZeroTrustOrganizationUpdateYourZeroTrustOrganizationResponse,
-    organization_zero_trust_organization_create_your_zero_trust_organization_params,
-    organization_zero_trust_organization_update_your_zero_trust_organization_params,
-)
-
-from typing import Type
-
+from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ....types import shared_params
-from ....types.access import organization_zero_trust_organization_create_your_zero_trust_organization_params
-from ....types.access import organization_zero_trust_organization_update_your_zero_trust_organization_params
+from ...._wrappers import ResultWrapper
 from .revoke_users import (
     RevokeUsers,
     AsyncRevokeUsers,
@@ -50,13 +25,16 @@ from .revoke_users import (
     RevokeUsersWithStreamingResponse,
     AsyncRevokeUsersWithStreamingResponse,
 )
-from ...._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ...._base_client import (
+    make_request_options,
+)
+from ....types.access import (
+    OrganizationZeroTrustOrganizationGetYourZeroTrustOrganizationResponse,
+    OrganizationZeroTrustOrganizationCreateYourZeroTrustOrganizationResponse,
+    OrganizationZeroTrustOrganizationUpdateYourZeroTrustOrganizationResponse,
+    organization_zero_trust_organization_create_your_zero_trust_organization_params,
+    organization_zero_trust_organization_update_your_zero_trust_organization_params,
+)
 
 __all__ = ["Organizations", "AsyncOrganizations"]
 

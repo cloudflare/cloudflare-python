@@ -2,60 +2,35 @@
 
 from __future__ import annotations
 
+from typing import Type, Iterable, Optional, cast
+from typing_extensions import Literal
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._compat import cached_property
-
-from ...types.waiting_rooms import (
-    RuleUpdateResponse,
-    RuleDeleteResponse,
-    RuleWaitingRoomCreateWaitingRoomRuleResponse,
-    RuleWaitingRoomListWaitingRoomRulesResponse,
-    RuleWaitingRoomReplaceWaitingRoomRulesResponse,
-    rule_update_params,
-    rule_waiting_room_replace_waiting_room_rules_params,
-)
-
-from typing import Type, Optional, Iterable
-
-from typing_extensions import Literal
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types.waiting_rooms import rule_update_params
-from ...types.waiting_rooms import rule_waiting_room_create_waiting_room_rule_params
-from ...types.waiting_rooms import rule_waiting_room_replace_waiting_room_rules_params
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ..._base_client import (
+    make_request_options,
+)
+from ...types.waiting_rooms import (
+    RuleDeleteResponse,
+    RuleUpdateResponse,
+    RuleWaitingRoomListWaitingRoomRulesResponse,
+    RuleWaitingRoomCreateWaitingRoomRuleResponse,
+    RuleWaitingRoomReplaceWaitingRoomRulesResponse,
+    rule_update_params,
+    rule_waiting_room_create_waiting_room_rule_params,
+    rule_waiting_room_replace_waiting_room_rules_params,
+)
 
 __all__ = ["Rules", "AsyncRules"]
 
