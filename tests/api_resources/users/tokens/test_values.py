@@ -2,19 +2,13 @@
 
 from __future__ import annotations
 
-from cloudflare.types.users.tokens import ValueUserAPITokensRollTokenResponse
-
+import os
 from typing import Any, cast
 
-import os
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.users.tokens import value_user_api_tokens_roll_token_params
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

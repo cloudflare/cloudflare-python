@@ -2,15 +2,8 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Literal, Required
-
-from typing import Dict, Iterable, Union, List
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ...._types import FileTypes
-from ...._utils import PropertyInfo
-from ....types import shared_params
+from typing import Dict, List, Union, Iterable
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["PolicyNotificationPoliciesCreateANotificationPolicyParams", "Mechanisms", "Filters"]
 

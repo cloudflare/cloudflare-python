@@ -1,14 +1,21 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from .packages import Packages, AsyncPackages
+from .waf import (
+    WAF,
+    AsyncWAF,
+    WAFWithRawResponse,
+    AsyncWAFWithRawResponse,
+    WAFWithStreamingResponse,
+    AsyncWAFWithStreamingResponse,
+)
 from .packages import (
+    Packages,
+    AsyncPackages,
     PackagesWithRawResponse,
     AsyncPackagesWithRawResponse,
     PackagesWithStreamingResponse,
     AsyncPackagesWithStreamingResponse,
 )
-from .waf import WAF, AsyncWAF
-from .waf import WAFWithRawResponse, AsyncWAFWithRawResponse, WAFWithStreamingResponse, AsyncWAFWithStreamingResponse
 
 __all__ = [
     "Packages",
