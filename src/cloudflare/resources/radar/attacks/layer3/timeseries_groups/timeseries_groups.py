@@ -2,14 +2,33 @@
 
 from __future__ import annotations
 
-from .vector import (
-    Vector,
-    AsyncVector,
-    VectorWithRawResponse,
-    AsyncVectorWithRawResponse,
-    VectorWithStreamingResponse,
-    AsyncVectorWithStreamingResponse,
+from .industry import Industry, AsyncIndustry
+
+from ......_compat import cached_property
+
+from .ip_version import IPVersion, AsyncIPVersion
+
+from .protocol import Protocol, AsyncProtocol
+
+from .vector import Vector, AsyncVector
+
+from .vertical import Vertical, AsyncVertical
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ......_utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ......_types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ......_resource import SyncAPIResource, AsyncAPIResource
+from ......_base_client import (
+    SyncAPIClient,
+    AsyncAPIClient,
+    _merge_mappings,
+    AsyncPaginator,
+    make_request_options,
+    HttpxBinaryResponseContent,
 )
+from ......types import shared_params
 from .industry import (
     Industry,
     AsyncIndustry,
@@ -17,22 +36,6 @@ from .industry import (
     AsyncIndustryWithRawResponse,
     IndustryWithStreamingResponse,
     AsyncIndustryWithStreamingResponse,
-)
-from .protocol import (
-    Protocol,
-    AsyncProtocol,
-    ProtocolWithRawResponse,
-    AsyncProtocolWithRawResponse,
-    ProtocolWithStreamingResponse,
-    AsyncProtocolWithStreamingResponse,
-)
-from .vertical import (
-    Vertical,
-    AsyncVertical,
-    VerticalWithRawResponse,
-    AsyncVerticalWithRawResponse,
-    VerticalWithStreamingResponse,
-    AsyncVerticalWithStreamingResponse,
 )
 from .ip_version import (
     IPVersion,
@@ -42,8 +45,31 @@ from .ip_version import (
     IPVersionWithStreamingResponse,
     AsyncIPVersionWithStreamingResponse,
 )
-from ......_compat import cached_property
-from ......_resource import SyncAPIResource, AsyncAPIResource
+from .protocol import (
+    Protocol,
+    AsyncProtocol,
+    ProtocolWithRawResponse,
+    AsyncProtocolWithRawResponse,
+    ProtocolWithStreamingResponse,
+    AsyncProtocolWithStreamingResponse,
+)
+from .vector import (
+    Vector,
+    AsyncVector,
+    VectorWithRawResponse,
+    AsyncVectorWithRawResponse,
+    VectorWithStreamingResponse,
+    AsyncVectorWithStreamingResponse,
+)
+from .vertical import (
+    Vertical,
+    AsyncVertical,
+    VerticalWithRawResponse,
+    AsyncVerticalWithRawResponse,
+    VerticalWithStreamingResponse,
+    AsyncVerticalWithStreamingResponse,
+)
+from ......_wrappers import ResultWrapper
 
 __all__ = ["TimeseriesGroups", "AsyncTimeseriesGroups"]
 

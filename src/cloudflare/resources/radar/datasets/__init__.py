@@ -1,20 +1,18 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from .datasets import (
-    Datasets,
-    AsyncDatasets,
-    DatasetsWithRawResponse,
-    AsyncDatasetsWithRawResponse,
-    DatasetsWithStreamingResponse,
-    AsyncDatasetsWithStreamingResponse,
-)
+from .downloads import Downloads, AsyncDownloads
 from .downloads import (
-    Downloads,
-    AsyncDownloads,
     DownloadsWithRawResponse,
     AsyncDownloadsWithRawResponse,
     DownloadsWithStreamingResponse,
     AsyncDownloadsWithStreamingResponse,
+)
+from .datasets import Datasets, AsyncDatasets
+from .datasets import (
+    DatasetsWithRawResponse,
+    AsyncDatasetsWithRawResponse,
+    DatasetsWithStreamingResponse,
+    AsyncDatasetsWithStreamingResponse,
 )
 
 __all__ = [
