@@ -1,16 +1,12 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from typing import Optional, List, Union
-
-from typing_extensions import Literal
-
+from typing import List, Union, Optional
 from datetime import datetime
-
-from typing import Optional, Union, List, Dict, Any
 from typing_extensions import Literal
+
 from pydantic import Field as FieldInfo
+
 from ..._models import BaseModel
-from ...types import shared
 
 __all__ = [
     "AuditLogAuditLogsGetUserAuditLogsResponse",
@@ -20,9 +16,9 @@ __all__ = [
     "UnionMember0ResultActor",
     "UnionMember0ResultOwner",
     "UnionMember0ResultResource",
-    "CSbdWympAPIResponseCommon",
-    "CSbdWympAPIResponseCommonError",
-    "CSbdWympAPIResponseCommonMessage",
+    "O40s3NBgAPIResponseCommon",
+    "O40s3NBgAPIResponseCommonError",
+    "O40s3NBgAPIResponseCommonMessage",
 ]
 
 
@@ -105,22 +101,22 @@ class UnionMember0(BaseModel):
     success: Optional[bool] = None
 
 
-class CSbdWympAPIResponseCommonError(BaseModel):
+class O40s3NBgAPIResponseCommonError(BaseModel):
     code: int
 
     message: str
 
 
-class CSbdWympAPIResponseCommonMessage(BaseModel):
+class O40s3NBgAPIResponseCommonMessage(BaseModel):
     code: int
 
     message: str
 
 
-class CSbdWympAPIResponseCommon(BaseModel):
-    errors: List[CSbdWympAPIResponseCommonError]
+class O40s3NBgAPIResponseCommon(BaseModel):
+    errors: List[O40s3NBgAPIResponseCommonError]
 
-    messages: List[CSbdWympAPIResponseCommonMessage]
+    messages: List[O40s3NBgAPIResponseCommonMessage]
 
     result: Union[object, List[object], str]
 
@@ -128,4 +124,4 @@ class CSbdWympAPIResponseCommon(BaseModel):
     """Whether the API call was successful"""
 
 
-AuditLogAuditLogsGetUserAuditLogsResponse = Union[UnionMember0, CSbdWympAPIResponseCommon]
+AuditLogAuditLogsGetUserAuditLogsResponse = Union[UnionMember0, O40s3NBgAPIResponseCommon]

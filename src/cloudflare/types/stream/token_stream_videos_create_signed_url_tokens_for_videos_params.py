@@ -2,17 +2,10 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, Annotated, Literal
-
-from typing import Iterable, List
+from typing import List, Iterable
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
-from ..._utils import PropertyInfo
-from ...types import shared_params
 
 __all__ = ["TokenStreamVideosCreateSignedURLTokensForVideosParams", "AccessRule"]
 
