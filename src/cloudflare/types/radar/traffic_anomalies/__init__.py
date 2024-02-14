@@ -2,5 +2,5 @@
 
 from __future__ import annotations
 
-from .location_list_params import LocationListParams as LocationListParams
 from .location_list_response import LocationListResponse as LocationListResponse
+from .location_list_params import LocationListParams as LocationListParams

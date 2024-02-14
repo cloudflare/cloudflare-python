@@ -2,19 +2,54 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Optional, cast
-from typing_extensions import Literal
-
 import httpx
 
-from .keys import (
-    Keys,
-    AsyncKeys,
-    KeysWithRawResponse,
-    AsyncKeysWithRawResponse,
-    KeysWithStreamingResponse,
-    AsyncKeysWithStreamingResponse,
+from .bulks import Bulks, AsyncBulks
+
+from ....._compat import cached_property
+
+from .keys import Keys, AsyncKeys
+
+from .metadata import Metadata, AsyncMetadata
+
+from .values import Values, AsyncValues
+
+from .....types.storage.kv import (
+    NamespaceUpdateResponse,
+    NamespaceListResponse,
+    NamespaceDeleteResponse,
+    NamespaceWorkersKvNamespaceCreateANamespaceResponse,
 )
+
+from typing import Type, Optional
+
+from typing_extensions import Literal
+
+from ....._response import (
+    to_raw_response_wrapper,
+    async_to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from ....._base_client import (
+    SyncAPIClient,
+    AsyncAPIClient,
+    _merge_mappings,
+    AsyncPaginator,
+    make_request_options,
+    HttpxBinaryResponseContent,
+)
+from .....types import shared_params
+from .....types.storage.kv import namespace_update_params
+from .....types.storage.kv import namespace_list_params
+from .....types.storage.kv import namespace_workers_kv_namespace_create_a_namespace_params
 from .bulks import (
     Bulks,
     AsyncBulks,
@@ -23,13 +58,13 @@ from .bulks import (
     BulksWithStreamingResponse,
     AsyncBulksWithStreamingResponse,
 )
-from .values import (
-    Values,
-    AsyncValues,
-    ValuesWithRawResponse,
-    AsyncValuesWithRawResponse,
-    ValuesWithStreamingResponse,
-    AsyncValuesWithStreamingResponse,
+from .keys import (
+    Keys,
+    AsyncKeys,
+    KeysWithRawResponse,
+    AsyncKeysWithRawResponse,
+    KeysWithStreamingResponse,
+    AsyncKeysWithStreamingResponse,
 )
 from .metadata import (
     Metadata,
@@ -39,29 +74,27 @@ from .metadata import (
     MetadataWithStreamingResponse,
     AsyncMetadataWithStreamingResponse,
 )
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ....._utils import maybe_transform
-from ....._compat import cached_property
-from ....._resource import SyncAPIResource, AsyncAPIResource
-from ....._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
+from .values import (
+    Values,
+    AsyncValues,
+    ValuesWithRawResponse,
+    AsyncValuesWithRawResponse,
+    ValuesWithStreamingResponse,
+    AsyncValuesWithStreamingResponse,
 )
 from ....._wrappers import ResultWrapper
-from ....._base_client import (
-    make_request_options,
-)
-from .....types.storage.kv import (
-    NamespaceListResponse,
-    NamespaceDeleteResponse,
-    NamespaceUpdateResponse,
-    NamespaceWorkersKvNamespaceCreateANamespaceResponse,
-    namespace_list_params,
-    namespace_update_params,
-    namespace_workers_kv_namespace_create_a_namespace_params,
-)
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
 
 __all__ = ["Namespaces", "AsyncNamespaces"]
 
