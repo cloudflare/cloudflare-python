@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
+from .schema_validation_update_params import SchemaValidationUpdateParams as SchemaValidationUpdateParams
 from .api_shield_zone_schema_validation_settings import (
     APIShieldZoneSchemaValidationSettings as APIShieldZoneSchemaValidationSettings,
 )
-from .schema_validation_update_params import SchemaValidationUpdateParams as SchemaValidationUpdateParams

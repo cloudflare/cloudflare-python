@@ -1,14 +1,16 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from .outages import Outages, AsyncOutages
 from .outages import (
+    Outages,
+    AsyncOutages,
     OutagesWithRawResponse,
     AsyncOutagesWithRawResponse,
     OutagesWithStreamingResponse,
     AsyncOutagesWithStreamingResponse,
 )
-from .annotations import Annotations, AsyncAnnotations
 from .annotations import (
+    Annotations,
+    AsyncAnnotations,
     AnnotationsWithRawResponse,
     AsyncAnnotationsWithRawResponse,
     AnnotationsWithStreamingResponse,
