@@ -7,14 +7,14 @@ from .._models import BaseModel
 
 __all__ = [
     "PcapGetResponse",
-    "ZdLgyV2rPcapsResponseSimple",
-    "ZdLgyV2rPcapsResponseSimpleFilterV1",
-    "ZdLgyV2rPcapsResponseFull",
-    "ZdLgyV2rPcapsResponseFullFilterV1",
+    "BuvwFvChPcapsResponseSimple",
+    "BuvwFvChPcapsResponseSimpleFilterV1",
+    "BuvwFvChPcapsResponseFull",
+    "BuvwFvChPcapsResponseFullFilterV1",
 ]
 
 
-class ZdLgyV2rPcapsResponseSimpleFilterV1(BaseModel):
+class BuvwFvChPcapsResponseSimpleFilterV1(BaseModel):
     destination_address: Optional[str] = None
     """The destination IP address of the packet."""
 
@@ -31,11 +31,11 @@ class ZdLgyV2rPcapsResponseSimpleFilterV1(BaseModel):
     """The source port of the packet."""
 
 
-class ZdLgyV2rPcapsResponseSimple(BaseModel):
+class BuvwFvChPcapsResponseSimple(BaseModel):
     id: Optional[str] = None
     """The ID for the packet capture."""
 
-    filter_v1: Optional[ZdLgyV2rPcapsResponseSimpleFilterV1] = None
+    filter_v1: Optional[BuvwFvChPcapsResponseSimpleFilterV1] = None
     """The packet capture filter. When this field is empty, all packets are captured."""
 
     status: Optional[
@@ -62,7 +62,7 @@ class ZdLgyV2rPcapsResponseSimple(BaseModel):
     """
 
 
-class ZdLgyV2rPcapsResponseFullFilterV1(BaseModel):
+class BuvwFvChPcapsResponseFullFilterV1(BaseModel):
     destination_address: Optional[str] = None
     """The destination IP address of the packet."""
 
@@ -79,7 +79,7 @@ class ZdLgyV2rPcapsResponseFullFilterV1(BaseModel):
     """The source port of the packet."""
 
 
-class ZdLgyV2rPcapsResponseFull(BaseModel):
+class BuvwFvChPcapsResponseFull(BaseModel):
     id: Optional[str] = None
     """The ID for the packet capture."""
 
@@ -105,7 +105,7 @@ class ZdLgyV2rPcapsResponseFull(BaseModel):
     This field only applies to `full` packet captures.
     """
 
-    filter_v1: Optional[ZdLgyV2rPcapsResponseFullFilterV1] = None
+    filter_v1: Optional[BuvwFvChPcapsResponseFullFilterV1] = None
     """The packet capture filter. When this field is empty, all packets are captured."""
 
     status: Optional[
@@ -132,4 +132,4 @@ class ZdLgyV2rPcapsResponseFull(BaseModel):
     """
 
 
-PcapGetResponse = Union[ZdLgyV2rPcapsResponseSimple, ZdLgyV2rPcapsResponseFull]
+PcapGetResponse = Union[BuvwFvChPcapsResponseSimple, BuvwFvChPcapsResponseFull]
