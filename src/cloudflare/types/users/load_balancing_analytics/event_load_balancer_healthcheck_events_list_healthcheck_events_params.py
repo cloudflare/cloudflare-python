@@ -12,8 +12,6 @@ __all__ = ["EventLoadBalancerHealthcheckEventsListHealthcheckEventsParams"]
 
 
 class EventLoadBalancerHealthcheckEventsListHealthcheckEventsParams(TypedDict, total=False):
-    identifier: str
-
     origin_healthy: bool
     """If true, filter events where the origin status is healthy.
 
@@ -28,6 +26,8 @@ class EventLoadBalancerHealthcheckEventsListHealthcheckEventsParams(TypedDict, t
 
     If false, filter events where the pool status is unhealthy.
     """
+
+    pool_id: str
 
     pool_name: str
     """The name for the pool to filter."""
