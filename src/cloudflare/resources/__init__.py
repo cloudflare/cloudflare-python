@@ -392,14 +392,6 @@ from .teamnets import (
     TeamnetsWithStreamingResponse,
     AsyncTeamnetsWithStreamingResponse,
 )
-from .addresses import (
-    Addresses,
-    AsyncAddresses,
-    AddressesWithRawResponse,
-    AsyncAddressesWithRawResponse,
-    AddressesWithStreamingResponse,
-    AsyncAddressesWithStreamingResponse,
-)
 from .analytics import (
     Analytics,
     AsyncAnalytics,
@@ -479,14 +471,6 @@ from .zerotrust import (
     AsyncZerotrustWithRawResponse,
     ZerotrustWithStreamingResponse,
     AsyncZerotrustWithStreamingResponse,
-)
-from .addressing import (
-    Addressing,
-    AsyncAddressing,
-    AddressingWithRawResponse,
-    AsyncAddressingWithRawResponse,
-    AddressingWithStreamingResponse,
-    AsyncAddressingWithStreamingResponse,
 )
 from .audit_logs import (
     AuditLogs,
@@ -1154,12 +1138,6 @@ __all__ = [
     "AsyncSpectrumsWithRawResponse",
     "SpectrumsWithStreamingResponse",
     "AsyncSpectrumsWithStreamingResponse",
-    "Addresses",
-    "AsyncAddresses",
-    "AddressesWithRawResponse",
-    "AsyncAddressesWithRawResponse",
-    "AddressesWithStreamingResponse",
-    "AsyncAddressesWithStreamingResponse",
     "AuditLogs",
     "AsyncAuditLogs",
     "AuditLogsWithRawResponse",
@@ -1376,12 +1354,6 @@ __all__ = [
     "AsyncZerotrustWithRawResponse",
     "ZerotrustWithStreamingResponse",
     "AsyncZerotrustWithStreamingResponse",
-    "Addressing",
-    "AsyncAddressing",
-    "AddressingWithRawResponse",
-    "AsyncAddressingWithRawResponse",
-    "AddressingWithStreamingResponse",
-    "AsyncAddressingWithStreamingResponse",
     "Challenges",
     "AsyncChallenges",
     "ChallengesWithRawResponse",

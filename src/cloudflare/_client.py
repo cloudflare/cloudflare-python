@@ -94,7 +94,6 @@ class Cloudflare(SyncAPIClient):
     rulesets: resources.Rulesets
     url_normalizations: resources.URLNormalizations
     spectrums: resources.Spectrums
-    addresses: resources.Addresses
     audit_logs: resources.AuditLogs
     billings: resources.Billings
     brand_protections: resources.BrandProtections
@@ -131,7 +130,6 @@ class Cloudflare(SyncAPIClient):
     worker_domains: resources.WorkerDomains
     worker_scripts: resources.WorkerScripts
     zerotrust: resources.Zerotrust
-    addressing: resources.Addressing
     challenges: resources.Challenges
     hyperdrive: resources.Hyperdrive
     intel: resources.Intel
@@ -291,7 +289,6 @@ class Cloudflare(SyncAPIClient):
         self.rulesets = resources.Rulesets(self)
         self.url_normalizations = resources.URLNormalizations(self)
         self.spectrums = resources.Spectrums(self)
-        self.addresses = resources.Addresses(self)
         self.audit_logs = resources.AuditLogs(self)
         self.billings = resources.Billings(self)
         self.brand_protections = resources.BrandProtections(self)
@@ -328,7 +325,6 @@ class Cloudflare(SyncAPIClient):
         self.worker_domains = resources.WorkerDomains(self)
         self.worker_scripts = resources.WorkerScripts(self)
         self.zerotrust = resources.Zerotrust(self)
-        self.addressing = resources.Addressing(self)
         self.challenges = resources.Challenges(self)
         self.hyperdrive = resources.Hyperdrive(self)
         self.intel = resources.Intel(self)
@@ -542,7 +538,6 @@ class AsyncCloudflare(AsyncAPIClient):
     rulesets: resources.AsyncRulesets
     url_normalizations: resources.AsyncURLNormalizations
     spectrums: resources.AsyncSpectrums
-    addresses: resources.AsyncAddresses
     audit_logs: resources.AsyncAuditLogs
     billings: resources.AsyncBillings
     brand_protections: resources.AsyncBrandProtections
@@ -579,7 +574,6 @@ class AsyncCloudflare(AsyncAPIClient):
     worker_domains: resources.AsyncWorkerDomains
     worker_scripts: resources.AsyncWorkerScripts
     zerotrust: resources.AsyncZerotrust
-    addressing: resources.AsyncAddressing
     challenges: resources.AsyncChallenges
     hyperdrive: resources.AsyncHyperdrive
     intel: resources.AsyncIntel
@@ -739,7 +733,6 @@ class AsyncCloudflare(AsyncAPIClient):
         self.rulesets = resources.AsyncRulesets(self)
         self.url_normalizations = resources.AsyncURLNormalizations(self)
         self.spectrums = resources.AsyncSpectrums(self)
-        self.addresses = resources.AsyncAddresses(self)
         self.audit_logs = resources.AsyncAuditLogs(self)
         self.billings = resources.AsyncBillings(self)
         self.brand_protections = resources.AsyncBrandProtections(self)
@@ -776,7 +769,6 @@ class AsyncCloudflare(AsyncAPIClient):
         self.worker_domains = resources.AsyncWorkerDomains(self)
         self.worker_scripts = resources.AsyncWorkerScripts(self)
         self.zerotrust = resources.AsyncZerotrust(self)
-        self.addressing = resources.AsyncAddressing(self)
         self.challenges = resources.AsyncChallenges(self)
         self.hyperdrive = resources.AsyncHyperdrive(self)
         self.intel = resources.AsyncIntel(self)
@@ -991,7 +983,6 @@ class CloudflareWithRawResponse:
         self.rulesets = resources.RulesetsWithRawResponse(client.rulesets)
         self.url_normalizations = resources.URLNormalizationsWithRawResponse(client.url_normalizations)
         self.spectrums = resources.SpectrumsWithRawResponse(client.spectrums)
-        self.addresses = resources.AddressesWithRawResponse(client.addresses)
         self.audit_logs = resources.AuditLogsWithRawResponse(client.audit_logs)
         self.billings = resources.BillingsWithRawResponse(client.billings)
         self.brand_protections = resources.BrandProtectionsWithRawResponse(client.brand_protections)
@@ -1028,7 +1019,6 @@ class CloudflareWithRawResponse:
         self.worker_domains = resources.WorkerDomainsWithRawResponse(client.worker_domains)
         self.worker_scripts = resources.WorkerScriptsWithRawResponse(client.worker_scripts)
         self.zerotrust = resources.ZerotrustWithRawResponse(client.zerotrust)
-        self.addressing = resources.AddressingWithRawResponse(client.addressing)
         self.challenges = resources.ChallengesWithRawResponse(client.challenges)
         self.hyperdrive = resources.HyperdriveWithRawResponse(client.hyperdrive)
         self.intel = resources.IntelWithRawResponse(client.intel)
@@ -1107,7 +1097,6 @@ class AsyncCloudflareWithRawResponse:
         self.rulesets = resources.AsyncRulesetsWithRawResponse(client.rulesets)
         self.url_normalizations = resources.AsyncURLNormalizationsWithRawResponse(client.url_normalizations)
         self.spectrums = resources.AsyncSpectrumsWithRawResponse(client.spectrums)
-        self.addresses = resources.AsyncAddressesWithRawResponse(client.addresses)
         self.audit_logs = resources.AsyncAuditLogsWithRawResponse(client.audit_logs)
         self.billings = resources.AsyncBillingsWithRawResponse(client.billings)
         self.brand_protections = resources.AsyncBrandProtectionsWithRawResponse(client.brand_protections)
@@ -1144,7 +1133,6 @@ class AsyncCloudflareWithRawResponse:
         self.worker_domains = resources.AsyncWorkerDomainsWithRawResponse(client.worker_domains)
         self.worker_scripts = resources.AsyncWorkerScriptsWithRawResponse(client.worker_scripts)
         self.zerotrust = resources.AsyncZerotrustWithRawResponse(client.zerotrust)
-        self.addressing = resources.AsyncAddressingWithRawResponse(client.addressing)
         self.challenges = resources.AsyncChallengesWithRawResponse(client.challenges)
         self.hyperdrive = resources.AsyncHyperdriveWithRawResponse(client.hyperdrive)
         self.intel = resources.AsyncIntelWithRawResponse(client.intel)
@@ -1223,7 +1211,6 @@ class CloudflareWithStreamedResponse:
         self.rulesets = resources.RulesetsWithStreamingResponse(client.rulesets)
         self.url_normalizations = resources.URLNormalizationsWithStreamingResponse(client.url_normalizations)
         self.spectrums = resources.SpectrumsWithStreamingResponse(client.spectrums)
-        self.addresses = resources.AddressesWithStreamingResponse(client.addresses)
         self.audit_logs = resources.AuditLogsWithStreamingResponse(client.audit_logs)
         self.billings = resources.BillingsWithStreamingResponse(client.billings)
         self.brand_protections = resources.BrandProtectionsWithStreamingResponse(client.brand_protections)
@@ -1260,7 +1247,6 @@ class CloudflareWithStreamedResponse:
         self.worker_domains = resources.WorkerDomainsWithStreamingResponse(client.worker_domains)
         self.worker_scripts = resources.WorkerScriptsWithStreamingResponse(client.worker_scripts)
         self.zerotrust = resources.ZerotrustWithStreamingResponse(client.zerotrust)
-        self.addressing = resources.AddressingWithStreamingResponse(client.addressing)
         self.challenges = resources.ChallengesWithStreamingResponse(client.challenges)
         self.hyperdrive = resources.HyperdriveWithStreamingResponse(client.hyperdrive)
         self.intel = resources.IntelWithStreamingResponse(client.intel)
@@ -1341,7 +1327,6 @@ class AsyncCloudflareWithStreamedResponse:
         self.rulesets = resources.AsyncRulesetsWithStreamingResponse(client.rulesets)
         self.url_normalizations = resources.AsyncURLNormalizationsWithStreamingResponse(client.url_normalizations)
         self.spectrums = resources.AsyncSpectrumsWithStreamingResponse(client.spectrums)
-        self.addresses = resources.AsyncAddressesWithStreamingResponse(client.addresses)
         self.audit_logs = resources.AsyncAuditLogsWithStreamingResponse(client.audit_logs)
         self.billings = resources.AsyncBillingsWithStreamingResponse(client.billings)
         self.brand_protections = resources.AsyncBrandProtectionsWithStreamingResponse(client.brand_protections)
@@ -1380,7 +1365,6 @@ class AsyncCloudflareWithStreamedResponse:
         self.worker_domains = resources.AsyncWorkerDomainsWithStreamingResponse(client.worker_domains)
         self.worker_scripts = resources.AsyncWorkerScriptsWithStreamingResponse(client.worker_scripts)
         self.zerotrust = resources.AsyncZerotrustWithStreamingResponse(client.zerotrust)
-        self.addressing = resources.AsyncAddressingWithStreamingResponse(client.addressing)
         self.challenges = resources.AsyncChallengesWithStreamingResponse(client.challenges)
         self.hyperdrive = resources.AsyncHyperdriveWithStreamingResponse(client.hyperdrive)
         self.intel = resources.AsyncIntelWithStreamingResponse(client.intel)
