@@ -1,21 +1,26 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from typing import List, Union, Optional
+from typing import Optional
+
 from typing_extensions import Literal
 
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
 from .._models import BaseModel
+from ..types import shared
 
 __all__ = [
     "PcapMagicPcapCollectionListPacketCaptureRequestsResponse",
     "PcapMagicPcapCollectionListPacketCaptureRequestsResponseItem",
-    "PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemBc13j6McPcapsResponseSimple",
-    "PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemBc13j6McPcapsResponseSimpleFilterV1",
-    "PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemBc13j6McPcapsResponseFull",
-    "PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemBc13j6McPcapsResponseFullFilterV1",
+    "PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemAefj10VxPcapsResponseSimple",
+    "PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemAefj10VxPcapsResponseSimpleFilterV1",
+    "PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemAefj10VxPcapsResponseFull",
+    "PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemAefj10VxPcapsResponseFullFilterV1",
 ]
 
 
-class PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemBc13j6McPcapsResponseSimpleFilterV1(BaseModel):
+class PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemAefj10VxPcapsResponseSimpleFilterV1(BaseModel):
     destination_address: Optional[str] = None
     """The destination IP address of the packet."""
 
@@ -32,12 +37,12 @@ class PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemBc13j6McPcapsR
     """The source port of the packet."""
 
 
-class PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemBc13j6McPcapsResponseSimple(BaseModel):
+class PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemAefj10VxPcapsResponseSimple(BaseModel):
     id: Optional[str] = None
     """The ID for the packet capture."""
 
     filter_v1: Optional[
-        PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemBc13j6McPcapsResponseSimpleFilterV1
+        PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemAefj10VxPcapsResponseSimpleFilterV1
     ] = None
     """The packet capture filter. When this field is empty, all packets are captured."""
 
@@ -65,7 +70,7 @@ class PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemBc13j6McPcapsR
     """
 
 
-class PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemBc13j6McPcapsResponseFullFilterV1(BaseModel):
+class PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemAefj10VxPcapsResponseFullFilterV1(BaseModel):
     destination_address: Optional[str] = None
     """The destination IP address of the packet."""
 
@@ -82,7 +87,7 @@ class PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemBc13j6McPcapsR
     """The source port of the packet."""
 
 
-class PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemBc13j6McPcapsResponseFull(BaseModel):
+class PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemAefj10VxPcapsResponseFull(BaseModel):
     id: Optional[str] = None
     """The ID for the packet capture."""
 
@@ -109,7 +114,7 @@ class PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemBc13j6McPcapsR
     """
 
     filter_v1: Optional[
-        PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemBc13j6McPcapsResponseFullFilterV1
+        PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemAefj10VxPcapsResponseFullFilterV1
     ] = None
     """The packet capture filter. When this field is empty, all packets are captured."""
 
@@ -138,8 +143,8 @@ class PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemBc13j6McPcapsR
 
 
 PcapMagicPcapCollectionListPacketCaptureRequestsResponseItem = Union[
-    PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemBc13j6McPcapsResponseSimple,
-    PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemBc13j6McPcapsResponseFull,
+    PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemAefj10VxPcapsResponseSimple,
+    PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemAefj10VxPcapsResponseFull,
 ]
 
 PcapMagicPcapCollectionListPacketCaptureRequestsResponse = List[

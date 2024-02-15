@@ -2,8 +2,15 @@
 
 from __future__ import annotations
 
+from typing_extensions import TypedDict, Required, Literal
+
 from typing import List, Union
-from typing_extensions import Literal, Required, TypedDict
+
+from typing import List, Union, Dict, Optional
+from typing_extensions import Literal, TypedDict, Required, Annotated
+from .._types import FileTypes
+from .._utils import PropertyInfo
+from ..types import shared_params
 
 __all__ = [
     "DNSRecordCreateParams",
@@ -18,8 +25,8 @@ __all__ = [
     "DNSRecordsDnskeyRecordData",
     "DNSRecordsDsRecord",
     "DNSRecordsDsRecordData",
-    "DNSRecordsHTTPsRecord",
-    "DNSRecordsHTTPsRecordData",
+    "DNSRecordsHTTPSRecord",
+    "DNSRecordsHTTPSRecordData",
     "DNSRecordsLocRecord",
     "DNSRecordsLocRecordData",
     "DNSRecordsMxRecord",
@@ -303,8 +310,8 @@ class DNSRecordsDsRecordData(TypedDict, total=False):
     """Key Tag."""
 
 
-class DNSRecordsHTTPsRecord(TypedDict, total=False):
-    data: Required[DNSRecordsHTTPsRecordData]
+class DNSRecordsHTTPSRecord(TypedDict, total=False):
+    data: Required[DNSRecordsHTTPSRecordData]
     """Components of a HTTPS record."""
 
     name: Required[str]
@@ -330,7 +337,7 @@ class DNSRecordsHTTPsRecord(TypedDict, total=False):
     """
 
 
-class DNSRecordsHTTPsRecordData(TypedDict, total=False):
+class DNSRecordsHTTPSRecordData(TypedDict, total=False):
     priority: float
     """priority."""
 
@@ -844,7 +851,7 @@ DNSRecordCreateParams = Union[
     DNSRecordsCnameRecord,
     DNSRecordsDnskeyRecord,
     DNSRecordsDsRecord,
-    DNSRecordsHTTPsRecord,
+    DNSRecordsHTTPSRecord,
     DNSRecordsLocRecord,
     DNSRecordsMxRecord,
     DNSRecordsNaptrRecord,

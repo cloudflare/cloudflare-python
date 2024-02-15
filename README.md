@@ -30,7 +30,9 @@ client = Cloudflare(
 )
 
 zone_create_response = client.zones.create(
-    account={"id": "023e105f4ecef8ad9ca31a8372d0c353"},
+    account={
+        "id": "023e105f4ecef8ad9ca31a8372d0c353"
+    },
     name="example.com",
     type="full",
 )
@@ -56,15 +58,15 @@ client = AsyncCloudflare(
     api_email=os.environ.get("CLOUDFLARE_EMAIL"),
 )
 
-
 async def main() -> None:
-    zone_create_response = await client.zones.create(
-        account={"id": "023e105f4ecef8ad9ca31a8372d0c353"},
-        name="example.com",
-        type="full",
-    )
-    print(zone_create_response.id)
-
+  zone_create_response = await client.zones.create(
+      account={
+          "id": "023e105f4ecef8ad9ca31a8372d0c353"
+      },
+      name="example.com",
+      type="full",
+  )
+  print(zone_create_response.id)
 
 asyncio.run(main())
 ```
@@ -97,13 +99,15 @@ client = Cloudflare()
 
 try:
     client.zones.create(
-        account={"id": "023e105f4ecef8ad9ca31a8372d0c353"},
+        account={
+            "id": "023e105f4ecef8ad9ca31a8372d0c353"
+        },
         name="example.com",
         type="full",
     )
 except cloudflare.APIConnectionError as e:
     print("The server could not be reached")
-    print(e.__cause__)  # an underlying Exception, likely raised within httpx.
+    print(e.__cause__) # an underlying Exception, likely raised within httpx.
 except cloudflare.RateLimitError as e:
     print("A 429 status code was received; we should back off a bit.")
 except cloudflare.APIStatusError as e:
@@ -143,8 +147,10 @@ client = Cloudflare(
 )
 
 # Or, configure per-request:
-client.with_options(max_retries=5).zones.create(
-    account={"id": "023e105f4ecef8ad9ca31a8372d0c353"},
+client.with_options(max_retries = 5).zones.create(
+    account={
+        "id": "023e105f4ecef8ad9ca31a8372d0c353"
+    },
     name="example.com",
     type="full",
 )
@@ -170,8 +176,10 @@ client = Cloudflare(
 )
 
 # Override per-request:
-client.with_options(timeout=5 * 1000).zones.create(
-    account={"id": "023e105f4ecef8ad9ca31a8372d0c353"},
+client.with_options(timeout = 5 * 1000).zones.create(
+    account={
+        "id": "023e105f4ecef8ad9ca31a8372d0c353"
+    },
     name="example.com",
     type="full",
 )
@@ -238,14 +246,16 @@ To stream the response body, use `.with_streaming_response` instead, which requi
 
 ```python
 with client.zones.with_streaming_response.create(
-    account={"id": "023e105f4ecef8ad9ca31a8372d0c353"},
+    account={
+        "id": "023e105f4ecef8ad9ca31a8372d0c353"
+    },
     name="example.com",
     type="full",
-) as response:
-    print(response.headers.get("X-My-Header"))
+) as response :
+    print(response.headers.get('X-My-Header'))
 
     for line in response.iter_lines():
-        print(line)
+      print(line)
 ```
 
 The context manager is required so that the response will reliably be closed.
@@ -265,10 +275,7 @@ from cloudflare import Cloudflare
 client = Cloudflare(
     # Or use the `CLOUDFLARE_BASE_URL` env var
     base_url="http://my.test.server.example.com:8083",
-    http_client=httpx.Client(
-        proxies="http://my.test.proxy.example.com",
-        transport=httpx.HTTPTransport(local_address="0.0.0.0"),
-    ),
+    http_client=httpx.Client(proxies="http://my.test.proxy.example.com", transport=httpx.HTTPTransport(local_address="0.0.0.0")),
 )
 ```
 
