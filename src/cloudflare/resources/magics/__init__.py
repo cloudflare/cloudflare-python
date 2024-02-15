@@ -1,39 +1,44 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from .cf_interconnects import CfInterconnects, AsyncCfInterconnects
-from .cf_interconnects import (
-    CfInterconnectsWithRawResponse,
-    AsyncCfInterconnectsWithRawResponse,
-    CfInterconnectsWithStreamingResponse,
-    AsyncCfInterconnectsWithStreamingResponse,
+from .magics import (
+    Magics,
+    AsyncMagics,
+    MagicsWithRawResponse,
+    AsyncMagicsWithRawResponse,
+    MagicsWithStreamingResponse,
+    AsyncMagicsWithStreamingResponse,
 )
-from .gre_tunnels import GreTunnels, AsyncGreTunnels
-from .gre_tunnels import (
-    GreTunnelsWithRawResponse,
-    AsyncGreTunnelsWithRawResponse,
-    GreTunnelsWithStreamingResponse,
-    AsyncGreTunnelsWithStreamingResponse,
-)
-from .ipsec_tunnels import IpsecTunnels, AsyncIpsecTunnels
-from .ipsec_tunnels import (
-    IpsecTunnelsWithRawResponse,
-    AsyncIpsecTunnelsWithRawResponse,
-    IpsecTunnelsWithStreamingResponse,
-    AsyncIpsecTunnelsWithStreamingResponse,
-)
-from .routes import Routes, AsyncRoutes
 from .routes import (
+    Routes,
+    AsyncRoutes,
     RoutesWithRawResponse,
     AsyncRoutesWithRawResponse,
     RoutesWithStreamingResponse,
     AsyncRoutesWithStreamingResponse,
 )
-from .magics import Magics, AsyncMagics
-from .magics import (
-    MagicsWithRawResponse,
-    AsyncMagicsWithRawResponse,
-    MagicsWithStreamingResponse,
-    AsyncMagicsWithStreamingResponse,
+from .gre_tunnels import (
+    GreTunnels,
+    AsyncGreTunnels,
+    GreTunnelsWithRawResponse,
+    AsyncGreTunnelsWithRawResponse,
+    GreTunnelsWithStreamingResponse,
+    AsyncGreTunnelsWithStreamingResponse,
+)
+from .ipsec_tunnels import (
+    IpsecTunnels,
+    AsyncIpsecTunnels,
+    IpsecTunnelsWithRawResponse,
+    AsyncIpsecTunnelsWithRawResponse,
+    IpsecTunnelsWithStreamingResponse,
+    AsyncIpsecTunnelsWithStreamingResponse,
+)
+from .cf_interconnects import (
+    CfInterconnects,
+    AsyncCfInterconnects,
+    CfInterconnectsWithRawResponse,
+    AsyncCfInterconnectsWithRawResponse,
+    CfInterconnectsWithStreamingResponse,
+    AsyncCfInterconnectsWithStreamingResponse,
 )
 
 __all__ = [

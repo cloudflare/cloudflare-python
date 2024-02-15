@@ -2,42 +2,13 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+from typing_extensions import Literal
+
 import httpx
 
-from .downloads import Downloads, AsyncDownloads
-
-from ...._compat import cached_property
-
-from ....types.radar import DatasetListResponse, DatasetGetResponse
-
-from typing import Type, Optional
-
-from typing_extensions import Literal
-
-from ...._response import (
-    to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ....types import shared_params
-from ....types.radar import dataset_list_params
-from ....types.radar import dataset_get_params
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import maybe_transform
 from .downloads import (
     Downloads,
     AsyncDownloads,
@@ -46,9 +17,19 @@ from .downloads import (
     DownloadsWithStreamingResponse,
     AsyncDownloadsWithStreamingResponse,
 )
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
 from ...._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
+from ....types.radar import DatasetListResponse, dataset_get_params, dataset_list_params
+from ...._base_client import (
+    make_request_options,
+)
 
 __all__ = ["Datasets", "AsyncDatasets"]
 

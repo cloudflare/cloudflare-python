@@ -2,24 +2,19 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, Literal
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from .._types import FileTypes
-from .._utils import PropertyInfo
-from ..types import shared_params
+from typing import Union
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = [
     "PcapMagicPcapCollectionCreatePcapRequestParams",
-    "Aefj10VxPcapsRequestSimple",
-    "Aefj10VxPcapsRequestSimpleFilterV1",
-    "Aefj10VxPcapsRequestFull",
-    "Aefj10VxPcapsRequestFullFilterV1",
+    "GvWsxmG0PcapsRequestSimple",
+    "GvWsxmG0PcapsRequestSimpleFilterV1",
+    "GvWsxmG0PcapsRequestFull",
+    "GvWsxmG0PcapsRequestFullFilterV1",
 ]
 
 
-class Aefj10VxPcapsRequestSimple(TypedDict, total=False):
+class GvWsxmG0PcapsRequestSimple(TypedDict, total=False):
     packet_limit: Required[float]
     """The limit of packets contained in a packet capture."""
 
@@ -36,11 +31,11 @@ class Aefj10VxPcapsRequestSimple(TypedDict, total=False):
     non-sampled packets.
     """
 
-    filter_v1: Aefj10VxPcapsRequestSimpleFilterV1
+    filter_v1: GvWsxmG0PcapsRequestSimpleFilterV1
     """The packet capture filter. When this field is empty, all packets are captured."""
 
 
-class Aefj10VxPcapsRequestSimpleFilterV1(TypedDict, total=False):
+class GvWsxmG0PcapsRequestSimpleFilterV1(TypedDict, total=False):
     destination_address: str
     """The destination IP address of the packet."""
 
@@ -57,7 +52,7 @@ class Aefj10VxPcapsRequestSimpleFilterV1(TypedDict, total=False):
     """The source port of the packet."""
 
 
-class Aefj10VxPcapsRequestFull(TypedDict, total=False):
+class GvWsxmG0PcapsRequestFull(TypedDict, total=False):
     colo_name: Required[str]
     """The name of the data center used for the packet capture.
 
@@ -87,14 +82,14 @@ class Aefj10VxPcapsRequestFull(TypedDict, total=False):
     This field only applies to `full` packet captures.
     """
 
-    filter_v1: Aefj10VxPcapsRequestFullFilterV1
+    filter_v1: GvWsxmG0PcapsRequestFullFilterV1
     """The packet capture filter. When this field is empty, all packets are captured."""
 
     packet_limit: float
     """The limit of packets contained in a packet capture."""
 
 
-class Aefj10VxPcapsRequestFullFilterV1(TypedDict, total=False):
+class GvWsxmG0PcapsRequestFullFilterV1(TypedDict, total=False):
     destination_address: str
     """The destination IP address of the packet."""
 
@@ -111,4 +106,4 @@ class Aefj10VxPcapsRequestFullFilterV1(TypedDict, total=False):
     """The source port of the packet."""
 
 
-PcapMagicPcapCollectionCreatePcapRequestParams = Union[Aefj10VxPcapsRequestSimple, Aefj10VxPcapsRequestFull]
+PcapMagicPcapCollectionCreatePcapRequestParams = Union[GvWsxmG0PcapsRequestSimple, GvWsxmG0PcapsRequestFull]
