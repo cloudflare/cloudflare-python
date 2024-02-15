@@ -1,16 +1,14 @@
 # File generated from our OpenAPI spec by Stainless.
 
+from .logs import Logs, AsyncLogs
 from .logs import (
-    Logs,
-    AsyncLogs,
     LogsWithRawResponse,
     AsyncLogsWithRawResponse,
     LogsWithStreamingResponse,
     AsyncLogsWithStreamingResponse,
 )
+from .histories import Histories, AsyncHistories
 from .histories import (
-    Histories,
-    AsyncHistories,
     HistoriesWithRawResponse,
     AsyncHistoriesWithRawResponse,
     HistoriesWithStreamingResponse,

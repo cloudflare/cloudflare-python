@@ -1,12 +1,16 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from typing import List, Union, Optional
-from datetime import datetime
+from typing import Optional, List, Union
+
 from typing_extensions import Literal
 
-from pydantic import Field as FieldInfo
+from datetime import datetime
 
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
 from ..._models import BaseModel
+from ...types import shared
 
 __all__ = [
     "AuditLogAuditLogsGetUserAuditLogsResponse",
@@ -16,9 +20,9 @@ __all__ = [
     "UnionMember0ResultActor",
     "UnionMember0ResultOwner",
     "UnionMember0ResultResource",
-    "H208ue6vAPIResponseCommon",
-    "H208ue6vAPIResponseCommonError",
-    "H208ue6vAPIResponseCommonMessage",
+    "Cl6zT1ClAPIResponseCommon",
+    "Cl6zT1ClAPIResponseCommonError",
+    "Cl6zT1ClAPIResponseCommonMessage",
 ]
 
 
@@ -101,22 +105,22 @@ class UnionMember0(BaseModel):
     success: Optional[bool] = None
 
 
-class H208ue6vAPIResponseCommonError(BaseModel):
+class Cl6zT1ClAPIResponseCommonError(BaseModel):
     code: int
 
     message: str
 
 
-class H208ue6vAPIResponseCommonMessage(BaseModel):
+class Cl6zT1ClAPIResponseCommonMessage(BaseModel):
     code: int
 
     message: str
 
 
-class H208ue6vAPIResponseCommon(BaseModel):
-    errors: List[H208ue6vAPIResponseCommonError]
+class Cl6zT1ClAPIResponseCommon(BaseModel):
+    errors: List[Cl6zT1ClAPIResponseCommonError]
 
-    messages: List[H208ue6vAPIResponseCommonMessage]
+    messages: List[Cl6zT1ClAPIResponseCommonMessage]
 
     result: Union[object, List[object], str]
 
@@ -124,4 +128,4 @@ class H208ue6vAPIResponseCommon(BaseModel):
     """Whether the API call was successful"""
 
 
-AuditLogAuditLogsGetUserAuditLogsResponse = Union[UnionMember0, H208ue6vAPIResponseCommon]
+AuditLogAuditLogsGetUserAuditLogsResponse = Union[UnionMember0, Cl6zT1ClAPIResponseCommon]
