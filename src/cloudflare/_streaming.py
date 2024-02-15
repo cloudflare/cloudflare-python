@@ -5,13 +5,11 @@ import json
 import inspect
 from types import TracebackType
 from typing import TYPE_CHECKING, Any, Generic, TypeVar, Iterator, AsyncIterator, cast
-from typing_extensions import Self, override, TypeGuard, get_origin
+from typing_extensions import Self, TypeGuard, override, get_origin
 
 import httpx
 
-from ._utils import is_mapping, is_dict, extract_type_var_from_base
-from ._exceptions import APIError
-from ._response import APIResponse, AsyncAPIResponse
+from ._utils import extract_type_var_from_base
 
 if TYPE_CHECKING:
     from ._client import Cloudflare, AsyncCloudflare
