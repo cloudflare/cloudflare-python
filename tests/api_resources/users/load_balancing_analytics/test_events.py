@@ -34,10 +34,10 @@ class TestEvents:
         self, client: Cloudflare
     ) -> None:
         event = client.users.load_balancing_analytics.events.load_balancer_healthcheck_events_list_healthcheck_events(
-            identifier="17b5962d775c646f3f9725cbc7a53df4",
             origin_healthy=True,
             origin_name="primary-dc-1",
             pool_healthy=True,
+            pool_id="17b5962d775c646f3f9725cbc7a53df4",
             pool_name="primary-dc",
             since=parse_datetime("2016-11-11T12:00:00Z"),
             until=parse_datetime("2016-11-11T13:00:00Z"),
@@ -94,10 +94,10 @@ class TestAsyncEvents:
         self, async_client: AsyncCloudflare
     ) -> None:
         event = await async_client.users.load_balancing_analytics.events.load_balancer_healthcheck_events_list_healthcheck_events(
-            identifier="17b5962d775c646f3f9725cbc7a53df4",
             origin_healthy=True,
             origin_name="primary-dc-1",
             pool_healthy=True,
+            pool_id="17b5962d775c646f3f9725cbc7a53df4",
             pool_name="primary-dc",
             since=parse_datetime("2016-11-11T12:00:00Z"),
             until=parse_datetime("2016-11-11T13:00:00Z"),

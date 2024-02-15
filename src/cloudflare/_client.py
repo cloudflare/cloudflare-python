@@ -53,7 +53,6 @@ class Cloudflare(SyncAPIClient):
     users: resources.Users
     zones: resources.Zones
     ai: resources.AI
-    load_balancers: resources.LoadBalancers
     access: resources.Access
     dns_analytics: resources.DNSAnalytics
     purge_caches: resources.PurgeCaches
@@ -248,7 +247,6 @@ class Cloudflare(SyncAPIClient):
         self.users = resources.Users(self)
         self.zones = resources.Zones(self)
         self.ai = resources.AI(self)
-        self.load_balancers = resources.LoadBalancers(self)
         self.access = resources.Access(self)
         self.dns_analytics = resources.DNSAnalytics(self)
         self.purge_caches = resources.PurgeCaches(self)
@@ -497,7 +495,6 @@ class AsyncCloudflare(AsyncAPIClient):
     users: resources.AsyncUsers
     zones: resources.AsyncZones
     ai: resources.AsyncAI
-    load_balancers: resources.AsyncLoadBalancers
     access: resources.AsyncAccess
     dns_analytics: resources.AsyncDNSAnalytics
     purge_caches: resources.AsyncPurgeCaches
@@ -692,7 +689,6 @@ class AsyncCloudflare(AsyncAPIClient):
         self.users = resources.AsyncUsers(self)
         self.zones = resources.AsyncZones(self)
         self.ai = resources.AsyncAI(self)
-        self.load_balancers = resources.AsyncLoadBalancers(self)
         self.access = resources.AsyncAccess(self)
         self.dns_analytics = resources.AsyncDNSAnalytics(self)
         self.purge_caches = resources.AsyncPurgeCaches(self)
@@ -942,7 +938,6 @@ class CloudflareWithRawResponse:
         self.users = resources.UsersWithRawResponse(client.users)
         self.zones = resources.ZonesWithRawResponse(client.zones)
         self.ai = resources.AIWithRawResponse(client.ai)
-        self.load_balancers = resources.LoadBalancersWithRawResponse(client.load_balancers)
         self.access = resources.AccessWithRawResponse(client.access)
         self.dns_analytics = resources.DNSAnalyticsWithRawResponse(client.dns_analytics)
         self.purge_caches = resources.PurgeCachesWithRawResponse(client.purge_caches)
@@ -1054,7 +1049,6 @@ class AsyncCloudflareWithRawResponse:
         self.users = resources.AsyncUsersWithRawResponse(client.users)
         self.zones = resources.AsyncZonesWithRawResponse(client.zones)
         self.ai = resources.AsyncAIWithRawResponse(client.ai)
-        self.load_balancers = resources.AsyncLoadBalancersWithRawResponse(client.load_balancers)
         self.access = resources.AsyncAccessWithRawResponse(client.access)
         self.dns_analytics = resources.AsyncDNSAnalyticsWithRawResponse(client.dns_analytics)
         self.purge_caches = resources.AsyncPurgeCachesWithRawResponse(client.purge_caches)
@@ -1168,7 +1162,6 @@ class CloudflareWithStreamedResponse:
         self.users = resources.UsersWithStreamingResponse(client.users)
         self.zones = resources.ZonesWithStreamingResponse(client.zones)
         self.ai = resources.AIWithStreamingResponse(client.ai)
-        self.load_balancers = resources.LoadBalancersWithStreamingResponse(client.load_balancers)
         self.access = resources.AccessWithStreamingResponse(client.access)
         self.dns_analytics = resources.DNSAnalyticsWithStreamingResponse(client.dns_analytics)
         self.purge_caches = resources.PurgeCachesWithStreamingResponse(client.purge_caches)
@@ -1282,7 +1275,6 @@ class AsyncCloudflareWithStreamedResponse:
         self.users = resources.AsyncUsersWithStreamingResponse(client.users)
         self.zones = resources.AsyncZonesWithStreamingResponse(client.zones)
         self.ai = resources.AsyncAIWithStreamingResponse(client.ai)
-        self.load_balancers = resources.AsyncLoadBalancersWithStreamingResponse(client.load_balancers)
         self.access = resources.AsyncAccessWithStreamingResponse(client.access)
         self.dns_analytics = resources.AsyncDNSAnalyticsWithStreamingResponse(client.dns_analytics)
         self.purge_caches = resources.AsyncPurgeCachesWithStreamingResponse(client.purge_caches)
