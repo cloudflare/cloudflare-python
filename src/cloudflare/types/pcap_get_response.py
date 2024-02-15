@@ -1,20 +1,25 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from typing import Union, Optional
+from typing import Optional
+
 from typing_extensions import Literal
 
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
 from .._models import BaseModel
+from ..types import shared
 
 __all__ = [
     "PcapGetResponse",
-    "GvWsxmG0PcapsResponseSimple",
-    "GvWsxmG0PcapsResponseSimpleFilterV1",
-    "GvWsxmG0PcapsResponseFull",
-    "GvWsxmG0PcapsResponseFullFilterV1",
+    "EuNQbxfBPcapsResponseSimple",
+    "EuNQbxfBPcapsResponseSimpleFilterV1",
+    "EuNQbxfBPcapsResponseFull",
+    "EuNQbxfBPcapsResponseFullFilterV1",
 ]
 
 
-class GvWsxmG0PcapsResponseSimpleFilterV1(BaseModel):
+class EuNQbxfBPcapsResponseSimpleFilterV1(BaseModel):
     destination_address: Optional[str] = None
     """The destination IP address of the packet."""
 
@@ -31,11 +36,11 @@ class GvWsxmG0PcapsResponseSimpleFilterV1(BaseModel):
     """The source port of the packet."""
 
 
-class GvWsxmG0PcapsResponseSimple(BaseModel):
+class EuNQbxfBPcapsResponseSimple(BaseModel):
     id: Optional[str] = None
     """The ID for the packet capture."""
 
-    filter_v1: Optional[GvWsxmG0PcapsResponseSimpleFilterV1] = None
+    filter_v1: Optional[EuNQbxfBPcapsResponseSimpleFilterV1] = None
     """The packet capture filter. When this field is empty, all packets are captured."""
 
     status: Optional[
@@ -62,7 +67,7 @@ class GvWsxmG0PcapsResponseSimple(BaseModel):
     """
 
 
-class GvWsxmG0PcapsResponseFullFilterV1(BaseModel):
+class EuNQbxfBPcapsResponseFullFilterV1(BaseModel):
     destination_address: Optional[str] = None
     """The destination IP address of the packet."""
 
@@ -79,7 +84,7 @@ class GvWsxmG0PcapsResponseFullFilterV1(BaseModel):
     """The source port of the packet."""
 
 
-class GvWsxmG0PcapsResponseFull(BaseModel):
+class EuNQbxfBPcapsResponseFull(BaseModel):
     id: Optional[str] = None
     """The ID for the packet capture."""
 
@@ -105,7 +110,7 @@ class GvWsxmG0PcapsResponseFull(BaseModel):
     This field only applies to `full` packet captures.
     """
 
-    filter_v1: Optional[GvWsxmG0PcapsResponseFullFilterV1] = None
+    filter_v1: Optional[EuNQbxfBPcapsResponseFullFilterV1] = None
     """The packet capture filter. When this field is empty, all packets are captured."""
 
     status: Optional[
@@ -132,4 +137,4 @@ class GvWsxmG0PcapsResponseFull(BaseModel):
     """
 
 
-PcapGetResponse = Union[GvWsxmG0PcapsResponseSimple, GvWsxmG0PcapsResponseFull]
+PcapGetResponse = Union[EuNQbxfBPcapsResponseSimple, EuNQbxfBPcapsResponseFull]
