@@ -2,61 +2,11 @@
 
 from __future__ import annotations
 
+from typing import Type, Iterable, cast
+from typing_extensions import Literal
+
 import httpx
 
-from .phases import Phases, AsyncPhases
-
-from ..._compat import cached_property
-
-from .rules import Rules, AsyncRules
-
-from .versions.versions import Versions, AsyncVersions
-
-from ...types import (
-    RulesetCreateResponse,
-    RulesetUpdateResponse,
-    RulesetListResponse,
-    RulesetGetResponse,
-    ruleset_create_params,
-    ruleset_update_params,
-)
-
-from typing import Type, Iterable
-
-from typing_extensions import Literal
-
-from ..._response import (
-    to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types import ruleset_create_params
-from ...types import ruleset_update_params
-from .phases import (
-    Phases,
-    AsyncPhases,
-    PhasesWithRawResponse,
-    AsyncPhasesWithRawResponse,
-    PhasesWithStreamingResponse,
-    AsyncPhasesWithStreamingResponse,
-)
 from .rules import (
     Rules,
     AsyncRules,
@@ -65,6 +15,24 @@ from .rules import (
     RulesWithStreamingResponse,
     AsyncRulesWithStreamingResponse,
 )
+from .phases import (
+    Phases,
+    AsyncPhases,
+    PhasesWithRawResponse,
+    AsyncPhasesWithRawResponse,
+    PhasesWithStreamingResponse,
+    AsyncPhasesWithStreamingResponse,
+)
+from ...types import (
+    RulesetGetResponse,
+    RulesetListResponse,
+    RulesetCreateResponse,
+    RulesetUpdateResponse,
+    ruleset_create_params,
+    ruleset_update_params,
+)
+from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ..._utils import maybe_transform
 from .versions import (
     Versions,
     AsyncVersions,
@@ -73,15 +41,19 @@ from .versions import (
     VersionsWithStreamingResponse,
     AsyncVersionsWithStreamingResponse,
 )
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ..._base_client import (
+    make_request_options,
+)
+from .versions.versions import Versions, AsyncVersions
 
 __all__ = ["Rulesets", "AsyncRulesets"]
 
