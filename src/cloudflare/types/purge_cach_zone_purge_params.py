@@ -2,36 +2,41 @@
 
 from __future__ import annotations
 
+from typing import List, Union
 from typing_extensions import TypedDict
 
-from typing import List, Union
+__all__ = [
+    "PurgeCachZonePurgeParams",
+    "CdqYApz8Flex",
+    "CdqYApz8Everything",
+    "CdqYApz8Files",
+    "CdqYApz8FilesFile",
+    "CdqYApz8FilesFileCdqYApz8URLAndHeaders",
+]
 
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from .._types import FileTypes
-from .._utils import PropertyInfo
-from ..types import shared_params
 
-__all__ = ["PurgeCachZonePurgeParams", "_2sq4ljBlFlex", "_2sq4ljBlEverything", "_2sq4ljBlFiles", "2sq4ljBlFilesFile", "2sq4ljBlFilesFile_2sq4ljBlURLAndHeaders"]
-
-class _2sq4ljBlFlex(TypedDict, total=False):
+class CdqYApz8Flex(TypedDict, total=False):
     hosts: List[str]
 
     prefixes: List[str]
 
     tags: List[str]
 
-class _2sq4ljBlEverything(TypedDict, total=False):
+
+class CdqYApz8Everything(TypedDict, total=False):
     purge_everything: bool
 
-class _2sq4ljBlFiles(TypedDict, total=False):
-    files: List[2sq4ljBlFilesFile]
 
-class 2sq4ljBlFilesFile_2sq4ljBlURLAndHeaders(TypedDict, total=False):
+class CdqYApz8Files(TypedDict, total=False):
+    files: List[CdqYApz8FilesFile]
+
+
+class CdqYApz8FilesFileCdqYApz8URLAndHeaders(TypedDict, total=False):
     headers: object
 
     url: str
 
-2sq4ljBlFilesFile = Union[str, 2sq4ljBlFilesFile_2sq4ljBlURLAndHeaders]
 
-PurgeCachZonePurgeParams = Union[_2sq4ljBlFlex, _2sq4ljBlEverything, _2sq4ljBlFiles]
+CdqYApz8FilesFile = Union[str, CdqYApz8FilesFileCdqYApz8URLAndHeaders]
+
+PurgeCachZonePurgeParams = Union[CdqYApz8Flex, CdqYApz8Everything, CdqYApz8Files]
