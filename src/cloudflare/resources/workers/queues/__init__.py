@@ -1,20 +1,18 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from .queues import (
-    Queues,
-    AsyncQueues,
-    QueuesWithRawResponse,
-    AsyncQueuesWithRawResponse,
-    QueuesWithStreamingResponse,
-    AsyncQueuesWithStreamingResponse,
-)
+from .consumers import Consumers, AsyncConsumers
 from .consumers import (
-    Consumers,
-    AsyncConsumers,
     ConsumersWithRawResponse,
     AsyncConsumersWithRawResponse,
     ConsumersWithStreamingResponse,
     AsyncConsumersWithStreamingResponse,
+)
+from .queues import Queues, AsyncQueues
+from .queues import (
+    QueuesWithRawResponse,
+    AsyncQueuesWithRawResponse,
+    QueuesWithStreamingResponse,
+    AsyncQueuesWithStreamingResponse,
 )
 
 __all__ = [

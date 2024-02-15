@@ -1,16 +1,14 @@
 # File generated from our OpenAPI spec by Stainless.
 
+from .widgets import Widgets, AsyncWidgets
 from .widgets import (
-    Widgets,
-    AsyncWidgets,
     WidgetsWithRawResponse,
     AsyncWidgetsWithRawResponse,
     WidgetsWithStreamingResponse,
     AsyncWidgetsWithStreamingResponse,
 )
+from .challenges import Challenges, AsyncChallenges
 from .challenges import (
-    Challenges,
-    AsyncChallenges,
     ChallengesWithRawResponse,
     AsyncChallengesWithRawResponse,
     ChallengesWithStreamingResponse,
