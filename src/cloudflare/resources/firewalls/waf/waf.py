@@ -2,35 +2,6 @@
 
 from __future__ import annotations
 
-from .overrides import Overrides, AsyncOverrides
-
-from ...._compat import cached_property
-
-from .packages.packages import Packages, AsyncPackages
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ....types import shared_params
-from .overrides import (
-    Overrides,
-    AsyncOverrides,
-    OverridesWithRawResponse,
-    AsyncOverridesWithRawResponse,
-    OverridesWithStreamingResponse,
-    AsyncOverridesWithStreamingResponse,
-)
 from .packages import (
     Packages,
     AsyncPackages,
@@ -39,7 +10,17 @@ from .packages import (
     PackagesWithStreamingResponse,
     AsyncPackagesWithStreamingResponse,
 )
-from ...._wrappers import ResultWrapper
+from .overrides import (
+    Overrides,
+    AsyncOverrides,
+    OverridesWithRawResponse,
+    AsyncOverridesWithRawResponse,
+    OverridesWithStreamingResponse,
+    AsyncOverridesWithStreamingResponse,
+)
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from .packages.packages import Packages, AsyncPackages
 
 __all__ = ["WAF", "AsyncWAF"]
 

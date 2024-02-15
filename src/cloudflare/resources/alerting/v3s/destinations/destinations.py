@@ -2,45 +2,6 @@
 
 from __future__ import annotations
 
-from .eligibles import Eligibles, AsyncEligibles
-
-from ....._compat import cached_property
-
-from .pagerduties import Pagerduties, AsyncPagerduties
-
-from .webhooks import Webhooks, AsyncWebhooks
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ....._resource import SyncAPIResource, AsyncAPIResource
-from ....._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from .....types import shared_params
-from .eligibles import (
-    Eligibles,
-    AsyncEligibles,
-    EligiblesWithRawResponse,
-    AsyncEligiblesWithRawResponse,
-    EligiblesWithStreamingResponse,
-    AsyncEligiblesWithStreamingResponse,
-)
-from .pagerduties import (
-    Pagerduties,
-    AsyncPagerduties,
-    PagerdutiesWithRawResponse,
-    AsyncPagerdutiesWithRawResponse,
-    PagerdutiesWithStreamingResponse,
-    AsyncPagerdutiesWithStreamingResponse,
-)
 from .webhooks import (
     Webhooks,
     AsyncWebhooks,
@@ -49,7 +10,24 @@ from .webhooks import (
     WebhooksWithStreamingResponse,
     AsyncWebhooksWithStreamingResponse,
 )
-from ....._wrappers import ResultWrapper
+from .eligibles import (
+    Eligibles,
+    AsyncEligibles,
+    EligiblesWithRawResponse,
+    AsyncEligiblesWithRawResponse,
+    EligiblesWithStreamingResponse,
+    AsyncEligiblesWithStreamingResponse,
+)
+from ....._compat import cached_property
+from .pagerduties import (
+    Pagerduties,
+    AsyncPagerduties,
+    PagerdutiesWithRawResponse,
+    AsyncPagerdutiesWithRawResponse,
+    PagerdutiesWithStreamingResponse,
+    AsyncPagerdutiesWithStreamingResponse,
+)
+from ....._resource import SyncAPIResource, AsyncAPIResource
 
 __all__ = ["Destinations", "AsyncDestinations"]
 

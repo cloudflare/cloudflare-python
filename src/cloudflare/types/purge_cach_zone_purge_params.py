@@ -2,27 +2,20 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
-
 from typing import List, Union
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from .._types import FileTypes
-from .._utils import PropertyInfo
-from ..types import shared_params
+from typing_extensions import TypedDict
 
 __all__ = [
     "PurgeCachZonePurgeParams",
-    "Y4HMkxYgFlex",
-    "Y4HMkxYgEverything",
-    "Y4HMkxYgFiles",
-    "Y4HMkxYgFilesFile",
-    "Y4HMkxYgFilesFileY4HMkxYgURLAndHeaders",
+    "QxCcLmCpFlex",
+    "QxCcLmCpEverything",
+    "QxCcLmCpFiles",
+    "QxCcLmCpFilesFile",
+    "QxCcLmCpFilesFileQxCcLmCpURLAndHeaders",
 ]
 
 
-class Y4HMkxYgFlex(TypedDict, total=False):
+class QxCcLmCpFlex(TypedDict, total=False):
     hosts: List[str]
 
     prefixes: List[str]
@@ -30,20 +23,20 @@ class Y4HMkxYgFlex(TypedDict, total=False):
     tags: List[str]
 
 
-class Y4HMkxYgEverything(TypedDict, total=False):
+class QxCcLmCpEverything(TypedDict, total=False):
     purge_everything: bool
 
 
-class Y4HMkxYgFiles(TypedDict, total=False):
-    files: List[Y4HMkxYgFilesFile]
+class QxCcLmCpFiles(TypedDict, total=False):
+    files: List[QxCcLmCpFilesFile]
 
 
-class Y4HMkxYgFilesFileY4HMkxYgURLAndHeaders(TypedDict, total=False):
+class QxCcLmCpFilesFileQxCcLmCpURLAndHeaders(TypedDict, total=False):
     headers: object
 
     url: str
 
 
-Y4HMkxYgFilesFile = Union[str, Y4HMkxYgFilesFileY4HMkxYgURLAndHeaders]
+QxCcLmCpFilesFile = Union[str, QxCcLmCpFilesFileQxCcLmCpURLAndHeaders]
 
-PurgeCachZonePurgeParams = Union[Y4HMkxYgFlex, Y4HMkxYgEverything, Y4HMkxYgFiles]
+PurgeCachZonePurgeParams = Union[QxCcLmCpFlex, QxCcLmCpEverything, QxCcLmCpFiles]

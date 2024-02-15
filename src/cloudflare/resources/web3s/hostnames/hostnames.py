@@ -2,48 +2,34 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+from typing_extensions import Literal
+
 import httpx
 
-from .ipfs_universal_paths.ipfs_universal_paths import IpfsUniversalPaths, AsyncIpfsUniversalPaths
-
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import maybe_transform
 from ...._compat import cached_property
-
-from ....types.web3s import (
-    HostnameUpdateResponse,
-    HostnameDeleteResponse,
-    HostnameGetResponse,
-    HostnameWeb3HostnameCreateWeb3HostnameResponse,
-    HostnameWeb3HostnameListWeb3HostnamesResponse,
-)
-
-from typing import Type, Optional
-
-from typing_extensions import Literal
-
+from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
+from ...._wrappers import ResultWrapper
+from ....types.web3s import (
+    HostnameGetResponse,
+    HostnameDeleteResponse,
+    HostnameUpdateResponse,
+    HostnameWeb3HostnameListWeb3HostnamesResponse,
+    HostnameWeb3HostnameCreateWeb3HostnameResponse,
+    hostname_update_params,
+    hostname_web3_hostname_create_web3_hostname_params,
 )
-from ....types import shared_params
-from ....types.web3s import hostname_update_params
-from ....types.web3s import hostname_web3_hostname_create_web3_hostname_params
+from ...._base_client import (
+    make_request_options,
+)
 from .ipfs_universal_paths import (
     IpfsUniversalPaths,
     AsyncIpfsUniversalPaths,
@@ -52,17 +38,7 @@ from .ipfs_universal_paths import (
     IpfsUniversalPathsWithStreamingResponse,
     AsyncIpfsUniversalPathsWithStreamingResponse,
 )
-from ...._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from .ipfs_universal_paths.ipfs_universal_paths import IpfsUniversalPaths, AsyncIpfsUniversalPaths
 
 __all__ = ["Hostnames", "AsyncHostnames"]
 

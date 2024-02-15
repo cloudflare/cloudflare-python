@@ -1,14 +1,16 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from .indexes import Indexes, AsyncIndexes
 from .indexes import (
+    Indexes,
+    AsyncIndexes,
     IndexesWithRawResponse,
     AsyncIndexesWithRawResponse,
     IndexesWithStreamingResponse,
     AsyncIndexesWithStreamingResponse,
 )
-from .vectorize import Vectorize, AsyncVectorize
 from .vectorize import (
+    Vectorize,
+    AsyncVectorize,
     VectorizeWithRawResponse,
     AsyncVectorizeWithRawResponse,
     VectorizeWithStreamingResponse,
