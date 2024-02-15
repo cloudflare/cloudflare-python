@@ -1,20 +1,25 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from typing import Union, Optional
+from typing import Optional
+
 from typing_extensions import Literal
 
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
 from .._models import BaseModel
+from ..types import shared
 
 __all__ = [
     "PcapMagicPcapCollectionCreatePcapRequestResponse",
-    "_8AfwZbMvPcapsResponseSimple",
-    "_8AfwZbMvPcapsResponseSimpleFilterV1",
-    "_8AfwZbMvPcapsResponseFull",
-    "_8AfwZbMvPcapsResponseFullFilterV1",
+    "HODeq0vUPcapsResponseSimple",
+    "HODeq0vUPcapsResponseSimpleFilterV1",
+    "HODeq0vUPcapsResponseFull",
+    "HODeq0vUPcapsResponseFullFilterV1",
 ]
 
 
-class _8AfwZbMvPcapsResponseSimpleFilterV1(BaseModel):
+class HODeq0vUPcapsResponseSimpleFilterV1(BaseModel):
     destination_address: Optional[str] = None
     """The destination IP address of the packet."""
 
@@ -31,11 +36,11 @@ class _8AfwZbMvPcapsResponseSimpleFilterV1(BaseModel):
     """The source port of the packet."""
 
 
-class _8AfwZbMvPcapsResponseSimple(BaseModel):
+class HODeq0vUPcapsResponseSimple(BaseModel):
     id: Optional[str] = None
     """The ID for the packet capture."""
 
-    filter_v1: Optional[_8AfwZbMvPcapsResponseSimpleFilterV1] = None
+    filter_v1: Optional[HODeq0vUPcapsResponseSimpleFilterV1] = None
     """The packet capture filter. When this field is empty, all packets are captured."""
 
     status: Optional[
@@ -62,7 +67,7 @@ class _8AfwZbMvPcapsResponseSimple(BaseModel):
     """
 
 
-class _8AfwZbMvPcapsResponseFullFilterV1(BaseModel):
+class HODeq0vUPcapsResponseFullFilterV1(BaseModel):
     destination_address: Optional[str] = None
     """The destination IP address of the packet."""
 
@@ -79,7 +84,7 @@ class _8AfwZbMvPcapsResponseFullFilterV1(BaseModel):
     """The source port of the packet."""
 
 
-class _8AfwZbMvPcapsResponseFull(BaseModel):
+class HODeq0vUPcapsResponseFull(BaseModel):
     id: Optional[str] = None
     """The ID for the packet capture."""
 
@@ -105,7 +110,7 @@ class _8AfwZbMvPcapsResponseFull(BaseModel):
     This field only applies to `full` packet captures.
     """
 
-    filter_v1: Optional[_8AfwZbMvPcapsResponseFullFilterV1] = None
+    filter_v1: Optional[HODeq0vUPcapsResponseFullFilterV1] = None
     """The packet capture filter. When this field is empty, all packets are captured."""
 
     status: Optional[
@@ -132,4 +137,4 @@ class _8AfwZbMvPcapsResponseFull(BaseModel):
     """
 
 
-PcapMagicPcapCollectionCreatePcapRequestResponse = Union[_8AfwZbMvPcapsResponseSimple, _8AfwZbMvPcapsResponseFull]
+PcapMagicPcapCollectionCreatePcapRequestResponse = Union[HODeq0vUPcapsResponseSimple, HODeq0vUPcapsResponseFull]
