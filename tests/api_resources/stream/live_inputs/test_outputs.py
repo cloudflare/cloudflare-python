@@ -2,17 +2,25 @@
 
 from __future__ import annotations
 
-import os
-from typing import Any, cast
-
-import pytest
-
-from cloudflare import Cloudflare, AsyncCloudflare
-from tests.utils import assert_matches_type
 from cloudflare.types.stream.live_inputs import (
     OutputUpdateResponse,
     OutputStreamLiveInputsCreateANewOutputConnectedToALiveInputResponse,
     OutputStreamLiveInputsListAllOutputsAssociatedWithASpecifiedLiveInputResponse,
+)
+
+from typing import Any, cast
+
+import os
+import pytest
+import httpx
+from typing_extensions import get_args
+from typing import Optional
+from respx import MockRouter
+from cloudflare import Cloudflare, AsyncCloudflare
+from tests.utils import assert_matches_type
+from cloudflare.types.stream.live_inputs import output_update_params
+from cloudflare.types.stream.live_inputs import (
+    output_stream_live_inputs_create_a_new_output_connected_to_a_live_input_params,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
