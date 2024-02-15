@@ -1,7 +1,0 @@
-# File generated from our OpenAPI spec by Stainless.
-
-from typing import Union, Optional
-
-__all__ = ["RegionLoadBalancerRegionsListRegionsResponse"]
-
-RegionLoadBalancerRegionsListRegionsResponse = Union[Optional[object], Optional[str]]
