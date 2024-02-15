@@ -1,18 +1,20 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from .locations import Locations, AsyncLocations
-from .locations import (
-    LocationsWithRawResponse,
-    AsyncLocationsWithRawResponse,
-    LocationsWithStreamingResponse,
-    AsyncLocationsWithStreamingResponse,
-)
-from .outages import Outages, AsyncOutages
 from .outages import (
+    Outages,
+    AsyncOutages,
     OutagesWithRawResponse,
     AsyncOutagesWithRawResponse,
     OutagesWithStreamingResponse,
     AsyncOutagesWithStreamingResponse,
+)
+from .locations import (
+    Locations,
+    AsyncLocations,
+    LocationsWithRawResponse,
+    AsyncLocationsWithRawResponse,
+    LocationsWithStreamingResponse,
+    AsyncLocationsWithStreamingResponse,
 )
 
 __all__ = [

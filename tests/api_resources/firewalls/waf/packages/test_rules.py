@@ -2,24 +2,18 @@
 
 from __future__ import annotations
 
-from cloudflare.types.firewalls.waf.packages import (
-    RuleUpdateResponse,
-    RuleGetResponse,
-    RuleWAFRulesListWAFRulesResponse,
-)
-
-from typing import Any, cast, Optional
-
 import os
+from typing import Any, Optional, cast
+
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.firewalls.waf.packages import rule_update_params
-from cloudflare.types.firewalls.waf.packages import rule_waf_rules_list_waf_rules_params
+from cloudflare.types.firewalls.waf.packages import (
+    RuleGetResponse,
+    RuleUpdateResponse,
+    RuleWAFRulesListWAFRulesResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

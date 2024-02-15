@@ -2,24 +2,18 @@
 
 from __future__ import annotations
 
-from cloudflare.types.rulesets import (
-    RuleUpdateResponse,
-    RuleDeleteResponse,
-    RuleAccountRulesetsCreateAnAccountRulesetRuleResponse,
-)
-
+import os
 from typing import Any, cast
 
-import os
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.rulesets import rule_update_params
-from cloudflare.types.rulesets import rule_account_rulesets_create_an_account_ruleset_rule_params
+from cloudflare.types.rulesets import (
+    RuleDeleteResponse,
+    RuleUpdateResponse,
+    RuleAccountRulesetsCreateAnAccountRulesetRuleResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
