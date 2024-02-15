@@ -2,5 +2,5 @@
 
 from __future__ import annotations
 
-from .asn_rel_params import AsnRelParams as AsnRelParams
 from .asn_rel_response import AsnRelResponse as AsnRelResponse
+from .asn_rel_params import AsnRelParams as AsnRelParams

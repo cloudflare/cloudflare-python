@@ -2,32 +2,34 @@
 
 from __future__ import annotations
 
+from typing import Optional, Any, cast
+
+from cloudflare.types.settings import AlwaysUseHTTPSUpdateResponse, AlwaysUseHTTPSGetResponse
+
 import os
-from typing import Any, Optional, cast
-
 import pytest
-
+import httpx
+from typing_extensions import get_args
+from typing import Optional
+from respx import MockRouter
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.settings import (
-    AlwaysUseHTTPGetResponse,
-    AlwaysUseHTTPUpdateResponse,
-)
+from cloudflare.types.settings import always_use_https_update_params
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
-class TestAlwaysUseHTTPs:
+class TestAlwaysUseHTTPS:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip()
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
-        always_use_http = client.settings.always_use_https.update(
+        always_use_https = client.settings.always_use_https.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             value="on",
         )
-        assert_matches_type(Optional[AlwaysUseHTTPUpdateResponse], always_use_http, path=["response"])
+        assert_matches_type(Optional[AlwaysUseHTTPSUpdateResponse], always_use_https, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -39,8 +41,8 @@ class TestAlwaysUseHTTPs:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        always_use_http = response.parse()
-        assert_matches_type(Optional[AlwaysUseHTTPUpdateResponse], always_use_http, path=["response"])
+        always_use_https = response.parse()
+        assert_matches_type(Optional[AlwaysUseHTTPSUpdateResponse], always_use_https, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -52,8 +54,8 @@ class TestAlwaysUseHTTPs:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            always_use_http = response.parse()
-            assert_matches_type(Optional[AlwaysUseHTTPUpdateResponse], always_use_http, path=["response"])
+            always_use_https = response.parse()
+            assert_matches_type(Optional[AlwaysUseHTTPSUpdateResponse], always_use_https, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -69,10 +71,10 @@ class TestAlwaysUseHTTPs:
     @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
-        always_use_http = client.settings.always_use_https.get(
+        always_use_https = client.settings.always_use_https.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[AlwaysUseHTTPGetResponse], always_use_http, path=["response"])
+        assert_matches_type(Optional[AlwaysUseHTTPSGetResponse], always_use_https, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -83,8 +85,8 @@ class TestAlwaysUseHTTPs:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        always_use_http = response.parse()
-        assert_matches_type(Optional[AlwaysUseHTTPGetResponse], always_use_http, path=["response"])
+        always_use_https = response.parse()
+        assert_matches_type(Optional[AlwaysUseHTTPSGetResponse], always_use_https, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -95,8 +97,8 @@ class TestAlwaysUseHTTPs:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            always_use_http = response.parse()
-            assert_matches_type(Optional[AlwaysUseHTTPGetResponse], always_use_http, path=["response"])
+            always_use_https = response.parse()
+            assert_matches_type(Optional[AlwaysUseHTTPSGetResponse], always_use_https, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -109,17 +111,17 @@ class TestAlwaysUseHTTPs:
             )
 
 
-class TestAsyncAlwaysUseHTTPs:
+class TestAsyncAlwaysUseHTTPS:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
-        always_use_http = await async_client.settings.always_use_https.update(
+        always_use_https = await async_client.settings.always_use_https.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             value="on",
         )
-        assert_matches_type(Optional[AlwaysUseHTTPUpdateResponse], always_use_http, path=["response"])
+        assert_matches_type(Optional[AlwaysUseHTTPSUpdateResponse], always_use_https, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -131,8 +133,8 @@ class TestAsyncAlwaysUseHTTPs:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        always_use_http = await response.parse()
-        assert_matches_type(Optional[AlwaysUseHTTPUpdateResponse], always_use_http, path=["response"])
+        always_use_https = await response.parse()
+        assert_matches_type(Optional[AlwaysUseHTTPSUpdateResponse], always_use_https, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -144,8 +146,8 @@ class TestAsyncAlwaysUseHTTPs:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            always_use_http = await response.parse()
-            assert_matches_type(Optional[AlwaysUseHTTPUpdateResponse], always_use_http, path=["response"])
+            always_use_https = await response.parse()
+            assert_matches_type(Optional[AlwaysUseHTTPSUpdateResponse], always_use_https, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -161,10 +163,10 @@ class TestAsyncAlwaysUseHTTPs:
     @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
-        always_use_http = await async_client.settings.always_use_https.get(
+        always_use_https = await async_client.settings.always_use_https.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[AlwaysUseHTTPGetResponse], always_use_http, path=["response"])
+        assert_matches_type(Optional[AlwaysUseHTTPSGetResponse], always_use_https, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -175,8 +177,8 @@ class TestAsyncAlwaysUseHTTPs:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        always_use_http = await response.parse()
-        assert_matches_type(Optional[AlwaysUseHTTPGetResponse], always_use_http, path=["response"])
+        always_use_https = await response.parse()
+        assert_matches_type(Optional[AlwaysUseHTTPSGetResponse], always_use_https, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -187,8 +189,8 @@ class TestAsyncAlwaysUseHTTPs:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            always_use_http = await response.parse()
-            assert_matches_type(Optional[AlwaysUseHTTPGetResponse], always_use_http, path=["response"])
+            always_use_https = await response.parse()
+            assert_matches_type(Optional[AlwaysUseHTTPSGetResponse], always_use_https, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

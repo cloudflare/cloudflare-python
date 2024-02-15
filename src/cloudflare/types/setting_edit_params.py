@@ -2,8 +2,15 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable, Optional
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import TypedDict, Required, Literal
+
+from typing import Iterable, List, Optional, Union
+
+from typing import List, Union, Dict, Optional
+from typing_extensions import Literal, TypedDict, Required, Annotated
+from .._types import FileTypes
+from .._utils import PropertyInfo
+from ..types import shared_params
 
 __all__ = [
     "SettingEditParams",
@@ -11,8 +18,8 @@ __all__ = [
     "ItemZones0rtt",
     "ItemZonesAdvancedDDOS",
     "ItemZonesAlwaysOnline",
-    "ItemZonesAlwaysUseHTTPs",
-    "ItemZonesAutomaticHTTPsRewrites",
+    "ItemZonesAlwaysUseHTTPS",
+    "ItemZonesAutomaticHTTPSRewrites",
     "ItemZonesBrotli",
     "ItemZonesBrowserCacheTTL",
     "ItemZonesBrowserCheck",
@@ -100,7 +107,7 @@ class ItemZonesAlwaysOnline(TypedDict, total=False):
     """Current value of the zone setting."""
 
 
-class ItemZonesAlwaysUseHTTPs(TypedDict, total=False):
+class ItemZonesAlwaysUseHTTPS(TypedDict, total=False):
     id: Required[Literal["always_use_https"]]
     """ID of the zone setting."""
 
@@ -108,7 +115,7 @@ class ItemZonesAlwaysUseHTTPs(TypedDict, total=False):
     """Current value of the zone setting."""
 
 
-class ItemZonesAutomaticHTTPsRewrites(TypedDict, total=False):
+class ItemZonesAutomaticHTTPSRewrites(TypedDict, total=False):
     id: Required[Literal["automatic_https_rewrites"]]
     """ID of the zone setting."""
 
@@ -651,8 +658,8 @@ Item = Union[
     ItemZones0rtt,
     ItemZonesAdvancedDDOS,
     ItemZonesAlwaysOnline,
-    ItemZonesAlwaysUseHTTPs,
-    ItemZonesAutomaticHTTPsRewrites,
+    ItemZonesAlwaysUseHTTPS,
+    ItemZonesAutomaticHTTPSRewrites,
     ItemZonesBrotli,
     ItemZonesBrowserCacheTTL,
     ItemZonesBrowserCheck,

@@ -2,17 +2,25 @@
 
 from __future__ import annotations
 
-import os
+from cloudflare.types.api_gateways import (
+    ConfigurationAPIShieldSettingsGetInformationAboutSpecificConfigurationPropertiesResponse,
+    ConfigurationAPIShieldSettingsSetConfigurationPropertiesResponse,
+)
+
 from typing import Any, cast
 
+import os
 import pytest
-
+import httpx
+from typing_extensions import get_args
+from typing import Optional
+from respx import MockRouter
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types.api_gateways import (
-    ConfigurationAPIShieldSettingsSetConfigurationPropertiesResponse,
-    ConfigurationAPIShieldSettingsGetInformationAboutSpecificConfigurationPropertiesResponse,
+    configuration_api_shield_settings_get_information_about_specific_configuration_properties_params,
 )
+from cloudflare.types.api_gateways import configuration_api_shield_settings_set_configuration_properties_params
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
