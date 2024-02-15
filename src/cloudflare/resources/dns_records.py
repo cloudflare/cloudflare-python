@@ -2,38 +2,75 @@
 
 from __future__ import annotations
 
-from typing import Any, List, Type, Union, Optional, cast, overload
-from typing_extensions import Literal
-
 import httpx
 
-from ..types import (
-    DNSRecordGetResponse,
-    DNSRecordListResponse,
-    DNSRecordScanResponse,
-    DNSRecordCreateResponse,
-    DNSRecordDeleteResponse,
-    DNSRecordImportResponse,
-    DNSRecordUpdateResponse,
-    dns_record_list_params,
-    dns_record_create_params,
-    dns_record_import_params,
-    dns_record_update_params,
-)
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from .._utils import required_args, maybe_transform
 from .._compat import cached_property
-from .._resource import SyncAPIResource, AsyncAPIResource
+
+from typing_extensions import Literal
+
+from typing import List, Union, Type, Optional
+
+from ..types import (
+    DNSRecordCreateResponse,
+    DNSRecordUpdateResponse,
+    DNSRecordListResponse,
+    DNSRecordDeleteResponse,
+    DNSRecordExportResponse,
+    DNSRecordGetResponse,
+    DNSRecordImportResponse,
+    DNSRecordScanResponse,
+    dns_record_create_params,
+    dns_record_update_params,
+    dns_record_list_params,
+)
+
 from .._response import (
     to_raw_response_wrapper,
-    to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
+    to_streamed_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._wrappers import ResultWrapper
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from .._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from .._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from .._resource import SyncAPIResource, AsyncAPIResource
 from .._base_client import (
+    SyncAPIClient,
+    AsyncAPIClient,
+    _merge_mappings,
+    AsyncPaginator,
     make_request_options,
+    HttpxBinaryResponseContent,
 )
+from ..types import shared_params
+from ..types import dns_record_create_params
+from ..types import dns_record_update_params
+from ..types import dns_record_list_params
+from ..types import dns_record_import_params
+from .._wrappers import ResultWrapper
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
 
 __all__ = ["DNSRecords", "AsyncDNSRecords"]
 
@@ -456,7 +493,7 @@ class DNSRecords(SyncAPIResource):
         self,
         zone_id: str,
         *,
-        data: dns_record_create_params.DNSRecordsHTTPsRecordData,
+        data: dns_record_create_params.DNSRecordsHTTPSRecordData,
         name: str,
         type: Literal["HTTPS"],
         comment: str | NotGiven = NOT_GIVEN,
@@ -1245,7 +1282,7 @@ class DNSRecords(SyncAPIResource):
         | dns_record_create_params.DNSRecordsCertRecordData
         | dns_record_create_params.DNSRecordsDnskeyRecordData
         | dns_record_create_params.DNSRecordsDsRecordData
-        | dns_record_create_params.DNSRecordsHTTPsRecordData
+        | dns_record_create_params.DNSRecordsHTTPSRecordData
         | dns_record_create_params.DNSRecordsLocRecordData
         | dns_record_create_params.DNSRecordsNaptrRecordData
         | dns_record_create_params.DNSRecordsSmimeaRecordData
@@ -1718,7 +1755,7 @@ class DNSRecords(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: dns_record_update_params.DNSRecordsHTTPsRecordData,
+        data: dns_record_update_params.DNSRecordsHTTPSRecordData,
         name: str,
         type: Literal["HTTPS"],
         comment: str | NotGiven = NOT_GIVEN,
@@ -2533,7 +2570,7 @@ class DNSRecords(SyncAPIResource):
         | dns_record_update_params.DNSRecordsCertRecordData
         | dns_record_update_params.DNSRecordsDnskeyRecordData
         | dns_record_update_params.DNSRecordsDsRecordData
-        | dns_record_update_params.DNSRecordsHTTPsRecordData
+        | dns_record_update_params.DNSRecordsHTTPSRecordData
         | dns_record_update_params.DNSRecordsLocRecordData
         | dns_record_update_params.DNSRecordsNaptrRecordData
         | dns_record_update_params.DNSRecordsSmimeaRecordData
@@ -3368,7 +3405,7 @@ class AsyncDNSRecords(AsyncAPIResource):
         self,
         zone_id: str,
         *,
-        data: dns_record_create_params.DNSRecordsHTTPsRecordData,
+        data: dns_record_create_params.DNSRecordsHTTPSRecordData,
         name: str,
         type: Literal["HTTPS"],
         comment: str | NotGiven = NOT_GIVEN,
@@ -4157,7 +4194,7 @@ class AsyncDNSRecords(AsyncAPIResource):
         | dns_record_create_params.DNSRecordsCertRecordData
         | dns_record_create_params.DNSRecordsDnskeyRecordData
         | dns_record_create_params.DNSRecordsDsRecordData
-        | dns_record_create_params.DNSRecordsHTTPsRecordData
+        | dns_record_create_params.DNSRecordsHTTPSRecordData
         | dns_record_create_params.DNSRecordsLocRecordData
         | dns_record_create_params.DNSRecordsNaptrRecordData
         | dns_record_create_params.DNSRecordsSmimeaRecordData
@@ -4630,7 +4667,7 @@ class AsyncDNSRecords(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: dns_record_update_params.DNSRecordsHTTPsRecordData,
+        data: dns_record_update_params.DNSRecordsHTTPSRecordData,
         name: str,
         type: Literal["HTTPS"],
         comment: str | NotGiven = NOT_GIVEN,
@@ -5445,7 +5482,7 @@ class AsyncDNSRecords(AsyncAPIResource):
         | dns_record_update_params.DNSRecordsCertRecordData
         | dns_record_update_params.DNSRecordsDnskeyRecordData
         | dns_record_update_params.DNSRecordsDsRecordData
-        | dns_record_update_params.DNSRecordsHTTPsRecordData
+        | dns_record_update_params.DNSRecordsHTTPSRecordData
         | dns_record_update_params.DNSRecordsLocRecordData
         | dns_record_update_params.DNSRecordsNaptrRecordData
         | dns_record_update_params.DNSRecordsSmimeaRecordData

@@ -1,10 +1,16 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from typing import List, Union, Optional
-from datetime import datetime
+from typing import Optional, List, Union
+
 from typing_extensions import Literal
 
+from datetime import datetime
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
 from .._models import BaseModel
+from ..types import shared
 
 __all__ = [
     "DNSRecordListResponse",
@@ -27,9 +33,9 @@ __all__ = [
     "DNSRecordListResponseItemDNSRecordsDsRecord",
     "DNSRecordListResponseItemDNSRecordsDsRecordData",
     "DNSRecordListResponseItemDNSRecordsDsRecordMeta",
-    "DNSRecordListResponseItemDNSRecordsHTTPsRecord",
-    "DNSRecordListResponseItemDNSRecordsHTTPsRecordData",
-    "DNSRecordListResponseItemDNSRecordsHTTPsRecordMeta",
+    "DNSRecordListResponseItemDNSRecordsHTTPSRecord",
+    "DNSRecordListResponseItemDNSRecordsHTTPSRecordData",
+    "DNSRecordListResponseItemDNSRecordsHTTPSRecordMeta",
     "DNSRecordListResponseItemDNSRecordsLocRecord",
     "DNSRecordListResponseItemDNSRecordsLocRecordData",
     "DNSRecordListResponseItemDNSRecordsLocRecordMeta",
@@ -603,7 +609,7 @@ class DNSRecordListResponseItemDNSRecordsDsRecord(BaseModel):
     """The domain of the record."""
 
 
-class DNSRecordListResponseItemDNSRecordsHTTPsRecordData(BaseModel):
+class DNSRecordListResponseItemDNSRecordsHTTPSRecordData(BaseModel):
     priority: Optional[float] = None
     """priority."""
 
@@ -614,7 +620,7 @@ class DNSRecordListResponseItemDNSRecordsHTTPsRecordData(BaseModel):
     """value."""
 
 
-class DNSRecordListResponseItemDNSRecordsHTTPsRecordMeta(BaseModel):
+class DNSRecordListResponseItemDNSRecordsHTTPSRecordMeta(BaseModel):
     auto_added: Optional[bool] = None
     """
     Will exist if Cloudflare automatically added this DNS record during initial
@@ -625,8 +631,8 @@ class DNSRecordListResponseItemDNSRecordsHTTPsRecordMeta(BaseModel):
     """Where the record originated from."""
 
 
-class DNSRecordListResponseItemDNSRecordsHTTPsRecord(BaseModel):
-    data: DNSRecordListResponseItemDNSRecordsHTTPsRecordData
+class DNSRecordListResponseItemDNSRecordsHTTPSRecord(BaseModel):
+    data: DNSRecordListResponseItemDNSRecordsHTTPSRecordData
     """Components of a HTTPS record."""
 
     name: str
@@ -656,7 +662,7 @@ class DNSRecordListResponseItemDNSRecordsHTTPsRecord(BaseModel):
     Cloudflare).
     """
 
-    meta: Optional[DNSRecordListResponseItemDNSRecordsHTTPsRecordMeta] = None
+    meta: Optional[DNSRecordListResponseItemDNSRecordsHTTPSRecordMeta] = None
     """Extra Cloudflare-specific information about the record."""
 
     modified_on: Optional[datetime] = None
@@ -1668,7 +1674,7 @@ DNSRecordListResponseItem = Union[
     DNSRecordListResponseItemDNSRecordsCnameRecord,
     DNSRecordListResponseItemDNSRecordsDnskeyRecord,
     DNSRecordListResponseItemDNSRecordsDsRecord,
-    DNSRecordListResponseItemDNSRecordsHTTPsRecord,
+    DNSRecordListResponseItemDNSRecordsHTTPSRecord,
     DNSRecordListResponseItemDNSRecordsLocRecord,
     DNSRecordListResponseItemDNSRecordsMxRecord,
     DNSRecordListResponseItemDNSRecordsNaptrRecord,

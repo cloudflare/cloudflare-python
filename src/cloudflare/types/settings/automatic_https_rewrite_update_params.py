@@ -2,12 +2,18 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import TypedDict, Literal, Required
 
-__all__ = ["AutomaticHTTPsRewriteUpdateParams"]
+from typing import List, Union, Dict, Optional
+from typing_extensions import Literal, TypedDict, Required, Annotated
+from ..._types import FileTypes
+from ..._utils import PropertyInfo
+from ...types import shared_params
+
+__all__ = ["AutomaticHTTPSRewriteUpdateParams"]
 
 
-class AutomaticHTTPsRewriteUpdateParams(TypedDict, total=False):
+class AutomaticHTTPSRewriteUpdateParams(TypedDict, total=False):
     value: Required[Literal["on", "off"]]
     """
     Value of the zone setting. Notes: Default value depends on the zone's plan
