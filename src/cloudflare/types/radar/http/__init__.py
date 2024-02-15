@@ -2,5 +2,5 @@
 
 from __future__ import annotations
 
-from .tls_version_list_response import TLSVersionListResponse as TLSVersionListResponse
 from .tls_version_list_params import TLSVersionListParams as TLSVersionListParams
+from .tls_version_list_response import TLSVersionListResponse as TLSVersionListResponse

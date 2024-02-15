@@ -1,18 +1,20 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from .namespaces import Namespaces, AsyncNamespaces
-from .namespaces import (
-    NamespacesWithRawResponse,
-    AsyncNamespacesWithRawResponse,
-    NamespacesWithStreamingResponse,
-    AsyncNamespacesWithStreamingResponse,
-)
-from .dispatch import Dispatch, AsyncDispatch
 from .dispatch import (
+    Dispatch,
+    AsyncDispatch,
     DispatchWithRawResponse,
     AsyncDispatchWithRawResponse,
     DispatchWithStreamingResponse,
     AsyncDispatchWithStreamingResponse,
+)
+from .namespaces import (
+    Namespaces,
+    AsyncNamespaces,
+    NamespacesWithRawResponse,
+    AsyncNamespacesWithRawResponse,
+    NamespacesWithStreamingResponse,
+    AsyncNamespacesWithStreamingResponse,
 )
 
 __all__ = [
