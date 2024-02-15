@@ -1,10 +1,16 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from typing import List, Union, Optional
-from datetime import datetime
+from typing import Optional, List, Union
+
 from typing_extensions import Literal
 
+from datetime import datetime
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
 from .._models import BaseModel
+from ..types import shared
 
 __all__ = [
     "DNSRecordUpdateResponse",
@@ -26,9 +32,9 @@ __all__ = [
     "DNSRecordsDsRecord",
     "DNSRecordsDsRecordData",
     "DNSRecordsDsRecordMeta",
-    "DNSRecordsHTTPsRecord",
-    "DNSRecordsHTTPsRecordData",
-    "DNSRecordsHTTPsRecordMeta",
+    "DNSRecordsHTTPSRecord",
+    "DNSRecordsHTTPSRecordData",
+    "DNSRecordsHTTPSRecordMeta",
     "DNSRecordsLocRecord",
     "DNSRecordsLocRecordData",
     "DNSRecordsLocRecordMeta",
@@ -602,7 +608,7 @@ class DNSRecordsDsRecord(BaseModel):
     """The domain of the record."""
 
 
-class DNSRecordsHTTPsRecordData(BaseModel):
+class DNSRecordsHTTPSRecordData(BaseModel):
     priority: Optional[float] = None
     """priority."""
 
@@ -613,7 +619,7 @@ class DNSRecordsHTTPsRecordData(BaseModel):
     """value."""
 
 
-class DNSRecordsHTTPsRecordMeta(BaseModel):
+class DNSRecordsHTTPSRecordMeta(BaseModel):
     auto_added: Optional[bool] = None
     """
     Will exist if Cloudflare automatically added this DNS record during initial
@@ -624,8 +630,8 @@ class DNSRecordsHTTPsRecordMeta(BaseModel):
     """Where the record originated from."""
 
 
-class DNSRecordsHTTPsRecord(BaseModel):
-    data: DNSRecordsHTTPsRecordData
+class DNSRecordsHTTPSRecord(BaseModel):
+    data: DNSRecordsHTTPSRecordData
     """Components of a HTTPS record."""
 
     name: str
@@ -655,7 +661,7 @@ class DNSRecordsHTTPsRecord(BaseModel):
     Cloudflare).
     """
 
-    meta: Optional[DNSRecordsHTTPsRecordMeta] = None
+    meta: Optional[DNSRecordsHTTPSRecordMeta] = None
     """Extra Cloudflare-specific information about the record."""
 
     modified_on: Optional[datetime] = None
@@ -1667,7 +1673,7 @@ DNSRecordUpdateResponse = Union[
     DNSRecordsCnameRecord,
     DNSRecordsDnskeyRecord,
     DNSRecordsDsRecord,
-    DNSRecordsHTTPsRecord,
+    DNSRecordsHTTPSRecord,
     DNSRecordsLocRecord,
     DNSRecordsMxRecord,
     DNSRecordsNaptrRecord,

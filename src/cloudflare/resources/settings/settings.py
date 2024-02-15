@@ -2,117 +2,137 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, Optional, cast
-
 import httpx
 
-from .nel import (
-    NEL,
-    AsyncNEL,
-    NELWithRawResponse,
-    AsyncNELWithRawResponse,
-    NELWithStreamingResponse,
-    AsyncNELWithStreamingResponse,
+from .zero_rtt import ZeroRtt, AsyncZeroRtt
+
+from ..._compat import cached_property
+
+from .advanced_ddos import AdvancedDDOS, AsyncAdvancedDDOS
+
+from .always_online import AlwaysOnline, AsyncAlwaysOnline
+
+from .always_use_https import AlwaysUseHTTPS, AsyncAlwaysUseHTTPS
+
+from .automatic_https_rewrites import AutomaticHTTPSRewrites, AsyncAutomaticHTTPSRewrites
+
+from .automatic_platform_optimization import AutomaticPlatformOptimization, AsyncAutomaticPlatformOptimization
+
+from .brotli import Brotli, AsyncBrotli
+
+from .browser_cache_ttl import BrowserCacheTTL, AsyncBrowserCacheTTL
+
+from .browser_check import BrowserCheck, AsyncBrowserCheck
+
+from .cache_level import CacheLevel, AsyncCacheLevel
+
+from .challenge_ttl import ChallengeTTL, AsyncChallengeTTL
+
+from .ciphers import Ciphers, AsyncCiphers
+
+from .development_mode import DevelopmentMode, AsyncDevelopmentMode
+
+from .early_hint import EarlyHint, AsyncEarlyHint
+
+from .email_obfuscation import EmailObfuscation, AsyncEmailObfuscation
+
+from .h2_prioritization import H2Prioritization, AsyncH2Prioritization
+
+from .hotlink_protection import HotlinkProtection, AsyncHotlinkProtection
+
+from .http2 import HTTP2, AsyncHTTP2
+
+from .http3 import HTTP3, AsyncHTTP3
+
+from .image_resizing import ImageResizing, AsyncImageResizing
+
+from .ip_geolocation import IPGeolocation, AsyncIPGeolocation
+
+from .ipv6 import IPV6, AsyncIPV6
+
+from .min_tls_version import MinTLSVersion, AsyncMinTLSVersion
+
+from .minify import Minify, AsyncMinify
+
+from .mirage import Mirage, AsyncMirage
+
+from .mobile_redirect import MobileRedirect, AsyncMobileRedirect
+
+from .nel import NEL, AsyncNEL
+
+from .opportunistic_encryption import OpportunisticEncryption, AsyncOpportunisticEncryption
+
+from .opportunistic_onion import OpportunisticOnion, AsyncOpportunisticOnion
+
+from .orange_to_orange import OrangeToOrange, AsyncOrangeToOrange
+
+from .origin_error_page_pass_thru import OriginErrorPagePassThru, AsyncOriginErrorPagePassThru
+
+from .origin_max_http_version import OriginMaxHTTPVersion, AsyncOriginMaxHTTPVersion
+
+from .polish import Polish, AsyncPolish
+
+from .prefetch_preload import PrefetchPreload, AsyncPrefetchPreload
+
+from .proxy_read_timeout import ProxyReadTimeout, AsyncProxyReadTimeout
+
+from .pseudo_ipv4 import PseudoIPV4, AsyncPseudoIPV4
+
+from .response_buffering import ResponseBuffering, AsyncResponseBuffering
+
+from .rocket_loader import RocketLoader, AsyncRocketLoader
+
+from .security_headers import SecurityHeaders, AsyncSecurityHeaders
+
+from .security_level import SecurityLevel, AsyncSecurityLevel
+
+from .server_side_excludes import ServerSideExcludes, AsyncServerSideExcludes
+
+from .sort_query_string_for_cache import SortQueryStringForCache, AsyncSortQueryStringForCache
+
+from .ssl import SSL, AsyncSSL
+
+from .ssl_recommender import SSLRecommender, AsyncSSLRecommender
+
+from .tls_1_3 import TLS1_3, AsyncTLS1_3
+
+from .tls_client_auth import TLSClientAuth, AsyncTLSClientAuth
+
+from .true_client_ip_header import TrueClientIPHeader, AsyncTrueClientIPHeader
+
+from .waf import WAF, AsyncWAF
+
+from .webp import Webp, AsyncWebp
+
+from .websocket import Websocket, AsyncWebsocket
+
+from ...types import SettingListResponse, SettingEditResponse, setting_edit_params
+
+from typing import Type, Optional, Iterable
+
+from ..._response import (
+    to_raw_response_wrapper,
+    async_to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_streamed_response_wrapper,
 )
-from .ssl import (
-    SSL,
-    AsyncSSL,
-    SSLWithRawResponse,
-    AsyncSSLWithRawResponse,
-    SSLWithStreamingResponse,
-    AsyncSSLWithStreamingResponse,
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._base_client import (
+    SyncAPIClient,
+    AsyncAPIClient,
+    _merge_mappings,
+    AsyncPaginator,
+    make_request_options,
+    HttpxBinaryResponseContent,
 )
-from .waf import (
-    WAF,
-    AsyncWAF,
-    WAFWithRawResponse,
-    AsyncWAFWithRawResponse,
-    WAFWithStreamingResponse,
-    AsyncWAFWithStreamingResponse,
-)
-from .ipv6 import (
-    IPV6,
-    AsyncIPV6,
-    IPV6WithRawResponse,
-    AsyncIPV6WithRawResponse,
-    IPV6WithStreamingResponse,
-    AsyncIPV6WithStreamingResponse,
-)
-from .webp import (
-    Webp,
-    AsyncWebp,
-    WebpWithRawResponse,
-    AsyncWebpWithRawResponse,
-    WebpWithStreamingResponse,
-    AsyncWebpWithStreamingResponse,
-)
-from .http2 import (
-    HTTP2,
-    AsyncHTTP2,
-    HTTP2WithRawResponse,
-    AsyncHTTP2WithRawResponse,
-    HTTP2WithStreamingResponse,
-    AsyncHTTP2WithStreamingResponse,
-)
-from .http3 import (
-    HTTP3,
-    AsyncHTTP3,
-    HTTP3WithRawResponse,
-    AsyncHTTP3WithRawResponse,
-    HTTP3WithStreamingResponse,
-    AsyncHTTP3WithStreamingResponse,
-)
-from .brotli import (
-    Brotli,
-    AsyncBrotli,
-    BrotliWithRawResponse,
-    AsyncBrotliWithRawResponse,
-    BrotliWithStreamingResponse,
-    AsyncBrotliWithStreamingResponse,
-)
-from .minify import (
-    Minify,
-    AsyncMinify,
-    MinifyWithRawResponse,
-    AsyncMinifyWithRawResponse,
-    MinifyWithStreamingResponse,
-    AsyncMinifyWithStreamingResponse,
-)
-from .mirage import (
-    Mirage,
-    AsyncMirage,
-    MirageWithRawResponse,
-    AsyncMirageWithRawResponse,
-    MirageWithStreamingResponse,
-    AsyncMirageWithStreamingResponse,
-)
-from .polish import (
-    Polish,
-    AsyncPolish,
-    PolishWithRawResponse,
-    AsyncPolishWithRawResponse,
-    PolishWithStreamingResponse,
-    AsyncPolishWithStreamingResponse,
-)
-from ...types import SettingEditResponse, SettingListResponse, setting_edit_params
-from .ciphers import (
-    Ciphers,
-    AsyncCiphers,
-    CiphersWithRawResponse,
-    AsyncCiphersWithRawResponse,
-    CiphersWithStreamingResponse,
-    AsyncCiphersWithStreamingResponse,
-)
-from .tls_1_3 import (
-    TLS1_3,
-    AsyncTLS1_3,
-    TLS1_3WithRawResponse,
-    AsyncTLS1_3WithRawResponse,
-    TLS1_3WithStreamingResponse,
-    AsyncTLS1_3WithStreamingResponse,
-)
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform
+from ...types import shared_params
+from ...types import setting_edit_params
 from .zero_rtt import (
     ZeroRtt,
     AsyncZeroRtt,
@@ -120,47 +140,6 @@ from .zero_rtt import (
     AsyncZeroRttWithRawResponse,
     ZeroRttWithStreamingResponse,
     AsyncZeroRttWithStreamingResponse,
-)
-from ..._compat import cached_property
-from .websocket import (
-    Websocket,
-    AsyncWebsocket,
-    WebsocketWithRawResponse,
-    AsyncWebsocketWithRawResponse,
-    WebsocketWithStreamingResponse,
-    AsyncWebsocketWithStreamingResponse,
-)
-from .early_hint import (
-    EarlyHint,
-    AsyncEarlyHint,
-    EarlyHintWithRawResponse,
-    AsyncEarlyHintWithRawResponse,
-    EarlyHintWithStreamingResponse,
-    AsyncEarlyHintWithStreamingResponse,
-)
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ..._wrappers import ResultWrapper
-from .cache_level import (
-    CacheLevel,
-    AsyncCacheLevel,
-    CacheLevelWithRawResponse,
-    AsyncCacheLevelWithRawResponse,
-    CacheLevelWithStreamingResponse,
-    AsyncCacheLevelWithStreamingResponse,
-)
-from .pseudo_ipv4 import (
-    PseudoIPV4,
-    AsyncPseudoIPV4,
-    PseudoIPV4WithRawResponse,
-    AsyncPseudoIPV4WithRawResponse,
-    PseudoIPV4WithStreamingResponse,
-    AsyncPseudoIPV4WithStreamingResponse,
 )
 from .advanced_ddos import (
     AdvancedDDOS,
@@ -178,6 +157,46 @@ from .always_online import (
     AlwaysOnlineWithStreamingResponse,
     AsyncAlwaysOnlineWithStreamingResponse,
 )
+from .always_use_https import (
+    AlwaysUseHTTPS,
+    AsyncAlwaysUseHTTPS,
+    AlwaysUseHTTPSWithRawResponse,
+    AsyncAlwaysUseHTTPSWithRawResponse,
+    AlwaysUseHTTPSWithStreamingResponse,
+    AsyncAlwaysUseHTTPSWithStreamingResponse,
+)
+from .automatic_https_rewrites import (
+    AutomaticHTTPSRewrites,
+    AsyncAutomaticHTTPSRewrites,
+    AutomaticHTTPSRewritesWithRawResponse,
+    AsyncAutomaticHTTPSRewritesWithRawResponse,
+    AutomaticHTTPSRewritesWithStreamingResponse,
+    AsyncAutomaticHTTPSRewritesWithStreamingResponse,
+)
+from .automatic_platform_optimization import (
+    AutomaticPlatformOptimization,
+    AsyncAutomaticPlatformOptimization,
+    AutomaticPlatformOptimizationWithRawResponse,
+    AsyncAutomaticPlatformOptimizationWithRawResponse,
+    AutomaticPlatformOptimizationWithStreamingResponse,
+    AsyncAutomaticPlatformOptimizationWithStreamingResponse,
+)
+from .brotli import (
+    Brotli,
+    AsyncBrotli,
+    BrotliWithRawResponse,
+    AsyncBrotliWithRawResponse,
+    BrotliWithStreamingResponse,
+    AsyncBrotliWithStreamingResponse,
+)
+from .browser_cache_ttl import (
+    BrowserCacheTTL,
+    AsyncBrowserCacheTTL,
+    BrowserCacheTTLWithRawResponse,
+    AsyncBrowserCacheTTLWithRawResponse,
+    BrowserCacheTTLWithStreamingResponse,
+    AsyncBrowserCacheTTLWithStreamingResponse,
+)
 from .browser_check import (
     BrowserCheck,
     AsyncBrowserCheck,
@@ -185,6 +204,14 @@ from .browser_check import (
     AsyncBrowserCheckWithRawResponse,
     BrowserCheckWithStreamingResponse,
     AsyncBrowserCheckWithStreamingResponse,
+)
+from .cache_level import (
+    CacheLevel,
+    AsyncCacheLevel,
+    CacheLevelWithRawResponse,
+    AsyncCacheLevelWithRawResponse,
+    CacheLevelWithStreamingResponse,
+    AsyncCacheLevelWithStreamingResponse,
 )
 from .challenge_ttl import (
     ChallengeTTL,
@@ -194,80 +221,13 @@ from .challenge_ttl import (
     ChallengeTTLWithStreamingResponse,
     AsyncChallengeTTLWithStreamingResponse,
 )
-from .rocket_loader import (
-    RocketLoader,
-    AsyncRocketLoader,
-    RocketLoaderWithRawResponse,
-    AsyncRocketLoaderWithRawResponse,
-    RocketLoaderWithStreamingResponse,
-    AsyncRocketLoaderWithStreamingResponse,
-)
-from ..._base_client import (
-    make_request_options,
-)
-from .image_resizing import (
-    ImageResizing,
-    AsyncImageResizing,
-    ImageResizingWithRawResponse,
-    AsyncImageResizingWithRawResponse,
-    ImageResizingWithStreamingResponse,
-    AsyncImageResizingWithStreamingResponse,
-)
-from .ip_geolocation import (
-    IPGeolocation,
-    AsyncIPGeolocation,
-    IPGeolocationWithRawResponse,
-    AsyncIPGeolocationWithRawResponse,
-    IPGeolocationWithStreamingResponse,
-    AsyncIPGeolocationWithStreamingResponse,
-)
-from .security_level import (
-    SecurityLevel,
-    AsyncSecurityLevel,
-    SecurityLevelWithRawResponse,
-    AsyncSecurityLevelWithRawResponse,
-    SecurityLevelWithStreamingResponse,
-    AsyncSecurityLevelWithStreamingResponse,
-)
-from .min_tls_version import (
-    MinTLSVersion,
-    AsyncMinTLSVersion,
-    MinTLSVersionWithRawResponse,
-    AsyncMinTLSVersionWithRawResponse,
-    MinTLSVersionWithStreamingResponse,
-    AsyncMinTLSVersionWithStreamingResponse,
-)
-from .mobile_redirect import (
-    MobileRedirect,
-    AsyncMobileRedirect,
-    MobileRedirectWithRawResponse,
-    AsyncMobileRedirectWithRawResponse,
-    MobileRedirectWithStreamingResponse,
-    AsyncMobileRedirectWithStreamingResponse,
-)
-from .ssl_recommender import (
-    SSLRecommender,
-    AsyncSSLRecommender,
-    SSLRecommenderWithRawResponse,
-    AsyncSSLRecommenderWithRawResponse,
-    SSLRecommenderWithStreamingResponse,
-    AsyncSSLRecommenderWithStreamingResponse,
-)
-from .tls_client_auth import (
-    TLSClientAuth,
-    AsyncTLSClientAuth,
-    TLSClientAuthWithRawResponse,
-    AsyncTLSClientAuthWithRawResponse,
-    TLSClientAuthWithStreamingResponse,
-    AsyncTLSClientAuthWithStreamingResponse,
-)
-from .always_use_https import (
-    AlwaysUseHTTPs,
-    AsyncAlwaysUseHTTPs,
-    AlwaysUseHTTPsWithRawResponse,
-    AsyncAlwaysUseHTTPsWithRawResponse,
-    AlwaysUseHTTPsWithStreamingResponse,
-    AsyncAlwaysUseHTTPsWithStreamingResponse,
+from .ciphers import (
+    Ciphers,
+    AsyncCiphers,
+    CiphersWithRawResponse,
+    AsyncCiphersWithRawResponse,
+    CiphersWithStreamingResponse,
+    AsyncCiphersWithStreamingResponse,
 )
 from .development_mode import (
     DevelopmentMode,
@@ -277,37 +237,13 @@ from .development_mode import (
     DevelopmentModeWithStreamingResponse,
     AsyncDevelopmentModeWithStreamingResponse,
 )
-from .orange_to_orange import (
-    OrangeToOrange,
-    AsyncOrangeToOrange,
-    OrangeToOrangeWithRawResponse,
-    AsyncOrangeToOrangeWithRawResponse,
-    OrangeToOrangeWithStreamingResponse,
-    AsyncOrangeToOrangeWithStreamingResponse,
-)
-from .prefetch_preload import (
-    PrefetchPreload,
-    AsyncPrefetchPreload,
-    PrefetchPreloadWithRawResponse,
-    AsyncPrefetchPreloadWithRawResponse,
-    PrefetchPreloadWithStreamingResponse,
-    AsyncPrefetchPreloadWithStreamingResponse,
-)
-from .security_headers import (
-    SecurityHeaders,
-    AsyncSecurityHeaders,
-    SecurityHeadersWithRawResponse,
-    AsyncSecurityHeadersWithRawResponse,
-    SecurityHeadersWithStreamingResponse,
-    AsyncSecurityHeadersWithStreamingResponse,
-)
-from .browser_cache_ttl import (
-    BrowserCacheTTL,
-    AsyncBrowserCacheTTL,
-    BrowserCacheTTLWithRawResponse,
-    AsyncBrowserCacheTTLWithRawResponse,
-    BrowserCacheTTLWithStreamingResponse,
-    AsyncBrowserCacheTTLWithStreamingResponse,
+from .early_hint import (
+    EarlyHint,
+    AsyncEarlyHint,
+    EarlyHintWithRawResponse,
+    AsyncEarlyHintWithRawResponse,
+    EarlyHintWithStreamingResponse,
+    AsyncEarlyHintWithStreamingResponse,
 )
 from .email_obfuscation import (
     EmailObfuscation,
@@ -333,61 +269,85 @@ from .hotlink_protection import (
     HotlinkProtectionWithStreamingResponse,
     AsyncHotlinkProtectionWithStreamingResponse,
 )
-from .proxy_read_timeout import (
-    ProxyReadTimeout,
-    AsyncProxyReadTimeout,
-    ProxyReadTimeoutWithRawResponse,
-    AsyncProxyReadTimeoutWithRawResponse,
-    ProxyReadTimeoutWithStreamingResponse,
-    AsyncProxyReadTimeoutWithStreamingResponse,
+from .http2 import (
+    HTTP2,
+    AsyncHTTP2,
+    HTTP2WithRawResponse,
+    AsyncHTTP2WithRawResponse,
+    HTTP2WithStreamingResponse,
+    AsyncHTTP2WithStreamingResponse,
 )
-from .response_buffering import (
-    ResponseBuffering,
-    AsyncResponseBuffering,
-    ResponseBufferingWithRawResponse,
-    AsyncResponseBufferingWithRawResponse,
-    ResponseBufferingWithStreamingResponse,
-    AsyncResponseBufferingWithStreamingResponse,
+from .http3 import (
+    HTTP3,
+    AsyncHTTP3,
+    HTTP3WithRawResponse,
+    AsyncHTTP3WithRawResponse,
+    HTTP3WithStreamingResponse,
+    AsyncHTTP3WithStreamingResponse,
 )
-from .opportunistic_onion import (
-    OpportunisticOnion,
-    AsyncOpportunisticOnion,
-    OpportunisticOnionWithRawResponse,
-    AsyncOpportunisticOnionWithRawResponse,
-    OpportunisticOnionWithStreamingResponse,
-    AsyncOpportunisticOnionWithStreamingResponse,
+from .image_resizing import (
+    ImageResizing,
+    AsyncImageResizing,
+    ImageResizingWithRawResponse,
+    AsyncImageResizingWithRawResponse,
+    ImageResizingWithStreamingResponse,
+    AsyncImageResizingWithStreamingResponse,
 )
-from .server_side_excludes import (
-    ServerSideExcludes,
-    AsyncServerSideExcludes,
-    ServerSideExcludesWithRawResponse,
-    AsyncServerSideExcludesWithRawResponse,
-    ServerSideExcludesWithStreamingResponse,
-    AsyncServerSideExcludesWithStreamingResponse,
+from .ip_geolocation import (
+    IPGeolocation,
+    AsyncIPGeolocation,
+    IPGeolocationWithRawResponse,
+    AsyncIPGeolocationWithRawResponse,
+    IPGeolocationWithStreamingResponse,
+    AsyncIPGeolocationWithStreamingResponse,
 )
-from .true_client_ip_header import (
-    TrueClientIPHeader,
-    AsyncTrueClientIPHeader,
-    TrueClientIPHeaderWithRawResponse,
-    AsyncTrueClientIPHeaderWithRawResponse,
-    TrueClientIPHeaderWithStreamingResponse,
-    AsyncTrueClientIPHeaderWithStreamingResponse,
+from .ipv6 import (
+    IPV6,
+    AsyncIPV6,
+    IPV6WithRawResponse,
+    AsyncIPV6WithRawResponse,
+    IPV6WithStreamingResponse,
+    AsyncIPV6WithStreamingResponse,
 )
-from .origin_max_http_version import (
-    OriginMaxHTTPVersion,
-    AsyncOriginMaxHTTPVersion,
-    OriginMaxHTTPVersionWithRawResponse,
-    AsyncOriginMaxHTTPVersionWithRawResponse,
-    OriginMaxHTTPVersionWithStreamingResponse,
-    AsyncOriginMaxHTTPVersionWithStreamingResponse,
+from .min_tls_version import (
+    MinTLSVersion,
+    AsyncMinTLSVersion,
+    MinTLSVersionWithRawResponse,
+    AsyncMinTLSVersionWithRawResponse,
+    MinTLSVersionWithStreamingResponse,
+    AsyncMinTLSVersionWithStreamingResponse,
 )
-from .automatic_https_rewrites import (
-    AutomaticHTTPsRewrites,
-    AsyncAutomaticHTTPsRewrites,
-    AutomaticHTTPsRewritesWithRawResponse,
-    AsyncAutomaticHTTPsRewritesWithRawResponse,
-    AutomaticHTTPsRewritesWithStreamingResponse,
-    AsyncAutomaticHTTPsRewritesWithStreamingResponse,
+from .minify import (
+    Minify,
+    AsyncMinify,
+    MinifyWithRawResponse,
+    AsyncMinifyWithRawResponse,
+    MinifyWithStreamingResponse,
+    AsyncMinifyWithStreamingResponse,
+)
+from .mirage import (
+    Mirage,
+    AsyncMirage,
+    MirageWithRawResponse,
+    AsyncMirageWithRawResponse,
+    MirageWithStreamingResponse,
+    AsyncMirageWithStreamingResponse,
+)
+from .mobile_redirect import (
+    MobileRedirect,
+    AsyncMobileRedirect,
+    MobileRedirectWithRawResponse,
+    AsyncMobileRedirectWithRawResponse,
+    MobileRedirectWithStreamingResponse,
+    AsyncMobileRedirectWithStreamingResponse,
+)
+from .nel import (
+    NEL,
+    AsyncNEL,
+    NELWithRawResponse,
+    AsyncNELWithRawResponse,
+    NELWithStreamingResponse,
+    AsyncNELWithStreamingResponse,
 )
 from .opportunistic_encryption import (
     OpportunisticEncryption,
@@ -397,6 +357,22 @@ from .opportunistic_encryption import (
     OpportunisticEncryptionWithStreamingResponse,
     AsyncOpportunisticEncryptionWithStreamingResponse,
 )
+from .opportunistic_onion import (
+    OpportunisticOnion,
+    AsyncOpportunisticOnion,
+    OpportunisticOnionWithRawResponse,
+    AsyncOpportunisticOnionWithRawResponse,
+    OpportunisticOnionWithStreamingResponse,
+    AsyncOpportunisticOnionWithStreamingResponse,
+)
+from .orange_to_orange import (
+    OrangeToOrange,
+    AsyncOrangeToOrange,
+    OrangeToOrangeWithRawResponse,
+    AsyncOrangeToOrangeWithRawResponse,
+    OrangeToOrangeWithStreamingResponse,
+    AsyncOrangeToOrangeWithStreamingResponse,
+)
 from .origin_error_page_pass_thru import (
     OriginErrorPagePassThru,
     AsyncOriginErrorPagePassThru,
@@ -404,6 +380,86 @@ from .origin_error_page_pass_thru import (
     AsyncOriginErrorPagePassThruWithRawResponse,
     OriginErrorPagePassThruWithStreamingResponse,
     AsyncOriginErrorPagePassThruWithStreamingResponse,
+)
+from .origin_max_http_version import (
+    OriginMaxHTTPVersion,
+    AsyncOriginMaxHTTPVersion,
+    OriginMaxHTTPVersionWithRawResponse,
+    AsyncOriginMaxHTTPVersionWithRawResponse,
+    OriginMaxHTTPVersionWithStreamingResponse,
+    AsyncOriginMaxHTTPVersionWithStreamingResponse,
+)
+from .polish import (
+    Polish,
+    AsyncPolish,
+    PolishWithRawResponse,
+    AsyncPolishWithRawResponse,
+    PolishWithStreamingResponse,
+    AsyncPolishWithStreamingResponse,
+)
+from .prefetch_preload import (
+    PrefetchPreload,
+    AsyncPrefetchPreload,
+    PrefetchPreloadWithRawResponse,
+    AsyncPrefetchPreloadWithRawResponse,
+    PrefetchPreloadWithStreamingResponse,
+    AsyncPrefetchPreloadWithStreamingResponse,
+)
+from .proxy_read_timeout import (
+    ProxyReadTimeout,
+    AsyncProxyReadTimeout,
+    ProxyReadTimeoutWithRawResponse,
+    AsyncProxyReadTimeoutWithRawResponse,
+    ProxyReadTimeoutWithStreamingResponse,
+    AsyncProxyReadTimeoutWithStreamingResponse,
+)
+from .pseudo_ipv4 import (
+    PseudoIPV4,
+    AsyncPseudoIPV4,
+    PseudoIPV4WithRawResponse,
+    AsyncPseudoIPV4WithRawResponse,
+    PseudoIPV4WithStreamingResponse,
+    AsyncPseudoIPV4WithStreamingResponse,
+)
+from .response_buffering import (
+    ResponseBuffering,
+    AsyncResponseBuffering,
+    ResponseBufferingWithRawResponse,
+    AsyncResponseBufferingWithRawResponse,
+    ResponseBufferingWithStreamingResponse,
+    AsyncResponseBufferingWithStreamingResponse,
+)
+from .rocket_loader import (
+    RocketLoader,
+    AsyncRocketLoader,
+    RocketLoaderWithRawResponse,
+    AsyncRocketLoaderWithRawResponse,
+    RocketLoaderWithStreamingResponse,
+    AsyncRocketLoaderWithStreamingResponse,
+)
+from .security_headers import (
+    SecurityHeaders,
+    AsyncSecurityHeaders,
+    SecurityHeadersWithRawResponse,
+    AsyncSecurityHeadersWithRawResponse,
+    SecurityHeadersWithStreamingResponse,
+    AsyncSecurityHeadersWithStreamingResponse,
+)
+from .security_level import (
+    SecurityLevel,
+    AsyncSecurityLevel,
+    SecurityLevelWithRawResponse,
+    AsyncSecurityLevelWithRawResponse,
+    SecurityLevelWithStreamingResponse,
+    AsyncSecurityLevelWithStreamingResponse,
+)
+from .server_side_excludes import (
+    ServerSideExcludes,
+    AsyncServerSideExcludes,
+    ServerSideExcludesWithRawResponse,
+    AsyncServerSideExcludesWithRawResponse,
+    ServerSideExcludesWithStreamingResponse,
+    AsyncServerSideExcludesWithStreamingResponse,
 )
 from .sort_query_string_for_cache import (
     SortQueryStringForCache,
@@ -413,14 +469,75 @@ from .sort_query_string_for_cache import (
     SortQueryStringForCacheWithStreamingResponse,
     AsyncSortQueryStringForCacheWithStreamingResponse,
 )
-from .automatic_platform_optimization import (
-    AutomaticPlatformOptimization,
-    AsyncAutomaticPlatformOptimization,
-    AutomaticPlatformOptimizationWithRawResponse,
-    AsyncAutomaticPlatformOptimizationWithRawResponse,
-    AutomaticPlatformOptimizationWithStreamingResponse,
-    AsyncAutomaticPlatformOptimizationWithStreamingResponse,
+from .ssl import (
+    SSL,
+    AsyncSSL,
+    SSLWithRawResponse,
+    AsyncSSLWithRawResponse,
+    SSLWithStreamingResponse,
+    AsyncSSLWithStreamingResponse,
 )
+from .ssl_recommender import (
+    SSLRecommender,
+    AsyncSSLRecommender,
+    SSLRecommenderWithRawResponse,
+    AsyncSSLRecommenderWithRawResponse,
+    SSLRecommenderWithStreamingResponse,
+    AsyncSSLRecommenderWithStreamingResponse,
+)
+from .tls_1_3 import (
+    TLS1_3,
+    AsyncTLS1_3,
+    TLS1_3WithRawResponse,
+    AsyncTLS1_3WithRawResponse,
+    TLS1_3WithStreamingResponse,
+    AsyncTLS1_3WithStreamingResponse,
+)
+from .tls_client_auth import (
+    TLSClientAuth,
+    AsyncTLSClientAuth,
+    TLSClientAuthWithRawResponse,
+    AsyncTLSClientAuthWithRawResponse,
+    TLSClientAuthWithStreamingResponse,
+    AsyncTLSClientAuthWithStreamingResponse,
+)
+from .true_client_ip_header import (
+    TrueClientIPHeader,
+    AsyncTrueClientIPHeader,
+    TrueClientIPHeaderWithRawResponse,
+    AsyncTrueClientIPHeaderWithRawResponse,
+    TrueClientIPHeaderWithStreamingResponse,
+    AsyncTrueClientIPHeaderWithStreamingResponse,
+)
+from .waf import (
+    WAF,
+    AsyncWAF,
+    WAFWithRawResponse,
+    AsyncWAFWithRawResponse,
+    WAFWithStreamingResponse,
+    AsyncWAFWithStreamingResponse,
+)
+from .webp import (
+    Webp,
+    AsyncWebp,
+    WebpWithRawResponse,
+    AsyncWebpWithRawResponse,
+    WebpWithStreamingResponse,
+    AsyncWebpWithStreamingResponse,
+)
+from .websocket import (
+    Websocket,
+    AsyncWebsocket,
+    WebsocketWithRawResponse,
+    AsyncWebsocketWithRawResponse,
+    WebsocketWithStreamingResponse,
+    AsyncWebsocketWithStreamingResponse,
+)
+from ..._wrappers import ResultWrapper
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
 
 __all__ = ["Settings", "AsyncSettings"]
 
@@ -439,12 +556,12 @@ class Settings(SyncAPIResource):
         return AlwaysOnline(self._client)
 
     @cached_property
-    def always_use_https(self) -> AlwaysUseHTTPs:
-        return AlwaysUseHTTPs(self._client)
+    def always_use_https(self) -> AlwaysUseHTTPS:
+        return AlwaysUseHTTPS(self._client)
 
     @cached_property
-    def automatic_https_rewrites(self) -> AutomaticHTTPsRewrites:
-        return AutomaticHTTPsRewrites(self._client)
+    def automatic_https_rewrites(self) -> AutomaticHTTPSRewrites:
+        return AutomaticHTTPSRewrites(self._client)
 
     @cached_property
     def automatic_platform_optimization(self) -> AutomaticPlatformOptimization:
@@ -731,12 +848,12 @@ class AsyncSettings(AsyncAPIResource):
         return AsyncAlwaysOnline(self._client)
 
     @cached_property
-    def always_use_https(self) -> AsyncAlwaysUseHTTPs:
-        return AsyncAlwaysUseHTTPs(self._client)
+    def always_use_https(self) -> AsyncAlwaysUseHTTPS:
+        return AsyncAlwaysUseHTTPS(self._client)
 
     @cached_property
-    def automatic_https_rewrites(self) -> AsyncAutomaticHTTPsRewrites:
-        return AsyncAutomaticHTTPsRewrites(self._client)
+    def automatic_https_rewrites(self) -> AsyncAutomaticHTTPSRewrites:
+        return AsyncAutomaticHTTPSRewrites(self._client)
 
     @cached_property
     def automatic_platform_optimization(self) -> AsyncAutomaticPlatformOptimization:
@@ -1033,12 +1150,12 @@ class SettingsWithRawResponse:
         return AlwaysOnlineWithRawResponse(self._settings.always_online)
 
     @cached_property
-    def always_use_https(self) -> AlwaysUseHTTPsWithRawResponse:
-        return AlwaysUseHTTPsWithRawResponse(self._settings.always_use_https)
+    def always_use_https(self) -> AlwaysUseHTTPSWithRawResponse:
+        return AlwaysUseHTTPSWithRawResponse(self._settings.always_use_https)
 
     @cached_property
-    def automatic_https_rewrites(self) -> AutomaticHTTPsRewritesWithRawResponse:
-        return AutomaticHTTPsRewritesWithRawResponse(self._settings.automatic_https_rewrites)
+    def automatic_https_rewrites(self) -> AutomaticHTTPSRewritesWithRawResponse:
+        return AutomaticHTTPSRewritesWithRawResponse(self._settings.automatic_https_rewrites)
 
     @cached_property
     def automatic_platform_optimization(self) -> AutomaticPlatformOptimizationWithRawResponse:
@@ -1245,12 +1362,12 @@ class AsyncSettingsWithRawResponse:
         return AsyncAlwaysOnlineWithRawResponse(self._settings.always_online)
 
     @cached_property
-    def always_use_https(self) -> AsyncAlwaysUseHTTPsWithRawResponse:
-        return AsyncAlwaysUseHTTPsWithRawResponse(self._settings.always_use_https)
+    def always_use_https(self) -> AsyncAlwaysUseHTTPSWithRawResponse:
+        return AsyncAlwaysUseHTTPSWithRawResponse(self._settings.always_use_https)
 
     @cached_property
-    def automatic_https_rewrites(self) -> AsyncAutomaticHTTPsRewritesWithRawResponse:
-        return AsyncAutomaticHTTPsRewritesWithRawResponse(self._settings.automatic_https_rewrites)
+    def automatic_https_rewrites(self) -> AsyncAutomaticHTTPSRewritesWithRawResponse:
+        return AsyncAutomaticHTTPSRewritesWithRawResponse(self._settings.automatic_https_rewrites)
 
     @cached_property
     def automatic_platform_optimization(self) -> AsyncAutomaticPlatformOptimizationWithRawResponse:
@@ -1457,12 +1574,12 @@ class SettingsWithStreamingResponse:
         return AlwaysOnlineWithStreamingResponse(self._settings.always_online)
 
     @cached_property
-    def always_use_https(self) -> AlwaysUseHTTPsWithStreamingResponse:
-        return AlwaysUseHTTPsWithStreamingResponse(self._settings.always_use_https)
+    def always_use_https(self) -> AlwaysUseHTTPSWithStreamingResponse:
+        return AlwaysUseHTTPSWithStreamingResponse(self._settings.always_use_https)
 
     @cached_property
-    def automatic_https_rewrites(self) -> AutomaticHTTPsRewritesWithStreamingResponse:
-        return AutomaticHTTPsRewritesWithStreamingResponse(self._settings.automatic_https_rewrites)
+    def automatic_https_rewrites(self) -> AutomaticHTTPSRewritesWithStreamingResponse:
+        return AutomaticHTTPSRewritesWithStreamingResponse(self._settings.automatic_https_rewrites)
 
     @cached_property
     def automatic_platform_optimization(self) -> AutomaticPlatformOptimizationWithStreamingResponse:
@@ -1669,12 +1786,12 @@ class AsyncSettingsWithStreamingResponse:
         return AsyncAlwaysOnlineWithStreamingResponse(self._settings.always_online)
 
     @cached_property
-    def always_use_https(self) -> AsyncAlwaysUseHTTPsWithStreamingResponse:
-        return AsyncAlwaysUseHTTPsWithStreamingResponse(self._settings.always_use_https)
+    def always_use_https(self) -> AsyncAlwaysUseHTTPSWithStreamingResponse:
+        return AsyncAlwaysUseHTTPSWithStreamingResponse(self._settings.always_use_https)
 
     @cached_property
-    def automatic_https_rewrites(self) -> AsyncAutomaticHTTPsRewritesWithStreamingResponse:
-        return AsyncAutomaticHTTPsRewritesWithStreamingResponse(self._settings.automatic_https_rewrites)
+    def automatic_https_rewrites(self) -> AsyncAutomaticHTTPSRewritesWithStreamingResponse:
+        return AsyncAutomaticHTTPSRewritesWithStreamingResponse(self._settings.automatic_https_rewrites)
 
     @cached_property
     def automatic_platform_optimization(self) -> AsyncAutomaticPlatformOptimizationWithStreamingResponse:

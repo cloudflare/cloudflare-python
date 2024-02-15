@@ -1,10 +1,16 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from typing import List, Union, Optional
-from datetime import datetime
 from typing_extensions import Literal
 
+from typing import Optional, List
+
+from datetime import datetime
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
 from .._models import BaseModel
+from ..types import shared
 
 __all__ = [
     "SettingEditResponse",
@@ -12,8 +18,8 @@ __all__ = [
     "SettingEditResponseItemZones0rtt",
     "SettingEditResponseItemZonesAdvancedDDOS",
     "SettingEditResponseItemZonesAlwaysOnline",
-    "SettingEditResponseItemZonesAlwaysUseHTTPs",
-    "SettingEditResponseItemZonesAutomaticHTTPsRewrites",
+    "SettingEditResponseItemZonesAlwaysUseHTTPS",
+    "SettingEditResponseItemZonesAutomaticHTTPSRewrites",
     "SettingEditResponseItemZonesBrotli",
     "SettingEditResponseItemZonesBrowserCacheTTL",
     "SettingEditResponseItemZonesBrowserCheck",
@@ -123,7 +129,7 @@ class SettingEditResponseItemZonesAlwaysOnline(BaseModel):
     """last time this setting was modified."""
 
 
-class SettingEditResponseItemZonesAlwaysUseHTTPs(BaseModel):
+class SettingEditResponseItemZonesAlwaysUseHTTPS(BaseModel):
     id: Literal["always_use_https"]
     """ID of the zone setting."""
 
@@ -140,7 +146,7 @@ class SettingEditResponseItemZonesAlwaysUseHTTPs(BaseModel):
     """last time this setting was modified."""
 
 
-class SettingEditResponseItemZonesAutomaticHTTPsRewrites(BaseModel):
+class SettingEditResponseItemZonesAutomaticHTTPSRewrites(BaseModel):
     id: Literal["automatic_https_rewrites"]
     """ID of the zone setting."""
 
@@ -1125,8 +1131,8 @@ SettingEditResponseItem = Union[
     SettingEditResponseItemZones0rtt,
     SettingEditResponseItemZonesAdvancedDDOS,
     SettingEditResponseItemZonesAlwaysOnline,
-    SettingEditResponseItemZonesAlwaysUseHTTPs,
-    SettingEditResponseItemZonesAutomaticHTTPsRewrites,
+    SettingEditResponseItemZonesAlwaysUseHTTPS,
+    SettingEditResponseItemZonesAutomaticHTTPSRewrites,
     SettingEditResponseItemZonesBrotli,
     SettingEditResponseItemZonesBrowserCacheTTL,
     SettingEditResponseItemZonesBrowserCheck,
