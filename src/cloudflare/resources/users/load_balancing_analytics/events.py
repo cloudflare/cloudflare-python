@@ -41,10 +41,10 @@ class Events(SyncAPIResource):
     def load_balancer_healthcheck_events_list_healthcheck_events(
         self,
         *,
-        identifier: str | NotGiven = NOT_GIVEN,
         origin_healthy: bool | NotGiven = NOT_GIVEN,
         origin_name: str | NotGiven = NOT_GIVEN,
         pool_healthy: bool | NotGiven = NOT_GIVEN,
+        pool_id: str | NotGiven = NOT_GIVEN,
         pool_name: str | NotGiven = NOT_GIVEN,
         since: Union[str, datetime] | NotGiven = NOT_GIVEN,
         until: Union[str, datetime] | NotGiven = NOT_GIVEN,
@@ -90,10 +90,10 @@ class Events(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "identifier": identifier,
                         "origin_healthy": origin_healthy,
                         "origin_name": origin_name,
                         "pool_healthy": pool_healthy,
+                        "pool_id": pool_id,
                         "pool_name": pool_name,
                         "since": since,
                         "until": until,
@@ -121,10 +121,10 @@ class AsyncEvents(AsyncAPIResource):
     async def load_balancer_healthcheck_events_list_healthcheck_events(
         self,
         *,
-        identifier: str | NotGiven = NOT_GIVEN,
         origin_healthy: bool | NotGiven = NOT_GIVEN,
         origin_name: str | NotGiven = NOT_GIVEN,
         pool_healthy: bool | NotGiven = NOT_GIVEN,
+        pool_id: str | NotGiven = NOT_GIVEN,
         pool_name: str | NotGiven = NOT_GIVEN,
         since: Union[str, datetime] | NotGiven = NOT_GIVEN,
         until: Union[str, datetime] | NotGiven = NOT_GIVEN,
@@ -170,10 +170,10 @@ class AsyncEvents(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "identifier": identifier,
                         "origin_healthy": origin_healthy,
                         "origin_name": origin_name,
                         "pool_healthy": pool_healthy,
+                        "pool_id": pool_id,
                         "pool_name": pool_name,
                         "since": since,
                         "until": until,
