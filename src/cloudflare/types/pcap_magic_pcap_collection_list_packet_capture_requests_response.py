@@ -8,14 +8,14 @@ from .._models import BaseModel
 __all__ = [
     "PcapMagicPcapCollectionListPacketCaptureRequestsResponse",
     "PcapMagicPcapCollectionListPacketCaptureRequestsResponseItem",
-    "PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemZdLgyV2rPcapsResponseSimple",
-    "PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemZdLgyV2rPcapsResponseSimpleFilterV1",
-    "PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemZdLgyV2rPcapsResponseFull",
-    "PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemZdLgyV2rPcapsResponseFullFilterV1",
+    "PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemBuvwFvChPcapsResponseSimple",
+    "PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemBuvwFvChPcapsResponseSimpleFilterV1",
+    "PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemBuvwFvChPcapsResponseFull",
+    "PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemBuvwFvChPcapsResponseFullFilterV1",
 ]
 
 
-class PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemZdLgyV2rPcapsResponseSimpleFilterV1(BaseModel):
+class PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemBuvwFvChPcapsResponseSimpleFilterV1(BaseModel):
     destination_address: Optional[str] = None
     """The destination IP address of the packet."""
 
@@ -32,12 +32,12 @@ class PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemZdLgyV2rPcapsR
     """The source port of the packet."""
 
 
-class PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemZdLgyV2rPcapsResponseSimple(BaseModel):
+class PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemBuvwFvChPcapsResponseSimple(BaseModel):
     id: Optional[str] = None
     """The ID for the packet capture."""
 
     filter_v1: Optional[
-        PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemZdLgyV2rPcapsResponseSimpleFilterV1
+        PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemBuvwFvChPcapsResponseSimpleFilterV1
     ] = None
     """The packet capture filter. When this field is empty, all packets are captured."""
 
@@ -65,7 +65,7 @@ class PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemZdLgyV2rPcapsR
     """
 
 
-class PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemZdLgyV2rPcapsResponseFullFilterV1(BaseModel):
+class PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemBuvwFvChPcapsResponseFullFilterV1(BaseModel):
     destination_address: Optional[str] = None
     """The destination IP address of the packet."""
 
@@ -82,7 +82,7 @@ class PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemZdLgyV2rPcapsR
     """The source port of the packet."""
 
 
-class PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemZdLgyV2rPcapsResponseFull(BaseModel):
+class PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemBuvwFvChPcapsResponseFull(BaseModel):
     id: Optional[str] = None
     """The ID for the packet capture."""
 
@@ -109,7 +109,7 @@ class PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemZdLgyV2rPcapsR
     """
 
     filter_v1: Optional[
-        PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemZdLgyV2rPcapsResponseFullFilterV1
+        PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemBuvwFvChPcapsResponseFullFilterV1
     ] = None
     """The packet capture filter. When this field is empty, all packets are captured."""
 
@@ -138,8 +138,8 @@ class PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemZdLgyV2rPcapsR
 
 
 PcapMagicPcapCollectionListPacketCaptureRequestsResponseItem = Union[
-    PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemZdLgyV2rPcapsResponseSimple,
-    PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemZdLgyV2rPcapsResponseFull,
+    PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemBuvwFvChPcapsResponseSimple,
+    PcapMagicPcapCollectionListPacketCaptureRequestsResponseItemBuvwFvChPcapsResponseFull,
 ]
 
 PcapMagicPcapCollectionListPacketCaptureRequestsResponse = List[
