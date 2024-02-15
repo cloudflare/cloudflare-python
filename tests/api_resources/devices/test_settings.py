@@ -2,23 +2,16 @@
 
 from __future__ import annotations
 
-from typing import Optional, Any, cast
-
-from cloudflare.types.devices import (
-    SettingZeroTrustAccountsGetDeviceSettingsForZeroTrustAccountResponse,
-    SettingZeroTrustAccountsUpdateDeviceSettingsForTheZeroTrustAccountResponse,
-)
-
 import os
+from typing import Any, Optional, cast
+
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types.devices import (
-    setting_zero_trust_accounts_update_device_settings_for_the_zero_trust_account_params,
+    SettingZeroTrustAccountsGetDeviceSettingsForZeroTrustAccountResponse,
+    SettingZeroTrustAccountsUpdateDeviceSettingsForTheZeroTrustAccountResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
