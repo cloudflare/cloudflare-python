@@ -2,17 +2,10 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Annotated, Required, Literal
-
-from ..._utils import PropertyInfo
-
 from typing import Dict, List, Union, Iterable
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
 from ..._utils import PropertyInfo
-from ...types import shared_params
 
 __all__ = [
     "ConfigUpdateParams",

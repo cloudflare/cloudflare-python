@@ -1,14 +1,16 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from .by_tags import ByTags, AsyncByTags
 from .by_tags import (
+    ByTags,
+    AsyncByTags,
     ByTagsWithRawResponse,
     AsyncByTagsWithRawResponse,
     ByTagsWithStreamingResponse,
     AsyncByTagsWithStreamingResponse,
 )
-from .versions import Versions, AsyncVersions
 from .versions import (
+    Versions,
+    AsyncVersions,
     VersionsWithRawResponse,
     AsyncVersionsWithRawResponse,
     VersionsWithStreamingResponse,

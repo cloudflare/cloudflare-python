@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-import httpx
-
 from typing_extensions import Literal
+
+import httpx
 
 __all__ = [
     "BadRequestError",

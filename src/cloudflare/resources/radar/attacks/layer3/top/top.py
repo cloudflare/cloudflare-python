@@ -2,31 +2,6 @@
 
 from __future__ import annotations
 
-from .attacks import Attacks, AsyncAttacks
-
-from ......_compat import cached_property
-
-from .industry import Industry, AsyncIndustry
-
-from .locations.locations import Locations, AsyncLocations
-
-from .vertical import Vertical, AsyncVertical
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ......_utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ......_types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ......_resource import SyncAPIResource, AsyncAPIResource
-from ......_base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ......types import shared_params
 from .attacks import (
     Attacks,
     AsyncAttacks,
@@ -43,14 +18,6 @@ from .industry import (
     IndustryWithStreamingResponse,
     AsyncIndustryWithStreamingResponse,
 )
-from .locations import (
-    Locations,
-    AsyncLocations,
-    LocationsWithRawResponse,
-    AsyncLocationsWithRawResponse,
-    LocationsWithStreamingResponse,
-    AsyncLocationsWithStreamingResponse,
-)
 from .vertical import (
     Vertical,
     AsyncVertical,
@@ -59,7 +26,17 @@ from .vertical import (
     VerticalWithStreamingResponse,
     AsyncVerticalWithStreamingResponse,
 )
-from ......_wrappers import ResultWrapper
+from .locations import (
+    Locations,
+    AsyncLocations,
+    LocationsWithRawResponse,
+    AsyncLocationsWithRawResponse,
+    LocationsWithStreamingResponse,
+    AsyncLocationsWithStreamingResponse,
+)
+from ......_compat import cached_property
+from ......_resource import SyncAPIResource, AsyncAPIResource
+from .locations.locations import Locations, AsyncLocations
 
 __all__ = ["Top", "AsyncTop"]
 
