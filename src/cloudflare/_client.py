@@ -52,6 +52,7 @@ class Cloudflare(SyncAPIClient):
     memberships: resources.Memberships
     users: resources.Users
     zones: resources.Zones
+    ai: resources.AI
     load_balancers: resources.LoadBalancers
     access: resources.Access
     dns_analytics: resources.DNSAnalytics
@@ -81,6 +82,7 @@ class Cloudflare(SyncAPIClient):
     origin_tls_client_auth: resources.OriginTLSClientAuth
     pagerules: resources.Pagerules
     rate_limits: resources.RateLimits
+    secondary_dns: resources.SecondaryDNS
     settings: resources.Settings
     waiting_rooms: resources.WaitingRooms
     web3s: resources.Web3s
@@ -247,6 +249,7 @@ class Cloudflare(SyncAPIClient):
         self.memberships = resources.Memberships(self)
         self.users = resources.Users(self)
         self.zones = resources.Zones(self)
+        self.ai = resources.AI(self)
         self.load_balancers = resources.LoadBalancers(self)
         self.access = resources.Access(self)
         self.dns_analytics = resources.DNSAnalytics(self)
@@ -276,6 +279,7 @@ class Cloudflare(SyncAPIClient):
         self.origin_tls_client_auth = resources.OriginTLSClientAuth(self)
         self.pagerules = resources.Pagerules(self)
         self.rate_limits = resources.RateLimits(self)
+        self.secondary_dns = resources.SecondaryDNS(self)
         self.settings = resources.Settings(self)
         self.waiting_rooms = resources.WaitingRooms(self)
         self.web3s = resources.Web3s(self)
@@ -496,6 +500,7 @@ class AsyncCloudflare(AsyncAPIClient):
     memberships: resources.AsyncMemberships
     users: resources.AsyncUsers
     zones: resources.AsyncZones
+    ai: resources.AsyncAI
     load_balancers: resources.AsyncLoadBalancers
     access: resources.AsyncAccess
     dns_analytics: resources.AsyncDNSAnalytics
@@ -525,6 +530,7 @@ class AsyncCloudflare(AsyncAPIClient):
     origin_tls_client_auth: resources.AsyncOriginTLSClientAuth
     pagerules: resources.AsyncPagerules
     rate_limits: resources.AsyncRateLimits
+    secondary_dns: resources.AsyncSecondaryDNS
     settings: resources.AsyncSettings
     waiting_rooms: resources.AsyncWaitingRooms
     web3s: resources.AsyncWeb3s
@@ -691,6 +697,7 @@ class AsyncCloudflare(AsyncAPIClient):
         self.memberships = resources.AsyncMemberships(self)
         self.users = resources.AsyncUsers(self)
         self.zones = resources.AsyncZones(self)
+        self.ai = resources.AsyncAI(self)
         self.load_balancers = resources.AsyncLoadBalancers(self)
         self.access = resources.AsyncAccess(self)
         self.dns_analytics = resources.AsyncDNSAnalytics(self)
@@ -720,6 +727,7 @@ class AsyncCloudflare(AsyncAPIClient):
         self.origin_tls_client_auth = resources.AsyncOriginTLSClientAuth(self)
         self.pagerules = resources.AsyncPagerules(self)
         self.rate_limits = resources.AsyncRateLimits(self)
+        self.secondary_dns = resources.AsyncSecondaryDNS(self)
         self.settings = resources.AsyncSettings(self)
         self.waiting_rooms = resources.AsyncWaitingRooms(self)
         self.web3s = resources.AsyncWeb3s(self)
@@ -941,6 +949,7 @@ class CloudflareWithRawResponse:
         self.memberships = resources.MembershipsWithRawResponse(client.memberships)
         self.users = resources.UsersWithRawResponse(client.users)
         self.zones = resources.ZonesWithRawResponse(client.zones)
+        self.ai = resources.AIWithRawResponse(client.ai)
         self.load_balancers = resources.LoadBalancersWithRawResponse(client.load_balancers)
         self.access = resources.AccessWithRawResponse(client.access)
         self.dns_analytics = resources.DNSAnalyticsWithRawResponse(client.dns_analytics)
@@ -970,6 +979,7 @@ class CloudflareWithRawResponse:
         self.origin_tls_client_auth = resources.OriginTLSClientAuthWithRawResponse(client.origin_tls_client_auth)
         self.pagerules = resources.PagerulesWithRawResponse(client.pagerules)
         self.rate_limits = resources.RateLimitsWithRawResponse(client.rate_limits)
+        self.secondary_dns = resources.SecondaryDNSWithRawResponse(client.secondary_dns)
         self.settings = resources.SettingsWithRawResponse(client.settings)
         self.waiting_rooms = resources.WaitingRoomsWithRawResponse(client.waiting_rooms)
         self.web3s = resources.Web3sWithRawResponse(client.web3s)
@@ -1053,6 +1063,7 @@ class AsyncCloudflareWithRawResponse:
         self.memberships = resources.AsyncMembershipsWithRawResponse(client.memberships)
         self.users = resources.AsyncUsersWithRawResponse(client.users)
         self.zones = resources.AsyncZonesWithRawResponse(client.zones)
+        self.ai = resources.AsyncAIWithRawResponse(client.ai)
         self.load_balancers = resources.AsyncLoadBalancersWithRawResponse(client.load_balancers)
         self.access = resources.AsyncAccessWithRawResponse(client.access)
         self.dns_analytics = resources.AsyncDNSAnalyticsWithRawResponse(client.dns_analytics)
@@ -1084,6 +1095,7 @@ class AsyncCloudflareWithRawResponse:
         self.origin_tls_client_auth = resources.AsyncOriginTLSClientAuthWithRawResponse(client.origin_tls_client_auth)
         self.pagerules = resources.AsyncPagerulesWithRawResponse(client.pagerules)
         self.rate_limits = resources.AsyncRateLimitsWithRawResponse(client.rate_limits)
+        self.secondary_dns = resources.AsyncSecondaryDNSWithRawResponse(client.secondary_dns)
         self.settings = resources.AsyncSettingsWithRawResponse(client.settings)
         self.waiting_rooms = resources.AsyncWaitingRoomsWithRawResponse(client.waiting_rooms)
         self.web3s = resources.AsyncWeb3sWithRawResponse(client.web3s)
@@ -1167,6 +1179,7 @@ class CloudflareWithStreamedResponse:
         self.memberships = resources.MembershipsWithStreamingResponse(client.memberships)
         self.users = resources.UsersWithStreamingResponse(client.users)
         self.zones = resources.ZonesWithStreamingResponse(client.zones)
+        self.ai = resources.AIWithStreamingResponse(client.ai)
         self.load_balancers = resources.LoadBalancersWithStreamingResponse(client.load_balancers)
         self.access = resources.AccessWithStreamingResponse(client.access)
         self.dns_analytics = resources.DNSAnalyticsWithStreamingResponse(client.dns_analytics)
@@ -1198,6 +1211,7 @@ class CloudflareWithStreamedResponse:
         self.origin_tls_client_auth = resources.OriginTLSClientAuthWithStreamingResponse(client.origin_tls_client_auth)
         self.pagerules = resources.PagerulesWithStreamingResponse(client.pagerules)
         self.rate_limits = resources.RateLimitsWithStreamingResponse(client.rate_limits)
+        self.secondary_dns = resources.SecondaryDNSWithStreamingResponse(client.secondary_dns)
         self.settings = resources.SettingsWithStreamingResponse(client.settings)
         self.waiting_rooms = resources.WaitingRoomsWithStreamingResponse(client.waiting_rooms)
         self.web3s = resources.Web3sWithStreamingResponse(client.web3s)
@@ -1281,6 +1295,7 @@ class AsyncCloudflareWithStreamedResponse:
         self.memberships = resources.AsyncMembershipsWithStreamingResponse(client.memberships)
         self.users = resources.AsyncUsersWithStreamingResponse(client.users)
         self.zones = resources.AsyncZonesWithStreamingResponse(client.zones)
+        self.ai = resources.AsyncAIWithStreamingResponse(client.ai)
         self.load_balancers = resources.AsyncLoadBalancersWithStreamingResponse(client.load_balancers)
         self.access = resources.AsyncAccessWithStreamingResponse(client.access)
         self.dns_analytics = resources.AsyncDNSAnalyticsWithStreamingResponse(client.dns_analytics)
@@ -1314,6 +1329,7 @@ class AsyncCloudflareWithStreamedResponse:
         )
         self.pagerules = resources.AsyncPagerulesWithStreamingResponse(client.pagerules)
         self.rate_limits = resources.AsyncRateLimitsWithStreamingResponse(client.rate_limits)
+        self.secondary_dns = resources.AsyncSecondaryDNSWithStreamingResponse(client.secondary_dns)
         self.settings = resources.AsyncSettingsWithStreamingResponse(client.settings)
         self.waiting_rooms = resources.AsyncWaitingRoomsWithStreamingResponse(client.waiting_rooms)
         self.web3s = resources.AsyncWeb3sWithStreamingResponse(client.web3s)

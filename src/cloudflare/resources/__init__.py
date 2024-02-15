@@ -1,5 +1,13 @@
 # File generated from our OpenAPI spec by Stainless.
 
+from .ai import (
+    AI,
+    AsyncAI,
+    AIWithRawResponse,
+    AsyncAIWithRawResponse,
+    AIWithStreamingResponse,
+    AsyncAIWithStreamingResponse,
+)
 from .d1 import (
     D1,
     AsyncD1,
@@ -640,6 +648,14 @@ from .font_settings import (
     FontSettingsWithStreamingResponse,
     AsyncFontSettingsWithStreamingResponse,
 )
+from .secondary_dns import (
+    SecondaryDNS,
+    AsyncSecondaryDNS,
+    SecondaryDNSWithRawResponse,
+    AsyncSecondaryDNSWithRawResponse,
+    SecondaryDNSWithStreamingResponse,
+    AsyncSecondaryDNSWithStreamingResponse,
+)
 from .subscriptions import (
     Subscriptions,
     AsyncSubscriptions,
@@ -886,6 +902,12 @@ __all__ = [
     "AsyncZonesWithRawResponse",
     "ZonesWithStreamingResponse",
     "AsyncZonesWithStreamingResponse",
+    "AI",
+    "AsyncAI",
+    "AIWithRawResponse",
+    "AsyncAIWithRawResponse",
+    "AIWithStreamingResponse",
+    "AsyncAIWithStreamingResponse",
     "LoadBalancers",
     "AsyncLoadBalancers",
     "LoadBalancersWithRawResponse",
@@ -1060,6 +1082,12 @@ __all__ = [
     "AsyncRateLimitsWithRawResponse",
     "RateLimitsWithStreamingResponse",
     "AsyncRateLimitsWithStreamingResponse",
+    "SecondaryDNS",
+    "AsyncSecondaryDNS",
+    "SecondaryDNSWithRawResponse",
+    "AsyncSecondaryDNSWithRawResponse",
+    "SecondaryDNSWithStreamingResponse",
+    "AsyncSecondaryDNSWithStreamingResponse",
     "Settings",
     "AsyncSettings",
     "SettingsWithRawResponse",
