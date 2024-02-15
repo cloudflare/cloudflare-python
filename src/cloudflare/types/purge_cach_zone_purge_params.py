@@ -7,15 +7,15 @@ from typing_extensions import TypedDict
 
 __all__ = [
     "PurgeCachZonePurgeParams",
-    "MYgWnpy2Flex",
-    "MYgWnpy2Everything",
-    "MYgWnpy2Files",
-    "MYgWnpy2FilesFile",
-    "MYgWnpy2FilesFileMYgWnpy2URLAndHeaders",
+    "VFc1B2WbFlex",
+    "VFc1B2WbEverything",
+    "VFc1B2WbFiles",
+    "VFc1B2WbFilesFile",
+    "VFc1B2WbFilesFileVFc1B2WbURLAndHeaders",
 ]
 
 
-class MYgWnpy2Flex(TypedDict, total=False):
+class VFc1B2WbFlex(TypedDict, total=False):
     hosts: List[str]
 
     prefixes: List[str]
@@ -23,20 +23,20 @@ class MYgWnpy2Flex(TypedDict, total=False):
     tags: List[str]
 
 
-class MYgWnpy2Everything(TypedDict, total=False):
+class VFc1B2WbEverything(TypedDict, total=False):
     purge_everything: bool
 
 
-class MYgWnpy2Files(TypedDict, total=False):
-    files: List[MYgWnpy2FilesFile]
+class VFc1B2WbFiles(TypedDict, total=False):
+    files: List[VFc1B2WbFilesFile]
 
 
-class MYgWnpy2FilesFileMYgWnpy2URLAndHeaders(TypedDict, total=False):
+class VFc1B2WbFilesFileVFc1B2WbURLAndHeaders(TypedDict, total=False):
     headers: object
 
     url: str
 
 
-MYgWnpy2FilesFile = Union[str, MYgWnpy2FilesFileMYgWnpy2URLAndHeaders]
+VFc1B2WbFilesFile = Union[str, VFc1B2WbFilesFileVFc1B2WbURLAndHeaders]
 
-PurgeCachZonePurgeParams = Union[MYgWnpy2Flex, MYgWnpy2Everything, MYgWnpy2Files]
+PurgeCachZonePurgeParams = Union[VFc1B2WbFlex, VFc1B2WbEverything, VFc1B2WbFiles]
