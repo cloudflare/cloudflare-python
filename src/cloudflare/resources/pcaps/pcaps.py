@@ -123,7 +123,7 @@ class Pcaps(SyncAPIResource):
         system: Literal["magic-transit"],
         time_limit: float,
         type: Literal["simple", "full"],
-        filter_v1: pcap_magic_pcap_collection_create_pcap_request_params.O1v8KFfTPcapsRequestSimpleFilterV1
+        filter_v1: pcap_magic_pcap_collection_create_pcap_request_params.OUcEeQdhPcapsRequestSimpleFilterV1
         | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -170,7 +170,7 @@ class Pcaps(SyncAPIResource):
         time_limit: float,
         type: Literal["simple", "full"],
         byte_limit: float | NotGiven = NOT_GIVEN,
-        filter_v1: pcap_magic_pcap_collection_create_pcap_request_params.O1v8KFfTPcapsRequestFullFilterV1
+        filter_v1: pcap_magic_pcap_collection_create_pcap_request_params.OUcEeQdhPcapsRequestFullFilterV1
         | NotGiven = NOT_GIVEN,
         packet_limit: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -228,7 +228,7 @@ class Pcaps(SyncAPIResource):
         system: Literal["magic-transit"],
         time_limit: float,
         type: Literal["simple", "full"],
-        filter_v1: pcap_magic_pcap_collection_create_pcap_request_params.O1v8KFfTPcapsRequestSimpleFilterV1
+        filter_v1: pcap_magic_pcap_collection_create_pcap_request_params.OUcEeQdhPcapsRequestSimpleFilterV1
         | NotGiven = NOT_GIVEN,
         colo_name: str | NotGiven = NOT_GIVEN,
         destination_conf: str | NotGiven = NOT_GIVEN,
@@ -390,7 +390,7 @@ class AsyncPcaps(AsyncAPIResource):
         system: Literal["magic-transit"],
         time_limit: float,
         type: Literal["simple", "full"],
-        filter_v1: pcap_magic_pcap_collection_create_pcap_request_params.O1v8KFfTPcapsRequestSimpleFilterV1
+        filter_v1: pcap_magic_pcap_collection_create_pcap_request_params.OUcEeQdhPcapsRequestSimpleFilterV1
         | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -437,7 +437,7 @@ class AsyncPcaps(AsyncAPIResource):
         time_limit: float,
         type: Literal["simple", "full"],
         byte_limit: float | NotGiven = NOT_GIVEN,
-        filter_v1: pcap_magic_pcap_collection_create_pcap_request_params.O1v8KFfTPcapsRequestFullFilterV1
+        filter_v1: pcap_magic_pcap_collection_create_pcap_request_params.OUcEeQdhPcapsRequestFullFilterV1
         | NotGiven = NOT_GIVEN,
         packet_limit: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -495,7 +495,7 @@ class AsyncPcaps(AsyncAPIResource):
         system: Literal["magic-transit"],
         time_limit: float,
         type: Literal["simple", "full"],
-        filter_v1: pcap_magic_pcap_collection_create_pcap_request_params.O1v8KFfTPcapsRequestSimpleFilterV1
+        filter_v1: pcap_magic_pcap_collection_create_pcap_request_params.OUcEeQdhPcapsRequestSimpleFilterV1
         | NotGiven = NOT_GIVEN,
         colo_name: str | NotGiven = NOT_GIVEN,
         destination_conf: str | NotGiven = NOT_GIVEN,
