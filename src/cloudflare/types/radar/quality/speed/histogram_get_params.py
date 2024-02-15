@@ -2,19 +2,11 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Annotated, Literal
-
 from typing import List, Union
-
-from ....._utils import PropertyInfo
-
 from datetime import datetime
+from typing_extensions import Literal, Annotated, TypedDict
 
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ....._types import FileTypes
 from ....._utils import PropertyInfo
-from .....types import shared_params
 
 __all__ = ["HistogramGetParams"]
 

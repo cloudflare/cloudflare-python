@@ -2,79 +2,19 @@
 
 from __future__ import annotations
 
+from typing import Any, Optional, cast
+
 import httpx
 
-from .audit_logs import AuditLogs, AsyncAuditLogs
-
-from ..._compat import cached_property
-
-from .billings.billings import Billings, AsyncBillings
-
-from .firewalls.firewalls import Firewalls, AsyncFirewalls
-
-from .invites import Invites, AsyncInvites
-
-from .load_balancers.load_balancers import LoadBalancers, AsyncLoadBalancers
-
-from .load_balancing_analytics.load_balancing_analytics import LoadBalancingAnalytics, AsyncLoadBalancingAnalytics
-
-from .organizations import Organizations, AsyncOrganizations
-
-from .subscriptions import Subscriptions, AsyncSubscriptions
-
-from .tokens.tokens import Tokens, AsyncTokens
-
-from ...types import UserUserEditUserResponse, UserUserUserDetailsResponse
-
-from typing import Optional
-
-from ..._response import (
-    to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_streamed_response_wrapper,
+from .tokens import (
+    Tokens,
+    AsyncTokens,
+    TokensWithRawResponse,
+    AsyncTokensWithRawResponse,
+    TokensWithStreamingResponse,
+    AsyncTokensWithStreamingResponse,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types import user_user_edit_user_params
-from .audit_logs import (
-    AuditLogs,
-    AsyncAuditLogs,
-    AuditLogsWithRawResponse,
-    AsyncAuditLogsWithRawResponse,
-    AuditLogsWithStreamingResponse,
-    AsyncAuditLogsWithStreamingResponse,
-)
-from .billings import (
-    Billings,
-    AsyncBillings,
-    BillingsWithRawResponse,
-    AsyncBillingsWithRawResponse,
-    BillingsWithStreamingResponse,
-    AsyncBillingsWithStreamingResponse,
-)
-from .firewalls import (
-    Firewalls,
-    AsyncFirewalls,
-    FirewallsWithRawResponse,
-    AsyncFirewallsWithRawResponse,
-    FirewallsWithStreamingResponse,
-    AsyncFirewallsWithStreamingResponse,
-)
+from ...types import UserUserEditUserResponse, UserUserUserDetailsResponse, user_user_edit_user_params
 from .invites import (
     Invites,
     AsyncInvites,
@@ -83,22 +23,41 @@ from .invites import (
     InvitesWithStreamingResponse,
     AsyncInvitesWithStreamingResponse,
 )
-from .load_balancers import (
-    LoadBalancers,
-    AsyncLoadBalancers,
-    LoadBalancersWithRawResponse,
-    AsyncLoadBalancersWithRawResponse,
-    LoadBalancersWithStreamingResponse,
-    AsyncLoadBalancersWithStreamingResponse,
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
+from .billings import (
+    Billings,
+    AsyncBillings,
+    BillingsWithRawResponse,
+    AsyncBillingsWithRawResponse,
+    BillingsWithStreamingResponse,
+    AsyncBillingsWithStreamingResponse,
 )
-from .load_balancing_analytics import (
-    LoadBalancingAnalytics,
-    AsyncLoadBalancingAnalytics,
-    LoadBalancingAnalyticsWithRawResponse,
-    AsyncLoadBalancingAnalyticsWithRawResponse,
-    LoadBalancingAnalyticsWithStreamingResponse,
-    AsyncLoadBalancingAnalyticsWithStreamingResponse,
+from ..._compat import cached_property
+from .firewalls import (
+    Firewalls,
+    AsyncFirewalls,
+    FirewallsWithRawResponse,
+    AsyncFirewallsWithRawResponse,
+    FirewallsWithStreamingResponse,
+    AsyncFirewallsWithStreamingResponse,
 )
+from .audit_logs import (
+    AuditLogs,
+    AsyncAuditLogs,
+    AuditLogsWithRawResponse,
+    AsyncAuditLogsWithRawResponse,
+    AuditLogsWithStreamingResponse,
+    AsyncAuditLogsWithStreamingResponse,
+)
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ..._wrappers import ResultWrapper
 from .organizations import (
     Organizations,
     AsyncOrganizations,
@@ -115,23 +74,30 @@ from .subscriptions import (
     SubscriptionsWithStreamingResponse,
     AsyncSubscriptionsWithStreamingResponse,
 )
-from .tokens import (
-    Tokens,
-    AsyncTokens,
-    TokensWithRawResponse,
-    AsyncTokensWithRawResponse,
-    TokensWithStreamingResponse,
-    AsyncTokensWithStreamingResponse,
+from .tokens.tokens import Tokens, AsyncTokens
+from ..._base_client import (
+    make_request_options,
 )
-from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from .load_balancers import (
+    LoadBalancers,
+    AsyncLoadBalancers,
+    LoadBalancersWithRawResponse,
+    AsyncLoadBalancersWithRawResponse,
+    LoadBalancersWithStreamingResponse,
+    AsyncLoadBalancersWithStreamingResponse,
+)
+from .billings.billings import Billings, AsyncBillings
+from .firewalls.firewalls import Firewalls, AsyncFirewalls
+from .load_balancing_analytics import (
+    LoadBalancingAnalytics,
+    AsyncLoadBalancingAnalytics,
+    LoadBalancingAnalyticsWithRawResponse,
+    AsyncLoadBalancingAnalyticsWithRawResponse,
+    LoadBalancingAnalyticsWithStreamingResponse,
+    AsyncLoadBalancingAnalyticsWithStreamingResponse,
+)
+from .load_balancers.load_balancers import LoadBalancers, AsyncLoadBalancers
+from .load_balancing_analytics.load_balancing_analytics import LoadBalancingAnalytics, AsyncLoadBalancingAnalytics
 
 __all__ = ["Users", "AsyncUsers"]
 
