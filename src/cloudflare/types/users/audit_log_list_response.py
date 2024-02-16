@@ -1,16 +1,12 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from typing import Optional, List, Union
-
-from typing_extensions import Literal
-
+from typing import List, Union, Optional
 from datetime import datetime
-
-from typing import Optional, Union, List, Dict, Any
 from typing_extensions import Literal
+
 from pydantic import Field as FieldInfo
+
 from ..._models import BaseModel
-from ...types import shared
 
 __all__ = [
     "AuditLogListResponse",
@@ -20,9 +16,9 @@ __all__ = [
     "UnionMember0ResultActor",
     "UnionMember0ResultOwner",
     "UnionMember0ResultResource",
-    "EkeoSHueAPIResponseCommon",
-    "EkeoSHueAPIResponseCommonError",
-    "EkeoSHueAPIResponseCommonMessage",
+    "X63ceQszAPIResponseCommon",
+    "X63ceQszAPIResponseCommonError",
+    "X63ceQszAPIResponseCommonMessage",
 ]
 
 
@@ -105,22 +101,22 @@ class UnionMember0(BaseModel):
     success: Optional[bool] = None
 
 
-class EkeoSHueAPIResponseCommonError(BaseModel):
+class X63ceQszAPIResponseCommonError(BaseModel):
     code: int
 
     message: str
 
 
-class EkeoSHueAPIResponseCommonMessage(BaseModel):
+class X63ceQszAPIResponseCommonMessage(BaseModel):
     code: int
 
     message: str
 
 
-class EkeoSHueAPIResponseCommon(BaseModel):
-    errors: List[EkeoSHueAPIResponseCommonError]
+class X63ceQszAPIResponseCommon(BaseModel):
+    errors: List[X63ceQszAPIResponseCommonError]
 
-    messages: List[EkeoSHueAPIResponseCommonMessage]
+    messages: List[X63ceQszAPIResponseCommonMessage]
 
     result: Union[object, List[object], str]
 
@@ -128,4 +124,4 @@ class EkeoSHueAPIResponseCommon(BaseModel):
     """Whether the API call was successful"""
 
 
-AuditLogListResponse = Union[UnionMember0, EkeoSHueAPIResponseCommon]
+AuditLogListResponse = Union[UnionMember0, X63ceQszAPIResponseCommon]
