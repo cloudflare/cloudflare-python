@@ -8,10 +8,10 @@ from typing_extensions import Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
 
-__all__ = ["StreamCreateParams"]
+__all__ = ["StreamUpdateParams"]
 
 
-class StreamCreateParams(TypedDict, total=False):
+class StreamUpdateParams(TypedDict, total=False):
     account_id: Required[str]
     """The account identifier tag."""
 

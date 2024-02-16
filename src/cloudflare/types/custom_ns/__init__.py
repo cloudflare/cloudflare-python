@@ -2,5 +2,5 @@
 
 from __future__ import annotations
 
-from .verify_create_response import VerifyCreateResponse as VerifyCreateResponse
+from .verify_update_response import VerifyUpdateResponse as VerifyUpdateResponse
 from .availability_get_response import AvailabilityGetResponse as AvailabilityGetResponse
