@@ -19,7 +19,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.ssls.certificate_packs import QuotaCertificatePacksGetCertificatePackQuotasResponse
+from ....types.ssls.certificate_packs import QuotaGetResponse
 
 __all__ = ["Quotas", "AsyncQuotas"]
 
@@ -33,7 +33,7 @@ class Quotas(SyncAPIResource):
     def with_streaming_response(self) -> QuotasWithStreamingResponse:
         return QuotasWithStreamingResponse(self)
 
-    def certificate_packs_get_certificate_pack_quotas(
+    def get(
         self,
         zone_id: str,
         *,
@@ -43,7 +43,7 @@ class Quotas(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> QuotaCertificatePacksGetCertificatePackQuotasResponse:
+    ) -> QuotaGetResponse:
         """
         For a given zone, list certificate pack quotas.
 
@@ -69,10 +69,7 @@ class Quotas(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[QuotaCertificatePacksGetCertificatePackQuotasResponse],
-                ResultWrapper[QuotaCertificatePacksGetCertificatePackQuotasResponse],
-            ),
+            cast_to=cast(Type[QuotaGetResponse], ResultWrapper[QuotaGetResponse]),
         )
 
 
@@ -85,7 +82,7 @@ class AsyncQuotas(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncQuotasWithStreamingResponse:
         return AsyncQuotasWithStreamingResponse(self)
 
-    async def certificate_packs_get_certificate_pack_quotas(
+    async def get(
         self,
         zone_id: str,
         *,
@@ -95,7 +92,7 @@ class AsyncQuotas(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> QuotaCertificatePacksGetCertificatePackQuotasResponse:
+    ) -> QuotaGetResponse:
         """
         For a given zone, list certificate pack quotas.
 
@@ -121,10 +118,7 @@ class AsyncQuotas(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[QuotaCertificatePacksGetCertificatePackQuotasResponse],
-                ResultWrapper[QuotaCertificatePacksGetCertificatePackQuotasResponse],
-            ),
+            cast_to=cast(Type[QuotaGetResponse], ResultWrapper[QuotaGetResponse]),
         )
 
 
@@ -132,8 +126,8 @@ class QuotasWithRawResponse:
     def __init__(self, quotas: Quotas) -> None:
         self._quotas = quotas
 
-        self.certificate_packs_get_certificate_pack_quotas = to_raw_response_wrapper(
-            quotas.certificate_packs_get_certificate_pack_quotas,
+        self.get = to_raw_response_wrapper(
+            quotas.get,
         )
 
 
@@ -141,8 +135,8 @@ class AsyncQuotasWithRawResponse:
     def __init__(self, quotas: AsyncQuotas) -> None:
         self._quotas = quotas
 
-        self.certificate_packs_get_certificate_pack_quotas = async_to_raw_response_wrapper(
-            quotas.certificate_packs_get_certificate_pack_quotas,
+        self.get = async_to_raw_response_wrapper(
+            quotas.get,
         )
 
 
@@ -150,8 +144,8 @@ class QuotasWithStreamingResponse:
     def __init__(self, quotas: Quotas) -> None:
         self._quotas = quotas
 
-        self.certificate_packs_get_certificate_pack_quotas = to_streamed_response_wrapper(
-            quotas.certificate_packs_get_certificate_pack_quotas,
+        self.get = to_streamed_response_wrapper(
+            quotas.get,
         )
 
 
@@ -159,6 +153,6 @@ class AsyncQuotasWithStreamingResponse:
     def __init__(self, quotas: AsyncQuotas) -> None:
         self._quotas = quotas
 
-        self.certificate_packs_get_certificate_pack_quotas = async_to_streamed_response_wrapper(
-            quotas.certificate_packs_get_certificate_pack_quotas,
+        self.get = async_to_streamed_response_wrapper(
+            quotas.get,
         )

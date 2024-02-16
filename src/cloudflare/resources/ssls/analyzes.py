@@ -18,10 +18,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...types.ssls import (
-    AnalyzeAnalyzeCertificateAnalyzeCertificateResponse,
-    analyze_analyze_certificate_analyze_certificate_params,
-)
+from ...types.ssls import AnalyzeCreateResponse, analyze_create_params
 from ..._base_client import (
     make_request_options,
 )
@@ -38,7 +35,7 @@ class Analyzes(SyncAPIResource):
     def with_streaming_response(self) -> AnalyzesWithStreamingResponse:
         return AnalyzesWithStreamingResponse(self)
 
-    def analyze_certificate_analyze_certificate(
+    def create(
         self,
         zone_id: str,
         *,
@@ -50,7 +47,7 @@ class Analyzes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AnalyzeAnalyzeCertificateAnalyzeCertificateResponse:
+    ) -> AnalyzeCreateResponse:
         """
         Returns the set of hostnames, the signature algorithm, and the expiration date
         of the certificate.
@@ -76,7 +73,7 @@ class Analyzes(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            AnalyzeAnalyzeCertificateAnalyzeCertificateResponse,
+            AnalyzeCreateResponse,
             self._post(
                 f"/zones/{zone_id}/ssl/analyze",
                 body=maybe_transform(
@@ -84,7 +81,7 @@ class Analyzes(SyncAPIResource):
                         "bundle_method": bundle_method,
                         "certificate": certificate,
                     },
-                    analyze_analyze_certificate_analyze_certificate_params.AnalyzeAnalyzeCertificateAnalyzeCertificateParams,
+                    analyze_create_params.AnalyzeCreateParams,
                 ),
                 options=make_request_options(
                     extra_headers=extra_headers,
@@ -94,7 +91,7 @@ class Analyzes(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[AnalyzeAnalyzeCertificateAnalyzeCertificateResponse]
+                    Any, ResultWrapper[AnalyzeCreateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -109,7 +106,7 @@ class AsyncAnalyzes(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncAnalyzesWithStreamingResponse:
         return AsyncAnalyzesWithStreamingResponse(self)
 
-    async def analyze_certificate_analyze_certificate(
+    async def create(
         self,
         zone_id: str,
         *,
@@ -121,7 +118,7 @@ class AsyncAnalyzes(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AnalyzeAnalyzeCertificateAnalyzeCertificateResponse:
+    ) -> AnalyzeCreateResponse:
         """
         Returns the set of hostnames, the signature algorithm, and the expiration date
         of the certificate.
@@ -147,7 +144,7 @@ class AsyncAnalyzes(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            AnalyzeAnalyzeCertificateAnalyzeCertificateResponse,
+            AnalyzeCreateResponse,
             await self._post(
                 f"/zones/{zone_id}/ssl/analyze",
                 body=maybe_transform(
@@ -155,7 +152,7 @@ class AsyncAnalyzes(AsyncAPIResource):
                         "bundle_method": bundle_method,
                         "certificate": certificate,
                     },
-                    analyze_analyze_certificate_analyze_certificate_params.AnalyzeAnalyzeCertificateAnalyzeCertificateParams,
+                    analyze_create_params.AnalyzeCreateParams,
                 ),
                 options=make_request_options(
                     extra_headers=extra_headers,
@@ -165,7 +162,7 @@ class AsyncAnalyzes(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[AnalyzeAnalyzeCertificateAnalyzeCertificateResponse]
+                    Any, ResultWrapper[AnalyzeCreateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -175,8 +172,8 @@ class AnalyzesWithRawResponse:
     def __init__(self, analyzes: Analyzes) -> None:
         self._analyzes = analyzes
 
-        self.analyze_certificate_analyze_certificate = to_raw_response_wrapper(
-            analyzes.analyze_certificate_analyze_certificate,
+        self.create = to_raw_response_wrapper(
+            analyzes.create,
         )
 
 
@@ -184,8 +181,8 @@ class AsyncAnalyzesWithRawResponse:
     def __init__(self, analyzes: AsyncAnalyzes) -> None:
         self._analyzes = analyzes
 
-        self.analyze_certificate_analyze_certificate = async_to_raw_response_wrapper(
-            analyzes.analyze_certificate_analyze_certificate,
+        self.create = async_to_raw_response_wrapper(
+            analyzes.create,
         )
 
 
@@ -193,8 +190,8 @@ class AnalyzesWithStreamingResponse:
     def __init__(self, analyzes: Analyzes) -> None:
         self._analyzes = analyzes
 
-        self.analyze_certificate_analyze_certificate = to_streamed_response_wrapper(
-            analyzes.analyze_certificate_analyze_certificate,
+        self.create = to_streamed_response_wrapper(
+            analyzes.create,
         )
 
 
@@ -202,6 +199,6 @@ class AsyncAnalyzesWithStreamingResponse:
     def __init__(self, analyzes: AsyncAnalyzes) -> None:
         self._analyzes = analyzes
 
-        self.analyze_certificate_analyze_certificate = async_to_streamed_response_wrapper(
-            analyzes.analyze_certificate_analyze_certificate,
+        self.create = async_to_streamed_response_wrapper(
+            analyzes.create,
         )

@@ -7,13 +7,13 @@ from typing_extensions import Literal
 
 import httpx
 
-from .hold import (
-    Hold,
-    AsyncHold,
-    HoldWithRawResponse,
-    AsyncHoldWithRawResponse,
-    HoldWithStreamingResponse,
-    AsyncHoldWithStreamingResponse,
+from .holds import (
+    Holds,
+    AsyncHolds,
+    HoldsWithRawResponse,
+    AsyncHoldsWithRawResponse,
+    HoldsWithStreamingResponse,
+    AsyncHoldsWithStreamingResponse,
 )
 from ...types import (
     ZoneGetResponse,
@@ -45,8 +45,8 @@ __all__ = ["Zones", "AsyncZones"]
 
 class Zones(SyncAPIResource):
     @cached_property
-    def hold(self) -> Hold:
-        return Hold(self._client)
+    def holds(self) -> Holds:
+        return Holds(self._client)
 
     @cached_property
     def with_raw_response(self) -> ZonesWithRawResponse:
@@ -329,8 +329,8 @@ class Zones(SyncAPIResource):
 
 class AsyncZones(AsyncAPIResource):
     @cached_property
-    def hold(self) -> AsyncHold:
-        return AsyncHold(self._client)
+    def holds(self) -> AsyncHolds:
+        return AsyncHolds(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncZonesWithRawResponse:
@@ -632,8 +632,8 @@ class ZonesWithRawResponse:
         )
 
     @cached_property
-    def hold(self) -> HoldWithRawResponse:
-        return HoldWithRawResponse(self._zones.hold)
+    def holds(self) -> HoldsWithRawResponse:
+        return HoldsWithRawResponse(self._zones.holds)
 
 
 class AsyncZonesWithRawResponse:
@@ -657,8 +657,8 @@ class AsyncZonesWithRawResponse:
         )
 
     @cached_property
-    def hold(self) -> AsyncHoldWithRawResponse:
-        return AsyncHoldWithRawResponse(self._zones.hold)
+    def holds(self) -> AsyncHoldsWithRawResponse:
+        return AsyncHoldsWithRawResponse(self._zones.holds)
 
 
 class ZonesWithStreamingResponse:
@@ -682,8 +682,8 @@ class ZonesWithStreamingResponse:
         )
 
     @cached_property
-    def hold(self) -> HoldWithStreamingResponse:
-        return HoldWithStreamingResponse(self._zones.hold)
+    def holds(self) -> HoldsWithStreamingResponse:
+        return HoldsWithStreamingResponse(self._zones.holds)
 
 
 class AsyncZonesWithStreamingResponse:
@@ -707,5 +707,5 @@ class AsyncZonesWithStreamingResponse:
         )
 
     @cached_property
-    def hold(self) -> AsyncHoldWithStreamingResponse:
-        return AsyncHoldWithStreamingResponse(self._zones.hold)
+    def holds(self) -> AsyncHoldsWithStreamingResponse:
+        return AsyncHoldsWithStreamingResponse(self._zones.holds)

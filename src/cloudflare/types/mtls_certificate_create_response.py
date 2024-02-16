@@ -5,10 +5,10 @@ from datetime import datetime
 
 from .._models import BaseModel
 
-__all__ = ["MtlsCertificateUpdateResponse"]
+__all__ = ["MtlsCertificateCreateResponse"]
 
 
-class MtlsCertificateUpdateResponse(BaseModel):
+class MtlsCertificateCreateResponse(BaseModel):
     id: Optional[str] = None
     """Identifier"""
 

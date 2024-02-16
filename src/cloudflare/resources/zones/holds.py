@@ -28,17 +28,17 @@ from ..._base_client import (
     make_request_options,
 )
 
-__all__ = ["Hold", "AsyncHold"]
+__all__ = ["Holds", "AsyncHolds"]
 
 
-class Hold(SyncAPIResource):
+class Holds(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> HoldWithRawResponse:
-        return HoldWithRawResponse(self)
+    def with_raw_response(self) -> HoldsWithRawResponse:
+        return HoldsWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> HoldWithStreamingResponse:
-        return HoldWithStreamingResponse(self)
+    def with_streaming_response(self) -> HoldsWithStreamingResponse:
+        return HoldsWithStreamingResponse(self)
 
     def enforce(
         self,
@@ -176,14 +176,14 @@ class Hold(SyncAPIResource):
         )
 
 
-class AsyncHold(AsyncAPIResource):
+class AsyncHolds(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncHoldWithRawResponse:
-        return AsyncHoldWithRawResponse(self)
+    def with_raw_response(self) -> AsyncHoldsWithRawResponse:
+        return AsyncHoldsWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncHoldWithStreamingResponse:
-        return AsyncHoldWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncHoldsWithStreamingResponse:
+        return AsyncHoldsWithStreamingResponse(self)
 
     async def enforce(
         self,
@@ -321,61 +321,61 @@ class AsyncHold(AsyncAPIResource):
         )
 
 
-class HoldWithRawResponse:
-    def __init__(self, hold: Hold) -> None:
-        self._hold = hold
+class HoldsWithRawResponse:
+    def __init__(self, holds: Holds) -> None:
+        self._holds = holds
 
         self.enforce = to_raw_response_wrapper(
-            hold.enforce,
+            holds.enforce,
         )
         self.get = to_raw_response_wrapper(
-            hold.get,
+            holds.get,
         )
         self.remove = to_raw_response_wrapper(
-            hold.remove,
+            holds.remove,
         )
 
 
-class AsyncHoldWithRawResponse:
-    def __init__(self, hold: AsyncHold) -> None:
-        self._hold = hold
+class AsyncHoldsWithRawResponse:
+    def __init__(self, holds: AsyncHolds) -> None:
+        self._holds = holds
 
         self.enforce = async_to_raw_response_wrapper(
-            hold.enforce,
+            holds.enforce,
         )
         self.get = async_to_raw_response_wrapper(
-            hold.get,
+            holds.get,
         )
         self.remove = async_to_raw_response_wrapper(
-            hold.remove,
+            holds.remove,
         )
 
 
-class HoldWithStreamingResponse:
-    def __init__(self, hold: Hold) -> None:
-        self._hold = hold
+class HoldsWithStreamingResponse:
+    def __init__(self, holds: Holds) -> None:
+        self._holds = holds
 
         self.enforce = to_streamed_response_wrapper(
-            hold.enforce,
+            holds.enforce,
         )
         self.get = to_streamed_response_wrapper(
-            hold.get,
+            holds.get,
         )
         self.remove = to_streamed_response_wrapper(
-            hold.remove,
+            holds.remove,
         )
 
 
-class AsyncHoldWithStreamingResponse:
-    def __init__(self, hold: AsyncHold) -> None:
-        self._hold = hold
+class AsyncHoldsWithStreamingResponse:
+    def __init__(self, holds: AsyncHolds) -> None:
+        self._holds = holds
 
         self.enforce = async_to_streamed_response_wrapper(
-            hold.enforce,
+            holds.enforce,
         )
         self.get = async_to_streamed_response_wrapper(
-            hold.get,
+            holds.get,
         )
         self.remove = async_to_streamed_response_wrapper(
-            hold.remove,
+            holds.remove,
         )
