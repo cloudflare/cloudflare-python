@@ -2,41 +2,36 @@
 
 from __future__ import annotations
 
-from typing import List, Union
 from typing_extensions import TypedDict
 
-__all__ = [
-    "PurgeCachZonePurgeParams",
-    "CkpEqDfYFlex",
-    "CkpEqDfYEverything",
-    "CkpEqDfYFiles",
-    "CkpEqDfYFilesFile",
-    "CkpEqDfYFilesFileCkpEqDfYURLAndHeaders",
-]
+from typing import List, Union
 
+from typing import List, Union, Dict, Optional
+from typing_extensions import Literal, TypedDict, Required, Annotated
+from .._types import FileTypes
+from .._utils import PropertyInfo
+from ..types import shared_params
 
-class CkpEqDfYFlex(TypedDict, total=False):
+__all__ = ["PurgeCachZonePurgeParams", "_7mnXeLx2Flex", "_7mnXeLx2Everything", "_7mnXeLx2Files", "7mnXeLx2FilesFile", "7mnXeLx2FilesFile_7mnXeLx2URLAndHeaders"]
+
+class _7mnXeLx2Flex(TypedDict, total=False):
     hosts: List[str]
 
     prefixes: List[str]
 
     tags: List[str]
 
-
-class CkpEqDfYEverything(TypedDict, total=False):
+class _7mnXeLx2Everything(TypedDict, total=False):
     purge_everything: bool
 
+class _7mnXeLx2Files(TypedDict, total=False):
+    files: List[7mnXeLx2FilesFile]
 
-class CkpEqDfYFiles(TypedDict, total=False):
-    files: List[CkpEqDfYFilesFile]
-
-
-class CkpEqDfYFilesFileCkpEqDfYURLAndHeaders(TypedDict, total=False):
+class 7mnXeLx2FilesFile_7mnXeLx2URLAndHeaders(TypedDict, total=False):
     headers: object
 
     url: str
 
+7mnXeLx2FilesFile = Union[str, 7mnXeLx2FilesFile_7mnXeLx2URLAndHeaders]
 
-CkpEqDfYFilesFile = Union[str, CkpEqDfYFilesFileCkpEqDfYURLAndHeaders]
-
-PurgeCachZonePurgeParams = Union[CkpEqDfYFlex, CkpEqDfYEverything, CkpEqDfYFiles]
+PurgeCachZonePurgeParams = Union[_7mnXeLx2Flex, _7mnXeLx2Everything, _7mnXeLx2Files]
