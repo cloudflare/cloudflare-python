@@ -7,14 +7,14 @@ from .._models import BaseModel
 
 __all__ = [
     "PcapMagicPcapCollectionCreatePcapRequestResponse",
-    "RsDvnQmDPcapsResponseSimple",
-    "RsDvnQmDPcapsResponseSimpleFilterV1",
-    "RsDvnQmDPcapsResponseFull",
-    "RsDvnQmDPcapsResponseFullFilterV1",
+    "Z0Vmh0HyPcapsResponseSimple",
+    "Z0Vmh0HyPcapsResponseSimpleFilterV1",
+    "Z0Vmh0HyPcapsResponseFull",
+    "Z0Vmh0HyPcapsResponseFullFilterV1",
 ]
 
 
-class RsDvnQmDPcapsResponseSimpleFilterV1(BaseModel):
+class Z0Vmh0HyPcapsResponseSimpleFilterV1(BaseModel):
     destination_address: Optional[str] = None
     """The destination IP address of the packet."""
 
@@ -31,11 +31,11 @@ class RsDvnQmDPcapsResponseSimpleFilterV1(BaseModel):
     """The source port of the packet."""
 
 
-class RsDvnQmDPcapsResponseSimple(BaseModel):
+class Z0Vmh0HyPcapsResponseSimple(BaseModel):
     id: Optional[str] = None
     """The ID for the packet capture."""
 
-    filter_v1: Optional[RsDvnQmDPcapsResponseSimpleFilterV1] = None
+    filter_v1: Optional[Z0Vmh0HyPcapsResponseSimpleFilterV1] = None
     """The packet capture filter. When this field is empty, all packets are captured."""
 
     status: Optional[
@@ -62,7 +62,7 @@ class RsDvnQmDPcapsResponseSimple(BaseModel):
     """
 
 
-class RsDvnQmDPcapsResponseFullFilterV1(BaseModel):
+class Z0Vmh0HyPcapsResponseFullFilterV1(BaseModel):
     destination_address: Optional[str] = None
     """The destination IP address of the packet."""
 
@@ -79,7 +79,7 @@ class RsDvnQmDPcapsResponseFullFilterV1(BaseModel):
     """The source port of the packet."""
 
 
-class RsDvnQmDPcapsResponseFull(BaseModel):
+class Z0Vmh0HyPcapsResponseFull(BaseModel):
     id: Optional[str] = None
     """The ID for the packet capture."""
 
@@ -105,7 +105,7 @@ class RsDvnQmDPcapsResponseFull(BaseModel):
     This field only applies to `full` packet captures.
     """
 
-    filter_v1: Optional[RsDvnQmDPcapsResponseFullFilterV1] = None
+    filter_v1: Optional[Z0Vmh0HyPcapsResponseFullFilterV1] = None
     """The packet capture filter. When this field is empty, all packets are captured."""
 
     status: Optional[
@@ -132,4 +132,4 @@ class RsDvnQmDPcapsResponseFull(BaseModel):
     """
 
 
-PcapMagicPcapCollectionCreatePcapRequestResponse = Union[RsDvnQmDPcapsResponseSimple, RsDvnQmDPcapsResponseFull]
+PcapMagicPcapCollectionCreatePcapRequestResponse = Union[Z0Vmh0HyPcapsResponseSimple, Z0Vmh0HyPcapsResponseFull]
