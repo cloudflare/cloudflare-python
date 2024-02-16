@@ -5076,7 +5076,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.request_tracers import TraceCreateResponse
+from cloudflare.types.request_tracers import Q19cOvCrTrace, TraceCreateResponse
 ```
 
 Methods:
