@@ -9,7 +9,7 @@ from pydantic import Field as FieldInfo
 from ..._models import BaseModel
 
 __all__ = [
-    "AuditLogAuditLogsGetUserAuditLogsResponse",
+    "AuditLogListResponse",
     "UnionMember0",
     "UnionMember0Result",
     "UnionMember0ResultAction",
@@ -124,4 +124,4 @@ class Yq4V3hcHAPIResponseCommon(BaseModel):
     """Whether the API call was successful"""
 
 
-AuditLogAuditLogsGetUserAuditLogsResponse = Union[UnionMember0, Yq4V3hcHAPIResponseCommon]
+AuditLogListResponse = Union[UnionMember0, Yq4V3hcHAPIResponseCommon]

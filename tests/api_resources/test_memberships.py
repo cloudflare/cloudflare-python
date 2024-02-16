@@ -11,9 +11,9 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types import (
     MembershipGetResponse,
+    MembershipListResponse,
     MembershipDeleteResponse,
     MembershipUpdateResponse,
-    MembershipUserSAccountMembershipsListMembershipsResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -67,6 +67,48 @@ class TestMemberships:
                 "",
                 status="accepted",
             )
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_list(self, client: Cloudflare) -> None:
+        membership = client.memberships.list()
+        assert_matches_type(Optional[MembershipListResponse], membership, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_list_with_all_params(self, client: Cloudflare) -> None:
+        membership = client.memberships.list(
+            account={"name": "Demo Account"},
+            direction="desc",
+            name="Demo Account",
+            order="status",
+            page=1,
+            per_page=5,
+            status="accepted",
+        )
+        assert_matches_type(Optional[MembershipListResponse], membership, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_list(self, client: Cloudflare) -> None:
+        response = client.memberships.with_raw_response.list()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        membership = response.parse()
+        assert_matches_type(Optional[MembershipListResponse], membership, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_list(self, client: Cloudflare) -> None:
+        with client.memberships.with_streaming_response.list() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            membership = response.parse()
+            assert_matches_type(Optional[MembershipListResponse], membership, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
@@ -152,56 +194,6 @@ class TestMemberships:
                 "",
             )
 
-    @pytest.mark.skip()
-    @parametrize
-    def test_method_user_s_account_memberships_list_memberships(self, client: Cloudflare) -> None:
-        membership = client.memberships.user_s_account_memberships_list_memberships()
-        assert_matches_type(
-            Optional[MembershipUserSAccountMembershipsListMembershipsResponse], membership, path=["response"]
-        )
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_method_user_s_account_memberships_list_memberships_with_all_params(self, client: Cloudflare) -> None:
-        membership = client.memberships.user_s_account_memberships_list_memberships(
-            account={"name": "Demo Account"},
-            direction="desc",
-            name="Demo Account",
-            order="status",
-            page=1,
-            per_page=5,
-            status="accepted",
-        )
-        assert_matches_type(
-            Optional[MembershipUserSAccountMembershipsListMembershipsResponse], membership, path=["response"]
-        )
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_raw_response_user_s_account_memberships_list_memberships(self, client: Cloudflare) -> None:
-        response = client.memberships.with_raw_response.user_s_account_memberships_list_memberships()
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        membership = response.parse()
-        assert_matches_type(
-            Optional[MembershipUserSAccountMembershipsListMembershipsResponse], membership, path=["response"]
-        )
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_streaming_response_user_s_account_memberships_list_memberships(self, client: Cloudflare) -> None:
-        with client.memberships.with_streaming_response.user_s_account_memberships_list_memberships() as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            membership = response.parse()
-            assert_matches_type(
-                Optional[MembershipUserSAccountMembershipsListMembershipsResponse], membership, path=["response"]
-            )
-
-        assert cast(Any, response.is_closed) is True
-
 
 class TestAsyncMemberships:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
@@ -251,6 +243,48 @@ class TestAsyncMemberships:
                 "",
                 status="accepted",
             )
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_list(self, async_client: AsyncCloudflare) -> None:
+        membership = await async_client.memberships.list()
+        assert_matches_type(Optional[MembershipListResponse], membership, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        membership = await async_client.memberships.list(
+            account={"name": "Demo Account"},
+            direction="desc",
+            name="Demo Account",
+            order="status",
+            page=1,
+            per_page=5,
+            status="accepted",
+        )
+        assert_matches_type(Optional[MembershipListResponse], membership, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.memberships.with_raw_response.list()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        membership = await response.parse()
+        assert_matches_type(Optional[MembershipListResponse], membership, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.memberships.with_streaming_response.list() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            membership = await response.parse()
+            assert_matches_type(Optional[MembershipListResponse], membership, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
@@ -335,59 +369,3 @@ class TestAsyncMemberships:
             await async_client.memberships.with_raw_response.get(
                 "",
             )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_user_s_account_memberships_list_memberships(self, async_client: AsyncCloudflare) -> None:
-        membership = await async_client.memberships.user_s_account_memberships_list_memberships()
-        assert_matches_type(
-            Optional[MembershipUserSAccountMembershipsListMembershipsResponse], membership, path=["response"]
-        )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_user_s_account_memberships_list_memberships_with_all_params(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        membership = await async_client.memberships.user_s_account_memberships_list_memberships(
-            account={"name": "Demo Account"},
-            direction="desc",
-            name="Demo Account",
-            order="status",
-            page=1,
-            per_page=5,
-            status="accepted",
-        )
-        assert_matches_type(
-            Optional[MembershipUserSAccountMembershipsListMembershipsResponse], membership, path=["response"]
-        )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_raw_response_user_s_account_memberships_list_memberships(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        response = await async_client.memberships.with_raw_response.user_s_account_memberships_list_memberships()
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        membership = await response.parse()
-        assert_matches_type(
-            Optional[MembershipUserSAccountMembershipsListMembershipsResponse], membership, path=["response"]
-        )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_streaming_response_user_s_account_memberships_list_memberships(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        async with async_client.memberships.with_streaming_response.user_s_account_memberships_list_memberships() as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            membership = await response.parse()
-            assert_matches_type(
-                Optional[MembershipUserSAccountMembershipsListMembershipsResponse], membership, path=["response"]
-            )
-
-        assert cast(Any, response.is_closed) is True

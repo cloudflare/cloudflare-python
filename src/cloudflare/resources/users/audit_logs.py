@@ -18,7 +18,7 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...types.users import AuditLogAuditLogsGetUserAuditLogsResponse, audit_log_audit_logs_get_user_audit_logs_params
+from ...types.users import AuditLogListResponse, audit_log_list_params
 from ..._base_client import (
     make_request_options,
 )
@@ -35,12 +35,12 @@ class AuditLogs(SyncAPIResource):
     def with_streaming_response(self) -> AuditLogsWithStreamingResponse:
         return AuditLogsWithStreamingResponse(self)
 
-    def audit_logs_get_user_audit_logs(
+    def list(
         self,
         *,
         id: str | NotGiven = NOT_GIVEN,
-        action: audit_log_audit_logs_get_user_audit_logs_params.Action | NotGiven = NOT_GIVEN,
-        actor: audit_log_audit_logs_get_user_audit_logs_params.Actor | NotGiven = NOT_GIVEN,
+        action: audit_log_list_params.Action | NotGiven = NOT_GIVEN,
+        actor: audit_log_list_params.Actor | NotGiven = NOT_GIVEN,
         before: Union[str, datetime] | NotGiven = NOT_GIVEN,
         direction: Literal["desc", "asc"] | NotGiven = NOT_GIVEN,
         export: bool | NotGiven = NOT_GIVEN,
@@ -48,14 +48,14 @@ class AuditLogs(SyncAPIResource):
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
         since: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        zone: audit_log_audit_logs_get_user_audit_logs_params.Zone | NotGiven = NOT_GIVEN,
+        zone: audit_log_list_params.Zone | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AuditLogAuditLogsGetUserAuditLogsResponse:
+    ) -> AuditLogListResponse:
         """Gets a list of audit logs for a user account.
 
         Can be filtered by who made the
@@ -89,7 +89,7 @@ class AuditLogs(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return cast(
-            AuditLogAuditLogsGetUserAuditLogsResponse,
+            AuditLogListResponse,
             self._get(
                 "/user/audit_logs",
                 options=make_request_options(
@@ -111,11 +111,11 @@ class AuditLogs(SyncAPIResource):
                             "since": since,
                             "zone": zone,
                         },
-                        audit_log_audit_logs_get_user_audit_logs_params.AuditLogAuditLogsGetUserAuditLogsParams,
+                        audit_log_list_params.AuditLogListParams,
                     ),
                 ),
                 cast_to=cast(
-                    Any, AuditLogAuditLogsGetUserAuditLogsResponse
+                    Any, AuditLogListResponse
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -130,12 +130,12 @@ class AsyncAuditLogs(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncAuditLogsWithStreamingResponse:
         return AsyncAuditLogsWithStreamingResponse(self)
 
-    async def audit_logs_get_user_audit_logs(
+    async def list(
         self,
         *,
         id: str | NotGiven = NOT_GIVEN,
-        action: audit_log_audit_logs_get_user_audit_logs_params.Action | NotGiven = NOT_GIVEN,
-        actor: audit_log_audit_logs_get_user_audit_logs_params.Actor | NotGiven = NOT_GIVEN,
+        action: audit_log_list_params.Action | NotGiven = NOT_GIVEN,
+        actor: audit_log_list_params.Actor | NotGiven = NOT_GIVEN,
         before: Union[str, datetime] | NotGiven = NOT_GIVEN,
         direction: Literal["desc", "asc"] | NotGiven = NOT_GIVEN,
         export: bool | NotGiven = NOT_GIVEN,
@@ -143,14 +143,14 @@ class AsyncAuditLogs(AsyncAPIResource):
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
         since: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        zone: audit_log_audit_logs_get_user_audit_logs_params.Zone | NotGiven = NOT_GIVEN,
+        zone: audit_log_list_params.Zone | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AuditLogAuditLogsGetUserAuditLogsResponse:
+    ) -> AuditLogListResponse:
         """Gets a list of audit logs for a user account.
 
         Can be filtered by who made the
@@ -184,7 +184,7 @@ class AsyncAuditLogs(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return cast(
-            AuditLogAuditLogsGetUserAuditLogsResponse,
+            AuditLogListResponse,
             await self._get(
                 "/user/audit_logs",
                 options=make_request_options(
@@ -206,11 +206,11 @@ class AsyncAuditLogs(AsyncAPIResource):
                             "since": since,
                             "zone": zone,
                         },
-                        audit_log_audit_logs_get_user_audit_logs_params.AuditLogAuditLogsGetUserAuditLogsParams,
+                        audit_log_list_params.AuditLogListParams,
                     ),
                 ),
                 cast_to=cast(
-                    Any, AuditLogAuditLogsGetUserAuditLogsResponse
+                    Any, AuditLogListResponse
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -220,8 +220,8 @@ class AuditLogsWithRawResponse:
     def __init__(self, audit_logs: AuditLogs) -> None:
         self._audit_logs = audit_logs
 
-        self.audit_logs_get_user_audit_logs = to_raw_response_wrapper(
-            audit_logs.audit_logs_get_user_audit_logs,
+        self.list = to_raw_response_wrapper(
+            audit_logs.list,
         )
 
 
@@ -229,8 +229,8 @@ class AsyncAuditLogsWithRawResponse:
     def __init__(self, audit_logs: AsyncAuditLogs) -> None:
         self._audit_logs = audit_logs
 
-        self.audit_logs_get_user_audit_logs = async_to_raw_response_wrapper(
-            audit_logs.audit_logs_get_user_audit_logs,
+        self.list = async_to_raw_response_wrapper(
+            audit_logs.list,
         )
 
 
@@ -238,8 +238,8 @@ class AuditLogsWithStreamingResponse:
     def __init__(self, audit_logs: AuditLogs) -> None:
         self._audit_logs = audit_logs
 
-        self.audit_logs_get_user_audit_logs = to_streamed_response_wrapper(
-            audit_logs.audit_logs_get_user_audit_logs,
+        self.list = to_streamed_response_wrapper(
+            audit_logs.list,
         )
 
 
@@ -247,6 +247,6 @@ class AsyncAuditLogsWithStreamingResponse:
     def __init__(self, audit_logs: AsyncAuditLogs) -> None:
         self._audit_logs = audit_logs
 
-        self.audit_logs_get_user_audit_logs = async_to_streamed_response_wrapper(
-            audit_logs.audit_logs_get_user_audit_logs,
+        self.list = async_to_streamed_response_wrapper(
+            audit_logs.list,
         )
