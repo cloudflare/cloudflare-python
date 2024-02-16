@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["NetworkCreateParams"]
+__all__ = ["NetworkUpdateParams"]
 
 
-class NetworkCreateParams(TypedDict, total=False):
+class NetworkUpdateParams(TypedDict, total=False):
     account_id: Required[str]
     """Cloudflare account ID"""
 

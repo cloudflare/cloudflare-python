@@ -9,9 +9,9 @@ import httpx
 from ...types import (
     MtlsCertificateGetResponse,
     MtlsCertificateListResponse,
-    MtlsCertificateCreateResponse,
     MtlsCertificateDeleteResponse,
-    mtls_certificate_create_params,
+    MtlsCertificateUpdateResponse,
+    mtls_certificate_update_params,
 )
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import maybe_transform
@@ -52,7 +52,7 @@ class MtlsCertificates(SyncAPIResource):
     def with_streaming_response(self) -> MtlsCertificatesWithStreamingResponse:
         return MtlsCertificatesWithStreamingResponse(self)
 
-    def create(
+    def update(
         self,
         account_id: str,
         *,
@@ -66,7 +66,7 @@ class MtlsCertificates(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MtlsCertificateCreateResponse:
+    ) -> MtlsCertificateUpdateResponse:
         """
         Upload a certificate that you want to use with mTLS-enabled Cloudflare services.
 
@@ -100,7 +100,7 @@ class MtlsCertificates(SyncAPIResource):
                     "name": name,
                     "private_key": private_key,
                 },
-                mtls_certificate_create_params.MtlsCertificateCreateParams,
+                mtls_certificate_update_params.MtlsCertificateUpdateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -109,7 +109,7 @@ class MtlsCertificates(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[MtlsCertificateCreateResponse], ResultWrapper[MtlsCertificateCreateResponse]),
+            cast_to=cast(Type[MtlsCertificateUpdateResponse], ResultWrapper[MtlsCertificateUpdateResponse]),
         )
 
     def list(
@@ -258,7 +258,7 @@ class AsyncMtlsCertificates(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncMtlsCertificatesWithStreamingResponse:
         return AsyncMtlsCertificatesWithStreamingResponse(self)
 
-    async def create(
+    async def update(
         self,
         account_id: str,
         *,
@@ -272,7 +272,7 @@ class AsyncMtlsCertificates(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MtlsCertificateCreateResponse:
+    ) -> MtlsCertificateUpdateResponse:
         """
         Upload a certificate that you want to use with mTLS-enabled Cloudflare services.
 
@@ -306,7 +306,7 @@ class AsyncMtlsCertificates(AsyncAPIResource):
                     "name": name,
                     "private_key": private_key,
                 },
-                mtls_certificate_create_params.MtlsCertificateCreateParams,
+                mtls_certificate_update_params.MtlsCertificateUpdateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -315,7 +315,7 @@ class AsyncMtlsCertificates(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[MtlsCertificateCreateResponse], ResultWrapper[MtlsCertificateCreateResponse]),
+            cast_to=cast(Type[MtlsCertificateUpdateResponse], ResultWrapper[MtlsCertificateUpdateResponse]),
         )
 
     async def list(
@@ -455,8 +455,8 @@ class MtlsCertificatesWithRawResponse:
     def __init__(self, mtls_certificates: MtlsCertificates) -> None:
         self._mtls_certificates = mtls_certificates
 
-        self.create = to_raw_response_wrapper(
-            mtls_certificates.create,
+        self.update = to_raw_response_wrapper(
+            mtls_certificates.update,
         )
         self.list = to_raw_response_wrapper(
             mtls_certificates.list,
@@ -477,8 +477,8 @@ class AsyncMtlsCertificatesWithRawResponse:
     def __init__(self, mtls_certificates: AsyncMtlsCertificates) -> None:
         self._mtls_certificates = mtls_certificates
 
-        self.create = async_to_raw_response_wrapper(
-            mtls_certificates.create,
+        self.update = async_to_raw_response_wrapper(
+            mtls_certificates.update,
         )
         self.list = async_to_raw_response_wrapper(
             mtls_certificates.list,
@@ -499,8 +499,8 @@ class MtlsCertificatesWithStreamingResponse:
     def __init__(self, mtls_certificates: MtlsCertificates) -> None:
         self._mtls_certificates = mtls_certificates
 
-        self.create = to_streamed_response_wrapper(
-            mtls_certificates.create,
+        self.update = to_streamed_response_wrapper(
+            mtls_certificates.update,
         )
         self.list = to_streamed_response_wrapper(
             mtls_certificates.list,
@@ -521,8 +521,8 @@ class AsyncMtlsCertificatesWithStreamingResponse:
     def __init__(self, mtls_certificates: AsyncMtlsCertificates) -> None:
         self._mtls_certificates = mtls_certificates
 
-        self.create = async_to_streamed_response_wrapper(
-            mtls_certificates.create,
+        self.update = async_to_streamed_response_wrapper(
+            mtls_certificates.update,
         )
         self.list = async_to_streamed_response_wrapper(
             mtls_certificates.list,

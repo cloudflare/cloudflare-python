@@ -22,10 +22,10 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.teamnets.routes import (
-    NetworkCreateResponse,
     NetworkDeleteResponse,
-    network_create_params,
+    NetworkUpdateResponse,
     network_delete_params,
+    network_update_params,
 )
 
 __all__ = ["Networks", "AsyncNetworks"]
@@ -40,7 +40,7 @@ class Networks(SyncAPIResource):
     def with_streaming_response(self) -> NetworksWithStreamingResponse:
         return NetworksWithStreamingResponse(self)
 
-    def create(
+    def update(
         self,
         ip_network_encoded: str,
         *,
@@ -53,7 +53,7 @@ class Networks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> NetworkCreateResponse:
+    ) -> NetworkUpdateResponse:
         """Routes a private network through a Cloudflare Tunnel.
 
         The CIDR in
@@ -89,7 +89,7 @@ class Networks(SyncAPIResource):
                     "comment": comment,
                     "virtual_network_id": virtual_network_id,
                 },
-                network_create_params.NetworkCreateParams,
+                network_update_params.NetworkUpdateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -98,7 +98,7 @@ class Networks(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[NetworkCreateResponse], ResultWrapper[NetworkCreateResponse]),
+            cast_to=cast(Type[NetworkUpdateResponse], ResultWrapper[NetworkUpdateResponse]),
         )
 
     def delete(
@@ -166,7 +166,7 @@ class AsyncNetworks(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncNetworksWithStreamingResponse:
         return AsyncNetworksWithStreamingResponse(self)
 
-    async def create(
+    async def update(
         self,
         ip_network_encoded: str,
         *,
@@ -179,7 +179,7 @@ class AsyncNetworks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> NetworkCreateResponse:
+    ) -> NetworkUpdateResponse:
         """Routes a private network through a Cloudflare Tunnel.
 
         The CIDR in
@@ -215,7 +215,7 @@ class AsyncNetworks(AsyncAPIResource):
                     "comment": comment,
                     "virtual_network_id": virtual_network_id,
                 },
-                network_create_params.NetworkCreateParams,
+                network_update_params.NetworkUpdateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -224,7 +224,7 @@ class AsyncNetworks(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[NetworkCreateResponse], ResultWrapper[NetworkCreateResponse]),
+            cast_to=cast(Type[NetworkUpdateResponse], ResultWrapper[NetworkUpdateResponse]),
         )
 
     async def delete(
@@ -287,8 +287,8 @@ class NetworksWithRawResponse:
     def __init__(self, networks: Networks) -> None:
         self._networks = networks
 
-        self.create = to_raw_response_wrapper(
-            networks.create,
+        self.update = to_raw_response_wrapper(
+            networks.update,
         )
         self.delete = to_raw_response_wrapper(
             networks.delete,
@@ -299,8 +299,8 @@ class AsyncNetworksWithRawResponse:
     def __init__(self, networks: AsyncNetworks) -> None:
         self._networks = networks
 
-        self.create = async_to_raw_response_wrapper(
-            networks.create,
+        self.update = async_to_raw_response_wrapper(
+            networks.update,
         )
         self.delete = async_to_raw_response_wrapper(
             networks.delete,
@@ -311,8 +311,8 @@ class NetworksWithStreamingResponse:
     def __init__(self, networks: Networks) -> None:
         self._networks = networks
 
-        self.create = to_streamed_response_wrapper(
-            networks.create,
+        self.update = to_streamed_response_wrapper(
+            networks.update,
         )
         self.delete = to_streamed_response_wrapper(
             networks.delete,
@@ -323,8 +323,8 @@ class AsyncNetworksWithStreamingResponse:
     def __init__(self, networks: AsyncNetworks) -> None:
         self._networks = networks
 
-        self.create = async_to_streamed_response_wrapper(
-            networks.create,
+        self.update = async_to_streamed_response_wrapper(
+            networks.update,
         )
         self.delete = async_to_streamed_response_wrapper(
             networks.delete,
