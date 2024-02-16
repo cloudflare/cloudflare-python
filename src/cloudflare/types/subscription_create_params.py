@@ -5,10 +5,10 @@ from __future__ import annotations
 from typing import List, Iterable
 from typing_extensions import Literal, TypedDict
 
-__all__ = ["SubscriptionZoneSubscriptionCreateZoneSubscriptionParams", "App", "ComponentValue", "RatePlan", "Zone"]
+__all__ = ["SubscriptionCreateParams", "App", "ComponentValue", "RatePlan", "Zone"]
 
 
-class SubscriptionZoneSubscriptionCreateZoneSubscriptionParams(TypedDict, total=False):
+class SubscriptionCreateParams(TypedDict, total=False):
     app: App
 
     component_values: Iterable[ComponentValue]

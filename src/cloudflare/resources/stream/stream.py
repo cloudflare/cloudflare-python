@@ -58,9 +58,9 @@ from .videos import (
 )
 from ...types import (
     StreamGetResponse,
-    StreamUpdateResponse,
+    StreamCreateResponse,
     StreamStreamVideosListVideosResponse,
-    stream_update_params,
+    stream_create_params,
     stream_stream_videos_list_videos_params,
 )
 from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
@@ -199,7 +199,7 @@ class Stream(SyncAPIResource):
     def with_streaming_response(self) -> StreamWithStreamingResponse:
         return StreamWithStreamingResponse(self)
 
-    def update(
+    def create(
         self,
         identifier: str,
         *,
@@ -218,7 +218,7 @@ class Stream(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> StreamUpdateResponse:
+    ) -> StreamCreateResponse:
         """
         Edit details for a single video.
 
@@ -281,7 +281,7 @@ class Stream(SyncAPIResource):
                     "thumbnail_timestamp_pct": thumbnail_timestamp_pct,
                     "upload_expiry": upload_expiry,
                 },
-                stream_update_params.StreamUpdateParams,
+                stream_create_params.StreamCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -290,7 +290,7 @@ class Stream(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[StreamUpdateResponse], ResultWrapper[StreamUpdateResponse]),
+            cast_to=cast(Type[StreamCreateResponse], ResultWrapper[StreamCreateResponse]),
         )
 
     def delete(
@@ -563,7 +563,7 @@ class AsyncStream(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncStreamWithStreamingResponse:
         return AsyncStreamWithStreamingResponse(self)
 
-    async def update(
+    async def create(
         self,
         identifier: str,
         *,
@@ -582,7 +582,7 @@ class AsyncStream(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> StreamUpdateResponse:
+    ) -> StreamCreateResponse:
         """
         Edit details for a single video.
 
@@ -645,7 +645,7 @@ class AsyncStream(AsyncAPIResource):
                     "thumbnail_timestamp_pct": thumbnail_timestamp_pct,
                     "upload_expiry": upload_expiry,
                 },
-                stream_update_params.StreamUpdateParams,
+                stream_create_params.StreamCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -654,7 +654,7 @@ class AsyncStream(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[StreamUpdateResponse], ResultWrapper[StreamUpdateResponse]),
+            cast_to=cast(Type[StreamCreateResponse], ResultWrapper[StreamCreateResponse]),
         )
 
     async def delete(
@@ -870,8 +870,8 @@ class StreamWithRawResponse:
     def __init__(self, stream: Stream) -> None:
         self._stream = stream
 
-        self.update = to_raw_response_wrapper(
-            stream.update,
+        self.create = to_raw_response_wrapper(
+            stream.create,
         )
         self.delete = to_raw_response_wrapper(
             stream.delete,
@@ -943,8 +943,8 @@ class AsyncStreamWithRawResponse:
     def __init__(self, stream: AsyncStream) -> None:
         self._stream = stream
 
-        self.update = async_to_raw_response_wrapper(
-            stream.update,
+        self.create = async_to_raw_response_wrapper(
+            stream.create,
         )
         self.delete = async_to_raw_response_wrapper(
             stream.delete,
@@ -1016,8 +1016,8 @@ class StreamWithStreamingResponse:
     def __init__(self, stream: Stream) -> None:
         self._stream = stream
 
-        self.update = to_streamed_response_wrapper(
-            stream.update,
+        self.create = to_streamed_response_wrapper(
+            stream.create,
         )
         self.delete = to_streamed_response_wrapper(
             stream.delete,
@@ -1089,8 +1089,8 @@ class AsyncStreamWithStreamingResponse:
     def __init__(self, stream: AsyncStream) -> None:
         self._stream = stream
 
-        self.update = async_to_streamed_response_wrapper(
-            stream.update,
+        self.create = async_to_streamed_response_wrapper(
+            stream.create,
         )
         self.delete = async_to_streamed_response_wrapper(
             stream.delete,

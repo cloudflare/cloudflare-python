@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import TypedDict
 
-__all__ = ["EdgeUpdateParams"]
+__all__ = ["EdgeCreateParams"]
 
 
-class EdgeUpdateParams(TypedDict, total=False):
+class EdgeCreateParams(TypedDict, total=False):
     fields: str
     """Comma-separated list of fields."""
 

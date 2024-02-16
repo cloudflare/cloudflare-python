@@ -5,10 +5,10 @@ from datetime import datetime
 
 from ...._models import BaseModel
 
-__all__ = ["NetworkUpdateResponse"]
+__all__ = ["NetworkCreateResponse"]
 
 
-class NetworkUpdateResponse(BaseModel):
+class NetworkCreateResponse(BaseModel):
     id: Optional[str] = None
     """UUID of the route."""
 

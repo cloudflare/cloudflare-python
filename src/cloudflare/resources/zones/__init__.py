@@ -1,12 +1,12 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from .hold import (
-    Hold,
-    AsyncHold,
-    HoldWithRawResponse,
-    AsyncHoldWithRawResponse,
-    HoldWithStreamingResponse,
-    AsyncHoldWithStreamingResponse,
+from .holds import (
+    Holds,
+    AsyncHolds,
+    HoldsWithRawResponse,
+    AsyncHoldsWithRawResponse,
+    HoldsWithStreamingResponse,
+    AsyncHoldsWithStreamingResponse,
 )
 from .zones import (
     Zones,
@@ -18,12 +18,12 @@ from .zones import (
 )
 
 __all__ = [
-    "Hold",
-    "AsyncHold",
-    "HoldWithRawResponse",
-    "AsyncHoldWithRawResponse",
-    "HoldWithStreamingResponse",
-    "AsyncHoldWithStreamingResponse",
+    "Holds",
+    "AsyncHolds",
+    "HoldsWithRawResponse",
+    "AsyncHoldsWithRawResponse",
+    "HoldsWithStreamingResponse",
+    "AsyncHoldsWithStreamingResponse",
     "Zones",
     "AsyncZones",
     "ZonesWithRawResponse",

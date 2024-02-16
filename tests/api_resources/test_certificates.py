@@ -11,9 +11,9 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types import (
     CertificateGetResponse,
+    CertificateListResponse,
+    CertificateCreateResponse,
     CertificateDeleteResponse,
-    CertificateOriginCaListCertificatesResponse,
-    CertificateOriginCaCreateCertificateResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -21,6 +21,73 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 class TestCertificates:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_create(self, client: Cloudflare) -> None:
+        certificate = client.certificates.create()
+        assert_matches_type(CertificateCreateResponse, certificate, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
+        certificate = client.certificates.create(
+            csr="-----BEGIN CERTIFICATE REQUEST-----\nMIICxzCCAa8CAQAwSDELMAkGA1UEBhMCVVMxFjAUBgNVBAgTDVNhbiBGcmFuY2lz\nY28xCzAJBgNVBAcTAkNBMRQwEgYDVQQDEwtleGFtcGxlLm5ldDCCASIwDQYJKoZI\nhvcNAQEBBQADggEPADCCAQoCggEBALxejtu4b+jPdFeFi6OUsye8TYJQBm3WfCvL\nHu5EvijMO/4Z2TImwASbwUF7Ir8OLgH+mGlQZeqyNvGoSOMEaZVXcYfpR1hlVak8\n4GGVr+04IGfOCqaBokaBFIwzclGZbzKmLGwIQioNxGfqFm6RGYGA3be2Je2iseBc\nN8GV1wYmvYE0RR+yWweJCTJ157exyRzu7sVxaEW9F87zBQLyOnwXc64rflXslRqi\ng7F7w5IaQYOl8yvmk/jEPCAha7fkiUfEpj4N12+oPRiMvleJF98chxjD4MH39c5I\nuOslULhrWunfh7GB1jwWNA9y44H0snrf+xvoy2TcHmxvma9Eln8CAwEAAaA6MDgG\nCSqGSIb3DQEJDjErMCkwJwYDVR0RBCAwHoILZXhhbXBsZS5uZXSCD3d3dy5leGFt\ncGxlLm5ldDANBgkqhkiG9w0BAQsFAAOCAQEAcBaX6dOnI8ncARrI9ZSF2AJX+8mx\npTHY2+Y2C0VvrVDGMtbBRH8R9yMbqWtlxeeNGf//LeMkSKSFa4kbpdx226lfui8/\nauRDBTJGx2R1ccUxmLZXx4my0W5iIMxunu+kez+BDlu7bTT2io0uXMRHue4i6quH\nyc5ibxvbJMjR7dqbcanVE10/34oprzXQsJ/VmSuZNXtjbtSKDlmcpw6To/eeAJ+J\nhXykcUihvHyG4A1m2R6qpANBjnA0pHexfwM/SgfzvpbvUg0T1ubmer8BgTwCKIWs\ndcWYTthM51JIqRBfNqy4QcBnX+GY05yltEEswQI55wdiS3CjTTA67sdbcQ==\n-----END CERTIFICATE REQUEST-----",
+            hostnames=["example.com", "*.example.com"],
+            request_type="origin-rsa",
+            requested_validity=5475,
+        )
+        assert_matches_type(CertificateCreateResponse, certificate, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_create(self, client: Cloudflare) -> None:
+        response = client.certificates.with_raw_response.create()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        certificate = response.parse()
+        assert_matches_type(CertificateCreateResponse, certificate, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_create(self, client: Cloudflare) -> None:
+        with client.certificates.with_streaming_response.create() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            certificate = response.parse()
+            assert_matches_type(CertificateCreateResponse, certificate, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_list(self, client: Cloudflare) -> None:
+        certificate = client.certificates.list()
+        assert_matches_type(Optional[CertificateListResponse], certificate, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_list(self, client: Cloudflare) -> None:
+        response = client.certificates.with_raw_response.list()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        certificate = response.parse()
+        assert_matches_type(Optional[CertificateListResponse], certificate, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_list(self, client: Cloudflare) -> None:
+        with client.certificates.with_streaming_response.list() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            certificate = response.parse()
+            assert_matches_type(Optional[CertificateListResponse], certificate, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
@@ -106,76 +173,76 @@ class TestCertificates:
                 "",
             )
 
-    @pytest.mark.skip()
-    @parametrize
-    def test_method_origin_ca_create_certificate(self, client: Cloudflare) -> None:
-        certificate = client.certificates.origin_ca_create_certificate()
-        assert_matches_type(CertificateOriginCaCreateCertificateResponse, certificate, path=["response"])
+
+class TestAsyncCertificates:
+    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_origin_ca_create_certificate_with_all_params(self, client: Cloudflare) -> None:
-        certificate = client.certificates.origin_ca_create_certificate(
+    async def test_method_create(self, async_client: AsyncCloudflare) -> None:
+        certificate = await async_client.certificates.create()
+        assert_matches_type(CertificateCreateResponse, certificate, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        certificate = await async_client.certificates.create(
             csr="-----BEGIN CERTIFICATE REQUEST-----\nMIICxzCCAa8CAQAwSDELMAkGA1UEBhMCVVMxFjAUBgNVBAgTDVNhbiBGcmFuY2lz\nY28xCzAJBgNVBAcTAkNBMRQwEgYDVQQDEwtleGFtcGxlLm5ldDCCASIwDQYJKoZI\nhvcNAQEBBQADggEPADCCAQoCggEBALxejtu4b+jPdFeFi6OUsye8TYJQBm3WfCvL\nHu5EvijMO/4Z2TImwASbwUF7Ir8OLgH+mGlQZeqyNvGoSOMEaZVXcYfpR1hlVak8\n4GGVr+04IGfOCqaBokaBFIwzclGZbzKmLGwIQioNxGfqFm6RGYGA3be2Je2iseBc\nN8GV1wYmvYE0RR+yWweJCTJ157exyRzu7sVxaEW9F87zBQLyOnwXc64rflXslRqi\ng7F7w5IaQYOl8yvmk/jEPCAha7fkiUfEpj4N12+oPRiMvleJF98chxjD4MH39c5I\nuOslULhrWunfh7GB1jwWNA9y44H0snrf+xvoy2TcHmxvma9Eln8CAwEAAaA6MDgG\nCSqGSIb3DQEJDjErMCkwJwYDVR0RBCAwHoILZXhhbXBsZS5uZXSCD3d3dy5leGFt\ncGxlLm5ldDANBgkqhkiG9w0BAQsFAAOCAQEAcBaX6dOnI8ncARrI9ZSF2AJX+8mx\npTHY2+Y2C0VvrVDGMtbBRH8R9yMbqWtlxeeNGf//LeMkSKSFa4kbpdx226lfui8/\nauRDBTJGx2R1ccUxmLZXx4my0W5iIMxunu+kez+BDlu7bTT2io0uXMRHue4i6quH\nyc5ibxvbJMjR7dqbcanVE10/34oprzXQsJ/VmSuZNXtjbtSKDlmcpw6To/eeAJ+J\nhXykcUihvHyG4A1m2R6qpANBjnA0pHexfwM/SgfzvpbvUg0T1ubmer8BgTwCKIWs\ndcWYTthM51JIqRBfNqy4QcBnX+GY05yltEEswQI55wdiS3CjTTA67sdbcQ==\n-----END CERTIFICATE REQUEST-----",
             hostnames=["example.com", "*.example.com"],
             request_type="origin-rsa",
             requested_validity=5475,
         )
-        assert_matches_type(CertificateOriginCaCreateCertificateResponse, certificate, path=["response"])
+        assert_matches_type(CertificateCreateResponse, certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_origin_ca_create_certificate(self, client: Cloudflare) -> None:
-        response = client.certificates.with_raw_response.origin_ca_create_certificate()
+    async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.certificates.with_raw_response.create()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        certificate = response.parse()
-        assert_matches_type(CertificateOriginCaCreateCertificateResponse, certificate, path=["response"])
+        certificate = await response.parse()
+        assert_matches_type(CertificateCreateResponse, certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_origin_ca_create_certificate(self, client: Cloudflare) -> None:
-        with client.certificates.with_streaming_response.origin_ca_create_certificate() as response:
+    async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.certificates.with_streaming_response.create() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            certificate = response.parse()
-            assert_matches_type(CertificateOriginCaCreateCertificateResponse, certificate, path=["response"])
+            certificate = await response.parse()
+            assert_matches_type(CertificateCreateResponse, certificate, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_origin_ca_list_certificates(self, client: Cloudflare) -> None:
-        certificate = client.certificates.origin_ca_list_certificates()
-        assert_matches_type(Optional[CertificateOriginCaListCertificatesResponse], certificate, path=["response"])
+    async def test_method_list(self, async_client: AsyncCloudflare) -> None:
+        certificate = await async_client.certificates.list()
+        assert_matches_type(Optional[CertificateListResponse], certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_origin_ca_list_certificates(self, client: Cloudflare) -> None:
-        response = client.certificates.with_raw_response.origin_ca_list_certificates()
+    async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.certificates.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        certificate = response.parse()
-        assert_matches_type(Optional[CertificateOriginCaListCertificatesResponse], certificate, path=["response"])
+        certificate = await response.parse()
+        assert_matches_type(Optional[CertificateListResponse], certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_origin_ca_list_certificates(self, client: Cloudflare) -> None:
-        with client.certificates.with_streaming_response.origin_ca_list_certificates() as response:
+    async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.certificates.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            certificate = response.parse()
-            assert_matches_type(Optional[CertificateOriginCaListCertificatesResponse], certificate, path=["response"])
+            certificate = await response.parse()
+            assert_matches_type(Optional[CertificateListResponse], certificate, path=["response"])
 
         assert cast(Any, response.is_closed) is True
-
-
-class TestAsyncCertificates:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip()
     @parametrize
@@ -260,70 +327,3 @@ class TestAsyncCertificates:
             await async_client.certificates.with_raw_response.get(
                 "",
             )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_origin_ca_create_certificate(self, async_client: AsyncCloudflare) -> None:
-        certificate = await async_client.certificates.origin_ca_create_certificate()
-        assert_matches_type(CertificateOriginCaCreateCertificateResponse, certificate, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_origin_ca_create_certificate_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        certificate = await async_client.certificates.origin_ca_create_certificate(
-            csr="-----BEGIN CERTIFICATE REQUEST-----\nMIICxzCCAa8CAQAwSDELMAkGA1UEBhMCVVMxFjAUBgNVBAgTDVNhbiBGcmFuY2lz\nY28xCzAJBgNVBAcTAkNBMRQwEgYDVQQDEwtleGFtcGxlLm5ldDCCASIwDQYJKoZI\nhvcNAQEBBQADggEPADCCAQoCggEBALxejtu4b+jPdFeFi6OUsye8TYJQBm3WfCvL\nHu5EvijMO/4Z2TImwASbwUF7Ir8OLgH+mGlQZeqyNvGoSOMEaZVXcYfpR1hlVak8\n4GGVr+04IGfOCqaBokaBFIwzclGZbzKmLGwIQioNxGfqFm6RGYGA3be2Je2iseBc\nN8GV1wYmvYE0RR+yWweJCTJ157exyRzu7sVxaEW9F87zBQLyOnwXc64rflXslRqi\ng7F7w5IaQYOl8yvmk/jEPCAha7fkiUfEpj4N12+oPRiMvleJF98chxjD4MH39c5I\nuOslULhrWunfh7GB1jwWNA9y44H0snrf+xvoy2TcHmxvma9Eln8CAwEAAaA6MDgG\nCSqGSIb3DQEJDjErMCkwJwYDVR0RBCAwHoILZXhhbXBsZS5uZXSCD3d3dy5leGFt\ncGxlLm5ldDANBgkqhkiG9w0BAQsFAAOCAQEAcBaX6dOnI8ncARrI9ZSF2AJX+8mx\npTHY2+Y2C0VvrVDGMtbBRH8R9yMbqWtlxeeNGf//LeMkSKSFa4kbpdx226lfui8/\nauRDBTJGx2R1ccUxmLZXx4my0W5iIMxunu+kez+BDlu7bTT2io0uXMRHue4i6quH\nyc5ibxvbJMjR7dqbcanVE10/34oprzXQsJ/VmSuZNXtjbtSKDlmcpw6To/eeAJ+J\nhXykcUihvHyG4A1m2R6qpANBjnA0pHexfwM/SgfzvpbvUg0T1ubmer8BgTwCKIWs\ndcWYTthM51JIqRBfNqy4QcBnX+GY05yltEEswQI55wdiS3CjTTA67sdbcQ==\n-----END CERTIFICATE REQUEST-----",
-            hostnames=["example.com", "*.example.com"],
-            request_type="origin-rsa",
-            requested_validity=5475,
-        )
-        assert_matches_type(CertificateOriginCaCreateCertificateResponse, certificate, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_raw_response_origin_ca_create_certificate(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.certificates.with_raw_response.origin_ca_create_certificate()
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        certificate = await response.parse()
-        assert_matches_type(CertificateOriginCaCreateCertificateResponse, certificate, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_streaming_response_origin_ca_create_certificate(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.certificates.with_streaming_response.origin_ca_create_certificate() as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            certificate = await response.parse()
-            assert_matches_type(CertificateOriginCaCreateCertificateResponse, certificate, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_origin_ca_list_certificates(self, async_client: AsyncCloudflare) -> None:
-        certificate = await async_client.certificates.origin_ca_list_certificates()
-        assert_matches_type(Optional[CertificateOriginCaListCertificatesResponse], certificate, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_raw_response_origin_ca_list_certificates(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.certificates.with_raw_response.origin_ca_list_certificates()
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        certificate = await response.parse()
-        assert_matches_type(Optional[CertificateOriginCaListCertificatesResponse], certificate, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_streaming_response_origin_ca_list_certificates(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.certificates.with_streaming_response.origin_ca_list_certificates() as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            certificate = await response.parse()
-            assert_matches_type(Optional[CertificateOriginCaListCertificatesResponse], certificate, path=["response"])
-
-        assert cast(Any, response.is_closed) is True

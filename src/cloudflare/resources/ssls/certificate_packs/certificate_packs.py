@@ -36,10 +36,10 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ....types.ssls import (
     CertificatePackGetResponse,
+    CertificatePackListResponse,
     CertificatePackDeleteResponse,
     CertificatePackUpdateResponse,
-    CertificatePackCertificatePacksListCertificatePacksResponse,
-    certificate_pack_certificate_packs_list_certificate_packs_params,
+    certificate_pack_list_params,
 )
 from ...._base_client import (
     make_request_options,
@@ -114,6 +114,49 @@ class CertificatePacks(SyncAPIResource):
             cast_to=cast(Type[CertificatePackUpdateResponse], ResultWrapper[CertificatePackUpdateResponse]),
         )
 
+    def list(
+        self,
+        zone_id: str,
+        *,
+        status: Literal["all"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CertificatePackListResponse]:
+        """
+        For a given zone, list all active certificate packs.
+
+        Args:
+          zone_id: Identifier
+
+          status: Include Certificate Packs of all statuses, not just active ones.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return self._get(
+            f"/zones/{zone_id}/ssl/certificate_packs",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"status": status}, certificate_pack_list_params.CertificatePackListParams),
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[CertificatePackListResponse]], ResultWrapper[CertificatePackListResponse]),
+        )
+
     def delete(
         self,
         certificate_pack_id: str,
@@ -158,55 +201,6 @@ class CertificatePacks(SyncAPIResource):
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(Type[CertificatePackDeleteResponse], ResultWrapper[CertificatePackDeleteResponse]),
-        )
-
-    def certificate_packs_list_certificate_packs(
-        self,
-        zone_id: str,
-        *,
-        status: Literal["all"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CertificatePackCertificatePacksListCertificatePacksResponse]:
-        """
-        For a given zone, list all active certificate packs.
-
-        Args:
-          zone_id: Identifier
-
-          status: Include Certificate Packs of all statuses, not just active ones.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return self._get(
-            f"/zones/{zone_id}/ssl/certificate_packs",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {"status": status},
-                    certificate_pack_certificate_packs_list_certificate_packs_params.CertificatePackCertificatePacksListCertificatePacksParams,
-                ),
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[Optional[CertificatePackCertificatePacksListCertificatePacksResponse]],
-                ResultWrapper[CertificatePackCertificatePacksListCertificatePacksResponse],
-            ),
         )
 
     def get(
@@ -327,6 +321,49 @@ class AsyncCertificatePacks(AsyncAPIResource):
             cast_to=cast(Type[CertificatePackUpdateResponse], ResultWrapper[CertificatePackUpdateResponse]),
         )
 
+    async def list(
+        self,
+        zone_id: str,
+        *,
+        status: Literal["all"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CertificatePackListResponse]:
+        """
+        For a given zone, list all active certificate packs.
+
+        Args:
+          zone_id: Identifier
+
+          status: Include Certificate Packs of all statuses, not just active ones.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return await self._get(
+            f"/zones/{zone_id}/ssl/certificate_packs",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"status": status}, certificate_pack_list_params.CertificatePackListParams),
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[CertificatePackListResponse]], ResultWrapper[CertificatePackListResponse]),
+        )
+
     async def delete(
         self,
         certificate_pack_id: str,
@@ -371,55 +408,6 @@ class AsyncCertificatePacks(AsyncAPIResource):
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(Type[CertificatePackDeleteResponse], ResultWrapper[CertificatePackDeleteResponse]),
-        )
-
-    async def certificate_packs_list_certificate_packs(
-        self,
-        zone_id: str,
-        *,
-        status: Literal["all"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CertificatePackCertificatePacksListCertificatePacksResponse]:
-        """
-        For a given zone, list all active certificate packs.
-
-        Args:
-          zone_id: Identifier
-
-          status: Include Certificate Packs of all statuses, not just active ones.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return await self._get(
-            f"/zones/{zone_id}/ssl/certificate_packs",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {"status": status},
-                    certificate_pack_certificate_packs_list_certificate_packs_params.CertificatePackCertificatePacksListCertificatePacksParams,
-                ),
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[Optional[CertificatePackCertificatePacksListCertificatePacksResponse]],
-                ResultWrapper[CertificatePackCertificatePacksListCertificatePacksResponse],
-            ),
         )
 
     async def get(
@@ -481,11 +469,11 @@ class CertificatePacksWithRawResponse:
         self.update = to_raw_response_wrapper(
             certificate_packs.update,
         )
+        self.list = to_raw_response_wrapper(
+            certificate_packs.list,
+        )
         self.delete = to_raw_response_wrapper(
             certificate_packs.delete,
-        )
-        self.certificate_packs_list_certificate_packs = to_raw_response_wrapper(
-            certificate_packs.certificate_packs_list_certificate_packs,
         )
         self.get = to_raw_response_wrapper(
             certificate_packs.get,
@@ -507,11 +495,11 @@ class AsyncCertificatePacksWithRawResponse:
         self.update = async_to_raw_response_wrapper(
             certificate_packs.update,
         )
+        self.list = async_to_raw_response_wrapper(
+            certificate_packs.list,
+        )
         self.delete = async_to_raw_response_wrapper(
             certificate_packs.delete,
-        )
-        self.certificate_packs_list_certificate_packs = async_to_raw_response_wrapper(
-            certificate_packs.certificate_packs_list_certificate_packs,
         )
         self.get = async_to_raw_response_wrapper(
             certificate_packs.get,
@@ -533,11 +521,11 @@ class CertificatePacksWithStreamingResponse:
         self.update = to_streamed_response_wrapper(
             certificate_packs.update,
         )
+        self.list = to_streamed_response_wrapper(
+            certificate_packs.list,
+        )
         self.delete = to_streamed_response_wrapper(
             certificate_packs.delete,
-        )
-        self.certificate_packs_list_certificate_packs = to_streamed_response_wrapper(
-            certificate_packs.certificate_packs_list_certificate_packs,
         )
         self.get = to_streamed_response_wrapper(
             certificate_packs.get,
@@ -559,11 +547,11 @@ class AsyncCertificatePacksWithStreamingResponse:
         self.update = async_to_streamed_response_wrapper(
             certificate_packs.update,
         )
+        self.list = async_to_streamed_response_wrapper(
+            certificate_packs.list,
+        )
         self.delete = async_to_streamed_response_wrapper(
             certificate_packs.delete,
-        )
-        self.certificate_packs_list_certificate_packs = async_to_streamed_response_wrapper(
-            certificate_packs.certificate_packs_list_certificate_packs,
         )
         self.get = async_to_streamed_response_wrapper(
             certificate_packs.get,

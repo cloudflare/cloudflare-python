@@ -4,9 +4,9 @@ from __future__ import annotations
 
 from typing_extensions import Literal, TypedDict
 
-__all__ = ["CertificatePackCertificatePacksListCertificatePacksParams"]
+__all__ = ["CertificatePackListParams"]
 
 
-class CertificatePackCertificatePacksListCertificatePacksParams(TypedDict, total=False):
+class CertificatePackListParams(TypedDict, total=False):
     status: Literal["all"]
     """Include Certificate Packs of all statuses, not just active ones."""

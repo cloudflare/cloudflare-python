@@ -8,7 +8,7 @@ from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
 
-__all__ = ["StreamUpdateResponse", "Input", "Playback", "Status", "Watermark"]
+__all__ = ["StreamCreateResponse", "Input", "Playback", "Status", "Watermark"]
 
 
 class Input(BaseModel):
@@ -115,7 +115,7 @@ class Watermark(BaseModel):
     """The width of the image in pixels."""
 
 
-class StreamUpdateResponse(BaseModel):
+class StreamCreateResponse(BaseModel):
     allowed_origins: Optional[List[str]] = FieldInfo(alias="allowedOrigins", default=None)
     """Lists the origins allowed to display the video.
 
