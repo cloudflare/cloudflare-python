@@ -7,14 +7,14 @@ from .._models import BaseModel
 
 __all__ = [
     "PcapGetResponse",
-    "Mm6ZzvAnPcapsResponseSimple",
-    "Mm6ZzvAnPcapsResponseSimpleFilterV1",
-    "Mm6ZzvAnPcapsResponseFull",
-    "Mm6ZzvAnPcapsResponseFullFilterV1",
+    "GEiiakUrPcapsResponseSimple",
+    "GEiiakUrPcapsResponseSimpleFilterV1",
+    "GEiiakUrPcapsResponseFull",
+    "GEiiakUrPcapsResponseFullFilterV1",
 ]
 
 
-class Mm6ZzvAnPcapsResponseSimpleFilterV1(BaseModel):
+class GEiiakUrPcapsResponseSimpleFilterV1(BaseModel):
     destination_address: Optional[str] = None
     """The destination IP address of the packet."""
 
@@ -31,11 +31,11 @@ class Mm6ZzvAnPcapsResponseSimpleFilterV1(BaseModel):
     """The source port of the packet."""
 
 
-class Mm6ZzvAnPcapsResponseSimple(BaseModel):
+class GEiiakUrPcapsResponseSimple(BaseModel):
     id: Optional[str] = None
     """The ID for the packet capture."""
 
-    filter_v1: Optional[Mm6ZzvAnPcapsResponseSimpleFilterV1] = None
+    filter_v1: Optional[GEiiakUrPcapsResponseSimpleFilterV1] = None
     """The packet capture filter. When this field is empty, all packets are captured."""
 
     status: Optional[
@@ -62,7 +62,7 @@ class Mm6ZzvAnPcapsResponseSimple(BaseModel):
     """
 
 
-class Mm6ZzvAnPcapsResponseFullFilterV1(BaseModel):
+class GEiiakUrPcapsResponseFullFilterV1(BaseModel):
     destination_address: Optional[str] = None
     """The destination IP address of the packet."""
 
@@ -79,7 +79,7 @@ class Mm6ZzvAnPcapsResponseFullFilterV1(BaseModel):
     """The source port of the packet."""
 
 
-class Mm6ZzvAnPcapsResponseFull(BaseModel):
+class GEiiakUrPcapsResponseFull(BaseModel):
     id: Optional[str] = None
     """The ID for the packet capture."""
 
@@ -105,7 +105,7 @@ class Mm6ZzvAnPcapsResponseFull(BaseModel):
     This field only applies to `full` packet captures.
     """
 
-    filter_v1: Optional[Mm6ZzvAnPcapsResponseFullFilterV1] = None
+    filter_v1: Optional[GEiiakUrPcapsResponseFullFilterV1] = None
     """The packet capture filter. When this field is empty, all packets are captured."""
 
     status: Optional[
@@ -132,4 +132,4 @@ class Mm6ZzvAnPcapsResponseFull(BaseModel):
     """
 
 
-PcapGetResponse = Union[Mm6ZzvAnPcapsResponseSimple, Mm6ZzvAnPcapsResponseFull]
+PcapGetResponse = Union[GEiiakUrPcapsResponseSimple, GEiiakUrPcapsResponseFull]
