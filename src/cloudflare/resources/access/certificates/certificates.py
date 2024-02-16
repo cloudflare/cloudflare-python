@@ -2,46 +2,10 @@
 
 from __future__ import annotations
 
+from typing import List, Type, Optional, cast
+
 import httpx
 
-from .settings import Settings, AsyncSettings
-
-from ...._compat import cached_property
-
-from ....types.access import (
-    CertificateUpdateResponse,
-    CertificateDeleteResponse,
-    CertificateAccessMTLSAuthenticationAddAnMTLSCertificateResponse,
-    CertificateAccessMTLSAuthenticationListMTLSCertificatesResponse,
-    CertificateGetResponse,
-)
-
-from typing import Type, List, Optional
-
-from ...._response import (
-    to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ....types import shared_params
-from ....types.access import certificate_update_params
-from ....types.access import certificate_access_m_tls_authentication_add_an_m_tls_certificate_params
 from .settings import (
     Settings,
     AsyncSettings,
@@ -50,17 +14,29 @@ from .settings import (
     SettingsWithStreamingResponse,
     AsyncSettingsWithStreamingResponse,
 )
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import maybe_transform
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
 from ...._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ...._base_client import (
+    make_request_options,
+)
+from ....types.access import (
+    CertificateGetResponse,
+    CertificateDeleteResponse,
+    CertificateUpdateResponse,
+    CertificateAccessMTLSAuthenticationAddAnMTLSCertificateResponse,
+    CertificateAccessMTLSAuthenticationListMTLSCertificatesResponse,
+    certificate_update_params,
+    certificate_access_m_tls_authentication_add_an_m_tls_certificate_params,
+)
 
 __all__ = ["Certificates", "AsyncCertificates"]
 

@@ -2,53 +2,11 @@
 
 from __future__ import annotations
 
+from typing import List, Type, Iterable, Optional, cast
+from typing_extensions import Literal
+
 import httpx
 
-from .health import Health, AsyncHealth
-
-from ...._compat import cached_property
-
-from .references import References, AsyncReferences
-
-from ....types.load_balancers import (
-    PoolCreateResponse,
-    PoolUpdateResponse,
-    PoolListResponse,
-    PoolDeleteResponse,
-    PoolGetResponse,
-    pool_create_params,
-    pool_update_params,
-)
-
-from typing import Type, Iterable, Optional, List
-
-from typing_extensions import Literal
-
-from ...._response import (
-    to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ....types import shared_params
-from ....types.load_balancers import pool_create_params
-from ....types.load_balancers import pool_update_params
-from ....types.load_balancers import pool_list_params
 from .health import (
     Health,
     AsyncHealth,
@@ -57,6 +15,9 @@ from .health import (
     HealthWithStreamingResponse,
     AsyncHealthWithStreamingResponse,
 )
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import maybe_transform
+from ...._compat import cached_property
 from .references import (
     References,
     AsyncReferences,
@@ -65,17 +26,27 @@ from .references import (
     ReferencesWithStreamingResponse,
     AsyncReferencesWithStreamingResponse,
 )
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
 from ...._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ...._base_client import (
+    make_request_options,
+)
+from ....types.load_balancers import (
+    PoolGetResponse,
+    PoolListResponse,
+    PoolCreateResponse,
+    PoolDeleteResponse,
+    PoolUpdateResponse,
+    pool_list_params,
+    pool_create_params,
+    pool_update_params,
+)
 
 __all__ = ["Pools", "AsyncPools"]
 

@@ -2,28 +2,19 @@
 
 from __future__ import annotations
 
-from typing import Optional, Any, cast
-
-from cloudflare.types.users.firewalls.access_rules import (
-    RuleUpdateResponse,
-    RuleDeleteResponse,
-    RuleIPAccessRulesForAUserCreateAnIPAccessRuleResponse,
-    RuleIPAccessRulesForAUserListIPAccessRulesResponse,
-)
-
 import os
+from typing import Any, Optional, cast
+
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.users.firewalls.access_rules import rule_update_params
 from cloudflare.types.users.firewalls.access_rules import (
-    rule_ip_access_rules_for_a_user_create_an_ip_access_rule_params,
+    RuleDeleteResponse,
+    RuleUpdateResponse,
+    RuleIPAccessRulesForAUserListIPAccessRulesResponse,
+    RuleIPAccessRulesForAUserCreateAnIPAccessRuleResponse,
 )
-from cloudflare.types.users.firewalls.access_rules import rule_ip_access_rules_for_a_user_list_ip_access_rules_params
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
