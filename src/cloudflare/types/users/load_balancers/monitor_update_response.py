@@ -1,15 +1,15 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from typing import List, Optional
+from typing import Optional
 from datetime import datetime
 from typing_extensions import Literal
 
 from ...._models import BaseModel
 
-__all__ = ["MonitorLoadBalancerMonitorsListMonitorsResponse", "MonitorLoadBalancerMonitorsListMonitorsResponseItem"]
+__all__ = ["MonitorUpdateResponse"]
 
 
-class MonitorLoadBalancerMonitorsListMonitorsResponseItem(BaseModel):
+class MonitorUpdateResponse(BaseModel):
     id: Optional[str] = None
 
     allow_insecure: Optional[bool] = None
@@ -111,6 +111,3 @@ class MonitorLoadBalancerMonitorsListMonitorsResponseItem(BaseModel):
     Currently supported protocols are 'HTTP','HTTPS', 'TCP', 'ICMP-PING',
     'UDP-ICMP', and 'SMTP'.
     """
-
-
-MonitorLoadBalancerMonitorsListMonitorsResponse = List[MonitorLoadBalancerMonitorsListMonitorsResponseItem]
