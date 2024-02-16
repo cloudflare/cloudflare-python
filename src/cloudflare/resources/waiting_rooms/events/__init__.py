@@ -1,20 +1,18 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from .events import (
-    Events,
-    AsyncEvents,
-    EventsWithRawResponse,
-    AsyncEventsWithRawResponse,
-    EventsWithStreamingResponse,
-    AsyncEventsWithStreamingResponse,
-)
+from .details import Details, AsyncDetails
 from .details import (
-    Details,
-    AsyncDetails,
     DetailsWithRawResponse,
     AsyncDetailsWithRawResponse,
     DetailsWithStreamingResponse,
     AsyncDetailsWithStreamingResponse,
+)
+from .events import Events, AsyncEvents
+from .events import (
+    EventsWithRawResponse,
+    AsyncEventsWithRawResponse,
+    EventsWithStreamingResponse,
+    AsyncEventsWithStreamingResponse,
 )
 
 __all__ = [
