@@ -151,7 +151,7 @@ class PurgeCaches(SyncAPIResource):
         self,
         identifier: str,
         *,
-        files: List[purge_cach_zone_purge_params.JIaMi3xIFilesFile] | NotGiven = NOT_GIVEN,
+        files: List[purge_cach_zone_purge_params.CkpEqDfYFilesFile] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -209,7 +209,7 @@ class PurgeCaches(SyncAPIResource):
         prefixes: List[str] | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
         purge_everything: bool | NotGiven = NOT_GIVEN,
-        files: List[purge_cach_zone_purge_params.JIaMi3xIFilesFile] | NotGiven = NOT_GIVEN,
+        files: List[purge_cach_zone_purge_params.CkpEqDfYFilesFile] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -368,7 +368,7 @@ class AsyncPurgeCaches(AsyncAPIResource):
         self,
         identifier: str,
         *,
-        files: List[purge_cach_zone_purge_params.JIaMi3xIFilesFile] | NotGiven = NOT_GIVEN,
+        files: List[purge_cach_zone_purge_params.CkpEqDfYFilesFile] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -426,7 +426,7 @@ class AsyncPurgeCaches(AsyncAPIResource):
         prefixes: List[str] | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
         purge_everything: bool | NotGiven = NOT_GIVEN,
-        files: List[purge_cach_zone_purge_params.JIaMi3xIFilesFile] | NotGiven = NOT_GIVEN,
+        files: List[purge_cach_zone_purge_params.CkpEqDfYFilesFile] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
