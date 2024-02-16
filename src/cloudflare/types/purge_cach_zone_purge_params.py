@@ -2,41 +2,36 @@
 
 from __future__ import annotations
 
-from typing import List, Union
 from typing_extensions import TypedDict
 
-__all__ = [
-    "PurgeCachZonePurgeParams",
-    "GJq47JoyFlex",
-    "GJq47JoyEverything",
-    "GJq47JoyFiles",
-    "GJq47JoyFilesFile",
-    "GJq47JoyFilesFileGJq47JoyURLAndHeaders",
-]
+from typing import List, Union
 
+from typing import List, Union, Dict, Optional
+from typing_extensions import Literal, TypedDict, Required, Annotated
+from .._types import FileTypes
+from .._utils import PropertyInfo
+from ..types import shared_params
 
-class GJq47JoyFlex(TypedDict, total=False):
+__all__ = ["PurgeCachZonePurgeParams", "_9HseNYt2Flex", "_9HseNYt2Everything", "_9HseNYt2Files", "9HseNYt2FilesFile", "9HseNYt2FilesFile_9HseNYt2URLAndHeaders"]
+
+class _9HseNYt2Flex(TypedDict, total=False):
     hosts: List[str]
 
     prefixes: List[str]
 
     tags: List[str]
 
-
-class GJq47JoyEverything(TypedDict, total=False):
+class _9HseNYt2Everything(TypedDict, total=False):
     purge_everything: bool
 
+class _9HseNYt2Files(TypedDict, total=False):
+    files: List[9HseNYt2FilesFile]
 
-class GJq47JoyFiles(TypedDict, total=False):
-    files: List[GJq47JoyFilesFile]
-
-
-class GJq47JoyFilesFileGJq47JoyURLAndHeaders(TypedDict, total=False):
+class 9HseNYt2FilesFile_9HseNYt2URLAndHeaders(TypedDict, total=False):
     headers: object
 
     url: str
 
+9HseNYt2FilesFile = Union[str, 9HseNYt2FilesFile_9HseNYt2URLAndHeaders]
 
-GJq47JoyFilesFile = Union[str, GJq47JoyFilesFileGJq47JoyURLAndHeaders]
-
-PurgeCachZonePurgeParams = Union[GJq47JoyFlex, GJq47JoyEverything, GJq47JoyFiles]
+PurgeCachZonePurgeParams = Union[_9HseNYt2Flex, _9HseNYt2Everything, _9HseNYt2Files]
