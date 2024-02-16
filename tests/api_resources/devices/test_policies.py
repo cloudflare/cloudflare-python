@@ -2,29 +2,22 @@
 
 from __future__ import annotations
 
-from typing import Optional, Any, cast
-
-from cloudflare.types.devices import (
-    PolicyUpdateResponse,
-    PolicyDeleteResponse,
-    PolicyDevicesCreateDeviceSettingsPolicyResponse,
-    PolicyDevicesGetDefaultDeviceSettingsPolicyResponse,
-    PolicyDevicesListDeviceSettingsPoliciesResponse,
-    PolicyDevicesUpdateDefaultDeviceSettingsPolicyResponse,
-    PolicyGetResponse,
-)
-
 import os
+from typing import Any, Optional, cast
+
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.devices import policy_update_params
-from cloudflare.types.devices import policy_devices_create_device_settings_policy_params
-from cloudflare.types.devices import policy_devices_update_default_device_settings_policy_params
+from cloudflare.types.devices import (
+    PolicyGetResponse,
+    PolicyDeleteResponse,
+    PolicyUpdateResponse,
+    PolicyDevicesCreateDeviceSettingsPolicyResponse,
+    PolicyDevicesListDeviceSettingsPoliciesResponse,
+    PolicyDevicesGetDefaultDeviceSettingsPolicyResponse,
+    PolicyDevicesUpdateDefaultDeviceSettingsPolicyResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

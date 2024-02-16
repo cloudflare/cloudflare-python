@@ -2,60 +2,34 @@
 
 from __future__ import annotations
 
+from typing import Any, List, Type, Optional, cast
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._compat import cached_property
-
-from ...types.gateways import (
-    ProxyEndpointUpdateResponse,
-    ProxyEndpointListResponse,
-    ProxyEndpointDeleteResponse,
-    ProxyEndpointGetResponse,
-    ProxyEndpointZeroTrustGatewayProxyEndpointsCreateProxyEndpointResponse,
-    ProxyEndpointZeroTrustGatewayProxyEndpointsListProxyEndpointsResponse,
-)
-
-from typing import Type, List, Optional
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types.gateways import proxy_endpoint_update_params
-from ...types.gateways import proxy_endpoint_zero_trust_gateway_proxy_endpoints_create_proxy_endpoint_params
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ..._base_client import (
+    make_request_options,
+)
+from ...types.gateways import (
+    ProxyEndpointGetResponse,
+    ProxyEndpointListResponse,
+    ProxyEndpointDeleteResponse,
+    ProxyEndpointUpdateResponse,
+    ProxyEndpointZeroTrustGatewayProxyEndpointsListProxyEndpointsResponse,
+    ProxyEndpointZeroTrustGatewayProxyEndpointsCreateProxyEndpointResponse,
+    proxy_endpoint_update_params,
+    proxy_endpoint_zero_trust_gateway_proxy_endpoints_create_proxy_endpoint_params,
+)
 
 __all__ = ["ProxyEndpoints", "AsyncProxyEndpoints"]
 
