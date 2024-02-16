@@ -21,10 +21,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.ssls.certificate_packs import (
-    OrderCertificatePacksOrderAdvancedCertificateManagerCertificatePackResponse,
-    order_certificate_packs_order_advanced_certificate_manager_certificate_pack_params,
-)
+from ....types.ssls.certificate_packs import OrderCreateResponse, order_create_params
 
 __all__ = ["Orders", "AsyncOrders"]
 
@@ -38,7 +35,7 @@ class Orders(SyncAPIResource):
     def with_streaming_response(self) -> OrdersWithStreamingResponse:
         return OrdersWithStreamingResponse(self)
 
-    def certificate_packs_order_advanced_certificate_manager_certificate_pack(
+    def create(
         self,
         zone_id: str,
         *,
@@ -54,7 +51,7 @@ class Orders(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> OrderCertificatePacksOrderAdvancedCertificateManagerCertificatePackResponse:
+    ) -> OrderCreateResponse:
         """
         For a given zone, order an advanced certificate pack.
 
@@ -98,7 +95,7 @@ class Orders(SyncAPIResource):
                     "validity_days": validity_days,
                     "cloudflare_branding": cloudflare_branding,
                 },
-                order_certificate_packs_order_advanced_certificate_manager_certificate_pack_params.OrderCertificatePacksOrderAdvancedCertificateManagerCertificatePackParams,
+                order_create_params.OrderCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -107,10 +104,7 @@ class Orders(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[OrderCertificatePacksOrderAdvancedCertificateManagerCertificatePackResponse],
-                ResultWrapper[OrderCertificatePacksOrderAdvancedCertificateManagerCertificatePackResponse],
-            ),
+            cast_to=cast(Type[OrderCreateResponse], ResultWrapper[OrderCreateResponse]),
         )
 
 
@@ -123,7 +117,7 @@ class AsyncOrders(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncOrdersWithStreamingResponse:
         return AsyncOrdersWithStreamingResponse(self)
 
-    async def certificate_packs_order_advanced_certificate_manager_certificate_pack(
+    async def create(
         self,
         zone_id: str,
         *,
@@ -139,7 +133,7 @@ class AsyncOrders(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> OrderCertificatePacksOrderAdvancedCertificateManagerCertificatePackResponse:
+    ) -> OrderCreateResponse:
         """
         For a given zone, order an advanced certificate pack.
 
@@ -183,7 +177,7 @@ class AsyncOrders(AsyncAPIResource):
                     "validity_days": validity_days,
                     "cloudflare_branding": cloudflare_branding,
                 },
-                order_certificate_packs_order_advanced_certificate_manager_certificate_pack_params.OrderCertificatePacksOrderAdvancedCertificateManagerCertificatePackParams,
+                order_create_params.OrderCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -192,10 +186,7 @@ class AsyncOrders(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[OrderCertificatePacksOrderAdvancedCertificateManagerCertificatePackResponse],
-                ResultWrapper[OrderCertificatePacksOrderAdvancedCertificateManagerCertificatePackResponse],
-            ),
+            cast_to=cast(Type[OrderCreateResponse], ResultWrapper[OrderCreateResponse]),
         )
 
 
@@ -203,8 +194,8 @@ class OrdersWithRawResponse:
     def __init__(self, orders: Orders) -> None:
         self._orders = orders
 
-        self.certificate_packs_order_advanced_certificate_manager_certificate_pack = to_raw_response_wrapper(
-            orders.certificate_packs_order_advanced_certificate_manager_certificate_pack,
+        self.create = to_raw_response_wrapper(
+            orders.create,
         )
 
 
@@ -212,8 +203,8 @@ class AsyncOrdersWithRawResponse:
     def __init__(self, orders: AsyncOrders) -> None:
         self._orders = orders
 
-        self.certificate_packs_order_advanced_certificate_manager_certificate_pack = async_to_raw_response_wrapper(
-            orders.certificate_packs_order_advanced_certificate_manager_certificate_pack,
+        self.create = async_to_raw_response_wrapper(
+            orders.create,
         )
 
 
@@ -221,8 +212,8 @@ class OrdersWithStreamingResponse:
     def __init__(self, orders: Orders) -> None:
         self._orders = orders
 
-        self.certificate_packs_order_advanced_certificate_manager_certificate_pack = to_streamed_response_wrapper(
-            orders.certificate_packs_order_advanced_certificate_manager_certificate_pack,
+        self.create = to_streamed_response_wrapper(
+            orders.create,
         )
 
 
@@ -230,6 +221,6 @@ class AsyncOrdersWithStreamingResponse:
     def __init__(self, orders: AsyncOrders) -> None:
         self._orders = orders
 
-        self.certificate_packs_order_advanced_certificate_manager_certificate_pack = async_to_streamed_response_wrapper(
-            orders.certificate_packs_order_advanced_certificate_manager_certificate_pack,
+        self.create = async_to_streamed_response_wrapper(
+            orders.create,
         )

@@ -18,7 +18,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...types.acms import TotalTLSGetResponse, TotalTLSUpdateResponse, total_tls_update_params
+from ...types.acms import TotalTLSGetResponse, TotalTLSCreateResponse, total_tls_create_params
 from ..._base_client import (
     make_request_options,
 )
@@ -35,7 +35,7 @@ class TotalTLS(SyncAPIResource):
     def with_streaming_response(self) -> TotalTLSWithStreamingResponse:
         return TotalTLSWithStreamingResponse(self)
 
-    def update(
+    def create(
         self,
         zone_id: str,
         *,
@@ -47,7 +47,7 @@ class TotalTLS(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TotalTLSUpdateResponse:
+    ) -> TotalTLSCreateResponse:
         """
         Set Total TLS Settings or disable the feature for a Zone.
 
@@ -76,7 +76,7 @@ class TotalTLS(SyncAPIResource):
                     "enabled": enabled,
                     "certificate_authority": certificate_authority,
                 },
-                total_tls_update_params.TotalTLSUpdateParams,
+                total_tls_create_params.TotalTLSCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -85,7 +85,7 @@ class TotalTLS(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TotalTLSUpdateResponse], ResultWrapper[TotalTLSUpdateResponse]),
+            cast_to=cast(Type[TotalTLSCreateResponse], ResultWrapper[TotalTLSCreateResponse]),
         )
 
     def get(
@@ -137,7 +137,7 @@ class AsyncTotalTLS(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncTotalTLSWithStreamingResponse:
         return AsyncTotalTLSWithStreamingResponse(self)
 
-    async def update(
+    async def create(
         self,
         zone_id: str,
         *,
@@ -149,7 +149,7 @@ class AsyncTotalTLS(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TotalTLSUpdateResponse:
+    ) -> TotalTLSCreateResponse:
         """
         Set Total TLS Settings or disable the feature for a Zone.
 
@@ -178,7 +178,7 @@ class AsyncTotalTLS(AsyncAPIResource):
                     "enabled": enabled,
                     "certificate_authority": certificate_authority,
                 },
-                total_tls_update_params.TotalTLSUpdateParams,
+                total_tls_create_params.TotalTLSCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -187,7 +187,7 @@ class AsyncTotalTLS(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TotalTLSUpdateResponse], ResultWrapper[TotalTLSUpdateResponse]),
+            cast_to=cast(Type[TotalTLSCreateResponse], ResultWrapper[TotalTLSCreateResponse]),
         )
 
     async def get(
@@ -234,8 +234,8 @@ class TotalTLSWithRawResponse:
     def __init__(self, total_tls: TotalTLS) -> None:
         self._total_tls = total_tls
 
-        self.update = to_raw_response_wrapper(
-            total_tls.update,
+        self.create = to_raw_response_wrapper(
+            total_tls.create,
         )
         self.get = to_raw_response_wrapper(
             total_tls.get,
@@ -246,8 +246,8 @@ class AsyncTotalTLSWithRawResponse:
     def __init__(self, total_tls: AsyncTotalTLS) -> None:
         self._total_tls = total_tls
 
-        self.update = async_to_raw_response_wrapper(
-            total_tls.update,
+        self.create = async_to_raw_response_wrapper(
+            total_tls.create,
         )
         self.get = async_to_raw_response_wrapper(
             total_tls.get,
@@ -258,8 +258,8 @@ class TotalTLSWithStreamingResponse:
     def __init__(self, total_tls: TotalTLS) -> None:
         self._total_tls = total_tls
 
-        self.update = to_streamed_response_wrapper(
-            total_tls.update,
+        self.create = to_streamed_response_wrapper(
+            total_tls.create,
         )
         self.get = to_streamed_response_wrapper(
             total_tls.get,
@@ -270,8 +270,8 @@ class AsyncTotalTLSWithStreamingResponse:
     def __init__(self, total_tls: AsyncTotalTLS) -> None:
         self._total_tls = total_tls
 
-        self.update = async_to_streamed_response_wrapper(
-            total_tls.update,
+        self.create = async_to_streamed_response_wrapper(
+            total_tls.create,
         )
         self.get = async_to_streamed_response_wrapper(
             total_tls.get,

@@ -4,7 +4,7 @@ from typing import Optional
 
 from ...._models import BaseModel
 
-__all__ = ["QuotaCertificatePacksGetCertificatePackQuotasResponse", "Advanced"]
+__all__ = ["QuotaGetResponse", "Advanced"]
 
 
 class Advanced(BaseModel):
@@ -15,5 +15,5 @@ class Advanced(BaseModel):
     """Quantity Used."""
 
 
-class QuotaCertificatePacksGetCertificatePackQuotasResponse(BaseModel):
+class QuotaGetResponse(BaseModel):
     advanced: Optional[Advanced] = None
