@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from .origin_post_accounts_account_identifier_logpush_validate_origin_response import (
-    OriginPostAccountsAccountIdentifierLogpushValidateOriginResponse as OriginPostAccountsAccountIdentifierLogpushValidateOriginResponse,
-)
 from .origin_post_accounts_account_identifier_logpush_validate_origin_params import (
     OriginPostAccountsAccountIdentifierLogpushValidateOriginParams as OriginPostAccountsAccountIdentifierLogpushValidateOriginParams,
+)
+from .origin_post_accounts_account_identifier_logpush_validate_origin_response import (
+    OriginPostAccountsAccountIdentifierLogpushValidateOriginResponse as OriginPostAccountsAccountIdentifierLogpushValidateOriginResponse,
 )

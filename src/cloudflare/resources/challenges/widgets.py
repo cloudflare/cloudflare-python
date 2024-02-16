@@ -2,62 +2,37 @@
 
 from __future__ import annotations
 
+from typing import List, Type, Optional, cast
+from typing_extensions import Literal
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._compat import cached_property
-
-from ...types.challenges import (
-    WidgetCreateResponse,
-    WidgetUpdateResponse,
-    WidgetListResponse,
-    WidgetDeleteResponse,
-    WidgetGetResponse,
-    WidgetRotateSecretResponse,
-)
-
-from typing import Type, Optional, List
-
-from typing_extensions import Literal
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types.challenges import widget_create_params
-from ...types.challenges import widget_update_params
-from ...types.challenges import widget_list_params
-from ...types.challenges import widget_rotate_secret_params
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ..._base_client import (
+    make_request_options,
+)
+from ...types.challenges import (
+    WidgetGetResponse,
+    WidgetListResponse,
+    WidgetCreateResponse,
+    WidgetDeleteResponse,
+    WidgetUpdateResponse,
+    WidgetRotateSecretResponse,
+    widget_list_params,
+    widget_create_params,
+    widget_update_params,
+    widget_rotate_secret_params,
+)
 
 __all__ = ["Widgets", "AsyncWidgets"]
 

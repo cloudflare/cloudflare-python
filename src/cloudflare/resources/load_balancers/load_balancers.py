@@ -2,66 +2,11 @@
 
 from __future__ import annotations
 
+from typing import List, Type, Iterable, Optional, cast
+from typing_extensions import Literal
+
 import httpx
 
-from .monitors.monitors import Monitors, AsyncMonitors
-
-from ..._compat import cached_property
-
-from .pools.pools import Pools, AsyncPools
-
-from .previews import Previews, AsyncPreviews
-
-from .regions import Regions, AsyncRegions
-
-from .searches import Searches, AsyncSearches
-
-from ...types import (
-    LoadBalancerCreateResponse,
-    LoadBalancerUpdateResponse,
-    LoadBalancerListResponse,
-    LoadBalancerDeleteResponse,
-    LoadBalancerGetResponse,
-    load_balancer_create_params,
-    load_balancer_update_params,
-)
-
-from typing import Type, List, Iterable, Optional
-
-from typing_extensions import Literal
-
-from ..._response import (
-    to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types import load_balancer_create_params
-from ...types import load_balancer_update_params
-from .monitors import (
-    Monitors,
-    AsyncMonitors,
-    MonitorsWithRawResponse,
-    AsyncMonitorsWithRawResponse,
-    MonitorsWithStreamingResponse,
-    AsyncMonitorsWithStreamingResponse,
-)
 from .pools import (
     Pools,
     AsyncPools,
@@ -70,13 +15,14 @@ from .pools import (
     PoolsWithStreamingResponse,
     AsyncPoolsWithStreamingResponse,
 )
-from .previews import (
-    Previews,
-    AsyncPreviews,
-    PreviewsWithRawResponse,
-    AsyncPreviewsWithRawResponse,
-    PreviewsWithStreamingResponse,
-    AsyncPreviewsWithStreamingResponse,
+from ...types import (
+    LoadBalancerGetResponse,
+    LoadBalancerListResponse,
+    LoadBalancerCreateResponse,
+    LoadBalancerDeleteResponse,
+    LoadBalancerUpdateResponse,
+    load_balancer_create_params,
+    load_balancer_update_params,
 )
 from .regions import (
     Regions,
@@ -86,6 +32,24 @@ from .regions import (
     RegionsWithStreamingResponse,
     AsyncRegionsWithStreamingResponse,
 )
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
+from .monitors import (
+    Monitors,
+    AsyncMonitors,
+    MonitorsWithRawResponse,
+    AsyncMonitorsWithRawResponse,
+    MonitorsWithStreamingResponse,
+    AsyncMonitorsWithStreamingResponse,
+)
+from .previews import (
+    Previews,
+    AsyncPreviews,
+    PreviewsWithRawResponse,
+    AsyncPreviewsWithRawResponse,
+    PreviewsWithStreamingResponse,
+    AsyncPreviewsWithStreamingResponse,
+)
 from .searches import (
     Searches,
     AsyncSearches,
@@ -94,17 +58,20 @@ from .searches import (
     SearchesWithStreamingResponse,
     AsyncSearchesWithStreamingResponse,
 )
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from .pools.pools import Pools, AsyncPools
+from ..._base_client import (
+    make_request_options,
+)
+from .monitors.monitors import Monitors, AsyncMonitors
 
 __all__ = ["LoadBalancers", "AsyncLoadBalancers"]
 
