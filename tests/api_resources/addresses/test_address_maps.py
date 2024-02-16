@@ -2,20 +2,26 @@
 
 from __future__ import annotations
 
+from cloudflare.types.addresses import (
+    AddressMapCreateResponse,
+    AddressMapUpdateResponse,
+    AddressMapListResponse,
+    AddressMapDeleteResponse,
+    AddressMapGetResponse,
+)
+
+from typing import Any, cast, Optional
+
 import os
-from typing import Any, Optional, cast
-
 import pytest
-
+import httpx
+from typing_extensions import get_args
+from typing import Optional
+from respx import MockRouter
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.addresses import (
-    AddressMapGetResponse,
-    AddressMapListResponse,
-    AddressMapCreateResponse,
-    AddressMapDeleteResponse,
-    AddressMapUpdateResponse,
-)
+from cloudflare.types.addresses import address_map_create_params
+from cloudflare.types.addresses import address_map_update_params
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

@@ -2,34 +2,62 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Optional, cast
-
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform
 from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
+
+from ...types.firewalls import (
+    UaRuleUpdateResponse,
+    UaRuleDeleteResponse,
+    UaRuleGetResponse,
+    UaRuleUserAgentBlockingRulesCreateAUserAgentBlockingRuleResponse,
+    UaRuleUserAgentBlockingRulesListUserAgentBlockingRulesResponse,
+)
+
+from typing import Optional, Type
+
 from ..._response import (
     to_raw_response_wrapper,
-    to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
+    to_streamed_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._wrappers import ResultWrapper
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._base_client import (
+    SyncAPIClient,
+    AsyncAPIClient,
+    _merge_mappings,
+    AsyncPaginator,
     make_request_options,
+    HttpxBinaryResponseContent,
 )
-from ...types.firewalls import (
-    UaRuleGetResponse,
-    UaRuleDeleteResponse,
-    UaRuleUpdateResponse,
-    UaRuleUserAgentBlockingRulesListUserAgentBlockingRulesResponse,
-    UaRuleUserAgentBlockingRulesCreateAUserAgentBlockingRuleResponse,
-    ua_rule_update_params,
-    ua_rule_user_agent_blocking_rules_list_user_agent_blocking_rules_params,
-    ua_rule_user_agent_blocking_rules_create_a_user_agent_blocking_rule_params,
-)
+from ...types import shared_params
+from ...types.firewalls import ua_rule_update_params
+from ...types.firewalls import ua_rule_user_agent_blocking_rules_create_a_user_agent_blocking_rule_params
+from ...types.firewalls import ua_rule_user_agent_blocking_rules_list_user_agent_blocking_rules_params
+from ..._wrappers import ResultWrapper
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
 
 __all__ = ["UaRules", "AsyncUaRules"]
 
