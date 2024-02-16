@@ -536,14 +536,6 @@ from .cfd_tunnels import (
     CfdTunnelsWithStreamingResponse,
     AsyncCfdTunnelsWithStreamingResponse,
 )
-from .diagnostics import (
-    Diagnostics,
-    AsyncDiagnostics,
-    DiagnosticsWithRawResponse,
-    AsyncDiagnosticsWithRawResponse,
-    DiagnosticsWithStreamingResponse,
-    AsyncDiagnosticsWithStreamingResponse,
-)
 from .dispatchers import (
     Dispatchers,
     AsyncDispatchers,
@@ -1178,12 +1170,6 @@ __all__ = [
     "AsyncCfdTunnelsWithRawResponse",
     "CfdTunnelsWithStreamingResponse",
     "AsyncCfdTunnelsWithStreamingResponse",
-    "Diagnostics",
-    "AsyncDiagnostics",
-    "DiagnosticsWithRawResponse",
-    "AsyncDiagnosticsWithRawResponse",
-    "DiagnosticsWithStreamingResponse",
-    "AsyncDiagnosticsWithStreamingResponse",
     "DLPs",
     "AsyncDLPs",
     "DLPsWithRawResponse",
