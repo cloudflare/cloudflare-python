@@ -7,15 +7,15 @@ from typing_extensions import TypedDict
 
 __all__ = [
     "PurgeCachZonePurgeParams",
-    "DRGs8IacFlex",
-    "DRGs8IacEverything",
-    "DRGs8IacFiles",
-    "DrGs8IacFilesFile",
-    "DrGs8IacFilesFileDRGs8IacURLAndHeaders",
+    "C1O0vQPqFlex",
+    "C1O0vQPqEverything",
+    "C1O0vQPqFiles",
+    "C1O0vQPqFilesFile",
+    "C1O0vQPqFilesFileC1O0vQPqURLAndHeaders",
 ]
 
 
-class DRGs8IacFlex(TypedDict, total=False):
+class C1O0vQPqFlex(TypedDict, total=False):
     hosts: List[str]
 
     prefixes: List[str]
@@ -23,20 +23,20 @@ class DRGs8IacFlex(TypedDict, total=False):
     tags: List[str]
 
 
-class DRGs8IacEverything(TypedDict, total=False):
+class C1O0vQPqEverything(TypedDict, total=False):
     purge_everything: bool
 
 
-class DRGs8IacFiles(TypedDict, total=False):
-    files: List[DrGs8IacFilesFile]
+class C1O0vQPqFiles(TypedDict, total=False):
+    files: List[C1O0vQPqFilesFile]
 
 
-class DrGs8IacFilesFileDRGs8IacURLAndHeaders(TypedDict, total=False):
+class C1O0vQPqFilesFileC1O0vQPqURLAndHeaders(TypedDict, total=False):
     headers: object
 
     url: str
 
 
-DrGs8IacFilesFile = Union[str, DrGs8IacFilesFileDRGs8IacURLAndHeaders]
+C1O0vQPqFilesFile = Union[str, C1O0vQPqFilesFileC1O0vQPqURLAndHeaders]
 
-PurgeCachZonePurgeParams = Union[DRGs8IacFlex, DRGs8IacEverything, DRGs8IacFiles]
+PurgeCachZonePurgeParams = Union[C1O0vQPqFlex, C1O0vQPqEverything, C1O0vQPqFiles]
