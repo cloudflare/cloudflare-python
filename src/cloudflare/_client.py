@@ -88,7 +88,6 @@ class Cloudflare(SyncAPIClient):
     web3s: resources.Web3s
     workers: resources.Workers
     activation_checks: resources.ActivationChecks
-    api_gateways: resources.APIGateways
     managed_headers: resources.ManagedHeaders
     page_shields: resources.PageShields
     rulesets: resources.Rulesets
@@ -286,7 +285,6 @@ class Cloudflare(SyncAPIClient):
         self.web3s = resources.Web3s(self)
         self.workers = resources.Workers(self)
         self.activation_checks = resources.ActivationChecks(self)
-        self.api_gateways = resources.APIGateways(self)
         self.managed_headers = resources.ManagedHeaders(self)
         self.page_shields = resources.PageShields(self)
         self.rulesets = resources.Rulesets(self)
@@ -538,7 +536,6 @@ class AsyncCloudflare(AsyncAPIClient):
     web3s: resources.AsyncWeb3s
     workers: resources.AsyncWorkers
     activation_checks: resources.AsyncActivationChecks
-    api_gateways: resources.AsyncAPIGateways
     managed_headers: resources.AsyncManagedHeaders
     page_shields: resources.AsyncPageShields
     rulesets: resources.AsyncRulesets
@@ -736,7 +733,6 @@ class AsyncCloudflare(AsyncAPIClient):
         self.web3s = resources.AsyncWeb3s(self)
         self.workers = resources.AsyncWorkers(self)
         self.activation_checks = resources.AsyncActivationChecks(self)
-        self.api_gateways = resources.AsyncAPIGateways(self)
         self.managed_headers = resources.AsyncManagedHeaders(self)
         self.page_shields = resources.AsyncPageShields(self)
         self.rulesets = resources.AsyncRulesets(self)
@@ -989,7 +985,6 @@ class CloudflareWithRawResponse:
         self.web3s = resources.Web3sWithRawResponse(client.web3s)
         self.workers = resources.WorkersWithRawResponse(client.workers)
         self.activation_checks = resources.ActivationChecksWithRawResponse(client.activation_checks)
-        self.api_gateways = resources.APIGatewaysWithRawResponse(client.api_gateways)
         self.managed_headers = resources.ManagedHeadersWithRawResponse(client.managed_headers)
         self.page_shields = resources.PageShieldsWithRawResponse(client.page_shields)
         self.rulesets = resources.RulesetsWithRawResponse(client.rulesets)
@@ -1106,7 +1101,6 @@ class AsyncCloudflareWithRawResponse:
         self.web3s = resources.AsyncWeb3sWithRawResponse(client.web3s)
         self.workers = resources.AsyncWorkersWithRawResponse(client.workers)
         self.activation_checks = resources.AsyncActivationChecksWithRawResponse(client.activation_checks)
-        self.api_gateways = resources.AsyncAPIGatewaysWithRawResponse(client.api_gateways)
         self.managed_headers = resources.AsyncManagedHeadersWithRawResponse(client.managed_headers)
         self.page_shields = resources.AsyncPageShieldsWithRawResponse(client.page_shields)
         self.rulesets = resources.AsyncRulesetsWithRawResponse(client.rulesets)
@@ -1223,7 +1217,6 @@ class CloudflareWithStreamedResponse:
         self.web3s = resources.Web3sWithStreamingResponse(client.web3s)
         self.workers = resources.WorkersWithStreamingResponse(client.workers)
         self.activation_checks = resources.ActivationChecksWithStreamingResponse(client.activation_checks)
-        self.api_gateways = resources.APIGatewaysWithStreamingResponse(client.api_gateways)
         self.managed_headers = resources.ManagedHeadersWithStreamingResponse(client.managed_headers)
         self.page_shields = resources.PageShieldsWithStreamingResponse(client.page_shields)
         self.rulesets = resources.RulesetsWithStreamingResponse(client.rulesets)
@@ -1342,7 +1335,6 @@ class AsyncCloudflareWithStreamedResponse:
         self.web3s = resources.AsyncWeb3sWithStreamingResponse(client.web3s)
         self.workers = resources.AsyncWorkersWithStreamingResponse(client.workers)
         self.activation_checks = resources.AsyncActivationChecksWithStreamingResponse(client.activation_checks)
-        self.api_gateways = resources.AsyncAPIGatewaysWithStreamingResponse(client.api_gateways)
         self.managed_headers = resources.AsyncManagedHeadersWithStreamingResponse(client.managed_headers)
         self.page_shields = resources.AsyncPageShieldsWithStreamingResponse(client.page_shields)
         self.rulesets = resources.AsyncRulesetsWithStreamingResponse(client.rulesets)

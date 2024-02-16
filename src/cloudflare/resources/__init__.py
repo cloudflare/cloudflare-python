@@ -592,14 +592,6 @@ from .url_scanner import (
     URLScannerWithStreamingResponse,
     AsyncURLScannerWithStreamingResponse,
 )
-from .api_gateways import (
-    APIGateways,
-    AsyncAPIGateways,
-    APIGatewaysWithRawResponse,
-    AsyncAPIGatewaysWithRawResponse,
-    APIGatewaysWithStreamingResponse,
-    AsyncAPIGatewaysWithStreamingResponse,
-)
 from .certificates import (
     Certificates,
     AsyncCertificates,
@@ -1126,12 +1118,6 @@ __all__ = [
     "AsyncActivationChecksWithRawResponse",
     "ActivationChecksWithStreamingResponse",
     "AsyncActivationChecksWithStreamingResponse",
-    "APIGateways",
-    "AsyncAPIGateways",
-    "APIGatewaysWithRawResponse",
-    "AsyncAPIGatewaysWithRawResponse",
-    "APIGatewaysWithStreamingResponse",
-    "AsyncAPIGatewaysWithStreamingResponse",
     "ManagedHeaders",
     "AsyncManagedHeaders",
     "ManagedHeadersWithRawResponse",

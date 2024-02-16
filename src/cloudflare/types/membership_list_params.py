@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Literal, TypedDict
 
-__all__ = ["MembershipUserSAccountMembershipsListMembershipsParams", "Account"]
+__all__ = ["MembershipListParams", "Account"]
 
 
-class MembershipUserSAccountMembershipsListMembershipsParams(TypedDict, total=False):
+class MembershipListParams(TypedDict, total=False):
     account: Account
 
     direction: Literal["asc", "desc"]

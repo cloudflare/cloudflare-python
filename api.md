@@ -51,18 +51,18 @@ Types:
 ```python
 from cloudflare.types import (
     MembershipUpdateResponse,
+    MembershipListResponse,
     MembershipDeleteResponse,
     MembershipGetResponse,
-    MembershipUserSAccountMembershipsListMembershipsResponse,
 )
 ```
 
 Methods:
 
 - <code title="put /memberships/{membership_id}">client.memberships.<a href="./src/cloudflare/resources/memberships.py">update</a>(membership_id, \*\*<a href="src/cloudflare/types/membership_update_params.py">params</a>) -> <a href="./src/cloudflare/types/membership_update_response.py">MembershipUpdateResponse</a></code>
+- <code title="get /memberships">client.memberships.<a href="./src/cloudflare/resources/memberships.py">list</a>(\*\*<a href="src/cloudflare/types/membership_list_params.py">params</a>) -> <a href="./src/cloudflare/types/membership_list_response.py">Optional</a></code>
 - <code title="delete /memberships/{membership_id}">client.memberships.<a href="./src/cloudflare/resources/memberships.py">delete</a>(membership_id) -> <a href="./src/cloudflare/types/membership_delete_response.py">MembershipDeleteResponse</a></code>
 - <code title="get /memberships/{membership_id}">client.memberships.<a href="./src/cloudflare/resources/memberships.py">get</a>(membership_id) -> <a href="./src/cloudflare/types/membership_get_response.py">MembershipGetResponse</a></code>
-- <code title="get /memberships">client.memberships.<a href="./src/cloudflare/resources/memberships.py">user_s_account_memberships_list_memberships</a>(\*\*<a href="src/cloudflare/types/membership_user_s_account_memberships_list_memberships_params.py">params</a>) -> <a href="./src/cloudflare/types/membership_user_s_account_memberships_list_memberships_response.py">Optional</a></code>
 
 # Users
 
@@ -82,12 +82,12 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.users import AuditLogAuditLogsGetUserAuditLogsResponse
+from cloudflare.types.users import AuditLogListResponse
 ```
 
 Methods:
 
-- <code title="get /user/audit_logs">client.users.audit_logs.<a href="./src/cloudflare/resources/users/audit_logs.py">audit_logs_get_user_audit_logs</a>(\*\*<a href="src/cloudflare/types/users/audit_log_audit_logs_get_user_audit_logs_params.py">params</a>) -> <a href="./src/cloudflare/types/users/audit_log_audit_logs_get_user_audit_logs_response.py">AuditLogAuditLogsGetUserAuditLogsResponse</a></code>
+- <code title="get /user/audit_logs">client.users.audit_logs.<a href="./src/cloudflare/resources/users/audit_logs.py">list</a>(\*\*<a href="src/cloudflare/types/users/audit_log_list_params.py">params</a>) -> <a href="./src/cloudflare/types/users/audit_log_list_response.py">AuditLogListResponse</a></code>
 
 ## Billings
 
@@ -3612,152 +3612,6 @@ from cloudflare.types import ActivationCheckPutZonesZoneIDActivationCheckRespons
 Methods:
 
 - <code title="put /zones/{zone_id}/activation_check">client.activation_checks.<a href="./src/cloudflare/resources/activation_checks.py">put_zones_zone_id_activation_check</a>(zone_id) -> <a href="./src/cloudflare/types/activation_check_put_zones_zone_id_activation_check_response.py">ActivationCheckPutZonesZoneIDActivationCheckResponse</a></code>
-
-# APIGateways
-
-## Configurations
-
-Types:
-
-```python
-from cloudflare.types.api_gateways import (
-    ConfigurationAPIShieldSettingsGetInformationAboutSpecificConfigurationPropertiesResponse,
-    ConfigurationAPIShieldSettingsSetConfigurationPropertiesResponse,
-)
-```
-
-Methods:
-
-- <code title="get /zones/{zone_id}/api_gateway/configuration">client.api_gateways.configurations.<a href="./src/cloudflare/resources/api_gateways/configurations.py">api_shield_settings_get_information_about_specific_configuration_properties</a>(zone_id, \*\*<a href="src/cloudflare/types/api_gateways/configuration_api_shield_settings_get_information_about_specific_configuration_properties_params.py">params</a>) -> <a href="./src/cloudflare/types/api_gateways/configuration_api_shield_settings_get_information_about_specific_configuration_properties_response.py">ConfigurationAPIShieldSettingsGetInformationAboutSpecificConfigurationPropertiesResponse</a></code>
-- <code title="put /zones/{zone_id}/api_gateway/configuration">client.api_gateways.configurations.<a href="./src/cloudflare/resources/api_gateways/configurations.py">api_shield_settings_set_configuration_properties</a>(zone_id, \*\*<a href="src/cloudflare/types/api_gateways/configuration_api_shield_settings_set_configuration_properties_params.py">params</a>) -> <a href="./src/cloudflare/types/api_gateways/configuration_api_shield_settings_set_configuration_properties_response.py">ConfigurationAPIShieldSettingsSetConfigurationPropertiesResponse</a></code>
-
-## Discoveries
-
-Types:
-
-```python
-from cloudflare.types.api_gateways import (
-    DiscoveryAPIShieldEndpointManagementGetAPIDiscoveryResultsForAZoneResponse,
-)
-```
-
-Methods:
-
-- <code title="get /zones/{zone_id}/api_gateway/discovery">client.api_gateways.discoveries.<a href="./src/cloudflare/resources/api_gateways/discoveries.py">api_shield_endpoint_management_get_api_discovery_results_for_a_zone</a>(zone_id) -> <a href="./src/cloudflare/types/api_gateways/discovery_api_shield_endpoint_management_get_api_discovery_results_for_a_zone_response.py">DiscoveryAPIShieldEndpointManagementGetAPIDiscoveryResultsForAZoneResponse</a></code>
-
-## Operations
-
-Types:
-
-```python
-from cloudflare.types.api_gateways import (
-    OperationUpdateResponse,
-    OperationListResponse,
-    OperationDeleteResponse,
-    OperationAPIShieldEndpointManagementAddOperationsToAZoneResponse,
-    OperationAPIShieldEndpointManagementGetInformationAboutAllOperationsOnAZoneResponse,
-    OperationGetResponse,
-)
-```
-
-Methods:
-
-- <code title="patch /zones/{zone_id}/api_gateway/discovery/operations/{operation_id}">client.api_gateways.operations.<a href="./src/cloudflare/resources/api_gateways/operations.py">update</a>(operation_id, \*, zone_id, \*\*<a href="src/cloudflare/types/api_gateways/operation_update_params.py">params</a>) -> <a href="./src/cloudflare/types/api_gateways/operation_update_response.py">OperationUpdateResponse</a></code>
-- <code title="get /zones/{zone_id}/api_gateway/discovery/operations">client.api_gateways.operations.<a href="./src/cloudflare/resources/api_gateways/operations.py">list</a>(zone_id, \*\*<a href="src/cloudflare/types/api_gateways/operation_list_params.py">params</a>) -> <a href="./src/cloudflare/types/api_gateways/operation_list_response.py">Optional</a></code>
-- <code title="delete /zones/{zone_id}/api_gateway/operations/{operation_id}">client.api_gateways.operations.<a href="./src/cloudflare/resources/api_gateways/operations.py">delete</a>(operation_id, \*, zone_id) -> <a href="./src/cloudflare/types/api_gateways/operation_delete_response.py">OperationDeleteResponse</a></code>
-- <code title="post /zones/{zone_id}/api_gateway/operations">client.api_gateways.operations.<a href="./src/cloudflare/resources/api_gateways/operations.py">api_shield_endpoint_management_add_operations_to_a_zone</a>(zone_id, \*\*<a href="src/cloudflare/types/api_gateways/operation_api_shield_endpoint_management_add_operations_to_a_zone_params.py">params</a>) -> <a href="./src/cloudflare/types/api_gateways/operation_api_shield_endpoint_management_add_operations_to_a_zone_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/api_gateway/operations">client.api_gateways.operations.<a href="./src/cloudflare/resources/api_gateways/operations.py">api_shield_endpoint_management_get_information_about_all_operations_on_a_zone</a>(zone_id, \*\*<a href="src/cloudflare/types/api_gateways/operation_api_shield_endpoint_management_get_information_about_all_operations_on_a_zone_params.py">params</a>) -> <a href="./src/cloudflare/types/api_gateways/operation_api_shield_endpoint_management_get_information_about_all_operations_on_a_zone_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/api_gateway/operations/{operation_id}">client.api_gateways.operations.<a href="./src/cloudflare/resources/api_gateways/operations.py">get</a>(operation_id, \*, zone_id, \*\*<a href="src/cloudflare/types/api_gateways/operation_get_params.py">params</a>) -> <a href="./src/cloudflare/types/api_gateways/operation_get_response.py">OperationGetResponse</a></code>
-
-## Schemas
-
-Types:
-
-```python
-from cloudflare.types.api_gateways import (
-    SchemaUpdateResponse,
-    SchemaAPIShieldEndpointManagementGetOperationsAndFeaturesAsOpenAPISchemasResponse,
-    SchemaGetResponse,
-    SchemaUpdateMultipleResponse,
-)
-```
-
-Methods:
-
-- <code title="put /zones/{zone_id}/api_gateway/operations/{operation_id}/schema_validation">client.api_gateways.schemas.<a href="./src/cloudflare/resources/api_gateways/schemas.py">update</a>(operation_id, \*, zone_id, \*\*<a href="src/cloudflare/types/api_gateways/schema_update_params.py">params</a>) -> <a href="./src/cloudflare/types/api_gateways/schema_update_response.py">SchemaUpdateResponse</a></code>
-- <code title="get /zones/{zone_id}/api_gateway/schemas">client.api_gateways.schemas.<a href="./src/cloudflare/resources/api_gateways/schemas.py">api_shield_endpoint_management_get_operations_and_features_as_open_api_schemas</a>(zone_id, \*\*<a href="src/cloudflare/types/api_gateways/schema_api_shield_endpoint_management_get_operations_and_features_as_open_api_schemas_params.py">params</a>) -> <a href="./src/cloudflare/types/api_gateways/schema_api_shield_endpoint_management_get_operations_and_features_as_open_api_schemas_response.py">SchemaAPIShieldEndpointManagementGetOperationsAndFeaturesAsOpenAPISchemasResponse</a></code>
-- <code title="get /zones/{zone_id}/api_gateway/operations/{operation_id}/schema_validation">client.api_gateways.schemas.<a href="./src/cloudflare/resources/api_gateways/schemas.py">get</a>(operation_id, \*, zone_id) -> <a href="./src/cloudflare/types/api_gateways/schema_get_response.py">SchemaGetResponse</a></code>
-- <code title="get /zones/{zone_id}/api_gateway/settings/schema_validation">client.api_gateways.schemas.<a href="./src/cloudflare/resources/api_gateways/schemas.py">get_incremental</a>(zone_id) -> <a href="./src/cloudflare/types/api_gateways/settings/api_shield_zone_schema_validation_settings.py">APIShieldZoneSchemaValidationSettings</a></code>
-- <code title="patch /zones/{zone_id}/api_gateway/operations/schema_validation">client.api_gateways.schemas.<a href="./src/cloudflare/resources/api_gateways/schemas.py">update_multiple</a>(zone_id, \*\*<a href="src/cloudflare/types/api_gateways/schema_update_multiple_params.py">params</a>) -> <a href="./src/cloudflare/types/api_gateways/schema_update_multiple_response.py">SchemaUpdateMultipleResponse</a></code>
-
-## Settings
-
-### SchemaValidation
-
-Types:
-
-```python
-from cloudflare.types.api_gateways.settings import APIShieldZoneSchemaValidationSettings
-```
-
-Methods:
-
-- <code title="put /zones/{zone_id}/api_gateway/settings/schema_validation">client.api_gateways.settings.schema_validation.<a href="./src/cloudflare/resources/api_gateways/settings/schema_validation.py">update</a>(zone_id, \*\*<a href="src/cloudflare/types/api_gateways/settings/schema_validation_update_params.py">params</a>) -> <a href="./src/cloudflare/types/api_gateways/settings/api_shield_zone_schema_validation_settings.py">APIShieldZoneSchemaValidationSettings</a></code>
-
-## UserSchemas
-
-Types:
-
-```python
-from cloudflare.types.api_gateways import (
-    APIShieldAPIResponseSingle,
-    APIShieldMessages,
-    APIShieldPublicSchema,
-    APIShieldSchemaUploadResponse,
-    UserSchemaListResponse,
-    UserSchemaDeleteResponse,
-)
-```
-
-Methods:
-
-- <code title="post /zones/{zone_id}/api_gateway/user_schemas">client.api_gateways.user_schemas.<a href="./src/cloudflare/resources/api_gateways/user_schemas/user_schemas.py">create</a>(zone_id, \*\*<a href="src/cloudflare/types/api_gateways/user_schema_create_params.py">params</a>) -> <a href="./src/cloudflare/types/api_gateways/api_shield_schema_upload_response.py">APIShieldSchemaUploadResponse</a></code>
-- <code title="patch /zones/{zone_id}/api_gateway/user_schemas/{schema_id}">client.api_gateways.user_schemas.<a href="./src/cloudflare/resources/api_gateways/user_schemas/user_schemas.py">update</a>(schema_id, \*, zone_id, \*\*<a href="src/cloudflare/types/api_gateways/user_schema_update_params.py">params</a>) -> <a href="./src/cloudflare/types/api_gateways/api_shield_public_schema.py">APIShieldPublicSchema</a></code>
-- <code title="get /zones/{zone_id}/api_gateway/user_schemas">client.api_gateways.user_schemas.<a href="./src/cloudflare/resources/api_gateways/user_schemas/user_schemas.py">list</a>(zone_id, \*\*<a href="src/cloudflare/types/api_gateways/user_schema_list_params.py">params</a>) -> <a href="./src/cloudflare/types/api_gateways/user_schema_list_response.py">Optional</a></code>
-- <code title="delete /zones/{zone_id}/api_gateway/user_schemas/{schema_id}">client.api_gateways.user_schemas.<a href="./src/cloudflare/resources/api_gateways/user_schemas/user_schemas.py">delete</a>(schema_id, \*, zone_id) -> <a href="./src/cloudflare/types/api_gateways/user_schema_delete_response.py">UserSchemaDeleteResponse</a></code>
-- <code title="get /zones/{zone_id}/api_gateway/user_schemas/{schema_id}">client.api_gateways.user_schemas.<a href="./src/cloudflare/resources/api_gateways/user_schemas/user_schemas.py">get</a>(schema_id, \*, zone_id, \*\*<a href="src/cloudflare/types/api_gateways/user_schema_get_params.py">params</a>) -> <a href="./src/cloudflare/types/api_gateways/api_shield_public_schema.py">APIShieldPublicSchema</a></code>
-
-### Operations
-
-Types:
-
-```python
-from cloudflare.types.api_gateways.user_schemas import OperationListResponse
-```
-
-Methods:
-
-- <code title="get /zones/{zone_id}/api_gateway/user_schemas/{schema_id}/operations">client.api_gateways.user_schemas.operations.<a href="./src/cloudflare/resources/api_gateways/user_schemas/operations.py">list</a>(schema_id, \*, zone_id, \*\*<a href="src/cloudflare/types/api_gateways/user_schemas/operation_list_params.py">params</a>) -> <a href="./src/cloudflare/types/api_gateways/user_schemas/operation_list_response.py">Optional</a></code>
-
-## Discovery
-
-### Operations
-
-Types:
-
-```python
-from cloudflare.types.api_gateways.discovery import OperationUpdateResponse
-```
-
-Methods:
-
-- <code title="patch /zones/{zone_id}/api_gateway/discovery/operations">client.api_gateways.discovery.operations.<a href="./src/cloudflare/resources/api_gateways/discovery/operations.py">update</a>(zone_id, \*\*<a href="src/cloudflare/types/api_gateways/discovery/operation_update_params.py">params</a>) -> <a href="./src/cloudflare/types/api_gateways/discovery/operation_update_response.py">OperationUpdateResponse</a></code>
-
-## SchemaValidation
-
-Methods:
-
-- <code title="patch /zones/{zone_id}/api_gateway/settings/schema_validation">client.api_gateways.schema_validation.<a href="./src/cloudflare/resources/api_gateways/schema_validation.py">update</a>(zone_id, \*\*<a href="src/cloudflare/types/api_gateways/schema_validation_update_params.py">params</a>) -> <a href="./src/cloudflare/types/api_gateways/settings/api_shield_zone_schema_validation_settings.py">APIShieldZoneSchemaValidationSettings</a></code>
 
 # ManagedHeaders
 

@@ -8,10 +8,10 @@ from typing_extensions import Literal, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
-__all__ = ["AuditLogAuditLogsGetUserAuditLogsParams", "Action", "Actor", "Zone"]
+__all__ = ["AuditLogListParams", "Action", "Actor", "Zone"]
 
 
-class AuditLogAuditLogsGetUserAuditLogsParams(TypedDict, total=False):
+class AuditLogListParams(TypedDict, total=False):
     id: str
     """Finds a specific log by its ID."""
 
