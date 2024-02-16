@@ -2,14 +2,27 @@
 
 from __future__ import annotations
 
-from .v3 import (
-    V3,
-    AsyncV3,
-    V3WithRawResponse,
-    AsyncV3WithRawResponse,
-    V3WithStreamingResponse,
-    AsyncV3WithStreamingResponse,
+from .v3s.v3s import V3s, AsyncV3s
+
+from ..._compat import cached_property
+
+from .v3.v3 import V3, AsyncV3
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._base_client import (
+    SyncAPIClient,
+    AsyncAPIClient,
+    _merge_mappings,
+    AsyncPaginator,
+    make_request_options,
+    HttpxBinaryResponseContent,
 )
+from ...types import shared_params
 from .v3s import (
     V3s,
     AsyncV3s,
@@ -18,10 +31,15 @@ from .v3s import (
     V3sWithStreamingResponse,
     AsyncV3sWithStreamingResponse,
 )
-from .v3.v3 import V3, AsyncV3
-from .v3s.v3s import V3s, AsyncV3s
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
+from .v3 import (
+    V3,
+    AsyncV3,
+    V3WithRawResponse,
+    AsyncV3WithRawResponse,
+    V3WithStreamingResponse,
+    AsyncV3WithStreamingResponse,
+)
+from ..._wrappers import ResultWrapper
 
 __all__ = ["Alerting", "AsyncAlerting"]
 

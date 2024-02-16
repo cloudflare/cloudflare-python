@@ -2,19 +2,31 @@
 
 from __future__ import annotations
 
+from cloudflare.types import (
+    TunnelDeleteResponse,
+    TunnelArgoTunnelCreateAnArgoTunnelResponse,
+    TunnelArgoTunnelListArgoTunnelsResponse,
+    TunnelGetResponse,
+)
+
+from typing import Any, cast, Optional
+
 import os
-from typing import Any, Optional, cast
-
 import pytest
-
+import httpx
+from typing_extensions import get_args
+from typing import Optional
+from respx import MockRouter
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types import (
-    TunnelGetResponse,
-    TunnelDeleteResponse,
-    TunnelArgoTunnelListArgoTunnelsResponse,
-    TunnelArgoTunnelCreateAnArgoTunnelResponse,
-)
+from cloudflare.types import tunnel_delete_params
+from cloudflare.types import tunnel_argo_tunnel_create_an_argo_tunnel_params
+from cloudflare.types import tunnel_argo_tunnel_list_argo_tunnels_params
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
 from cloudflare._utils import parse_datetime
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")

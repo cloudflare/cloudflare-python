@@ -2,56 +2,55 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
-
 import httpx
 
-from .lists import (
-    Lists,
-    AsyncLists,
-    ListsWithRawResponse,
-    AsyncListsWithRawResponse,
-    ListsWithStreamingResponse,
-    AsyncListsWithStreamingResponse,
-)
-from .rules import (
-    Rules,
-    AsyncRules,
-    RulesWithRawResponse,
-    AsyncRulesWithRawResponse,
-    RulesWithStreamingResponse,
-    AsyncRulesWithStreamingResponse,
-)
+from .categories import Categories, AsyncCategories
+
+from ..._compat import cached_property
+
+from .app_types import AppTypes, AsyncAppTypes
+
+from .configurations import Configurations, AsyncConfigurations
+
+from .lists.lists import Lists, AsyncLists
+
+from .locations import Locations, AsyncLocations
+
+from .loggings import Loggings, AsyncLoggings
+
+from .proxy_endpoints import ProxyEndpoints, AsyncProxyEndpoints
+
+from .rules import Rules, AsyncRules
+
 from ...types import (
     GatewayZeroTrustAccountsCreateZeroTrustAccountResponse,
     GatewayZeroTrustAccountsGetZeroTrustAccountInformationResponse,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from .loggings import (
-    Loggings,
-    AsyncLoggings,
-    LoggingsWithRawResponse,
-    AsyncLoggingsWithRawResponse,
-    LoggingsWithStreamingResponse,
-    AsyncLoggingsWithStreamingResponse,
+
+from typing import Type
+
+from ..._response import (
+    to_raw_response_wrapper,
+    async_to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_streamed_response_wrapper,
 )
-from ..._compat import cached_property
-from .app_types import (
-    AppTypes,
-    AsyncAppTypes,
-    AppTypesWithRawResponse,
-    AsyncAppTypesWithRawResponse,
-    AppTypesWithStreamingResponse,
-    AsyncAppTypesWithStreamingResponse,
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._base_client import (
+    SyncAPIClient,
+    AsyncAPIClient,
+    _merge_mappings,
+    AsyncPaginator,
+    make_request_options,
+    HttpxBinaryResponseContent,
 )
-from .locations import (
-    Locations,
-    AsyncLocations,
-    LocationsWithRawResponse,
-    AsyncLocationsWithRawResponse,
-    LocationsWithStreamingResponse,
-    AsyncLocationsWithStreamingResponse,
-)
+from ...types import shared_params
 from .categories import (
     Categories,
     AsyncCategories,
@@ -60,17 +59,13 @@ from .categories import (
     CategoriesWithStreamingResponse,
     AsyncCategoriesWithStreamingResponse,
 )
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ..._wrappers import ResultWrapper
-from .lists.lists import Lists, AsyncLists
-from ..._base_client import (
-    make_request_options,
+from .app_types import (
+    AppTypes,
+    AsyncAppTypes,
+    AppTypesWithRawResponse,
+    AsyncAppTypesWithRawResponse,
+    AppTypesWithStreamingResponse,
+    AsyncAppTypesWithStreamingResponse,
 )
 from .configurations import (
     Configurations,
@@ -80,6 +75,30 @@ from .configurations import (
     ConfigurationsWithStreamingResponse,
     AsyncConfigurationsWithStreamingResponse,
 )
+from .lists import (
+    Lists,
+    AsyncLists,
+    ListsWithRawResponse,
+    AsyncListsWithRawResponse,
+    ListsWithStreamingResponse,
+    AsyncListsWithStreamingResponse,
+)
+from .locations import (
+    Locations,
+    AsyncLocations,
+    LocationsWithRawResponse,
+    AsyncLocationsWithRawResponse,
+    LocationsWithStreamingResponse,
+    AsyncLocationsWithStreamingResponse,
+)
+from .loggings import (
+    Loggings,
+    AsyncLoggings,
+    LoggingsWithRawResponse,
+    AsyncLoggingsWithRawResponse,
+    LoggingsWithStreamingResponse,
+    AsyncLoggingsWithStreamingResponse,
+)
 from .proxy_endpoints import (
     ProxyEndpoints,
     AsyncProxyEndpoints,
@@ -88,6 +107,19 @@ from .proxy_endpoints import (
     ProxyEndpointsWithStreamingResponse,
     AsyncProxyEndpointsWithStreamingResponse,
 )
+from .rules import (
+    Rules,
+    AsyncRules,
+    RulesWithRawResponse,
+    AsyncRulesWithRawResponse,
+    RulesWithStreamingResponse,
+    AsyncRulesWithStreamingResponse,
+)
+from ..._wrappers import ResultWrapper
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
 
 __all__ = ["Gateways", "AsyncGateways"]
 
