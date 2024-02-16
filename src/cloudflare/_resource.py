@@ -7,7 +7,7 @@ import asyncio
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from ._client import Cloudflare, AsyncCloudflare
+    from ._client import AsyncCloudflare, Cloudflare
 
 
 class SyncAPIResource:

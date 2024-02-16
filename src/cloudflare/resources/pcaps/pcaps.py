@@ -2,10 +2,13 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Optional, cast, overload
-from typing_extensions import Literal
-
 import httpx
+
+from .ownerships.ownerships import Ownerships, AsyncOwnerships
+
+from ..._compat import cached_property
+
+from .downloads import Downloads, AsyncDownloads
 
 from ...types import (
     PcapGetResponse,
@@ -13,17 +16,34 @@ from ...types import (
     PcapMagicPcapCollectionListPacketCaptureRequestsResponse,
     pcap_magic_pcap_collection_create_pcap_request_params,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import required_args, maybe_transform
-from ..._compat import cached_property
-from .downloads import (
-    Downloads,
-    AsyncDownloads,
-    DownloadsWithRawResponse,
-    AsyncDownloadsWithRawResponse,
-    DownloadsWithStreamingResponse,
-    AsyncDownloadsWithStreamingResponse,
+
+from typing_extensions import Literal
+
+from typing import Type, Optional
+
+from ..._response import (
+    to_raw_response_wrapper,
+    async_to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_streamed_response_wrapper,
 )
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._base_client import (
+    SyncAPIClient,
+    AsyncAPIClient,
+    _merge_mappings,
+    AsyncPaginator,
+    make_request_options,
+    HttpxBinaryResponseContent,
+)
+from ...types import shared_params
+from ...types import pcap_magic_pcap_collection_create_pcap_request_params
 from .ownerships import (
     Ownerships,
     AsyncOwnerships,
@@ -32,18 +52,25 @@ from .ownerships import (
     OwnershipsWithStreamingResponse,
     AsyncOwnershipsWithStreamingResponse,
 )
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
+from .downloads import (
+    Downloads,
+    AsyncDownloads,
+    DownloadsWithRawResponse,
+    AsyncDownloadsWithRawResponse,
+    DownloadsWithStreamingResponse,
+    AsyncDownloadsWithStreamingResponse,
 )
 from ..._wrappers import ResultWrapper
-from ..._base_client import (
-    make_request_options,
-)
-from .ownerships.ownerships import Ownerships, AsyncOwnerships
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
 
 __all__ = ["Pcaps", "AsyncPcaps"]
 
@@ -123,7 +150,7 @@ class Pcaps(SyncAPIResource):
         system: Literal["magic-transit"],
         time_limit: float,
         type: Literal["simple", "full"],
-        filter_v1: pcap_magic_pcap_collection_create_pcap_request_params.FGwnJEhWPcapsRequestSimpleFilterV1
+        filter_v1: pcap_magic_pcap_collection_create_pcap_request_params.IiInMbmoPcapsRequestSimpleFilterV1
         | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -170,7 +197,7 @@ class Pcaps(SyncAPIResource):
         time_limit: float,
         type: Literal["simple", "full"],
         byte_limit: float | NotGiven = NOT_GIVEN,
-        filter_v1: pcap_magic_pcap_collection_create_pcap_request_params.FGwnJEhWPcapsRequestFullFilterV1
+        filter_v1: pcap_magic_pcap_collection_create_pcap_request_params.IiInMbmoPcapsRequestFullFilterV1
         | NotGiven = NOT_GIVEN,
         packet_limit: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -228,7 +255,7 @@ class Pcaps(SyncAPIResource):
         system: Literal["magic-transit"],
         time_limit: float,
         type: Literal["simple", "full"],
-        filter_v1: pcap_magic_pcap_collection_create_pcap_request_params.FGwnJEhWPcapsRequestSimpleFilterV1
+        filter_v1: pcap_magic_pcap_collection_create_pcap_request_params.IiInMbmoPcapsRequestSimpleFilterV1
         | NotGiven = NOT_GIVEN,
         colo_name: str | NotGiven = NOT_GIVEN,
         destination_conf: str | NotGiven = NOT_GIVEN,
@@ -390,7 +417,7 @@ class AsyncPcaps(AsyncAPIResource):
         system: Literal["magic-transit"],
         time_limit: float,
         type: Literal["simple", "full"],
-        filter_v1: pcap_magic_pcap_collection_create_pcap_request_params.FGwnJEhWPcapsRequestSimpleFilterV1
+        filter_v1: pcap_magic_pcap_collection_create_pcap_request_params.IiInMbmoPcapsRequestSimpleFilterV1
         | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -437,7 +464,7 @@ class AsyncPcaps(AsyncAPIResource):
         time_limit: float,
         type: Literal["simple", "full"],
         byte_limit: float | NotGiven = NOT_GIVEN,
-        filter_v1: pcap_magic_pcap_collection_create_pcap_request_params.FGwnJEhWPcapsRequestFullFilterV1
+        filter_v1: pcap_magic_pcap_collection_create_pcap_request_params.IiInMbmoPcapsRequestFullFilterV1
         | NotGiven = NOT_GIVEN,
         packet_limit: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -495,7 +522,7 @@ class AsyncPcaps(AsyncAPIResource):
         system: Literal["magic-transit"],
         time_limit: float,
         type: Literal["simple", "full"],
-        filter_v1: pcap_magic_pcap_collection_create_pcap_request_params.FGwnJEhWPcapsRequestSimpleFilterV1
+        filter_v1: pcap_magic_pcap_collection_create_pcap_request_params.IiInMbmoPcapsRequestSimpleFilterV1
         | NotGiven = NOT_GIVEN,
         colo_name: str | NotGiven = NOT_GIVEN,
         destination_conf: str | NotGiven = NOT_GIVEN,
