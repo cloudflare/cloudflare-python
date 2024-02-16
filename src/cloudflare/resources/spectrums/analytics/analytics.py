@@ -2,35 +2,6 @@
 
 from __future__ import annotations
 
-from .aggregates.aggregates import Aggregates, AsyncAggregates
-
-from ...._compat import cached_property
-
-from .events.events import Events, AsyncEvents
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ....types import shared_params
-from .aggregates import (
-    Aggregates,
-    AsyncAggregates,
-    AggregatesWithRawResponse,
-    AsyncAggregatesWithRawResponse,
-    AggregatesWithStreamingResponse,
-    AsyncAggregatesWithStreamingResponse,
-)
 from .events import (
     Events,
     AsyncEvents,
@@ -39,7 +10,18 @@ from .events import (
     EventsWithStreamingResponse,
     AsyncEventsWithStreamingResponse,
 )
-from ...._wrappers import ResultWrapper
+from ...._compat import cached_property
+from .aggregates import (
+    Aggregates,
+    AsyncAggregates,
+    AggregatesWithRawResponse,
+    AsyncAggregatesWithRawResponse,
+    AggregatesWithStreamingResponse,
+    AsyncAggregatesWithStreamingResponse,
+)
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from .events.events import Events, AsyncEvents
+from .aggregates.aggregates import Aggregates, AsyncAggregates
 
 __all__ = ["Analytics", "AsyncAnalytics"]
 

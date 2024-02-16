@@ -1,25 +1,20 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from typing import Optional
-
+from typing import Union, Optional
 from typing_extensions import Literal
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
 from .._models import BaseModel
-from ..types import shared
 
 __all__ = [
     "PcapGetResponse",
-    "IIInMbmoPcapsResponseSimple",
-    "IIInMbmoPcapsResponseSimpleFilterV1",
-    "IIInMbmoPcapsResponseFull",
-    "IIInMbmoPcapsResponseFullFilterV1",
+    "FGwnJEhWPcapsResponseSimple",
+    "FGwnJEhWPcapsResponseSimpleFilterV1",
+    "FGwnJEhWPcapsResponseFull",
+    "FGwnJEhWPcapsResponseFullFilterV1",
 ]
 
 
-class IIInMbmoPcapsResponseSimpleFilterV1(BaseModel):
+class FGwnJEhWPcapsResponseSimpleFilterV1(BaseModel):
     destination_address: Optional[str] = None
     """The destination IP address of the packet."""
 
@@ -36,11 +31,11 @@ class IIInMbmoPcapsResponseSimpleFilterV1(BaseModel):
     """The source port of the packet."""
 
 
-class IIInMbmoPcapsResponseSimple(BaseModel):
+class FGwnJEhWPcapsResponseSimple(BaseModel):
     id: Optional[str] = None
     """The ID for the packet capture."""
 
-    filter_v1: Optional[IIInMbmoPcapsResponseSimpleFilterV1] = None
+    filter_v1: Optional[FGwnJEhWPcapsResponseSimpleFilterV1] = None
     """The packet capture filter. When this field is empty, all packets are captured."""
 
     status: Optional[
@@ -67,7 +62,7 @@ class IIInMbmoPcapsResponseSimple(BaseModel):
     """
 
 
-class IIInMbmoPcapsResponseFullFilterV1(BaseModel):
+class FGwnJEhWPcapsResponseFullFilterV1(BaseModel):
     destination_address: Optional[str] = None
     """The destination IP address of the packet."""
 
@@ -84,7 +79,7 @@ class IIInMbmoPcapsResponseFullFilterV1(BaseModel):
     """The source port of the packet."""
 
 
-class IIInMbmoPcapsResponseFull(BaseModel):
+class FGwnJEhWPcapsResponseFull(BaseModel):
     id: Optional[str] = None
     """The ID for the packet capture."""
 
@@ -110,7 +105,7 @@ class IIInMbmoPcapsResponseFull(BaseModel):
     This field only applies to `full` packet captures.
     """
 
-    filter_v1: Optional[IIInMbmoPcapsResponseFullFilterV1] = None
+    filter_v1: Optional[FGwnJEhWPcapsResponseFullFilterV1] = None
     """The packet capture filter. When this field is empty, all packets are captured."""
 
     status: Optional[
@@ -137,4 +132,4 @@ class IIInMbmoPcapsResponseFull(BaseModel):
     """
 
 
-PcapGetResponse = Union[IIInMbmoPcapsResponseSimple, IIInMbmoPcapsResponseFull]
+PcapGetResponse = Union[FGwnJEhWPcapsResponseSimple, FGwnJEhWPcapsResponseFull]
