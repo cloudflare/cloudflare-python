@@ -19,7 +19,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.ssls.certificate_packs import QuotaGetResponse
+from ....types.ssls.certificate_packs import QuotaCertificatePacksGetCertificatePackQuotasResponse
 
 __all__ = ["Quotas", "AsyncQuotas"]
 
@@ -33,7 +33,7 @@ class Quotas(SyncAPIResource):
     def with_streaming_response(self) -> QuotasWithStreamingResponse:
         return QuotasWithStreamingResponse(self)
 
-    def get(
+    def certificate_packs_get_certificate_pack_quotas(
         self,
         zone_id: str,
         *,
@@ -43,7 +43,7 @@ class Quotas(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> QuotaGetResponse:
+    ) -> QuotaCertificatePacksGetCertificatePackQuotasResponse:
         """
         For a given zone, list certificate pack quotas.
 
@@ -69,7 +69,10 @@ class Quotas(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[QuotaGetResponse], ResultWrapper[QuotaGetResponse]),
+            cast_to=cast(
+                Type[QuotaCertificatePacksGetCertificatePackQuotasResponse],
+                ResultWrapper[QuotaCertificatePacksGetCertificatePackQuotasResponse],
+            ),
         )
 
 
@@ -82,7 +85,7 @@ class AsyncQuotas(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncQuotasWithStreamingResponse:
         return AsyncQuotasWithStreamingResponse(self)
 
-    async def get(
+    async def certificate_packs_get_certificate_pack_quotas(
         self,
         zone_id: str,
         *,
@@ -92,7 +95,7 @@ class AsyncQuotas(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> QuotaGetResponse:
+    ) -> QuotaCertificatePacksGetCertificatePackQuotasResponse:
         """
         For a given zone, list certificate pack quotas.
 
@@ -118,7 +121,10 @@ class AsyncQuotas(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[QuotaGetResponse], ResultWrapper[QuotaGetResponse]),
+            cast_to=cast(
+                Type[QuotaCertificatePacksGetCertificatePackQuotasResponse],
+                ResultWrapper[QuotaCertificatePacksGetCertificatePackQuotasResponse],
+            ),
         )
 
 
@@ -126,8 +132,8 @@ class QuotasWithRawResponse:
     def __init__(self, quotas: Quotas) -> None:
         self._quotas = quotas
 
-        self.get = to_raw_response_wrapper(
-            quotas.get,
+        self.certificate_packs_get_certificate_pack_quotas = to_raw_response_wrapper(
+            quotas.certificate_packs_get_certificate_pack_quotas,
         )
 
 
@@ -135,8 +141,8 @@ class AsyncQuotasWithRawResponse:
     def __init__(self, quotas: AsyncQuotas) -> None:
         self._quotas = quotas
 
-        self.get = async_to_raw_response_wrapper(
-            quotas.get,
+        self.certificate_packs_get_certificate_pack_quotas = async_to_raw_response_wrapper(
+            quotas.certificate_packs_get_certificate_pack_quotas,
         )
 
 
@@ -144,8 +150,8 @@ class QuotasWithStreamingResponse:
     def __init__(self, quotas: Quotas) -> None:
         self._quotas = quotas
 
-        self.get = to_streamed_response_wrapper(
-            quotas.get,
+        self.certificate_packs_get_certificate_pack_quotas = to_streamed_response_wrapper(
+            quotas.certificate_packs_get_certificate_pack_quotas,
         )
 
 
@@ -153,6 +159,6 @@ class AsyncQuotasWithStreamingResponse:
     def __init__(self, quotas: AsyncQuotas) -> None:
         self._quotas = quotas
 
-        self.get = async_to_streamed_response_wrapper(
-            quotas.get,
+        self.certificate_packs_get_certificate_pack_quotas = async_to_streamed_response_wrapper(
+            quotas.certificate_packs_get_certificate_pack_quotas,
         )

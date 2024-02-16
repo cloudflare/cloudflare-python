@@ -4,10 +4,10 @@ from typing import Optional
 
 from ..._models import BaseModel
 
-__all__ = ["EdgeCreateResponse"]
+__all__ = ["EdgeUpdateResponse"]
 
 
-class EdgeCreateResponse(BaseModel):
+class EdgeUpdateResponse(BaseModel):
     destination_conf: Optional[str] = None
     """Unique WebSocket address that will receive messages from Cloudflare’s edge."""
 

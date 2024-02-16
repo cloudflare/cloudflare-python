@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["TotalTLSCreateParams"]
+__all__ = ["TotalTLSUpdateParams"]
 
 
-class TotalTLSCreateParams(TypedDict, total=False):
+class TotalTLSUpdateParams(TypedDict, total=False):
     enabled: Required[bool]
     """
     If enabled, Total TLS will order a hostname specific TLS certificate for any

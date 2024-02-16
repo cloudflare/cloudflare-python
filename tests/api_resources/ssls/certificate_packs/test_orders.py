@@ -9,7 +9,9 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.ssls.certificate_packs import OrderCreateResponse
+from cloudflare.types.ssls.certificate_packs import (
+    OrderCertificatePacksOrderAdvancedCertificateManagerCertificatePackResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -19,35 +21,49 @@ class TestOrders:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create(self, client: Cloudflare) -> None:
-        order = client.ssls.certificate_packs.orders.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            certificate_authority="lets_encrypt",
-            hosts=["example.com", "*.example.com", "www.example.com"],
-            type="advanced",
-            validation_method="txt",
-            validity_days=14,
+    def test_method_certificate_packs_order_advanced_certificate_manager_certificate_pack(
+        self, client: Cloudflare
+    ) -> None:
+        order = (
+            client.ssls.certificate_packs.orders.certificate_packs_order_advanced_certificate_manager_certificate_pack(
+                "023e105f4ecef8ad9ca31a8372d0c353",
+                certificate_authority="lets_encrypt",
+                hosts=["example.com", "*.example.com", "www.example.com"],
+                type="advanced",
+                validation_method="txt",
+                validity_days=14,
+            )
         )
-        assert_matches_type(OrderCreateResponse, order, path=["response"])
+        assert_matches_type(
+            OrderCertificatePacksOrderAdvancedCertificateManagerCertificatePackResponse, order, path=["response"]
+        )
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
-        order = client.ssls.certificate_packs.orders.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            certificate_authority="lets_encrypt",
-            hosts=["example.com", "*.example.com", "www.example.com"],
-            type="advanced",
-            validation_method="txt",
-            validity_days=14,
-            cloudflare_branding=False,
+    def test_method_certificate_packs_order_advanced_certificate_manager_certificate_pack_with_all_params(
+        self, client: Cloudflare
+    ) -> None:
+        order = (
+            client.ssls.certificate_packs.orders.certificate_packs_order_advanced_certificate_manager_certificate_pack(
+                "023e105f4ecef8ad9ca31a8372d0c353",
+                certificate_authority="lets_encrypt",
+                hosts=["example.com", "*.example.com", "www.example.com"],
+                type="advanced",
+                validation_method="txt",
+                validity_days=14,
+                cloudflare_branding=False,
+            )
         )
-        assert_matches_type(OrderCreateResponse, order, path=["response"])
+        assert_matches_type(
+            OrderCertificatePacksOrderAdvancedCertificateManagerCertificatePackResponse, order, path=["response"]
+        )
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_create(self, client: Cloudflare) -> None:
-        response = client.ssls.certificate_packs.orders.with_raw_response.create(
+    def test_raw_response_certificate_packs_order_advanced_certificate_manager_certificate_pack(
+        self, client: Cloudflare
+    ) -> None:
+        response = client.ssls.certificate_packs.orders.with_raw_response.certificate_packs_order_advanced_certificate_manager_certificate_pack(
             "023e105f4ecef8ad9ca31a8372d0c353",
             certificate_authority="lets_encrypt",
             hosts=["example.com", "*.example.com", "www.example.com"],
@@ -59,12 +75,16 @@ class TestOrders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         order = response.parse()
-        assert_matches_type(OrderCreateResponse, order, path=["response"])
+        assert_matches_type(
+            OrderCertificatePacksOrderAdvancedCertificateManagerCertificatePackResponse, order, path=["response"]
+        )
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_create(self, client: Cloudflare) -> None:
-        with client.ssls.certificate_packs.orders.with_streaming_response.create(
+    def test_streaming_response_certificate_packs_order_advanced_certificate_manager_certificate_pack(
+        self, client: Cloudflare
+    ) -> None:
+        with client.ssls.certificate_packs.orders.with_streaming_response.certificate_packs_order_advanced_certificate_manager_certificate_pack(
             "023e105f4ecef8ad9ca31a8372d0c353",
             certificate_authority="lets_encrypt",
             hosts=["example.com", "*.example.com", "www.example.com"],
@@ -76,15 +96,19 @@ class TestOrders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             order = response.parse()
-            assert_matches_type(OrderCreateResponse, order, path=["response"])
+            assert_matches_type(
+                OrderCertificatePacksOrderAdvancedCertificateManagerCertificatePackResponse, order, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_create(self, client: Cloudflare) -> None:
+    def test_path_params_certificate_packs_order_advanced_certificate_manager_certificate_pack(
+        self, client: Cloudflare
+    ) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.ssls.certificate_packs.orders.with_raw_response.create(
+            client.ssls.certificate_packs.orders.with_raw_response.certificate_packs_order_advanced_certificate_manager_certificate_pack(
                 "",
                 certificate_authority="lets_encrypt",
                 hosts=["example.com", "*.example.com", "www.example.com"],
@@ -99,8 +123,10 @@ class TestAsyncOrders:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create(self, async_client: AsyncCloudflare) -> None:
-        order = await async_client.ssls.certificate_packs.orders.create(
+    async def test_method_certificate_packs_order_advanced_certificate_manager_certificate_pack(
+        self, async_client: AsyncCloudflare
+    ) -> None:
+        order = await async_client.ssls.certificate_packs.orders.certificate_packs_order_advanced_certificate_manager_certificate_pack(
             "023e105f4ecef8ad9ca31a8372d0c353",
             certificate_authority="lets_encrypt",
             hosts=["example.com", "*.example.com", "www.example.com"],
@@ -108,12 +134,16 @@ class TestAsyncOrders:
             validation_method="txt",
             validity_days=14,
         )
-        assert_matches_type(OrderCreateResponse, order, path=["response"])
+        assert_matches_type(
+            OrderCertificatePacksOrderAdvancedCertificateManagerCertificatePackResponse, order, path=["response"]
+        )
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        order = await async_client.ssls.certificate_packs.orders.create(
+    async def test_method_certificate_packs_order_advanced_certificate_manager_certificate_pack_with_all_params(
+        self, async_client: AsyncCloudflare
+    ) -> None:
+        order = await async_client.ssls.certificate_packs.orders.certificate_packs_order_advanced_certificate_manager_certificate_pack(
             "023e105f4ecef8ad9ca31a8372d0c353",
             certificate_authority="lets_encrypt",
             hosts=["example.com", "*.example.com", "www.example.com"],
@@ -122,12 +152,16 @@ class TestAsyncOrders:
             validity_days=14,
             cloudflare_branding=False,
         )
-        assert_matches_type(OrderCreateResponse, order, path=["response"])
+        assert_matches_type(
+            OrderCertificatePacksOrderAdvancedCertificateManagerCertificatePackResponse, order, path=["response"]
+        )
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.ssls.certificate_packs.orders.with_raw_response.create(
+    async def test_raw_response_certificate_packs_order_advanced_certificate_manager_certificate_pack(
+        self, async_client: AsyncCloudflare
+    ) -> None:
+        response = await async_client.ssls.certificate_packs.orders.with_raw_response.certificate_packs_order_advanced_certificate_manager_certificate_pack(
             "023e105f4ecef8ad9ca31a8372d0c353",
             certificate_authority="lets_encrypt",
             hosts=["example.com", "*.example.com", "www.example.com"],
@@ -139,12 +173,16 @@ class TestAsyncOrders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         order = await response.parse()
-        assert_matches_type(OrderCreateResponse, order, path=["response"])
+        assert_matches_type(
+            OrderCertificatePacksOrderAdvancedCertificateManagerCertificatePackResponse, order, path=["response"]
+        )
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.ssls.certificate_packs.orders.with_streaming_response.create(
+    async def test_streaming_response_certificate_packs_order_advanced_certificate_manager_certificate_pack(
+        self, async_client: AsyncCloudflare
+    ) -> None:
+        async with async_client.ssls.certificate_packs.orders.with_streaming_response.certificate_packs_order_advanced_certificate_manager_certificate_pack(
             "023e105f4ecef8ad9ca31a8372d0c353",
             certificate_authority="lets_encrypt",
             hosts=["example.com", "*.example.com", "www.example.com"],
@@ -156,15 +194,19 @@ class TestAsyncOrders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             order = await response.parse()
-            assert_matches_type(OrderCreateResponse, order, path=["response"])
+            assert_matches_type(
+                OrderCertificatePacksOrderAdvancedCertificateManagerCertificatePackResponse, order, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
+    async def test_path_params_certificate_packs_order_advanced_certificate_manager_certificate_pack(
+        self, async_client: AsyncCloudflare
+    ) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.ssls.certificate_packs.orders.with_raw_response.create(
+            await async_client.ssls.certificate_packs.orders.with_raw_response.certificate_packs_order_advanced_certificate_manager_certificate_pack(
                 "",
                 certificate_authority="lets_encrypt",
                 hosts=["example.com", "*.example.com", "www.example.com"],

@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.acms import TotalTLSGetResponse, TotalTLSCreateResponse
+from cloudflare.types.acms import TotalTLSGetResponse, TotalTLSUpdateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -19,27 +19,27 @@ class TestTotalTLS:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create(self, client: Cloudflare) -> None:
-        total_tls = client.acms.total_tls.create(
+    def test_method_update(self, client: Cloudflare) -> None:
+        total_tls = client.acms.total_tls.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             enabled=True,
         )
-        assert_matches_type(TotalTLSCreateResponse, total_tls, path=["response"])
+        assert_matches_type(TotalTLSUpdateResponse, total_tls, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
-        total_tls = client.acms.total_tls.create(
+    def test_method_update_with_all_params(self, client: Cloudflare) -> None:
+        total_tls = client.acms.total_tls.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             enabled=True,
             certificate_authority="google",
         )
-        assert_matches_type(TotalTLSCreateResponse, total_tls, path=["response"])
+        assert_matches_type(TotalTLSUpdateResponse, total_tls, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_create(self, client: Cloudflare) -> None:
-        response = client.acms.total_tls.with_raw_response.create(
+    def test_raw_response_update(self, client: Cloudflare) -> None:
+        response = client.acms.total_tls.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             enabled=True,
         )
@@ -47,12 +47,12 @@ class TestTotalTLS:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         total_tls = response.parse()
-        assert_matches_type(TotalTLSCreateResponse, total_tls, path=["response"])
+        assert_matches_type(TotalTLSUpdateResponse, total_tls, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_create(self, client: Cloudflare) -> None:
-        with client.acms.total_tls.with_streaming_response.create(
+    def test_streaming_response_update(self, client: Cloudflare) -> None:
+        with client.acms.total_tls.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             enabled=True,
         ) as response:
@@ -60,15 +60,15 @@ class TestTotalTLS:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             total_tls = response.parse()
-            assert_matches_type(TotalTLSCreateResponse, total_tls, path=["response"])
+            assert_matches_type(TotalTLSUpdateResponse, total_tls, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_create(self, client: Cloudflare) -> None:
+    def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.acms.total_tls.with_raw_response.create(
+            client.acms.total_tls.with_raw_response.update(
                 "",
                 enabled=True,
             )
@@ -121,27 +121,27 @@ class TestAsyncTotalTLS:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create(self, async_client: AsyncCloudflare) -> None:
-        total_tls = await async_client.acms.total_tls.create(
+    async def test_method_update(self, async_client: AsyncCloudflare) -> None:
+        total_tls = await async_client.acms.total_tls.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             enabled=True,
         )
-        assert_matches_type(TotalTLSCreateResponse, total_tls, path=["response"])
+        assert_matches_type(TotalTLSUpdateResponse, total_tls, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        total_tls = await async_client.acms.total_tls.create(
+    async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        total_tls = await async_client.acms.total_tls.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             enabled=True,
             certificate_authority="google",
         )
-        assert_matches_type(TotalTLSCreateResponse, total_tls, path=["response"])
+        assert_matches_type(TotalTLSUpdateResponse, total_tls, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.acms.total_tls.with_raw_response.create(
+    async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.acms.total_tls.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             enabled=True,
         )
@@ -149,12 +149,12 @@ class TestAsyncTotalTLS:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         total_tls = await response.parse()
-        assert_matches_type(TotalTLSCreateResponse, total_tls, path=["response"])
+        assert_matches_type(TotalTLSUpdateResponse, total_tls, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.acms.total_tls.with_streaming_response.create(
+    async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.acms.total_tls.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             enabled=True,
         ) as response:
@@ -162,15 +162,15 @@ class TestAsyncTotalTLS:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             total_tls = await response.parse()
-            assert_matches_type(TotalTLSCreateResponse, total_tls, path=["response"])
+            assert_matches_type(TotalTLSUpdateResponse, total_tls, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
+    async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.acms.total_tls.with_raw_response.create(
+            await async_client.acms.total_tls.with_raw_response.update(
                 "",
                 enabled=True,
             )

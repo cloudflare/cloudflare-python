@@ -19,7 +19,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.access.users import FailedLoginGetResponse
+from ....types.access.users import FailedLoginZeroTrustUsersGetFailedLoginsResponse
 
 __all__ = ["FailedLogins", "AsyncFailedLogins"]
 
@@ -33,7 +33,7 @@ class FailedLogins(SyncAPIResource):
     def with_streaming_response(self) -> FailedLoginsWithStreamingResponse:
         return FailedLoginsWithStreamingResponse(self)
 
-    def get(
+    def zero_trust_users_get_failed_logins(
         self,
         id: str,
         *,
@@ -44,7 +44,7 @@ class FailedLogins(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[FailedLoginGetResponse]:
+    ) -> Optional[FailedLoginZeroTrustUsersGetFailedLoginsResponse]:
         """
         Get all failed login attempts for a single user.
 
@@ -74,7 +74,10 @@ class FailedLogins(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[FailedLoginGetResponse]], ResultWrapper[FailedLoginGetResponse]),
+            cast_to=cast(
+                Type[Optional[FailedLoginZeroTrustUsersGetFailedLoginsResponse]],
+                ResultWrapper[FailedLoginZeroTrustUsersGetFailedLoginsResponse],
+            ),
         )
 
 
@@ -87,7 +90,7 @@ class AsyncFailedLogins(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncFailedLoginsWithStreamingResponse:
         return AsyncFailedLoginsWithStreamingResponse(self)
 
-    async def get(
+    async def zero_trust_users_get_failed_logins(
         self,
         id: str,
         *,
@@ -98,7 +101,7 @@ class AsyncFailedLogins(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[FailedLoginGetResponse]:
+    ) -> Optional[FailedLoginZeroTrustUsersGetFailedLoginsResponse]:
         """
         Get all failed login attempts for a single user.
 
@@ -128,7 +131,10 @@ class AsyncFailedLogins(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[FailedLoginGetResponse]], ResultWrapper[FailedLoginGetResponse]),
+            cast_to=cast(
+                Type[Optional[FailedLoginZeroTrustUsersGetFailedLoginsResponse]],
+                ResultWrapper[FailedLoginZeroTrustUsersGetFailedLoginsResponse],
+            ),
         )
 
 
@@ -136,8 +142,8 @@ class FailedLoginsWithRawResponse:
     def __init__(self, failed_logins: FailedLogins) -> None:
         self._failed_logins = failed_logins
 
-        self.get = to_raw_response_wrapper(
-            failed_logins.get,
+        self.zero_trust_users_get_failed_logins = to_raw_response_wrapper(
+            failed_logins.zero_trust_users_get_failed_logins,
         )
 
 
@@ -145,8 +151,8 @@ class AsyncFailedLoginsWithRawResponse:
     def __init__(self, failed_logins: AsyncFailedLogins) -> None:
         self._failed_logins = failed_logins
 
-        self.get = async_to_raw_response_wrapper(
-            failed_logins.get,
+        self.zero_trust_users_get_failed_logins = async_to_raw_response_wrapper(
+            failed_logins.zero_trust_users_get_failed_logins,
         )
 
 
@@ -154,8 +160,8 @@ class FailedLoginsWithStreamingResponse:
     def __init__(self, failed_logins: FailedLogins) -> None:
         self._failed_logins = failed_logins
 
-        self.get = to_streamed_response_wrapper(
-            failed_logins.get,
+        self.zero_trust_users_get_failed_logins = to_streamed_response_wrapper(
+            failed_logins.zero_trust_users_get_failed_logins,
         )
 
 
@@ -163,6 +169,6 @@ class AsyncFailedLoginsWithStreamingResponse:
     def __init__(self, failed_logins: AsyncFailedLogins) -> None:
         self._failed_logins = failed_logins
 
-        self.get = async_to_streamed_response_wrapper(
-            failed_logins.get,
+        self.zero_trust_users_get_failed_logins = async_to_streamed_response_wrapper(
+            failed_logins.zero_trust_users_get_failed_logins,
         )

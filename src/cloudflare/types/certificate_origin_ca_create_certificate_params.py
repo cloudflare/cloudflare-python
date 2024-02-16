@@ -5,10 +5,10 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Literal, TypedDict
 
-__all__ = ["CertificateCreateParams"]
+__all__ = ["CertificateOriginCaCreateCertificateParams"]
 
 
-class CertificateCreateParams(TypedDict, total=False):
+class CertificateOriginCaCreateCertificateParams(TypedDict, total=False):
     csr: str
     """The Certificate Signing Request (CSR). Must be newline-encoded."""
 

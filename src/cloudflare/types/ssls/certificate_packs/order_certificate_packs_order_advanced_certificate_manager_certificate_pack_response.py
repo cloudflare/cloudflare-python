@@ -5,10 +5,10 @@ from typing_extensions import Literal
 
 from ...._models import BaseModel
 
-__all__ = ["OrderCreateResponse"]
+__all__ = ["OrderCertificatePacksOrderAdvancedCertificateManagerCertificatePackResponse"]
 
 
-class OrderCreateResponse(BaseModel):
+class OrderCertificatePacksOrderAdvancedCertificateManagerCertificatePackResponse(BaseModel):
     id: Optional[str] = None
     """Identifier"""
 
