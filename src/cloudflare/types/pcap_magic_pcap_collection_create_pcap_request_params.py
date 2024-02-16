@@ -7,14 +7,14 @@ from typing_extensions import Literal, Required, TypedDict
 
 __all__ = [
     "PcapMagicPcapCollectionCreatePcapRequestParams",
-    "_6wtRj17BPcapsRequestSimple",
-    "_6wtRj17BPcapsRequestSimpleFilterV1",
-    "_6wtRj17BPcapsRequestFull",
-    "_6wtRj17BPcapsRequestFullFilterV1",
+    "Jp9MvktBPcapsRequestSimple",
+    "Jp9MvktBPcapsRequestSimpleFilterV1",
+    "Jp9MvktBPcapsRequestFull",
+    "Jp9MvktBPcapsRequestFullFilterV1",
 ]
 
 
-class _6wtRj17BPcapsRequestSimple(TypedDict, total=False):
+class Jp9MvktBPcapsRequestSimple(TypedDict, total=False):
     packet_limit: Required[float]
     """The limit of packets contained in a packet capture."""
 
@@ -31,11 +31,11 @@ class _6wtRj17BPcapsRequestSimple(TypedDict, total=False):
     non-sampled packets.
     """
 
-    filter_v1: _6wtRj17BPcapsRequestSimpleFilterV1
+    filter_v1: Jp9MvktBPcapsRequestSimpleFilterV1
     """The packet capture filter. When this field is empty, all packets are captured."""
 
 
-class _6wtRj17BPcapsRequestSimpleFilterV1(TypedDict, total=False):
+class Jp9MvktBPcapsRequestSimpleFilterV1(TypedDict, total=False):
     destination_address: str
     """The destination IP address of the packet."""
 
@@ -52,7 +52,7 @@ class _6wtRj17BPcapsRequestSimpleFilterV1(TypedDict, total=False):
     """The source port of the packet."""
 
 
-class _6wtRj17BPcapsRequestFull(TypedDict, total=False):
+class Jp9MvktBPcapsRequestFull(TypedDict, total=False):
     colo_name: Required[str]
     """The name of the data center used for the packet capture.
 
@@ -82,14 +82,14 @@ class _6wtRj17BPcapsRequestFull(TypedDict, total=False):
     This field only applies to `full` packet captures.
     """
 
-    filter_v1: _6wtRj17BPcapsRequestFullFilterV1
+    filter_v1: Jp9MvktBPcapsRequestFullFilterV1
     """The packet capture filter. When this field is empty, all packets are captured."""
 
     packet_limit: float
     """The limit of packets contained in a packet capture."""
 
 
-class _6wtRj17BPcapsRequestFullFilterV1(TypedDict, total=False):
+class Jp9MvktBPcapsRequestFullFilterV1(TypedDict, total=False):
     destination_address: str
     """The destination IP address of the packet."""
 
@@ -106,4 +106,4 @@ class _6wtRj17BPcapsRequestFullFilterV1(TypedDict, total=False):
     """The source port of the packet."""
 
 
-PcapMagicPcapCollectionCreatePcapRequestParams = Union[_6wtRj17BPcapsRequestSimple, _6wtRj17BPcapsRequestFull]
+PcapMagicPcapCollectionCreatePcapRequestParams = Union[Jp9MvktBPcapsRequestSimple, Jp9MvktBPcapsRequestFull]

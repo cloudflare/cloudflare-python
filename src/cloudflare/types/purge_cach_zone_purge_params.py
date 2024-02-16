@@ -7,15 +7,15 @@ from typing_extensions import TypedDict
 
 __all__ = [
     "PurgeCachZonePurgeParams",
-    "HDwfmVgpFlex",
-    "HDwfmVgpEverything",
-    "HDwfmVgpFiles",
-    "HDwfmVgpFilesFile",
-    "HDwfmVgpFilesFileHDwfmVgpURLAndHeaders",
+    "Hv5ypxlmFlex",
+    "Hv5ypxlmEverything",
+    "Hv5ypxlmFiles",
+    "Hv5ypxlmFilesFile",
+    "Hv5ypxlmFilesFileHv5ypxlmURLAndHeaders",
 ]
 
 
-class HDwfmVgpFlex(TypedDict, total=False):
+class Hv5ypxlmFlex(TypedDict, total=False):
     hosts: List[str]
 
     prefixes: List[str]
@@ -23,20 +23,20 @@ class HDwfmVgpFlex(TypedDict, total=False):
     tags: List[str]
 
 
-class HDwfmVgpEverything(TypedDict, total=False):
+class Hv5ypxlmEverything(TypedDict, total=False):
     purge_everything: bool
 
 
-class HDwfmVgpFiles(TypedDict, total=False):
-    files: List[HDwfmVgpFilesFile]
+class Hv5ypxlmFiles(TypedDict, total=False):
+    files: List[Hv5ypxlmFilesFile]
 
 
-class HDwfmVgpFilesFileHDwfmVgpURLAndHeaders(TypedDict, total=False):
+class Hv5ypxlmFilesFileHv5ypxlmURLAndHeaders(TypedDict, total=False):
     headers: object
 
     url: str
 
 
-HDwfmVgpFilesFile = Union[str, HDwfmVgpFilesFileHDwfmVgpURLAndHeaders]
+Hv5ypxlmFilesFile = Union[str, Hv5ypxlmFilesFileHv5ypxlmURLAndHeaders]
 
-PurgeCachZonePurgeParams = Union[HDwfmVgpFlex, HDwfmVgpEverything, HDwfmVgpFiles]
+PurgeCachZonePurgeParams = Union[Hv5ypxlmFlex, Hv5ypxlmEverything, Hv5ypxlmFiles]
