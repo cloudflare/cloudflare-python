@@ -98,7 +98,6 @@ class Cloudflare(SyncAPIClient):
     billings: resources.Billings
     brand_protections: resources.BrandProtections
     cfd_tunnels: resources.CfdTunnels
-    diagnostics: resources.Diagnostics
     dlps: resources.DLPs
     dns_firewalls: resources.DNSFirewalls
     images: resources.Images
@@ -295,7 +294,6 @@ class Cloudflare(SyncAPIClient):
         self.billings = resources.Billings(self)
         self.brand_protections = resources.BrandProtections(self)
         self.cfd_tunnels = resources.CfdTunnels(self)
-        self.diagnostics = resources.Diagnostics(self)
         self.dlps = resources.DLPs(self)
         self.dns_firewalls = resources.DNSFirewalls(self)
         self.images = resources.Images(self)
@@ -546,7 +544,6 @@ class AsyncCloudflare(AsyncAPIClient):
     billings: resources.AsyncBillings
     brand_protections: resources.AsyncBrandProtections
     cfd_tunnels: resources.AsyncCfdTunnels
-    diagnostics: resources.AsyncDiagnostics
     dlps: resources.AsyncDLPs
     dns_firewalls: resources.AsyncDNSFirewalls
     images: resources.AsyncImages
@@ -743,7 +740,6 @@ class AsyncCloudflare(AsyncAPIClient):
         self.billings = resources.AsyncBillings(self)
         self.brand_protections = resources.AsyncBrandProtections(self)
         self.cfd_tunnels = resources.AsyncCfdTunnels(self)
-        self.diagnostics = resources.AsyncDiagnostics(self)
         self.dlps = resources.AsyncDLPs(self)
         self.dns_firewalls = resources.AsyncDNSFirewalls(self)
         self.images = resources.AsyncImages(self)
@@ -995,7 +991,6 @@ class CloudflareWithRawResponse:
         self.billings = resources.BillingsWithRawResponse(client.billings)
         self.brand_protections = resources.BrandProtectionsWithRawResponse(client.brand_protections)
         self.cfd_tunnels = resources.CfdTunnelsWithRawResponse(client.cfd_tunnels)
-        self.diagnostics = resources.DiagnosticsWithRawResponse(client.diagnostics)
         self.dlps = resources.DLPsWithRawResponse(client.dlps)
         self.dns_firewalls = resources.DNSFirewallsWithRawResponse(client.dns_firewalls)
         self.images = resources.ImagesWithRawResponse(client.images)
@@ -1111,7 +1106,6 @@ class AsyncCloudflareWithRawResponse:
         self.billings = resources.AsyncBillingsWithRawResponse(client.billings)
         self.brand_protections = resources.AsyncBrandProtectionsWithRawResponse(client.brand_protections)
         self.cfd_tunnels = resources.AsyncCfdTunnelsWithRawResponse(client.cfd_tunnels)
-        self.diagnostics = resources.AsyncDiagnosticsWithRawResponse(client.diagnostics)
         self.dlps = resources.AsyncDLPsWithRawResponse(client.dlps)
         self.dns_firewalls = resources.AsyncDNSFirewallsWithRawResponse(client.dns_firewalls)
         self.images = resources.AsyncImagesWithRawResponse(client.images)
@@ -1227,7 +1221,6 @@ class CloudflareWithStreamedResponse:
         self.billings = resources.BillingsWithStreamingResponse(client.billings)
         self.brand_protections = resources.BrandProtectionsWithStreamingResponse(client.brand_protections)
         self.cfd_tunnels = resources.CfdTunnelsWithStreamingResponse(client.cfd_tunnels)
-        self.diagnostics = resources.DiagnosticsWithStreamingResponse(client.diagnostics)
         self.dlps = resources.DLPsWithStreamingResponse(client.dlps)
         self.dns_firewalls = resources.DNSFirewallsWithStreamingResponse(client.dns_firewalls)
         self.images = resources.ImagesWithStreamingResponse(client.images)
@@ -1345,7 +1338,6 @@ class AsyncCloudflareWithStreamedResponse:
         self.billings = resources.AsyncBillingsWithStreamingResponse(client.billings)
         self.brand_protections = resources.AsyncBrandProtectionsWithStreamingResponse(client.brand_protections)
         self.cfd_tunnels = resources.AsyncCfdTunnelsWithStreamingResponse(client.cfd_tunnels)
-        self.diagnostics = resources.AsyncDiagnosticsWithStreamingResponse(client.diagnostics)
         self.dlps = resources.AsyncDLPsWithStreamingResponse(client.dlps)
         self.dns_firewalls = resources.AsyncDNSFirewallsWithStreamingResponse(client.dns_firewalls)
         self.images = resources.AsyncImagesWithStreamingResponse(client.images)
