@@ -7,8 +7,24 @@ from typing_extensions import Literal
 
 import httpx
 
+from .previews import (
+    Previews,
+    AsyncPreviews,
+    PreviewsWithRawResponse,
+    AsyncPreviewsWithRawResponse,
+    PreviewsWithStreamingResponse,
+    AsyncPreviewsWithStreamingResponse,
+)
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ....._utils import maybe_transform
+from .references import (
+    References,
+    AsyncReferences,
+    ReferencesWithRawResponse,
+    AsyncReferencesWithRawResponse,
+    ReferencesWithStreamingResponse,
+    AsyncReferencesWithStreamingResponse,
+)
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -22,15 +38,27 @@ from ....._base_client import (
     make_request_options,
 )
 from .....types.users.load_balancers import (
-    MonitorLoadBalancerMonitorsListMonitorsResponse,
-    MonitorLoadBalancerMonitorsCreateMonitorResponse,
-    monitor_load_balancer_monitors_create_monitor_params,
+    MonitorGetResponse,
+    MonitorListResponse,
+    MonitorCreateResponse,
+    MonitorDeleteResponse,
+    MonitorUpdateResponse,
+    monitor_create_params,
+    monitor_update_params,
 )
 
 __all__ = ["Monitors", "AsyncMonitors"]
 
 
 class Monitors(SyncAPIResource):
+    @cached_property
+    def previews(self) -> Previews:
+        return Previews(self._client)
+
+    @cached_property
+    def references(self) -> References:
+        return References(self._client)
+
     @cached_property
     def with_raw_response(self) -> MonitorsWithRawResponse:
         return MonitorsWithRawResponse(self)
@@ -39,7 +67,7 @@ class Monitors(SyncAPIResource):
     def with_streaming_response(self) -> MonitorsWithStreamingResponse:
         return MonitorsWithStreamingResponse(self)
 
-    def load_balancer_monitors_create_monitor(
+    def create(
         self,
         *,
         expected_codes: str,
@@ -64,7 +92,7 @@ class Monitors(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MonitorLoadBalancerMonitorsCreateMonitorResponse:
+    ) -> MonitorCreateResponse:
         """
         Create a configured monitor.
 
@@ -147,7 +175,7 @@ class Monitors(SyncAPIResource):
                     "timeout": api_timeout,
                     "type": type,
                 },
-                monitor_load_balancer_monitors_create_monitor_params.MonitorLoadBalancerMonitorsCreateMonitorParams,
+                monitor_create_params.MonitorCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -156,13 +184,133 @@ class Monitors(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[MonitorLoadBalancerMonitorsCreateMonitorResponse],
-                ResultWrapper[MonitorLoadBalancerMonitorsCreateMonitorResponse],
-            ),
+            cast_to=cast(Type[MonitorCreateResponse], ResultWrapper[MonitorCreateResponse]),
         )
 
-    def load_balancer_monitors_list_monitors(
+    def update(
+        self,
+        monitor_id: str,
+        *,
+        expected_codes: str,
+        allow_insecure: bool | NotGiven = NOT_GIVEN,
+        consecutive_down: int | NotGiven = NOT_GIVEN,
+        consecutive_up: int | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        expected_body: str | NotGiven = NOT_GIVEN,
+        follow_redirects: bool | NotGiven = NOT_GIVEN,
+        header: object | NotGiven = NOT_GIVEN,
+        interval: int | NotGiven = NOT_GIVEN,
+        method: str | NotGiven = NOT_GIVEN,
+        path: str | NotGiven = NOT_GIVEN,
+        port: int | NotGiven = NOT_GIVEN,
+        probe_zone: str | NotGiven = NOT_GIVEN,
+        retries: int | NotGiven = NOT_GIVEN,
+        api_timeout: int | NotGiven = NOT_GIVEN,
+        type: Literal["http", "https", "tcp", "udp_icmp", "icmp_ping", "smtp"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> MonitorUpdateResponse:
+        """
+        Apply changes to an existing monitor, overwriting the supplied properties.
+
+        Args:
+          expected_codes: The expected HTTP response code or code range of the health check. This
+              parameter is only valid for HTTP and HTTPS monitors.
+
+          allow_insecure: Do not validate the certificate when monitor use HTTPS. This parameter is
+              currently only valid for HTTP and HTTPS monitors.
+
+          consecutive_down: To be marked unhealthy the monitored origin must fail this healthcheck N
+              consecutive times.
+
+          consecutive_up: To be marked healthy the monitored origin must pass this healthcheck N
+              consecutive times.
+
+          description: Object description.
+
+          expected_body: A case-insensitive sub-string to look for in the response body. If this string
+              is not found, the origin will be marked as unhealthy. This parameter is only
+              valid for HTTP and HTTPS monitors.
+
+          follow_redirects: Follow redirects if returned by the origin. This parameter is only valid for
+              HTTP and HTTPS monitors.
+
+          header: The HTTP request headers to send in the health check. It is recommended you set
+              a Host header by default. The User-Agent header cannot be overridden. This
+              parameter is only valid for HTTP and HTTPS monitors.
+
+          interval: The interval between each health check. Shorter intervals may improve failover
+              time, but will increase load on the origins as we check from multiple locations.
+
+          method: The method to use for the health check. This defaults to 'GET' for HTTP/HTTPS
+              based checks and 'connection_established' for TCP based health checks.
+
+          path: The endpoint path you want to conduct a health check against. This parameter is
+              only valid for HTTP and HTTPS monitors.
+
+          port: The port number to connect to for the health check. Required for TCP, UDP, and
+              SMTP checks. HTTP and HTTPS checks should only define the port when using a
+              non-standard port (HTTP: default 80, HTTPS: default 443).
+
+          probe_zone: Assign this monitor to emulate the specified zone while probing. This parameter
+              is only valid for HTTP and HTTPS monitors.
+
+          retries: The number of retries to attempt in case of a timeout before marking the origin
+              as unhealthy. Retries are attempted immediately.
+
+          api_timeout: The timeout (in seconds) before marking the health check as failed.
+
+          type: The protocol to use for the health check. Currently supported protocols are
+              'HTTP','HTTPS', 'TCP', 'ICMP-PING', 'UDP-ICMP', and 'SMTP'.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not monitor_id:
+            raise ValueError(f"Expected a non-empty value for `monitor_id` but received {monitor_id!r}")
+        return self._patch(
+            f"/user/load_balancers/monitors/{monitor_id}",
+            body=maybe_transform(
+                {
+                    "expected_codes": expected_codes,
+                    "allow_insecure": allow_insecure,
+                    "consecutive_down": consecutive_down,
+                    "consecutive_up": consecutive_up,
+                    "description": description,
+                    "expected_body": expected_body,
+                    "follow_redirects": follow_redirects,
+                    "header": header,
+                    "interval": interval,
+                    "method": method,
+                    "path": path,
+                    "port": port,
+                    "probe_zone": probe_zone,
+                    "retries": retries,
+                    "timeout": api_timeout,
+                    "type": type,
+                },
+                monitor_update_params.MonitorUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[MonitorUpdateResponse], ResultWrapper[MonitorUpdateResponse]),
+        )
+
+    def list(
         self,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -171,7 +319,7 @@ class Monitors(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MonitorLoadBalancerMonitorsListMonitorsResponse]:
+    ) -> Optional[MonitorListResponse]:
         """List configured monitors for a user."""
         return self._get(
             "/user/load_balancers/monitors",
@@ -182,14 +330,93 @@ class Monitors(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[MonitorLoadBalancerMonitorsListMonitorsResponse]],
-                ResultWrapper[MonitorLoadBalancerMonitorsListMonitorsResponse],
+            cast_to=cast(Type[Optional[MonitorListResponse]], ResultWrapper[MonitorListResponse]),
+        )
+
+    def delete(
+        self,
+        monitor_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> MonitorDeleteResponse:
+        """
+        Delete a configured monitor.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not monitor_id:
+            raise ValueError(f"Expected a non-empty value for `monitor_id` but received {monitor_id!r}")
+        return self._delete(
+            f"/user/load_balancers/monitors/{monitor_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
             ),
+            cast_to=cast(Type[MonitorDeleteResponse], ResultWrapper[MonitorDeleteResponse]),
+        )
+
+    def get(
+        self,
+        monitor_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> MonitorGetResponse:
+        """
+        List a single configured monitor for a user.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not monitor_id:
+            raise ValueError(f"Expected a non-empty value for `monitor_id` but received {monitor_id!r}")
+        return self._get(
+            f"/user/load_balancers/monitors/{monitor_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[MonitorGetResponse], ResultWrapper[MonitorGetResponse]),
         )
 
 
 class AsyncMonitors(AsyncAPIResource):
+    @cached_property
+    def previews(self) -> AsyncPreviews:
+        return AsyncPreviews(self._client)
+
+    @cached_property
+    def references(self) -> AsyncReferences:
+        return AsyncReferences(self._client)
+
     @cached_property
     def with_raw_response(self) -> AsyncMonitorsWithRawResponse:
         return AsyncMonitorsWithRawResponse(self)
@@ -198,7 +425,7 @@ class AsyncMonitors(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncMonitorsWithStreamingResponse:
         return AsyncMonitorsWithStreamingResponse(self)
 
-    async def load_balancer_monitors_create_monitor(
+    async def create(
         self,
         *,
         expected_codes: str,
@@ -223,7 +450,7 @@ class AsyncMonitors(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MonitorLoadBalancerMonitorsCreateMonitorResponse:
+    ) -> MonitorCreateResponse:
         """
         Create a configured monitor.
 
@@ -306,7 +533,7 @@ class AsyncMonitors(AsyncAPIResource):
                     "timeout": api_timeout,
                     "type": type,
                 },
-                monitor_load_balancer_monitors_create_monitor_params.MonitorLoadBalancerMonitorsCreateMonitorParams,
+                monitor_create_params.MonitorCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -315,13 +542,133 @@ class AsyncMonitors(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[MonitorLoadBalancerMonitorsCreateMonitorResponse],
-                ResultWrapper[MonitorLoadBalancerMonitorsCreateMonitorResponse],
-            ),
+            cast_to=cast(Type[MonitorCreateResponse], ResultWrapper[MonitorCreateResponse]),
         )
 
-    async def load_balancer_monitors_list_monitors(
+    async def update(
+        self,
+        monitor_id: str,
+        *,
+        expected_codes: str,
+        allow_insecure: bool | NotGiven = NOT_GIVEN,
+        consecutive_down: int | NotGiven = NOT_GIVEN,
+        consecutive_up: int | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        expected_body: str | NotGiven = NOT_GIVEN,
+        follow_redirects: bool | NotGiven = NOT_GIVEN,
+        header: object | NotGiven = NOT_GIVEN,
+        interval: int | NotGiven = NOT_GIVEN,
+        method: str | NotGiven = NOT_GIVEN,
+        path: str | NotGiven = NOT_GIVEN,
+        port: int | NotGiven = NOT_GIVEN,
+        probe_zone: str | NotGiven = NOT_GIVEN,
+        retries: int | NotGiven = NOT_GIVEN,
+        api_timeout: int | NotGiven = NOT_GIVEN,
+        type: Literal["http", "https", "tcp", "udp_icmp", "icmp_ping", "smtp"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> MonitorUpdateResponse:
+        """
+        Apply changes to an existing monitor, overwriting the supplied properties.
+
+        Args:
+          expected_codes: The expected HTTP response code or code range of the health check. This
+              parameter is only valid for HTTP and HTTPS monitors.
+
+          allow_insecure: Do not validate the certificate when monitor use HTTPS. This parameter is
+              currently only valid for HTTP and HTTPS monitors.
+
+          consecutive_down: To be marked unhealthy the monitored origin must fail this healthcheck N
+              consecutive times.
+
+          consecutive_up: To be marked healthy the monitored origin must pass this healthcheck N
+              consecutive times.
+
+          description: Object description.
+
+          expected_body: A case-insensitive sub-string to look for in the response body. If this string
+              is not found, the origin will be marked as unhealthy. This parameter is only
+              valid for HTTP and HTTPS monitors.
+
+          follow_redirects: Follow redirects if returned by the origin. This parameter is only valid for
+              HTTP and HTTPS monitors.
+
+          header: The HTTP request headers to send in the health check. It is recommended you set
+              a Host header by default. The User-Agent header cannot be overridden. This
+              parameter is only valid for HTTP and HTTPS monitors.
+
+          interval: The interval between each health check. Shorter intervals may improve failover
+              time, but will increase load on the origins as we check from multiple locations.
+
+          method: The method to use for the health check. This defaults to 'GET' for HTTP/HTTPS
+              based checks and 'connection_established' for TCP based health checks.
+
+          path: The endpoint path you want to conduct a health check against. This parameter is
+              only valid for HTTP and HTTPS monitors.
+
+          port: The port number to connect to for the health check. Required for TCP, UDP, and
+              SMTP checks. HTTP and HTTPS checks should only define the port when using a
+              non-standard port (HTTP: default 80, HTTPS: default 443).
+
+          probe_zone: Assign this monitor to emulate the specified zone while probing. This parameter
+              is only valid for HTTP and HTTPS monitors.
+
+          retries: The number of retries to attempt in case of a timeout before marking the origin
+              as unhealthy. Retries are attempted immediately.
+
+          api_timeout: The timeout (in seconds) before marking the health check as failed.
+
+          type: The protocol to use for the health check. Currently supported protocols are
+              'HTTP','HTTPS', 'TCP', 'ICMP-PING', 'UDP-ICMP', and 'SMTP'.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not monitor_id:
+            raise ValueError(f"Expected a non-empty value for `monitor_id` but received {monitor_id!r}")
+        return await self._patch(
+            f"/user/load_balancers/monitors/{monitor_id}",
+            body=maybe_transform(
+                {
+                    "expected_codes": expected_codes,
+                    "allow_insecure": allow_insecure,
+                    "consecutive_down": consecutive_down,
+                    "consecutive_up": consecutive_up,
+                    "description": description,
+                    "expected_body": expected_body,
+                    "follow_redirects": follow_redirects,
+                    "header": header,
+                    "interval": interval,
+                    "method": method,
+                    "path": path,
+                    "port": port,
+                    "probe_zone": probe_zone,
+                    "retries": retries,
+                    "timeout": api_timeout,
+                    "type": type,
+                },
+                monitor_update_params.MonitorUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[MonitorUpdateResponse], ResultWrapper[MonitorUpdateResponse]),
+        )
+
+    async def list(
         self,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -330,7 +677,7 @@ class AsyncMonitors(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MonitorLoadBalancerMonitorsListMonitorsResponse]:
+    ) -> Optional[MonitorListResponse]:
         """List configured monitors for a user."""
         return await self._get(
             "/user/load_balancers/monitors",
@@ -341,10 +688,81 @@ class AsyncMonitors(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[MonitorLoadBalancerMonitorsListMonitorsResponse]],
-                ResultWrapper[MonitorLoadBalancerMonitorsListMonitorsResponse],
+            cast_to=cast(Type[Optional[MonitorListResponse]], ResultWrapper[MonitorListResponse]),
+        )
+
+    async def delete(
+        self,
+        monitor_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> MonitorDeleteResponse:
+        """
+        Delete a configured monitor.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not monitor_id:
+            raise ValueError(f"Expected a non-empty value for `monitor_id` but received {monitor_id!r}")
+        return await self._delete(
+            f"/user/load_balancers/monitors/{monitor_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
             ),
+            cast_to=cast(Type[MonitorDeleteResponse], ResultWrapper[MonitorDeleteResponse]),
+        )
+
+    async def get(
+        self,
+        monitor_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> MonitorGetResponse:
+        """
+        List a single configured monitor for a user.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not monitor_id:
+            raise ValueError(f"Expected a non-empty value for `monitor_id` but received {monitor_id!r}")
+        return await self._get(
+            f"/user/load_balancers/monitors/{monitor_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[MonitorGetResponse], ResultWrapper[MonitorGetResponse]),
         )
 
 
@@ -352,45 +770,113 @@ class MonitorsWithRawResponse:
     def __init__(self, monitors: Monitors) -> None:
         self._monitors = monitors
 
-        self.load_balancer_monitors_create_monitor = to_raw_response_wrapper(
-            monitors.load_balancer_monitors_create_monitor,
+        self.create = to_raw_response_wrapper(
+            monitors.create,
         )
-        self.load_balancer_monitors_list_monitors = to_raw_response_wrapper(
-            monitors.load_balancer_monitors_list_monitors,
+        self.update = to_raw_response_wrapper(
+            monitors.update,
         )
+        self.list = to_raw_response_wrapper(
+            monitors.list,
+        )
+        self.delete = to_raw_response_wrapper(
+            monitors.delete,
+        )
+        self.get = to_raw_response_wrapper(
+            monitors.get,
+        )
+
+    @cached_property
+    def previews(self) -> PreviewsWithRawResponse:
+        return PreviewsWithRawResponse(self._monitors.previews)
+
+    @cached_property
+    def references(self) -> ReferencesWithRawResponse:
+        return ReferencesWithRawResponse(self._monitors.references)
 
 
 class AsyncMonitorsWithRawResponse:
     def __init__(self, monitors: AsyncMonitors) -> None:
         self._monitors = monitors
 
-        self.load_balancer_monitors_create_monitor = async_to_raw_response_wrapper(
-            monitors.load_balancer_monitors_create_monitor,
+        self.create = async_to_raw_response_wrapper(
+            monitors.create,
         )
-        self.load_balancer_monitors_list_monitors = async_to_raw_response_wrapper(
-            monitors.load_balancer_monitors_list_monitors,
+        self.update = async_to_raw_response_wrapper(
+            monitors.update,
         )
+        self.list = async_to_raw_response_wrapper(
+            monitors.list,
+        )
+        self.delete = async_to_raw_response_wrapper(
+            monitors.delete,
+        )
+        self.get = async_to_raw_response_wrapper(
+            monitors.get,
+        )
+
+    @cached_property
+    def previews(self) -> AsyncPreviewsWithRawResponse:
+        return AsyncPreviewsWithRawResponse(self._monitors.previews)
+
+    @cached_property
+    def references(self) -> AsyncReferencesWithRawResponse:
+        return AsyncReferencesWithRawResponse(self._monitors.references)
 
 
 class MonitorsWithStreamingResponse:
     def __init__(self, monitors: Monitors) -> None:
         self._monitors = monitors
 
-        self.load_balancer_monitors_create_monitor = to_streamed_response_wrapper(
-            monitors.load_balancer_monitors_create_monitor,
+        self.create = to_streamed_response_wrapper(
+            monitors.create,
         )
-        self.load_balancer_monitors_list_monitors = to_streamed_response_wrapper(
-            monitors.load_balancer_monitors_list_monitors,
+        self.update = to_streamed_response_wrapper(
+            monitors.update,
         )
+        self.list = to_streamed_response_wrapper(
+            monitors.list,
+        )
+        self.delete = to_streamed_response_wrapper(
+            monitors.delete,
+        )
+        self.get = to_streamed_response_wrapper(
+            monitors.get,
+        )
+
+    @cached_property
+    def previews(self) -> PreviewsWithStreamingResponse:
+        return PreviewsWithStreamingResponse(self._monitors.previews)
+
+    @cached_property
+    def references(self) -> ReferencesWithStreamingResponse:
+        return ReferencesWithStreamingResponse(self._monitors.references)
 
 
 class AsyncMonitorsWithStreamingResponse:
     def __init__(self, monitors: AsyncMonitors) -> None:
         self._monitors = monitors
 
-        self.load_balancer_monitors_create_monitor = async_to_streamed_response_wrapper(
-            monitors.load_balancer_monitors_create_monitor,
+        self.create = async_to_streamed_response_wrapper(
+            monitors.create,
         )
-        self.load_balancer_monitors_list_monitors = async_to_streamed_response_wrapper(
-            monitors.load_balancer_monitors_list_monitors,
+        self.update = async_to_streamed_response_wrapper(
+            monitors.update,
         )
+        self.list = async_to_streamed_response_wrapper(
+            monitors.list,
+        )
+        self.delete = async_to_streamed_response_wrapper(
+            monitors.delete,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            monitors.get,
+        )
+
+    @cached_property
+    def previews(self) -> AsyncPreviewsWithStreamingResponse:
+        return AsyncPreviewsWithStreamingResponse(self._monitors.previews)
+
+    @cached_property
+    def references(self) -> AsyncReferencesWithStreamingResponse:
+        return AsyncReferencesWithStreamingResponse(self._monitors.references)
