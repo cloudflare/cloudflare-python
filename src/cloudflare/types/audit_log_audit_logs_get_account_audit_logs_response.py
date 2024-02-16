@@ -16,9 +16,9 @@ __all__ = [
     "UnionMember0ResultActor",
     "UnionMember0ResultOwner",
     "UnionMember0ResultResource",
-    "E6maJbCjAPIResponseCommon",
-    "E6maJbCjAPIResponseCommonError",
-    "E6maJbCjAPIResponseCommonMessage",
+    "L8Gbc7nLAPIResponseCommon",
+    "L8Gbc7nLapiResponseCommonError",
+    "L8Gbc7nLapiResponseCommonMessage",
 ]
 
 
@@ -101,22 +101,22 @@ class UnionMember0(BaseModel):
     success: Optional[bool] = None
 
 
-class E6maJbCjAPIResponseCommonError(BaseModel):
+class L8Gbc7nLapiResponseCommonError(BaseModel):
     code: int
 
     message: str
 
 
-class E6maJbCjAPIResponseCommonMessage(BaseModel):
+class L8Gbc7nLapiResponseCommonMessage(BaseModel):
     code: int
 
     message: str
 
 
-class E6maJbCjAPIResponseCommon(BaseModel):
-    errors: List[E6maJbCjAPIResponseCommonError]
+class L8Gbc7nLAPIResponseCommon(BaseModel):
+    errors: List[L8Gbc7nLapiResponseCommonError]
 
-    messages: List[E6maJbCjAPIResponseCommonMessage]
+    messages: List[L8Gbc7nLapiResponseCommonMessage]
 
     result: Union[object, List[object], str]
 
@@ -124,4 +124,4 @@ class E6maJbCjAPIResponseCommon(BaseModel):
     """Whether the API call was successful"""
 
 
-AuditLogAuditLogsGetAccountAuditLogsResponse = Union[UnionMember0, E6maJbCjAPIResponseCommon]
+AuditLogAuditLogsGetAccountAuditLogsResponse = Union[UnionMember0, L8Gbc7nLAPIResponseCommon]
