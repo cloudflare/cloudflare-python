@@ -2,10 +2,54 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
-
 import httpx
 
+from .disables import Disables, AsyncDisables
+
+from ...._compat import cached_property
+
+from .dns import DNS, AsyncDNS
+
+from .enables import Enables, AsyncEnables
+
+from .rules.rules import Rules, AsyncRules
+
+from .addresses import Addresses, AsyncAddresses
+
+from ....types.emails import RoutingEmailRoutingSettingsGetEmailRoutingSettingsResponse
+
+from typing import Type
+
+from ...._response import (
+    to_raw_response_wrapper,
+    async_to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._base_client import (
+    SyncAPIClient,
+    AsyncAPIClient,
+    _merge_mappings,
+    AsyncPaginator,
+    make_request_options,
+    HttpxBinaryResponseContent,
+)
+from ....types import shared_params
+from .disables import (
+    Disables,
+    AsyncDisables,
+    DisablesWithRawResponse,
+    AsyncDisablesWithRawResponse,
+    DisablesWithStreamingResponse,
+    AsyncDisablesWithStreamingResponse,
+)
 from .dns import (
     DNS,
     AsyncDNS,
@@ -13,14 +57,6 @@ from .dns import (
     AsyncDNSWithRawResponse,
     DNSWithStreamingResponse,
     AsyncDNSWithStreamingResponse,
-)
-from .rules import (
-    Rules,
-    AsyncRules,
-    RulesWithRawResponse,
-    AsyncRulesWithRawResponse,
-    RulesWithStreamingResponse,
-    AsyncRulesWithStreamingResponse,
 )
 from .enables import (
     Enables,
@@ -30,15 +66,14 @@ from .enables import (
     EnablesWithStreamingResponse,
     AsyncEnablesWithStreamingResponse,
 )
-from .disables import (
-    Disables,
-    AsyncDisables,
-    DisablesWithRawResponse,
-    AsyncDisablesWithRawResponse,
-    DisablesWithStreamingResponse,
-    AsyncDisablesWithStreamingResponse,
+from .rules import (
+    Rules,
+    AsyncRules,
+    RulesWithRawResponse,
+    AsyncRulesWithRawResponse,
+    RulesWithStreamingResponse,
+    AsyncRulesWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .addresses import (
     Addresses,
     AsyncAddresses,
@@ -47,20 +82,9 @@ from .addresses import (
     AddressesWithStreamingResponse,
     AsyncAddressesWithStreamingResponse,
 )
-from ...._compat import cached_property
-from .rules.rules import Rules, AsyncRules
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
 from ...._wrappers import ResultWrapper
-from ...._base_client import (
-    make_request_options,
-)
-from ....types.emails import RoutingEmailRoutingSettingsGetEmailRoutingSettingsResponse
+from typing import cast
+from typing import cast
 
 __all__ = ["Routings", "AsyncRoutings"]
 
