@@ -4138,20 +4138,6 @@ Methods:
 
 - <code title="post /accounts/{account_id}/cfd_tunnel/{tunnel_id}/management">client.cfd_tunnels.management.<a href="./src/cloudflare/resources/cfd_tunnels/management.py">create</a>(tunnel_id, \*, account_id, \*\*<a href="src/cloudflare/types/cfd_tunnels/management_create_params.py">params</a>) -> <a href="./src/cloudflare/types/cfd_tunnels/management_create_response.py">ManagementCreateResponse</a></code>
 
-# Diagnostics
-
-## Traceroutes
-
-Types:
-
-```python
-from cloudflare.types.diagnostics import TracerouteDiagnosticsTracerouteResponse
-```
-
-Methods:
-
-- <code title="post /accounts/{account_identifier}/diagnostics/traceroute">client.diagnostics.traceroutes.<a href="./src/cloudflare/resources/diagnostics/traceroutes.py">diagnostics_traceroute</a>(account_identifier, \*\*<a href="src/cloudflare/types/diagnostics/traceroute_diagnostics_traceroute_params.py">params</a>) -> <a href="./src/cloudflare/types/diagnostics/traceroute_diagnostics_traceroute_response.py">Optional</a></code>
-
 # DLPs
 
 ## Patterns
