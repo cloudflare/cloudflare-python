@@ -47,7 +47,7 @@ class Asn(SyncAPIResource):
 
     def get(
         self,
-        asn: object,
+        asn: int,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -101,7 +101,7 @@ class AsyncAsn(AsyncAPIResource):
 
     async def get(
         self,
-        asn: object,
+        asn: int,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
