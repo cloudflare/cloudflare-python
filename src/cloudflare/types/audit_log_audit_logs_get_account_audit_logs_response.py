@@ -1,26 +1,18 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from typing import List, Union, Optional
-from datetime import datetime
+from typing import Optional, List, Union
+
 from typing_extensions import Literal
 
+from datetime import datetime
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
 from pydantic import Field as FieldInfo
-
 from .._models import BaseModel
+from ..types import shared
 
-__all__ = [
-    "AuditLogAuditLogsGetAccountAuditLogsResponse",
-    "UnionMember0",
-    "UnionMember0Result",
-    "UnionMember0ResultAction",
-    "UnionMember0ResultActor",
-    "UnionMember0ResultOwner",
-    "UnionMember0ResultResource",
-    "Q6tjyqK4APIResponseCommon",
-    "Q6tjyqK4APIResponseCommonError",
-    "Q6tjyqK4APIResponseCommonMessage",
-]
-
+__all__ = ["AuditLogAuditLogsGetAccountAuditLogsResponse", "UnionMember0", "UnionMember0Result", "UnionMember0ResultAction", "UnionMember0ResultActor", "UnionMember0ResultOwner", "UnionMember0ResultResource", "_9cy76Al9APIResponseCommon", "9cy76Al9APIResponseCommonError", "9cy76Al9APIResponseCommonMessage"]
 
 class UnionMember0ResultAction(BaseModel):
     result: Optional[bool] = None
@@ -28,7 +20,6 @@ class UnionMember0ResultAction(BaseModel):
 
     type: Optional[str] = None
     """A short string that describes the action that was performed."""
-
 
 class UnionMember0ResultActor(BaseModel):
     id: Optional[str] = None
@@ -46,11 +37,9 @@ class UnionMember0ResultActor(BaseModel):
     type: Optional[Literal["user", "admin", "Cloudflare"]] = None
     """The type of actor, whether a User, Cloudflare Admin, or an Automated System."""
 
-
 class UnionMember0ResultOwner(BaseModel):
     id: Optional[str] = None
     """Identifier"""
-
 
 class UnionMember0ResultResource(BaseModel):
     id: Optional[str] = None
@@ -58,7 +47,6 @@ class UnionMember0ResultResource(BaseModel):
 
     type: Optional[str] = None
     """A short string that describes the resource that was affected by the action."""
-
 
 class UnionMember0Result(BaseModel):
     id: Optional[str] = None
@@ -77,10 +65,10 @@ class UnionMember0Result(BaseModel):
     This is a flexible value and varies between different actions.
     """
 
-    new_value: Optional[str] = FieldInfo(alias="newValue", default=None)
+    new_value: Optional[str] = FieldInfo(alias = "newValue", default = None)
     """The new value of the resource that was modified."""
 
-    old_value: Optional[str] = FieldInfo(alias="oldValue", default=None)
+    old_value: Optional[str] = FieldInfo(alias = "oldValue", default = None)
     """The value of the resource before it was modified."""
 
     owner: Optional[UnionMember0ResultOwner] = None
@@ -89,7 +77,6 @@ class UnionMember0Result(BaseModel):
 
     when: Optional[datetime] = None
     """A UTC RFC3339 timestamp that specifies when the action being logged occured."""
-
 
 class UnionMember0(BaseModel):
     errors: Optional[object] = None
@@ -100,28 +87,24 @@ class UnionMember0(BaseModel):
 
     success: Optional[bool] = None
 
-
-class Q6tjyqK4APIResponseCommonError(BaseModel):
+class 9cy76Al9APIResponseCommonError(BaseModel):
     code: int
 
     message: str
 
-
-class Q6tjyqK4APIResponseCommonMessage(BaseModel):
+class 9cy76Al9APIResponseCommonMessage(BaseModel):
     code: int
 
     message: str
 
+class _9cy76Al9APIResponseCommon(BaseModel):
+    errors: List[9cy76Al9APIResponseCommonError]
 
-class Q6tjyqK4APIResponseCommon(BaseModel):
-    errors: List[Q6tjyqK4APIResponseCommonError]
-
-    messages: List[Q6tjyqK4APIResponseCommonMessage]
+    messages: List[9cy76Al9APIResponseCommonMessage]
 
     result: Union[object, List[object], str]
 
     success: Literal[True]
     """Whether the API call was successful"""
 
-
-AuditLogAuditLogsGetAccountAuditLogsResponse = Union[UnionMember0, Q6tjyqK4APIResponseCommon]
+AuditLogAuditLogsGetAccountAuditLogsResponse = Union[UnionMember0, _9cy76Al9APIResponseCommon]
