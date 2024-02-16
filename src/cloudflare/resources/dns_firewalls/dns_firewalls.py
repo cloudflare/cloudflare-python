@@ -2,31 +2,49 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Union, Optional, cast
-
 import httpx
 
+from .dns_analytics.dns_analytics import DNSAnalytics, AsyncDNSAnalytics
+
+from ..._compat import cached_property
+
 from ...types import (
-    DNSFirewallGetResponse,
-    DNSFirewallListResponse,
     DNSFirewallCreateResponse,
-    DNSFirewallDeleteResponse,
     DNSFirewallUpdateResponse,
-    dns_firewall_list_params,
+    DNSFirewallListResponse,
+    DNSFirewallDeleteResponse,
+    DNSFirewallGetResponse,
     dns_firewall_create_params,
     dns_firewall_update_params,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
+
+from typing import Type, List, Union, Optional
+
 from ..._response import (
     to_raw_response_wrapper,
-    to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
+    to_streamed_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._wrappers import ResultWrapper
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._base_client import (
+    SyncAPIClient,
+    AsyncAPIClient,
+    _merge_mappings,
+    AsyncPaginator,
+    make_request_options,
+    HttpxBinaryResponseContent,
+)
+from ...types import shared_params
+from ...types import dns_firewall_create_params
+from ...types import dns_firewall_update_params
+from ...types import dns_firewall_list_params
 from .dns_analytics import (
     DNSAnalytics,
     AsyncDNSAnalytics,
@@ -35,10 +53,17 @@ from .dns_analytics import (
     DNSAnalyticsWithStreamingResponse,
     AsyncDNSAnalyticsWithStreamingResponse,
 )
-from ..._base_client import (
-    make_request_options,
-)
-from .dns_analytics.dns_analytics import DNSAnalytics, AsyncDNSAnalytics
+from ..._wrappers import ResultWrapper
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
 
 __all__ = ["DNSFirewalls", "AsyncDNSFirewalls"]
 
