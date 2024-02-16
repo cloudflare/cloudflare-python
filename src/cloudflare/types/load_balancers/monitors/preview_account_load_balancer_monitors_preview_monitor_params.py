@@ -6,10 +6,13 @@ from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ...._utils import PropertyInfo
 
-__all__ = ["MonitorLoadBalancerMonitorsCreateMonitorParams"]
+__all__ = ["PreviewAccountLoadBalancerMonitorsPreviewMonitorParams"]
 
 
-class MonitorLoadBalancerMonitorsCreateMonitorParams(TypedDict, total=False):
+class PreviewAccountLoadBalancerMonitorsPreviewMonitorParams(TypedDict, total=False):
+    account_id: Required[str]
+    """Identifier"""
+
     expected_codes: Required[str]
     """The expected HTTP response code or code range of the health check.
 
