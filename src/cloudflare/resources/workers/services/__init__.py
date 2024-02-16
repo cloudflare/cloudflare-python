@@ -1,18 +1,20 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from .environments import Environments, AsyncEnvironments
-from .environments import (
-    EnvironmentsWithRawResponse,
-    AsyncEnvironmentsWithRawResponse,
-    EnvironmentsWithStreamingResponse,
-    AsyncEnvironmentsWithStreamingResponse,
-)
-from .services import Services, AsyncServices
 from .services import (
+    Services,
+    AsyncServices,
     ServicesWithRawResponse,
     AsyncServicesWithRawResponse,
     ServicesWithStreamingResponse,
     AsyncServicesWithStreamingResponse,
+)
+from .environments import (
+    Environments,
+    AsyncEnvironments,
+    EnvironmentsWithRawResponse,
+    AsyncEnvironmentsWithRawResponse,
+    EnvironmentsWithStreamingResponse,
+    AsyncEnvironmentsWithStreamingResponse,
 )
 
 __all__ = [

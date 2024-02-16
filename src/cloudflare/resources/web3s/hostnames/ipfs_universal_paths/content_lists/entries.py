@@ -2,59 +2,34 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+from typing_extensions import Literal
+
 import httpx
 
+from ......_types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ......_utils import maybe_transform
 from ......_compat import cached_property
-
-from ......types.web3s.hostnames.ipfs_universal_paths.content_lists import (
-    EntryUpdateResponse,
-    EntryDeleteResponse,
-    EntryGetResponse,
-    EntryWeb3HostnameCreateIpfsUniversalPathGatewayContentListEntryResponse,
-    EntryWeb3HostnameListIpfsUniversalPathGatewayContentListEntriesResponse,
-)
-
-from typing import Type, Optional
-
-from typing_extensions import Literal
-
+from ......_resource import SyncAPIResource, AsyncAPIResource
 from ......_response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ......_utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ......_types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ......_resource import SyncAPIResource, AsyncAPIResource
+from ......_wrappers import ResultWrapper
 from ......_base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
     make_request_options,
-    HttpxBinaryResponseContent,
 )
-from ......types import shared_params
-from ......types.web3s.hostnames.ipfs_universal_paths.content_lists import entry_update_params
 from ......types.web3s.hostnames.ipfs_universal_paths.content_lists import (
+    EntryGetResponse,
+    EntryDeleteResponse,
+    EntryUpdateResponse,
+    EntryWeb3HostnameCreateIpfsUniversalPathGatewayContentListEntryResponse,
+    EntryWeb3HostnameListIpfsUniversalPathGatewayContentListEntriesResponse,
+    entry_update_params,
     entry_web3_hostname_create_ipfs_universal_path_gateway_content_list_entry_params,
 )
-from ......_wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
 
 __all__ = ["Entries", "AsyncEntries"]
 

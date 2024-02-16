@@ -2,29 +2,21 @@
 
 from __future__ import annotations
 
-from typing import Optional, Any, cast
-
-from cloudflare.types import (
-    FilterUpdateResponse,
-    FilterDeleteResponse,
-    FilterFiltersCreateFiltersResponse,
-    FilterFiltersListFiltersResponse,
-    FilterFiltersUpdateFiltersResponse,
-    FilterGetResponse,
-)
-
 import os
+from typing import Any, Optional, cast
+
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types import filter_update_params
-from cloudflare.types import filter_filters_create_filters_params
-from cloudflare.types import filter_filters_list_filters_params
-from cloudflare.types import filter_filters_update_filters_params
+from cloudflare.types import (
+    FilterGetResponse,
+    FilterDeleteResponse,
+    FilterUpdateResponse,
+    FilterFiltersListFiltersResponse,
+    FilterFiltersCreateFiltersResponse,
+    FilterFiltersUpdateFiltersResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

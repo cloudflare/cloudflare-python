@@ -2,42 +2,11 @@
 
 from __future__ import annotations
 
+from typing import Type, cast
+from typing_extensions import Literal
+
 import httpx
 
-from .configs import Configs, AsyncConfigs
-
-from ...._compat import cached_property
-
-from ....types.zaraz import HistoryUpdateResponse, HistoryListResponse
-
-from typing import Type
-
-from typing_extensions import Literal
-
-from ...._response import (
-    to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ....types import shared_params
-from ....types.zaraz import history_update_params
-from ....types.zaraz import history_list_params
 from .configs import (
     Configs,
     AsyncConfigs,
@@ -46,11 +15,21 @@ from .configs import (
     ConfigsWithStreamingResponse,
     AsyncConfigsWithStreamingResponse,
 )
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import maybe_transform
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
 from ...._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ....types.zaraz import HistoryListResponse, HistoryUpdateResponse, history_list_params, history_update_params
+from ...._base_client import (
+    make_request_options,
+)
 
 __all__ = ["History", "AsyncHistory"]
 

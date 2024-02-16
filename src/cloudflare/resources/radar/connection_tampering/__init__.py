@@ -1,14 +1,16 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from .timeseries_groups import TimeseriesGroups, AsyncTimeseriesGroups
 from .timeseries_groups import (
+    TimeseriesGroups,
+    AsyncTimeseriesGroups,
     TimeseriesGroupsWithRawResponse,
     AsyncTimeseriesGroupsWithRawResponse,
     TimeseriesGroupsWithStreamingResponse,
     AsyncTimeseriesGroupsWithStreamingResponse,
 )
-from .connection_tampering import ConnectionTampering, AsyncConnectionTampering
 from .connection_tampering import (
+    ConnectionTampering,
+    AsyncConnectionTampering,
     ConnectionTamperingWithRawResponse,
     AsyncConnectionTamperingWithRawResponse,
     ConnectionTamperingWithStreamingResponse,

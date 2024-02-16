@@ -2,75 +2,40 @@
 
 from __future__ import annotations
 
+from typing import Any, List, Type, Iterable, Optional, cast
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._compat import cached_property
-
-from ...types.vectorize import (
-    IndexCreateResponse,
-    IndexUpdateResponse,
-    IndexListResponse,
-    IndexDeleteResponse,
-    IndexDeleteByIDsResponse,
-    IndexGetResponse,
-    IndexInsertResponse,
-    IndexQueryResponse,
-    IndexUpsertResponse,
-    index_create_params,
-)
-
-from typing import Type, Optional, List, Iterable
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types.vectorize import index_create_params
-from ...types.vectorize import index_update_params
-from ...types.vectorize import index_delete_by_ids_params
-from ...types.vectorize import index_get_by_ids_params
-from ...types.vectorize import index_query_params
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ..._base_client import (
+    make_request_options,
+)
+from ...types.vectorize import (
+    IndexGetResponse,
+    IndexListResponse,
+    IndexQueryResponse,
+    IndexCreateResponse,
+    IndexDeleteResponse,
+    IndexInsertResponse,
+    IndexUpdateResponse,
+    IndexUpsertResponse,
+    IndexDeleteByIDsResponse,
+    index_query_params,
+    index_create_params,
+    index_update_params,
+    index_get_by_ids_params,
+    index_delete_by_ids_params,
+)
 
 __all__ = ["Indexes", "AsyncIndexes"]
 
