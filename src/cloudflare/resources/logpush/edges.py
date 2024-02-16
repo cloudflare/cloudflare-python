@@ -20,7 +20,7 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.logpush import EdgeGetResponse, EdgeUpdateResponse, edge_update_params
+from ...types.logpush import EdgeGetResponse, EdgeCreateResponse, edge_create_params
 
 __all__ = ["Edges", "AsyncEdges"]
 
@@ -34,7 +34,7 @@ class Edges(SyncAPIResource):
     def with_streaming_response(self) -> EdgesWithStreamingResponse:
         return EdgesWithStreamingResponse(self)
 
-    def update(
+    def create(
         self,
         zone_id: str,
         *,
@@ -47,7 +47,7 @@ class Edges(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[EdgeUpdateResponse]:
+    ) -> Optional[EdgeCreateResponse]:
         """
         Creates a new Instant Logs job for a zone.
 
@@ -80,7 +80,7 @@ class Edges(SyncAPIResource):
                     "filter": filter,
                     "sample": sample,
                 },
-                edge_update_params.EdgeUpdateParams,
+                edge_create_params.EdgeCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -89,7 +89,7 @@ class Edges(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[EdgeUpdateResponse]], ResultWrapper[EdgeUpdateResponse]),
+            cast_to=cast(Type[Optional[EdgeCreateResponse]], ResultWrapper[EdgeCreateResponse]),
         )
 
     def get(
@@ -141,7 +141,7 @@ class AsyncEdges(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncEdgesWithStreamingResponse:
         return AsyncEdgesWithStreamingResponse(self)
 
-    async def update(
+    async def create(
         self,
         zone_id: str,
         *,
@@ -154,7 +154,7 @@ class AsyncEdges(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[EdgeUpdateResponse]:
+    ) -> Optional[EdgeCreateResponse]:
         """
         Creates a new Instant Logs job for a zone.
 
@@ -187,7 +187,7 @@ class AsyncEdges(AsyncAPIResource):
                     "filter": filter,
                     "sample": sample,
                 },
-                edge_update_params.EdgeUpdateParams,
+                edge_create_params.EdgeCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -196,7 +196,7 @@ class AsyncEdges(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[EdgeUpdateResponse]], ResultWrapper[EdgeUpdateResponse]),
+            cast_to=cast(Type[Optional[EdgeCreateResponse]], ResultWrapper[EdgeCreateResponse]),
         )
 
     async def get(
@@ -243,8 +243,8 @@ class EdgesWithRawResponse:
     def __init__(self, edges: Edges) -> None:
         self._edges = edges
 
-        self.update = to_raw_response_wrapper(
-            edges.update,
+        self.create = to_raw_response_wrapper(
+            edges.create,
         )
         self.get = to_raw_response_wrapper(
             edges.get,
@@ -255,8 +255,8 @@ class AsyncEdgesWithRawResponse:
     def __init__(self, edges: AsyncEdges) -> None:
         self._edges = edges
 
-        self.update = async_to_raw_response_wrapper(
-            edges.update,
+        self.create = async_to_raw_response_wrapper(
+            edges.create,
         )
         self.get = async_to_raw_response_wrapper(
             edges.get,
@@ -267,8 +267,8 @@ class EdgesWithStreamingResponse:
     def __init__(self, edges: Edges) -> None:
         self._edges = edges
 
-        self.update = to_streamed_response_wrapper(
-            edges.update,
+        self.create = to_streamed_response_wrapper(
+            edges.create,
         )
         self.get = to_streamed_response_wrapper(
             edges.get,
@@ -279,8 +279,8 @@ class AsyncEdgesWithStreamingResponse:
     def __init__(self, edges: AsyncEdges) -> None:
         self._edges = edges
 
-        self.update = async_to_streamed_response_wrapper(
-            edges.update,
+        self.create = async_to_streamed_response_wrapper(
+            edges.create,
         )
         self.get = async_to_streamed_response_wrapper(
             edges.get,

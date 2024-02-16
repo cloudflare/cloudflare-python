@@ -5,10 +5,10 @@ from __future__ import annotations
 from typing import List
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["OrderCertificatePacksOrderAdvancedCertificateManagerCertificatePackParams"]
+__all__ = ["OrderCreateParams"]
 
 
-class OrderCertificatePacksOrderAdvancedCertificateManagerCertificatePackParams(TypedDict, total=False):
+class OrderCreateParams(TypedDict, total=False):
     certificate_authority: Required[Literal["google", "lets_encrypt"]]
     """Certificate Authority selected for the order.
 

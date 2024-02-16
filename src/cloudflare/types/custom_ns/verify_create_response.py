@@ -5,10 +5,10 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["VerifyUpdateResponse", "VerifyUpdateResponseItem", "VerifyUpdateResponseItemDNSRecord"]
+__all__ = ["VerifyCreateResponse", "VerifyCreateResponseItem", "VerifyCreateResponseItemDNSRecord"]
 
 
-class VerifyUpdateResponseItemDNSRecord(BaseModel):
+class VerifyCreateResponseItemDNSRecord(BaseModel):
     type: Optional[Literal["A", "AAAA"]] = None
     """DNS record type."""
 
@@ -16,8 +16,8 @@ class VerifyUpdateResponseItemDNSRecord(BaseModel):
     """DNS record contents (an IPv4 or IPv6 address)."""
 
 
-class VerifyUpdateResponseItem(BaseModel):
-    dns_records: List[VerifyUpdateResponseItemDNSRecord]
+class VerifyCreateResponseItem(BaseModel):
+    dns_records: List[VerifyCreateResponseItemDNSRecord]
     """A and AAAA records associated with the nameserver."""
 
     ns_name: str
@@ -33,4 +33,4 @@ class VerifyUpdateResponseItem(BaseModel):
     """The number of the set that this name server belongs to."""
 
 
-VerifyUpdateResponse = List[VerifyUpdateResponseItem]
+VerifyCreateResponse = List[VerifyCreateResponseItem]

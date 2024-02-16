@@ -18,13 +18,13 @@ from cloudflare.types.zones import (
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
-class TestHold:
+class TestHolds:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip()
     @parametrize
     def test_method_enforce(self, client: Cloudflare) -> None:
-        hold = client.zones.hold.enforce(
+        hold = client.zones.holds.enforce(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(HoldEnforceResponse, hold, path=["response"])
@@ -32,7 +32,7 @@ class TestHold:
     @pytest.mark.skip()
     @parametrize
     def test_method_enforce_with_all_params(self, client: Cloudflare) -> None:
-        hold = client.zones.hold.enforce(
+        hold = client.zones.holds.enforce(
             "023e105f4ecef8ad9ca31a8372d0c353",
             include_subdomains=True,
         )
@@ -41,7 +41,7 @@ class TestHold:
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_enforce(self, client: Cloudflare) -> None:
-        response = client.zones.hold.with_raw_response.enforce(
+        response = client.zones.holds.with_raw_response.enforce(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -53,7 +53,7 @@ class TestHold:
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_enforce(self, client: Cloudflare) -> None:
-        with client.zones.hold.with_streaming_response.enforce(
+        with client.zones.holds.with_streaming_response.enforce(
             "023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -68,14 +68,14 @@ class TestHold:
     @parametrize
     def test_path_params_enforce(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.hold.with_raw_response.enforce(
+            client.zones.holds.with_raw_response.enforce(
                 "",
             )
 
     @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
-        hold = client.zones.hold.get(
+        hold = client.zones.holds.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(HoldGetResponse, hold, path=["response"])
@@ -83,7 +83,7 @@ class TestHold:
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
-        response = client.zones.hold.with_raw_response.get(
+        response = client.zones.holds.with_raw_response.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -95,7 +95,7 @@ class TestHold:
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
-        with client.zones.hold.with_streaming_response.get(
+        with client.zones.holds.with_streaming_response.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -110,14 +110,14 @@ class TestHold:
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.hold.with_raw_response.get(
+            client.zones.holds.with_raw_response.get(
                 "",
             )
 
     @pytest.mark.skip()
     @parametrize
     def test_method_remove(self, client: Cloudflare) -> None:
-        hold = client.zones.hold.remove(
+        hold = client.zones.holds.remove(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[HoldRemoveResponse], hold, path=["response"])
@@ -125,7 +125,7 @@ class TestHold:
     @pytest.mark.skip()
     @parametrize
     def test_method_remove_with_all_params(self, client: Cloudflare) -> None:
-        hold = client.zones.hold.remove(
+        hold = client.zones.holds.remove(
             "023e105f4ecef8ad9ca31a8372d0c353",
             hold_after="string",
         )
@@ -134,7 +134,7 @@ class TestHold:
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_remove(self, client: Cloudflare) -> None:
-        response = client.zones.hold.with_raw_response.remove(
+        response = client.zones.holds.with_raw_response.remove(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -146,7 +146,7 @@ class TestHold:
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_remove(self, client: Cloudflare) -> None:
-        with client.zones.hold.with_streaming_response.remove(
+        with client.zones.holds.with_streaming_response.remove(
             "023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -161,18 +161,18 @@ class TestHold:
     @parametrize
     def test_path_params_remove(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.hold.with_raw_response.remove(
+            client.zones.holds.with_raw_response.remove(
                 "",
             )
 
 
-class TestAsyncHold:
+class TestAsyncHolds:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_enforce(self, async_client: AsyncCloudflare) -> None:
-        hold = await async_client.zones.hold.enforce(
+        hold = await async_client.zones.holds.enforce(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(HoldEnforceResponse, hold, path=["response"])
@@ -180,7 +180,7 @@ class TestAsyncHold:
     @pytest.mark.skip()
     @parametrize
     async def test_method_enforce_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        hold = await async_client.zones.hold.enforce(
+        hold = await async_client.zones.holds.enforce(
             "023e105f4ecef8ad9ca31a8372d0c353",
             include_subdomains=True,
         )
@@ -189,7 +189,7 @@ class TestAsyncHold:
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_enforce(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.zones.hold.with_raw_response.enforce(
+        response = await async_client.zones.holds.with_raw_response.enforce(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -201,7 +201,7 @@ class TestAsyncHold:
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_enforce(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.zones.hold.with_streaming_response.enforce(
+        async with async_client.zones.holds.with_streaming_response.enforce(
             "023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -216,14 +216,14 @@ class TestAsyncHold:
     @parametrize
     async def test_path_params_enforce(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.hold.with_raw_response.enforce(
+            await async_client.zones.holds.with_raw_response.enforce(
                 "",
             )
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
-        hold = await async_client.zones.hold.get(
+        hold = await async_client.zones.holds.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(HoldGetResponse, hold, path=["response"])
@@ -231,7 +231,7 @@ class TestAsyncHold:
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.zones.hold.with_raw_response.get(
+        response = await async_client.zones.holds.with_raw_response.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -243,7 +243,7 @@ class TestAsyncHold:
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.zones.hold.with_streaming_response.get(
+        async with async_client.zones.holds.with_streaming_response.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -258,14 +258,14 @@ class TestAsyncHold:
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.hold.with_raw_response.get(
+            await async_client.zones.holds.with_raw_response.get(
                 "",
             )
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_remove(self, async_client: AsyncCloudflare) -> None:
-        hold = await async_client.zones.hold.remove(
+        hold = await async_client.zones.holds.remove(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[HoldRemoveResponse], hold, path=["response"])
@@ -273,7 +273,7 @@ class TestAsyncHold:
     @pytest.mark.skip()
     @parametrize
     async def test_method_remove_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        hold = await async_client.zones.hold.remove(
+        hold = await async_client.zones.holds.remove(
             "023e105f4ecef8ad9ca31a8372d0c353",
             hold_after="string",
         )
@@ -282,7 +282,7 @@ class TestAsyncHold:
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_remove(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.zones.hold.with_raw_response.remove(
+        response = await async_client.zones.holds.with_raw_response.remove(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -294,7 +294,7 @@ class TestAsyncHold:
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_remove(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.zones.hold.with_streaming_response.remove(
+        async with async_client.zones.holds.with_streaming_response.remove(
             "023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -309,6 +309,6 @@ class TestAsyncHold:
     @parametrize
     async def test_path_params_remove(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.hold.with_raw_response.remove(
+            await async_client.zones.holds.with_raw_response.remove(
                 "",
             )
