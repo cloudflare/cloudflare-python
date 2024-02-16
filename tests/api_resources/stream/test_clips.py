@@ -2,19 +2,16 @@
 
 from __future__ import annotations
 
-from cloudflare.types.stream import ClipStreamVideoClippingClipVideosGivenAStartAndEndTimeResponse
-
+import os
 from typing import Any, cast
 
-import os
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.stream import clip_stream_video_clipping_clip_videos_given_a_start_and_end_time_params
+from cloudflare.types.stream import (
+    ClipStreamVideoClippingClipVideosGivenAStartAndEndTimeResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

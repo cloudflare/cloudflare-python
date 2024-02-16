@@ -2,26 +2,19 @@
 
 from __future__ import annotations
 
-from cloudflare.types.storage.kv import (
-    NamespaceUpdateResponse,
-    NamespaceListResponse,
-    NamespaceDeleteResponse,
-    NamespaceWorkersKvNamespaceCreateANamespaceResponse,
-)
-
-from typing import Any, cast, Optional
-
 import os
+from typing import Any, Optional, cast
+
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.storage.kv import namespace_update_params
-from cloudflare.types.storage.kv import namespace_list_params
-from cloudflare.types.storage.kv import namespace_workers_kv_namespace_create_a_namespace_params
+from cloudflare.types.storage.kv import (
+    NamespaceListResponse,
+    NamespaceDeleteResponse,
+    NamespaceUpdateResponse,
+    NamespaceWorkersKvNamespaceCreateANamespaceResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
