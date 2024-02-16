@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Literal, TypedDict
 
-__all__ = ["AnalyzeCreateParams"]
+__all__ = ["AnalyzeAnalyzeCertificateAnalyzeCertificateParams"]
 
 
-class AnalyzeCreateParams(TypedDict, total=False):
+class AnalyzeAnalyzeCertificateAnalyzeCertificateParams(TypedDict, total=False):
     bundle_method: Literal["ubiquitous", "optimal", "force"]
     """
     A ubiquitous bundle has the highest probability of being verified everywhere,

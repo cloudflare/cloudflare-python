@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["MtlsCertificateCreateParams"]
+__all__ = ["MtlsCertificateUpdateParams"]
 
 
-class MtlsCertificateCreateParams(TypedDict, total=False):
+class MtlsCertificateUpdateParams(TypedDict, total=False):
     ca: Required[bool]
     """Indicates whether the certificate is a CA or leaf certificate."""
 

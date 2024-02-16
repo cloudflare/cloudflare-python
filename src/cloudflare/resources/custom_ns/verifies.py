@@ -19,7 +19,7 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.custom_ns import VerifyCreateResponse
+from ...types.custom_ns import VerifyUpdateResponse
 
 __all__ = ["Verifies", "AsyncVerifies"]
 
@@ -33,7 +33,7 @@ class Verifies(SyncAPIResource):
     def with_streaming_response(self) -> VerifiesWithStreamingResponse:
         return VerifiesWithStreamingResponse(self)
 
-    def create(
+    def update(
         self,
         account_id: str,
         *,
@@ -43,7 +43,7 @@ class Verifies(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[VerifyCreateResponse]:
+    ) -> Optional[VerifyUpdateResponse]:
         """
         Verify Account Custom Nameserver Glue Records
 
@@ -69,7 +69,7 @@ class Verifies(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[VerifyCreateResponse]], ResultWrapper[VerifyCreateResponse]),
+            cast_to=cast(Type[Optional[VerifyUpdateResponse]], ResultWrapper[VerifyUpdateResponse]),
         )
 
 
@@ -82,7 +82,7 @@ class AsyncVerifies(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncVerifiesWithStreamingResponse:
         return AsyncVerifiesWithStreamingResponse(self)
 
-    async def create(
+    async def update(
         self,
         account_id: str,
         *,
@@ -92,7 +92,7 @@ class AsyncVerifies(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[VerifyCreateResponse]:
+    ) -> Optional[VerifyUpdateResponse]:
         """
         Verify Account Custom Nameserver Glue Records
 
@@ -118,7 +118,7 @@ class AsyncVerifies(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[VerifyCreateResponse]], ResultWrapper[VerifyCreateResponse]),
+            cast_to=cast(Type[Optional[VerifyUpdateResponse]], ResultWrapper[VerifyUpdateResponse]),
         )
 
 
@@ -126,8 +126,8 @@ class VerifiesWithRawResponse:
     def __init__(self, verifies: Verifies) -> None:
         self._verifies = verifies
 
-        self.create = to_raw_response_wrapper(
-            verifies.create,
+        self.update = to_raw_response_wrapper(
+            verifies.update,
         )
 
 
@@ -135,8 +135,8 @@ class AsyncVerifiesWithRawResponse:
     def __init__(self, verifies: AsyncVerifies) -> None:
         self._verifies = verifies
 
-        self.create = async_to_raw_response_wrapper(
-            verifies.create,
+        self.update = async_to_raw_response_wrapper(
+            verifies.update,
         )
 
 
@@ -144,8 +144,8 @@ class VerifiesWithStreamingResponse:
     def __init__(self, verifies: Verifies) -> None:
         self._verifies = verifies
 
-        self.create = to_streamed_response_wrapper(
-            verifies.create,
+        self.update = to_streamed_response_wrapper(
+            verifies.update,
         )
 
 
@@ -153,6 +153,6 @@ class AsyncVerifiesWithStreamingResponse:
     def __init__(self, verifies: AsyncVerifies) -> None:
         self._verifies = verifies
 
-        self.create = async_to_streamed_response_wrapper(
-            verifies.create,
+        self.update = async_to_streamed_response_wrapper(
+            verifies.update,
         )

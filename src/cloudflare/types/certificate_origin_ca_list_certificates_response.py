@@ -6,10 +6,10 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["CertificateListResponse", "CertificateListResponseItem"]
+__all__ = ["CertificateOriginCaListCertificatesResponse", "CertificateOriginCaListCertificatesResponseItem"]
 
 
-class CertificateListResponseItem(BaseModel):
+class CertificateOriginCaListCertificatesResponseItem(BaseModel):
     csr: str
     """The Certificate Signing Request (CSR). Must be newline-encoded."""
 
@@ -38,4 +38,4 @@ class CertificateListResponseItem(BaseModel):
     """When the certificate will expire."""
 
 
-CertificateListResponse = List[CertificateListResponseItem]
+CertificateOriginCaListCertificatesResponse = List[CertificateOriginCaListCertificatesResponseItem]
