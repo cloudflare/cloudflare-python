@@ -7,14 +7,14 @@ from .._models import BaseModel
 
 __all__ = [
     "PcapMagicPcapCollectionCreatePcapRequestResponse",
-    "T3tt62GaPcapsResponseSimple",
-    "T3tt62GaPcapsResponseSimpleFilterV1",
-    "T3tt62GaPcapsResponseFull",
-    "T3tt62GaPcapsResponseFullFilterV1",
+    "Mm6ZzvAnPcapsResponseSimple",
+    "Mm6ZzvAnPcapsResponseSimpleFilterV1",
+    "Mm6ZzvAnPcapsResponseFull",
+    "Mm6ZzvAnPcapsResponseFullFilterV1",
 ]
 
 
-class T3tt62GaPcapsResponseSimpleFilterV1(BaseModel):
+class Mm6ZzvAnPcapsResponseSimpleFilterV1(BaseModel):
     destination_address: Optional[str] = None
     """The destination IP address of the packet."""
 
@@ -31,11 +31,11 @@ class T3tt62GaPcapsResponseSimpleFilterV1(BaseModel):
     """The source port of the packet."""
 
 
-class T3tt62GaPcapsResponseSimple(BaseModel):
+class Mm6ZzvAnPcapsResponseSimple(BaseModel):
     id: Optional[str] = None
     """The ID for the packet capture."""
 
-    filter_v1: Optional[T3tt62GaPcapsResponseSimpleFilterV1] = None
+    filter_v1: Optional[Mm6ZzvAnPcapsResponseSimpleFilterV1] = None
     """The packet capture filter. When this field is empty, all packets are captured."""
 
     status: Optional[
@@ -62,7 +62,7 @@ class T3tt62GaPcapsResponseSimple(BaseModel):
     """
 
 
-class T3tt62GaPcapsResponseFullFilterV1(BaseModel):
+class Mm6ZzvAnPcapsResponseFullFilterV1(BaseModel):
     destination_address: Optional[str] = None
     """The destination IP address of the packet."""
 
@@ -79,7 +79,7 @@ class T3tt62GaPcapsResponseFullFilterV1(BaseModel):
     """The source port of the packet."""
 
 
-class T3tt62GaPcapsResponseFull(BaseModel):
+class Mm6ZzvAnPcapsResponseFull(BaseModel):
     id: Optional[str] = None
     """The ID for the packet capture."""
 
@@ -105,7 +105,7 @@ class T3tt62GaPcapsResponseFull(BaseModel):
     This field only applies to `full` packet captures.
     """
 
-    filter_v1: Optional[T3tt62GaPcapsResponseFullFilterV1] = None
+    filter_v1: Optional[Mm6ZzvAnPcapsResponseFullFilterV1] = None
     """The packet capture filter. When this field is empty, all packets are captured."""
 
     status: Optional[
@@ -132,4 +132,4 @@ class T3tt62GaPcapsResponseFull(BaseModel):
     """
 
 
-PcapMagicPcapCollectionCreatePcapRequestResponse = Union[T3tt62GaPcapsResponseSimple, T3tt62GaPcapsResponseFull]
+PcapMagicPcapCollectionCreatePcapRequestResponse = Union[Mm6ZzvAnPcapsResponseSimple, Mm6ZzvAnPcapsResponseFull]
