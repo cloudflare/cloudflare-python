@@ -2,22 +2,32 @@
 
 from __future__ import annotations
 
-import os
-from typing import Any, Optional, cast
+from typing import Optional, Any, cast
 
-import pytest
-
-from cloudflare import Cloudflare, AsyncCloudflare
-from tests.utils import assert_matches_type
 from cloudflare.types.firewalls import (
-    RuleGetResponse,
-    RuleDeleteResponse,
     RuleUpdateResponse,
-    RuleFirewallRulesListFirewallRulesResponse,
+    RuleDeleteResponse,
     RuleFirewallRulesCreateFirewallRulesResponse,
+    RuleFirewallRulesListFirewallRulesResponse,
     RuleFirewallRulesUpdateFirewallRulesResponse,
     RuleFirewallRulesUpdatePriorityOfFirewallRulesResponse,
+    RuleGetResponse,
 )
+
+import os
+import pytest
+import httpx
+from typing_extensions import get_args
+from typing import Optional
+from respx import MockRouter
+from cloudflare import Cloudflare, AsyncCloudflare
+from tests.utils import assert_matches_type
+from cloudflare.types.firewalls import rule_update_params
+from cloudflare.types.firewalls import rule_delete_params
+from cloudflare.types.firewalls import rule_firewall_rules_create_firewall_rules_params
+from cloudflare.types.firewalls import rule_firewall_rules_list_firewall_rules_params
+from cloudflare.types.firewalls import rule_firewall_rules_update_firewall_rules_params
+from cloudflare.types.firewalls import rule_firewall_rules_update_priority_of_firewall_rules_params
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

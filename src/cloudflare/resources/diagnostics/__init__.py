@@ -1,20 +1,18 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from .diagnostics import (
-    Diagnostics,
-    AsyncDiagnostics,
-    DiagnosticsWithRawResponse,
-    AsyncDiagnosticsWithRawResponse,
-    DiagnosticsWithStreamingResponse,
-    AsyncDiagnosticsWithStreamingResponse,
-)
+from .traceroutes import Traceroutes, AsyncTraceroutes
 from .traceroutes import (
-    Traceroutes,
-    AsyncTraceroutes,
     TraceroutesWithRawResponse,
     AsyncTraceroutesWithRawResponse,
     TraceroutesWithStreamingResponse,
     AsyncTraceroutesWithStreamingResponse,
+)
+from .diagnostics import Diagnostics, AsyncDiagnostics
+from .diagnostics import (
+    DiagnosticsWithRawResponse,
+    AsyncDiagnosticsWithRawResponse,
+    DiagnosticsWithStreamingResponse,
+    AsyncDiagnosticsWithStreamingResponse,
 )
 
 __all__ = [
