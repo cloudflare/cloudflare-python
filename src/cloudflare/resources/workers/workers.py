@@ -2,102 +2,13 @@
 
 from __future__ import annotations
 
-from .scripts.scripts import Scripts, AsyncScripts
-
-from ..._compat import cached_property
-
-from .filters import Filters, AsyncFilters
-
-from .routes import Routes, AsyncRoutes
-
-from .account_settings import AccountSettings, AsyncAccountSettings
-
-from .deployments.deployments import Deployments, AsyncDeployments
-
-from .domains import Domains, AsyncDomains
-
-from .durable_objects.durable_objects import DurableObjects, AsyncDurableObjects
-
-from .queues.queues import Queues, AsyncQueues
-
-from .subdomains import Subdomains, AsyncSubdomains
-
-from .deployments_by_script import DeploymentsByScript, AsyncDeploymentsByScript
-
-from .services.services import Services, AsyncServices
-
-from .script import Script, AsyncScript
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from .scripts import (
-    Scripts,
-    AsyncScripts,
-    ScriptsWithRawResponse,
-    AsyncScriptsWithRawResponse,
-    ScriptsWithStreamingResponse,
-    AsyncScriptsWithStreamingResponse,
-)
-from .filters import (
-    Filters,
-    AsyncFilters,
-    FiltersWithRawResponse,
-    AsyncFiltersWithRawResponse,
-    FiltersWithStreamingResponse,
-    AsyncFiltersWithStreamingResponse,
-)
-from .routes import (
-    Routes,
-    AsyncRoutes,
-    RoutesWithRawResponse,
-    AsyncRoutesWithRawResponse,
-    RoutesWithStreamingResponse,
-    AsyncRoutesWithStreamingResponse,
-)
-from .account_settings import (
-    AccountSettings,
-    AsyncAccountSettings,
-    AccountSettingsWithRawResponse,
-    AsyncAccountSettingsWithRawResponse,
-    AccountSettingsWithStreamingResponse,
-    AsyncAccountSettingsWithStreamingResponse,
-)
-from .deployments import (
-    Deployments,
-    AsyncDeployments,
-    DeploymentsWithRawResponse,
-    AsyncDeploymentsWithRawResponse,
-    DeploymentsWithStreamingResponse,
-    AsyncDeploymentsWithStreamingResponse,
-)
-from .domains import (
-    Domains,
-    AsyncDomains,
-    DomainsWithRawResponse,
-    AsyncDomainsWithRawResponse,
-    DomainsWithStreamingResponse,
-    AsyncDomainsWithStreamingResponse,
-)
-from .durable_objects import (
-    DurableObjects,
-    AsyncDurableObjects,
-    DurableObjectsWithRawResponse,
-    AsyncDurableObjectsWithRawResponse,
-    DurableObjectsWithStreamingResponse,
-    AsyncDurableObjectsWithStreamingResponse,
+from .ai import (
+    AI,
+    AsyncAI,
+    AIWithRawResponse,
+    AsyncAIWithRawResponse,
+    AIWithStreamingResponse,
+    AsyncAIWithStreamingResponse,
 )
 from .queues import (
     Queues,
@@ -107,29 +18,13 @@ from .queues import (
     QueuesWithStreamingResponse,
     AsyncQueuesWithStreamingResponse,
 )
-from .subdomains import (
-    Subdomains,
-    AsyncSubdomains,
-    SubdomainsWithRawResponse,
-    AsyncSubdomainsWithRawResponse,
-    SubdomainsWithStreamingResponse,
-    AsyncSubdomainsWithStreamingResponse,
-)
-from .deployments_by_script import (
-    DeploymentsByScript,
-    AsyncDeploymentsByScript,
-    DeploymentsByScriptWithRawResponse,
-    AsyncDeploymentsByScriptWithRawResponse,
-    DeploymentsByScriptWithStreamingResponse,
-    AsyncDeploymentsByScriptWithStreamingResponse,
-)
-from .services import (
-    Services,
-    AsyncServices,
-    ServicesWithRawResponse,
-    AsyncServicesWithRawResponse,
-    ServicesWithStreamingResponse,
-    AsyncServicesWithStreamingResponse,
+from .routes import (
+    Routes,
+    AsyncRoutes,
+    RoutesWithRawResponse,
+    AsyncRoutesWithRawResponse,
+    RoutesWithStreamingResponse,
+    AsyncRoutesWithStreamingResponse,
 )
 from .script import (
     Script,
@@ -139,12 +34,94 @@ from .script import (
     ScriptWithStreamingResponse,
     AsyncScriptWithStreamingResponse,
 )
-from ..._wrappers import ResultWrapper
+from .domains import (
+    Domains,
+    AsyncDomains,
+    DomainsWithRawResponse,
+    AsyncDomainsWithRawResponse,
+    DomainsWithStreamingResponse,
+    AsyncDomainsWithStreamingResponse,
+)
+from .filters import (
+    Filters,
+    AsyncFilters,
+    FiltersWithRawResponse,
+    AsyncFiltersWithRawResponse,
+    FiltersWithStreamingResponse,
+    AsyncFiltersWithStreamingResponse,
+)
+from .scripts import (
+    Scripts,
+    AsyncScripts,
+    ScriptsWithRawResponse,
+    AsyncScriptsWithRawResponse,
+    ScriptsWithStreamingResponse,
+    AsyncScriptsWithStreamingResponse,
+)
+from .services import (
+    Services,
+    AsyncServices,
+    ServicesWithRawResponse,
+    AsyncServicesWithRawResponse,
+    ServicesWithStreamingResponse,
+    AsyncServicesWithStreamingResponse,
+)
+from ..._compat import cached_property
+from .subdomains import (
+    Subdomains,
+    AsyncSubdomains,
+    SubdomainsWithRawResponse,
+    AsyncSubdomainsWithRawResponse,
+    SubdomainsWithStreamingResponse,
+    AsyncSubdomainsWithStreamingResponse,
+)
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from .deployments import (
+    Deployments,
+    AsyncDeployments,
+    DeploymentsWithRawResponse,
+    AsyncDeploymentsWithRawResponse,
+    DeploymentsWithStreamingResponse,
+    AsyncDeploymentsWithStreamingResponse,
+)
+from .queues.queues import Queues, AsyncQueues
+from .durable_objects import (
+    DurableObjects,
+    AsyncDurableObjects,
+    DurableObjectsWithRawResponse,
+    AsyncDurableObjectsWithRawResponse,
+    DurableObjectsWithStreamingResponse,
+    AsyncDurableObjectsWithStreamingResponse,
+)
+from .scripts.scripts import Scripts, AsyncScripts
+from .account_settings import (
+    AccountSettings,
+    AsyncAccountSettings,
+    AccountSettingsWithRawResponse,
+    AsyncAccountSettingsWithRawResponse,
+    AccountSettingsWithStreamingResponse,
+    AsyncAccountSettingsWithStreamingResponse,
+)
+from .services.services import Services, AsyncServices
+from .deployments_by_script import (
+    DeploymentsByScript,
+    AsyncDeploymentsByScript,
+    DeploymentsByScriptWithRawResponse,
+    AsyncDeploymentsByScriptWithRawResponse,
+    DeploymentsByScriptWithStreamingResponse,
+    AsyncDeploymentsByScriptWithStreamingResponse,
+)
+from .deployments.deployments import Deployments, AsyncDeployments
+from .durable_objects.durable_objects import DurableObjects, AsyncDurableObjects
 
 __all__ = ["Workers", "AsyncWorkers"]
 
 
 class Workers(SyncAPIResource):
+    @cached_property
+    def ai(self) -> AI:
+        return AI(self._client)
+
     @cached_property
     def scripts(self) -> Scripts:
         return Scripts(self._client)
@@ -203,6 +180,10 @@ class Workers(SyncAPIResource):
 
 
 class AsyncWorkers(AsyncAPIResource):
+    @cached_property
+    def ai(self) -> AsyncAI:
+        return AsyncAI(self._client)
+
     @cached_property
     def scripts(self) -> AsyncScripts:
         return AsyncScripts(self._client)
@@ -265,6 +246,10 @@ class WorkersWithRawResponse:
         self._workers = workers
 
     @cached_property
+    def ai(self) -> AIWithRawResponse:
+        return AIWithRawResponse(self._workers.ai)
+
+    @cached_property
     def scripts(self) -> ScriptsWithRawResponse:
         return ScriptsWithRawResponse(self._workers.scripts)
 
@@ -316,6 +301,10 @@ class WorkersWithRawResponse:
 class AsyncWorkersWithRawResponse:
     def __init__(self, workers: AsyncWorkers) -> None:
         self._workers = workers
+
+    @cached_property
+    def ai(self) -> AsyncAIWithRawResponse:
+        return AsyncAIWithRawResponse(self._workers.ai)
 
     @cached_property
     def scripts(self) -> AsyncScriptsWithRawResponse:
@@ -371,6 +360,10 @@ class WorkersWithStreamingResponse:
         self._workers = workers
 
     @cached_property
+    def ai(self) -> AIWithStreamingResponse:
+        return AIWithStreamingResponse(self._workers.ai)
+
+    @cached_property
     def scripts(self) -> ScriptsWithStreamingResponse:
         return ScriptsWithStreamingResponse(self._workers.scripts)
 
@@ -422,6 +415,10 @@ class WorkersWithStreamingResponse:
 class AsyncWorkersWithStreamingResponse:
     def __init__(self, workers: AsyncWorkers) -> None:
         self._workers = workers
+
+    @cached_property
+    def ai(self) -> AsyncAIWithStreamingResponse:
+        return AsyncAIWithStreamingResponse(self._workers.ai)
 
     @cached_property
     def scripts(self) -> AsyncScriptsWithStreamingResponse:

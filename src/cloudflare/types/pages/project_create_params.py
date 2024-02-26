@@ -2,17 +2,10 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Annotated, Literal
-
-from typing import Optional, Iterable
+from typing import Iterable, Optional
+from typing_extensions import Literal, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
-from ..._utils import PropertyInfo
-from ...types import shared_params
 
 __all__ = [
     "ProjectCreateParams",
@@ -30,8 +23,8 @@ __all__ = [
     "DeploymentConfigsPreviewDurableObjectNamespacesDoBinding",
     "DeploymentConfigsPreviewEnvVars",
     "DeploymentConfigsPreviewEnvVarsEnvironmentVariable",
-    "DeploymentConfigsPreviewKvNamespaces",
-    "DeploymentConfigsPreviewKvNamespacesKvBinding",
+    "DeploymentConfigsPreviewKVNamespaces",
+    "DeploymentConfigsPreviewKVNamespacesKVBinding",
     "DeploymentConfigsPreviewPlacement",
     "DeploymentConfigsPreviewQueueProducers",
     "DeploymentConfigsPreviewQueueProducersQueueProducerBinding",
@@ -50,8 +43,8 @@ __all__ = [
     "DeploymentConfigsProductionDurableObjectNamespacesDoBinding",
     "DeploymentConfigsProductionEnvVars",
     "DeploymentConfigsProductionEnvVarsEnvironmentVariable",
-    "DeploymentConfigsProductionKvNamespaces",
-    "DeploymentConfigsProductionKvNamespacesKvBinding",
+    "DeploymentConfigsProductionKVNamespaces",
+    "DeploymentConfigsProductionKVNamespacesKVBinding",
     "DeploymentConfigsProductionPlacement",
     "DeploymentConfigsProductionQueueProducers",
     "DeploymentConfigsProductionQueueProducersQueueProducerBinding",
@@ -162,13 +155,13 @@ class DeploymentConfigsPreviewEnvVars(TypedDict, total=False):
     """Environment variable."""
 
 
-class DeploymentConfigsPreviewKvNamespacesKvBinding(TypedDict, total=False):
+class DeploymentConfigsPreviewKVNamespacesKVBinding(TypedDict, total=False):
     namespace_id: str
     """ID of the KV namespace."""
 
 
-class DeploymentConfigsPreviewKvNamespaces(TypedDict, total=False):
-    kv_binding: Annotated[DeploymentConfigsPreviewKvNamespacesKvBinding, PropertyInfo(alias="KV_BINDING")]
+class DeploymentConfigsPreviewKVNamespaces(TypedDict, total=False):
+    kv_binding: Annotated[DeploymentConfigsPreviewKVNamespacesKVBinding, PropertyInfo(alias="KV_BINDING")]
     """KV binding."""
 
 
@@ -236,7 +229,7 @@ class DeploymentConfigsPreview(TypedDict, total=False):
     env_vars: Optional[DeploymentConfigsPreviewEnvVars]
     """Environment variables for build configs."""
 
-    kv_namespaces: DeploymentConfigsPreviewKvNamespaces
+    kv_namespaces: DeploymentConfigsPreviewKVNamespaces
     """KV namespaces used for Pages Functions."""
 
     placement: Optional[DeploymentConfigsPreviewPlacement]
@@ -309,13 +302,13 @@ class DeploymentConfigsProductionEnvVars(TypedDict, total=False):
     """Environment variable."""
 
 
-class DeploymentConfigsProductionKvNamespacesKvBinding(TypedDict, total=False):
+class DeploymentConfigsProductionKVNamespacesKVBinding(TypedDict, total=False):
     namespace_id: str
     """ID of the KV namespace."""
 
 
-class DeploymentConfigsProductionKvNamespaces(TypedDict, total=False):
-    kv_binding: Annotated[DeploymentConfigsProductionKvNamespacesKvBinding, PropertyInfo(alias="KV_BINDING")]
+class DeploymentConfigsProductionKVNamespaces(TypedDict, total=False):
+    kv_binding: Annotated[DeploymentConfigsProductionKVNamespacesKVBinding, PropertyInfo(alias="KV_BINDING")]
     """KV binding."""
 
 
@@ -383,7 +376,7 @@ class DeploymentConfigsProduction(TypedDict, total=False):
     env_vars: Optional[DeploymentConfigsProductionEnvVars]
     """Environment variables for build configs."""
 
-    kv_namespaces: DeploymentConfigsProductionKvNamespaces
+    kv_namespaces: DeploymentConfigsProductionKVNamespaces
     """KV namespaces used for Pages Functions."""
 
     placement: Optional[DeploymentConfigsProductionPlacement]

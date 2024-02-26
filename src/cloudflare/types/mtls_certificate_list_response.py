@@ -1,19 +1,14 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from typing import Optional
-
+from typing import List, Optional
 from datetime import datetime
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
 from .._models import BaseModel
-from ..types import shared
 
-__all__ = ["MtlsCertificateListResponse", "MtlsCertificateListResponseItem"]
+__all__ = ["MTLSCertificateListResponse", "MTLSCertificateListResponseItem"]
 
 
-class MtlsCertificateListResponseItem(BaseModel):
+class MTLSCertificateListResponseItem(BaseModel):
     id: Optional[str] = None
     """Identifier"""
 
@@ -42,4 +37,4 @@ class MtlsCertificateListResponseItem(BaseModel):
     """This is the time the certificate was uploaded."""
 
 
-MtlsCertificateListResponse = List[MtlsCertificateListResponseItem]
+MTLSCertificateListResponse = List[MTLSCertificateListResponseItem]

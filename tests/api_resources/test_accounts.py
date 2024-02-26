@@ -2,20 +2,15 @@
 
 from __future__ import annotations
 
-from cloudflare.types import AccountUpdateResponse, AccountListResponse, AccountGetResponse
-
-from typing import Any, cast, Optional
-
 import os
+from typing import Any, cast
+
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types import account_update_params
-from cloudflare.types import account_list_params
+from cloudflare.types import AccountGetResponse, AccountUpdateResponse
+from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -78,7 +73,7 @@ class TestAccounts:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         account = client.accounts.list()
-        assert_matches_type(Optional[AccountListResponse], account, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[object], account, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -88,7 +83,7 @@ class TestAccounts:
             page=1,
             per_page=5,
         )
-        assert_matches_type(Optional[AccountListResponse], account, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[object], account, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -98,7 +93,7 @@ class TestAccounts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         account = response.parse()
-        assert_matches_type(Optional[AccountListResponse], account, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[object], account, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -108,7 +103,7 @@ class TestAccounts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             account = response.parse()
-            assert_matches_type(Optional[AccountListResponse], account, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[object], account, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -205,7 +200,7 @@ class TestAsyncAccounts:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         account = await async_client.accounts.list()
-        assert_matches_type(Optional[AccountListResponse], account, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[object], account, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -215,7 +210,7 @@ class TestAsyncAccounts:
             page=1,
             per_page=5,
         )
-        assert_matches_type(Optional[AccountListResponse], account, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[object], account, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -225,7 +220,7 @@ class TestAsyncAccounts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         account = await response.parse()
-        assert_matches_type(Optional[AccountListResponse], account, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[object], account, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -235,7 +230,7 @@ class TestAsyncAccounts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             account = await response.parse()
-            assert_matches_type(Optional[AccountListResponse], account, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[object], account, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

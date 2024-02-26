@@ -2,48 +2,13 @@
 
 from __future__ import annotations
 
-from .datasets.datasets import Datasets, AsyncDatasets
-
-from ..._compat import cached_property
-
-from .edges import Edges, AsyncEdges
-
-from .jobs import Jobs, AsyncJobs
-
-from .ownerships.ownerships import Ownerships, AsyncOwnerships
-
-from .validates.validates import Validates, AsyncValidates
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from .datasets import (
-    Datasets,
-    AsyncDatasets,
-    DatasetsWithRawResponse,
-    AsyncDatasetsWithRawResponse,
-    DatasetsWithStreamingResponse,
-    AsyncDatasetsWithStreamingResponse,
-)
-from .edges import (
-    Edges,
-    AsyncEdges,
-    EdgesWithRawResponse,
-    AsyncEdgesWithRawResponse,
-    EdgesWithStreamingResponse,
-    AsyncEdgesWithStreamingResponse,
+from .edge import (
+    Edge,
+    AsyncEdge,
+    EdgeWithRawResponse,
+    AsyncEdgeWithRawResponse,
+    EdgeWithStreamingResponse,
+    AsyncEdgeWithStreamingResponse,
 )
 from .jobs import (
     Jobs,
@@ -53,23 +18,33 @@ from .jobs import (
     JobsWithStreamingResponse,
     AsyncJobsWithStreamingResponse,
 )
-from .ownerships import (
-    Ownerships,
-    AsyncOwnerships,
-    OwnershipsWithRawResponse,
-    AsyncOwnershipsWithRawResponse,
-    OwnershipsWithStreamingResponse,
-    AsyncOwnershipsWithStreamingResponse,
+from .datasets import (
+    Datasets,
+    AsyncDatasets,
+    DatasetsWithRawResponse,
+    AsyncDatasetsWithRawResponse,
+    DatasetsWithStreamingResponse,
+    AsyncDatasetsWithStreamingResponse,
 )
-from .validates import (
-    Validates,
-    AsyncValidates,
-    ValidatesWithRawResponse,
-    AsyncValidatesWithRawResponse,
-    ValidatesWithStreamingResponse,
-    AsyncValidatesWithStreamingResponse,
+from .validate import (
+    Validate,
+    AsyncValidate,
+    ValidateWithRawResponse,
+    AsyncValidateWithRawResponse,
+    ValidateWithStreamingResponse,
+    AsyncValidateWithStreamingResponse,
 )
-from ..._wrappers import ResultWrapper
+from ..._compat import cached_property
+from .ownership import (
+    Ownership,
+    AsyncOwnership,
+    OwnershipWithRawResponse,
+    AsyncOwnershipWithRawResponse,
+    OwnershipWithStreamingResponse,
+    AsyncOwnershipWithStreamingResponse,
+)
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from .datasets.datasets import Datasets, AsyncDatasets
 
 __all__ = ["Logpush", "AsyncLogpush"]
 
@@ -80,20 +55,20 @@ class Logpush(SyncAPIResource):
         return Datasets(self._client)
 
     @cached_property
-    def edges(self) -> Edges:
-        return Edges(self._client)
+    def edge(self) -> Edge:
+        return Edge(self._client)
 
     @cached_property
     def jobs(self) -> Jobs:
         return Jobs(self._client)
 
     @cached_property
-    def ownerships(self) -> Ownerships:
-        return Ownerships(self._client)
+    def ownership(self) -> Ownership:
+        return Ownership(self._client)
 
     @cached_property
-    def validates(self) -> Validates:
-        return Validates(self._client)
+    def validate(self) -> Validate:
+        return Validate(self._client)
 
     @cached_property
     def with_raw_response(self) -> LogpushWithRawResponse:
@@ -110,20 +85,20 @@ class AsyncLogpush(AsyncAPIResource):
         return AsyncDatasets(self._client)
 
     @cached_property
-    def edges(self) -> AsyncEdges:
-        return AsyncEdges(self._client)
+    def edge(self) -> AsyncEdge:
+        return AsyncEdge(self._client)
 
     @cached_property
     def jobs(self) -> AsyncJobs:
         return AsyncJobs(self._client)
 
     @cached_property
-    def ownerships(self) -> AsyncOwnerships:
-        return AsyncOwnerships(self._client)
+    def ownership(self) -> AsyncOwnership:
+        return AsyncOwnership(self._client)
 
     @cached_property
-    def validates(self) -> AsyncValidates:
-        return AsyncValidates(self._client)
+    def validate(self) -> AsyncValidate:
+        return AsyncValidate(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncLogpushWithRawResponse:
@@ -143,20 +118,20 @@ class LogpushWithRawResponse:
         return DatasetsWithRawResponse(self._logpush.datasets)
 
     @cached_property
-    def edges(self) -> EdgesWithRawResponse:
-        return EdgesWithRawResponse(self._logpush.edges)
+    def edge(self) -> EdgeWithRawResponse:
+        return EdgeWithRawResponse(self._logpush.edge)
 
     @cached_property
     def jobs(self) -> JobsWithRawResponse:
         return JobsWithRawResponse(self._logpush.jobs)
 
     @cached_property
-    def ownerships(self) -> OwnershipsWithRawResponse:
-        return OwnershipsWithRawResponse(self._logpush.ownerships)
+    def ownership(self) -> OwnershipWithRawResponse:
+        return OwnershipWithRawResponse(self._logpush.ownership)
 
     @cached_property
-    def validates(self) -> ValidatesWithRawResponse:
-        return ValidatesWithRawResponse(self._logpush.validates)
+    def validate(self) -> ValidateWithRawResponse:
+        return ValidateWithRawResponse(self._logpush.validate)
 
 
 class AsyncLogpushWithRawResponse:
@@ -168,20 +143,20 @@ class AsyncLogpushWithRawResponse:
         return AsyncDatasetsWithRawResponse(self._logpush.datasets)
 
     @cached_property
-    def edges(self) -> AsyncEdgesWithRawResponse:
-        return AsyncEdgesWithRawResponse(self._logpush.edges)
+    def edge(self) -> AsyncEdgeWithRawResponse:
+        return AsyncEdgeWithRawResponse(self._logpush.edge)
 
     @cached_property
     def jobs(self) -> AsyncJobsWithRawResponse:
         return AsyncJobsWithRawResponse(self._logpush.jobs)
 
     @cached_property
-    def ownerships(self) -> AsyncOwnershipsWithRawResponse:
-        return AsyncOwnershipsWithRawResponse(self._logpush.ownerships)
+    def ownership(self) -> AsyncOwnershipWithRawResponse:
+        return AsyncOwnershipWithRawResponse(self._logpush.ownership)
 
     @cached_property
-    def validates(self) -> AsyncValidatesWithRawResponse:
-        return AsyncValidatesWithRawResponse(self._logpush.validates)
+    def validate(self) -> AsyncValidateWithRawResponse:
+        return AsyncValidateWithRawResponse(self._logpush.validate)
 
 
 class LogpushWithStreamingResponse:
@@ -193,20 +168,20 @@ class LogpushWithStreamingResponse:
         return DatasetsWithStreamingResponse(self._logpush.datasets)
 
     @cached_property
-    def edges(self) -> EdgesWithStreamingResponse:
-        return EdgesWithStreamingResponse(self._logpush.edges)
+    def edge(self) -> EdgeWithStreamingResponse:
+        return EdgeWithStreamingResponse(self._logpush.edge)
 
     @cached_property
     def jobs(self) -> JobsWithStreamingResponse:
         return JobsWithStreamingResponse(self._logpush.jobs)
 
     @cached_property
-    def ownerships(self) -> OwnershipsWithStreamingResponse:
-        return OwnershipsWithStreamingResponse(self._logpush.ownerships)
+    def ownership(self) -> OwnershipWithStreamingResponse:
+        return OwnershipWithStreamingResponse(self._logpush.ownership)
 
     @cached_property
-    def validates(self) -> ValidatesWithStreamingResponse:
-        return ValidatesWithStreamingResponse(self._logpush.validates)
+    def validate(self) -> ValidateWithStreamingResponse:
+        return ValidateWithStreamingResponse(self._logpush.validate)
 
 
 class AsyncLogpushWithStreamingResponse:
@@ -218,17 +193,17 @@ class AsyncLogpushWithStreamingResponse:
         return AsyncDatasetsWithStreamingResponse(self._logpush.datasets)
 
     @cached_property
-    def edges(self) -> AsyncEdgesWithStreamingResponse:
-        return AsyncEdgesWithStreamingResponse(self._logpush.edges)
+    def edge(self) -> AsyncEdgeWithStreamingResponse:
+        return AsyncEdgeWithStreamingResponse(self._logpush.edge)
 
     @cached_property
     def jobs(self) -> AsyncJobsWithStreamingResponse:
         return AsyncJobsWithStreamingResponse(self._logpush.jobs)
 
     @cached_property
-    def ownerships(self) -> AsyncOwnershipsWithStreamingResponse:
-        return AsyncOwnershipsWithStreamingResponse(self._logpush.ownerships)
+    def ownership(self) -> AsyncOwnershipWithStreamingResponse:
+        return AsyncOwnershipWithStreamingResponse(self._logpush.ownership)
 
     @cached_property
-    def validates(self) -> AsyncValidatesWithStreamingResponse:
-        return AsyncValidatesWithStreamingResponse(self._logpush.validates)
+    def validate(self) -> AsyncValidateWithStreamingResponse:
+        return AsyncValidateWithStreamingResponse(self._logpush.validate)

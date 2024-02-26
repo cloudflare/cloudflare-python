@@ -2,39 +2,24 @@
 
 from __future__ import annotations
 
+from typing import Type, cast
+
 import httpx
 
+from ..types import ActivationCheckUpdateResponse
+from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._compat import cached_property
-
-from ..types import ActivationCheckPutZonesZoneIDActivationCheckResponse
-
-from typing import Type
-
+from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from .._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from .._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from .._resource import SyncAPIResource, AsyncAPIResource
-from .._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ..types import shared_params
 from .._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
+from .._base_client import (
+    make_request_options,
+)
 
 __all__ = ["ActivationChecks", "AsyncActivationChecks"]
 
@@ -48,7 +33,7 @@ class ActivationChecks(SyncAPIResource):
     def with_streaming_response(self) -> ActivationChecksWithStreamingResponse:
         return ActivationChecksWithStreamingResponse(self)
 
-    def put_zones_zone_id_activation_check(
+    def update(
         self,
         zone_id: str,
         *,
@@ -58,7 +43,7 @@ class ActivationChecks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ActivationCheckPutZonesZoneIDActivationCheckResponse:
+    ) -> ActivationCheckUpdateResponse:
         """Triggeres a new activation check for a PENDING Zone.
 
         This can be triggered every
@@ -86,10 +71,7 @@ class ActivationChecks(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[ActivationCheckPutZonesZoneIDActivationCheckResponse],
-                ResultWrapper[ActivationCheckPutZonesZoneIDActivationCheckResponse],
-            ),
+            cast_to=cast(Type[ActivationCheckUpdateResponse], ResultWrapper[ActivationCheckUpdateResponse]),
         )
 
 
@@ -102,7 +84,7 @@ class AsyncActivationChecks(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncActivationChecksWithStreamingResponse:
         return AsyncActivationChecksWithStreamingResponse(self)
 
-    async def put_zones_zone_id_activation_check(
+    async def update(
         self,
         zone_id: str,
         *,
@@ -112,7 +94,7 @@ class AsyncActivationChecks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ActivationCheckPutZonesZoneIDActivationCheckResponse:
+    ) -> ActivationCheckUpdateResponse:
         """Triggeres a new activation check for a PENDING Zone.
 
         This can be triggered every
@@ -140,10 +122,7 @@ class AsyncActivationChecks(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[ActivationCheckPutZonesZoneIDActivationCheckResponse],
-                ResultWrapper[ActivationCheckPutZonesZoneIDActivationCheckResponse],
-            ),
+            cast_to=cast(Type[ActivationCheckUpdateResponse], ResultWrapper[ActivationCheckUpdateResponse]),
         )
 
 
@@ -151,8 +130,8 @@ class ActivationChecksWithRawResponse:
     def __init__(self, activation_checks: ActivationChecks) -> None:
         self._activation_checks = activation_checks
 
-        self.put_zones_zone_id_activation_check = to_raw_response_wrapper(
-            activation_checks.put_zones_zone_id_activation_check,
+        self.update = to_raw_response_wrapper(
+            activation_checks.update,
         )
 
 
@@ -160,8 +139,8 @@ class AsyncActivationChecksWithRawResponse:
     def __init__(self, activation_checks: AsyncActivationChecks) -> None:
         self._activation_checks = activation_checks
 
-        self.put_zones_zone_id_activation_check = async_to_raw_response_wrapper(
-            activation_checks.put_zones_zone_id_activation_check,
+        self.update = async_to_raw_response_wrapper(
+            activation_checks.update,
         )
 
 
@@ -169,8 +148,8 @@ class ActivationChecksWithStreamingResponse:
     def __init__(self, activation_checks: ActivationChecks) -> None:
         self._activation_checks = activation_checks
 
-        self.put_zones_zone_id_activation_check = to_streamed_response_wrapper(
-            activation_checks.put_zones_zone_id_activation_check,
+        self.update = to_streamed_response_wrapper(
+            activation_checks.update,
         )
 
 
@@ -178,6 +157,6 @@ class AsyncActivationChecksWithStreamingResponse:
     def __init__(self, activation_checks: AsyncActivationChecks) -> None:
         self._activation_checks = activation_checks
 
-        self.put_zones_zone_id_activation_check = async_to_streamed_response_wrapper(
-            activation_checks.put_zones_zone_id_activation_check,
+        self.update = async_to_streamed_response_wrapper(
+            activation_checks.update,
         )

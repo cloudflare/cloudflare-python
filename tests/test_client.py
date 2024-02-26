@@ -2,47 +2,39 @@
 
 from __future__ import annotations
 
-import httpx
-
-from cloudflare._client import Cloudflare, AsyncCloudflare
-
-from cloudflare._exceptions import APITimeoutError, APIStatusError, APIResponseValidationError
-
-from pydantic import ValidationError
-
-import asyncio
 import gc
-import inspect
-import json
 import os
+import json
+import asyncio
+import inspect
 import tracemalloc
-from typing import Dict, Any, Union, cast
+from typing import Any, Union, cast
 from unittest import mock
 
 import httpx
 import pytest
 from respx import MockRouter
+from pydantic import ValidationError
 
 from cloudflare import Cloudflare, AsyncCloudflare, APIResponseValidationError
-from cloudflare._models import FinalRequestOptions, BaseModel
-from cloudflare._types import NOT_GIVEN, Headers, NotGiven, Query, Body, Timeout, Omit
+from cloudflare._client import Cloudflare, AsyncCloudflare
+from cloudflare._models import BaseModel, FinalRequestOptions
+from cloudflare._constants import RAW_RESPONSE_HEADER
+from cloudflare._exceptions import APIStatusError, APITimeoutError, APIResponseValidationError
 from cloudflare._base_client import (
     DEFAULT_TIMEOUT,
     HTTPX_DEFAULT_TIMEOUT,
     BaseClient,
-    RequestOptions,
     make_request_options,
 )
-from cloudflare._streaming import Stream, AsyncStream
-from cloudflare._constants import RAW_RESPONSE_HEADER
-from cloudflare._response import APIResponse, AsyncAPIResponse
+
 from .utils import update_env
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 api_key = "144c9defac04969c7bfad8efaa8ea194"
-api_email = "dev@cloudflare.com"
+api_email = "user@example.com"
 api_token = "Sn3lZJTBX6kkg7OdcBUAxOO963GEIyGQqnFTOFYY"
-user_service_key = "My User Service Key"
+user_service_key = "v1.0-144c9defac04969c7bfad8ef-631a41d003a32d25fe878081ef365c49503f7fada600da935e2851a1c7326084b85cbf6429c4b859de8475731dc92a9c329631e6d59e6c73da7b198497172b4cefe071d90d0f5d2719"
 
 
 def _get_params(client: BaseClient[Any, Any]) -> dict[str, str]:
@@ -101,17 +93,25 @@ class TestCloudflare:
         assert copied.api_key == "another 144c9defac04969c7bfad8efaa8ea194"
         assert self.client.api_key == "144c9defac04969c7bfad8efaa8ea194"
 
-        copied = self.client.copy(api_email="another dev@cloudflare.com")
-        assert copied.api_email == "another dev@cloudflare.com"
-        assert self.client.api_email == "dev@cloudflare.com"
+        copied = self.client.copy(api_email="another user@example.com")
+        assert copied.api_email == "another user@example.com"
+        assert self.client.api_email == "user@example.com"
 
         copied = self.client.copy(api_token="another Sn3lZJTBX6kkg7OdcBUAxOO963GEIyGQqnFTOFYY")
         assert copied.api_token == "another Sn3lZJTBX6kkg7OdcBUAxOO963GEIyGQqnFTOFYY"
         assert self.client.api_token == "Sn3lZJTBX6kkg7OdcBUAxOO963GEIyGQqnFTOFYY"
 
-        copied = self.client.copy(user_service_key="another My User Service Key")
-        assert copied.user_service_key == "another My User Service Key"
-        assert self.client.user_service_key == "My User Service Key"
+        copied = self.client.copy(
+            user_service_key="another v1.0-144c9defac04969c7bfad8ef-631a41d003a32d25fe878081ef365c49503f7fada600da935e2851a1c7326084b85cbf6429c4b859de8475731dc92a9c329631e6d59e6c73da7b198497172b4cefe071d90d0f5d2719"
+        )
+        assert (
+            copied.user_service_key
+            == "another v1.0-144c9defac04969c7bfad8ef-631a41d003a32d25fe878081ef365c49503f7fada600da935e2851a1c7326084b85cbf6429c4b859de8475731dc92a9c329631e6d59e6c73da7b198497172b4cefe071d90d0f5d2719"
+        )
+        assert (
+            self.client.user_service_key
+            == "v1.0-144c9defac04969c7bfad8ef-631a41d003a32d25fe878081ef365c49503f7fada600da935e2851a1c7326084b85cbf6429c4b859de8475731dc92a9c329631e6d59e6c73da7b198497172b4cefe071d90d0f5d2719"
+        )
 
     def test_copy_default_options(self) -> None:
         # options that have a default are overridden correctly
@@ -913,17 +913,25 @@ class TestAsyncCloudflare:
         assert copied.api_key == "another 144c9defac04969c7bfad8efaa8ea194"
         assert self.client.api_key == "144c9defac04969c7bfad8efaa8ea194"
 
-        copied = self.client.copy(api_email="another dev@cloudflare.com")
-        assert copied.api_email == "another dev@cloudflare.com"
-        assert self.client.api_email == "dev@cloudflare.com"
+        copied = self.client.copy(api_email="another user@example.com")
+        assert copied.api_email == "another user@example.com"
+        assert self.client.api_email == "user@example.com"
 
         copied = self.client.copy(api_token="another Sn3lZJTBX6kkg7OdcBUAxOO963GEIyGQqnFTOFYY")
         assert copied.api_token == "another Sn3lZJTBX6kkg7OdcBUAxOO963GEIyGQqnFTOFYY"
         assert self.client.api_token == "Sn3lZJTBX6kkg7OdcBUAxOO963GEIyGQqnFTOFYY"
 
-        copied = self.client.copy(user_service_key="another My User Service Key")
-        assert copied.user_service_key == "another My User Service Key"
-        assert self.client.user_service_key == "My User Service Key"
+        copied = self.client.copy(
+            user_service_key="another v1.0-144c9defac04969c7bfad8ef-631a41d003a32d25fe878081ef365c49503f7fada600da935e2851a1c7326084b85cbf6429c4b859de8475731dc92a9c329631e6d59e6c73da7b198497172b4cefe071d90d0f5d2719"
+        )
+        assert (
+            copied.user_service_key
+            == "another v1.0-144c9defac04969c7bfad8ef-631a41d003a32d25fe878081ef365c49503f7fada600da935e2851a1c7326084b85cbf6429c4b859de8475731dc92a9c329631e6d59e6c73da7b198497172b4cefe071d90d0f5d2719"
+        )
+        assert (
+            self.client.user_service_key
+            == "v1.0-144c9defac04969c7bfad8ef-631a41d003a32d25fe878081ef365c49503f7fada600da935e2851a1c7326084b85cbf6429c4b859de8475731dc92a9c329631e6d59e6c73da7b198497172b4cefe071d90d0f5d2719"
+        )
 
     def test_copy_default_options(self) -> None:
         # options that have a default are overridden correctly

@@ -2,25 +2,17 @@
 
 from __future__ import annotations
 
-from cloudflare.types.stream.live_inputs import (
-    OutputUpdateResponse,
-    OutputStreamLiveInputsCreateANewOutputConnectedToALiveInputResponse,
-    OutputStreamLiveInputsListAllOutputsAssociatedWithASpecifiedLiveInputResponse,
-)
-
+import os
 from typing import Any, cast
 
-import os
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.stream.live_inputs import output_update_params
 from cloudflare.types.stream.live_inputs import (
-    output_stream_live_inputs_create_a_new_output_connected_to_a_live_input_params,
+    OutputListResponse,
+    OutputCreateResponse,
+    OutputUpdateResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -28,6 +20,80 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 class TestOutputs:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_create(self, client: Cloudflare) -> None:
+        output = client.stream.live_inputs.outputs.create(
+            "66be4bf738797e01e1fca35a7bdecdcd",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            stream_key="uzya-f19y-g2g9-a2ee-51j2",
+            url="rtmp://a.rtmp.youtube.com/live2",
+        )
+        assert_matches_type(OutputCreateResponse, output, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
+        output = client.stream.live_inputs.outputs.create(
+            "66be4bf738797e01e1fca35a7bdecdcd",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            stream_key="uzya-f19y-g2g9-a2ee-51j2",
+            url="rtmp://a.rtmp.youtube.com/live2",
+            enabled=True,
+        )
+        assert_matches_type(OutputCreateResponse, output, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_create(self, client: Cloudflare) -> None:
+        response = client.stream.live_inputs.outputs.with_raw_response.create(
+            "66be4bf738797e01e1fca35a7bdecdcd",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            stream_key="uzya-f19y-g2g9-a2ee-51j2",
+            url="rtmp://a.rtmp.youtube.com/live2",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        output = response.parse()
+        assert_matches_type(OutputCreateResponse, output, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_create(self, client: Cloudflare) -> None:
+        with client.stream.live_inputs.outputs.with_streaming_response.create(
+            "66be4bf738797e01e1fca35a7bdecdcd",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            stream_key="uzya-f19y-g2g9-a2ee-51j2",
+            url="rtmp://a.rtmp.youtube.com/live2",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            output = response.parse()
+            assert_matches_type(OutputCreateResponse, output, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_create(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.stream.live_inputs.outputs.with_raw_response.create(
+                "66be4bf738797e01e1fca35a7bdecdcd",
+                account_id="",
+                stream_key="uzya-f19y-g2g9-a2ee-51j2",
+                url="rtmp://a.rtmp.youtube.com/live2",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `live_input_identifier` but received ''"):
+            client.stream.live_inputs.outputs.with_raw_response.create(
+                "",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                stream_key="uzya-f19y-g2g9-a2ee-51j2",
+                url="rtmp://a.rtmp.youtube.com/live2",
+            )
 
     @pytest.mark.skip()
     @parametrize
@@ -101,6 +167,58 @@ class TestOutputs:
 
     @pytest.mark.skip()
     @parametrize
+    def test_method_list(self, client: Cloudflare) -> None:
+        output = client.stream.live_inputs.outputs.list(
+            "66be4bf738797e01e1fca35a7bdecdcd",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(OutputListResponse, output, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_list(self, client: Cloudflare) -> None:
+        response = client.stream.live_inputs.outputs.with_raw_response.list(
+            "66be4bf738797e01e1fca35a7bdecdcd",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        output = response.parse()
+        assert_matches_type(OutputListResponse, output, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_list(self, client: Cloudflare) -> None:
+        with client.stream.live_inputs.outputs.with_streaming_response.list(
+            "66be4bf738797e01e1fca35a7bdecdcd",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            output = response.parse()
+            assert_matches_type(OutputListResponse, output, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_list(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.stream.live_inputs.outputs.with_raw_response.list(
+                "66be4bf738797e01e1fca35a7bdecdcd",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `live_input_identifier` but received ''"):
+            client.stream.live_inputs.outputs.with_raw_response.list(
+                "",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         output = client.stream.live_inputs.outputs.delete(
             "baea4d9c515887b80289d5c33cf01145",
@@ -163,41 +281,37 @@ class TestOutputs:
                 live_input_identifier="66be4bf738797e01e1fca35a7bdecdcd",
             )
 
+
+class TestAsyncOutputs:
+    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+
     @pytest.mark.skip()
     @parametrize
-    def test_method_stream_live_inputs_create_a_new_output_connected_to_a_live_input(self, client: Cloudflare) -> None:
-        output = client.stream.live_inputs.outputs.stream_live_inputs_create_a_new_output_connected_to_a_live_input(
+    async def test_method_create(self, async_client: AsyncCloudflare) -> None:
+        output = await async_client.stream.live_inputs.outputs.create(
             "66be4bf738797e01e1fca35a7bdecdcd",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             stream_key="uzya-f19y-g2g9-a2ee-51j2",
             url="rtmp://a.rtmp.youtube.com/live2",
         )
-        assert_matches_type(
-            OutputStreamLiveInputsCreateANewOutputConnectedToALiveInputResponse, output, path=["response"]
-        )
+        assert_matches_type(OutputCreateResponse, output, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_stream_live_inputs_create_a_new_output_connected_to_a_live_input_with_all_params(
-        self, client: Cloudflare
-    ) -> None:
-        output = client.stream.live_inputs.outputs.stream_live_inputs_create_a_new_output_connected_to_a_live_input(
+    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        output = await async_client.stream.live_inputs.outputs.create(
             "66be4bf738797e01e1fca35a7bdecdcd",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             stream_key="uzya-f19y-g2g9-a2ee-51j2",
             url="rtmp://a.rtmp.youtube.com/live2",
             enabled=True,
         )
-        assert_matches_type(
-            OutputStreamLiveInputsCreateANewOutputConnectedToALiveInputResponse, output, path=["response"]
-        )
+        assert_matches_type(OutputCreateResponse, output, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_stream_live_inputs_create_a_new_output_connected_to_a_live_input(
-        self, client: Cloudflare
-    ) -> None:
-        response = client.stream.live_inputs.outputs.with_raw_response.stream_live_inputs_create_a_new_output_connected_to_a_live_input(
+    async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.stream.live_inputs.outputs.with_raw_response.create(
             "66be4bf738797e01e1fca35a7bdecdcd",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             stream_key="uzya-f19y-g2g9-a2ee-51j2",
@@ -206,17 +320,13 @@ class TestOutputs:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        output = response.parse()
-        assert_matches_type(
-            OutputStreamLiveInputsCreateANewOutputConnectedToALiveInputResponse, output, path=["response"]
-        )
+        output = await response.parse()
+        assert_matches_type(OutputCreateResponse, output, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_stream_live_inputs_create_a_new_output_connected_to_a_live_input(
-        self, client: Cloudflare
-    ) -> None:
-        with client.stream.live_inputs.outputs.with_streaming_response.stream_live_inputs_create_a_new_output_connected_to_a_live_input(
+    async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.stream.live_inputs.outputs.with_streaming_response.create(
             "66be4bf738797e01e1fca35a7bdecdcd",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             stream_key="uzya-f19y-g2g9-a2ee-51j2",
@@ -225,20 +335,16 @@ class TestOutputs:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            output = response.parse()
-            assert_matches_type(
-                OutputStreamLiveInputsCreateANewOutputConnectedToALiveInputResponse, output, path=["response"]
-            )
+            output = await response.parse()
+            assert_matches_type(OutputCreateResponse, output, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_stream_live_inputs_create_a_new_output_connected_to_a_live_input(
-        self, client: Cloudflare
-    ) -> None:
+    async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.stream.live_inputs.outputs.with_raw_response.stream_live_inputs_create_a_new_output_connected_to_a_live_input(
+            await async_client.stream.live_inputs.outputs.with_raw_response.create(
                 "66be4bf738797e01e1fca35a7bdecdcd",
                 account_id="",
                 stream_key="uzya-f19y-g2g9-a2ee-51j2",
@@ -246,82 +352,12 @@ class TestOutputs:
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `live_input_identifier` but received ''"):
-            client.stream.live_inputs.outputs.with_raw_response.stream_live_inputs_create_a_new_output_connected_to_a_live_input(
+            await async_client.stream.live_inputs.outputs.with_raw_response.create(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 stream_key="uzya-f19y-g2g9-a2ee-51j2",
                 url="rtmp://a.rtmp.youtube.com/live2",
             )
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_method_stream_live_inputs_list_all_outputs_associated_with_a_specified_live_input(
-        self, client: Cloudflare
-    ) -> None:
-        output = client.stream.live_inputs.outputs.stream_live_inputs_list_all_outputs_associated_with_a_specified_live_input(
-            "66be4bf738797e01e1fca35a7bdecdcd",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(
-            OutputStreamLiveInputsListAllOutputsAssociatedWithASpecifiedLiveInputResponse, output, path=["response"]
-        )
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_raw_response_stream_live_inputs_list_all_outputs_associated_with_a_specified_live_input(
-        self, client: Cloudflare
-    ) -> None:
-        response = client.stream.live_inputs.outputs.with_raw_response.stream_live_inputs_list_all_outputs_associated_with_a_specified_live_input(
-            "66be4bf738797e01e1fca35a7bdecdcd",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        output = response.parse()
-        assert_matches_type(
-            OutputStreamLiveInputsListAllOutputsAssociatedWithASpecifiedLiveInputResponse, output, path=["response"]
-        )
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_streaming_response_stream_live_inputs_list_all_outputs_associated_with_a_specified_live_input(
-        self, client: Cloudflare
-    ) -> None:
-        with client.stream.live_inputs.outputs.with_streaming_response.stream_live_inputs_list_all_outputs_associated_with_a_specified_live_input(
-            "66be4bf738797e01e1fca35a7bdecdcd",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            output = response.parse()
-            assert_matches_type(
-                OutputStreamLiveInputsListAllOutputsAssociatedWithASpecifiedLiveInputResponse, output, path=["response"]
-            )
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_path_params_stream_live_inputs_list_all_outputs_associated_with_a_specified_live_input(
-        self, client: Cloudflare
-    ) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.stream.live_inputs.outputs.with_raw_response.stream_live_inputs_list_all_outputs_associated_with_a_specified_live_input(
-                "66be4bf738797e01e1fca35a7bdecdcd",
-                account_id="",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `live_input_identifier` but received ''"):
-            client.stream.live_inputs.outputs.with_raw_response.stream_live_inputs_list_all_outputs_associated_with_a_specified_live_input(
-                "",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            )
-
-
-class TestAsyncOutputs:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip()
     @parametrize
@@ -395,6 +431,58 @@ class TestAsyncOutputs:
 
     @pytest.mark.skip()
     @parametrize
+    async def test_method_list(self, async_client: AsyncCloudflare) -> None:
+        output = await async_client.stream.live_inputs.outputs.list(
+            "66be4bf738797e01e1fca35a7bdecdcd",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(OutputListResponse, output, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.stream.live_inputs.outputs.with_raw_response.list(
+            "66be4bf738797e01e1fca35a7bdecdcd",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        output = await response.parse()
+        assert_matches_type(OutputListResponse, output, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.stream.live_inputs.outputs.with_streaming_response.list(
+            "66be4bf738797e01e1fca35a7bdecdcd",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            output = await response.parse()
+            assert_matches_type(OutputListResponse, output, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.stream.live_inputs.outputs.with_raw_response.list(
+                "66be4bf738797e01e1fca35a7bdecdcd",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `live_input_identifier` but received ''"):
+            await async_client.stream.live_inputs.outputs.with_raw_response.list(
+                "",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         output = await async_client.stream.live_inputs.outputs.delete(
             "baea4d9c515887b80289d5c33cf01145",
@@ -455,162 +543,4 @@ class TestAsyncOutputs:
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 live_input_identifier="66be4bf738797e01e1fca35a7bdecdcd",
-            )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_stream_live_inputs_create_a_new_output_connected_to_a_live_input(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        output = await async_client.stream.live_inputs.outputs.stream_live_inputs_create_a_new_output_connected_to_a_live_input(
-            "66be4bf738797e01e1fca35a7bdecdcd",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            stream_key="uzya-f19y-g2g9-a2ee-51j2",
-            url="rtmp://a.rtmp.youtube.com/live2",
-        )
-        assert_matches_type(
-            OutputStreamLiveInputsCreateANewOutputConnectedToALiveInputResponse, output, path=["response"]
-        )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_stream_live_inputs_create_a_new_output_connected_to_a_live_input_with_all_params(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        output = await async_client.stream.live_inputs.outputs.stream_live_inputs_create_a_new_output_connected_to_a_live_input(
-            "66be4bf738797e01e1fca35a7bdecdcd",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            stream_key="uzya-f19y-g2g9-a2ee-51j2",
-            url="rtmp://a.rtmp.youtube.com/live2",
-            enabled=True,
-        )
-        assert_matches_type(
-            OutputStreamLiveInputsCreateANewOutputConnectedToALiveInputResponse, output, path=["response"]
-        )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_raw_response_stream_live_inputs_create_a_new_output_connected_to_a_live_input(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        response = await async_client.stream.live_inputs.outputs.with_raw_response.stream_live_inputs_create_a_new_output_connected_to_a_live_input(
-            "66be4bf738797e01e1fca35a7bdecdcd",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            stream_key="uzya-f19y-g2g9-a2ee-51j2",
-            url="rtmp://a.rtmp.youtube.com/live2",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        output = await response.parse()
-        assert_matches_type(
-            OutputStreamLiveInputsCreateANewOutputConnectedToALiveInputResponse, output, path=["response"]
-        )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_streaming_response_stream_live_inputs_create_a_new_output_connected_to_a_live_input(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        async with async_client.stream.live_inputs.outputs.with_streaming_response.stream_live_inputs_create_a_new_output_connected_to_a_live_input(
-            "66be4bf738797e01e1fca35a7bdecdcd",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            stream_key="uzya-f19y-g2g9-a2ee-51j2",
-            url="rtmp://a.rtmp.youtube.com/live2",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            output = await response.parse()
-            assert_matches_type(
-                OutputStreamLiveInputsCreateANewOutputConnectedToALiveInputResponse, output, path=["response"]
-            )
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_path_params_stream_live_inputs_create_a_new_output_connected_to_a_live_input(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.stream.live_inputs.outputs.with_raw_response.stream_live_inputs_create_a_new_output_connected_to_a_live_input(
-                "66be4bf738797e01e1fca35a7bdecdcd",
-                account_id="",
-                stream_key="uzya-f19y-g2g9-a2ee-51j2",
-                url="rtmp://a.rtmp.youtube.com/live2",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `live_input_identifier` but received ''"):
-            await async_client.stream.live_inputs.outputs.with_raw_response.stream_live_inputs_create_a_new_output_connected_to_a_live_input(
-                "",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                stream_key="uzya-f19y-g2g9-a2ee-51j2",
-                url="rtmp://a.rtmp.youtube.com/live2",
-            )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_stream_live_inputs_list_all_outputs_associated_with_a_specified_live_input(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        output = await async_client.stream.live_inputs.outputs.stream_live_inputs_list_all_outputs_associated_with_a_specified_live_input(
-            "66be4bf738797e01e1fca35a7bdecdcd",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(
-            OutputStreamLiveInputsListAllOutputsAssociatedWithASpecifiedLiveInputResponse, output, path=["response"]
-        )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_raw_response_stream_live_inputs_list_all_outputs_associated_with_a_specified_live_input(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        response = await async_client.stream.live_inputs.outputs.with_raw_response.stream_live_inputs_list_all_outputs_associated_with_a_specified_live_input(
-            "66be4bf738797e01e1fca35a7bdecdcd",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        output = await response.parse()
-        assert_matches_type(
-            OutputStreamLiveInputsListAllOutputsAssociatedWithASpecifiedLiveInputResponse, output, path=["response"]
-        )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_streaming_response_stream_live_inputs_list_all_outputs_associated_with_a_specified_live_input(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        async with async_client.stream.live_inputs.outputs.with_streaming_response.stream_live_inputs_list_all_outputs_associated_with_a_specified_live_input(
-            "66be4bf738797e01e1fca35a7bdecdcd",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            output = await response.parse()
-            assert_matches_type(
-                OutputStreamLiveInputsListAllOutputsAssociatedWithASpecifiedLiveInputResponse, output, path=["response"]
-            )
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_path_params_stream_live_inputs_list_all_outputs_associated_with_a_specified_live_input(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.stream.live_inputs.outputs.with_raw_response.stream_live_inputs_list_all_outputs_associated_with_a_specified_live_input(
-                "66be4bf738797e01e1fca35a7bdecdcd",
-                account_id="",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `live_input_identifier` but received ''"):
-            await async_client.stream.live_inputs.outputs.with_raw_response.stream_live_inputs_list_all_outputs_associated_with_a_specified_live_input(
-                "",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

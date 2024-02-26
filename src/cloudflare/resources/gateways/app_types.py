@@ -2,41 +2,24 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._compat import cached_property
-
-from ...types.gateways import (
-    AppTypeZeroTrustGatewayApplicationAndApplicationTypeMappingsListApplicationAndApplicationTypeMappingsResponse,
-)
-
-from typing import Type, Optional
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
+from ..._base_client import (
+    make_request_options,
+)
+from ...types.gateways import AppTypeListResponse
 
 __all__ = ["AppTypes", "AsyncAppTypes"]
 
@@ -50,7 +33,7 @@ class AppTypes(SyncAPIResource):
     def with_streaming_response(self) -> AppTypesWithStreamingResponse:
         return AppTypesWithStreamingResponse(self)
 
-    def zero_trust_gateway_application_and_application_type_mappings_list_application_and_application_type_mappings(
+    def list(
         self,
         account_id: str,
         *,
@@ -60,9 +43,7 @@ class AppTypes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[
-        AppTypeZeroTrustGatewayApplicationAndApplicationTypeMappingsListApplicationAndApplicationTypeMappingsResponse
-    ]:
+    ) -> Optional[AppTypeListResponse]:
         """
         Fetches all application and application type mappings.
 
@@ -88,16 +69,7 @@ class AppTypes(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[
-                    Optional[
-                        AppTypeZeroTrustGatewayApplicationAndApplicationTypeMappingsListApplicationAndApplicationTypeMappingsResponse
-                    ]
-                ],
-                ResultWrapper[
-                    AppTypeZeroTrustGatewayApplicationAndApplicationTypeMappingsListApplicationAndApplicationTypeMappingsResponse
-                ],
-            ),
+            cast_to=cast(Type[Optional[AppTypeListResponse]], ResultWrapper[AppTypeListResponse]),
         )
 
 
@@ -110,7 +82,7 @@ class AsyncAppTypes(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncAppTypesWithStreamingResponse:
         return AsyncAppTypesWithStreamingResponse(self)
 
-    async def zero_trust_gateway_application_and_application_type_mappings_list_application_and_application_type_mappings(
+    async def list(
         self,
         account_id: str,
         *,
@@ -120,9 +92,7 @@ class AsyncAppTypes(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[
-        AppTypeZeroTrustGatewayApplicationAndApplicationTypeMappingsListApplicationAndApplicationTypeMappingsResponse
-    ]:
+    ) -> Optional[AppTypeListResponse]:
         """
         Fetches all application and application type mappings.
 
@@ -148,16 +118,7 @@ class AsyncAppTypes(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[
-                    Optional[
-                        AppTypeZeroTrustGatewayApplicationAndApplicationTypeMappingsListApplicationAndApplicationTypeMappingsResponse
-                    ]
-                ],
-                ResultWrapper[
-                    AppTypeZeroTrustGatewayApplicationAndApplicationTypeMappingsListApplicationAndApplicationTypeMappingsResponse
-                ],
-            ),
+            cast_to=cast(Type[Optional[AppTypeListResponse]], ResultWrapper[AppTypeListResponse]),
         )
 
 
@@ -165,8 +126,8 @@ class AppTypesWithRawResponse:
     def __init__(self, app_types: AppTypes) -> None:
         self._app_types = app_types
 
-        self.zero_trust_gateway_application_and_application_type_mappings_list_application_and_application_type_mappings = to_raw_response_wrapper(
-            app_types.zero_trust_gateway_application_and_application_type_mappings_list_application_and_application_type_mappings,
+        self.list = to_raw_response_wrapper(
+            app_types.list,
         )
 
 
@@ -174,8 +135,8 @@ class AsyncAppTypesWithRawResponse:
     def __init__(self, app_types: AsyncAppTypes) -> None:
         self._app_types = app_types
 
-        self.zero_trust_gateway_application_and_application_type_mappings_list_application_and_application_type_mappings = async_to_raw_response_wrapper(
-            app_types.zero_trust_gateway_application_and_application_type_mappings_list_application_and_application_type_mappings,
+        self.list = async_to_raw_response_wrapper(
+            app_types.list,
         )
 
 
@@ -183,8 +144,8 @@ class AppTypesWithStreamingResponse:
     def __init__(self, app_types: AppTypes) -> None:
         self._app_types = app_types
 
-        self.zero_trust_gateway_application_and_application_type_mappings_list_application_and_application_type_mappings = to_streamed_response_wrapper(
-            app_types.zero_trust_gateway_application_and_application_type_mappings_list_application_and_application_type_mappings,
+        self.list = to_streamed_response_wrapper(
+            app_types.list,
         )
 
 
@@ -192,6 +153,6 @@ class AsyncAppTypesWithStreamingResponse:
     def __init__(self, app_types: AsyncAppTypes) -> None:
         self._app_types = app_types
 
-        self.zero_trust_gateway_application_and_application_type_mappings_list_application_and_application_type_mappings = async_to_streamed_response_wrapper(
-            app_types.zero_trust_gateway_application_and_application_type_mappings_list_application_and_application_type_mappings,
+        self.list = async_to_streamed_response_wrapper(
+            app_types.list,
         )

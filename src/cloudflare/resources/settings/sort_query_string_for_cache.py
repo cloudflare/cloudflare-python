@@ -2,44 +2,30 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+from typing_extensions import Literal
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._compat import cached_property
-
-from ...types.settings import SortQueryStringForCacheUpdateResponse, SortQueryStringForCacheGetResponse
-
-from typing import Type, Optional
-
-from typing_extensions import Literal
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types.settings import sort_query_string_for_cache_update_params
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ..._base_client import (
+    make_request_options,
+)
+from ...types.settings import (
+    SortQueryStringForCacheGetResponse,
+    SortQueryStringForCacheEditResponse,
+    sort_query_string_for_cache_edit_params,
+)
 
 __all__ = ["SortQueryStringForCache", "AsyncSortQueryStringForCache"]
 
@@ -53,7 +39,7 @@ class SortQueryStringForCache(SyncAPIResource):
     def with_streaming_response(self) -> SortQueryStringForCacheWithStreamingResponse:
         return SortQueryStringForCacheWithStreamingResponse(self)
 
-    def update(
+    def edit(
         self,
         zone_id: str,
         *,
@@ -64,7 +50,7 @@ class SortQueryStringForCache(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SortQueryStringForCacheUpdateResponse]:
+    ) -> Optional[SortQueryStringForCacheEditResponse]:
         """
         Cloudflare will treat files with the same query strings as the same file in
         cache, regardless of the order of the query strings. This is limited to
@@ -88,7 +74,7 @@ class SortQueryStringForCache(SyncAPIResource):
         return self._patch(
             f"/zones/{zone_id}/settings/sort_query_string_for_cache",
             body=maybe_transform(
-                {"value": value}, sort_query_string_for_cache_update_params.SortQueryStringForCacheUpdateParams
+                {"value": value}, sort_query_string_for_cache_edit_params.SortQueryStringForCacheEditParams
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -98,8 +84,7 @@ class SortQueryStringForCache(SyncAPIResource):
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(
-                Type[Optional[SortQueryStringForCacheUpdateResponse]],
-                ResultWrapper[SortQueryStringForCacheUpdateResponse],
+                Type[Optional[SortQueryStringForCacheEditResponse]], ResultWrapper[SortQueryStringForCacheEditResponse]
             ),
         )
 
@@ -156,7 +141,7 @@ class AsyncSortQueryStringForCache(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncSortQueryStringForCacheWithStreamingResponse:
         return AsyncSortQueryStringForCacheWithStreamingResponse(self)
 
-    async def update(
+    async def edit(
         self,
         zone_id: str,
         *,
@@ -167,7 +152,7 @@ class AsyncSortQueryStringForCache(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SortQueryStringForCacheUpdateResponse]:
+    ) -> Optional[SortQueryStringForCacheEditResponse]:
         """
         Cloudflare will treat files with the same query strings as the same file in
         cache, regardless of the order of the query strings. This is limited to
@@ -191,7 +176,7 @@ class AsyncSortQueryStringForCache(AsyncAPIResource):
         return await self._patch(
             f"/zones/{zone_id}/settings/sort_query_string_for_cache",
             body=maybe_transform(
-                {"value": value}, sort_query_string_for_cache_update_params.SortQueryStringForCacheUpdateParams
+                {"value": value}, sort_query_string_for_cache_edit_params.SortQueryStringForCacheEditParams
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -201,8 +186,7 @@ class AsyncSortQueryStringForCache(AsyncAPIResource):
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(
-                Type[Optional[SortQueryStringForCacheUpdateResponse]],
-                ResultWrapper[SortQueryStringForCacheUpdateResponse],
+                Type[Optional[SortQueryStringForCacheEditResponse]], ResultWrapper[SortQueryStringForCacheEditResponse]
             ),
         )
 
@@ -254,8 +238,8 @@ class SortQueryStringForCacheWithRawResponse:
     def __init__(self, sort_query_string_for_cache: SortQueryStringForCache) -> None:
         self._sort_query_string_for_cache = sort_query_string_for_cache
 
-        self.update = to_raw_response_wrapper(
-            sort_query_string_for_cache.update,
+        self.edit = to_raw_response_wrapper(
+            sort_query_string_for_cache.edit,
         )
         self.get = to_raw_response_wrapper(
             sort_query_string_for_cache.get,
@@ -266,8 +250,8 @@ class AsyncSortQueryStringForCacheWithRawResponse:
     def __init__(self, sort_query_string_for_cache: AsyncSortQueryStringForCache) -> None:
         self._sort_query_string_for_cache = sort_query_string_for_cache
 
-        self.update = async_to_raw_response_wrapper(
-            sort_query_string_for_cache.update,
+        self.edit = async_to_raw_response_wrapper(
+            sort_query_string_for_cache.edit,
         )
         self.get = async_to_raw_response_wrapper(
             sort_query_string_for_cache.get,
@@ -278,8 +262,8 @@ class SortQueryStringForCacheWithStreamingResponse:
     def __init__(self, sort_query_string_for_cache: SortQueryStringForCache) -> None:
         self._sort_query_string_for_cache = sort_query_string_for_cache
 
-        self.update = to_streamed_response_wrapper(
-            sort_query_string_for_cache.update,
+        self.edit = to_streamed_response_wrapper(
+            sort_query_string_for_cache.edit,
         )
         self.get = to_streamed_response_wrapper(
             sort_query_string_for_cache.get,
@@ -290,8 +274,8 @@ class AsyncSortQueryStringForCacheWithStreamingResponse:
     def __init__(self, sort_query_string_for_cache: AsyncSortQueryStringForCache) -> None:
         self._sort_query_string_for_cache = sort_query_string_for_cache
 
-        self.update = async_to_streamed_response_wrapper(
-            sort_query_string_for_cache.update,
+        self.edit = async_to_streamed_response_wrapper(
+            sort_query_string_for_cache.edit,
         )
         self.get = async_to_streamed_response_wrapper(
             sort_query_string_for_cache.get,

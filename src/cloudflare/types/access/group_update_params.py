@@ -2,17 +2,10 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, Annotated
-
-from typing import Iterable, Union
+from typing import Union, Iterable
+from typing_extensions import Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
-from ..._utils import PropertyInfo
-from ...types import shared_params
 
 __all__ = [
     "GroupUpdateParams",
@@ -128,10 +121,11 @@ __all__ = [
 
 
 class GroupUpdateParams(TypedDict, total=False):
-    account_or_zone: Required[str]
+    account_id: Required[str]
+    """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
 
-    account_or_zone_id: Required[str]
-    """Identifier"""
+    zone_id: Required[str]
+    """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
     include: Required[Iterable[Include]]
     """Rules evaluated with an OR logical operator.

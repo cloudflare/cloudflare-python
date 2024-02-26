@@ -2,46 +2,25 @@
 
 from __future__ import annotations
 
+from typing import Any, List, Type, Optional, cast
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._compat import cached_property
-
-from ...types.d1 import DatabaseDeleteResponse, DatabaseGetResponse, DatabaseQueryResponse
-
-from typing import Optional, Type, List
-
+from ...types.d1 import DatabaseGetResponse, DatabaseCreateResponse, DatabaseDeleteResponse, database_create_params
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types.d1 import database_query_params
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ..._base_client import (
+    make_request_options,
+)
 
 __all__ = ["Database", "AsyncDatabase"]
 
@@ -54,6 +33,59 @@ class Database(SyncAPIResource):
     @cached_property
     def with_streaming_response(self) -> DatabaseWithStreamingResponse:
         return DatabaseWithStreamingResponse(self)
+
+    def create(
+        self,
+        database_identifier: str,
+        *,
+        account_identifier: str,
+        sql: str,
+        params: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> DatabaseCreateResponse:
+        """
+        Returns the query result.
+
+        Args:
+          account_identifier: Account identifier tag.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_identifier:
+            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not database_identifier:
+            raise ValueError(
+                f"Expected a non-empty value for `database_identifier` but received {database_identifier!r}"
+            )
+        return self._post(
+            f"/accounts/{account_identifier}/d1/database/{database_identifier}/query",
+            body=maybe_transform(
+                {
+                    "sql": sql,
+                    "params": params,
+                },
+                database_create_params.DatabaseCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[DatabaseCreateResponse], ResultWrapper[DatabaseCreateResponse]),
+        )
 
     def delete(
         self,
@@ -148,7 +180,17 @@ class Database(SyncAPIResource):
             cast_to=cast(Type[DatabaseGetResponse], ResultWrapper[DatabaseGetResponse]),
         )
 
-    def query(
+
+class AsyncDatabase(AsyncAPIResource):
+    @cached_property
+    def with_raw_response(self) -> AsyncDatabaseWithRawResponse:
+        return AsyncDatabaseWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncDatabaseWithStreamingResponse:
+        return AsyncDatabaseWithStreamingResponse(self)
+
+    async def create(
         self,
         database_identifier: str,
         *,
@@ -161,7 +203,7 @@ class Database(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DatabaseQueryResponse:
+    ) -> DatabaseCreateResponse:
         """
         Returns the query result.
 
@@ -182,14 +224,14 @@ class Database(SyncAPIResource):
             raise ValueError(
                 f"Expected a non-empty value for `database_identifier` but received {database_identifier!r}"
             )
-        return self._post(
+        return await self._post(
             f"/accounts/{account_identifier}/d1/database/{database_identifier}/query",
             body=maybe_transform(
                 {
                     "sql": sql,
                     "params": params,
                 },
-                database_query_params.DatabaseQueryParams,
+                database_create_params.DatabaseCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -198,18 +240,8 @@ class Database(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DatabaseQueryResponse], ResultWrapper[DatabaseQueryResponse]),
+            cast_to=cast(Type[DatabaseCreateResponse], ResultWrapper[DatabaseCreateResponse]),
         )
-
-
-class AsyncDatabase(AsyncAPIResource):
-    @cached_property
-    def with_raw_response(self) -> AsyncDatabaseWithRawResponse:
-        return AsyncDatabaseWithRawResponse(self)
-
-    @cached_property
-    def with_streaming_response(self) -> AsyncDatabaseWithStreamingResponse:
-        return AsyncDatabaseWithStreamingResponse(self)
 
     async def delete(
         self,
@@ -304,72 +336,19 @@ class AsyncDatabase(AsyncAPIResource):
             cast_to=cast(Type[DatabaseGetResponse], ResultWrapper[DatabaseGetResponse]),
         )
 
-    async def query(
-        self,
-        database_identifier: str,
-        *,
-        account_identifier: str,
-        sql: str,
-        params: List[str] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DatabaseQueryResponse:
-        """
-        Returns the query result.
-
-        Args:
-          account_identifier: Account identifier tag.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not database_identifier:
-            raise ValueError(
-                f"Expected a non-empty value for `database_identifier` but received {database_identifier!r}"
-            )
-        return await self._post(
-            f"/accounts/{account_identifier}/d1/database/{database_identifier}/query",
-            body=maybe_transform(
-                {
-                    "sql": sql,
-                    "params": params,
-                },
-                database_query_params.DatabaseQueryParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(Type[DatabaseQueryResponse], ResultWrapper[DatabaseQueryResponse]),
-        )
-
 
 class DatabaseWithRawResponse:
     def __init__(self, database: Database) -> None:
         self._database = database
 
+        self.create = to_raw_response_wrapper(
+            database.create,
+        )
         self.delete = to_raw_response_wrapper(
             database.delete,
         )
         self.get = to_raw_response_wrapper(
             database.get,
-        )
-        self.query = to_raw_response_wrapper(
-            database.query,
         )
 
 
@@ -377,14 +356,14 @@ class AsyncDatabaseWithRawResponse:
     def __init__(self, database: AsyncDatabase) -> None:
         self._database = database
 
+        self.create = async_to_raw_response_wrapper(
+            database.create,
+        )
         self.delete = async_to_raw_response_wrapper(
             database.delete,
         )
         self.get = async_to_raw_response_wrapper(
             database.get,
-        )
-        self.query = async_to_raw_response_wrapper(
-            database.query,
         )
 
 
@@ -392,14 +371,14 @@ class DatabaseWithStreamingResponse:
     def __init__(self, database: Database) -> None:
         self._database = database
 
+        self.create = to_streamed_response_wrapper(
+            database.create,
+        )
         self.delete = to_streamed_response_wrapper(
             database.delete,
         )
         self.get = to_streamed_response_wrapper(
             database.get,
-        )
-        self.query = to_streamed_response_wrapper(
-            database.query,
         )
 
 
@@ -407,12 +386,12 @@ class AsyncDatabaseWithStreamingResponse:
     def __init__(self, database: AsyncDatabase) -> None:
         self._database = database
 
+        self.create = async_to_streamed_response_wrapper(
+            database.create,
+        )
         self.delete = async_to_streamed_response_wrapper(
             database.delete,
         )
         self.get = async_to_streamed_response_wrapper(
             database.get,
-        )
-        self.query = async_to_streamed_response_wrapper(
-            database.query,
         )

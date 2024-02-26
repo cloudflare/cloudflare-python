@@ -2,35 +2,25 @@
 
 from __future__ import annotations
 
-from .summaries.summaries import Summaries, AsyncSummaries
-
+from .top import (
+    Top,
+    AsyncTop,
+    TopWithRawResponse,
+    AsyncTopWithRawResponse,
+    TopWithStreamingResponse,
+    AsyncTopWithStreamingResponse,
+)
+from .summary import (
+    Summary,
+    AsyncSummary,
+    SummaryWithRawResponse,
+    AsyncSummaryWithRawResponse,
+    SummaryWithStreamingResponse,
+    AsyncSummaryWithStreamingResponse,
+)
+from .top.top import Top, AsyncTop
 from ....._compat import cached_property
-
-from .timeseries_groups.timeseries_groups import TimeseriesGroups, AsyncTimeseriesGroups
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
 from ....._resource import SyncAPIResource, AsyncAPIResource
-from ....._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from .....types import shared_params
-from .summaries import (
-    Summaries,
-    AsyncSummaries,
-    SummariesWithRawResponse,
-    AsyncSummariesWithRawResponse,
-    SummariesWithStreamingResponse,
-    AsyncSummariesWithStreamingResponse,
-)
 from .timeseries_groups import (
     TimeseriesGroups,
     AsyncTimeseriesGroups,
@@ -39,15 +29,18 @@ from .timeseries_groups import (
     TimeseriesGroupsWithStreamingResponse,
     AsyncTimeseriesGroupsWithStreamingResponse,
 )
-from ....._wrappers import ResultWrapper
 
 __all__ = ["Security", "AsyncSecurity"]
 
 
 class Security(SyncAPIResource):
     @cached_property
-    def summaries(self) -> Summaries:
-        return Summaries(self._client)
+    def top(self) -> Top:
+        return Top(self._client)
+
+    @cached_property
+    def summary(self) -> Summary:
+        return Summary(self._client)
 
     @cached_property
     def timeseries_groups(self) -> TimeseriesGroups:
@@ -64,8 +57,12 @@ class Security(SyncAPIResource):
 
 class AsyncSecurity(AsyncAPIResource):
     @cached_property
-    def summaries(self) -> AsyncSummaries:
-        return AsyncSummaries(self._client)
+    def top(self) -> AsyncTop:
+        return AsyncTop(self._client)
+
+    @cached_property
+    def summary(self) -> AsyncSummary:
+        return AsyncSummary(self._client)
 
     @cached_property
     def timeseries_groups(self) -> AsyncTimeseriesGroups:
@@ -85,8 +82,12 @@ class SecurityWithRawResponse:
         self._security = security
 
     @cached_property
-    def summaries(self) -> SummariesWithRawResponse:
-        return SummariesWithRawResponse(self._security.summaries)
+    def top(self) -> TopWithRawResponse:
+        return TopWithRawResponse(self._security.top)
+
+    @cached_property
+    def summary(self) -> SummaryWithRawResponse:
+        return SummaryWithRawResponse(self._security.summary)
 
     @cached_property
     def timeseries_groups(self) -> TimeseriesGroupsWithRawResponse:
@@ -98,8 +99,12 @@ class AsyncSecurityWithRawResponse:
         self._security = security
 
     @cached_property
-    def summaries(self) -> AsyncSummariesWithRawResponse:
-        return AsyncSummariesWithRawResponse(self._security.summaries)
+    def top(self) -> AsyncTopWithRawResponse:
+        return AsyncTopWithRawResponse(self._security.top)
+
+    @cached_property
+    def summary(self) -> AsyncSummaryWithRawResponse:
+        return AsyncSummaryWithRawResponse(self._security.summary)
 
     @cached_property
     def timeseries_groups(self) -> AsyncTimeseriesGroupsWithRawResponse:
@@ -111,8 +116,12 @@ class SecurityWithStreamingResponse:
         self._security = security
 
     @cached_property
-    def summaries(self) -> SummariesWithStreamingResponse:
-        return SummariesWithStreamingResponse(self._security.summaries)
+    def top(self) -> TopWithStreamingResponse:
+        return TopWithStreamingResponse(self._security.top)
+
+    @cached_property
+    def summary(self) -> SummaryWithStreamingResponse:
+        return SummaryWithStreamingResponse(self._security.summary)
 
     @cached_property
     def timeseries_groups(self) -> TimeseriesGroupsWithStreamingResponse:
@@ -124,8 +133,12 @@ class AsyncSecurityWithStreamingResponse:
         self._security = security
 
     @cached_property
-    def summaries(self) -> AsyncSummariesWithStreamingResponse:
-        return AsyncSummariesWithStreamingResponse(self._security.summaries)
+    def top(self) -> AsyncTopWithStreamingResponse:
+        return AsyncTopWithStreamingResponse(self._security.top)
+
+    @cached_property
+    def summary(self) -> AsyncSummaryWithStreamingResponse:
+        return AsyncSummaryWithStreamingResponse(self._security.summary)
 
     @cached_property
     def timeseries_groups(self) -> AsyncTimeseriesGroupsWithStreamingResponse:

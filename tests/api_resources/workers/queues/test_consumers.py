@@ -2,31 +2,127 @@
 
 from __future__ import annotations
 
-from typing import Optional, Any, cast
-
-from cloudflare.types.workers.queues import (
-    ConsumerUpdateResponse,
-    ConsumerListResponse,
-    ConsumerDeleteResponse,
-    ConsumerQueueCreateQueueConsumerResponse,
-)
-
 import os
+from typing import Any, Optional, cast
+
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.workers.queues import consumer_update_params
-from cloudflare.types.workers.queues import consumer_queue_create_queue_consumer_params
+from cloudflare.types.workers.queues import (
+    ConsumerListResponse,
+    ConsumerCreateResponse,
+    ConsumerDeleteResponse,
+    ConsumerUpdateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
 class TestConsumers:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_create(self, client: Cloudflare) -> None:
+        consumer = client.workers.queues.consumers.create(
+            "example-queue",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={
+                "dead_letter_queue": "example-dlq",
+                "environment": "production",
+                "script_name": "example-consumer",
+                "settings": {
+                    "batch_size": 10,
+                    "max_retries": 3,
+                    "max_wait_time_ms": 5000,
+                },
+            },
+        )
+        assert_matches_type(Optional[ConsumerCreateResponse], consumer, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_create(self, client: Cloudflare) -> None:
+        response = client.workers.queues.consumers.with_raw_response.create(
+            "example-queue",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={
+                "dead_letter_queue": "example-dlq",
+                "environment": "production",
+                "script_name": "example-consumer",
+                "settings": {
+                    "batch_size": 10,
+                    "max_retries": 3,
+                    "max_wait_time_ms": 5000,
+                },
+            },
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        consumer = response.parse()
+        assert_matches_type(Optional[ConsumerCreateResponse], consumer, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_create(self, client: Cloudflare) -> None:
+        with client.workers.queues.consumers.with_streaming_response.create(
+            "example-queue",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={
+                "dead_letter_queue": "example-dlq",
+                "environment": "production",
+                "script_name": "example-consumer",
+                "settings": {
+                    "batch_size": 10,
+                    "max_retries": 3,
+                    "max_wait_time_ms": 5000,
+                },
+            },
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            consumer = response.parse()
+            assert_matches_type(Optional[ConsumerCreateResponse], consumer, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_create(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.workers.queues.consumers.with_raw_response.create(
+                "example-queue",
+                account_id="",
+                body={
+                    "dead_letter_queue": "example-dlq",
+                    "environment": "production",
+                    "script_name": "example-consumer",
+                    "settings": {
+                        "batch_size": 10,
+                        "max_retries": 3,
+                        "max_wait_time_ms": 5000,
+                    },
+                },
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+            client.workers.queues.consumers.with_raw_response.create(
+                "",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body={
+                    "dead_letter_queue": "example-dlq",
+                    "environment": "production",
+                    "script_name": "example-consumer",
+                    "settings": {
+                        "batch_size": 10,
+                        "max_retries": 3,
+                        "max_wait_time_ms": 5000,
+                    },
+                },
+            )
 
     @pytest.mark.skip()
     @parametrize
@@ -244,10 +340,14 @@ class TestConsumers:
                 name="example-queue",
             )
 
+
+class TestAsyncConsumers:
+    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+
     @pytest.mark.skip()
     @parametrize
-    def test_method_queue_create_queue_consumer(self, client: Cloudflare) -> None:
-        consumer = client.workers.queues.consumers.queue_create_queue_consumer(
+    async def test_method_create(self, async_client: AsyncCloudflare) -> None:
+        consumer = await async_client.workers.queues.consumers.create(
             "example-queue",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={
@@ -261,12 +361,12 @@ class TestConsumers:
                 },
             },
         )
-        assert_matches_type(Optional[ConsumerQueueCreateQueueConsumerResponse], consumer, path=["response"])
+        assert_matches_type(Optional[ConsumerCreateResponse], consumer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_queue_create_queue_consumer(self, client: Cloudflare) -> None:
-        response = client.workers.queues.consumers.with_raw_response.queue_create_queue_consumer(
+    async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.workers.queues.consumers.with_raw_response.create(
             "example-queue",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={
@@ -283,13 +383,13 @@ class TestConsumers:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        consumer = response.parse()
-        assert_matches_type(Optional[ConsumerQueueCreateQueueConsumerResponse], consumer, path=["response"])
+        consumer = await response.parse()
+        assert_matches_type(Optional[ConsumerCreateResponse], consumer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_queue_create_queue_consumer(self, client: Cloudflare) -> None:
-        with client.workers.queues.consumers.with_streaming_response.queue_create_queue_consumer(
+    async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.workers.queues.consumers.with_streaming_response.create(
             "example-queue",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={
@@ -306,16 +406,16 @@ class TestConsumers:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            consumer = response.parse()
-            assert_matches_type(Optional[ConsumerQueueCreateQueueConsumerResponse], consumer, path=["response"])
+            consumer = await response.parse()
+            assert_matches_type(Optional[ConsumerCreateResponse], consumer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_queue_create_queue_consumer(self, client: Cloudflare) -> None:
+    async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.workers.queues.consumers.with_raw_response.queue_create_queue_consumer(
+            await async_client.workers.queues.consumers.with_raw_response.create(
                 "example-queue",
                 account_id="",
                 body={
@@ -331,7 +431,7 @@ class TestConsumers:
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
-            client.workers.queues.consumers.with_raw_response.queue_create_queue_consumer(
+            await async_client.workers.queues.consumers.with_raw_response.create(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 body={
@@ -345,10 +445,6 @@ class TestConsumers:
                     },
                 },
             )
-
-
-class TestAsyncConsumers:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip()
     @parametrize
@@ -564,106 +660,4 @@ class TestAsyncConsumers:
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 name="example-queue",
-            )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_queue_create_queue_consumer(self, async_client: AsyncCloudflare) -> None:
-        consumer = await async_client.workers.queues.consumers.queue_create_queue_consumer(
-            "example-queue",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={
-                "dead_letter_queue": "example-dlq",
-                "environment": "production",
-                "script_name": "example-consumer",
-                "settings": {
-                    "batch_size": 10,
-                    "max_retries": 3,
-                    "max_wait_time_ms": 5000,
-                },
-            },
-        )
-        assert_matches_type(Optional[ConsumerQueueCreateQueueConsumerResponse], consumer, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_raw_response_queue_create_queue_consumer(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.workers.queues.consumers.with_raw_response.queue_create_queue_consumer(
-            "example-queue",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={
-                "dead_letter_queue": "example-dlq",
-                "environment": "production",
-                "script_name": "example-consumer",
-                "settings": {
-                    "batch_size": 10,
-                    "max_retries": 3,
-                    "max_wait_time_ms": 5000,
-                },
-            },
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        consumer = await response.parse()
-        assert_matches_type(Optional[ConsumerQueueCreateQueueConsumerResponse], consumer, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_streaming_response_queue_create_queue_consumer(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.workers.queues.consumers.with_streaming_response.queue_create_queue_consumer(
-            "example-queue",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={
-                "dead_letter_queue": "example-dlq",
-                "environment": "production",
-                "script_name": "example-consumer",
-                "settings": {
-                    "batch_size": 10,
-                    "max_retries": 3,
-                    "max_wait_time_ms": 5000,
-                },
-            },
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            consumer = await response.parse()
-            assert_matches_type(Optional[ConsumerQueueCreateQueueConsumerResponse], consumer, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_path_params_queue_create_queue_consumer(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.workers.queues.consumers.with_raw_response.queue_create_queue_consumer(
-                "example-queue",
-                account_id="",
-                body={
-                    "dead_letter_queue": "example-dlq",
-                    "environment": "production",
-                    "script_name": "example-consumer",
-                    "settings": {
-                        "batch_size": 10,
-                        "max_retries": 3,
-                        "max_wait_time_ms": 5000,
-                    },
-                },
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
-            await async_client.workers.queues.consumers.with_raw_response.queue_create_queue_consumer(
-                "",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={
-                    "dead_letter_queue": "example-dlq",
-                    "environment": "production",
-                    "script_name": "example-consumer",
-                    "settings": {
-                        "batch_size": 10,
-                        "max_retries": 3,
-                        "max_wait_time_ms": 5000,
-                    },
-                },
             )

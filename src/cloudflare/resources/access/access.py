@@ -2,105 +2,6 @@
 
 from __future__ import annotations
 
-from .apps.apps import Apps, AsyncApps
-
-from ..._compat import cached_property
-
-from .certificates.certificates import Certificates, AsyncCertificates
-
-from .groups import Groups, AsyncGroups
-
-from .identity_providers import IdentityProviders, AsyncIdentityProviders
-
-from .organizations.organizations import Organizations, AsyncOrganizations
-
-from .service_tokens.service_tokens import ServiceTokens, AsyncServiceTokens
-
-from .bookmarks import Bookmarks, AsyncBookmarks
-
-from .keys.keys import Keys, AsyncKeys
-
-from .logs.logs import Logs, AsyncLogs
-
-from .seats import Seats, AsyncSeats
-
-from .users.users import Users, AsyncUsers
-
-from .custom_pages import CustomPages, AsyncCustomPages
-
-from .tags import Tags, AsyncTags
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from .apps import (
-    Apps,
-    AsyncApps,
-    AppsWithRawResponse,
-    AsyncAppsWithRawResponse,
-    AppsWithStreamingResponse,
-    AsyncAppsWithStreamingResponse,
-)
-from .certificates import (
-    Certificates,
-    AsyncCertificates,
-    CertificatesWithRawResponse,
-    AsyncCertificatesWithRawResponse,
-    CertificatesWithStreamingResponse,
-    AsyncCertificatesWithStreamingResponse,
-)
-from .groups import (
-    Groups,
-    AsyncGroups,
-    GroupsWithRawResponse,
-    AsyncGroupsWithRawResponse,
-    GroupsWithStreamingResponse,
-    AsyncGroupsWithStreamingResponse,
-)
-from .identity_providers import (
-    IdentityProviders,
-    AsyncIdentityProviders,
-    IdentityProvidersWithRawResponse,
-    AsyncIdentityProvidersWithRawResponse,
-    IdentityProvidersWithStreamingResponse,
-    AsyncIdentityProvidersWithStreamingResponse,
-)
-from .organizations import (
-    Organizations,
-    AsyncOrganizations,
-    OrganizationsWithRawResponse,
-    AsyncOrganizationsWithRawResponse,
-    OrganizationsWithStreamingResponse,
-    AsyncOrganizationsWithStreamingResponse,
-)
-from .service_tokens import (
-    ServiceTokens,
-    AsyncServiceTokens,
-    ServiceTokensWithRawResponse,
-    AsyncServiceTokensWithRawResponse,
-    ServiceTokensWithStreamingResponse,
-    AsyncServiceTokensWithStreamingResponse,
-)
-from .bookmarks import (
-    Bookmarks,
-    AsyncBookmarks,
-    BookmarksWithRawResponse,
-    AsyncBookmarksWithRawResponse,
-    BookmarksWithStreamingResponse,
-    AsyncBookmarksWithStreamingResponse,
-)
 from .keys import (
     Keys,
     AsyncKeys,
@@ -116,6 +17,14 @@ from .logs import (
     AsyncLogsWithRawResponse,
     LogsWithStreamingResponse,
     AsyncLogsWithStreamingResponse,
+)
+from .tags import (
+    Tags,
+    AsyncTags,
+    TagsWithRawResponse,
+    AsyncTagsWithRawResponse,
+    TagsWithStreamingResponse,
+    AsyncTagsWithStreamingResponse,
 )
 from .seats import (
     Seats,
@@ -133,6 +42,42 @@ from .users import (
     UsersWithStreamingResponse,
     AsyncUsersWithStreamingResponse,
 )
+from .groups import (
+    Groups,
+    AsyncGroups,
+    GroupsWithRawResponse,
+    AsyncGroupsWithRawResponse,
+    GroupsWithStreamingResponse,
+    AsyncGroupsWithStreamingResponse,
+)
+from ..._compat import cached_property
+from .bookmarks import (
+    Bookmarks,
+    AsyncBookmarks,
+    BookmarksWithRawResponse,
+    AsyncBookmarksWithRawResponse,
+    BookmarksWithStreamingResponse,
+    AsyncBookmarksWithStreamingResponse,
+)
+from .logs.logs import Logs, AsyncLogs
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from .users.users import Users, AsyncUsers
+from .applications import (
+    Applications,
+    AsyncApplications,
+    ApplicationsWithRawResponse,
+    AsyncApplicationsWithRawResponse,
+    ApplicationsWithStreamingResponse,
+    AsyncApplicationsWithStreamingResponse,
+)
+from .certificates import (
+    Certificates,
+    AsyncCertificates,
+    CertificatesWithRawResponse,
+    AsyncCertificatesWithRawResponse,
+    CertificatesWithStreamingResponse,
+    AsyncCertificatesWithStreamingResponse,
+)
 from .custom_pages import (
     CustomPages,
     AsyncCustomPages,
@@ -141,23 +86,40 @@ from .custom_pages import (
     CustomPagesWithStreamingResponse,
     AsyncCustomPagesWithStreamingResponse,
 )
-from .tags import (
-    Tags,
-    AsyncTags,
-    TagsWithRawResponse,
-    AsyncTagsWithRawResponse,
-    TagsWithStreamingResponse,
-    AsyncTagsWithStreamingResponse,
+from .organizations import (
+    Organizations,
+    AsyncOrganizations,
+    OrganizationsWithRawResponse,
+    AsyncOrganizationsWithRawResponse,
+    OrganizationsWithStreamingResponse,
+    AsyncOrganizationsWithStreamingResponse,
 )
-from ..._wrappers import ResultWrapper
+from .service_tokens import (
+    ServiceTokens,
+    AsyncServiceTokens,
+    ServiceTokensWithRawResponse,
+    AsyncServiceTokensWithRawResponse,
+    ServiceTokensWithStreamingResponse,
+    AsyncServiceTokensWithStreamingResponse,
+)
+from .identity_providers import (
+    IdentityProviders,
+    AsyncIdentityProviders,
+    IdentityProvidersWithRawResponse,
+    AsyncIdentityProvidersWithRawResponse,
+    IdentityProvidersWithStreamingResponse,
+    AsyncIdentityProvidersWithStreamingResponse,
+)
+from .applications.applications import Applications, AsyncApplications
+from .certificates.certificates import Certificates, AsyncCertificates
 
 __all__ = ["Access", "AsyncAccess"]
 
 
 class Access(SyncAPIResource):
     @cached_property
-    def apps(self) -> Apps:
-        return Apps(self._client)
+    def applications(self) -> Applications:
+        return Applications(self._client)
 
     @cached_property
     def certificates(self) -> Certificates:
@@ -218,8 +180,8 @@ class Access(SyncAPIResource):
 
 class AsyncAccess(AsyncAPIResource):
     @cached_property
-    def apps(self) -> AsyncApps:
-        return AsyncApps(self._client)
+    def applications(self) -> AsyncApplications:
+        return AsyncApplications(self._client)
 
     @cached_property
     def certificates(self) -> AsyncCertificates:
@@ -283,8 +245,8 @@ class AccessWithRawResponse:
         self._access = access
 
     @cached_property
-    def apps(self) -> AppsWithRawResponse:
-        return AppsWithRawResponse(self._access.apps)
+    def applications(self) -> ApplicationsWithRawResponse:
+        return ApplicationsWithRawResponse(self._access.applications)
 
     @cached_property
     def certificates(self) -> CertificatesWithRawResponse:
@@ -340,8 +302,8 @@ class AsyncAccessWithRawResponse:
         self._access = access
 
     @cached_property
-    def apps(self) -> AsyncAppsWithRawResponse:
-        return AsyncAppsWithRawResponse(self._access.apps)
+    def applications(self) -> AsyncApplicationsWithRawResponse:
+        return AsyncApplicationsWithRawResponse(self._access.applications)
 
     @cached_property
     def certificates(self) -> AsyncCertificatesWithRawResponse:
@@ -397,8 +359,8 @@ class AccessWithStreamingResponse:
         self._access = access
 
     @cached_property
-    def apps(self) -> AppsWithStreamingResponse:
-        return AppsWithStreamingResponse(self._access.apps)
+    def applications(self) -> ApplicationsWithStreamingResponse:
+        return ApplicationsWithStreamingResponse(self._access.applications)
 
     @cached_property
     def certificates(self) -> CertificatesWithStreamingResponse:
@@ -454,8 +416,8 @@ class AsyncAccessWithStreamingResponse:
         self._access = access
 
     @cached_property
-    def apps(self) -> AsyncAppsWithStreamingResponse:
-        return AsyncAppsWithStreamingResponse(self._access.apps)
+    def applications(self) -> AsyncApplicationsWithStreamingResponse:
+        return AsyncApplicationsWithStreamingResponse(self._access.applications)
 
     @cached_property
     def certificates(self) -> AsyncCertificatesWithStreamingResponse:

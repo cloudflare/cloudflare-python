@@ -2,5 +2,5 @@
 
 from __future__ import annotations
 
-from .timeseries_group_list_response import TimeseriesGroupListResponse as TimeseriesGroupListResponse
-from .timeseries_group_list_params import TimeseriesGroupListParams as TimeseriesGroupListParams
+from .domain_get_params import DomainGetParams as DomainGetParams
+from .domain_get_response import DomainGetResponse as DomainGetResponse

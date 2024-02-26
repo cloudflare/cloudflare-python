@@ -2,44 +2,30 @@
 
 from __future__ import annotations
 
+from typing import Type, cast
+from typing_extensions import Literal
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._compat import cached_property
-
-from ...types.settings import OriginMaxHTTPVersionUpdateResponse, OriginMaxHTTPVersionGetResponse
-
-from typing import Type
-
-from typing_extensions import Literal
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types.settings import origin_max_http_version_update_params
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ..._base_client import (
+    make_request_options,
+)
+from ...types.settings import (
+    OriginMaxHTTPVersionGetResponse,
+    OriginMaxHTTPVersionEditResponse,
+    origin_max_http_version_edit_params,
+)
 
 __all__ = ["OriginMaxHTTPVersion", "AsyncOriginMaxHTTPVersion"]
 
@@ -53,7 +39,7 @@ class OriginMaxHTTPVersion(SyncAPIResource):
     def with_streaming_response(self) -> OriginMaxHTTPVersionWithStreamingResponse:
         return OriginMaxHTTPVersionWithStreamingResponse(self)
 
-    def update(
+    def edit(
         self,
         zone_id: str,
         *,
@@ -64,7 +50,7 @@ class OriginMaxHTTPVersion(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> OriginMaxHTTPVersionUpdateResponse:
+    ) -> OriginMaxHTTPVersionEditResponse:
         """
         Origin Max HTTP Setting Version sets the highest HTTP version Cloudflare will
         attempt to use with your origin. This setting allows Cloudflare to make HTTP/2
@@ -90,9 +76,7 @@ class OriginMaxHTTPVersion(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._patch(
             f"/zones/{zone_id}/settings/origin_max_http_version",
-            body=maybe_transform(
-                {"value": value}, origin_max_http_version_update_params.OriginMaxHTTPVersionUpdateParams
-            ),
+            body=maybe_transform({"value": value}, origin_max_http_version_edit_params.OriginMaxHTTPVersionEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -100,7 +84,7 @@ class OriginMaxHTTPVersion(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[OriginMaxHTTPVersionUpdateResponse], ResultWrapper[OriginMaxHTTPVersionUpdateResponse]),
+            cast_to=cast(Type[OriginMaxHTTPVersionEditResponse], ResultWrapper[OriginMaxHTTPVersionEditResponse]),
         )
 
     def get(
@@ -157,7 +141,7 @@ class AsyncOriginMaxHTTPVersion(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncOriginMaxHTTPVersionWithStreamingResponse:
         return AsyncOriginMaxHTTPVersionWithStreamingResponse(self)
 
-    async def update(
+    async def edit(
         self,
         zone_id: str,
         *,
@@ -168,7 +152,7 @@ class AsyncOriginMaxHTTPVersion(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> OriginMaxHTTPVersionUpdateResponse:
+    ) -> OriginMaxHTTPVersionEditResponse:
         """
         Origin Max HTTP Setting Version sets the highest HTTP version Cloudflare will
         attempt to use with your origin. This setting allows Cloudflare to make HTTP/2
@@ -194,9 +178,7 @@ class AsyncOriginMaxHTTPVersion(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._patch(
             f"/zones/{zone_id}/settings/origin_max_http_version",
-            body=maybe_transform(
-                {"value": value}, origin_max_http_version_update_params.OriginMaxHTTPVersionUpdateParams
-            ),
+            body=maybe_transform({"value": value}, origin_max_http_version_edit_params.OriginMaxHTTPVersionEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -204,7 +186,7 @@ class AsyncOriginMaxHTTPVersion(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[OriginMaxHTTPVersionUpdateResponse], ResultWrapper[OriginMaxHTTPVersionUpdateResponse]),
+            cast_to=cast(Type[OriginMaxHTTPVersionEditResponse], ResultWrapper[OriginMaxHTTPVersionEditResponse]),
         )
 
     async def get(
@@ -256,8 +238,8 @@ class OriginMaxHTTPVersionWithRawResponse:
     def __init__(self, origin_max_http_version: OriginMaxHTTPVersion) -> None:
         self._origin_max_http_version = origin_max_http_version
 
-        self.update = to_raw_response_wrapper(
-            origin_max_http_version.update,
+        self.edit = to_raw_response_wrapper(
+            origin_max_http_version.edit,
         )
         self.get = to_raw_response_wrapper(
             origin_max_http_version.get,
@@ -268,8 +250,8 @@ class AsyncOriginMaxHTTPVersionWithRawResponse:
     def __init__(self, origin_max_http_version: AsyncOriginMaxHTTPVersion) -> None:
         self._origin_max_http_version = origin_max_http_version
 
-        self.update = async_to_raw_response_wrapper(
-            origin_max_http_version.update,
+        self.edit = async_to_raw_response_wrapper(
+            origin_max_http_version.edit,
         )
         self.get = async_to_raw_response_wrapper(
             origin_max_http_version.get,
@@ -280,8 +262,8 @@ class OriginMaxHTTPVersionWithStreamingResponse:
     def __init__(self, origin_max_http_version: OriginMaxHTTPVersion) -> None:
         self._origin_max_http_version = origin_max_http_version
 
-        self.update = to_streamed_response_wrapper(
-            origin_max_http_version.update,
+        self.edit = to_streamed_response_wrapper(
+            origin_max_http_version.edit,
         )
         self.get = to_streamed_response_wrapper(
             origin_max_http_version.get,
@@ -292,8 +274,8 @@ class AsyncOriginMaxHTTPVersionWithStreamingResponse:
     def __init__(self, origin_max_http_version: AsyncOriginMaxHTTPVersion) -> None:
         self._origin_max_http_version = origin_max_http_version
 
-        self.update = async_to_streamed_response_wrapper(
-            origin_max_http_version.update,
+        self.edit = async_to_streamed_response_wrapper(
+            origin_max_http_version.edit,
         )
         self.get = async_to_streamed_response_wrapper(
             origin_max_http_version.get,

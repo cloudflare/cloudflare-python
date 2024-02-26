@@ -2,54 +2,32 @@
 
 from __future__ import annotations
 
+from typing import Any, Type, Optional, cast
+
 import httpx
 
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import maybe_transform
 from ...._compat import cached_property
-
-from ....types.workers.queues import (
-    ConsumerUpdateResponse,
-    ConsumerListResponse,
-    ConsumerDeleteResponse,
-    ConsumerQueueCreateQueueConsumerResponse,
-)
-
-from typing import Type, Optional
-
+from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ....types import shared_params
-from ....types.workers.queues import consumer_update_params
-from ....types.workers.queues import consumer_queue_create_queue_consumer_params
 from ...._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ...._base_client import (
+    make_request_options,
+)
+from ....types.workers.queues import (
+    ConsumerListResponse,
+    ConsumerCreateResponse,
+    ConsumerDeleteResponse,
+    ConsumerUpdateResponse,
+    consumer_create_params,
+    consumer_update_params,
+)
 
 __all__ = ["Consumers", "AsyncConsumers"]
 
@@ -62,6 +40,50 @@ class Consumers(SyncAPIResource):
     @cached_property
     def with_streaming_response(self) -> ConsumersWithStreamingResponse:
         return ConsumersWithStreamingResponse(self)
+
+    def create(
+        self,
+        name: str,
+        *,
+        account_id: str,
+        body: object,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ConsumerCreateResponse]:
+        """
+        Creates a new consumer for a queue.
+
+        Args:
+          account_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not name:
+            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        return self._post(
+            f"/accounts/{account_id}/workers/queues/{name}/consumers",
+            body=maybe_transform(body, consumer_create_params.ConsumerCreateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[ConsumerCreateResponse]], ResultWrapper[ConsumerCreateResponse]),
+        )
 
     def update(
         self,
@@ -202,7 +224,17 @@ class Consumers(SyncAPIResource):
             ),
         )
 
-    def queue_create_queue_consumer(
+
+class AsyncConsumers(AsyncAPIResource):
+    @cached_property
+    def with_raw_response(self) -> AsyncConsumersWithRawResponse:
+        return AsyncConsumersWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncConsumersWithStreamingResponse:
+        return AsyncConsumersWithStreamingResponse(self)
+
+    async def create(
         self,
         name: str,
         *,
@@ -214,7 +246,7 @@ class Consumers(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ConsumerQueueCreateQueueConsumerResponse]:
+    ) -> Optional[ConsumerCreateResponse]:
         """
         Creates a new consumer for a queue.
 
@@ -233,11 +265,9 @@ class Consumers(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not name:
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
-        return self._post(
+        return await self._post(
             f"/accounts/{account_id}/workers/queues/{name}/consumers",
-            body=maybe_transform(
-                body, consumer_queue_create_queue_consumer_params.ConsumerQueueCreateQueueConsumerParams
-            ),
+            body=maybe_transform(body, consumer_create_params.ConsumerCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -245,21 +275,8 @@ class Consumers(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[ConsumerQueueCreateQueueConsumerResponse]],
-                ResultWrapper[ConsumerQueueCreateQueueConsumerResponse],
-            ),
+            cast_to=cast(Type[Optional[ConsumerCreateResponse]], ResultWrapper[ConsumerCreateResponse]),
         )
-
-
-class AsyncConsumers(AsyncAPIResource):
-    @cached_property
-    def with_raw_response(self) -> AsyncConsumersWithRawResponse:
-        return AsyncConsumersWithRawResponse(self)
-
-    @cached_property
-    def with_streaming_response(self) -> AsyncConsumersWithStreamingResponse:
-        return AsyncConsumersWithStreamingResponse(self)
 
     async def update(
         self,
@@ -400,60 +417,14 @@ class AsyncConsumers(AsyncAPIResource):
             ),
         )
 
-    async def queue_create_queue_consumer(
-        self,
-        name: str,
-        *,
-        account_id: str,
-        body: object,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ConsumerQueueCreateQueueConsumerResponse]:
-        """
-        Creates a new consumer for a queue.
-
-        Args:
-          account_id: Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
-        return await self._post(
-            f"/accounts/{account_id}/workers/queues/{name}/consumers",
-            body=maybe_transform(
-                body, consumer_queue_create_queue_consumer_params.ConsumerQueueCreateQueueConsumerParams
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[Optional[ConsumerQueueCreateQueueConsumerResponse]],
-                ResultWrapper[ConsumerQueueCreateQueueConsumerResponse],
-            ),
-        )
-
 
 class ConsumersWithRawResponse:
     def __init__(self, consumers: Consumers) -> None:
         self._consumers = consumers
 
+        self.create = to_raw_response_wrapper(
+            consumers.create,
+        )
         self.update = to_raw_response_wrapper(
             consumers.update,
         )
@@ -463,15 +434,15 @@ class ConsumersWithRawResponse:
         self.delete = to_raw_response_wrapper(
             consumers.delete,
         )
-        self.queue_create_queue_consumer = to_raw_response_wrapper(
-            consumers.queue_create_queue_consumer,
-        )
 
 
 class AsyncConsumersWithRawResponse:
     def __init__(self, consumers: AsyncConsumers) -> None:
         self._consumers = consumers
 
+        self.create = async_to_raw_response_wrapper(
+            consumers.create,
+        )
         self.update = async_to_raw_response_wrapper(
             consumers.update,
         )
@@ -481,15 +452,15 @@ class AsyncConsumersWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             consumers.delete,
         )
-        self.queue_create_queue_consumer = async_to_raw_response_wrapper(
-            consumers.queue_create_queue_consumer,
-        )
 
 
 class ConsumersWithStreamingResponse:
     def __init__(self, consumers: Consumers) -> None:
         self._consumers = consumers
 
+        self.create = to_streamed_response_wrapper(
+            consumers.create,
+        )
         self.update = to_streamed_response_wrapper(
             consumers.update,
         )
@@ -499,15 +470,15 @@ class ConsumersWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             consumers.delete,
         )
-        self.queue_create_queue_consumer = to_streamed_response_wrapper(
-            consumers.queue_create_queue_consumer,
-        )
 
 
 class AsyncConsumersWithStreamingResponse:
     def __init__(self, consumers: AsyncConsumers) -> None:
         self._consumers = consumers
 
+        self.create = async_to_streamed_response_wrapper(
+            consumers.create,
+        )
         self.update = async_to_streamed_response_wrapper(
             consumers.update,
         )
@@ -516,7 +487,4 @@ class AsyncConsumersWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             consumers.delete,
-        )
-        self.queue_create_queue_consumer = async_to_streamed_response_wrapper(
-            consumers.queue_create_queue_consumer,
         )

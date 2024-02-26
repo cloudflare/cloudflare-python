@@ -2,27 +2,16 @@
 
 from __future__ import annotations
 
-from .analytics import Analytics, AsyncAnalytics
-
-from ..._compat import cached_property
-
-from .kv.kv import Kv, AsyncKv
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
+from .kv import (
+    KV,
+    AsyncKV,
+    KVWithRawResponse,
+    AsyncKVWithRawResponse,
+    KVWithStreamingResponse,
+    AsyncKVWithStreamingResponse,
 )
-from ...types import shared_params
+from .kv.kv import KV, AsyncKV
+from ..._compat import cached_property
 from .analytics import (
     Analytics,
     AsyncAnalytics,
@@ -31,15 +20,7 @@ from .analytics import (
     AnalyticsWithStreamingResponse,
     AsyncAnalyticsWithStreamingResponse,
 )
-from .kv import (
-    Kv,
-    AsyncKv,
-    KvWithRawResponse,
-    AsyncKvWithRawResponse,
-    KvWithStreamingResponse,
-    AsyncKvWithStreamingResponse,
-)
-from ..._wrappers import ResultWrapper
+from ..._resource import SyncAPIResource, AsyncAPIResource
 
 __all__ = ["Storage", "AsyncStorage"]
 
@@ -50,8 +31,8 @@ class Storage(SyncAPIResource):
         return Analytics(self._client)
 
     @cached_property
-    def kv(self) -> Kv:
-        return Kv(self._client)
+    def kv(self) -> KV:
+        return KV(self._client)
 
     @cached_property
     def with_raw_response(self) -> StorageWithRawResponse:
@@ -68,8 +49,8 @@ class AsyncStorage(AsyncAPIResource):
         return AsyncAnalytics(self._client)
 
     @cached_property
-    def kv(self) -> AsyncKv:
-        return AsyncKv(self._client)
+    def kv(self) -> AsyncKV:
+        return AsyncKV(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncStorageWithRawResponse:
@@ -89,8 +70,8 @@ class StorageWithRawResponse:
         return AnalyticsWithRawResponse(self._storage.analytics)
 
     @cached_property
-    def kv(self) -> KvWithRawResponse:
-        return KvWithRawResponse(self._storage.kv)
+    def kv(self) -> KVWithRawResponse:
+        return KVWithRawResponse(self._storage.kv)
 
 
 class AsyncStorageWithRawResponse:
@@ -102,8 +83,8 @@ class AsyncStorageWithRawResponse:
         return AsyncAnalyticsWithRawResponse(self._storage.analytics)
 
     @cached_property
-    def kv(self) -> AsyncKvWithRawResponse:
-        return AsyncKvWithRawResponse(self._storage.kv)
+    def kv(self) -> AsyncKVWithRawResponse:
+        return AsyncKVWithRawResponse(self._storage.kv)
 
 
 class StorageWithStreamingResponse:
@@ -115,8 +96,8 @@ class StorageWithStreamingResponse:
         return AnalyticsWithStreamingResponse(self._storage.analytics)
 
     @cached_property
-    def kv(self) -> KvWithStreamingResponse:
-        return KvWithStreamingResponse(self._storage.kv)
+    def kv(self) -> KVWithStreamingResponse:
+        return KVWithStreamingResponse(self._storage.kv)
 
 
 class AsyncStorageWithStreamingResponse:
@@ -128,5 +109,5 @@ class AsyncStorageWithStreamingResponse:
         return AsyncAnalyticsWithStreamingResponse(self._storage.analytics)
 
     @cached_property
-    def kv(self) -> AsyncKvWithStreamingResponse:
-        return AsyncKvWithStreamingResponse(self._storage.kv)
+    def kv(self) -> AsyncKVWithStreamingResponse:
+        return AsyncKVWithStreamingResponse(self._storage.kv)

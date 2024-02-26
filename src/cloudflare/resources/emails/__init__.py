@@ -1,27 +1,29 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from .routings import Routings, AsyncRoutings
-from .routings import (
-    RoutingsWithRawResponse,
-    AsyncRoutingsWithRawResponse,
-    RoutingsWithStreamingResponse,
-    AsyncRoutingsWithStreamingResponse,
-)
-from .emails import Emails, AsyncEmails
 from .emails import (
+    Emails,
+    AsyncEmails,
     EmailsWithRawResponse,
     AsyncEmailsWithRawResponse,
     EmailsWithStreamingResponse,
     AsyncEmailsWithStreamingResponse,
 )
+from .routing import (
+    Routing,
+    AsyncRouting,
+    RoutingWithRawResponse,
+    AsyncRoutingWithRawResponse,
+    RoutingWithStreamingResponse,
+    AsyncRoutingWithStreamingResponse,
+)
 
 __all__ = [
-    "Routings",
-    "AsyncRoutings",
-    "RoutingsWithRawResponse",
-    "AsyncRoutingsWithRawResponse",
-    "RoutingsWithStreamingResponse",
-    "AsyncRoutingsWithStreamingResponse",
+    "Routing",
+    "AsyncRouting",
+    "RoutingWithRawResponse",
+    "AsyncRoutingWithRawResponse",
+    "RoutingWithStreamingResponse",
+    "AsyncRoutingWithStreamingResponse",
     "Emails",
     "AsyncEmails",
     "EmailsWithRawResponse",

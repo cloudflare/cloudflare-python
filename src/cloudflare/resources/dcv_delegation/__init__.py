@@ -1,14 +1,16 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from .uuid import Uuid, AsyncUuid
 from .uuid import (
-    UuidWithRawResponse,
-    AsyncUuidWithRawResponse,
-    UuidWithStreamingResponse,
-    AsyncUuidWithStreamingResponse,
+    UUID,
+    AsyncUUID,
+    UUIDWithRawResponse,
+    AsyncUUIDWithRawResponse,
+    UUIDWithStreamingResponse,
+    AsyncUUIDWithStreamingResponse,
 )
-from .dcv_delegation import DcvDelegation, AsyncDcvDelegation
 from .dcv_delegation import (
+    DcvDelegation,
+    AsyncDcvDelegation,
     DcvDelegationWithRawResponse,
     AsyncDcvDelegationWithRawResponse,
     DcvDelegationWithStreamingResponse,
@@ -16,12 +18,12 @@ from .dcv_delegation import (
 )
 
 __all__ = [
-    "Uuid",
-    "AsyncUuid",
-    "UuidWithRawResponse",
-    "AsyncUuidWithRawResponse",
-    "UuidWithStreamingResponse",
-    "AsyncUuidWithStreamingResponse",
+    "UUID",
+    "AsyncUUID",
+    "UUIDWithRawResponse",
+    "AsyncUUIDWithRawResponse",
+    "UUIDWithStreamingResponse",
+    "AsyncUUIDWithStreamingResponse",
     "DcvDelegation",
     "AsyncDcvDelegation",
     "DcvDelegationWithRawResponse",

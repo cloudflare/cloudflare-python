@@ -2,39 +2,24 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+
 import httpx
 
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._compat import cached_property
-
-from ....types.load_balancers.monitors import ReferenceAccountLoadBalancerMonitorsListMonitorReferencesResponse
-
-from typing import Type, Optional
-
+from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ....types import shared_params
 from ...._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
+from ...._base_client import (
+    make_request_options,
+)
+from ....types.load_balancers.monitors import ReferenceListResponse
 
 __all__ = ["References", "AsyncReferences"]
 
@@ -48,7 +33,7 @@ class References(SyncAPIResource):
     def with_streaming_response(self) -> ReferencesWithStreamingResponse:
         return ReferencesWithStreamingResponse(self)
 
-    def account_load_balancer_monitors_list_monitor_references(
+    def list(
         self,
         monitor_id: str,
         *,
@@ -59,7 +44,7 @@ class References(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ReferenceAccountLoadBalancerMonitorsListMonitorReferencesResponse]:
+    ) -> Optional[ReferenceListResponse]:
         """
         Get the list of resources that reference the provided monitor.
 
@@ -87,10 +72,7 @@ class References(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[ReferenceAccountLoadBalancerMonitorsListMonitorReferencesResponse]],
-                ResultWrapper[ReferenceAccountLoadBalancerMonitorsListMonitorReferencesResponse],
-            ),
+            cast_to=cast(Type[Optional[ReferenceListResponse]], ResultWrapper[ReferenceListResponse]),
         )
 
 
@@ -103,7 +85,7 @@ class AsyncReferences(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncReferencesWithStreamingResponse:
         return AsyncReferencesWithStreamingResponse(self)
 
-    async def account_load_balancer_monitors_list_monitor_references(
+    async def list(
         self,
         monitor_id: str,
         *,
@@ -114,7 +96,7 @@ class AsyncReferences(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ReferenceAccountLoadBalancerMonitorsListMonitorReferencesResponse]:
+    ) -> Optional[ReferenceListResponse]:
         """
         Get the list of resources that reference the provided monitor.
 
@@ -142,10 +124,7 @@ class AsyncReferences(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[ReferenceAccountLoadBalancerMonitorsListMonitorReferencesResponse]],
-                ResultWrapper[ReferenceAccountLoadBalancerMonitorsListMonitorReferencesResponse],
-            ),
+            cast_to=cast(Type[Optional[ReferenceListResponse]], ResultWrapper[ReferenceListResponse]),
         )
 
 
@@ -153,8 +132,8 @@ class ReferencesWithRawResponse:
     def __init__(self, references: References) -> None:
         self._references = references
 
-        self.account_load_balancer_monitors_list_monitor_references = to_raw_response_wrapper(
-            references.account_load_balancer_monitors_list_monitor_references,
+        self.list = to_raw_response_wrapper(
+            references.list,
         )
 
 
@@ -162,8 +141,8 @@ class AsyncReferencesWithRawResponse:
     def __init__(self, references: AsyncReferences) -> None:
         self._references = references
 
-        self.account_load_balancer_monitors_list_monitor_references = async_to_raw_response_wrapper(
-            references.account_load_balancer_monitors_list_monitor_references,
+        self.list = async_to_raw_response_wrapper(
+            references.list,
         )
 
 
@@ -171,8 +150,8 @@ class ReferencesWithStreamingResponse:
     def __init__(self, references: References) -> None:
         self._references = references
 
-        self.account_load_balancer_monitors_list_monitor_references = to_streamed_response_wrapper(
-            references.account_load_balancer_monitors_list_monitor_references,
+        self.list = to_streamed_response_wrapper(
+            references.list,
         )
 
 
@@ -180,6 +159,6 @@ class AsyncReferencesWithStreamingResponse:
     def __init__(self, references: AsyncReferences) -> None:
         self._references = references
 
-        self.account_load_balancer_monitors_list_monitor_references = async_to_streamed_response_wrapper(
-            references.account_load_balancer_monitors_list_monitor_references,
+        self.list = async_to_streamed_response_wrapper(
+            references.list,
         )

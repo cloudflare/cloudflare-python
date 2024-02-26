@@ -2,50 +2,33 @@
 
 from __future__ import annotations
 
+from typing import List, Type, Mapping, cast
+
 import httpx
 
+from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes
+from ....._utils import extract_files, maybe_transform, deepcopy_minimal
 from ....._compat import cached_property
-
-from .....types.workers.services.environments import ContentUpdateResponse, content_update_params
-
-from typing import Type, List
-
-from ....._types import FileTypes
-
+from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
     BinaryAPIResponse,
     AsyncBinaryAPIResponse,
-    to_raw_response_wrapper,
-    to_custom_raw_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_custom_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    to_custom_streamed_response_wrapper,
     StreamedBinaryAPIResponse,
-    async_to_streamed_response_wrapper,
-    async_to_custom_streamed_response_wrapper,
     AsyncStreamedBinaryAPIResponse,
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    to_custom_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+    to_custom_streamed_response_wrapper,
+    async_to_custom_raw_response_wrapper,
+    async_to_custom_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ....._resource import SyncAPIResource, AsyncAPIResource
-from ....._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from .....types import shared_params
-from .....types.workers.services.environments import content_update_params
 from ....._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
+from ....._base_client import (
+    make_request_options,
+)
+from .....types.workers.services.environments import ContentUpdateResponse, content_update_params
 
 __all__ = ["Content", "AsyncContent"]
 
@@ -169,6 +152,7 @@ class Content(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `service_name` but received {service_name!r}")
         if not environment_name:
             raise ValueError(f"Expected a non-empty value for `environment_name` but received {environment_name!r}")
+        extra_headers = {"Accept": "string", **(extra_headers or {})}
         return self._get(
             f"/accounts/{account_id}/workers/services/{service_name}/environments/{environment_name}/content",
             options=make_request_options(
@@ -297,6 +281,7 @@ class AsyncContent(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `service_name` but received {service_name!r}")
         if not environment_name:
             raise ValueError(f"Expected a non-empty value for `environment_name` but received {environment_name!r}")
+        extra_headers = {"Accept": "string", **(extra_headers or {})}
         return await self._get(
             f"/accounts/{account_id}/workers/services/{service_name}/environments/{environment_name}/content",
             options=make_request_options(

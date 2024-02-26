@@ -2,39 +2,24 @@
 
 from __future__ import annotations
 
+from typing import Type, cast
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._compat import cached_property
-
-from ...types.waiting_rooms import StatusWaitingRoomGetWaitingRoomStatusResponse
-
-from typing import Type
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
+from ..._base_client import (
+    make_request_options,
+)
+from ...types.waiting_rooms import StatusGetResponse
 
 __all__ = ["Statuses", "AsyncStatuses"]
 
@@ -48,7 +33,7 @@ class Statuses(SyncAPIResource):
     def with_streaming_response(self) -> StatusesWithStreamingResponse:
         return StatusesWithStreamingResponse(self)
 
-    def waiting_room_get_waiting_room_status(
+    def get(
         self,
         waiting_room_id: object,
         *,
@@ -59,7 +44,7 @@ class Statuses(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> StatusWaitingRoomGetWaitingRoomStatusResponse:
+    ) -> StatusGetResponse:
         """Fetches the status of a configured waiting room.
 
         Response fields include:
@@ -103,10 +88,7 @@ class Statuses(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[StatusWaitingRoomGetWaitingRoomStatusResponse],
-                ResultWrapper[StatusWaitingRoomGetWaitingRoomStatusResponse],
-            ),
+            cast_to=cast(Type[StatusGetResponse], ResultWrapper[StatusGetResponse]),
         )
 
 
@@ -119,7 +101,7 @@ class AsyncStatuses(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncStatusesWithStreamingResponse:
         return AsyncStatusesWithStreamingResponse(self)
 
-    async def waiting_room_get_waiting_room_status(
+    async def get(
         self,
         waiting_room_id: object,
         *,
@@ -130,7 +112,7 @@ class AsyncStatuses(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> StatusWaitingRoomGetWaitingRoomStatusResponse:
+    ) -> StatusGetResponse:
         """Fetches the status of a configured waiting room.
 
         Response fields include:
@@ -174,10 +156,7 @@ class AsyncStatuses(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[StatusWaitingRoomGetWaitingRoomStatusResponse],
-                ResultWrapper[StatusWaitingRoomGetWaitingRoomStatusResponse],
-            ),
+            cast_to=cast(Type[StatusGetResponse], ResultWrapper[StatusGetResponse]),
         )
 
 
@@ -185,8 +164,8 @@ class StatusesWithRawResponse:
     def __init__(self, statuses: Statuses) -> None:
         self._statuses = statuses
 
-        self.waiting_room_get_waiting_room_status = to_raw_response_wrapper(
-            statuses.waiting_room_get_waiting_room_status,
+        self.get = to_raw_response_wrapper(
+            statuses.get,
         )
 
 
@@ -194,8 +173,8 @@ class AsyncStatusesWithRawResponse:
     def __init__(self, statuses: AsyncStatuses) -> None:
         self._statuses = statuses
 
-        self.waiting_room_get_waiting_room_status = async_to_raw_response_wrapper(
-            statuses.waiting_room_get_waiting_room_status,
+        self.get = async_to_raw_response_wrapper(
+            statuses.get,
         )
 
 
@@ -203,8 +182,8 @@ class StatusesWithStreamingResponse:
     def __init__(self, statuses: Statuses) -> None:
         self._statuses = statuses
 
-        self.waiting_room_get_waiting_room_status = to_streamed_response_wrapper(
-            statuses.waiting_room_get_waiting_room_status,
+        self.get = to_streamed_response_wrapper(
+            statuses.get,
         )
 
 
@@ -212,6 +191,6 @@ class AsyncStatusesWithStreamingResponse:
     def __init__(self, statuses: AsyncStatuses) -> None:
         self._statuses = statuses
 
-        self.waiting_room_get_waiting_room_status = async_to_streamed_response_wrapper(
-            statuses.waiting_room_get_waiting_room_status,
+        self.get = async_to_streamed_response_wrapper(
+            statuses.get,
         )

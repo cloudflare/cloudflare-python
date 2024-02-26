@@ -1,14 +1,11 @@
 # File generated from our OpenAPI spec by Stainless.
 
 from typing import List, Optional
-
 from typing_extensions import Literal
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
 from pydantic import Field as FieldInfo
+
 from ..._models import BaseModel
-from ...types import shared
 
 __all__ = [
     "ScanGetResponse",
@@ -39,8 +36,8 @@ __all__ = [
     "ScanVerdicts",
     "ScanVerdictsOverall",
     "ScanVerdictsOverallCategory",
-    "ScanAsns",
-    "ScanAsnsAsn",
+    "ScanASNs",
+    "ScanASNsASN",
     "ScanDomains",
     "ScanDomainsExampleCom",
     "ScanDomainsExampleComCategories",
@@ -409,7 +406,7 @@ class ScanVerdicts(BaseModel):
     overall: ScanVerdictsOverall
 
 
-class ScanAsnsAsn(BaseModel):
+class ScanASNsASN(BaseModel):
     asn: str
 
     description: str
@@ -421,8 +418,8 @@ class ScanAsnsAsn(BaseModel):
     org_name: str
 
 
-class ScanAsns(BaseModel):
-    asn: Optional[ScanAsnsAsn] = None
+class ScanASNs(BaseModel):
+    asn: Optional[ScanASNsASN] = None
     """ASN's contacted"""
 
 
@@ -574,7 +571,7 @@ class Scan(BaseModel):
 
     verdicts: ScanVerdicts
 
-    asns: Optional[ScanAsns] = None
+    asns: Optional[ScanASNs] = None
     """Dictionary of Autonomous System Numbers where ASN's are the keys"""
 
     domains: Optional[ScanDomains] = None

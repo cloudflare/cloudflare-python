@@ -2,44 +2,26 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+from typing_extensions import Literal
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._compat import cached_property
-
-from ...types.settings import AlwaysUseHTTPSUpdateResponse, AlwaysUseHTTPSGetResponse
-
-from typing import Type, Optional
-
-from typing_extensions import Literal
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types.settings import always_use_https_update_params
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ..._base_client import (
+    make_request_options,
+)
+from ...types.settings import AlwaysUseHTTPSGetResponse, AlwaysUseHTTPSEditResponse, always_use_https_edit_params
 
 __all__ = ["AlwaysUseHTTPS", "AsyncAlwaysUseHTTPS"]
 
@@ -53,7 +35,7 @@ class AlwaysUseHTTPS(SyncAPIResource):
     def with_streaming_response(self) -> AlwaysUseHTTPSWithStreamingResponse:
         return AlwaysUseHTTPSWithStreamingResponse(self)
 
-    def update(
+    def edit(
         self,
         zone_id: str,
         *,
@@ -64,7 +46,7 @@ class AlwaysUseHTTPS(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AlwaysUseHTTPSUpdateResponse]:
+    ) -> Optional[AlwaysUseHTTPSEditResponse]:
         """
         Reply to all requests for URLs that use "http" with a 301 redirect to the
         equivalent "https" URL. If you only want to redirect for a subset of requests,
@@ -87,7 +69,7 @@ class AlwaysUseHTTPS(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._patch(
             f"/zones/{zone_id}/settings/always_use_https",
-            body=maybe_transform({"value": value}, always_use_https_update_params.AlwaysUseHTTPSUpdateParams),
+            body=maybe_transform({"value": value}, always_use_https_edit_params.AlwaysUseHTTPSEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -95,7 +77,7 @@ class AlwaysUseHTTPS(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[AlwaysUseHTTPSUpdateResponse]], ResultWrapper[AlwaysUseHTTPSUpdateResponse]),
+            cast_to=cast(Type[Optional[AlwaysUseHTTPSEditResponse]], ResultWrapper[AlwaysUseHTTPSEditResponse]),
         )
 
     def get(
@@ -149,7 +131,7 @@ class AsyncAlwaysUseHTTPS(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncAlwaysUseHTTPSWithStreamingResponse:
         return AsyncAlwaysUseHTTPSWithStreamingResponse(self)
 
-    async def update(
+    async def edit(
         self,
         zone_id: str,
         *,
@@ -160,7 +142,7 @@ class AsyncAlwaysUseHTTPS(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AlwaysUseHTTPSUpdateResponse]:
+    ) -> Optional[AlwaysUseHTTPSEditResponse]:
         """
         Reply to all requests for URLs that use "http" with a 301 redirect to the
         equivalent "https" URL. If you only want to redirect for a subset of requests,
@@ -183,7 +165,7 @@ class AsyncAlwaysUseHTTPS(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._patch(
             f"/zones/{zone_id}/settings/always_use_https",
-            body=maybe_transform({"value": value}, always_use_https_update_params.AlwaysUseHTTPSUpdateParams),
+            body=maybe_transform({"value": value}, always_use_https_edit_params.AlwaysUseHTTPSEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -191,7 +173,7 @@ class AsyncAlwaysUseHTTPS(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[AlwaysUseHTTPSUpdateResponse]], ResultWrapper[AlwaysUseHTTPSUpdateResponse]),
+            cast_to=cast(Type[Optional[AlwaysUseHTTPSEditResponse]], ResultWrapper[AlwaysUseHTTPSEditResponse]),
         )
 
     async def get(
@@ -240,8 +222,8 @@ class AlwaysUseHTTPSWithRawResponse:
     def __init__(self, always_use_https: AlwaysUseHTTPS) -> None:
         self._always_use_https = always_use_https
 
-        self.update = to_raw_response_wrapper(
-            always_use_https.update,
+        self.edit = to_raw_response_wrapper(
+            always_use_https.edit,
         )
         self.get = to_raw_response_wrapper(
             always_use_https.get,
@@ -252,8 +234,8 @@ class AsyncAlwaysUseHTTPSWithRawResponse:
     def __init__(self, always_use_https: AsyncAlwaysUseHTTPS) -> None:
         self._always_use_https = always_use_https
 
-        self.update = async_to_raw_response_wrapper(
-            always_use_https.update,
+        self.edit = async_to_raw_response_wrapper(
+            always_use_https.edit,
         )
         self.get = async_to_raw_response_wrapper(
             always_use_https.get,
@@ -264,8 +246,8 @@ class AlwaysUseHTTPSWithStreamingResponse:
     def __init__(self, always_use_https: AlwaysUseHTTPS) -> None:
         self._always_use_https = always_use_https
 
-        self.update = to_streamed_response_wrapper(
-            always_use_https.update,
+        self.edit = to_streamed_response_wrapper(
+            always_use_https.edit,
         )
         self.get = to_streamed_response_wrapper(
             always_use_https.get,
@@ -276,8 +258,8 @@ class AsyncAlwaysUseHTTPSWithStreamingResponse:
     def __init__(self, always_use_https: AsyncAlwaysUseHTTPS) -> None:
         self._always_use_https = always_use_https
 
-        self.update = async_to_streamed_response_wrapper(
-            always_use_https.update,
+        self.edit = async_to_streamed_response_wrapper(
+            always_use_https.edit,
         )
         self.get = async_to_streamed_response_wrapper(
             always_use_https.get,

@@ -2,15 +2,9 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, Annotated, Literal
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
-from ..._utils import PropertyInfo
-from ...types import shared_params
 
 __all__ = ["MonitorCreateParams"]
 
@@ -102,7 +96,7 @@ class MonitorCreateParams(TypedDict, total=False):
     as unhealthy. Retries are attempted immediately.
     """
 
-    api_timeout: Annotated[int, PropertyInfo(alias="timeout")]
+    load_balancer_monitor_timeout: Annotated[int, PropertyInfo(alias="timeout")]
     """The timeout (in seconds) before marking the health check as failed."""
 
     type: Literal["http", "https", "tcp", "udp_icmp", "icmp_ping", "smtp"]

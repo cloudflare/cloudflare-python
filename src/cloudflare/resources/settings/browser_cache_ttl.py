@@ -2,44 +2,26 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+from typing_extensions import Literal
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._compat import cached_property
-
-from ...types.settings import BrowserCacheTTLUpdateResponse, BrowserCacheTTLGetResponse
-
-from typing import Type, Optional
-
-from typing_extensions import Literal
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types.settings import browser_cache_ttl_update_params
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ..._base_client import (
+    make_request_options,
+)
+from ...types.settings import BrowserCacheTTLGetResponse, BrowserCacheTTLEditResponse, browser_cache_ttl_edit_params
 
 __all__ = ["BrowserCacheTTL", "AsyncBrowserCacheTTL"]
 
@@ -53,7 +35,7 @@ class BrowserCacheTTL(SyncAPIResource):
     def with_streaming_response(self) -> BrowserCacheTTLWithStreamingResponse:
         return BrowserCacheTTLWithStreamingResponse(self)
 
-    def update(
+    def edit(
         self,
         zone_id: str,
         *,
@@ -93,7 +75,7 @@ class BrowserCacheTTL(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[BrowserCacheTTLUpdateResponse]:
+    ) -> Optional[BrowserCacheTTLEditResponse]:
         """
         Browser Cache TTL (in seconds) specifies how long Cloudflare-cached resources
         will remain on your visitors' computers. Cloudflare will honor any larger times
@@ -118,7 +100,7 @@ class BrowserCacheTTL(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._patch(
             f"/zones/{zone_id}/settings/browser_cache_ttl",
-            body=maybe_transform({"value": value}, browser_cache_ttl_update_params.BrowserCacheTTLUpdateParams),
+            body=maybe_transform({"value": value}, browser_cache_ttl_edit_params.BrowserCacheTTLEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -126,7 +108,7 @@ class BrowserCacheTTL(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[BrowserCacheTTLUpdateResponse]], ResultWrapper[BrowserCacheTTLUpdateResponse]),
+            cast_to=cast(Type[Optional[BrowserCacheTTLEditResponse]], ResultWrapper[BrowserCacheTTLEditResponse]),
         )
 
     def get(
@@ -181,7 +163,7 @@ class AsyncBrowserCacheTTL(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncBrowserCacheTTLWithStreamingResponse:
         return AsyncBrowserCacheTTLWithStreamingResponse(self)
 
-    async def update(
+    async def edit(
         self,
         zone_id: str,
         *,
@@ -221,7 +203,7 @@ class AsyncBrowserCacheTTL(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[BrowserCacheTTLUpdateResponse]:
+    ) -> Optional[BrowserCacheTTLEditResponse]:
         """
         Browser Cache TTL (in seconds) specifies how long Cloudflare-cached resources
         will remain on your visitors' computers. Cloudflare will honor any larger times
@@ -246,7 +228,7 @@ class AsyncBrowserCacheTTL(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._patch(
             f"/zones/{zone_id}/settings/browser_cache_ttl",
-            body=maybe_transform({"value": value}, browser_cache_ttl_update_params.BrowserCacheTTLUpdateParams),
+            body=maybe_transform({"value": value}, browser_cache_ttl_edit_params.BrowserCacheTTLEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -254,7 +236,7 @@ class AsyncBrowserCacheTTL(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[BrowserCacheTTLUpdateResponse]], ResultWrapper[BrowserCacheTTLUpdateResponse]),
+            cast_to=cast(Type[Optional[BrowserCacheTTLEditResponse]], ResultWrapper[BrowserCacheTTLEditResponse]),
         )
 
     async def get(
@@ -304,8 +286,8 @@ class BrowserCacheTTLWithRawResponse:
     def __init__(self, browser_cache_ttl: BrowserCacheTTL) -> None:
         self._browser_cache_ttl = browser_cache_ttl
 
-        self.update = to_raw_response_wrapper(
-            browser_cache_ttl.update,
+        self.edit = to_raw_response_wrapper(
+            browser_cache_ttl.edit,
         )
         self.get = to_raw_response_wrapper(
             browser_cache_ttl.get,
@@ -316,8 +298,8 @@ class AsyncBrowserCacheTTLWithRawResponse:
     def __init__(self, browser_cache_ttl: AsyncBrowserCacheTTL) -> None:
         self._browser_cache_ttl = browser_cache_ttl
 
-        self.update = async_to_raw_response_wrapper(
-            browser_cache_ttl.update,
+        self.edit = async_to_raw_response_wrapper(
+            browser_cache_ttl.edit,
         )
         self.get = async_to_raw_response_wrapper(
             browser_cache_ttl.get,
@@ -328,8 +310,8 @@ class BrowserCacheTTLWithStreamingResponse:
     def __init__(self, browser_cache_ttl: BrowserCacheTTL) -> None:
         self._browser_cache_ttl = browser_cache_ttl
 
-        self.update = to_streamed_response_wrapper(
-            browser_cache_ttl.update,
+        self.edit = to_streamed_response_wrapper(
+            browser_cache_ttl.edit,
         )
         self.get = to_streamed_response_wrapper(
             browser_cache_ttl.get,
@@ -340,8 +322,8 @@ class AsyncBrowserCacheTTLWithStreamingResponse:
     def __init__(self, browser_cache_ttl: AsyncBrowserCacheTTL) -> None:
         self._browser_cache_ttl = browser_cache_ttl
 
-        self.update = async_to_streamed_response_wrapper(
-            browser_cache_ttl.update,
+        self.edit = async_to_streamed_response_wrapper(
+            browser_cache_ttl.edit,
         )
         self.get = async_to_streamed_response_wrapper(
             browser_cache_ttl.get,

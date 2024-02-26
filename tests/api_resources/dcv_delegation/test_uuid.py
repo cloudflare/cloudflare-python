@@ -2,23 +2,19 @@
 
 from __future__ import annotations
 
-from cloudflare.types.dcv_delegation import UuidGetResponse
-
+import os
 from typing import Any, cast
 
-import os
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.types.dcv_delegation import UUIDGetResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
-class TestUuid:
+class TestUUID:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip()
@@ -27,7 +23,7 @@ class TestUuid:
         uuid = client.dcv_delegation.uuid.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(UuidGetResponse, uuid, path=["response"])
+        assert_matches_type(UUIDGetResponse, uuid, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -39,7 +35,7 @@ class TestUuid:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         uuid = response.parse()
-        assert_matches_type(UuidGetResponse, uuid, path=["response"])
+        assert_matches_type(UUIDGetResponse, uuid, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -51,7 +47,7 @@ class TestUuid:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             uuid = response.parse()
-            assert_matches_type(UuidGetResponse, uuid, path=["response"])
+            assert_matches_type(UUIDGetResponse, uuid, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -64,7 +60,7 @@ class TestUuid:
             )
 
 
-class TestAsyncUuid:
+class TestAsyncUUID:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip()
@@ -73,7 +69,7 @@ class TestAsyncUuid:
         uuid = await async_client.dcv_delegation.uuid.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(UuidGetResponse, uuid, path=["response"])
+        assert_matches_type(UUIDGetResponse, uuid, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -85,7 +81,7 @@ class TestAsyncUuid:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         uuid = await response.parse()
-        assert_matches_type(UuidGetResponse, uuid, path=["response"])
+        assert_matches_type(UUIDGetResponse, uuid, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -97,7 +93,7 @@ class TestAsyncUuid:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             uuid = await response.parse()
-            assert_matches_type(UuidGetResponse, uuid, path=["response"])
+            assert_matches_type(UUIDGetResponse, uuid, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

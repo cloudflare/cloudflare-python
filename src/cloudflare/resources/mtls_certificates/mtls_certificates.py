@@ -2,44 +2,28 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+
 import httpx
 
-from .associations import Associations, AsyncAssociations
-
-from ..._compat import cached_property
-
 from ...types import (
-    MtlsCertificateUpdateResponse,
-    MtlsCertificateListResponse,
-    MtlsCertificateDeleteResponse,
-    MtlsCertificateGetResponse,
+    MTLSCertificateGetResponse,
+    MTLSCertificateListResponse,
+    MTLSCertificateCreateResponse,
+    MTLSCertificateDeleteResponse,
+    mtls_certificate_create_params,
 )
-
-from typing import Type, Optional
-
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types import mtls_certificate_update_params
+from ..._wrappers import ResultWrapper
 from .associations import (
     Associations,
     AsyncAssociations,
@@ -48,33 +32,27 @@ from .associations import (
     AssociationsWithStreamingResponse,
     AsyncAssociationsWithStreamingResponse,
 )
-from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ..._base_client import (
+    make_request_options,
+)
 
-__all__ = ["MtlsCertificates", "AsyncMtlsCertificates"]
+__all__ = ["MTLSCertificates", "AsyncMTLSCertificates"]
 
 
-class MtlsCertificates(SyncAPIResource):
+class MTLSCertificates(SyncAPIResource):
     @cached_property
     def associations(self) -> Associations:
         return Associations(self._client)
 
     @cached_property
-    def with_raw_response(self) -> MtlsCertificatesWithRawResponse:
-        return MtlsCertificatesWithRawResponse(self)
+    def with_raw_response(self) -> MTLSCertificatesWithRawResponse:
+        return MTLSCertificatesWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> MtlsCertificatesWithStreamingResponse:
-        return MtlsCertificatesWithStreamingResponse(self)
+    def with_streaming_response(self) -> MTLSCertificatesWithStreamingResponse:
+        return MTLSCertificatesWithStreamingResponse(self)
 
-    def update(
+    def create(
         self,
         account_id: str,
         *,
@@ -88,7 +66,7 @@ class MtlsCertificates(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MtlsCertificateUpdateResponse:
+    ) -> MTLSCertificateCreateResponse:
         """
         Upload a certificate that you want to use with mTLS-enabled Cloudflare services.
 
@@ -122,7 +100,7 @@ class MtlsCertificates(SyncAPIResource):
                     "name": name,
                     "private_key": private_key,
                 },
-                mtls_certificate_update_params.MtlsCertificateUpdateParams,
+                mtls_certificate_create_params.MTLSCertificateCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -131,7 +109,7 @@ class MtlsCertificates(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[MtlsCertificateUpdateResponse], ResultWrapper[MtlsCertificateUpdateResponse]),
+            cast_to=cast(Type[MTLSCertificateCreateResponse], ResultWrapper[MTLSCertificateCreateResponse]),
         )
 
     def list(
@@ -144,7 +122,7 @@ class MtlsCertificates(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MtlsCertificateListResponse]:
+    ) -> Optional[MTLSCertificateListResponse]:
         """
         Lists all mTLS certificates.
 
@@ -170,7 +148,7 @@ class MtlsCertificates(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[MtlsCertificateListResponse]], ResultWrapper[MtlsCertificateListResponse]),
+            cast_to=cast(Type[Optional[MTLSCertificateListResponse]], ResultWrapper[MTLSCertificateListResponse]),
         )
 
     def delete(
@@ -184,7 +162,7 @@ class MtlsCertificates(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MtlsCertificateDeleteResponse:
+    ) -> MTLSCertificateDeleteResponse:
         """
         Deletes the mTLS certificate unless the certificate is in use by one or more
         Cloudflare services.
@@ -217,7 +195,7 @@ class MtlsCertificates(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[MtlsCertificateDeleteResponse], ResultWrapper[MtlsCertificateDeleteResponse]),
+            cast_to=cast(Type[MTLSCertificateDeleteResponse], ResultWrapper[MTLSCertificateDeleteResponse]),
         )
 
     def get(
@@ -231,7 +209,7 @@ class MtlsCertificates(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MtlsCertificateGetResponse:
+    ) -> MTLSCertificateGetResponse:
         """
         Fetches a single mTLS certificate.
 
@@ -263,24 +241,24 @@ class MtlsCertificates(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[MtlsCertificateGetResponse], ResultWrapper[MtlsCertificateGetResponse]),
+            cast_to=cast(Type[MTLSCertificateGetResponse], ResultWrapper[MTLSCertificateGetResponse]),
         )
 
 
-class AsyncMtlsCertificates(AsyncAPIResource):
+class AsyncMTLSCertificates(AsyncAPIResource):
     @cached_property
     def associations(self) -> AsyncAssociations:
         return AsyncAssociations(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncMtlsCertificatesWithRawResponse:
-        return AsyncMtlsCertificatesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncMTLSCertificatesWithRawResponse:
+        return AsyncMTLSCertificatesWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncMtlsCertificatesWithStreamingResponse:
-        return AsyncMtlsCertificatesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncMTLSCertificatesWithStreamingResponse:
+        return AsyncMTLSCertificatesWithStreamingResponse(self)
 
-    async def update(
+    async def create(
         self,
         account_id: str,
         *,
@@ -294,7 +272,7 @@ class AsyncMtlsCertificates(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MtlsCertificateUpdateResponse:
+    ) -> MTLSCertificateCreateResponse:
         """
         Upload a certificate that you want to use with mTLS-enabled Cloudflare services.
 
@@ -328,7 +306,7 @@ class AsyncMtlsCertificates(AsyncAPIResource):
                     "name": name,
                     "private_key": private_key,
                 },
-                mtls_certificate_update_params.MtlsCertificateUpdateParams,
+                mtls_certificate_create_params.MTLSCertificateCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -337,7 +315,7 @@ class AsyncMtlsCertificates(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[MtlsCertificateUpdateResponse], ResultWrapper[MtlsCertificateUpdateResponse]),
+            cast_to=cast(Type[MTLSCertificateCreateResponse], ResultWrapper[MTLSCertificateCreateResponse]),
         )
 
     async def list(
@@ -350,7 +328,7 @@ class AsyncMtlsCertificates(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MtlsCertificateListResponse]:
+    ) -> Optional[MTLSCertificateListResponse]:
         """
         Lists all mTLS certificates.
 
@@ -376,7 +354,7 @@ class AsyncMtlsCertificates(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[MtlsCertificateListResponse]], ResultWrapper[MtlsCertificateListResponse]),
+            cast_to=cast(Type[Optional[MTLSCertificateListResponse]], ResultWrapper[MTLSCertificateListResponse]),
         )
 
     async def delete(
@@ -390,7 +368,7 @@ class AsyncMtlsCertificates(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MtlsCertificateDeleteResponse:
+    ) -> MTLSCertificateDeleteResponse:
         """
         Deletes the mTLS certificate unless the certificate is in use by one or more
         Cloudflare services.
@@ -423,7 +401,7 @@ class AsyncMtlsCertificates(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[MtlsCertificateDeleteResponse], ResultWrapper[MtlsCertificateDeleteResponse]),
+            cast_to=cast(Type[MTLSCertificateDeleteResponse], ResultWrapper[MTLSCertificateDeleteResponse]),
         )
 
     async def get(
@@ -437,7 +415,7 @@ class AsyncMtlsCertificates(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MtlsCertificateGetResponse:
+    ) -> MTLSCertificateGetResponse:
         """
         Fetches a single mTLS certificate.
 
@@ -469,16 +447,16 @@ class AsyncMtlsCertificates(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[MtlsCertificateGetResponse], ResultWrapper[MtlsCertificateGetResponse]),
+            cast_to=cast(Type[MTLSCertificateGetResponse], ResultWrapper[MTLSCertificateGetResponse]),
         )
 
 
-class MtlsCertificatesWithRawResponse:
-    def __init__(self, mtls_certificates: MtlsCertificates) -> None:
+class MTLSCertificatesWithRawResponse:
+    def __init__(self, mtls_certificates: MTLSCertificates) -> None:
         self._mtls_certificates = mtls_certificates
 
-        self.update = to_raw_response_wrapper(
-            mtls_certificates.update,
+        self.create = to_raw_response_wrapper(
+            mtls_certificates.create,
         )
         self.list = to_raw_response_wrapper(
             mtls_certificates.list,
@@ -495,12 +473,12 @@ class MtlsCertificatesWithRawResponse:
         return AssociationsWithRawResponse(self._mtls_certificates.associations)
 
 
-class AsyncMtlsCertificatesWithRawResponse:
-    def __init__(self, mtls_certificates: AsyncMtlsCertificates) -> None:
+class AsyncMTLSCertificatesWithRawResponse:
+    def __init__(self, mtls_certificates: AsyncMTLSCertificates) -> None:
         self._mtls_certificates = mtls_certificates
 
-        self.update = async_to_raw_response_wrapper(
-            mtls_certificates.update,
+        self.create = async_to_raw_response_wrapper(
+            mtls_certificates.create,
         )
         self.list = async_to_raw_response_wrapper(
             mtls_certificates.list,
@@ -517,12 +495,12 @@ class AsyncMtlsCertificatesWithRawResponse:
         return AsyncAssociationsWithRawResponse(self._mtls_certificates.associations)
 
 
-class MtlsCertificatesWithStreamingResponse:
-    def __init__(self, mtls_certificates: MtlsCertificates) -> None:
+class MTLSCertificatesWithStreamingResponse:
+    def __init__(self, mtls_certificates: MTLSCertificates) -> None:
         self._mtls_certificates = mtls_certificates
 
-        self.update = to_streamed_response_wrapper(
-            mtls_certificates.update,
+        self.create = to_streamed_response_wrapper(
+            mtls_certificates.create,
         )
         self.list = to_streamed_response_wrapper(
             mtls_certificates.list,
@@ -539,12 +517,12 @@ class MtlsCertificatesWithStreamingResponse:
         return AssociationsWithStreamingResponse(self._mtls_certificates.associations)
 
 
-class AsyncMtlsCertificatesWithStreamingResponse:
-    def __init__(self, mtls_certificates: AsyncMtlsCertificates) -> None:
+class AsyncMTLSCertificatesWithStreamingResponse:
+    def __init__(self, mtls_certificates: AsyncMTLSCertificates) -> None:
         self._mtls_certificates = mtls_certificates
 
-        self.update = async_to_streamed_response_wrapper(
-            mtls_certificates.update,
+        self.create = async_to_streamed_response_wrapper(
+            mtls_certificates.create,
         )
         self.list = async_to_streamed_response_wrapper(
             mtls_certificates.list,

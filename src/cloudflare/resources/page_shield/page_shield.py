@@ -2,35 +2,21 @@
 
 from __future__ import annotations
 
-from .connections import Connections, AsyncConnections
+from typing import Type, cast
 
-from ..._compat import cached_property
+import httpx
 
-from .policies import Policies, AsyncPolicies
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
+from ...types import PageShieldListResponse, PageShieldUpdateResponse, page_shield_update_params
+from .scripts import (
+    Scripts,
+    AsyncScripts,
+    ScriptsWithRawResponse,
+    AsyncScriptsWithRawResponse,
+    ScriptsWithStreamingResponse,
+    AsyncScriptsWithStreamingResponse,
 )
-from ...types import shared_params
-from .connections import (
-    Connections,
-    AsyncConnections,
-    ConnectionsWithRawResponse,
-    AsyncConnectionsWithRawResponse,
-    ConnectionsWithStreamingResponse,
-    AsyncConnectionsWithStreamingResponse,
-)
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from .policies import (
     Policies,
     AsyncPolicies,
@@ -39,19 +25,42 @@ from .policies import (
     PoliciesWithStreamingResponse,
     AsyncPoliciesWithStreamingResponse,
 )
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
 from ..._wrappers import ResultWrapper
+from .connections import (
+    Connections,
+    AsyncConnections,
+    ConnectionsWithRawResponse,
+    AsyncConnectionsWithRawResponse,
+    ConnectionsWithStreamingResponse,
+    AsyncConnectionsWithStreamingResponse,
+)
+from ..._base_client import (
+    make_request_options,
+)
 
 __all__ = ["PageShield", "AsyncPageShield"]
 
 
 class PageShield(SyncAPIResource):
     @cached_property
+    def policies(self) -> Policies:
+        return Policies(self._client)
+
+    @cached_property
     def connections(self) -> Connections:
         return Connections(self._client)
 
     @cached_property
-    def policies(self) -> Policies:
-        return Policies(self._client)
+    def scripts(self) -> Scripts:
+        return Scripts(self._client)
 
     @cached_property
     def with_raw_response(self) -> PageShieldWithRawResponse:
@@ -61,15 +70,115 @@ class PageShield(SyncAPIResource):
     def with_streaming_response(self) -> PageShieldWithStreamingResponse:
         return PageShieldWithStreamingResponse(self)
 
+    def update(
+        self,
+        zone_id: str,
+        *,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        use_cloudflare_reporting_endpoint: bool | NotGiven = NOT_GIVEN,
+        use_connection_url_path: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> PageShieldUpdateResponse:
+        """
+        Updates Page Shield settings.
+
+        Args:
+          zone_id: Identifier
+
+          enabled: When true, indicates that Page Shield is enabled.
+
+          use_cloudflare_reporting_endpoint: When true, CSP reports will be sent to
+              https://csp-reporting.cloudflare.com/cdn-cgi/script_monitor/report
+
+          use_connection_url_path: When true, the paths associated with connections URLs will also be analyzed.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return self._put(
+            f"/zones/{zone_id}/page_shield",
+            body=maybe_transform(
+                {
+                    "enabled": enabled,
+                    "use_cloudflare_reporting_endpoint": use_cloudflare_reporting_endpoint,
+                    "use_connection_url_path": use_connection_url_path,
+                },
+                page_shield_update_params.PageShieldUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[PageShieldUpdateResponse], ResultWrapper[PageShieldUpdateResponse]),
+        )
+
+    def list(
+        self,
+        zone_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> PageShieldListResponse:
+        """
+        Fetches the Page Shield settings.
+
+        Args:
+          zone_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return self._get(
+            f"/zones/{zone_id}/page_shield",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[PageShieldListResponse], ResultWrapper[PageShieldListResponse]),
+        )
+
 
 class AsyncPageShield(AsyncAPIResource):
+    @cached_property
+    def policies(self) -> AsyncPolicies:
+        return AsyncPolicies(self._client)
+
     @cached_property
     def connections(self) -> AsyncConnections:
         return AsyncConnections(self._client)
 
     @cached_property
-    def policies(self) -> AsyncPolicies:
-        return AsyncPolicies(self._client)
+    def scripts(self) -> AsyncScripts:
+        return AsyncScripts(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncPageShieldWithRawResponse:
@@ -79,54 +188,194 @@ class AsyncPageShield(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncPageShieldWithStreamingResponse:
         return AsyncPageShieldWithStreamingResponse(self)
 
+    async def update(
+        self,
+        zone_id: str,
+        *,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        use_cloudflare_reporting_endpoint: bool | NotGiven = NOT_GIVEN,
+        use_connection_url_path: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> PageShieldUpdateResponse:
+        """
+        Updates Page Shield settings.
+
+        Args:
+          zone_id: Identifier
+
+          enabled: When true, indicates that Page Shield is enabled.
+
+          use_cloudflare_reporting_endpoint: When true, CSP reports will be sent to
+              https://csp-reporting.cloudflare.com/cdn-cgi/script_monitor/report
+
+          use_connection_url_path: When true, the paths associated with connections URLs will also be analyzed.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return await self._put(
+            f"/zones/{zone_id}/page_shield",
+            body=maybe_transform(
+                {
+                    "enabled": enabled,
+                    "use_cloudflare_reporting_endpoint": use_cloudflare_reporting_endpoint,
+                    "use_connection_url_path": use_connection_url_path,
+                },
+                page_shield_update_params.PageShieldUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[PageShieldUpdateResponse], ResultWrapper[PageShieldUpdateResponse]),
+        )
+
+    async def list(
+        self,
+        zone_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> PageShieldListResponse:
+        """
+        Fetches the Page Shield settings.
+
+        Args:
+          zone_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return await self._get(
+            f"/zones/{zone_id}/page_shield",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[PageShieldListResponse], ResultWrapper[PageShieldListResponse]),
+        )
+
 
 class PageShieldWithRawResponse:
     def __init__(self, page_shield: PageShield) -> None:
         self._page_shield = page_shield
+
+        self.update = to_raw_response_wrapper(
+            page_shield.update,
+        )
+        self.list = to_raw_response_wrapper(
+            page_shield.list,
+        )
+
+    @cached_property
+    def policies(self) -> PoliciesWithRawResponse:
+        return PoliciesWithRawResponse(self._page_shield.policies)
 
     @cached_property
     def connections(self) -> ConnectionsWithRawResponse:
         return ConnectionsWithRawResponse(self._page_shield.connections)
 
     @cached_property
-    def policies(self) -> PoliciesWithRawResponse:
-        return PoliciesWithRawResponse(self._page_shield.policies)
+    def scripts(self) -> ScriptsWithRawResponse:
+        return ScriptsWithRawResponse(self._page_shield.scripts)
 
 
 class AsyncPageShieldWithRawResponse:
     def __init__(self, page_shield: AsyncPageShield) -> None:
         self._page_shield = page_shield
 
+        self.update = async_to_raw_response_wrapper(
+            page_shield.update,
+        )
+        self.list = async_to_raw_response_wrapper(
+            page_shield.list,
+        )
+
+    @cached_property
+    def policies(self) -> AsyncPoliciesWithRawResponse:
+        return AsyncPoliciesWithRawResponse(self._page_shield.policies)
+
     @cached_property
     def connections(self) -> AsyncConnectionsWithRawResponse:
         return AsyncConnectionsWithRawResponse(self._page_shield.connections)
 
     @cached_property
-    def policies(self) -> AsyncPoliciesWithRawResponse:
-        return AsyncPoliciesWithRawResponse(self._page_shield.policies)
+    def scripts(self) -> AsyncScriptsWithRawResponse:
+        return AsyncScriptsWithRawResponse(self._page_shield.scripts)
 
 
 class PageShieldWithStreamingResponse:
     def __init__(self, page_shield: PageShield) -> None:
         self._page_shield = page_shield
 
+        self.update = to_streamed_response_wrapper(
+            page_shield.update,
+        )
+        self.list = to_streamed_response_wrapper(
+            page_shield.list,
+        )
+
+    @cached_property
+    def policies(self) -> PoliciesWithStreamingResponse:
+        return PoliciesWithStreamingResponse(self._page_shield.policies)
+
     @cached_property
     def connections(self) -> ConnectionsWithStreamingResponse:
         return ConnectionsWithStreamingResponse(self._page_shield.connections)
 
     @cached_property
-    def policies(self) -> PoliciesWithStreamingResponse:
-        return PoliciesWithStreamingResponse(self._page_shield.policies)
+    def scripts(self) -> ScriptsWithStreamingResponse:
+        return ScriptsWithStreamingResponse(self._page_shield.scripts)
 
 
 class AsyncPageShieldWithStreamingResponse:
     def __init__(self, page_shield: AsyncPageShield) -> None:
         self._page_shield = page_shield
 
+        self.update = async_to_streamed_response_wrapper(
+            page_shield.update,
+        )
+        self.list = async_to_streamed_response_wrapper(
+            page_shield.list,
+        )
+
+    @cached_property
+    def policies(self) -> AsyncPoliciesWithStreamingResponse:
+        return AsyncPoliciesWithStreamingResponse(self._page_shield.policies)
+
     @cached_property
     def connections(self) -> AsyncConnectionsWithStreamingResponse:
         return AsyncConnectionsWithStreamingResponse(self._page_shield.connections)
 
     @cached_property
-    def policies(self) -> AsyncPoliciesWithStreamingResponse:
-        return AsyncPoliciesWithStreamingResponse(self._page_shield.policies)
+    def scripts(self) -> AsyncScriptsWithStreamingResponse:
+        return AsyncScriptsWithStreamingResponse(self._page_shield.scripts)

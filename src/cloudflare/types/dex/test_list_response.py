@@ -1,51 +1,64 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from typing import Optional, List
-
+from typing import List, Optional
 from typing_extensions import Literal
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
 from pydantic import Field as FieldInfo
+
 from ..._models import BaseModel
-from ...types import shared
 
 __all__ = [
     "TestListResponse",
-    "OverviewMetrics",
-    "Test",
-    "TestHTTPResults",
-    "TestHTTPResultsResourceFetchTime",
-    "TestHTTPResultsResourceFetchTimeHistory",
-    "TestHTTPResultsResourceFetchTimeHistoryTimePeriod",
-    "TestHTTPResultsResourceFetchTimeOverTime",
-    "TestHTTPResultsResourceFetchTimeOverTimeTimePeriod",
-    "TestHTTPResultsResourceFetchTimeOverTimeValue",
-    "TestHTTPResultsByColo",
-    "TestHTTPResultsByColoResourceFetchTime",
-    "TestHTTPResultsByColoResourceFetchTimeHistory",
-    "TestHTTPResultsByColoResourceFetchTimeHistoryTimePeriod",
-    "TestHTTPResultsByColoResourceFetchTimeOverTime",
-    "TestHTTPResultsByColoResourceFetchTimeOverTimeTimePeriod",
-    "TestHTTPResultsByColoResourceFetchTimeOverTimeValue",
-    "TestTracerouteResults",
-    "TestTracerouteResultsRoundTripTime",
-    "TestTracerouteResultsRoundTripTimeHistory",
-    "TestTracerouteResultsRoundTripTimeHistoryTimePeriod",
-    "TestTracerouteResultsRoundTripTimeOverTime",
-    "TestTracerouteResultsRoundTripTimeOverTimeTimePeriod",
-    "TestTracerouteResultsRoundTripTimeOverTimeValue",
-    "TestTracerouteResultsByColo",
-    "TestTracerouteResultsByColoRoundTripTime",
-    "TestTracerouteResultsByColoRoundTripTimeHistory",
-    "TestTracerouteResultsByColoRoundTripTimeHistoryTimePeriod",
-    "TestTracerouteResultsByColoRoundTripTimeOverTime",
-    "TestTracerouteResultsByColoRoundTripTimeOverTimeTimePeriod",
-    "TestTracerouteResultsByColoRoundTripTimeOverTimeValue",
+    "Error",
+    "Message",
+    "Result",
+    "ResultOverviewMetrics",
+    "ResultTest",
+    "ResultTestHTTPResults",
+    "ResultTestHTTPResultsResourceFetchTime",
+    "ResultTestHTTPResultsResourceFetchTimeHistory",
+    "ResultTestHTTPResultsResourceFetchTimeHistoryTimePeriod",
+    "ResultTestHTTPResultsResourceFetchTimeOverTime",
+    "ResultTestHTTPResultsResourceFetchTimeOverTimeTimePeriod",
+    "ResultTestHTTPResultsResourceFetchTimeOverTimeValue",
+    "ResultTestHTTPResultsByColo",
+    "ResultTestHTTPResultsByColoResourceFetchTime",
+    "ResultTestHTTPResultsByColoResourceFetchTimeHistory",
+    "ResultTestHTTPResultsByColoResourceFetchTimeHistoryTimePeriod",
+    "ResultTestHTTPResultsByColoResourceFetchTimeOverTime",
+    "ResultTestHTTPResultsByColoResourceFetchTimeOverTimeTimePeriod",
+    "ResultTestHTTPResultsByColoResourceFetchTimeOverTimeValue",
+    "ResultTestTracerouteResults",
+    "ResultTestTracerouteResultsRoundTripTime",
+    "ResultTestTracerouteResultsRoundTripTimeHistory",
+    "ResultTestTracerouteResultsRoundTripTimeHistoryTimePeriod",
+    "ResultTestTracerouteResultsRoundTripTimeOverTime",
+    "ResultTestTracerouteResultsRoundTripTimeOverTimeTimePeriod",
+    "ResultTestTracerouteResultsRoundTripTimeOverTimeValue",
+    "ResultTestTracerouteResultsByColo",
+    "ResultTestTracerouteResultsByColoRoundTripTime",
+    "ResultTestTracerouteResultsByColoRoundTripTimeHistory",
+    "ResultTestTracerouteResultsByColoRoundTripTimeHistoryTimePeriod",
+    "ResultTestTracerouteResultsByColoRoundTripTimeOverTime",
+    "ResultTestTracerouteResultsByColoRoundTripTimeOverTimeTimePeriod",
+    "ResultTestTracerouteResultsByColoRoundTripTimeOverTimeValue",
+    "ResultInfo",
 ]
 
 
-class OverviewMetrics(BaseModel):
+class Error(BaseModel):
+    code: int
+
+    message: str
+
+
+class Message(BaseModel):
+    code: int
+
+    message: str
+
+
+class ResultOverviewMetrics(BaseModel):
     tests_total: int = FieldInfo(alias="testsTotal")
     """number of tests."""
 
@@ -53,218 +66,193 @@ class OverviewMetrics(BaseModel):
     """percentage availability for all traceroutes results in response"""
 
 
-class TestHTTPResultsResourceFetchTimeHistoryTimePeriod(BaseModel):
-    __test__ = False
+class ResultTestHTTPResultsResourceFetchTimeHistoryTimePeriod(BaseModel):
     units: Literal["hours", "days", "testRuns"]
 
     value: int
 
 
-class TestHTTPResultsResourceFetchTimeHistory(BaseModel):
-    __test__ = False
-    time_period: TestHTTPResultsResourceFetchTimeHistoryTimePeriod = FieldInfo(alias="timePeriod")
+class ResultTestHTTPResultsResourceFetchTimeHistory(BaseModel):
+    time_period: ResultTestHTTPResultsResourceFetchTimeHistoryTimePeriod = FieldInfo(alias="timePeriod")
 
     avg_ms: Optional[int] = FieldInfo(alias="avgMs", default=None)
 
     delta_pct: Optional[float] = FieldInfo(alias="deltaPct", default=None)
 
 
-class TestHTTPResultsResourceFetchTimeOverTimeTimePeriod(BaseModel):
-    __test__ = False
+class ResultTestHTTPResultsResourceFetchTimeOverTimeTimePeriod(BaseModel):
     units: Literal["hours", "days", "testRuns"]
 
     value: int
 
 
-class TestHTTPResultsResourceFetchTimeOverTimeValue(BaseModel):
-    __test__ = False
+class ResultTestHTTPResultsResourceFetchTimeOverTimeValue(BaseModel):
     avg_ms: int = FieldInfo(alias="avgMs")
 
     timestamp: str
 
 
-class TestHTTPResultsResourceFetchTimeOverTime(BaseModel):
-    __test__ = False
-    time_period: TestHTTPResultsResourceFetchTimeOverTimeTimePeriod = FieldInfo(alias="timePeriod")
+class ResultTestHTTPResultsResourceFetchTimeOverTime(BaseModel):
+    time_period: ResultTestHTTPResultsResourceFetchTimeOverTimeTimePeriod = FieldInfo(alias="timePeriod")
 
-    values: List[TestHTTPResultsResourceFetchTimeOverTimeValue]
+    values: List[ResultTestHTTPResultsResourceFetchTimeOverTimeValue]
 
 
-class TestHTTPResultsResourceFetchTime(BaseModel):
-    __test__ = False
-    history: List[TestHTTPResultsResourceFetchTimeHistory]
+class ResultTestHTTPResultsResourceFetchTime(BaseModel):
+    history: List[ResultTestHTTPResultsResourceFetchTimeHistory]
 
     avg_ms: Optional[int] = FieldInfo(alias="avgMs", default=None)
 
-    over_time: Optional[TestHTTPResultsResourceFetchTimeOverTime] = FieldInfo(alias="overTime", default=None)
+    over_time: Optional[ResultTestHTTPResultsResourceFetchTimeOverTime] = FieldInfo(alias="overTime", default=None)
 
 
-class TestHTTPResults(BaseModel):
-    __test__ = False
-    resource_fetch_time: TestHTTPResultsResourceFetchTime = FieldInfo(alias="resourceFetchTime")
+class ResultTestHTTPResults(BaseModel):
+    resource_fetch_time: ResultTestHTTPResultsResourceFetchTime = FieldInfo(alias="resourceFetchTime")
 
 
-class TestHTTPResultsByColoResourceFetchTimeHistoryTimePeriod(BaseModel):
-    __test__ = False
+class ResultTestHTTPResultsByColoResourceFetchTimeHistoryTimePeriod(BaseModel):
     units: Literal["hours", "days", "testRuns"]
 
     value: int
 
 
-class TestHTTPResultsByColoResourceFetchTimeHistory(BaseModel):
-    __test__ = False
-    time_period: TestHTTPResultsByColoResourceFetchTimeHistoryTimePeriod = FieldInfo(alias="timePeriod")
+class ResultTestHTTPResultsByColoResourceFetchTimeHistory(BaseModel):
+    time_period: ResultTestHTTPResultsByColoResourceFetchTimeHistoryTimePeriod = FieldInfo(alias="timePeriod")
 
     avg_ms: Optional[int] = FieldInfo(alias="avgMs", default=None)
 
     delta_pct: Optional[float] = FieldInfo(alias="deltaPct", default=None)
 
 
-class TestHTTPResultsByColoResourceFetchTimeOverTimeTimePeriod(BaseModel):
-    __test__ = False
+class ResultTestHTTPResultsByColoResourceFetchTimeOverTimeTimePeriod(BaseModel):
     units: Literal["hours", "days", "testRuns"]
 
     value: int
 
 
-class TestHTTPResultsByColoResourceFetchTimeOverTimeValue(BaseModel):
-    __test__ = False
+class ResultTestHTTPResultsByColoResourceFetchTimeOverTimeValue(BaseModel):
     avg_ms: int = FieldInfo(alias="avgMs")
 
     timestamp: str
 
 
-class TestHTTPResultsByColoResourceFetchTimeOverTime(BaseModel):
-    __test__ = False
-    time_period: TestHTTPResultsByColoResourceFetchTimeOverTimeTimePeriod = FieldInfo(alias="timePeriod")
+class ResultTestHTTPResultsByColoResourceFetchTimeOverTime(BaseModel):
+    time_period: ResultTestHTTPResultsByColoResourceFetchTimeOverTimeTimePeriod = FieldInfo(alias="timePeriod")
 
-    values: List[TestHTTPResultsByColoResourceFetchTimeOverTimeValue]
+    values: List[ResultTestHTTPResultsByColoResourceFetchTimeOverTimeValue]
 
 
-class TestHTTPResultsByColoResourceFetchTime(BaseModel):
-    __test__ = False
-    history: List[TestHTTPResultsByColoResourceFetchTimeHistory]
+class ResultTestHTTPResultsByColoResourceFetchTime(BaseModel):
+    history: List[ResultTestHTTPResultsByColoResourceFetchTimeHistory]
 
     avg_ms: Optional[int] = FieldInfo(alias="avgMs", default=None)
 
-    over_time: Optional[TestHTTPResultsByColoResourceFetchTimeOverTime] = FieldInfo(alias="overTime", default=None)
+    over_time: Optional[ResultTestHTTPResultsByColoResourceFetchTimeOverTime] = FieldInfo(
+        alias="overTime", default=None
+    )
 
 
-class TestHTTPResultsByColo(BaseModel):
-    __test__ = False
+class ResultTestHTTPResultsByColo(BaseModel):
     colo: str
     """Cloudflare colo"""
 
-    resource_fetch_time: TestHTTPResultsByColoResourceFetchTime = FieldInfo(alias="resourceFetchTime")
+    resource_fetch_time: ResultTestHTTPResultsByColoResourceFetchTime = FieldInfo(alias="resourceFetchTime")
 
 
-class TestTracerouteResultsRoundTripTimeHistoryTimePeriod(BaseModel):
-    __test__ = False
+class ResultTestTracerouteResultsRoundTripTimeHistoryTimePeriod(BaseModel):
     units: Literal["hours", "days", "testRuns"]
 
     value: int
 
 
-class TestTracerouteResultsRoundTripTimeHistory(BaseModel):
-    __test__ = False
-    time_period: TestTracerouteResultsRoundTripTimeHistoryTimePeriod = FieldInfo(alias="timePeriod")
+class ResultTestTracerouteResultsRoundTripTimeHistory(BaseModel):
+    time_period: ResultTestTracerouteResultsRoundTripTimeHistoryTimePeriod = FieldInfo(alias="timePeriod")
 
     avg_ms: Optional[int] = FieldInfo(alias="avgMs", default=None)
 
     delta_pct: Optional[float] = FieldInfo(alias="deltaPct", default=None)
 
 
-class TestTracerouteResultsRoundTripTimeOverTimeTimePeriod(BaseModel):
-    __test__ = False
+class ResultTestTracerouteResultsRoundTripTimeOverTimeTimePeriod(BaseModel):
     units: Literal["hours", "days", "testRuns"]
 
     value: int
 
 
-class TestTracerouteResultsRoundTripTimeOverTimeValue(BaseModel):
-    __test__ = False
+class ResultTestTracerouteResultsRoundTripTimeOverTimeValue(BaseModel):
     avg_ms: int = FieldInfo(alias="avgMs")
 
     timestamp: str
 
 
-class TestTracerouteResultsRoundTripTimeOverTime(BaseModel):
-    __test__ = False
-    time_period: TestTracerouteResultsRoundTripTimeOverTimeTimePeriod = FieldInfo(alias="timePeriod")
+class ResultTestTracerouteResultsRoundTripTimeOverTime(BaseModel):
+    time_period: ResultTestTracerouteResultsRoundTripTimeOverTimeTimePeriod = FieldInfo(alias="timePeriod")
 
-    values: List[TestTracerouteResultsRoundTripTimeOverTimeValue]
+    values: List[ResultTestTracerouteResultsRoundTripTimeOverTimeValue]
 
 
-class TestTracerouteResultsRoundTripTime(BaseModel):
-    __test__ = False
-    history: List[TestTracerouteResultsRoundTripTimeHistory]
+class ResultTestTracerouteResultsRoundTripTime(BaseModel):
+    history: List[ResultTestTracerouteResultsRoundTripTimeHistory]
 
     avg_ms: Optional[int] = FieldInfo(alias="avgMs", default=None)
 
-    over_time: Optional[TestTracerouteResultsRoundTripTimeOverTime] = FieldInfo(alias="overTime", default=None)
+    over_time: Optional[ResultTestTracerouteResultsRoundTripTimeOverTime] = FieldInfo(alias="overTime", default=None)
 
 
-class TestTracerouteResults(BaseModel):
-    __test__ = False
-    round_trip_time: TestTracerouteResultsRoundTripTime = FieldInfo(alias="roundTripTime")
+class ResultTestTracerouteResults(BaseModel):
+    round_trip_time: ResultTestTracerouteResultsRoundTripTime = FieldInfo(alias="roundTripTime")
 
 
-class TestTracerouteResultsByColoRoundTripTimeHistoryTimePeriod(BaseModel):
-    __test__ = False
+class ResultTestTracerouteResultsByColoRoundTripTimeHistoryTimePeriod(BaseModel):
     units: Literal["hours", "days", "testRuns"]
 
     value: int
 
 
-class TestTracerouteResultsByColoRoundTripTimeHistory(BaseModel):
-    __test__ = False
-    time_period: TestTracerouteResultsByColoRoundTripTimeHistoryTimePeriod = FieldInfo(alias="timePeriod")
+class ResultTestTracerouteResultsByColoRoundTripTimeHistory(BaseModel):
+    time_period: ResultTestTracerouteResultsByColoRoundTripTimeHistoryTimePeriod = FieldInfo(alias="timePeriod")
 
     avg_ms: Optional[int] = FieldInfo(alias="avgMs", default=None)
 
     delta_pct: Optional[float] = FieldInfo(alias="deltaPct", default=None)
 
 
-class TestTracerouteResultsByColoRoundTripTimeOverTimeTimePeriod(BaseModel):
-    __test__ = False
+class ResultTestTracerouteResultsByColoRoundTripTimeOverTimeTimePeriod(BaseModel):
     units: Literal["hours", "days", "testRuns"]
 
     value: int
 
 
-class TestTracerouteResultsByColoRoundTripTimeOverTimeValue(BaseModel):
-    __test__ = False
+class ResultTestTracerouteResultsByColoRoundTripTimeOverTimeValue(BaseModel):
     avg_ms: int = FieldInfo(alias="avgMs")
 
     timestamp: str
 
 
-class TestTracerouteResultsByColoRoundTripTimeOverTime(BaseModel):
-    __test__ = False
-    time_period: TestTracerouteResultsByColoRoundTripTimeOverTimeTimePeriod = FieldInfo(alias="timePeriod")
+class ResultTestTracerouteResultsByColoRoundTripTimeOverTime(BaseModel):
+    time_period: ResultTestTracerouteResultsByColoRoundTripTimeOverTimeTimePeriod = FieldInfo(alias="timePeriod")
 
-    values: List[TestTracerouteResultsByColoRoundTripTimeOverTimeValue]
+    values: List[ResultTestTracerouteResultsByColoRoundTripTimeOverTimeValue]
 
 
-class TestTracerouteResultsByColoRoundTripTime(BaseModel):
-    __test__ = False
-    history: List[TestTracerouteResultsByColoRoundTripTimeHistory]
+class ResultTestTracerouteResultsByColoRoundTripTime(BaseModel):
+    history: List[ResultTestTracerouteResultsByColoRoundTripTimeHistory]
 
     avg_ms: Optional[int] = FieldInfo(alias="avgMs", default=None)
 
-    over_time: Optional[TestTracerouteResultsByColoRoundTripTimeOverTime] = FieldInfo(alias="overTime", default=None)
+    over_time: Optional[ResultTestTracerouteResultsByColoRoundTripTimeOverTime] = FieldInfo(
+        alias="overTime", default=None
+    )
 
 
-class TestTracerouteResultsByColo(BaseModel):
-    __test__ = False
+class ResultTestTracerouteResultsByColo(BaseModel):
     colo: str
     """Cloudflare colo"""
 
-    round_trip_time: TestTracerouteResultsByColoRoundTripTime = FieldInfo(alias="roundTripTime")
+    round_trip_time: ResultTestTracerouteResultsByColoRoundTripTime = FieldInfo(alias="roundTripTime")
 
 
-class Test(BaseModel):
-    __test__ = False
+class ResultTest(BaseModel):
     id: str
     """API Resource UUID tag."""
 
@@ -293,23 +281,52 @@ class Test(BaseModel):
 
     updated: str
 
-    http_results: Optional[TestHTTPResults] = FieldInfo(alias="httpResults", default=None)
+    http_results: Optional[ResultTestHTTPResults] = FieldInfo(alias="httpResults", default=None)
 
-    http_results_by_colo: Optional[List[TestHTTPResultsByColo]] = FieldInfo(alias="httpResultsByColo", default=None)
+    http_results_by_colo: Optional[List[ResultTestHTTPResultsByColo]] = FieldInfo(
+        alias="httpResultsByColo", default=None
+    )
 
     method: Optional[str] = None
     """for HTTP, the method to use when running the test"""
 
-    traceroute_results: Optional[TestTracerouteResults] = FieldInfo(alias="tracerouteResults", default=None)
+    traceroute_results: Optional[ResultTestTracerouteResults] = FieldInfo(alias="tracerouteResults", default=None)
 
-    traceroute_results_by_colo: Optional[List[TestTracerouteResultsByColo]] = FieldInfo(
+    traceroute_results_by_colo: Optional[List[ResultTestTracerouteResultsByColo]] = FieldInfo(
         alias="tracerouteResultsByColo", default=None
     )
 
 
+class Result(BaseModel):
+    overview_metrics: ResultOverviewMetrics = FieldInfo(alias="overviewMetrics")
+
+    tests: List[ResultTest]
+    """array of test results objects."""
+
+
+class ResultInfo(BaseModel):
+    count: Optional[float] = None
+    """Total number of results for the requested service"""
+
+    page: Optional[float] = None
+    """Current page within paginated list of results"""
+
+    per_page: Optional[float] = None
+    """Number of results per page of results"""
+
+    total_count: Optional[float] = None
+    """Total results available without any search parameters"""
+
+
 class TestListResponse(BaseModel):
     __test__ = False
-    overview_metrics: OverviewMetrics = FieldInfo(alias="overviewMetrics")
+    errors: List[Error]
 
-    tests: List[Test]
-    """array of test results objects."""
+    messages: List[Message]
+
+    result: Result
+
+    success: Literal[True]
+    """Whether the API call was successful"""
+
+    result_info: Optional[ResultInfo] = None

@@ -2,19 +2,14 @@
 
 from __future__ import annotations
 
-from typing import Optional, Any, cast
-
-from cloudflare.types.settings import ChallengeTTLUpdateResponse, ChallengeTTLGetResponse
-
 import os
+from typing import Any, Optional, cast
+
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.settings import challenge_ttl_update_params
+from cloudflare.types.settings import ChallengeTTLGetResponse, ChallengeTTLEditResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -24,17 +19,17 @@ class TestChallengeTTL:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_update(self, client: Cloudflare) -> None:
-        challenge_ttl = client.settings.challenge_ttl.update(
+    def test_method_edit(self, client: Cloudflare) -> None:
+        challenge_ttl = client.settings.challenge_ttl.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
             value=300,
         )
-        assert_matches_type(Optional[ChallengeTTLUpdateResponse], challenge_ttl, path=["response"])
+        assert_matches_type(Optional[ChallengeTTLEditResponse], challenge_ttl, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_update(self, client: Cloudflare) -> None:
-        response = client.settings.challenge_ttl.with_raw_response.update(
+    def test_raw_response_edit(self, client: Cloudflare) -> None:
+        response = client.settings.challenge_ttl.with_raw_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
             value=300,
         )
@@ -42,12 +37,12 @@ class TestChallengeTTL:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         challenge_ttl = response.parse()
-        assert_matches_type(Optional[ChallengeTTLUpdateResponse], challenge_ttl, path=["response"])
+        assert_matches_type(Optional[ChallengeTTLEditResponse], challenge_ttl, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_update(self, client: Cloudflare) -> None:
-        with client.settings.challenge_ttl.with_streaming_response.update(
+    def test_streaming_response_edit(self, client: Cloudflare) -> None:
+        with client.settings.challenge_ttl.with_streaming_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
             value=300,
         ) as response:
@@ -55,15 +50,15 @@ class TestChallengeTTL:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             challenge_ttl = response.parse()
-            assert_matches_type(Optional[ChallengeTTLUpdateResponse], challenge_ttl, path=["response"])
+            assert_matches_type(Optional[ChallengeTTLEditResponse], challenge_ttl, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_update(self, client: Cloudflare) -> None:
+    def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.settings.challenge_ttl.with_raw_response.update(
+            client.settings.challenge_ttl.with_raw_response.edit(
                 "",
                 value=300,
             )
@@ -116,17 +111,17 @@ class TestAsyncChallengeTTL:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_update(self, async_client: AsyncCloudflare) -> None:
-        challenge_ttl = await async_client.settings.challenge_ttl.update(
+    async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
+        challenge_ttl = await async_client.settings.challenge_ttl.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
             value=300,
         )
-        assert_matches_type(Optional[ChallengeTTLUpdateResponse], challenge_ttl, path=["response"])
+        assert_matches_type(Optional[ChallengeTTLEditResponse], challenge_ttl, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.settings.challenge_ttl.with_raw_response.update(
+    async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.settings.challenge_ttl.with_raw_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
             value=300,
         )
@@ -134,12 +129,12 @@ class TestAsyncChallengeTTL:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         challenge_ttl = await response.parse()
-        assert_matches_type(Optional[ChallengeTTLUpdateResponse], challenge_ttl, path=["response"])
+        assert_matches_type(Optional[ChallengeTTLEditResponse], challenge_ttl, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.settings.challenge_ttl.with_streaming_response.update(
+    async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.settings.challenge_ttl.with_streaming_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
             value=300,
         ) as response:
@@ -147,15 +142,15 @@ class TestAsyncChallengeTTL:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             challenge_ttl = await response.parse()
-            assert_matches_type(Optional[ChallengeTTLUpdateResponse], challenge_ttl, path=["response"])
+            assert_matches_type(Optional[ChallengeTTLEditResponse], challenge_ttl, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
+    async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.settings.challenge_ttl.with_raw_response.update(
+            await async_client.settings.challenge_ttl.with_raw_response.edit(
                 "",
                 value=300,
             )

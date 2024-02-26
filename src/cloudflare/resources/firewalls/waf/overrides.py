@@ -2,56 +2,36 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+
 import httpx
 
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import maybe_transform
 from ...._compat import cached_property
-
-from ....types.firewalls.waf import (
-    OverrideUpdateResponse,
-    OverrideDeleteResponse,
-    OverrideGetResponse,
-    OverrideWAFOverridesCreateAWAFOverrideResponse,
-    OverrideWAFOverridesListWAFOverridesResponse,
-)
-
-from typing import Type, Optional
-
+from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._wrappers import ResultWrapper
+from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ...._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
     AsyncPaginator,
     make_request_options,
-    HttpxBinaryResponseContent,
 )
-from ....types import shared_params
-from ....types.firewalls.waf import override_update_params
-from ....types.firewalls.waf import override_waf_overrides_create_a_waf_override_params
-from ....types.firewalls.waf import override_waf_overrides_list_waf_overrides_params
-from ...._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ....types.firewalls.waf import (
+    OverrideGetResponse,
+    OverrideListResponse,
+    OverrideCreateResponse,
+    OverrideDeleteResponse,
+    OverrideUpdateResponse,
+    override_list_params,
+    override_create_params,
+    override_update_params,
+)
 
 __all__ = ["Overrides", "AsyncOverrides"]
 
@@ -64,6 +44,50 @@ class Overrides(SyncAPIResource):
     @cached_property
     def with_streaming_response(self) -> OverridesWithStreamingResponse:
         return OverridesWithStreamingResponse(self)
+
+    def create(
+        self,
+        zone_identifier: str,
+        *,
+        body: object,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[OverrideCreateResponse]:
+        """
+        Creates a URI-based WAF override for a zone.
+
+        **Note:** Applies only to the
+        [previous version of WAF managed rules](https://developers.cloudflare.com/support/firewall/managed-rules-web-application-firewall-waf/understanding-waf-managed-rules-web-application-firewall/).
+
+        Args:
+          zone_identifier: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_identifier:
+            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        return self._post(
+            f"/zones/{zone_identifier}/firewall/waf/overrides",
+            body=maybe_transform(body, override_create_params.OverrideCreateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[OverrideCreateResponse]], ResultWrapper[OverrideCreateResponse]),
+        )
 
     def update(
         self,
@@ -112,6 +136,61 @@ class Overrides(SyncAPIResource):
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(Type[Optional[OverrideUpdateResponse]], ResultWrapper[OverrideUpdateResponse]),
+        )
+
+    def list(
+        self,
+        zone_identifier: str,
+        *,
+        page: float | NotGiven = NOT_GIVEN,
+        per_page: float | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SyncV4PagePaginationArray[OverrideListResponse]:
+        """
+        Fetches the URI-based WAF overrides in a zone.
+
+        **Note:** Applies only to the
+        [previous version of WAF managed rules](https://developers.cloudflare.com/support/firewall/managed-rules-web-application-firewall-waf/understanding-waf-managed-rules-web-application-firewall/).
+
+        Args:
+          zone_identifier: Identifier
+
+          page: The page number of paginated results.
+
+          per_page: The number of WAF overrides per page.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_identifier:
+            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        return self._get_api_list(
+            f"/zones/{zone_identifier}/firewall/waf/overrides",
+            page=SyncV4PagePaginationArray[OverrideListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    override_list_params.OverrideListParams,
+                ),
+            ),
+            model=OverrideListResponse,
         )
 
     def delete(
@@ -208,7 +287,17 @@ class Overrides(SyncAPIResource):
             cast_to=cast(Type[Optional[OverrideGetResponse]], ResultWrapper[OverrideGetResponse]),
         )
 
-    def waf_overrides_create_a_waf_override(
+
+class AsyncOverrides(AsyncAPIResource):
+    @cached_property
+    def with_raw_response(self) -> AsyncOverridesWithRawResponse:
+        return AsyncOverridesWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncOverridesWithStreamingResponse:
+        return AsyncOverridesWithStreamingResponse(self)
+
+    async def create(
         self,
         zone_identifier: str,
         *,
@@ -219,7 +308,7 @@ class Overrides(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[OverrideWAFOverridesCreateAWAFOverrideResponse]:
+    ) -> Optional[OverrideCreateResponse]:
         """
         Creates a URI-based WAF override for a zone.
 
@@ -239,11 +328,9 @@ class Overrides(SyncAPIResource):
         """
         if not zone_identifier:
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        return self._post(
+        return await self._post(
             f"/zones/{zone_identifier}/firewall/waf/overrides",
-            body=maybe_transform(
-                body, override_waf_overrides_create_a_waf_override_params.OverrideWAFOverridesCreateAWAFOverrideParams
-            ),
+            body=maybe_transform(body, override_create_params.OverrideCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -251,79 +338,8 @@ class Overrides(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[OverrideWAFOverridesCreateAWAFOverrideResponse]],
-                ResultWrapper[OverrideWAFOverridesCreateAWAFOverrideResponse],
-            ),
+            cast_to=cast(Type[Optional[OverrideCreateResponse]], ResultWrapper[OverrideCreateResponse]),
         )
-
-    def waf_overrides_list_waf_overrides(
-        self,
-        zone_identifier: str,
-        *,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[OverrideWAFOverridesListWAFOverridesResponse]:
-        """
-        Fetches the URI-based WAF overrides in a zone.
-
-        **Note:** Applies only to the
-        [previous version of WAF managed rules](https://developers.cloudflare.com/support/firewall/managed-rules-web-application-firewall-waf/understanding-waf-managed-rules-web-application-firewall/).
-
-        Args:
-          zone_identifier: Identifier
-
-          page: The page number of paginated results.
-
-          per_page: The number of WAF overrides per page.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        return self._get(
-            f"/zones/{zone_identifier}/firewall/waf/overrides",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "page": page,
-                        "per_page": per_page,
-                    },
-                    override_waf_overrides_list_waf_overrides_params.OverrideWAFOverridesListWAFOverridesParams,
-                ),
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[Optional[OverrideWAFOverridesListWAFOverridesResponse]],
-                ResultWrapper[OverrideWAFOverridesListWAFOverridesResponse],
-            ),
-        )
-
-
-class AsyncOverrides(AsyncAPIResource):
-    @cached_property
-    def with_raw_response(self) -> AsyncOverridesWithRawResponse:
-        return AsyncOverridesWithRawResponse(self)
-
-    @cached_property
-    def with_streaming_response(self) -> AsyncOverridesWithStreamingResponse:
-        return AsyncOverridesWithStreamingResponse(self)
 
     async def update(
         self,
@@ -372,6 +388,61 @@ class AsyncOverrides(AsyncAPIResource):
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(Type[Optional[OverrideUpdateResponse]], ResultWrapper[OverrideUpdateResponse]),
+        )
+
+    def list(
+        self,
+        zone_identifier: str,
+        *,
+        page: float | NotGiven = NOT_GIVEN,
+        per_page: float | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AsyncPaginator[OverrideListResponse, AsyncV4PagePaginationArray[OverrideListResponse]]:
+        """
+        Fetches the URI-based WAF overrides in a zone.
+
+        **Note:** Applies only to the
+        [previous version of WAF managed rules](https://developers.cloudflare.com/support/firewall/managed-rules-web-application-firewall-waf/understanding-waf-managed-rules-web-application-firewall/).
+
+        Args:
+          zone_identifier: Identifier
+
+          page: The page number of paginated results.
+
+          per_page: The number of WAF overrides per page.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_identifier:
+            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        return self._get_api_list(
+            f"/zones/{zone_identifier}/firewall/waf/overrides",
+            page=AsyncV4PagePaginationArray[OverrideListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    override_list_params.OverrideListParams,
+                ),
+            ),
+            model=OverrideListResponse,
         )
 
     async def delete(
@@ -468,120 +539,19 @@ class AsyncOverrides(AsyncAPIResource):
             cast_to=cast(Type[Optional[OverrideGetResponse]], ResultWrapper[OverrideGetResponse]),
         )
 
-    async def waf_overrides_create_a_waf_override(
-        self,
-        zone_identifier: str,
-        *,
-        body: object,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[OverrideWAFOverridesCreateAWAFOverrideResponse]:
-        """
-        Creates a URI-based WAF override for a zone.
-
-        **Note:** Applies only to the
-        [previous version of WAF managed rules](https://developers.cloudflare.com/support/firewall/managed-rules-web-application-firewall-waf/understanding-waf-managed-rules-web-application-firewall/).
-
-        Args:
-          zone_identifier: Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        return await self._post(
-            f"/zones/{zone_identifier}/firewall/waf/overrides",
-            body=maybe_transform(
-                body, override_waf_overrides_create_a_waf_override_params.OverrideWAFOverridesCreateAWAFOverrideParams
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[Optional[OverrideWAFOverridesCreateAWAFOverrideResponse]],
-                ResultWrapper[OverrideWAFOverridesCreateAWAFOverrideResponse],
-            ),
-        )
-
-    async def waf_overrides_list_waf_overrides(
-        self,
-        zone_identifier: str,
-        *,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[OverrideWAFOverridesListWAFOverridesResponse]:
-        """
-        Fetches the URI-based WAF overrides in a zone.
-
-        **Note:** Applies only to the
-        [previous version of WAF managed rules](https://developers.cloudflare.com/support/firewall/managed-rules-web-application-firewall-waf/understanding-waf-managed-rules-web-application-firewall/).
-
-        Args:
-          zone_identifier: Identifier
-
-          page: The page number of paginated results.
-
-          per_page: The number of WAF overrides per page.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        return await self._get(
-            f"/zones/{zone_identifier}/firewall/waf/overrides",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "page": page,
-                        "per_page": per_page,
-                    },
-                    override_waf_overrides_list_waf_overrides_params.OverrideWAFOverridesListWAFOverridesParams,
-                ),
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[Optional[OverrideWAFOverridesListWAFOverridesResponse]],
-                ResultWrapper[OverrideWAFOverridesListWAFOverridesResponse],
-            ),
-        )
-
 
 class OverridesWithRawResponse:
     def __init__(self, overrides: Overrides) -> None:
         self._overrides = overrides
 
+        self.create = to_raw_response_wrapper(
+            overrides.create,
+        )
         self.update = to_raw_response_wrapper(
             overrides.update,
+        )
+        self.list = to_raw_response_wrapper(
+            overrides.list,
         )
         self.delete = to_raw_response_wrapper(
             overrides.delete,
@@ -589,20 +559,20 @@ class OverridesWithRawResponse:
         self.get = to_raw_response_wrapper(
             overrides.get,
         )
-        self.waf_overrides_create_a_waf_override = to_raw_response_wrapper(
-            overrides.waf_overrides_create_a_waf_override,
-        )
-        self.waf_overrides_list_waf_overrides = to_raw_response_wrapper(
-            overrides.waf_overrides_list_waf_overrides,
-        )
 
 
 class AsyncOverridesWithRawResponse:
     def __init__(self, overrides: AsyncOverrides) -> None:
         self._overrides = overrides
 
+        self.create = async_to_raw_response_wrapper(
+            overrides.create,
+        )
         self.update = async_to_raw_response_wrapper(
             overrides.update,
+        )
+        self.list = async_to_raw_response_wrapper(
+            overrides.list,
         )
         self.delete = async_to_raw_response_wrapper(
             overrides.delete,
@@ -610,20 +580,20 @@ class AsyncOverridesWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             overrides.get,
         )
-        self.waf_overrides_create_a_waf_override = async_to_raw_response_wrapper(
-            overrides.waf_overrides_create_a_waf_override,
-        )
-        self.waf_overrides_list_waf_overrides = async_to_raw_response_wrapper(
-            overrides.waf_overrides_list_waf_overrides,
-        )
 
 
 class OverridesWithStreamingResponse:
     def __init__(self, overrides: Overrides) -> None:
         self._overrides = overrides
 
+        self.create = to_streamed_response_wrapper(
+            overrides.create,
+        )
         self.update = to_streamed_response_wrapper(
             overrides.update,
+        )
+        self.list = to_streamed_response_wrapper(
+            overrides.list,
         )
         self.delete = to_streamed_response_wrapper(
             overrides.delete,
@@ -631,30 +601,24 @@ class OverridesWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             overrides.get,
         )
-        self.waf_overrides_create_a_waf_override = to_streamed_response_wrapper(
-            overrides.waf_overrides_create_a_waf_override,
-        )
-        self.waf_overrides_list_waf_overrides = to_streamed_response_wrapper(
-            overrides.waf_overrides_list_waf_overrides,
-        )
 
 
 class AsyncOverridesWithStreamingResponse:
     def __init__(self, overrides: AsyncOverrides) -> None:
         self._overrides = overrides
 
+        self.create = async_to_streamed_response_wrapper(
+            overrides.create,
+        )
         self.update = async_to_streamed_response_wrapper(
             overrides.update,
+        )
+        self.list = async_to_streamed_response_wrapper(
+            overrides.list,
         )
         self.delete = async_to_streamed_response_wrapper(
             overrides.delete,
         )
         self.get = async_to_streamed_response_wrapper(
             overrides.get,
-        )
-        self.waf_overrides_create_a_waf_override = async_to_streamed_response_wrapper(
-            overrides.waf_overrides_create_a_waf_override,
-        )
-        self.waf_overrides_list_waf_overrides = async_to_streamed_response_wrapper(
-            overrides.waf_overrides_list_waf_overrides,
         )

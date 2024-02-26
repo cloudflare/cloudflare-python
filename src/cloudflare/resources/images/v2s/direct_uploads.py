@@ -2,42 +2,26 @@
 
 from __future__ import annotations
 
-import httpx
-
-from ...._compat import cached_property
-
-from ....types.images.v2s import DirectUploadCloudflareImagesCreateAuthenticatedDirectUploadURLV2Response
-
-from typing import Type, Union
-
+from typing import Type, Union, cast
 from datetime import datetime
 
+import httpx
+
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import maybe_transform
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ....types import shared_params
-from ....types.images.v2s import direct_upload_cloudflare_images_create_authenticated_direct_upload_url_v_2_params
 from ...._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
+from ...._base_client import (
+    make_request_options,
+)
+from ....types.images.v2s import DirectUploadCreateResponse, direct_upload_create_params
 
 __all__ = ["DirectUploads", "AsyncDirectUploads"]
 
@@ -51,7 +35,7 @@ class DirectUploads(SyncAPIResource):
     def with_streaming_response(self) -> DirectUploadsWithStreamingResponse:
         return DirectUploadsWithStreamingResponse(self)
 
-    def cloudflare_images_create_authenticated_direct_upload_url_v_2(
+    def create(
         self,
         account_id: str,
         *,
@@ -64,7 +48,7 @@ class DirectUploads(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DirectUploadCloudflareImagesCreateAuthenticatedDirectUploadURLV2Response:
+    ) -> DirectUploadCreateResponse:
         """Direct uploads allow users to upload images without API keys.
 
         A common use case
@@ -104,7 +88,7 @@ class DirectUploads(SyncAPIResource):
                     "metadata": metadata,
                     "require_signed_urls": require_signed_urls,
                 },
-                direct_upload_cloudflare_images_create_authenticated_direct_upload_url_v_2_params.DirectUploadCloudflareImagesCreateAuthenticatedDirectUploadURLV2Params,
+                direct_upload_create_params.DirectUploadCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -113,10 +97,7 @@ class DirectUploads(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[DirectUploadCloudflareImagesCreateAuthenticatedDirectUploadURLV2Response],
-                ResultWrapper[DirectUploadCloudflareImagesCreateAuthenticatedDirectUploadURLV2Response],
-            ),
+            cast_to=cast(Type[DirectUploadCreateResponse], ResultWrapper[DirectUploadCreateResponse]),
         )
 
 
@@ -129,7 +110,7 @@ class AsyncDirectUploads(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncDirectUploadsWithStreamingResponse:
         return AsyncDirectUploadsWithStreamingResponse(self)
 
-    async def cloudflare_images_create_authenticated_direct_upload_url_v_2(
+    async def create(
         self,
         account_id: str,
         *,
@@ -142,7 +123,7 @@ class AsyncDirectUploads(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DirectUploadCloudflareImagesCreateAuthenticatedDirectUploadURLV2Response:
+    ) -> DirectUploadCreateResponse:
         """Direct uploads allow users to upload images without API keys.
 
         A common use case
@@ -182,7 +163,7 @@ class AsyncDirectUploads(AsyncAPIResource):
                     "metadata": metadata,
                     "require_signed_urls": require_signed_urls,
                 },
-                direct_upload_cloudflare_images_create_authenticated_direct_upload_url_v_2_params.DirectUploadCloudflareImagesCreateAuthenticatedDirectUploadURLV2Params,
+                direct_upload_create_params.DirectUploadCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -191,10 +172,7 @@ class AsyncDirectUploads(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[DirectUploadCloudflareImagesCreateAuthenticatedDirectUploadURLV2Response],
-                ResultWrapper[DirectUploadCloudflareImagesCreateAuthenticatedDirectUploadURLV2Response],
-            ),
+            cast_to=cast(Type[DirectUploadCreateResponse], ResultWrapper[DirectUploadCreateResponse]),
         )
 
 
@@ -202,8 +180,8 @@ class DirectUploadsWithRawResponse:
     def __init__(self, direct_uploads: DirectUploads) -> None:
         self._direct_uploads = direct_uploads
 
-        self.cloudflare_images_create_authenticated_direct_upload_url_v_2 = to_raw_response_wrapper(
-            direct_uploads.cloudflare_images_create_authenticated_direct_upload_url_v_2,
+        self.create = to_raw_response_wrapper(
+            direct_uploads.create,
         )
 
 
@@ -211,8 +189,8 @@ class AsyncDirectUploadsWithRawResponse:
     def __init__(self, direct_uploads: AsyncDirectUploads) -> None:
         self._direct_uploads = direct_uploads
 
-        self.cloudflare_images_create_authenticated_direct_upload_url_v_2 = async_to_raw_response_wrapper(
-            direct_uploads.cloudflare_images_create_authenticated_direct_upload_url_v_2,
+        self.create = async_to_raw_response_wrapper(
+            direct_uploads.create,
         )
 
 
@@ -220,8 +198,8 @@ class DirectUploadsWithStreamingResponse:
     def __init__(self, direct_uploads: DirectUploads) -> None:
         self._direct_uploads = direct_uploads
 
-        self.cloudflare_images_create_authenticated_direct_upload_url_v_2 = to_streamed_response_wrapper(
-            direct_uploads.cloudflare_images_create_authenticated_direct_upload_url_v_2,
+        self.create = to_streamed_response_wrapper(
+            direct_uploads.create,
         )
 
 
@@ -229,6 +207,6 @@ class AsyncDirectUploadsWithStreamingResponse:
     def __init__(self, direct_uploads: AsyncDirectUploads) -> None:
         self._direct_uploads = direct_uploads
 
-        self.cloudflare_images_create_authenticated_direct_upload_url_v_2 = async_to_streamed_response_wrapper(
-            direct_uploads.cloudflare_images_create_authenticated_direct_upload_url_v_2,
+        self.create = async_to_streamed_response_wrapper(
+            direct_uploads.create,
         )

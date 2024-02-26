@@ -2,49 +2,29 @@
 
 from __future__ import annotations
 
+from typing import Any, Type, Optional, cast
+
 import httpx
 
+from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ....._compat import cached_property
-
-from .....types.alerting.v3.destinations import (
-    PagerdutyCreateTokenResponse,
-    PagerdutyDeleteAllResponse,
-    PagerdutyLinkResponse,
-)
-
-from typing import Type, Optional
-
+from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ....._resource import SyncAPIResource, AsyncAPIResource
-from ....._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from .....types import shared_params
 from ....._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ....._base_client import (
+    make_request_options,
+)
+from .....types.alerting.v3.destinations import (
+    PagerdutyGetResponse,
+    PagerdutyLinkResponse,
+    PagerdutyCreateResponse,
+    PagerdutyDeleteResponse,
+)
 
 __all__ = ["Pagerduty", "AsyncPagerduty"]
 
@@ -58,7 +38,7 @@ class Pagerduty(SyncAPIResource):
     def with_streaming_response(self) -> PagerdutyWithStreamingResponse:
         return PagerdutyWithStreamingResponse(self)
 
-    def create_token(
+    def create(
         self,
         account_id: str,
         *,
@@ -68,7 +48,7 @@ class Pagerduty(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PagerdutyCreateTokenResponse:
+    ) -> PagerdutyCreateResponse:
         """
         Creates a new token for integrating with PagerDuty.
 
@@ -94,10 +74,10 @@ class Pagerduty(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[PagerdutyCreateTokenResponse], ResultWrapper[PagerdutyCreateTokenResponse]),
+            cast_to=cast(Type[PagerdutyCreateResponse], ResultWrapper[PagerdutyCreateResponse]),
         )
 
-    def delete_all(
+    def delete(
         self,
         account_id: str,
         *,
@@ -107,7 +87,7 @@ class Pagerduty(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PagerdutyDeleteAllResponse]:
+    ) -> Optional[PagerdutyDeleteResponse]:
         """
         Deletes all the PagerDuty Services connected to the account.
 
@@ -125,7 +105,7 @@ class Pagerduty(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
-            Optional[PagerdutyDeleteAllResponse],
+            Optional[PagerdutyDeleteResponse],
             self._delete(
                 f"/accounts/{account_id}/alerting/v3/destinations/pagerduty",
                 options=make_request_options(
@@ -136,9 +116,48 @@ class Pagerduty(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[PagerdutyDeleteAllResponse]
+                    Any, ResultWrapper[PagerdutyDeleteResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
+        )
+
+    def get(
+        self,
+        account_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[PagerdutyGetResponse]:
+        """
+        Get a list of all configured PagerDuty services.
+
+        Args:
+          account_id: The account id
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._get(
+            f"/accounts/{account_id}/alerting/v3/destinations/pagerduty",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[PagerdutyGetResponse]], ResultWrapper[PagerdutyGetResponse]),
         )
 
     def link(
@@ -195,7 +214,7 @@ class AsyncPagerduty(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncPagerdutyWithStreamingResponse:
         return AsyncPagerdutyWithStreamingResponse(self)
 
-    async def create_token(
+    async def create(
         self,
         account_id: str,
         *,
@@ -205,7 +224,7 @@ class AsyncPagerduty(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PagerdutyCreateTokenResponse:
+    ) -> PagerdutyCreateResponse:
         """
         Creates a new token for integrating with PagerDuty.
 
@@ -231,10 +250,10 @@ class AsyncPagerduty(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[PagerdutyCreateTokenResponse], ResultWrapper[PagerdutyCreateTokenResponse]),
+            cast_to=cast(Type[PagerdutyCreateResponse], ResultWrapper[PagerdutyCreateResponse]),
         )
 
-    async def delete_all(
+    async def delete(
         self,
         account_id: str,
         *,
@@ -244,7 +263,7 @@ class AsyncPagerduty(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PagerdutyDeleteAllResponse]:
+    ) -> Optional[PagerdutyDeleteResponse]:
         """
         Deletes all the PagerDuty Services connected to the account.
 
@@ -262,7 +281,7 @@ class AsyncPagerduty(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
-            Optional[PagerdutyDeleteAllResponse],
+            Optional[PagerdutyDeleteResponse],
             await self._delete(
                 f"/accounts/{account_id}/alerting/v3/destinations/pagerduty",
                 options=make_request_options(
@@ -273,9 +292,48 @@ class AsyncPagerduty(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[PagerdutyDeleteAllResponse]
+                    Any, ResultWrapper[PagerdutyDeleteResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
+        )
+
+    async def get(
+        self,
+        account_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[PagerdutyGetResponse]:
+        """
+        Get a list of all configured PagerDuty services.
+
+        Args:
+          account_id: The account id
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return await self._get(
+            f"/accounts/{account_id}/alerting/v3/destinations/pagerduty",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[PagerdutyGetResponse]], ResultWrapper[PagerdutyGetResponse]),
         )
 
     async def link(
@@ -327,11 +385,14 @@ class PagerdutyWithRawResponse:
     def __init__(self, pagerduty: Pagerduty) -> None:
         self._pagerduty = pagerduty
 
-        self.create_token = to_raw_response_wrapper(
-            pagerduty.create_token,
+        self.create = to_raw_response_wrapper(
+            pagerduty.create,
         )
-        self.delete_all = to_raw_response_wrapper(
-            pagerduty.delete_all,
+        self.delete = to_raw_response_wrapper(
+            pagerduty.delete,
+        )
+        self.get = to_raw_response_wrapper(
+            pagerduty.get,
         )
         self.link = to_raw_response_wrapper(
             pagerduty.link,
@@ -342,11 +403,14 @@ class AsyncPagerdutyWithRawResponse:
     def __init__(self, pagerduty: AsyncPagerduty) -> None:
         self._pagerduty = pagerduty
 
-        self.create_token = async_to_raw_response_wrapper(
-            pagerduty.create_token,
+        self.create = async_to_raw_response_wrapper(
+            pagerduty.create,
         )
-        self.delete_all = async_to_raw_response_wrapper(
-            pagerduty.delete_all,
+        self.delete = async_to_raw_response_wrapper(
+            pagerduty.delete,
+        )
+        self.get = async_to_raw_response_wrapper(
+            pagerduty.get,
         )
         self.link = async_to_raw_response_wrapper(
             pagerduty.link,
@@ -357,11 +421,14 @@ class PagerdutyWithStreamingResponse:
     def __init__(self, pagerduty: Pagerduty) -> None:
         self._pagerduty = pagerduty
 
-        self.create_token = to_streamed_response_wrapper(
-            pagerduty.create_token,
+        self.create = to_streamed_response_wrapper(
+            pagerduty.create,
         )
-        self.delete_all = to_streamed_response_wrapper(
-            pagerduty.delete_all,
+        self.delete = to_streamed_response_wrapper(
+            pagerduty.delete,
+        )
+        self.get = to_streamed_response_wrapper(
+            pagerduty.get,
         )
         self.link = to_streamed_response_wrapper(
             pagerduty.link,
@@ -372,11 +439,14 @@ class AsyncPagerdutyWithStreamingResponse:
     def __init__(self, pagerduty: AsyncPagerduty) -> None:
         self._pagerduty = pagerduty
 
-        self.create_token = async_to_streamed_response_wrapper(
-            pagerduty.create_token,
+        self.create = async_to_streamed_response_wrapper(
+            pagerduty.create,
         )
-        self.delete_all = async_to_streamed_response_wrapper(
-            pagerduty.delete_all,
+        self.delete = async_to_streamed_response_wrapper(
+            pagerduty.delete,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            pagerduty.get,
         )
         self.link = async_to_streamed_response_wrapper(
             pagerduty.link,

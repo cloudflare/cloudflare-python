@@ -2,45 +2,25 @@
 
 from __future__ import annotations
 
+from typing import Type, cast
+
 import httpx
 
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import maybe_transform
 from ...._compat import cached_property
-
-from ....types.workers.scripts import (
-    ScheduleWorkerCronTriggerGetCronTriggersResponse,
-    ScheduleWorkerCronTriggerUpdateCronTriggersResponse,
-)
-
-from typing import Type
-
+from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ....types import shared_params
-from ....types.workers.scripts import schedule_worker_cron_trigger_update_cron_triggers_params
 from ...._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ...._base_client import (
+    make_request_options,
+)
+from ....types.workers.scripts import ScheduleListResponse, ScheduleUpdateResponse, schedule_update_params
 
 __all__ = ["Schedules", "AsyncSchedules"]
 
@@ -54,7 +34,53 @@ class Schedules(SyncAPIResource):
     def with_streaming_response(self) -> SchedulesWithStreamingResponse:
         return SchedulesWithStreamingResponse(self)
 
-    def worker_cron_trigger_get_cron_triggers(
+    def update(
+        self,
+        script_name: str,
+        *,
+        account_id: str,
+        body: object,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ScheduleUpdateResponse:
+        """
+        Updates Cron Triggers for a Worker.
+
+        Args:
+          account_id: Identifier
+
+          script_name: Name of the script, used in URLs and route configuration.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not script_name:
+            raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
+        return self._put(
+            f"/accounts/{account_id}/workers/scripts/{script_name}/schedules",
+            body=maybe_transform(body, schedule_update_params.ScheduleUpdateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[ScheduleUpdateResponse], ResultWrapper[ScheduleUpdateResponse]),
+        )
+
+    def list(
         self,
         script_name: str,
         *,
@@ -65,7 +91,7 @@ class Schedules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ScheduleWorkerCronTriggerGetCronTriggersResponse:
+    ) -> ScheduleListResponse:
         """
         Fetches Cron Triggers for a Worker.
 
@@ -95,13 +121,20 @@ class Schedules(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[ScheduleWorkerCronTriggerGetCronTriggersResponse],
-                ResultWrapper[ScheduleWorkerCronTriggerGetCronTriggersResponse],
-            ),
+            cast_to=cast(Type[ScheduleListResponse], ResultWrapper[ScheduleListResponse]),
         )
 
-    def worker_cron_trigger_update_cron_triggers(
+
+class AsyncSchedules(AsyncAPIResource):
+    @cached_property
+    def with_raw_response(self) -> AsyncSchedulesWithRawResponse:
+        return AsyncSchedulesWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncSchedulesWithStreamingResponse:
+        return AsyncSchedulesWithStreamingResponse(self)
+
+    async def update(
         self,
         script_name: str,
         *,
@@ -113,7 +146,7 @@ class Schedules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ScheduleWorkerCronTriggerUpdateCronTriggersResponse:
+    ) -> ScheduleUpdateResponse:
         """
         Updates Cron Triggers for a Worker.
 
@@ -134,12 +167,9 @@ class Schedules(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
-        return self._put(
+        return await self._put(
             f"/accounts/{account_id}/workers/scripts/{script_name}/schedules",
-            body=maybe_transform(
-                body,
-                schedule_worker_cron_trigger_update_cron_triggers_params.ScheduleWorkerCronTriggerUpdateCronTriggersParams,
-            ),
+            body=maybe_transform(body, schedule_update_params.ScheduleUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -147,23 +177,10 @@ class Schedules(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[ScheduleWorkerCronTriggerUpdateCronTriggersResponse],
-                ResultWrapper[ScheduleWorkerCronTriggerUpdateCronTriggersResponse],
-            ),
+            cast_to=cast(Type[ScheduleUpdateResponse], ResultWrapper[ScheduleUpdateResponse]),
         )
 
-
-class AsyncSchedules(AsyncAPIResource):
-    @cached_property
-    def with_raw_response(self) -> AsyncSchedulesWithRawResponse:
-        return AsyncSchedulesWithRawResponse(self)
-
-    @cached_property
-    def with_streaming_response(self) -> AsyncSchedulesWithStreamingResponse:
-        return AsyncSchedulesWithStreamingResponse(self)
-
-    async def worker_cron_trigger_get_cron_triggers(
+    async def list(
         self,
         script_name: str,
         *,
@@ -174,7 +191,7 @@ class AsyncSchedules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ScheduleWorkerCronTriggerGetCronTriggersResponse:
+    ) -> ScheduleListResponse:
         """
         Fetches Cron Triggers for a Worker.
 
@@ -204,62 +221,7 @@ class AsyncSchedules(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[ScheduleWorkerCronTriggerGetCronTriggersResponse],
-                ResultWrapper[ScheduleWorkerCronTriggerGetCronTriggersResponse],
-            ),
-        )
-
-    async def worker_cron_trigger_update_cron_triggers(
-        self,
-        script_name: str,
-        *,
-        account_id: str,
-        body: object,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ScheduleWorkerCronTriggerUpdateCronTriggersResponse:
-        """
-        Updates Cron Triggers for a Worker.
-
-        Args:
-          account_id: Identifier
-
-          script_name: Name of the script, used in URLs and route configuration.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not script_name:
-            raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
-        return await self._put(
-            f"/accounts/{account_id}/workers/scripts/{script_name}/schedules",
-            body=maybe_transform(
-                body,
-                schedule_worker_cron_trigger_update_cron_triggers_params.ScheduleWorkerCronTriggerUpdateCronTriggersParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[ScheduleWorkerCronTriggerUpdateCronTriggersResponse],
-                ResultWrapper[ScheduleWorkerCronTriggerUpdateCronTriggersResponse],
-            ),
+            cast_to=cast(Type[ScheduleListResponse], ResultWrapper[ScheduleListResponse]),
         )
 
 
@@ -267,11 +229,11 @@ class SchedulesWithRawResponse:
     def __init__(self, schedules: Schedules) -> None:
         self._schedules = schedules
 
-        self.worker_cron_trigger_get_cron_triggers = to_raw_response_wrapper(
-            schedules.worker_cron_trigger_get_cron_triggers,
+        self.update = to_raw_response_wrapper(
+            schedules.update,
         )
-        self.worker_cron_trigger_update_cron_triggers = to_raw_response_wrapper(
-            schedules.worker_cron_trigger_update_cron_triggers,
+        self.list = to_raw_response_wrapper(
+            schedules.list,
         )
 
 
@@ -279,11 +241,11 @@ class AsyncSchedulesWithRawResponse:
     def __init__(self, schedules: AsyncSchedules) -> None:
         self._schedules = schedules
 
-        self.worker_cron_trigger_get_cron_triggers = async_to_raw_response_wrapper(
-            schedules.worker_cron_trigger_get_cron_triggers,
+        self.update = async_to_raw_response_wrapper(
+            schedules.update,
         )
-        self.worker_cron_trigger_update_cron_triggers = async_to_raw_response_wrapper(
-            schedules.worker_cron_trigger_update_cron_triggers,
+        self.list = async_to_raw_response_wrapper(
+            schedules.list,
         )
 
 
@@ -291,11 +253,11 @@ class SchedulesWithStreamingResponse:
     def __init__(self, schedules: Schedules) -> None:
         self._schedules = schedules
 
-        self.worker_cron_trigger_get_cron_triggers = to_streamed_response_wrapper(
-            schedules.worker_cron_trigger_get_cron_triggers,
+        self.update = to_streamed_response_wrapper(
+            schedules.update,
         )
-        self.worker_cron_trigger_update_cron_triggers = to_streamed_response_wrapper(
-            schedules.worker_cron_trigger_update_cron_triggers,
+        self.list = to_streamed_response_wrapper(
+            schedules.list,
         )
 
 
@@ -303,9 +265,9 @@ class AsyncSchedulesWithStreamingResponse:
     def __init__(self, schedules: AsyncSchedules) -> None:
         self._schedules = schedules
 
-        self.worker_cron_trigger_get_cron_triggers = async_to_streamed_response_wrapper(
-            schedules.worker_cron_trigger_get_cron_triggers,
+        self.update = async_to_streamed_response_wrapper(
+            schedules.update,
         )
-        self.worker_cron_trigger_update_cron_triggers = async_to_streamed_response_wrapper(
-            schedules.worker_cron_trigger_update_cron_triggers,
+        self.list = async_to_streamed_response_wrapper(
+            schedules.list,
         )

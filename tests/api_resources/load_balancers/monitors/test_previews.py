@@ -2,19 +2,14 @@
 
 from __future__ import annotations
 
-from cloudflare.types.load_balancers.monitors import PreviewAccountLoadBalancerMonitorsPreviewMonitorResponse
-
+import os
 from typing import Any, cast
 
-import os
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.load_balancers.monitors import preview_account_load_balancer_monitors_preview_monitor_params
+from cloudflare.types.load_balancers.monitors import PreviewCreateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -24,18 +19,18 @@ class TestPreviews:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_account_load_balancer_monitors_preview_monitor(self, client: Cloudflare) -> None:
-        preview = client.load_balancers.monitors.previews.account_load_balancer_monitors_preview_monitor(
+    def test_method_create(self, client: Cloudflare) -> None:
+        preview = client.load_balancers.monitors.previews.create(
             "f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             expected_codes="2xx",
         )
-        assert_matches_type(PreviewAccountLoadBalancerMonitorsPreviewMonitorResponse, preview, path=["response"])
+        assert_matches_type(PreviewCreateResponse, preview, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_account_load_balancer_monitors_preview_monitor_with_all_params(self, client: Cloudflare) -> None:
-        preview = client.load_balancers.monitors.previews.account_load_balancer_monitors_preview_monitor(
+    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
+        preview = client.load_balancers.monitors.previews.create(
             "f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             expected_codes="2xx",
@@ -55,31 +50,29 @@ class TestPreviews:
             port=0,
             probe_zone="example.com",
             retries=0,
-            api_timeout=0,
+            load_balancer_monitor_timeout=0,
             type="https",
         )
-        assert_matches_type(PreviewAccountLoadBalancerMonitorsPreviewMonitorResponse, preview, path=["response"])
+        assert_matches_type(PreviewCreateResponse, preview, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_account_load_balancer_monitors_preview_monitor(self, client: Cloudflare) -> None:
-        response = (
-            client.load_balancers.monitors.previews.with_raw_response.account_load_balancer_monitors_preview_monitor(
-                "f1aba936b94213e5b8dca0c0dbf1f9cc",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                expected_codes="2xx",
-            )
+    def test_raw_response_create(self, client: Cloudflare) -> None:
+        response = client.load_balancers.monitors.previews.with_raw_response.create(
+            "f1aba936b94213e5b8dca0c0dbf1f9cc",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            expected_codes="2xx",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         preview = response.parse()
-        assert_matches_type(PreviewAccountLoadBalancerMonitorsPreviewMonitorResponse, preview, path=["response"])
+        assert_matches_type(PreviewCreateResponse, preview, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_account_load_balancer_monitors_preview_monitor(self, client: Cloudflare) -> None:
-        with client.load_balancers.monitors.previews.with_streaming_response.account_load_balancer_monitors_preview_monitor(
+    def test_streaming_response_create(self, client: Cloudflare) -> None:
+        with client.load_balancers.monitors.previews.with_streaming_response.create(
             "f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             expected_codes="2xx",
@@ -88,22 +81,22 @@ class TestPreviews:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             preview = response.parse()
-            assert_matches_type(PreviewAccountLoadBalancerMonitorsPreviewMonitorResponse, preview, path=["response"])
+            assert_matches_type(PreviewCreateResponse, preview, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_account_load_balancer_monitors_preview_monitor(self, client: Cloudflare) -> None:
+    def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.load_balancers.monitors.previews.with_raw_response.account_load_balancer_monitors_preview_monitor(
+            client.load_balancers.monitors.previews.with_raw_response.create(
                 "f1aba936b94213e5b8dca0c0dbf1f9cc",
                 account_id="",
                 expected_codes="2xx",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `monitor_id` but received ''"):
-            client.load_balancers.monitors.previews.with_raw_response.account_load_balancer_monitors_preview_monitor(
+            client.load_balancers.monitors.previews.with_raw_response.create(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 expected_codes="2xx",
@@ -115,20 +108,18 @@ class TestAsyncPreviews:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_account_load_balancer_monitors_preview_monitor(self, async_client: AsyncCloudflare) -> None:
-        preview = await async_client.load_balancers.monitors.previews.account_load_balancer_monitors_preview_monitor(
+    async def test_method_create(self, async_client: AsyncCloudflare) -> None:
+        preview = await async_client.load_balancers.monitors.previews.create(
             "f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             expected_codes="2xx",
         )
-        assert_matches_type(PreviewAccountLoadBalancerMonitorsPreviewMonitorResponse, preview, path=["response"])
+        assert_matches_type(PreviewCreateResponse, preview, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_account_load_balancer_monitors_preview_monitor_with_all_params(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        preview = await async_client.load_balancers.monitors.previews.account_load_balancer_monitors_preview_monitor(
+    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        preview = await async_client.load_balancers.monitors.previews.create(
             "f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             expected_codes="2xx",
@@ -148,17 +139,15 @@ class TestAsyncPreviews:
             port=0,
             probe_zone="example.com",
             retries=0,
-            api_timeout=0,
+            load_balancer_monitor_timeout=0,
             type="https",
         )
-        assert_matches_type(PreviewAccountLoadBalancerMonitorsPreviewMonitorResponse, preview, path=["response"])
+        assert_matches_type(PreviewCreateResponse, preview, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_account_load_balancer_monitors_preview_monitor(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        response = await async_client.load_balancers.monitors.previews.with_raw_response.account_load_balancer_monitors_preview_monitor(
+    async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.load_balancers.monitors.previews.with_raw_response.create(
             "f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             expected_codes="2xx",
@@ -167,14 +156,12 @@ class TestAsyncPreviews:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         preview = await response.parse()
-        assert_matches_type(PreviewAccountLoadBalancerMonitorsPreviewMonitorResponse, preview, path=["response"])
+        assert_matches_type(PreviewCreateResponse, preview, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_account_load_balancer_monitors_preview_monitor(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        async with async_client.load_balancers.monitors.previews.with_streaming_response.account_load_balancer_monitors_preview_monitor(
+    async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.load_balancers.monitors.previews.with_streaming_response.create(
             "f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             expected_codes="2xx",
@@ -183,24 +170,22 @@ class TestAsyncPreviews:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             preview = await response.parse()
-            assert_matches_type(PreviewAccountLoadBalancerMonitorsPreviewMonitorResponse, preview, path=["response"])
+            assert_matches_type(PreviewCreateResponse, preview, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_account_load_balancer_monitors_preview_monitor(
-        self, async_client: AsyncCloudflare
-    ) -> None:
+    async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.load_balancers.monitors.previews.with_raw_response.account_load_balancer_monitors_preview_monitor(
+            await async_client.load_balancers.monitors.previews.with_raw_response.create(
                 "f1aba936b94213e5b8dca0c0dbf1f9cc",
                 account_id="",
                 expected_codes="2xx",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `monitor_id` but received ''"):
-            await async_client.load_balancers.monitors.previews.with_raw_response.account_load_balancer_monitors_preview_monitor(
+            await async_client.load_balancers.monitors.previews.with_raw_response.create(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 expected_codes="2xx",

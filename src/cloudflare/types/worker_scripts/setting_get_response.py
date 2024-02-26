@@ -1,19 +1,16 @@
 # File generated from our OpenAPI spec by Stainless.
 
+from typing import List, Union, Optional
 from typing_extensions import Literal
 
-from typing import Optional, List
-
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
 from pydantic import Field as FieldInfo
+
 from ..._models import BaseModel
-from ...types import shared
 
 __all__ = [
     "SettingGetResponse",
     "Binding",
-    "BindingWorkersKvNamespaceBinding",
+    "BindingWorkersKVNamespaceBinding",
     "BindingWorkersServiceBinding",
     "BindingWorkersDoBinding",
     "BindingWorkersR2Binding",
@@ -22,7 +19,7 @@ __all__ = [
     "BindingWorkersDispatchNamespaceBinding",
     "BindingWorkersDispatchNamespaceBindingOutbound",
     "BindingWorkersDispatchNamespaceBindingOutboundWorker",
-    "BindingWorkersMtlsCertBinding",
+    "BindingWorkersMTLSCertBinding",
     "Migrations",
     "MigrationsWorkersSingleStepMigrations",
     "MigrationsWorkersSingleStepMigrationsRenamedClass",
@@ -36,7 +33,7 @@ __all__ = [
 ]
 
 
-class BindingWorkersKvNamespaceBinding(BaseModel):
+class BindingWorkersKVNamespaceBinding(BaseModel):
     name: str
     """A JavaScript variable name for the binding."""
 
@@ -152,7 +149,7 @@ class BindingWorkersDispatchNamespaceBinding(BaseModel):
     """Outbound worker"""
 
 
-class BindingWorkersMtlsCertBinding(BaseModel):
+class BindingWorkersMTLSCertBinding(BaseModel):
     name: str
     """A JavaScript variable name for the binding."""
 
@@ -164,14 +161,14 @@ class BindingWorkersMtlsCertBinding(BaseModel):
 
 
 Binding = Union[
-    BindingWorkersKvNamespaceBinding,
+    BindingWorkersKVNamespaceBinding,
     BindingWorkersServiceBinding,
     BindingWorkersDoBinding,
     BindingWorkersR2Binding,
     BindingWorkersQueueBinding,
     BindingWorkersD1Binding,
     BindingWorkersDispatchNamespaceBinding,
-    BindingWorkersMtlsCertBinding,
+    BindingWorkersMTLSCertBinding,
 ]
 
 

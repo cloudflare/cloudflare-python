@@ -2,46 +2,28 @@
 
 from __future__ import annotations
 
+from typing import Union
+from datetime import datetime
+from typing_extensions import Literal
+
 import httpx
 
+from ..types import AuditLogListResponse, audit_log_list_params
+from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._utils import maybe_transform
 from .._compat import cached_property
-
-from ..types import AuditLogAuditLogsGetAccountAuditLogsResponse, audit_log_audit_logs_get_account_audit_logs_params
-
-from typing import Union
-
-from datetime import datetime
-
-from typing_extensions import Literal
-
+from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from .._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from .._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from .._resource import SyncAPIResource, AsyncAPIResource
+from ..pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from .._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
     AsyncPaginator,
     make_request_options,
-    HttpxBinaryResponseContent,
 )
-from ..types import shared_params
-from ..types import audit_log_audit_logs_get_account_audit_logs_params
-from .._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
 
 __all__ = ["AuditLogs", "AsyncAuditLogs"]
 
@@ -55,13 +37,13 @@ class AuditLogs(SyncAPIResource):
     def with_streaming_response(self) -> AuditLogsWithStreamingResponse:
         return AuditLogsWithStreamingResponse(self)
 
-    def audit_logs_get_account_audit_logs(
+    def list(
         self,
         account_identifier: str,
         *,
         id: str | NotGiven = NOT_GIVEN,
-        action: audit_log_audit_logs_get_account_audit_logs_params.Action | NotGiven = NOT_GIVEN,
-        actor: audit_log_audit_logs_get_account_audit_logs_params.Actor | NotGiven = NOT_GIVEN,
+        action: audit_log_list_params.Action | NotGiven = NOT_GIVEN,
+        actor: audit_log_list_params.Actor | NotGiven = NOT_GIVEN,
         before: Union[str, datetime] | NotGiven = NOT_GIVEN,
         direction: Literal["desc", "asc"] | NotGiven = NOT_GIVEN,
         export: bool | NotGiven = NOT_GIVEN,
@@ -69,14 +51,14 @@ class AuditLogs(SyncAPIResource):
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
         since: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        zone: audit_log_audit_logs_get_account_audit_logs_params.Zone | NotGiven = NOT_GIVEN,
+        zone: audit_log_list_params.Zone | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AuditLogAuditLogsGetAccountAuditLogsResponse:
+    ) -> SyncV4PagePaginationArray[AuditLogListResponse]:
         """Gets a list of audit logs for an account.
 
         Can be filtered by who made the
@@ -113,36 +95,32 @@ class AuditLogs(SyncAPIResource):
         """
         if not account_identifier:
             raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        return cast(
-            AuditLogAuditLogsGetAccountAuditLogsResponse,
-            self._get(
-                f"/accounts/{account_identifier}/audit_logs",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    query=maybe_transform(
-                        {
-                            "id": id,
-                            "action": action,
-                            "actor": actor,
-                            "before": before,
-                            "direction": direction,
-                            "export": export,
-                            "hide_user_logs": hide_user_logs,
-                            "page": page,
-                            "per_page": per_page,
-                            "since": since,
-                            "zone": zone,
-                        },
-                        audit_log_audit_logs_get_account_audit_logs_params.AuditLogAuditLogsGetAccountAuditLogsParams,
-                    ),
+        return self._get_api_list(
+            f"/accounts/{account_identifier}/audit_logs",
+            page=SyncV4PagePaginationArray[AuditLogListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "id": id,
+                        "action": action,
+                        "actor": actor,
+                        "before": before,
+                        "direction": direction,
+                        "export": export,
+                        "hide_user_logs": hide_user_logs,
+                        "page": page,
+                        "per_page": per_page,
+                        "since": since,
+                        "zone": zone,
+                    },
+                    audit_log_list_params.AuditLogListParams,
                 ),
-                cast_to=cast(
-                    Any, AuditLogAuditLogsGetAccountAuditLogsResponse
-                ),  # Union types cannot be passed in as arguments in the type system
             ),
+            model=AuditLogListResponse,
         )
 
 
@@ -155,13 +133,13 @@ class AsyncAuditLogs(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncAuditLogsWithStreamingResponse:
         return AsyncAuditLogsWithStreamingResponse(self)
 
-    async def audit_logs_get_account_audit_logs(
+    def list(
         self,
         account_identifier: str,
         *,
         id: str | NotGiven = NOT_GIVEN,
-        action: audit_log_audit_logs_get_account_audit_logs_params.Action | NotGiven = NOT_GIVEN,
-        actor: audit_log_audit_logs_get_account_audit_logs_params.Actor | NotGiven = NOT_GIVEN,
+        action: audit_log_list_params.Action | NotGiven = NOT_GIVEN,
+        actor: audit_log_list_params.Actor | NotGiven = NOT_GIVEN,
         before: Union[str, datetime] | NotGiven = NOT_GIVEN,
         direction: Literal["desc", "asc"] | NotGiven = NOT_GIVEN,
         export: bool | NotGiven = NOT_GIVEN,
@@ -169,14 +147,14 @@ class AsyncAuditLogs(AsyncAPIResource):
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
         since: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        zone: audit_log_audit_logs_get_account_audit_logs_params.Zone | NotGiven = NOT_GIVEN,
+        zone: audit_log_list_params.Zone | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AuditLogAuditLogsGetAccountAuditLogsResponse:
+    ) -> AsyncPaginator[AuditLogListResponse, AsyncV4PagePaginationArray[AuditLogListResponse]]:
         """Gets a list of audit logs for an account.
 
         Can be filtered by who made the
@@ -213,36 +191,32 @@ class AsyncAuditLogs(AsyncAPIResource):
         """
         if not account_identifier:
             raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        return cast(
-            AuditLogAuditLogsGetAccountAuditLogsResponse,
-            await self._get(
-                f"/accounts/{account_identifier}/audit_logs",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    query=maybe_transform(
-                        {
-                            "id": id,
-                            "action": action,
-                            "actor": actor,
-                            "before": before,
-                            "direction": direction,
-                            "export": export,
-                            "hide_user_logs": hide_user_logs,
-                            "page": page,
-                            "per_page": per_page,
-                            "since": since,
-                            "zone": zone,
-                        },
-                        audit_log_audit_logs_get_account_audit_logs_params.AuditLogAuditLogsGetAccountAuditLogsParams,
-                    ),
+        return self._get_api_list(
+            f"/accounts/{account_identifier}/audit_logs",
+            page=AsyncV4PagePaginationArray[AuditLogListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "id": id,
+                        "action": action,
+                        "actor": actor,
+                        "before": before,
+                        "direction": direction,
+                        "export": export,
+                        "hide_user_logs": hide_user_logs,
+                        "page": page,
+                        "per_page": per_page,
+                        "since": since,
+                        "zone": zone,
+                    },
+                    audit_log_list_params.AuditLogListParams,
                 ),
-                cast_to=cast(
-                    Any, AuditLogAuditLogsGetAccountAuditLogsResponse
-                ),  # Union types cannot be passed in as arguments in the type system
             ),
+            model=AuditLogListResponse,
         )
 
 
@@ -250,8 +224,8 @@ class AuditLogsWithRawResponse:
     def __init__(self, audit_logs: AuditLogs) -> None:
         self._audit_logs = audit_logs
 
-        self.audit_logs_get_account_audit_logs = to_raw_response_wrapper(
-            audit_logs.audit_logs_get_account_audit_logs,
+        self.list = to_raw_response_wrapper(
+            audit_logs.list,
         )
 
 
@@ -259,8 +233,8 @@ class AsyncAuditLogsWithRawResponse:
     def __init__(self, audit_logs: AsyncAuditLogs) -> None:
         self._audit_logs = audit_logs
 
-        self.audit_logs_get_account_audit_logs = async_to_raw_response_wrapper(
-            audit_logs.audit_logs_get_account_audit_logs,
+        self.list = async_to_raw_response_wrapper(
+            audit_logs.list,
         )
 
 
@@ -268,8 +242,8 @@ class AuditLogsWithStreamingResponse:
     def __init__(self, audit_logs: AuditLogs) -> None:
         self._audit_logs = audit_logs
 
-        self.audit_logs_get_account_audit_logs = to_streamed_response_wrapper(
-            audit_logs.audit_logs_get_account_audit_logs,
+        self.list = to_streamed_response_wrapper(
+            audit_logs.list,
         )
 
 
@@ -277,6 +251,6 @@ class AsyncAuditLogsWithStreamingResponse:
     def __init__(self, audit_logs: AsyncAuditLogs) -> None:
         self._audit_logs = audit_logs
 
-        self.audit_logs_get_account_audit_logs = async_to_streamed_response_wrapper(
-            audit_logs.audit_logs_get_account_audit_logs,
+        self.list = async_to_streamed_response_wrapper(
+            audit_logs.list,
         )

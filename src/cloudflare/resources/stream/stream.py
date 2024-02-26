@@ -2,83 +2,19 @@
 
 from __future__ import annotations
 
+from typing import Type, Union, cast
+from datetime import datetime
+from typing_extensions import Literal
+
 import httpx
 
-from .audio_tracks import AudioTracks, AsyncAudioTracks
-
-from ..._compat import cached_property
-
-from .videos import Videos, AsyncVideos
-
-from .clips import Clips, AsyncClips
-
-from .copies import Copies, AsyncCopies
-
-from .direct_uploads import DirectUploads, AsyncDirectUploads
-
-from .keys import Keys, AsyncKeys
-
-from .live_inputs.live_inputs import LiveInputs, AsyncLiveInputs
-
-from .watermarks import Watermarks, AsyncWatermarks
-
-from .webhooks import Webhooks, AsyncWebhooks
-
-from .captions import Captions, AsyncCaptions
-
-from .downloads import Downloads, AsyncDownloads
-
-from .embeds import Embeds, AsyncEmbeds
-
-from .tokens import Tokens, AsyncTokens
-
-from ...types import StreamUpdateResponse, StreamGetResponse, StreamStreamVideosListVideosResponse
-
-from typing import Type, List, Union
-
-from datetime import datetime
-
-from typing_extensions import Literal
-
-from ..._response import (
-    to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types import stream_update_params
-from ...types import stream_stream_videos_list_videos_params
-from .audio_tracks import (
-    AudioTracks,
-    AsyncAudioTracks,
-    AudioTracksWithRawResponse,
-    AsyncAudioTracksWithRawResponse,
-    AudioTracksWithStreamingResponse,
-    AsyncAudioTracksWithStreamingResponse,
-)
-from .videos import (
-    Videos,
-    AsyncVideos,
-    VideosWithRawResponse,
-    AsyncVideosWithRawResponse,
-    VideosWithStreamingResponse,
-    AsyncVideosWithStreamingResponse,
+from .keys import (
+    Keys,
+    AsyncKeys,
+    KeysWithRawResponse,
+    AsyncKeysWithRawResponse,
+    KeysWithStreamingResponse,
+    AsyncKeysWithStreamingResponse,
 )
 from .clips import (
     Clips,
@@ -96,62 +32,6 @@ from .copies import (
     CopiesWithStreamingResponse,
     AsyncCopiesWithStreamingResponse,
 )
-from .direct_uploads import (
-    DirectUploads,
-    AsyncDirectUploads,
-    DirectUploadsWithRawResponse,
-    AsyncDirectUploadsWithRawResponse,
-    DirectUploadsWithStreamingResponse,
-    AsyncDirectUploadsWithStreamingResponse,
-)
-from .keys import (
-    Keys,
-    AsyncKeys,
-    KeysWithRawResponse,
-    AsyncKeysWithRawResponse,
-    KeysWithStreamingResponse,
-    AsyncKeysWithStreamingResponse,
-)
-from .live_inputs import (
-    LiveInputs,
-    AsyncLiveInputs,
-    LiveInputsWithRawResponse,
-    AsyncLiveInputsWithRawResponse,
-    LiveInputsWithStreamingResponse,
-    AsyncLiveInputsWithStreamingResponse,
-)
-from .watermarks import (
-    Watermarks,
-    AsyncWatermarks,
-    WatermarksWithRawResponse,
-    AsyncWatermarksWithRawResponse,
-    WatermarksWithStreamingResponse,
-    AsyncWatermarksWithStreamingResponse,
-)
-from .webhooks import (
-    Webhooks,
-    AsyncWebhooks,
-    WebhooksWithRawResponse,
-    AsyncWebhooksWithRawResponse,
-    WebhooksWithStreamingResponse,
-    AsyncWebhooksWithStreamingResponse,
-)
-from .captions import (
-    Captions,
-    AsyncCaptions,
-    CaptionsWithRawResponse,
-    AsyncCaptionsWithRawResponse,
-    CaptionsWithStreamingResponse,
-    AsyncCaptionsWithStreamingResponse,
-)
-from .downloads import (
-    Downloads,
-    AsyncDownloads,
-    DownloadsWithRawResponse,
-    AsyncDownloadsWithRawResponse,
-    DownloadsWithStreamingResponse,
-    AsyncDownloadsWithStreamingResponse,
-)
 from .embeds import (
     Embeds,
     AsyncEmbeds,
@@ -168,13 +48,86 @@ from .tokens import (
     TokensWithStreamingResponse,
     AsyncTokensWithStreamingResponse,
 )
+from .videos import (
+    Videos,
+    AsyncVideos,
+    VideosWithRawResponse,
+    AsyncVideosWithRawResponse,
+    VideosWithStreamingResponse,
+    AsyncVideosWithStreamingResponse,
+)
+from ...types import StreamGetResponse, StreamListResponse, stream_list_params
+from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ..._utils import maybe_transform
+from .captions import (
+    Captions,
+    AsyncCaptions,
+    CaptionsWithRawResponse,
+    AsyncCaptionsWithRawResponse,
+    CaptionsWithStreamingResponse,
+    AsyncCaptionsWithStreamingResponse,
+)
+from .webhooks import (
+    Webhooks,
+    AsyncWebhooks,
+    WebhooksWithRawResponse,
+    AsyncWebhooksWithRawResponse,
+    WebhooksWithStreamingResponse,
+    AsyncWebhooksWithStreamingResponse,
+)
+from ..._compat import cached_property
+from .downloads import (
+    Downloads,
+    AsyncDownloads,
+    DownloadsWithRawResponse,
+    AsyncDownloadsWithRawResponse,
+    DownloadsWithStreamingResponse,
+    AsyncDownloadsWithStreamingResponse,
+)
+from .watermarks import (
+    Watermarks,
+    AsyncWatermarks,
+    WatermarksWithRawResponse,
+    AsyncWatermarksWithRawResponse,
+    WatermarksWithStreamingResponse,
+    AsyncWatermarksWithStreamingResponse,
+)
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from .live_inputs import (
+    LiveInputs,
+    AsyncLiveInputs,
+    LiveInputsWithRawResponse,
+    AsyncLiveInputsWithRawResponse,
+    LiveInputsWithStreamingResponse,
+    AsyncLiveInputsWithStreamingResponse,
+)
+from .audio_tracks import (
+    AudioTracks,
+    AsyncAudioTracks,
+    AudioTracksWithRawResponse,
+    AsyncAudioTracksWithRawResponse,
+    AudioTracksWithStreamingResponse,
+    AsyncAudioTracksWithStreamingResponse,
+)
+from ..._base_client import (
+    make_request_options,
+)
+from .direct_uploads import (
+    DirectUploads,
+    AsyncDirectUploads,
+    DirectUploadsWithRawResponse,
+    AsyncDirectUploadsWithRawResponse,
+    DirectUploadsWithStreamingResponse,
+    AsyncDirectUploadsWithStreamingResponse,
+)
+from .live_inputs.live_inputs import LiveInputs, AsyncLiveInputs
 
 __all__ = ["Stream", "AsyncStream"]
 
@@ -240,62 +193,26 @@ class Stream(SyncAPIResource):
     def with_streaming_response(self) -> StreamWithStreamingResponse:
         return StreamWithStreamingResponse(self)
 
-    def update(
+    def create(
         self,
-        identifier: str,
-        *,
         account_id: str,
-        allowed_origins: List[str] | NotGiven = NOT_GIVEN,
-        creator: str | NotGiven = NOT_GIVEN,
-        max_duration_seconds: int | NotGiven = NOT_GIVEN,
-        meta: object | NotGiven = NOT_GIVEN,
-        require_signed_urls: bool | NotGiven = NOT_GIVEN,
-        scheduled_deletion: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        thumbnail_timestamp_pct: float | NotGiven = NOT_GIVEN,
-        upload_expiry: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> StreamUpdateResponse:
-        """
-        Edit details for a single video.
+    ) -> None:
+        """Initiates a video upload using the TUS protocol.
+
+        On success, the server responds
+        with a status code 201 (created) and includes a `location` header to indicate
+        where the content should be uploaded. Refer to https://tus.io for protocol
+        details.
 
         Args:
           account_id: The account identifier tag.
-
-          identifier: A Cloudflare-generated unique identifier for a media item.
-
-          allowed_origins: Lists the origins allowed to display the video. Enter allowed origin domains in
-              an array and use `*` for wildcard subdomains. Empty arrays allow the video to be
-              viewed on any origin.
-
-          creator: A user-defined identifier for the media creator.
-
-          max_duration_seconds: The maximum duration in seconds for a video upload. Can be set for a video that
-              is not yet uploaded to limit its duration. Uploads that exceed the specified
-              duration will fail during processing. A value of `-1` means the value is
-              unknown.
-
-          meta: A user modifiable key-value store used to reference other systems of record for
-              managing videos.
-
-          require_signed_urls: Indicates whether the video can be a accessed using the UID. When set to `true`,
-              a signed token must be generated with a signing key to view the video.
-
-          scheduled_deletion: Indicates the date and time at which the video will be deleted. Omit the field
-              to indicate no change, or include with a `null` value to remove an existing
-              scheduled deletion. If specified, must be at least 30 days from upload time.
-
-          thumbnail_timestamp_pct: The timestamp for a thumbnail image calculated as a percentage value of the
-              video's duration. To convert from a second-wise timestamp to a percentage,
-              divide the desired timestamp by the total duration of the video. If this value
-              is not set, the default thumbnail image is taken from 0s of the video.
-
-          upload_expiry: The date and time when the video upload URL is no longer valid for direct user
-              uploads.
 
           extra_headers: Send extra headers
 
@@ -307,31 +224,94 @@ class Stream(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not identifier:
-            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            f"/accounts/{account_id}/stream/{identifier}",
-            body=maybe_transform(
-                {
-                    "allowed_origins": allowed_origins,
-                    "creator": creator,
-                    "max_duration_seconds": max_duration_seconds,
-                    "meta": meta,
-                    "require_signed_urls": require_signed_urls,
-                    "scheduled_deletion": scheduled_deletion,
-                    "thumbnail_timestamp_pct": thumbnail_timestamp_pct,
-                    "upload_expiry": upload_expiry,
-                },
-                stream_update_params.StreamUpdateParams,
+            f"/accounts/{account_id}/stream",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
+            cast_to=NoneType,
+        )
+
+    def list(
+        self,
+        account_id: str,
+        *,
+        asc: bool | NotGiven = NOT_GIVEN,
+        creator: str | NotGiven = NOT_GIVEN,
+        end: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        include_counts: bool | NotGiven = NOT_GIVEN,
+        search: str | NotGiven = NOT_GIVEN,
+        start: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        status: Literal["pendingupload", "downloading", "queued", "inprogress", "ready", "error"]
+        | NotGiven = NOT_GIVEN,
+        type: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> StreamListResponse:
+        """Lists up to 1000 videos from a single request.
+
+        For a specific range, refer to
+        the optional parameters.
+
+        Args:
+          account_id: The account identifier tag.
+
+          asc: Lists videos in ascending order of creation.
+
+          creator: A user-defined identifier for the media creator.
+
+          end: Lists videos created before the specified date.
+
+          include_counts: Includes the total number of videos associated with the submitted query
+              parameters.
+
+          search: Searches over the `name` key in the `meta` field. This field can be set with or
+              after the upload request.
+
+          start: Lists videos created after the specified date.
+
+          status: Specifies the processing status for all quality levels for a video.
+
+          type: Specifies whether the video is `vod` or `live`.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._get(
+            f"/accounts/{account_id}/stream",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "asc": asc,
+                        "creator": creator,
+                        "end": end,
+                        "include_counts": include_counts,
+                        "search": search,
+                        "start": start,
+                        "status": status,
+                        "type": type,
+                    },
+                    stream_list_params.StreamListParams,
+                ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[StreamUpdateResponse], ResultWrapper[StreamUpdateResponse]),
+            cast_to=cast(Type[StreamListResponse], ResultWrapper[StreamListResponse]),
         )
 
     def delete(
@@ -419,129 +399,6 @@ class Stream(SyncAPIResource):
             cast_to=cast(Type[StreamGetResponse], ResultWrapper[StreamGetResponse]),
         )
 
-    def stream_videos_initiate_video_uploads_using_tus(
-        self,
-        account_id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> None:
-        """Initiates a video upload using the TUS protocol.
-
-        On success, the server responds
-        with a status code 201 (created) and includes a `location` header to indicate
-        where the content should be uploaded. Refer to https://tus.io for protocol
-        details.
-
-        Args:
-          account_id: The account identifier tag.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
-        return self._post(
-            f"/accounts/{account_id}/stream",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=NoneType,
-        )
-
-    def stream_videos_list_videos(
-        self,
-        account_id: str,
-        *,
-        asc: bool | NotGiven = NOT_GIVEN,
-        creator: str | NotGiven = NOT_GIVEN,
-        end: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        include_counts: bool | NotGiven = NOT_GIVEN,
-        search: str | NotGiven = NOT_GIVEN,
-        start: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        status: Literal["pendingupload", "downloading", "queued", "inprogress", "ready", "error"]
-        | NotGiven = NOT_GIVEN,
-        type: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> StreamStreamVideosListVideosResponse:
-        """Lists up to 1000 videos from a single request.
-
-        For a specific range, refer to
-        the optional parameters.
-
-        Args:
-          account_id: The account identifier tag.
-
-          asc: Lists videos in ascending order of creation.
-
-          creator: A user-defined identifier for the media creator.
-
-          end: Lists videos created before the specified date.
-
-          include_counts: Includes the total number of videos associated with the submitted query
-              parameters.
-
-          search: Searches over the `name` key in the `meta` field. This field can be set with or
-              after the upload request.
-
-          start: Lists videos created after the specified date.
-
-          status: Specifies the processing status for all quality levels for a video.
-
-          type: Specifies whether the video is `vod` or `live`.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
-            f"/accounts/{account_id}/stream",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "asc": asc,
-                        "creator": creator,
-                        "end": end,
-                        "include_counts": include_counts,
-                        "search": search,
-                        "start": start,
-                        "status": status,
-                        "type": type,
-                    },
-                    stream_stream_videos_list_videos_params.StreamStreamVideosListVideosParams,
-                ),
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[StreamStreamVideosListVideosResponse], ResultWrapper[StreamStreamVideosListVideosResponse]
-            ),
-        )
-
 
 class AsyncStream(AsyncAPIResource):
     @cached_property
@@ -604,62 +461,26 @@ class AsyncStream(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncStreamWithStreamingResponse:
         return AsyncStreamWithStreamingResponse(self)
 
-    async def update(
+    async def create(
         self,
-        identifier: str,
-        *,
         account_id: str,
-        allowed_origins: List[str] | NotGiven = NOT_GIVEN,
-        creator: str | NotGiven = NOT_GIVEN,
-        max_duration_seconds: int | NotGiven = NOT_GIVEN,
-        meta: object | NotGiven = NOT_GIVEN,
-        require_signed_urls: bool | NotGiven = NOT_GIVEN,
-        scheduled_deletion: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        thumbnail_timestamp_pct: float | NotGiven = NOT_GIVEN,
-        upload_expiry: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> StreamUpdateResponse:
-        """
-        Edit details for a single video.
+    ) -> None:
+        """Initiates a video upload using the TUS protocol.
+
+        On success, the server responds
+        with a status code 201 (created) and includes a `location` header to indicate
+        where the content should be uploaded. Refer to https://tus.io for protocol
+        details.
 
         Args:
           account_id: The account identifier tag.
-
-          identifier: A Cloudflare-generated unique identifier for a media item.
-
-          allowed_origins: Lists the origins allowed to display the video. Enter allowed origin domains in
-              an array and use `*` for wildcard subdomains. Empty arrays allow the video to be
-              viewed on any origin.
-
-          creator: A user-defined identifier for the media creator.
-
-          max_duration_seconds: The maximum duration in seconds for a video upload. Can be set for a video that
-              is not yet uploaded to limit its duration. Uploads that exceed the specified
-              duration will fail during processing. A value of `-1` means the value is
-              unknown.
-
-          meta: A user modifiable key-value store used to reference other systems of record for
-              managing videos.
-
-          require_signed_urls: Indicates whether the video can be a accessed using the UID. When set to `true`,
-              a signed token must be generated with a signing key to view the video.
-
-          scheduled_deletion: Indicates the date and time at which the video will be deleted. Omit the field
-              to indicate no change, or include with a `null` value to remove an existing
-              scheduled deletion. If specified, must be at least 30 days from upload time.
-
-          thumbnail_timestamp_pct: The timestamp for a thumbnail image calculated as a percentage value of the
-              video's duration. To convert from a second-wise timestamp to a percentage,
-              divide the desired timestamp by the total duration of the video. If this value
-              is not set, the default thumbnail image is taken from 0s of the video.
-
-          upload_expiry: The date and time when the video upload URL is no longer valid for direct user
-              uploads.
 
           extra_headers: Send extra headers
 
@@ -671,31 +492,94 @@ class AsyncStream(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not identifier:
-            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            f"/accounts/{account_id}/stream/{identifier}",
-            body=maybe_transform(
-                {
-                    "allowed_origins": allowed_origins,
-                    "creator": creator,
-                    "max_duration_seconds": max_duration_seconds,
-                    "meta": meta,
-                    "require_signed_urls": require_signed_urls,
-                    "scheduled_deletion": scheduled_deletion,
-                    "thumbnail_timestamp_pct": thumbnail_timestamp_pct,
-                    "upload_expiry": upload_expiry,
-                },
-                stream_update_params.StreamUpdateParams,
+            f"/accounts/{account_id}/stream",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
+            cast_to=NoneType,
+        )
+
+    async def list(
+        self,
+        account_id: str,
+        *,
+        asc: bool | NotGiven = NOT_GIVEN,
+        creator: str | NotGiven = NOT_GIVEN,
+        end: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        include_counts: bool | NotGiven = NOT_GIVEN,
+        search: str | NotGiven = NOT_GIVEN,
+        start: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        status: Literal["pendingupload", "downloading", "queued", "inprogress", "ready", "error"]
+        | NotGiven = NOT_GIVEN,
+        type: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> StreamListResponse:
+        """Lists up to 1000 videos from a single request.
+
+        For a specific range, refer to
+        the optional parameters.
+
+        Args:
+          account_id: The account identifier tag.
+
+          asc: Lists videos in ascending order of creation.
+
+          creator: A user-defined identifier for the media creator.
+
+          end: Lists videos created before the specified date.
+
+          include_counts: Includes the total number of videos associated with the submitted query
+              parameters.
+
+          search: Searches over the `name` key in the `meta` field. This field can be set with or
+              after the upload request.
+
+          start: Lists videos created after the specified date.
+
+          status: Specifies the processing status for all quality levels for a video.
+
+          type: Specifies whether the video is `vod` or `live`.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return await self._get(
+            f"/accounts/{account_id}/stream",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "asc": asc,
+                        "creator": creator,
+                        "end": end,
+                        "include_counts": include_counts,
+                        "search": search,
+                        "start": start,
+                        "status": status,
+                        "type": type,
+                    },
+                    stream_list_params.StreamListParams,
+                ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[StreamUpdateResponse], ResultWrapper[StreamUpdateResponse]),
+            cast_to=cast(Type[StreamListResponse], ResultWrapper[StreamListResponse]),
         )
 
     async def delete(
@@ -783,148 +667,22 @@ class AsyncStream(AsyncAPIResource):
             cast_to=cast(Type[StreamGetResponse], ResultWrapper[StreamGetResponse]),
         )
 
-    async def stream_videos_initiate_video_uploads_using_tus(
-        self,
-        account_id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> None:
-        """Initiates a video upload using the TUS protocol.
-
-        On success, the server responds
-        with a status code 201 (created) and includes a `location` header to indicate
-        where the content should be uploaded. Refer to https://tus.io for protocol
-        details.
-
-        Args:
-          account_id: The account identifier tag.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
-        return await self._post(
-            f"/accounts/{account_id}/stream",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=NoneType,
-        )
-
-    async def stream_videos_list_videos(
-        self,
-        account_id: str,
-        *,
-        asc: bool | NotGiven = NOT_GIVEN,
-        creator: str | NotGiven = NOT_GIVEN,
-        end: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        include_counts: bool | NotGiven = NOT_GIVEN,
-        search: str | NotGiven = NOT_GIVEN,
-        start: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        status: Literal["pendingupload", "downloading", "queued", "inprogress", "ready", "error"]
-        | NotGiven = NOT_GIVEN,
-        type: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> StreamStreamVideosListVideosResponse:
-        """Lists up to 1000 videos from a single request.
-
-        For a specific range, refer to
-        the optional parameters.
-
-        Args:
-          account_id: The account identifier tag.
-
-          asc: Lists videos in ascending order of creation.
-
-          creator: A user-defined identifier for the media creator.
-
-          end: Lists videos created before the specified date.
-
-          include_counts: Includes the total number of videos associated with the submitted query
-              parameters.
-
-          search: Searches over the `name` key in the `meta` field. This field can be set with or
-              after the upload request.
-
-          start: Lists videos created after the specified date.
-
-          status: Specifies the processing status for all quality levels for a video.
-
-          type: Specifies whether the video is `vod` or `live`.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
-            f"/accounts/{account_id}/stream",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "asc": asc,
-                        "creator": creator,
-                        "end": end,
-                        "include_counts": include_counts,
-                        "search": search,
-                        "start": start,
-                        "status": status,
-                        "type": type,
-                    },
-                    stream_stream_videos_list_videos_params.StreamStreamVideosListVideosParams,
-                ),
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[StreamStreamVideosListVideosResponse], ResultWrapper[StreamStreamVideosListVideosResponse]
-            ),
-        )
-
 
 class StreamWithRawResponse:
     def __init__(self, stream: Stream) -> None:
         self._stream = stream
 
-        self.update = to_raw_response_wrapper(
-            stream.update,
+        self.create = to_raw_response_wrapper(
+            stream.create,
+        )
+        self.list = to_raw_response_wrapper(
+            stream.list,
         )
         self.delete = to_raw_response_wrapper(
             stream.delete,
         )
         self.get = to_raw_response_wrapper(
             stream.get,
-        )
-        self.stream_videos_initiate_video_uploads_using_tus = to_raw_response_wrapper(
-            stream.stream_videos_initiate_video_uploads_using_tus,
-        )
-        self.stream_videos_list_videos = to_raw_response_wrapper(
-            stream.stream_videos_list_videos,
         )
 
     @cached_property
@@ -984,20 +742,17 @@ class AsyncStreamWithRawResponse:
     def __init__(self, stream: AsyncStream) -> None:
         self._stream = stream
 
-        self.update = async_to_raw_response_wrapper(
-            stream.update,
+        self.create = async_to_raw_response_wrapper(
+            stream.create,
+        )
+        self.list = async_to_raw_response_wrapper(
+            stream.list,
         )
         self.delete = async_to_raw_response_wrapper(
             stream.delete,
         )
         self.get = async_to_raw_response_wrapper(
             stream.get,
-        )
-        self.stream_videos_initiate_video_uploads_using_tus = async_to_raw_response_wrapper(
-            stream.stream_videos_initiate_video_uploads_using_tus,
-        )
-        self.stream_videos_list_videos = async_to_raw_response_wrapper(
-            stream.stream_videos_list_videos,
         )
 
     @cached_property
@@ -1057,20 +812,17 @@ class StreamWithStreamingResponse:
     def __init__(self, stream: Stream) -> None:
         self._stream = stream
 
-        self.update = to_streamed_response_wrapper(
-            stream.update,
+        self.create = to_streamed_response_wrapper(
+            stream.create,
+        )
+        self.list = to_streamed_response_wrapper(
+            stream.list,
         )
         self.delete = to_streamed_response_wrapper(
             stream.delete,
         )
         self.get = to_streamed_response_wrapper(
             stream.get,
-        )
-        self.stream_videos_initiate_video_uploads_using_tus = to_streamed_response_wrapper(
-            stream.stream_videos_initiate_video_uploads_using_tus,
-        )
-        self.stream_videos_list_videos = to_streamed_response_wrapper(
-            stream.stream_videos_list_videos,
         )
 
     @cached_property
@@ -1130,20 +882,17 @@ class AsyncStreamWithStreamingResponse:
     def __init__(self, stream: AsyncStream) -> None:
         self._stream = stream
 
-        self.update = async_to_streamed_response_wrapper(
-            stream.update,
+        self.create = async_to_streamed_response_wrapper(
+            stream.create,
+        )
+        self.list = async_to_streamed_response_wrapper(
+            stream.list,
         )
         self.delete = async_to_streamed_response_wrapper(
             stream.delete,
         )
         self.get = async_to_streamed_response_wrapper(
             stream.get,
-        )
-        self.stream_videos_initiate_video_uploads_using_tus = async_to_streamed_response_wrapper(
-            stream.stream_videos_initiate_video_uploads_using_tus,
-        )
-        self.stream_videos_list_videos = async_to_streamed_response_wrapper(
-            stream.stream_videos_list_videos,
         )
 
     @cached_property

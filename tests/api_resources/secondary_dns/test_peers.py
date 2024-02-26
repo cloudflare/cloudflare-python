@@ -2,32 +2,63 @@
 
 from __future__ import annotations
 
-from cloudflare.types.secondary_dns import (
-    PeerUpdateResponse,
-    PeerDeleteResponse,
-    PeerGetResponse,
-    PeerSecondaryDNSPeerCreatePeerResponse,
-    PeerSecondaryDNSPeerListPeersResponse,
-)
-
-from typing import Any, cast, Optional
-
 import os
+from typing import Any, Optional, cast
+
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.secondary_dns import peer_update_params
-from cloudflare.types.secondary_dns import peer_secondary_dns_peer_create_peer_params
+from cloudflare.types.secondary_dns import (
+    PeerGetResponse,
+    PeerListResponse,
+    PeerCreateResponse,
+    PeerDeleteResponse,
+    PeerUpdateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
 class TestPeers:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_create(self, client: Cloudflare) -> None:
+        peer = client.secondary_dns.peers.create(
+            "01a7362d577a6c3019a474fd6f485823",
+            body={},
+        )
+        assert_matches_type(PeerCreateResponse, peer, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_create(self, client: Cloudflare) -> None:
+        response = client.secondary_dns.peers.with_raw_response.create(
+            "01a7362d577a6c3019a474fd6f485823",
+            body={},
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        peer = response.parse()
+        assert_matches_type(PeerCreateResponse, peer, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_create(self, client: Cloudflare) -> None:
+        with client.secondary_dns.peers.with_streaming_response.create(
+            "01a7362d577a6c3019a474fd6f485823",
+            body={},
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            peer = response.parse()
+            assert_matches_type(PeerCreateResponse, peer, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
@@ -80,6 +111,40 @@ class TestPeers:
 
             peer = response.parse()
             assert_matches_type(PeerUpdateResponse, peer, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_list(self, client: Cloudflare) -> None:
+        peer = client.secondary_dns.peers.list(
+            "01a7362d577a6c3019a474fd6f485823",
+        )
+        assert_matches_type(Optional[PeerListResponse], peer, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_list(self, client: Cloudflare) -> None:
+        response = client.secondary_dns.peers.with_raw_response.list(
+            "01a7362d577a6c3019a474fd6f485823",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        peer = response.parse()
+        assert_matches_type(Optional[PeerListResponse], peer, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_list(self, client: Cloudflare) -> None:
+        with client.secondary_dns.peers.with_streaming_response.list(
+            "01a7362d577a6c3019a474fd6f485823",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            peer = response.parse()
+            assert_matches_type(Optional[PeerListResponse], peer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -157,80 +222,46 @@ class TestPeers:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
-    @parametrize
-    def test_method_secondary_dns_peer_create_peer(self, client: Cloudflare) -> None:
-        peer = client.secondary_dns.peers.secondary_dns_peer_create_peer(
-            "01a7362d577a6c3019a474fd6f485823",
-            body={},
-        )
-        assert_matches_type(PeerSecondaryDNSPeerCreatePeerResponse, peer, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_raw_response_secondary_dns_peer_create_peer(self, client: Cloudflare) -> None:
-        response = client.secondary_dns.peers.with_raw_response.secondary_dns_peer_create_peer(
-            "01a7362d577a6c3019a474fd6f485823",
-            body={},
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        peer = response.parse()
-        assert_matches_type(PeerSecondaryDNSPeerCreatePeerResponse, peer, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_streaming_response_secondary_dns_peer_create_peer(self, client: Cloudflare) -> None:
-        with client.secondary_dns.peers.with_streaming_response.secondary_dns_peer_create_peer(
-            "01a7362d577a6c3019a474fd6f485823",
-            body={},
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            peer = response.parse()
-            assert_matches_type(PeerSecondaryDNSPeerCreatePeerResponse, peer, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_method_secondary_dns_peer_list_peers(self, client: Cloudflare) -> None:
-        peer = client.secondary_dns.peers.secondary_dns_peer_list_peers(
-            "01a7362d577a6c3019a474fd6f485823",
-        )
-        assert_matches_type(Optional[PeerSecondaryDNSPeerListPeersResponse], peer, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_raw_response_secondary_dns_peer_list_peers(self, client: Cloudflare) -> None:
-        response = client.secondary_dns.peers.with_raw_response.secondary_dns_peer_list_peers(
-            "01a7362d577a6c3019a474fd6f485823",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        peer = response.parse()
-        assert_matches_type(Optional[PeerSecondaryDNSPeerListPeersResponse], peer, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_streaming_response_secondary_dns_peer_list_peers(self, client: Cloudflare) -> None:
-        with client.secondary_dns.peers.with_streaming_response.secondary_dns_peer_list_peers(
-            "01a7362d577a6c3019a474fd6f485823",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            peer = response.parse()
-            assert_matches_type(Optional[PeerSecondaryDNSPeerListPeersResponse], peer, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
 
 class TestAsyncPeers:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_create(self, async_client: AsyncCloudflare) -> None:
+        peer = await async_client.secondary_dns.peers.create(
+            "01a7362d577a6c3019a474fd6f485823",
+            body={},
+        )
+        assert_matches_type(PeerCreateResponse, peer, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.secondary_dns.peers.with_raw_response.create(
+            "01a7362d577a6c3019a474fd6f485823",
+            body={},
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        peer = await response.parse()
+        assert_matches_type(PeerCreateResponse, peer, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.secondary_dns.peers.with_streaming_response.create(
+            "01a7362d577a6c3019a474fd6f485823",
+            body={},
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            peer = await response.parse()
+            assert_matches_type(PeerCreateResponse, peer, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
@@ -283,6 +314,40 @@ class TestAsyncPeers:
 
             peer = await response.parse()
             assert_matches_type(PeerUpdateResponse, peer, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_list(self, async_client: AsyncCloudflare) -> None:
+        peer = await async_client.secondary_dns.peers.list(
+            "01a7362d577a6c3019a474fd6f485823",
+        )
+        assert_matches_type(Optional[PeerListResponse], peer, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.secondary_dns.peers.with_raw_response.list(
+            "01a7362d577a6c3019a474fd6f485823",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        peer = await response.parse()
+        assert_matches_type(Optional[PeerListResponse], peer, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.secondary_dns.peers.with_streaming_response.list(
+            "01a7362d577a6c3019a474fd6f485823",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            peer = await response.parse()
+            assert_matches_type(Optional[PeerListResponse], peer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -357,76 +422,5 @@ class TestAsyncPeers:
 
             peer = await response.parse()
             assert_matches_type(PeerGetResponse, peer, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_secondary_dns_peer_create_peer(self, async_client: AsyncCloudflare) -> None:
-        peer = await async_client.secondary_dns.peers.secondary_dns_peer_create_peer(
-            "01a7362d577a6c3019a474fd6f485823",
-            body={},
-        )
-        assert_matches_type(PeerSecondaryDNSPeerCreatePeerResponse, peer, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_raw_response_secondary_dns_peer_create_peer(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.secondary_dns.peers.with_raw_response.secondary_dns_peer_create_peer(
-            "01a7362d577a6c3019a474fd6f485823",
-            body={},
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        peer = await response.parse()
-        assert_matches_type(PeerSecondaryDNSPeerCreatePeerResponse, peer, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_streaming_response_secondary_dns_peer_create_peer(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.secondary_dns.peers.with_streaming_response.secondary_dns_peer_create_peer(
-            "01a7362d577a6c3019a474fd6f485823",
-            body={},
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            peer = await response.parse()
-            assert_matches_type(PeerSecondaryDNSPeerCreatePeerResponse, peer, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_secondary_dns_peer_list_peers(self, async_client: AsyncCloudflare) -> None:
-        peer = await async_client.secondary_dns.peers.secondary_dns_peer_list_peers(
-            "01a7362d577a6c3019a474fd6f485823",
-        )
-        assert_matches_type(Optional[PeerSecondaryDNSPeerListPeersResponse], peer, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_raw_response_secondary_dns_peer_list_peers(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.secondary_dns.peers.with_raw_response.secondary_dns_peer_list_peers(
-            "01a7362d577a6c3019a474fd6f485823",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        peer = await response.parse()
-        assert_matches_type(Optional[PeerSecondaryDNSPeerListPeersResponse], peer, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_streaming_response_secondary_dns_peer_list_peers(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.secondary_dns.peers.with_streaming_response.secondary_dns_peer_list_peers(
-            "01a7362d577a6c3019a474fd6f485823",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            peer = await response.parse()
-            assert_matches_type(Optional[PeerSecondaryDNSPeerListPeersResponse], peer, path=["response"])
 
         assert cast(Any, response.is_closed) is True

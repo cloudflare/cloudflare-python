@@ -2,6 +2,4 @@
 
 from __future__ import annotations
 
-from .item_zero_trust_lists_zero_trust_list_items_response import (
-    ItemZeroTrustListsZeroTrustListItemsResponse as ItemZeroTrustListsZeroTrustListItemsResponse,
-)
+from .item_list_response import ItemListResponse as ItemListResponse

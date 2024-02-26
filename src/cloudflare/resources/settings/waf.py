@@ -2,44 +2,26 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+from typing_extensions import Literal
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._compat import cached_property
-
-from ...types.settings import WAFUpdateResponse, WAFGetResponse
-
-from typing import Type, Optional
-
-from typing_extensions import Literal
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types.settings import waf_update_params
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ..._base_client import (
+    make_request_options,
+)
+from ...types.settings import WAFGetResponse, WAFEditResponse, waf_edit_params
 
 __all__ = ["WAF", "AsyncWAF"]
 
@@ -53,7 +35,7 @@ class WAF(SyncAPIResource):
     def with_streaming_response(self) -> WAFWithStreamingResponse:
         return WAFWithStreamingResponse(self)
 
-    def update(
+    def edit(
         self,
         zone_id: str,
         *,
@@ -64,7 +46,7 @@ class WAF(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[WAFUpdateResponse]:
+    ) -> Optional[WAFEditResponse]:
         """The WAF examines HTTP requests to your website.
 
         It inspects both GET and POST
@@ -95,7 +77,7 @@ class WAF(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._patch(
             f"/zones/{zone_id}/settings/waf",
-            body=maybe_transform({"value": value}, waf_update_params.WAFUpdateParams),
+            body=maybe_transform({"value": value}, waf_edit_params.WAFEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -103,7 +85,7 @@ class WAF(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[WAFUpdateResponse]], ResultWrapper[WAFUpdateResponse]),
+            cast_to=cast(Type[Optional[WAFEditResponse]], ResultWrapper[WAFEditResponse]),
         )
 
     def get(
@@ -165,7 +147,7 @@ class AsyncWAF(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncWAFWithStreamingResponse:
         return AsyncWAFWithStreamingResponse(self)
 
-    async def update(
+    async def edit(
         self,
         zone_id: str,
         *,
@@ -176,7 +158,7 @@ class AsyncWAF(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[WAFUpdateResponse]:
+    ) -> Optional[WAFEditResponse]:
         """The WAF examines HTTP requests to your website.
 
         It inspects both GET and POST
@@ -207,7 +189,7 @@ class AsyncWAF(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._patch(
             f"/zones/{zone_id}/settings/waf",
-            body=maybe_transform({"value": value}, waf_update_params.WAFUpdateParams),
+            body=maybe_transform({"value": value}, waf_edit_params.WAFEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -215,7 +197,7 @@ class AsyncWAF(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[WAFUpdateResponse]], ResultWrapper[WAFUpdateResponse]),
+            cast_to=cast(Type[Optional[WAFEditResponse]], ResultWrapper[WAFEditResponse]),
         )
 
     async def get(
@@ -272,8 +254,8 @@ class WAFWithRawResponse:
     def __init__(self, waf: WAF) -> None:
         self._waf = waf
 
-        self.update = to_raw_response_wrapper(
-            waf.update,
+        self.edit = to_raw_response_wrapper(
+            waf.edit,
         )
         self.get = to_raw_response_wrapper(
             waf.get,
@@ -284,8 +266,8 @@ class AsyncWAFWithRawResponse:
     def __init__(self, waf: AsyncWAF) -> None:
         self._waf = waf
 
-        self.update = async_to_raw_response_wrapper(
-            waf.update,
+        self.edit = async_to_raw_response_wrapper(
+            waf.edit,
         )
         self.get = async_to_raw_response_wrapper(
             waf.get,
@@ -296,8 +278,8 @@ class WAFWithStreamingResponse:
     def __init__(self, waf: WAF) -> None:
         self._waf = waf
 
-        self.update = to_streamed_response_wrapper(
-            waf.update,
+        self.edit = to_streamed_response_wrapper(
+            waf.edit,
         )
         self.get = to_streamed_response_wrapper(
             waf.get,
@@ -308,8 +290,8 @@ class AsyncWAFWithStreamingResponse:
     def __init__(self, waf: AsyncWAF) -> None:
         self._waf = waf
 
-        self.update = async_to_streamed_response_wrapper(
-            waf.update,
+        self.edit = async_to_streamed_response_wrapper(
+            waf.edit,
         )
         self.get = async_to_streamed_response_wrapper(
             waf.get,

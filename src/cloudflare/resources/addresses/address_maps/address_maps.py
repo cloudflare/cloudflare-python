@@ -2,58 +2,10 @@
 
 from __future__ import annotations
 
+from typing import Any, Type, Optional, cast
+
 import httpx
 
-from .accounts import Accounts, AsyncAccounts
-
-from ...._compat import cached_property
-
-from .ips import IPs, AsyncIPs
-
-from .zones import Zones, AsyncZones
-
-from ....types.addresses import (
-    AddressMapCreateResponse,
-    AddressMapUpdateResponse,
-    AddressMapListResponse,
-    AddressMapDeleteResponse,
-    AddressMapGetResponse,
-)
-
-from typing import Type, Optional
-
-from ...._response import (
-    to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ....types import shared_params
-from ....types.addresses import address_map_create_params
-from ....types.addresses import address_map_update_params
-from .accounts import (
-    Accounts,
-    AsyncAccounts,
-    AccountsWithRawResponse,
-    AsyncAccountsWithRawResponse,
-    AccountsWithStreamingResponse,
-    AsyncAccountsWithStreamingResponse,
-)
 from .ips import (
     IPs,
     AsyncIPs,
@@ -70,19 +22,37 @@ from .zones import (
     ZonesWithStreamingResponse,
     AsyncZonesWithStreamingResponse,
 )
+from .accounts import (
+    Accounts,
+    AsyncAccounts,
+    AccountsWithRawResponse,
+    AsyncAccountsWithRawResponse,
+    AccountsWithStreamingResponse,
+    AsyncAccountsWithStreamingResponse,
+)
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import maybe_transform
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
 from ...._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ...._base_client import (
+    make_request_options,
+)
+from ....types.addresses import (
+    AddressMapGetResponse,
+    AddressMapEditResponse,
+    AddressMapListResponse,
+    AddressMapCreateResponse,
+    AddressMapDeleteResponse,
+    address_map_edit_params,
+    address_map_create_params,
+)
 
 __all__ = ["AddressMaps", "AsyncAddressMaps"]
 
@@ -160,73 +130,6 @@ class AddressMaps(SyncAPIResource):
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(Type[AddressMapCreateResponse], ResultWrapper[AddressMapCreateResponse]),
-        )
-
-    def update(
-        self,
-        address_map_id: str,
-        *,
-        account_id: str,
-        default_sni: Optional[str] | NotGiven = NOT_GIVEN,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        enabled: Optional[bool] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AddressMapUpdateResponse:
-        """
-        Modify properties of an address map owned by the account.
-
-        Args:
-          account_id: Identifier
-
-          address_map_id: Identifier
-
-          default_sni: If you have legacy TLS clients which do not send the TLS server name indicator,
-              then you can specify one default SNI on the map. If Cloudflare receives a TLS
-              handshake from a client without an SNI, it will respond with the default SNI on
-              those IPs. The default SNI can be any valid zone or subdomain owned by the
-              account.
-
-          description: An optional description field which may be used to describe the types of IPs or
-              zones on the map.
-
-          enabled: Whether the Address Map is enabled or not. Cloudflare's DNS will not respond
-              with IP addresses on an Address Map until the map is enabled.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not address_map_id:
-            raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
-        return self._patch(
-            f"/accounts/{account_id}/addressing/address_maps/{address_map_id}",
-            body=maybe_transform(
-                {
-                    "default_sni": default_sni,
-                    "description": description,
-                    "enabled": enabled,
-                },
-                address_map_update_params.AddressMapUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(Type[AddressMapUpdateResponse], ResultWrapper[AddressMapUpdateResponse]),
         )
 
     def list(
@@ -317,6 +220,73 @@ class AddressMaps(SyncAPIResource):
                     Any, ResultWrapper[AddressMapDeleteResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
+        )
+
+    def edit(
+        self,
+        address_map_id: str,
+        *,
+        account_id: str,
+        default_sni: Optional[str] | NotGiven = NOT_GIVEN,
+        description: Optional[str] | NotGiven = NOT_GIVEN,
+        enabled: Optional[bool] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AddressMapEditResponse:
+        """
+        Modify properties of an address map owned by the account.
+
+        Args:
+          account_id: Identifier
+
+          address_map_id: Identifier
+
+          default_sni: If you have legacy TLS clients which do not send the TLS server name indicator,
+              then you can specify one default SNI on the map. If Cloudflare receives a TLS
+              handshake from a client without an SNI, it will respond with the default SNI on
+              those IPs. The default SNI can be any valid zone or subdomain owned by the
+              account.
+
+          description: An optional description field which may be used to describe the types of IPs or
+              zones on the map.
+
+          enabled: Whether the Address Map is enabled or not. Cloudflare's DNS will not respond
+              with IP addresses on an Address Map until the map is enabled.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not address_map_id:
+            raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
+        return self._patch(
+            f"/accounts/{account_id}/addressing/address_maps/{address_map_id}",
+            body=maybe_transform(
+                {
+                    "default_sni": default_sni,
+                    "description": description,
+                    "enabled": enabled,
+                },
+                address_map_edit_params.AddressMapEditParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[AddressMapEditResponse], ResultWrapper[AddressMapEditResponse]),
         )
 
     def get(
@@ -439,73 +409,6 @@ class AsyncAddressMaps(AsyncAPIResource):
             cast_to=cast(Type[AddressMapCreateResponse], ResultWrapper[AddressMapCreateResponse]),
         )
 
-    async def update(
-        self,
-        address_map_id: str,
-        *,
-        account_id: str,
-        default_sni: Optional[str] | NotGiven = NOT_GIVEN,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        enabled: Optional[bool] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AddressMapUpdateResponse:
-        """
-        Modify properties of an address map owned by the account.
-
-        Args:
-          account_id: Identifier
-
-          address_map_id: Identifier
-
-          default_sni: If you have legacy TLS clients which do not send the TLS server name indicator,
-              then you can specify one default SNI on the map. If Cloudflare receives a TLS
-              handshake from a client without an SNI, it will respond with the default SNI on
-              those IPs. The default SNI can be any valid zone or subdomain owned by the
-              account.
-
-          description: An optional description field which may be used to describe the types of IPs or
-              zones on the map.
-
-          enabled: Whether the Address Map is enabled or not. Cloudflare's DNS will not respond
-              with IP addresses on an Address Map until the map is enabled.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not address_map_id:
-            raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
-        return await self._patch(
-            f"/accounts/{account_id}/addressing/address_maps/{address_map_id}",
-            body=maybe_transform(
-                {
-                    "default_sni": default_sni,
-                    "description": description,
-                    "enabled": enabled,
-                },
-                address_map_update_params.AddressMapUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(Type[AddressMapUpdateResponse], ResultWrapper[AddressMapUpdateResponse]),
-        )
-
     async def list(
         self,
         account_id: str,
@@ -596,6 +499,73 @@ class AsyncAddressMaps(AsyncAPIResource):
             ),
         )
 
+    async def edit(
+        self,
+        address_map_id: str,
+        *,
+        account_id: str,
+        default_sni: Optional[str] | NotGiven = NOT_GIVEN,
+        description: Optional[str] | NotGiven = NOT_GIVEN,
+        enabled: Optional[bool] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AddressMapEditResponse:
+        """
+        Modify properties of an address map owned by the account.
+
+        Args:
+          account_id: Identifier
+
+          address_map_id: Identifier
+
+          default_sni: If you have legacy TLS clients which do not send the TLS server name indicator,
+              then you can specify one default SNI on the map. If Cloudflare receives a TLS
+              handshake from a client without an SNI, it will respond with the default SNI on
+              those IPs. The default SNI can be any valid zone or subdomain owned by the
+              account.
+
+          description: An optional description field which may be used to describe the types of IPs or
+              zones on the map.
+
+          enabled: Whether the Address Map is enabled or not. Cloudflare's DNS will not respond
+              with IP addresses on an Address Map until the map is enabled.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not address_map_id:
+            raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
+        return await self._patch(
+            f"/accounts/{account_id}/addressing/address_maps/{address_map_id}",
+            body=maybe_transform(
+                {
+                    "default_sni": default_sni,
+                    "description": description,
+                    "enabled": enabled,
+                },
+                address_map_edit_params.AddressMapEditParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[AddressMapEditResponse], ResultWrapper[AddressMapEditResponse]),
+        )
+
     async def get(
         self,
         address_map_id: str,
@@ -648,14 +618,14 @@ class AddressMapsWithRawResponse:
         self.create = to_raw_response_wrapper(
             address_maps.create,
         )
-        self.update = to_raw_response_wrapper(
-            address_maps.update,
-        )
         self.list = to_raw_response_wrapper(
             address_maps.list,
         )
         self.delete = to_raw_response_wrapper(
             address_maps.delete,
+        )
+        self.edit = to_raw_response_wrapper(
+            address_maps.edit,
         )
         self.get = to_raw_response_wrapper(
             address_maps.get,
@@ -681,14 +651,14 @@ class AsyncAddressMapsWithRawResponse:
         self.create = async_to_raw_response_wrapper(
             address_maps.create,
         )
-        self.update = async_to_raw_response_wrapper(
-            address_maps.update,
-        )
         self.list = async_to_raw_response_wrapper(
             address_maps.list,
         )
         self.delete = async_to_raw_response_wrapper(
             address_maps.delete,
+        )
+        self.edit = async_to_raw_response_wrapper(
+            address_maps.edit,
         )
         self.get = async_to_raw_response_wrapper(
             address_maps.get,
@@ -714,14 +684,14 @@ class AddressMapsWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             address_maps.create,
         )
-        self.update = to_streamed_response_wrapper(
-            address_maps.update,
-        )
         self.list = to_streamed_response_wrapper(
             address_maps.list,
         )
         self.delete = to_streamed_response_wrapper(
             address_maps.delete,
+        )
+        self.edit = to_streamed_response_wrapper(
+            address_maps.edit,
         )
         self.get = to_streamed_response_wrapper(
             address_maps.get,
@@ -747,14 +717,14 @@ class AsyncAddressMapsWithStreamingResponse:
         self.create = async_to_streamed_response_wrapper(
             address_maps.create,
         )
-        self.update = async_to_streamed_response_wrapper(
-            address_maps.update,
-        )
         self.list = async_to_streamed_response_wrapper(
             address_maps.list,
         )
         self.delete = async_to_streamed_response_wrapper(
             address_maps.delete,
+        )
+        self.edit = async_to_streamed_response_wrapper(
+            address_maps.edit,
         )
         self.get = async_to_streamed_response_wrapper(
             address_maps.get,

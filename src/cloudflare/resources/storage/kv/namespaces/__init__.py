@@ -1,35 +1,40 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from .bulks import Bulks, AsyncBulks
-from .bulks import (
-    BulksWithRawResponse,
-    AsyncBulksWithRawResponse,
-    BulksWithStreamingResponse,
-    AsyncBulksWithStreamingResponse,
+from .bulk import (
+    Bulk,
+    AsyncBulk,
+    BulkWithRawResponse,
+    AsyncBulkWithRawResponse,
+    BulkWithStreamingResponse,
+    AsyncBulkWithStreamingResponse,
 )
-from .keys import Keys, AsyncKeys
 from .keys import (
+    Keys,
+    AsyncKeys,
     KeysWithRawResponse,
     AsyncKeysWithRawResponse,
     KeysWithStreamingResponse,
     AsyncKeysWithStreamingResponse,
 )
-from .metadata import Metadata, AsyncMetadata
-from .metadata import (
-    MetadataWithRawResponse,
-    AsyncMetadataWithRawResponse,
-    MetadataWithStreamingResponse,
-    AsyncMetadataWithStreamingResponse,
-)
-from .values import Values, AsyncValues
 from .values import (
+    Values,
+    AsyncValues,
     ValuesWithRawResponse,
     AsyncValuesWithRawResponse,
     ValuesWithStreamingResponse,
     AsyncValuesWithStreamingResponse,
 )
-from .namespaces import Namespaces, AsyncNamespaces
+from .metadata import (
+    Metadata,
+    AsyncMetadata,
+    MetadataWithRawResponse,
+    AsyncMetadataWithRawResponse,
+    MetadataWithStreamingResponse,
+    AsyncMetadataWithStreamingResponse,
+)
 from .namespaces import (
+    Namespaces,
+    AsyncNamespaces,
     NamespacesWithRawResponse,
     AsyncNamespacesWithRawResponse,
     NamespacesWithStreamingResponse,
@@ -37,12 +42,12 @@ from .namespaces import (
 )
 
 __all__ = [
-    "Bulks",
-    "AsyncBulks",
-    "BulksWithRawResponse",
-    "AsyncBulksWithRawResponse",
-    "BulksWithStreamingResponse",
-    "AsyncBulksWithStreamingResponse",
+    "Bulk",
+    "AsyncBulk",
+    "BulkWithRawResponse",
+    "AsyncBulkWithRawResponse",
+    "BulkWithStreamingResponse",
+    "AsyncBulkWithStreamingResponse",
     "Keys",
     "AsyncKeys",
     "KeysWithRawResponse",

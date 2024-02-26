@@ -2,39 +2,24 @@
 
 from __future__ import annotations
 
+from typing import Type, cast
+
 import httpx
 
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._compat import cached_property
-
-from ....types.mnms.configs import FullMagicNetworkMonitoringConfigurationListRulesAndAccountConfigurationResponse
-
-from typing import Type
-
+from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ....types import shared_params
 from ...._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
+from ...._base_client import (
+    make_request_options,
+)
+from ....types.mnms.configs import FullListResponse
 
 __all__ = ["Fulls", "AsyncFulls"]
 
@@ -48,7 +33,7 @@ class Fulls(SyncAPIResource):
     def with_streaming_response(self) -> FullsWithStreamingResponse:
         return FullsWithStreamingResponse(self)
 
-    def magic_network_monitoring_configuration_list_rules_and_account_configuration(
+    def list(
         self,
         account_identifier: object,
         *,
@@ -58,7 +43,7 @@ class Fulls(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> FullMagicNetworkMonitoringConfigurationListRulesAndAccountConfigurationResponse:
+    ) -> FullListResponse:
         """
         Lists default sampling, router IPs, and rules for account.
 
@@ -80,10 +65,7 @@ class Fulls(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[FullMagicNetworkMonitoringConfigurationListRulesAndAccountConfigurationResponse],
-                ResultWrapper[FullMagicNetworkMonitoringConfigurationListRulesAndAccountConfigurationResponse],
-            ),
+            cast_to=cast(Type[FullListResponse], ResultWrapper[FullListResponse]),
         )
 
 
@@ -96,7 +78,7 @@ class AsyncFulls(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncFullsWithStreamingResponse:
         return AsyncFullsWithStreamingResponse(self)
 
-    async def magic_network_monitoring_configuration_list_rules_and_account_configuration(
+    async def list(
         self,
         account_identifier: object,
         *,
@@ -106,7 +88,7 @@ class AsyncFulls(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> FullMagicNetworkMonitoringConfigurationListRulesAndAccountConfigurationResponse:
+    ) -> FullListResponse:
         """
         Lists default sampling, router IPs, and rules for account.
 
@@ -128,10 +110,7 @@ class AsyncFulls(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[FullMagicNetworkMonitoringConfigurationListRulesAndAccountConfigurationResponse],
-                ResultWrapper[FullMagicNetworkMonitoringConfigurationListRulesAndAccountConfigurationResponse],
-            ),
+            cast_to=cast(Type[FullListResponse], ResultWrapper[FullListResponse]),
         )
 
 
@@ -139,8 +118,8 @@ class FullsWithRawResponse:
     def __init__(self, fulls: Fulls) -> None:
         self._fulls = fulls
 
-        self.magic_network_monitoring_configuration_list_rules_and_account_configuration = to_raw_response_wrapper(
-            fulls.magic_network_monitoring_configuration_list_rules_and_account_configuration,
+        self.list = to_raw_response_wrapper(
+            fulls.list,
         )
 
 
@@ -148,10 +127,8 @@ class AsyncFullsWithRawResponse:
     def __init__(self, fulls: AsyncFulls) -> None:
         self._fulls = fulls
 
-        self.magic_network_monitoring_configuration_list_rules_and_account_configuration = (
-            async_to_raw_response_wrapper(
-                fulls.magic_network_monitoring_configuration_list_rules_and_account_configuration,
-            )
+        self.list = async_to_raw_response_wrapper(
+            fulls.list,
         )
 
 
@@ -159,8 +136,8 @@ class FullsWithStreamingResponse:
     def __init__(self, fulls: Fulls) -> None:
         self._fulls = fulls
 
-        self.magic_network_monitoring_configuration_list_rules_and_account_configuration = to_streamed_response_wrapper(
-            fulls.magic_network_monitoring_configuration_list_rules_and_account_configuration,
+        self.list = to_streamed_response_wrapper(
+            fulls.list,
         )
 
 
@@ -168,8 +145,6 @@ class AsyncFullsWithStreamingResponse:
     def __init__(self, fulls: AsyncFulls) -> None:
         self._fulls = fulls
 
-        self.magic_network_monitoring_configuration_list_rules_and_account_configuration = (
-            async_to_streamed_response_wrapper(
-                fulls.magic_network_monitoring_configuration_list_rules_and_account_configuration,
-            )
+        self.list = async_to_streamed_response_wrapper(
+            fulls.list,
         )

@@ -2,44 +2,26 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+from typing_extensions import Literal
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._compat import cached_property
-
-from ...types.settings import MinTLSVersionUpdateResponse, MinTLSVersionGetResponse
-
-from typing import Type, Optional
-
-from typing_extensions import Literal
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types.settings import min_tls_version_update_params
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ..._base_client import (
+    make_request_options,
+)
+from ...types.settings import MinTLSVersionGetResponse, MinTLSVersionEditResponse, min_tls_version_edit_params
 
 __all__ = ["MinTLSVersion", "AsyncMinTLSVersion"]
 
@@ -53,7 +35,7 @@ class MinTLSVersion(SyncAPIResource):
     def with_streaming_response(self) -> MinTLSVersionWithStreamingResponse:
         return MinTLSVersionWithStreamingResponse(self)
 
-    def update(
+    def edit(
         self,
         zone_id: str,
         *,
@@ -64,7 +46,7 @@ class MinTLSVersion(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MinTLSVersionUpdateResponse]:
+    ) -> Optional[MinTLSVersionEditResponse]:
         """
         Changes Minimum TLS Version setting.
 
@@ -85,7 +67,7 @@ class MinTLSVersion(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._patch(
             f"/zones/{zone_id}/settings/min_tls_version",
-            body=maybe_transform({"value": value}, min_tls_version_update_params.MinTLSVersionUpdateParams),
+            body=maybe_transform({"value": value}, min_tls_version_edit_params.MinTLSVersionEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -93,7 +75,7 @@ class MinTLSVersion(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[MinTLSVersionUpdateResponse]], ResultWrapper[MinTLSVersionUpdateResponse]),
+            cast_to=cast(Type[Optional[MinTLSVersionEditResponse]], ResultWrapper[MinTLSVersionEditResponse]),
         )
 
     def get(
@@ -145,7 +127,7 @@ class AsyncMinTLSVersion(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncMinTLSVersionWithStreamingResponse:
         return AsyncMinTLSVersionWithStreamingResponse(self)
 
-    async def update(
+    async def edit(
         self,
         zone_id: str,
         *,
@@ -156,7 +138,7 @@ class AsyncMinTLSVersion(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MinTLSVersionUpdateResponse]:
+    ) -> Optional[MinTLSVersionEditResponse]:
         """
         Changes Minimum TLS Version setting.
 
@@ -177,7 +159,7 @@ class AsyncMinTLSVersion(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._patch(
             f"/zones/{zone_id}/settings/min_tls_version",
-            body=maybe_transform({"value": value}, min_tls_version_update_params.MinTLSVersionUpdateParams),
+            body=maybe_transform({"value": value}, min_tls_version_edit_params.MinTLSVersionEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -185,7 +167,7 @@ class AsyncMinTLSVersion(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[MinTLSVersionUpdateResponse]], ResultWrapper[MinTLSVersionUpdateResponse]),
+            cast_to=cast(Type[Optional[MinTLSVersionEditResponse]], ResultWrapper[MinTLSVersionEditResponse]),
         )
 
     async def get(
@@ -232,8 +214,8 @@ class MinTLSVersionWithRawResponse:
     def __init__(self, min_tls_version: MinTLSVersion) -> None:
         self._min_tls_version = min_tls_version
 
-        self.update = to_raw_response_wrapper(
-            min_tls_version.update,
+        self.edit = to_raw_response_wrapper(
+            min_tls_version.edit,
         )
         self.get = to_raw_response_wrapper(
             min_tls_version.get,
@@ -244,8 +226,8 @@ class AsyncMinTLSVersionWithRawResponse:
     def __init__(self, min_tls_version: AsyncMinTLSVersion) -> None:
         self._min_tls_version = min_tls_version
 
-        self.update = async_to_raw_response_wrapper(
-            min_tls_version.update,
+        self.edit = async_to_raw_response_wrapper(
+            min_tls_version.edit,
         )
         self.get = async_to_raw_response_wrapper(
             min_tls_version.get,
@@ -256,8 +238,8 @@ class MinTLSVersionWithStreamingResponse:
     def __init__(self, min_tls_version: MinTLSVersion) -> None:
         self._min_tls_version = min_tls_version
 
-        self.update = to_streamed_response_wrapper(
-            min_tls_version.update,
+        self.edit = to_streamed_response_wrapper(
+            min_tls_version.edit,
         )
         self.get = to_streamed_response_wrapper(
             min_tls_version.get,
@@ -268,8 +250,8 @@ class AsyncMinTLSVersionWithStreamingResponse:
     def __init__(self, min_tls_version: AsyncMinTLSVersion) -> None:
         self._min_tls_version = min_tls_version
 
-        self.update = async_to_streamed_response_wrapper(
-            min_tls_version.update,
+        self.edit = async_to_streamed_response_wrapper(
+            min_tls_version.edit,
         )
         self.get = async_to_streamed_response_wrapper(
             min_tls_version.get,

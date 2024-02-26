@@ -2,29 +2,16 @@
 
 from __future__ import annotations
 
-from .address_maps.address_maps import AddressMaps, AsyncAddressMaps
-
-from ..._compat import cached_property
-
-from .loa_documents.loa_documents import LoaDocuments, AsyncLoaDocuments
-
-from .prefixes.prefixes import Prefixes, AsyncPrefixes
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
+from .prefixes import (
+    Prefixes,
+    AsyncPrefixes,
+    PrefixesWithRawResponse,
+    AsyncPrefixesWithRawResponse,
+    PrefixesWithStreamingResponse,
+    AsyncPrefixesWithStreamingResponse,
 )
-from ...types import shared_params
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from .address_maps import (
     AddressMaps,
     AsyncAddressMaps,
@@ -34,22 +21,16 @@ from .address_maps import (
     AsyncAddressMapsWithStreamingResponse,
 )
 from .loa_documents import (
-    LoaDocuments,
-    AsyncLoaDocuments,
-    LoaDocumentsWithRawResponse,
-    AsyncLoaDocumentsWithRawResponse,
-    LoaDocumentsWithStreamingResponse,
-    AsyncLoaDocumentsWithStreamingResponse,
+    LOADocuments,
+    AsyncLOADocuments,
+    LOADocumentsWithRawResponse,
+    AsyncLOADocumentsWithRawResponse,
+    LOADocumentsWithStreamingResponse,
+    AsyncLOADocumentsWithStreamingResponse,
 )
-from .prefixes import (
-    Prefixes,
-    AsyncPrefixes,
-    PrefixesWithRawResponse,
-    AsyncPrefixesWithRawResponse,
-    PrefixesWithStreamingResponse,
-    AsyncPrefixesWithStreamingResponse,
-)
-from ..._wrappers import ResultWrapper
+from .prefixes.prefixes import Prefixes, AsyncPrefixes
+from .address_maps.address_maps import AddressMaps, AsyncAddressMaps
+from .loa_documents.loa_documents import LOADocuments, AsyncLOADocuments
 
 __all__ = ["Addresses", "AsyncAddresses"]
 
@@ -60,8 +41,8 @@ class Addresses(SyncAPIResource):
         return AddressMaps(self._client)
 
     @cached_property
-    def loa_documents(self) -> LoaDocuments:
-        return LoaDocuments(self._client)
+    def loa_documents(self) -> LOADocuments:
+        return LOADocuments(self._client)
 
     @cached_property
     def prefixes(self) -> Prefixes:
@@ -82,8 +63,8 @@ class AsyncAddresses(AsyncAPIResource):
         return AsyncAddressMaps(self._client)
 
     @cached_property
-    def loa_documents(self) -> AsyncLoaDocuments:
-        return AsyncLoaDocuments(self._client)
+    def loa_documents(self) -> AsyncLOADocuments:
+        return AsyncLOADocuments(self._client)
 
     @cached_property
     def prefixes(self) -> AsyncPrefixes:
@@ -107,8 +88,8 @@ class AddressesWithRawResponse:
         return AddressMapsWithRawResponse(self._addresses.address_maps)
 
     @cached_property
-    def loa_documents(self) -> LoaDocumentsWithRawResponse:
-        return LoaDocumentsWithRawResponse(self._addresses.loa_documents)
+    def loa_documents(self) -> LOADocumentsWithRawResponse:
+        return LOADocumentsWithRawResponse(self._addresses.loa_documents)
 
     @cached_property
     def prefixes(self) -> PrefixesWithRawResponse:
@@ -124,8 +105,8 @@ class AsyncAddressesWithRawResponse:
         return AsyncAddressMapsWithRawResponse(self._addresses.address_maps)
 
     @cached_property
-    def loa_documents(self) -> AsyncLoaDocumentsWithRawResponse:
-        return AsyncLoaDocumentsWithRawResponse(self._addresses.loa_documents)
+    def loa_documents(self) -> AsyncLOADocumentsWithRawResponse:
+        return AsyncLOADocumentsWithRawResponse(self._addresses.loa_documents)
 
     @cached_property
     def prefixes(self) -> AsyncPrefixesWithRawResponse:
@@ -141,8 +122,8 @@ class AddressesWithStreamingResponse:
         return AddressMapsWithStreamingResponse(self._addresses.address_maps)
 
     @cached_property
-    def loa_documents(self) -> LoaDocumentsWithStreamingResponse:
-        return LoaDocumentsWithStreamingResponse(self._addresses.loa_documents)
+    def loa_documents(self) -> LOADocumentsWithStreamingResponse:
+        return LOADocumentsWithStreamingResponse(self._addresses.loa_documents)
 
     @cached_property
     def prefixes(self) -> PrefixesWithStreamingResponse:
@@ -158,8 +139,8 @@ class AsyncAddressesWithStreamingResponse:
         return AsyncAddressMapsWithStreamingResponse(self._addresses.address_maps)
 
     @cached_property
-    def loa_documents(self) -> AsyncLoaDocumentsWithStreamingResponse:
-        return AsyncLoaDocumentsWithStreamingResponse(self._addresses.loa_documents)
+    def loa_documents(self) -> AsyncLOADocumentsWithStreamingResponse:
+        return AsyncLOADocumentsWithStreamingResponse(self._addresses.loa_documents)
 
     @cached_property
     def prefixes(self) -> AsyncPrefixesWithStreamingResponse:

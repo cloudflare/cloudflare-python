@@ -2,6 +2,4 @@
 
 from __future__ import annotations
 
-from .setting_available_page_rules_settings_list_available_page_rules_settings_response import (
-    SettingAvailablePageRulesSettingsListAvailablePageRulesSettingsResponse as SettingAvailablePageRulesSettingsListAvailablePageRulesSettingsResponse,
-)
+from .setting_list_response import SettingListResponse as SettingListResponse

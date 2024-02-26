@@ -2,43 +2,14 @@
 
 from __future__ import annotations
 
+from typing import Type, Union, cast
+from datetime import datetime
+from typing_extensions import Literal
+
 import httpx
 
-from .locations import Locations, AsyncLocations
-
-from ...._compat import cached_property
-
-from ....types.radar import TrafficAnomalyListResponse
-
-from typing import Type, Union
-
-from datetime import datetime
-
-from typing_extensions import Literal
-
-from ...._response import (
-    to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ....types import shared_params
-from ....types.radar import traffic_anomaly_list_params
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import maybe_transform
 from .locations import (
     Locations,
     AsyncLocations,
@@ -47,9 +18,19 @@ from .locations import (
     LocationsWithStreamingResponse,
     AsyncLocationsWithStreamingResponse,
 )
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
 from ...._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
+from ....types.radar import TrafficAnomalyGetResponse, traffic_anomaly_get_params
+from ...._base_client import (
+    make_request_options,
+)
 
 __all__ = ["TrafficAnomalies", "AsyncTrafficAnomalies"]
 
@@ -67,7 +48,7 @@ class TrafficAnomalies(SyncAPIResource):
     def with_streaming_response(self) -> TrafficAnomaliesWithStreamingResponse:
         return TrafficAnomaliesWithStreamingResponse(self)
 
-    def list(
+    def get(
         self,
         *,
         asn: int | NotGiven = NOT_GIVEN,
@@ -102,7 +83,7 @@ class TrafficAnomalies(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TrafficAnomalyListResponse:
+    ) -> TrafficAnomalyGetResponse:
         """
         Internet traffic anomalies are signals that might point to an outage, These
         alerts are automatically detected by Radar and then manually verified by our
@@ -153,11 +134,11 @@ class TrafficAnomalies(SyncAPIResource):
                         "offset": offset,
                         "status": status,
                     },
-                    traffic_anomaly_list_params.TrafficAnomalyListParams,
+                    traffic_anomaly_get_params.TrafficAnomalyGetParams,
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TrafficAnomalyListResponse], ResultWrapper[TrafficAnomalyListResponse]),
+            cast_to=cast(Type[TrafficAnomalyGetResponse], ResultWrapper[TrafficAnomalyGetResponse]),
         )
 
 
@@ -174,7 +155,7 @@ class AsyncTrafficAnomalies(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncTrafficAnomaliesWithStreamingResponse:
         return AsyncTrafficAnomaliesWithStreamingResponse(self)
 
-    async def list(
+    async def get(
         self,
         *,
         asn: int | NotGiven = NOT_GIVEN,
@@ -209,7 +190,7 @@ class AsyncTrafficAnomalies(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TrafficAnomalyListResponse:
+    ) -> TrafficAnomalyGetResponse:
         """
         Internet traffic anomalies are signals that might point to an outage, These
         alerts are automatically detected by Radar and then manually verified by our
@@ -260,11 +241,11 @@ class AsyncTrafficAnomalies(AsyncAPIResource):
                         "offset": offset,
                         "status": status,
                     },
-                    traffic_anomaly_list_params.TrafficAnomalyListParams,
+                    traffic_anomaly_get_params.TrafficAnomalyGetParams,
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TrafficAnomalyListResponse], ResultWrapper[TrafficAnomalyListResponse]),
+            cast_to=cast(Type[TrafficAnomalyGetResponse], ResultWrapper[TrafficAnomalyGetResponse]),
         )
 
 
@@ -272,8 +253,8 @@ class TrafficAnomaliesWithRawResponse:
     def __init__(self, traffic_anomalies: TrafficAnomalies) -> None:
         self._traffic_anomalies = traffic_anomalies
 
-        self.list = to_raw_response_wrapper(
-            traffic_anomalies.list,
+        self.get = to_raw_response_wrapper(
+            traffic_anomalies.get,
         )
 
     @cached_property
@@ -285,8 +266,8 @@ class AsyncTrafficAnomaliesWithRawResponse:
     def __init__(self, traffic_anomalies: AsyncTrafficAnomalies) -> None:
         self._traffic_anomalies = traffic_anomalies
 
-        self.list = async_to_raw_response_wrapper(
-            traffic_anomalies.list,
+        self.get = async_to_raw_response_wrapper(
+            traffic_anomalies.get,
         )
 
     @cached_property
@@ -298,8 +279,8 @@ class TrafficAnomaliesWithStreamingResponse:
     def __init__(self, traffic_anomalies: TrafficAnomalies) -> None:
         self._traffic_anomalies = traffic_anomalies
 
-        self.list = to_streamed_response_wrapper(
-            traffic_anomalies.list,
+        self.get = to_streamed_response_wrapper(
+            traffic_anomalies.get,
         )
 
     @cached_property
@@ -311,8 +292,8 @@ class AsyncTrafficAnomaliesWithStreamingResponse:
     def __init__(self, traffic_anomalies: AsyncTrafficAnomalies) -> None:
         self._traffic_anomalies = traffic_anomalies
 
-        self.list = async_to_streamed_response_wrapper(
-            traffic_anomalies.list,
+        self.get = async_to_streamed_response_wrapper(
+            traffic_anomalies.get,
         )
 
     @cached_property

@@ -2,16 +2,12 @@
 
 from typing import List
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
 from ...._models import BaseModel
-from ....types import shared
 
-__all__ = ["HijackEventsResponse", "AsnInfo", "Event", "EventTag"]
+__all__ = ["HijackEventsResponse", "ASNInfo", "Event", "EventTag"]
 
 
-class AsnInfo(BaseModel):
+class ASNInfo(BaseModel):
     asn: int
 
     country_code: str
@@ -64,7 +60,7 @@ class Event(BaseModel):
 
 
 class HijackEventsResponse(BaseModel):
-    asn_info: List[AsnInfo]
+    asn_info: List[ASNInfo]
 
     events: List[Event]
 

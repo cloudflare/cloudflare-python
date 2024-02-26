@@ -2,26 +2,20 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, Literal, Annotated
-
-from typing import Optional, List
+from typing import List, Optional
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
-from ..._utils import PropertyInfo
-from ...types import shared_params
 
 __all__ = ["JobUpdateParams", "OutputOptions"]
 
 
 class JobUpdateParams(TypedDict, total=False):
-    account_or_zone: Required[str]
+    account_id: Required[str]
+    """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
 
-    account_or_zone_id: Required[str]
-    """Identifier"""
+    zone_id: Required[str]
+    """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
     destination_conf: str
     """Uniquely identifies a resource (such as an s3 bucket) where data will be pushed.

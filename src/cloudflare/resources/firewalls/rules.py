@@ -2,65 +2,39 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._compat import cached_property
-
-from ...types.firewalls import (
-    RuleUpdateResponse,
-    RuleDeleteResponse,
-    RuleFirewallRulesCreateFirewallRulesResponse,
-    RuleFirewallRulesListFirewallRulesResponse,
-    RuleFirewallRulesUpdateFirewallRulesResponse,
-    RuleFirewallRulesUpdatePriorityOfFirewallRulesResponse,
-    RuleGetResponse,
-)
-
-from typing import Type, Optional
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._wrappers import ResultWrapper
+from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
     AsyncPaginator,
     make_request_options,
-    HttpxBinaryResponseContent,
 )
-from ...types import shared_params
-from ...types.firewalls import rule_update_params
-from ...types.firewalls import rule_delete_params
-from ...types.firewalls import rule_firewall_rules_create_firewall_rules_params
-from ...types.firewalls import rule_firewall_rules_list_firewall_rules_params
-from ...types.firewalls import rule_firewall_rules_update_firewall_rules_params
-from ...types.firewalls import rule_firewall_rules_update_priority_of_firewall_rules_params
-from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ...types.firewalls import (
+    RuleGetResponse,
+    RuleEditResponse,
+    RuleListResponse,
+    RuleCreateResponse,
+    RuleDeleteResponse,
+    RuleUpdateResponse,
+    rule_edit_params,
+    rule_list_params,
+    rule_create_params,
+    rule_delete_params,
+    rule_update_params,
+)
 
 __all__ = ["Rules", "AsyncRules"]
 
@@ -73,6 +47,47 @@ class Rules(SyncAPIResource):
     @cached_property
     def with_streaming_response(self) -> RulesWithStreamingResponse:
         return RulesWithStreamingResponse(self)
+
+    def create(
+        self,
+        zone_identifier: str,
+        *,
+        body: object,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RuleCreateResponse]:
+        """
+        Create one or more firewall rules.
+
+        Args:
+          zone_identifier: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_identifier:
+            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        return self._post(
+            f"/zones/{zone_identifier}/firewall/rules",
+            body=maybe_transform(body, rule_create_params.RuleCreateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[RuleCreateResponse]], ResultWrapper[RuleCreateResponse]),
+        )
 
     def update(
         self,
@@ -118,6 +133,72 @@ class Rules(SyncAPIResource):
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(Type[Optional[RuleUpdateResponse]], ResultWrapper[RuleUpdateResponse]),
+        )
+
+    def list(
+        self,
+        zone_identifier: str,
+        *,
+        action: str | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        page: float | NotGiven = NOT_GIVEN,
+        paused: bool | NotGiven = NOT_GIVEN,
+        per_page: float | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SyncV4PagePaginationArray[RuleListResponse]:
+        """Fetches firewall rules in a zone.
+
+        You can filter the results using several
+        optional parameters.
+
+        Args:
+          zone_identifier: Identifier
+
+          action: The action to search for. Must be an exact match.
+
+          description: A case-insensitive string to find in the description.
+
+          page: Page number of paginated results.
+
+          paused: When true, indicates that the firewall rule is currently paused.
+
+          per_page: Number of firewall rules per page.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_identifier:
+            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        return self._get_api_list(
+            f"/zones/{zone_identifier}/firewall/rules",
+            page=SyncV4PagePaginationArray[RuleListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "action": action,
+                        "description": description,
+                        "page": page,
+                        "paused": paused,
+                        "per_page": per_page,
+                    },
+                    rule_list_params.RuleListParams,
+                ),
+            ),
+            model=RuleListResponse,
         )
 
     def delete(
@@ -171,10 +252,11 @@ class Rules(SyncAPIResource):
             cast_to=cast(Type[Optional[RuleDeleteResponse]], ResultWrapper[RuleDeleteResponse]),
         )
 
-    def firewall_rules_create_firewall_rules(
+    def edit(
         self,
-        zone_identifier: str,
+        id: str,
         *,
+        zone_identifier: str,
         body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -182,12 +264,14 @@ class Rules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RuleFirewallRulesCreateFirewallRulesResponse]:
+    ) -> Optional[RuleEditResponse]:
         """
-        Create one or more firewall rules.
+        Updates the priority of an existing firewall rule.
 
         Args:
           zone_identifier: Identifier
+
+          id: The unique identifier of the firewall rule.
 
           extra_headers: Send extra headers
 
@@ -199,173 +283,11 @@ class Rules(SyncAPIResource):
         """
         if not zone_identifier:
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        return self._post(
-            f"/zones/{zone_identifier}/firewall/rules",
-            body=maybe_transform(
-                body, rule_firewall_rules_create_firewall_rules_params.RuleFirewallRulesCreateFirewallRulesParams
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[Optional[RuleFirewallRulesCreateFirewallRulesResponse]],
-                ResultWrapper[RuleFirewallRulesCreateFirewallRulesResponse],
-            ),
-        )
-
-    def firewall_rules_list_firewall_rules(
-        self,
-        zone_identifier: str,
-        *,
-        action: str | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        paused: bool | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RuleFirewallRulesListFirewallRulesResponse]:
-        """Fetches firewall rules in a zone.
-
-        You can filter the results using several
-        optional parameters.
-
-        Args:
-          zone_identifier: Identifier
-
-          action: The action to search for. Must be an exact match.
-
-          description: A case-insensitive string to find in the description.
-
-          page: Page number of paginated results.
-
-          paused: When true, indicates that the firewall rule is currently paused.
-
-          per_page: Number of firewall rules per page.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        return self._get(
-            f"/zones/{zone_identifier}/firewall/rules",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "action": action,
-                        "description": description,
-                        "page": page,
-                        "paused": paused,
-                        "per_page": per_page,
-                    },
-                    rule_firewall_rules_list_firewall_rules_params.RuleFirewallRulesListFirewallRulesParams,
-                ),
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[Optional[RuleFirewallRulesListFirewallRulesResponse]],
-                ResultWrapper[RuleFirewallRulesListFirewallRulesResponse],
-            ),
-        )
-
-    def firewall_rules_update_firewall_rules(
-        self,
-        zone_identifier: str,
-        *,
-        body: object,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RuleFirewallRulesUpdateFirewallRulesResponse]:
-        """
-        Updates one or more existing firewall rules.
-
-        Args:
-          zone_identifier: Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        return self._put(
-            f"/zones/{zone_identifier}/firewall/rules",
-            body=maybe_transform(
-                body, rule_firewall_rules_update_firewall_rules_params.RuleFirewallRulesUpdateFirewallRulesParams
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[Optional[RuleFirewallRulesUpdateFirewallRulesResponse]],
-                ResultWrapper[RuleFirewallRulesUpdateFirewallRulesResponse],
-            ),
-        )
-
-    def firewall_rules_update_priority_of_firewall_rules(
-        self,
-        zone_identifier: str,
-        *,
-        body: object,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RuleFirewallRulesUpdatePriorityOfFirewallRulesResponse]:
-        """
-        Updates the priority of existing firewall rules.
-
-        Args:
-          zone_identifier: Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._patch(
-            f"/zones/{zone_identifier}/firewall/rules",
-            body=maybe_transform(
-                body,
-                rule_firewall_rules_update_priority_of_firewall_rules_params.RuleFirewallRulesUpdatePriorityOfFirewallRulesParams,
-            ),
+            f"/zones/{zone_identifier}/firewall/rules/{id}",
+            body=maybe_transform(body, rule_edit_params.RuleEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -373,10 +295,7 @@ class Rules(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[RuleFirewallRulesUpdatePriorityOfFirewallRulesResponse]],
-                ResultWrapper[RuleFirewallRulesUpdatePriorityOfFirewallRulesResponse],
-            ),
+            cast_to=cast(Type[Optional[RuleEditResponse]], ResultWrapper[RuleEditResponse]),
         )
 
     def get(
@@ -433,6 +352,47 @@ class AsyncRules(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncRulesWithStreamingResponse:
         return AsyncRulesWithStreamingResponse(self)
 
+    async def create(
+        self,
+        zone_identifier: str,
+        *,
+        body: object,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RuleCreateResponse]:
+        """
+        Create one or more firewall rules.
+
+        Args:
+          zone_identifier: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_identifier:
+            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        return await self._post(
+            f"/zones/{zone_identifier}/firewall/rules",
+            body=maybe_transform(body, rule_create_params.RuleCreateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[RuleCreateResponse]], ResultWrapper[RuleCreateResponse]),
+        )
+
     async def update(
         self,
         id: str,
@@ -477,6 +437,72 @@ class AsyncRules(AsyncAPIResource):
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(Type[Optional[RuleUpdateResponse]], ResultWrapper[RuleUpdateResponse]),
+        )
+
+    def list(
+        self,
+        zone_identifier: str,
+        *,
+        action: str | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        page: float | NotGiven = NOT_GIVEN,
+        paused: bool | NotGiven = NOT_GIVEN,
+        per_page: float | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AsyncPaginator[RuleListResponse, AsyncV4PagePaginationArray[RuleListResponse]]:
+        """Fetches firewall rules in a zone.
+
+        You can filter the results using several
+        optional parameters.
+
+        Args:
+          zone_identifier: Identifier
+
+          action: The action to search for. Must be an exact match.
+
+          description: A case-insensitive string to find in the description.
+
+          page: Page number of paginated results.
+
+          paused: When true, indicates that the firewall rule is currently paused.
+
+          per_page: Number of firewall rules per page.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_identifier:
+            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        return self._get_api_list(
+            f"/zones/{zone_identifier}/firewall/rules",
+            page=AsyncV4PagePaginationArray[RuleListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "action": action,
+                        "description": description,
+                        "page": page,
+                        "paused": paused,
+                        "per_page": per_page,
+                    },
+                    rule_list_params.RuleListParams,
+                ),
+            ),
+            model=RuleListResponse,
         )
 
     async def delete(
@@ -530,10 +556,11 @@ class AsyncRules(AsyncAPIResource):
             cast_to=cast(Type[Optional[RuleDeleteResponse]], ResultWrapper[RuleDeleteResponse]),
         )
 
-    async def firewall_rules_create_firewall_rules(
+    async def edit(
         self,
-        zone_identifier: str,
+        id: str,
         *,
+        zone_identifier: str,
         body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -541,12 +568,14 @@ class AsyncRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RuleFirewallRulesCreateFirewallRulesResponse]:
+    ) -> Optional[RuleEditResponse]:
         """
-        Create one or more firewall rules.
+        Updates the priority of an existing firewall rule.
 
         Args:
           zone_identifier: Identifier
+
+          id: The unique identifier of the firewall rule.
 
           extra_headers: Send extra headers
 
@@ -558,173 +587,11 @@ class AsyncRules(AsyncAPIResource):
         """
         if not zone_identifier:
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        return await self._post(
-            f"/zones/{zone_identifier}/firewall/rules",
-            body=maybe_transform(
-                body, rule_firewall_rules_create_firewall_rules_params.RuleFirewallRulesCreateFirewallRulesParams
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[Optional[RuleFirewallRulesCreateFirewallRulesResponse]],
-                ResultWrapper[RuleFirewallRulesCreateFirewallRulesResponse],
-            ),
-        )
-
-    async def firewall_rules_list_firewall_rules(
-        self,
-        zone_identifier: str,
-        *,
-        action: str | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        paused: bool | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RuleFirewallRulesListFirewallRulesResponse]:
-        """Fetches firewall rules in a zone.
-
-        You can filter the results using several
-        optional parameters.
-
-        Args:
-          zone_identifier: Identifier
-
-          action: The action to search for. Must be an exact match.
-
-          description: A case-insensitive string to find in the description.
-
-          page: Page number of paginated results.
-
-          paused: When true, indicates that the firewall rule is currently paused.
-
-          per_page: Number of firewall rules per page.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        return await self._get(
-            f"/zones/{zone_identifier}/firewall/rules",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "action": action,
-                        "description": description,
-                        "page": page,
-                        "paused": paused,
-                        "per_page": per_page,
-                    },
-                    rule_firewall_rules_list_firewall_rules_params.RuleFirewallRulesListFirewallRulesParams,
-                ),
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[Optional[RuleFirewallRulesListFirewallRulesResponse]],
-                ResultWrapper[RuleFirewallRulesListFirewallRulesResponse],
-            ),
-        )
-
-    async def firewall_rules_update_firewall_rules(
-        self,
-        zone_identifier: str,
-        *,
-        body: object,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RuleFirewallRulesUpdateFirewallRulesResponse]:
-        """
-        Updates one or more existing firewall rules.
-
-        Args:
-          zone_identifier: Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        return await self._put(
-            f"/zones/{zone_identifier}/firewall/rules",
-            body=maybe_transform(
-                body, rule_firewall_rules_update_firewall_rules_params.RuleFirewallRulesUpdateFirewallRulesParams
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[Optional[RuleFirewallRulesUpdateFirewallRulesResponse]],
-                ResultWrapper[RuleFirewallRulesUpdateFirewallRulesResponse],
-            ),
-        )
-
-    async def firewall_rules_update_priority_of_firewall_rules(
-        self,
-        zone_identifier: str,
-        *,
-        body: object,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RuleFirewallRulesUpdatePriorityOfFirewallRulesResponse]:
-        """
-        Updates the priority of existing firewall rules.
-
-        Args:
-          zone_identifier: Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
-            f"/zones/{zone_identifier}/firewall/rules",
-            body=maybe_transform(
-                body,
-                rule_firewall_rules_update_priority_of_firewall_rules_params.RuleFirewallRulesUpdatePriorityOfFirewallRulesParams,
-            ),
+            f"/zones/{zone_identifier}/firewall/rules/{id}",
+            body=maybe_transform(body, rule_edit_params.RuleEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -732,10 +599,7 @@ class AsyncRules(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[RuleFirewallRulesUpdatePriorityOfFirewallRulesResponse]],
-                ResultWrapper[RuleFirewallRulesUpdatePriorityOfFirewallRulesResponse],
-            ),
+            cast_to=cast(Type[Optional[RuleEditResponse]], ResultWrapper[RuleEditResponse]),
         )
 
     async def get(
@@ -787,23 +651,20 @@ class RulesWithRawResponse:
     def __init__(self, rules: Rules) -> None:
         self._rules = rules
 
+        self.create = to_raw_response_wrapper(
+            rules.create,
+        )
         self.update = to_raw_response_wrapper(
             rules.update,
+        )
+        self.list = to_raw_response_wrapper(
+            rules.list,
         )
         self.delete = to_raw_response_wrapper(
             rules.delete,
         )
-        self.firewall_rules_create_firewall_rules = to_raw_response_wrapper(
-            rules.firewall_rules_create_firewall_rules,
-        )
-        self.firewall_rules_list_firewall_rules = to_raw_response_wrapper(
-            rules.firewall_rules_list_firewall_rules,
-        )
-        self.firewall_rules_update_firewall_rules = to_raw_response_wrapper(
-            rules.firewall_rules_update_firewall_rules,
-        )
-        self.firewall_rules_update_priority_of_firewall_rules = to_raw_response_wrapper(
-            rules.firewall_rules_update_priority_of_firewall_rules,
+        self.edit = to_raw_response_wrapper(
+            rules.edit,
         )
         self.get = to_raw_response_wrapper(
             rules.get,
@@ -814,23 +675,20 @@ class AsyncRulesWithRawResponse:
     def __init__(self, rules: AsyncRules) -> None:
         self._rules = rules
 
+        self.create = async_to_raw_response_wrapper(
+            rules.create,
+        )
         self.update = async_to_raw_response_wrapper(
             rules.update,
+        )
+        self.list = async_to_raw_response_wrapper(
+            rules.list,
         )
         self.delete = async_to_raw_response_wrapper(
             rules.delete,
         )
-        self.firewall_rules_create_firewall_rules = async_to_raw_response_wrapper(
-            rules.firewall_rules_create_firewall_rules,
-        )
-        self.firewall_rules_list_firewall_rules = async_to_raw_response_wrapper(
-            rules.firewall_rules_list_firewall_rules,
-        )
-        self.firewall_rules_update_firewall_rules = async_to_raw_response_wrapper(
-            rules.firewall_rules_update_firewall_rules,
-        )
-        self.firewall_rules_update_priority_of_firewall_rules = async_to_raw_response_wrapper(
-            rules.firewall_rules_update_priority_of_firewall_rules,
+        self.edit = async_to_raw_response_wrapper(
+            rules.edit,
         )
         self.get = async_to_raw_response_wrapper(
             rules.get,
@@ -841,23 +699,20 @@ class RulesWithStreamingResponse:
     def __init__(self, rules: Rules) -> None:
         self._rules = rules
 
+        self.create = to_streamed_response_wrapper(
+            rules.create,
+        )
         self.update = to_streamed_response_wrapper(
             rules.update,
+        )
+        self.list = to_streamed_response_wrapper(
+            rules.list,
         )
         self.delete = to_streamed_response_wrapper(
             rules.delete,
         )
-        self.firewall_rules_create_firewall_rules = to_streamed_response_wrapper(
-            rules.firewall_rules_create_firewall_rules,
-        )
-        self.firewall_rules_list_firewall_rules = to_streamed_response_wrapper(
-            rules.firewall_rules_list_firewall_rules,
-        )
-        self.firewall_rules_update_firewall_rules = to_streamed_response_wrapper(
-            rules.firewall_rules_update_firewall_rules,
-        )
-        self.firewall_rules_update_priority_of_firewall_rules = to_streamed_response_wrapper(
-            rules.firewall_rules_update_priority_of_firewall_rules,
+        self.edit = to_streamed_response_wrapper(
+            rules.edit,
         )
         self.get = to_streamed_response_wrapper(
             rules.get,
@@ -868,23 +723,20 @@ class AsyncRulesWithStreamingResponse:
     def __init__(self, rules: AsyncRules) -> None:
         self._rules = rules
 
+        self.create = async_to_streamed_response_wrapper(
+            rules.create,
+        )
         self.update = async_to_streamed_response_wrapper(
             rules.update,
+        )
+        self.list = async_to_streamed_response_wrapper(
+            rules.list,
         )
         self.delete = async_to_streamed_response_wrapper(
             rules.delete,
         )
-        self.firewall_rules_create_firewall_rules = async_to_streamed_response_wrapper(
-            rules.firewall_rules_create_firewall_rules,
-        )
-        self.firewall_rules_list_firewall_rules = async_to_streamed_response_wrapper(
-            rules.firewall_rules_list_firewall_rules,
-        )
-        self.firewall_rules_update_firewall_rules = async_to_streamed_response_wrapper(
-            rules.firewall_rules_update_firewall_rules,
-        )
-        self.firewall_rules_update_priority_of_firewall_rules = async_to_streamed_response_wrapper(
-            rules.firewall_rules_update_priority_of_firewall_rules,
+        self.edit = async_to_streamed_response_wrapper(
+            rules.edit,
         )
         self.get = async_to_streamed_response_wrapper(
             rules.get,

@@ -2,60 +2,54 @@
 
 from __future__ import annotations
 
+from typing import Type, cast
+from typing_extensions import Literal
+
 import httpx
 
-from .asns import Asns, AsyncAsns
-
+from .asns import (
+    ASNs,
+    AsyncASNs,
+    ASNsWithRawResponse,
+    AsyncASNsWithRawResponse,
+    ASNsWithStreamingResponse,
+    AsyncASNsWithStreamingResponse,
+)
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import maybe_transform
+from .locations import (
+    Locations,
+    AsyncLocations,
+    LocationsWithRawResponse,
+    AsyncLocationsWithRawResponse,
+    LocationsWithStreamingResponse,
+    AsyncLocationsWithStreamingResponse,
+)
 from ...._compat import cached_property
-
-from ....types.radar import EntityIPsResponse
-
-from typing import Type
-
-from typing_extensions import Literal
-
+from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ....types import shared_params
-from ....types.radar import entity_ips_params
-from .asns import (
-    Asns,
-    AsyncAsns,
-    AsnsWithRawResponse,
-    AsyncAsnsWithRawResponse,
-    AsnsWithStreamingResponse,
-    AsyncAsnsWithStreamingResponse,
-)
 from ...._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
+from ....types.radar import EntityGetResponse, entity_get_params
+from ...._base_client import (
+    make_request_options,
+)
 
 __all__ = ["Entities", "AsyncEntities"]
 
 
 class Entities(SyncAPIResource):
     @cached_property
-    def asns(self) -> Asns:
-        return Asns(self._client)
+    def asns(self) -> ASNs:
+        return ASNs(self._client)
+
+    @cached_property
+    def locations(self) -> Locations:
+        return Locations(self._client)
 
     @cached_property
     def with_raw_response(self) -> EntitiesWithRawResponse:
@@ -65,7 +59,7 @@ class Entities(SyncAPIResource):
     def with_streaming_response(self) -> EntitiesWithStreamingResponse:
         return EntitiesWithStreamingResponse(self)
 
-    def ips(
+    def get(
         self,
         *,
         ip: str,
@@ -76,7 +70,7 @@ class Entities(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> EntityIPsResponse:
+    ) -> EntityGetResponse:
         """
         Get IP address information.
 
@@ -105,18 +99,22 @@ class Entities(SyncAPIResource):
                         "ip": ip,
                         "format": format,
                     },
-                    entity_ips_params.EntityIPsParams,
+                    entity_get_params.EntityGetParams,
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[EntityIPsResponse], ResultWrapper[EntityIPsResponse]),
+            cast_to=cast(Type[EntityGetResponse], ResultWrapper[EntityGetResponse]),
         )
 
 
 class AsyncEntities(AsyncAPIResource):
     @cached_property
-    def asns(self) -> AsyncAsns:
-        return AsyncAsns(self._client)
+    def asns(self) -> AsyncASNs:
+        return AsyncASNs(self._client)
+
+    @cached_property
+    def locations(self) -> AsyncLocations:
+        return AsyncLocations(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncEntitiesWithRawResponse:
@@ -126,7 +124,7 @@ class AsyncEntities(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncEntitiesWithStreamingResponse:
         return AsyncEntitiesWithStreamingResponse(self)
 
-    async def ips(
+    async def get(
         self,
         *,
         ip: str,
@@ -137,7 +135,7 @@ class AsyncEntities(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> EntityIPsResponse:
+    ) -> EntityGetResponse:
         """
         Get IP address information.
 
@@ -166,11 +164,11 @@ class AsyncEntities(AsyncAPIResource):
                         "ip": ip,
                         "format": format,
                     },
-                    entity_ips_params.EntityIPsParams,
+                    entity_get_params.EntityGetParams,
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[EntityIPsResponse], ResultWrapper[EntityIPsResponse]),
+            cast_to=cast(Type[EntityGetResponse], ResultWrapper[EntityGetResponse]),
         )
 
 
@@ -178,49 +176,65 @@ class EntitiesWithRawResponse:
     def __init__(self, entities: Entities) -> None:
         self._entities = entities
 
-        self.ips = to_raw_response_wrapper(
-            entities.ips,
+        self.get = to_raw_response_wrapper(
+            entities.get,
         )
 
     @cached_property
-    def asns(self) -> AsnsWithRawResponse:
-        return AsnsWithRawResponse(self._entities.asns)
+    def asns(self) -> ASNsWithRawResponse:
+        return ASNsWithRawResponse(self._entities.asns)
+
+    @cached_property
+    def locations(self) -> LocationsWithRawResponse:
+        return LocationsWithRawResponse(self._entities.locations)
 
 
 class AsyncEntitiesWithRawResponse:
     def __init__(self, entities: AsyncEntities) -> None:
         self._entities = entities
 
-        self.ips = async_to_raw_response_wrapper(
-            entities.ips,
+        self.get = async_to_raw_response_wrapper(
+            entities.get,
         )
 
     @cached_property
-    def asns(self) -> AsyncAsnsWithRawResponse:
-        return AsyncAsnsWithRawResponse(self._entities.asns)
+    def asns(self) -> AsyncASNsWithRawResponse:
+        return AsyncASNsWithRawResponse(self._entities.asns)
+
+    @cached_property
+    def locations(self) -> AsyncLocationsWithRawResponse:
+        return AsyncLocationsWithRawResponse(self._entities.locations)
 
 
 class EntitiesWithStreamingResponse:
     def __init__(self, entities: Entities) -> None:
         self._entities = entities
 
-        self.ips = to_streamed_response_wrapper(
-            entities.ips,
+        self.get = to_streamed_response_wrapper(
+            entities.get,
         )
 
     @cached_property
-    def asns(self) -> AsnsWithStreamingResponse:
-        return AsnsWithStreamingResponse(self._entities.asns)
+    def asns(self) -> ASNsWithStreamingResponse:
+        return ASNsWithStreamingResponse(self._entities.asns)
+
+    @cached_property
+    def locations(self) -> LocationsWithStreamingResponse:
+        return LocationsWithStreamingResponse(self._entities.locations)
 
 
 class AsyncEntitiesWithStreamingResponse:
     def __init__(self, entities: AsyncEntities) -> None:
         self._entities = entities
 
-        self.ips = async_to_streamed_response_wrapper(
-            entities.ips,
+        self.get = async_to_streamed_response_wrapper(
+            entities.get,
         )
 
     @cached_property
-    def asns(self) -> AsyncAsnsWithStreamingResponse:
-        return AsyncAsnsWithStreamingResponse(self._entities.asns)
+    def asns(self) -> AsyncASNsWithStreamingResponse:
+        return AsyncASNsWithStreamingResponse(self._entities.asns)
+
+    @cached_property
+    def locations(self) -> AsyncLocationsWithStreamingResponse:
+        return AsyncLocationsWithStreamingResponse(self._entities.locations)
