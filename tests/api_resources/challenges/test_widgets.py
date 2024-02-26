@@ -2,29 +2,22 @@
 
 from __future__ import annotations
 
-from typing import Optional, Any, cast
-
-from cloudflare.types.challenges import (
-    WidgetCreateResponse,
-    WidgetUpdateResponse,
-    WidgetListResponse,
-    WidgetDeleteResponse,
-    WidgetGetResponse,
-    WidgetRotateSecretResponse,
-)
-
 import os
+from typing import Any, Optional, cast
+
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.challenges import widget_create_params
-from cloudflare.types.challenges import widget_update_params
-from cloudflare.types.challenges import widget_list_params
-from cloudflare.types.challenges import widget_rotate_secret_params
+from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from cloudflare.types.challenges import (
+    WidgetGetResponse,
+    WidgetListResponse,
+    WidgetCreateResponse,
+    WidgetDeleteResponse,
+    WidgetUpdateResponse,
+    WidgetRotateSecretResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -193,7 +186,7 @@ class TestWidgets:
         widget = client.challenges.widgets.list(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[WidgetListResponse], widget, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[WidgetListResponse], widget, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -205,7 +198,7 @@ class TestWidgets:
             page=1,
             per_page=5,
         )
-        assert_matches_type(Optional[WidgetListResponse], widget, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[WidgetListResponse], widget, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -217,7 +210,7 @@ class TestWidgets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         widget = response.parse()
-        assert_matches_type(Optional[WidgetListResponse], widget, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[WidgetListResponse], widget, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -229,7 +222,7 @@ class TestWidgets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             widget = response.parse()
-            assert_matches_type(Optional[WidgetListResponse], widget, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[WidgetListResponse], widget, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -572,7 +565,7 @@ class TestAsyncWidgets:
         widget = await async_client.challenges.widgets.list(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[WidgetListResponse], widget, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[WidgetListResponse], widget, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -584,7 +577,7 @@ class TestAsyncWidgets:
             page=1,
             per_page=5,
         )
-        assert_matches_type(Optional[WidgetListResponse], widget, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[WidgetListResponse], widget, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -596,7 +589,7 @@ class TestAsyncWidgets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         widget = await response.parse()
-        assert_matches_type(Optional[WidgetListResponse], widget, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[WidgetListResponse], widget, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -608,7 +601,7 @@ class TestAsyncWidgets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             widget = await response.parse()
-            assert_matches_type(Optional[WidgetListResponse], widget, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[WidgetListResponse], widget, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

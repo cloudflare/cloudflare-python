@@ -2,42 +2,24 @@
 
 from __future__ import annotations
 
-import httpx
-
-from .._compat import cached_property
-
-from ..types import (
-    ManagedHeaderListResponse,
-    ManagedHeaderManagedTransformsUpdateStatusOfManagedTransformsResponse,
-    managed_header_managed_transforms_update_status_of_managed_transforms_params,
-)
-
 from typing import Iterable
 
+import httpx
+
+from ..types import ManagedHeaderEditResponse, ManagedHeaderListResponse, managed_header_edit_params
+from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._utils import maybe_transform
+from .._compat import cached_property
+from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from .._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from .._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from .._resource import SyncAPIResource, AsyncAPIResource
 from .._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
     make_request_options,
-    HttpxBinaryResponseContent,
 )
-from ..types import shared_params
-from ..types import managed_header_managed_transforms_update_status_of_managed_transforms_params
-from .._wrappers import ResultWrapper
 
 __all__ = ["ManagedHeaders", "AsyncManagedHeaders"]
 
@@ -86,23 +68,19 @@ class ManagedHeaders(SyncAPIResource):
             cast_to=ManagedHeaderListResponse,
         )
 
-    def managed_transforms_update_status_of_managed_transforms(
+    def edit(
         self,
         zone_id: str,
         *,
-        managed_request_headers: Iterable[
-            managed_header_managed_transforms_update_status_of_managed_transforms_params.ManagedRequestHeader
-        ],
-        managed_response_headers: Iterable[
-            managed_header_managed_transforms_update_status_of_managed_transforms_params.ManagedResponseHeader
-        ],
+        managed_request_headers: Iterable[managed_header_edit_params.ManagedRequestHeader],
+        managed_response_headers: Iterable[managed_header_edit_params.ManagedResponseHeader],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ManagedHeaderManagedTransformsUpdateStatusOfManagedTransformsResponse:
+    ) -> ManagedHeaderEditResponse:
         """
         Updates the status of one or more Managed Transforms.
 
@@ -126,12 +104,12 @@ class ManagedHeaders(SyncAPIResource):
                     "managed_request_headers": managed_request_headers,
                     "managed_response_headers": managed_response_headers,
                 },
-                managed_header_managed_transforms_update_status_of_managed_transforms_params.ManagedHeaderManagedTransformsUpdateStatusOfManagedTransformsParams,
+                managed_header_edit_params.ManagedHeaderEditParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ManagedHeaderManagedTransformsUpdateStatusOfManagedTransformsResponse,
+            cast_to=ManagedHeaderEditResponse,
         )
 
 
@@ -179,23 +157,19 @@ class AsyncManagedHeaders(AsyncAPIResource):
             cast_to=ManagedHeaderListResponse,
         )
 
-    async def managed_transforms_update_status_of_managed_transforms(
+    async def edit(
         self,
         zone_id: str,
         *,
-        managed_request_headers: Iterable[
-            managed_header_managed_transforms_update_status_of_managed_transforms_params.ManagedRequestHeader
-        ],
-        managed_response_headers: Iterable[
-            managed_header_managed_transforms_update_status_of_managed_transforms_params.ManagedResponseHeader
-        ],
+        managed_request_headers: Iterable[managed_header_edit_params.ManagedRequestHeader],
+        managed_response_headers: Iterable[managed_header_edit_params.ManagedResponseHeader],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ManagedHeaderManagedTransformsUpdateStatusOfManagedTransformsResponse:
+    ) -> ManagedHeaderEditResponse:
         """
         Updates the status of one or more Managed Transforms.
 
@@ -219,12 +193,12 @@ class AsyncManagedHeaders(AsyncAPIResource):
                     "managed_request_headers": managed_request_headers,
                     "managed_response_headers": managed_response_headers,
                 },
-                managed_header_managed_transforms_update_status_of_managed_transforms_params.ManagedHeaderManagedTransformsUpdateStatusOfManagedTransformsParams,
+                managed_header_edit_params.ManagedHeaderEditParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ManagedHeaderManagedTransformsUpdateStatusOfManagedTransformsResponse,
+            cast_to=ManagedHeaderEditResponse,
         )
 
 
@@ -235,8 +209,8 @@ class ManagedHeadersWithRawResponse:
         self.list = to_raw_response_wrapper(
             managed_headers.list,
         )
-        self.managed_transforms_update_status_of_managed_transforms = to_raw_response_wrapper(
-            managed_headers.managed_transforms_update_status_of_managed_transforms,
+        self.edit = to_raw_response_wrapper(
+            managed_headers.edit,
         )
 
 
@@ -247,8 +221,8 @@ class AsyncManagedHeadersWithRawResponse:
         self.list = async_to_raw_response_wrapper(
             managed_headers.list,
         )
-        self.managed_transforms_update_status_of_managed_transforms = async_to_raw_response_wrapper(
-            managed_headers.managed_transforms_update_status_of_managed_transforms,
+        self.edit = async_to_raw_response_wrapper(
+            managed_headers.edit,
         )
 
 
@@ -259,8 +233,8 @@ class ManagedHeadersWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             managed_headers.list,
         )
-        self.managed_transforms_update_status_of_managed_transforms = to_streamed_response_wrapper(
-            managed_headers.managed_transforms_update_status_of_managed_transforms,
+        self.edit = to_streamed_response_wrapper(
+            managed_headers.edit,
         )
 
 
@@ -271,6 +245,6 @@ class AsyncManagedHeadersWithStreamingResponse:
         self.list = async_to_streamed_response_wrapper(
             managed_headers.list,
         )
-        self.managed_transforms_update_status_of_managed_transforms = async_to_streamed_response_wrapper(
-            managed_headers.managed_transforms_update_status_of_managed_transforms,
+        self.edit = async_to_streamed_response_wrapper(
+            managed_headers.edit,
         )

@@ -2,39 +2,24 @@
 
 from __future__ import annotations
 
+from typing import Type, cast
+
 import httpx
 
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._compat import cached_property
-
-from ....types.images.v1s import KeyCloudflareImagesKeysListSigningKeysResponse
-
-from typing import Type
-
+from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ....types import shared_params
 from ...._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
+from ...._base_client import (
+    make_request_options,
+)
+from ....types.images.v1s import KeyListResponse
 
 __all__ = ["Keys", "AsyncKeys"]
 
@@ -48,7 +33,7 @@ class Keys(SyncAPIResource):
     def with_streaming_response(self) -> KeysWithStreamingResponse:
         return KeysWithStreamingResponse(self)
 
-    def cloudflare_images_keys_list_signing_keys(
+    def list(
         self,
         account_id: str,
         *,
@@ -58,7 +43,7 @@ class Keys(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> KeyCloudflareImagesKeysListSigningKeysResponse:
+    ) -> KeyListResponse:
         """Lists your signing keys.
 
         These can be found on your Cloudflare Images dashboard.
@@ -85,10 +70,7 @@ class Keys(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[KeyCloudflareImagesKeysListSigningKeysResponse],
-                ResultWrapper[KeyCloudflareImagesKeysListSigningKeysResponse],
-            ),
+            cast_to=cast(Type[KeyListResponse], ResultWrapper[KeyListResponse]),
         )
 
 
@@ -101,7 +83,7 @@ class AsyncKeys(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncKeysWithStreamingResponse:
         return AsyncKeysWithStreamingResponse(self)
 
-    async def cloudflare_images_keys_list_signing_keys(
+    async def list(
         self,
         account_id: str,
         *,
@@ -111,7 +93,7 @@ class AsyncKeys(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> KeyCloudflareImagesKeysListSigningKeysResponse:
+    ) -> KeyListResponse:
         """Lists your signing keys.
 
         These can be found on your Cloudflare Images dashboard.
@@ -138,10 +120,7 @@ class AsyncKeys(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[KeyCloudflareImagesKeysListSigningKeysResponse],
-                ResultWrapper[KeyCloudflareImagesKeysListSigningKeysResponse],
-            ),
+            cast_to=cast(Type[KeyListResponse], ResultWrapper[KeyListResponse]),
         )
 
 
@@ -149,8 +128,8 @@ class KeysWithRawResponse:
     def __init__(self, keys: Keys) -> None:
         self._keys = keys
 
-        self.cloudflare_images_keys_list_signing_keys = to_raw_response_wrapper(
-            keys.cloudflare_images_keys_list_signing_keys,
+        self.list = to_raw_response_wrapper(
+            keys.list,
         )
 
 
@@ -158,8 +137,8 @@ class AsyncKeysWithRawResponse:
     def __init__(self, keys: AsyncKeys) -> None:
         self._keys = keys
 
-        self.cloudflare_images_keys_list_signing_keys = async_to_raw_response_wrapper(
-            keys.cloudflare_images_keys_list_signing_keys,
+        self.list = async_to_raw_response_wrapper(
+            keys.list,
         )
 
 
@@ -167,8 +146,8 @@ class KeysWithStreamingResponse:
     def __init__(self, keys: Keys) -> None:
         self._keys = keys
 
-        self.cloudflare_images_keys_list_signing_keys = to_streamed_response_wrapper(
-            keys.cloudflare_images_keys_list_signing_keys,
+        self.list = to_streamed_response_wrapper(
+            keys.list,
         )
 
 
@@ -176,6 +155,6 @@ class AsyncKeysWithStreamingResponse:
     def __init__(self, keys: AsyncKeys) -> None:
         self._keys = keys
 
-        self.cloudflare_images_keys_list_signing_keys = async_to_streamed_response_wrapper(
-            keys.cloudflare_images_keys_list_signing_keys,
+        self.list = async_to_streamed_response_wrapper(
+            keys.list,
         )

@@ -2,44 +2,26 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+from typing_extensions import Literal
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._compat import cached_property
-
-from ...types.settings import IPV6UpdateResponse, IPV6GetResponse
-
-from typing import Type, Optional
-
-from typing_extensions import Literal
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types.settings import ipv6_update_params
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ..._base_client import (
+    make_request_options,
+)
+from ...types.settings import IPV6GetResponse, IPV6EditResponse, ipv6_edit_params
 
 __all__ = ["IPV6", "AsyncIPV6"]
 
@@ -53,7 +35,7 @@ class IPV6(SyncAPIResource):
     def with_streaming_response(self) -> IPV6WithStreamingResponse:
         return IPV6WithStreamingResponse(self)
 
-    def update(
+    def edit(
         self,
         zone_id: str,
         *,
@@ -64,7 +46,7 @@ class IPV6(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IPV6UpdateResponse]:
+    ) -> Optional[IPV6EditResponse]:
         """
         Enable IPv6 on all subdomains that are Cloudflare enabled.
         (https://support.cloudflare.com/hc/en-us/articles/200168586).
@@ -86,7 +68,7 @@ class IPV6(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._patch(
             f"/zones/{zone_id}/settings/ipv6",
-            body=maybe_transform({"value": value}, ipv6_update_params.IPV6UpdateParams),
+            body=maybe_transform({"value": value}, ipv6_edit_params.IPV6EditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -94,7 +76,7 @@ class IPV6(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[IPV6UpdateResponse]], ResultWrapper[IPV6UpdateResponse]),
+            cast_to=cast(Type[Optional[IPV6EditResponse]], ResultWrapper[IPV6EditResponse]),
         )
 
     def get(
@@ -147,7 +129,7 @@ class AsyncIPV6(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncIPV6WithStreamingResponse:
         return AsyncIPV6WithStreamingResponse(self)
 
-    async def update(
+    async def edit(
         self,
         zone_id: str,
         *,
@@ -158,7 +140,7 @@ class AsyncIPV6(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IPV6UpdateResponse]:
+    ) -> Optional[IPV6EditResponse]:
         """
         Enable IPv6 on all subdomains that are Cloudflare enabled.
         (https://support.cloudflare.com/hc/en-us/articles/200168586).
@@ -180,7 +162,7 @@ class AsyncIPV6(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._patch(
             f"/zones/{zone_id}/settings/ipv6",
-            body=maybe_transform({"value": value}, ipv6_update_params.IPV6UpdateParams),
+            body=maybe_transform({"value": value}, ipv6_edit_params.IPV6EditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -188,7 +170,7 @@ class AsyncIPV6(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[IPV6UpdateResponse]], ResultWrapper[IPV6UpdateResponse]),
+            cast_to=cast(Type[Optional[IPV6EditResponse]], ResultWrapper[IPV6EditResponse]),
         )
 
     async def get(
@@ -236,8 +218,8 @@ class IPV6WithRawResponse:
     def __init__(self, ipv6: IPV6) -> None:
         self._ipv6 = ipv6
 
-        self.update = to_raw_response_wrapper(
-            ipv6.update,
+        self.edit = to_raw_response_wrapper(
+            ipv6.edit,
         )
         self.get = to_raw_response_wrapper(
             ipv6.get,
@@ -248,8 +230,8 @@ class AsyncIPV6WithRawResponse:
     def __init__(self, ipv6: AsyncIPV6) -> None:
         self._ipv6 = ipv6
 
-        self.update = async_to_raw_response_wrapper(
-            ipv6.update,
+        self.edit = async_to_raw_response_wrapper(
+            ipv6.edit,
         )
         self.get = async_to_raw_response_wrapper(
             ipv6.get,
@@ -260,8 +242,8 @@ class IPV6WithStreamingResponse:
     def __init__(self, ipv6: IPV6) -> None:
         self._ipv6 = ipv6
 
-        self.update = to_streamed_response_wrapper(
-            ipv6.update,
+        self.edit = to_streamed_response_wrapper(
+            ipv6.edit,
         )
         self.get = to_streamed_response_wrapper(
             ipv6.get,
@@ -272,8 +254,8 @@ class AsyncIPV6WithStreamingResponse:
     def __init__(self, ipv6: AsyncIPV6) -> None:
         self._ipv6 = ipv6
 
-        self.update = async_to_streamed_response_wrapper(
-            ipv6.update,
+        self.edit = async_to_streamed_response_wrapper(
+            ipv6.edit,
         )
         self.get = async_to_streamed_response_wrapper(
             ipv6.get,

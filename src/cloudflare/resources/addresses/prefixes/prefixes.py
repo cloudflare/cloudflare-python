@@ -2,48 +2,10 @@
 
 from __future__ import annotations
 
+from typing import Any, Type, Optional, cast
+
 import httpx
 
-from .bgps.bgps import BGPs, AsyncBGPs
-
-from ...._compat import cached_property
-
-from .delegations import Delegations, AsyncDelegations
-
-from ....types.addresses import (
-    PrefixUpdateResponse,
-    PrefixDeleteResponse,
-    PrefixGetResponse,
-    PrefixIPAddressManagementPrefixesAddPrefixResponse,
-    PrefixIPAddressManagementPrefixesListPrefixesResponse,
-)
-
-from typing import Type, Optional
-
-from ...._response import (
-    to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ....types import shared_params
-from ....types.addresses import prefix_update_params
-from ....types.addresses import prefix_ip_address_management_prefixes_add_prefix_params
 from .bgps import (
     BGPs,
     AsyncBGPs,
@@ -52,6 +14,10 @@ from .bgps import (
     BGPsWithStreamingResponse,
     AsyncBGPsWithStreamingResponse,
 )
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import maybe_transform
+from .bgps.bgps import BGPs, AsyncBGPs
+from ...._compat import cached_property
 from .delegations import (
     Delegations,
     AsyncDelegations,
@@ -60,19 +26,26 @@ from .delegations import (
     DelegationsWithStreamingResponse,
     AsyncDelegationsWithStreamingResponse,
 )
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
 from ...._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ...._base_client import (
+    make_request_options,
+)
+from ....types.addresses import (
+    PrefixGetResponse,
+    PrefixEditResponse,
+    PrefixListResponse,
+    PrefixCreateResponse,
+    PrefixDeleteResponse,
+    prefix_edit_params,
+    prefix_create_params,
+)
 
 __all__ = ["Prefixes", "AsyncPrefixes"]
 
@@ -94,28 +67,31 @@ class Prefixes(SyncAPIResource):
     def with_streaming_response(self) -> PrefixesWithStreamingResponse:
         return PrefixesWithStreamingResponse(self)
 
-    def update(
+    def create(
         self,
-        prefix_id: str,
-        *,
         account_id: str,
-        description: str,
+        *,
+        asn: Optional[int],
+        cidr: str,
+        loa_document_id: Optional[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PrefixUpdateResponse:
+    ) -> PrefixCreateResponse:
         """
-        Modify the description for a prefix owned by the account.
+        Add a new prefix under the account.
 
         Args:
           account_id: Identifier
 
-          prefix_id: Identifier
+          asn: Autonomous System Number (ASN) the prefix will be advertised under.
 
-          description: Description of the prefix.
+          cidr: IP Prefix in Classless Inter-Domain Routing format.
+
+          loa_document_id: Identifier for the uploaded LOA document.
 
           extra_headers: Send extra headers
 
@@ -127,11 +103,16 @@ class Prefixes(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not prefix_id:
-            raise ValueError(f"Expected a non-empty value for `prefix_id` but received {prefix_id!r}")
-        return self._patch(
-            f"/accounts/{account_id}/addressing/prefixes/{prefix_id}",
-            body=maybe_transform({"description": description}, prefix_update_params.PrefixUpdateParams),
+        return self._post(
+            f"/accounts/{account_id}/addressing/prefixes",
+            body=maybe_transform(
+                {
+                    "asn": asn,
+                    "cidr": cidr,
+                    "loa_document_id": loa_document_id,
+                },
+                prefix_create_params.PrefixCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -139,7 +120,46 @@ class Prefixes(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[PrefixUpdateResponse], ResultWrapper[PrefixUpdateResponse]),
+            cast_to=cast(Type[PrefixCreateResponse], ResultWrapper[PrefixCreateResponse]),
+        )
+
+    def list(
+        self,
+        account_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[PrefixListResponse]:
+        """
+        List all prefixes owned by the account.
+
+        Args:
+          account_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._get(
+            f"/accounts/{account_id}/addressing/prefixes",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[PrefixListResponse]], ResultWrapper[PrefixListResponse]),
         )
 
     def delete(
@@ -191,6 +211,54 @@ class Prefixes(SyncAPIResource):
             ),
         )
 
+    def edit(
+        self,
+        prefix_id: str,
+        *,
+        account_id: str,
+        description: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> PrefixEditResponse:
+        """
+        Modify the description for a prefix owned by the account.
+
+        Args:
+          account_id: Identifier
+
+          prefix_id: Identifier
+
+          description: Description of the prefix.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not prefix_id:
+            raise ValueError(f"Expected a non-empty value for `prefix_id` but received {prefix_id!r}")
+        return self._patch(
+            f"/accounts/{account_id}/addressing/prefixes/{prefix_id}",
+            body=maybe_transform({"description": description}, prefix_edit_params.PrefixEditParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[PrefixEditResponse], ResultWrapper[PrefixEditResponse]),
+        )
+
     def get(
         self,
         prefix_id: str,
@@ -235,7 +303,25 @@ class Prefixes(SyncAPIResource):
             cast_to=cast(Type[PrefixGetResponse], ResultWrapper[PrefixGetResponse]),
         )
 
-    def ip_address_management_prefixes_add_prefix(
+
+class AsyncPrefixes(AsyncAPIResource):
+    @cached_property
+    def bgps(self) -> AsyncBGPs:
+        return AsyncBGPs(self._client)
+
+    @cached_property
+    def delegations(self) -> AsyncDelegations:
+        return AsyncDelegations(self._client)
+
+    @cached_property
+    def with_raw_response(self) -> AsyncPrefixesWithRawResponse:
+        return AsyncPrefixesWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncPrefixesWithStreamingResponse:
+        return AsyncPrefixesWithStreamingResponse(self)
+
+    async def create(
         self,
         account_id: str,
         *,
@@ -248,7 +334,7 @@ class Prefixes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PrefixIPAddressManagementPrefixesAddPrefixResponse:
+    ) -> PrefixCreateResponse:
         """
         Add a new prefix under the account.
 
@@ -271,7 +357,7 @@ class Prefixes(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._post(
+        return await self._post(
             f"/accounts/{account_id}/addressing/prefixes",
             body=maybe_transform(
                 {
@@ -279,7 +365,7 @@ class Prefixes(SyncAPIResource):
                     "cidr": cidr,
                     "loa_document_id": loa_document_id,
                 },
-                prefix_ip_address_management_prefixes_add_prefix_params.PrefixIPAddressManagementPrefixesAddPrefixParams,
+                prefix_create_params.PrefixCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -288,13 +374,10 @@ class Prefixes(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[PrefixIPAddressManagementPrefixesAddPrefixResponse],
-                ResultWrapper[PrefixIPAddressManagementPrefixesAddPrefixResponse],
-            ),
+            cast_to=cast(Type[PrefixCreateResponse], ResultWrapper[PrefixCreateResponse]),
         )
 
-    def ip_address_management_prefixes_list_prefixes(
+    async def list(
         self,
         account_id: str,
         *,
@@ -304,7 +387,7 @@ class Prefixes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PrefixIPAddressManagementPrefixesListPrefixesResponse]:
+    ) -> Optional[PrefixListResponse]:
         """
         List all prefixes owned by the account.
 
@@ -321,7 +404,7 @@ class Prefixes(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
+        return await self._get(
             f"/accounts/{account_id}/addressing/prefixes",
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -330,76 +413,7 @@ class Prefixes(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[PrefixIPAddressManagementPrefixesListPrefixesResponse]],
-                ResultWrapper[PrefixIPAddressManagementPrefixesListPrefixesResponse],
-            ),
-        )
-
-
-class AsyncPrefixes(AsyncAPIResource):
-    @cached_property
-    def bgps(self) -> AsyncBGPs:
-        return AsyncBGPs(self._client)
-
-    @cached_property
-    def delegations(self) -> AsyncDelegations:
-        return AsyncDelegations(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> AsyncPrefixesWithRawResponse:
-        return AsyncPrefixesWithRawResponse(self)
-
-    @cached_property
-    def with_streaming_response(self) -> AsyncPrefixesWithStreamingResponse:
-        return AsyncPrefixesWithStreamingResponse(self)
-
-    async def update(
-        self,
-        prefix_id: str,
-        *,
-        account_id: str,
-        description: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PrefixUpdateResponse:
-        """
-        Modify the description for a prefix owned by the account.
-
-        Args:
-          account_id: Identifier
-
-          prefix_id: Identifier
-
-          description: Description of the prefix.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not prefix_id:
-            raise ValueError(f"Expected a non-empty value for `prefix_id` but received {prefix_id!r}")
-        return await self._patch(
-            f"/accounts/{account_id}/addressing/prefixes/{prefix_id}",
-            body=maybe_transform({"description": description}, prefix_update_params.PrefixUpdateParams),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(Type[PrefixUpdateResponse], ResultWrapper[PrefixUpdateResponse]),
+            cast_to=cast(Type[Optional[PrefixListResponse]], ResultWrapper[PrefixListResponse]),
         )
 
     async def delete(
@@ -451,6 +465,54 @@ class AsyncPrefixes(AsyncAPIResource):
             ),
         )
 
+    async def edit(
+        self,
+        prefix_id: str,
+        *,
+        account_id: str,
+        description: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> PrefixEditResponse:
+        """
+        Modify the description for a prefix owned by the account.
+
+        Args:
+          account_id: Identifier
+
+          prefix_id: Identifier
+
+          description: Description of the prefix.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not prefix_id:
+            raise ValueError(f"Expected a non-empty value for `prefix_id` but received {prefix_id!r}")
+        return await self._patch(
+            f"/accounts/{account_id}/addressing/prefixes/{prefix_id}",
+            body=maybe_transform({"description": description}, prefix_edit_params.PrefixEditParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[PrefixEditResponse], ResultWrapper[PrefixEditResponse]),
+        )
+
     async def get(
         self,
         prefix_id: str,
@@ -495,126 +557,25 @@ class AsyncPrefixes(AsyncAPIResource):
             cast_to=cast(Type[PrefixGetResponse], ResultWrapper[PrefixGetResponse]),
         )
 
-    async def ip_address_management_prefixes_add_prefix(
-        self,
-        account_id: str,
-        *,
-        asn: Optional[int],
-        cidr: str,
-        loa_document_id: Optional[str],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PrefixIPAddressManagementPrefixesAddPrefixResponse:
-        """
-        Add a new prefix under the account.
-
-        Args:
-          account_id: Identifier
-
-          asn: Autonomous System Number (ASN) the prefix will be advertised under.
-
-          cidr: IP Prefix in Classless Inter-Domain Routing format.
-
-          loa_document_id: Identifier for the uploaded LOA document.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._post(
-            f"/accounts/{account_id}/addressing/prefixes",
-            body=maybe_transform(
-                {
-                    "asn": asn,
-                    "cidr": cidr,
-                    "loa_document_id": loa_document_id,
-                },
-                prefix_ip_address_management_prefixes_add_prefix_params.PrefixIPAddressManagementPrefixesAddPrefixParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[PrefixIPAddressManagementPrefixesAddPrefixResponse],
-                ResultWrapper[PrefixIPAddressManagementPrefixesAddPrefixResponse],
-            ),
-        )
-
-    async def ip_address_management_prefixes_list_prefixes(
-        self,
-        account_id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PrefixIPAddressManagementPrefixesListPrefixesResponse]:
-        """
-        List all prefixes owned by the account.
-
-        Args:
-          account_id: Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
-            f"/accounts/{account_id}/addressing/prefixes",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[Optional[PrefixIPAddressManagementPrefixesListPrefixesResponse]],
-                ResultWrapper[PrefixIPAddressManagementPrefixesListPrefixesResponse],
-            ),
-        )
-
 
 class PrefixesWithRawResponse:
     def __init__(self, prefixes: Prefixes) -> None:
         self._prefixes = prefixes
 
-        self.update = to_raw_response_wrapper(
-            prefixes.update,
+        self.create = to_raw_response_wrapper(
+            prefixes.create,
+        )
+        self.list = to_raw_response_wrapper(
+            prefixes.list,
         )
         self.delete = to_raw_response_wrapper(
             prefixes.delete,
         )
+        self.edit = to_raw_response_wrapper(
+            prefixes.edit,
+        )
         self.get = to_raw_response_wrapper(
             prefixes.get,
-        )
-        self.ip_address_management_prefixes_add_prefix = to_raw_response_wrapper(
-            prefixes.ip_address_management_prefixes_add_prefix,
-        )
-        self.ip_address_management_prefixes_list_prefixes = to_raw_response_wrapper(
-            prefixes.ip_address_management_prefixes_list_prefixes,
         )
 
     @cached_property
@@ -630,20 +591,20 @@ class AsyncPrefixesWithRawResponse:
     def __init__(self, prefixes: AsyncPrefixes) -> None:
         self._prefixes = prefixes
 
-        self.update = async_to_raw_response_wrapper(
-            prefixes.update,
+        self.create = async_to_raw_response_wrapper(
+            prefixes.create,
+        )
+        self.list = async_to_raw_response_wrapper(
+            prefixes.list,
         )
         self.delete = async_to_raw_response_wrapper(
             prefixes.delete,
         )
+        self.edit = async_to_raw_response_wrapper(
+            prefixes.edit,
+        )
         self.get = async_to_raw_response_wrapper(
             prefixes.get,
-        )
-        self.ip_address_management_prefixes_add_prefix = async_to_raw_response_wrapper(
-            prefixes.ip_address_management_prefixes_add_prefix,
-        )
-        self.ip_address_management_prefixes_list_prefixes = async_to_raw_response_wrapper(
-            prefixes.ip_address_management_prefixes_list_prefixes,
         )
 
     @cached_property
@@ -659,20 +620,20 @@ class PrefixesWithStreamingResponse:
     def __init__(self, prefixes: Prefixes) -> None:
         self._prefixes = prefixes
 
-        self.update = to_streamed_response_wrapper(
-            prefixes.update,
+        self.create = to_streamed_response_wrapper(
+            prefixes.create,
+        )
+        self.list = to_streamed_response_wrapper(
+            prefixes.list,
         )
         self.delete = to_streamed_response_wrapper(
             prefixes.delete,
         )
+        self.edit = to_streamed_response_wrapper(
+            prefixes.edit,
+        )
         self.get = to_streamed_response_wrapper(
             prefixes.get,
-        )
-        self.ip_address_management_prefixes_add_prefix = to_streamed_response_wrapper(
-            prefixes.ip_address_management_prefixes_add_prefix,
-        )
-        self.ip_address_management_prefixes_list_prefixes = to_streamed_response_wrapper(
-            prefixes.ip_address_management_prefixes_list_prefixes,
         )
 
     @cached_property
@@ -688,20 +649,20 @@ class AsyncPrefixesWithStreamingResponse:
     def __init__(self, prefixes: AsyncPrefixes) -> None:
         self._prefixes = prefixes
 
-        self.update = async_to_streamed_response_wrapper(
-            prefixes.update,
+        self.create = async_to_streamed_response_wrapper(
+            prefixes.create,
+        )
+        self.list = async_to_streamed_response_wrapper(
+            prefixes.list,
         )
         self.delete = async_to_streamed_response_wrapper(
             prefixes.delete,
         )
+        self.edit = async_to_streamed_response_wrapper(
+            prefixes.edit,
+        )
         self.get = async_to_streamed_response_wrapper(
             prefixes.get,
-        )
-        self.ip_address_management_prefixes_add_prefix = async_to_streamed_response_wrapper(
-            prefixes.ip_address_management_prefixes_add_prefix,
-        )
-        self.ip_address_management_prefixes_list_prefixes = async_to_streamed_response_wrapper(
-            prefixes.ip_address_management_prefixes_list_prefixes,
         )
 
     @cached_property

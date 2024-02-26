@@ -2,17 +2,10 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, Literal, Annotated
-
-from typing import Iterable, List, Union
+from typing import List, Union, Iterable
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
-from ..._utils import PropertyInfo
-from ...types import shared_params
 
 __all__ = [
     "PostureUpdateParams",
@@ -20,7 +13,7 @@ __all__ = [
     "InputTeamsDevicesFileInputRequest",
     "InputTeamsDevicesUniqueClientIDInputRequest",
     "InputTeamsDevicesDomainJoinedInputRequest",
-    "InputTeamsDevicesOsVersionInputRequest",
+    "InputTeamsDevicesOSVersionInputRequest",
     "InputTeamsDevicesFirewallInputRequest",
     "InputTeamsDevicesSentineloneInputRequest",
     "InputTeamsDevicesCarbonblackInputRequest",
@@ -38,7 +31,7 @@ __all__ = [
 
 
 class PostureUpdateParams(TypedDict, total=False):
-    identifier: Required[object]
+    account_id: Required[object]
 
     name: Required[str]
     """The name of the device posture rule."""
@@ -124,7 +117,7 @@ class InputTeamsDevicesDomainJoinedInputRequest(TypedDict, total=False):
     """Domain"""
 
 
-class InputTeamsDevicesOsVersionInputRequest(TypedDict, total=False):
+class InputTeamsDevicesOSVersionInputRequest(TypedDict, total=False):
     operating_system: Required[Literal["windows"]]
     """Operating System"""
 
@@ -226,6 +219,9 @@ class InputTeamsDevicesCrowdstrikeInputRequest(TypedDict, total=False):
     connection_id: Required[str]
     """Posture Integration ID."""
 
+    last_seen: str
+    """For more details on last seen, please refer to the Crowdstrike documentation."""
+
     operator: Literal["<", "<=", ">", ">=", "=="]
     """Operator"""
 
@@ -237,6 +233,9 @@ class InputTeamsDevicesCrowdstrikeInputRequest(TypedDict, total=False):
 
     sensor_config: str
     """SensorConfig"""
+
+    state: Literal["online", "offline", "unknown"]
+    """For more details on state, please refer to the Crowdstrike documentation."""
 
     version: str
     """Version"""
@@ -310,7 +309,7 @@ Input = Union[
     InputTeamsDevicesFileInputRequest,
     InputTeamsDevicesUniqueClientIDInputRequest,
     InputTeamsDevicesDomainJoinedInputRequest,
-    InputTeamsDevicesOsVersionInputRequest,
+    InputTeamsDevicesOSVersionInputRequest,
     InputTeamsDevicesFirewallInputRequest,
     InputTeamsDevicesSentineloneInputRequest,
     InputTeamsDevicesCarbonblackInputRequest,

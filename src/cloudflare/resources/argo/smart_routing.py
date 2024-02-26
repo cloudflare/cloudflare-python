@@ -2,46 +2,26 @@
 
 from __future__ import annotations
 
+from typing import Any, cast
+from typing_extensions import Literal
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._compat import cached_property
-
-from ...types.argo import SmartRoutingUpdateResponse, SmartRoutingGetResponse
-
-from typing_extensions import Literal
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types.argo import smart_routing_update_params
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ...types.argo import SmartRoutingGetResponse, SmartRoutingEditResponse, smart_routing_edit_params
+from ..._base_client import (
+    make_request_options,
+)
 
 __all__ = ["SmartRouting", "AsyncSmartRouting"]
 
@@ -55,7 +35,7 @@ class SmartRouting(SyncAPIResource):
     def with_streaming_response(self) -> SmartRoutingWithStreamingResponse:
         return SmartRoutingWithStreamingResponse(self)
 
-    def update(
+    def edit(
         self,
         zone_id: str,
         *,
@@ -66,7 +46,7 @@ class SmartRouting(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SmartRoutingUpdateResponse:
+    ) -> SmartRoutingEditResponse:
         """
         Updates enablement of Argo Smart Routing.
 
@@ -86,10 +66,10 @@ class SmartRouting(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            SmartRoutingUpdateResponse,
+            SmartRoutingEditResponse,
             self._patch(
                 f"/zones/{zone_id}/argo/smart_routing",
-                body=maybe_transform({"value": value}, smart_routing_update_params.SmartRoutingUpdateParams),
+                body=maybe_transform({"value": value}, smart_routing_edit_params.SmartRoutingEditParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -98,7 +78,7 @@ class SmartRouting(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[SmartRoutingUpdateResponse]
+                    Any, ResultWrapper[SmartRoutingEditResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -157,7 +137,7 @@ class AsyncSmartRouting(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncSmartRoutingWithStreamingResponse:
         return AsyncSmartRoutingWithStreamingResponse(self)
 
-    async def update(
+    async def edit(
         self,
         zone_id: str,
         *,
@@ -168,7 +148,7 @@ class AsyncSmartRouting(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SmartRoutingUpdateResponse:
+    ) -> SmartRoutingEditResponse:
         """
         Updates enablement of Argo Smart Routing.
 
@@ -188,10 +168,10 @@ class AsyncSmartRouting(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            SmartRoutingUpdateResponse,
+            SmartRoutingEditResponse,
             await self._patch(
                 f"/zones/{zone_id}/argo/smart_routing",
-                body=maybe_transform({"value": value}, smart_routing_update_params.SmartRoutingUpdateParams),
+                body=maybe_transform({"value": value}, smart_routing_edit_params.SmartRoutingEditParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -200,7 +180,7 @@ class AsyncSmartRouting(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[SmartRoutingUpdateResponse]
+                    Any, ResultWrapper[SmartRoutingEditResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -254,8 +234,8 @@ class SmartRoutingWithRawResponse:
     def __init__(self, smart_routing: SmartRouting) -> None:
         self._smart_routing = smart_routing
 
-        self.update = to_raw_response_wrapper(
-            smart_routing.update,
+        self.edit = to_raw_response_wrapper(
+            smart_routing.edit,
         )
         self.get = to_raw_response_wrapper(
             smart_routing.get,
@@ -266,8 +246,8 @@ class AsyncSmartRoutingWithRawResponse:
     def __init__(self, smart_routing: AsyncSmartRouting) -> None:
         self._smart_routing = smart_routing
 
-        self.update = async_to_raw_response_wrapper(
-            smart_routing.update,
+        self.edit = async_to_raw_response_wrapper(
+            smart_routing.edit,
         )
         self.get = async_to_raw_response_wrapper(
             smart_routing.get,
@@ -278,8 +258,8 @@ class SmartRoutingWithStreamingResponse:
     def __init__(self, smart_routing: SmartRouting) -> None:
         self._smart_routing = smart_routing
 
-        self.update = to_streamed_response_wrapper(
-            smart_routing.update,
+        self.edit = to_streamed_response_wrapper(
+            smart_routing.edit,
         )
         self.get = to_streamed_response_wrapper(
             smart_routing.get,
@@ -290,8 +270,8 @@ class AsyncSmartRoutingWithStreamingResponse:
     def __init__(self, smart_routing: AsyncSmartRouting) -> None:
         self._smart_routing = smart_routing
 
-        self.update = async_to_streamed_response_wrapper(
-            smart_routing.update,
+        self.edit = async_to_streamed_response_wrapper(
+            smart_routing.edit,
         )
         self.get = async_to_streamed_response_wrapper(
             smart_routing.get,

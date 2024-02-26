@@ -2,20 +2,19 @@
 
 from __future__ import annotations
 
-from cloudflare.types.pages import ProjectCreateResponse, ProjectUpdateResponse, ProjectListResponse, ProjectGetResponse
-
+import os
 from typing import Any, cast
 
-import os
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.pages import project_create_params
-from cloudflare.types.pages import project_update_params
+from cloudflare.types.pages import (
+    ProjectGetResponse,
+    ProjectEditResponse,
+    ProjectListResponse,
+    ProjectCreateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -137,138 +136,6 @@ class TestProjects:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_update(self, client: Cloudflare) -> None:
-        project = client.pages.projects.update(
-            "this-is-my-project-01",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={
-                "deployment_configs": {
-                    "production": {
-                        "compatibility_date": "2022-01-01",
-                        "compatibility_flags": ["url_standard"],
-                        "env_vars": {
-                            "BUILD_VERSION": {"value": "3.3"},
-                            "delete_this_env_var": None,
-                            "secret_var": {
-                                "type": "secret_text",
-                                "value": "A_CMS_API_TOKEN",
-                            },
-                        },
-                    }
-                }
-            },
-        )
-        assert_matches_type(ProjectUpdateResponse, project, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_raw_response_update(self, client: Cloudflare) -> None:
-        response = client.pages.projects.with_raw_response.update(
-            "this-is-my-project-01",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={
-                "deployment_configs": {
-                    "production": {
-                        "compatibility_date": "2022-01-01",
-                        "compatibility_flags": ["url_standard"],
-                        "env_vars": {
-                            "BUILD_VERSION": {"value": "3.3"},
-                            "delete_this_env_var": None,
-                            "secret_var": {
-                                "type": "secret_text",
-                                "value": "A_CMS_API_TOKEN",
-                            },
-                        },
-                    }
-                }
-            },
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        project = response.parse()
-        assert_matches_type(ProjectUpdateResponse, project, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_streaming_response_update(self, client: Cloudflare) -> None:
-        with client.pages.projects.with_streaming_response.update(
-            "this-is-my-project-01",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={
-                "deployment_configs": {
-                    "production": {
-                        "compatibility_date": "2022-01-01",
-                        "compatibility_flags": ["url_standard"],
-                        "env_vars": {
-                            "BUILD_VERSION": {"value": "3.3"},
-                            "delete_this_env_var": None,
-                            "secret_var": {
-                                "type": "secret_text",
-                                "value": "A_CMS_API_TOKEN",
-                            },
-                        },
-                    }
-                }
-            },
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            project = response.parse()
-            assert_matches_type(ProjectUpdateResponse, project, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_path_params_update(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.pages.projects.with_raw_response.update(
-                "this-is-my-project-01",
-                account_id="",
-                body={
-                    "deployment_configs": {
-                        "production": {
-                            "compatibility_date": "2022-01-01",
-                            "compatibility_flags": ["url_standard"],
-                            "env_vars": {
-                                "BUILD_VERSION": {"value": "3.3"},
-                                "delete_this_env_var": None,
-                                "secret_var": {
-                                    "type": "secret_text",
-                                    "value": "A_CMS_API_TOKEN",
-                                },
-                            },
-                        }
-                    }
-                },
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
-            client.pages.projects.with_raw_response.update(
-                "",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={
-                    "deployment_configs": {
-                        "production": {
-                            "compatibility_date": "2022-01-01",
-                            "compatibility_flags": ["url_standard"],
-                            "env_vars": {
-                                "BUILD_VERSION": {"value": "3.3"},
-                                "delete_this_env_var": None,
-                                "secret_var": {
-                                    "type": "secret_text",
-                                    "value": "A_CMS_API_TOKEN",
-                                },
-                            },
-                        }
-                    }
-                },
-            )
-
-    @pytest.mark.skip()
-    @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         project = client.pages.projects.list(
             "023e105f4ecef8ad9ca31a8372d0c353",
@@ -359,6 +226,138 @@ class TestProjects:
             client.pages.projects.with_raw_response.delete(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_edit(self, client: Cloudflare) -> None:
+        project = client.pages.projects.edit(
+            "this-is-my-project-01",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={
+                "deployment_configs": {
+                    "production": {
+                        "compatibility_date": "2022-01-01",
+                        "compatibility_flags": ["url_standard"],
+                        "env_vars": {
+                            "BUILD_VERSION": {"value": "3.3"},
+                            "delete_this_env_var": None,
+                            "secret_var": {
+                                "type": "secret_text",
+                                "value": "A_CMS_API_TOKEN",
+                            },
+                        },
+                    }
+                }
+            },
+        )
+        assert_matches_type(ProjectEditResponse, project, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_edit(self, client: Cloudflare) -> None:
+        response = client.pages.projects.with_raw_response.edit(
+            "this-is-my-project-01",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={
+                "deployment_configs": {
+                    "production": {
+                        "compatibility_date": "2022-01-01",
+                        "compatibility_flags": ["url_standard"],
+                        "env_vars": {
+                            "BUILD_VERSION": {"value": "3.3"},
+                            "delete_this_env_var": None,
+                            "secret_var": {
+                                "type": "secret_text",
+                                "value": "A_CMS_API_TOKEN",
+                            },
+                        },
+                    }
+                }
+            },
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        project = response.parse()
+        assert_matches_type(ProjectEditResponse, project, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_edit(self, client: Cloudflare) -> None:
+        with client.pages.projects.with_streaming_response.edit(
+            "this-is-my-project-01",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={
+                "deployment_configs": {
+                    "production": {
+                        "compatibility_date": "2022-01-01",
+                        "compatibility_flags": ["url_standard"],
+                        "env_vars": {
+                            "BUILD_VERSION": {"value": "3.3"},
+                            "delete_this_env_var": None,
+                            "secret_var": {
+                                "type": "secret_text",
+                                "value": "A_CMS_API_TOKEN",
+                            },
+                        },
+                    }
+                }
+            },
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            project = response.parse()
+            assert_matches_type(ProjectEditResponse, project, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_edit(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.pages.projects.with_raw_response.edit(
+                "this-is-my-project-01",
+                account_id="",
+                body={
+                    "deployment_configs": {
+                        "production": {
+                            "compatibility_date": "2022-01-01",
+                            "compatibility_flags": ["url_standard"],
+                            "env_vars": {
+                                "BUILD_VERSION": {"value": "3.3"},
+                                "delete_this_env_var": None,
+                                "secret_var": {
+                                    "type": "secret_text",
+                                    "value": "A_CMS_API_TOKEN",
+                                },
+                            },
+                        }
+                    }
+                },
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
+            client.pages.projects.with_raw_response.edit(
+                "",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body={
+                    "deployment_configs": {
+                        "production": {
+                            "compatibility_date": "2022-01-01",
+                            "compatibility_flags": ["url_standard"],
+                            "env_vars": {
+                                "BUILD_VERSION": {"value": "3.3"},
+                                "delete_this_env_var": None,
+                                "secret_var": {
+                                    "type": "secret_text",
+                                    "value": "A_CMS_API_TOKEN",
+                                },
+                            },
+                        }
+                    }
+                },
             )
 
     @pytest.mark.skip()
@@ -583,138 +582,6 @@ class TestAsyncProjects:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_update(self, async_client: AsyncCloudflare) -> None:
-        project = await async_client.pages.projects.update(
-            "this-is-my-project-01",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={
-                "deployment_configs": {
-                    "production": {
-                        "compatibility_date": "2022-01-01",
-                        "compatibility_flags": ["url_standard"],
-                        "env_vars": {
-                            "BUILD_VERSION": {"value": "3.3"},
-                            "delete_this_env_var": None,
-                            "secret_var": {
-                                "type": "secret_text",
-                                "value": "A_CMS_API_TOKEN",
-                            },
-                        },
-                    }
-                }
-            },
-        )
-        assert_matches_type(ProjectUpdateResponse, project, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.pages.projects.with_raw_response.update(
-            "this-is-my-project-01",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={
-                "deployment_configs": {
-                    "production": {
-                        "compatibility_date": "2022-01-01",
-                        "compatibility_flags": ["url_standard"],
-                        "env_vars": {
-                            "BUILD_VERSION": {"value": "3.3"},
-                            "delete_this_env_var": None,
-                            "secret_var": {
-                                "type": "secret_text",
-                                "value": "A_CMS_API_TOKEN",
-                            },
-                        },
-                    }
-                }
-            },
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        project = await response.parse()
-        assert_matches_type(ProjectUpdateResponse, project, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.pages.projects.with_streaming_response.update(
-            "this-is-my-project-01",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={
-                "deployment_configs": {
-                    "production": {
-                        "compatibility_date": "2022-01-01",
-                        "compatibility_flags": ["url_standard"],
-                        "env_vars": {
-                            "BUILD_VERSION": {"value": "3.3"},
-                            "delete_this_env_var": None,
-                            "secret_var": {
-                                "type": "secret_text",
-                                "value": "A_CMS_API_TOKEN",
-                            },
-                        },
-                    }
-                }
-            },
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            project = await response.parse()
-            assert_matches_type(ProjectUpdateResponse, project, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.pages.projects.with_raw_response.update(
-                "this-is-my-project-01",
-                account_id="",
-                body={
-                    "deployment_configs": {
-                        "production": {
-                            "compatibility_date": "2022-01-01",
-                            "compatibility_flags": ["url_standard"],
-                            "env_vars": {
-                                "BUILD_VERSION": {"value": "3.3"},
-                                "delete_this_env_var": None,
-                                "secret_var": {
-                                    "type": "secret_text",
-                                    "value": "A_CMS_API_TOKEN",
-                                },
-                            },
-                        }
-                    }
-                },
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
-            await async_client.pages.projects.with_raw_response.update(
-                "",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={
-                    "deployment_configs": {
-                        "production": {
-                            "compatibility_date": "2022-01-01",
-                            "compatibility_flags": ["url_standard"],
-                            "env_vars": {
-                                "BUILD_VERSION": {"value": "3.3"},
-                                "delete_this_env_var": None,
-                                "secret_var": {
-                                    "type": "secret_text",
-                                    "value": "A_CMS_API_TOKEN",
-                                },
-                            },
-                        }
-                    }
-                },
-            )
-
-    @pytest.mark.skip()
-    @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         project = await async_client.pages.projects.list(
             "023e105f4ecef8ad9ca31a8372d0c353",
@@ -805,6 +672,138 @@ class TestAsyncProjects:
             await async_client.pages.projects.with_raw_response.delete(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
+        project = await async_client.pages.projects.edit(
+            "this-is-my-project-01",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={
+                "deployment_configs": {
+                    "production": {
+                        "compatibility_date": "2022-01-01",
+                        "compatibility_flags": ["url_standard"],
+                        "env_vars": {
+                            "BUILD_VERSION": {"value": "3.3"},
+                            "delete_this_env_var": None,
+                            "secret_var": {
+                                "type": "secret_text",
+                                "value": "A_CMS_API_TOKEN",
+                            },
+                        },
+                    }
+                }
+            },
+        )
+        assert_matches_type(ProjectEditResponse, project, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.pages.projects.with_raw_response.edit(
+            "this-is-my-project-01",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={
+                "deployment_configs": {
+                    "production": {
+                        "compatibility_date": "2022-01-01",
+                        "compatibility_flags": ["url_standard"],
+                        "env_vars": {
+                            "BUILD_VERSION": {"value": "3.3"},
+                            "delete_this_env_var": None,
+                            "secret_var": {
+                                "type": "secret_text",
+                                "value": "A_CMS_API_TOKEN",
+                            },
+                        },
+                    }
+                }
+            },
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        project = await response.parse()
+        assert_matches_type(ProjectEditResponse, project, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.pages.projects.with_streaming_response.edit(
+            "this-is-my-project-01",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={
+                "deployment_configs": {
+                    "production": {
+                        "compatibility_date": "2022-01-01",
+                        "compatibility_flags": ["url_standard"],
+                        "env_vars": {
+                            "BUILD_VERSION": {"value": "3.3"},
+                            "delete_this_env_var": None,
+                            "secret_var": {
+                                "type": "secret_text",
+                                "value": "A_CMS_API_TOKEN",
+                            },
+                        },
+                    }
+                }
+            },
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            project = await response.parse()
+            assert_matches_type(ProjectEditResponse, project, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.pages.projects.with_raw_response.edit(
+                "this-is-my-project-01",
+                account_id="",
+                body={
+                    "deployment_configs": {
+                        "production": {
+                            "compatibility_date": "2022-01-01",
+                            "compatibility_flags": ["url_standard"],
+                            "env_vars": {
+                                "BUILD_VERSION": {"value": "3.3"},
+                                "delete_this_env_var": None,
+                                "secret_var": {
+                                    "type": "secret_text",
+                                    "value": "A_CMS_API_TOKEN",
+                                },
+                            },
+                        }
+                    }
+                },
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
+            await async_client.pages.projects.with_raw_response.edit(
+                "",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body={
+                    "deployment_configs": {
+                        "production": {
+                            "compatibility_date": "2022-01-01",
+                            "compatibility_flags": ["url_standard"],
+                            "env_vars": {
+                                "BUILD_VERSION": {"value": "3.3"},
+                                "delete_this_env_var": None,
+                                "secret_var": {
+                                    "type": "secret_text",
+                                    "value": "A_CMS_API_TOKEN",
+                                },
+                            },
+                        }
+                    }
+                },
             )
 
     @pytest.mark.skip()

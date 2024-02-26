@@ -2,51 +2,32 @@
 
 from __future__ import annotations
 
+from typing import Any, Type, Optional, cast
+from typing_extensions import Literal
+
 import httpx
 
+from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._utils import maybe_transform
 from ....._compat import cached_property
-
-from .....types.firewalls.waf.packages import RuleUpdateResponse, RuleGetResponse, RuleWAFRulesListWAFRulesResponse
-
-from typing_extensions import Literal
-
-from typing import Type, Optional
-
+from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ....._resource import SyncAPIResource, AsyncAPIResource
-from ....._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from .....types import shared_params
-from .....types.firewalls.waf.packages import rule_update_params
-from .....types.firewalls.waf.packages import rule_waf_rules_list_waf_rules_params
 from ....._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ....._base_client import (
+    make_request_options,
+)
+from .....types.firewalls.waf.packages import (
+    RuleGetResponse,
+    RuleEditResponse,
+    RuleWAFRulesListWAFRulesResponse,
+    rule_edit_params,
+    rule_waf_rules_list_waf_rules_params,
+)
 
 __all__ = ["Rules", "AsyncRules"]
 
@@ -60,7 +41,7 @@ class Rules(SyncAPIResource):
     def with_streaming_response(self) -> RulesWithStreamingResponse:
         return RulesWithStreamingResponse(self)
 
-    def update(
+    def edit(
         self,
         rule_id: str,
         *,
@@ -73,7 +54,7 @@ class Rules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RuleUpdateResponse:
+    ) -> RuleEditResponse:
         """Updates a WAF rule.
 
         You can only update the mode/action of the rule.
@@ -106,10 +87,10 @@ class Rules(SyncAPIResource):
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return cast(
-            RuleUpdateResponse,
+            RuleEditResponse,
             self._patch(
                 f"/zones/{zone_id}/firewall/waf/packages/{package_id}/rules/{rule_id}",
-                body=maybe_transform({"mode": mode}, rule_update_params.RuleUpdateParams),
+                body=maybe_transform({"mode": mode}, rule_edit_params.RuleEditParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -118,7 +99,7 @@ class Rules(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[RuleUpdateResponse]
+                    Any, ResultWrapper[RuleEditResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -269,7 +250,7 @@ class AsyncRules(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncRulesWithStreamingResponse:
         return AsyncRulesWithStreamingResponse(self)
 
-    async def update(
+    async def edit(
         self,
         rule_id: str,
         *,
@@ -282,7 +263,7 @@ class AsyncRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RuleUpdateResponse:
+    ) -> RuleEditResponse:
         """Updates a WAF rule.
 
         You can only update the mode/action of the rule.
@@ -315,10 +296,10 @@ class AsyncRules(AsyncAPIResource):
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return cast(
-            RuleUpdateResponse,
+            RuleEditResponse,
             await self._patch(
                 f"/zones/{zone_id}/firewall/waf/packages/{package_id}/rules/{rule_id}",
-                body=maybe_transform({"mode": mode}, rule_update_params.RuleUpdateParams),
+                body=maybe_transform({"mode": mode}, rule_edit_params.RuleEditParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -327,7 +308,7 @@ class AsyncRules(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[RuleUpdateResponse]
+                    Any, ResultWrapper[RuleEditResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -473,8 +454,8 @@ class RulesWithRawResponse:
     def __init__(self, rules: Rules) -> None:
         self._rules = rules
 
-        self.update = to_raw_response_wrapper(
-            rules.update,
+        self.edit = to_raw_response_wrapper(
+            rules.edit,
         )
         self.get = to_raw_response_wrapper(
             rules.get,
@@ -488,8 +469,8 @@ class AsyncRulesWithRawResponse:
     def __init__(self, rules: AsyncRules) -> None:
         self._rules = rules
 
-        self.update = async_to_raw_response_wrapper(
-            rules.update,
+        self.edit = async_to_raw_response_wrapper(
+            rules.edit,
         )
         self.get = async_to_raw_response_wrapper(
             rules.get,
@@ -503,8 +484,8 @@ class RulesWithStreamingResponse:
     def __init__(self, rules: Rules) -> None:
         self._rules = rules
 
-        self.update = to_streamed_response_wrapper(
-            rules.update,
+        self.edit = to_streamed_response_wrapper(
+            rules.edit,
         )
         self.get = to_streamed_response_wrapper(
             rules.get,
@@ -518,8 +499,8 @@ class AsyncRulesWithStreamingResponse:
     def __init__(self, rules: AsyncRules) -> None:
         self._rules = rules
 
-        self.update = async_to_streamed_response_wrapper(
-            rules.update,
+        self.edit = async_to_streamed_response_wrapper(
+            rules.edit,
         )
         self.get = async_to_streamed_response_wrapper(
             rules.get,

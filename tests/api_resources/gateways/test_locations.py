@@ -2,32 +2,75 @@
 
 from __future__ import annotations
 
-from cloudflare.types.gateways import (
-    LocationUpdateResponse,
-    LocationDeleteResponse,
-    LocationGetResponse,
-    LocationZeroTrustGatewayLocationsCreateZeroTrustGatewayLocationResponse,
-    LocationZeroTrustGatewayLocationsListZeroTrustGatewayLocationsResponse,
-)
-
-from typing import Any, cast, Optional
-
 import os
+from typing import Any, Optional, cast
+
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.gateways import location_update_params
-from cloudflare.types.gateways import location_zero_trust_gateway_locations_create_zero_trust_gateway_location_params
+from cloudflare.types.gateways import (
+    LocationGetResponse,
+    LocationListResponse,
+    LocationCreateResponse,
+    LocationDeleteResponse,
+    LocationUpdateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
 class TestLocations:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_create(self, client: Cloudflare) -> None:
+        location = client.gateways.locations.create(
+            "699d98642c564d2e855e9661899b7252",
+            name="Austin Office Location",
+        )
+        assert_matches_type(LocationCreateResponse, location, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
+        location = client.gateways.locations.create(
+            "699d98642c564d2e855e9661899b7252",
+            name="Austin Office Location",
+            client_default=False,
+            ecs_support=False,
+            networks=[{"network": "192.0.2.1/32"}, {"network": "192.0.2.1/32"}, {"network": "192.0.2.1/32"}],
+        )
+        assert_matches_type(LocationCreateResponse, location, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_create(self, client: Cloudflare) -> None:
+        response = client.gateways.locations.with_raw_response.create(
+            "699d98642c564d2e855e9661899b7252",
+            name="Austin Office Location",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        location = response.parse()
+        assert_matches_type(LocationCreateResponse, location, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_create(self, client: Cloudflare) -> None:
+        with client.gateways.locations.with_streaming_response.create(
+            "699d98642c564d2e855e9661899b7252",
+            name="Austin Office Location",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            location = response.parse()
+            assert_matches_type(LocationCreateResponse, location, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
@@ -79,6 +122,40 @@ class TestLocations:
 
             location = response.parse()
             assert_matches_type(LocationUpdateResponse, location, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_list(self, client: Cloudflare) -> None:
+        location = client.gateways.locations.list(
+            "699d98642c564d2e855e9661899b7252",
+        )
+        assert_matches_type(Optional[LocationListResponse], location, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_list(self, client: Cloudflare) -> None:
+        response = client.gateways.locations.with_raw_response.list(
+            "699d98642c564d2e855e9661899b7252",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        location = response.parse()
+        assert_matches_type(Optional[LocationListResponse], location, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_list(self, client: Cloudflare) -> None:
+        with client.gateways.locations.with_streaming_response.list(
+            "699d98642c564d2e855e9661899b7252",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            location = response.parse()
+            assert_matches_type(Optional[LocationListResponse], location, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -156,126 +233,58 @@ class TestLocations:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
-    @parametrize
-    def test_method_zero_trust_gateway_locations_create_zero_trust_gateway_location(self, client: Cloudflare) -> None:
-        location = client.gateways.locations.zero_trust_gateway_locations_create_zero_trust_gateway_location(
-            "699d98642c564d2e855e9661899b7252",
-            name="Austin Office Location",
-        )
-        assert_matches_type(
-            LocationZeroTrustGatewayLocationsCreateZeroTrustGatewayLocationResponse, location, path=["response"]
-        )
+
+class TestAsyncLocations:
+    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_zero_trust_gateway_locations_create_zero_trust_gateway_location_with_all_params(
-        self, client: Cloudflare
-    ) -> None:
-        location = client.gateways.locations.zero_trust_gateway_locations_create_zero_trust_gateway_location(
+    async def test_method_create(self, async_client: AsyncCloudflare) -> None:
+        location = await async_client.gateways.locations.create(
+            "699d98642c564d2e855e9661899b7252",
+            name="Austin Office Location",
+        )
+        assert_matches_type(LocationCreateResponse, location, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        location = await async_client.gateways.locations.create(
             "699d98642c564d2e855e9661899b7252",
             name="Austin Office Location",
             client_default=False,
             ecs_support=False,
             networks=[{"network": "192.0.2.1/32"}, {"network": "192.0.2.1/32"}, {"network": "192.0.2.1/32"}],
         )
-        assert_matches_type(
-            LocationZeroTrustGatewayLocationsCreateZeroTrustGatewayLocationResponse, location, path=["response"]
-        )
+        assert_matches_type(LocationCreateResponse, location, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_zero_trust_gateway_locations_create_zero_trust_gateway_location(
-        self, client: Cloudflare
-    ) -> None:
-        response = (
-            client.gateways.locations.with_raw_response.zero_trust_gateway_locations_create_zero_trust_gateway_location(
-                "699d98642c564d2e855e9661899b7252",
-                name="Austin Office Location",
-            )
+    async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.gateways.locations.with_raw_response.create(
+            "699d98642c564d2e855e9661899b7252",
+            name="Austin Office Location",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        location = response.parse()
-        assert_matches_type(
-            LocationZeroTrustGatewayLocationsCreateZeroTrustGatewayLocationResponse, location, path=["response"]
-        )
+        location = await response.parse()
+        assert_matches_type(LocationCreateResponse, location, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_zero_trust_gateway_locations_create_zero_trust_gateway_location(
-        self, client: Cloudflare
-    ) -> None:
-        with client.gateways.locations.with_streaming_response.zero_trust_gateway_locations_create_zero_trust_gateway_location(
+    async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.gateways.locations.with_streaming_response.create(
             "699d98642c564d2e855e9661899b7252",
             name="Austin Office Location",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            location = response.parse()
-            assert_matches_type(
-                LocationZeroTrustGatewayLocationsCreateZeroTrustGatewayLocationResponse, location, path=["response"]
-            )
+            location = await response.parse()
+            assert_matches_type(LocationCreateResponse, location, path=["response"])
 
         assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_method_zero_trust_gateway_locations_list_zero_trust_gateway_locations(self, client: Cloudflare) -> None:
-        location = client.gateways.locations.zero_trust_gateway_locations_list_zero_trust_gateway_locations(
-            "699d98642c564d2e855e9661899b7252",
-        )
-        assert_matches_type(
-            Optional[LocationZeroTrustGatewayLocationsListZeroTrustGatewayLocationsResponse],
-            location,
-            path=["response"],
-        )
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_raw_response_zero_trust_gateway_locations_list_zero_trust_gateway_locations(
-        self, client: Cloudflare
-    ) -> None:
-        response = (
-            client.gateways.locations.with_raw_response.zero_trust_gateway_locations_list_zero_trust_gateway_locations(
-                "699d98642c564d2e855e9661899b7252",
-            )
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        location = response.parse()
-        assert_matches_type(
-            Optional[LocationZeroTrustGatewayLocationsListZeroTrustGatewayLocationsResponse],
-            location,
-            path=["response"],
-        )
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_streaming_response_zero_trust_gateway_locations_list_zero_trust_gateway_locations(
-        self, client: Cloudflare
-    ) -> None:
-        with client.gateways.locations.with_streaming_response.zero_trust_gateway_locations_list_zero_trust_gateway_locations(
-            "699d98642c564d2e855e9661899b7252",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            location = response.parse()
-            assert_matches_type(
-                Optional[LocationZeroTrustGatewayLocationsListZeroTrustGatewayLocationsResponse],
-                location,
-                path=["response"],
-            )
-
-        assert cast(Any, response.is_closed) is True
-
-
-class TestAsyncLocations:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip()
     @parametrize
@@ -327,6 +336,40 @@ class TestAsyncLocations:
 
             location = await response.parse()
             assert_matches_type(LocationUpdateResponse, location, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_list(self, async_client: AsyncCloudflare) -> None:
+        location = await async_client.gateways.locations.list(
+            "699d98642c564d2e855e9661899b7252",
+        )
+        assert_matches_type(Optional[LocationListResponse], location, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.gateways.locations.with_raw_response.list(
+            "699d98642c564d2e855e9661899b7252",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        location = await response.parse()
+        assert_matches_type(Optional[LocationListResponse], location, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.gateways.locations.with_streaming_response.list(
+            "699d98642c564d2e855e9661899b7252",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            location = await response.parse()
+            assert_matches_type(Optional[LocationListResponse], location, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -401,126 +444,5 @@ class TestAsyncLocations:
 
             location = await response.parse()
             assert_matches_type(LocationGetResponse, location, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_zero_trust_gateway_locations_create_zero_trust_gateway_location(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        location = (
-            await async_client.gateways.locations.zero_trust_gateway_locations_create_zero_trust_gateway_location(
-                "699d98642c564d2e855e9661899b7252",
-                name="Austin Office Location",
-            )
-        )
-        assert_matches_type(
-            LocationZeroTrustGatewayLocationsCreateZeroTrustGatewayLocationResponse, location, path=["response"]
-        )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_zero_trust_gateway_locations_create_zero_trust_gateway_location_with_all_params(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        location = (
-            await async_client.gateways.locations.zero_trust_gateway_locations_create_zero_trust_gateway_location(
-                "699d98642c564d2e855e9661899b7252",
-                name="Austin Office Location",
-                client_default=False,
-                ecs_support=False,
-                networks=[{"network": "192.0.2.1/32"}, {"network": "192.0.2.1/32"}, {"network": "192.0.2.1/32"}],
-            )
-        )
-        assert_matches_type(
-            LocationZeroTrustGatewayLocationsCreateZeroTrustGatewayLocationResponse, location, path=["response"]
-        )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_raw_response_zero_trust_gateway_locations_create_zero_trust_gateway_location(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        response = await async_client.gateways.locations.with_raw_response.zero_trust_gateway_locations_create_zero_trust_gateway_location(
-            "699d98642c564d2e855e9661899b7252",
-            name="Austin Office Location",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        location = await response.parse()
-        assert_matches_type(
-            LocationZeroTrustGatewayLocationsCreateZeroTrustGatewayLocationResponse, location, path=["response"]
-        )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_streaming_response_zero_trust_gateway_locations_create_zero_trust_gateway_location(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        async with async_client.gateways.locations.with_streaming_response.zero_trust_gateway_locations_create_zero_trust_gateway_location(
-            "699d98642c564d2e855e9661899b7252",
-            name="Austin Office Location",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            location = await response.parse()
-            assert_matches_type(
-                LocationZeroTrustGatewayLocationsCreateZeroTrustGatewayLocationResponse, location, path=["response"]
-            )
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_zero_trust_gateway_locations_list_zero_trust_gateway_locations(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        location = await async_client.gateways.locations.zero_trust_gateway_locations_list_zero_trust_gateway_locations(
-            "699d98642c564d2e855e9661899b7252",
-        )
-        assert_matches_type(
-            Optional[LocationZeroTrustGatewayLocationsListZeroTrustGatewayLocationsResponse],
-            location,
-            path=["response"],
-        )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_raw_response_zero_trust_gateway_locations_list_zero_trust_gateway_locations(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        response = await async_client.gateways.locations.with_raw_response.zero_trust_gateway_locations_list_zero_trust_gateway_locations(
-            "699d98642c564d2e855e9661899b7252",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        location = await response.parse()
-        assert_matches_type(
-            Optional[LocationZeroTrustGatewayLocationsListZeroTrustGatewayLocationsResponse],
-            location,
-            path=["response"],
-        )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_streaming_response_zero_trust_gateway_locations_list_zero_trust_gateway_locations(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        async with async_client.gateways.locations.with_streaming_response.zero_trust_gateway_locations_list_zero_trust_gateway_locations(
-            "699d98642c564d2e855e9661899b7252",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            location = await response.parse()
-            assert_matches_type(
-                Optional[LocationZeroTrustGatewayLocationsListZeroTrustGatewayLocationsResponse],
-                location,
-                path=["response"],
-            )
 
         assert cast(Any, response.is_closed) is True

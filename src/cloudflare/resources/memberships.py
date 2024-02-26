@@ -2,59 +2,35 @@
 
 from __future__ import annotations
 
+from typing import Any, Type, cast
+from typing_extensions import Literal
+
 import httpx
 
-from .._compat import cached_property
-
 from ..types import (
-    MembershipUpdateResponse,
+    MembershipGetResponse,
     MembershipListResponse,
     MembershipDeleteResponse,
-    MembershipGetResponse,
+    MembershipUpdateResponse,
     membership_list_params,
+    membership_update_params,
 )
-
-from typing_extensions import Literal
-
-from typing import Type, Optional
-
+from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._utils import maybe_transform
+from .._compat import cached_property
+from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from .._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from .._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from .._resource import SyncAPIResource, AsyncAPIResource
+from .._wrappers import ResultWrapper
+from ..pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from .._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
     AsyncPaginator,
     make_request_options,
-    HttpxBinaryResponseContent,
 )
-from ..types import shared_params
-from ..types import membership_update_params
-from ..types import membership_list_params
-from .._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
 
 __all__ = ["Memberships", "AsyncMemberships"]
 
@@ -132,7 +108,7 @@ class Memberships(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MembershipListResponse]:
+    ) -> SyncV4PagePaginationArray[MembershipListResponse]:
         """
         List memberships of accounts the user can access.
 
@@ -157,8 +133,9 @@ class Memberships(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/memberships",
+            page=SyncV4PagePaginationArray[MembershipListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -176,9 +153,8 @@ class Memberships(SyncAPIResource):
                     },
                     membership_list_params.MembershipListParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[MembershipListResponse]], ResultWrapper[MembershipListResponse]),
+            model=MembershipListResponse,
         )
 
     def delete(
@@ -322,7 +298,7 @@ class AsyncMemberships(AsyncAPIResource):
             ),
         )
 
-    async def list(
+    def list(
         self,
         *,
         account: membership_list_params.Account | NotGiven = NOT_GIVEN,
@@ -338,7 +314,7 @@ class AsyncMemberships(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MembershipListResponse]:
+    ) -> AsyncPaginator[MembershipListResponse, AsyncV4PagePaginationArray[MembershipListResponse]]:
         """
         List memberships of accounts the user can access.
 
@@ -363,8 +339,9 @@ class AsyncMemberships(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/memberships",
+            page=AsyncV4PagePaginationArray[MembershipListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -382,9 +359,8 @@ class AsyncMemberships(AsyncAPIResource):
                     },
                     membership_list_params.MembershipListParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[MembershipListResponse]], ResultWrapper[MembershipListResponse]),
+            model=MembershipListResponse,
         )
 
     async def delete(

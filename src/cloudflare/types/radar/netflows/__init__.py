@@ -2,5 +2,7 @@
 
 from __future__ import annotations
 
-from .timesery_list_response import TimeseryListResponse as TimeseryListResponse
-from .timesery_list_params import TimeseryListParams as TimeseryListParams
+from .top_ases_params import TopAsesParams as TopAsesParams
+from .top_ases_response import TopAsesResponse as TopAsesResponse
+from .top_locations_params import TopLocationsParams as TopLocationsParams
+from .top_locations_response import TopLocationsResponse as TopLocationsResponse

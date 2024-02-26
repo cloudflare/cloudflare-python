@@ -2,44 +2,26 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+from typing_extensions import Literal
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._compat import cached_property
-
-from ...types.settings import MirageUpdateResponse, MirageGetResponse
-
-from typing import Type, Optional
-
-from typing_extensions import Literal
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types.settings import mirage_update_params
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ..._base_client import (
+    make_request_options,
+)
+from ...types.settings import MirageGetResponse, MirageEditResponse, mirage_edit_params
 
 __all__ = ["Mirage", "AsyncMirage"]
 
@@ -53,7 +35,7 @@ class Mirage(SyncAPIResource):
     def with_streaming_response(self) -> MirageWithStreamingResponse:
         return MirageWithStreamingResponse(self)
 
-    def update(
+    def edit(
         self,
         zone_id: str,
         *,
@@ -64,7 +46,7 @@ class Mirage(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MirageUpdateResponse]:
+    ) -> Optional[MirageEditResponse]:
         """
         Automatically optimize image loading for website visitors on mobile devices.
         Refer to our
@@ -88,7 +70,7 @@ class Mirage(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._patch(
             f"/zones/{zone_id}/settings/mirage",
-            body=maybe_transform({"value": value}, mirage_update_params.MirageUpdateParams),
+            body=maybe_transform({"value": value}, mirage_edit_params.MirageEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -96,7 +78,7 @@ class Mirage(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[MirageUpdateResponse]], ResultWrapper[MirageUpdateResponse]),
+            cast_to=cast(Type[Optional[MirageEditResponse]], ResultWrapper[MirageEditResponse]),
         )
 
     def get(
@@ -151,7 +133,7 @@ class AsyncMirage(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncMirageWithStreamingResponse:
         return AsyncMirageWithStreamingResponse(self)
 
-    async def update(
+    async def edit(
         self,
         zone_id: str,
         *,
@@ -162,7 +144,7 @@ class AsyncMirage(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MirageUpdateResponse]:
+    ) -> Optional[MirageEditResponse]:
         """
         Automatically optimize image loading for website visitors on mobile devices.
         Refer to our
@@ -186,7 +168,7 @@ class AsyncMirage(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._patch(
             f"/zones/{zone_id}/settings/mirage",
-            body=maybe_transform({"value": value}, mirage_update_params.MirageUpdateParams),
+            body=maybe_transform({"value": value}, mirage_edit_params.MirageEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -194,7 +176,7 @@ class AsyncMirage(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[MirageUpdateResponse]], ResultWrapper[MirageUpdateResponse]),
+            cast_to=cast(Type[Optional[MirageEditResponse]], ResultWrapper[MirageEditResponse]),
         )
 
     async def get(
@@ -244,8 +226,8 @@ class MirageWithRawResponse:
     def __init__(self, mirage: Mirage) -> None:
         self._mirage = mirage
 
-        self.update = to_raw_response_wrapper(
-            mirage.update,
+        self.edit = to_raw_response_wrapper(
+            mirage.edit,
         )
         self.get = to_raw_response_wrapper(
             mirage.get,
@@ -256,8 +238,8 @@ class AsyncMirageWithRawResponse:
     def __init__(self, mirage: AsyncMirage) -> None:
         self._mirage = mirage
 
-        self.update = async_to_raw_response_wrapper(
-            mirage.update,
+        self.edit = async_to_raw_response_wrapper(
+            mirage.edit,
         )
         self.get = async_to_raw_response_wrapper(
             mirage.get,
@@ -268,8 +250,8 @@ class MirageWithStreamingResponse:
     def __init__(self, mirage: Mirage) -> None:
         self._mirage = mirage
 
-        self.update = to_streamed_response_wrapper(
-            mirage.update,
+        self.edit = to_streamed_response_wrapper(
+            mirage.edit,
         )
         self.get = to_streamed_response_wrapper(
             mirage.get,
@@ -280,8 +262,8 @@ class AsyncMirageWithStreamingResponse:
     def __init__(self, mirage: AsyncMirage) -> None:
         self._mirage = mirage
 
-        self.update = async_to_streamed_response_wrapper(
-            mirage.update,
+        self.edit = async_to_streamed_response_wrapper(
+            mirage.edit,
         )
         self.get = async_to_streamed_response_wrapper(
             mirage.get,

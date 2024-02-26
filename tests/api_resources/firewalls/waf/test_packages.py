@@ -2,19 +2,15 @@
 
 from __future__ import annotations
 
-from cloudflare.types.firewalls.waf import PackageListResponse, PackageGetResponse
-
+import os
 from typing import Any, cast
 
-import os
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.firewalls.waf import package_list_params
+from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from cloudflare.types.firewalls.waf import PackageGetResponse, PackageListResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -28,7 +24,7 @@ class TestPackages:
         package = client.firewalls.waf.packages.list(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(PackageListResponse, package, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[PackageListResponse], package, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -41,7 +37,7 @@ class TestPackages:
             page=1,
             per_page=5,
         )
-        assert_matches_type(PackageListResponse, package, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[PackageListResponse], package, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -53,7 +49,7 @@ class TestPackages:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         package = response.parse()
-        assert_matches_type(PackageListResponse, package, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[PackageListResponse], package, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -65,7 +61,7 @@ class TestPackages:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             package = response.parse()
-            assert_matches_type(PackageListResponse, package, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[PackageListResponse], package, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -139,7 +135,7 @@ class TestAsyncPackages:
         package = await async_client.firewalls.waf.packages.list(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(PackageListResponse, package, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[PackageListResponse], package, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -152,7 +148,7 @@ class TestAsyncPackages:
             page=1,
             per_page=5,
         )
-        assert_matches_type(PackageListResponse, package, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[PackageListResponse], package, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -164,7 +160,7 @@ class TestAsyncPackages:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         package = await response.parse()
-        assert_matches_type(PackageListResponse, package, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[PackageListResponse], package, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -176,7 +172,7 @@ class TestAsyncPackages:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             package = await response.parse()
-            assert_matches_type(PackageListResponse, package, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[PackageListResponse], package, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

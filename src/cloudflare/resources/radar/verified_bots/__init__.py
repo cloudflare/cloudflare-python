@@ -1,14 +1,16 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from .tops import Tops, AsyncTops
-from .tops import (
-    TopsWithRawResponse,
-    AsyncTopsWithRawResponse,
-    TopsWithStreamingResponse,
-    AsyncTopsWithStreamingResponse,
+from .top import (
+    Top,
+    AsyncTop,
+    TopWithRawResponse,
+    AsyncTopWithRawResponse,
+    TopWithStreamingResponse,
+    AsyncTopWithStreamingResponse,
 )
-from .verified_bots import VerifiedBots, AsyncVerifiedBots
 from .verified_bots import (
+    VerifiedBots,
+    AsyncVerifiedBots,
     VerifiedBotsWithRawResponse,
     AsyncVerifiedBotsWithRawResponse,
     VerifiedBotsWithStreamingResponse,
@@ -16,12 +18,12 @@ from .verified_bots import (
 )
 
 __all__ = [
-    "Tops",
-    "AsyncTops",
-    "TopsWithRawResponse",
-    "AsyncTopsWithRawResponse",
-    "TopsWithStreamingResponse",
-    "AsyncTopsWithStreamingResponse",
+    "Top",
+    "AsyncTop",
+    "TopWithRawResponse",
+    "AsyncTopWithRawResponse",
+    "TopWithStreamingResponse",
+    "AsyncTopWithStreamingResponse",
     "VerifiedBots",
     "AsyncVerifiedBots",
     "VerifiedBotsWithRawResponse",

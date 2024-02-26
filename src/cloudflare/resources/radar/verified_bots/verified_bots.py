@@ -2,42 +2,24 @@
 
 from __future__ import annotations
 
-from .tops.tops import Tops, AsyncTops
-
+from .top import (
+    Top,
+    AsyncTop,
+    TopWithRawResponse,
+    AsyncTopWithRawResponse,
+    TopWithStreamingResponse,
+    AsyncTopWithStreamingResponse,
+)
 from ...._compat import cached_property
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
 from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ....types import shared_params
-from .tops import (
-    Tops,
-    AsyncTops,
-    TopsWithRawResponse,
-    AsyncTopsWithRawResponse,
-    TopsWithStreamingResponse,
-    AsyncTopsWithStreamingResponse,
-)
-from ...._wrappers import ResultWrapper
 
 __all__ = ["VerifiedBots", "AsyncVerifiedBots"]
 
 
 class VerifiedBots(SyncAPIResource):
     @cached_property
-    def tops(self) -> Tops:
-        return Tops(self._client)
+    def top(self) -> Top:
+        return Top(self._client)
 
     @cached_property
     def with_raw_response(self) -> VerifiedBotsWithRawResponse:
@@ -50,8 +32,8 @@ class VerifiedBots(SyncAPIResource):
 
 class AsyncVerifiedBots(AsyncAPIResource):
     @cached_property
-    def tops(self) -> AsyncTops:
-        return AsyncTops(self._client)
+    def top(self) -> AsyncTop:
+        return AsyncTop(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncVerifiedBotsWithRawResponse:
@@ -67,8 +49,8 @@ class VerifiedBotsWithRawResponse:
         self._verified_bots = verified_bots
 
     @cached_property
-    def tops(self) -> TopsWithRawResponse:
-        return TopsWithRawResponse(self._verified_bots.tops)
+    def top(self) -> TopWithRawResponse:
+        return TopWithRawResponse(self._verified_bots.top)
 
 
 class AsyncVerifiedBotsWithRawResponse:
@@ -76,8 +58,8 @@ class AsyncVerifiedBotsWithRawResponse:
         self._verified_bots = verified_bots
 
     @cached_property
-    def tops(self) -> AsyncTopsWithRawResponse:
-        return AsyncTopsWithRawResponse(self._verified_bots.tops)
+    def top(self) -> AsyncTopWithRawResponse:
+        return AsyncTopWithRawResponse(self._verified_bots.top)
 
 
 class VerifiedBotsWithStreamingResponse:
@@ -85,8 +67,8 @@ class VerifiedBotsWithStreamingResponse:
         self._verified_bots = verified_bots
 
     @cached_property
-    def tops(self) -> TopsWithStreamingResponse:
-        return TopsWithStreamingResponse(self._verified_bots.tops)
+    def top(self) -> TopWithStreamingResponse:
+        return TopWithStreamingResponse(self._verified_bots.top)
 
 
 class AsyncVerifiedBotsWithStreamingResponse:
@@ -94,5 +76,5 @@ class AsyncVerifiedBotsWithStreamingResponse:
         self._verified_bots = verified_bots
 
     @cached_property
-    def tops(self) -> AsyncTopsWithStreamingResponse:
-        return AsyncTopsWithStreamingResponse(self._verified_bots.tops)
+    def top(self) -> AsyncTopWithStreamingResponse:
+        return AsyncTopWithStreamingResponse(self._verified_bots.top)

@@ -2,65 +2,6 @@
 
 from __future__ import annotations
 
-from .annotations.annotations import Annotations, AsyncAnnotations
-
-from ..._compat import cached_property
-
-from .bgp.bgp import BGP, AsyncBGP
-
-from .datasets.datasets import Datasets, AsyncDatasets
-
-from .dns.dns import DNS, AsyncDNS
-
-from .netflows.netflows import Netflows, AsyncNetflows
-
-from .searches.searches import Searches, AsyncSearches
-
-from .verified_bots.verified_bots import VerifiedBots, AsyncVerifiedBots
-
-from .as112.as112 import As112, AsyncAs112
-
-from .connection_tampering.connection_tampering import ConnectionTampering, AsyncConnectionTampering
-
-from .email.email import Email, AsyncEmail
-
-from .attacks.attacks import Attacks, AsyncAttacks
-
-from .emails.emails import Emails, AsyncEmails
-
-from .entities.entities import Entities, AsyncEntities
-
-from .http.http import HTTP, AsyncHTTP
-
-from .quality.quality import Quality, AsyncQuality
-
-from .ranking.ranking import Ranking, AsyncRanking
-
-from .traffic_anomalies.traffic_anomalies import TrafficAnomalies, AsyncTrafficAnomalies
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from .annotations import (
-    Annotations,
-    AsyncAnnotations,
-    AnnotationsWithRawResponse,
-    AsyncAnnotationsWithRawResponse,
-    AnnotationsWithStreamingResponse,
-    AsyncAnnotationsWithStreamingResponse,
-)
 from .bgp import (
     BGP,
     AsyncBGP,
@@ -68,14 +9,6 @@ from .bgp import (
     AsyncBGPWithRawResponse,
     BGPWithStreamingResponse,
     AsyncBGPWithStreamingResponse,
-)
-from .datasets import (
-    Datasets,
-    AsyncDatasets,
-    DatasetsWithRawResponse,
-    AsyncDatasetsWithRawResponse,
-    DatasetsWithStreamingResponse,
-    AsyncDatasetsWithStreamingResponse,
 )
 from .dns import (
     DNS,
@@ -85,29 +18,13 @@ from .dns import (
     DNSWithStreamingResponse,
     AsyncDNSWithStreamingResponse,
 )
-from .netflows import (
-    Netflows,
-    AsyncNetflows,
-    NetflowsWithRawResponse,
-    AsyncNetflowsWithRawResponse,
-    NetflowsWithStreamingResponse,
-    AsyncNetflowsWithStreamingResponse,
-)
-from .searches import (
-    Searches,
-    AsyncSearches,
-    SearchesWithRawResponse,
-    AsyncSearchesWithRawResponse,
-    SearchesWithStreamingResponse,
-    AsyncSearchesWithStreamingResponse,
-)
-from .verified_bots import (
-    VerifiedBots,
-    AsyncVerifiedBots,
-    VerifiedBotsWithRawResponse,
-    AsyncVerifiedBotsWithRawResponse,
-    VerifiedBotsWithStreamingResponse,
-    AsyncVerifiedBotsWithStreamingResponse,
+from .http import (
+    HTTP,
+    AsyncHTTP,
+    HTTPWithRawResponse,
+    AsyncHTTPWithRawResponse,
+    HTTPWithStreamingResponse,
+    AsyncHTTPWithStreamingResponse,
 )
 from .as112 import (
     As112,
@@ -117,14 +34,6 @@ from .as112 import (
     As112WithStreamingResponse,
     AsyncAs112WithStreamingResponse,
 )
-from .connection_tampering import (
-    ConnectionTampering,
-    AsyncConnectionTampering,
-    ConnectionTamperingWithRawResponse,
-    AsyncConnectionTamperingWithRawResponse,
-    ConnectionTamperingWithStreamingResponse,
-    AsyncConnectionTamperingWithStreamingResponse,
-)
 from .email import (
     Email,
     AsyncEmail,
@@ -132,14 +41,6 @@ from .email import (
     AsyncEmailWithRawResponse,
     EmailWithStreamingResponse,
     AsyncEmailWithStreamingResponse,
-)
-from .attacks import (
-    Attacks,
-    AsyncAttacks,
-    AttacksWithRawResponse,
-    AsyncAttacksWithRawResponse,
-    AttacksWithStreamingResponse,
-    AsyncAttacksWithStreamingResponse,
 )
 from .emails import (
     Emails,
@@ -149,22 +50,24 @@ from .emails import (
     EmailsWithStreamingResponse,
     AsyncEmailsWithStreamingResponse,
 )
-from .entities import (
-    Entities,
-    AsyncEntities,
-    EntitiesWithRawResponse,
-    AsyncEntitiesWithRawResponse,
-    EntitiesWithStreamingResponse,
-    AsyncEntitiesWithStreamingResponse,
+from .search import (
+    Search,
+    AsyncSearch,
+    SearchWithRawResponse,
+    AsyncSearchWithRawResponse,
+    SearchWithStreamingResponse,
+    AsyncSearchWithStreamingResponse,
 )
-from .http import (
-    HTTP,
-    AsyncHTTP,
-    HTTPWithRawResponse,
-    AsyncHTTPWithRawResponse,
-    HTTPWithStreamingResponse,
-    AsyncHTTPWithStreamingResponse,
+from .attacks import (
+    Attacks,
+    AsyncAttacks,
+    AttacksWithRawResponse,
+    AsyncAttacksWithRawResponse,
+    AttacksWithStreamingResponse,
+    AsyncAttacksWithStreamingResponse,
 )
+from .bgp.bgp import BGP, AsyncBGP
+from .dns.dns import DNS, AsyncDNS
 from .quality import (
     Quality,
     AsyncQuality,
@@ -181,6 +84,57 @@ from .ranking import (
     RankingWithStreamingResponse,
     AsyncRankingWithStreamingResponse,
 )
+from .datasets import (
+    Datasets,
+    AsyncDatasets,
+    DatasetsWithRawResponse,
+    AsyncDatasetsWithRawResponse,
+    DatasetsWithStreamingResponse,
+    AsyncDatasetsWithStreamingResponse,
+)
+from .entities import (
+    Entities,
+    AsyncEntities,
+    EntitiesWithRawResponse,
+    AsyncEntitiesWithRawResponse,
+    EntitiesWithStreamingResponse,
+    AsyncEntitiesWithStreamingResponse,
+)
+from .netflows import (
+    Netflows,
+    AsyncNetflows,
+    NetflowsWithRawResponse,
+    AsyncNetflowsWithRawResponse,
+    NetflowsWithStreamingResponse,
+    AsyncNetflowsWithStreamingResponse,
+)
+from ..._compat import cached_property
+from .http.http import HTTP, AsyncHTTP
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from .annotations import (
+    Annotations,
+    AsyncAnnotations,
+    AnnotationsWithRawResponse,
+    AsyncAnnotationsWithRawResponse,
+    AnnotationsWithStreamingResponse,
+    AsyncAnnotationsWithStreamingResponse,
+)
+from .as112.as112 import As112, AsyncAs112
+from .email.email import Email, AsyncEmail
+from .emails.emails import Emails, AsyncEmails
+from .verified_bots import (
+    VerifiedBots,
+    AsyncVerifiedBots,
+    VerifiedBotsWithRawResponse,
+    AsyncVerifiedBotsWithRawResponse,
+    VerifiedBotsWithStreamingResponse,
+    AsyncVerifiedBotsWithStreamingResponse,
+)
+from .attacks.attacks import Attacks, AsyncAttacks
+from .quality.quality import Quality, AsyncQuality
+from .ranking.ranking import Ranking, AsyncRanking
+from .entities.entities import Entities, AsyncEntities
+from .netflows.netflows import Netflows, AsyncNetflows
 from .traffic_anomalies import (
     TrafficAnomalies,
     AsyncTrafficAnomalies,
@@ -189,7 +143,17 @@ from .traffic_anomalies import (
     TrafficAnomaliesWithStreamingResponse,
     AsyncTrafficAnomaliesWithStreamingResponse,
 )
-from ..._wrappers import ResultWrapper
+from .connection_tampering import (
+    ConnectionTampering,
+    AsyncConnectionTampering,
+    ConnectionTamperingWithRawResponse,
+    AsyncConnectionTamperingWithRawResponse,
+    ConnectionTamperingWithStreamingResponse,
+    AsyncConnectionTamperingWithStreamingResponse,
+)
+from .annotations.annotations import Annotations, AsyncAnnotations
+from .verified_bots.verified_bots import VerifiedBots, AsyncVerifiedBots
+from .traffic_anomalies.traffic_anomalies import TrafficAnomalies, AsyncTrafficAnomalies
 
 __all__ = ["Radar", "AsyncRadar"]
 
@@ -216,8 +180,8 @@ class Radar(SyncAPIResource):
         return Netflows(self._client)
 
     @cached_property
-    def searches(self) -> Searches:
-        return Searches(self._client)
+    def search(self) -> Search:
+        return Search(self._client)
 
     @cached_property
     def verified_bots(self) -> VerifiedBots:
@@ -294,8 +258,8 @@ class AsyncRadar(AsyncAPIResource):
         return AsyncNetflows(self._client)
 
     @cached_property
-    def searches(self) -> AsyncSearches:
-        return AsyncSearches(self._client)
+    def search(self) -> AsyncSearch:
+        return AsyncSearch(self._client)
 
     @cached_property
     def verified_bots(self) -> AsyncVerifiedBots:
@@ -375,8 +339,8 @@ class RadarWithRawResponse:
         return NetflowsWithRawResponse(self._radar.netflows)
 
     @cached_property
-    def searches(self) -> SearchesWithRawResponse:
-        return SearchesWithRawResponse(self._radar.searches)
+    def search(self) -> SearchWithRawResponse:
+        return SearchWithRawResponse(self._radar.search)
 
     @cached_property
     def verified_bots(self) -> VerifiedBotsWithRawResponse:
@@ -448,8 +412,8 @@ class AsyncRadarWithRawResponse:
         return AsyncNetflowsWithRawResponse(self._radar.netflows)
 
     @cached_property
-    def searches(self) -> AsyncSearchesWithRawResponse:
-        return AsyncSearchesWithRawResponse(self._radar.searches)
+    def search(self) -> AsyncSearchWithRawResponse:
+        return AsyncSearchWithRawResponse(self._radar.search)
 
     @cached_property
     def verified_bots(self) -> AsyncVerifiedBotsWithRawResponse:
@@ -521,8 +485,8 @@ class RadarWithStreamingResponse:
         return NetflowsWithStreamingResponse(self._radar.netflows)
 
     @cached_property
-    def searches(self) -> SearchesWithStreamingResponse:
-        return SearchesWithStreamingResponse(self._radar.searches)
+    def search(self) -> SearchWithStreamingResponse:
+        return SearchWithStreamingResponse(self._radar.search)
 
     @cached_property
     def verified_bots(self) -> VerifiedBotsWithStreamingResponse:
@@ -594,8 +558,8 @@ class AsyncRadarWithStreamingResponse:
         return AsyncNetflowsWithStreamingResponse(self._radar.netflows)
 
     @cached_property
-    def searches(self) -> AsyncSearchesWithStreamingResponse:
-        return AsyncSearchesWithStreamingResponse(self._radar.searches)
+    def search(self) -> AsyncSearchWithStreamingResponse:
+        return AsyncSearchWithStreamingResponse(self._radar.search)
 
     @cached_property
     def verified_bots(self) -> AsyncVerifiedBotsWithStreamingResponse:

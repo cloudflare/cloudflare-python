@@ -2,17 +2,10 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, Literal, Annotated
-
-from typing import Optional, List
+from typing import List, Optional
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from .._types import FileTypes
-from .._utils import PropertyInfo
-from ..types import shared_params
 
 __all__ = ["HealthcheckUpdateParams", "HTTPConfig", "TcpConfig"]
 
@@ -92,7 +85,7 @@ class HealthcheckUpdateParams(TypedDict, total=False):
     tcp_config: Optional[TcpConfig]
     """Parameters specific to TCP health check."""
 
-    api_timeout: Annotated[int, PropertyInfo(alias="timeout")]
+    healthcheck_timeout: Annotated[int, PropertyInfo(alias="timeout")]
     """The timeout (in seconds) before marking the health check as failed."""
 
     type: str

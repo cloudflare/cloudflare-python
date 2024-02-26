@@ -2,39 +2,22 @@
 
 from __future__ import annotations
 
+from typing import List
+
 import httpx
 
-from .unique_devices import UniqueDevices, AsyncUniqueDevices
-
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import maybe_transform
 from ...._compat import cached_property
-
-from ....types.dex import TestListResponse
-
-from typing import Type, List
-
+from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ....types import shared_params
-from ....types.dex import test_list_params
+from ....types.dex import TestListResponse, test_list_params
+from ....pagination import SyncV4PagePagination, AsyncV4PagePagination
 from .unique_devices import (
     UniqueDevices,
     AsyncUniqueDevices,
@@ -43,9 +26,10 @@ from .unique_devices import (
     UniqueDevicesWithStreamingResponse,
     AsyncUniqueDevicesWithStreamingResponse,
 )
-from ...._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
+from ...._base_client import (
+    AsyncPaginator,
+    make_request_options,
+)
 
 __all__ = ["Tests", "AsyncTests"]
 
@@ -80,7 +64,7 @@ class Tests(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TestListResponse:
+    ) -> SyncV4PagePagination[TestListResponse]:
         """
         List DEX tests
 
@@ -107,8 +91,9 @@ class Tests(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/dex/tests",
+            page=SyncV4PagePagination[TestListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -124,9 +109,8 @@ class Tests(SyncAPIResource):
                     },
                     test_list_params.TestListParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TestListResponse], ResultWrapper[TestListResponse]),
+            model=TestListResponse,
         )
 
 
@@ -143,7 +127,7 @@ class AsyncTests(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncTestsWithStreamingResponse:
         return AsyncTestsWithStreamingResponse(self)
 
-    async def list(
+    def list(
         self,
         account_id: str,
         *,
@@ -158,7 +142,7 @@ class AsyncTests(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TestListResponse:
+    ) -> AsyncPaginator[TestListResponse, AsyncV4PagePagination[TestListResponse]]:
         """
         List DEX tests
 
@@ -185,8 +169,9 @@ class AsyncTests(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/dex/tests",
+            page=AsyncV4PagePagination[TestListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -202,9 +187,8 @@ class AsyncTests(AsyncAPIResource):
                     },
                     test_list_params.TestListParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TestListResponse], ResultWrapper[TestListResponse]),
+            model=TestListResponse,
         )
 
 

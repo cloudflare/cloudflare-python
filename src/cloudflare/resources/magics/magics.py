@@ -2,55 +2,6 @@
 
 from __future__ import annotations
 
-from .cf_interconnects import CfInterconnects, AsyncCfInterconnects
-
-from ..._compat import cached_property
-
-from .gre_tunnels import GreTunnels, AsyncGreTunnels
-
-from .ipsec_tunnels.ipsec_tunnels import IpsecTunnels, AsyncIpsecTunnels
-
-from .routes import Routes, AsyncRoutes
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from .cf_interconnects import (
-    CfInterconnects,
-    AsyncCfInterconnects,
-    CfInterconnectsWithRawResponse,
-    AsyncCfInterconnectsWithRawResponse,
-    CfInterconnectsWithStreamingResponse,
-    AsyncCfInterconnectsWithStreamingResponse,
-)
-from .gre_tunnels import (
-    GreTunnels,
-    AsyncGreTunnels,
-    GreTunnelsWithRawResponse,
-    AsyncGreTunnelsWithRawResponse,
-    GreTunnelsWithStreamingResponse,
-    AsyncGreTunnelsWithStreamingResponse,
-)
-from .ipsec_tunnels import (
-    IpsecTunnels,
-    AsyncIpsecTunnels,
-    IpsecTunnelsWithRawResponse,
-    AsyncIpsecTunnelsWithRawResponse,
-    IpsecTunnelsWithStreamingResponse,
-    AsyncIpsecTunnelsWithStreamingResponse,
-)
 from .routes import (
     Routes,
     AsyncRoutes,
@@ -59,7 +10,33 @@ from .routes import (
     RoutesWithStreamingResponse,
     AsyncRoutesWithStreamingResponse,
 )
-from ..._wrappers import ResultWrapper
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from .gre_tunnels import (
+    GRETunnels,
+    AsyncGRETunnels,
+    GRETunnelsWithRawResponse,
+    AsyncGRETunnelsWithRawResponse,
+    GRETunnelsWithStreamingResponse,
+    AsyncGRETunnelsWithStreamingResponse,
+)
+from .ipsec_tunnels import (
+    IPSECTunnels,
+    AsyncIPSECTunnels,
+    IPSECTunnelsWithRawResponse,
+    AsyncIPSECTunnelsWithRawResponse,
+    IPSECTunnelsWithStreamingResponse,
+    AsyncIPSECTunnelsWithStreamingResponse,
+)
+from .cf_interconnects import (
+    CfInterconnects,
+    AsyncCfInterconnects,
+    CfInterconnectsWithRawResponse,
+    AsyncCfInterconnectsWithRawResponse,
+    CfInterconnectsWithStreamingResponse,
+    AsyncCfInterconnectsWithStreamingResponse,
+)
+from .ipsec_tunnels.ipsec_tunnels import IPSECTunnels, AsyncIPSECTunnels
 
 __all__ = ["Magics", "AsyncMagics"]
 
@@ -70,12 +47,12 @@ class Magics(SyncAPIResource):
         return CfInterconnects(self._client)
 
     @cached_property
-    def gre_tunnels(self) -> GreTunnels:
-        return GreTunnels(self._client)
+    def gre_tunnels(self) -> GRETunnels:
+        return GRETunnels(self._client)
 
     @cached_property
-    def ipsec_tunnels(self) -> IpsecTunnels:
-        return IpsecTunnels(self._client)
+    def ipsec_tunnels(self) -> IPSECTunnels:
+        return IPSECTunnels(self._client)
 
     @cached_property
     def routes(self) -> Routes:
@@ -96,12 +73,12 @@ class AsyncMagics(AsyncAPIResource):
         return AsyncCfInterconnects(self._client)
 
     @cached_property
-    def gre_tunnels(self) -> AsyncGreTunnels:
-        return AsyncGreTunnels(self._client)
+    def gre_tunnels(self) -> AsyncGRETunnels:
+        return AsyncGRETunnels(self._client)
 
     @cached_property
-    def ipsec_tunnels(self) -> AsyncIpsecTunnels:
-        return AsyncIpsecTunnels(self._client)
+    def ipsec_tunnels(self) -> AsyncIPSECTunnels:
+        return AsyncIPSECTunnels(self._client)
 
     @cached_property
     def routes(self) -> AsyncRoutes:
@@ -125,12 +102,12 @@ class MagicsWithRawResponse:
         return CfInterconnectsWithRawResponse(self._magics.cf_interconnects)
 
     @cached_property
-    def gre_tunnels(self) -> GreTunnelsWithRawResponse:
-        return GreTunnelsWithRawResponse(self._magics.gre_tunnels)
+    def gre_tunnels(self) -> GRETunnelsWithRawResponse:
+        return GRETunnelsWithRawResponse(self._magics.gre_tunnels)
 
     @cached_property
-    def ipsec_tunnels(self) -> IpsecTunnelsWithRawResponse:
-        return IpsecTunnelsWithRawResponse(self._magics.ipsec_tunnels)
+    def ipsec_tunnels(self) -> IPSECTunnelsWithRawResponse:
+        return IPSECTunnelsWithRawResponse(self._magics.ipsec_tunnels)
 
     @cached_property
     def routes(self) -> RoutesWithRawResponse:
@@ -146,12 +123,12 @@ class AsyncMagicsWithRawResponse:
         return AsyncCfInterconnectsWithRawResponse(self._magics.cf_interconnects)
 
     @cached_property
-    def gre_tunnels(self) -> AsyncGreTunnelsWithRawResponse:
-        return AsyncGreTunnelsWithRawResponse(self._magics.gre_tunnels)
+    def gre_tunnels(self) -> AsyncGRETunnelsWithRawResponse:
+        return AsyncGRETunnelsWithRawResponse(self._magics.gre_tunnels)
 
     @cached_property
-    def ipsec_tunnels(self) -> AsyncIpsecTunnelsWithRawResponse:
-        return AsyncIpsecTunnelsWithRawResponse(self._magics.ipsec_tunnels)
+    def ipsec_tunnels(self) -> AsyncIPSECTunnelsWithRawResponse:
+        return AsyncIPSECTunnelsWithRawResponse(self._magics.ipsec_tunnels)
 
     @cached_property
     def routes(self) -> AsyncRoutesWithRawResponse:
@@ -167,12 +144,12 @@ class MagicsWithStreamingResponse:
         return CfInterconnectsWithStreamingResponse(self._magics.cf_interconnects)
 
     @cached_property
-    def gre_tunnels(self) -> GreTunnelsWithStreamingResponse:
-        return GreTunnelsWithStreamingResponse(self._magics.gre_tunnels)
+    def gre_tunnels(self) -> GRETunnelsWithStreamingResponse:
+        return GRETunnelsWithStreamingResponse(self._magics.gre_tunnels)
 
     @cached_property
-    def ipsec_tunnels(self) -> IpsecTunnelsWithStreamingResponse:
-        return IpsecTunnelsWithStreamingResponse(self._magics.ipsec_tunnels)
+    def ipsec_tunnels(self) -> IPSECTunnelsWithStreamingResponse:
+        return IPSECTunnelsWithStreamingResponse(self._magics.ipsec_tunnels)
 
     @cached_property
     def routes(self) -> RoutesWithStreamingResponse:
@@ -188,12 +165,12 @@ class AsyncMagicsWithStreamingResponse:
         return AsyncCfInterconnectsWithStreamingResponse(self._magics.cf_interconnects)
 
     @cached_property
-    def gre_tunnels(self) -> AsyncGreTunnelsWithStreamingResponse:
-        return AsyncGreTunnelsWithStreamingResponse(self._magics.gre_tunnels)
+    def gre_tunnels(self) -> AsyncGRETunnelsWithStreamingResponse:
+        return AsyncGRETunnelsWithStreamingResponse(self._magics.gre_tunnels)
 
     @cached_property
-    def ipsec_tunnels(self) -> AsyncIpsecTunnelsWithStreamingResponse:
-        return AsyncIpsecTunnelsWithStreamingResponse(self._magics.ipsec_tunnels)
+    def ipsec_tunnels(self) -> AsyncIPSECTunnelsWithStreamingResponse:
+        return AsyncIPSECTunnelsWithStreamingResponse(self._magics.ipsec_tunnels)
 
     @cached_property
     def routes(self) -> AsyncRoutesWithStreamingResponse:

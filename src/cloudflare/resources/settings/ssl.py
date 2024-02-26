@@ -2,44 +2,26 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+from typing_extensions import Literal
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._compat import cached_property
-
-from ...types.settings import SSLUpdateResponse, SSLGetResponse
-
-from typing import Type, Optional
-
-from typing_extensions import Literal
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types.settings import ssl_update_params
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ..._base_client import (
+    make_request_options,
+)
+from ...types.settings import SSLGetResponse, SSLEditResponse, ssl_edit_params
 
 __all__ = ["SSL", "AsyncSSL"]
 
@@ -53,7 +35,7 @@ class SSL(SyncAPIResource):
     def with_streaming_response(self) -> SSLWithStreamingResponse:
         return SSLWithStreamingResponse(self)
 
-    def update(
+    def edit(
         self,
         zone_id: str,
         *,
@@ -64,7 +46,7 @@ class SSL(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SSLUpdateResponse]:
+    ) -> Optional[SSLEditResponse]:
         """
         SSL encrypts your visitor's connection and safeguards credit card numbers and
         other personal data to and from your website. SSL can take up to 5 minutes to
@@ -100,7 +82,7 @@ class SSL(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._patch(
             f"/zones/{zone_id}/settings/ssl",
-            body=maybe_transform({"value": value}, ssl_update_params.SSLUpdateParams),
+            body=maybe_transform({"value": value}, ssl_edit_params.SSLEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -108,7 +90,7 @@ class SSL(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SSLUpdateResponse]], ResultWrapper[SSLUpdateResponse]),
+            cast_to=cast(Type[Optional[SSLEditResponse]], ResultWrapper[SSLEditResponse]),
         )
 
     def get(
@@ -175,7 +157,7 @@ class AsyncSSL(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncSSLWithStreamingResponse:
         return AsyncSSLWithStreamingResponse(self)
 
-    async def update(
+    async def edit(
         self,
         zone_id: str,
         *,
@@ -186,7 +168,7 @@ class AsyncSSL(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SSLUpdateResponse]:
+    ) -> Optional[SSLEditResponse]:
         """
         SSL encrypts your visitor's connection and safeguards credit card numbers and
         other personal data to and from your website. SSL can take up to 5 minutes to
@@ -222,7 +204,7 @@ class AsyncSSL(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._patch(
             f"/zones/{zone_id}/settings/ssl",
-            body=maybe_transform({"value": value}, ssl_update_params.SSLUpdateParams),
+            body=maybe_transform({"value": value}, ssl_edit_params.SSLEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -230,7 +212,7 @@ class AsyncSSL(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SSLUpdateResponse]], ResultWrapper[SSLUpdateResponse]),
+            cast_to=cast(Type[Optional[SSLEditResponse]], ResultWrapper[SSLEditResponse]),
         )
 
     async def get(
@@ -292,8 +274,8 @@ class SSLWithRawResponse:
     def __init__(self, ssl: SSL) -> None:
         self._ssl = ssl
 
-        self.update = to_raw_response_wrapper(
-            ssl.update,
+        self.edit = to_raw_response_wrapper(
+            ssl.edit,
         )
         self.get = to_raw_response_wrapper(
             ssl.get,
@@ -304,8 +286,8 @@ class AsyncSSLWithRawResponse:
     def __init__(self, ssl: AsyncSSL) -> None:
         self._ssl = ssl
 
-        self.update = async_to_raw_response_wrapper(
-            ssl.update,
+        self.edit = async_to_raw_response_wrapper(
+            ssl.edit,
         )
         self.get = async_to_raw_response_wrapper(
             ssl.get,
@@ -316,8 +298,8 @@ class SSLWithStreamingResponse:
     def __init__(self, ssl: SSL) -> None:
         self._ssl = ssl
 
-        self.update = to_streamed_response_wrapper(
-            ssl.update,
+        self.edit = to_streamed_response_wrapper(
+            ssl.edit,
         )
         self.get = to_streamed_response_wrapper(
             ssl.get,
@@ -328,8 +310,8 @@ class AsyncSSLWithStreamingResponse:
     def __init__(self, ssl: AsyncSSL) -> None:
         self._ssl = ssl
 
-        self.update = async_to_streamed_response_wrapper(
-            ssl.update,
+        self.edit = async_to_streamed_response_wrapper(
+            ssl.edit,
         )
         self.get = async_to_streamed_response_wrapper(
             ssl.get,

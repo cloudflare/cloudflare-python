@@ -2,39 +2,28 @@
 
 from __future__ import annotations
 
-from cloudflare.types import (
-    WarpConnectorCreateResponse,
-    WarpConnectorUpdateResponse,
-    WarpConnectorListResponse,
-    WarpConnectorDeleteResponse,
-    WarpConnectorGetResponse,
-)
-
-from typing import Any, cast, Optional
-
 import os
+from typing import Any, cast
+
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types import warp_connector_create_params
-from cloudflare.types import warp_connector_update_params
-from cloudflare.types import warp_connector_list_params
-from cloudflare.types import warp_connector_delete_params
+from cloudflare.types import (
+    WARPConnectorGetResponse,
+    WARPConnectorEditResponse,
+    WARPConnectorListResponse,
+    WARPConnectorTokenResponse,
+    WARPConnectorCreateResponse,
+    WARPConnectorDeleteResponse,
+)
 from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
+from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
-class TestWarpConnector:
+class TestWARPConnector:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip()
@@ -44,7 +33,7 @@ class TestWarpConnector:
             "699d98642c564d2e855e9661899b7252",
             name="blog",
         )
-        assert_matches_type(WarpConnectorCreateResponse, warp_connector, path=["response"])
+        assert_matches_type(WARPConnectorCreateResponse, warp_connector, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -57,7 +46,7 @@ class TestWarpConnector:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         warp_connector = response.parse()
-        assert_matches_type(WarpConnectorCreateResponse, warp_connector, path=["response"])
+        assert_matches_type(WARPConnectorCreateResponse, warp_connector, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -70,7 +59,7 @@ class TestWarpConnector:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             warp_connector = response.parse()
-            assert_matches_type(WarpConnectorCreateResponse, warp_connector, path=["response"])
+            assert_matches_type(WARPConnectorCreateResponse, warp_connector, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -85,74 +74,11 @@ class TestWarpConnector:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_update(self, client: Cloudflare) -> None:
-        warp_connector = client.warp_connector.update(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
-            account_id="699d98642c564d2e855e9661899b7252",
-        )
-        assert_matches_type(WarpConnectorUpdateResponse, warp_connector, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_method_update_with_all_params(self, client: Cloudflare) -> None:
-        warp_connector = client.warp_connector.update(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
-            account_id="699d98642c564d2e855e9661899b7252",
-            name="blog",
-            tunnel_secret="AQIDBAUGBwgBAgMEBQYHCAECAwQFBgcIAQIDBAUGBwg=",
-        )
-        assert_matches_type(WarpConnectorUpdateResponse, warp_connector, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_raw_response_update(self, client: Cloudflare) -> None:
-        response = client.warp_connector.with_raw_response.update(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
-            account_id="699d98642c564d2e855e9661899b7252",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        warp_connector = response.parse()
-        assert_matches_type(WarpConnectorUpdateResponse, warp_connector, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_streaming_response_update(self, client: Cloudflare) -> None:
-        with client.warp_connector.with_streaming_response.update(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
-            account_id="699d98642c564d2e855e9661899b7252",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            warp_connector = response.parse()
-            assert_matches_type(WarpConnectorUpdateResponse, warp_connector, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_path_params_update(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.warp_connector.with_raw_response.update(
-                "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
-                account_id="",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_id` but received ''"):
-            client.warp_connector.with_raw_response.update(
-                "",
-                account_id="699d98642c564d2e855e9661899b7252",
-            )
-
-    @pytest.mark.skip()
-    @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         warp_connector = client.warp_connector.list(
             "699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[WarpConnectorListResponse], warp_connector, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[WARPConnectorListResponse], warp_connector, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -169,7 +95,7 @@ class TestWarpConnector:
             was_active_at=parse_datetime("2009-11-10T23:00:00Z"),
             was_inactive_at=parse_datetime("2009-11-10T23:00:00Z"),
         )
-        assert_matches_type(Optional[WarpConnectorListResponse], warp_connector, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[WARPConnectorListResponse], warp_connector, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -181,7 +107,7 @@ class TestWarpConnector:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         warp_connector = response.parse()
-        assert_matches_type(Optional[WarpConnectorListResponse], warp_connector, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[WARPConnectorListResponse], warp_connector, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -193,7 +119,7 @@ class TestWarpConnector:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             warp_connector = response.parse()
-            assert_matches_type(Optional[WarpConnectorListResponse], warp_connector, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[WARPConnectorListResponse], warp_connector, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -213,7 +139,7 @@ class TestWarpConnector:
             account_id="699d98642c564d2e855e9661899b7252",
             body={},
         )
-        assert_matches_type(WarpConnectorDeleteResponse, warp_connector, path=["response"])
+        assert_matches_type(WARPConnectorDeleteResponse, warp_connector, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -227,7 +153,7 @@ class TestWarpConnector:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         warp_connector = response.parse()
-        assert_matches_type(WarpConnectorDeleteResponse, warp_connector, path=["response"])
+        assert_matches_type(WARPConnectorDeleteResponse, warp_connector, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -241,7 +167,7 @@ class TestWarpConnector:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             warp_connector = response.parse()
-            assert_matches_type(WarpConnectorDeleteResponse, warp_connector, path=["response"])
+            assert_matches_type(WARPConnectorDeleteResponse, warp_connector, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -264,12 +190,75 @@ class TestWarpConnector:
 
     @pytest.mark.skip()
     @parametrize
+    def test_method_edit(self, client: Cloudflare) -> None:
+        warp_connector = client.warp_connector.edit(
+            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            account_id="699d98642c564d2e855e9661899b7252",
+        )
+        assert_matches_type(WARPConnectorEditResponse, warp_connector, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
+        warp_connector = client.warp_connector.edit(
+            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            account_id="699d98642c564d2e855e9661899b7252",
+            name="blog",
+            tunnel_secret="AQIDBAUGBwgBAgMEBQYHCAECAwQFBgcIAQIDBAUGBwg=",
+        )
+        assert_matches_type(WARPConnectorEditResponse, warp_connector, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_edit(self, client: Cloudflare) -> None:
+        response = client.warp_connector.with_raw_response.edit(
+            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            account_id="699d98642c564d2e855e9661899b7252",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        warp_connector = response.parse()
+        assert_matches_type(WARPConnectorEditResponse, warp_connector, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_edit(self, client: Cloudflare) -> None:
+        with client.warp_connector.with_streaming_response.edit(
+            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            account_id="699d98642c564d2e855e9661899b7252",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            warp_connector = response.parse()
+            assert_matches_type(WARPConnectorEditResponse, warp_connector, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_edit(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.warp_connector.with_raw_response.edit(
+                "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_id` but received ''"):
+            client.warp_connector.with_raw_response.edit(
+                "",
+                account_id="699d98642c564d2e855e9661899b7252",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         warp_connector = client.warp_connector.get(
             "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(WarpConnectorGetResponse, warp_connector, path=["response"])
+        assert_matches_type(WARPConnectorGetResponse, warp_connector, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -282,7 +271,7 @@ class TestWarpConnector:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         warp_connector = response.parse()
-        assert_matches_type(WarpConnectorGetResponse, warp_connector, path=["response"])
+        assert_matches_type(WARPConnectorGetResponse, warp_connector, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -295,7 +284,7 @@ class TestWarpConnector:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             warp_connector = response.parse()
-            assert_matches_type(WarpConnectorGetResponse, warp_connector, path=["response"])
+            assert_matches_type(WARPConnectorGetResponse, warp_connector, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -314,8 +303,60 @@ class TestWarpConnector:
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_token(self, client: Cloudflare) -> None:
+        warp_connector = client.warp_connector.token(
+            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            account_id="699d98642c564d2e855e9661899b7252",
+        )
+        assert_matches_type(WARPConnectorTokenResponse, warp_connector, path=["response"])
 
-class TestAsyncWarpConnector:
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_token(self, client: Cloudflare) -> None:
+        response = client.warp_connector.with_raw_response.token(
+            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            account_id="699d98642c564d2e855e9661899b7252",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        warp_connector = response.parse()
+        assert_matches_type(WARPConnectorTokenResponse, warp_connector, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_token(self, client: Cloudflare) -> None:
+        with client.warp_connector.with_streaming_response.token(
+            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            account_id="699d98642c564d2e855e9661899b7252",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            warp_connector = response.parse()
+            assert_matches_type(WARPConnectorTokenResponse, warp_connector, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_token(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.warp_connector.with_raw_response.token(
+                "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_id` but received ''"):
+            client.warp_connector.with_raw_response.token(
+                "",
+                account_id="699d98642c564d2e855e9661899b7252",
+            )
+
+
+class TestAsyncWARPConnector:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip()
@@ -325,7 +366,7 @@ class TestAsyncWarpConnector:
             "699d98642c564d2e855e9661899b7252",
             name="blog",
         )
-        assert_matches_type(WarpConnectorCreateResponse, warp_connector, path=["response"])
+        assert_matches_type(WARPConnectorCreateResponse, warp_connector, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -338,7 +379,7 @@ class TestAsyncWarpConnector:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         warp_connector = await response.parse()
-        assert_matches_type(WarpConnectorCreateResponse, warp_connector, path=["response"])
+        assert_matches_type(WARPConnectorCreateResponse, warp_connector, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -351,7 +392,7 @@ class TestAsyncWarpConnector:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             warp_connector = await response.parse()
-            assert_matches_type(WarpConnectorCreateResponse, warp_connector, path=["response"])
+            assert_matches_type(WARPConnectorCreateResponse, warp_connector, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -366,74 +407,11 @@ class TestAsyncWarpConnector:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_update(self, async_client: AsyncCloudflare) -> None:
-        warp_connector = await async_client.warp_connector.update(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
-            account_id="699d98642c564d2e855e9661899b7252",
-        )
-        assert_matches_type(WarpConnectorUpdateResponse, warp_connector, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        warp_connector = await async_client.warp_connector.update(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
-            account_id="699d98642c564d2e855e9661899b7252",
-            name="blog",
-            tunnel_secret="AQIDBAUGBwgBAgMEBQYHCAECAwQFBgcIAQIDBAUGBwg=",
-        )
-        assert_matches_type(WarpConnectorUpdateResponse, warp_connector, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.warp_connector.with_raw_response.update(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
-            account_id="699d98642c564d2e855e9661899b7252",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        warp_connector = await response.parse()
-        assert_matches_type(WarpConnectorUpdateResponse, warp_connector, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.warp_connector.with_streaming_response.update(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
-            account_id="699d98642c564d2e855e9661899b7252",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            warp_connector = await response.parse()
-            assert_matches_type(WarpConnectorUpdateResponse, warp_connector, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.warp_connector.with_raw_response.update(
-                "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
-                account_id="",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_id` but received ''"):
-            await async_client.warp_connector.with_raw_response.update(
-                "",
-                account_id="699d98642c564d2e855e9661899b7252",
-            )
-
-    @pytest.mark.skip()
-    @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         warp_connector = await async_client.warp_connector.list(
             "699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[WarpConnectorListResponse], warp_connector, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[WARPConnectorListResponse], warp_connector, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -450,7 +428,7 @@ class TestAsyncWarpConnector:
             was_active_at=parse_datetime("2009-11-10T23:00:00Z"),
             was_inactive_at=parse_datetime("2009-11-10T23:00:00Z"),
         )
-        assert_matches_type(Optional[WarpConnectorListResponse], warp_connector, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[WARPConnectorListResponse], warp_connector, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -462,7 +440,7 @@ class TestAsyncWarpConnector:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         warp_connector = await response.parse()
-        assert_matches_type(Optional[WarpConnectorListResponse], warp_connector, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[WARPConnectorListResponse], warp_connector, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -474,7 +452,9 @@ class TestAsyncWarpConnector:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             warp_connector = await response.parse()
-            assert_matches_type(Optional[WarpConnectorListResponse], warp_connector, path=["response"])
+            assert_matches_type(
+                AsyncV4PagePaginationArray[WARPConnectorListResponse], warp_connector, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 
@@ -494,7 +474,7 @@ class TestAsyncWarpConnector:
             account_id="699d98642c564d2e855e9661899b7252",
             body={},
         )
-        assert_matches_type(WarpConnectorDeleteResponse, warp_connector, path=["response"])
+        assert_matches_type(WARPConnectorDeleteResponse, warp_connector, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -508,7 +488,7 @@ class TestAsyncWarpConnector:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         warp_connector = await response.parse()
-        assert_matches_type(WarpConnectorDeleteResponse, warp_connector, path=["response"])
+        assert_matches_type(WARPConnectorDeleteResponse, warp_connector, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -522,7 +502,7 @@ class TestAsyncWarpConnector:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             warp_connector = await response.parse()
-            assert_matches_type(WarpConnectorDeleteResponse, warp_connector, path=["response"])
+            assert_matches_type(WARPConnectorDeleteResponse, warp_connector, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -545,12 +525,75 @@ class TestAsyncWarpConnector:
 
     @pytest.mark.skip()
     @parametrize
+    async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
+        warp_connector = await async_client.warp_connector.edit(
+            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            account_id="699d98642c564d2e855e9661899b7252",
+        )
+        assert_matches_type(WARPConnectorEditResponse, warp_connector, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        warp_connector = await async_client.warp_connector.edit(
+            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            account_id="699d98642c564d2e855e9661899b7252",
+            name="blog",
+            tunnel_secret="AQIDBAUGBwgBAgMEBQYHCAECAwQFBgcIAQIDBAUGBwg=",
+        )
+        assert_matches_type(WARPConnectorEditResponse, warp_connector, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.warp_connector.with_raw_response.edit(
+            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            account_id="699d98642c564d2e855e9661899b7252",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        warp_connector = await response.parse()
+        assert_matches_type(WARPConnectorEditResponse, warp_connector, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.warp_connector.with_streaming_response.edit(
+            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            account_id="699d98642c564d2e855e9661899b7252",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            warp_connector = await response.parse()
+            assert_matches_type(WARPConnectorEditResponse, warp_connector, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.warp_connector.with_raw_response.edit(
+                "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_id` but received ''"):
+            await async_client.warp_connector.with_raw_response.edit(
+                "",
+                account_id="699d98642c564d2e855e9661899b7252",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         warp_connector = await async_client.warp_connector.get(
             "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(WarpConnectorGetResponse, warp_connector, path=["response"])
+        assert_matches_type(WARPConnectorGetResponse, warp_connector, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -563,7 +606,7 @@ class TestAsyncWarpConnector:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         warp_connector = await response.parse()
-        assert_matches_type(WarpConnectorGetResponse, warp_connector, path=["response"])
+        assert_matches_type(WARPConnectorGetResponse, warp_connector, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -576,7 +619,7 @@ class TestAsyncWarpConnector:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             warp_connector = await response.parse()
-            assert_matches_type(WarpConnectorGetResponse, warp_connector, path=["response"])
+            assert_matches_type(WARPConnectorGetResponse, warp_connector, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -591,6 +634,58 @@ class TestAsyncWarpConnector:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_id` but received ''"):
             await async_client.warp_connector.with_raw_response.get(
+                "",
+                account_id="699d98642c564d2e855e9661899b7252",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_token(self, async_client: AsyncCloudflare) -> None:
+        warp_connector = await async_client.warp_connector.token(
+            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            account_id="699d98642c564d2e855e9661899b7252",
+        )
+        assert_matches_type(WARPConnectorTokenResponse, warp_connector, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_token(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.warp_connector.with_raw_response.token(
+            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            account_id="699d98642c564d2e855e9661899b7252",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        warp_connector = await response.parse()
+        assert_matches_type(WARPConnectorTokenResponse, warp_connector, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_token(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.warp_connector.with_streaming_response.token(
+            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            account_id="699d98642c564d2e855e9661899b7252",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            warp_connector = await response.parse()
+            assert_matches_type(WARPConnectorTokenResponse, warp_connector, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_token(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.warp_connector.with_raw_response.token(
+                "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_id` but received ''"):
+            await async_client.warp_connector.with_raw_response.token(
                 "",
                 account_id="699d98642c564d2e855e9661899b7252",
             )

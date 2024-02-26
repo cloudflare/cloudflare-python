@@ -2,27 +2,21 @@
 
 from __future__ import annotations
 
-from cloudflare.types import (
-    AccountMemberCreateResponse,
-    AccountMemberUpdateResponse,
-    AccountMemberListResponse,
-    AccountMemberDeleteResponse,
-    AccountMemberGetResponse,
-)
-
-from typing import Any, cast, Optional
-
 import os
+from typing import Any, Optional, cast
+
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types import account_member_create_params
-from cloudflare.types import account_member_update_params
-from cloudflare.types import account_member_list_params
+from cloudflare.types import (
+    AccountMemberGetResponse,
+    AccountMemberListResponse,
+    AccountMemberCreateResponse,
+    AccountMemberDeleteResponse,
+    AccountMemberUpdateResponse,
+)
+from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -169,7 +163,7 @@ class TestAccountMembers:
         account_member = client.account_members.list(
             {},
         )
-        assert_matches_type(Optional[AccountMemberListResponse], account_member, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[AccountMemberListResponse], account_member, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -182,7 +176,7 @@ class TestAccountMembers:
             per_page=5,
             status="accepted",
         )
-        assert_matches_type(Optional[AccountMemberListResponse], account_member, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[AccountMemberListResponse], account_member, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -194,7 +188,7 @@ class TestAccountMembers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         account_member = response.parse()
-        assert_matches_type(Optional[AccountMemberListResponse], account_member, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[AccountMemberListResponse], account_member, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -206,7 +200,7 @@ class TestAccountMembers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             account_member = response.parse()
-            assert_matches_type(Optional[AccountMemberListResponse], account_member, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[AccountMemberListResponse], account_member, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -445,7 +439,7 @@ class TestAsyncAccountMembers:
         account_member = await async_client.account_members.list(
             {},
         )
-        assert_matches_type(Optional[AccountMemberListResponse], account_member, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[AccountMemberListResponse], account_member, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -458,7 +452,7 @@ class TestAsyncAccountMembers:
             per_page=5,
             status="accepted",
         )
-        assert_matches_type(Optional[AccountMemberListResponse], account_member, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[AccountMemberListResponse], account_member, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -470,7 +464,7 @@ class TestAsyncAccountMembers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         account_member = await response.parse()
-        assert_matches_type(Optional[AccountMemberListResponse], account_member, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[AccountMemberListResponse], account_member, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -482,7 +476,9 @@ class TestAsyncAccountMembers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             account_member = await response.parse()
-            assert_matches_type(Optional[AccountMemberListResponse], account_member, path=["response"])
+            assert_matches_type(
+                AsyncV4PagePaginationArray[AccountMemberListResponse], account_member, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 

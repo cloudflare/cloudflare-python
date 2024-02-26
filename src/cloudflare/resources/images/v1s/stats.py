@@ -2,39 +2,24 @@
 
 from __future__ import annotations
 
+from typing import Type, cast
+
 import httpx
 
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._compat import cached_property
-
-from ....types.images.v1s import StatCloudflareImagesImagesUsageStatisticsResponse
-
-from typing import Type
-
+from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ....types import shared_params
 from ...._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
+from ...._base_client import (
+    make_request_options,
+)
+from ....types.images.v1s import StatGetResponse
 
 __all__ = ["Stats", "AsyncStats"]
 
@@ -48,7 +33,7 @@ class Stats(SyncAPIResource):
     def with_streaming_response(self) -> StatsWithStreamingResponse:
         return StatsWithStreamingResponse(self)
 
-    def cloudflare_images_images_usage_statistics(
+    def get(
         self,
         account_id: str,
         *,
@@ -58,7 +43,7 @@ class Stats(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> StatCloudflareImagesImagesUsageStatisticsResponse:
+    ) -> StatGetResponse:
         """
         Fetch usage statistics details for Cloudflare Images.
 
@@ -84,10 +69,7 @@ class Stats(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[StatCloudflareImagesImagesUsageStatisticsResponse],
-                ResultWrapper[StatCloudflareImagesImagesUsageStatisticsResponse],
-            ),
+            cast_to=cast(Type[StatGetResponse], ResultWrapper[StatGetResponse]),
         )
 
 
@@ -100,7 +82,7 @@ class AsyncStats(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncStatsWithStreamingResponse:
         return AsyncStatsWithStreamingResponse(self)
 
-    async def cloudflare_images_images_usage_statistics(
+    async def get(
         self,
         account_id: str,
         *,
@@ -110,7 +92,7 @@ class AsyncStats(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> StatCloudflareImagesImagesUsageStatisticsResponse:
+    ) -> StatGetResponse:
         """
         Fetch usage statistics details for Cloudflare Images.
 
@@ -136,10 +118,7 @@ class AsyncStats(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[StatCloudflareImagesImagesUsageStatisticsResponse],
-                ResultWrapper[StatCloudflareImagesImagesUsageStatisticsResponse],
-            ),
+            cast_to=cast(Type[StatGetResponse], ResultWrapper[StatGetResponse]),
         )
 
 
@@ -147,8 +126,8 @@ class StatsWithRawResponse:
     def __init__(self, stats: Stats) -> None:
         self._stats = stats
 
-        self.cloudflare_images_images_usage_statistics = to_raw_response_wrapper(
-            stats.cloudflare_images_images_usage_statistics,
+        self.get = to_raw_response_wrapper(
+            stats.get,
         )
 
 
@@ -156,8 +135,8 @@ class AsyncStatsWithRawResponse:
     def __init__(self, stats: AsyncStats) -> None:
         self._stats = stats
 
-        self.cloudflare_images_images_usage_statistics = async_to_raw_response_wrapper(
-            stats.cloudflare_images_images_usage_statistics,
+        self.get = async_to_raw_response_wrapper(
+            stats.get,
         )
 
 
@@ -165,8 +144,8 @@ class StatsWithStreamingResponse:
     def __init__(self, stats: Stats) -> None:
         self._stats = stats
 
-        self.cloudflare_images_images_usage_statistics = to_streamed_response_wrapper(
-            stats.cloudflare_images_images_usage_statistics,
+        self.get = to_streamed_response_wrapper(
+            stats.get,
         )
 
 
@@ -174,6 +153,6 @@ class AsyncStatsWithStreamingResponse:
     def __init__(self, stats: AsyncStats) -> None:
         self._stats = stats
 
-        self.cloudflare_images_images_usage_statistics = async_to_streamed_response_wrapper(
-            stats.cloudflare_images_images_usage_statistics,
+        self.get = async_to_streamed_response_wrapper(
+            stats.get,
         )

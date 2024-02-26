@@ -2,42 +2,24 @@
 
 from __future__ import annotations
 
-from .uuid import Uuid, AsyncUuid
-
-from ..._compat import cached_property
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
 from .uuid import (
-    Uuid,
-    AsyncUuid,
-    UuidWithRawResponse,
-    AsyncUuidWithRawResponse,
-    UuidWithStreamingResponse,
-    AsyncUuidWithStreamingResponse,
+    UUID,
+    AsyncUUID,
+    UUIDWithRawResponse,
+    AsyncUUIDWithRawResponse,
+    UUIDWithStreamingResponse,
+    AsyncUUIDWithStreamingResponse,
 )
-from ..._wrappers import ResultWrapper
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
 
 __all__ = ["DcvDelegation", "AsyncDcvDelegation"]
 
 
 class DcvDelegation(SyncAPIResource):
     @cached_property
-    def uuid(self) -> Uuid:
-        return Uuid(self._client)
+    def uuid(self) -> UUID:
+        return UUID(self._client)
 
     @cached_property
     def with_raw_response(self) -> DcvDelegationWithRawResponse:
@@ -50,8 +32,8 @@ class DcvDelegation(SyncAPIResource):
 
 class AsyncDcvDelegation(AsyncAPIResource):
     @cached_property
-    def uuid(self) -> AsyncUuid:
-        return AsyncUuid(self._client)
+    def uuid(self) -> AsyncUUID:
+        return AsyncUUID(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncDcvDelegationWithRawResponse:
@@ -67,8 +49,8 @@ class DcvDelegationWithRawResponse:
         self._dcv_delegation = dcv_delegation
 
     @cached_property
-    def uuid(self) -> UuidWithRawResponse:
-        return UuidWithRawResponse(self._dcv_delegation.uuid)
+    def uuid(self) -> UUIDWithRawResponse:
+        return UUIDWithRawResponse(self._dcv_delegation.uuid)
 
 
 class AsyncDcvDelegationWithRawResponse:
@@ -76,8 +58,8 @@ class AsyncDcvDelegationWithRawResponse:
         self._dcv_delegation = dcv_delegation
 
     @cached_property
-    def uuid(self) -> AsyncUuidWithRawResponse:
-        return AsyncUuidWithRawResponse(self._dcv_delegation.uuid)
+    def uuid(self) -> AsyncUUIDWithRawResponse:
+        return AsyncUUIDWithRawResponse(self._dcv_delegation.uuid)
 
 
 class DcvDelegationWithStreamingResponse:
@@ -85,8 +67,8 @@ class DcvDelegationWithStreamingResponse:
         self._dcv_delegation = dcv_delegation
 
     @cached_property
-    def uuid(self) -> UuidWithStreamingResponse:
-        return UuidWithStreamingResponse(self._dcv_delegation.uuid)
+    def uuid(self) -> UUIDWithStreamingResponse:
+        return UUIDWithStreamingResponse(self._dcv_delegation.uuid)
 
 
 class AsyncDcvDelegationWithStreamingResponse:
@@ -94,5 +76,5 @@ class AsyncDcvDelegationWithStreamingResponse:
         self._dcv_delegation = dcv_delegation
 
     @cached_property
-    def uuid(self) -> AsyncUuidWithStreamingResponse:
-        return AsyncUuidWithStreamingResponse(self._dcv_delegation.uuid)
+    def uuid(self) -> AsyncUUIDWithStreamingResponse:
+        return AsyncUUIDWithStreamingResponse(self._dcv_delegation.uuid)

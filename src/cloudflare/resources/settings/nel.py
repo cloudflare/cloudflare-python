@@ -2,42 +2,25 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._compat import cached_property
-
-from ...types.settings import NELUpdateResponse, NELGetResponse, nel_update_params
-
-from typing import Type, Optional
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types.settings import nel_update_params
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ..._base_client import (
+    make_request_options,
+)
+from ...types.settings import NELGetResponse, NELEditResponse, nel_edit_params
 
 __all__ = ["NEL", "AsyncNEL"]
 
@@ -51,18 +34,18 @@ class NEL(SyncAPIResource):
     def with_streaming_response(self) -> NELWithStreamingResponse:
         return NELWithStreamingResponse(self)
 
-    def update(
+    def edit(
         self,
         zone_id: str,
         *,
-        value: nel_update_params.Value,
+        value: nel_edit_params.Value,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[NELUpdateResponse]:
+    ) -> Optional[NELEditResponse]:
         """
         Automatically optimize image loading for website visitors on mobile devices.
         Refer to our [blog post](http://blog.cloudflare.com/nel-solving-mobile-speed)
@@ -85,7 +68,7 @@ class NEL(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._patch(
             f"/zones/{zone_id}/settings/nel",
-            body=maybe_transform({"value": value}, nel_update_params.NELUpdateParams),
+            body=maybe_transform({"value": value}, nel_edit_params.NELEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -93,7 +76,7 @@ class NEL(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[NELUpdateResponse]], ResultWrapper[NELUpdateResponse]),
+            cast_to=cast(Type[Optional[NELEditResponse]], ResultWrapper[NELEditResponse]),
         )
 
     def get(
@@ -146,18 +129,18 @@ class AsyncNEL(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncNELWithStreamingResponse:
         return AsyncNELWithStreamingResponse(self)
 
-    async def update(
+    async def edit(
         self,
         zone_id: str,
         *,
-        value: nel_update_params.Value,
+        value: nel_edit_params.Value,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[NELUpdateResponse]:
+    ) -> Optional[NELEditResponse]:
         """
         Automatically optimize image loading for website visitors on mobile devices.
         Refer to our [blog post](http://blog.cloudflare.com/nel-solving-mobile-speed)
@@ -180,7 +163,7 @@ class AsyncNEL(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._patch(
             f"/zones/{zone_id}/settings/nel",
-            body=maybe_transform({"value": value}, nel_update_params.NELUpdateParams),
+            body=maybe_transform({"value": value}, nel_edit_params.NELEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -188,7 +171,7 @@ class AsyncNEL(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[NELUpdateResponse]], ResultWrapper[NELUpdateResponse]),
+            cast_to=cast(Type[Optional[NELEditResponse]], ResultWrapper[NELEditResponse]),
         )
 
     async def get(
@@ -236,8 +219,8 @@ class NELWithRawResponse:
     def __init__(self, nel: NEL) -> None:
         self._nel = nel
 
-        self.update = to_raw_response_wrapper(
-            nel.update,
+        self.edit = to_raw_response_wrapper(
+            nel.edit,
         )
         self.get = to_raw_response_wrapper(
             nel.get,
@@ -248,8 +231,8 @@ class AsyncNELWithRawResponse:
     def __init__(self, nel: AsyncNEL) -> None:
         self._nel = nel
 
-        self.update = async_to_raw_response_wrapper(
-            nel.update,
+        self.edit = async_to_raw_response_wrapper(
+            nel.edit,
         )
         self.get = async_to_raw_response_wrapper(
             nel.get,
@@ -260,8 +243,8 @@ class NELWithStreamingResponse:
     def __init__(self, nel: NEL) -> None:
         self._nel = nel
 
-        self.update = to_streamed_response_wrapper(
-            nel.update,
+        self.edit = to_streamed_response_wrapper(
+            nel.edit,
         )
         self.get = to_streamed_response_wrapper(
             nel.get,
@@ -272,8 +255,8 @@ class AsyncNELWithStreamingResponse:
     def __init__(self, nel: AsyncNEL) -> None:
         self._nel = nel
 
-        self.update = async_to_streamed_response_wrapper(
-            nel.update,
+        self.edit = async_to_streamed_response_wrapper(
+            nel.edit,
         )
         self.get = async_to_streamed_response_wrapper(
             nel.get,

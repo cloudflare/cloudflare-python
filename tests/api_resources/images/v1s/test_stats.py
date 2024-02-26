@@ -2,18 +2,14 @@
 
 from __future__ import annotations
 
-from cloudflare.types.images.v1s import StatCloudflareImagesImagesUsageStatisticsResponse
-
+import os
 from typing import Any, cast
 
-import os
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.types.images.v1s import StatGetResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -23,43 +19,43 @@ class TestStats:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_cloudflare_images_images_usage_statistics(self, client: Cloudflare) -> None:
-        stat = client.images.v1s.stats.cloudflare_images_images_usage_statistics(
+    def test_method_get(self, client: Cloudflare) -> None:
+        stat = client.images.v1s.stats.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(StatCloudflareImagesImagesUsageStatisticsResponse, stat, path=["response"])
+        assert_matches_type(StatGetResponse, stat, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_cloudflare_images_images_usage_statistics(self, client: Cloudflare) -> None:
-        response = client.images.v1s.stats.with_raw_response.cloudflare_images_images_usage_statistics(
+    def test_raw_response_get(self, client: Cloudflare) -> None:
+        response = client.images.v1s.stats.with_raw_response.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         stat = response.parse()
-        assert_matches_type(StatCloudflareImagesImagesUsageStatisticsResponse, stat, path=["response"])
+        assert_matches_type(StatGetResponse, stat, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_cloudflare_images_images_usage_statistics(self, client: Cloudflare) -> None:
-        with client.images.v1s.stats.with_streaming_response.cloudflare_images_images_usage_statistics(
+    def test_streaming_response_get(self, client: Cloudflare) -> None:
+        with client.images.v1s.stats.with_streaming_response.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             stat = response.parse()
-            assert_matches_type(StatCloudflareImagesImagesUsageStatisticsResponse, stat, path=["response"])
+            assert_matches_type(StatGetResponse, stat, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_cloudflare_images_images_usage_statistics(self, client: Cloudflare) -> None:
+    def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.images.v1s.stats.with_raw_response.cloudflare_images_images_usage_statistics(
+            client.images.v1s.stats.with_raw_response.get(
                 "",
             )
 
@@ -69,44 +65,42 @@ class TestAsyncStats:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_cloudflare_images_images_usage_statistics(self, async_client: AsyncCloudflare) -> None:
-        stat = await async_client.images.v1s.stats.cloudflare_images_images_usage_statistics(
+    async def test_method_get(self, async_client: AsyncCloudflare) -> None:
+        stat = await async_client.images.v1s.stats.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(StatCloudflareImagesImagesUsageStatisticsResponse, stat, path=["response"])
+        assert_matches_type(StatGetResponse, stat, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_cloudflare_images_images_usage_statistics(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.images.v1s.stats.with_raw_response.cloudflare_images_images_usage_statistics(
+    async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.images.v1s.stats.with_raw_response.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         stat = await response.parse()
-        assert_matches_type(StatCloudflareImagesImagesUsageStatisticsResponse, stat, path=["response"])
+        assert_matches_type(StatGetResponse, stat, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_cloudflare_images_images_usage_statistics(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        async with async_client.images.v1s.stats.with_streaming_response.cloudflare_images_images_usage_statistics(
+    async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.images.v1s.stats.with_streaming_response.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             stat = await response.parse()
-            assert_matches_type(StatCloudflareImagesImagesUsageStatisticsResponse, stat, path=["response"])
+            assert_matches_type(StatGetResponse, stat, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_cloudflare_images_images_usage_statistics(self, async_client: AsyncCloudflare) -> None:
+    async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.images.v1s.stats.with_raw_response.cloudflare_images_images_usage_statistics(
+            await async_client.images.v1s.stats.with_raw_response.get(
                 "",
             )

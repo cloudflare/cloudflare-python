@@ -2,45 +2,25 @@
 
 from __future__ import annotations
 
+from typing import Type, cast
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._compat import cached_property
-
-from ...types.workers import (
-    AccountSettingWorkerAccountSettingsCreateWorkerAccountSettingsResponse,
-    AccountSettingWorkerAccountSettingsFetchWorkerAccountSettingsResponse,
-)
-
-from typing import Type
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types.workers import account_setting_worker_account_settings_create_worker_account_settings_params
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ..._base_client import (
+    make_request_options,
+)
+from ...types.workers import AccountSettingGetResponse, AccountSettingUpdateResponse, account_setting_update_params
 
 __all__ = ["AccountSettings", "AsyncAccountSettings"]
 
@@ -54,7 +34,7 @@ class AccountSettings(SyncAPIResource):
     def with_streaming_response(self) -> AccountSettingsWithStreamingResponse:
         return AccountSettingsWithStreamingResponse(self)
 
-    def worker_account_settings_create_worker_account_settings(
+    def update(
         self,
         account_id: str,
         *,
@@ -65,7 +45,7 @@ class AccountSettings(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccountSettingWorkerAccountSettingsCreateWorkerAccountSettingsResponse:
+    ) -> AccountSettingUpdateResponse:
         """
         Creates Worker account settings for an account.
 
@@ -84,10 +64,7 @@ class AccountSettings(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._put(
             f"/accounts/{account_id}/workers/account-settings",
-            body=maybe_transform(
-                body,
-                account_setting_worker_account_settings_create_worker_account_settings_params.AccountSettingWorkerAccountSettingsCreateWorkerAccountSettingsParams,
-            ),
+            body=maybe_transform(body, account_setting_update_params.AccountSettingUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -95,13 +72,10 @@ class AccountSettings(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[AccountSettingWorkerAccountSettingsCreateWorkerAccountSettingsResponse],
-                ResultWrapper[AccountSettingWorkerAccountSettingsCreateWorkerAccountSettingsResponse],
-            ),
+            cast_to=cast(Type[AccountSettingUpdateResponse], ResultWrapper[AccountSettingUpdateResponse]),
         )
 
-    def worker_account_settings_fetch_worker_account_settings(
+    def get(
         self,
         account_id: str,
         *,
@@ -111,7 +85,7 @@ class AccountSettings(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccountSettingWorkerAccountSettingsFetchWorkerAccountSettingsResponse:
+    ) -> AccountSettingGetResponse:
         """
         Fetches Worker account settings for an account.
 
@@ -137,10 +111,7 @@ class AccountSettings(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[AccountSettingWorkerAccountSettingsFetchWorkerAccountSettingsResponse],
-                ResultWrapper[AccountSettingWorkerAccountSettingsFetchWorkerAccountSettingsResponse],
-            ),
+            cast_to=cast(Type[AccountSettingGetResponse], ResultWrapper[AccountSettingGetResponse]),
         )
 
 
@@ -153,7 +124,7 @@ class AsyncAccountSettings(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncAccountSettingsWithStreamingResponse:
         return AsyncAccountSettingsWithStreamingResponse(self)
 
-    async def worker_account_settings_create_worker_account_settings(
+    async def update(
         self,
         account_id: str,
         *,
@@ -164,7 +135,7 @@ class AsyncAccountSettings(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccountSettingWorkerAccountSettingsCreateWorkerAccountSettingsResponse:
+    ) -> AccountSettingUpdateResponse:
         """
         Creates Worker account settings for an account.
 
@@ -183,10 +154,7 @@ class AsyncAccountSettings(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._put(
             f"/accounts/{account_id}/workers/account-settings",
-            body=maybe_transform(
-                body,
-                account_setting_worker_account_settings_create_worker_account_settings_params.AccountSettingWorkerAccountSettingsCreateWorkerAccountSettingsParams,
-            ),
+            body=maybe_transform(body, account_setting_update_params.AccountSettingUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -194,13 +162,10 @@ class AsyncAccountSettings(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[AccountSettingWorkerAccountSettingsCreateWorkerAccountSettingsResponse],
-                ResultWrapper[AccountSettingWorkerAccountSettingsCreateWorkerAccountSettingsResponse],
-            ),
+            cast_to=cast(Type[AccountSettingUpdateResponse], ResultWrapper[AccountSettingUpdateResponse]),
         )
 
-    async def worker_account_settings_fetch_worker_account_settings(
+    async def get(
         self,
         account_id: str,
         *,
@@ -210,7 +175,7 @@ class AsyncAccountSettings(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccountSettingWorkerAccountSettingsFetchWorkerAccountSettingsResponse:
+    ) -> AccountSettingGetResponse:
         """
         Fetches Worker account settings for an account.
 
@@ -236,10 +201,7 @@ class AsyncAccountSettings(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[AccountSettingWorkerAccountSettingsFetchWorkerAccountSettingsResponse],
-                ResultWrapper[AccountSettingWorkerAccountSettingsFetchWorkerAccountSettingsResponse],
-            ),
+            cast_to=cast(Type[AccountSettingGetResponse], ResultWrapper[AccountSettingGetResponse]),
         )
 
 
@@ -247,11 +209,11 @@ class AccountSettingsWithRawResponse:
     def __init__(self, account_settings: AccountSettings) -> None:
         self._account_settings = account_settings
 
-        self.worker_account_settings_create_worker_account_settings = to_raw_response_wrapper(
-            account_settings.worker_account_settings_create_worker_account_settings,
+        self.update = to_raw_response_wrapper(
+            account_settings.update,
         )
-        self.worker_account_settings_fetch_worker_account_settings = to_raw_response_wrapper(
-            account_settings.worker_account_settings_fetch_worker_account_settings,
+        self.get = to_raw_response_wrapper(
+            account_settings.get,
         )
 
 
@@ -259,11 +221,11 @@ class AsyncAccountSettingsWithRawResponse:
     def __init__(self, account_settings: AsyncAccountSettings) -> None:
         self._account_settings = account_settings
 
-        self.worker_account_settings_create_worker_account_settings = async_to_raw_response_wrapper(
-            account_settings.worker_account_settings_create_worker_account_settings,
+        self.update = async_to_raw_response_wrapper(
+            account_settings.update,
         )
-        self.worker_account_settings_fetch_worker_account_settings = async_to_raw_response_wrapper(
-            account_settings.worker_account_settings_fetch_worker_account_settings,
+        self.get = async_to_raw_response_wrapper(
+            account_settings.get,
         )
 
 
@@ -271,11 +233,11 @@ class AccountSettingsWithStreamingResponse:
     def __init__(self, account_settings: AccountSettings) -> None:
         self._account_settings = account_settings
 
-        self.worker_account_settings_create_worker_account_settings = to_streamed_response_wrapper(
-            account_settings.worker_account_settings_create_worker_account_settings,
+        self.update = to_streamed_response_wrapper(
+            account_settings.update,
         )
-        self.worker_account_settings_fetch_worker_account_settings = to_streamed_response_wrapper(
-            account_settings.worker_account_settings_fetch_worker_account_settings,
+        self.get = to_streamed_response_wrapper(
+            account_settings.get,
         )
 
 
@@ -283,9 +245,9 @@ class AsyncAccountSettingsWithStreamingResponse:
     def __init__(self, account_settings: AsyncAccountSettings) -> None:
         self._account_settings = account_settings
 
-        self.worker_account_settings_create_worker_account_settings = async_to_streamed_response_wrapper(
-            account_settings.worker_account_settings_create_worker_account_settings,
+        self.update = async_to_streamed_response_wrapper(
+            account_settings.update,
         )
-        self.worker_account_settings_fetch_worker_account_settings = async_to_streamed_response_wrapper(
-            account_settings.worker_account_settings_fetch_worker_account_settings,
+        self.get = async_to_streamed_response_wrapper(
+            account_settings.get,
         )

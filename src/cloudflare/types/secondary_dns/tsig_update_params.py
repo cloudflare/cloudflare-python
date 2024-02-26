@@ -2,18 +2,12 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required
+from typing_extensions import Required, TypedDict
 
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
-from ..._utils import PropertyInfo
-from ...types import shared_params
-
-__all__ = ["TsigUpdateParams"]
+__all__ = ["TSIGUpdateParams"]
 
 
-class TsigUpdateParams(TypedDict, total=False):
+class TSIGUpdateParams(TypedDict, total=False):
     account_id: Required[object]
 
     algo: Required[str]

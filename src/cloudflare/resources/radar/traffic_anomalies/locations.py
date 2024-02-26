@@ -2,44 +2,27 @@
 
 from __future__ import annotations
 
+from typing import Type, Union, cast
+from datetime import datetime
+from typing_extensions import Literal
+
 import httpx
 
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import maybe_transform
 from ...._compat import cached_property
-
-from ....types.radar.traffic_anomalies import LocationListResponse
-
-from typing import Type, Union
-
-from datetime import datetime
-
-from typing_extensions import Literal
-
+from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ....types import shared_params
-from ....types.radar.traffic_anomalies import location_list_params
 from ...._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
+from ...._base_client import (
+    make_request_options,
+)
+from ....types.radar.traffic_anomalies import LocationGetResponse, location_get_params
 
 __all__ = ["Locations", "AsyncLocations"]
 
@@ -53,7 +36,7 @@ class Locations(SyncAPIResource):
     def with_streaming_response(self) -> LocationsWithStreamingResponse:
         return LocationsWithStreamingResponse(self)
 
-    def list(
+    def get(
         self,
         *,
         date_end: Union[str, datetime] | NotGiven = NOT_GIVEN,
@@ -85,7 +68,7 @@ class Locations(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LocationListResponse:
+    ) -> LocationGetResponse:
         """
         Internet traffic anomalies are signals that might point to an outage, These
         alerts are automatically detected by Radar and then manually verified by our
@@ -127,11 +110,11 @@ class Locations(SyncAPIResource):
                         "limit": limit,
                         "status": status,
                     },
-                    location_list_params.LocationListParams,
+                    location_get_params.LocationGetParams,
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[LocationListResponse], ResultWrapper[LocationListResponse]),
+            cast_to=cast(Type[LocationGetResponse], ResultWrapper[LocationGetResponse]),
         )
 
 
@@ -144,7 +127,7 @@ class AsyncLocations(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncLocationsWithStreamingResponse:
         return AsyncLocationsWithStreamingResponse(self)
 
-    async def list(
+    async def get(
         self,
         *,
         date_end: Union[str, datetime] | NotGiven = NOT_GIVEN,
@@ -176,7 +159,7 @@ class AsyncLocations(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LocationListResponse:
+    ) -> LocationGetResponse:
         """
         Internet traffic anomalies are signals that might point to an outage, These
         alerts are automatically detected by Radar and then manually verified by our
@@ -218,11 +201,11 @@ class AsyncLocations(AsyncAPIResource):
                         "limit": limit,
                         "status": status,
                     },
-                    location_list_params.LocationListParams,
+                    location_get_params.LocationGetParams,
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[LocationListResponse], ResultWrapper[LocationListResponse]),
+            cast_to=cast(Type[LocationGetResponse], ResultWrapper[LocationGetResponse]),
         )
 
 
@@ -230,8 +213,8 @@ class LocationsWithRawResponse:
     def __init__(self, locations: Locations) -> None:
         self._locations = locations
 
-        self.list = to_raw_response_wrapper(
-            locations.list,
+        self.get = to_raw_response_wrapper(
+            locations.get,
         )
 
 
@@ -239,8 +222,8 @@ class AsyncLocationsWithRawResponse:
     def __init__(self, locations: AsyncLocations) -> None:
         self._locations = locations
 
-        self.list = async_to_raw_response_wrapper(
-            locations.list,
+        self.get = async_to_raw_response_wrapper(
+            locations.get,
         )
 
 
@@ -248,8 +231,8 @@ class LocationsWithStreamingResponse:
     def __init__(self, locations: Locations) -> None:
         self._locations = locations
 
-        self.list = to_streamed_response_wrapper(
-            locations.list,
+        self.get = to_streamed_response_wrapper(
+            locations.get,
         )
 
 
@@ -257,6 +240,6 @@ class AsyncLocationsWithStreamingResponse:
     def __init__(self, locations: AsyncLocations) -> None:
         self._locations = locations
 
-        self.list = async_to_streamed_response_wrapper(
-            locations.list,
+        self.get = async_to_streamed_response_wrapper(
+            locations.get,
         )

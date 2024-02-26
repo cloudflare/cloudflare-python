@@ -2,19 +2,20 @@
 
 from __future__ import annotations
 
-from cloudflare.types.pages.projects import DeploymentCreateResponse, DeploymentListResponse, DeploymentGetResponse
-
+import os
 from typing import Any, cast
 
-import os
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.pages.projects import deployment_create_params
+from cloudflare.types.pages.projects import (
+    DeploymentGetResponse,
+    DeploymentListResponse,
+    DeploymentRetryResponse,
+    DeploymentCreateResponse,
+    DeploymentRollbackResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -264,6 +265,134 @@ class TestDeployments:
                 project_name="this-is-my-project-01",
             )
 
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_retry(self, client: Cloudflare) -> None:
+        deployment = client.pages.projects.deployments.retry(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            project_name="this-is-my-project-01",
+        )
+        assert_matches_type(DeploymentRetryResponse, deployment, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_retry(self, client: Cloudflare) -> None:
+        response = client.pages.projects.deployments.with_raw_response.retry(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            project_name="this-is-my-project-01",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        deployment = response.parse()
+        assert_matches_type(DeploymentRetryResponse, deployment, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_retry(self, client: Cloudflare) -> None:
+        with client.pages.projects.deployments.with_streaming_response.retry(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            project_name="this-is-my-project-01",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            deployment = response.parse()
+            assert_matches_type(DeploymentRetryResponse, deployment, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_retry(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.pages.projects.deployments.with_raw_response.retry(
+                "023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="",
+                project_name="this-is-my-project-01",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
+            client.pages.projects.deployments.with_raw_response.retry(
+                "023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                project_name="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `deployment_id` but received ''"):
+            client.pages.projects.deployments.with_raw_response.retry(
+                "",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                project_name="this-is-my-project-01",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_rollback(self, client: Cloudflare) -> None:
+        deployment = client.pages.projects.deployments.rollback(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            project_name="this-is-my-project-01",
+        )
+        assert_matches_type(DeploymentRollbackResponse, deployment, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_rollback(self, client: Cloudflare) -> None:
+        response = client.pages.projects.deployments.with_raw_response.rollback(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            project_name="this-is-my-project-01",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        deployment = response.parse()
+        assert_matches_type(DeploymentRollbackResponse, deployment, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_rollback(self, client: Cloudflare) -> None:
+        with client.pages.projects.deployments.with_streaming_response.rollback(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            project_name="this-is-my-project-01",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            deployment = response.parse()
+            assert_matches_type(DeploymentRollbackResponse, deployment, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_rollback(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.pages.projects.deployments.with_raw_response.rollback(
+                "023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="",
+                project_name="this-is-my-project-01",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
+            client.pages.projects.deployments.with_raw_response.rollback(
+                "023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                project_name="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `deployment_id` but received ''"):
+            client.pages.projects.deployments.with_raw_response.rollback(
+                "",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                project_name="this-is-my-project-01",
+            )
+
 
 class TestAsyncDeployments:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
@@ -505,6 +634,134 @@ class TestAsyncDeployments:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `deployment_id` but received ''"):
             await async_client.pages.projects.deployments.with_raw_response.get(
+                "",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                project_name="this-is-my-project-01",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_retry(self, async_client: AsyncCloudflare) -> None:
+        deployment = await async_client.pages.projects.deployments.retry(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            project_name="this-is-my-project-01",
+        )
+        assert_matches_type(DeploymentRetryResponse, deployment, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_retry(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.pages.projects.deployments.with_raw_response.retry(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            project_name="this-is-my-project-01",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        deployment = await response.parse()
+        assert_matches_type(DeploymentRetryResponse, deployment, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_retry(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.pages.projects.deployments.with_streaming_response.retry(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            project_name="this-is-my-project-01",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            deployment = await response.parse()
+            assert_matches_type(DeploymentRetryResponse, deployment, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_retry(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.pages.projects.deployments.with_raw_response.retry(
+                "023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="",
+                project_name="this-is-my-project-01",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
+            await async_client.pages.projects.deployments.with_raw_response.retry(
+                "023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                project_name="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `deployment_id` but received ''"):
+            await async_client.pages.projects.deployments.with_raw_response.retry(
+                "",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                project_name="this-is-my-project-01",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_rollback(self, async_client: AsyncCloudflare) -> None:
+        deployment = await async_client.pages.projects.deployments.rollback(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            project_name="this-is-my-project-01",
+        )
+        assert_matches_type(DeploymentRollbackResponse, deployment, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_rollback(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.pages.projects.deployments.with_raw_response.rollback(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            project_name="this-is-my-project-01",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        deployment = await response.parse()
+        assert_matches_type(DeploymentRollbackResponse, deployment, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_rollback(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.pages.projects.deployments.with_streaming_response.rollback(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            project_name="this-is-my-project-01",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            deployment = await response.parse()
+            assert_matches_type(DeploymentRollbackResponse, deployment, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_rollback(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.pages.projects.deployments.with_raw_response.rollback(
+                "023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="",
+                project_name="this-is-my-project-01",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
+            await async_client.pages.projects.deployments.with_raw_response.rollback(
+                "023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                project_name="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `deployment_id` but received ''"):
+            await async_client.pages.projects.deployments.with_raw_response.rollback(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="this-is-my-project-01",

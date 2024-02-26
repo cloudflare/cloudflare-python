@@ -2,45 +2,25 @@
 
 from __future__ import annotations
 
+from typing import Type, cast
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._compat import cached_property
-
-from ...types.workers import (
-    SubdomainWorkerSubdomainCreateSubdomainResponse,
-    SubdomainWorkerSubdomainGetSubdomainResponse,
-)
-
-from typing import Type
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types.workers import subdomain_worker_subdomain_create_subdomain_params
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ..._base_client import (
+    make_request_options,
+)
+from ...types.workers import SubdomainGetResponse, SubdomainUpdateResponse, subdomain_update_params
 
 __all__ = ["Subdomains", "AsyncSubdomains"]
 
@@ -54,7 +34,7 @@ class Subdomains(SyncAPIResource):
     def with_streaming_response(self) -> SubdomainsWithStreamingResponse:
         return SubdomainsWithStreamingResponse(self)
 
-    def worker_subdomain_create_subdomain(
+    def update(
         self,
         account_id: str,
         *,
@@ -65,7 +45,7 @@ class Subdomains(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SubdomainWorkerSubdomainCreateSubdomainResponse:
+    ) -> SubdomainUpdateResponse:
         """
         Creates a Workers subdomain for an account.
 
@@ -84,9 +64,7 @@ class Subdomains(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._put(
             f"/accounts/{account_id}/workers/subdomain",
-            body=maybe_transform(
-                body, subdomain_worker_subdomain_create_subdomain_params.SubdomainWorkerSubdomainCreateSubdomainParams
-            ),
+            body=maybe_transform(body, subdomain_update_params.SubdomainUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -94,13 +72,10 @@ class Subdomains(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[SubdomainWorkerSubdomainCreateSubdomainResponse],
-                ResultWrapper[SubdomainWorkerSubdomainCreateSubdomainResponse],
-            ),
+            cast_to=cast(Type[SubdomainUpdateResponse], ResultWrapper[SubdomainUpdateResponse]),
         )
 
-    def worker_subdomain_get_subdomain(
+    def get(
         self,
         account_id: str,
         *,
@@ -110,7 +85,7 @@ class Subdomains(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SubdomainWorkerSubdomainGetSubdomainResponse:
+    ) -> SubdomainGetResponse:
         """
         Returns a Workers subdomain for an account.
 
@@ -136,10 +111,7 @@ class Subdomains(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[SubdomainWorkerSubdomainGetSubdomainResponse],
-                ResultWrapper[SubdomainWorkerSubdomainGetSubdomainResponse],
-            ),
+            cast_to=cast(Type[SubdomainGetResponse], ResultWrapper[SubdomainGetResponse]),
         )
 
 
@@ -152,7 +124,7 @@ class AsyncSubdomains(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncSubdomainsWithStreamingResponse:
         return AsyncSubdomainsWithStreamingResponse(self)
 
-    async def worker_subdomain_create_subdomain(
+    async def update(
         self,
         account_id: str,
         *,
@@ -163,7 +135,7 @@ class AsyncSubdomains(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SubdomainWorkerSubdomainCreateSubdomainResponse:
+    ) -> SubdomainUpdateResponse:
         """
         Creates a Workers subdomain for an account.
 
@@ -182,9 +154,7 @@ class AsyncSubdomains(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._put(
             f"/accounts/{account_id}/workers/subdomain",
-            body=maybe_transform(
-                body, subdomain_worker_subdomain_create_subdomain_params.SubdomainWorkerSubdomainCreateSubdomainParams
-            ),
+            body=maybe_transform(body, subdomain_update_params.SubdomainUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -192,13 +162,10 @@ class AsyncSubdomains(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[SubdomainWorkerSubdomainCreateSubdomainResponse],
-                ResultWrapper[SubdomainWorkerSubdomainCreateSubdomainResponse],
-            ),
+            cast_to=cast(Type[SubdomainUpdateResponse], ResultWrapper[SubdomainUpdateResponse]),
         )
 
-    async def worker_subdomain_get_subdomain(
+    async def get(
         self,
         account_id: str,
         *,
@@ -208,7 +175,7 @@ class AsyncSubdomains(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SubdomainWorkerSubdomainGetSubdomainResponse:
+    ) -> SubdomainGetResponse:
         """
         Returns a Workers subdomain for an account.
 
@@ -234,10 +201,7 @@ class AsyncSubdomains(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[SubdomainWorkerSubdomainGetSubdomainResponse],
-                ResultWrapper[SubdomainWorkerSubdomainGetSubdomainResponse],
-            ),
+            cast_to=cast(Type[SubdomainGetResponse], ResultWrapper[SubdomainGetResponse]),
         )
 
 
@@ -245,11 +209,11 @@ class SubdomainsWithRawResponse:
     def __init__(self, subdomains: Subdomains) -> None:
         self._subdomains = subdomains
 
-        self.worker_subdomain_create_subdomain = to_raw_response_wrapper(
-            subdomains.worker_subdomain_create_subdomain,
+        self.update = to_raw_response_wrapper(
+            subdomains.update,
         )
-        self.worker_subdomain_get_subdomain = to_raw_response_wrapper(
-            subdomains.worker_subdomain_get_subdomain,
+        self.get = to_raw_response_wrapper(
+            subdomains.get,
         )
 
 
@@ -257,11 +221,11 @@ class AsyncSubdomainsWithRawResponse:
     def __init__(self, subdomains: AsyncSubdomains) -> None:
         self._subdomains = subdomains
 
-        self.worker_subdomain_create_subdomain = async_to_raw_response_wrapper(
-            subdomains.worker_subdomain_create_subdomain,
+        self.update = async_to_raw_response_wrapper(
+            subdomains.update,
         )
-        self.worker_subdomain_get_subdomain = async_to_raw_response_wrapper(
-            subdomains.worker_subdomain_get_subdomain,
+        self.get = async_to_raw_response_wrapper(
+            subdomains.get,
         )
 
 
@@ -269,11 +233,11 @@ class SubdomainsWithStreamingResponse:
     def __init__(self, subdomains: Subdomains) -> None:
         self._subdomains = subdomains
 
-        self.worker_subdomain_create_subdomain = to_streamed_response_wrapper(
-            subdomains.worker_subdomain_create_subdomain,
+        self.update = to_streamed_response_wrapper(
+            subdomains.update,
         )
-        self.worker_subdomain_get_subdomain = to_streamed_response_wrapper(
-            subdomains.worker_subdomain_get_subdomain,
+        self.get = to_streamed_response_wrapper(
+            subdomains.get,
         )
 
 
@@ -281,9 +245,9 @@ class AsyncSubdomainsWithStreamingResponse:
     def __init__(self, subdomains: AsyncSubdomains) -> None:
         self._subdomains = subdomains
 
-        self.worker_subdomain_create_subdomain = async_to_streamed_response_wrapper(
-            subdomains.worker_subdomain_create_subdomain,
+        self.update = async_to_streamed_response_wrapper(
+            subdomains.update,
         )
-        self.worker_subdomain_get_subdomain = async_to_streamed_response_wrapper(
-            subdomains.worker_subdomain_get_subdomain,
+        self.get = async_to_streamed_response_wrapper(
+            subdomains.get,
         )

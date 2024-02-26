@@ -2,39 +2,24 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._compat import cached_property
-
-from ...types.devices import OverrideCodeDevicesListAdminOverrideCodeForDeviceResponse
-
-from typing import Type, Optional
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
+from ..._base_client import (
+    make_request_options,
+)
+from ...types.devices import OverrideCodeListResponse
 
 __all__ = ["OverrideCodes", "AsyncOverrideCodes"]
 
@@ -48,25 +33,25 @@ class OverrideCodes(SyncAPIResource):
     def with_streaming_response(self) -> OverrideCodesWithStreamingResponse:
         return OverrideCodesWithStreamingResponse(self)
 
-    def devices_list_admin_override_code_for_device(
+    def list(
         self,
-        uuid: str,
+        device_id: str,
         *,
-        identifier: object,
+        account_id: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[OverrideCodeDevicesListAdminOverrideCodeForDeviceResponse]:
+    ) -> Optional[OverrideCodeListResponse]:
         """Fetches a one-time use admin override code for a device.
 
         This relies on the
         **Admin Override** setting being enabled in your device configuration.
 
         Args:
-          uuid: Device ID.
+          device_id: Device ID.
 
           extra_headers: Send extra headers
 
@@ -76,10 +61,10 @@ class OverrideCodes(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not device_id:
+            raise ValueError(f"Expected a non-empty value for `device_id` but received {device_id!r}")
         return self._get(
-            f"/accounts/{identifier}/devices/{uuid}/override_codes",
+            f"/accounts/{account_id}/devices/{device_id}/override_codes",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -87,10 +72,7 @@ class OverrideCodes(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[OverrideCodeDevicesListAdminOverrideCodeForDeviceResponse]],
-                ResultWrapper[OverrideCodeDevicesListAdminOverrideCodeForDeviceResponse],
-            ),
+            cast_to=cast(Type[Optional[OverrideCodeListResponse]], ResultWrapper[OverrideCodeListResponse]),
         )
 
 
@@ -103,25 +85,25 @@ class AsyncOverrideCodes(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncOverrideCodesWithStreamingResponse:
         return AsyncOverrideCodesWithStreamingResponse(self)
 
-    async def devices_list_admin_override_code_for_device(
+    async def list(
         self,
-        uuid: str,
+        device_id: str,
         *,
-        identifier: object,
+        account_id: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[OverrideCodeDevicesListAdminOverrideCodeForDeviceResponse]:
+    ) -> Optional[OverrideCodeListResponse]:
         """Fetches a one-time use admin override code for a device.
 
         This relies on the
         **Admin Override** setting being enabled in your device configuration.
 
         Args:
-          uuid: Device ID.
+          device_id: Device ID.
 
           extra_headers: Send extra headers
 
@@ -131,10 +113,10 @@ class AsyncOverrideCodes(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not device_id:
+            raise ValueError(f"Expected a non-empty value for `device_id` but received {device_id!r}")
         return await self._get(
-            f"/accounts/{identifier}/devices/{uuid}/override_codes",
+            f"/accounts/{account_id}/devices/{device_id}/override_codes",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -142,10 +124,7 @@ class AsyncOverrideCodes(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[OverrideCodeDevicesListAdminOverrideCodeForDeviceResponse]],
-                ResultWrapper[OverrideCodeDevicesListAdminOverrideCodeForDeviceResponse],
-            ),
+            cast_to=cast(Type[Optional[OverrideCodeListResponse]], ResultWrapper[OverrideCodeListResponse]),
         )
 
 
@@ -153,8 +132,8 @@ class OverrideCodesWithRawResponse:
     def __init__(self, override_codes: OverrideCodes) -> None:
         self._override_codes = override_codes
 
-        self.devices_list_admin_override_code_for_device = to_raw_response_wrapper(
-            override_codes.devices_list_admin_override_code_for_device,
+        self.list = to_raw_response_wrapper(
+            override_codes.list,
         )
 
 
@@ -162,8 +141,8 @@ class AsyncOverrideCodesWithRawResponse:
     def __init__(self, override_codes: AsyncOverrideCodes) -> None:
         self._override_codes = override_codes
 
-        self.devices_list_admin_override_code_for_device = async_to_raw_response_wrapper(
-            override_codes.devices_list_admin_override_code_for_device,
+        self.list = async_to_raw_response_wrapper(
+            override_codes.list,
         )
 
 
@@ -171,8 +150,8 @@ class OverrideCodesWithStreamingResponse:
     def __init__(self, override_codes: OverrideCodes) -> None:
         self._override_codes = override_codes
 
-        self.devices_list_admin_override_code_for_device = to_streamed_response_wrapper(
-            override_codes.devices_list_admin_override_code_for_device,
+        self.list = to_streamed_response_wrapper(
+            override_codes.list,
         )
 
 
@@ -180,6 +159,6 @@ class AsyncOverrideCodesWithStreamingResponse:
     def __init__(self, override_codes: AsyncOverrideCodes) -> None:
         self._override_codes = override_codes
 
-        self.devices_list_admin_override_code_for_device = async_to_streamed_response_wrapper(
-            override_codes.devices_list_admin_override_code_for_device,
+        self.list = async_to_streamed_response_wrapper(
+            override_codes.list,
         )

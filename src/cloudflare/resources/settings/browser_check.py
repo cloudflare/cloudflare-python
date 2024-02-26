@@ -2,44 +2,26 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+from typing_extensions import Literal
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._compat import cached_property
-
-from ...types.settings import BrowserCheckUpdateResponse, BrowserCheckGetResponse
-
-from typing import Type, Optional
-
-from typing_extensions import Literal
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types.settings import browser_check_update_params
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ..._base_client import (
+    make_request_options,
+)
+from ...types.settings import BrowserCheckGetResponse, BrowserCheckEditResponse, browser_check_edit_params
 
 __all__ = ["BrowserCheck", "AsyncBrowserCheck"]
 
@@ -53,7 +35,7 @@ class BrowserCheck(SyncAPIResource):
     def with_streaming_response(self) -> BrowserCheckWithStreamingResponse:
         return BrowserCheckWithStreamingResponse(self)
 
-    def update(
+    def edit(
         self,
         zone_id: str,
         *,
@@ -64,7 +46,7 @@ class BrowserCheck(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[BrowserCheckUpdateResponse]:
+    ) -> Optional[BrowserCheckEditResponse]:
         """
         Browser Integrity Check is similar to Bad Behavior and looks for common HTTP
         headers abused most commonly by spammers and denies access to your page. It will
@@ -89,7 +71,7 @@ class BrowserCheck(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._patch(
             f"/zones/{zone_id}/settings/browser_check",
-            body=maybe_transform({"value": value}, browser_check_update_params.BrowserCheckUpdateParams),
+            body=maybe_transform({"value": value}, browser_check_edit_params.BrowserCheckEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -97,7 +79,7 @@ class BrowserCheck(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[BrowserCheckUpdateResponse]], ResultWrapper[BrowserCheckUpdateResponse]),
+            cast_to=cast(Type[Optional[BrowserCheckEditResponse]], ResultWrapper[BrowserCheckEditResponse]),
         )
 
     def get(
@@ -153,7 +135,7 @@ class AsyncBrowserCheck(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncBrowserCheckWithStreamingResponse:
         return AsyncBrowserCheckWithStreamingResponse(self)
 
-    async def update(
+    async def edit(
         self,
         zone_id: str,
         *,
@@ -164,7 +146,7 @@ class AsyncBrowserCheck(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[BrowserCheckUpdateResponse]:
+    ) -> Optional[BrowserCheckEditResponse]:
         """
         Browser Integrity Check is similar to Bad Behavior and looks for common HTTP
         headers abused most commonly by spammers and denies access to your page. It will
@@ -189,7 +171,7 @@ class AsyncBrowserCheck(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._patch(
             f"/zones/{zone_id}/settings/browser_check",
-            body=maybe_transform({"value": value}, browser_check_update_params.BrowserCheckUpdateParams),
+            body=maybe_transform({"value": value}, browser_check_edit_params.BrowserCheckEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -197,7 +179,7 @@ class AsyncBrowserCheck(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[BrowserCheckUpdateResponse]], ResultWrapper[BrowserCheckUpdateResponse]),
+            cast_to=cast(Type[Optional[BrowserCheckEditResponse]], ResultWrapper[BrowserCheckEditResponse]),
         )
 
     async def get(
@@ -248,8 +230,8 @@ class BrowserCheckWithRawResponse:
     def __init__(self, browser_check: BrowserCheck) -> None:
         self._browser_check = browser_check
 
-        self.update = to_raw_response_wrapper(
-            browser_check.update,
+        self.edit = to_raw_response_wrapper(
+            browser_check.edit,
         )
         self.get = to_raw_response_wrapper(
             browser_check.get,
@@ -260,8 +242,8 @@ class AsyncBrowserCheckWithRawResponse:
     def __init__(self, browser_check: AsyncBrowserCheck) -> None:
         self._browser_check = browser_check
 
-        self.update = async_to_raw_response_wrapper(
-            browser_check.update,
+        self.edit = async_to_raw_response_wrapper(
+            browser_check.edit,
         )
         self.get = async_to_raw_response_wrapper(
             browser_check.get,
@@ -272,8 +254,8 @@ class BrowserCheckWithStreamingResponse:
     def __init__(self, browser_check: BrowserCheck) -> None:
         self._browser_check = browser_check
 
-        self.update = to_streamed_response_wrapper(
-            browser_check.update,
+        self.edit = to_streamed_response_wrapper(
+            browser_check.edit,
         )
         self.get = to_streamed_response_wrapper(
             browser_check.get,
@@ -284,8 +266,8 @@ class AsyncBrowserCheckWithStreamingResponse:
     def __init__(self, browser_check: AsyncBrowserCheck) -> None:
         self._browser_check = browser_check
 
-        self.update = async_to_streamed_response_wrapper(
-            browser_check.update,
+        self.edit = async_to_streamed_response_wrapper(
+            browser_check.edit,
         )
         self.get = async_to_streamed_response_wrapper(
             browser_check.get,

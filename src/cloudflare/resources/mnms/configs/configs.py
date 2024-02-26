@@ -2,44 +2,10 @@
 
 from __future__ import annotations
 
+from typing import Type, cast
+
 import httpx
 
-from .fulls import Fulls, AsyncFulls
-
-from ...._compat import cached_property
-
-from ....types.mnms import (
-    ConfigDeleteResponse,
-    ConfigMagicNetworkMonitoringConfigurationCreateAccountConfigurationResponse,
-    ConfigMagicNetworkMonitoringConfigurationListAccountConfigurationResponse,
-    ConfigMagicNetworkMonitoringConfigurationUpdateAccountConfigurationFieldsResponse,
-    ConfigMagicNetworkMonitoringConfigurationUpdateAnEntireAccountConfigurationResponse,
-)
-
-from typing import Type
-
-from ...._response import (
-    to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ....types import shared_params
 from .fulls import (
     Fulls,
     AsyncFulls,
@@ -48,17 +14,26 @@ from .fulls import (
     FullsWithStreamingResponse,
     AsyncFullsWithStreamingResponse,
 )
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
 from ...._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ....types.mnms import (
+    ConfigEditResponse,
+    ConfigListResponse,
+    ConfigCreateResponse,
+    ConfigDeleteResponse,
+    ConfigUpdateResponse,
+)
+from ...._base_client import (
+    make_request_options,
+)
 
 __all__ = ["Configs", "AsyncConfigs"]
 
@@ -75,6 +50,112 @@ class Configs(SyncAPIResource):
     @cached_property
     def with_streaming_response(self) -> ConfigsWithStreamingResponse:
         return ConfigsWithStreamingResponse(self)
+
+    def create(
+        self,
+        account_identifier: object,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ConfigCreateResponse:
+        """
+        Create a new network monitoring configuration.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._post(
+            f"/accounts/{account_identifier}/mnm/config",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[ConfigCreateResponse], ResultWrapper[ConfigCreateResponse]),
+        )
+
+    def update(
+        self,
+        account_identifier: object,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ConfigUpdateResponse:
+        """
+        Update an existing network monitoring configuration, requires the entire
+        configuration to be updated at once.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._put(
+            f"/accounts/{account_identifier}/mnm/config",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[ConfigUpdateResponse], ResultWrapper[ConfigUpdateResponse]),
+        )
+
+    def list(
+        self,
+        account_identifier: object,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ConfigListResponse:
+        """
+        Lists default sampling and router IPs for account.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get(
+            f"/accounts/{account_identifier}/mnm/config",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[ConfigListResponse], ResultWrapper[ConfigListResponse]),
+        )
 
     def delete(
         self,
@@ -111,7 +192,7 @@ class Configs(SyncAPIResource):
             cast_to=cast(Type[ConfigDeleteResponse], ResultWrapper[ConfigDeleteResponse]),
         )
 
-    def magic_network_monitoring_configuration_create_account_configuration(
+    def edit(
         self,
         account_identifier: object,
         *,
@@ -121,83 +202,7 @@ class Configs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConfigMagicNetworkMonitoringConfigurationCreateAccountConfigurationResponse:
-        """
-        Create a new network monitoring configuration.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._post(
-            f"/accounts/{account_identifier}/mnm/config",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[ConfigMagicNetworkMonitoringConfigurationCreateAccountConfigurationResponse],
-                ResultWrapper[ConfigMagicNetworkMonitoringConfigurationCreateAccountConfigurationResponse],
-            ),
-        )
-
-    def magic_network_monitoring_configuration_list_account_configuration(
-        self,
-        account_identifier: object,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConfigMagicNetworkMonitoringConfigurationListAccountConfigurationResponse:
-        """
-        Lists default sampling and router IPs for account.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._get(
-            f"/accounts/{account_identifier}/mnm/config",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[ConfigMagicNetworkMonitoringConfigurationListAccountConfigurationResponse],
-                ResultWrapper[ConfigMagicNetworkMonitoringConfigurationListAccountConfigurationResponse],
-            ),
-        )
-
-    def magic_network_monitoring_configuration_update_account_configuration_fields(
-        self,
-        account_identifier: object,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConfigMagicNetworkMonitoringConfigurationUpdateAccountConfigurationFieldsResponse:
+    ) -> ConfigEditResponse:
         """
         Update fields in an existing network monitoring configuration.
 
@@ -219,49 +224,7 @@ class Configs(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[ConfigMagicNetworkMonitoringConfigurationUpdateAccountConfigurationFieldsResponse],
-                ResultWrapper[ConfigMagicNetworkMonitoringConfigurationUpdateAccountConfigurationFieldsResponse],
-            ),
-        )
-
-    def magic_network_monitoring_configuration_update_an_entire_account_configuration(
-        self,
-        account_identifier: object,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConfigMagicNetworkMonitoringConfigurationUpdateAnEntireAccountConfigurationResponse:
-        """
-        Update an existing network monitoring configuration, requires the entire
-        configuration to be updated at once.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._put(
-            f"/accounts/{account_identifier}/mnm/config",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[ConfigMagicNetworkMonitoringConfigurationUpdateAnEntireAccountConfigurationResponse],
-                ResultWrapper[ConfigMagicNetworkMonitoringConfigurationUpdateAnEntireAccountConfigurationResponse],
-            ),
+            cast_to=cast(Type[ConfigEditResponse], ResultWrapper[ConfigEditResponse]),
         )
 
 
@@ -277,6 +240,112 @@ class AsyncConfigs(AsyncAPIResource):
     @cached_property
     def with_streaming_response(self) -> AsyncConfigsWithStreamingResponse:
         return AsyncConfigsWithStreamingResponse(self)
+
+    async def create(
+        self,
+        account_identifier: object,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ConfigCreateResponse:
+        """
+        Create a new network monitoring configuration.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._post(
+            f"/accounts/{account_identifier}/mnm/config",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[ConfigCreateResponse], ResultWrapper[ConfigCreateResponse]),
+        )
+
+    async def update(
+        self,
+        account_identifier: object,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ConfigUpdateResponse:
+        """
+        Update an existing network monitoring configuration, requires the entire
+        configuration to be updated at once.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._put(
+            f"/accounts/{account_identifier}/mnm/config",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[ConfigUpdateResponse], ResultWrapper[ConfigUpdateResponse]),
+        )
+
+    async def list(
+        self,
+        account_identifier: object,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ConfigListResponse:
+        """
+        Lists default sampling and router IPs for account.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._get(
+            f"/accounts/{account_identifier}/mnm/config",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[ConfigListResponse], ResultWrapper[ConfigListResponse]),
+        )
 
     async def delete(
         self,
@@ -313,7 +382,7 @@ class AsyncConfigs(AsyncAPIResource):
             cast_to=cast(Type[ConfigDeleteResponse], ResultWrapper[ConfigDeleteResponse]),
         )
 
-    async def magic_network_monitoring_configuration_create_account_configuration(
+    async def edit(
         self,
         account_identifier: object,
         *,
@@ -323,83 +392,7 @@ class AsyncConfigs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConfigMagicNetworkMonitoringConfigurationCreateAccountConfigurationResponse:
-        """
-        Create a new network monitoring configuration.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._post(
-            f"/accounts/{account_identifier}/mnm/config",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[ConfigMagicNetworkMonitoringConfigurationCreateAccountConfigurationResponse],
-                ResultWrapper[ConfigMagicNetworkMonitoringConfigurationCreateAccountConfigurationResponse],
-            ),
-        )
-
-    async def magic_network_monitoring_configuration_list_account_configuration(
-        self,
-        account_identifier: object,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConfigMagicNetworkMonitoringConfigurationListAccountConfigurationResponse:
-        """
-        Lists default sampling and router IPs for account.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._get(
-            f"/accounts/{account_identifier}/mnm/config",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[ConfigMagicNetworkMonitoringConfigurationListAccountConfigurationResponse],
-                ResultWrapper[ConfigMagicNetworkMonitoringConfigurationListAccountConfigurationResponse],
-            ),
-        )
-
-    async def magic_network_monitoring_configuration_update_account_configuration_fields(
-        self,
-        account_identifier: object,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConfigMagicNetworkMonitoringConfigurationUpdateAccountConfigurationFieldsResponse:
+    ) -> ConfigEditResponse:
         """
         Update fields in an existing network monitoring configuration.
 
@@ -421,49 +414,7 @@ class AsyncConfigs(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[ConfigMagicNetworkMonitoringConfigurationUpdateAccountConfigurationFieldsResponse],
-                ResultWrapper[ConfigMagicNetworkMonitoringConfigurationUpdateAccountConfigurationFieldsResponse],
-            ),
-        )
-
-    async def magic_network_monitoring_configuration_update_an_entire_account_configuration(
-        self,
-        account_identifier: object,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConfigMagicNetworkMonitoringConfigurationUpdateAnEntireAccountConfigurationResponse:
-        """
-        Update an existing network monitoring configuration, requires the entire
-        configuration to be updated at once.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._put(
-            f"/accounts/{account_identifier}/mnm/config",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[ConfigMagicNetworkMonitoringConfigurationUpdateAnEntireAccountConfigurationResponse],
-                ResultWrapper[ConfigMagicNetworkMonitoringConfigurationUpdateAnEntireAccountConfigurationResponse],
-            ),
+            cast_to=cast(Type[ConfigEditResponse], ResultWrapper[ConfigEditResponse]),
         )
 
 
@@ -471,20 +422,20 @@ class ConfigsWithRawResponse:
     def __init__(self, configs: Configs) -> None:
         self._configs = configs
 
+        self.create = to_raw_response_wrapper(
+            configs.create,
+        )
+        self.update = to_raw_response_wrapper(
+            configs.update,
+        )
+        self.list = to_raw_response_wrapper(
+            configs.list,
+        )
         self.delete = to_raw_response_wrapper(
             configs.delete,
         )
-        self.magic_network_monitoring_configuration_create_account_configuration = to_raw_response_wrapper(
-            configs.magic_network_monitoring_configuration_create_account_configuration,
-        )
-        self.magic_network_monitoring_configuration_list_account_configuration = to_raw_response_wrapper(
-            configs.magic_network_monitoring_configuration_list_account_configuration,
-        )
-        self.magic_network_monitoring_configuration_update_account_configuration_fields = to_raw_response_wrapper(
-            configs.magic_network_monitoring_configuration_update_account_configuration_fields,
-        )
-        self.magic_network_monitoring_configuration_update_an_entire_account_configuration = to_raw_response_wrapper(
-            configs.magic_network_monitoring_configuration_update_an_entire_account_configuration,
+        self.edit = to_raw_response_wrapper(
+            configs.edit,
         )
 
     @cached_property
@@ -496,22 +447,20 @@ class AsyncConfigsWithRawResponse:
     def __init__(self, configs: AsyncConfigs) -> None:
         self._configs = configs
 
+        self.create = async_to_raw_response_wrapper(
+            configs.create,
+        )
+        self.update = async_to_raw_response_wrapper(
+            configs.update,
+        )
+        self.list = async_to_raw_response_wrapper(
+            configs.list,
+        )
         self.delete = async_to_raw_response_wrapper(
             configs.delete,
         )
-        self.magic_network_monitoring_configuration_create_account_configuration = async_to_raw_response_wrapper(
-            configs.magic_network_monitoring_configuration_create_account_configuration,
-        )
-        self.magic_network_monitoring_configuration_list_account_configuration = async_to_raw_response_wrapper(
-            configs.magic_network_monitoring_configuration_list_account_configuration,
-        )
-        self.magic_network_monitoring_configuration_update_account_configuration_fields = async_to_raw_response_wrapper(
-            configs.magic_network_monitoring_configuration_update_account_configuration_fields,
-        )
-        self.magic_network_monitoring_configuration_update_an_entire_account_configuration = (
-            async_to_raw_response_wrapper(
-                configs.magic_network_monitoring_configuration_update_an_entire_account_configuration,
-            )
+        self.edit = async_to_raw_response_wrapper(
+            configs.edit,
         )
 
     @cached_property
@@ -523,22 +472,20 @@ class ConfigsWithStreamingResponse:
     def __init__(self, configs: Configs) -> None:
         self._configs = configs
 
+        self.create = to_streamed_response_wrapper(
+            configs.create,
+        )
+        self.update = to_streamed_response_wrapper(
+            configs.update,
+        )
+        self.list = to_streamed_response_wrapper(
+            configs.list,
+        )
         self.delete = to_streamed_response_wrapper(
             configs.delete,
         )
-        self.magic_network_monitoring_configuration_create_account_configuration = to_streamed_response_wrapper(
-            configs.magic_network_monitoring_configuration_create_account_configuration,
-        )
-        self.magic_network_monitoring_configuration_list_account_configuration = to_streamed_response_wrapper(
-            configs.magic_network_monitoring_configuration_list_account_configuration,
-        )
-        self.magic_network_monitoring_configuration_update_account_configuration_fields = to_streamed_response_wrapper(
-            configs.magic_network_monitoring_configuration_update_account_configuration_fields,
-        )
-        self.magic_network_monitoring_configuration_update_an_entire_account_configuration = (
-            to_streamed_response_wrapper(
-                configs.magic_network_monitoring_configuration_update_an_entire_account_configuration,
-            )
+        self.edit = to_streamed_response_wrapper(
+            configs.edit,
         )
 
     @cached_property
@@ -550,24 +497,20 @@ class AsyncConfigsWithStreamingResponse:
     def __init__(self, configs: AsyncConfigs) -> None:
         self._configs = configs
 
+        self.create = async_to_streamed_response_wrapper(
+            configs.create,
+        )
+        self.update = async_to_streamed_response_wrapper(
+            configs.update,
+        )
+        self.list = async_to_streamed_response_wrapper(
+            configs.list,
+        )
         self.delete = async_to_streamed_response_wrapper(
             configs.delete,
         )
-        self.magic_network_monitoring_configuration_create_account_configuration = async_to_streamed_response_wrapper(
-            configs.magic_network_monitoring_configuration_create_account_configuration,
-        )
-        self.magic_network_monitoring_configuration_list_account_configuration = async_to_streamed_response_wrapper(
-            configs.magic_network_monitoring_configuration_list_account_configuration,
-        )
-        self.magic_network_monitoring_configuration_update_account_configuration_fields = (
-            async_to_streamed_response_wrapper(
-                configs.magic_network_monitoring_configuration_update_account_configuration_fields,
-            )
-        )
-        self.magic_network_monitoring_configuration_update_an_entire_account_configuration = (
-            async_to_streamed_response_wrapper(
-                configs.magic_network_monitoring_configuration_update_an_entire_account_configuration,
-            )
+        self.edit = async_to_streamed_response_wrapper(
+            configs.edit,
         )
 
     @cached_property

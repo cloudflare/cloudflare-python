@@ -2,49 +2,11 @@
 
 from __future__ import annotations
 
+from typing import Any, cast
+from typing_extensions import Literal
+
 import httpx
 
-from .groups import Groups, AsyncGroups
-
-from ....._compat import cached_property
-
-from .rules import Rules, AsyncRules
-
-from .....types.firewalls.waf import PackageListResponse, PackageGetResponse
-
-from typing_extensions import Literal
-
-from ....._response import (
-    to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ....._resource import SyncAPIResource, AsyncAPIResource
-from ....._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from .....types import shared_params
-from .....types.firewalls.waf import package_list_params
-from .groups import (
-    Groups,
-    AsyncGroups,
-    GroupsWithRawResponse,
-    AsyncGroupsWithRawResponse,
-    GroupsWithStreamingResponse,
-    AsyncGroupsWithStreamingResponse,
-)
 from .rules import (
     Rules,
     AsyncRules,
@@ -53,15 +15,30 @@ from .rules import (
     RulesWithStreamingResponse,
     AsyncRulesWithStreamingResponse,
 )
-from ....._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from .groups import (
+    Groups,
+    AsyncGroups,
+    GroupsWithRawResponse,
+    AsyncGroupsWithRawResponse,
+    GroupsWithStreamingResponse,
+    AsyncGroupsWithStreamingResponse,
+)
+from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._utils import maybe_transform
+from ....._compat import cached_property
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from ....._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from .....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from ....._base_client import (
+    AsyncPaginator,
+    make_request_options,
+)
+from .....types.firewalls.waf import PackageGetResponse, PackageListResponse, package_list_params
 
 __all__ = ["Packages", "AsyncPackages"]
 
@@ -98,7 +75,7 @@ class Packages(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PackageListResponse:
+    ) -> SyncV4PagePaginationArray[PackageListResponse]:
         """
         Fetches WAF packages for a zone.
 
@@ -129,30 +106,26 @@ class Packages(SyncAPIResource):
         """
         if not zone_identifier:
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        return cast(
-            PackageListResponse,
-            self._get(
-                f"/zones/{zone_identifier}/firewall/waf/packages",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    query=maybe_transform(
-                        {
-                            "direction": direction,
-                            "match": match,
-                            "order": order,
-                            "page": page,
-                            "per_page": per_page,
-                        },
-                        package_list_params.PackageListParams,
-                    ),
+        return self._get_api_list(
+            f"/zones/{zone_identifier}/firewall/waf/packages",
+            page=SyncV4PagePaginationArray[PackageListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "direction": direction,
+                        "match": match,
+                        "order": order,
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    package_list_params.PackageListParams,
                 ),
-                cast_to=cast(
-                    Any, PackageListResponse
-                ),  # Union types cannot be passed in as arguments in the type system
             ),
+            model=cast(Any, PackageListResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
     def get(
@@ -221,7 +194,7 @@ class AsyncPackages(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncPackagesWithStreamingResponse:
         return AsyncPackagesWithStreamingResponse(self)
 
-    async def list(
+    def list(
         self,
         zone_identifier: str,
         *,
@@ -236,7 +209,7 @@ class AsyncPackages(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PackageListResponse:
+    ) -> AsyncPaginator[PackageListResponse, AsyncV4PagePaginationArray[PackageListResponse]]:
         """
         Fetches WAF packages for a zone.
 
@@ -267,30 +240,26 @@ class AsyncPackages(AsyncAPIResource):
         """
         if not zone_identifier:
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        return cast(
-            PackageListResponse,
-            await self._get(
-                f"/zones/{zone_identifier}/firewall/waf/packages",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    query=maybe_transform(
-                        {
-                            "direction": direction,
-                            "match": match,
-                            "order": order,
-                            "page": page,
-                            "per_page": per_page,
-                        },
-                        package_list_params.PackageListParams,
-                    ),
+        return self._get_api_list(
+            f"/zones/{zone_identifier}/firewall/waf/packages",
+            page=AsyncV4PagePaginationArray[PackageListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "direction": direction,
+                        "match": match,
+                        "order": order,
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    package_list_params.PackageListParams,
                 ),
-                cast_to=cast(
-                    Any, PackageListResponse
-                ),  # Union types cannot be passed in as arguments in the type system
             ),
+            model=cast(Any, PackageListResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
     async def get(

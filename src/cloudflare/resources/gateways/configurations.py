@@ -2,51 +2,31 @@
 
 from __future__ import annotations
 
+from typing import Type, cast
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._compat import cached_property
-
-from ...types.gateways import (
-    ConfigurationZeroTrustAccountsGetZeroTrustAccountConfigurationResponse,
-    ConfigurationZeroTrustAccountsPatchZeroTrustAccountConfigurationResponse,
-    ConfigurationZeroTrustAccountsUpdateZeroTrustAccountConfigurationResponse,
-    configuration_zero_trust_accounts_patch_zero_trust_account_configuration_params,
-    configuration_zero_trust_accounts_update_zero_trust_account_configuration_params,
-)
-
-from typing import Type
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types.gateways import configuration_zero_trust_accounts_patch_zero_trust_account_configuration_params
-from ...types.gateways import configuration_zero_trust_accounts_update_zero_trust_account_configuration_params
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ..._base_client import (
+    make_request_options,
+)
+from ...types.gateways import (
+    ConfigurationGetResponse,
+    ConfigurationEditResponse,
+    ConfigurationUpdateResponse,
+    configuration_edit_params,
+    configuration_update_params,
+)
 
 __all__ = ["Configurations", "AsyncConfigurations"]
 
@@ -60,21 +40,24 @@ class Configurations(SyncAPIResource):
     def with_streaming_response(self) -> ConfigurationsWithStreamingResponse:
         return ConfigurationsWithStreamingResponse(self)
 
-    def zero_trust_accounts_get_zero_trust_account_configuration(
+    def update(
         self,
         account_id: object,
         *,
+        settings: configuration_update_params.Settings | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConfigurationZeroTrustAccountsGetZeroTrustAccountConfigurationResponse:
+    ) -> ConfigurationUpdateResponse:
         """
-        Fetches the current Zero Trust account configuration.
+        Updates the current Zero Trust account configuration.
 
         Args:
+          settings: account settings.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -83,8 +66,9 @@ class Configurations(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._put(
             f"/accounts/{account_id}/gateway/configuration",
+            body=maybe_transform({"settings": settings}, configuration_update_params.ConfigurationUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -92,25 +76,21 @@ class Configurations(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[ConfigurationZeroTrustAccountsGetZeroTrustAccountConfigurationResponse],
-                ResultWrapper[ConfigurationZeroTrustAccountsGetZeroTrustAccountConfigurationResponse],
-            ),
+            cast_to=cast(Type[ConfigurationUpdateResponse], ResultWrapper[ConfigurationUpdateResponse]),
         )
 
-    def zero_trust_accounts_patch_zero_trust_account_configuration(
+    def edit(
         self,
         account_id: object,
         *,
-        settings: configuration_zero_trust_accounts_patch_zero_trust_account_configuration_params.Settings
-        | NotGiven = NOT_GIVEN,
+        settings: configuration_edit_params.Settings | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConfigurationZeroTrustAccountsPatchZeroTrustAccountConfigurationResponse:
+    ) -> ConfigurationEditResponse:
         """Patches the current Zero Trust account configuration.
 
         This endpoint can update a
@@ -132,10 +112,7 @@ class Configurations(SyncAPIResource):
         """
         return self._patch(
             f"/accounts/{account_id}/gateway/configuration",
-            body=maybe_transform(
-                {"settings": settings},
-                configuration_zero_trust_accounts_patch_zero_trust_account_configuration_params.ConfigurationZeroTrustAccountsPatchZeroTrustAccountConfigurationParams,
-            ),
+            body=maybe_transform({"settings": settings}, configuration_edit_params.ConfigurationEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -143,25 +120,66 @@ class Configurations(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[ConfigurationZeroTrustAccountsPatchZeroTrustAccountConfigurationResponse],
-                ResultWrapper[ConfigurationZeroTrustAccountsPatchZeroTrustAccountConfigurationResponse],
-            ),
+            cast_to=cast(Type[ConfigurationEditResponse], ResultWrapper[ConfigurationEditResponse]),
         )
 
-    def zero_trust_accounts_update_zero_trust_account_configuration(
+    def get(
         self,
         account_id: object,
         *,
-        settings: configuration_zero_trust_accounts_update_zero_trust_account_configuration_params.Settings
-        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConfigurationZeroTrustAccountsUpdateZeroTrustAccountConfigurationResponse:
+    ) -> ConfigurationGetResponse:
+        """
+        Fetches the current Zero Trust account configuration.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get(
+            f"/accounts/{account_id}/gateway/configuration",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[ConfigurationGetResponse], ResultWrapper[ConfigurationGetResponse]),
+        )
+
+
+class AsyncConfigurations(AsyncAPIResource):
+    @cached_property
+    def with_raw_response(self) -> AsyncConfigurationsWithRawResponse:
+        return AsyncConfigurationsWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncConfigurationsWithStreamingResponse:
+        return AsyncConfigurationsWithStreamingResponse(self)
+
+    async def update(
+        self,
+        account_id: object,
+        *,
+        settings: configuration_update_params.Settings | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ConfigurationUpdateResponse:
         """
         Updates the current Zero Trust account configuration.
 
@@ -176,12 +194,9 @@ class Configurations(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._put(
+        return await self._put(
             f"/accounts/{account_id}/gateway/configuration",
-            body=maybe_transform(
-                {"settings": settings},
-                configuration_zero_trust_accounts_update_zero_trust_account_configuration_params.ConfigurationZeroTrustAccountsUpdateZeroTrustAccountConfigurationParams,
-            ),
+            body=maybe_transform({"settings": settings}, configuration_update_params.ConfigurationUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -189,73 +204,21 @@ class Configurations(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[ConfigurationZeroTrustAccountsUpdateZeroTrustAccountConfigurationResponse],
-                ResultWrapper[ConfigurationZeroTrustAccountsUpdateZeroTrustAccountConfigurationResponse],
-            ),
+            cast_to=cast(Type[ConfigurationUpdateResponse], ResultWrapper[ConfigurationUpdateResponse]),
         )
 
-
-class AsyncConfigurations(AsyncAPIResource):
-    @cached_property
-    def with_raw_response(self) -> AsyncConfigurationsWithRawResponse:
-        return AsyncConfigurationsWithRawResponse(self)
-
-    @cached_property
-    def with_streaming_response(self) -> AsyncConfigurationsWithStreamingResponse:
-        return AsyncConfigurationsWithStreamingResponse(self)
-
-    async def zero_trust_accounts_get_zero_trust_account_configuration(
+    async def edit(
         self,
         account_id: object,
         *,
+        settings: configuration_edit_params.Settings | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConfigurationZeroTrustAccountsGetZeroTrustAccountConfigurationResponse:
-        """
-        Fetches the current Zero Trust account configuration.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._get(
-            f"/accounts/{account_id}/gateway/configuration",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[ConfigurationZeroTrustAccountsGetZeroTrustAccountConfigurationResponse],
-                ResultWrapper[ConfigurationZeroTrustAccountsGetZeroTrustAccountConfigurationResponse],
-            ),
-        )
-
-    async def zero_trust_accounts_patch_zero_trust_account_configuration(
-        self,
-        account_id: object,
-        *,
-        settings: configuration_zero_trust_accounts_patch_zero_trust_account_configuration_params.Settings
-        | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConfigurationZeroTrustAccountsPatchZeroTrustAccountConfigurationResponse:
+    ) -> ConfigurationEditResponse:
         """Patches the current Zero Trust account configuration.
 
         This endpoint can update a
@@ -277,10 +240,7 @@ class AsyncConfigurations(AsyncAPIResource):
         """
         return await self._patch(
             f"/accounts/{account_id}/gateway/configuration",
-            body=maybe_transform(
-                {"settings": settings},
-                configuration_zero_trust_accounts_patch_zero_trust_account_configuration_params.ConfigurationZeroTrustAccountsPatchZeroTrustAccountConfigurationParams,
-            ),
+            body=maybe_transform({"settings": settings}, configuration_edit_params.ConfigurationEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -288,31 +248,24 @@ class AsyncConfigurations(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[ConfigurationZeroTrustAccountsPatchZeroTrustAccountConfigurationResponse],
-                ResultWrapper[ConfigurationZeroTrustAccountsPatchZeroTrustAccountConfigurationResponse],
-            ),
+            cast_to=cast(Type[ConfigurationEditResponse], ResultWrapper[ConfigurationEditResponse]),
         )
 
-    async def zero_trust_accounts_update_zero_trust_account_configuration(
+    async def get(
         self,
         account_id: object,
         *,
-        settings: configuration_zero_trust_accounts_update_zero_trust_account_configuration_params.Settings
-        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConfigurationZeroTrustAccountsUpdateZeroTrustAccountConfigurationResponse:
+    ) -> ConfigurationGetResponse:
         """
-        Updates the current Zero Trust account configuration.
+        Fetches the current Zero Trust account configuration.
 
         Args:
-          settings: account settings.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -321,12 +274,8 @@ class AsyncConfigurations(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._put(
+        return await self._get(
             f"/accounts/{account_id}/gateway/configuration",
-            body=maybe_transform(
-                {"settings": settings},
-                configuration_zero_trust_accounts_update_zero_trust_account_configuration_params.ConfigurationZeroTrustAccountsUpdateZeroTrustAccountConfigurationParams,
-            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -334,10 +283,7 @@ class AsyncConfigurations(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[ConfigurationZeroTrustAccountsUpdateZeroTrustAccountConfigurationResponse],
-                ResultWrapper[ConfigurationZeroTrustAccountsUpdateZeroTrustAccountConfigurationResponse],
-            ),
+            cast_to=cast(Type[ConfigurationGetResponse], ResultWrapper[ConfigurationGetResponse]),
         )
 
 
@@ -345,14 +291,14 @@ class ConfigurationsWithRawResponse:
     def __init__(self, configurations: Configurations) -> None:
         self._configurations = configurations
 
-        self.zero_trust_accounts_get_zero_trust_account_configuration = to_raw_response_wrapper(
-            configurations.zero_trust_accounts_get_zero_trust_account_configuration,
+        self.update = to_raw_response_wrapper(
+            configurations.update,
         )
-        self.zero_trust_accounts_patch_zero_trust_account_configuration = to_raw_response_wrapper(
-            configurations.zero_trust_accounts_patch_zero_trust_account_configuration,
+        self.edit = to_raw_response_wrapper(
+            configurations.edit,
         )
-        self.zero_trust_accounts_update_zero_trust_account_configuration = to_raw_response_wrapper(
-            configurations.zero_trust_accounts_update_zero_trust_account_configuration,
+        self.get = to_raw_response_wrapper(
+            configurations.get,
         )
 
 
@@ -360,14 +306,14 @@ class AsyncConfigurationsWithRawResponse:
     def __init__(self, configurations: AsyncConfigurations) -> None:
         self._configurations = configurations
 
-        self.zero_trust_accounts_get_zero_trust_account_configuration = async_to_raw_response_wrapper(
-            configurations.zero_trust_accounts_get_zero_trust_account_configuration,
+        self.update = async_to_raw_response_wrapper(
+            configurations.update,
         )
-        self.zero_trust_accounts_patch_zero_trust_account_configuration = async_to_raw_response_wrapper(
-            configurations.zero_trust_accounts_patch_zero_trust_account_configuration,
+        self.edit = async_to_raw_response_wrapper(
+            configurations.edit,
         )
-        self.zero_trust_accounts_update_zero_trust_account_configuration = async_to_raw_response_wrapper(
-            configurations.zero_trust_accounts_update_zero_trust_account_configuration,
+        self.get = async_to_raw_response_wrapper(
+            configurations.get,
         )
 
 
@@ -375,14 +321,14 @@ class ConfigurationsWithStreamingResponse:
     def __init__(self, configurations: Configurations) -> None:
         self._configurations = configurations
 
-        self.zero_trust_accounts_get_zero_trust_account_configuration = to_streamed_response_wrapper(
-            configurations.zero_trust_accounts_get_zero_trust_account_configuration,
+        self.update = to_streamed_response_wrapper(
+            configurations.update,
         )
-        self.zero_trust_accounts_patch_zero_trust_account_configuration = to_streamed_response_wrapper(
-            configurations.zero_trust_accounts_patch_zero_trust_account_configuration,
+        self.edit = to_streamed_response_wrapper(
+            configurations.edit,
         )
-        self.zero_trust_accounts_update_zero_trust_account_configuration = to_streamed_response_wrapper(
-            configurations.zero_trust_accounts_update_zero_trust_account_configuration,
+        self.get = to_streamed_response_wrapper(
+            configurations.get,
         )
 
 
@@ -390,12 +336,12 @@ class AsyncConfigurationsWithStreamingResponse:
     def __init__(self, configurations: AsyncConfigurations) -> None:
         self._configurations = configurations
 
-        self.zero_trust_accounts_get_zero_trust_account_configuration = async_to_streamed_response_wrapper(
-            configurations.zero_trust_accounts_get_zero_trust_account_configuration,
+        self.update = async_to_streamed_response_wrapper(
+            configurations.update,
         )
-        self.zero_trust_accounts_patch_zero_trust_account_configuration = async_to_streamed_response_wrapper(
-            configurations.zero_trust_accounts_patch_zero_trust_account_configuration,
+        self.edit = async_to_streamed_response_wrapper(
+            configurations.edit,
         )
-        self.zero_trust_accounts_update_zero_trust_account_configuration = async_to_streamed_response_wrapper(
-            configurations.zero_trust_accounts_update_zero_trust_account_configuration,
+        self.get = async_to_streamed_response_wrapper(
+            configurations.get,
         )

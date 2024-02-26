@@ -2,40 +2,13 @@
 
 from __future__ import annotations
 
-from .lockdowns import Lockdowns, AsyncLockdowns
-
-from ..._compat import cached_property
-
-from .rules import Rules, AsyncRules
-
-from .access_rules import AccessRules, AsyncAccessRules
-
-from .ua_rules import UaRules, AsyncUaRules
-
-from .waf.waf import WAF, AsyncWAF
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from .lockdowns import (
-    Lockdowns,
-    AsyncLockdowns,
-    LockdownsWithRawResponse,
-    AsyncLockdownsWithRawResponse,
-    LockdownsWithStreamingResponse,
-    AsyncLockdownsWithStreamingResponse,
+from .waf import (
+    WAF,
+    AsyncWAF,
+    WAFWithRawResponse,
+    AsyncWAFWithRawResponse,
+    WAFWithStreamingResponse,
+    AsyncWAFWithStreamingResponse,
 )
 from .rules import (
     Rules,
@@ -45,6 +18,25 @@ from .rules import (
     RulesWithStreamingResponse,
     AsyncRulesWithStreamingResponse,
 )
+from .waf.waf import WAF, AsyncWAF
+from .ua_rules import (
+    UARules,
+    AsyncUARules,
+    UARulesWithRawResponse,
+    AsyncUARulesWithRawResponse,
+    UARulesWithStreamingResponse,
+    AsyncUARulesWithStreamingResponse,
+)
+from ..._compat import cached_property
+from .lockdowns import (
+    Lockdowns,
+    AsyncLockdowns,
+    LockdownsWithRawResponse,
+    AsyncLockdownsWithRawResponse,
+    LockdownsWithStreamingResponse,
+    AsyncLockdownsWithStreamingResponse,
+)
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from .access_rules import (
     AccessRules,
     AsyncAccessRules,
@@ -53,23 +45,6 @@ from .access_rules import (
     AccessRulesWithStreamingResponse,
     AsyncAccessRulesWithStreamingResponse,
 )
-from .ua_rules import (
-    UaRules,
-    AsyncUaRules,
-    UaRulesWithRawResponse,
-    AsyncUaRulesWithRawResponse,
-    UaRulesWithStreamingResponse,
-    AsyncUaRulesWithStreamingResponse,
-)
-from .waf import (
-    WAF,
-    AsyncWAF,
-    WAFWithRawResponse,
-    AsyncWAFWithRawResponse,
-    WAFWithStreamingResponse,
-    AsyncWAFWithStreamingResponse,
-)
-from ..._wrappers import ResultWrapper
 
 __all__ = ["Firewalls", "AsyncFirewalls"]
 
@@ -88,8 +63,8 @@ class Firewalls(SyncAPIResource):
         return AccessRules(self._client)
 
     @cached_property
-    def ua_rules(self) -> UaRules:
-        return UaRules(self._client)
+    def ua_rules(self) -> UARules:
+        return UARules(self._client)
 
     @cached_property
     def waf(self) -> WAF:
@@ -118,8 +93,8 @@ class AsyncFirewalls(AsyncAPIResource):
         return AsyncAccessRules(self._client)
 
     @cached_property
-    def ua_rules(self) -> AsyncUaRules:
-        return AsyncUaRules(self._client)
+    def ua_rules(self) -> AsyncUARules:
+        return AsyncUARules(self._client)
 
     @cached_property
     def waf(self) -> AsyncWAF:
@@ -151,8 +126,8 @@ class FirewallsWithRawResponse:
         return AccessRulesWithRawResponse(self._firewalls.access_rules)
 
     @cached_property
-    def ua_rules(self) -> UaRulesWithRawResponse:
-        return UaRulesWithRawResponse(self._firewalls.ua_rules)
+    def ua_rules(self) -> UARulesWithRawResponse:
+        return UARulesWithRawResponse(self._firewalls.ua_rules)
 
     @cached_property
     def waf(self) -> WAFWithRawResponse:
@@ -176,8 +151,8 @@ class AsyncFirewallsWithRawResponse:
         return AsyncAccessRulesWithRawResponse(self._firewalls.access_rules)
 
     @cached_property
-    def ua_rules(self) -> AsyncUaRulesWithRawResponse:
-        return AsyncUaRulesWithRawResponse(self._firewalls.ua_rules)
+    def ua_rules(self) -> AsyncUARulesWithRawResponse:
+        return AsyncUARulesWithRawResponse(self._firewalls.ua_rules)
 
     @cached_property
     def waf(self) -> AsyncWAFWithRawResponse:
@@ -201,8 +176,8 @@ class FirewallsWithStreamingResponse:
         return AccessRulesWithStreamingResponse(self._firewalls.access_rules)
 
     @cached_property
-    def ua_rules(self) -> UaRulesWithStreamingResponse:
-        return UaRulesWithStreamingResponse(self._firewalls.ua_rules)
+    def ua_rules(self) -> UARulesWithStreamingResponse:
+        return UARulesWithStreamingResponse(self._firewalls.ua_rules)
 
     @cached_property
     def waf(self) -> WAFWithStreamingResponse:
@@ -226,8 +201,8 @@ class AsyncFirewallsWithStreamingResponse:
         return AsyncAccessRulesWithStreamingResponse(self._firewalls.access_rules)
 
     @cached_property
-    def ua_rules(self) -> AsyncUaRulesWithStreamingResponse:
-        return AsyncUaRulesWithStreamingResponse(self._firewalls.ua_rules)
+    def ua_rules(self) -> AsyncUARulesWithStreamingResponse:
+        return AsyncUARulesWithStreamingResponse(self._firewalls.ua_rules)
 
     @cached_property
     def waf(self) -> AsyncWAFWithStreamingResponse:

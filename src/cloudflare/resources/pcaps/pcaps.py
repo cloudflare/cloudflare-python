@@ -2,56 +2,15 @@
 
 from __future__ import annotations
 
+from typing import Any, Type, Optional, cast
+from typing_extensions import Literal
+
 import httpx
 
-from .ownerships.ownerships import Ownerships, AsyncOwnerships
-
+from ...types import PCAPGetResponse, PCAPListResponse, PCAPCreateResponse, pcap_create_params
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._compat import cached_property
-
-from .downloads import Downloads, AsyncDownloads
-
-from ...types import (
-    PcapGetResponse,
-    PcapMagicPcapCollectionCreatePcapRequestResponse,
-    PcapMagicPcapCollectionListPacketCaptureRequestsResponse,
-    pcap_magic_pcap_collection_create_pcap_request_params,
-)
-
-from typing_extensions import Literal
-
-from typing import Type, Optional
-
-from ..._response import (
-    to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types import pcap_magic_pcap_collection_create_pcap_request_params
-from .ownerships import (
-    Ownerships,
-    AsyncOwnerships,
-    OwnershipsWithRawResponse,
-    AsyncOwnershipsWithRawResponse,
-    OwnershipsWithStreamingResponse,
-    AsyncOwnershipsWithStreamingResponse,
-)
 from .downloads import (
     Downloads,
     AsyncDownloads,
@@ -60,22 +19,30 @@ from .downloads import (
     DownloadsWithStreamingResponse,
     AsyncDownloadsWithStreamingResponse,
 )
+from .ownerships import (
+    Ownerships,
+    AsyncOwnerships,
+    OwnershipsWithRawResponse,
+    AsyncOwnershipsWithRawResponse,
+    OwnershipsWithStreamingResponse,
+    AsyncOwnershipsWithStreamingResponse,
+)
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ..._base_client import (
+    make_request_options,
+)
 
-__all__ = ["Pcaps", "AsyncPcaps"]
+__all__ = ["PCAPs", "AsyncPCAPs"]
 
 
-class Pcaps(SyncAPIResource):
+class PCAPs(SyncAPIResource):
     @cached_property
     def ownerships(self) -> Ownerships:
         return Ownerships(self._client)
@@ -85,120 +52,24 @@ class Pcaps(SyncAPIResource):
         return Downloads(self._client)
 
     @cached_property
-    def with_raw_response(self) -> PcapsWithRawResponse:
-        return PcapsWithRawResponse(self)
+    def with_raw_response(self) -> PCAPsWithRawResponse:
+        return PCAPsWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> PcapsWithStreamingResponse:
-        return PcapsWithStreamingResponse(self)
+    def with_streaming_response(self) -> PCAPsWithStreamingResponse:
+        return PCAPsWithStreamingResponse(self)
 
-    def get(
+    def create(
         self,
-        identifier: str,
+        account_id: str,
         *,
-        account_identifier: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PcapGetResponse:
-        """
-        Get information for a PCAP request by id.
-
-        Args:
-          account_identifier: Identifier
-
-          identifier: Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not identifier:
-            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
-        return cast(
-            PcapGetResponse,
-            self._get(
-                f"/accounts/{account_identifier}/pcaps/{identifier}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[PcapGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
-
-    @overload
-    def magic_pcap_collection_create_pcap_request(
-        self,
-        account_identifier: str,
-        *,
-        packet_limit: float,
-        system: Literal["magic-transit"],
-        time_limit: float,
-        type: Literal["simple", "full"],
-        filter_v1: pcap_magic_pcap_collection_create_pcap_request_params.FZsXwDu1PcapsRequestSimpleFilterV1
-        | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PcapMagicPcapCollectionCreatePcapRequestResponse:
-        """
-        Create new PCAP request for account.
-
-        Args:
-          account_identifier: Identifier
-
-          packet_limit: The limit of packets contained in a packet capture.
-
-          system: The system used to collect packet captures.
-
-          time_limit: The packet capture duration in seconds.
-
-          type: The type of packet capture. `Simple` captures sampled packets, and `full`
-              captures entire payloads and non-sampled packets.
-
-          filter_v1: The packet capture filter. When this field is empty, all packets are captured.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    def magic_pcap_collection_create_pcap_request(
-        self,
-        account_identifier: str,
-        *,
-        colo_name: str,
-        destination_conf: str,
         system: Literal["magic-transit"],
         time_limit: float,
         type: Literal["simple", "full"],
         byte_limit: float | NotGiven = NOT_GIVEN,
-        filter_v1: pcap_magic_pcap_collection_create_pcap_request_params.FZsXwDu1PcapsRequestFullFilterV1
-        | NotGiven = NOT_GIVEN,
+        colo_name: str | NotGiven = NOT_GIVEN,
+        destination_conf: str | NotGiven = NOT_GIVEN,
+        filter_v1: pcap_create_params.FilterV1 | NotGiven = NOT_GIVEN,
         packet_limit: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -206,18 +77,12 @@ class Pcaps(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PcapMagicPcapCollectionCreatePcapRequestResponse:
+    ) -> PCAPCreateResponse:
         """
         Create new PCAP request for account.
 
         Args:
-          account_identifier: Identifier
-
-          colo_name: The name of the data center used for the packet capture. This can be a specific
-              colo (ord02) or a multi-colo name (ORD). This field only applies to `full`
-              packet captures.
-
-          destination_conf: The full URI for the bucket. This field only applies to `full` packet captures.
+          account_id: Identifier
 
           system: The system used to collect packet captures.
 
@@ -229,7 +94,11 @@ class Pcaps(SyncAPIResource):
           byte_limit: The maximum number of bytes to capture. This field only applies to `full` packet
               captures.
 
-          filter_v1: The packet capture filter. When this field is empty, all packets are captured.
+          colo_name: The name of the data center used for the packet capture. This can be a specific
+              colo (ord02) or a multi-colo name (ORD). This field only applies to `full`
+              packet captures.
+
+          destination_conf: The full URI for the bucket. This field only applies to `full` packet captures.
 
           packet_limit: The limit of packets contained in a packet capture.
 
@@ -241,50 +110,24 @@ class Pcaps(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        ...
-
-    @required_args(
-        ["packet_limit", "system", "time_limit", "type"],
-        ["colo_name", "destination_conf", "system", "time_limit", "type"],
-    )
-    def magic_pcap_collection_create_pcap_request(
-        self,
-        account_identifier: str,
-        *,
-        packet_limit: float | NotGiven = NOT_GIVEN,
-        system: Literal["magic-transit"],
-        time_limit: float,
-        type: Literal["simple", "full"],
-        filter_v1: pcap_magic_pcap_collection_create_pcap_request_params.FZsXwDu1PcapsRequestSimpleFilterV1
-        | NotGiven = NOT_GIVEN,
-        colo_name: str | NotGiven = NOT_GIVEN,
-        destination_conf: str | NotGiven = NOT_GIVEN,
-        byte_limit: float | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PcapMagicPcapCollectionCreatePcapRequestResponse:
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
-            PcapMagicPcapCollectionCreatePcapRequestResponse,
+            PCAPCreateResponse,
             self._post(
-                f"/accounts/{account_identifier}/pcaps",
+                f"/accounts/{account_id}/pcaps",
                 body=maybe_transform(
                     {
-                        "packet_limit": packet_limit,
                         "system": system,
                         "time_limit": time_limit,
                         "type": type,
-                        "filter_v1": filter_v1,
+                        "byte_limit": byte_limit,
                         "colo_name": colo_name,
                         "destination_conf": destination_conf,
-                        "byte_limit": byte_limit,
+                        "filter_v1": filter_v1,
+                        "packet_limit": packet_limit,
                     },
-                    pcap_magic_pcap_collection_create_pcap_request_params.PcapMagicPcapCollectionCreatePcapRequestParams,
+                    pcap_create_params.PCAPCreateParams,
                 ),
                 options=make_request_options(
                     extra_headers=extra_headers,
@@ -294,14 +137,14 @@ class Pcaps(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[PcapMagicPcapCollectionCreatePcapRequestResponse]
+                    Any, ResultWrapper[PCAPCreateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
 
-    def magic_pcap_collection_list_packet_capture_requests(
+    def list(
         self,
-        account_identifier: str,
+        account_id: str,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -309,12 +152,12 @@ class Pcaps(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PcapMagicPcapCollectionListPacketCaptureRequestsResponse]:
+    ) -> Optional[PCAPListResponse]:
         """
         Lists all packet capture requests for an account.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -324,10 +167,10 @@ class Pcaps(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
-            f"/accounts/{account_identifier}/pcaps",
+            f"/accounts/{account_id}/pcaps",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -335,14 +178,60 @@ class Pcaps(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[PcapMagicPcapCollectionListPacketCaptureRequestsResponse]],
-                ResultWrapper[PcapMagicPcapCollectionListPacketCaptureRequestsResponse],
+            cast_to=cast(Type[Optional[PCAPListResponse]], ResultWrapper[PCAPListResponse]),
+        )
+
+    def get(
+        self,
+        pcap_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> PCAPGetResponse:
+        """
+        Get information for a PCAP request by id.
+
+        Args:
+          account_id: Identifier
+
+          pcap_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not pcap_id:
+            raise ValueError(f"Expected a non-empty value for `pcap_id` but received {pcap_id!r}")
+        return cast(
+            PCAPGetResponse,
+            self._get(
+                f"/accounts/{account_id}/pcaps/{pcap_id}",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[PCAPGetResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
 
 
-class AsyncPcaps(AsyncAPIResource):
+class AsyncPCAPs(AsyncAPIResource):
     @cached_property
     def ownerships(self) -> AsyncOwnerships:
         return AsyncOwnerships(self._client)
@@ -352,120 +241,24 @@ class AsyncPcaps(AsyncAPIResource):
         return AsyncDownloads(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncPcapsWithRawResponse:
-        return AsyncPcapsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncPCAPsWithRawResponse:
+        return AsyncPCAPsWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncPcapsWithStreamingResponse:
-        return AsyncPcapsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncPCAPsWithStreamingResponse:
+        return AsyncPCAPsWithStreamingResponse(self)
 
-    async def get(
+    async def create(
         self,
-        identifier: str,
+        account_id: str,
         *,
-        account_identifier: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PcapGetResponse:
-        """
-        Get information for a PCAP request by id.
-
-        Args:
-          account_identifier: Identifier
-
-          identifier: Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not identifier:
-            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
-        return cast(
-            PcapGetResponse,
-            await self._get(
-                f"/accounts/{account_identifier}/pcaps/{identifier}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[PcapGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
-
-    @overload
-    async def magic_pcap_collection_create_pcap_request(
-        self,
-        account_identifier: str,
-        *,
-        packet_limit: float,
-        system: Literal["magic-transit"],
-        time_limit: float,
-        type: Literal["simple", "full"],
-        filter_v1: pcap_magic_pcap_collection_create_pcap_request_params.FZsXwDu1PcapsRequestSimpleFilterV1
-        | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PcapMagicPcapCollectionCreatePcapRequestResponse:
-        """
-        Create new PCAP request for account.
-
-        Args:
-          account_identifier: Identifier
-
-          packet_limit: The limit of packets contained in a packet capture.
-
-          system: The system used to collect packet captures.
-
-          time_limit: The packet capture duration in seconds.
-
-          type: The type of packet capture. `Simple` captures sampled packets, and `full`
-              captures entire payloads and non-sampled packets.
-
-          filter_v1: The packet capture filter. When this field is empty, all packets are captured.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    async def magic_pcap_collection_create_pcap_request(
-        self,
-        account_identifier: str,
-        *,
-        colo_name: str,
-        destination_conf: str,
         system: Literal["magic-transit"],
         time_limit: float,
         type: Literal["simple", "full"],
         byte_limit: float | NotGiven = NOT_GIVEN,
-        filter_v1: pcap_magic_pcap_collection_create_pcap_request_params.FZsXwDu1PcapsRequestFullFilterV1
-        | NotGiven = NOT_GIVEN,
+        colo_name: str | NotGiven = NOT_GIVEN,
+        destination_conf: str | NotGiven = NOT_GIVEN,
+        filter_v1: pcap_create_params.FilterV1 | NotGiven = NOT_GIVEN,
         packet_limit: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -473,18 +266,12 @@ class AsyncPcaps(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PcapMagicPcapCollectionCreatePcapRequestResponse:
+    ) -> PCAPCreateResponse:
         """
         Create new PCAP request for account.
 
         Args:
-          account_identifier: Identifier
-
-          colo_name: The name of the data center used for the packet capture. This can be a specific
-              colo (ord02) or a multi-colo name (ORD). This field only applies to `full`
-              packet captures.
-
-          destination_conf: The full URI for the bucket. This field only applies to `full` packet captures.
+          account_id: Identifier
 
           system: The system used to collect packet captures.
 
@@ -496,7 +283,11 @@ class AsyncPcaps(AsyncAPIResource):
           byte_limit: The maximum number of bytes to capture. This field only applies to `full` packet
               captures.
 
-          filter_v1: The packet capture filter. When this field is empty, all packets are captured.
+          colo_name: The name of the data center used for the packet capture. This can be a specific
+              colo (ord02) or a multi-colo name (ORD). This field only applies to `full`
+              packet captures.
+
+          destination_conf: The full URI for the bucket. This field only applies to `full` packet captures.
 
           packet_limit: The limit of packets contained in a packet capture.
 
@@ -508,50 +299,24 @@ class AsyncPcaps(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        ...
-
-    @required_args(
-        ["packet_limit", "system", "time_limit", "type"],
-        ["colo_name", "destination_conf", "system", "time_limit", "type"],
-    )
-    async def magic_pcap_collection_create_pcap_request(
-        self,
-        account_identifier: str,
-        *,
-        packet_limit: float | NotGiven = NOT_GIVEN,
-        system: Literal["magic-transit"],
-        time_limit: float,
-        type: Literal["simple", "full"],
-        filter_v1: pcap_magic_pcap_collection_create_pcap_request_params.FZsXwDu1PcapsRequestSimpleFilterV1
-        | NotGiven = NOT_GIVEN,
-        colo_name: str | NotGiven = NOT_GIVEN,
-        destination_conf: str | NotGiven = NOT_GIVEN,
-        byte_limit: float | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PcapMagicPcapCollectionCreatePcapRequestResponse:
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
-            PcapMagicPcapCollectionCreatePcapRequestResponse,
+            PCAPCreateResponse,
             await self._post(
-                f"/accounts/{account_identifier}/pcaps",
+                f"/accounts/{account_id}/pcaps",
                 body=maybe_transform(
                     {
-                        "packet_limit": packet_limit,
                         "system": system,
                         "time_limit": time_limit,
                         "type": type,
-                        "filter_v1": filter_v1,
+                        "byte_limit": byte_limit,
                         "colo_name": colo_name,
                         "destination_conf": destination_conf,
-                        "byte_limit": byte_limit,
+                        "filter_v1": filter_v1,
+                        "packet_limit": packet_limit,
                     },
-                    pcap_magic_pcap_collection_create_pcap_request_params.PcapMagicPcapCollectionCreatePcapRequestParams,
+                    pcap_create_params.PCAPCreateParams,
                 ),
                 options=make_request_options(
                     extra_headers=extra_headers,
@@ -561,14 +326,14 @@ class AsyncPcaps(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[PcapMagicPcapCollectionCreatePcapRequestResponse]
+                    Any, ResultWrapper[PCAPCreateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
 
-    async def magic_pcap_collection_list_packet_capture_requests(
+    async def list(
         self,
-        account_identifier: str,
+        account_id: str,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -576,12 +341,12 @@ class AsyncPcaps(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PcapMagicPcapCollectionListPacketCaptureRequestsResponse]:
+    ) -> Optional[PCAPListResponse]:
         """
         Lists all packet capture requests for an account.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -591,10 +356,10 @@ class AsyncPcaps(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
-            f"/accounts/{account_identifier}/pcaps",
+            f"/accounts/{account_id}/pcaps",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -602,25 +367,71 @@ class AsyncPcaps(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[PcapMagicPcapCollectionListPacketCaptureRequestsResponse]],
-                ResultWrapper[PcapMagicPcapCollectionListPacketCaptureRequestsResponse],
+            cast_to=cast(Type[Optional[PCAPListResponse]], ResultWrapper[PCAPListResponse]),
+        )
+
+    async def get(
+        self,
+        pcap_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> PCAPGetResponse:
+        """
+        Get information for a PCAP request by id.
+
+        Args:
+          account_id: Identifier
+
+          pcap_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not pcap_id:
+            raise ValueError(f"Expected a non-empty value for `pcap_id` but received {pcap_id!r}")
+        return cast(
+            PCAPGetResponse,
+            await self._get(
+                f"/accounts/{account_id}/pcaps/{pcap_id}",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[PCAPGetResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
 
 
-class PcapsWithRawResponse:
-    def __init__(self, pcaps: Pcaps) -> None:
+class PCAPsWithRawResponse:
+    def __init__(self, pcaps: PCAPs) -> None:
         self._pcaps = pcaps
 
+        self.create = to_raw_response_wrapper(
+            pcaps.create,
+        )
+        self.list = to_raw_response_wrapper(
+            pcaps.list,
+        )
         self.get = to_raw_response_wrapper(
             pcaps.get,
-        )
-        self.magic_pcap_collection_create_pcap_request = to_raw_response_wrapper(
-            pcaps.magic_pcap_collection_create_pcap_request,
-        )
-        self.magic_pcap_collection_list_packet_capture_requests = to_raw_response_wrapper(
-            pcaps.magic_pcap_collection_list_packet_capture_requests,
         )
 
     @cached_property
@@ -632,18 +443,18 @@ class PcapsWithRawResponse:
         return DownloadsWithRawResponse(self._pcaps.downloads)
 
 
-class AsyncPcapsWithRawResponse:
-    def __init__(self, pcaps: AsyncPcaps) -> None:
+class AsyncPCAPsWithRawResponse:
+    def __init__(self, pcaps: AsyncPCAPs) -> None:
         self._pcaps = pcaps
 
+        self.create = async_to_raw_response_wrapper(
+            pcaps.create,
+        )
+        self.list = async_to_raw_response_wrapper(
+            pcaps.list,
+        )
         self.get = async_to_raw_response_wrapper(
             pcaps.get,
-        )
-        self.magic_pcap_collection_create_pcap_request = async_to_raw_response_wrapper(
-            pcaps.magic_pcap_collection_create_pcap_request,
-        )
-        self.magic_pcap_collection_list_packet_capture_requests = async_to_raw_response_wrapper(
-            pcaps.magic_pcap_collection_list_packet_capture_requests,
         )
 
     @cached_property
@@ -655,18 +466,18 @@ class AsyncPcapsWithRawResponse:
         return AsyncDownloadsWithRawResponse(self._pcaps.downloads)
 
 
-class PcapsWithStreamingResponse:
-    def __init__(self, pcaps: Pcaps) -> None:
+class PCAPsWithStreamingResponse:
+    def __init__(self, pcaps: PCAPs) -> None:
         self._pcaps = pcaps
 
+        self.create = to_streamed_response_wrapper(
+            pcaps.create,
+        )
+        self.list = to_streamed_response_wrapper(
+            pcaps.list,
+        )
         self.get = to_streamed_response_wrapper(
             pcaps.get,
-        )
-        self.magic_pcap_collection_create_pcap_request = to_streamed_response_wrapper(
-            pcaps.magic_pcap_collection_create_pcap_request,
-        )
-        self.magic_pcap_collection_list_packet_capture_requests = to_streamed_response_wrapper(
-            pcaps.magic_pcap_collection_list_packet_capture_requests,
         )
 
     @cached_property
@@ -678,18 +489,18 @@ class PcapsWithStreamingResponse:
         return DownloadsWithStreamingResponse(self._pcaps.downloads)
 
 
-class AsyncPcapsWithStreamingResponse:
-    def __init__(self, pcaps: AsyncPcaps) -> None:
+class AsyncPCAPsWithStreamingResponse:
+    def __init__(self, pcaps: AsyncPCAPs) -> None:
         self._pcaps = pcaps
 
+        self.create = async_to_streamed_response_wrapper(
+            pcaps.create,
+        )
+        self.list = async_to_streamed_response_wrapper(
+            pcaps.list,
+        )
         self.get = async_to_streamed_response_wrapper(
             pcaps.get,
-        )
-        self.magic_pcap_collection_create_pcap_request = async_to_streamed_response_wrapper(
-            pcaps.magic_pcap_collection_create_pcap_request,
-        )
-        self.magic_pcap_collection_list_packet_capture_requests = async_to_streamed_response_wrapper(
-            pcaps.magic_pcap_collection_list_packet_capture_requests,
         )
 
     @cached_property

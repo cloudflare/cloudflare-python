@@ -2,25 +2,7 @@
 
 from __future__ import annotations
 
-from .namespaces.namespaces import Namespaces, AsyncNamespaces
-
 from ...._compat import cached_property
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ....types import shared_params
 from .namespaces import (
     Namespaces,
     AsyncNamespaces,
@@ -29,41 +11,42 @@ from .namespaces import (
     NamespacesWithStreamingResponse,
     AsyncNamespacesWithStreamingResponse,
 )
-from ...._wrappers import ResultWrapper
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from .namespaces.namespaces import Namespaces, AsyncNamespaces
 
-__all__ = ["Kv", "AsyncKv"]
+__all__ = ["KV", "AsyncKV"]
 
 
-class Kv(SyncAPIResource):
+class KV(SyncAPIResource):
     @cached_property
     def namespaces(self) -> Namespaces:
         return Namespaces(self._client)
 
     @cached_property
-    def with_raw_response(self) -> KvWithRawResponse:
-        return KvWithRawResponse(self)
+    def with_raw_response(self) -> KVWithRawResponse:
+        return KVWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> KvWithStreamingResponse:
-        return KvWithStreamingResponse(self)
+    def with_streaming_response(self) -> KVWithStreamingResponse:
+        return KVWithStreamingResponse(self)
 
 
-class AsyncKv(AsyncAPIResource):
+class AsyncKV(AsyncAPIResource):
     @cached_property
     def namespaces(self) -> AsyncNamespaces:
         return AsyncNamespaces(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncKvWithRawResponse:
-        return AsyncKvWithRawResponse(self)
+    def with_raw_response(self) -> AsyncKVWithRawResponse:
+        return AsyncKVWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncKvWithStreamingResponse:
-        return AsyncKvWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncKVWithStreamingResponse:
+        return AsyncKVWithStreamingResponse(self)
 
 
-class KvWithRawResponse:
-    def __init__(self, kv: Kv) -> None:
+class KVWithRawResponse:
+    def __init__(self, kv: KV) -> None:
         self._kv = kv
 
     @cached_property
@@ -71,8 +54,8 @@ class KvWithRawResponse:
         return NamespacesWithRawResponse(self._kv.namespaces)
 
 
-class AsyncKvWithRawResponse:
-    def __init__(self, kv: AsyncKv) -> None:
+class AsyncKVWithRawResponse:
+    def __init__(self, kv: AsyncKV) -> None:
         self._kv = kv
 
     @cached_property
@@ -80,8 +63,8 @@ class AsyncKvWithRawResponse:
         return AsyncNamespacesWithRawResponse(self._kv.namespaces)
 
 
-class KvWithStreamingResponse:
-    def __init__(self, kv: Kv) -> None:
+class KVWithStreamingResponse:
+    def __init__(self, kv: KV) -> None:
         self._kv = kv
 
     @cached_property
@@ -89,8 +72,8 @@ class KvWithStreamingResponse:
         return NamespacesWithStreamingResponse(self._kv.namespaces)
 
 
-class AsyncKvWithStreamingResponse:
-    def __init__(self, kv: AsyncKv) -> None:
+class AsyncKVWithStreamingResponse:
+    def __init__(self, kv: AsyncKV) -> None:
         self._kv = kv
 
     @cached_property

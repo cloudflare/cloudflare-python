@@ -2,26 +2,21 @@
 
 from __future__ import annotations
 
-from cloudflare.types.load_balancers import (
-    MonitorCreateResponse,
-    MonitorUpdateResponse,
-    MonitorListResponse,
-    MonitorDeleteResponse,
-    MonitorGetResponse,
-)
-
-from typing import Any, cast, Optional
-
 import os
+from typing import Any, Optional, cast
+
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.load_balancers import monitor_create_params
-from cloudflare.types.load_balancers import monitor_update_params
+from cloudflare.types.load_balancers import (
+    MonitorGetResponse,
+    MonitorEditResponse,
+    MonitorListResponse,
+    MonitorCreateResponse,
+    MonitorDeleteResponse,
+    MonitorUpdateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -60,7 +55,7 @@ class TestMonitors:
             port=0,
             probe_zone="example.com",
             retries=0,
-            api_timeout=0,
+            load_balancer_monitor_timeout=0,
             type="https",
         )
         assert_matches_type(MonitorCreateResponse, monitor, path=["response"])
@@ -135,7 +130,7 @@ class TestMonitors:
             port=0,
             probe_zone="example.com",
             retries=0,
-            api_timeout=0,
+            load_balancer_monitor_timeout=0,
             type="https",
         )
         assert_matches_type(MonitorUpdateResponse, monitor, path=["response"])
@@ -283,6 +278,91 @@ class TestMonitors:
 
     @pytest.mark.skip()
     @parametrize
+    def test_method_edit(self, client: Cloudflare) -> None:
+        monitor = client.load_balancers.monitors.edit(
+            "f1aba936b94213e5b8dca0c0dbf1f9cc",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            expected_codes="2xx",
+        )
+        assert_matches_type(MonitorEditResponse, monitor, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
+        monitor = client.load_balancers.monitors.edit(
+            "f1aba936b94213e5b8dca0c0dbf1f9cc",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            expected_codes="2xx",
+            allow_insecure=True,
+            consecutive_down=0,
+            consecutive_up=0,
+            description="Login page monitor",
+            expected_body="alive",
+            follow_redirects=True,
+            header={
+                "Host": ["example.com"],
+                "X-App-ID": ["abc123"],
+            },
+            interval=0,
+            method="GET",
+            path="/health",
+            port=0,
+            probe_zone="example.com",
+            retries=0,
+            load_balancer_monitor_timeout=0,
+            type="https",
+        )
+        assert_matches_type(MonitorEditResponse, monitor, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_edit(self, client: Cloudflare) -> None:
+        response = client.load_balancers.monitors.with_raw_response.edit(
+            "f1aba936b94213e5b8dca0c0dbf1f9cc",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            expected_codes="2xx",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        monitor = response.parse()
+        assert_matches_type(MonitorEditResponse, monitor, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_edit(self, client: Cloudflare) -> None:
+        with client.load_balancers.monitors.with_streaming_response.edit(
+            "f1aba936b94213e5b8dca0c0dbf1f9cc",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            expected_codes="2xx",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            monitor = response.parse()
+            assert_matches_type(MonitorEditResponse, monitor, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_edit(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.load_balancers.monitors.with_raw_response.edit(
+                "f1aba936b94213e5b8dca0c0dbf1f9cc",
+                account_id="",
+                expected_codes="2xx",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `monitor_id` but received ''"):
+            client.load_balancers.monitors.with_raw_response.edit(
+                "",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                expected_codes="2xx",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         monitor = client.load_balancers.monitors.get(
             "f1aba936b94213e5b8dca0c0dbf1f9cc",
@@ -368,7 +448,7 @@ class TestAsyncMonitors:
             port=0,
             probe_zone="example.com",
             retries=0,
-            api_timeout=0,
+            load_balancer_monitor_timeout=0,
             type="https",
         )
         assert_matches_type(MonitorCreateResponse, monitor, path=["response"])
@@ -443,7 +523,7 @@ class TestAsyncMonitors:
             port=0,
             probe_zone="example.com",
             retries=0,
-            api_timeout=0,
+            load_balancer_monitor_timeout=0,
             type="https",
         )
         assert_matches_type(MonitorUpdateResponse, monitor, path=["response"])
@@ -587,6 +667,91 @@ class TestAsyncMonitors:
             await async_client.load_balancers.monitors.with_raw_response.delete(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
+        monitor = await async_client.load_balancers.monitors.edit(
+            "f1aba936b94213e5b8dca0c0dbf1f9cc",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            expected_codes="2xx",
+        )
+        assert_matches_type(MonitorEditResponse, monitor, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        monitor = await async_client.load_balancers.monitors.edit(
+            "f1aba936b94213e5b8dca0c0dbf1f9cc",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            expected_codes="2xx",
+            allow_insecure=True,
+            consecutive_down=0,
+            consecutive_up=0,
+            description="Login page monitor",
+            expected_body="alive",
+            follow_redirects=True,
+            header={
+                "Host": ["example.com"],
+                "X-App-ID": ["abc123"],
+            },
+            interval=0,
+            method="GET",
+            path="/health",
+            port=0,
+            probe_zone="example.com",
+            retries=0,
+            load_balancer_monitor_timeout=0,
+            type="https",
+        )
+        assert_matches_type(MonitorEditResponse, monitor, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.load_balancers.monitors.with_raw_response.edit(
+            "f1aba936b94213e5b8dca0c0dbf1f9cc",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            expected_codes="2xx",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        monitor = await response.parse()
+        assert_matches_type(MonitorEditResponse, monitor, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.load_balancers.monitors.with_streaming_response.edit(
+            "f1aba936b94213e5b8dca0c0dbf1f9cc",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            expected_codes="2xx",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            monitor = await response.parse()
+            assert_matches_type(MonitorEditResponse, monitor, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.load_balancers.monitors.with_raw_response.edit(
+                "f1aba936b94213e5b8dca0c0dbf1f9cc",
+                account_id="",
+                expected_codes="2xx",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `monitor_id` but received ''"):
+            await async_client.load_balancers.monitors.with_raw_response.edit(
+                "",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                expected_codes="2xx",
             )
 
     @pytest.mark.skip()

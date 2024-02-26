@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from .histogram_get_response import HistogramGetResponse as HistogramGetResponse
-from .histogram_get_params import HistogramGetParams as HistogramGetParams
-from .summary_get_response import SummaryGetResponse as SummaryGetResponse
-from .summary_get_params import SummaryGetParams as SummaryGetParams
+from .top_ases_params import TopAsesParams as TopAsesParams
+from .top_ases_response import TopAsesResponse as TopAsesResponse
+from .top_locations_params import TopLocationsParams as TopLocationsParams
+from .top_locations_response import TopLocationsResponse as TopLocationsResponse

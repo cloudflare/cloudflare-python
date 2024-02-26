@@ -2,42 +2,25 @@
 
 from __future__ import annotations
 
+from typing import Any, List, Optional, cast
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._compat import cached_property
-
-from ...types.devices import UnrevokeDevicesUnrevokeDevicesResponse
-
-from typing import Optional, List
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types.devices import unrevoke_devices_unrevoke_devices_params
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ..._base_client import (
+    make_request_options,
+)
+from ...types.devices import UnrevokeCreateResponse, unrevoke_create_params
 
 __all__ = ["Unrevokes", "AsyncUnrevokes"]
 
@@ -51,9 +34,9 @@ class Unrevokes(SyncAPIResource):
     def with_streaming_response(self) -> UnrevokesWithStreamingResponse:
         return UnrevokesWithStreamingResponse(self)
 
-    def devices_unrevoke_devices(
+    def create(
         self,
-        identifier: object,
+        account_id: object,
         *,
         body: List[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -62,7 +45,7 @@ class Unrevokes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[UnrevokeDevicesUnrevokeDevicesResponse]:
+    ) -> Optional[UnrevokeCreateResponse]:
         """
         Unrevokes a list of devices.
 
@@ -78,12 +61,10 @@ class Unrevokes(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return cast(
-            Optional[UnrevokeDevicesUnrevokeDevicesResponse],
+            Optional[UnrevokeCreateResponse],
             self._post(
-                f"/accounts/{identifier}/devices/unrevoke",
-                body=maybe_transform(
-                    body, unrevoke_devices_unrevoke_devices_params.UnrevokeDevicesUnrevokeDevicesParams
-                ),
+                f"/accounts/{account_id}/devices/unrevoke",
+                body=maybe_transform(body, unrevoke_create_params.UnrevokeCreateParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -92,7 +73,7 @@ class Unrevokes(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnrevokeDevicesUnrevokeDevicesResponse]
+                    Any, ResultWrapper[UnrevokeCreateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -107,9 +88,9 @@ class AsyncUnrevokes(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncUnrevokesWithStreamingResponse:
         return AsyncUnrevokesWithStreamingResponse(self)
 
-    async def devices_unrevoke_devices(
+    async def create(
         self,
-        identifier: object,
+        account_id: object,
         *,
         body: List[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -118,7 +99,7 @@ class AsyncUnrevokes(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[UnrevokeDevicesUnrevokeDevicesResponse]:
+    ) -> Optional[UnrevokeCreateResponse]:
         """
         Unrevokes a list of devices.
 
@@ -134,12 +115,10 @@ class AsyncUnrevokes(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return cast(
-            Optional[UnrevokeDevicesUnrevokeDevicesResponse],
+            Optional[UnrevokeCreateResponse],
             await self._post(
-                f"/accounts/{identifier}/devices/unrevoke",
-                body=maybe_transform(
-                    body, unrevoke_devices_unrevoke_devices_params.UnrevokeDevicesUnrevokeDevicesParams
-                ),
+                f"/accounts/{account_id}/devices/unrevoke",
+                body=maybe_transform(body, unrevoke_create_params.UnrevokeCreateParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -148,7 +127,7 @@ class AsyncUnrevokes(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnrevokeDevicesUnrevokeDevicesResponse]
+                    Any, ResultWrapper[UnrevokeCreateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -158,8 +137,8 @@ class UnrevokesWithRawResponse:
     def __init__(self, unrevokes: Unrevokes) -> None:
         self._unrevokes = unrevokes
 
-        self.devices_unrevoke_devices = to_raw_response_wrapper(
-            unrevokes.devices_unrevoke_devices,
+        self.create = to_raw_response_wrapper(
+            unrevokes.create,
         )
 
 
@@ -167,8 +146,8 @@ class AsyncUnrevokesWithRawResponse:
     def __init__(self, unrevokes: AsyncUnrevokes) -> None:
         self._unrevokes = unrevokes
 
-        self.devices_unrevoke_devices = async_to_raw_response_wrapper(
-            unrevokes.devices_unrevoke_devices,
+        self.create = async_to_raw_response_wrapper(
+            unrevokes.create,
         )
 
 
@@ -176,8 +155,8 @@ class UnrevokesWithStreamingResponse:
     def __init__(self, unrevokes: Unrevokes) -> None:
         self._unrevokes = unrevokes
 
-        self.devices_unrevoke_devices = to_streamed_response_wrapper(
-            unrevokes.devices_unrevoke_devices,
+        self.create = to_streamed_response_wrapper(
+            unrevokes.create,
         )
 
 
@@ -185,6 +164,6 @@ class AsyncUnrevokesWithStreamingResponse:
     def __init__(self, unrevokes: AsyncUnrevokes) -> None:
         self._unrevokes = unrevokes
 
-        self.devices_unrevoke_devices = async_to_streamed_response_wrapper(
-            unrevokes.devices_unrevoke_devices,
+        self.create = async_to_streamed_response_wrapper(
+            unrevokes.create,
         )

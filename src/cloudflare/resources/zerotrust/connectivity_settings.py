@@ -2,42 +2,29 @@
 
 from __future__ import annotations
 
+from typing import Type, cast
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._compat import cached_property
-
-from ...types.zerotrust import ConnectivitySettingUpdateResponse, ConnectivitySettingGetResponse
-
-from typing import Type
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types.zerotrust import connectivity_setting_update_params
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ..._base_client import (
+    make_request_options,
+)
+from ...types.zerotrust import (
+    ConnectivitySettingGetResponse,
+    ConnectivitySettingEditResponse,
+    connectivity_setting_edit_params,
+)
 
 __all__ = ["ConnectivitySettings", "AsyncConnectivitySettings"]
 
@@ -51,7 +38,7 @@ class ConnectivitySettings(SyncAPIResource):
     def with_streaming_response(self) -> ConnectivitySettingsWithStreamingResponse:
         return ConnectivitySettingsWithStreamingResponse(self)
 
-    def update(
+    def edit(
         self,
         account_id: str,
         *,
@@ -63,7 +50,7 @@ class ConnectivitySettings(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConnectivitySettingUpdateResponse:
+    ) -> ConnectivitySettingEditResponse:
         """
         Updates the Zero Trust Connectivity Settings for the given account.
 
@@ -91,7 +78,7 @@ class ConnectivitySettings(SyncAPIResource):
                     "icmp_proxy_enabled": icmp_proxy_enabled,
                     "offramp_warp_enabled": offramp_warp_enabled,
                 },
-                connectivity_setting_update_params.ConnectivitySettingUpdateParams,
+                connectivity_setting_edit_params.ConnectivitySettingEditParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -100,7 +87,7 @@ class ConnectivitySettings(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ConnectivitySettingUpdateResponse], ResultWrapper[ConnectivitySettingUpdateResponse]),
+            cast_to=cast(Type[ConnectivitySettingEditResponse], ResultWrapper[ConnectivitySettingEditResponse]),
         )
 
     def get(
@@ -152,7 +139,7 @@ class AsyncConnectivitySettings(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncConnectivitySettingsWithStreamingResponse:
         return AsyncConnectivitySettingsWithStreamingResponse(self)
 
-    async def update(
+    async def edit(
         self,
         account_id: str,
         *,
@@ -164,7 +151,7 @@ class AsyncConnectivitySettings(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConnectivitySettingUpdateResponse:
+    ) -> ConnectivitySettingEditResponse:
         """
         Updates the Zero Trust Connectivity Settings for the given account.
 
@@ -192,7 +179,7 @@ class AsyncConnectivitySettings(AsyncAPIResource):
                     "icmp_proxy_enabled": icmp_proxy_enabled,
                     "offramp_warp_enabled": offramp_warp_enabled,
                 },
-                connectivity_setting_update_params.ConnectivitySettingUpdateParams,
+                connectivity_setting_edit_params.ConnectivitySettingEditParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -201,7 +188,7 @@ class AsyncConnectivitySettings(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ConnectivitySettingUpdateResponse], ResultWrapper[ConnectivitySettingUpdateResponse]),
+            cast_to=cast(Type[ConnectivitySettingEditResponse], ResultWrapper[ConnectivitySettingEditResponse]),
         )
 
     async def get(
@@ -248,8 +235,8 @@ class ConnectivitySettingsWithRawResponse:
     def __init__(self, connectivity_settings: ConnectivitySettings) -> None:
         self._connectivity_settings = connectivity_settings
 
-        self.update = to_raw_response_wrapper(
-            connectivity_settings.update,
+        self.edit = to_raw_response_wrapper(
+            connectivity_settings.edit,
         )
         self.get = to_raw_response_wrapper(
             connectivity_settings.get,
@@ -260,8 +247,8 @@ class AsyncConnectivitySettingsWithRawResponse:
     def __init__(self, connectivity_settings: AsyncConnectivitySettings) -> None:
         self._connectivity_settings = connectivity_settings
 
-        self.update = async_to_raw_response_wrapper(
-            connectivity_settings.update,
+        self.edit = async_to_raw_response_wrapper(
+            connectivity_settings.edit,
         )
         self.get = async_to_raw_response_wrapper(
             connectivity_settings.get,
@@ -272,8 +259,8 @@ class ConnectivitySettingsWithStreamingResponse:
     def __init__(self, connectivity_settings: ConnectivitySettings) -> None:
         self._connectivity_settings = connectivity_settings
 
-        self.update = to_streamed_response_wrapper(
-            connectivity_settings.update,
+        self.edit = to_streamed_response_wrapper(
+            connectivity_settings.edit,
         )
         self.get = to_streamed_response_wrapper(
             connectivity_settings.get,
@@ -284,8 +271,8 @@ class AsyncConnectivitySettingsWithStreamingResponse:
     def __init__(self, connectivity_settings: AsyncConnectivitySettings) -> None:
         self._connectivity_settings = connectivity_settings
 
-        self.update = async_to_streamed_response_wrapper(
-            connectivity_settings.update,
+        self.edit = async_to_streamed_response_wrapper(
+            connectivity_settings.edit,
         )
         self.get = async_to_streamed_response_wrapper(
             connectivity_settings.get,

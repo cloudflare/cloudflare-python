@@ -2,18 +2,12 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required
+from typing_extensions import Required, TypedDict
 
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from .._types import FileTypes
-from .._utils import PropertyInfo
-from ..types import shared_params
-
-__all__ = ["WarpConnectorDeleteParams"]
+__all__ = ["WARPConnectorDeleteParams"]
 
 
-class WarpConnectorDeleteParams(TypedDict, total=False):
+class WARPConnectorDeleteParams(TypedDict, total=False):
     account_id: Required[str]
     """Cloudflare account ID"""
 

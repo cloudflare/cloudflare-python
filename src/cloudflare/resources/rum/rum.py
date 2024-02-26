@@ -2,35 +2,6 @@
 
 from __future__ import annotations
 
-from .site_infos import SiteInfos, AsyncSiteInfos
-
-from ..._compat import cached_property
-
-from .rules import Rules, AsyncRules
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from .site_infos import (
-    SiteInfos,
-    AsyncSiteInfos,
-    SiteInfosWithRawResponse,
-    AsyncSiteInfosWithRawResponse,
-    SiteInfosWithStreamingResponse,
-    AsyncSiteInfosWithStreamingResponse,
-)
 from .rules import (
     Rules,
     AsyncRules,
@@ -39,12 +10,21 @@ from .rules import (
     RulesWithStreamingResponse,
     AsyncRulesWithStreamingResponse,
 )
-from ..._wrappers import ResultWrapper
+from ..._compat import cached_property
+from .site_infos import (
+    SiteInfos,
+    AsyncSiteInfos,
+    SiteInfosWithRawResponse,
+    AsyncSiteInfosWithRawResponse,
+    SiteInfosWithStreamingResponse,
+    AsyncSiteInfosWithStreamingResponse,
+)
+from ..._resource import SyncAPIResource, AsyncAPIResource
 
-__all__ = ["Rum", "AsyncRum"]
+__all__ = ["RUM", "AsyncRUM"]
 
 
-class Rum(SyncAPIResource):
+class RUM(SyncAPIResource):
     @cached_property
     def site_infos(self) -> SiteInfos:
         return SiteInfos(self._client)
@@ -54,15 +34,15 @@ class Rum(SyncAPIResource):
         return Rules(self._client)
 
     @cached_property
-    def with_raw_response(self) -> RumWithRawResponse:
-        return RumWithRawResponse(self)
+    def with_raw_response(self) -> RUMWithRawResponse:
+        return RUMWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> RumWithStreamingResponse:
-        return RumWithStreamingResponse(self)
+    def with_streaming_response(self) -> RUMWithStreamingResponse:
+        return RUMWithStreamingResponse(self)
 
 
-class AsyncRum(AsyncAPIResource):
+class AsyncRUM(AsyncAPIResource):
     @cached_property
     def site_infos(self) -> AsyncSiteInfos:
         return AsyncSiteInfos(self._client)
@@ -72,16 +52,16 @@ class AsyncRum(AsyncAPIResource):
         return AsyncRules(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncRumWithRawResponse:
-        return AsyncRumWithRawResponse(self)
+    def with_raw_response(self) -> AsyncRUMWithRawResponse:
+        return AsyncRUMWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncRumWithStreamingResponse:
-        return AsyncRumWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncRUMWithStreamingResponse:
+        return AsyncRUMWithStreamingResponse(self)
 
 
-class RumWithRawResponse:
-    def __init__(self, rum: Rum) -> None:
+class RUMWithRawResponse:
+    def __init__(self, rum: RUM) -> None:
         self._rum = rum
 
     @cached_property
@@ -93,8 +73,8 @@ class RumWithRawResponse:
         return RulesWithRawResponse(self._rum.rules)
 
 
-class AsyncRumWithRawResponse:
-    def __init__(self, rum: AsyncRum) -> None:
+class AsyncRUMWithRawResponse:
+    def __init__(self, rum: AsyncRUM) -> None:
         self._rum = rum
 
     @cached_property
@@ -106,8 +86,8 @@ class AsyncRumWithRawResponse:
         return AsyncRulesWithRawResponse(self._rum.rules)
 
 
-class RumWithStreamingResponse:
-    def __init__(self, rum: Rum) -> None:
+class RUMWithStreamingResponse:
+    def __init__(self, rum: RUM) -> None:
         self._rum = rum
 
     @cached_property
@@ -119,8 +99,8 @@ class RumWithStreamingResponse:
         return RulesWithStreamingResponse(self._rum.rules)
 
 
-class AsyncRumWithStreamingResponse:
-    def __init__(self, rum: AsyncRum) -> None:
+class AsyncRUMWithStreamingResponse:
+    def __init__(self, rum: AsyncRUM) -> None:
         self._rum = rum
 
     @cached_property

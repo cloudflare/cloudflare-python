@@ -2,44 +2,26 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+from typing_extensions import Literal
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._compat import cached_property
-
-from ...types.settings import CacheLevelUpdateResponse, CacheLevelGetResponse
-
-from typing import Type, Optional
-
-from typing_extensions import Literal
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types.settings import cache_level_update_params
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ..._base_client import (
+    make_request_options,
+)
+from ...types.settings import CacheLevelGetResponse, CacheLevelEditResponse, cache_level_edit_params
 
 __all__ = ["CacheLevel", "AsyncCacheLevel"]
 
@@ -53,7 +35,7 @@ class CacheLevel(SyncAPIResource):
     def with_streaming_response(self) -> CacheLevelWithStreamingResponse:
         return CacheLevelWithStreamingResponse(self)
 
-    def update(
+    def edit(
         self,
         zone_id: str,
         *,
@@ -64,7 +46,7 @@ class CacheLevel(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CacheLevelUpdateResponse]:
+    ) -> Optional[CacheLevelEditResponse]:
         """Cache Level functions based off the setting level.
 
         The basic setting will cache
@@ -90,7 +72,7 @@ class CacheLevel(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._patch(
             f"/zones/{zone_id}/settings/cache_level",
-            body=maybe_transform({"value": value}, cache_level_update_params.CacheLevelUpdateParams),
+            body=maybe_transform({"value": value}, cache_level_edit_params.CacheLevelEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -98,7 +80,7 @@ class CacheLevel(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[CacheLevelUpdateResponse]], ResultWrapper[CacheLevelUpdateResponse]),
+            cast_to=cast(Type[Optional[CacheLevelEditResponse]], ResultWrapper[CacheLevelEditResponse]),
         )
 
     def get(
@@ -155,7 +137,7 @@ class AsyncCacheLevel(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncCacheLevelWithStreamingResponse:
         return AsyncCacheLevelWithStreamingResponse(self)
 
-    async def update(
+    async def edit(
         self,
         zone_id: str,
         *,
@@ -166,7 +148,7 @@ class AsyncCacheLevel(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CacheLevelUpdateResponse]:
+    ) -> Optional[CacheLevelEditResponse]:
         """Cache Level functions based off the setting level.
 
         The basic setting will cache
@@ -192,7 +174,7 @@ class AsyncCacheLevel(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._patch(
             f"/zones/{zone_id}/settings/cache_level",
-            body=maybe_transform({"value": value}, cache_level_update_params.CacheLevelUpdateParams),
+            body=maybe_transform({"value": value}, cache_level_edit_params.CacheLevelEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -200,7 +182,7 @@ class AsyncCacheLevel(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[CacheLevelUpdateResponse]], ResultWrapper[CacheLevelUpdateResponse]),
+            cast_to=cast(Type[Optional[CacheLevelEditResponse]], ResultWrapper[CacheLevelEditResponse]),
         )
 
     async def get(
@@ -252,8 +234,8 @@ class CacheLevelWithRawResponse:
     def __init__(self, cache_level: CacheLevel) -> None:
         self._cache_level = cache_level
 
-        self.update = to_raw_response_wrapper(
-            cache_level.update,
+        self.edit = to_raw_response_wrapper(
+            cache_level.edit,
         )
         self.get = to_raw_response_wrapper(
             cache_level.get,
@@ -264,8 +246,8 @@ class AsyncCacheLevelWithRawResponse:
     def __init__(self, cache_level: AsyncCacheLevel) -> None:
         self._cache_level = cache_level
 
-        self.update = async_to_raw_response_wrapper(
-            cache_level.update,
+        self.edit = async_to_raw_response_wrapper(
+            cache_level.edit,
         )
         self.get = async_to_raw_response_wrapper(
             cache_level.get,
@@ -276,8 +258,8 @@ class CacheLevelWithStreamingResponse:
     def __init__(self, cache_level: CacheLevel) -> None:
         self._cache_level = cache_level
 
-        self.update = to_streamed_response_wrapper(
-            cache_level.update,
+        self.edit = to_streamed_response_wrapper(
+            cache_level.edit,
         )
         self.get = to_streamed_response_wrapper(
             cache_level.get,
@@ -288,8 +270,8 @@ class AsyncCacheLevelWithStreamingResponse:
     def __init__(self, cache_level: AsyncCacheLevel) -> None:
         self._cache_level = cache_level
 
-        self.update = async_to_streamed_response_wrapper(
-            cache_level.update,
+        self.edit = async_to_streamed_response_wrapper(
+            cache_level.edit,
         )
         self.get = async_to_streamed_response_wrapper(
             cache_level.get,

@@ -2,25 +2,22 @@
 
 from __future__ import annotations
 
-from .pagerduty import Pagerduty, AsyncPagerduty
-
-from ....._compat import cached_property
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ....._resource import SyncAPIResource, AsyncAPIResource
-from ....._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
+from .eligible import (
+    Eligible,
+    AsyncEligible,
+    EligibleWithRawResponse,
+    AsyncEligibleWithRawResponse,
+    EligibleWithStreamingResponse,
+    AsyncEligibleWithStreamingResponse,
 )
-from .....types import shared_params
+from .webhooks import (
+    Webhooks,
+    AsyncWebhooks,
+    WebhooksWithRawResponse,
+    AsyncWebhooksWithRawResponse,
+    WebhooksWithStreamingResponse,
+    AsyncWebhooksWithStreamingResponse,
+)
 from .pagerduty import (
     Pagerduty,
     AsyncPagerduty,
@@ -29,15 +26,24 @@ from .pagerduty import (
     PagerdutyWithStreamingResponse,
     AsyncPagerdutyWithStreamingResponse,
 )
-from ....._wrappers import ResultWrapper
+from ....._compat import cached_property
+from ....._resource import SyncAPIResource, AsyncAPIResource
 
 __all__ = ["Destinations", "AsyncDestinations"]
 
 
 class Destinations(SyncAPIResource):
     @cached_property
+    def eligible(self) -> Eligible:
+        return Eligible(self._client)
+
+    @cached_property
     def pagerduty(self) -> Pagerduty:
         return Pagerduty(self._client)
+
+    @cached_property
+    def webhooks(self) -> Webhooks:
+        return Webhooks(self._client)
 
     @cached_property
     def with_raw_response(self) -> DestinationsWithRawResponse:
@@ -50,8 +56,16 @@ class Destinations(SyncAPIResource):
 
 class AsyncDestinations(AsyncAPIResource):
     @cached_property
+    def eligible(self) -> AsyncEligible:
+        return AsyncEligible(self._client)
+
+    @cached_property
     def pagerduty(self) -> AsyncPagerduty:
         return AsyncPagerduty(self._client)
+
+    @cached_property
+    def webhooks(self) -> AsyncWebhooks:
+        return AsyncWebhooks(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncDestinationsWithRawResponse:
@@ -67,8 +81,16 @@ class DestinationsWithRawResponse:
         self._destinations = destinations
 
     @cached_property
+    def eligible(self) -> EligibleWithRawResponse:
+        return EligibleWithRawResponse(self._destinations.eligible)
+
+    @cached_property
     def pagerduty(self) -> PagerdutyWithRawResponse:
         return PagerdutyWithRawResponse(self._destinations.pagerduty)
+
+    @cached_property
+    def webhooks(self) -> WebhooksWithRawResponse:
+        return WebhooksWithRawResponse(self._destinations.webhooks)
 
 
 class AsyncDestinationsWithRawResponse:
@@ -76,8 +98,16 @@ class AsyncDestinationsWithRawResponse:
         self._destinations = destinations
 
     @cached_property
+    def eligible(self) -> AsyncEligibleWithRawResponse:
+        return AsyncEligibleWithRawResponse(self._destinations.eligible)
+
+    @cached_property
     def pagerduty(self) -> AsyncPagerdutyWithRawResponse:
         return AsyncPagerdutyWithRawResponse(self._destinations.pagerduty)
+
+    @cached_property
+    def webhooks(self) -> AsyncWebhooksWithRawResponse:
+        return AsyncWebhooksWithRawResponse(self._destinations.webhooks)
 
 
 class DestinationsWithStreamingResponse:
@@ -85,8 +115,16 @@ class DestinationsWithStreamingResponse:
         self._destinations = destinations
 
     @cached_property
+    def eligible(self) -> EligibleWithStreamingResponse:
+        return EligibleWithStreamingResponse(self._destinations.eligible)
+
+    @cached_property
     def pagerduty(self) -> PagerdutyWithStreamingResponse:
         return PagerdutyWithStreamingResponse(self._destinations.pagerduty)
+
+    @cached_property
+    def webhooks(self) -> WebhooksWithStreamingResponse:
+        return WebhooksWithStreamingResponse(self._destinations.webhooks)
 
 
 class AsyncDestinationsWithStreamingResponse:
@@ -94,5 +132,13 @@ class AsyncDestinationsWithStreamingResponse:
         self._destinations = destinations
 
     @cached_property
+    def eligible(self) -> AsyncEligibleWithStreamingResponse:
+        return AsyncEligibleWithStreamingResponse(self._destinations.eligible)
+
+    @cached_property
     def pagerduty(self) -> AsyncPagerdutyWithStreamingResponse:
         return AsyncPagerdutyWithStreamingResponse(self._destinations.pagerduty)
+
+    @cached_property
+    def webhooks(self) -> AsyncWebhooksWithStreamingResponse:
+        return AsyncWebhooksWithStreamingResponse(self._destinations.webhooks)

@@ -2,42 +2,26 @@
 
 from __future__ import annotations
 
+from typing_extensions import Literal
+
 import httpx
 
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import maybe_transform
 from ...._compat import cached_property
-
-from ....types.dex.fleet_status import DeviceListResponse
-
-from typing import Type, Optional
-
-from typing_extensions import Literal
-
+from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
+from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ...._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
     AsyncPaginator,
     make_request_options,
-    HttpxBinaryResponseContent,
 )
-from ....types import shared_params
-from ....types.dex.fleet_status import device_list_params
-from ...._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
+from ....types.dex.fleet_status import DeviceListResponse, device_list_params
 
 __all__ = ["Devices", "AsyncDevices"]
 
@@ -73,7 +57,7 @@ class Devices(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DeviceListResponse]:
+    ) -> SyncV4PagePaginationArray[DeviceListResponse]:
         """
         List details for devices using WARP
 
@@ -110,8 +94,9 @@ class Devices(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/dex/fleet-status/devices",
+            page=SyncV4PagePaginationArray[DeviceListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -133,9 +118,8 @@ class Devices(SyncAPIResource):
                     },
                     device_list_params.DeviceListParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DeviceListResponse]], ResultWrapper[DeviceListResponse]),
+            model=DeviceListResponse,
         )
 
 
@@ -148,7 +132,7 @@ class AsyncDevices(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncDevicesWithStreamingResponse:
         return AsyncDevicesWithStreamingResponse(self)
 
-    async def list(
+    def list(
         self,
         account_id: str,
         *,
@@ -170,7 +154,7 @@ class AsyncDevices(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DeviceListResponse]:
+    ) -> AsyncPaginator[DeviceListResponse, AsyncV4PagePaginationArray[DeviceListResponse]]:
         """
         List details for devices using WARP
 
@@ -207,8 +191,9 @@ class AsyncDevices(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/dex/fleet-status/devices",
+            page=AsyncV4PagePaginationArray[DeviceListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -230,9 +215,8 @@ class AsyncDevices(AsyncAPIResource):
                     },
                     device_list_params.DeviceListParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DeviceListResponse]], ResultWrapper[DeviceListResponse]),
+            model=DeviceListResponse,
         )
 
 

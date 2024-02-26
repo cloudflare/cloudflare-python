@@ -2,53 +2,11 @@
 
 from __future__ import annotations
 
+from typing import List, Type, Iterable, Optional, cast
+from typing_extensions import Literal
+
 import httpx
 
-from .health import Health, AsyncHealth
-
-from ...._compat import cached_property
-
-from .references import References, AsyncReferences
-
-from ....types.load_balancers import (
-    PoolCreateResponse,
-    PoolUpdateResponse,
-    PoolListResponse,
-    PoolDeleteResponse,
-    PoolGetResponse,
-    pool_create_params,
-    pool_update_params,
-)
-
-from typing import Type, Iterable, Optional, List
-
-from typing_extensions import Literal
-
-from ...._response import (
-    to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ....types import shared_params
-from ....types.load_balancers import pool_create_params
-from ....types.load_balancers import pool_update_params
-from ....types.load_balancers import pool_list_params
 from .health import (
     Health,
     AsyncHealth,
@@ -57,6 +15,9 @@ from .health import (
     HealthWithStreamingResponse,
     AsyncHealthWithStreamingResponse,
 )
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import maybe_transform
+from ...._compat import cached_property
 from .references import (
     References,
     AsyncReferences,
@@ -65,17 +26,29 @@ from .references import (
     ReferencesWithStreamingResponse,
     AsyncReferencesWithStreamingResponse,
 )
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
 from ...._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ...._base_client import (
+    make_request_options,
+)
+from ....types.load_balancers import (
+    PoolGetResponse,
+    PoolEditResponse,
+    PoolListResponse,
+    PoolCreateResponse,
+    PoolDeleteResponse,
+    PoolUpdateResponse,
+    pool_edit_params,
+    pool_list_params,
+    pool_create_params,
+    pool_update_params,
+)
 
 __all__ = ["Pools", "AsyncPools"]
 
@@ -209,6 +182,8 @@ class Pools(SyncAPIResource):
         pool_id: str,
         *,
         account_id: str,
+        name: str,
+        origins: Iterable[pool_update_params.Origin],
         check_regions: Optional[
             List[
                 Literal[
@@ -237,11 +212,9 @@ class Pools(SyncAPIResource):
         longitude: float | NotGiven = NOT_GIVEN,
         minimum_origins: int | NotGiven = NOT_GIVEN,
         monitor: object | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
         notification_email: str | NotGiven = NOT_GIVEN,
         notification_filter: Optional[pool_update_params.NotificationFilter] | NotGiven = NOT_GIVEN,
         origin_steering: pool_update_params.OriginSteering | NotGiven = NOT_GIVEN,
-        origins: Iterable[pool_update_params.Origin] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -250,10 +223,16 @@ class Pools(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> PoolUpdateResponse:
         """
-        Apply changes to an existing pool, overwriting the supplied properties.
+        Modify a configured pool.
 
         Args:
           account_id: Identifier
+
+          name: A short name (tag) for the pool. Only alphanumeric characters, hyphens, and
+              underscores are allowed.
+
+          origins: The list of origins within this pool. Traffic directed at this pool is balanced
+              across all currently healthy origins, provided the pool itself is healthy.
 
           check_regions: A list of regions from which to run health checks. Null means every Cloudflare
               data center.
@@ -279,9 +258,6 @@ class Pools(SyncAPIResource):
           monitor: The ID of the Monitor to use for checking the health of origins within this
               pool.
 
-          name: A short name (tag) for the pool. Only alphanumeric characters, hyphens, and
-              underscores are allowed.
-
           notification_email: This field is now deprecated. It has been moved to Cloudflare's Centralized
               Notification service
               https://developers.cloudflare.com/fundamentals/notifications/. The email address
@@ -293,9 +269,6 @@ class Pools(SyncAPIResource):
 
           origin_steering: Configures origin steering for the pool. Controls how origins are selected for
               new sessions and traffic without session affinity.
-
-          origins: The list of origins within this pool. Traffic directed at this pool is balanced
-              across all currently healthy origins, provided the pool itself is healthy.
 
           extra_headers: Send extra headers
 
@@ -309,10 +282,12 @@ class Pools(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not pool_id:
             raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
-        return self._patch(
+        return self._put(
             f"/accounts/{account_id}/load_balancers/pools/{pool_id}",
             body=maybe_transform(
                 {
+                    "name": name,
+                    "origins": origins,
                     "check_regions": check_regions,
                     "description": description,
                     "enabled": enabled,
@@ -321,11 +296,9 @@ class Pools(SyncAPIResource):
                     "longitude": longitude,
                     "minimum_origins": minimum_origins,
                     "monitor": monitor,
-                    "name": name,
                     "notification_email": notification_email,
                     "notification_filter": notification_filter,
                     "origin_steering": origin_steering,
-                    "origins": origins,
                 },
                 pool_update_params.PoolUpdateParams,
             ),
@@ -423,6 +396,141 @@ class Pools(SyncAPIResource):
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(Type[PoolDeleteResponse], ResultWrapper[PoolDeleteResponse]),
+        )
+
+    def edit(
+        self,
+        pool_id: str,
+        *,
+        account_id: str,
+        check_regions: Optional[
+            List[
+                Literal[
+                    "WNAM",
+                    "ENAM",
+                    "WEU",
+                    "EEU",
+                    "NSAM",
+                    "SSAM",
+                    "OC",
+                    "ME",
+                    "NAF",
+                    "SAF",
+                    "SAS",
+                    "SEAS",
+                    "NEAS",
+                    "ALL_REGIONS",
+                ]
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        latitude: float | NotGiven = NOT_GIVEN,
+        load_shedding: pool_edit_params.LoadShedding | NotGiven = NOT_GIVEN,
+        longitude: float | NotGiven = NOT_GIVEN,
+        minimum_origins: int | NotGiven = NOT_GIVEN,
+        monitor: object | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        notification_email: str | NotGiven = NOT_GIVEN,
+        notification_filter: Optional[pool_edit_params.NotificationFilter] | NotGiven = NOT_GIVEN,
+        origin_steering: pool_edit_params.OriginSteering | NotGiven = NOT_GIVEN,
+        origins: Iterable[pool_edit_params.Origin] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> PoolEditResponse:
+        """
+        Apply changes to an existing pool, overwriting the supplied properties.
+
+        Args:
+          account_id: Identifier
+
+          check_regions: A list of regions from which to run health checks. Null means every Cloudflare
+              data center.
+
+          description: A human-readable description of the pool.
+
+          enabled: Whether to enable (the default) or disable this pool. Disabled pools will not
+              receive traffic and are excluded from health checks. Disabling a pool will cause
+              any load balancers using it to failover to the next pool (if any).
+
+          latitude: The latitude of the data center containing the origins used in this pool in
+              decimal degrees. If this is set, longitude must also be set.
+
+          load_shedding: Configures load shedding policies and percentages for the pool.
+
+          longitude: The longitude of the data center containing the origins used in this pool in
+              decimal degrees. If this is set, latitude must also be set.
+
+          minimum_origins: The minimum number of origins that must be healthy for this pool to serve
+              traffic. If the number of healthy origins falls below this number, the pool will
+              be marked unhealthy and will failover to the next available pool.
+
+          monitor: The ID of the Monitor to use for checking the health of origins within this
+              pool.
+
+          name: A short name (tag) for the pool. Only alphanumeric characters, hyphens, and
+              underscores are allowed.
+
+          notification_email: This field is now deprecated. It has been moved to Cloudflare's Centralized
+              Notification service
+              https://developers.cloudflare.com/fundamentals/notifications/. The email address
+              to send health status notifications to. This can be an individual mailbox or a
+              mailing list. Multiple emails can be supplied as a comma delimited list.
+
+          notification_filter: Filter pool and origin health notifications by resource type or health status.
+              Use null to reset.
+
+          origin_steering: Configures origin steering for the pool. Controls how origins are selected for
+              new sessions and traffic without session affinity.
+
+          origins: The list of origins within this pool. Traffic directed at this pool is balanced
+              across all currently healthy origins, provided the pool itself is healthy.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not pool_id:
+            raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
+        return self._patch(
+            f"/accounts/{account_id}/load_balancers/pools/{pool_id}",
+            body=maybe_transform(
+                {
+                    "check_regions": check_regions,
+                    "description": description,
+                    "enabled": enabled,
+                    "latitude": latitude,
+                    "load_shedding": load_shedding,
+                    "longitude": longitude,
+                    "minimum_origins": minimum_origins,
+                    "monitor": monitor,
+                    "name": name,
+                    "notification_email": notification_email,
+                    "notification_filter": notification_filter,
+                    "origin_steering": origin_steering,
+                    "origins": origins,
+                },
+                pool_edit_params.PoolEditParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[PoolEditResponse], ResultWrapper[PoolEditResponse]),
         )
 
     def get(
@@ -597,6 +705,8 @@ class AsyncPools(AsyncAPIResource):
         pool_id: str,
         *,
         account_id: str,
+        name: str,
+        origins: Iterable[pool_update_params.Origin],
         check_regions: Optional[
             List[
                 Literal[
@@ -625,11 +735,9 @@ class AsyncPools(AsyncAPIResource):
         longitude: float | NotGiven = NOT_GIVEN,
         minimum_origins: int | NotGiven = NOT_GIVEN,
         monitor: object | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
         notification_email: str | NotGiven = NOT_GIVEN,
         notification_filter: Optional[pool_update_params.NotificationFilter] | NotGiven = NOT_GIVEN,
         origin_steering: pool_update_params.OriginSteering | NotGiven = NOT_GIVEN,
-        origins: Iterable[pool_update_params.Origin] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -638,10 +746,16 @@ class AsyncPools(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> PoolUpdateResponse:
         """
-        Apply changes to an existing pool, overwriting the supplied properties.
+        Modify a configured pool.
 
         Args:
           account_id: Identifier
+
+          name: A short name (tag) for the pool. Only alphanumeric characters, hyphens, and
+              underscores are allowed.
+
+          origins: The list of origins within this pool. Traffic directed at this pool is balanced
+              across all currently healthy origins, provided the pool itself is healthy.
 
           check_regions: A list of regions from which to run health checks. Null means every Cloudflare
               data center.
@@ -667,9 +781,6 @@ class AsyncPools(AsyncAPIResource):
           monitor: The ID of the Monitor to use for checking the health of origins within this
               pool.
 
-          name: A short name (tag) for the pool. Only alphanumeric characters, hyphens, and
-              underscores are allowed.
-
           notification_email: This field is now deprecated. It has been moved to Cloudflare's Centralized
               Notification service
               https://developers.cloudflare.com/fundamentals/notifications/. The email address
@@ -681,9 +792,6 @@ class AsyncPools(AsyncAPIResource):
 
           origin_steering: Configures origin steering for the pool. Controls how origins are selected for
               new sessions and traffic without session affinity.
-
-          origins: The list of origins within this pool. Traffic directed at this pool is balanced
-              across all currently healthy origins, provided the pool itself is healthy.
 
           extra_headers: Send extra headers
 
@@ -697,10 +805,12 @@ class AsyncPools(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not pool_id:
             raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
-        return await self._patch(
+        return await self._put(
             f"/accounts/{account_id}/load_balancers/pools/{pool_id}",
             body=maybe_transform(
                 {
+                    "name": name,
+                    "origins": origins,
                     "check_regions": check_regions,
                     "description": description,
                     "enabled": enabled,
@@ -709,11 +819,9 @@ class AsyncPools(AsyncAPIResource):
                     "longitude": longitude,
                     "minimum_origins": minimum_origins,
                     "monitor": monitor,
-                    "name": name,
                     "notification_email": notification_email,
                     "notification_filter": notification_filter,
                     "origin_steering": origin_steering,
-                    "origins": origins,
                 },
                 pool_update_params.PoolUpdateParams,
             ),
@@ -813,6 +921,141 @@ class AsyncPools(AsyncAPIResource):
             cast_to=cast(Type[PoolDeleteResponse], ResultWrapper[PoolDeleteResponse]),
         )
 
+    async def edit(
+        self,
+        pool_id: str,
+        *,
+        account_id: str,
+        check_regions: Optional[
+            List[
+                Literal[
+                    "WNAM",
+                    "ENAM",
+                    "WEU",
+                    "EEU",
+                    "NSAM",
+                    "SSAM",
+                    "OC",
+                    "ME",
+                    "NAF",
+                    "SAF",
+                    "SAS",
+                    "SEAS",
+                    "NEAS",
+                    "ALL_REGIONS",
+                ]
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        latitude: float | NotGiven = NOT_GIVEN,
+        load_shedding: pool_edit_params.LoadShedding | NotGiven = NOT_GIVEN,
+        longitude: float | NotGiven = NOT_GIVEN,
+        minimum_origins: int | NotGiven = NOT_GIVEN,
+        monitor: object | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        notification_email: str | NotGiven = NOT_GIVEN,
+        notification_filter: Optional[pool_edit_params.NotificationFilter] | NotGiven = NOT_GIVEN,
+        origin_steering: pool_edit_params.OriginSteering | NotGiven = NOT_GIVEN,
+        origins: Iterable[pool_edit_params.Origin] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> PoolEditResponse:
+        """
+        Apply changes to an existing pool, overwriting the supplied properties.
+
+        Args:
+          account_id: Identifier
+
+          check_regions: A list of regions from which to run health checks. Null means every Cloudflare
+              data center.
+
+          description: A human-readable description of the pool.
+
+          enabled: Whether to enable (the default) or disable this pool. Disabled pools will not
+              receive traffic and are excluded from health checks. Disabling a pool will cause
+              any load balancers using it to failover to the next pool (if any).
+
+          latitude: The latitude of the data center containing the origins used in this pool in
+              decimal degrees. If this is set, longitude must also be set.
+
+          load_shedding: Configures load shedding policies and percentages for the pool.
+
+          longitude: The longitude of the data center containing the origins used in this pool in
+              decimal degrees. If this is set, latitude must also be set.
+
+          minimum_origins: The minimum number of origins that must be healthy for this pool to serve
+              traffic. If the number of healthy origins falls below this number, the pool will
+              be marked unhealthy and will failover to the next available pool.
+
+          monitor: The ID of the Monitor to use for checking the health of origins within this
+              pool.
+
+          name: A short name (tag) for the pool. Only alphanumeric characters, hyphens, and
+              underscores are allowed.
+
+          notification_email: This field is now deprecated. It has been moved to Cloudflare's Centralized
+              Notification service
+              https://developers.cloudflare.com/fundamentals/notifications/. The email address
+              to send health status notifications to. This can be an individual mailbox or a
+              mailing list. Multiple emails can be supplied as a comma delimited list.
+
+          notification_filter: Filter pool and origin health notifications by resource type or health status.
+              Use null to reset.
+
+          origin_steering: Configures origin steering for the pool. Controls how origins are selected for
+              new sessions and traffic without session affinity.
+
+          origins: The list of origins within this pool. Traffic directed at this pool is balanced
+              across all currently healthy origins, provided the pool itself is healthy.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not pool_id:
+            raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
+        return await self._patch(
+            f"/accounts/{account_id}/load_balancers/pools/{pool_id}",
+            body=maybe_transform(
+                {
+                    "check_regions": check_regions,
+                    "description": description,
+                    "enabled": enabled,
+                    "latitude": latitude,
+                    "load_shedding": load_shedding,
+                    "longitude": longitude,
+                    "minimum_origins": minimum_origins,
+                    "monitor": monitor,
+                    "name": name,
+                    "notification_email": notification_email,
+                    "notification_filter": notification_filter,
+                    "origin_steering": origin_steering,
+                    "origins": origins,
+                },
+                pool_edit_params.PoolEditParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[PoolEditResponse], ResultWrapper[PoolEditResponse]),
+        )
+
     async def get(
         self,
         pool_id: str,
@@ -872,6 +1115,9 @@ class PoolsWithRawResponse:
         self.delete = to_raw_response_wrapper(
             pools.delete,
         )
+        self.edit = to_raw_response_wrapper(
+            pools.edit,
+        )
         self.get = to_raw_response_wrapper(
             pools.get,
         )
@@ -900,6 +1146,9 @@ class AsyncPoolsWithRawResponse:
         )
         self.delete = async_to_raw_response_wrapper(
             pools.delete,
+        )
+        self.edit = async_to_raw_response_wrapper(
+            pools.edit,
         )
         self.get = async_to_raw_response_wrapper(
             pools.get,
@@ -930,6 +1179,9 @@ class PoolsWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             pools.delete,
         )
+        self.edit = to_streamed_response_wrapper(
+            pools.edit,
+        )
         self.get = to_streamed_response_wrapper(
             pools.get,
         )
@@ -958,6 +1210,9 @@ class AsyncPoolsWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             pools.delete,
+        )
+        self.edit = async_to_streamed_response_wrapper(
+            pools.edit,
         )
         self.get = async_to_streamed_response_wrapper(
             pools.get,

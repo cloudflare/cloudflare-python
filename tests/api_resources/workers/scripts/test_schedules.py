@@ -2,22 +2,14 @@
 
 from __future__ import annotations
 
-from cloudflare.types.workers.scripts import (
-    ScheduleWorkerCronTriggerGetCronTriggersResponse,
-    ScheduleWorkerCronTriggerUpdateCronTriggersResponse,
-)
-
+import os
 from typing import Any, cast
 
-import os
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.workers.scripts import schedule_worker_cron_trigger_update_cron_triggers_params
+from cloudflare.types.workers.scripts import ScheduleListResponse, ScheduleUpdateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -27,70 +19,18 @@ class TestSchedules:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_worker_cron_trigger_get_cron_triggers(self, client: Cloudflare) -> None:
-        schedule = client.workers.scripts.schedules.worker_cron_trigger_get_cron_triggers(
-            "this-is_my_script-01",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(ScheduleWorkerCronTriggerGetCronTriggersResponse, schedule, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_raw_response_worker_cron_trigger_get_cron_triggers(self, client: Cloudflare) -> None:
-        response = client.workers.scripts.schedules.with_raw_response.worker_cron_trigger_get_cron_triggers(
-            "this-is_my_script-01",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        schedule = response.parse()
-        assert_matches_type(ScheduleWorkerCronTriggerGetCronTriggersResponse, schedule, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_streaming_response_worker_cron_trigger_get_cron_triggers(self, client: Cloudflare) -> None:
-        with client.workers.scripts.schedules.with_streaming_response.worker_cron_trigger_get_cron_triggers(
-            "this-is_my_script-01",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            schedule = response.parse()
-            assert_matches_type(ScheduleWorkerCronTriggerGetCronTriggersResponse, schedule, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_path_params_worker_cron_trigger_get_cron_triggers(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.workers.scripts.schedules.with_raw_response.worker_cron_trigger_get_cron_triggers(
-                "this-is_my_script-01",
-                account_id="",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
-            client.workers.scripts.schedules.with_raw_response.worker_cron_trigger_get_cron_triggers(
-                "",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            )
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_method_worker_cron_trigger_update_cron_triggers(self, client: Cloudflare) -> None:
-        schedule = client.workers.scripts.schedules.worker_cron_trigger_update_cron_triggers(
+    def test_method_update(self, client: Cloudflare) -> None:
+        schedule = client.workers.scripts.schedules.update(
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body="[{'cron': '*/30 * * * *'}]",
         )
-        assert_matches_type(ScheduleWorkerCronTriggerUpdateCronTriggersResponse, schedule, path=["response"])
+        assert_matches_type(ScheduleUpdateResponse, schedule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_worker_cron_trigger_update_cron_triggers(self, client: Cloudflare) -> None:
-        response = client.workers.scripts.schedules.with_raw_response.worker_cron_trigger_update_cron_triggers(
+    def test_raw_response_update(self, client: Cloudflare) -> None:
+        response = client.workers.scripts.schedules.with_raw_response.update(
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body="[{'cron': '*/30 * * * *'}]",
@@ -99,12 +39,12 @@ class TestSchedules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         schedule = response.parse()
-        assert_matches_type(ScheduleWorkerCronTriggerUpdateCronTriggersResponse, schedule, path=["response"])
+        assert_matches_type(ScheduleUpdateResponse, schedule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_worker_cron_trigger_update_cron_triggers(self, client: Cloudflare) -> None:
-        with client.workers.scripts.schedules.with_streaming_response.worker_cron_trigger_update_cron_triggers(
+    def test_streaming_response_update(self, client: Cloudflare) -> None:
+        with client.workers.scripts.schedules.with_streaming_response.update(
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body="[{'cron': '*/30 * * * *'}]",
@@ -113,25 +53,77 @@ class TestSchedules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             schedule = response.parse()
-            assert_matches_type(ScheduleWorkerCronTriggerUpdateCronTriggersResponse, schedule, path=["response"])
+            assert_matches_type(ScheduleUpdateResponse, schedule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_worker_cron_trigger_update_cron_triggers(self, client: Cloudflare) -> None:
+    def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.workers.scripts.schedules.with_raw_response.worker_cron_trigger_update_cron_triggers(
+            client.workers.scripts.schedules.with_raw_response.update(
                 "this-is_my_script-01",
                 account_id="",
                 body="[{'cron': '*/30 * * * *'}]",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
-            client.workers.scripts.schedules.with_raw_response.worker_cron_trigger_update_cron_triggers(
+            client.workers.scripts.schedules.with_raw_response.update(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 body="[{'cron': '*/30 * * * *'}]",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_list(self, client: Cloudflare) -> None:
+        schedule = client.workers.scripts.schedules.list(
+            "this-is_my_script-01",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(ScheduleListResponse, schedule, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_list(self, client: Cloudflare) -> None:
+        response = client.workers.scripts.schedules.with_raw_response.list(
+            "this-is_my_script-01",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        schedule = response.parse()
+        assert_matches_type(ScheduleListResponse, schedule, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_list(self, client: Cloudflare) -> None:
+        with client.workers.scripts.schedules.with_streaming_response.list(
+            "this-is_my_script-01",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            schedule = response.parse()
+            assert_matches_type(ScheduleListResponse, schedule, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_list(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.workers.scripts.schedules.with_raw_response.list(
+                "this-is_my_script-01",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
+            client.workers.scripts.schedules.with_raw_response.list(
+                "",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
 
@@ -140,90 +132,32 @@ class TestAsyncSchedules:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_worker_cron_trigger_get_cron_triggers(self, async_client: AsyncCloudflare) -> None:
-        schedule = await async_client.workers.scripts.schedules.worker_cron_trigger_get_cron_triggers(
-            "this-is_my_script-01",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(ScheduleWorkerCronTriggerGetCronTriggersResponse, schedule, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_raw_response_worker_cron_trigger_get_cron_triggers(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.workers.scripts.schedules.with_raw_response.worker_cron_trigger_get_cron_triggers(
-            "this-is_my_script-01",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        schedule = await response.parse()
-        assert_matches_type(ScheduleWorkerCronTriggerGetCronTriggersResponse, schedule, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_streaming_response_worker_cron_trigger_get_cron_triggers(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        async with async_client.workers.scripts.schedules.with_streaming_response.worker_cron_trigger_get_cron_triggers(
-            "this-is_my_script-01",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            schedule = await response.parse()
-            assert_matches_type(ScheduleWorkerCronTriggerGetCronTriggersResponse, schedule, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_path_params_worker_cron_trigger_get_cron_triggers(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.workers.scripts.schedules.with_raw_response.worker_cron_trigger_get_cron_triggers(
-                "this-is_my_script-01",
-                account_id="",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
-            await async_client.workers.scripts.schedules.with_raw_response.worker_cron_trigger_get_cron_triggers(
-                "",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_worker_cron_trigger_update_cron_triggers(self, async_client: AsyncCloudflare) -> None:
-        schedule = await async_client.workers.scripts.schedules.worker_cron_trigger_update_cron_triggers(
+    async def test_method_update(self, async_client: AsyncCloudflare) -> None:
+        schedule = await async_client.workers.scripts.schedules.update(
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body="[{'cron': '*/30 * * * *'}]",
         )
-        assert_matches_type(ScheduleWorkerCronTriggerUpdateCronTriggersResponse, schedule, path=["response"])
+        assert_matches_type(ScheduleUpdateResponse, schedule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_worker_cron_trigger_update_cron_triggers(self, async_client: AsyncCloudflare) -> None:
-        response = (
-            await async_client.workers.scripts.schedules.with_raw_response.worker_cron_trigger_update_cron_triggers(
-                "this-is_my_script-01",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body="[{'cron': '*/30 * * * *'}]",
-            )
+    async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.workers.scripts.schedules.with_raw_response.update(
+            "this-is_my_script-01",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body="[{'cron': '*/30 * * * *'}]",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         schedule = await response.parse()
-        assert_matches_type(ScheduleWorkerCronTriggerUpdateCronTriggersResponse, schedule, path=["response"])
+        assert_matches_type(ScheduleUpdateResponse, schedule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_worker_cron_trigger_update_cron_triggers(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        async with async_client.workers.scripts.schedules.with_streaming_response.worker_cron_trigger_update_cron_triggers(
+    async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.workers.scripts.schedules.with_streaming_response.update(
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body="[{'cron': '*/30 * * * *'}]",
@@ -232,23 +166,75 @@ class TestAsyncSchedules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             schedule = await response.parse()
-            assert_matches_type(ScheduleWorkerCronTriggerUpdateCronTriggersResponse, schedule, path=["response"])
+            assert_matches_type(ScheduleUpdateResponse, schedule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_worker_cron_trigger_update_cron_triggers(self, async_client: AsyncCloudflare) -> None:
+    async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.workers.scripts.schedules.with_raw_response.worker_cron_trigger_update_cron_triggers(
+            await async_client.workers.scripts.schedules.with_raw_response.update(
                 "this-is_my_script-01",
                 account_id="",
                 body="[{'cron': '*/30 * * * *'}]",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
-            await async_client.workers.scripts.schedules.with_raw_response.worker_cron_trigger_update_cron_triggers(
+            await async_client.workers.scripts.schedules.with_raw_response.update(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 body="[{'cron': '*/30 * * * *'}]",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_list(self, async_client: AsyncCloudflare) -> None:
+        schedule = await async_client.workers.scripts.schedules.list(
+            "this-is_my_script-01",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(ScheduleListResponse, schedule, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.workers.scripts.schedules.with_raw_response.list(
+            "this-is_my_script-01",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        schedule = await response.parse()
+        assert_matches_type(ScheduleListResponse, schedule, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.workers.scripts.schedules.with_streaming_response.list(
+            "this-is_my_script-01",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            schedule = await response.parse()
+            assert_matches_type(ScheduleListResponse, schedule, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.workers.scripts.schedules.with_raw_response.list(
+                "this-is_my_script-01",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
+            await async_client.workers.scripts.schedules.with_raw_response.list(
+                "",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

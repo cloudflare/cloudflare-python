@@ -2,26 +2,16 @@
 
 from __future__ import annotations
 
-from cloudflare.types.certificate_authorities import (
-    HostnameAssociationClientCertificateForAZoneListHostnameAssociationsResponse,
-    HostnameAssociationClientCertificateForAZonePutHostnameAssociationsResponse,
-)
-
+import os
 from typing import Any, cast
 
-import os
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types.certificate_authorities import (
-    hostname_association_client_certificate_for_a_zone_list_hostname_associations_params,
-)
-from cloudflare.types.certificate_authorities import (
-    hostname_association_client_certificate_for_a_zone_put_hostname_associations_params,
+    HostnameAssociationListResponse,
+    HostnameAssociationUpdateResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -32,144 +22,104 @@ class TestHostnameAssociations:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_client_certificate_for_a_zone_list_hostname_associations(self, client: Cloudflare) -> None:
-        hostname_association = client.certificate_authorities.hostname_associations.client_certificate_for_a_zone_list_hostname_associations(
+    def test_method_update(self, client: Cloudflare) -> None:
+        hostname_association = client.certificate_authorities.hostname_associations.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(
-            HostnameAssociationClientCertificateForAZoneListHostnameAssociationsResponse,
-            hostname_association,
-            path=["response"],
-        )
+        assert_matches_type(HostnameAssociationUpdateResponse, hostname_association, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_client_certificate_for_a_zone_list_hostname_associations_with_all_params(
-        self, client: Cloudflare
-    ) -> None:
-        hostname_association = client.certificate_authorities.hostname_associations.client_certificate_for_a_zone_list_hostname_associations(
+    def test_method_update_with_all_params(self, client: Cloudflare) -> None:
+        hostname_association = client.certificate_authorities.hostname_associations.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            mtls_certificate_id="b2134436-2555-4acf-be5b-26c48136575e",
+            hostnames=["api.example.com", "api.example.com", "api.example.com"],
+            mtls_certificate_id="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
         )
-        assert_matches_type(
-            HostnameAssociationClientCertificateForAZoneListHostnameAssociationsResponse,
-            hostname_association,
-            path=["response"],
-        )
+        assert_matches_type(HostnameAssociationUpdateResponse, hostname_association, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_client_certificate_for_a_zone_list_hostname_associations(self, client: Cloudflare) -> None:
-        response = client.certificate_authorities.hostname_associations.with_raw_response.client_certificate_for_a_zone_list_hostname_associations(
+    def test_raw_response_update(self, client: Cloudflare) -> None:
+        response = client.certificate_authorities.hostname_associations.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hostname_association = response.parse()
-        assert_matches_type(
-            HostnameAssociationClientCertificateForAZoneListHostnameAssociationsResponse,
-            hostname_association,
-            path=["response"],
-        )
+        assert_matches_type(HostnameAssociationUpdateResponse, hostname_association, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_client_certificate_for_a_zone_list_hostname_associations(
-        self, client: Cloudflare
-    ) -> None:
-        with client.certificate_authorities.hostname_associations.with_streaming_response.client_certificate_for_a_zone_list_hostname_associations(
+    def test_streaming_response_update(self, client: Cloudflare) -> None:
+        with client.certificate_authorities.hostname_associations.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hostname_association = response.parse()
-            assert_matches_type(
-                HostnameAssociationClientCertificateForAZoneListHostnameAssociationsResponse,
-                hostname_association,
-                path=["response"],
-            )
+            assert_matches_type(HostnameAssociationUpdateResponse, hostname_association, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_client_certificate_for_a_zone_list_hostname_associations(self, client: Cloudflare) -> None:
+    def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.certificate_authorities.hostname_associations.with_raw_response.client_certificate_for_a_zone_list_hostname_associations(
+            client.certificate_authorities.hostname_associations.with_raw_response.update(
                 "",
             )
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_client_certificate_for_a_zone_put_hostname_associations(self, client: Cloudflare) -> None:
-        hostname_association = client.certificate_authorities.hostname_associations.client_certificate_for_a_zone_put_hostname_associations(
+    def test_method_list(self, client: Cloudflare) -> None:
+        hostname_association = client.certificate_authorities.hostname_associations.list(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(
-            HostnameAssociationClientCertificateForAZonePutHostnameAssociationsResponse,
-            hostname_association,
-            path=["response"],
-        )
+        assert_matches_type(HostnameAssociationListResponse, hostname_association, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_client_certificate_for_a_zone_put_hostname_associations_with_all_params(
-        self, client: Cloudflare
-    ) -> None:
-        hostname_association = client.certificate_authorities.hostname_associations.client_certificate_for_a_zone_put_hostname_associations(
+    def test_method_list_with_all_params(self, client: Cloudflare) -> None:
+        hostname_association = client.certificate_authorities.hostname_associations.list(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            hostnames=["api.example.com", "api.example.com", "api.example.com"],
-            mtls_certificate_id="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+            mtls_certificate_id="b2134436-2555-4acf-be5b-26c48136575e",
         )
-        assert_matches_type(
-            HostnameAssociationClientCertificateForAZonePutHostnameAssociationsResponse,
-            hostname_association,
-            path=["response"],
-        )
+        assert_matches_type(HostnameAssociationListResponse, hostname_association, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_client_certificate_for_a_zone_put_hostname_associations(self, client: Cloudflare) -> None:
-        response = client.certificate_authorities.hostname_associations.with_raw_response.client_certificate_for_a_zone_put_hostname_associations(
+    def test_raw_response_list(self, client: Cloudflare) -> None:
+        response = client.certificate_authorities.hostname_associations.with_raw_response.list(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hostname_association = response.parse()
-        assert_matches_type(
-            HostnameAssociationClientCertificateForAZonePutHostnameAssociationsResponse,
-            hostname_association,
-            path=["response"],
-        )
+        assert_matches_type(HostnameAssociationListResponse, hostname_association, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_client_certificate_for_a_zone_put_hostname_associations(
-        self, client: Cloudflare
-    ) -> None:
-        with client.certificate_authorities.hostname_associations.with_streaming_response.client_certificate_for_a_zone_put_hostname_associations(
+    def test_streaming_response_list(self, client: Cloudflare) -> None:
+        with client.certificate_authorities.hostname_associations.with_streaming_response.list(
             "023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hostname_association = response.parse()
-            assert_matches_type(
-                HostnameAssociationClientCertificateForAZonePutHostnameAssociationsResponse,
-                hostname_association,
-                path=["response"],
-            )
+            assert_matches_type(HostnameAssociationListResponse, hostname_association, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_client_certificate_for_a_zone_put_hostname_associations(self, client: Cloudflare) -> None:
+    def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.certificate_authorities.hostname_associations.with_raw_response.client_certificate_for_a_zone_put_hostname_associations(
+            client.certificate_authorities.hostname_associations.with_raw_response.list(
                 "",
             )
 
@@ -179,155 +129,103 @@ class TestAsyncHostnameAssociations:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_client_certificate_for_a_zone_list_hostname_associations(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        hostname_association = await async_client.certificate_authorities.hostname_associations.client_certificate_for_a_zone_list_hostname_associations(
+    async def test_method_update(self, async_client: AsyncCloudflare) -> None:
+        hostname_association = await async_client.certificate_authorities.hostname_associations.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(
-            HostnameAssociationClientCertificateForAZoneListHostnameAssociationsResponse,
-            hostname_association,
-            path=["response"],
-        )
+        assert_matches_type(HostnameAssociationUpdateResponse, hostname_association, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_client_certificate_for_a_zone_list_hostname_associations_with_all_params(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        hostname_association = await async_client.certificate_authorities.hostname_associations.client_certificate_for_a_zone_list_hostname_associations(
+    async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        hostname_association = await async_client.certificate_authorities.hostname_associations.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            mtls_certificate_id="b2134436-2555-4acf-be5b-26c48136575e",
+            hostnames=["api.example.com", "api.example.com", "api.example.com"],
+            mtls_certificate_id="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
         )
-        assert_matches_type(
-            HostnameAssociationClientCertificateForAZoneListHostnameAssociationsResponse,
-            hostname_association,
-            path=["response"],
-        )
+        assert_matches_type(HostnameAssociationUpdateResponse, hostname_association, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_client_certificate_for_a_zone_list_hostname_associations(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        response = await async_client.certificate_authorities.hostname_associations.with_raw_response.client_certificate_for_a_zone_list_hostname_associations(
+    async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.certificate_authorities.hostname_associations.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hostname_association = await response.parse()
-        assert_matches_type(
-            HostnameAssociationClientCertificateForAZoneListHostnameAssociationsResponse,
-            hostname_association,
-            path=["response"],
-        )
+        assert_matches_type(HostnameAssociationUpdateResponse, hostname_association, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_client_certificate_for_a_zone_list_hostname_associations(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        async with async_client.certificate_authorities.hostname_associations.with_streaming_response.client_certificate_for_a_zone_list_hostname_associations(
+    async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.certificate_authorities.hostname_associations.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hostname_association = await response.parse()
-            assert_matches_type(
-                HostnameAssociationClientCertificateForAZoneListHostnameAssociationsResponse,
-                hostname_association,
-                path=["response"],
-            )
+            assert_matches_type(HostnameAssociationUpdateResponse, hostname_association, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_client_certificate_for_a_zone_list_hostname_associations(
-        self, async_client: AsyncCloudflare
-    ) -> None:
+    async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.certificate_authorities.hostname_associations.with_raw_response.client_certificate_for_a_zone_list_hostname_associations(
+            await async_client.certificate_authorities.hostname_associations.with_raw_response.update(
                 "",
             )
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_client_certificate_for_a_zone_put_hostname_associations(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        hostname_association = await async_client.certificate_authorities.hostname_associations.client_certificate_for_a_zone_put_hostname_associations(
+    async def test_method_list(self, async_client: AsyncCloudflare) -> None:
+        hostname_association = await async_client.certificate_authorities.hostname_associations.list(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(
-            HostnameAssociationClientCertificateForAZonePutHostnameAssociationsResponse,
-            hostname_association,
-            path=["response"],
-        )
+        assert_matches_type(HostnameAssociationListResponse, hostname_association, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_client_certificate_for_a_zone_put_hostname_associations_with_all_params(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        hostname_association = await async_client.certificate_authorities.hostname_associations.client_certificate_for_a_zone_put_hostname_associations(
+    async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        hostname_association = await async_client.certificate_authorities.hostname_associations.list(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            hostnames=["api.example.com", "api.example.com", "api.example.com"],
-            mtls_certificate_id="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+            mtls_certificate_id="b2134436-2555-4acf-be5b-26c48136575e",
         )
-        assert_matches_type(
-            HostnameAssociationClientCertificateForAZonePutHostnameAssociationsResponse,
-            hostname_association,
-            path=["response"],
-        )
+        assert_matches_type(HostnameAssociationListResponse, hostname_association, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_client_certificate_for_a_zone_put_hostname_associations(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        response = await async_client.certificate_authorities.hostname_associations.with_raw_response.client_certificate_for_a_zone_put_hostname_associations(
+    async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.certificate_authorities.hostname_associations.with_raw_response.list(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hostname_association = await response.parse()
-        assert_matches_type(
-            HostnameAssociationClientCertificateForAZonePutHostnameAssociationsResponse,
-            hostname_association,
-            path=["response"],
-        )
+        assert_matches_type(HostnameAssociationListResponse, hostname_association, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_client_certificate_for_a_zone_put_hostname_associations(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        async with async_client.certificate_authorities.hostname_associations.with_streaming_response.client_certificate_for_a_zone_put_hostname_associations(
+    async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.certificate_authorities.hostname_associations.with_streaming_response.list(
             "023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hostname_association = await response.parse()
-            assert_matches_type(
-                HostnameAssociationClientCertificateForAZonePutHostnameAssociationsResponse,
-                hostname_association,
-                path=["response"],
-            )
+            assert_matches_type(HostnameAssociationListResponse, hostname_association, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_client_certificate_for_a_zone_put_hostname_associations(
-        self, async_client: AsyncCloudflare
-    ) -> None:
+    async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.certificate_authorities.hostname_associations.with_raw_response.client_certificate_for_a_zone_put_hostname_associations(
+            await async_client.certificate_authorities.hostname_associations.with_raw_response.list(
                 "",
             )

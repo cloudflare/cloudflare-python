@@ -2,27 +2,21 @@
 
 from __future__ import annotations
 
-from typing import Optional, Any, cast
-
-from cloudflare.types import (
-    ZoneCreateResponse,
-    ZoneUpdateResponse,
-    ZoneListResponse,
-    ZoneDeleteResponse,
-    ZoneGetResponse,
-)
-
 import os
+from typing import Any, Optional, cast
+
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types import zone_create_params
-from cloudflare.types import zone_update_params
-from cloudflare.types import zone_list_params
+from cloudflare.types import (
+    ZoneGetResponse,
+    ZoneEditResponse,
+    ZoneListResponse,
+    ZoneCreateResponse,
+    ZoneDeleteResponse,
+)
+from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -79,62 +73,9 @@ class TestZones:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_update(self, client: Cloudflare) -> None:
-        zone = client.zones.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(Optional[ZoneUpdateResponse], zone, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_method_update_with_all_params(self, client: Cloudflare) -> None:
-        zone = client.zones.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            plan={"id": "023e105f4ecef8ad9ca31a8372d0c353"},
-            type="full",
-            vanity_name_servers=["ns1.example.com", "ns2.example.com"],
-        )
-        assert_matches_type(Optional[ZoneUpdateResponse], zone, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_raw_response_update(self, client: Cloudflare) -> None:
-        response = client.zones.with_raw_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        zone = response.parse()
-        assert_matches_type(Optional[ZoneUpdateResponse], zone, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_streaming_response_update(self, client: Cloudflare) -> None:
-        with client.zones.with_streaming_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            zone = response.parse()
-            assert_matches_type(Optional[ZoneUpdateResponse], zone, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_path_params_update(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.with_raw_response.update(
-                "",
-            )
-
-    @pytest.mark.skip()
-    @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         zone = client.zones.list()
-        assert_matches_type(Optional[ZoneListResponse], zone, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[ZoneListResponse], zone, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -152,7 +93,7 @@ class TestZones:
             per_page=5,
             status="initializing",
         )
-        assert_matches_type(Optional[ZoneListResponse], zone, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[ZoneListResponse], zone, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -162,7 +103,7 @@ class TestZones:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         zone = response.parse()
-        assert_matches_type(Optional[ZoneListResponse], zone, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[ZoneListResponse], zone, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -172,7 +113,7 @@ class TestZones:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             zone = response.parse()
-            assert_matches_type(Optional[ZoneListResponse], zone, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[ZoneListResponse], zone, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -215,6 +156,59 @@ class TestZones:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.with_raw_response.delete(
+                "",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_edit(self, client: Cloudflare) -> None:
+        zone = client.zones.edit(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(Optional[ZoneEditResponse], zone, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
+        zone = client.zones.edit(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            plan={"id": "023e105f4ecef8ad9ca31a8372d0c353"},
+            type="full",
+            vanity_name_servers=["ns1.example.com", "ns2.example.com"],
+        )
+        assert_matches_type(Optional[ZoneEditResponse], zone, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_edit(self, client: Cloudflare) -> None:
+        response = client.zones.with_raw_response.edit(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        zone = response.parse()
+        assert_matches_type(Optional[ZoneEditResponse], zone, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_edit(self, client: Cloudflare) -> None:
+        with client.zones.with_streaming_response.edit(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            zone = response.parse()
+            assert_matches_type(Optional[ZoneEditResponse], zone, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_edit(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            client.zones.with_raw_response.edit(
                 "",
             )
 
@@ -313,62 +307,9 @@ class TestAsyncZones:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_update(self, async_client: AsyncCloudflare) -> None:
-        zone = await async_client.zones.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(Optional[ZoneUpdateResponse], zone, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        zone = await async_client.zones.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            plan={"id": "023e105f4ecef8ad9ca31a8372d0c353"},
-            type="full",
-            vanity_name_servers=["ns1.example.com", "ns2.example.com"],
-        )
-        assert_matches_type(Optional[ZoneUpdateResponse], zone, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.zones.with_raw_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        zone = await response.parse()
-        assert_matches_type(Optional[ZoneUpdateResponse], zone, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.zones.with_streaming_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            zone = await response.parse()
-            assert_matches_type(Optional[ZoneUpdateResponse], zone, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.with_raw_response.update(
-                "",
-            )
-
-    @pytest.mark.skip()
-    @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         zone = await async_client.zones.list()
-        assert_matches_type(Optional[ZoneListResponse], zone, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[ZoneListResponse], zone, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -386,7 +327,7 @@ class TestAsyncZones:
             per_page=5,
             status="initializing",
         )
-        assert_matches_type(Optional[ZoneListResponse], zone, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[ZoneListResponse], zone, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -396,7 +337,7 @@ class TestAsyncZones:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         zone = await response.parse()
-        assert_matches_type(Optional[ZoneListResponse], zone, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[ZoneListResponse], zone, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -406,7 +347,7 @@ class TestAsyncZones:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             zone = await response.parse()
-            assert_matches_type(Optional[ZoneListResponse], zone, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[ZoneListResponse], zone, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -449,6 +390,59 @@ class TestAsyncZones:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.with_raw_response.delete(
+                "",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
+        zone = await async_client.zones.edit(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(Optional[ZoneEditResponse], zone, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        zone = await async_client.zones.edit(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            plan={"id": "023e105f4ecef8ad9ca31a8372d0c353"},
+            type="full",
+            vanity_name_servers=["ns1.example.com", "ns2.example.com"],
+        )
+        assert_matches_type(Optional[ZoneEditResponse], zone, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.zones.with_raw_response.edit(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        zone = await response.parse()
+        assert_matches_type(Optional[ZoneEditResponse], zone, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.zones.with_streaming_response.edit(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            zone = await response.parse()
+            assert_matches_type(Optional[ZoneEditResponse], zone, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            await async_client.zones.with_raw_response.edit(
                 "",
             )
 

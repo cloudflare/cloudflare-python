@@ -2,6 +2,4 @@
 
 from __future__ import annotations
 
-from .access_request_access_authentication_logs_get_access_authentication_logs_response import (
-    AccessRequestAccessAuthenticationLogsGetAccessAuthenticationLogsResponse as AccessRequestAccessAuthenticationLogsGetAccessAuthenticationLogsResponse,
-)
+from .access_request_list_response import AccessRequestListResponse as AccessRequestListResponse
