@@ -25,7 +25,7 @@ class TestValidate:
     def test_method_destination(self, client: Cloudflare) -> None:
         validate = client.logpush.validate.destination(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             destination_conf="s3://mybucket/logs?region=us-west-2",
         )
         assert_matches_type(Optional[ValidateDestinationResponse], validate, path=["response"])
@@ -35,7 +35,7 @@ class TestValidate:
     def test_raw_response_destination(self, client: Cloudflare) -> None:
         response = client.logpush.validate.with_raw_response.destination(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             destination_conf="s3://mybucket/logs?region=us-west-2",
         )
 
@@ -49,7 +49,7 @@ class TestValidate:
     def test_streaming_response_destination(self, client: Cloudflare) -> None:
         with client.logpush.validate.with_streaming_response.destination(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             destination_conf="s3://mybucket/logs?region=us-west-2",
         ) as response:
             assert not response.is_closed
@@ -66,7 +66,7 @@ class TestValidate:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.logpush.validate.with_raw_response.destination(
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
                 destination_conf="s3://mybucket/logs?region=us-west-2",
             )
 
@@ -82,7 +82,7 @@ class TestValidate:
     def test_method_origin(self, client: Cloudflare) -> None:
         validate = client.logpush.validate.origin(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             logpull_options="fields=RayID,ClientIP,EdgeStartTimestamp&timestamps=rfc3339",
         )
         assert_matches_type(Optional[ValidateOriginResponse], validate, path=["response"])
@@ -92,7 +92,7 @@ class TestValidate:
     def test_raw_response_origin(self, client: Cloudflare) -> None:
         response = client.logpush.validate.with_raw_response.origin(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             logpull_options="fields=RayID,ClientIP,EdgeStartTimestamp&timestamps=rfc3339",
         )
 
@@ -106,7 +106,7 @@ class TestValidate:
     def test_streaming_response_origin(self, client: Cloudflare) -> None:
         with client.logpush.validate.with_streaming_response.origin(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             logpull_options="fields=RayID,ClientIP,EdgeStartTimestamp&timestamps=rfc3339",
         ) as response:
             assert not response.is_closed
@@ -123,7 +123,7 @@ class TestValidate:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.logpush.validate.with_raw_response.origin(
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
                 logpull_options="fields=RayID,ClientIP,EdgeStartTimestamp&timestamps=rfc3339",
             )
 
@@ -143,7 +143,7 @@ class TestAsyncValidate:
     async def test_method_destination(self, async_client: AsyncCloudflare) -> None:
         validate = await async_client.logpush.validate.destination(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             destination_conf="s3://mybucket/logs?region=us-west-2",
         )
         assert_matches_type(Optional[ValidateDestinationResponse], validate, path=["response"])
@@ -153,7 +153,7 @@ class TestAsyncValidate:
     async def test_raw_response_destination(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.logpush.validate.with_raw_response.destination(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             destination_conf="s3://mybucket/logs?region=us-west-2",
         )
 
@@ -167,7 +167,7 @@ class TestAsyncValidate:
     async def test_streaming_response_destination(self, async_client: AsyncCloudflare) -> None:
         async with async_client.logpush.validate.with_streaming_response.destination(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             destination_conf="s3://mybucket/logs?region=us-west-2",
         ) as response:
             assert not response.is_closed
@@ -184,7 +184,7 @@ class TestAsyncValidate:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.logpush.validate.with_raw_response.destination(
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
                 destination_conf="s3://mybucket/logs?region=us-west-2",
             )
 
@@ -200,7 +200,7 @@ class TestAsyncValidate:
     async def test_method_origin(self, async_client: AsyncCloudflare) -> None:
         validate = await async_client.logpush.validate.origin(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             logpull_options="fields=RayID,ClientIP,EdgeStartTimestamp&timestamps=rfc3339",
         )
         assert_matches_type(Optional[ValidateOriginResponse], validate, path=["response"])
@@ -210,7 +210,7 @@ class TestAsyncValidate:
     async def test_raw_response_origin(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.logpush.validate.with_raw_response.origin(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             logpull_options="fields=RayID,ClientIP,EdgeStartTimestamp&timestamps=rfc3339",
         )
 
@@ -224,7 +224,7 @@ class TestAsyncValidate:
     async def test_streaming_response_origin(self, async_client: AsyncCloudflare) -> None:
         async with async_client.logpush.validate.with_streaming_response.origin(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             logpull_options="fields=RayID,ClientIP,EdgeStartTimestamp&timestamps=rfc3339",
         ) as response:
             assert not response.is_closed
@@ -241,7 +241,7 @@ class TestAsyncValidate:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.logpush.validate.with_raw_response.origin(
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
                 logpull_options="fields=RayID,ClientIP,EdgeStartTimestamp&timestamps=rfc3339",
             )
 

@@ -27,7 +27,7 @@ class TestDEXTests:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         dex_test = client.devices.dex_tests.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             data={},
             enabled=True,
             interval="30m",
@@ -39,7 +39,7 @@ class TestDEXTests:
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         dex_test = client.devices.dex_tests.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             data={
                 "host": "https://dash.cloudflare.com",
                 "kind": "http",
@@ -56,7 +56,7 @@ class TestDEXTests:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.devices.dex_tests.with_raw_response.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             data={},
             enabled=True,
             interval="30m",
@@ -72,7 +72,7 @@ class TestDEXTests:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.devices.dex_tests.with_streaming_response.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             data={},
             enabled=True,
             interval="30m",
@@ -170,7 +170,7 @@ class TestDEXTests:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         dex_test = client.devices.dex_tests.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[DEXTestListResponse], dex_test, path=["response"])
 
@@ -178,7 +178,7 @@ class TestDEXTests:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.devices.dex_tests.with_raw_response.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
 
         assert response.is_closed is True
@@ -190,7 +190,7 @@ class TestDEXTests:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.devices.dex_tests.with_streaming_response.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -300,7 +300,7 @@ class TestAsyncDEXTests:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         dex_test = await async_client.devices.dex_tests.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             data={},
             enabled=True,
             interval="30m",
@@ -312,7 +312,7 @@ class TestAsyncDEXTests:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         dex_test = await async_client.devices.dex_tests.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             data={
                 "host": "https://dash.cloudflare.com",
                 "kind": "http",
@@ -329,7 +329,7 @@ class TestAsyncDEXTests:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.devices.dex_tests.with_raw_response.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             data={},
             enabled=True,
             interval="30m",
@@ -345,7 +345,7 @@ class TestAsyncDEXTests:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.devices.dex_tests.with_streaming_response.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             data={},
             enabled=True,
             interval="30m",
@@ -443,7 +443,7 @@ class TestAsyncDEXTests:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         dex_test = await async_client.devices.dex_tests.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[DEXTestListResponse], dex_test, path=["response"])
 
@@ -451,7 +451,7 @@ class TestAsyncDEXTests:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.devices.dex_tests.with_raw_response.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
 
         assert response.is_closed is True
@@ -463,7 +463,7 @@ class TestAsyncDEXTests:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.devices.dex_tests.with_streaming_response.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

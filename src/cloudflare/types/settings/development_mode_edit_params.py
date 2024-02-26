@@ -8,5 +8,8 @@ __all__ = ["DevelopmentModeEditParams"]
 
 
 class DevelopmentModeEditParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     value: Required[Literal["on", "off"]]
     """Value of the zone setting."""

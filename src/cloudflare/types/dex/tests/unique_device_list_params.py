@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import List
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Required, Annotated, TypedDict
 
 from ...._utils import PropertyInfo
 
@@ -11,6 +11,8 @@ __all__ = ["UniqueDeviceListParams"]
 
 
 class UniqueDeviceListParams(TypedDict, total=False):
+    account_id: Required[str]
+
     device_id: Annotated[List[str], PropertyInfo(alias="deviceId")]
     """Optionally filter result stats to a specific device(s).
 

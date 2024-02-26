@@ -9,6 +9,8 @@ __all__ = ["IncludeUpdateParams", "Body"]
 
 
 class IncludeUpdateParams(TypedDict, total=False):
+    account_id: Required[object]
+
     body: Required[Iterable[Body]]
 
 

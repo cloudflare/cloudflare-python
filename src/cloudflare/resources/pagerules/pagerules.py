@@ -60,8 +60,8 @@ class Pagerules(SyncAPIResource):
 
     def create(
         self,
-        zone_id: str,
         *,
+        zone_id: str,
         actions: Iterable[pagerule_create_params.Action],
         targets: Iterable[pagerule_create_params.Target],
         priority: int | NotGiven = NOT_GIVEN,
@@ -207,8 +207,8 @@ class Pagerules(SyncAPIResource):
 
     def list(
         self,
-        zone_id: str,
         *,
+        zone_id: str,
         direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
         order: Literal["status", "priority"] | NotGiven = NOT_GIVEN,
@@ -450,8 +450,8 @@ class AsyncPagerules(AsyncAPIResource):
 
     async def create(
         self,
-        zone_id: str,
         *,
+        zone_id: str,
         actions: Iterable[pagerule_create_params.Action],
         targets: Iterable[pagerule_create_params.Target],
         priority: int | NotGiven = NOT_GIVEN,
@@ -597,8 +597,8 @@ class AsyncPagerules(AsyncAPIResource):
 
     async def list(
         self,
-        zone_id: str,
         *,
+        zone_id: str,
         direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
         order: Literal["status", "priority"] | NotGiven = NOT_GIVEN,

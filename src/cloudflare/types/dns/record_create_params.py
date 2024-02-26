@@ -9,6 +9,9 @@ __all__ = ["RecordCreateParams", "Data", "Meta"]
 
 
 class RecordCreateParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     name: Required[str]
     """DNS record name (or @ for the zone apex) in Punycode."""
 

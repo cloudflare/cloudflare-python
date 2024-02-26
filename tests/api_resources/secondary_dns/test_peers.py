@@ -27,7 +27,7 @@ class TestPeers:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         peer = client.secondary_dns.peers.create(
-            "01a7362d577a6c3019a474fd6f485823",
+            account_id="01a7362d577a6c3019a474fd6f485823",
             body={},
         )
         assert_matches_type(PeerCreateResponse, peer, path=["response"])
@@ -36,7 +36,7 @@ class TestPeers:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.secondary_dns.peers.with_raw_response.create(
-            "01a7362d577a6c3019a474fd6f485823",
+            account_id="01a7362d577a6c3019a474fd6f485823",
             body={},
         )
 
@@ -49,7 +49,7 @@ class TestPeers:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.secondary_dns.peers.with_streaming_response.create(
-            "01a7362d577a6c3019a474fd6f485823",
+            account_id="01a7362d577a6c3019a474fd6f485823",
             body={},
         ) as response:
             assert not response.is_closed
@@ -118,7 +118,7 @@ class TestPeers:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         peer = client.secondary_dns.peers.list(
-            "01a7362d577a6c3019a474fd6f485823",
+            account_id="01a7362d577a6c3019a474fd6f485823",
         )
         assert_matches_type(Optional[PeerListResponse], peer, path=["response"])
 
@@ -126,7 +126,7 @@ class TestPeers:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.secondary_dns.peers.with_raw_response.list(
-            "01a7362d577a6c3019a474fd6f485823",
+            account_id="01a7362d577a6c3019a474fd6f485823",
         )
 
         assert response.is_closed is True
@@ -138,7 +138,7 @@ class TestPeers:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.secondary_dns.peers.with_streaming_response.list(
-            "01a7362d577a6c3019a474fd6f485823",
+            account_id="01a7362d577a6c3019a474fd6f485823",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -230,7 +230,7 @@ class TestAsyncPeers:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         peer = await async_client.secondary_dns.peers.create(
-            "01a7362d577a6c3019a474fd6f485823",
+            account_id="01a7362d577a6c3019a474fd6f485823",
             body={},
         )
         assert_matches_type(PeerCreateResponse, peer, path=["response"])
@@ -239,7 +239,7 @@ class TestAsyncPeers:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.secondary_dns.peers.with_raw_response.create(
-            "01a7362d577a6c3019a474fd6f485823",
+            account_id="01a7362d577a6c3019a474fd6f485823",
             body={},
         )
 
@@ -252,7 +252,7 @@ class TestAsyncPeers:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.secondary_dns.peers.with_streaming_response.create(
-            "01a7362d577a6c3019a474fd6f485823",
+            account_id="01a7362d577a6c3019a474fd6f485823",
             body={},
         ) as response:
             assert not response.is_closed
@@ -321,7 +321,7 @@ class TestAsyncPeers:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         peer = await async_client.secondary_dns.peers.list(
-            "01a7362d577a6c3019a474fd6f485823",
+            account_id="01a7362d577a6c3019a474fd6f485823",
         )
         assert_matches_type(Optional[PeerListResponse], peer, path=["response"])
 
@@ -329,7 +329,7 @@ class TestAsyncPeers:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.secondary_dns.peers.with_raw_response.list(
-            "01a7362d577a6c3019a474fd6f485823",
+            account_id="01a7362d577a6c3019a474fd6f485823",
         )
 
         assert response.is_closed is True
@@ -341,7 +341,7 @@ class TestAsyncPeers:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.secondary_dns.peers.with_streaming_response.list(
-            "01a7362d577a6c3019a474fd6f485823",
+            account_id="01a7362d577a6c3019a474fd6f485823",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

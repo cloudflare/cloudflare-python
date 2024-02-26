@@ -37,8 +37,8 @@ class TLS1_3(SyncAPIResource):
 
     def edit(
         self,
-        zone_id: str,
         *,
+        zone_id: str,
         value: Literal["on", "off", "zrt"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -81,8 +81,8 @@ class TLS1_3(SyncAPIResource):
 
     def get(
         self,
-        zone_id: str,
         *,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -130,8 +130,8 @@ class AsyncTLS1_3(AsyncAPIResource):
 
     async def edit(
         self,
-        zone_id: str,
         *,
+        zone_id: str,
         value: Literal["on", "off", "zrt"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -174,8 +174,8 @@ class AsyncTLS1_3(AsyncAPIResource):
 
     async def get(
         self,
-        zone_id: str,
         *,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

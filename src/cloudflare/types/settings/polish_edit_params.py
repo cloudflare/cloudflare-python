@@ -8,6 +8,9 @@ __all__ = ["PolishEditParams", "Value"]
 
 
 class PolishEditParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     value: Required[Value]
     """Removes metadata and compresses your images for faster page load times.
 

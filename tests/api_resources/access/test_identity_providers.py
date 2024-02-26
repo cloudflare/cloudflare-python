@@ -28,7 +28,7 @@ class TestIdentityProviders:
     def test_method_create(self, client: Cloudflare) -> None:
         identity_provider = client.access.identity_providers.create(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
@@ -40,7 +40,7 @@ class TestIdentityProviders:
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         identity_provider = client.access.identity_providers.create(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             config={
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
@@ -98,7 +98,7 @@ class TestIdentityProviders:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.access.identity_providers.with_raw_response.create(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
@@ -114,7 +114,7 @@ class TestIdentityProviders:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.access.identity_providers.with_streaming_response.create(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
@@ -133,7 +133,7 @@ class TestIdentityProviders:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.access.identity_providers.with_raw_response.create(
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
@@ -154,7 +154,7 @@ class TestIdentityProviders:
         identity_provider = client.access.identity_providers.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
@@ -167,7 +167,7 @@ class TestIdentityProviders:
         identity_provider = client.access.identity_providers.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             config={
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
@@ -226,7 +226,7 @@ class TestIdentityProviders:
         response = client.access.identity_providers.with_raw_response.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
@@ -243,7 +243,7 @@ class TestIdentityProviders:
         with client.access.identity_providers.with_streaming_response.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
@@ -263,7 +263,7 @@ class TestIdentityProviders:
             client.access.identity_providers.with_raw_response.update(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
@@ -283,7 +283,7 @@ class TestIdentityProviders:
             client.access.identity_providers.with_raw_response.update(
                 "",
                 account_id="string",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
@@ -294,7 +294,7 @@ class TestIdentityProviders:
     def test_method_list(self, client: Cloudflare) -> None:
         identity_provider = client.access.identity_providers.list(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProviderListResponse], identity_provider, path=["response"])
 
@@ -303,7 +303,7 @@ class TestIdentityProviders:
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.access.identity_providers.with_raw_response.list(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -316,7 +316,7 @@ class TestIdentityProviders:
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.access.identity_providers.with_streaming_response.list(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -332,7 +332,7 @@ class TestIdentityProviders:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.access.identity_providers.with_raw_response.list(
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -347,7 +347,7 @@ class TestIdentityProviders:
         identity_provider = client.access.identity_providers.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
         assert_matches_type(IdentityProviderDeleteResponse, identity_provider, path=["response"])
 
@@ -357,7 +357,7 @@ class TestIdentityProviders:
         response = client.access.identity_providers.with_raw_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -371,7 +371,7 @@ class TestIdentityProviders:
         with client.access.identity_providers.with_streaming_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -388,7 +388,7 @@ class TestIdentityProviders:
             client.access.identity_providers.with_raw_response.delete(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -402,7 +402,7 @@ class TestIdentityProviders:
             client.access.identity_providers.with_raw_response.delete(
                 "",
                 account_id="string",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )
 
     @pytest.mark.skip()
@@ -411,7 +411,7 @@ class TestIdentityProviders:
         identity_provider = client.access.identity_providers.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
         assert_matches_type(IdentityProviderGetResponse, identity_provider, path=["response"])
 
@@ -421,7 +421,7 @@ class TestIdentityProviders:
         response = client.access.identity_providers.with_raw_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -435,7 +435,7 @@ class TestIdentityProviders:
         with client.access.identity_providers.with_streaming_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -452,7 +452,7 @@ class TestIdentityProviders:
             client.access.identity_providers.with_raw_response.get(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -466,7 +466,7 @@ class TestIdentityProviders:
             client.access.identity_providers.with_raw_response.get(
                 "",
                 account_id="string",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )
 
 
@@ -478,7 +478,7 @@ class TestAsyncIdentityProviders:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.access.identity_providers.create(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
@@ -490,7 +490,7 @@ class TestAsyncIdentityProviders:
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.access.identity_providers.create(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             config={
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
@@ -548,7 +548,7 @@ class TestAsyncIdentityProviders:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.access.identity_providers.with_raw_response.create(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
@@ -564,7 +564,7 @@ class TestAsyncIdentityProviders:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.access.identity_providers.with_streaming_response.create(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
@@ -583,7 +583,7 @@ class TestAsyncIdentityProviders:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.access.identity_providers.with_raw_response.create(
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
@@ -604,7 +604,7 @@ class TestAsyncIdentityProviders:
         identity_provider = await async_client.access.identity_providers.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
@@ -617,7 +617,7 @@ class TestAsyncIdentityProviders:
         identity_provider = await async_client.access.identity_providers.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             config={
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
@@ -676,7 +676,7 @@ class TestAsyncIdentityProviders:
         response = await async_client.access.identity_providers.with_raw_response.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
@@ -693,7 +693,7 @@ class TestAsyncIdentityProviders:
         async with async_client.access.identity_providers.with_streaming_response.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
@@ -713,7 +713,7 @@ class TestAsyncIdentityProviders:
             await async_client.access.identity_providers.with_raw_response.update(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
@@ -733,7 +733,7 @@ class TestAsyncIdentityProviders:
             await async_client.access.identity_providers.with_raw_response.update(
                 "",
                 account_id="string",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
@@ -744,7 +744,7 @@ class TestAsyncIdentityProviders:
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.access.identity_providers.list(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProviderListResponse], identity_provider, path=["response"])
 
@@ -753,7 +753,7 @@ class TestAsyncIdentityProviders:
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.access.identity_providers.with_raw_response.list(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -766,7 +766,7 @@ class TestAsyncIdentityProviders:
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.access.identity_providers.with_streaming_response.list(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -782,7 +782,7 @@ class TestAsyncIdentityProviders:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.access.identity_providers.with_raw_response.list(
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -797,7 +797,7 @@ class TestAsyncIdentityProviders:
         identity_provider = await async_client.access.identity_providers.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
         assert_matches_type(IdentityProviderDeleteResponse, identity_provider, path=["response"])
 
@@ -807,7 +807,7 @@ class TestAsyncIdentityProviders:
         response = await async_client.access.identity_providers.with_raw_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -821,7 +821,7 @@ class TestAsyncIdentityProviders:
         async with async_client.access.identity_providers.with_streaming_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -838,7 +838,7 @@ class TestAsyncIdentityProviders:
             await async_client.access.identity_providers.with_raw_response.delete(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -852,7 +852,7 @@ class TestAsyncIdentityProviders:
             await async_client.access.identity_providers.with_raw_response.delete(
                 "",
                 account_id="string",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )
 
     @pytest.mark.skip()
@@ -861,7 +861,7 @@ class TestAsyncIdentityProviders:
         identity_provider = await async_client.access.identity_providers.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
         assert_matches_type(IdentityProviderGetResponse, identity_provider, path=["response"])
 
@@ -871,7 +871,7 @@ class TestAsyncIdentityProviders:
         response = await async_client.access.identity_providers.with_raw_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -885,7 +885,7 @@ class TestAsyncIdentityProviders:
         async with async_client.access.identity_providers.with_streaming_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -902,7 +902,7 @@ class TestAsyncIdentityProviders:
             await async_client.access.identity_providers.with_raw_response.get(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -916,5 +916,5 @@ class TestAsyncIdentityProviders:
             await async_client.access.identity_providers.with_raw_response.get(
                 "",
                 account_id="string",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )

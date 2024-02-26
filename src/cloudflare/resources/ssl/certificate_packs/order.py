@@ -37,8 +37,8 @@ class Order(SyncAPIResource):
 
     def create(
         self,
-        zone_id: str,
         *,
+        zone_id: str,
         certificate_authority: Literal["google", "lets_encrypt"],
         hosts: List[str],
         type: Literal["advanced"],
@@ -119,8 +119,8 @@ class AsyncOrder(AsyncAPIResource):
 
     async def create(
         self,
-        zone_id: str,
         *,
+        zone_id: str,
         certificate_authority: Literal["google", "lets_encrypt"],
         hosts: List[str],
         type: Literal["advanced"],

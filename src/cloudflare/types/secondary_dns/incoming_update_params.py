@@ -9,6 +9,8 @@ __all__ = ["IncomingUpdateParams"]
 
 
 class IncomingUpdateParams(TypedDict, total=False):
+    zone_id: Required[object]
+
     auto_refresh_seconds: Required[float]
     """
     How often should a secondary zone auto refresh regardless of DNS NOTIFY. Not

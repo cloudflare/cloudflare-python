@@ -28,7 +28,7 @@ class TestJobs:
     def test_method_create(self, client: Cloudflare) -> None:
         job = client.logpush.jobs.create(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             destination_conf="s3://mybucket/logs?region=us-west-2",
         )
         assert_matches_type(Optional[JobCreateResponse], job, path=["response"])
@@ -38,7 +38,7 @@ class TestJobs:
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         job = client.logpush.jobs.create(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             destination_conf="s3://mybucket/logs?region=us-west-2",
             dataset="http_requests",
             enabled=False,
@@ -68,7 +68,7 @@ class TestJobs:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.logpush.jobs.with_raw_response.create(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             destination_conf="s3://mybucket/logs?region=us-west-2",
         )
 
@@ -82,7 +82,7 @@ class TestJobs:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.logpush.jobs.with_streaming_response.create(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             destination_conf="s3://mybucket/logs?region=us-west-2",
         ) as response:
             assert not response.is_closed
@@ -99,7 +99,7 @@ class TestJobs:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.logpush.jobs.with_raw_response.create(
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
                 destination_conf="s3://mybucket/logs?region=us-west-2",
             )
 
@@ -116,7 +116,7 @@ class TestJobs:
         job = client.logpush.jobs.update(
             1,
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
         assert_matches_type(Optional[JobUpdateResponse], job, path=["response"])
 
@@ -126,7 +126,7 @@ class TestJobs:
         job = client.logpush.jobs.update(
             1,
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             destination_conf="s3://mybucket/logs?region=us-west-2",
             enabled=False,
             frequency="high",
@@ -155,7 +155,7 @@ class TestJobs:
         response = client.logpush.jobs.with_raw_response.update(
             1,
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -169,7 +169,7 @@ class TestJobs:
         with client.logpush.jobs.with_streaming_response.update(
             1,
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -186,7 +186,7 @@ class TestJobs:
             client.logpush.jobs.with_raw_response.update(
                 1,
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -201,7 +201,7 @@ class TestJobs:
     def test_method_list(self, client: Cloudflare) -> None:
         job = client.logpush.jobs.list(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
         assert_matches_type(JobListResponse, job, path=["response"])
 
@@ -210,7 +210,7 @@ class TestJobs:
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.logpush.jobs.with_raw_response.list(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -223,7 +223,7 @@ class TestJobs:
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.logpush.jobs.with_streaming_response.list(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -239,7 +239,7 @@ class TestJobs:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.logpush.jobs.with_raw_response.list(
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -254,7 +254,7 @@ class TestJobs:
         job = client.logpush.jobs.delete(
             1,
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
         assert_matches_type(Optional[JobDeleteResponse], job, path=["response"])
 
@@ -264,7 +264,7 @@ class TestJobs:
         response = client.logpush.jobs.with_raw_response.delete(
             1,
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -278,7 +278,7 @@ class TestJobs:
         with client.logpush.jobs.with_streaming_response.delete(
             1,
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -295,7 +295,7 @@ class TestJobs:
             client.logpush.jobs.with_raw_response.delete(
                 1,
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -311,7 +311,7 @@ class TestJobs:
         job = client.logpush.jobs.get(
             1,
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
         assert_matches_type(Optional[JobGetResponse], job, path=["response"])
 
@@ -321,7 +321,7 @@ class TestJobs:
         response = client.logpush.jobs.with_raw_response.get(
             1,
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -335,7 +335,7 @@ class TestJobs:
         with client.logpush.jobs.with_streaming_response.get(
             1,
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -352,7 +352,7 @@ class TestJobs:
             client.logpush.jobs.with_raw_response.get(
                 1,
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -371,7 +371,7 @@ class TestAsyncJobs:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         job = await async_client.logpush.jobs.create(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             destination_conf="s3://mybucket/logs?region=us-west-2",
         )
         assert_matches_type(Optional[JobCreateResponse], job, path=["response"])
@@ -381,7 +381,7 @@ class TestAsyncJobs:
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         job = await async_client.logpush.jobs.create(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             destination_conf="s3://mybucket/logs?region=us-west-2",
             dataset="http_requests",
             enabled=False,
@@ -411,7 +411,7 @@ class TestAsyncJobs:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.logpush.jobs.with_raw_response.create(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             destination_conf="s3://mybucket/logs?region=us-west-2",
         )
 
@@ -425,7 +425,7 @@ class TestAsyncJobs:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.logpush.jobs.with_streaming_response.create(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             destination_conf="s3://mybucket/logs?region=us-west-2",
         ) as response:
             assert not response.is_closed
@@ -442,7 +442,7 @@ class TestAsyncJobs:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.logpush.jobs.with_raw_response.create(
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
                 destination_conf="s3://mybucket/logs?region=us-west-2",
             )
 
@@ -459,7 +459,7 @@ class TestAsyncJobs:
         job = await async_client.logpush.jobs.update(
             1,
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
         assert_matches_type(Optional[JobUpdateResponse], job, path=["response"])
 
@@ -469,7 +469,7 @@ class TestAsyncJobs:
         job = await async_client.logpush.jobs.update(
             1,
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             destination_conf="s3://mybucket/logs?region=us-west-2",
             enabled=False,
             frequency="high",
@@ -498,7 +498,7 @@ class TestAsyncJobs:
         response = await async_client.logpush.jobs.with_raw_response.update(
             1,
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -512,7 +512,7 @@ class TestAsyncJobs:
         async with async_client.logpush.jobs.with_streaming_response.update(
             1,
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -529,7 +529,7 @@ class TestAsyncJobs:
             await async_client.logpush.jobs.with_raw_response.update(
                 1,
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -544,7 +544,7 @@ class TestAsyncJobs:
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         job = await async_client.logpush.jobs.list(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
         assert_matches_type(JobListResponse, job, path=["response"])
 
@@ -553,7 +553,7 @@ class TestAsyncJobs:
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.logpush.jobs.with_raw_response.list(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -566,7 +566,7 @@ class TestAsyncJobs:
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.logpush.jobs.with_streaming_response.list(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -582,7 +582,7 @@ class TestAsyncJobs:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.logpush.jobs.with_raw_response.list(
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -597,7 +597,7 @@ class TestAsyncJobs:
         job = await async_client.logpush.jobs.delete(
             1,
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
         assert_matches_type(Optional[JobDeleteResponse], job, path=["response"])
 
@@ -607,7 +607,7 @@ class TestAsyncJobs:
         response = await async_client.logpush.jobs.with_raw_response.delete(
             1,
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -621,7 +621,7 @@ class TestAsyncJobs:
         async with async_client.logpush.jobs.with_streaming_response.delete(
             1,
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -638,7 +638,7 @@ class TestAsyncJobs:
             await async_client.logpush.jobs.with_raw_response.delete(
                 1,
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -654,7 +654,7 @@ class TestAsyncJobs:
         job = await async_client.logpush.jobs.get(
             1,
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
         assert_matches_type(Optional[JobGetResponse], job, path=["response"])
 
@@ -664,7 +664,7 @@ class TestAsyncJobs:
         response = await async_client.logpush.jobs.with_raw_response.get(
             1,
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -678,7 +678,7 @@ class TestAsyncJobs:
         async with async_client.logpush.jobs.with_streaming_response.get(
             1,
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -695,7 +695,7 @@ class TestAsyncJobs:
             await async_client.logpush.jobs.with_raw_response.get(
                 1,
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):

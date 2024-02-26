@@ -9,6 +9,9 @@ __all__ = ["PageruleCreateParams", "Action", "ActionValue", "Target", "TargetCon
 
 
 class PageruleCreateParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     actions: Required[Iterable[Action]]
     """The set of actions to perform if the targets of this rule match the request.
 

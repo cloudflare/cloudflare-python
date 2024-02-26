@@ -2,12 +2,15 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing_extensions import Required, TypedDict
 
 __all__ = ["EdgeCreateParams"]
 
 
 class EdgeCreateParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     fields: str
     """Comma-separated list of fields."""
 

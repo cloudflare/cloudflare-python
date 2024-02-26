@@ -10,6 +10,9 @@ __all__ = ["MonitorCreateParams"]
 
 
 class MonitorCreateParams(TypedDict, total=False):
+    account_id: Required[str]
+    """Identifier"""
+
     expected_codes: Required[str]
     """The expected HTTP response code or code range of the health check.
 

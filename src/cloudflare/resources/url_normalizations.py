@@ -37,8 +37,8 @@ class URLNormalizations(SyncAPIResource):
 
     def update(
         self,
-        zone_id: str,
         *,
+        zone_id: str,
         scope: str | NotGiven = NOT_GIVEN,
         type: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -85,8 +85,8 @@ class URLNormalizations(SyncAPIResource):
 
     def get(
         self,
-        zone_id: str,
         *,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -130,8 +130,8 @@ class AsyncURLNormalizations(AsyncAPIResource):
 
     async def update(
         self,
-        zone_id: str,
         *,
+        zone_id: str,
         scope: str | NotGiven = NOT_GIVEN,
         type: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -178,8 +178,8 @@ class AsyncURLNormalizations(AsyncAPIResource):
 
     async def get(
         self,
-        zone_id: str,
         *,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

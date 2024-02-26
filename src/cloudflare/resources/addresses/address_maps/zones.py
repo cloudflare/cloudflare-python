@@ -35,10 +35,10 @@ class Zones(SyncAPIResource):
 
     def update(
         self,
-        zone_id: str,
-        *,
-        account_id: str,
         address_map_id: str,
+        *,
+        zone_id: str,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -50,11 +50,11 @@ class Zones(SyncAPIResource):
         Add a zone as a member of a particular address map.
 
         Args:
+          zone_id: Identifier
+
           account_id: Identifier
 
           address_map_id: Identifier
-
-          zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -64,16 +64,16 @@ class Zones(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not address_map_id:
             raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
             Optional[ZoneUpdateResponse],
             self._put(
-                f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/zones/{zone_id}",
+                f"/accounts/{zone_id}/addressing/address_maps/{account_id}/zones/{address_map_id}",
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -89,10 +89,10 @@ class Zones(SyncAPIResource):
 
     def delete(
         self,
-        zone_id: str,
-        *,
-        account_id: str,
         address_map_id: str,
+        *,
+        zone_id: str,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -104,11 +104,11 @@ class Zones(SyncAPIResource):
         Remove a zone as a member of a particular address map.
 
         Args:
+          zone_id: Identifier
+
           account_id: Identifier
 
           address_map_id: Identifier
-
-          zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -118,16 +118,16 @@ class Zones(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not address_map_id:
             raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
             Optional[ZoneDeleteResponse],
             self._delete(
-                f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/zones/{zone_id}",
+                f"/accounts/{zone_id}/addressing/address_maps/{account_id}/zones/{address_map_id}",
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -153,10 +153,10 @@ class AsyncZones(AsyncAPIResource):
 
     async def update(
         self,
-        zone_id: str,
-        *,
-        account_id: str,
         address_map_id: str,
+        *,
+        zone_id: str,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -168,11 +168,11 @@ class AsyncZones(AsyncAPIResource):
         Add a zone as a member of a particular address map.
 
         Args:
+          zone_id: Identifier
+
           account_id: Identifier
 
           address_map_id: Identifier
-
-          zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -182,16 +182,16 @@ class AsyncZones(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not address_map_id:
             raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
             Optional[ZoneUpdateResponse],
             await self._put(
-                f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/zones/{zone_id}",
+                f"/accounts/{zone_id}/addressing/address_maps/{account_id}/zones/{address_map_id}",
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -207,10 +207,10 @@ class AsyncZones(AsyncAPIResource):
 
     async def delete(
         self,
-        zone_id: str,
-        *,
-        account_id: str,
         address_map_id: str,
+        *,
+        zone_id: str,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -222,11 +222,11 @@ class AsyncZones(AsyncAPIResource):
         Remove a zone as a member of a particular address map.
 
         Args:
+          zone_id: Identifier
+
           account_id: Identifier
 
           address_map_id: Identifier
-
-          zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -236,16 +236,16 @@ class AsyncZones(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not address_map_id:
             raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
             Optional[ZoneDeleteResponse],
             await self._delete(
-                f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/zones/{zone_id}",
+                f"/accounts/{zone_id}/addressing/address_maps/{account_id}/zones/{address_map_id}",
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

@@ -22,7 +22,7 @@ class TestCopies:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         copy = client.stream.copies.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             url="https://example.com/myvideo.mp4",
         )
         assert_matches_type(CopyCreateResponse, copy, path=["response"])
@@ -31,7 +31,7 @@ class TestCopies:
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         copy = client.stream.copies.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             url="https://example.com/myvideo.mp4",
             allowed_origins=["example.com"],
             creator="creator-id_abcde12345",
@@ -47,7 +47,7 @@ class TestCopies:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.stream.copies.with_raw_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             url="https://example.com/myvideo.mp4",
         )
 
@@ -60,7 +60,7 @@ class TestCopies:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.stream.copies.with_streaming_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             url="https://example.com/myvideo.mp4",
         ) as response:
             assert not response.is_closed
@@ -76,7 +76,7 @@ class TestCopies:
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.stream.copies.with_raw_response.create(
-                "",
+                account_id="",
                 url="https://example.com/myvideo.mp4",
             )
 
@@ -88,7 +88,7 @@ class TestAsyncCopies:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         copy = await async_client.stream.copies.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             url="https://example.com/myvideo.mp4",
         )
         assert_matches_type(CopyCreateResponse, copy, path=["response"])
@@ -97,7 +97,7 @@ class TestAsyncCopies:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         copy = await async_client.stream.copies.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             url="https://example.com/myvideo.mp4",
             allowed_origins=["example.com"],
             creator="creator-id_abcde12345",
@@ -113,7 +113,7 @@ class TestAsyncCopies:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.stream.copies.with_raw_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             url="https://example.com/myvideo.mp4",
         )
 
@@ -126,7 +126,7 @@ class TestAsyncCopies:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.stream.copies.with_streaming_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             url="https://example.com/myvideo.mp4",
         ) as response:
             assert not response.is_closed
@@ -142,6 +142,6 @@ class TestAsyncCopies:
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.stream.copies.with_raw_response.create(
-                "",
+                account_id="",
                 url="https://example.com/myvideo.mp4",
             )

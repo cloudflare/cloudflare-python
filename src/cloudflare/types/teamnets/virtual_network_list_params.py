@@ -2,12 +2,15 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing_extensions import Required, TypedDict
 
 __all__ = ["VirtualNetworkListParams"]
 
 
 class VirtualNetworkListParams(TypedDict, total=False):
+    account_id: Required[str]
+    """Cloudflare account ID"""
+
     is_default: object
     """If `true`, only include the default virtual network.
 

@@ -21,7 +21,7 @@ class TestRoles:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         role = client.roles.list(
-            {},
+            account_id={},
         )
         assert_matches_type(Optional[RoleListResponse], role, path=["response"])
 
@@ -29,7 +29,7 @@ class TestRoles:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.roles.with_raw_response.list(
-            {},
+            account_id={},
         )
 
         assert response.is_closed is True
@@ -41,7 +41,7 @@ class TestRoles:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.roles.with_streaming_response.list(
-            {},
+            account_id={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -96,7 +96,7 @@ class TestAsyncRoles:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         role = await async_client.roles.list(
-            {},
+            account_id={},
         )
         assert_matches_type(Optional[RoleListResponse], role, path=["response"])
 
@@ -104,7 +104,7 @@ class TestAsyncRoles:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.roles.with_raw_response.list(
-            {},
+            account_id={},
         )
 
         assert response.is_closed is True
@@ -116,7 +116,7 @@ class TestAsyncRoles:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.roles.with_streaming_response.list(
-            {},
+            account_id={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

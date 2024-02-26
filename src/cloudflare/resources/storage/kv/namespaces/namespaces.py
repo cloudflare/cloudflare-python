@@ -95,8 +95,8 @@ class Namespaces(SyncAPIResource):
 
     def create(
         self,
-        account_id: str,
         *,
+        account_id: str,
         title: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -194,8 +194,8 @@ class Namespaces(SyncAPIResource):
 
     def list(
         self,
-        account_id: str,
         *,
+        account_id: str,
         direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         order: Literal["id", "title"] | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
@@ -329,8 +329,8 @@ class AsyncNamespaces(AsyncAPIResource):
 
     async def create(
         self,
-        account_id: str,
         *,
+        account_id: str,
         title: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -428,8 +428,8 @@ class AsyncNamespaces(AsyncAPIResource):
 
     def list(
         self,
-        account_id: str,
         *,
+        account_id: str,
         direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         order: Literal["id", "title"] | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,

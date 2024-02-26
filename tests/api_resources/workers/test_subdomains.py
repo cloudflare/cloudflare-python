@@ -21,7 +21,7 @@ class TestSubdomains:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         subdomain = client.workers.subdomains.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body="{'subdomain': 'example-subdomain'}",
         )
         assert_matches_type(SubdomainUpdateResponse, subdomain, path=["response"])
@@ -30,7 +30,7 @@ class TestSubdomains:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.workers.subdomains.with_raw_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body="{'subdomain': 'example-subdomain'}",
         )
 
@@ -43,7 +43,7 @@ class TestSubdomains:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.workers.subdomains.with_streaming_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body="{'subdomain': 'example-subdomain'}",
         ) as response:
             assert not response.is_closed
@@ -59,7 +59,7 @@ class TestSubdomains:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.workers.subdomains.with_raw_response.update(
-                "",
+                account_id="",
                 body="{'subdomain': 'example-subdomain'}",
             )
 
@@ -67,7 +67,7 @@ class TestSubdomains:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         subdomain = client.workers.subdomains.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(SubdomainGetResponse, subdomain, path=["response"])
 
@@ -75,7 +75,7 @@ class TestSubdomains:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.workers.subdomains.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -87,7 +87,7 @@ class TestSubdomains:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.workers.subdomains.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -102,7 +102,7 @@ class TestSubdomains:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.workers.subdomains.with_raw_response.get(
-                "",
+                account_id="",
             )
 
 
@@ -113,7 +113,7 @@ class TestAsyncSubdomains:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         subdomain = await async_client.workers.subdomains.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body="{'subdomain': 'example-subdomain'}",
         )
         assert_matches_type(SubdomainUpdateResponse, subdomain, path=["response"])
@@ -122,7 +122,7 @@ class TestAsyncSubdomains:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers.subdomains.with_raw_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body="{'subdomain': 'example-subdomain'}",
         )
 
@@ -135,7 +135,7 @@ class TestAsyncSubdomains:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers.subdomains.with_streaming_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body="{'subdomain': 'example-subdomain'}",
         ) as response:
             assert not response.is_closed
@@ -151,7 +151,7 @@ class TestAsyncSubdomains:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.workers.subdomains.with_raw_response.update(
-                "",
+                account_id="",
                 body="{'subdomain': 'example-subdomain'}",
             )
 
@@ -159,7 +159,7 @@ class TestAsyncSubdomains:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         subdomain = await async_client.workers.subdomains.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(SubdomainGetResponse, subdomain, path=["response"])
 
@@ -167,7 +167,7 @@ class TestAsyncSubdomains:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers.subdomains.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -179,7 +179,7 @@ class TestAsyncSubdomains:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers.subdomains.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -194,5 +194,5 @@ class TestAsyncSubdomains:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.workers.subdomains.with_raw_response.get(
-                "",
+                account_id="",
             )

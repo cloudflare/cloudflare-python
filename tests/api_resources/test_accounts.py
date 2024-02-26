@@ -22,7 +22,7 @@ class TestAccounts:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         account = client.accounts.update(
-            {},
+            account_id={},
             name="Demo Account",
         )
         assert_matches_type(AccountUpdateResponse, account, path=["response"])
@@ -31,7 +31,7 @@ class TestAccounts:
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         account = client.accounts.update(
-            {},
+            account_id={},
             name="Demo Account",
             settings={
                 "default_nameservers": "cloudflare.standard",
@@ -45,7 +45,7 @@ class TestAccounts:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.accounts.with_raw_response.update(
-            {},
+            account_id={},
             name="Demo Account",
         )
 
@@ -58,7 +58,7 @@ class TestAccounts:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.accounts.with_streaming_response.update(
-            {},
+            account_id={},
             name="Demo Account",
         ) as response:
             assert not response.is_closed
@@ -111,7 +111,7 @@ class TestAccounts:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         account = client.accounts.get(
-            {},
+            account_id={},
         )
         assert_matches_type(AccountGetResponse, account, path=["response"])
 
@@ -119,7 +119,7 @@ class TestAccounts:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.accounts.with_raw_response.get(
-            {},
+            account_id={},
         )
 
         assert response.is_closed is True
@@ -131,7 +131,7 @@ class TestAccounts:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.accounts.with_streaming_response.get(
-            {},
+            account_id={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -149,7 +149,7 @@ class TestAsyncAccounts:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         account = await async_client.accounts.update(
-            {},
+            account_id={},
             name="Demo Account",
         )
         assert_matches_type(AccountUpdateResponse, account, path=["response"])
@@ -158,7 +158,7 @@ class TestAsyncAccounts:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         account = await async_client.accounts.update(
-            {},
+            account_id={},
             name="Demo Account",
             settings={
                 "default_nameservers": "cloudflare.standard",
@@ -172,7 +172,7 @@ class TestAsyncAccounts:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.accounts.with_raw_response.update(
-            {},
+            account_id={},
             name="Demo Account",
         )
 
@@ -185,7 +185,7 @@ class TestAsyncAccounts:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.accounts.with_streaming_response.update(
-            {},
+            account_id={},
             name="Demo Account",
         ) as response:
             assert not response.is_closed
@@ -238,7 +238,7 @@ class TestAsyncAccounts:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         account = await async_client.accounts.get(
-            {},
+            account_id={},
         )
         assert_matches_type(AccountGetResponse, account, path=["response"])
 
@@ -246,7 +246,7 @@ class TestAsyncAccounts:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.accounts.with_raw_response.get(
-            {},
+            account_id={},
         )
 
         assert response.is_closed is True
@@ -258,7 +258,7 @@ class TestAsyncAccounts:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.accounts.with_streaming_response.get(
-            {},
+            account_id={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

@@ -27,7 +27,7 @@ class TestRules:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         rule = client.gateways.rules.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             action="allow",
             name="block bad websites",
         )
@@ -37,7 +37,7 @@ class TestRules:
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         rule = client.gateways.rules.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             action="allow",
             name="block bad websites",
             description="Block bad websites based on their host name.",
@@ -150,7 +150,7 @@ class TestRules:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.gateways.rules.with_raw_response.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             action="allow",
             name="block bad websites",
         )
@@ -164,7 +164,7 @@ class TestRules:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.gateways.rules.with_streaming_response.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             action="allow",
             name="block bad websites",
         ) as response:
@@ -348,7 +348,7 @@ class TestRules:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         rule = client.gateways.rules.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[RuleListResponse], rule, path=["response"])
 
@@ -356,7 +356,7 @@ class TestRules:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.gateways.rules.with_raw_response.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
 
         assert response.is_closed is True
@@ -368,7 +368,7 @@ class TestRules:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.gateways.rules.with_streaming_response.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -478,7 +478,7 @@ class TestAsyncRules:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         rule = await async_client.gateways.rules.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             action="allow",
             name="block bad websites",
         )
@@ -488,7 +488,7 @@ class TestAsyncRules:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         rule = await async_client.gateways.rules.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             action="allow",
             name="block bad websites",
             description="Block bad websites based on their host name.",
@@ -601,7 +601,7 @@ class TestAsyncRules:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.gateways.rules.with_raw_response.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             action="allow",
             name="block bad websites",
         )
@@ -615,7 +615,7 @@ class TestAsyncRules:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.gateways.rules.with_streaming_response.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             action="allow",
             name="block bad websites",
         ) as response:
@@ -799,7 +799,7 @@ class TestAsyncRules:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         rule = await async_client.gateways.rules.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[RuleListResponse], rule, path=["response"])
 
@@ -807,7 +807,7 @@ class TestAsyncRules:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.gateways.rules.with_raw_response.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
 
         assert response.is_closed is True
@@ -819,7 +819,7 @@ class TestAsyncRules:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.gateways.rules.with_streaming_response.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

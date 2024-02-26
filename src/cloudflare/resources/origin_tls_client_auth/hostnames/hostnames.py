@@ -48,8 +48,8 @@ class Hostnames(SyncAPIResource):
 
     def update(
         self,
-        zone_id: str,
         *,
+        zone_id: str,
         config: Iterable[hostname_update_params.Config],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -152,8 +152,8 @@ class AsyncHostnames(AsyncAPIResource):
 
     async def update(
         self,
-        zone_id: str,
         *,
+        zone_id: str,
         config: Iterable[hostname_update_params.Config],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

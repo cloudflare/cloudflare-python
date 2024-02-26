@@ -8,6 +8,9 @@ __all__ = ["OrangeToOrangeEditParams", "Value"]
 
 
 class OrangeToOrangeEditParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     value: Required[Value]
     """
     Orange to Orange (O2O) allows zones on Cloudflare to CNAME to other zones also

@@ -36,8 +36,8 @@ class Searches(SyncAPIResource):
 
     def list(
         self,
-        account_id: str,
         *,
+        account_id: str,
         page: object | NotGiven = NOT_GIVEN,
         per_page: object | NotGiven = NOT_GIVEN,
         search_params: search_list_params.SearchParams | NotGiven = NOT_GIVEN,
@@ -96,8 +96,8 @@ class AsyncSearches(AsyncAPIResource):
 
     async def list(
         self,
-        account_id: str,
         *,
+        account_id: str,
         page: object | NotGiven = NOT_GIVEN,
         per_page: object | NotGiven = NOT_GIVEN,
         search_params: search_list_params.SearchParams | NotGiven = NOT_GIVEN,

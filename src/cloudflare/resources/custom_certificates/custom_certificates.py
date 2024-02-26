@@ -60,8 +60,8 @@ class CustomCertificates(SyncAPIResource):
 
     def create(
         self,
-        zone_id: str,
         *,
+        zone_id: str,
         certificate: str,
         private_key: str,
         bundle_method: Literal["ubiquitous", "optimal", "force"] | NotGiven = NOT_GIVEN,
@@ -151,8 +151,8 @@ class CustomCertificates(SyncAPIResource):
 
     def list(
         self,
-        zone_id: str,
         *,
+        zone_id: str,
         match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
@@ -417,8 +417,8 @@ class AsyncCustomCertificates(AsyncAPIResource):
 
     async def create(
         self,
-        zone_id: str,
         *,
+        zone_id: str,
         certificate: str,
         private_key: str,
         bundle_method: Literal["ubiquitous", "optimal", "force"] | NotGiven = NOT_GIVEN,
@@ -508,8 +508,8 @@ class AsyncCustomCertificates(AsyncAPIResource):
 
     def list(
         self,
-        zone_id: str,
         *,
+        zone_id: str,
         match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,

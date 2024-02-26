@@ -49,8 +49,8 @@ class V2s(SyncAPIResource):
 
     def list(
         self,
-        account_id: str,
         *,
+        account_id: str,
         continuation_token: Optional[str] | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
         sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
@@ -122,8 +122,8 @@ class AsyncV2s(AsyncAPIResource):
 
     async def list(
         self,
-        account_id: str,
         *,
+        account_id: str,
         continuation_token: Optional[str] | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
         sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,

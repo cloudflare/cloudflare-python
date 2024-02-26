@@ -27,7 +27,7 @@ class TestIntegrations:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         integration = client.devices.postures.integrations.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             config={
                 "api_url": "https://as123.awmdm.com/API",
                 "auth_url": "https://na.uemauth.vmwservices.com/connect/token",
@@ -44,7 +44,7 @@ class TestIntegrations:
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         integration = client.devices.postures.integrations.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             config={
                 "api_url": "https://as123.awmdm.com/API",
                 "auth_url": "https://na.uemauth.vmwservices.com/connect/token",
@@ -61,7 +61,7 @@ class TestIntegrations:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.devices.postures.integrations.with_raw_response.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             config={
                 "api_url": "https://as123.awmdm.com/API",
                 "auth_url": "https://na.uemauth.vmwservices.com/connect/token",
@@ -82,7 +82,7 @@ class TestIntegrations:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.devices.postures.integrations.with_streaming_response.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             config={
                 "api_url": "https://as123.awmdm.com/API",
                 "auth_url": "https://na.uemauth.vmwservices.com/connect/token",
@@ -105,7 +105,7 @@ class TestIntegrations:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         integration = client.devices.postures.integrations.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[IntegrationListResponse], integration, path=["response"])
 
@@ -113,7 +113,7 @@ class TestIntegrations:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.devices.postures.integrations.with_raw_response.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
 
         assert response.is_closed is True
@@ -125,7 +125,7 @@ class TestIntegrations:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.devices.postures.integrations.with_streaming_response.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -299,7 +299,7 @@ class TestAsyncIntegrations:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         integration = await async_client.devices.postures.integrations.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             config={
                 "api_url": "https://as123.awmdm.com/API",
                 "auth_url": "https://na.uemauth.vmwservices.com/connect/token",
@@ -316,7 +316,7 @@ class TestAsyncIntegrations:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         integration = await async_client.devices.postures.integrations.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             config={
                 "api_url": "https://as123.awmdm.com/API",
                 "auth_url": "https://na.uemauth.vmwservices.com/connect/token",
@@ -333,7 +333,7 @@ class TestAsyncIntegrations:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.devices.postures.integrations.with_raw_response.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             config={
                 "api_url": "https://as123.awmdm.com/API",
                 "auth_url": "https://na.uemauth.vmwservices.com/connect/token",
@@ -354,7 +354,7 @@ class TestAsyncIntegrations:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.devices.postures.integrations.with_streaming_response.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             config={
                 "api_url": "https://as123.awmdm.com/API",
                 "auth_url": "https://na.uemauth.vmwservices.com/connect/token",
@@ -377,7 +377,7 @@ class TestAsyncIntegrations:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         integration = await async_client.devices.postures.integrations.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[IntegrationListResponse], integration, path=["response"])
 
@@ -385,7 +385,7 @@ class TestAsyncIntegrations:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.devices.postures.integrations.with_raw_response.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
 
         assert response.is_closed is True
@@ -397,7 +397,7 @@ class TestAsyncIntegrations:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.devices.postures.integrations.with_streaming_response.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

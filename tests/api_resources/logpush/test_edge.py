@@ -21,7 +21,7 @@ class TestEdge:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         edge = client.logpush.edge.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[EdgeCreateResponse], edge, path=["response"])
 
@@ -29,7 +29,7 @@ class TestEdge:
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         edge = client.logpush.edge.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             fields="ClientIP,ClientRequestHost,ClientRequestMethod,ClientRequestURI,EdgeEndTimestamp,EdgeResponseBytes,EdgeResponseStatus,EdgeStartTimestamp,RayID",
             filter='{"where":{"and":[{"key":"ClientCountry","operator":"neq","value":"ca"}]}}',
             sample=1,
@@ -40,7 +40,7 @@ class TestEdge:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.logpush.edge.with_raw_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -52,7 +52,7 @@ class TestEdge:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.logpush.edge.with_streaming_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -67,14 +67,14 @@ class TestEdge:
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.logpush.edge.with_raw_response.create(
-                "",
+                zone_id="",
             )
 
     @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         edge = client.logpush.edge.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(EdgeGetResponse, edge, path=["response"])
 
@@ -82,7 +82,7 @@ class TestEdge:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.logpush.edge.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -94,7 +94,7 @@ class TestEdge:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.logpush.edge.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -109,7 +109,7 @@ class TestEdge:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.logpush.edge.with_raw_response.get(
-                "",
+                zone_id="",
             )
 
 
@@ -120,7 +120,7 @@ class TestAsyncEdge:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         edge = await async_client.logpush.edge.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[EdgeCreateResponse], edge, path=["response"])
 
@@ -128,7 +128,7 @@ class TestAsyncEdge:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         edge = await async_client.logpush.edge.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             fields="ClientIP,ClientRequestHost,ClientRequestMethod,ClientRequestURI,EdgeEndTimestamp,EdgeResponseBytes,EdgeResponseStatus,EdgeStartTimestamp,RayID",
             filter='{"where":{"and":[{"key":"ClientCountry","operator":"neq","value":"ca"}]}}',
             sample=1,
@@ -139,7 +139,7 @@ class TestAsyncEdge:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.logpush.edge.with_raw_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -151,7 +151,7 @@ class TestAsyncEdge:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.logpush.edge.with_streaming_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -166,14 +166,14 @@ class TestAsyncEdge:
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.logpush.edge.with_raw_response.create(
-                "",
+                zone_id="",
             )
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         edge = await async_client.logpush.edge.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(EdgeGetResponse, edge, path=["response"])
 
@@ -181,7 +181,7 @@ class TestAsyncEdge:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.logpush.edge.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -193,7 +193,7 @@ class TestAsyncEdge:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.logpush.edge.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -208,5 +208,5 @@ class TestAsyncEdge:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.logpush.edge.with_raw_response.get(
-                "",
+                zone_id="",
             )

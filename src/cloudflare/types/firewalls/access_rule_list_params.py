@@ -13,7 +13,7 @@ class AccessRuleListParams(TypedDict, total=False):
     account_id: Required[str]
     """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
 
-    zone_id: Required[object]
+    zone_id: Required[str]
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
     direction: Literal["asc", "desc"]

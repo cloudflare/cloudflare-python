@@ -23,7 +23,7 @@ class TestVersions:
         version = client.rulesets.versions.list(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
         )
         assert_matches_type(VersionListResponse, version, path=["response"])
 
@@ -33,7 +33,7 @@ class TestVersions:
         response = client.rulesets.versions.with_raw_response.list(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -47,7 +47,7 @@ class TestVersions:
         with client.rulesets.versions.with_streaming_response.list(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -64,7 +64,7 @@ class TestVersions:
             client.rulesets.versions.with_raw_response.list(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="abf9b32d38c5f572afde3336ec0ce302",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -78,7 +78,7 @@ class TestVersions:
             client.rulesets.versions.with_raw_response.list(
                 "",
                 account_id="string",
-                zone_id="abf9b32d38c5f572afde3336ec0ce302",
+                zone_id="string",
             )
 
     @pytest.mark.skip()
@@ -87,7 +87,7 @@ class TestVersions:
         version = client.rulesets.versions.delete(
             "1",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
         )
         assert version is None
@@ -98,7 +98,7 @@ class TestVersions:
         response = client.rulesets.versions.with_raw_response.delete(
             "1",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
         )
 
@@ -113,7 +113,7 @@ class TestVersions:
         with client.rulesets.versions.with_streaming_response.delete(
             "1",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
         ) as response:
             assert not response.is_closed
@@ -131,7 +131,7 @@ class TestVersions:
             client.rulesets.versions.with_raw_response.delete(
                 "1",
                 account_id="",
-                zone_id="abf9b32d38c5f572afde3336ec0ce302",
+                zone_id="string",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
             )
 
@@ -147,7 +147,7 @@ class TestVersions:
             client.rulesets.versions.with_raw_response.delete(
                 "1",
                 account_id="string",
-                zone_id="abf9b32d38c5f572afde3336ec0ce302",
+                zone_id="string",
                 ruleset_id="",
             )
 
@@ -155,7 +155,7 @@ class TestVersions:
             client.rulesets.versions.with_raw_response.delete(
                 "",
                 account_id="string",
-                zone_id="abf9b32d38c5f572afde3336ec0ce302",
+                zone_id="string",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
             )
 
@@ -165,7 +165,7 @@ class TestVersions:
         version = client.rulesets.versions.get(
             "1",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
         )
         assert_matches_type(VersionGetResponse, version, path=["response"])
@@ -176,7 +176,7 @@ class TestVersions:
         response = client.rulesets.versions.with_raw_response.get(
             "1",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
         )
 
@@ -191,7 +191,7 @@ class TestVersions:
         with client.rulesets.versions.with_streaming_response.get(
             "1",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
         ) as response:
             assert not response.is_closed
@@ -209,7 +209,7 @@ class TestVersions:
             client.rulesets.versions.with_raw_response.get(
                 "1",
                 account_id="",
-                zone_id="abf9b32d38c5f572afde3336ec0ce302",
+                zone_id="string",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
             )
 
@@ -225,7 +225,7 @@ class TestVersions:
             client.rulesets.versions.with_raw_response.get(
                 "1",
                 account_id="string",
-                zone_id="abf9b32d38c5f572afde3336ec0ce302",
+                zone_id="string",
                 ruleset_id="",
             )
 
@@ -233,7 +233,7 @@ class TestVersions:
             client.rulesets.versions.with_raw_response.get(
                 "",
                 account_id="string",
-                zone_id="abf9b32d38c5f572afde3336ec0ce302",
+                zone_id="string",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
             )
 
@@ -247,7 +247,7 @@ class TestAsyncVersions:
         version = await async_client.rulesets.versions.list(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
         )
         assert_matches_type(VersionListResponse, version, path=["response"])
 
@@ -257,7 +257,7 @@ class TestAsyncVersions:
         response = await async_client.rulesets.versions.with_raw_response.list(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -271,7 +271,7 @@ class TestAsyncVersions:
         async with async_client.rulesets.versions.with_streaming_response.list(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -288,7 +288,7 @@ class TestAsyncVersions:
             await async_client.rulesets.versions.with_raw_response.list(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="abf9b32d38c5f572afde3336ec0ce302",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -302,7 +302,7 @@ class TestAsyncVersions:
             await async_client.rulesets.versions.with_raw_response.list(
                 "",
                 account_id="string",
-                zone_id="abf9b32d38c5f572afde3336ec0ce302",
+                zone_id="string",
             )
 
     @pytest.mark.skip()
@@ -311,7 +311,7 @@ class TestAsyncVersions:
         version = await async_client.rulesets.versions.delete(
             "1",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
         )
         assert version is None
@@ -322,7 +322,7 @@ class TestAsyncVersions:
         response = await async_client.rulesets.versions.with_raw_response.delete(
             "1",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
         )
 
@@ -337,7 +337,7 @@ class TestAsyncVersions:
         async with async_client.rulesets.versions.with_streaming_response.delete(
             "1",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
         ) as response:
             assert not response.is_closed
@@ -355,7 +355,7 @@ class TestAsyncVersions:
             await async_client.rulesets.versions.with_raw_response.delete(
                 "1",
                 account_id="",
-                zone_id="abf9b32d38c5f572afde3336ec0ce302",
+                zone_id="string",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
             )
 
@@ -371,7 +371,7 @@ class TestAsyncVersions:
             await async_client.rulesets.versions.with_raw_response.delete(
                 "1",
                 account_id="string",
-                zone_id="abf9b32d38c5f572afde3336ec0ce302",
+                zone_id="string",
                 ruleset_id="",
             )
 
@@ -379,7 +379,7 @@ class TestAsyncVersions:
             await async_client.rulesets.versions.with_raw_response.delete(
                 "",
                 account_id="string",
-                zone_id="abf9b32d38c5f572afde3336ec0ce302",
+                zone_id="string",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
             )
 
@@ -389,7 +389,7 @@ class TestAsyncVersions:
         version = await async_client.rulesets.versions.get(
             "1",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
         )
         assert_matches_type(VersionGetResponse, version, path=["response"])
@@ -400,7 +400,7 @@ class TestAsyncVersions:
         response = await async_client.rulesets.versions.with_raw_response.get(
             "1",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
         )
 
@@ -415,7 +415,7 @@ class TestAsyncVersions:
         async with async_client.rulesets.versions.with_streaming_response.get(
             "1",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
         ) as response:
             assert not response.is_closed
@@ -433,7 +433,7 @@ class TestAsyncVersions:
             await async_client.rulesets.versions.with_raw_response.get(
                 "1",
                 account_id="",
-                zone_id="abf9b32d38c5f572afde3336ec0ce302",
+                zone_id="string",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
             )
 
@@ -449,7 +449,7 @@ class TestAsyncVersions:
             await async_client.rulesets.versions.with_raw_response.get(
                 "1",
                 account_id="string",
-                zone_id="abf9b32d38c5f572afde3336ec0ce302",
+                zone_id="string",
                 ruleset_id="",
             )
 
@@ -457,6 +457,6 @@ class TestAsyncVersions:
             await async_client.rulesets.versions.with_raw_response.get(
                 "",
                 account_id="string",
-                zone_id="abf9b32d38c5f572afde3336ec0ce302",
+                zone_id="string",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
             )

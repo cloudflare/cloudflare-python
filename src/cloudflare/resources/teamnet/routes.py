@@ -43,8 +43,8 @@ class Routes(SyncAPIResource):
 
     def create(
         self,
-        account_id: str,
         *,
+        account_id: str,
         ip_network: str,
         comment: str | NotGiven = NOT_GIVEN,
         virtual_network_id: object | NotGiven = NOT_GIVEN,
@@ -228,8 +228,8 @@ class AsyncRoutes(AsyncAPIResource):
 
     async def create(
         self,
-        account_id: str,
         *,
+        account_id: str,
         ip_network: str,
         comment: str | NotGiven = NOT_GIVEN,
         virtual_network_id: object | NotGiven = NOT_GIVEN,

@@ -2,12 +2,15 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["CustomHostnameListParams"]
 
 
 class CustomHostnameListParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     id: str
     """Hostname ID to match against.
 

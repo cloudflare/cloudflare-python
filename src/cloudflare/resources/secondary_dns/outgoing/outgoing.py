@@ -55,8 +55,8 @@ class Outgoing(SyncAPIResource):
 
     def create(
         self,
-        zone_id: object,
         *,
+        zone_id: object,
         name: str,
         peers: Iterable[object],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -103,8 +103,8 @@ class Outgoing(SyncAPIResource):
 
     def update(
         self,
-        zone_id: object,
         *,
+        zone_id: object,
         name: str,
         peers: Iterable[object],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -151,8 +151,8 @@ class Outgoing(SyncAPIResource):
 
     def delete(
         self,
-        zone_id: object,
         *,
+        zone_id: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -186,8 +186,8 @@ class Outgoing(SyncAPIResource):
 
     def disable(
         self,
-        zone_id: object,
         *,
+        zone_id: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -222,8 +222,8 @@ class Outgoing(SyncAPIResource):
 
     def enable(
         self,
-        zone_id: object,
         *,
+        zone_id: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -257,8 +257,8 @@ class Outgoing(SyncAPIResource):
 
     def force_notify(
         self,
-        zone_id: object,
         *,
+        zone_id: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -292,8 +292,8 @@ class Outgoing(SyncAPIResource):
 
     def get(
         self,
-        zone_id: object,
         *,
+        zone_id: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -341,8 +341,8 @@ class AsyncOutgoing(AsyncAPIResource):
 
     async def create(
         self,
-        zone_id: object,
         *,
+        zone_id: object,
         name: str,
         peers: Iterable[object],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -389,8 +389,8 @@ class AsyncOutgoing(AsyncAPIResource):
 
     async def update(
         self,
-        zone_id: object,
         *,
+        zone_id: object,
         name: str,
         peers: Iterable[object],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -437,8 +437,8 @@ class AsyncOutgoing(AsyncAPIResource):
 
     async def delete(
         self,
-        zone_id: object,
         *,
+        zone_id: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -472,8 +472,8 @@ class AsyncOutgoing(AsyncAPIResource):
 
     async def disable(
         self,
-        zone_id: object,
         *,
+        zone_id: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -508,8 +508,8 @@ class AsyncOutgoing(AsyncAPIResource):
 
     async def enable(
         self,
-        zone_id: object,
         *,
+        zone_id: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -543,8 +543,8 @@ class AsyncOutgoing(AsyncAPIResource):
 
     async def force_notify(
         self,
-        zone_id: object,
         *,
+        zone_id: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -578,8 +578,8 @@ class AsyncOutgoing(AsyncAPIResource):
 
     async def get(
         self,
-        zone_id: object,
         *,
+        zone_id: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

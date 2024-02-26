@@ -21,7 +21,7 @@ class TestPCAPs:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         pcap = client.pcaps.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             system="magic-transit",
             time_limit=300,
             type="simple",
@@ -32,7 +32,7 @@ class TestPCAPs:
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         pcap = client.pcaps.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             system="magic-transit",
             time_limit=300,
             type="simple",
@@ -54,7 +54,7 @@ class TestPCAPs:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.pcaps.with_raw_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             system="magic-transit",
             time_limit=300,
             type="simple",
@@ -69,7 +69,7 @@ class TestPCAPs:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.pcaps.with_streaming_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             system="magic-transit",
             time_limit=300,
             type="simple",
@@ -87,7 +87,7 @@ class TestPCAPs:
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.pcaps.with_raw_response.create(
-                "",
+                account_id="",
                 system="magic-transit",
                 time_limit=300,
                 type="simple",
@@ -97,7 +97,7 @@ class TestPCAPs:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         pcap = client.pcaps.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[PCAPListResponse], pcap, path=["response"])
 
@@ -105,7 +105,7 @@ class TestPCAPs:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.pcaps.with_raw_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -117,7 +117,7 @@ class TestPCAPs:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.pcaps.with_streaming_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -132,7 +132,7 @@ class TestPCAPs:
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.pcaps.with_raw_response.list(
-                "",
+                account_id="",
             )
 
     @pytest.mark.skip()
@@ -195,7 +195,7 @@ class TestAsyncPCAPs:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         pcap = await async_client.pcaps.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             system="magic-transit",
             time_limit=300,
             type="simple",
@@ -206,7 +206,7 @@ class TestAsyncPCAPs:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         pcap = await async_client.pcaps.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             system="magic-transit",
             time_limit=300,
             type="simple",
@@ -228,7 +228,7 @@ class TestAsyncPCAPs:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.pcaps.with_raw_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             system="magic-transit",
             time_limit=300,
             type="simple",
@@ -243,7 +243,7 @@ class TestAsyncPCAPs:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.pcaps.with_streaming_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             system="magic-transit",
             time_limit=300,
             type="simple",
@@ -261,7 +261,7 @@ class TestAsyncPCAPs:
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.pcaps.with_raw_response.create(
-                "",
+                account_id="",
                 system="magic-transit",
                 time_limit=300,
                 type="simple",
@@ -271,7 +271,7 @@ class TestAsyncPCAPs:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         pcap = await async_client.pcaps.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[PCAPListResponse], pcap, path=["response"])
 
@@ -279,7 +279,7 @@ class TestAsyncPCAPs:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.pcaps.with_raw_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -291,7 +291,7 @@ class TestAsyncPCAPs:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.pcaps.with_streaming_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -306,7 +306,7 @@ class TestAsyncPCAPs:
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.pcaps.with_raw_response.list(
-                "",
+                account_id="",
             )
 
     @pytest.mark.skip()

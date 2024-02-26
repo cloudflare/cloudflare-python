@@ -9,6 +9,9 @@ __all__ = ["HostnameUpdateParams", "Config"]
 
 
 class HostnameUpdateParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     config: Required[Iterable[Config]]
 
 

@@ -8,5 +8,8 @@ __all__ = ["CacheLevelEditParams"]
 
 
 class CacheLevelEditParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     value: Required[Literal["aggressive", "basic", "simplified"]]
     """Value of the zone setting."""

@@ -42,8 +42,8 @@ class Ownerships(SyncAPIResource):
 
     def create(
         self,
-        account_id: str,
         *,
+        account_id: str,
         destination_conf: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -126,8 +126,8 @@ class Ownerships(SyncAPIResource):
 
     def get(
         self,
-        account_id: str,
         *,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -165,8 +165,8 @@ class Ownerships(SyncAPIResource):
 
     def validate(
         self,
-        account_id: str,
         *,
+        account_id: str,
         destination_conf: str,
         ownership_challenge: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -227,8 +227,8 @@ class AsyncOwnerships(AsyncAPIResource):
 
     async def create(
         self,
-        account_id: str,
         *,
+        account_id: str,
         destination_conf: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -311,8 +311,8 @@ class AsyncOwnerships(AsyncAPIResource):
 
     async def get(
         self,
-        account_id: str,
         *,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -350,8 +350,8 @@ class AsyncOwnerships(AsyncAPIResource):
 
     async def validate(
         self,
-        account_id: str,
         *,
+        account_id: str,
         destination_conf: str,
         ownership_challenge: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

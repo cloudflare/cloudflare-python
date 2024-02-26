@@ -8,6 +8,9 @@ __all__ = ["RocketLoaderEditParams", "Value"]
 
 
 class RocketLoaderEditParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     value: Required[Value]
     """
     Rocket Loader is a general-purpose asynchronous JavaScript optimisation that

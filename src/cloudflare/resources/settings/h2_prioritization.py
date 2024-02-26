@@ -36,8 +36,8 @@ class H2Prioritization(SyncAPIResource):
 
     def edit(
         self,
-        zone_id: str,
         *,
+        zone_id: str,
         value: h2_prioritization_edit_params.Value,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -81,8 +81,8 @@ class H2Prioritization(SyncAPIResource):
 
     def get(
         self,
-        zone_id: str,
         *,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -130,8 +130,8 @@ class AsyncH2Prioritization(AsyncAPIResource):
 
     async def edit(
         self,
-        zone_id: str,
         *,
+        zone_id: str,
         value: h2_prioritization_edit_params.Value,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -175,8 +175,8 @@ class AsyncH2Prioritization(AsyncAPIResource):
 
     async def get(
         self,
-        zone_id: str,
         *,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

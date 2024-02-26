@@ -2,12 +2,15 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["AnalyzeCreateParams"]
 
 
 class AnalyzeCreateParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     bundle_method: Literal["ubiquitous", "optimal", "force"]
     """
     A ubiquitous bundle has the highest probability of being verified everywhere,

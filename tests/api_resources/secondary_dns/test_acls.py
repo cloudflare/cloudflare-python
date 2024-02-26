@@ -27,7 +27,7 @@ class TestACLs:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         acl = client.secondary_dns.acls.create(
-            "01a7362d577a6c3019a474fd6f485823",
+            account_id="01a7362d577a6c3019a474fd6f485823",
             body={},
         )
         assert_matches_type(ACLCreateResponse, acl, path=["response"])
@@ -36,7 +36,7 @@ class TestACLs:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.secondary_dns.acls.with_raw_response.create(
-            "01a7362d577a6c3019a474fd6f485823",
+            account_id="01a7362d577a6c3019a474fd6f485823",
             body={},
         )
 
@@ -49,7 +49,7 @@ class TestACLs:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.secondary_dns.acls.with_streaming_response.create(
-            "01a7362d577a6c3019a474fd6f485823",
+            account_id="01a7362d577a6c3019a474fd6f485823",
             body={},
         ) as response:
             assert not response.is_closed
@@ -107,7 +107,7 @@ class TestACLs:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         acl = client.secondary_dns.acls.list(
-            "01a7362d577a6c3019a474fd6f485823",
+            account_id="01a7362d577a6c3019a474fd6f485823",
         )
         assert_matches_type(Optional[ACLListResponse], acl, path=["response"])
 
@@ -115,7 +115,7 @@ class TestACLs:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.secondary_dns.acls.with_raw_response.list(
-            "01a7362d577a6c3019a474fd6f485823",
+            account_id="01a7362d577a6c3019a474fd6f485823",
         )
 
         assert response.is_closed is True
@@ -127,7 +127,7 @@ class TestACLs:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.secondary_dns.acls.with_streaming_response.list(
-            "01a7362d577a6c3019a474fd6f485823",
+            account_id="01a7362d577a6c3019a474fd6f485823",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -219,7 +219,7 @@ class TestAsyncACLs:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         acl = await async_client.secondary_dns.acls.create(
-            "01a7362d577a6c3019a474fd6f485823",
+            account_id="01a7362d577a6c3019a474fd6f485823",
             body={},
         )
         assert_matches_type(ACLCreateResponse, acl, path=["response"])
@@ -228,7 +228,7 @@ class TestAsyncACLs:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.secondary_dns.acls.with_raw_response.create(
-            "01a7362d577a6c3019a474fd6f485823",
+            account_id="01a7362d577a6c3019a474fd6f485823",
             body={},
         )
 
@@ -241,7 +241,7 @@ class TestAsyncACLs:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.secondary_dns.acls.with_streaming_response.create(
-            "01a7362d577a6c3019a474fd6f485823",
+            account_id="01a7362d577a6c3019a474fd6f485823",
             body={},
         ) as response:
             assert not response.is_closed
@@ -299,7 +299,7 @@ class TestAsyncACLs:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         acl = await async_client.secondary_dns.acls.list(
-            "01a7362d577a6c3019a474fd6f485823",
+            account_id="01a7362d577a6c3019a474fd6f485823",
         )
         assert_matches_type(Optional[ACLListResponse], acl, path=["response"])
 
@@ -307,7 +307,7 @@ class TestAsyncACLs:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.secondary_dns.acls.with_raw_response.list(
-            "01a7362d577a6c3019a474fd6f485823",
+            account_id="01a7362d577a6c3019a474fd6f485823",
         )
 
         assert response.is_closed is True
@@ -319,7 +319,7 @@ class TestAsyncACLs:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.secondary_dns.acls.with_streaming_response.list(
-            "01a7362d577a6c3019a474fd6f485823",
+            account_id="01a7362d577a6c3019a474fd6f485823",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

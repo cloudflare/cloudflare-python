@@ -2,12 +2,14 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing_extensions import Required, TypedDict
 
 __all__ = ["DomainListParams"]
 
 
 class DomainListParams(TypedDict, total=False):
+    account_id: Required[object]
+
     environment: str
     """Worker environment associated with the zone and hostname."""
 

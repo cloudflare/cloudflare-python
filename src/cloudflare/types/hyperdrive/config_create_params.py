@@ -8,6 +8,9 @@ __all__ = ["ConfigCreateParams", "Origin"]
 
 
 class ConfigCreateParams(TypedDict, total=False):
+    account_id: Required[str]
+    """Identifier"""
+
     origin: Required[Origin]
 
 

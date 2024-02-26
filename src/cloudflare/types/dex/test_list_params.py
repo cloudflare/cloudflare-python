@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import List
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
@@ -11,6 +11,8 @@ __all__ = ["TestListParams"]
 
 
 class TestListParams(TypedDict, total=False):
+    account_id: Required[str]
+
     colo: str
     """Optionally filter result stats to a Cloudflare colo.
 

@@ -59,8 +59,8 @@ class Routes(SyncAPIResource):
 
     def list(
         self,
-        account_id: str,
         *,
+        account_id: str,
         comment: str | NotGiven = NOT_GIVEN,
         existed_at: object | NotGiven = NOT_GIVEN,
         is_deleted: object | NotGiven = NOT_GIVEN,
@@ -165,8 +165,8 @@ class AsyncRoutes(AsyncAPIResource):
 
     def list(
         self,
-        account_id: str,
         *,
+        account_id: str,
         comment: str | NotGiven = NOT_GIVEN,
         existed_at: object | NotGiven = NOT_GIVEN,
         is_deleted: object | NotGiven = NOT_GIVEN,

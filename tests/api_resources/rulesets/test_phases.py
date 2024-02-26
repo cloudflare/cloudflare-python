@@ -23,7 +23,7 @@ class TestPhases:
         phase = client.rulesets.phases.update(
             "http_request_firewall_custom",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
             id="2f2feab2026849078ba485f918791bdc",
             rules=[{}, {}, {}],
         )
@@ -35,7 +35,7 @@ class TestPhases:
         phase = client.rulesets.phases.update(
             "http_request_firewall_custom",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
             id="2f2feab2026849078ba485f918791bdc",
             rules=[
                 {
@@ -100,7 +100,7 @@ class TestPhases:
         response = client.rulesets.phases.with_raw_response.update(
             "http_request_firewall_custom",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
             id="2f2feab2026849078ba485f918791bdc",
             rules=[{}, {}, {}],
         )
@@ -116,7 +116,7 @@ class TestPhases:
         with client.rulesets.phases.with_streaming_response.update(
             "http_request_firewall_custom",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
             id="2f2feab2026849078ba485f918791bdc",
             rules=[{}, {}, {}],
         ) as response:
@@ -135,7 +135,7 @@ class TestPhases:
             client.rulesets.phases.with_raw_response.update(
                 "http_request_firewall_custom",
                 account_id="",
-                zone_id="abf9b32d38c5f572afde3336ec0ce302",
+                zone_id="string",
                 id="2f2feab2026849078ba485f918791bdc",
                 rules=[{}, {}, {}],
             )
@@ -155,7 +155,7 @@ class TestPhases:
         phase = client.rulesets.phases.get(
             "http_request_firewall_custom",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
         )
         assert_matches_type(PhaseGetResponse, phase, path=["response"])
 
@@ -165,7 +165,7 @@ class TestPhases:
         response = client.rulesets.phases.with_raw_response.get(
             "http_request_firewall_custom",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -179,7 +179,7 @@ class TestPhases:
         with client.rulesets.phases.with_streaming_response.get(
             "http_request_firewall_custom",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -196,7 +196,7 @@ class TestPhases:
             client.rulesets.phases.with_raw_response.get(
                 "http_request_firewall_custom",
                 account_id="",
-                zone_id="abf9b32d38c5f572afde3336ec0ce302",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -216,7 +216,7 @@ class TestAsyncPhases:
         phase = await async_client.rulesets.phases.update(
             "http_request_firewall_custom",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
             id="2f2feab2026849078ba485f918791bdc",
             rules=[{}, {}, {}],
         )
@@ -228,7 +228,7 @@ class TestAsyncPhases:
         phase = await async_client.rulesets.phases.update(
             "http_request_firewall_custom",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
             id="2f2feab2026849078ba485f918791bdc",
             rules=[
                 {
@@ -293,7 +293,7 @@ class TestAsyncPhases:
         response = await async_client.rulesets.phases.with_raw_response.update(
             "http_request_firewall_custom",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
             id="2f2feab2026849078ba485f918791bdc",
             rules=[{}, {}, {}],
         )
@@ -309,7 +309,7 @@ class TestAsyncPhases:
         async with async_client.rulesets.phases.with_streaming_response.update(
             "http_request_firewall_custom",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
             id="2f2feab2026849078ba485f918791bdc",
             rules=[{}, {}, {}],
         ) as response:
@@ -328,7 +328,7 @@ class TestAsyncPhases:
             await async_client.rulesets.phases.with_raw_response.update(
                 "http_request_firewall_custom",
                 account_id="",
-                zone_id="abf9b32d38c5f572afde3336ec0ce302",
+                zone_id="string",
                 id="2f2feab2026849078ba485f918791bdc",
                 rules=[{}, {}, {}],
             )
@@ -348,7 +348,7 @@ class TestAsyncPhases:
         phase = await async_client.rulesets.phases.get(
             "http_request_firewall_custom",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
         )
         assert_matches_type(PhaseGetResponse, phase, path=["response"])
 
@@ -358,7 +358,7 @@ class TestAsyncPhases:
         response = await async_client.rulesets.phases.with_raw_response.get(
             "http_request_firewall_custom",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -372,7 +372,7 @@ class TestAsyncPhases:
         async with async_client.rulesets.phases.with_streaming_response.get(
             "http_request_firewall_custom",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -389,7 +389,7 @@ class TestAsyncPhases:
             await async_client.rulesets.phases.with_raw_response.get(
                 "http_request_firewall_custom",
                 account_id="",
-                zone_id="abf9b32d38c5f572afde3336ec0ce302",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):

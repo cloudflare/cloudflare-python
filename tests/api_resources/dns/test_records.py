@@ -31,7 +31,7 @@ class TestRecords:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="example.com",
             type="URI",
         )
@@ -41,7 +41,7 @@ class TestRecords:
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="example.com",
             type="URI",
             comment="Domain verification record",
@@ -101,7 +101,7 @@ class TestRecords:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="example.com",
             type="URI",
         )
@@ -115,7 +115,7 @@ class TestRecords:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="example.com",
             type="URI",
         ) as response:
@@ -132,7 +132,7 @@ class TestRecords:
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.create(
-                "",
+                zone_id="",
                 name="example.com",
                 type="URI",
             )
@@ -264,7 +264,7 @@ class TestRecords:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         record = client.dns.records.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(SyncV4PagePaginationArray[RecordListResponse], record, path=["response"])
 
@@ -272,7 +272,7 @@ class TestRecords:
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         record = client.dns.records.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             comment={
                 "present": "string",
                 "absent": "string",
@@ -307,7 +307,7 @@ class TestRecords:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -319,7 +319,7 @@ class TestRecords:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -334,7 +334,7 @@ class TestRecords:
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.list(
-                "",
+                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -516,7 +516,7 @@ class TestRecords:
     @parametrize
     def test_method_export(self, client: Cloudflare) -> None:
         record = client.dns.records.export(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(str, record, path=["response"])
 
@@ -524,7 +524,7 @@ class TestRecords:
     @parametrize
     def test_raw_response_export(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.export(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -536,7 +536,7 @@ class TestRecords:
     @parametrize
     def test_streaming_response_export(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.export(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -551,7 +551,7 @@ class TestRecords:
     def test_path_params_export(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.export(
-                "",
+                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -610,7 +610,7 @@ class TestRecords:
     @parametrize
     def test_method_import(self, client: Cloudflare) -> None:
         record = client.dns.records.import_(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             file="www.example.com. 300 IN  A 127.0.0.1",
         )
         assert_matches_type(RecordImportResponse, record, path=["response"])
@@ -619,7 +619,7 @@ class TestRecords:
     @parametrize
     def test_method_import_with_all_params(self, client: Cloudflare) -> None:
         record = client.dns.records.import_(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             file="www.example.com. 300 IN  A 127.0.0.1",
             proxied="true",
         )
@@ -629,7 +629,7 @@ class TestRecords:
     @parametrize
     def test_raw_response_import(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.import_(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             file="www.example.com. 300 IN  A 127.0.0.1",
         )
 
@@ -642,7 +642,7 @@ class TestRecords:
     @parametrize
     def test_streaming_response_import(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.import_(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             file="www.example.com. 300 IN  A 127.0.0.1",
         ) as response:
             assert not response.is_closed
@@ -658,7 +658,7 @@ class TestRecords:
     def test_path_params_import(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.import_(
-                "",
+                zone_id="",
                 file="www.example.com. 300 IN  A 127.0.0.1",
             )
 
@@ -666,7 +666,7 @@ class TestRecords:
     @parametrize
     def test_method_scan(self, client: Cloudflare) -> None:
         record = client.dns.records.scan(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(RecordScanResponse, record, path=["response"])
 
@@ -674,7 +674,7 @@ class TestRecords:
     @parametrize
     def test_raw_response_scan(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.scan(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -686,7 +686,7 @@ class TestRecords:
     @parametrize
     def test_streaming_response_scan(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.scan(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -701,7 +701,7 @@ class TestRecords:
     def test_path_params_scan(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.scan(
-                "",
+                zone_id="",
             )
 
 
@@ -712,7 +712,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="example.com",
             type="URI",
         )
@@ -722,7 +722,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="example.com",
             type="URI",
             comment="Domain verification record",
@@ -782,7 +782,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="example.com",
             type="URI",
         )
@@ -796,7 +796,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="example.com",
             type="URI",
         ) as response:
@@ -813,7 +813,7 @@ class TestAsyncRecords:
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.create(
-                "",
+                zone_id="",
                 name="example.com",
                 type="URI",
             )
@@ -945,7 +945,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(AsyncV4PagePaginationArray[RecordListResponse], record, path=["response"])
 
@@ -953,7 +953,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             comment={
                 "present": "string",
                 "absent": "string",
@@ -988,7 +988,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -1000,7 +1000,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1015,7 +1015,7 @@ class TestAsyncRecords:
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.list(
-                "",
+                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -1197,7 +1197,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_method_export(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.export(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(str, record, path=["response"])
 
@@ -1205,7 +1205,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_raw_response_export(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.export(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -1217,7 +1217,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_streaming_response_export(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.export(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1232,7 +1232,7 @@ class TestAsyncRecords:
     async def test_path_params_export(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.export(
-                "",
+                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -1291,7 +1291,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_method_import(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.import_(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             file="www.example.com. 300 IN  A 127.0.0.1",
         )
         assert_matches_type(RecordImportResponse, record, path=["response"])
@@ -1300,7 +1300,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_method_import_with_all_params(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.import_(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             file="www.example.com. 300 IN  A 127.0.0.1",
             proxied="true",
         )
@@ -1310,7 +1310,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_raw_response_import(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.import_(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             file="www.example.com. 300 IN  A 127.0.0.1",
         )
 
@@ -1323,7 +1323,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_streaming_response_import(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.import_(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             file="www.example.com. 300 IN  A 127.0.0.1",
         ) as response:
             assert not response.is_closed
@@ -1339,7 +1339,7 @@ class TestAsyncRecords:
     async def test_path_params_import(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.import_(
-                "",
+                zone_id="",
                 file="www.example.com. 300 IN  A 127.0.0.1",
             )
 
@@ -1347,7 +1347,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_method_scan(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.scan(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(RecordScanResponse, record, path=["response"])
 
@@ -1355,7 +1355,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_raw_response_scan(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.scan(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -1367,7 +1367,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_streaming_response_scan(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.scan(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1382,5 +1382,5 @@ class TestAsyncRecords:
     async def test_path_params_scan(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.scan(
-                "",
+                zone_id="",
             )
