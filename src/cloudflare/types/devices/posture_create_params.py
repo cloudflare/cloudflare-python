@@ -31,6 +31,8 @@ __all__ = [
 
 
 class PostureCreateParams(TypedDict, total=False):
+    account_id: Required[object]
+
     name: Required[str]
     """The name of the device posture rule."""
 

@@ -9,6 +9,9 @@ __all__ = ["AutomaticPlatformOptimizationEditParams", "Value"]
 
 
 class AutomaticPlatformOptimizationEditParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     value: Required[Value]
 
 

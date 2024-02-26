@@ -25,7 +25,7 @@ class TestDomains:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         domain = client.workers.domains.update(
-            "9a7806061c88ada191ed06f989cc3dac",
+            account_id="9a7806061c88ada191ed06f989cc3dac",
             environment="production",
             hostname="foo.example.com",
             service="foo",
@@ -37,7 +37,7 @@ class TestDomains:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.workers.domains.with_raw_response.update(
-            "9a7806061c88ada191ed06f989cc3dac",
+            account_id="9a7806061c88ada191ed06f989cc3dac",
             environment="production",
             hostname="foo.example.com",
             service="foo",
@@ -53,7 +53,7 @@ class TestDomains:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.workers.domains.with_streaming_response.update(
-            "9a7806061c88ada191ed06f989cc3dac",
+            account_id="9a7806061c88ada191ed06f989cc3dac",
             environment="production",
             hostname="foo.example.com",
             service="foo",
@@ -71,7 +71,7 @@ class TestDomains:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         domain = client.workers.domains.list(
-            "9a7806061c88ada191ed06f989cc3dac",
+            account_id="9a7806061c88ada191ed06f989cc3dac",
         )
         assert_matches_type(DomainListResponse, domain, path=["response"])
 
@@ -79,7 +79,7 @@ class TestDomains:
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         domain = client.workers.domains.list(
-            "9a7806061c88ada191ed06f989cc3dac",
+            account_id="9a7806061c88ada191ed06f989cc3dac",
             environment="production",
             hostname="foo.example.com",
             service="foo",
@@ -92,7 +92,7 @@ class TestDomains:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.workers.domains.with_raw_response.list(
-            "9a7806061c88ada191ed06f989cc3dac",
+            account_id="9a7806061c88ada191ed06f989cc3dac",
         )
 
         assert response.is_closed is True
@@ -104,7 +104,7 @@ class TestDomains:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.workers.domains.with_streaming_response.list(
-            "9a7806061c88ada191ed06f989cc3dac",
+            account_id="9a7806061c88ada191ed06f989cc3dac",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -196,7 +196,7 @@ class TestAsyncDomains:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         domain = await async_client.workers.domains.update(
-            "9a7806061c88ada191ed06f989cc3dac",
+            account_id="9a7806061c88ada191ed06f989cc3dac",
             environment="production",
             hostname="foo.example.com",
             service="foo",
@@ -208,7 +208,7 @@ class TestAsyncDomains:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers.domains.with_raw_response.update(
-            "9a7806061c88ada191ed06f989cc3dac",
+            account_id="9a7806061c88ada191ed06f989cc3dac",
             environment="production",
             hostname="foo.example.com",
             service="foo",
@@ -224,7 +224,7 @@ class TestAsyncDomains:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers.domains.with_streaming_response.update(
-            "9a7806061c88ada191ed06f989cc3dac",
+            account_id="9a7806061c88ada191ed06f989cc3dac",
             environment="production",
             hostname="foo.example.com",
             service="foo",
@@ -242,7 +242,7 @@ class TestAsyncDomains:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         domain = await async_client.workers.domains.list(
-            "9a7806061c88ada191ed06f989cc3dac",
+            account_id="9a7806061c88ada191ed06f989cc3dac",
         )
         assert_matches_type(DomainListResponse, domain, path=["response"])
 
@@ -250,7 +250,7 @@ class TestAsyncDomains:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         domain = await async_client.workers.domains.list(
-            "9a7806061c88ada191ed06f989cc3dac",
+            account_id="9a7806061c88ada191ed06f989cc3dac",
             environment="production",
             hostname="foo.example.com",
             service="foo",
@@ -263,7 +263,7 @@ class TestAsyncDomains:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers.domains.with_raw_response.list(
-            "9a7806061c88ada191ed06f989cc3dac",
+            account_id="9a7806061c88ada191ed06f989cc3dac",
         )
 
         assert response.is_closed is True
@@ -275,7 +275,7 @@ class TestAsyncDomains:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers.domains.with_streaming_response.list(
-            "9a7806061c88ada191ed06f989cc3dac",
+            account_id="9a7806061c88ada191ed06f989cc3dac",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

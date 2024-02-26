@@ -2,12 +2,15 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["CustomCertificateListParams"]
 
 
 class CustomCertificateListParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     match: Literal["any", "all"]
     """Whether to match all search requirements or at least one (any)."""
 

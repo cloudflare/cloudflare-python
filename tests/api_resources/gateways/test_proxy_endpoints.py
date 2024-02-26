@@ -27,7 +27,7 @@ class TestProxyEndpoints:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         proxy_endpoint = client.gateways.proxy_endpoints.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             ips=["192.0.2.1/32", "192.0.2.1/32", "192.0.2.1/32"],
             name="Devops team",
         )
@@ -37,7 +37,7 @@ class TestProxyEndpoints:
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         proxy_endpoint = client.gateways.proxy_endpoints.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             ips=["192.0.2.1/32", "192.0.2.1/32", "192.0.2.1/32"],
             name="Devops team",
             subdomain="oli3n9zkz5.proxy.cloudflare-gateway.com",
@@ -48,7 +48,7 @@ class TestProxyEndpoints:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.gateways.proxy_endpoints.with_raw_response.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             ips=["192.0.2.1/32", "192.0.2.1/32", "192.0.2.1/32"],
             name="Devops team",
         )
@@ -62,7 +62,7 @@ class TestProxyEndpoints:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.gateways.proxy_endpoints.with_streaming_response.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             ips=["192.0.2.1/32", "192.0.2.1/32", "192.0.2.1/32"],
             name="Devops team",
         ) as response:
@@ -78,7 +78,7 @@ class TestProxyEndpoints:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         proxy_endpoint = client.gateways.proxy_endpoints.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[ProxyEndpointListResponse], proxy_endpoint, path=["response"])
 
@@ -86,7 +86,7 @@ class TestProxyEndpoints:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.gateways.proxy_endpoints.with_raw_response.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
 
         assert response.is_closed is True
@@ -98,7 +98,7 @@ class TestProxyEndpoints:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.gateways.proxy_endpoints.with_streaming_response.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -239,7 +239,7 @@ class TestAsyncProxyEndpoints:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         proxy_endpoint = await async_client.gateways.proxy_endpoints.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             ips=["192.0.2.1/32", "192.0.2.1/32", "192.0.2.1/32"],
             name="Devops team",
         )
@@ -249,7 +249,7 @@ class TestAsyncProxyEndpoints:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         proxy_endpoint = await async_client.gateways.proxy_endpoints.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             ips=["192.0.2.1/32", "192.0.2.1/32", "192.0.2.1/32"],
             name="Devops team",
             subdomain="oli3n9zkz5.proxy.cloudflare-gateway.com",
@@ -260,7 +260,7 @@ class TestAsyncProxyEndpoints:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.gateways.proxy_endpoints.with_raw_response.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             ips=["192.0.2.1/32", "192.0.2.1/32", "192.0.2.1/32"],
             name="Devops team",
         )
@@ -274,7 +274,7 @@ class TestAsyncProxyEndpoints:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.gateways.proxy_endpoints.with_streaming_response.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             ips=["192.0.2.1/32", "192.0.2.1/32", "192.0.2.1/32"],
             name="Devops team",
         ) as response:
@@ -290,7 +290,7 @@ class TestAsyncProxyEndpoints:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         proxy_endpoint = await async_client.gateways.proxy_endpoints.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[ProxyEndpointListResponse], proxy_endpoint, path=["response"])
 
@@ -298,7 +298,7 @@ class TestAsyncProxyEndpoints:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.gateways.proxy_endpoints.with_raw_response.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
 
         assert response.is_closed is True
@@ -310,7 +310,7 @@ class TestAsyncProxyEndpoints:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.gateways.proxy_endpoints.with_streaming_response.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

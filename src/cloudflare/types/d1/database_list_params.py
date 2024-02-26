@@ -2,12 +2,15 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing_extensions import Required, TypedDict
 
 __all__ = ["DatabaseListParams"]
 
 
 class DatabaseListParams(TypedDict, total=False):
+    account_id: Required[str]
+    """Account identifier tag."""
+
     name: str
     """a database name to search for."""
 

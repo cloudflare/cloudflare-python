@@ -33,8 +33,8 @@ class OverTime(SyncAPIResource):
 
     def list(
         self,
-        account_id: str,
         *,
+        account_id: str,
         time_end: str,
         time_start: str,
         colo: str | NotGiven = NOT_GIVEN,
@@ -101,8 +101,8 @@ class AsyncOverTime(AsyncAPIResource):
 
     async def list(
         self,
-        account_id: str,
         *,
+        account_id: str,
         time_end: str,
         time_start: str,
         colo: str | NotGiven = NOT_GIVEN,

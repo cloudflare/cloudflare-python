@@ -8,6 +8,8 @@ __all__ = ["OverTimeListParams"]
 
 
 class OverTimeListParams(TypedDict, total=False):
+    account_id: Required[str]
+
     time_end: Required[str]
     """Timestamp in ISO format"""
 

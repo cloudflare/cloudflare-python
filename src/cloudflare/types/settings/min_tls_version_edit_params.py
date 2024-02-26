@@ -8,5 +8,8 @@ __all__ = ["MinTLSVersionEditParams"]
 
 
 class MinTLSVersionEditParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     value: Required[Literal["1.0", "1.1", "1.2", "1.3"]]
     """Value of the zone setting."""

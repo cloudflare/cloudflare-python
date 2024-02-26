@@ -28,7 +28,7 @@ class TestClientCertificates:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         client_certificate = client.client_certificates.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             csr="-----BEGIN CERTIFICATE REQUEST-----\nMIICY....\n-----END CERTIFICATE REQUEST-----\n",
             validity_days=3650,
         )
@@ -38,7 +38,7 @@ class TestClientCertificates:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.client_certificates.with_raw_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             csr="-----BEGIN CERTIFICATE REQUEST-----\nMIICY....\n-----END CERTIFICATE REQUEST-----\n",
             validity_days=3650,
         )
@@ -52,7 +52,7 @@ class TestClientCertificates:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.client_certificates.with_streaming_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             csr="-----BEGIN CERTIFICATE REQUEST-----\nMIICY....\n-----END CERTIFICATE REQUEST-----\n",
             validity_days=3650,
         ) as response:
@@ -69,7 +69,7 @@ class TestClientCertificates:
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.client_certificates.with_raw_response.create(
-                "",
+                zone_id="",
                 csr="-----BEGIN CERTIFICATE REQUEST-----\nMIICY....\n-----END CERTIFICATE REQUEST-----\n",
                 validity_days=3650,
             )
@@ -78,7 +78,7 @@ class TestClientCertificates:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         client_certificate = client.client_certificates.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(
             SyncV4PagePaginationArray[ClientCertificateListResponse], client_certificate, path=["response"]
@@ -88,7 +88,7 @@ class TestClientCertificates:
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         client_certificate = client.client_certificates.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             limit=10,
             offset=10,
             page=1,
@@ -103,7 +103,7 @@ class TestClientCertificates:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.client_certificates.with_raw_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -117,7 +117,7 @@ class TestClientCertificates:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.client_certificates.with_streaming_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -134,7 +134,7 @@ class TestClientCertificates:
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.client_certificates.with_raw_response.list(
-                "",
+                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -301,7 +301,7 @@ class TestAsyncClientCertificates:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         client_certificate = await async_client.client_certificates.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             csr="-----BEGIN CERTIFICATE REQUEST-----\nMIICY....\n-----END CERTIFICATE REQUEST-----\n",
             validity_days=3650,
         )
@@ -311,7 +311,7 @@ class TestAsyncClientCertificates:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.client_certificates.with_raw_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             csr="-----BEGIN CERTIFICATE REQUEST-----\nMIICY....\n-----END CERTIFICATE REQUEST-----\n",
             validity_days=3650,
         )
@@ -325,7 +325,7 @@ class TestAsyncClientCertificates:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.client_certificates.with_streaming_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             csr="-----BEGIN CERTIFICATE REQUEST-----\nMIICY....\n-----END CERTIFICATE REQUEST-----\n",
             validity_days=3650,
         ) as response:
@@ -342,7 +342,7 @@ class TestAsyncClientCertificates:
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.client_certificates.with_raw_response.create(
-                "",
+                zone_id="",
                 csr="-----BEGIN CERTIFICATE REQUEST-----\nMIICY....\n-----END CERTIFICATE REQUEST-----\n",
                 validity_days=3650,
             )
@@ -351,7 +351,7 @@ class TestAsyncClientCertificates:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         client_certificate = await async_client.client_certificates.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(
             AsyncV4PagePaginationArray[ClientCertificateListResponse], client_certificate, path=["response"]
@@ -361,7 +361,7 @@ class TestAsyncClientCertificates:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         client_certificate = await async_client.client_certificates.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             limit=10,
             offset=10,
             page=1,
@@ -376,7 +376,7 @@ class TestAsyncClientCertificates:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.client_certificates.with_raw_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -390,7 +390,7 @@ class TestAsyncClientCertificates:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.client_certificates.with_streaming_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -407,7 +407,7 @@ class TestAsyncClientCertificates:
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.client_certificates.with_raw_response.list(
-                "",
+                zone_id="",
             )
 
     @pytest.mark.skip()

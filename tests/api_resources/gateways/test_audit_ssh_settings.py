@@ -24,7 +24,7 @@ class TestAuditSSHSettings:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         audit_ssh_setting = client.gateways.audit_ssh_settings.update(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             public_key="1pyl6I1tL7xfJuFYVzXlUW8uXXlpxegHXBzGCBKaSFA=",
         )
         assert_matches_type(AuditSSHSettingUpdateResponse, audit_ssh_setting, path=["response"])
@@ -33,7 +33,7 @@ class TestAuditSSHSettings:
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         audit_ssh_setting = client.gateways.audit_ssh_settings.update(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             public_key="1pyl6I1tL7xfJuFYVzXlUW8uXXlpxegHXBzGCBKaSFA=",
             seed_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
         )
@@ -43,7 +43,7 @@ class TestAuditSSHSettings:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.gateways.audit_ssh_settings.with_raw_response.update(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             public_key="1pyl6I1tL7xfJuFYVzXlUW8uXXlpxegHXBzGCBKaSFA=",
         )
 
@@ -56,7 +56,7 @@ class TestAuditSSHSettings:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.gateways.audit_ssh_settings.with_streaming_response.update(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             public_key="1pyl6I1tL7xfJuFYVzXlUW8uXXlpxegHXBzGCBKaSFA=",
         ) as response:
             assert not response.is_closed
@@ -71,7 +71,7 @@ class TestAuditSSHSettings:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         audit_ssh_setting = client.gateways.audit_ssh_settings.get(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(AuditSSHSettingGetResponse, audit_ssh_setting, path=["response"])
 
@@ -79,7 +79,7 @@ class TestAuditSSHSettings:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.gateways.audit_ssh_settings.with_raw_response.get(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
 
         assert response.is_closed is True
@@ -91,7 +91,7 @@ class TestAuditSSHSettings:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.gateways.audit_ssh_settings.with_streaming_response.get(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -109,7 +109,7 @@ class TestAsyncAuditSSHSettings:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         audit_ssh_setting = await async_client.gateways.audit_ssh_settings.update(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             public_key="1pyl6I1tL7xfJuFYVzXlUW8uXXlpxegHXBzGCBKaSFA=",
         )
         assert_matches_type(AuditSSHSettingUpdateResponse, audit_ssh_setting, path=["response"])
@@ -118,7 +118,7 @@ class TestAsyncAuditSSHSettings:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         audit_ssh_setting = await async_client.gateways.audit_ssh_settings.update(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             public_key="1pyl6I1tL7xfJuFYVzXlUW8uXXlpxegHXBzGCBKaSFA=",
             seed_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
         )
@@ -128,7 +128,7 @@ class TestAsyncAuditSSHSettings:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.gateways.audit_ssh_settings.with_raw_response.update(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             public_key="1pyl6I1tL7xfJuFYVzXlUW8uXXlpxegHXBzGCBKaSFA=",
         )
 
@@ -141,7 +141,7 @@ class TestAsyncAuditSSHSettings:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.gateways.audit_ssh_settings.with_streaming_response.update(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             public_key="1pyl6I1tL7xfJuFYVzXlUW8uXXlpxegHXBzGCBKaSFA=",
         ) as response:
             assert not response.is_closed
@@ -156,7 +156,7 @@ class TestAsyncAuditSSHSettings:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         audit_ssh_setting = await async_client.gateways.audit_ssh_settings.get(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(AuditSSHSettingGetResponse, audit_ssh_setting, path=["response"])
 
@@ -164,7 +164,7 @@ class TestAsyncAuditSSHSettings:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.gateways.audit_ssh_settings.with_raw_response.get(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
 
         assert response.is_closed is True
@@ -176,7 +176,7 @@ class TestAsyncAuditSSHSettings:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.gateways.audit_ssh_settings.with_streaming_response.get(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

@@ -37,8 +37,8 @@ class Copies(SyncAPIResource):
 
     def create(
         self,
-        account_id: str,
         *,
+        account_id: str,
         url: str,
         allowed_origins: List[str] | NotGiven = NOT_GIVEN,
         creator: str | NotGiven = NOT_GIVEN,
@@ -132,8 +132,8 @@ class AsyncCopies(AsyncAPIResource):
 
     async def create(
         self,
-        account_id: str,
         *,
+        account_id: str,
         url: str,
         allowed_origins: List[str] | NotGiven = NOT_GIVEN,
         creator: str | NotGiven = NOT_GIVEN,

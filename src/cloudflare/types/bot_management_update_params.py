@@ -2,12 +2,15 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["BotManagementUpdateParams"]
 
 
 class BotManagementUpdateParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     auto_update_model: bool
     """
     Automatically update to the newest bot detection models created by Cloudflare as

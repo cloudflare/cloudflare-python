@@ -21,7 +21,7 @@ class TestLive:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         live = client.dex.fleet_status.live.list(
-            "01a7362d577a6c3019a474fd6f485823",
+            account_id="01a7362d577a6c3019a474fd6f485823",
             since_minutes=10,
         )
         assert_matches_type(LiveListResponse, live, path=["response"])
@@ -30,7 +30,7 @@ class TestLive:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.dex.fleet_status.live.with_raw_response.list(
-            "01a7362d577a6c3019a474fd6f485823",
+            account_id="01a7362d577a6c3019a474fd6f485823",
             since_minutes=10,
         )
 
@@ -43,7 +43,7 @@ class TestLive:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.dex.fleet_status.live.with_streaming_response.list(
-            "01a7362d577a6c3019a474fd6f485823",
+            account_id="01a7362d577a6c3019a474fd6f485823",
             since_minutes=10,
         ) as response:
             assert not response.is_closed
@@ -59,7 +59,7 @@ class TestLive:
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.dex.fleet_status.live.with_raw_response.list(
-                "",
+                account_id="",
                 since_minutes=10,
             )
 
@@ -71,7 +71,7 @@ class TestAsyncLive:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         live = await async_client.dex.fleet_status.live.list(
-            "01a7362d577a6c3019a474fd6f485823",
+            account_id="01a7362d577a6c3019a474fd6f485823",
             since_minutes=10,
         )
         assert_matches_type(LiveListResponse, live, path=["response"])
@@ -80,7 +80,7 @@ class TestAsyncLive:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dex.fleet_status.live.with_raw_response.list(
-            "01a7362d577a6c3019a474fd6f485823",
+            account_id="01a7362d577a6c3019a474fd6f485823",
             since_minutes=10,
         )
 
@@ -93,7 +93,7 @@ class TestAsyncLive:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dex.fleet_status.live.with_streaming_response.list(
-            "01a7362d577a6c3019a474fd6f485823",
+            account_id="01a7362d577a6c3019a474fd6f485823",
             since_minutes=10,
         ) as response:
             assert not response.is_closed
@@ -109,6 +109,6 @@ class TestAsyncLive:
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.dex.fleet_status.live.with_raw_response.list(
-                "",
+                account_id="",
                 since_minutes=10,
             )

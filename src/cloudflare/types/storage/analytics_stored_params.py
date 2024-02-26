@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import List, Union, Iterable
 from datetime import datetime
-from typing_extensions import Literal, Annotated, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
@@ -12,6 +12,9 @@ __all__ = ["AnalyticsStoredParams", "Query"]
 
 
 class AnalyticsStoredParams(TypedDict, total=False):
+    account_id: Required[str]
+    """Identifier"""
+
     query: Query
     """For specifying result metrics."""
 

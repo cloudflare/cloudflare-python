@@ -8,6 +8,8 @@ __all__ = ["PolicyCreateParams", "ServiceModeV2"]
 
 
 class PolicyCreateParams(TypedDict, total=False):
+    account_id: Required[object]
+
     match: Required[str]
     """The wirefilter expression to match devices."""
 

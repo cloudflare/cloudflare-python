@@ -28,7 +28,7 @@ class TestLoadBalancers:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         load_balancer = client.load_balancers.create(
-            "699d98642c564d2e855e9661899b7252",
+            zone_id="699d98642c564d2e855e9661899b7252",
             default_pools=[
                 "17b5962d775c646f3f9725cbc7a53df4",
                 "9290f38c5d07c2e2f4df57b1f61d4196",
@@ -43,7 +43,7 @@ class TestLoadBalancers:
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         load_balancer = client.load_balancers.create(
-            "699d98642c564d2e855e9661899b7252",
+            zone_id="699d98642c564d2e855e9661899b7252",
             default_pools=[
                 "17b5962d775c646f3f9725cbc7a53df4",
                 "9290f38c5d07c2e2f4df57b1f61d4196",
@@ -273,7 +273,7 @@ class TestLoadBalancers:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.load_balancers.with_raw_response.create(
-            "699d98642c564d2e855e9661899b7252",
+            zone_id="699d98642c564d2e855e9661899b7252",
             default_pools=[
                 "17b5962d775c646f3f9725cbc7a53df4",
                 "9290f38c5d07c2e2f4df57b1f61d4196",
@@ -292,7 +292,7 @@ class TestLoadBalancers:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.load_balancers.with_streaming_response.create(
-            "699d98642c564d2e855e9661899b7252",
+            zone_id="699d98642c564d2e855e9661899b7252",
             default_pools=[
                 "17b5962d775c646f3f9725cbc7a53df4",
                 "9290f38c5d07c2e2f4df57b1f61d4196",
@@ -314,7 +314,7 @@ class TestLoadBalancers:
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.load_balancers.with_raw_response.create(
-                "",
+                zone_id="",
                 default_pools=[
                     "17b5962d775c646f3f9725cbc7a53df4",
                     "9290f38c5d07c2e2f4df57b1f61d4196",
@@ -647,7 +647,7 @@ class TestLoadBalancers:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         load_balancer = client.load_balancers.list(
-            "699d98642c564d2e855e9661899b7252",
+            zone_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[LoadBalancerListResponse], load_balancer, path=["response"])
 
@@ -655,7 +655,7 @@ class TestLoadBalancers:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.load_balancers.with_raw_response.list(
-            "699d98642c564d2e855e9661899b7252",
+            zone_id="699d98642c564d2e855e9661899b7252",
         )
 
         assert response.is_closed is True
@@ -667,7 +667,7 @@ class TestLoadBalancers:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.load_balancers.with_streaming_response.list(
-            "699d98642c564d2e855e9661899b7252",
+            zone_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -682,7 +682,7 @@ class TestLoadBalancers:
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.load_balancers.with_raw_response.list(
-                "",
+                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -1081,7 +1081,7 @@ class TestAsyncLoadBalancers:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         load_balancer = await async_client.load_balancers.create(
-            "699d98642c564d2e855e9661899b7252",
+            zone_id="699d98642c564d2e855e9661899b7252",
             default_pools=[
                 "17b5962d775c646f3f9725cbc7a53df4",
                 "9290f38c5d07c2e2f4df57b1f61d4196",
@@ -1096,7 +1096,7 @@ class TestAsyncLoadBalancers:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         load_balancer = await async_client.load_balancers.create(
-            "699d98642c564d2e855e9661899b7252",
+            zone_id="699d98642c564d2e855e9661899b7252",
             default_pools=[
                 "17b5962d775c646f3f9725cbc7a53df4",
                 "9290f38c5d07c2e2f4df57b1f61d4196",
@@ -1326,7 +1326,7 @@ class TestAsyncLoadBalancers:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.load_balancers.with_raw_response.create(
-            "699d98642c564d2e855e9661899b7252",
+            zone_id="699d98642c564d2e855e9661899b7252",
             default_pools=[
                 "17b5962d775c646f3f9725cbc7a53df4",
                 "9290f38c5d07c2e2f4df57b1f61d4196",
@@ -1345,7 +1345,7 @@ class TestAsyncLoadBalancers:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.load_balancers.with_streaming_response.create(
-            "699d98642c564d2e855e9661899b7252",
+            zone_id="699d98642c564d2e855e9661899b7252",
             default_pools=[
                 "17b5962d775c646f3f9725cbc7a53df4",
                 "9290f38c5d07c2e2f4df57b1f61d4196",
@@ -1367,7 +1367,7 @@ class TestAsyncLoadBalancers:
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.load_balancers.with_raw_response.create(
-                "",
+                zone_id="",
                 default_pools=[
                     "17b5962d775c646f3f9725cbc7a53df4",
                     "9290f38c5d07c2e2f4df57b1f61d4196",
@@ -1700,7 +1700,7 @@ class TestAsyncLoadBalancers:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         load_balancer = await async_client.load_balancers.list(
-            "699d98642c564d2e855e9661899b7252",
+            zone_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[LoadBalancerListResponse], load_balancer, path=["response"])
 
@@ -1708,7 +1708,7 @@ class TestAsyncLoadBalancers:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.load_balancers.with_raw_response.list(
-            "699d98642c564d2e855e9661899b7252",
+            zone_id="699d98642c564d2e855e9661899b7252",
         )
 
         assert response.is_closed is True
@@ -1720,7 +1720,7 @@ class TestAsyncLoadBalancers:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.load_balancers.with_streaming_response.list(
-            "699d98642c564d2e855e9661899b7252",
+            zone_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1735,7 +1735,7 @@ class TestAsyncLoadBalancers:
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.load_balancers.with_raw_response.list(
-                "",
+                zone_id="",
             )
 
     @pytest.mark.skip()

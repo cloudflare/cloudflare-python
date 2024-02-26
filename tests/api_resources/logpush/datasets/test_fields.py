@@ -22,7 +22,7 @@ class TestFields:
         field = client.logpush.datasets.fields.list(
             "http_requests",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
         assert_matches_type(object, field, path=["response"])
 
@@ -32,7 +32,7 @@ class TestFields:
         response = client.logpush.datasets.fields.with_raw_response.list(
             "http_requests",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -46,7 +46,7 @@ class TestFields:
         with client.logpush.datasets.fields.with_streaming_response.list(
             "http_requests",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -63,7 +63,7 @@ class TestFields:
             client.logpush.datasets.fields.with_raw_response.list(
                 "http_requests",
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -77,7 +77,7 @@ class TestFields:
             client.logpush.datasets.fields.with_raw_response.list(
                 "",
                 account_id="string",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )
 
 
@@ -90,7 +90,7 @@ class TestAsyncFields:
         field = await async_client.logpush.datasets.fields.list(
             "http_requests",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
         assert_matches_type(object, field, path=["response"])
 
@@ -100,7 +100,7 @@ class TestAsyncFields:
         response = await async_client.logpush.datasets.fields.with_raw_response.list(
             "http_requests",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -114,7 +114,7 @@ class TestAsyncFields:
         async with async_client.logpush.datasets.fields.with_streaming_response.list(
             "http_requests",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -131,7 +131,7 @@ class TestAsyncFields:
             await async_client.logpush.datasets.fields.with_raw_response.list(
                 "http_requests",
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -145,5 +145,5 @@ class TestAsyncFields:
             await async_client.logpush.datasets.fields.with_raw_response.list(
                 "",
                 account_id="string",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )

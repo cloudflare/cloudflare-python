@@ -37,8 +37,8 @@ class Analyze(SyncAPIResource):
 
     def create(
         self,
-        zone_id: str,
         *,
+        zone_id: str,
         bundle_method: Literal["ubiquitous", "optimal", "force"] | NotGiven = NOT_GIVEN,
         certificate: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -108,8 +108,8 @@ class AsyncAnalyze(AsyncAPIResource):
 
     async def create(
         self,
-        zone_id: str,
         *,
+        zone_id: str,
         bundle_method: Literal["ubiquitous", "optimal", "force"] | NotGiven = NOT_GIVEN,
         certificate: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

@@ -24,7 +24,7 @@ class TestOpportunisticEncryption:
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         opportunistic_encryption = client.settings.opportunistic_encryption.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value="on",
         )
         assert_matches_type(Optional[OpportunisticEncryptionEditResponse], opportunistic_encryption, path=["response"])
@@ -33,7 +33,7 @@ class TestOpportunisticEncryption:
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.settings.opportunistic_encryption.with_raw_response.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value="on",
         )
 
@@ -46,7 +46,7 @@ class TestOpportunisticEncryption:
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.settings.opportunistic_encryption.with_streaming_response.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value="on",
         ) as response:
             assert not response.is_closed
@@ -64,7 +64,7 @@ class TestOpportunisticEncryption:
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.settings.opportunistic_encryption.with_raw_response.edit(
-                "",
+                zone_id="",
                 value="on",
             )
 
@@ -72,7 +72,7 @@ class TestOpportunisticEncryption:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         opportunistic_encryption = client.settings.opportunistic_encryption.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[OpportunisticEncryptionGetResponse], opportunistic_encryption, path=["response"])
 
@@ -80,7 +80,7 @@ class TestOpportunisticEncryption:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.settings.opportunistic_encryption.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -92,7 +92,7 @@ class TestOpportunisticEncryption:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.settings.opportunistic_encryption.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -109,7 +109,7 @@ class TestOpportunisticEncryption:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.settings.opportunistic_encryption.with_raw_response.get(
-                "",
+                zone_id="",
             )
 
 
@@ -120,7 +120,7 @@ class TestAsyncOpportunisticEncryption:
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         opportunistic_encryption = await async_client.settings.opportunistic_encryption.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value="on",
         )
         assert_matches_type(Optional[OpportunisticEncryptionEditResponse], opportunistic_encryption, path=["response"])
@@ -129,7 +129,7 @@ class TestAsyncOpportunisticEncryption:
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.settings.opportunistic_encryption.with_raw_response.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value="on",
         )
 
@@ -142,7 +142,7 @@ class TestAsyncOpportunisticEncryption:
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.settings.opportunistic_encryption.with_streaming_response.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value="on",
         ) as response:
             assert not response.is_closed
@@ -160,7 +160,7 @@ class TestAsyncOpportunisticEncryption:
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.settings.opportunistic_encryption.with_raw_response.edit(
-                "",
+                zone_id="",
                 value="on",
             )
 
@@ -168,7 +168,7 @@ class TestAsyncOpportunisticEncryption:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         opportunistic_encryption = await async_client.settings.opportunistic_encryption.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[OpportunisticEncryptionGetResponse], opportunistic_encryption, path=["response"])
 
@@ -176,7 +176,7 @@ class TestAsyncOpportunisticEncryption:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.settings.opportunistic_encryption.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -188,7 +188,7 @@ class TestAsyncOpportunisticEncryption:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.settings.opportunistic_encryption.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -205,5 +205,5 @@ class TestAsyncOpportunisticEncryption:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.settings.opportunistic_encryption.with_raw_response.get(
-                "",
+                zone_id="",
             )

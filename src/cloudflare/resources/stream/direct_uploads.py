@@ -37,8 +37,8 @@ class DirectUploads(SyncAPIResource):
 
     def create(
         self,
-        account_id: str,
         *,
+        account_id: str,
         max_duration_seconds: int,
         allowed_origins: List[str] | NotGiven = NOT_GIVEN,
         creator: str | NotGiven = NOT_GIVEN,
@@ -137,8 +137,8 @@ class AsyncDirectUploads(AsyncAPIResource):
 
     async def create(
         self,
-        account_id: str,
         *,
+        account_id: str,
         max_duration_seconds: int,
         allowed_origins: List[str] | NotGiven = NOT_GIVEN,
         creator: str | NotGiven = NOT_GIVEN,

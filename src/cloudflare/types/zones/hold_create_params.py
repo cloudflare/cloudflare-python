@@ -2,12 +2,15 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing_extensions import Required, TypedDict
 
 __all__ = ["HoldCreateParams"]
 
 
 class HoldCreateParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     include_subdomains: bool
     """
     If provided, the zone hold will extend to block any subdomain of the given zone,

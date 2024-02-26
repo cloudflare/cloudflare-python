@@ -21,7 +21,7 @@ class TestUniqueDevices:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         unique_device = client.dex.tests.unique_devices.list(
-            "01a7362d577a6c3019a474fd6f485823",
+            account_id="01a7362d577a6c3019a474fd6f485823",
         )
         assert_matches_type(UniqueDeviceListResponse, unique_device, path=["response"])
 
@@ -29,7 +29,7 @@ class TestUniqueDevices:
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         unique_device = client.dex.tests.unique_devices.list(
-            "01a7362d577a6c3019a474fd6f485823",
+            account_id="01a7362d577a6c3019a474fd6f485823",
             device_id=["string", "string", "string"],
             test_name="string",
         )
@@ -39,7 +39,7 @@ class TestUniqueDevices:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.dex.tests.unique_devices.with_raw_response.list(
-            "01a7362d577a6c3019a474fd6f485823",
+            account_id="01a7362d577a6c3019a474fd6f485823",
         )
 
         assert response.is_closed is True
@@ -51,7 +51,7 @@ class TestUniqueDevices:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.dex.tests.unique_devices.with_streaming_response.list(
-            "01a7362d577a6c3019a474fd6f485823",
+            account_id="01a7362d577a6c3019a474fd6f485823",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -66,7 +66,7 @@ class TestUniqueDevices:
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.dex.tests.unique_devices.with_raw_response.list(
-                "",
+                account_id="",
             )
 
 
@@ -77,7 +77,7 @@ class TestAsyncUniqueDevices:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         unique_device = await async_client.dex.tests.unique_devices.list(
-            "01a7362d577a6c3019a474fd6f485823",
+            account_id="01a7362d577a6c3019a474fd6f485823",
         )
         assert_matches_type(UniqueDeviceListResponse, unique_device, path=["response"])
 
@@ -85,7 +85,7 @@ class TestAsyncUniqueDevices:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         unique_device = await async_client.dex.tests.unique_devices.list(
-            "01a7362d577a6c3019a474fd6f485823",
+            account_id="01a7362d577a6c3019a474fd6f485823",
             device_id=["string", "string", "string"],
             test_name="string",
         )
@@ -95,7 +95,7 @@ class TestAsyncUniqueDevices:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dex.tests.unique_devices.with_raw_response.list(
-            "01a7362d577a6c3019a474fd6f485823",
+            account_id="01a7362d577a6c3019a474fd6f485823",
         )
 
         assert response.is_closed is True
@@ -107,7 +107,7 @@ class TestAsyncUniqueDevices:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dex.tests.unique_devices.with_streaming_response.list(
-            "01a7362d577a6c3019a474fd6f485823",
+            account_id="01a7362d577a6c3019a474fd6f485823",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -122,5 +122,5 @@ class TestAsyncUniqueDevices:
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.dex.tests.unique_devices.with_raw_response.list(
-                "",
+                account_id="",
             )

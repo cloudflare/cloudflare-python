@@ -25,7 +25,7 @@ class TestBuckets:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         bucket = client.r2.buckets.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="example-bucket",
         )
         assert_matches_type(BucketCreateResponse, bucket, path=["response"])
@@ -34,7 +34,7 @@ class TestBuckets:
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         bucket = client.r2.buckets.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="example-bucket",
             location_hint="apac",
         )
@@ -44,7 +44,7 @@ class TestBuckets:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.r2.buckets.with_raw_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="example-bucket",
         )
 
@@ -57,7 +57,7 @@ class TestBuckets:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.r2.buckets.with_streaming_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="example-bucket",
         ) as response:
             assert not response.is_closed
@@ -73,7 +73,7 @@ class TestBuckets:
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.r2.buckets.with_raw_response.create(
-                "",
+                account_id="",
                 name="example-bucket",
             )
 
@@ -81,7 +81,7 @@ class TestBuckets:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         bucket = client.r2.buckets.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(BucketListResponse, bucket, path=["response"])
 
@@ -89,7 +89,7 @@ class TestBuckets:
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         bucket = client.r2.buckets.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             cursor="string",
             direction="desc",
             name_contains="my-bucket",
@@ -103,7 +103,7 @@ class TestBuckets:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.r2.buckets.with_raw_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -115,7 +115,7 @@ class TestBuckets:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.r2.buckets.with_streaming_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -130,7 +130,7 @@ class TestBuckets:
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.r2.buckets.with_raw_response.list(
-                "",
+                account_id="",
             )
 
     @pytest.mark.skip()
@@ -245,7 +245,7 @@ class TestAsyncBuckets:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         bucket = await async_client.r2.buckets.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="example-bucket",
         )
         assert_matches_type(BucketCreateResponse, bucket, path=["response"])
@@ -254,7 +254,7 @@ class TestAsyncBuckets:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         bucket = await async_client.r2.buckets.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="example-bucket",
             location_hint="apac",
         )
@@ -264,7 +264,7 @@ class TestAsyncBuckets:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.r2.buckets.with_raw_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="example-bucket",
         )
 
@@ -277,7 +277,7 @@ class TestAsyncBuckets:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.r2.buckets.with_streaming_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="example-bucket",
         ) as response:
             assert not response.is_closed
@@ -293,7 +293,7 @@ class TestAsyncBuckets:
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.r2.buckets.with_raw_response.create(
-                "",
+                account_id="",
                 name="example-bucket",
             )
 
@@ -301,7 +301,7 @@ class TestAsyncBuckets:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         bucket = await async_client.r2.buckets.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(BucketListResponse, bucket, path=["response"])
 
@@ -309,7 +309,7 @@ class TestAsyncBuckets:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         bucket = await async_client.r2.buckets.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             cursor="string",
             direction="desc",
             name_contains="my-bucket",
@@ -323,7 +323,7 @@ class TestAsyncBuckets:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.r2.buckets.with_raw_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -335,7 +335,7 @@ class TestAsyncBuckets:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.r2.buckets.with_streaming_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -350,7 +350,7 @@ class TestAsyncBuckets:
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.r2.buckets.with_raw_response.list(
-                "",
+                account_id="",
             )
 
     @pytest.mark.skip()

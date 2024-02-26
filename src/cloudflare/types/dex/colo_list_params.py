@@ -10,6 +10,8 @@ __all__ = ["ColoListParams"]
 
 
 class ColoListParams(TypedDict, total=False):
+    account_id: Required[str]
+
     time_end: Required[Annotated[str, PropertyInfo(alias="timeEnd")]]
     """End time for connection period in RFC3339 (ISO 8601) format."""
 

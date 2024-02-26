@@ -2,12 +2,15 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing_extensions import Required, TypedDict
 
 __all__ = ["RouteListParams"]
 
 
 class RouteListParams(TypedDict, total=False):
+    account_id: Required[str]
+    """Cloudflare account ID"""
+
     comment: str
     """Optional remark describing the route."""
 

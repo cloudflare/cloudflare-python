@@ -9,6 +9,9 @@ __all__ = ["OrderCreateParams"]
 
 
 class OrderCreateParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     certificate_authority: Required[Literal["google", "lets_encrypt"]]
     """Certificate Authority selected for the order.
 

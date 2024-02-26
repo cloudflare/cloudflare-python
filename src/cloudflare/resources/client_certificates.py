@@ -47,8 +47,8 @@ class ClientCertificates(SyncAPIResource):
 
     def create(
         self,
-        zone_id: str,
         *,
+        zone_id: str,
         csr: str,
         validity_days: int,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -99,8 +99,8 @@ class ClientCertificates(SyncAPIResource):
 
     def list(
         self,
-        zone_id: str,
         *,
+        zone_id: str,
         limit: int | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
@@ -315,8 +315,8 @@ class AsyncClientCertificates(AsyncAPIResource):
 
     async def create(
         self,
-        zone_id: str,
         *,
+        zone_id: str,
         csr: str,
         validity_days: int,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -367,8 +367,8 @@ class AsyncClientCertificates(AsyncAPIResource):
 
     def list(
         self,
-        zone_id: str,
         *,
+        zone_id: str,
         limit: int | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,

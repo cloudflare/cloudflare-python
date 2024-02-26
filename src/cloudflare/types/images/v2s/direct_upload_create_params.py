@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Union
 from datetime import datetime
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Required, Annotated, TypedDict
 
 from ...._utils import PropertyInfo
 
@@ -12,6 +12,9 @@ __all__ = ["DirectUploadCreateParams"]
 
 
 class DirectUploadCreateParams(TypedDict, total=False):
+    account_id: Required[str]
+    """Account identifier tag."""
+
     expiry: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """The date after which the upload will not be accepted.
 

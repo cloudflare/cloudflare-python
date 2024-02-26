@@ -8,6 +8,8 @@ __all__ = ["TSIGCreateParams"]
 
 
 class TSIGCreateParams(TypedDict, total=False):
+    account_id: Required[object]
+
     algo: Required[str]
     """TSIG algorithm."""
 

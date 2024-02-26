@@ -27,7 +27,7 @@ class TestRules:
         rule = client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
 
@@ -37,7 +37,7 @@ class TestRules:
         rule = client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
@@ -48,7 +48,7 @@ class TestRules:
         response = client.rulesets.rules.with_raw_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -62,7 +62,7 @@ class TestRules:
         with client.rulesets.rules.with_streaming_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -79,7 +79,7 @@ class TestRules:
             client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="abf9b32d38c5f572afde3336ec0ce302",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -93,7 +93,7 @@ class TestRules:
             client.rulesets.rules.with_raw_response.create(
                 "",
                 account_id="string",
-                zone_id="abf9b32d38c5f572afde3336ec0ce302",
+                zone_id="string",
             )
 
     @pytest.mark.skip()
@@ -102,7 +102,7 @@ class TestRules:
         rule = client.rulesets.rules.delete(
             "3a03d665bac047339bb530ecb439a90d",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
         )
         assert_matches_type(RuleDeleteResponse, rule, path=["response"])
@@ -113,7 +113,7 @@ class TestRules:
         response = client.rulesets.rules.with_raw_response.delete(
             "3a03d665bac047339bb530ecb439a90d",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
         )
 
@@ -128,7 +128,7 @@ class TestRules:
         with client.rulesets.rules.with_streaming_response.delete(
             "3a03d665bac047339bb530ecb439a90d",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
         ) as response:
             assert not response.is_closed
@@ -146,7 +146,7 @@ class TestRules:
             client.rulesets.rules.with_raw_response.delete(
                 "3a03d665bac047339bb530ecb439a90d",
                 account_id="",
-                zone_id="abf9b32d38c5f572afde3336ec0ce302",
+                zone_id="string",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
             )
 
@@ -162,7 +162,7 @@ class TestRules:
             client.rulesets.rules.with_raw_response.delete(
                 "3a03d665bac047339bb530ecb439a90d",
                 account_id="string",
-                zone_id="abf9b32d38c5f572afde3336ec0ce302",
+                zone_id="string",
                 ruleset_id="",
             )
 
@@ -170,7 +170,7 @@ class TestRules:
             client.rulesets.rules.with_raw_response.delete(
                 "",
                 account_id="string",
-                zone_id="abf9b32d38c5f572afde3336ec0ce302",
+                zone_id="string",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
             )
 
@@ -259,7 +259,7 @@ class TestAsyncRules:
         rule = await async_client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
 
@@ -269,7 +269,7 @@ class TestAsyncRules:
         rule = await async_client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
@@ -280,7 +280,7 @@ class TestAsyncRules:
         response = await async_client.rulesets.rules.with_raw_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -294,7 +294,7 @@ class TestAsyncRules:
         async with async_client.rulesets.rules.with_streaming_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -311,7 +311,7 @@ class TestAsyncRules:
             await async_client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="abf9b32d38c5f572afde3336ec0ce302",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -325,7 +325,7 @@ class TestAsyncRules:
             await async_client.rulesets.rules.with_raw_response.create(
                 "",
                 account_id="string",
-                zone_id="abf9b32d38c5f572afde3336ec0ce302",
+                zone_id="string",
             )
 
     @pytest.mark.skip()
@@ -334,7 +334,7 @@ class TestAsyncRules:
         rule = await async_client.rulesets.rules.delete(
             "3a03d665bac047339bb530ecb439a90d",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
         )
         assert_matches_type(RuleDeleteResponse, rule, path=["response"])
@@ -345,7 +345,7 @@ class TestAsyncRules:
         response = await async_client.rulesets.rules.with_raw_response.delete(
             "3a03d665bac047339bb530ecb439a90d",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
         )
 
@@ -360,7 +360,7 @@ class TestAsyncRules:
         async with async_client.rulesets.rules.with_streaming_response.delete(
             "3a03d665bac047339bb530ecb439a90d",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
         ) as response:
             assert not response.is_closed
@@ -378,7 +378,7 @@ class TestAsyncRules:
             await async_client.rulesets.rules.with_raw_response.delete(
                 "3a03d665bac047339bb530ecb439a90d",
                 account_id="",
-                zone_id="abf9b32d38c5f572afde3336ec0ce302",
+                zone_id="string",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
             )
 
@@ -394,7 +394,7 @@ class TestAsyncRules:
             await async_client.rulesets.rules.with_raw_response.delete(
                 "3a03d665bac047339bb530ecb439a90d",
                 account_id="string",
-                zone_id="abf9b32d38c5f572afde3336ec0ce302",
+                zone_id="string",
                 ruleset_id="",
             )
 
@@ -402,7 +402,7 @@ class TestAsyncRules:
             await async_client.rulesets.rules.with_raw_response.delete(
                 "",
                 account_id="string",
-                zone_id="abf9b32d38c5f572afde3336ec0ce302",
+                zone_id="string",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
             )
 

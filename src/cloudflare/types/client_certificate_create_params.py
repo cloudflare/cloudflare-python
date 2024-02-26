@@ -8,6 +8,9 @@ __all__ = ["ClientCertificateCreateParams"]
 
 
 class ClientCertificateCreateParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     csr: Required[str]
     """The Certificate Signing Request (CSR). Must be newline-encoded."""
 

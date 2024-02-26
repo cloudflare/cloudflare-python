@@ -8,4 +8,6 @@ __all__ = ["ACLCreateParams"]
 
 
 class ACLCreateParams(TypedDict, total=False):
+    account_id: Required[object]
+
     body: Required[object]

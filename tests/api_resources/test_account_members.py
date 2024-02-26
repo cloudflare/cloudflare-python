@@ -28,7 +28,7 @@ class TestAccountMembers:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         account_member = client.account_members.create(
-            {},
+            account_id={},
             email="user@example.com",
             roles=[
                 "3536bcfad5faccb999b47003c79917fb",
@@ -42,7 +42,7 @@ class TestAccountMembers:
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         account_member = client.account_members.create(
-            {},
+            account_id={},
             email="user@example.com",
             roles=[
                 "3536bcfad5faccb999b47003c79917fb",
@@ -57,7 +57,7 @@ class TestAccountMembers:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.account_members.with_raw_response.create(
-            {},
+            account_id={},
             email="user@example.com",
             roles=[
                 "3536bcfad5faccb999b47003c79917fb",
@@ -75,7 +75,7 @@ class TestAccountMembers:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.account_members.with_streaming_response.create(
-            {},
+            account_id={},
             email="user@example.com",
             roles=[
                 "3536bcfad5faccb999b47003c79917fb",
@@ -161,7 +161,7 @@ class TestAccountMembers:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         account_member = client.account_members.list(
-            {},
+            account_id={},
         )
         assert_matches_type(SyncV4PagePaginationArray[AccountMemberListResponse], account_member, path=["response"])
 
@@ -169,7 +169,7 @@ class TestAccountMembers:
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         account_member = client.account_members.list(
-            {},
+            account_id={},
             direction="desc",
             order="status",
             page=1,
@@ -182,7 +182,7 @@ class TestAccountMembers:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.account_members.with_raw_response.list(
-            {},
+            account_id={},
         )
 
         assert response.is_closed is True
@@ -194,7 +194,7 @@ class TestAccountMembers:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.account_members.with_streaming_response.list(
-            {},
+            account_id={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -304,7 +304,7 @@ class TestAsyncAccountMembers:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         account_member = await async_client.account_members.create(
-            {},
+            account_id={},
             email="user@example.com",
             roles=[
                 "3536bcfad5faccb999b47003c79917fb",
@@ -318,7 +318,7 @@ class TestAsyncAccountMembers:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         account_member = await async_client.account_members.create(
-            {},
+            account_id={},
             email="user@example.com",
             roles=[
                 "3536bcfad5faccb999b47003c79917fb",
@@ -333,7 +333,7 @@ class TestAsyncAccountMembers:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.account_members.with_raw_response.create(
-            {},
+            account_id={},
             email="user@example.com",
             roles=[
                 "3536bcfad5faccb999b47003c79917fb",
@@ -351,7 +351,7 @@ class TestAsyncAccountMembers:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.account_members.with_streaming_response.create(
-            {},
+            account_id={},
             email="user@example.com",
             roles=[
                 "3536bcfad5faccb999b47003c79917fb",
@@ -437,7 +437,7 @@ class TestAsyncAccountMembers:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         account_member = await async_client.account_members.list(
-            {},
+            account_id={},
         )
         assert_matches_type(AsyncV4PagePaginationArray[AccountMemberListResponse], account_member, path=["response"])
 
@@ -445,7 +445,7 @@ class TestAsyncAccountMembers:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         account_member = await async_client.account_members.list(
-            {},
+            account_id={},
             direction="desc",
             order="status",
             page=1,
@@ -458,7 +458,7 @@ class TestAsyncAccountMembers:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.account_members.with_raw_response.list(
-            {},
+            account_id={},
         )
 
         assert response.is_closed is True
@@ -470,7 +470,7 @@ class TestAsyncAccountMembers:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.account_members.with_streaming_response.list(
-            {},
+            account_id={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

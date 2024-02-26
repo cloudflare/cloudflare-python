@@ -8,6 +8,9 @@ __all__ = ["SSLRecommenderEditParams", "Value"]
 
 
 class SSLRecommenderEditParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     value: Required[Value]
     """
     Enrollment in the SSL/TLS Recommender service which tries to detect and

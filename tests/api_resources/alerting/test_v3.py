@@ -21,7 +21,7 @@ class TestV3:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         v3 = client.alerting.v3.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[V3ListResponse], v3, path=["response"])
 
@@ -29,7 +29,7 @@ class TestV3:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.alerting.v3.with_raw_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -41,7 +41,7 @@ class TestV3:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.alerting.v3.with_streaming_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -56,7 +56,7 @@ class TestV3:
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.alerting.v3.with_raw_response.list(
-                "",
+                account_id="",
             )
 
 
@@ -67,7 +67,7 @@ class TestAsyncV3:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         v3 = await async_client.alerting.v3.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[V3ListResponse], v3, path=["response"])
 
@@ -75,7 +75,7 @@ class TestAsyncV3:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.alerting.v3.with_raw_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -87,7 +87,7 @@ class TestAsyncV3:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.alerting.v3.with_streaming_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -102,5 +102,5 @@ class TestAsyncV3:
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.alerting.v3.with_raw_response.list(
-                "",
+                account_id="",
             )

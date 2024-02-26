@@ -8,6 +8,9 @@ __all__ = ["OwnershipValidateParams"]
 
 
 class OwnershipValidateParams(TypedDict, total=False):
+    account_id: Required[str]
+    """Identifier"""
+
     destination_conf: Required[str]
     """The full URI for the bucket. This field only applies to `full` packet captures."""
 

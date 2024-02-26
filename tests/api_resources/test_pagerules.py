@@ -28,7 +28,7 @@ class TestPagerules:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         pagerule = client.pagerules.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             actions=[{}],
             targets=[
                 {
@@ -46,7 +46,7 @@ class TestPagerules:
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         pagerule = client.pagerules.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             actions=[
                 {
                     "name": "forward_url",
@@ -74,7 +74,7 @@ class TestPagerules:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.pagerules.with_raw_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             actions=[{}],
             targets=[
                 {
@@ -96,7 +96,7 @@ class TestPagerules:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.pagerules.with_streaming_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             actions=[{}],
             targets=[
                 {
@@ -121,7 +121,7 @@ class TestPagerules:
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.pagerules.with_raw_response.create(
-                "",
+                zone_id="",
                 actions=[{}],
                 targets=[
                     {
@@ -269,7 +269,7 @@ class TestPagerules:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         pagerule = client.pagerules.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(PageruleListResponse, pagerule, path=["response"])
 
@@ -277,7 +277,7 @@ class TestPagerules:
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         pagerule = client.pagerules.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             direction="desc",
             match="any",
             order="status",
@@ -289,7 +289,7 @@ class TestPagerules:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.pagerules.with_raw_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -301,7 +301,7 @@ class TestPagerules:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.pagerules.with_streaming_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -316,7 +316,7 @@ class TestPagerules:
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.pagerules.with_raw_response.list(
-                "",
+                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -512,7 +512,7 @@ class TestAsyncPagerules:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         pagerule = await async_client.pagerules.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             actions=[{}],
             targets=[
                 {
@@ -530,7 +530,7 @@ class TestAsyncPagerules:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         pagerule = await async_client.pagerules.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             actions=[
                 {
                     "name": "forward_url",
@@ -558,7 +558,7 @@ class TestAsyncPagerules:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.pagerules.with_raw_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             actions=[{}],
             targets=[
                 {
@@ -580,7 +580,7 @@ class TestAsyncPagerules:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.pagerules.with_streaming_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             actions=[{}],
             targets=[
                 {
@@ -605,7 +605,7 @@ class TestAsyncPagerules:
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.pagerules.with_raw_response.create(
-                "",
+                zone_id="",
                 actions=[{}],
                 targets=[
                     {
@@ -753,7 +753,7 @@ class TestAsyncPagerules:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         pagerule = await async_client.pagerules.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(PageruleListResponse, pagerule, path=["response"])
 
@@ -761,7 +761,7 @@ class TestAsyncPagerules:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         pagerule = await async_client.pagerules.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             direction="desc",
             match="any",
             order="status",
@@ -773,7 +773,7 @@ class TestAsyncPagerules:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.pagerules.with_raw_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -785,7 +785,7 @@ class TestAsyncPagerules:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.pagerules.with_streaming_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -800,7 +800,7 @@ class TestAsyncPagerules:
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.pagerules.with_raw_response.list(
-                "",
+                zone_id="",
             )
 
     @pytest.mark.skip()

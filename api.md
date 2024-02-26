@@ -8,9 +8,9 @@ from cloudflare.types import AccountUpdateResponse, AccountListResponse, Account
 
 Methods:
 
-- <code title="put /accounts/{account_id}">client.accounts.<a href="./src/cloudflare/resources/accounts.py">update</a>(account_id, \*\*<a href="src/cloudflare/types/account_update_params.py">params</a>) -> <a href="./src/cloudflare/types/account_update_response.py">AccountUpdateResponse</a></code>
+- <code title="put /accounts/{account_id}">client.accounts.<a href="./src/cloudflare/resources/accounts.py">update</a>(\*, account_id, \*\*<a href="src/cloudflare/types/account_update_params.py">params</a>) -> <a href="./src/cloudflare/types/account_update_response.py">AccountUpdateResponse</a></code>
 - <code title="get /accounts">client.accounts.<a href="./src/cloudflare/resources/accounts.py">list</a>(\*\*<a href="src/cloudflare/types/account_list_params.py">params</a>) -> <a href="./src/cloudflare/types/account_list_response.py">SyncV4PagePaginationArray[object]</a></code>
-- <code title="get /accounts/{account_id}">client.accounts.<a href="./src/cloudflare/resources/accounts.py">get</a>(account_id) -> <a href="./src/cloudflare/types/account_get_response.py">AccountGetResponse</a></code>
+- <code title="get /accounts/{account_id}">client.accounts.<a href="./src/cloudflare/resources/accounts.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/account_get_response.py">AccountGetResponse</a></code>
 
 # Certificates
 
@@ -343,9 +343,9 @@ Methods:
 
 - <code title="post /zones">client.zones.<a href="./src/cloudflare/resources/zones/zones.py">create</a>(\*\*<a href="src/cloudflare/types/zone_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zone_create_response.py">Optional</a></code>
 - <code title="get /zones">client.zones.<a href="./src/cloudflare/resources/zones/zones.py">list</a>(\*\*<a href="src/cloudflare/types/zone_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zone_list_response.py">SyncV4PagePaginationArray[ZoneListResponse]</a></code>
-- <code title="delete /zones/{zone_id}">client.zones.<a href="./src/cloudflare/resources/zones/zones.py">delete</a>(zone_id) -> <a href="./src/cloudflare/types/zone_delete_response.py">Optional</a></code>
-- <code title="patch /zones/{zone_id}">client.zones.<a href="./src/cloudflare/resources/zones/zones.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/zone_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zone_edit_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}">client.zones.<a href="./src/cloudflare/resources/zones/zones.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/zone_get_response.py">Optional</a></code>
+- <code title="delete /zones/{zone_id}">client.zones.<a href="./src/cloudflare/resources/zones/zones.py">delete</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zone_delete_response.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}">client.zones.<a href="./src/cloudflare/resources/zones/zones.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zone_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zone_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}">client.zones.<a href="./src/cloudflare/resources/zones/zones.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zone_get_response.py">Optional</a></code>
 
 ## CustomNameservers
 
@@ -357,8 +357,8 @@ from cloudflare.types.zones import CustomNameserverUpdateResponse, CustomNameser
 
 Methods:
 
-- <code title="put /zones/{zone_id}/custom_ns">client.zones.custom_nameservers.<a href="./src/cloudflare/resources/zones/custom_nameservers.py">update</a>(zone_id, \*\*<a href="src/cloudflare/types/zones/custom_nameserver_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/custom_nameserver_update_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/custom_ns">client.zones.custom_nameservers.<a href="./src/cloudflare/resources/zones/custom_nameservers.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/zones/custom_nameserver_get_response.py">Optional</a></code>
+- <code title="put /zones/{zone_id}/custom_ns">client.zones.custom_nameservers.<a href="./src/cloudflare/resources/zones/custom_nameservers.py">update</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/custom_nameserver_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/custom_nameserver_update_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/custom_ns">client.zones.custom_nameservers.<a href="./src/cloudflare/resources/zones/custom_nameservers.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/custom_nameserver_get_response.py">Optional</a></code>
 
 ## Holds
 
@@ -370,9 +370,9 @@ from cloudflare.types.zones import HoldCreateResponse, HoldDeleteResponse, HoldG
 
 Methods:
 
-- <code title="post /zones/{zone_id}/hold">client.zones.holds.<a href="./src/cloudflare/resources/zones/holds.py">create</a>(zone_id, \*\*<a href="src/cloudflare/types/zones/hold_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/hold_create_response.py">HoldCreateResponse</a></code>
-- <code title="delete /zones/{zone_id}/hold">client.zones.holds.<a href="./src/cloudflare/resources/zones/holds.py">delete</a>(zone_id, \*\*<a href="src/cloudflare/types/zones/hold_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/hold_delete_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/hold">client.zones.holds.<a href="./src/cloudflare/resources/zones/holds.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/zones/hold_get_response.py">HoldGetResponse</a></code>
+- <code title="post /zones/{zone_id}/hold">client.zones.holds.<a href="./src/cloudflare/resources/zones/holds.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/hold_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/hold_create_response.py">HoldCreateResponse</a></code>
+- <code title="delete /zones/{zone_id}/hold">client.zones.holds.<a href="./src/cloudflare/resources/zones/holds.py">delete</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/hold_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/hold_delete_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/hold">client.zones.holds.<a href="./src/cloudflare/resources/zones/holds.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/hold_get_response.py">HoldGetResponse</a></code>
 
 # LoadBalancers
 
@@ -391,9 +391,9 @@ from cloudflare.types import (
 
 Methods:
 
-- <code title="post /zones/{zone_id}/load_balancers">client.load_balancers.<a href="./src/cloudflare/resources/load_balancers/load_balancers.py">create</a>(zone_id, \*\*<a href="src/cloudflare/types/load_balancer_create_params.py">params</a>) -> <a href="./src/cloudflare/types/load_balancer_create_response.py">LoadBalancerCreateResponse</a></code>
+- <code title="post /zones/{zone_id}/load_balancers">client.load_balancers.<a href="./src/cloudflare/resources/load_balancers/load_balancers.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/load_balancer_create_params.py">params</a>) -> <a href="./src/cloudflare/types/load_balancer_create_response.py">LoadBalancerCreateResponse</a></code>
 - <code title="put /zones/{zone_id}/load_balancers/{load_balancer_id}">client.load_balancers.<a href="./src/cloudflare/resources/load_balancers/load_balancers.py">update</a>(load_balancer_id, \*, zone_id, \*\*<a href="src/cloudflare/types/load_balancer_update_params.py">params</a>) -> <a href="./src/cloudflare/types/load_balancer_update_response.py">LoadBalancerUpdateResponse</a></code>
-- <code title="get /zones/{zone_id}/load_balancers">client.load_balancers.<a href="./src/cloudflare/resources/load_balancers/load_balancers.py">list</a>(zone_id) -> <a href="./src/cloudflare/types/load_balancer_list_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/load_balancers">client.load_balancers.<a href="./src/cloudflare/resources/load_balancers/load_balancers.py">list</a>(\*, zone_id) -> <a href="./src/cloudflare/types/load_balancer_list_response.py">Optional</a></code>
 - <code title="delete /zones/{zone_id}/load_balancers/{load_balancer_id}">client.load_balancers.<a href="./src/cloudflare/resources/load_balancers/load_balancers.py">delete</a>(load_balancer_id, \*, zone_id) -> <a href="./src/cloudflare/types/load_balancer_delete_response.py">LoadBalancerDeleteResponse</a></code>
 - <code title="patch /zones/{zone_id}/load_balancers/{load_balancer_id}">client.load_balancers.<a href="./src/cloudflare/resources/load_balancers/load_balancers.py">edit</a>(load_balancer_id, \*, zone_id, \*\*<a href="src/cloudflare/types/load_balancer_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/load_balancer_edit_response.py">LoadBalancerEditResponse</a></code>
 - <code title="get /zones/{zone_id}/load_balancers/{load_balancer_id}">client.load_balancers.<a href="./src/cloudflare/resources/load_balancers/load_balancers.py">get</a>(load_balancer_id, \*, zone_id) -> <a href="./src/cloudflare/types/load_balancer_get_response.py">LoadBalancerGetResponse</a></code>
@@ -415,9 +415,9 @@ from cloudflare.types.load_balancers import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/load_balancers/monitors">client.load_balancers.monitors.<a href="./src/cloudflare/resources/load_balancers/monitors/monitors.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/load_balancers/monitor_create_params.py">params</a>) -> <a href="./src/cloudflare/types/load_balancers/monitor_create_response.py">MonitorCreateResponse</a></code>
+- <code title="post /accounts/{account_id}/load_balancers/monitors">client.load_balancers.monitors.<a href="./src/cloudflare/resources/load_balancers/monitors/monitors.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/load_balancers/monitor_create_params.py">params</a>) -> <a href="./src/cloudflare/types/load_balancers/monitor_create_response.py">MonitorCreateResponse</a></code>
 - <code title="put /accounts/{account_id}/load_balancers/monitors/{monitor_id}">client.load_balancers.monitors.<a href="./src/cloudflare/resources/load_balancers/monitors/monitors.py">update</a>(monitor_id, \*, account_id, \*\*<a href="src/cloudflare/types/load_balancers/monitor_update_params.py">params</a>) -> <a href="./src/cloudflare/types/load_balancers/monitor_update_response.py">MonitorUpdateResponse</a></code>
-- <code title="get /accounts/{account_id}/load_balancers/monitors">client.load_balancers.monitors.<a href="./src/cloudflare/resources/load_balancers/monitors/monitors.py">list</a>(account_id) -> <a href="./src/cloudflare/types/load_balancers/monitor_list_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/load_balancers/monitors">client.load_balancers.monitors.<a href="./src/cloudflare/resources/load_balancers/monitors/monitors.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/load_balancers/monitor_list_response.py">Optional</a></code>
 - <code title="delete /accounts/{account_id}/load_balancers/monitors/{monitor_id}">client.load_balancers.monitors.<a href="./src/cloudflare/resources/load_balancers/monitors/monitors.py">delete</a>(monitor_id, \*, account_id) -> <a href="./src/cloudflare/types/load_balancers/monitor_delete_response.py">MonitorDeleteResponse</a></code>
 - <code title="patch /accounts/{account_id}/load_balancers/monitors/{monitor_id}">client.load_balancers.monitors.<a href="./src/cloudflare/resources/load_balancers/monitors/monitors.py">edit</a>(monitor_id, \*, account_id, \*\*<a href="src/cloudflare/types/load_balancers/monitor_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/load_balancers/monitor_edit_response.py">MonitorEditResponse</a></code>
 - <code title="get /accounts/{account_id}/load_balancers/monitors/{monitor_id}">client.load_balancers.monitors.<a href="./src/cloudflare/resources/load_balancers/monitors/monitors.py">get</a>(monitor_id, \*, account_id) -> <a href="./src/cloudflare/types/load_balancers/monitor_get_response.py">MonitorGetResponse</a></code>
@@ -463,9 +463,9 @@ from cloudflare.types.load_balancers import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/load_balancers/pools">client.load_balancers.pools.<a href="./src/cloudflare/resources/load_balancers/pools/pools.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/load_balancers/pool_create_params.py">params</a>) -> <a href="./src/cloudflare/types/load_balancers/pool_create_response.py">PoolCreateResponse</a></code>
+- <code title="post /accounts/{account_id}/load_balancers/pools">client.load_balancers.pools.<a href="./src/cloudflare/resources/load_balancers/pools/pools.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/load_balancers/pool_create_params.py">params</a>) -> <a href="./src/cloudflare/types/load_balancers/pool_create_response.py">PoolCreateResponse</a></code>
 - <code title="put /accounts/{account_id}/load_balancers/pools/{pool_id}">client.load_balancers.pools.<a href="./src/cloudflare/resources/load_balancers/pools/pools.py">update</a>(pool_id, \*, account_id, \*\*<a href="src/cloudflare/types/load_balancers/pool_update_params.py">params</a>) -> <a href="./src/cloudflare/types/load_balancers/pool_update_response.py">PoolUpdateResponse</a></code>
-- <code title="get /accounts/{account_id}/load_balancers/pools">client.load_balancers.pools.<a href="./src/cloudflare/resources/load_balancers/pools/pools.py">list</a>(account_id, \*\*<a href="src/cloudflare/types/load_balancers/pool_list_params.py">params</a>) -> <a href="./src/cloudflare/types/load_balancers/pool_list_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/load_balancers/pools">client.load_balancers.pools.<a href="./src/cloudflare/resources/load_balancers/pools/pools.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/load_balancers/pool_list_params.py">params</a>) -> <a href="./src/cloudflare/types/load_balancers/pool_list_response.py">Optional</a></code>
 - <code title="delete /accounts/{account_id}/load_balancers/pools/{pool_id}">client.load_balancers.pools.<a href="./src/cloudflare/resources/load_balancers/pools/pools.py">delete</a>(pool_id, \*, account_id) -> <a href="./src/cloudflare/types/load_balancers/pool_delete_response.py">PoolDeleteResponse</a></code>
 - <code title="patch /accounts/{account_id}/load_balancers/pools/{pool_id}">client.load_balancers.pools.<a href="./src/cloudflare/resources/load_balancers/pools/pools.py">edit</a>(pool_id, \*, account_id, \*\*<a href="src/cloudflare/types/load_balancers/pool_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/load_balancers/pool_edit_response.py">PoolEditResponse</a></code>
 - <code title="get /accounts/{account_id}/load_balancers/pools/{pool_id}">client.load_balancers.pools.<a href="./src/cloudflare/resources/load_balancers/pools/pools.py">get</a>(pool_id, \*, account_id) -> <a href="./src/cloudflare/types/load_balancers/pool_get_response.py">PoolGetResponse</a></code>
@@ -517,7 +517,7 @@ from cloudflare.types.load_balancers import RegionListResponse, RegionGetRespons
 
 Methods:
 
-- <code title="get /accounts/{account_id}/load_balancers/regions">client.load_balancers.regions.<a href="./src/cloudflare/resources/load_balancers/regions.py">list</a>(account_id, \*\*<a href="src/cloudflare/types/load_balancers/region_list_params.py">params</a>) -> <a href="./src/cloudflare/types/load_balancers/region_list_response.py">RegionListResponse</a></code>
+- <code title="get /accounts/{account_id}/load_balancers/regions">client.load_balancers.regions.<a href="./src/cloudflare/resources/load_balancers/regions.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/load_balancers/region_list_params.py">params</a>) -> <a href="./src/cloudflare/types/load_balancers/region_list_response.py">RegionListResponse</a></code>
 - <code title="get /accounts/{account_id}/load_balancers/regions/{region_id}">client.load_balancers.regions.<a href="./src/cloudflare/resources/load_balancers/regions.py">get</a>(region_id, \*, account_id) -> <a href="./src/cloudflare/types/load_balancers/region_get_response.py">RegionGetResponse</a></code>
 
 ## Searches
@@ -530,7 +530,7 @@ from cloudflare.types.load_balancers import SearchListResponse
 
 Methods:
 
-- <code title="get /accounts/{account_id}/load_balancers/search">client.load_balancers.searches.<a href="./src/cloudflare/resources/load_balancers/searches.py">list</a>(account_id, \*\*<a href="src/cloudflare/types/load_balancers/search_list_params.py">params</a>) -> <a href="./src/cloudflare/types/load_balancers/search_list_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/load_balancers/search">client.load_balancers.searches.<a href="./src/cloudflare/resources/load_balancers/searches.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/load_balancers/search_list_params.py">params</a>) -> <a href="./src/cloudflare/types/load_balancers/search_list_response.py">Optional</a></code>
 
 # Access
 
@@ -926,7 +926,7 @@ from cloudflare.types import CachePurgeResponse
 
 Methods:
 
-- <code title="post /zones/{zone_id}/purge_cache">client.cache.<a href="./src/cloudflare/resources/cache/cache.py">purge</a>(zone_id, \*\*<a href="src/cloudflare/types/cache_purge_params.py">params</a>) -> <a href="./src/cloudflare/types/cache_purge_response.py">Optional</a></code>
+- <code title="post /zones/{zone_id}/purge_cache">client.cache.<a href="./src/cloudflare/resources/cache/cache.py">purge</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/cache_purge_params.py">params</a>) -> <a href="./src/cloudflare/types/cache_purge_response.py">Optional</a></code>
 
 ## CacheReserve
 
@@ -943,10 +943,10 @@ from cloudflare.types.cache import (
 
 Methods:
 
-- <code title="get /zones/{zone_id}/cache/cache_reserve">client.cache.cache_reserve.<a href="./src/cloudflare/resources/cache/cache_reserve.py">list</a>(zone_id) -> <a href="./src/cloudflare/types/cache/cache_reserve_list_response.py">CacheReserveListResponse</a></code>
-- <code title="post /zones/{zone_id}/cache/cache_reserve_clear">client.cache.cache_reserve.<a href="./src/cloudflare/resources/cache/cache_reserve.py">clear</a>(zone_id) -> <a href="./src/cloudflare/types/cache/cache_reserve_clear_response.py">CacheReserveClearResponse</a></code>
-- <code title="patch /zones/{zone_id}/cache/cache_reserve">client.cache.cache_reserve.<a href="./src/cloudflare/resources/cache/cache_reserve.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/cache/cache_reserve_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/cache/cache_reserve_edit_response.py">CacheReserveEditResponse</a></code>
-- <code title="get /zones/{zone_id}/cache/cache_reserve_clear">client.cache.cache_reserve.<a href="./src/cloudflare/resources/cache/cache_reserve.py">status</a>(zone_id) -> <a href="./src/cloudflare/types/cache/cache_reserve_status_response.py">CacheReserveStatusResponse</a></code>
+- <code title="get /zones/{zone_id}/cache/cache_reserve">client.cache.cache_reserve.<a href="./src/cloudflare/resources/cache/cache_reserve.py">list</a>(\*, zone_id) -> <a href="./src/cloudflare/types/cache/cache_reserve_list_response.py">CacheReserveListResponse</a></code>
+- <code title="post /zones/{zone_id}/cache/cache_reserve_clear">client.cache.cache_reserve.<a href="./src/cloudflare/resources/cache/cache_reserve.py">clear</a>(\*, zone_id) -> <a href="./src/cloudflare/types/cache/cache_reserve_clear_response.py">CacheReserveClearResponse</a></code>
+- <code title="patch /zones/{zone_id}/cache/cache_reserve">client.cache.cache_reserve.<a href="./src/cloudflare/resources/cache/cache_reserve.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/cache/cache_reserve_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/cache/cache_reserve_edit_response.py">CacheReserveEditResponse</a></code>
+- <code title="get /zones/{zone_id}/cache/cache_reserve_clear">client.cache.cache_reserve.<a href="./src/cloudflare/resources/cache/cache_reserve.py">status</a>(\*, zone_id) -> <a href="./src/cloudflare/types/cache/cache_reserve_status_response.py">CacheReserveStatusResponse</a></code>
 
 ## TieredCacheSmartTopology
 
@@ -962,9 +962,9 @@ from cloudflare.types.cache import (
 
 Methods:
 
-- <code title="delete /zones/{zone_id}/cache/tiered_cache_smart_topology_enable">client.cache.tiered_cache_smart_topology.<a href="./src/cloudflare/resources/cache/tiered_cache_smart_topology.py">delete</a>(zone_id) -> <a href="./src/cloudflare/types/cache/tiered_cache_smart_topology_delete_response.py">TieredCacheSmartTopologyDeleteResponse</a></code>
-- <code title="patch /zones/{zone_id}/cache/tiered_cache_smart_topology_enable">client.cache.tiered_cache_smart_topology.<a href="./src/cloudflare/resources/cache/tiered_cache_smart_topology.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/cache/tiered_cache_smart_topology_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/cache/tiered_cache_smart_topology_edit_response.py">TieredCacheSmartTopologyEditResponse</a></code>
-- <code title="get /zones/{zone_id}/cache/tiered_cache_smart_topology_enable">client.cache.tiered_cache_smart_topology.<a href="./src/cloudflare/resources/cache/tiered_cache_smart_topology.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/cache/tiered_cache_smart_topology_get_response.py">TieredCacheSmartTopologyGetResponse</a></code>
+- <code title="delete /zones/{zone_id}/cache/tiered_cache_smart_topology_enable">client.cache.tiered_cache_smart_topology.<a href="./src/cloudflare/resources/cache/tiered_cache_smart_topology.py">delete</a>(\*, zone_id) -> <a href="./src/cloudflare/types/cache/tiered_cache_smart_topology_delete_response.py">TieredCacheSmartTopologyDeleteResponse</a></code>
+- <code title="patch /zones/{zone_id}/cache/tiered_cache_smart_topology_enable">client.cache.tiered_cache_smart_topology.<a href="./src/cloudflare/resources/cache/tiered_cache_smart_topology.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/cache/tiered_cache_smart_topology_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/cache/tiered_cache_smart_topology_edit_response.py">TieredCacheSmartTopologyEditResponse</a></code>
+- <code title="get /zones/{zone_id}/cache/tiered_cache_smart_topology_enable">client.cache.tiered_cache_smart_topology.<a href="./src/cloudflare/resources/cache/tiered_cache_smart_topology.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/cache/tiered_cache_smart_topology_get_response.py">TieredCacheSmartTopologyGetResponse</a></code>
 
 ## Variants
 
@@ -976,9 +976,9 @@ from cloudflare.types.cache import VariantListResponse, VariantDeleteResponse, V
 
 Methods:
 
-- <code title="get /zones/{zone_id}/cache/variants">client.cache.variants.<a href="./src/cloudflare/resources/cache/variants.py">list</a>(zone_id) -> <a href="./src/cloudflare/types/cache/variant_list_response.py">VariantListResponse</a></code>
-- <code title="delete /zones/{zone_id}/cache/variants">client.cache.variants.<a href="./src/cloudflare/resources/cache/variants.py">delete</a>(zone_id) -> <a href="./src/cloudflare/types/cache/variant_delete_response.py">VariantDeleteResponse</a></code>
-- <code title="patch /zones/{zone_id}/cache/variants">client.cache.variants.<a href="./src/cloudflare/resources/cache/variants.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/cache/variant_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/cache/variant_edit_response.py">VariantEditResponse</a></code>
+- <code title="get /zones/{zone_id}/cache/variants">client.cache.variants.<a href="./src/cloudflare/resources/cache/variants.py">list</a>(\*, zone_id) -> <a href="./src/cloudflare/types/cache/variant_list_response.py">VariantListResponse</a></code>
+- <code title="delete /zones/{zone_id}/cache/variants">client.cache.variants.<a href="./src/cloudflare/resources/cache/variants.py">delete</a>(\*, zone_id) -> <a href="./src/cloudflare/types/cache/variant_delete_response.py">VariantDeleteResponse</a></code>
+- <code title="patch /zones/{zone_id}/cache/variants">client.cache.variants.<a href="./src/cloudflare/resources/cache/variants.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/cache/variant_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/cache/variant_edit_response.py">VariantEditResponse</a></code>
 
 ## RegionalTieredCache
 
@@ -990,8 +990,8 @@ from cloudflare.types.cache import RegionalTieredCacheEditResponse, RegionalTier
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/cache/regional_tiered_cache">client.cache.regional_tiered_cache.<a href="./src/cloudflare/resources/cache/regional_tiered_cache.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/cache/regional_tiered_cache_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/cache/regional_tiered_cache_edit_response.py">RegionalTieredCacheEditResponse</a></code>
-- <code title="get /zones/{zone_id}/cache/regional_tiered_cache">client.cache.regional_tiered_cache.<a href="./src/cloudflare/resources/cache/regional_tiered_cache.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/cache/regional_tiered_cache_get_response.py">RegionalTieredCacheGetResponse</a></code>
+- <code title="patch /zones/{zone_id}/cache/regional_tiered_cache">client.cache.regional_tiered_cache.<a href="./src/cloudflare/resources/cache/regional_tiered_cache.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/cache/regional_tiered_cache_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/cache/regional_tiered_cache_edit_response.py">RegionalTieredCacheEditResponse</a></code>
+- <code title="get /zones/{zone_id}/cache/regional_tiered_cache">client.cache.regional_tiered_cache.<a href="./src/cloudflare/resources/cache/regional_tiered_cache.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/cache/regional_tiered_cache_get_response.py">RegionalTieredCacheGetResponse</a></code>
 
 # SSL
 
@@ -1005,7 +1005,7 @@ from cloudflare.types.ssl import AnalyzeCreateResponse
 
 Methods:
 
-- <code title="post /zones/{zone_id}/ssl/analyze">client.ssl.analyze.<a href="./src/cloudflare/resources/ssl/analyze.py">create</a>(zone_id, \*\*<a href="src/cloudflare/types/ssl/analyze_create_params.py">params</a>) -> <a href="./src/cloudflare/types/ssl/analyze_create_response.py">AnalyzeCreateResponse</a></code>
+- <code title="post /zones/{zone_id}/ssl/analyze">client.ssl.analyze.<a href="./src/cloudflare/resources/ssl/analyze.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/ssl/analyze_create_params.py">params</a>) -> <a href="./src/cloudflare/types/ssl/analyze_create_response.py">AnalyzeCreateResponse</a></code>
 
 ## CertificatePacks
 
@@ -1022,7 +1022,7 @@ from cloudflare.types.ssl import (
 
 Methods:
 
-- <code title="get /zones/{zone_id}/ssl/certificate_packs">client.ssl.certificate_packs.<a href="./src/cloudflare/resources/ssl/certificate_packs/certificate_packs.py">list</a>(zone_id, \*\*<a href="src/cloudflare/types/ssl/certificate_pack_list_params.py">params</a>) -> <a href="./src/cloudflare/types/ssl/certificate_pack_list_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/ssl/certificate_packs">client.ssl.certificate_packs.<a href="./src/cloudflare/resources/ssl/certificate_packs/certificate_packs.py">list</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/ssl/certificate_pack_list_params.py">params</a>) -> <a href="./src/cloudflare/types/ssl/certificate_pack_list_response.py">Optional</a></code>
 - <code title="delete /zones/{zone_id}/ssl/certificate_packs/{certificate_pack_id}">client.ssl.certificate_packs.<a href="./src/cloudflare/resources/ssl/certificate_packs/certificate_packs.py">delete</a>(certificate_pack_id, \*, zone_id) -> <a href="./src/cloudflare/types/ssl/certificate_pack_delete_response.py">CertificatePackDeleteResponse</a></code>
 - <code title="patch /zones/{zone_id}/ssl/certificate_packs/{certificate_pack_id}">client.ssl.certificate_packs.<a href="./src/cloudflare/resources/ssl/certificate_packs/certificate_packs.py">edit</a>(certificate_pack_id, \*, zone_id) -> <a href="./src/cloudflare/types/ssl/certificate_pack_edit_response.py">CertificatePackEditResponse</a></code>
 - <code title="get /zones/{zone_id}/ssl/certificate_packs/{certificate_pack_id}">client.ssl.certificate_packs.<a href="./src/cloudflare/resources/ssl/certificate_packs/certificate_packs.py">get</a>(certificate_pack_id, \*, zone_id) -> <a href="./src/cloudflare/types/ssl/certificate_pack_get_response.py">CertificatePackGetResponse</a></code>
@@ -1037,7 +1037,7 @@ from cloudflare.types.ssl.certificate_packs import OrderCreateResponse
 
 Methods:
 
-- <code title="post /zones/{zone_id}/ssl/certificate_packs/order">client.ssl.certificate_packs.order.<a href="./src/cloudflare/resources/ssl/certificate_packs/order.py">create</a>(zone_id, \*\*<a href="src/cloudflare/types/ssl/certificate_packs/order_create_params.py">params</a>) -> <a href="./src/cloudflare/types/ssl/certificate_packs/order_create_response.py">OrderCreateResponse</a></code>
+- <code title="post /zones/{zone_id}/ssl/certificate_packs/order">client.ssl.certificate_packs.order.<a href="./src/cloudflare/resources/ssl/certificate_packs/order.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/ssl/certificate_packs/order_create_params.py">params</a>) -> <a href="./src/cloudflare/types/ssl/certificate_packs/order_create_response.py">OrderCreateResponse</a></code>
 
 ### Quota
 
@@ -1049,7 +1049,7 @@ from cloudflare.types.ssl.certificate_packs import QuotaListResponse
 
 Methods:
 
-- <code title="get /zones/{zone_id}/ssl/certificate_packs/quota">client.ssl.certificate_packs.quota.<a href="./src/cloudflare/resources/ssl/certificate_packs/quota.py">list</a>(zone_id) -> <a href="./src/cloudflare/types/ssl/certificate_packs/quota_list_response.py">QuotaListResponse</a></code>
+- <code title="get /zones/{zone_id}/ssl/certificate_packs/quota">client.ssl.certificate_packs.quota.<a href="./src/cloudflare/resources/ssl/certificate_packs/quota.py">list</a>(\*, zone_id) -> <a href="./src/cloudflare/types/ssl/certificate_packs/quota_list_response.py">QuotaListResponse</a></code>
 
 ## Recommendations
 
@@ -1075,8 +1075,8 @@ from cloudflare.types.ssl.universal import SettingEditResponse, SettingGetRespon
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/ssl/universal/settings">client.ssl.universal.settings.<a href="./src/cloudflare/resources/ssl/universal/settings.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/ssl/universal/setting_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/ssl/universal/setting_edit_response.py">SettingEditResponse</a></code>
-- <code title="get /zones/{zone_id}/ssl/universal/settings">client.ssl.universal.settings.<a href="./src/cloudflare/resources/ssl/universal/settings.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/ssl/universal/setting_get_response.py">SettingGetResponse</a></code>
+- <code title="patch /zones/{zone_id}/ssl/universal/settings">client.ssl.universal.settings.<a href="./src/cloudflare/resources/ssl/universal/settings.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/ssl/universal/setting_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/ssl/universal/setting_edit_response.py">SettingEditResponse</a></code>
+- <code title="get /zones/{zone_id}/ssl/universal/settings">client.ssl.universal.settings.<a href="./src/cloudflare/resources/ssl/universal/settings.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/ssl/universal/setting_get_response.py">SettingGetResponse</a></code>
 
 ## Verification
 
@@ -1088,7 +1088,7 @@ from cloudflare.types.ssl import VerificationListResponse, VerificationEditRespo
 
 Methods:
 
-- <code title="get /zones/{zone_id}/ssl/verification">client.ssl.verification.<a href="./src/cloudflare/resources/ssl/verification.py">list</a>(zone_id, \*\*<a href="src/cloudflare/types/ssl/verification_list_params.py">params</a>) -> <a href="./src/cloudflare/types/ssl/verification_list_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/ssl/verification">client.ssl.verification.<a href="./src/cloudflare/resources/ssl/verification.py">list</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/ssl/verification_list_params.py">params</a>) -> <a href="./src/cloudflare/types/ssl/verification_list_response.py">Optional</a></code>
 - <code title="patch /zones/{zone_id}/ssl/verification/{certificate_pack_id}">client.ssl.verification.<a href="./src/cloudflare/resources/ssl/verification.py">edit</a>(certificate_pack_id, \*, zone_id, \*\*<a href="src/cloudflare/types/ssl/verification_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/ssl/verification_edit_response.py">VerificationEditResponse</a></code>
 
 # Subscriptions
@@ -1125,8 +1125,8 @@ from cloudflare.types.acm import TotalTLSCreateResponse, TotalTLSGetResponse
 
 Methods:
 
-- <code title="post /zones/{zone_id}/acm/total_tls">client.acm.total_tls.<a href="./src/cloudflare/resources/acm/total_tls.py">create</a>(zone_id, \*\*<a href="src/cloudflare/types/acm/total_tls_create_params.py">params</a>) -> <a href="./src/cloudflare/types/acm/total_tls_create_response.py">TotalTLSCreateResponse</a></code>
-- <code title="get /zones/{zone_id}/acm/total_tls">client.acm.total_tls.<a href="./src/cloudflare/resources/acm/total_tls.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/acm/total_tls_get_response.py">TotalTLSGetResponse</a></code>
+- <code title="post /zones/{zone_id}/acm/total_tls">client.acm.total_tls.<a href="./src/cloudflare/resources/acm/total_tls.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/acm/total_tls_create_params.py">params</a>) -> <a href="./src/cloudflare/types/acm/total_tls_create_response.py">TotalTLSCreateResponse</a></code>
+- <code title="get /zones/{zone_id}/acm/total_tls">client.acm.total_tls.<a href="./src/cloudflare/resources/acm/total_tls.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/acm/total_tls_get_response.py">TotalTLSGetResponse</a></code>
 
 # Argo
 
@@ -1140,8 +1140,8 @@ from cloudflare.types.argo import SmartRoutingEditResponse, SmartRoutingGetRespo
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/argo/smart_routing">client.argo.smart_routing.<a href="./src/cloudflare/resources/argo/smart_routing.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/argo/smart_routing_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/argo/smart_routing_edit_response.py">SmartRoutingEditResponse</a></code>
-- <code title="get /zones/{zone_id}/argo/smart_routing">client.argo.smart_routing.<a href="./src/cloudflare/resources/argo/smart_routing.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/argo/smart_routing_get_response.py">SmartRoutingGetResponse</a></code>
+- <code title="patch /zones/{zone_id}/argo/smart_routing">client.argo.smart_routing.<a href="./src/cloudflare/resources/argo/smart_routing.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/argo/smart_routing_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/argo/smart_routing_edit_response.py">SmartRoutingEditResponse</a></code>
+- <code title="get /zones/{zone_id}/argo/smart_routing">client.argo.smart_routing.<a href="./src/cloudflare/resources/argo/smart_routing.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/argo/smart_routing_get_response.py">SmartRoutingGetResponse</a></code>
 
 ## TieredCaching
 
@@ -1153,8 +1153,8 @@ from cloudflare.types.argo import TieredCachingEditResponse, TieredCachingGetRes
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/argo/tiered_caching">client.argo.tiered_caching.<a href="./src/cloudflare/resources/argo/tiered_caching.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/argo/tiered_caching_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/argo/tiered_caching_edit_response.py">TieredCachingEditResponse</a></code>
-- <code title="get /zones/{zone_id}/argo/tiered_caching">client.argo.tiered_caching.<a href="./src/cloudflare/resources/argo/tiered_caching.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/argo/tiered_caching_get_response.py">TieredCachingGetResponse</a></code>
+- <code title="patch /zones/{zone_id}/argo/tiered_caching">client.argo.tiered_caching.<a href="./src/cloudflare/resources/argo/tiered_caching.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/argo/tiered_caching_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/argo/tiered_caching_edit_response.py">TieredCachingEditResponse</a></code>
+- <code title="get /zones/{zone_id}/argo/tiered_caching">client.argo.tiered_caching.<a href="./src/cloudflare/resources/argo/tiered_caching.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/argo/tiered_caching_get_response.py">TieredCachingGetResponse</a></code>
 
 # AvailablePlans
 
@@ -1196,8 +1196,8 @@ from cloudflare.types.certificate_authorities import (
 
 Methods:
 
-- <code title="put /zones/{zone_id}/certificate_authorities/hostname_associations">client.certificate_authorities.hostname_associations.<a href="./src/cloudflare/resources/certificate_authorities/hostname_associations.py">update</a>(zone_id, \*\*<a href="src/cloudflare/types/certificate_authorities/hostname_association_update_params.py">params</a>) -> <a href="./src/cloudflare/types/certificate_authorities/hostname_association_update_response.py">HostnameAssociationUpdateResponse</a></code>
-- <code title="get /zones/{zone_id}/certificate_authorities/hostname_associations">client.certificate_authorities.hostname_associations.<a href="./src/cloudflare/resources/certificate_authorities/hostname_associations.py">list</a>(zone_id, \*\*<a href="src/cloudflare/types/certificate_authorities/hostname_association_list_params.py">params</a>) -> <a href="./src/cloudflare/types/certificate_authorities/hostname_association_list_response.py">HostnameAssociationListResponse</a></code>
+- <code title="put /zones/{zone_id}/certificate_authorities/hostname_associations">client.certificate_authorities.hostname_associations.<a href="./src/cloudflare/resources/certificate_authorities/hostname_associations.py">update</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/certificate_authorities/hostname_association_update_params.py">params</a>) -> <a href="./src/cloudflare/types/certificate_authorities/hostname_association_update_response.py">HostnameAssociationUpdateResponse</a></code>
+- <code title="get /zones/{zone_id}/certificate_authorities/hostname_associations">client.certificate_authorities.hostname_associations.<a href="./src/cloudflare/resources/certificate_authorities/hostname_associations.py">list</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/certificate_authorities/hostname_association_list_params.py">params</a>) -> <a href="./src/cloudflare/types/certificate_authorities/hostname_association_list_response.py">HostnameAssociationListResponse</a></code>
 
 # ClientCertificates
 
@@ -1215,8 +1215,8 @@ from cloudflare.types import (
 
 Methods:
 
-- <code title="post /zones/{zone_id}/client_certificates">client.client_certificates.<a href="./src/cloudflare/resources/client_certificates.py">create</a>(zone_id, \*\*<a href="src/cloudflare/types/client_certificate_create_params.py">params</a>) -> <a href="./src/cloudflare/types/client_certificate_create_response.py">ClientCertificateCreateResponse</a></code>
-- <code title="get /zones/{zone_id}/client_certificates">client.client_certificates.<a href="./src/cloudflare/resources/client_certificates.py">list</a>(zone_id, \*\*<a href="src/cloudflare/types/client_certificate_list_params.py">params</a>) -> <a href="./src/cloudflare/types/client_certificate_list_response.py">SyncV4PagePaginationArray[ClientCertificateListResponse]</a></code>
+- <code title="post /zones/{zone_id}/client_certificates">client.client_certificates.<a href="./src/cloudflare/resources/client_certificates.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/client_certificate_create_params.py">params</a>) -> <a href="./src/cloudflare/types/client_certificate_create_response.py">ClientCertificateCreateResponse</a></code>
+- <code title="get /zones/{zone_id}/client_certificates">client.client_certificates.<a href="./src/cloudflare/resources/client_certificates.py">list</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/client_certificate_list_params.py">params</a>) -> <a href="./src/cloudflare/types/client_certificate_list_response.py">SyncV4PagePaginationArray[ClientCertificateListResponse]</a></code>
 - <code title="delete /zones/{zone_id}/client_certificates/{client_certificate_id}">client.client_certificates.<a href="./src/cloudflare/resources/client_certificates.py">delete</a>(client_certificate_id, \*, zone_id) -> <a href="./src/cloudflare/types/client_certificate_delete_response.py">ClientCertificateDeleteResponse</a></code>
 - <code title="patch /zones/{zone_id}/client_certificates/{client_certificate_id}">client.client_certificates.<a href="./src/cloudflare/resources/client_certificates.py">edit</a>(client_certificate_id, \*, zone_id) -> <a href="./src/cloudflare/types/client_certificate_edit_response.py">ClientCertificateEditResponse</a></code>
 - <code title="get /zones/{zone_id}/client_certificates/{client_certificate_id}">client.client_certificates.<a href="./src/cloudflare/resources/client_certificates.py">get</a>(client_certificate_id, \*, zone_id) -> <a href="./src/cloudflare/types/client_certificate_get_response.py">ClientCertificateGetResponse</a></code>
@@ -1237,8 +1237,8 @@ from cloudflare.types import (
 
 Methods:
 
-- <code title="post /zones/{zone_id}/custom_certificates">client.custom_certificates.<a href="./src/cloudflare/resources/custom_certificates/custom_certificates.py">create</a>(zone_id, \*\*<a href="src/cloudflare/types/custom_certificate_create_params.py">params</a>) -> <a href="./src/cloudflare/types/custom_certificate_create_response.py">CustomCertificateCreateResponse</a></code>
-- <code title="get /zones/{zone_id}/custom_certificates">client.custom_certificates.<a href="./src/cloudflare/resources/custom_certificates/custom_certificates.py">list</a>(zone_id, \*\*<a href="src/cloudflare/types/custom_certificate_list_params.py">params</a>) -> <a href="./src/cloudflare/types/custom_certificate_list_response.py">SyncV4PagePaginationArray[CustomCertificateListResponse]</a></code>
+- <code title="post /zones/{zone_id}/custom_certificates">client.custom_certificates.<a href="./src/cloudflare/resources/custom_certificates/custom_certificates.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/custom_certificate_create_params.py">params</a>) -> <a href="./src/cloudflare/types/custom_certificate_create_response.py">CustomCertificateCreateResponse</a></code>
+- <code title="get /zones/{zone_id}/custom_certificates">client.custom_certificates.<a href="./src/cloudflare/resources/custom_certificates/custom_certificates.py">list</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/custom_certificate_list_params.py">params</a>) -> <a href="./src/cloudflare/types/custom_certificate_list_response.py">SyncV4PagePaginationArray[CustomCertificateListResponse]</a></code>
 - <code title="delete /zones/{zone_id}/custom_certificates/{custom_certificate_id}">client.custom_certificates.<a href="./src/cloudflare/resources/custom_certificates/custom_certificates.py">delete</a>(custom_certificate_id, \*, zone_id) -> <a href="./src/cloudflare/types/custom_certificate_delete_response.py">CustomCertificateDeleteResponse</a></code>
 - <code title="patch /zones/{zone_id}/custom_certificates/{custom_certificate_id}">client.custom_certificates.<a href="./src/cloudflare/resources/custom_certificates/custom_certificates.py">edit</a>(custom_certificate_id, \*, zone_id, \*\*<a href="src/cloudflare/types/custom_certificate_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/custom_certificate_edit_response.py">CustomCertificateEditResponse</a></code>
 - <code title="get /zones/{zone_id}/custom_certificates/{custom_certificate_id}">client.custom_certificates.<a href="./src/cloudflare/resources/custom_certificates/custom_certificates.py">get</a>(custom_certificate_id, \*, zone_id) -> <a href="./src/cloudflare/types/custom_certificate_get_response.py">CustomCertificateGetResponse</a></code>
@@ -1253,7 +1253,7 @@ from cloudflare.types.custom_certificates import PrioritizeUpdateResponse
 
 Methods:
 
-- <code title="put /zones/{zone_id}/custom_certificates/prioritize">client.custom_certificates.prioritize.<a href="./src/cloudflare/resources/custom_certificates/prioritize.py">update</a>(zone_id, \*\*<a href="src/cloudflare/types/custom_certificates/prioritize_update_params.py">params</a>) -> <a href="./src/cloudflare/types/custom_certificates/prioritize_update_response.py">Optional</a></code>
+- <code title="put /zones/{zone_id}/custom_certificates/prioritize">client.custom_certificates.prioritize.<a href="./src/cloudflare/resources/custom_certificates/prioritize.py">update</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/custom_certificates/prioritize_update_params.py">params</a>) -> <a href="./src/cloudflare/types/custom_certificates/prioritize_update_response.py">Optional</a></code>
 
 # CustomHostnames
 
@@ -1271,8 +1271,8 @@ from cloudflare.types import (
 
 Methods:
 
-- <code title="post /zones/{zone_id}/custom_hostnames">client.custom_hostnames.<a href="./src/cloudflare/resources/custom_hostnames/custom_hostnames.py">create</a>(zone_id, \*\*<a href="src/cloudflare/types/custom_hostname_create_params.py">params</a>) -> <a href="./src/cloudflare/types/custom_hostname_create_response.py">CustomHostnameCreateResponse</a></code>
-- <code title="get /zones/{zone_id}/custom_hostnames">client.custom_hostnames.<a href="./src/cloudflare/resources/custom_hostnames/custom_hostnames.py">list</a>(zone_id, \*\*<a href="src/cloudflare/types/custom_hostname_list_params.py">params</a>) -> <a href="./src/cloudflare/types/custom_hostname_list_response.py">SyncV4PagePaginationArray[CustomHostnameListResponse]</a></code>
+- <code title="post /zones/{zone_id}/custom_hostnames">client.custom_hostnames.<a href="./src/cloudflare/resources/custom_hostnames/custom_hostnames.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/custom_hostname_create_params.py">params</a>) -> <a href="./src/cloudflare/types/custom_hostname_create_response.py">CustomHostnameCreateResponse</a></code>
+- <code title="get /zones/{zone_id}/custom_hostnames">client.custom_hostnames.<a href="./src/cloudflare/resources/custom_hostnames/custom_hostnames.py">list</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/custom_hostname_list_params.py">params</a>) -> <a href="./src/cloudflare/types/custom_hostname_list_response.py">SyncV4PagePaginationArray[CustomHostnameListResponse]</a></code>
 - <code title="delete /zones/{zone_id}/custom_hostnames/{custom_hostname_id}">client.custom_hostnames.<a href="./src/cloudflare/resources/custom_hostnames/custom_hostnames.py">delete</a>(custom_hostname_id, \*, zone_id) -> <a href="./src/cloudflare/types/custom_hostname_delete_response.py">CustomHostnameDeleteResponse</a></code>
 - <code title="patch /zones/{zone_id}/custom_hostnames/{custom_hostname_id}">client.custom_hostnames.<a href="./src/cloudflare/resources/custom_hostnames/custom_hostnames.py">edit</a>(custom_hostname_id, \*, zone_id, \*\*<a href="src/cloudflare/types/custom_hostname_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/custom_hostname_edit_response.py">CustomHostnameEditResponse</a></code>
 - <code title="get /zones/{zone_id}/custom_hostnames/{custom_hostname_id}">client.custom_hostnames.<a href="./src/cloudflare/resources/custom_hostnames/custom_hostnames.py">get</a>(custom_hostname_id, \*, zone_id) -> <a href="./src/cloudflare/types/custom_hostname_get_response.py">CustomHostnameGetResponse</a></code>
@@ -1291,9 +1291,9 @@ from cloudflare.types.custom_hostnames import (
 
 Methods:
 
-- <code title="put /zones/{zone_id}/custom_hostnames/fallback_origin">client.custom_hostnames.fallback_origin.<a href="./src/cloudflare/resources/custom_hostnames/fallback_origin.py">update</a>(zone_id, \*\*<a href="src/cloudflare/types/custom_hostnames/fallback_origin_update_params.py">params</a>) -> <a href="./src/cloudflare/types/custom_hostnames/fallback_origin_update_response.py">FallbackOriginUpdateResponse</a></code>
-- <code title="delete /zones/{zone_id}/custom_hostnames/fallback_origin">client.custom_hostnames.fallback_origin.<a href="./src/cloudflare/resources/custom_hostnames/fallback_origin.py">delete</a>(zone_id) -> <a href="./src/cloudflare/types/custom_hostnames/fallback_origin_delete_response.py">FallbackOriginDeleteResponse</a></code>
-- <code title="get /zones/{zone_id}/custom_hostnames/fallback_origin">client.custom_hostnames.fallback_origin.<a href="./src/cloudflare/resources/custom_hostnames/fallback_origin.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/custom_hostnames/fallback_origin_get_response.py">FallbackOriginGetResponse</a></code>
+- <code title="put /zones/{zone_id}/custom_hostnames/fallback_origin">client.custom_hostnames.fallback_origin.<a href="./src/cloudflare/resources/custom_hostnames/fallback_origin.py">update</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/custom_hostnames/fallback_origin_update_params.py">params</a>) -> <a href="./src/cloudflare/types/custom_hostnames/fallback_origin_update_response.py">FallbackOriginUpdateResponse</a></code>
+- <code title="delete /zones/{zone_id}/custom_hostnames/fallback_origin">client.custom_hostnames.fallback_origin.<a href="./src/cloudflare/resources/custom_hostnames/fallback_origin.py">delete</a>(\*, zone_id) -> <a href="./src/cloudflare/types/custom_hostnames/fallback_origin_delete_response.py">FallbackOriginDeleteResponse</a></code>
+- <code title="get /zones/{zone_id}/custom_hostnames/fallback_origin">client.custom_hostnames.fallback_origin.<a href="./src/cloudflare/resources/custom_hostnames/fallback_origin.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/custom_hostnames/fallback_origin_get_response.py">FallbackOriginGetResponse</a></code>
 
 # CustomNameservers
 
@@ -1311,11 +1311,11 @@ from cloudflare.types import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/custom_ns">client.custom_nameservers.<a href="./src/cloudflare/resources/custom_nameservers.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/custom_nameserver_create_params.py">params</a>) -> <a href="./src/cloudflare/types/custom_nameserver_create_response.py">CustomNameserverCreateResponse</a></code>
-- <code title="get /accounts/{account_id}/custom_ns">client.custom_nameservers.<a href="./src/cloudflare/resources/custom_nameservers.py">list</a>(account_id) -> <a href="./src/cloudflare/types/custom_nameserver_list_response.py">Optional</a></code>
+- <code title="post /accounts/{account_id}/custom_ns">client.custom_nameservers.<a href="./src/cloudflare/resources/custom_nameservers.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/custom_nameserver_create_params.py">params</a>) -> <a href="./src/cloudflare/types/custom_nameserver_create_response.py">CustomNameserverCreateResponse</a></code>
+- <code title="get /accounts/{account_id}/custom_ns">client.custom_nameservers.<a href="./src/cloudflare/resources/custom_nameservers.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/custom_nameserver_list_response.py">Optional</a></code>
 - <code title="delete /accounts/{account_id}/custom_ns/{custom_ns_id}">client.custom_nameservers.<a href="./src/cloudflare/resources/custom_nameservers.py">delete</a>(custom_ns_id, \*, account_id) -> <a href="./src/cloudflare/types/custom_nameserver_delete_response.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/custom_ns/availability">client.custom_nameservers.<a href="./src/cloudflare/resources/custom_nameservers.py">availabilty</a>(account_id) -> <a href="./src/cloudflare/types/custom_nameserver_availabilty_response.py">Optional</a></code>
-- <code title="post /accounts/{account_id}/custom_ns/verify">client.custom_nameservers.<a href="./src/cloudflare/resources/custom_nameservers.py">verify</a>(account_id) -> <a href="./src/cloudflare/types/custom_nameserver_verify_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/custom_ns/availability">client.custom_nameservers.<a href="./src/cloudflare/resources/custom_nameservers.py">availabilty</a>(\*, account_id) -> <a href="./src/cloudflare/types/custom_nameserver_availabilty_response.py">Optional</a></code>
+- <code title="post /accounts/{account_id}/custom_ns/verify">client.custom_nameservers.<a href="./src/cloudflare/resources/custom_nameservers.py">verify</a>(\*, account_id) -> <a href="./src/cloudflare/types/custom_nameserver_verify_response.py">Optional</a></code>
 
 # DNS
 
@@ -1339,15 +1339,15 @@ from cloudflare.types.dns import (
 
 Methods:
 
-- <code title="post /zones/{zone_id}/dns_records">client.dns.records.<a href="./src/cloudflare/resources/dns/records.py">create</a>(zone_id, \*\*<a href="src/cloudflare/types/dns/record_create_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/record_create_response.py">RecordCreateResponse</a></code>
+- <code title="post /zones/{zone_id}/dns_records">client.dns.records.<a href="./src/cloudflare/resources/dns/records.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/dns/record_create_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/record_create_response.py">RecordCreateResponse</a></code>
 - <code title="put /zones/{zone_id}/dns_records/{dns_record_id}">client.dns.records.<a href="./src/cloudflare/resources/dns/records.py">update</a>(dns_record_id, \*, zone_id, \*\*<a href="src/cloudflare/types/dns/record_update_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/record_update_response.py">RecordUpdateResponse</a></code>
-- <code title="get /zones/{zone_id}/dns_records">client.dns.records.<a href="./src/cloudflare/resources/dns/records.py">list</a>(zone_id, \*\*<a href="src/cloudflare/types/dns/record_list_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/record_list_response.py">SyncV4PagePaginationArray[RecordListResponse]</a></code>
+- <code title="get /zones/{zone_id}/dns_records">client.dns.records.<a href="./src/cloudflare/resources/dns/records.py">list</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/dns/record_list_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/record_list_response.py">SyncV4PagePaginationArray[RecordListResponse]</a></code>
 - <code title="delete /zones/{zone_id}/dns_records/{dns_record_id}">client.dns.records.<a href="./src/cloudflare/resources/dns/records.py">delete</a>(dns_record_id, \*, zone_id) -> <a href="./src/cloudflare/types/dns/record_delete_response.py">Optional</a></code>
 - <code title="patch /zones/{zone_id}/dns_records/{dns_record_id}">client.dns.records.<a href="./src/cloudflare/resources/dns/records.py">edit</a>(dns_record_id, \*, zone_id, \*\*<a href="src/cloudflare/types/dns/record_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/record_edit_response.py">RecordEditResponse</a></code>
-- <code title="get /zones/{zone_id}/dns_records/export">client.dns.records.<a href="./src/cloudflare/resources/dns/records.py">export</a>(zone_id) -> str</code>
+- <code title="get /zones/{zone_id}/dns_records/export">client.dns.records.<a href="./src/cloudflare/resources/dns/records.py">export</a>(\*, zone_id) -> str</code>
 - <code title="get /zones/{zone_id}/dns_records/{dns_record_id}">client.dns.records.<a href="./src/cloudflare/resources/dns/records.py">get</a>(dns_record_id, \*, zone_id) -> <a href="./src/cloudflare/types/dns/record_get_response.py">RecordGetResponse</a></code>
-- <code title="post /zones/{zone_id}/dns_records/import">client.dns.records.<a href="./src/cloudflare/resources/dns/records.py">import\_</a>(zone_id, \*\*<a href="src/cloudflare/types/dns/record_import_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/record_import_response.py">RecordImportResponse</a></code>
-- <code title="post /zones/{zone_id}/dns_records/scan">client.dns.records.<a href="./src/cloudflare/resources/dns/records.py">scan</a>(zone_id) -> <a href="./src/cloudflare/types/dns/record_scan_response.py">RecordScanResponse</a></code>
+- <code title="post /zones/{zone_id}/dns_records/import">client.dns.records.<a href="./src/cloudflare/resources/dns/records.py">import\_</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/dns/record_import_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/record_import_response.py">RecordImportResponse</a></code>
+- <code title="post /zones/{zone_id}/dns_records/scan">client.dns.records.<a href="./src/cloudflare/resources/dns/records.py">scan</a>(\*, zone_id) -> <a href="./src/cloudflare/types/dns/record_scan_response.py">RecordScanResponse</a></code>
 
 ## Firewall
 
@@ -1365,8 +1365,8 @@ from cloudflare.types.dns import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/dns_firewall">client.dns.firewall.<a href="./src/cloudflare/resources/dns/firewall/firewall.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/dns/firewall_create_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/firewall_create_response.py">FirewallCreateResponse</a></code>
-- <code title="get /accounts/{account_id}/dns_firewall">client.dns.firewall.<a href="./src/cloudflare/resources/dns/firewall/firewall.py">list</a>(account_id, \*\*<a href="src/cloudflare/types/dns/firewall_list_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/firewall_list_response.py">SyncV4PagePaginationArray[FirewallListResponse]</a></code>
+- <code title="post /accounts/{account_id}/dns_firewall">client.dns.firewall.<a href="./src/cloudflare/resources/dns/firewall/firewall.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/dns/firewall_create_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/firewall_create_response.py">FirewallCreateResponse</a></code>
+- <code title="get /accounts/{account_id}/dns_firewall">client.dns.firewall.<a href="./src/cloudflare/resources/dns/firewall/firewall.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/dns/firewall_list_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/firewall_list_response.py">SyncV4PagePaginationArray[FirewallListResponse]</a></code>
 - <code title="delete /accounts/{account_id}/dns_firewall/{dns_firewall_id}">client.dns.firewall.<a href="./src/cloudflare/resources/dns/firewall/firewall.py">delete</a>(dns_firewall_id, \*, account_id) -> <a href="./src/cloudflare/types/dns/firewall_delete_response.py">FirewallDeleteResponse</a></code>
 - <code title="patch /accounts/{account_id}/dns_firewall/{dns_firewall_id}">client.dns.firewall.<a href="./src/cloudflare/resources/dns/firewall/firewall.py">edit</a>(dns_firewall_id, \*, account_id, \*\*<a href="src/cloudflare/types/dns/firewall_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/firewall_edit_response.py">FirewallEditResponse</a></code>
 - <code title="get /accounts/{account_id}/dns_firewall/{dns_firewall_id}">client.dns.firewall.<a href="./src/cloudflare/resources/dns/firewall/firewall.py">get</a>(dns_firewall_id, \*, account_id) -> <a href="./src/cloudflare/types/dns/firewall_get_response.py">FirewallGetResponse</a></code>
@@ -1407,9 +1407,9 @@ from cloudflare.types import DNSSECDeleteResponse, DNSSECEditResponse, DNSSECGet
 
 Methods:
 
-- <code title="delete /zones/{zone_id}/dnssec">client.dnssec.<a href="./src/cloudflare/resources/dnssec.py">delete</a>(zone_id) -> <a href="./src/cloudflare/types/dnssec_delete_response.py">DNSSECDeleteResponse</a></code>
-- <code title="patch /zones/{zone_id}/dnssec">client.dnssec.<a href="./src/cloudflare/resources/dnssec.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/dnssec_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/dnssec_edit_response.py">DNSSECEditResponse</a></code>
-- <code title="get /zones/{zone_id}/dnssec">client.dnssec.<a href="./src/cloudflare/resources/dnssec.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/dnssec_get_response.py">DNSSECGetResponse</a></code>
+- <code title="delete /zones/{zone_id}/dnssec">client.dnssec.<a href="./src/cloudflare/resources/dnssec.py">delete</a>(\*, zone_id) -> <a href="./src/cloudflare/types/dnssec_delete_response.py">DNSSECDeleteResponse</a></code>
+- <code title="patch /zones/{zone_id}/dnssec">client.dnssec.<a href="./src/cloudflare/resources/dnssec.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/dnssec_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/dnssec_edit_response.py">DNSSECEditResponse</a></code>
+- <code title="get /zones/{zone_id}/dnssec">client.dnssec.<a href="./src/cloudflare/resources/dnssec.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/dnssec_get_response.py">DNSSECGetResponse</a></code>
 
 # Emails
 
@@ -1761,8 +1761,8 @@ from cloudflare.types import (
 
 Methods:
 
-- <code title="post /zones/{zone_id}/keyless_certificates">client.keyless_certificates.<a href="./src/cloudflare/resources/keyless_certificates.py">create</a>(zone_id, \*\*<a href="src/cloudflare/types/keyless_certificate_create_params.py">params</a>) -> <a href="./src/cloudflare/types/keyless_certificate_create_response.py">KeylessCertificateCreateResponse</a></code>
-- <code title="get /zones/{zone_id}/keyless_certificates">client.keyless_certificates.<a href="./src/cloudflare/resources/keyless_certificates.py">list</a>(zone_id) -> <a href="./src/cloudflare/types/keyless_certificate_list_response.py">Optional</a></code>
+- <code title="post /zones/{zone_id}/keyless_certificates">client.keyless_certificates.<a href="./src/cloudflare/resources/keyless_certificates.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/keyless_certificate_create_params.py">params</a>) -> <a href="./src/cloudflare/types/keyless_certificate_create_response.py">KeylessCertificateCreateResponse</a></code>
+- <code title="get /zones/{zone_id}/keyless_certificates">client.keyless_certificates.<a href="./src/cloudflare/resources/keyless_certificates.py">list</a>(\*, zone_id) -> <a href="./src/cloudflare/types/keyless_certificate_list_response.py">Optional</a></code>
 - <code title="delete /zones/{zone_id}/keyless_certificates/{keyless_certificate_id}">client.keyless_certificates.<a href="./src/cloudflare/resources/keyless_certificates.py">delete</a>(keyless_certificate_id, \*, zone_id) -> <a href="./src/cloudflare/types/keyless_certificate_delete_response.py">KeylessCertificateDeleteResponse</a></code>
 - <code title="patch /zones/{zone_id}/keyless_certificates/{keyless_certificate_id}">client.keyless_certificates.<a href="./src/cloudflare/resources/keyless_certificates.py">edit</a>(keyless_certificate_id, \*, zone_id, \*\*<a href="src/cloudflare/types/keyless_certificate_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/keyless_certificate_edit_response.py">KeylessCertificateEditResponse</a></code>
 - <code title="get /zones/{zone_id}/keyless_certificates/{keyless_certificate_id}">client.keyless_certificates.<a href="./src/cloudflare/resources/keyless_certificates.py">get</a>(keyless_certificate_id, \*, zone_id) -> <a href="./src/cloudflare/types/keyless_certificate_get_response.py">KeylessCertificateGetResponse</a></code>
@@ -1805,8 +1805,8 @@ from cloudflare.types.logpush import EdgeCreateResponse, EdgeGetResponse
 
 Methods:
 
-- <code title="post /zones/{zone_id}/logpush/edge">client.logpush.edge.<a href="./src/cloudflare/resources/logpush/edge.py">create</a>(zone_id, \*\*<a href="src/cloudflare/types/logpush/edge_create_params.py">params</a>) -> <a href="./src/cloudflare/types/logpush/edge_create_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/logpush/edge">client.logpush.edge.<a href="./src/cloudflare/resources/logpush/edge.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/logpush/edge_get_response.py">EdgeGetResponse</a></code>
+- <code title="post /zones/{zone_id}/logpush/edge">client.logpush.edge.<a href="./src/cloudflare/resources/logpush/edge.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/logpush/edge_create_params.py">params</a>) -> <a href="./src/cloudflare/types/logpush/edge_create_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/logpush/edge">client.logpush.edge.<a href="./src/cloudflare/resources/logpush/edge.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/logpush/edge_get_response.py">EdgeGetResponse</a></code>
 
 ## Jobs
 
@@ -1894,9 +1894,9 @@ from cloudflare.types.logs.controls.cmb import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/logs/control/cmb/config">client.logs.controls.cmb.config.<a href="./src/cloudflare/resources/logs/controls/cmb/config.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/logs/controls/cmb/config_create_params.py">params</a>) -> <a href="./src/cloudflare/types/logs/controls/cmb/config_create_response.py">Optional</a></code>
-- <code title="delete /accounts/{account_id}/logs/control/cmb/config">client.logs.controls.cmb.config.<a href="./src/cloudflare/resources/logs/controls/cmb/config.py">delete</a>(account_id) -> <a href="./src/cloudflare/types/logs/controls/cmb/config_delete_response.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/logs/control/cmb/config">client.logs.controls.cmb.config.<a href="./src/cloudflare/resources/logs/controls/cmb/config.py">get</a>(account_id) -> <a href="./src/cloudflare/types/logs/controls/cmb/config_get_response.py">Optional</a></code>
+- <code title="post /accounts/{account_id}/logs/control/cmb/config">client.logs.controls.cmb.config.<a href="./src/cloudflare/resources/logs/controls/cmb/config.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/logs/controls/cmb/config_create_params.py">params</a>) -> <a href="./src/cloudflare/types/logs/controls/cmb/config_create_response.py">Optional</a></code>
+- <code title="delete /accounts/{account_id}/logs/control/cmb/config">client.logs.controls.cmb.config.<a href="./src/cloudflare/resources/logs/controls/cmb/config.py">delete</a>(\*, account_id) -> <a href="./src/cloudflare/types/logs/controls/cmb/config_delete_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/logs/control/cmb/config">client.logs.controls.cmb.config.<a href="./src/cloudflare/resources/logs/controls/cmb/config.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/logs/controls/cmb/config_get_response.py">Optional</a></code>
 
 ## Rayids
 
@@ -1949,8 +1949,8 @@ from cloudflare.types import (
 
 Methods:
 
-- <code title="post /zones/{zone_id}/origin_tls_client_auth">client.origin_tls_client_auth.<a href="./src/cloudflare/resources/origin_tls_client_auth/origin_tls_client_auth.py">create</a>(zone_id, \*\*<a href="src/cloudflare/types/origin_tls_client_auth_create_params.py">params</a>) -> <a href="./src/cloudflare/types/origin_tls_client_auth_create_response.py">OriginTLSClientAuthCreateResponse</a></code>
-- <code title="get /zones/{zone_id}/origin_tls_client_auth">client.origin_tls_client_auth.<a href="./src/cloudflare/resources/origin_tls_client_auth/origin_tls_client_auth.py">list</a>(zone_id) -> <a href="./src/cloudflare/types/origin_tls_client_auth_list_response.py">Optional</a></code>
+- <code title="post /zones/{zone_id}/origin_tls_client_auth">client.origin_tls_client_auth.<a href="./src/cloudflare/resources/origin_tls_client_auth/origin_tls_client_auth.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/origin_tls_client_auth_create_params.py">params</a>) -> <a href="./src/cloudflare/types/origin_tls_client_auth_create_response.py">OriginTLSClientAuthCreateResponse</a></code>
+- <code title="get /zones/{zone_id}/origin_tls_client_auth">client.origin_tls_client_auth.<a href="./src/cloudflare/resources/origin_tls_client_auth/origin_tls_client_auth.py">list</a>(\*, zone_id) -> <a href="./src/cloudflare/types/origin_tls_client_auth_list_response.py">Optional</a></code>
 - <code title="delete /zones/{zone_id}/origin_tls_client_auth/{certificate_id}">client.origin_tls_client_auth.<a href="./src/cloudflare/resources/origin_tls_client_auth/origin_tls_client_auth.py">delete</a>(certificate_id, \*, zone_id) -> <a href="./src/cloudflare/types/origin_tls_client_auth_delete_response.py">OriginTLSClientAuthDeleteResponse</a></code>
 - <code title="get /zones/{zone_id}/origin_tls_client_auth/{certificate_id}">client.origin_tls_client_auth.<a href="./src/cloudflare/resources/origin_tls_client_auth/origin_tls_client_auth.py">get</a>(certificate_id, \*, zone_id) -> <a href="./src/cloudflare/types/origin_tls_client_auth_get_response.py">OriginTLSClientAuthGetResponse</a></code>
 
@@ -1964,7 +1964,7 @@ from cloudflare.types.origin_tls_client_auth import HostnameUpdateResponse, Host
 
 Methods:
 
-- <code title="put /zones/{zone_id}/origin_tls_client_auth/hostnames">client.origin_tls_client_auth.hostnames.<a href="./src/cloudflare/resources/origin_tls_client_auth/hostnames/hostnames.py">update</a>(zone_id, \*\*<a href="src/cloudflare/types/origin_tls_client_auth/hostname_update_params.py">params</a>) -> <a href="./src/cloudflare/types/origin_tls_client_auth/hostname_update_response.py">Optional</a></code>
+- <code title="put /zones/{zone_id}/origin_tls_client_auth/hostnames">client.origin_tls_client_auth.hostnames.<a href="./src/cloudflare/resources/origin_tls_client_auth/hostnames/hostnames.py">update</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/origin_tls_client_auth/hostname_update_params.py">params</a>) -> <a href="./src/cloudflare/types/origin_tls_client_auth/hostname_update_response.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/origin_tls_client_auth/hostnames/{hostname}">client.origin_tls_client_auth.hostnames.<a href="./src/cloudflare/resources/origin_tls_client_auth/hostnames/hostnames.py">get</a>(hostname, \*, zone_id) -> <a href="./src/cloudflare/types/origin_tls_client_auth/hostname_get_response.py">HostnameGetResponse</a></code>
 
 ### Certificates
@@ -1982,8 +1982,8 @@ from cloudflare.types.origin_tls_client_auth.hostnames import (
 
 Methods:
 
-- <code title="post /zones/{zone_id}/origin_tls_client_auth/hostnames/certificates">client.origin_tls_client_auth.hostnames.certificates.<a href="./src/cloudflare/resources/origin_tls_client_auth/hostnames/certificates.py">create</a>(zone_id, \*\*<a href="src/cloudflare/types/origin_tls_client_auth/hostnames/certificate_create_params.py">params</a>) -> <a href="./src/cloudflare/types/origin_tls_client_auth/hostnames/certificate_create_response.py">CertificateCreateResponse</a></code>
-- <code title="get /zones/{zone_id}/origin_tls_client_auth/hostnames/certificates">client.origin_tls_client_auth.hostnames.certificates.<a href="./src/cloudflare/resources/origin_tls_client_auth/hostnames/certificates.py">list</a>(zone_id) -> <a href="./src/cloudflare/types/origin_tls_client_auth/hostnames/certificate_list_response.py">Optional</a></code>
+- <code title="post /zones/{zone_id}/origin_tls_client_auth/hostnames/certificates">client.origin_tls_client_auth.hostnames.certificates.<a href="./src/cloudflare/resources/origin_tls_client_auth/hostnames/certificates.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/origin_tls_client_auth/hostnames/certificate_create_params.py">params</a>) -> <a href="./src/cloudflare/types/origin_tls_client_auth/hostnames/certificate_create_response.py">CertificateCreateResponse</a></code>
+- <code title="get /zones/{zone_id}/origin_tls_client_auth/hostnames/certificates">client.origin_tls_client_auth.hostnames.certificates.<a href="./src/cloudflare/resources/origin_tls_client_auth/hostnames/certificates.py">list</a>(\*, zone_id) -> <a href="./src/cloudflare/types/origin_tls_client_auth/hostnames/certificate_list_response.py">Optional</a></code>
 - <code title="delete /zones/{zone_id}/origin_tls_client_auth/hostnames/certificates/{certificate_id}">client.origin_tls_client_auth.hostnames.certificates.<a href="./src/cloudflare/resources/origin_tls_client_auth/hostnames/certificates.py">delete</a>(certificate_id, \*, zone_id) -> <a href="./src/cloudflare/types/origin_tls_client_auth/hostnames/certificate_delete_response.py">CertificateDeleteResponse</a></code>
 - <code title="get /zones/{zone_id}/origin_tls_client_auth/hostnames/certificates/{certificate_id}">client.origin_tls_client_auth.hostnames.certificates.<a href="./src/cloudflare/resources/origin_tls_client_auth/hostnames/certificates.py">get</a>(certificate_id, \*, zone_id) -> <a href="./src/cloudflare/types/origin_tls_client_auth/hostnames/certificate_get_response.py">CertificateGetResponse</a></code>
 
@@ -1997,8 +1997,8 @@ from cloudflare.types.origin_tls_client_auth import SettingUpdateResponse, Setti
 
 Methods:
 
-- <code title="put /zones/{zone_id}/origin_tls_client_auth/settings">client.origin_tls_client_auth.settings.<a href="./src/cloudflare/resources/origin_tls_client_auth/settings.py">update</a>(zone_id, \*\*<a href="src/cloudflare/types/origin_tls_client_auth/setting_update_params.py">params</a>) -> <a href="./src/cloudflare/types/origin_tls_client_auth/setting_update_response.py">SettingUpdateResponse</a></code>
-- <code title="get /zones/{zone_id}/origin_tls_client_auth/settings">client.origin_tls_client_auth.settings.<a href="./src/cloudflare/resources/origin_tls_client_auth/settings.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/origin_tls_client_auth/setting_get_response.py">SettingGetResponse</a></code>
+- <code title="put /zones/{zone_id}/origin_tls_client_auth/settings">client.origin_tls_client_auth.settings.<a href="./src/cloudflare/resources/origin_tls_client_auth/settings.py">update</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/origin_tls_client_auth/setting_update_params.py">params</a>) -> <a href="./src/cloudflare/types/origin_tls_client_auth/setting_update_response.py">SettingUpdateResponse</a></code>
+- <code title="get /zones/{zone_id}/origin_tls_client_auth/settings">client.origin_tls_client_auth.settings.<a href="./src/cloudflare/resources/origin_tls_client_auth/settings.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/origin_tls_client_auth/setting_get_response.py">SettingGetResponse</a></code>
 
 # Pagerules
 
@@ -2017,9 +2017,9 @@ from cloudflare.types import (
 
 Methods:
 
-- <code title="post /zones/{zone_id}/pagerules">client.pagerules.<a href="./src/cloudflare/resources/pagerules/pagerules.py">create</a>(zone_id, \*\*<a href="src/cloudflare/types/pagerule_create_params.py">params</a>) -> <a href="./src/cloudflare/types/pagerule_create_response.py">PageruleCreateResponse</a></code>
+- <code title="post /zones/{zone_id}/pagerules">client.pagerules.<a href="./src/cloudflare/resources/pagerules/pagerules.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/pagerule_create_params.py">params</a>) -> <a href="./src/cloudflare/types/pagerule_create_response.py">PageruleCreateResponse</a></code>
 - <code title="put /zones/{zone_id}/pagerules/{pagerule_id}">client.pagerules.<a href="./src/cloudflare/resources/pagerules/pagerules.py">update</a>(pagerule_id, \*, zone_id, \*\*<a href="src/cloudflare/types/pagerule_update_params.py">params</a>) -> <a href="./src/cloudflare/types/pagerule_update_response.py">PageruleUpdateResponse</a></code>
-- <code title="get /zones/{zone_id}/pagerules">client.pagerules.<a href="./src/cloudflare/resources/pagerules/pagerules.py">list</a>(zone_id, \*\*<a href="src/cloudflare/types/pagerule_list_params.py">params</a>) -> <a href="./src/cloudflare/types/pagerule_list_response.py">PageruleListResponse</a></code>
+- <code title="get /zones/{zone_id}/pagerules">client.pagerules.<a href="./src/cloudflare/resources/pagerules/pagerules.py">list</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/pagerule_list_params.py">params</a>) -> <a href="./src/cloudflare/types/pagerule_list_response.py">PageruleListResponse</a></code>
 - <code title="delete /zones/{zone_id}/pagerules/{pagerule_id}">client.pagerules.<a href="./src/cloudflare/resources/pagerules/pagerules.py">delete</a>(pagerule_id, \*, zone_id) -> <a href="./src/cloudflare/types/pagerule_delete_response.py">Optional</a></code>
 - <code title="patch /zones/{zone_id}/pagerules/{pagerule_id}">client.pagerules.<a href="./src/cloudflare/resources/pagerules/pagerules.py">edit</a>(pagerule_id, \*, zone_id, \*\*<a href="src/cloudflare/types/pagerule_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/pagerule_edit_response.py">PageruleEditResponse</a></code>
 - <code title="get /zones/{zone_id}/pagerules/{pagerule_id}">client.pagerules.<a href="./src/cloudflare/resources/pagerules/pagerules.py">get</a>(pagerule_id, \*, zone_id) -> <a href="./src/cloudflare/types/pagerule_get_response.py">PageruleGetResponse</a></code>
@@ -2034,7 +2034,7 @@ from cloudflare.types.pagerules import SettingListResponse
 
 Methods:
 
-- <code title="get /zones/{zone_id}/pagerules/settings">client.pagerules.settings.<a href="./src/cloudflare/resources/pagerules/settings.py">list</a>(zone_id) -> <a href="./src/cloudflare/types/pagerules/setting_list_response.py">SettingListResponse</a></code>
+- <code title="get /zones/{zone_id}/pagerules/settings">client.pagerules.settings.<a href="./src/cloudflare/resources/pagerules/settings.py">list</a>(\*, zone_id) -> <a href="./src/cloudflare/types/pagerules/setting_list_response.py">SettingListResponse</a></code>
 
 # RateLimits
 
@@ -2070,7 +2070,7 @@ from cloudflare.types.secondary_dns import ForceAxfrCreateResponse
 
 Methods:
 
-- <code title="post /zones/{zone_id}/secondary_dns/force_axfr">client.secondary_dns.force_axfrs.<a href="./src/cloudflare/resources/secondary_dns/force_axfrs.py">create</a>(zone_id) -> <a href="./src/cloudflare/types/secondary_dns/force_axfr_create_response.py">str</a></code>
+- <code title="post /zones/{zone_id}/secondary_dns/force_axfr">client.secondary_dns.force_axfrs.<a href="./src/cloudflare/resources/secondary_dns/force_axfrs.py">create</a>(\*, zone_id) -> <a href="./src/cloudflare/types/secondary_dns/force_axfr_create_response.py">str</a></code>
 
 ## Incoming
 
@@ -2087,10 +2087,10 @@ from cloudflare.types.secondary_dns import (
 
 Methods:
 
-- <code title="post /zones/{zone_id}/secondary_dns/incoming">client.secondary_dns.incoming.<a href="./src/cloudflare/resources/secondary_dns/incoming.py">create</a>(zone_id, \*\*<a href="src/cloudflare/types/secondary_dns/incoming_create_params.py">params</a>) -> <a href="./src/cloudflare/types/secondary_dns/incoming_create_response.py">IncomingCreateResponse</a></code>
-- <code title="put /zones/{zone_id}/secondary_dns/incoming">client.secondary_dns.incoming.<a href="./src/cloudflare/resources/secondary_dns/incoming.py">update</a>(zone_id, \*\*<a href="src/cloudflare/types/secondary_dns/incoming_update_params.py">params</a>) -> <a href="./src/cloudflare/types/secondary_dns/incoming_update_response.py">IncomingUpdateResponse</a></code>
-- <code title="delete /zones/{zone_id}/secondary_dns/incoming">client.secondary_dns.incoming.<a href="./src/cloudflare/resources/secondary_dns/incoming.py">delete</a>(zone_id) -> <a href="./src/cloudflare/types/secondary_dns/incoming_delete_response.py">IncomingDeleteResponse</a></code>
-- <code title="get /zones/{zone_id}/secondary_dns/incoming">client.secondary_dns.incoming.<a href="./src/cloudflare/resources/secondary_dns/incoming.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/secondary_dns/incoming_get_response.py">IncomingGetResponse</a></code>
+- <code title="post /zones/{zone_id}/secondary_dns/incoming">client.secondary_dns.incoming.<a href="./src/cloudflare/resources/secondary_dns/incoming.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/secondary_dns/incoming_create_params.py">params</a>) -> <a href="./src/cloudflare/types/secondary_dns/incoming_create_response.py">IncomingCreateResponse</a></code>
+- <code title="put /zones/{zone_id}/secondary_dns/incoming">client.secondary_dns.incoming.<a href="./src/cloudflare/resources/secondary_dns/incoming.py">update</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/secondary_dns/incoming_update_params.py">params</a>) -> <a href="./src/cloudflare/types/secondary_dns/incoming_update_response.py">IncomingUpdateResponse</a></code>
+- <code title="delete /zones/{zone_id}/secondary_dns/incoming">client.secondary_dns.incoming.<a href="./src/cloudflare/resources/secondary_dns/incoming.py">delete</a>(\*, zone_id) -> <a href="./src/cloudflare/types/secondary_dns/incoming_delete_response.py">IncomingDeleteResponse</a></code>
+- <code title="get /zones/{zone_id}/secondary_dns/incoming">client.secondary_dns.incoming.<a href="./src/cloudflare/resources/secondary_dns/incoming.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/secondary_dns/incoming_get_response.py">IncomingGetResponse</a></code>
 
 ## Outgoing
 
@@ -2110,13 +2110,13 @@ from cloudflare.types.secondary_dns import (
 
 Methods:
 
-- <code title="post /zones/{zone_id}/secondary_dns/outgoing">client.secondary_dns.outgoing.<a href="./src/cloudflare/resources/secondary_dns/outgoing/outgoing.py">create</a>(zone_id, \*\*<a href="src/cloudflare/types/secondary_dns/outgoing_create_params.py">params</a>) -> <a href="./src/cloudflare/types/secondary_dns/outgoing_create_response.py">OutgoingCreateResponse</a></code>
-- <code title="put /zones/{zone_id}/secondary_dns/outgoing">client.secondary_dns.outgoing.<a href="./src/cloudflare/resources/secondary_dns/outgoing/outgoing.py">update</a>(zone_id, \*\*<a href="src/cloudflare/types/secondary_dns/outgoing_update_params.py">params</a>) -> <a href="./src/cloudflare/types/secondary_dns/outgoing_update_response.py">OutgoingUpdateResponse</a></code>
-- <code title="delete /zones/{zone_id}/secondary_dns/outgoing">client.secondary_dns.outgoing.<a href="./src/cloudflare/resources/secondary_dns/outgoing/outgoing.py">delete</a>(zone_id) -> <a href="./src/cloudflare/types/secondary_dns/outgoing_delete_response.py">OutgoingDeleteResponse</a></code>
-- <code title="post /zones/{zone_id}/secondary_dns/outgoing/disable">client.secondary_dns.outgoing.<a href="./src/cloudflare/resources/secondary_dns/outgoing/outgoing.py">disable</a>(zone_id) -> <a href="./src/cloudflare/types/secondary_dns/outgoing_disable_response.py">str</a></code>
-- <code title="post /zones/{zone_id}/secondary_dns/outgoing/enable">client.secondary_dns.outgoing.<a href="./src/cloudflare/resources/secondary_dns/outgoing/outgoing.py">enable</a>(zone_id) -> <a href="./src/cloudflare/types/secondary_dns/outgoing_enable_response.py">str</a></code>
-- <code title="post /zones/{zone_id}/secondary_dns/outgoing/force_notify">client.secondary_dns.outgoing.<a href="./src/cloudflare/resources/secondary_dns/outgoing/outgoing.py">force_notify</a>(zone_id) -> <a href="./src/cloudflare/types/secondary_dns/outgoing_force_notify_response.py">str</a></code>
-- <code title="get /zones/{zone_id}/secondary_dns/outgoing">client.secondary_dns.outgoing.<a href="./src/cloudflare/resources/secondary_dns/outgoing/outgoing.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/secondary_dns/outgoing_get_response.py">OutgoingGetResponse</a></code>
+- <code title="post /zones/{zone_id}/secondary_dns/outgoing">client.secondary_dns.outgoing.<a href="./src/cloudflare/resources/secondary_dns/outgoing/outgoing.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/secondary_dns/outgoing_create_params.py">params</a>) -> <a href="./src/cloudflare/types/secondary_dns/outgoing_create_response.py">OutgoingCreateResponse</a></code>
+- <code title="put /zones/{zone_id}/secondary_dns/outgoing">client.secondary_dns.outgoing.<a href="./src/cloudflare/resources/secondary_dns/outgoing/outgoing.py">update</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/secondary_dns/outgoing_update_params.py">params</a>) -> <a href="./src/cloudflare/types/secondary_dns/outgoing_update_response.py">OutgoingUpdateResponse</a></code>
+- <code title="delete /zones/{zone_id}/secondary_dns/outgoing">client.secondary_dns.outgoing.<a href="./src/cloudflare/resources/secondary_dns/outgoing/outgoing.py">delete</a>(\*, zone_id) -> <a href="./src/cloudflare/types/secondary_dns/outgoing_delete_response.py">OutgoingDeleteResponse</a></code>
+- <code title="post /zones/{zone_id}/secondary_dns/outgoing/disable">client.secondary_dns.outgoing.<a href="./src/cloudflare/resources/secondary_dns/outgoing/outgoing.py">disable</a>(\*, zone_id) -> <a href="./src/cloudflare/types/secondary_dns/outgoing_disable_response.py">str</a></code>
+- <code title="post /zones/{zone_id}/secondary_dns/outgoing/enable">client.secondary_dns.outgoing.<a href="./src/cloudflare/resources/secondary_dns/outgoing/outgoing.py">enable</a>(\*, zone_id) -> <a href="./src/cloudflare/types/secondary_dns/outgoing_enable_response.py">str</a></code>
+- <code title="post /zones/{zone_id}/secondary_dns/outgoing/force_notify">client.secondary_dns.outgoing.<a href="./src/cloudflare/resources/secondary_dns/outgoing/outgoing.py">force_notify</a>(\*, zone_id) -> <a href="./src/cloudflare/types/secondary_dns/outgoing_force_notify_response.py">str</a></code>
+- <code title="get /zones/{zone_id}/secondary_dns/outgoing">client.secondary_dns.outgoing.<a href="./src/cloudflare/resources/secondary_dns/outgoing/outgoing.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/secondary_dns/outgoing_get_response.py">OutgoingGetResponse</a></code>
 
 ### Status
 
@@ -2128,7 +2128,7 @@ from cloudflare.types.secondary_dns.outgoing import StatusGetResponse
 
 Methods:
 
-- <code title="get /zones/{zone_id}/secondary_dns/outgoing/status">client.secondary_dns.outgoing.status.<a href="./src/cloudflare/resources/secondary_dns/outgoing/status.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/secondary_dns/outgoing/status_get_response.py">str</a></code>
+- <code title="get /zones/{zone_id}/secondary_dns/outgoing/status">client.secondary_dns.outgoing.status.<a href="./src/cloudflare/resources/secondary_dns/outgoing/status.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/secondary_dns/outgoing/status_get_response.py">str</a></code>
 
 ## ACLs
 
@@ -2146,9 +2146,9 @@ from cloudflare.types.secondary_dns import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/secondary_dns/acls">client.secondary_dns.acls.<a href="./src/cloudflare/resources/secondary_dns/acls.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/secondary_dns/acl_create_params.py">params</a>) -> <a href="./src/cloudflare/types/secondary_dns/acl_create_response.py">ACLCreateResponse</a></code>
+- <code title="post /accounts/{account_id}/secondary_dns/acls">client.secondary_dns.acls.<a href="./src/cloudflare/resources/secondary_dns/acls.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/secondary_dns/acl_create_params.py">params</a>) -> <a href="./src/cloudflare/types/secondary_dns/acl_create_response.py">ACLCreateResponse</a></code>
 - <code title="put /accounts/{account_id}/secondary_dns/acls/{acl_id}">client.secondary_dns.acls.<a href="./src/cloudflare/resources/secondary_dns/acls.py">update</a>(acl_id, \*, account_id, \*\*<a href="src/cloudflare/types/secondary_dns/acl_update_params.py">params</a>) -> <a href="./src/cloudflare/types/secondary_dns/acl_update_response.py">ACLUpdateResponse</a></code>
-- <code title="get /accounts/{account_id}/secondary_dns/acls">client.secondary_dns.acls.<a href="./src/cloudflare/resources/secondary_dns/acls.py">list</a>(account_id) -> <a href="./src/cloudflare/types/secondary_dns/acl_list_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/secondary_dns/acls">client.secondary_dns.acls.<a href="./src/cloudflare/resources/secondary_dns/acls.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/secondary_dns/acl_list_response.py">Optional</a></code>
 - <code title="delete /accounts/{account_id}/secondary_dns/acls/{acl_id}">client.secondary_dns.acls.<a href="./src/cloudflare/resources/secondary_dns/acls.py">delete</a>(acl_id, \*, account_id) -> <a href="./src/cloudflare/types/secondary_dns/acl_delete_response.py">ACLDeleteResponse</a></code>
 - <code title="get /accounts/{account_id}/secondary_dns/acls/{acl_id}">client.secondary_dns.acls.<a href="./src/cloudflare/resources/secondary_dns/acls.py">get</a>(acl_id, \*, account_id) -> <a href="./src/cloudflare/types/secondary_dns/acl_get_response.py">ACLGetResponse</a></code>
 
@@ -2168,9 +2168,9 @@ from cloudflare.types.secondary_dns import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/secondary_dns/peers">client.secondary_dns.peers.<a href="./src/cloudflare/resources/secondary_dns/peers.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/secondary_dns/peer_create_params.py">params</a>) -> <a href="./src/cloudflare/types/secondary_dns/peer_create_response.py">PeerCreateResponse</a></code>
+- <code title="post /accounts/{account_id}/secondary_dns/peers">client.secondary_dns.peers.<a href="./src/cloudflare/resources/secondary_dns/peers.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/secondary_dns/peer_create_params.py">params</a>) -> <a href="./src/cloudflare/types/secondary_dns/peer_create_response.py">PeerCreateResponse</a></code>
 - <code title="put /accounts/{account_id}/secondary_dns/peers/{peer_id}">client.secondary_dns.peers.<a href="./src/cloudflare/resources/secondary_dns/peers.py">update</a>(peer_id, \*, account_id, \*\*<a href="src/cloudflare/types/secondary_dns/peer_update_params.py">params</a>) -> <a href="./src/cloudflare/types/secondary_dns/peer_update_response.py">PeerUpdateResponse</a></code>
-- <code title="get /accounts/{account_id}/secondary_dns/peers">client.secondary_dns.peers.<a href="./src/cloudflare/resources/secondary_dns/peers.py">list</a>(account_id) -> <a href="./src/cloudflare/types/secondary_dns/peer_list_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/secondary_dns/peers">client.secondary_dns.peers.<a href="./src/cloudflare/resources/secondary_dns/peers.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/secondary_dns/peer_list_response.py">Optional</a></code>
 - <code title="delete /accounts/{account_id}/secondary_dns/peers/{peer_id}">client.secondary_dns.peers.<a href="./src/cloudflare/resources/secondary_dns/peers.py">delete</a>(peer_id, \*, account_id) -> <a href="./src/cloudflare/types/secondary_dns/peer_delete_response.py">PeerDeleteResponse</a></code>
 - <code title="get /accounts/{account_id}/secondary_dns/peers/{peer_id}">client.secondary_dns.peers.<a href="./src/cloudflare/resources/secondary_dns/peers.py">get</a>(peer_id, \*, account_id) -> <a href="./src/cloudflare/types/secondary_dns/peer_get_response.py">PeerGetResponse</a></code>
 
@@ -2190,9 +2190,9 @@ from cloudflare.types.secondary_dns import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/secondary_dns/tsigs">client.secondary_dns.tsigs.<a href="./src/cloudflare/resources/secondary_dns/tsigs.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/secondary_dns/tsig_create_params.py">params</a>) -> <a href="./src/cloudflare/types/secondary_dns/tsig_create_response.py">TSIGCreateResponse</a></code>
+- <code title="post /accounts/{account_id}/secondary_dns/tsigs">client.secondary_dns.tsigs.<a href="./src/cloudflare/resources/secondary_dns/tsigs.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/secondary_dns/tsig_create_params.py">params</a>) -> <a href="./src/cloudflare/types/secondary_dns/tsig_create_response.py">TSIGCreateResponse</a></code>
 - <code title="put /accounts/{account_id}/secondary_dns/tsigs/{tsig_id}">client.secondary_dns.tsigs.<a href="./src/cloudflare/resources/secondary_dns/tsigs.py">update</a>(tsig_id, \*, account_id, \*\*<a href="src/cloudflare/types/secondary_dns/tsig_update_params.py">params</a>) -> <a href="./src/cloudflare/types/secondary_dns/tsig_update_response.py">TSIGUpdateResponse</a></code>
-- <code title="get /accounts/{account_id}/secondary_dns/tsigs">client.secondary_dns.tsigs.<a href="./src/cloudflare/resources/secondary_dns/tsigs.py">list</a>(account_id) -> <a href="./src/cloudflare/types/secondary_dns/tsig_list_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/secondary_dns/tsigs">client.secondary_dns.tsigs.<a href="./src/cloudflare/resources/secondary_dns/tsigs.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/secondary_dns/tsig_list_response.py">Optional</a></code>
 - <code title="delete /accounts/{account_id}/secondary_dns/tsigs/{tsig_id}">client.secondary_dns.tsigs.<a href="./src/cloudflare/resources/secondary_dns/tsigs.py">delete</a>(tsig_id, \*, account_id) -> <a href="./src/cloudflare/types/secondary_dns/tsig_delete_response.py">TSIGDeleteResponse</a></code>
 - <code title="get /accounts/{account_id}/secondary_dns/tsigs/{tsig_id}">client.secondary_dns.tsigs.<a href="./src/cloudflare/resources/secondary_dns/tsigs.py">get</a>(tsig_id, \*, account_id) -> <a href="./src/cloudflare/types/secondary_dns/tsig_get_response.py">TSIGGetResponse</a></code>
 
@@ -2206,8 +2206,8 @@ from cloudflare.types import SettingListResponse, SettingEditResponse
 
 Methods:
 
-- <code title="get /zones/{zone_id}/settings">client.settings.<a href="./src/cloudflare/resources/settings/settings.py">list</a>(zone_id) -> <a href="./src/cloudflare/types/setting_list_response.py">Optional</a></code>
-- <code title="patch /zones/{zone_id}/settings">client.settings.<a href="./src/cloudflare/resources/settings/settings.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/setting_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/setting_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/settings">client.settings.<a href="./src/cloudflare/resources/settings/settings.py">list</a>(\*, zone_id) -> <a href="./src/cloudflare/types/setting_list_response.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/settings">client.settings.<a href="./src/cloudflare/resources/settings/settings.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/setting_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/setting_edit_response.py">Optional</a></code>
 
 ## ZeroRTT
 
@@ -2219,8 +2219,8 @@ from cloudflare.types.settings import ZeroRTTEditResponse, ZeroRTTGetResponse
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/settings/0rtt">client.settings.zero_rtt.<a href="./src/cloudflare/resources/settings/zero_rtt.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/settings/zero_rtt_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/zero_rtt_edit_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/0rtt">client.settings.zero_rtt.<a href="./src/cloudflare/resources/settings/zero_rtt.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/settings/zero_rtt_get_response.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/settings/0rtt">client.settings.zero_rtt.<a href="./src/cloudflare/resources/settings/zero_rtt.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/settings/zero_rtt_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/zero_rtt_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/settings/0rtt">client.settings.zero_rtt.<a href="./src/cloudflare/resources/settings/zero_rtt.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/settings/zero_rtt_get_response.py">Optional</a></code>
 
 ## AdvancedDDOS
 
@@ -2232,7 +2232,7 @@ from cloudflare.types.settings import AdvancedDDOSGetResponse
 
 Methods:
 
-- <code title="get /zones/{zone_id}/settings/advanced_ddos">client.settings.advanced_ddos.<a href="./src/cloudflare/resources/settings/advanced_ddos.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/settings/advanced_ddos_get_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/settings/advanced_ddos">client.settings.advanced_ddos.<a href="./src/cloudflare/resources/settings/advanced_ddos.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/settings/advanced_ddos_get_response.py">Optional</a></code>
 
 ## AlwaysOnline
 
@@ -2244,8 +2244,8 @@ from cloudflare.types.settings import AlwaysOnlineEditResponse, AlwaysOnlineGetR
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/settings/always_online">client.settings.always_online.<a href="./src/cloudflare/resources/settings/always_online.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/settings/always_online_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/always_online_edit_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/always_online">client.settings.always_online.<a href="./src/cloudflare/resources/settings/always_online.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/settings/always_online_get_response.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/settings/always_online">client.settings.always_online.<a href="./src/cloudflare/resources/settings/always_online.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/settings/always_online_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/always_online_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/settings/always_online">client.settings.always_online.<a href="./src/cloudflare/resources/settings/always_online.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/settings/always_online_get_response.py">Optional</a></code>
 
 ## AlwaysUseHTTPS
 
@@ -2257,8 +2257,8 @@ from cloudflare.types.settings import AlwaysUseHTTPSEditResponse, AlwaysUseHTTPS
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/settings/always_use_https">client.settings.always_use_https.<a href="./src/cloudflare/resources/settings/always_use_https.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/settings/always_use_https_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/always_use_https_edit_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/always_use_https">client.settings.always_use_https.<a href="./src/cloudflare/resources/settings/always_use_https.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/settings/always_use_https_get_response.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/settings/always_use_https">client.settings.always_use_https.<a href="./src/cloudflare/resources/settings/always_use_https.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/settings/always_use_https_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/always_use_https_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/settings/always_use_https">client.settings.always_use_https.<a href="./src/cloudflare/resources/settings/always_use_https.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/settings/always_use_https_get_response.py">Optional</a></code>
 
 ## AutomaticHTTPSRewrites
 
@@ -2273,8 +2273,8 @@ from cloudflare.types.settings import (
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/settings/automatic_https_rewrites">client.settings.automatic_https_rewrites.<a href="./src/cloudflare/resources/settings/automatic_https_rewrites.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/settings/automatic_https_rewrite_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/automatic_https_rewrite_edit_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/automatic_https_rewrites">client.settings.automatic_https_rewrites.<a href="./src/cloudflare/resources/settings/automatic_https_rewrites.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/settings/automatic_https_rewrite_get_response.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/settings/automatic_https_rewrites">client.settings.automatic_https_rewrites.<a href="./src/cloudflare/resources/settings/automatic_https_rewrites.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/settings/automatic_https_rewrite_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/automatic_https_rewrite_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/settings/automatic_https_rewrites">client.settings.automatic_https_rewrites.<a href="./src/cloudflare/resources/settings/automatic_https_rewrites.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/settings/automatic_https_rewrite_get_response.py">Optional</a></code>
 
 ## AutomaticPlatformOptimization
 
@@ -2289,8 +2289,8 @@ from cloudflare.types.settings import (
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/settings/automatic_platform_optimization">client.settings.automatic_platform_optimization.<a href="./src/cloudflare/resources/settings/automatic_platform_optimization.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/settings/automatic_platform_optimization_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/automatic_platform_optimization_edit_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/automatic_platform_optimization">client.settings.automatic_platform_optimization.<a href="./src/cloudflare/resources/settings/automatic_platform_optimization.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/settings/automatic_platform_optimization_get_response.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/settings/automatic_platform_optimization">client.settings.automatic_platform_optimization.<a href="./src/cloudflare/resources/settings/automatic_platform_optimization.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/settings/automatic_platform_optimization_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/automatic_platform_optimization_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/settings/automatic_platform_optimization">client.settings.automatic_platform_optimization.<a href="./src/cloudflare/resources/settings/automatic_platform_optimization.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/settings/automatic_platform_optimization_get_response.py">Optional</a></code>
 
 ## Brotli
 
@@ -2302,8 +2302,8 @@ from cloudflare.types.settings import BrotliEditResponse, BrotliGetResponse
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/settings/brotli">client.settings.brotli.<a href="./src/cloudflare/resources/settings/brotli.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/settings/brotli_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/brotli_edit_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/brotli">client.settings.brotli.<a href="./src/cloudflare/resources/settings/brotli.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/settings/brotli_get_response.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/settings/brotli">client.settings.brotli.<a href="./src/cloudflare/resources/settings/brotli.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/settings/brotli_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/brotli_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/settings/brotli">client.settings.brotli.<a href="./src/cloudflare/resources/settings/brotli.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/settings/brotli_get_response.py">Optional</a></code>
 
 ## BrowserCacheTTL
 
@@ -2315,8 +2315,8 @@ from cloudflare.types.settings import BrowserCacheTTLEditResponse, BrowserCacheT
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/settings/browser_cache_ttl">client.settings.browser_cache_ttl.<a href="./src/cloudflare/resources/settings/browser_cache_ttl.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/settings/browser_cache_ttl_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/browser_cache_ttl_edit_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/browser_cache_ttl">client.settings.browser_cache_ttl.<a href="./src/cloudflare/resources/settings/browser_cache_ttl.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/settings/browser_cache_ttl_get_response.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/settings/browser_cache_ttl">client.settings.browser_cache_ttl.<a href="./src/cloudflare/resources/settings/browser_cache_ttl.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/settings/browser_cache_ttl_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/browser_cache_ttl_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/settings/browser_cache_ttl">client.settings.browser_cache_ttl.<a href="./src/cloudflare/resources/settings/browser_cache_ttl.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/settings/browser_cache_ttl_get_response.py">Optional</a></code>
 
 ## BrowserCheck
 
@@ -2328,8 +2328,8 @@ from cloudflare.types.settings import BrowserCheckEditResponse, BrowserCheckGetR
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/settings/browser_check">client.settings.browser_check.<a href="./src/cloudflare/resources/settings/browser_check.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/settings/browser_check_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/browser_check_edit_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/browser_check">client.settings.browser_check.<a href="./src/cloudflare/resources/settings/browser_check.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/settings/browser_check_get_response.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/settings/browser_check">client.settings.browser_check.<a href="./src/cloudflare/resources/settings/browser_check.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/settings/browser_check_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/browser_check_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/settings/browser_check">client.settings.browser_check.<a href="./src/cloudflare/resources/settings/browser_check.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/settings/browser_check_get_response.py">Optional</a></code>
 
 ## CacheLevel
 
@@ -2341,8 +2341,8 @@ from cloudflare.types.settings import CacheLevelEditResponse, CacheLevelGetRespo
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/settings/cache_level">client.settings.cache_level.<a href="./src/cloudflare/resources/settings/cache_level.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/settings/cache_level_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/cache_level_edit_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/cache_level">client.settings.cache_level.<a href="./src/cloudflare/resources/settings/cache_level.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/settings/cache_level_get_response.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/settings/cache_level">client.settings.cache_level.<a href="./src/cloudflare/resources/settings/cache_level.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/settings/cache_level_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/cache_level_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/settings/cache_level">client.settings.cache_level.<a href="./src/cloudflare/resources/settings/cache_level.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/settings/cache_level_get_response.py">Optional</a></code>
 
 ## ChallengeTTL
 
@@ -2354,8 +2354,8 @@ from cloudflare.types.settings import ChallengeTTLEditResponse, ChallengeTTLGetR
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/settings/challenge_ttl">client.settings.challenge_ttl.<a href="./src/cloudflare/resources/settings/challenge_ttl.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/settings/challenge_ttl_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/challenge_ttl_edit_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/challenge_ttl">client.settings.challenge_ttl.<a href="./src/cloudflare/resources/settings/challenge_ttl.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/settings/challenge_ttl_get_response.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/settings/challenge_ttl">client.settings.challenge_ttl.<a href="./src/cloudflare/resources/settings/challenge_ttl.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/settings/challenge_ttl_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/challenge_ttl_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/settings/challenge_ttl">client.settings.challenge_ttl.<a href="./src/cloudflare/resources/settings/challenge_ttl.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/settings/challenge_ttl_get_response.py">Optional</a></code>
 
 ## Ciphers
 
@@ -2367,8 +2367,8 @@ from cloudflare.types.settings import CipherEditResponse, CipherGetResponse
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/settings/ciphers">client.settings.ciphers.<a href="./src/cloudflare/resources/settings/ciphers.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/settings/cipher_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/cipher_edit_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/ciphers">client.settings.ciphers.<a href="./src/cloudflare/resources/settings/ciphers.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/settings/cipher_get_response.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/settings/ciphers">client.settings.ciphers.<a href="./src/cloudflare/resources/settings/ciphers.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/settings/cipher_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/cipher_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/settings/ciphers">client.settings.ciphers.<a href="./src/cloudflare/resources/settings/ciphers.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/settings/cipher_get_response.py">Optional</a></code>
 
 ## DevelopmentMode
 
@@ -2380,8 +2380,8 @@ from cloudflare.types.settings import DevelopmentModeEditResponse, DevelopmentMo
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/settings/development_mode">client.settings.development_mode.<a href="./src/cloudflare/resources/settings/development_mode.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/settings/development_mode_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/development_mode_edit_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/development_mode">client.settings.development_mode.<a href="./src/cloudflare/resources/settings/development_mode.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/settings/development_mode_get_response.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/settings/development_mode">client.settings.development_mode.<a href="./src/cloudflare/resources/settings/development_mode.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/settings/development_mode_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/development_mode_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/settings/development_mode">client.settings.development_mode.<a href="./src/cloudflare/resources/settings/development_mode.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/settings/development_mode_get_response.py">Optional</a></code>
 
 ## EarlyHints
 
@@ -2393,8 +2393,8 @@ from cloudflare.types.settings import EarlyHintEditResponse, EarlyHintGetRespons
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/settings/early_hints">client.settings.early_hints.<a href="./src/cloudflare/resources/settings/early_hints.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/settings/early_hint_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/early_hint_edit_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/early_hints">client.settings.early_hints.<a href="./src/cloudflare/resources/settings/early_hints.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/settings/early_hint_get_response.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/settings/early_hints">client.settings.early_hints.<a href="./src/cloudflare/resources/settings/early_hints.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/settings/early_hint_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/early_hint_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/settings/early_hints">client.settings.early_hints.<a href="./src/cloudflare/resources/settings/early_hints.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/settings/early_hint_get_response.py">Optional</a></code>
 
 ## EmailObfuscation
 
@@ -2406,8 +2406,8 @@ from cloudflare.types.settings import EmailObfuscationEditResponse, EmailObfusca
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/settings/email_obfuscation">client.settings.email_obfuscation.<a href="./src/cloudflare/resources/settings/email_obfuscation.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/settings/email_obfuscation_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/email_obfuscation_edit_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/email_obfuscation">client.settings.email_obfuscation.<a href="./src/cloudflare/resources/settings/email_obfuscation.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/settings/email_obfuscation_get_response.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/settings/email_obfuscation">client.settings.email_obfuscation.<a href="./src/cloudflare/resources/settings/email_obfuscation.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/settings/email_obfuscation_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/email_obfuscation_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/settings/email_obfuscation">client.settings.email_obfuscation.<a href="./src/cloudflare/resources/settings/email_obfuscation.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/settings/email_obfuscation_get_response.py">Optional</a></code>
 
 ## H2Prioritization
 
@@ -2419,8 +2419,8 @@ from cloudflare.types.settings import H2PrioritizationEditResponse, H2Prioritiza
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/settings/h2_prioritization">client.settings.h2_prioritization.<a href="./src/cloudflare/resources/settings/h2_prioritization.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/settings/h2_prioritization_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/h2_prioritization_edit_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/h2_prioritization">client.settings.h2_prioritization.<a href="./src/cloudflare/resources/settings/h2_prioritization.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/settings/h2_prioritization_get_response.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/settings/h2_prioritization">client.settings.h2_prioritization.<a href="./src/cloudflare/resources/settings/h2_prioritization.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/settings/h2_prioritization_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/h2_prioritization_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/settings/h2_prioritization">client.settings.h2_prioritization.<a href="./src/cloudflare/resources/settings/h2_prioritization.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/settings/h2_prioritization_get_response.py">Optional</a></code>
 
 ## HotlinkProtection
 
@@ -2432,8 +2432,8 @@ from cloudflare.types.settings import HotlinkProtectionEditResponse, HotlinkProt
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/settings/hotlink_protection">client.settings.hotlink_protection.<a href="./src/cloudflare/resources/settings/hotlink_protection.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/settings/hotlink_protection_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/hotlink_protection_edit_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/hotlink_protection">client.settings.hotlink_protection.<a href="./src/cloudflare/resources/settings/hotlink_protection.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/settings/hotlink_protection_get_response.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/settings/hotlink_protection">client.settings.hotlink_protection.<a href="./src/cloudflare/resources/settings/hotlink_protection.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/settings/hotlink_protection_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/hotlink_protection_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/settings/hotlink_protection">client.settings.hotlink_protection.<a href="./src/cloudflare/resources/settings/hotlink_protection.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/settings/hotlink_protection_get_response.py">Optional</a></code>
 
 ## HTTP2
 
@@ -2445,8 +2445,8 @@ from cloudflare.types.settings import HTTP2EditResponse, HTTP2GetResponse
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/settings/http2">client.settings.http2.<a href="./src/cloudflare/resources/settings/http2.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/settings/http2_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/http2_edit_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/http2">client.settings.http2.<a href="./src/cloudflare/resources/settings/http2.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/settings/http2_get_response.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/settings/http2">client.settings.http2.<a href="./src/cloudflare/resources/settings/http2.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/settings/http2_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/http2_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/settings/http2">client.settings.http2.<a href="./src/cloudflare/resources/settings/http2.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/settings/http2_get_response.py">Optional</a></code>
 
 ## HTTP3
 
@@ -2458,8 +2458,8 @@ from cloudflare.types.settings import HTTP3EditResponse, HTTP3GetResponse
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/settings/http3">client.settings.http3.<a href="./src/cloudflare/resources/settings/http3.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/settings/http3_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/http3_edit_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/http3">client.settings.http3.<a href="./src/cloudflare/resources/settings/http3.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/settings/http3_get_response.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/settings/http3">client.settings.http3.<a href="./src/cloudflare/resources/settings/http3.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/settings/http3_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/http3_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/settings/http3">client.settings.http3.<a href="./src/cloudflare/resources/settings/http3.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/settings/http3_get_response.py">Optional</a></code>
 
 ## ImageResizing
 
@@ -2471,8 +2471,8 @@ from cloudflare.types.settings import ImageResizingEditResponse, ImageResizingGe
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/settings/image_resizing">client.settings.image_resizing.<a href="./src/cloudflare/resources/settings/image_resizing.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/settings/image_resizing_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/image_resizing_edit_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/image_resizing">client.settings.image_resizing.<a href="./src/cloudflare/resources/settings/image_resizing.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/settings/image_resizing_get_response.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/settings/image_resizing">client.settings.image_resizing.<a href="./src/cloudflare/resources/settings/image_resizing.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/settings/image_resizing_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/image_resizing_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/settings/image_resizing">client.settings.image_resizing.<a href="./src/cloudflare/resources/settings/image_resizing.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/settings/image_resizing_get_response.py">Optional</a></code>
 
 ## IPGeolocation
 
@@ -2484,8 +2484,8 @@ from cloudflare.types.settings import IPGeolocationEditResponse, IPGeolocationGe
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/settings/ip_geolocation">client.settings.ip_geolocation.<a href="./src/cloudflare/resources/settings/ip_geolocation.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/settings/ip_geolocation_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/ip_geolocation_edit_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/ip_geolocation">client.settings.ip_geolocation.<a href="./src/cloudflare/resources/settings/ip_geolocation.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/settings/ip_geolocation_get_response.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/settings/ip_geolocation">client.settings.ip_geolocation.<a href="./src/cloudflare/resources/settings/ip_geolocation.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/settings/ip_geolocation_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/ip_geolocation_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/settings/ip_geolocation">client.settings.ip_geolocation.<a href="./src/cloudflare/resources/settings/ip_geolocation.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/settings/ip_geolocation_get_response.py">Optional</a></code>
 
 ## IPV6
 
@@ -2497,8 +2497,8 @@ from cloudflare.types.settings import IPV6EditResponse, IPV6GetResponse
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/settings/ipv6">client.settings.ipv6.<a href="./src/cloudflare/resources/settings/ipv6.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/settings/ipv6_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/ipv6_edit_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/ipv6">client.settings.ipv6.<a href="./src/cloudflare/resources/settings/ipv6.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/settings/ipv6_get_response.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/settings/ipv6">client.settings.ipv6.<a href="./src/cloudflare/resources/settings/ipv6.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/settings/ipv6_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/ipv6_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/settings/ipv6">client.settings.ipv6.<a href="./src/cloudflare/resources/settings/ipv6.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/settings/ipv6_get_response.py">Optional</a></code>
 
 ## MinTLSVersion
 
@@ -2510,8 +2510,8 @@ from cloudflare.types.settings import MinTLSVersionEditResponse, MinTLSVersionGe
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/settings/min_tls_version">client.settings.min_tls_version.<a href="./src/cloudflare/resources/settings/min_tls_version.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/settings/min_tls_version_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/min_tls_version_edit_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/min_tls_version">client.settings.min_tls_version.<a href="./src/cloudflare/resources/settings/min_tls_version.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/settings/min_tls_version_get_response.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/settings/min_tls_version">client.settings.min_tls_version.<a href="./src/cloudflare/resources/settings/min_tls_version.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/settings/min_tls_version_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/min_tls_version_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/settings/min_tls_version">client.settings.min_tls_version.<a href="./src/cloudflare/resources/settings/min_tls_version.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/settings/min_tls_version_get_response.py">Optional</a></code>
 
 ## Minify
 
@@ -2523,8 +2523,8 @@ from cloudflare.types.settings import MinifyEditResponse, MinifyGetResponse
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/settings/minify">client.settings.minify.<a href="./src/cloudflare/resources/settings/minify.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/settings/minify_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/minify_edit_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/minify">client.settings.minify.<a href="./src/cloudflare/resources/settings/minify.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/settings/minify_get_response.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/settings/minify">client.settings.minify.<a href="./src/cloudflare/resources/settings/minify.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/settings/minify_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/minify_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/settings/minify">client.settings.minify.<a href="./src/cloudflare/resources/settings/minify.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/settings/minify_get_response.py">Optional</a></code>
 
 ## Mirage
 
@@ -2536,8 +2536,8 @@ from cloudflare.types.settings import MirageEditResponse, MirageGetResponse
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/settings/mirage">client.settings.mirage.<a href="./src/cloudflare/resources/settings/mirage.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/settings/mirage_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/mirage_edit_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/mirage">client.settings.mirage.<a href="./src/cloudflare/resources/settings/mirage.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/settings/mirage_get_response.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/settings/mirage">client.settings.mirage.<a href="./src/cloudflare/resources/settings/mirage.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/settings/mirage_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/mirage_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/settings/mirage">client.settings.mirage.<a href="./src/cloudflare/resources/settings/mirage.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/settings/mirage_get_response.py">Optional</a></code>
 
 ## MobileRedirect
 
@@ -2549,8 +2549,8 @@ from cloudflare.types.settings import MobileRedirectEditResponse, MobileRedirect
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/settings/mobile_redirect">client.settings.mobile_redirect.<a href="./src/cloudflare/resources/settings/mobile_redirect.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/settings/mobile_redirect_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/mobile_redirect_edit_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/mobile_redirect">client.settings.mobile_redirect.<a href="./src/cloudflare/resources/settings/mobile_redirect.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/settings/mobile_redirect_get_response.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/settings/mobile_redirect">client.settings.mobile_redirect.<a href="./src/cloudflare/resources/settings/mobile_redirect.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/settings/mobile_redirect_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/mobile_redirect_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/settings/mobile_redirect">client.settings.mobile_redirect.<a href="./src/cloudflare/resources/settings/mobile_redirect.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/settings/mobile_redirect_get_response.py">Optional</a></code>
 
 ## NEL
 
@@ -2562,8 +2562,8 @@ from cloudflare.types.settings import NELEditResponse, NELGetResponse
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/settings/nel">client.settings.nel.<a href="./src/cloudflare/resources/settings/nel.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/settings/nel_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/nel_edit_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/nel">client.settings.nel.<a href="./src/cloudflare/resources/settings/nel.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/settings/nel_get_response.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/settings/nel">client.settings.nel.<a href="./src/cloudflare/resources/settings/nel.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/settings/nel_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/nel_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/settings/nel">client.settings.nel.<a href="./src/cloudflare/resources/settings/nel.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/settings/nel_get_response.py">Optional</a></code>
 
 ## OpportunisticEncryption
 
@@ -2578,8 +2578,8 @@ from cloudflare.types.settings import (
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/settings/opportunistic_encryption">client.settings.opportunistic_encryption.<a href="./src/cloudflare/resources/settings/opportunistic_encryption.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/settings/opportunistic_encryption_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/opportunistic_encryption_edit_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/opportunistic_encryption">client.settings.opportunistic_encryption.<a href="./src/cloudflare/resources/settings/opportunistic_encryption.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/settings/opportunistic_encryption_get_response.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/settings/opportunistic_encryption">client.settings.opportunistic_encryption.<a href="./src/cloudflare/resources/settings/opportunistic_encryption.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/settings/opportunistic_encryption_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/opportunistic_encryption_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/settings/opportunistic_encryption">client.settings.opportunistic_encryption.<a href="./src/cloudflare/resources/settings/opportunistic_encryption.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/settings/opportunistic_encryption_get_response.py">Optional</a></code>
 
 ## OpportunisticOnion
 
@@ -2591,8 +2591,8 @@ from cloudflare.types.settings import OpportunisticOnionEditResponse, Opportunis
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/settings/opportunistic_onion">client.settings.opportunistic_onion.<a href="./src/cloudflare/resources/settings/opportunistic_onion.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/settings/opportunistic_onion_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/opportunistic_onion_edit_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/opportunistic_onion">client.settings.opportunistic_onion.<a href="./src/cloudflare/resources/settings/opportunistic_onion.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/settings/opportunistic_onion_get_response.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/settings/opportunistic_onion">client.settings.opportunistic_onion.<a href="./src/cloudflare/resources/settings/opportunistic_onion.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/settings/opportunistic_onion_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/opportunistic_onion_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/settings/opportunistic_onion">client.settings.opportunistic_onion.<a href="./src/cloudflare/resources/settings/opportunistic_onion.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/settings/opportunistic_onion_get_response.py">Optional</a></code>
 
 ## OrangeToOrange
 
@@ -2604,8 +2604,8 @@ from cloudflare.types.settings import OrangeToOrangeEditResponse, OrangeToOrange
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/settings/orange_to_orange">client.settings.orange_to_orange.<a href="./src/cloudflare/resources/settings/orange_to_orange.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/settings/orange_to_orange_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/orange_to_orange_edit_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/orange_to_orange">client.settings.orange_to_orange.<a href="./src/cloudflare/resources/settings/orange_to_orange.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/settings/orange_to_orange_get_response.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/settings/orange_to_orange">client.settings.orange_to_orange.<a href="./src/cloudflare/resources/settings/orange_to_orange.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/settings/orange_to_orange_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/orange_to_orange_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/settings/orange_to_orange">client.settings.orange_to_orange.<a href="./src/cloudflare/resources/settings/orange_to_orange.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/settings/orange_to_orange_get_response.py">Optional</a></code>
 
 ## OriginErrorPagePassThru
 
@@ -2620,8 +2620,8 @@ from cloudflare.types.settings import (
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/settings/origin_error_page_pass_thru">client.settings.origin_error_page_pass_thru.<a href="./src/cloudflare/resources/settings/origin_error_page_pass_thru.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/settings/origin_error_page_pass_thru_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/origin_error_page_pass_thru_edit_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/origin_error_page_pass_thru">client.settings.origin_error_page_pass_thru.<a href="./src/cloudflare/resources/settings/origin_error_page_pass_thru.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/settings/origin_error_page_pass_thru_get_response.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/settings/origin_error_page_pass_thru">client.settings.origin_error_page_pass_thru.<a href="./src/cloudflare/resources/settings/origin_error_page_pass_thru.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/settings/origin_error_page_pass_thru_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/origin_error_page_pass_thru_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/settings/origin_error_page_pass_thru">client.settings.origin_error_page_pass_thru.<a href="./src/cloudflare/resources/settings/origin_error_page_pass_thru.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/settings/origin_error_page_pass_thru_get_response.py">Optional</a></code>
 
 ## OriginMaxHTTPVersion
 
@@ -2636,8 +2636,8 @@ from cloudflare.types.settings import (
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/settings/origin_max_http_version">client.settings.origin_max_http_version.<a href="./src/cloudflare/resources/settings/origin_max_http_version.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/settings/origin_max_http_version_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/origin_max_http_version_edit_response.py">OriginMaxHTTPVersionEditResponse</a></code>
-- <code title="get /zones/{zone_id}/settings/origin_max_http_version">client.settings.origin_max_http_version.<a href="./src/cloudflare/resources/settings/origin_max_http_version.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/settings/origin_max_http_version_get_response.py">OriginMaxHTTPVersionGetResponse</a></code>
+- <code title="patch /zones/{zone_id}/settings/origin_max_http_version">client.settings.origin_max_http_version.<a href="./src/cloudflare/resources/settings/origin_max_http_version.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/settings/origin_max_http_version_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/origin_max_http_version_edit_response.py">OriginMaxHTTPVersionEditResponse</a></code>
+- <code title="get /zones/{zone_id}/settings/origin_max_http_version">client.settings.origin_max_http_version.<a href="./src/cloudflare/resources/settings/origin_max_http_version.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/settings/origin_max_http_version_get_response.py">OriginMaxHTTPVersionGetResponse</a></code>
 
 ## Polish
 
@@ -2649,8 +2649,8 @@ from cloudflare.types.settings import PolishEditResponse, PolishGetResponse
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/settings/polish">client.settings.polish.<a href="./src/cloudflare/resources/settings/polish.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/settings/polish_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/polish_edit_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/polish">client.settings.polish.<a href="./src/cloudflare/resources/settings/polish.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/settings/polish_get_response.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/settings/polish">client.settings.polish.<a href="./src/cloudflare/resources/settings/polish.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/settings/polish_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/polish_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/settings/polish">client.settings.polish.<a href="./src/cloudflare/resources/settings/polish.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/settings/polish_get_response.py">Optional</a></code>
 
 ## PrefetchPreload
 
@@ -2662,8 +2662,8 @@ from cloudflare.types.settings import PrefetchPreloadEditResponse, PrefetchPrelo
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/settings/prefetch_preload">client.settings.prefetch_preload.<a href="./src/cloudflare/resources/settings/prefetch_preload.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/settings/prefetch_preload_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/prefetch_preload_edit_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/prefetch_preload">client.settings.prefetch_preload.<a href="./src/cloudflare/resources/settings/prefetch_preload.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/settings/prefetch_preload_get_response.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/settings/prefetch_preload">client.settings.prefetch_preload.<a href="./src/cloudflare/resources/settings/prefetch_preload.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/settings/prefetch_preload_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/prefetch_preload_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/settings/prefetch_preload">client.settings.prefetch_preload.<a href="./src/cloudflare/resources/settings/prefetch_preload.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/settings/prefetch_preload_get_response.py">Optional</a></code>
 
 ## ProxyReadTimeout
 
@@ -2675,8 +2675,8 @@ from cloudflare.types.settings import ProxyReadTimeoutEditResponse, ProxyReadTim
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/settings/proxy_read_timeout">client.settings.proxy_read_timeout.<a href="./src/cloudflare/resources/settings/proxy_read_timeout.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/settings/proxy_read_timeout_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/proxy_read_timeout_edit_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/proxy_read_timeout">client.settings.proxy_read_timeout.<a href="./src/cloudflare/resources/settings/proxy_read_timeout.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/settings/proxy_read_timeout_get_response.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/settings/proxy_read_timeout">client.settings.proxy_read_timeout.<a href="./src/cloudflare/resources/settings/proxy_read_timeout.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/settings/proxy_read_timeout_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/proxy_read_timeout_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/settings/proxy_read_timeout">client.settings.proxy_read_timeout.<a href="./src/cloudflare/resources/settings/proxy_read_timeout.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/settings/proxy_read_timeout_get_response.py">Optional</a></code>
 
 ## PseudoIPV4
 
@@ -2688,8 +2688,8 @@ from cloudflare.types.settings import PseudoIPV4EditResponse, PseudoIPV4GetRespo
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/settings/pseudo_ipv4">client.settings.pseudo_ipv4.<a href="./src/cloudflare/resources/settings/pseudo_ipv4.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/settings/pseudo_ipv4_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/pseudo_ipv4_edit_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/pseudo_ipv4">client.settings.pseudo_ipv4.<a href="./src/cloudflare/resources/settings/pseudo_ipv4.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/settings/pseudo_ipv4_get_response.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/settings/pseudo_ipv4">client.settings.pseudo_ipv4.<a href="./src/cloudflare/resources/settings/pseudo_ipv4.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/settings/pseudo_ipv4_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/pseudo_ipv4_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/settings/pseudo_ipv4">client.settings.pseudo_ipv4.<a href="./src/cloudflare/resources/settings/pseudo_ipv4.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/settings/pseudo_ipv4_get_response.py">Optional</a></code>
 
 ## ResponseBuffering
 
@@ -2701,8 +2701,8 @@ from cloudflare.types.settings import ResponseBufferingEditResponse, ResponseBuf
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/settings/response_buffering">client.settings.response_buffering.<a href="./src/cloudflare/resources/settings/response_buffering.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/settings/response_buffering_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/response_buffering_edit_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/response_buffering">client.settings.response_buffering.<a href="./src/cloudflare/resources/settings/response_buffering.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/settings/response_buffering_get_response.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/settings/response_buffering">client.settings.response_buffering.<a href="./src/cloudflare/resources/settings/response_buffering.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/settings/response_buffering_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/response_buffering_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/settings/response_buffering">client.settings.response_buffering.<a href="./src/cloudflare/resources/settings/response_buffering.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/settings/response_buffering_get_response.py">Optional</a></code>
 
 ## RocketLoader
 
@@ -2714,8 +2714,8 @@ from cloudflare.types.settings import RocketLoaderEditResponse, RocketLoaderGetR
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/settings/rocket_loader">client.settings.rocket_loader.<a href="./src/cloudflare/resources/settings/rocket_loader.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/settings/rocket_loader_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/rocket_loader_edit_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/rocket_loader">client.settings.rocket_loader.<a href="./src/cloudflare/resources/settings/rocket_loader.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/settings/rocket_loader_get_response.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/settings/rocket_loader">client.settings.rocket_loader.<a href="./src/cloudflare/resources/settings/rocket_loader.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/settings/rocket_loader_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/rocket_loader_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/settings/rocket_loader">client.settings.rocket_loader.<a href="./src/cloudflare/resources/settings/rocket_loader.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/settings/rocket_loader_get_response.py">Optional</a></code>
 
 ## SecurityHeaders
 
@@ -2727,8 +2727,8 @@ from cloudflare.types.settings import SecurityHeaderEditResponse, SecurityHeader
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/settings/security_header">client.settings.security_headers.<a href="./src/cloudflare/resources/settings/security_headers.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/settings/security_header_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/security_header_edit_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/security_header">client.settings.security_headers.<a href="./src/cloudflare/resources/settings/security_headers.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/settings/security_header_get_response.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/settings/security_header">client.settings.security_headers.<a href="./src/cloudflare/resources/settings/security_headers.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/settings/security_header_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/security_header_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/settings/security_header">client.settings.security_headers.<a href="./src/cloudflare/resources/settings/security_headers.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/settings/security_header_get_response.py">Optional</a></code>
 
 ## SecurityLevel
 
@@ -2740,8 +2740,8 @@ from cloudflare.types.settings import SecurityLevelEditResponse, SecurityLevelGe
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/settings/security_level">client.settings.security_level.<a href="./src/cloudflare/resources/settings/security_level.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/settings/security_level_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/security_level_edit_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/security_level">client.settings.security_level.<a href="./src/cloudflare/resources/settings/security_level.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/settings/security_level_get_response.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/settings/security_level">client.settings.security_level.<a href="./src/cloudflare/resources/settings/security_level.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/settings/security_level_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/security_level_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/settings/security_level">client.settings.security_level.<a href="./src/cloudflare/resources/settings/security_level.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/settings/security_level_get_response.py">Optional</a></code>
 
 ## ServerSideExcludes
 
@@ -2753,8 +2753,8 @@ from cloudflare.types.settings import ServerSideExcludeEditResponse, ServerSideE
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/settings/server_side_exclude">client.settings.server_side_excludes.<a href="./src/cloudflare/resources/settings/server_side_excludes.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/settings/server_side_exclude_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/server_side_exclude_edit_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/server_side_exclude">client.settings.server_side_excludes.<a href="./src/cloudflare/resources/settings/server_side_excludes.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/settings/server_side_exclude_get_response.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/settings/server_side_exclude">client.settings.server_side_excludes.<a href="./src/cloudflare/resources/settings/server_side_excludes.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/settings/server_side_exclude_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/server_side_exclude_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/settings/server_side_exclude">client.settings.server_side_excludes.<a href="./src/cloudflare/resources/settings/server_side_excludes.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/settings/server_side_exclude_get_response.py">Optional</a></code>
 
 ## SortQueryStringForCache
 
@@ -2769,8 +2769,8 @@ from cloudflare.types.settings import (
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/settings/sort_query_string_for_cache">client.settings.sort_query_string_for_cache.<a href="./src/cloudflare/resources/settings/sort_query_string_for_cache.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/settings/sort_query_string_for_cache_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/sort_query_string_for_cache_edit_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/sort_query_string_for_cache">client.settings.sort_query_string_for_cache.<a href="./src/cloudflare/resources/settings/sort_query_string_for_cache.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/settings/sort_query_string_for_cache_get_response.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/settings/sort_query_string_for_cache">client.settings.sort_query_string_for_cache.<a href="./src/cloudflare/resources/settings/sort_query_string_for_cache.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/settings/sort_query_string_for_cache_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/sort_query_string_for_cache_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/settings/sort_query_string_for_cache">client.settings.sort_query_string_for_cache.<a href="./src/cloudflare/resources/settings/sort_query_string_for_cache.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/settings/sort_query_string_for_cache_get_response.py">Optional</a></code>
 
 ## SSL
 
@@ -2782,8 +2782,8 @@ from cloudflare.types.settings import SSLEditResponse, SSLGetResponse
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/settings/ssl">client.settings.ssl.<a href="./src/cloudflare/resources/settings/ssl.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/settings/ssl_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/ssl_edit_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/ssl">client.settings.ssl.<a href="./src/cloudflare/resources/settings/ssl.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/settings/ssl_get_response.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/settings/ssl">client.settings.ssl.<a href="./src/cloudflare/resources/settings/ssl.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/settings/ssl_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/ssl_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/settings/ssl">client.settings.ssl.<a href="./src/cloudflare/resources/settings/ssl.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/settings/ssl_get_response.py">Optional</a></code>
 
 ## SSLRecommender
 
@@ -2795,8 +2795,8 @@ from cloudflare.types.settings import SSLRecommenderEditResponse, SSLRecommender
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/settings/ssl_recommender">client.settings.ssl_recommender.<a href="./src/cloudflare/resources/settings/ssl_recommender.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/settings/ssl_recommender_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/ssl_recommender_edit_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/ssl_recommender">client.settings.ssl_recommender.<a href="./src/cloudflare/resources/settings/ssl_recommender.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/settings/ssl_recommender_get_response.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/settings/ssl_recommender">client.settings.ssl_recommender.<a href="./src/cloudflare/resources/settings/ssl_recommender.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/settings/ssl_recommender_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/ssl_recommender_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/settings/ssl_recommender">client.settings.ssl_recommender.<a href="./src/cloudflare/resources/settings/ssl_recommender.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/settings/ssl_recommender_get_response.py">Optional</a></code>
 
 ## TLS1_3
 
@@ -2808,8 +2808,8 @@ from cloudflare.types.settings import TLS1_3EditResponse, TLS1_3GetResponse
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/settings/tls_1_3">client.settings.tls_1_3.<a href="./src/cloudflare/resources/settings/tls_1_3.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/settings/tls_1_3_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/tls_1_3_edit_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/tls_1_3">client.settings.tls_1_3.<a href="./src/cloudflare/resources/settings/tls_1_3.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/settings/tls_1_3_get_response.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/settings/tls_1_3">client.settings.tls_1_3.<a href="./src/cloudflare/resources/settings/tls_1_3.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/settings/tls_1_3_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/tls_1_3_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/settings/tls_1_3">client.settings.tls_1_3.<a href="./src/cloudflare/resources/settings/tls_1_3.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/settings/tls_1_3_get_response.py">Optional</a></code>
 
 ## TLSClientAuth
 
@@ -2821,8 +2821,8 @@ from cloudflare.types.settings import TLSClientAuthEditResponse, TLSClientAuthGe
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/settings/tls_client_auth">client.settings.tls_client_auth.<a href="./src/cloudflare/resources/settings/tls_client_auth.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/settings/tls_client_auth_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/tls_client_auth_edit_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/tls_client_auth">client.settings.tls_client_auth.<a href="./src/cloudflare/resources/settings/tls_client_auth.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/settings/tls_client_auth_get_response.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/settings/tls_client_auth">client.settings.tls_client_auth.<a href="./src/cloudflare/resources/settings/tls_client_auth.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/settings/tls_client_auth_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/tls_client_auth_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/settings/tls_client_auth">client.settings.tls_client_auth.<a href="./src/cloudflare/resources/settings/tls_client_auth.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/settings/tls_client_auth_get_response.py">Optional</a></code>
 
 ## TrueClientIPHeader
 
@@ -2834,8 +2834,8 @@ from cloudflare.types.settings import TrueClientIPHeaderEditResponse, TrueClient
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/settings/true_client_ip_header">client.settings.true_client_ip_header.<a href="./src/cloudflare/resources/settings/true_client_ip_header.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/settings/true_client_ip_header_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/true_client_ip_header_edit_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/true_client_ip_header">client.settings.true_client_ip_header.<a href="./src/cloudflare/resources/settings/true_client_ip_header.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/settings/true_client_ip_header_get_response.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/settings/true_client_ip_header">client.settings.true_client_ip_header.<a href="./src/cloudflare/resources/settings/true_client_ip_header.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/settings/true_client_ip_header_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/true_client_ip_header_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/settings/true_client_ip_header">client.settings.true_client_ip_header.<a href="./src/cloudflare/resources/settings/true_client_ip_header.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/settings/true_client_ip_header_get_response.py">Optional</a></code>
 
 ## WAF
 
@@ -2847,8 +2847,8 @@ from cloudflare.types.settings import WAFEditResponse, WAFGetResponse
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/settings/waf">client.settings.waf.<a href="./src/cloudflare/resources/settings/waf.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/settings/waf_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/waf_edit_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/waf">client.settings.waf.<a href="./src/cloudflare/resources/settings/waf.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/settings/waf_get_response.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/settings/waf">client.settings.waf.<a href="./src/cloudflare/resources/settings/waf.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/settings/waf_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/waf_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/settings/waf">client.settings.waf.<a href="./src/cloudflare/resources/settings/waf.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/settings/waf_get_response.py">Optional</a></code>
 
 ## Webp
 
@@ -2860,8 +2860,8 @@ from cloudflare.types.settings import WebpEditResponse, WebpGetResponse
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/settings/webp">client.settings.webp.<a href="./src/cloudflare/resources/settings/webp.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/settings/webp_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/webp_edit_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/webp">client.settings.webp.<a href="./src/cloudflare/resources/settings/webp.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/settings/webp_get_response.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/settings/webp">client.settings.webp.<a href="./src/cloudflare/resources/settings/webp.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/settings/webp_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/webp_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/settings/webp">client.settings.webp.<a href="./src/cloudflare/resources/settings/webp.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/settings/webp_get_response.py">Optional</a></code>
 
 ## Websocket
 
@@ -2873,8 +2873,8 @@ from cloudflare.types.settings import WebsocketEditResponse, WebsocketGetRespons
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/settings/websockets">client.settings.websocket.<a href="./src/cloudflare/resources/settings/websocket.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/settings/websocket_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/websocket_edit_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/websockets">client.settings.websocket.<a href="./src/cloudflare/resources/settings/websocket.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/settings/websocket_get_response.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/settings/websockets">client.settings.websocket.<a href="./src/cloudflare/resources/settings/websocket.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/settings/websocket_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/websocket_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/settings/websockets">client.settings.websocket.<a href="./src/cloudflare/resources/settings/websocket.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/settings/websocket_get_response.py">Optional</a></code>
 
 ## FontSettings
 
@@ -2886,8 +2886,8 @@ from cloudflare.types.settings import FontSettingEditResponse, FontSettingGetRes
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/settings/fonts">client.settings.font_settings.<a href="./src/cloudflare/resources/settings/font_settings.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/settings/font_setting_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/font_setting_edit_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/fonts">client.settings.font_settings.<a href="./src/cloudflare/resources/settings/font_settings.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/settings/font_setting_get_response.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/settings/fonts">client.settings.font_settings.<a href="./src/cloudflare/resources/settings/font_settings.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/settings/font_setting_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/settings/font_setting_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/settings/fonts">client.settings.font_settings.<a href="./src/cloudflare/resources/settings/font_settings.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/settings/font_setting_get_response.py">Optional</a></code>
 
 # WaitingRooms
 
@@ -3092,7 +3092,7 @@ from cloudflare.types.workers import ScriptUpdateResponse, ScriptListResponse
 Methods:
 
 - <code title="put /accounts/{account_id}/workers/scripts/{script_name}">client.workers.scripts.<a href="./src/cloudflare/resources/workers/scripts/scripts.py">update</a>(script_name, \*, account_id, \*\*<a href="src/cloudflare/types/workers/script_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/script_update_response.py">ScriptUpdateResponse</a></code>
-- <code title="get /accounts/{account_id}/workers/scripts">client.workers.scripts.<a href="./src/cloudflare/resources/workers/scripts/scripts.py">list</a>(account_id) -> <a href="./src/cloudflare/types/workers/script_list_response.py">ScriptListResponse</a></code>
+- <code title="get /accounts/{account_id}/workers/scripts">client.workers.scripts.<a href="./src/cloudflare/resources/workers/scripts/scripts.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/workers/script_list_response.py">ScriptListResponse</a></code>
 - <code title="delete /accounts/{account_id}/workers/scripts/{script_name}">client.workers.scripts.<a href="./src/cloudflare/resources/workers/scripts/scripts.py">delete</a>(script_name, \*, account_id, \*\*<a href="src/cloudflare/types/workers/script_delete_params.py">params</a>) -> None</code>
 - <code title="get /accounts/{account_id}/workers/scripts/{script_name}">client.workers.scripts.<a href="./src/cloudflare/resources/workers/scripts/scripts.py">get</a>(script_name, \*, account_id) -> BinaryAPIResponse</code>
 
@@ -3106,7 +3106,7 @@ from cloudflare.types.workers.scripts import BindingListResponse
 
 Methods:
 
-- <code title="get /zones/{zone_id}/workers/script/bindings">client.workers.scripts.bindings.<a href="./src/cloudflare/resources/workers/scripts/bindings.py">list</a>(zone_id) -> <a href="./src/cloudflare/types/workers/scripts/binding_list_response.py">BindingListResponse</a></code>
+- <code title="get /zones/{zone_id}/workers/script/bindings">client.workers.scripts.bindings.<a href="./src/cloudflare/resources/workers/scripts/bindings.py">list</a>(\*, zone_id) -> <a href="./src/cloudflare/types/workers/scripts/binding_list_response.py">BindingListResponse</a></code>
 
 ### Schedules
 
@@ -3167,9 +3167,9 @@ from cloudflare.types.workers import (
 
 Methods:
 
-- <code title="post /zones/{zone_id}/workers/filters">client.workers.filters.<a href="./src/cloudflare/resources/workers/filters.py">create</a>(zone_id, \*\*<a href="src/cloudflare/types/workers/filter_create_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/filter_create_response.py">Optional</a></code>
+- <code title="post /zones/{zone_id}/workers/filters">client.workers.filters.<a href="./src/cloudflare/resources/workers/filters.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/workers/filter_create_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/filter_create_response.py">Optional</a></code>
 - <code title="put /zones/{zone_id}/workers/filters/{filter_id}">client.workers.filters.<a href="./src/cloudflare/resources/workers/filters.py">update</a>(filter_id, \*, zone_id, \*\*<a href="src/cloudflare/types/workers/filter_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/filter_update_response.py">FilterUpdateResponse</a></code>
-- <code title="get /zones/{zone_id}/workers/filters">client.workers.filters.<a href="./src/cloudflare/resources/workers/filters.py">list</a>(zone_id) -> <a href="./src/cloudflare/types/workers/filter_list_response.py">FilterListResponse</a></code>
+- <code title="get /zones/{zone_id}/workers/filters">client.workers.filters.<a href="./src/cloudflare/resources/workers/filters.py">list</a>(\*, zone_id) -> <a href="./src/cloudflare/types/workers/filter_list_response.py">FilterListResponse</a></code>
 - <code title="delete /zones/{zone_id}/workers/filters/{filter_id}">client.workers.filters.<a href="./src/cloudflare/resources/workers/filters.py">delete</a>(filter_id, \*, zone_id) -> <a href="./src/cloudflare/types/workers/filter_delete_response.py">Optional</a></code>
 
 ## Routes
@@ -3188,9 +3188,9 @@ from cloudflare.types.workers import (
 
 Methods:
 
-- <code title="post /zones/{zone_id}/workers/routes">client.workers.routes.<a href="./src/cloudflare/resources/workers/routes.py">create</a>(zone_id, \*\*<a href="src/cloudflare/types/workers/route_create_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/route_create_response.py">RouteCreateResponse</a></code>
+- <code title="post /zones/{zone_id}/workers/routes">client.workers.routes.<a href="./src/cloudflare/resources/workers/routes.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/workers/route_create_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/route_create_response.py">RouteCreateResponse</a></code>
 - <code title="put /zones/{zone_id}/workers/routes/{route_id}">client.workers.routes.<a href="./src/cloudflare/resources/workers/routes.py">update</a>(route_id, \*, zone_id, \*\*<a href="src/cloudflare/types/workers/route_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/route_update_response.py">RouteUpdateResponse</a></code>
-- <code title="get /zones/{zone_id}/workers/routes">client.workers.routes.<a href="./src/cloudflare/resources/workers/routes.py">list</a>(zone_id) -> <a href="./src/cloudflare/types/workers/route_list_response.py">RouteListResponse</a></code>
+- <code title="get /zones/{zone_id}/workers/routes">client.workers.routes.<a href="./src/cloudflare/resources/workers/routes.py">list</a>(\*, zone_id) -> <a href="./src/cloudflare/types/workers/route_list_response.py">RouteListResponse</a></code>
 - <code title="delete /zones/{zone_id}/workers/routes/{route_id}">client.workers.routes.<a href="./src/cloudflare/resources/workers/routes.py">delete</a>(route_id, \*, zone_id) -> <a href="./src/cloudflare/types/workers/route_delete_response.py">RouteDeleteResponse</a></code>
 - <code title="get /zones/{zone_id}/workers/routes/{route_id}">client.workers.routes.<a href="./src/cloudflare/resources/workers/routes.py">get</a>(route_id, \*, zone_id) -> <a href="./src/cloudflare/types/workers/route_get_response.py">RouteGetResponse</a></code>
 
@@ -3204,8 +3204,8 @@ from cloudflare.types.workers import AccountSettingUpdateResponse, AccountSettin
 
 Methods:
 
-- <code title="put /accounts/{account_id}/workers/account-settings">client.workers.account_settings.<a href="./src/cloudflare/resources/workers/account_settings.py">update</a>(account_id, \*\*<a href="src/cloudflare/types/workers/account_setting_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/account_setting_update_response.py">AccountSettingUpdateResponse</a></code>
-- <code title="get /accounts/{account_id}/workers/account-settings">client.workers.account_settings.<a href="./src/cloudflare/resources/workers/account_settings.py">get</a>(account_id) -> <a href="./src/cloudflare/types/workers/account_setting_get_response.py">AccountSettingGetResponse</a></code>
+- <code title="put /accounts/{account_id}/workers/account-settings">client.workers.account_settings.<a href="./src/cloudflare/resources/workers/account_settings.py">update</a>(\*, account_id, \*\*<a href="src/cloudflare/types/workers/account_setting_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/account_setting_update_response.py">AccountSettingUpdateResponse</a></code>
+- <code title="get /accounts/{account_id}/workers/account-settings">client.workers.account_settings.<a href="./src/cloudflare/resources/workers/account_settings.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/workers/account_setting_get_response.py">AccountSettingGetResponse</a></code>
 
 ## Deployments
 
@@ -3232,8 +3232,8 @@ from cloudflare.types.workers import DomainUpdateResponse, DomainListResponse, D
 
 Methods:
 
-- <code title="put /accounts/{account_id}/workers/domains">client.workers.domains.<a href="./src/cloudflare/resources/workers/domains.py">update</a>(account_id, \*\*<a href="src/cloudflare/types/workers/domain_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/domain_update_response.py">DomainUpdateResponse</a></code>
-- <code title="get /accounts/{account_id}/workers/domains">client.workers.domains.<a href="./src/cloudflare/resources/workers/domains.py">list</a>(account_id, \*\*<a href="src/cloudflare/types/workers/domain_list_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/domain_list_response.py">DomainListResponse</a></code>
+- <code title="put /accounts/{account_id}/workers/domains">client.workers.domains.<a href="./src/cloudflare/resources/workers/domains.py">update</a>(\*, account_id, \*\*<a href="src/cloudflare/types/workers/domain_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/domain_update_response.py">DomainUpdateResponse</a></code>
+- <code title="get /accounts/{account_id}/workers/domains">client.workers.domains.<a href="./src/cloudflare/resources/workers/domains.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/workers/domain_list_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/domain_list_response.py">DomainListResponse</a></code>
 - <code title="delete /accounts/{account_id}/workers/domains/{domain_id}">client.workers.domains.<a href="./src/cloudflare/resources/workers/domains.py">delete</a>(domain_id, \*, account_id) -> None</code>
 - <code title="get /accounts/{account_id}/workers/domains/{domain_id}">client.workers.domains.<a href="./src/cloudflare/resources/workers/domains.py">get</a>(domain_id, \*, account_id) -> <a href="./src/cloudflare/types/workers/domain_get_response.py">DomainGetResponse</a></code>
 
@@ -3249,7 +3249,7 @@ from cloudflare.types.workers.durable_objects import NamespaceListResponse
 
 Methods:
 
-- <code title="get /accounts/{account_id}/workers/durable_objects/namespaces">client.workers.durable_objects.namespaces.<a href="./src/cloudflare/resources/workers/durable_objects/namespaces/namespaces.py">list</a>(account_id) -> <a href="./src/cloudflare/types/workers/durable_objects/namespace_list_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/workers/durable_objects/namespaces">client.workers.durable_objects.namespaces.<a href="./src/cloudflare/resources/workers/durable_objects/namespaces/namespaces.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/workers/durable_objects/namespace_list_response.py">Optional</a></code>
 
 #### Objects
 
@@ -3279,9 +3279,9 @@ from cloudflare.types.workers import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/workers/queues">client.workers.queues.<a href="./src/cloudflare/resources/workers/queues/queues.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/workers/queue_create_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/queue_create_response.py">Optional</a></code>
+- <code title="post /accounts/{account_id}/workers/queues">client.workers.queues.<a href="./src/cloudflare/resources/workers/queues/queues.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/workers/queue_create_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/queue_create_response.py">Optional</a></code>
 - <code title="put /accounts/{account_id}/workers/queues/{name}">client.workers.queues.<a href="./src/cloudflare/resources/workers/queues/queues.py">update</a>(name, \*, account_id, \*\*<a href="src/cloudflare/types/workers/queue_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/queue_update_response.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/workers/queues">client.workers.queues.<a href="./src/cloudflare/resources/workers/queues/queues.py">list</a>(account_id) -> <a href="./src/cloudflare/types/workers/queue_list_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/workers/queues">client.workers.queues.<a href="./src/cloudflare/resources/workers/queues/queues.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/workers/queue_list_response.py">Optional</a></code>
 - <code title="delete /accounts/{account_id}/workers/queues/{name}">client.workers.queues.<a href="./src/cloudflare/resources/workers/queues/queues.py">delete</a>(name, \*, account_id) -> <a href="./src/cloudflare/types/workers/queue_delete_response.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/workers/queues/{name}">client.workers.queues.<a href="./src/cloudflare/resources/workers/queues/queues.py">get</a>(name, \*, account_id) -> <a href="./src/cloudflare/types/workers/queue_get_response.py">Optional</a></code>
 
@@ -3315,8 +3315,8 @@ from cloudflare.types.workers import SubdomainUpdateResponse, SubdomainGetRespon
 
 Methods:
 
-- <code title="put /accounts/{account_id}/workers/subdomain">client.workers.subdomains.<a href="./src/cloudflare/resources/workers/subdomains.py">update</a>(account_id, \*\*<a href="src/cloudflare/types/workers/subdomain_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/subdomain_update_response.py">SubdomainUpdateResponse</a></code>
-- <code title="get /accounts/{account_id}/workers/subdomain">client.workers.subdomains.<a href="./src/cloudflare/resources/workers/subdomains.py">get</a>(account_id) -> <a href="./src/cloudflare/types/workers/subdomain_get_response.py">SubdomainGetResponse</a></code>
+- <code title="put /accounts/{account_id}/workers/subdomain">client.workers.subdomains.<a href="./src/cloudflare/resources/workers/subdomains.py">update</a>(\*, account_id, \*\*<a href="src/cloudflare/types/workers/subdomain_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/subdomain_update_response.py">SubdomainUpdateResponse</a></code>
+- <code title="get /accounts/{account_id}/workers/subdomain">client.workers.subdomains.<a href="./src/cloudflare/resources/workers/subdomains.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/workers/subdomain_get_response.py">SubdomainGetResponse</a></code>
 
 ## DeploymentsByScript
 
@@ -3374,9 +3374,9 @@ from cloudflare.types.workers import ScriptUpdateResponse
 
 Methods:
 
-- <code title="put /zones/{zone_id}/workers/script">client.workers.script.<a href="./src/cloudflare/resources/workers/script.py">update</a>(zone_id) -> <a href="./src/cloudflare/types/workers/script_update_response.py">ScriptUpdateResponse</a></code>
-- <code title="delete /zones/{zone_id}/workers/script">client.workers.script.<a href="./src/cloudflare/resources/workers/script.py">delete</a>(zone_id) -> None</code>
-- <code title="get /zones/{zone_id}/workers/script">client.workers.script.<a href="./src/cloudflare/resources/workers/script.py">get</a>(zone_id) -> BinaryAPIResponse</code>
+- <code title="put /zones/{zone_id}/workers/script">client.workers.script.<a href="./src/cloudflare/resources/workers/script.py">update</a>(\*, zone_id) -> <a href="./src/cloudflare/types/workers/script_update_response.py">ScriptUpdateResponse</a></code>
+- <code title="delete /zones/{zone_id}/workers/script">client.workers.script.<a href="./src/cloudflare/resources/workers/script.py">delete</a>(\*, zone_id) -> None</code>
+- <code title="get /zones/{zone_id}/workers/script">client.workers.script.<a href="./src/cloudflare/resources/workers/script.py">get</a>(\*, zone_id) -> BinaryAPIResponse</code>
 
 # ActivationChecks
 
@@ -3388,7 +3388,7 @@ from cloudflare.types import ActivationCheckUpdateResponse
 
 Methods:
 
-- <code title="put /zones/{zone_id}/activation_check">client.activation_checks.<a href="./src/cloudflare/resources/activation_checks.py">update</a>(zone_id) -> <a href="./src/cloudflare/types/activation_check_update_response.py">ActivationCheckUpdateResponse</a></code>
+- <code title="put /zones/{zone_id}/activation_check">client.activation_checks.<a href="./src/cloudflare/resources/activation_checks.py">update</a>(\*, zone_id) -> <a href="./src/cloudflare/types/activation_check_update_response.py">ActivationCheckUpdateResponse</a></code>
 
 # ManagedHeaders
 
@@ -3400,8 +3400,8 @@ from cloudflare.types import ManagedHeaderListResponse, ManagedHeaderEditRespons
 
 Methods:
 
-- <code title="get /zones/{zone_id}/managed_headers">client.managed_headers.<a href="./src/cloudflare/resources/managed_headers.py">list</a>(zone_id) -> <a href="./src/cloudflare/types/managed_header_list_response.py">ManagedHeaderListResponse</a></code>
-- <code title="patch /zones/{zone_id}/managed_headers">client.managed_headers.<a href="./src/cloudflare/resources/managed_headers.py">edit</a>(zone_id, \*\*<a href="src/cloudflare/types/managed_header_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/managed_header_edit_response.py">ManagedHeaderEditResponse</a></code>
+- <code title="get /zones/{zone_id}/managed_headers">client.managed_headers.<a href="./src/cloudflare/resources/managed_headers.py">list</a>(\*, zone_id) -> <a href="./src/cloudflare/types/managed_header_list_response.py">ManagedHeaderListResponse</a></code>
+- <code title="patch /zones/{zone_id}/managed_headers">client.managed_headers.<a href="./src/cloudflare/resources/managed_headers.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/managed_header_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/managed_header_edit_response.py">ManagedHeaderEditResponse</a></code>
 
 # PageShield
 
@@ -3413,8 +3413,8 @@ from cloudflare.types import PageShieldUpdateResponse, PageShieldListResponse
 
 Methods:
 
-- <code title="put /zones/{zone_id}/page_shield">client.page_shield.<a href="./src/cloudflare/resources/page_shield/page_shield.py">update</a>(zone_id, \*\*<a href="src/cloudflare/types/page_shield_update_params.py">params</a>) -> <a href="./src/cloudflare/types/page_shield_update_response.py">PageShieldUpdateResponse</a></code>
-- <code title="get /zones/{zone_id}/page_shield">client.page_shield.<a href="./src/cloudflare/resources/page_shield/page_shield.py">list</a>(zone_id) -> <a href="./src/cloudflare/types/page_shield_list_response.py">PageShieldListResponse</a></code>
+- <code title="put /zones/{zone_id}/page_shield">client.page_shield.<a href="./src/cloudflare/resources/page_shield/page_shield.py">update</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/page_shield_update_params.py">params</a>) -> <a href="./src/cloudflare/types/page_shield_update_response.py">PageShieldUpdateResponse</a></code>
+- <code title="get /zones/{zone_id}/page_shield">client.page_shield.<a href="./src/cloudflare/resources/page_shield/page_shield.py">list</a>(\*, zone_id) -> <a href="./src/cloudflare/types/page_shield_list_response.py">PageShieldListResponse</a></code>
 
 ## Policies
 
@@ -3431,9 +3431,9 @@ from cloudflare.types.page_shield import (
 
 Methods:
 
-- <code title="post /zones/{zone_id}/page_shield/policies">client.page_shield.policies.<a href="./src/cloudflare/resources/page_shield/policies.py">create</a>(zone_id, \*\*<a href="src/cloudflare/types/page_shield/policy_create_params.py">params</a>) -> <a href="./src/cloudflare/types/page_shield/policy_create_response.py">PolicyCreateResponse</a></code>
+- <code title="post /zones/{zone_id}/page_shield/policies">client.page_shield.policies.<a href="./src/cloudflare/resources/page_shield/policies.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/page_shield/policy_create_params.py">params</a>) -> <a href="./src/cloudflare/types/page_shield/policy_create_response.py">PolicyCreateResponse</a></code>
 - <code title="put /zones/{zone_id}/page_shield/policies/{policy_id}">client.page_shield.policies.<a href="./src/cloudflare/resources/page_shield/policies.py">update</a>(policy_id, \*, zone_id, \*\*<a href="src/cloudflare/types/page_shield/policy_update_params.py">params</a>) -> <a href="./src/cloudflare/types/page_shield/policy_update_response.py">PolicyUpdateResponse</a></code>
-- <code title="get /zones/{zone_id}/page_shield/policies">client.page_shield.policies.<a href="./src/cloudflare/resources/page_shield/policies.py">list</a>(zone_id) -> <a href="./src/cloudflare/types/page_shield/policy_list_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/page_shield/policies">client.page_shield.policies.<a href="./src/cloudflare/resources/page_shield/policies.py">list</a>(\*, zone_id) -> <a href="./src/cloudflare/types/page_shield/policy_list_response.py">Optional</a></code>
 - <code title="delete /zones/{zone_id}/page_shield/policies/{policy_id}">client.page_shield.policies.<a href="./src/cloudflare/resources/page_shield/policies.py">delete</a>(policy_id, \*, zone_id) -> None</code>
 - <code title="get /zones/{zone_id}/page_shield/policies/{policy_id}">client.page_shield.policies.<a href="./src/cloudflare/resources/page_shield/policies.py">get</a>(policy_id, \*, zone_id) -> <a href="./src/cloudflare/types/page_shield/policy_get_response.py">PolicyGetResponse</a></code>
 
@@ -3447,7 +3447,7 @@ from cloudflare.types.page_shield import ConnectionListResponse, ConnectionGetRe
 
 Methods:
 
-- <code title="get /zones/{zone_id}/page_shield/connections">client.page_shield.connections.<a href="./src/cloudflare/resources/page_shield/connections.py">list</a>(zone_id, \*\*<a href="src/cloudflare/types/page_shield/connection_list_params.py">params</a>) -> <a href="./src/cloudflare/types/page_shield/connection_list_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/page_shield/connections">client.page_shield.connections.<a href="./src/cloudflare/resources/page_shield/connections.py">list</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/page_shield/connection_list_params.py">params</a>) -> <a href="./src/cloudflare/types/page_shield/connection_list_response.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/page_shield/connections/{connection_id}">client.page_shield.connections.<a href="./src/cloudflare/resources/page_shield/connections.py">get</a>(connection_id, \*, zone_id) -> <a href="./src/cloudflare/types/page_shield/connection_get_response.py">ConnectionGetResponse</a></code>
 
 ## Scripts
@@ -3460,7 +3460,7 @@ from cloudflare.types.page_shield import ScriptListResponse, ScriptGetResponse
 
 Methods:
 
-- <code title="get /zones/{zone_id}/page_shield/scripts">client.page_shield.scripts.<a href="./src/cloudflare/resources/page_shield/scripts.py">list</a>(zone_id, \*\*<a href="src/cloudflare/types/page_shield/script_list_params.py">params</a>) -> <a href="./src/cloudflare/types/page_shield/script_list_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/page_shield/scripts">client.page_shield.scripts.<a href="./src/cloudflare/resources/page_shield/scripts.py">list</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/page_shield/script_list_params.py">params</a>) -> <a href="./src/cloudflare/types/page_shield/script_list_response.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/page_shield/scripts/{script_id}">client.page_shield.scripts.<a href="./src/cloudflare/resources/page_shield/scripts.py">get</a>(script_id, \*, zone_id) -> <a href="./src/cloudflare/types/page_shield/script_get_response.py">ScriptGetResponse</a></code>
 
 # Rulesets
@@ -3560,8 +3560,8 @@ from cloudflare.types import URLNormalizationUpdateResponse, URLNormalizationGet
 
 Methods:
 
-- <code title="put /zones/{zone_id}/url_normalization">client.url_normalizations.<a href="./src/cloudflare/resources/url_normalizations.py">update</a>(zone_id, \*\*<a href="src/cloudflare/types/url_normalization_update_params.py">params</a>) -> <a href="./src/cloudflare/types/url_normalization_update_response.py">URLNormalizationUpdateResponse</a></code>
-- <code title="get /zones/{zone_id}/url_normalization">client.url_normalizations.<a href="./src/cloudflare/resources/url_normalizations.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/url_normalization_get_response.py">URLNormalizationGetResponse</a></code>
+- <code title="put /zones/{zone_id}/url_normalization">client.url_normalizations.<a href="./src/cloudflare/resources/url_normalizations.py">update</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/url_normalization_update_params.py">params</a>) -> <a href="./src/cloudflare/types/url_normalization_update_response.py">URLNormalizationUpdateResponse</a></code>
+- <code title="get /zones/{zone_id}/url_normalization">client.url_normalizations.<a href="./src/cloudflare/resources/url_normalizations.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/url_normalization_get_response.py">URLNormalizationGetResponse</a></code>
 
 # Spectrum
 
@@ -3647,8 +3647,8 @@ from cloudflare.types.addresses import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/addressing/address_maps">client.addresses.address_maps.<a href="./src/cloudflare/resources/addresses/address_maps/address_maps.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/addresses/address_map_create_params.py">params</a>) -> <a href="./src/cloudflare/types/addresses/address_map_create_response.py">AddressMapCreateResponse</a></code>
-- <code title="get /accounts/{account_id}/addressing/address_maps">client.addresses.address_maps.<a href="./src/cloudflare/resources/addresses/address_maps/address_maps.py">list</a>(account_id) -> <a href="./src/cloudflare/types/addresses/address_map_list_response.py">Optional</a></code>
+- <code title="post /accounts/{account_id}/addressing/address_maps">client.addresses.address_maps.<a href="./src/cloudflare/resources/addresses/address_maps/address_maps.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/addresses/address_map_create_params.py">params</a>) -> <a href="./src/cloudflare/types/addresses/address_map_create_response.py">AddressMapCreateResponse</a></code>
+- <code title="get /accounts/{account_id}/addressing/address_maps">client.addresses.address_maps.<a href="./src/cloudflare/resources/addresses/address_maps/address_maps.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/addresses/address_map_list_response.py">Optional</a></code>
 - <code title="delete /accounts/{account_id}/addressing/address_maps/{address_map_id}">client.addresses.address_maps.<a href="./src/cloudflare/resources/addresses/address_maps/address_maps.py">delete</a>(address_map_id, \*, account_id) -> <a href="./src/cloudflare/types/addresses/address_map_delete_response.py">Optional</a></code>
 - <code title="patch /accounts/{account_id}/addressing/address_maps/{address_map_id}">client.addresses.address_maps.<a href="./src/cloudflare/resources/addresses/address_maps/address_maps.py">edit</a>(address_map_id, \*, account_id, \*\*<a href="src/cloudflare/types/addresses/address_map_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/addresses/address_map_edit_response.py">AddressMapEditResponse</a></code>
 - <code title="get /accounts/{account_id}/addressing/address_maps/{address_map_id}">client.addresses.address_maps.<a href="./src/cloudflare/resources/addresses/address_maps/address_maps.py">get</a>(address_map_id, \*, account_id) -> <a href="./src/cloudflare/types/addresses/address_map_get_response.py">AddressMapGetResponse</a></code>
@@ -3689,8 +3689,8 @@ from cloudflare.types.addresses.address_maps import ZoneUpdateResponse, ZoneDele
 
 Methods:
 
-- <code title="put /accounts/{account_id}/addressing/address_maps/{address_map_id}/zones/{zone_id}">client.addresses.address_maps.zones.<a href="./src/cloudflare/resources/addresses/address_maps/zones.py">update</a>(zone_id, \*, account_id, address_map_id) -> <a href="./src/cloudflare/types/addresses/address_maps/zone_update_response.py">Optional</a></code>
-- <code title="delete /accounts/{account_id}/addressing/address_maps/{address_map_id}/zones/{zone_id}">client.addresses.address_maps.zones.<a href="./src/cloudflare/resources/addresses/address_maps/zones.py">delete</a>(zone_id, \*, account_id, address_map_id) -> <a href="./src/cloudflare/types/addresses/address_maps/zone_delete_response.py">Optional</a></code>
+- <code title="put /accounts/{account_id}/addressing/address_maps/{address_map_id}/zones/{zone_id}">client.addresses.address_maps.zones.<a href="./src/cloudflare/resources/addresses/address_maps/zones.py">update</a>(address_map_id, \*, zone_id, account_id) -> <a href="./src/cloudflare/types/addresses/address_maps/zone_update_response.py">Optional</a></code>
+- <code title="delete /accounts/{account_id}/addressing/address_maps/{address_map_id}/zones/{zone_id}">client.addresses.address_maps.zones.<a href="./src/cloudflare/resources/addresses/address_maps/zones.py">delete</a>(address_map_id, \*, zone_id, account_id) -> <a href="./src/cloudflare/types/addresses/address_maps/zone_delete_response.py">Optional</a></code>
 
 ## LOADocuments
 
@@ -3702,7 +3702,7 @@ from cloudflare.types.addresses import LOADocumentCreateResponse
 
 Methods:
 
-- <code title="post /accounts/{account_id}/addressing/loa_documents">client.addresses.loa_documents.<a href="./src/cloudflare/resources/addresses/loa_documents/loa_documents.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/addresses/loa_document_create_params.py">params</a>) -> <a href="./src/cloudflare/types/addresses/loa_document_create_response.py">LOADocumentCreateResponse</a></code>
+- <code title="post /accounts/{account_id}/addressing/loa_documents">client.addresses.loa_documents.<a href="./src/cloudflare/resources/addresses/loa_documents/loa_documents.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/addresses/loa_document_create_params.py">params</a>) -> <a href="./src/cloudflare/types/addresses/loa_document_create_response.py">LOADocumentCreateResponse</a></code>
 
 ### Downloads
 
@@ -3732,8 +3732,8 @@ from cloudflare.types.addresses import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/addressing/prefixes">client.addresses.prefixes.<a href="./src/cloudflare/resources/addresses/prefixes/prefixes.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/addresses/prefix_create_params.py">params</a>) -> <a href="./src/cloudflare/types/addresses/prefix_create_response.py">PrefixCreateResponse</a></code>
-- <code title="get /accounts/{account_id}/addressing/prefixes">client.addresses.prefixes.<a href="./src/cloudflare/resources/addresses/prefixes/prefixes.py">list</a>(account_id) -> <a href="./src/cloudflare/types/addresses/prefix_list_response.py">Optional</a></code>
+- <code title="post /accounts/{account_id}/addressing/prefixes">client.addresses.prefixes.<a href="./src/cloudflare/resources/addresses/prefixes/prefixes.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/addresses/prefix_create_params.py">params</a>) -> <a href="./src/cloudflare/types/addresses/prefix_create_response.py">PrefixCreateResponse</a></code>
+- <code title="get /accounts/{account_id}/addressing/prefixes">client.addresses.prefixes.<a href="./src/cloudflare/resources/addresses/prefixes/prefixes.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/addresses/prefix_list_response.py">Optional</a></code>
 - <code title="delete /accounts/{account_id}/addressing/prefixes/{prefix_id}">client.addresses.prefixes.<a href="./src/cloudflare/resources/addresses/prefixes/prefixes.py">delete</a>(prefix_id, \*, account_id) -> <a href="./src/cloudflare/types/addresses/prefix_delete_response.py">Optional</a></code>
 - <code title="patch /accounts/{account_id}/addressing/prefixes/{prefix_id}">client.addresses.prefixes.<a href="./src/cloudflare/resources/addresses/prefixes/prefixes.py">edit</a>(prefix_id, \*, account_id, \*\*<a href="src/cloudflare/types/addresses/prefix_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/addresses/prefix_edit_response.py">PrefixEditResponse</a></code>
 - <code title="get /accounts/{account_id}/addressing/prefixes/{prefix_id}">client.addresses.prefixes.<a href="./src/cloudflare/resources/addresses/prefixes/prefixes.py">get</a>(prefix_id, \*, account_id) -> <a href="./src/cloudflare/types/addresses/prefix_get_response.py">PrefixGetResponse</a></code>
@@ -3809,7 +3809,7 @@ from cloudflare.types.brand_protection import SubmitCreateResponse
 
 Methods:
 
-- <code title="post /accounts/{account_id}/brand-protection/submit">client.brand_protection.submits.<a href="./src/cloudflare/resources/brand_protection/submits.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/brand_protection/submit_create_params.py">params</a>) -> <a href="./src/cloudflare/types/brand_protection/submit_create_response.py">SubmitCreateResponse</a></code>
+- <code title="post /accounts/{account_id}/brand-protection/submit">client.brand_protection.submits.<a href="./src/cloudflare/resources/brand_protection/submits.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/brand_protection/submit_create_params.py">params</a>) -> <a href="./src/cloudflare/types/brand_protection/submit_create_response.py">SubmitCreateResponse</a></code>
 
 ## URLInfos
 
@@ -3821,7 +3821,7 @@ from cloudflare.types.brand_protection import URLInfoGetResponse
 
 Methods:
 
-- <code title="get /accounts/{account_id}/brand-protection/url-info">client.brand_protection.url_infos.<a href="./src/cloudflare/resources/brand_protection/url_infos.py">get</a>(account_id, \*\*<a href="src/cloudflare/types/brand_protection/url_info_get_params.py">params</a>) -> <a href="./src/cloudflare/types/brand_protection/url_info_get_response.py">URLInfoGetResponse</a></code>
+- <code title="get /accounts/{account_id}/brand-protection/url-info">client.brand_protection.url_infos.<a href="./src/cloudflare/resources/brand_protection/url_infos.py">get</a>(\*, account_id, \*\*<a href="src/cloudflare/types/brand_protection/url_info_get_params.py">params</a>) -> <a href="./src/cloudflare/types/brand_protection/url_info_get_response.py">URLInfoGetResponse</a></code>
 
 # Tunnels
 
@@ -3839,8 +3839,8 @@ from cloudflare.types import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/tunnels">client.tunnels.<a href="./src/cloudflare/resources/tunnels/tunnels.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/tunnel_create_params.py">params</a>) -> <a href="./src/cloudflare/types/tunnel_create_response.py">TunnelCreateResponse</a></code>
-- <code title="get /accounts/{account_id}/tunnels">client.tunnels.<a href="./src/cloudflare/resources/tunnels/tunnels.py">list</a>(account_id, \*\*<a href="src/cloudflare/types/tunnel_list_params.py">params</a>) -> <a href="./src/cloudflare/types/tunnel_list_response.py">SyncV4PagePaginationArray[TunnelListResponse]</a></code>
+- <code title="post /accounts/{account_id}/tunnels">client.tunnels.<a href="./src/cloudflare/resources/tunnels/tunnels.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/tunnel_create_params.py">params</a>) -> <a href="./src/cloudflare/types/tunnel_create_response.py">TunnelCreateResponse</a></code>
+- <code title="get /accounts/{account_id}/tunnels">client.tunnels.<a href="./src/cloudflare/resources/tunnels/tunnels.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/tunnel_list_params.py">params</a>) -> <a href="./src/cloudflare/types/tunnel_list_response.py">SyncV4PagePaginationArray[TunnelListResponse]</a></code>
 - <code title="delete /accounts/{account_id}/tunnels/{tunnel_id}">client.tunnels.<a href="./src/cloudflare/resources/tunnels/tunnels.py">delete</a>(tunnel_id, \*, account_id, \*\*<a href="src/cloudflare/types/tunnel_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/tunnel_delete_response.py">TunnelDeleteResponse</a></code>
 - <code title="patch /accounts/{account_id}/cfd_tunnel/{tunnel_id}">client.tunnels.<a href="./src/cloudflare/resources/tunnels/tunnels.py">edit</a>(tunnel_id, \*, account_id, \*\*<a href="src/cloudflare/types/tunnel_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/tunnel_edit_response.py">TunnelEditResponse</a></code>
 - <code title="get /accounts/{account_id}/tunnels/{tunnel_id}">client.tunnels.<a href="./src/cloudflare/resources/tunnels/tunnels.py">get</a>(tunnel_id, \*, account_id) -> <a href="./src/cloudflare/types/tunnel_get_response.py">TunnelGetResponse</a></code>
@@ -3919,7 +3919,7 @@ from cloudflare.types.diagnostics import TracerouteCreateResponse
 
 Methods:
 
-- <code title="post /accounts/{account_id}/diagnostics/traceroute">client.diagnostics.traceroutes.<a href="./src/cloudflare/resources/diagnostics/traceroutes.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/diagnostics/traceroute_create_params.py">params</a>) -> <a href="./src/cloudflare/types/diagnostics/traceroute_create_response.py">Optional</a></code>
+- <code title="post /accounts/{account_id}/diagnostics/traceroute">client.diagnostics.traceroutes.<a href="./src/cloudflare/resources/diagnostics/traceroutes.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/diagnostics/traceroute_create_params.py">params</a>) -> <a href="./src/cloudflare/types/diagnostics/traceroute_create_response.py">Optional</a></code>
 
 # DLP
 
@@ -3938,9 +3938,9 @@ from cloudflare.types.dlp import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/dlp/datasets">client.dlp.datasets.<a href="./src/cloudflare/resources/dlp/datasets/datasets.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/dlp/dataset_create_params.py">params</a>) -> <a href="./src/cloudflare/types/dlp/dataset_create_response.py">Optional</a></code>
+- <code title="post /accounts/{account_id}/dlp/datasets">client.dlp.datasets.<a href="./src/cloudflare/resources/dlp/datasets/datasets.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/dlp/dataset_create_params.py">params</a>) -> <a href="./src/cloudflare/types/dlp/dataset_create_response.py">Optional</a></code>
 - <code title="put /accounts/{account_id}/dlp/datasets/{dataset_id}">client.dlp.datasets.<a href="./src/cloudflare/resources/dlp/datasets/datasets.py">update</a>(dataset_id, \*, account_id, \*\*<a href="src/cloudflare/types/dlp/dataset_update_params.py">params</a>) -> <a href="./src/cloudflare/types/dlp/dataset_update_response.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/dlp/datasets">client.dlp.datasets.<a href="./src/cloudflare/resources/dlp/datasets/datasets.py">list</a>(account_id) -> <a href="./src/cloudflare/types/dlp/dataset_list_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/dlp/datasets">client.dlp.datasets.<a href="./src/cloudflare/resources/dlp/datasets/datasets.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/dlp/dataset_list_response.py">Optional</a></code>
 - <code title="delete /accounts/{account_id}/dlp/datasets/{dataset_id}">client.dlp.datasets.<a href="./src/cloudflare/resources/dlp/datasets/datasets.py">delete</a>(dataset_id, \*, account_id) -> None</code>
 - <code title="get /accounts/{account_id}/dlp/datasets/{dataset_id}">client.dlp.datasets.<a href="./src/cloudflare/resources/dlp/datasets/datasets.py">get</a>(dataset_id, \*, account_id) -> <a href="./src/cloudflare/types/dlp/dataset_get_response.py">Optional</a></code>
 
@@ -3967,7 +3967,7 @@ from cloudflare.types.dlp import PatternValidateResponse
 
 Methods:
 
-- <code title="post /accounts/{account_id}/dlp/patterns/validate">client.dlp.patterns.<a href="./src/cloudflare/resources/dlp/patterns.py">validate</a>(account_id, \*\*<a href="src/cloudflare/types/dlp/pattern_validate_params.py">params</a>) -> <a href="./src/cloudflare/types/dlp/pattern_validate_response.py">PatternValidateResponse</a></code>
+- <code title="post /accounts/{account_id}/dlp/patterns/validate">client.dlp.patterns.<a href="./src/cloudflare/resources/dlp/patterns.py">validate</a>(\*, account_id, \*\*<a href="src/cloudflare/types/dlp/pattern_validate_params.py">params</a>) -> <a href="./src/cloudflare/types/dlp/pattern_validate_response.py">PatternValidateResponse</a></code>
 
 ## PayloadLogs
 
@@ -3979,8 +3979,8 @@ from cloudflare.types.dlp import PayloadLogUpdateResponse, PayloadLogGetResponse
 
 Methods:
 
-- <code title="put /accounts/{account_id}/dlp/payload_log">client.dlp.payload_logs.<a href="./src/cloudflare/resources/dlp/payload_logs.py">update</a>(account_id, \*\*<a href="src/cloudflare/types/dlp/payload_log_update_params.py">params</a>) -> <a href="./src/cloudflare/types/dlp/payload_log_update_response.py">PayloadLogUpdateResponse</a></code>
-- <code title="get /accounts/{account_id}/dlp/payload_log">client.dlp.payload_logs.<a href="./src/cloudflare/resources/dlp/payload_logs.py">get</a>(account_id) -> <a href="./src/cloudflare/types/dlp/payload_log_get_response.py">PayloadLogGetResponse</a></code>
+- <code title="put /accounts/{account_id}/dlp/payload_log">client.dlp.payload_logs.<a href="./src/cloudflare/resources/dlp/payload_logs.py">update</a>(\*, account_id, \*\*<a href="src/cloudflare/types/dlp/payload_log_update_params.py">params</a>) -> <a href="./src/cloudflare/types/dlp/payload_log_update_response.py">PayloadLogUpdateResponse</a></code>
+- <code title="get /accounts/{account_id}/dlp/payload_log">client.dlp.payload_logs.<a href="./src/cloudflare/resources/dlp/payload_logs.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/dlp/payload_log_get_response.py">PayloadLogGetResponse</a></code>
 
 ## Profiles
 
@@ -3992,7 +3992,7 @@ from cloudflare.types.dlp import ProfileListResponse, ProfileGetResponse
 
 Methods:
 
-- <code title="get /accounts/{account_id}/dlp/profiles">client.dlp.profiles.<a href="./src/cloudflare/resources/dlp/profiles/profiles.py">list</a>(account_id) -> <a href="./src/cloudflare/types/dlp/profile_list_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/dlp/profiles">client.dlp.profiles.<a href="./src/cloudflare/resources/dlp/profiles/profiles.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/dlp/profile_list_response.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/dlp/profiles/{profile_id}">client.dlp.profiles.<a href="./src/cloudflare/resources/dlp/profiles/profiles.py">get</a>(profile_id, \*, account_id) -> <a href="./src/cloudflare/types/dlp/profile_get_response.py">ProfileGetResponse</a></code>
 
 ### Customs
@@ -4010,7 +4010,7 @@ from cloudflare.types.dlp.profiles import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/dlp/profiles/custom">client.dlp.profiles.customs.<a href="./src/cloudflare/resources/dlp/profiles/customs.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/dlp/profiles/custom_create_params.py">params</a>) -> <a href="./src/cloudflare/types/dlp/profiles/custom_create_response.py">Optional</a></code>
+- <code title="post /accounts/{account_id}/dlp/profiles/custom">client.dlp.profiles.customs.<a href="./src/cloudflare/resources/dlp/profiles/customs.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/dlp/profiles/custom_create_params.py">params</a>) -> <a href="./src/cloudflare/types/dlp/profiles/custom_create_response.py">Optional</a></code>
 - <code title="put /accounts/{account_id}/dlp/profiles/custom/{profile_id}">client.dlp.profiles.customs.<a href="./src/cloudflare/resources/dlp/profiles/customs.py">update</a>(profile_id, \*, account_id, \*\*<a href="src/cloudflare/types/dlp/profiles/custom_update_params.py">params</a>) -> <a href="./src/cloudflare/types/dlp/profiles/custom_update_response.py">CustomUpdateResponse</a></code>
 - <code title="delete /accounts/{account_id}/dlp/profiles/custom/{profile_id}">client.dlp.profiles.customs.<a href="./src/cloudflare/resources/dlp/profiles/customs.py">delete</a>(profile_id, \*, account_id) -> <a href="./src/cloudflare/types/dlp/profiles/custom_delete_response.py">CustomDeleteResponse</a></code>
 - <code title="get /accounts/{account_id}/dlp/profiles/custom/{profile_id}">client.dlp.profiles.customs.<a href="./src/cloudflare/resources/dlp/profiles/customs.py">get</a>(profile_id, \*, account_id) -> <a href="./src/cloudflare/types/dlp/profiles/custom_get_response.py">CustomGetResponse</a></code>
@@ -4046,8 +4046,8 @@ from cloudflare.types.images import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/images/v1">client.images.v1s.<a href="./src/cloudflare/resources/images/v1s/v1s.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/images/v1_create_params.py">params</a>) -> <a href="./src/cloudflare/types/images/v1_create_response.py">V1CreateResponse</a></code>
-- <code title="get /accounts/{account_id}/images/v1">client.images.v1s.<a href="./src/cloudflare/resources/images/v1s/v1s.py">list</a>(account_id, \*\*<a href="src/cloudflare/types/images/v1_list_params.py">params</a>) -> <a href="./src/cloudflare/types/images/v1_list_response.py">SyncV4PagePagination[V1ListResponse]</a></code>
+- <code title="post /accounts/{account_id}/images/v1">client.images.v1s.<a href="./src/cloudflare/resources/images/v1s/v1s.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/images/v1_create_params.py">params</a>) -> <a href="./src/cloudflare/types/images/v1_create_response.py">V1CreateResponse</a></code>
+- <code title="get /accounts/{account_id}/images/v1">client.images.v1s.<a href="./src/cloudflare/resources/images/v1s/v1s.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/images/v1_list_params.py">params</a>) -> <a href="./src/cloudflare/types/images/v1_list_response.py">SyncV4PagePagination[V1ListResponse]</a></code>
 - <code title="delete /accounts/{account_id}/images/v1/{image_id}">client.images.v1s.<a href="./src/cloudflare/resources/images/v1s/v1s.py">delete</a>(image_id, \*, account_id) -> <a href="./src/cloudflare/types/images/v1_delete_response.py">V1DeleteResponse</a></code>
 - <code title="patch /accounts/{account_id}/images/v1/{image_id}">client.images.v1s.<a href="./src/cloudflare/resources/images/v1s/v1s.py">edit</a>(image_id, \*, account_id, \*\*<a href="src/cloudflare/types/images/v1_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/images/v1_edit_response.py">V1EditResponse</a></code>
 - <code title="get /accounts/{account_id}/images/v1/{image_id}">client.images.v1s.<a href="./src/cloudflare/resources/images/v1s/v1s.py">get</a>(image_id, \*, account_id) -> <a href="./src/cloudflare/types/images/v1_get_response.py">V1GetResponse</a></code>
@@ -4062,7 +4062,7 @@ from cloudflare.types.images.v1s import KeyListResponse
 
 Methods:
 
-- <code title="get /accounts/{account_id}/images/v1/keys">client.images.v1s.keys.<a href="./src/cloudflare/resources/images/v1s/keys.py">list</a>(account_id) -> <a href="./src/cloudflare/types/images/v1s/key_list_response.py">KeyListResponse</a></code>
+- <code title="get /accounts/{account_id}/images/v1/keys">client.images.v1s.keys.<a href="./src/cloudflare/resources/images/v1s/keys.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/images/v1s/key_list_response.py">KeyListResponse</a></code>
 
 ### Stats
 
@@ -4074,7 +4074,7 @@ from cloudflare.types.images.v1s import StatGetResponse
 
 Methods:
 
-- <code title="get /accounts/{account_id}/images/v1/stats">client.images.v1s.stats.<a href="./src/cloudflare/resources/images/v1s/stats.py">get</a>(account_id) -> <a href="./src/cloudflare/types/images/v1s/stat_get_response.py">StatGetResponse</a></code>
+- <code title="get /accounts/{account_id}/images/v1/stats">client.images.v1s.stats.<a href="./src/cloudflare/resources/images/v1s/stats.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/images/v1s/stat_get_response.py">StatGetResponse</a></code>
 
 ### Variants
 
@@ -4092,8 +4092,8 @@ from cloudflare.types.images.v1s import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/images/v1/variants">client.images.v1s.variants.<a href="./src/cloudflare/resources/images/v1s/variants.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/images/v1s/variant_create_params.py">params</a>) -> <a href="./src/cloudflare/types/images/v1s/variant_create_response.py">VariantCreateResponse</a></code>
-- <code title="get /accounts/{account_id}/images/v1/variants">client.images.v1s.variants.<a href="./src/cloudflare/resources/images/v1s/variants.py">list</a>(account_id) -> <a href="./src/cloudflare/types/images/v1s/variant_list_response.py">VariantListResponse</a></code>
+- <code title="post /accounts/{account_id}/images/v1/variants">client.images.v1s.variants.<a href="./src/cloudflare/resources/images/v1s/variants.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/images/v1s/variant_create_params.py">params</a>) -> <a href="./src/cloudflare/types/images/v1s/variant_create_response.py">VariantCreateResponse</a></code>
+- <code title="get /accounts/{account_id}/images/v1/variants">client.images.v1s.variants.<a href="./src/cloudflare/resources/images/v1s/variants.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/images/v1s/variant_list_response.py">VariantListResponse</a></code>
 - <code title="delete /accounts/{account_id}/images/v1/variants/{variant_id}">client.images.v1s.variants.<a href="./src/cloudflare/resources/images/v1s/variants.py">delete</a>(variant_id, \*, account_id) -> <a href="./src/cloudflare/types/images/v1s/variant_delete_response.py">VariantDeleteResponse</a></code>
 - <code title="patch /accounts/{account_id}/images/v1/variants/{variant_id}">client.images.v1s.variants.<a href="./src/cloudflare/resources/images/v1s/variants.py">edit</a>(variant_id, \*, account_id, \*\*<a href="src/cloudflare/types/images/v1s/variant_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/images/v1s/variant_edit_response.py">VariantEditResponse</a></code>
 - <code title="get /accounts/{account_id}/images/v1/variants/{variant_id}">client.images.v1s.variants.<a href="./src/cloudflare/resources/images/v1s/variants.py">get</a>(variant_id, \*, account_id) -> <a href="./src/cloudflare/types/images/v1s/variant_get_response.py">VariantGetResponse</a></code>
@@ -4114,7 +4114,7 @@ from cloudflare.types.images import V2ListResponse
 
 Methods:
 
-- <code title="get /accounts/{account_id}/images/v2">client.images.v2s.<a href="./src/cloudflare/resources/images/v2s/v2s.py">list</a>(account_id, \*\*<a href="src/cloudflare/types/images/v2_list_params.py">params</a>) -> <a href="./src/cloudflare/types/images/v2_list_response.py">V2ListResponse</a></code>
+- <code title="get /accounts/{account_id}/images/v2">client.images.v2s.<a href="./src/cloudflare/resources/images/v2s/v2s.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/images/v2_list_params.py">params</a>) -> <a href="./src/cloudflare/types/images/v2_list_response.py">V2ListResponse</a></code>
 
 ### DirectUploads
 
@@ -4126,7 +4126,7 @@ from cloudflare.types.images.v2s import DirectUploadCreateResponse
 
 Methods:
 
-- <code title="post /accounts/{account_id}/images/v2/direct_upload">client.images.v2s.direct_uploads.<a href="./src/cloudflare/resources/images/v2s/direct_uploads.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/images/v2s/direct_upload_create_params.py">params</a>) -> <a href="./src/cloudflare/types/images/v2s/direct_upload_create_response.py">DirectUploadCreateResponse</a></code>
+- <code title="post /accounts/{account_id}/images/v2/direct_upload">client.images.v2s.direct_uploads.<a href="./src/cloudflare/resources/images/v2s/direct_uploads.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/images/v2s/direct_upload_create_params.py">params</a>) -> <a href="./src/cloudflare/types/images/v2s/direct_upload_create_response.py">DirectUploadCreateResponse</a></code>
 
 # Intel
 
@@ -4164,7 +4164,7 @@ from cloudflare.types.intel import DNSGetResponse
 
 Methods:
 
-- <code title="get /accounts/{account_id}/intel/dns">client.intel.dns.<a href="./src/cloudflare/resources/intel/dns.py">get</a>(account_id, \*\*<a href="src/cloudflare/types/intel/dns_get_params.py">params</a>) -> <a href="./src/cloudflare/types/intel/dns_get_response.py">DNSGetResponse</a></code>
+- <code title="get /accounts/{account_id}/intel/dns">client.intel.dns.<a href="./src/cloudflare/resources/intel/dns.py">get</a>(\*, account_id, \*\*<a href="src/cloudflare/types/intel/dns_get_params.py">params</a>) -> <a href="./src/cloudflare/types/intel/dns_get_response.py">DNSGetResponse</a></code>
 
 ## Domains
 
@@ -4176,7 +4176,7 @@ from cloudflare.types.intel import DomainGetResponse
 
 Methods:
 
-- <code title="get /accounts/{account_id}/intel/domain">client.intel.domains.<a href="./src/cloudflare/resources/intel/domains/domains.py">get</a>(account_id, \*\*<a href="src/cloudflare/types/intel/domain_get_params.py">params</a>) -> <a href="./src/cloudflare/types/intel/domain_get_response.py">DomainGetResponse</a></code>
+- <code title="get /accounts/{account_id}/intel/domain">client.intel.domains.<a href="./src/cloudflare/resources/intel/domains/domains.py">get</a>(\*, account_id, \*\*<a href="src/cloudflare/types/intel/domain_get_params.py">params</a>) -> <a href="./src/cloudflare/types/intel/domain_get_response.py">DomainGetResponse</a></code>
 
 ### Bulks
 
@@ -4188,7 +4188,7 @@ from cloudflare.types.intel.domains import BulkGetResponse
 
 Methods:
 
-- <code title="get /accounts/{account_id}/intel/domain/bulk">client.intel.domains.bulks.<a href="./src/cloudflare/resources/intel/domains/bulks.py">get</a>(account_id, \*\*<a href="src/cloudflare/types/intel/domains/bulk_get_params.py">params</a>) -> <a href="./src/cloudflare/types/intel/domains/bulk_get_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/intel/domain/bulk">client.intel.domains.bulks.<a href="./src/cloudflare/resources/intel/domains/bulks.py">get</a>(\*, account_id, \*\*<a href="src/cloudflare/types/intel/domains/bulk_get_params.py">params</a>) -> <a href="./src/cloudflare/types/intel/domains/bulk_get_response.py">Optional</a></code>
 
 ## DomainHistories
 
@@ -4200,7 +4200,7 @@ from cloudflare.types.intel import DomainHistoryListResponse
 
 Methods:
 
-- <code title="get /accounts/{account_id}/intel/domain-history">client.intel.domain_histories.<a href="./src/cloudflare/resources/intel/domain_histories.py">list</a>(account_id, \*\*<a href="src/cloudflare/types/intel/domain_history_list_params.py">params</a>) -> <a href="./src/cloudflare/types/intel/domain_history_list_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/intel/domain-history">client.intel.domain_histories.<a href="./src/cloudflare/resources/intel/domain_histories.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/intel/domain_history_list_params.py">params</a>) -> <a href="./src/cloudflare/types/intel/domain_history_list_response.py">Optional</a></code>
 
 ## IPs
 
@@ -4212,7 +4212,7 @@ from cloudflare.types.intel import IPGetResponse
 
 Methods:
 
-- <code title="get /accounts/{account_id}/intel/ip">client.intel.ips.<a href="./src/cloudflare/resources/intel/ips.py">get</a>(account_id, \*\*<a href="src/cloudflare/types/intel/ip_get_params.py">params</a>) -> <a href="./src/cloudflare/types/intel/ip_get_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/intel/ip">client.intel.ips.<a href="./src/cloudflare/resources/intel/ips.py">get</a>(\*, account_id, \*\*<a href="src/cloudflare/types/intel/ip_get_params.py">params</a>) -> <a href="./src/cloudflare/types/intel/ip_get_response.py">Optional</a></code>
 
 ## IPLists
 
@@ -4224,7 +4224,7 @@ from cloudflare.types.intel import IPListGetResponse
 
 Methods:
 
-- <code title="get /accounts/{account_id}/intel/ip-list">client.intel.ip_lists.<a href="./src/cloudflare/resources/intel/ip_lists.py">get</a>(account_id) -> <a href="./src/cloudflare/types/intel/ip_list_get_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/intel/ip-list">client.intel.ip_lists.<a href="./src/cloudflare/resources/intel/ip_lists.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/intel/ip_list_get_response.py">Optional</a></code>
 
 ## Miscategorizations
 
@@ -4236,7 +4236,7 @@ from cloudflare.types.intel import MiscategorizationCreateResponse
 
 Methods:
 
-- <code title="post /accounts/{account_id}/intel/miscategorization">client.intel.miscategorizations.<a href="./src/cloudflare/resources/intel/miscategorizations.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/intel/miscategorization_create_params.py">params</a>) -> <a href="./src/cloudflare/types/intel/miscategorization_create_response.py">MiscategorizationCreateResponse</a></code>
+- <code title="post /accounts/{account_id}/intel/miscategorization">client.intel.miscategorizations.<a href="./src/cloudflare/resources/intel/miscategorizations.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/intel/miscategorization_create_params.py">params</a>) -> <a href="./src/cloudflare/types/intel/miscategorization_create_response.py">MiscategorizationCreateResponse</a></code>
 
 ## Whois
 
@@ -4248,7 +4248,7 @@ from cloudflare.types.intel import WhoisGetResponse
 
 Methods:
 
-- <code title="get /accounts/{account_id}/intel/whois">client.intel.whois.<a href="./src/cloudflare/resources/intel/whois.py">get</a>(account_id, \*\*<a href="src/cloudflare/types/intel/whois_get_params.py">params</a>) -> <a href="./src/cloudflare/types/intel/whois_get_response.py">WhoisGetResponse</a></code>
+- <code title="get /accounts/{account_id}/intel/whois">client.intel.whois.<a href="./src/cloudflare/resources/intel/whois.py">get</a>(\*, account_id, \*\*<a href="src/cloudflare/types/intel/whois_get_params.py">params</a>) -> <a href="./src/cloudflare/types/intel/whois_get_response.py">WhoisGetResponse</a></code>
 
 ## IndicatorFeeds
 
@@ -4266,9 +4266,9 @@ from cloudflare.types.intel import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/intel/indicator-feeds">client.intel.indicator_feeds.<a href="./src/cloudflare/resources/intel/indicator_feeds/indicator_feeds.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/intel/indicator_feed_create_params.py">params</a>) -> <a href="./src/cloudflare/types/intel/indicator_feed_create_response.py">IndicatorFeedCreateResponse</a></code>
+- <code title="post /accounts/{account_id}/intel/indicator-feeds">client.intel.indicator_feeds.<a href="./src/cloudflare/resources/intel/indicator_feeds/indicator_feeds.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/intel/indicator_feed_create_params.py">params</a>) -> <a href="./src/cloudflare/types/intel/indicator_feed_create_response.py">IndicatorFeedCreateResponse</a></code>
 - <code title="put /accounts/{account_id}/intel/indicator-feeds/{feed_id}/snapshot">client.intel.indicator_feeds.<a href="./src/cloudflare/resources/intel/indicator_feeds/indicator_feeds.py">update</a>(feed_id, \*, account_id, \*\*<a href="src/cloudflare/types/intel/indicator_feed_update_params.py">params</a>) -> <a href="./src/cloudflare/types/intel/indicator_feed_update_response.py">IndicatorFeedUpdateResponse</a></code>
-- <code title="get /accounts/{account_id}/intel/indicator-feeds">client.intel.indicator_feeds.<a href="./src/cloudflare/resources/intel/indicator_feeds/indicator_feeds.py">list</a>(account_id) -> <a href="./src/cloudflare/types/intel/indicator_feed_list_response.py">IndicatorFeedListResponse</a></code>
+- <code title="get /accounts/{account_id}/intel/indicator-feeds">client.intel.indicator_feeds.<a href="./src/cloudflare/resources/intel/indicator_feeds/indicator_feeds.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/intel/indicator_feed_list_response.py">IndicatorFeedListResponse</a></code>
 - <code title="get /accounts/{account_id}/intel/indicator-feeds/{feed_id}/data">client.intel.indicator_feeds.<a href="./src/cloudflare/resources/intel/indicator_feeds/indicator_feeds.py">data</a>(feed_id, \*, account_id) -> str</code>
 - <code title="get /accounts/{account_id}/intel/indicator-feeds/{feed_id}">client.intel.indicator_feeds.<a href="./src/cloudflare/resources/intel/indicator_feeds/indicator_feeds.py">get</a>(feed_id, \*, account_id) -> <a href="./src/cloudflare/types/intel/indicator_feed_get_response.py">IndicatorFeedGetResponse</a></code>
 
@@ -4286,9 +4286,9 @@ from cloudflare.types.intel.indicator_feeds import (
 
 Methods:
 
-- <code title="put /accounts/{account_id}/intel/indicator-feeds/permissions/add">client.intel.indicator_feeds.permissions.<a href="./src/cloudflare/resources/intel/indicator_feeds/permissions.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/intel/indicator_feeds/permission_create_params.py">params</a>) -> <a href="./src/cloudflare/types/intel/indicator_feeds/permission_create_response.py">PermissionCreateResponse</a></code>
-- <code title="get /accounts/{account_id}/intel/indicator-feeds/permissions/view">client.intel.indicator_feeds.permissions.<a href="./src/cloudflare/resources/intel/indicator_feeds/permissions.py">list</a>(account_id) -> <a href="./src/cloudflare/types/intel/indicator_feeds/permission_list_response.py">PermissionListResponse</a></code>
-- <code title="put /accounts/{account_id}/intel/indicator-feeds/permissions/remove">client.intel.indicator_feeds.permissions.<a href="./src/cloudflare/resources/intel/indicator_feeds/permissions.py">delete</a>(account_id, \*\*<a href="src/cloudflare/types/intel/indicator_feeds/permission_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/intel/indicator_feeds/permission_delete_response.py">PermissionDeleteResponse</a></code>
+- <code title="put /accounts/{account_id}/intel/indicator-feeds/permissions/add">client.intel.indicator_feeds.permissions.<a href="./src/cloudflare/resources/intel/indicator_feeds/permissions.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/intel/indicator_feeds/permission_create_params.py">params</a>) -> <a href="./src/cloudflare/types/intel/indicator_feeds/permission_create_response.py">PermissionCreateResponse</a></code>
+- <code title="get /accounts/{account_id}/intel/indicator-feeds/permissions/view">client.intel.indicator_feeds.permissions.<a href="./src/cloudflare/resources/intel/indicator_feeds/permissions.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/intel/indicator_feeds/permission_list_response.py">PermissionListResponse</a></code>
+- <code title="put /accounts/{account_id}/intel/indicator-feeds/permissions/remove">client.intel.indicator_feeds.permissions.<a href="./src/cloudflare/resources/intel/indicator_feeds/permissions.py">delete</a>(\*, account_id, \*\*<a href="src/cloudflare/types/intel/indicator_feeds/permission_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/intel/indicator_feeds/permission_delete_response.py">PermissionDeleteResponse</a></code>
 
 ## Sinkholes
 
@@ -4300,7 +4300,7 @@ from cloudflare.types.intel import SinkholeListResponse
 
 Methods:
 
-- <code title="get /accounts/{account_id}/intel/sinkholes">client.intel.sinkholes.<a href="./src/cloudflare/resources/intel/sinkholes.py">list</a>(account_id) -> <a href="./src/cloudflare/types/intel/sinkhole_list_response.py">SinkholeListResponse</a></code>
+- <code title="get /accounts/{account_id}/intel/sinkholes">client.intel.sinkholes.<a href="./src/cloudflare/resources/intel/sinkholes.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/intel/sinkhole_list_response.py">SinkholeListResponse</a></code>
 
 # Magics
 
@@ -4418,9 +4418,9 @@ from cloudflare.types import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/members">client.account_members.<a href="./src/cloudflare/resources/account_members.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/account_member_create_params.py">params</a>) -> <a href="./src/cloudflare/types/account_member_create_response.py">AccountMemberCreateResponse</a></code>
+- <code title="post /accounts/{account_id}/members">client.account_members.<a href="./src/cloudflare/resources/account_members.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/account_member_create_params.py">params</a>) -> <a href="./src/cloudflare/types/account_member_create_response.py">AccountMemberCreateResponse</a></code>
 - <code title="put /accounts/{account_id}/members/{member_id}">client.account_members.<a href="./src/cloudflare/resources/account_members.py">update</a>(member_id, \*, account_id, \*\*<a href="src/cloudflare/types/account_member_update_params.py">params</a>) -> <a href="./src/cloudflare/types/account_member_update_response.py">AccountMemberUpdateResponse</a></code>
-- <code title="get /accounts/{account_id}/members">client.account_members.<a href="./src/cloudflare/resources/account_members.py">list</a>(account_id, \*\*<a href="src/cloudflare/types/account_member_list_params.py">params</a>) -> <a href="./src/cloudflare/types/account_member_list_response.py">SyncV4PagePaginationArray[AccountMemberListResponse]</a></code>
+- <code title="get /accounts/{account_id}/members">client.account_members.<a href="./src/cloudflare/resources/account_members.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/account_member_list_params.py">params</a>) -> <a href="./src/cloudflare/types/account_member_list_response.py">SyncV4PagePaginationArray[AccountMemberListResponse]</a></code>
 - <code title="delete /accounts/{account_id}/members/{member_id}">client.account_members.<a href="./src/cloudflare/resources/account_members.py">delete</a>(member_id, \*, account_id) -> <a href="./src/cloudflare/types/account_member_delete_response.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/members/{member_id}">client.account_members.<a href="./src/cloudflare/resources/account_members.py">get</a>(member_id, \*, account_id) -> <a href="./src/cloudflare/types/account_member_get_response.py">AccountMemberGetResponse</a></code>
 
@@ -4511,8 +4511,8 @@ from cloudflare.types import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/mtls_certificates">client.mtls_certificates.<a href="./src/cloudflare/resources/mtls_certificates/mtls_certificates.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/mtls_certificate_create_params.py">params</a>) -> <a href="./src/cloudflare/types/mtls_certificate_create_response.py">MTLSCertificateCreateResponse</a></code>
-- <code title="get /accounts/{account_id}/mtls_certificates">client.mtls_certificates.<a href="./src/cloudflare/resources/mtls_certificates/mtls_certificates.py">list</a>(account_id) -> <a href="./src/cloudflare/types/mtls_certificate_list_response.py">Optional</a></code>
+- <code title="post /accounts/{account_id}/mtls_certificates">client.mtls_certificates.<a href="./src/cloudflare/resources/mtls_certificates/mtls_certificates.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/mtls_certificate_create_params.py">params</a>) -> <a href="./src/cloudflare/types/mtls_certificate_create_response.py">MTLSCertificateCreateResponse</a></code>
+- <code title="get /accounts/{account_id}/mtls_certificates">client.mtls_certificates.<a href="./src/cloudflare/resources/mtls_certificates/mtls_certificates.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/mtls_certificate_list_response.py">Optional</a></code>
 - <code title="delete /accounts/{account_id}/mtls_certificates/{mtls_certificate_id}">client.mtls_certificates.<a href="./src/cloudflare/resources/mtls_certificates/mtls_certificates.py">delete</a>(mtls_certificate_id, \*, account_id) -> <a href="./src/cloudflare/types/mtls_certificate_delete_response.py">MTLSCertificateDeleteResponse</a></code>
 - <code title="get /accounts/{account_id}/mtls_certificates/{mtls_certificate_id}">client.mtls_certificates.<a href="./src/cloudflare/resources/mtls_certificates/mtls_certificates.py">get</a>(mtls_certificate_id, \*, account_id) -> <a href="./src/cloudflare/types/mtls_certificate_get_response.py">MTLSCertificateGetResponse</a></code>
 
@@ -4547,8 +4547,8 @@ from cloudflare.types.pages import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/pages/projects">client.pages.projects.<a href="./src/cloudflare/resources/pages/projects/projects.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/pages/project_create_params.py">params</a>) -> <a href="./src/cloudflare/types/pages/project_create_response.py">ProjectCreateResponse</a></code>
-- <code title="get /accounts/{account_id}/pages/projects">client.pages.projects.<a href="./src/cloudflare/resources/pages/projects/projects.py">list</a>(account_id) -> <a href="./src/cloudflare/types/pages/project_list_response.py">ProjectListResponse</a></code>
+- <code title="post /accounts/{account_id}/pages/projects">client.pages.projects.<a href="./src/cloudflare/resources/pages/projects/projects.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/pages/project_create_params.py">params</a>) -> <a href="./src/cloudflare/types/pages/project_create_response.py">ProjectCreateResponse</a></code>
+- <code title="get /accounts/{account_id}/pages/projects">client.pages.projects.<a href="./src/cloudflare/resources/pages/projects/projects.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/pages/project_list_response.py">ProjectListResponse</a></code>
 - <code title="delete /accounts/{account_id}/pages/projects/{project_name}">client.pages.projects.<a href="./src/cloudflare/resources/pages/projects/projects.py">delete</a>(project_name, \*, account_id) -> <a href="./src/cloudflare/types/pages/project_delete_response.py">object</a></code>
 - <code title="patch /accounts/{account_id}/pages/projects/{project_name}">client.pages.projects.<a href="./src/cloudflare/resources/pages/projects/projects.py">edit</a>(project_name, \*, account_id, \*\*<a href="src/cloudflare/types/pages/project_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/pages/project_edit_response.py">ProjectEditResponse</a></code>
 - <code title="get /accounts/{account_id}/pages/projects/{project_name}">client.pages.projects.<a href="./src/cloudflare/resources/pages/projects/projects.py">get</a>(project_name, \*, account_id) -> <a href="./src/cloudflare/types/pages/project_get_response.py">ProjectGetResponse</a></code>
@@ -4624,8 +4624,8 @@ from cloudflare.types import PCAPCreateResponse, PCAPListResponse, PCAPGetRespon
 
 Methods:
 
-- <code title="post /accounts/{account_id}/pcaps">client.pcaps.<a href="./src/cloudflare/resources/pcaps/pcaps.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/pcap_create_params.py">params</a>) -> <a href="./src/cloudflare/types/pcap_create_response.py">PCAPCreateResponse</a></code>
-- <code title="get /accounts/{account_id}/pcaps">client.pcaps.<a href="./src/cloudflare/resources/pcaps/pcaps.py">list</a>(account_id) -> <a href="./src/cloudflare/types/pcap_list_response.py">Optional</a></code>
+- <code title="post /accounts/{account_id}/pcaps">client.pcaps.<a href="./src/cloudflare/resources/pcaps/pcaps.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/pcap_create_params.py">params</a>) -> <a href="./src/cloudflare/types/pcap_create_response.py">PCAPCreateResponse</a></code>
+- <code title="get /accounts/{account_id}/pcaps">client.pcaps.<a href="./src/cloudflare/resources/pcaps/pcaps.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/pcap_list_response.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/pcaps/{pcap_id}">client.pcaps.<a href="./src/cloudflare/resources/pcaps/pcaps.py">get</a>(pcap_id, \*, account_id) -> <a href="./src/cloudflare/types/pcap_get_response.py">PCAPGetResponse</a></code>
 
 ## Ownerships
@@ -4642,10 +4642,10 @@ from cloudflare.types.pcaps import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/pcaps/ownership">client.pcaps.ownerships.<a href="./src/cloudflare/resources/pcaps/ownerships.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/pcaps/ownership_create_params.py">params</a>) -> <a href="./src/cloudflare/types/pcaps/ownership_create_response.py">OwnershipCreateResponse</a></code>
+- <code title="post /accounts/{account_id}/pcaps/ownership">client.pcaps.ownerships.<a href="./src/cloudflare/resources/pcaps/ownerships.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/pcaps/ownership_create_params.py">params</a>) -> <a href="./src/cloudflare/types/pcaps/ownership_create_response.py">OwnershipCreateResponse</a></code>
 - <code title="delete /accounts/{account_id}/pcaps/ownership/{ownership_id}">client.pcaps.ownerships.<a href="./src/cloudflare/resources/pcaps/ownerships.py">delete</a>(ownership_id, \*, account_id) -> None</code>
-- <code title="get /accounts/{account_id}/pcaps/ownership">client.pcaps.ownerships.<a href="./src/cloudflare/resources/pcaps/ownerships.py">get</a>(account_id) -> <a href="./src/cloudflare/types/pcaps/ownership_get_response.py">Optional</a></code>
-- <code title="post /accounts/{account_id}/pcaps/ownership/validate">client.pcaps.ownerships.<a href="./src/cloudflare/resources/pcaps/ownerships.py">validate</a>(account_id, \*\*<a href="src/cloudflare/types/pcaps/ownership_validate_params.py">params</a>) -> <a href="./src/cloudflare/types/pcaps/ownership_validate_response.py">OwnershipValidateResponse</a></code>
+- <code title="get /accounts/{account_id}/pcaps/ownership">client.pcaps.ownerships.<a href="./src/cloudflare/resources/pcaps/ownerships.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/pcaps/ownership_get_response.py">Optional</a></code>
+- <code title="post /accounts/{account_id}/pcaps/ownership/validate">client.pcaps.ownerships.<a href="./src/cloudflare/resources/pcaps/ownerships.py">validate</a>(\*, account_id, \*\*<a href="src/cloudflare/types/pcaps/ownership_validate_params.py">params</a>) -> <a href="./src/cloudflare/types/pcaps/ownership_validate_response.py">OwnershipValidateResponse</a></code>
 
 ## Downloads
 
@@ -4666,7 +4666,7 @@ from cloudflare.types.registrar import DomainUpdateResponse, DomainListResponse,
 Methods:
 
 - <code title="put /accounts/{account_id}/registrar/domains/{domain_name}">client.registrar.domains.<a href="./src/cloudflare/resources/registrar/domains.py">update</a>(domain_name, \*, account_id, \*\*<a href="src/cloudflare/types/registrar/domain_update_params.py">params</a>) -> <a href="./src/cloudflare/types/registrar/domain_update_response.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/registrar/domains">client.registrar.domains.<a href="./src/cloudflare/resources/registrar/domains.py">list</a>(account_id) -> <a href="./src/cloudflare/types/registrar/domain_list_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/registrar/domains">client.registrar.domains.<a href="./src/cloudflare/resources/registrar/domains.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/registrar/domain_list_response.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/registrar/domains/{domain_name}">client.registrar.domains.<a href="./src/cloudflare/resources/registrar/domains.py">get</a>(domain_name, \*, account_id) -> <a href="./src/cloudflare/types/registrar/domain_get_response.py">Optional</a></code>
 
 # RequestTracers
@@ -4693,7 +4693,7 @@ from cloudflare.types import RoleListResponse, RoleGetResponse
 
 Methods:
 
-- <code title="get /accounts/{account_id}/roles">client.roles.<a href="./src/cloudflare/resources/roles.py">list</a>(account_id) -> <a href="./src/cloudflare/types/role_list_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/roles">client.roles.<a href="./src/cloudflare/resources/roles.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/role_list_response.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/roles/{role_id}">client.roles.<a href="./src/cloudflare/resources/roles.py">get</a>(role_id, \*, account_id) -> <a href="./src/cloudflare/types/role_get_response.py">RoleGetResponse</a></code>
 
 # Rules
@@ -4714,9 +4714,9 @@ from cloudflare.types.rules import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/rules/lists">client.rules.lists.<a href="./src/cloudflare/resources/rules/lists/lists.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/rules/list_create_params.py">params</a>) -> <a href="./src/cloudflare/types/rules/list_create_response.py">Optional</a></code>
+- <code title="post /accounts/{account_id}/rules/lists">client.rules.lists.<a href="./src/cloudflare/resources/rules/lists/lists.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/rules/list_create_params.py">params</a>) -> <a href="./src/cloudflare/types/rules/list_create_response.py">Optional</a></code>
 - <code title="put /accounts/{account_id}/rules/lists/{list_id}">client.rules.lists.<a href="./src/cloudflare/resources/rules/lists/lists.py">update</a>(list_id, \*, account_id, \*\*<a href="src/cloudflare/types/rules/list_update_params.py">params</a>) -> <a href="./src/cloudflare/types/rules/list_update_response.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/rules/lists">client.rules.lists.<a href="./src/cloudflare/resources/rules/lists/lists.py">list</a>(account_id) -> <a href="./src/cloudflare/types/rules/list_list_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/rules/lists">client.rules.lists.<a href="./src/cloudflare/resources/rules/lists/lists.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/rules/list_list_response.py">Optional</a></code>
 - <code title="delete /accounts/{account_id}/rules/lists/{list_id}">client.rules.lists.<a href="./src/cloudflare/resources/rules/lists/lists.py">delete</a>(list_id, \*, account_id) -> <a href="./src/cloudflare/types/rules/list_delete_response.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/rules/lists/{list_id}">client.rules.lists.<a href="./src/cloudflare/resources/rules/lists/lists.py">get</a>(list_id, \*, account_id) -> <a href="./src/cloudflare/types/rules/list_get_response.py">Optional</a></code>
 
@@ -4766,8 +4766,8 @@ from cloudflare.types.storage import AnalyticsListResponse, AnalyticsStoredRespo
 
 Methods:
 
-- <code title="get /accounts/{account_id}/storage/analytics">client.storage.analytics.<a href="./src/cloudflare/resources/storage/analytics.py">list</a>(account_id, \*\*<a href="src/cloudflare/types/storage/analytics_list_params.py">params</a>) -> <a href="./src/cloudflare/types/storage/analytics_list_response.py">AnalyticsListResponse</a></code>
-- <code title="get /accounts/{account_id}/storage/analytics/stored">client.storage.analytics.<a href="./src/cloudflare/resources/storage/analytics.py">stored</a>(account_id, \*\*<a href="src/cloudflare/types/storage/analytics_stored_params.py">params</a>) -> <a href="./src/cloudflare/types/storage/analytics_stored_response.py">AnalyticsStoredResponse</a></code>
+- <code title="get /accounts/{account_id}/storage/analytics">client.storage.analytics.<a href="./src/cloudflare/resources/storage/analytics.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/storage/analytics_list_params.py">params</a>) -> <a href="./src/cloudflare/types/storage/analytics_list_response.py">AnalyticsListResponse</a></code>
+- <code title="get /accounts/{account_id}/storage/analytics/stored">client.storage.analytics.<a href="./src/cloudflare/resources/storage/analytics.py">stored</a>(\*, account_id, \*\*<a href="src/cloudflare/types/storage/analytics_stored_params.py">params</a>) -> <a href="./src/cloudflare/types/storage/analytics_stored_response.py">AnalyticsStoredResponse</a></code>
 
 ## KV
 
@@ -4786,9 +4786,9 @@ from cloudflare.types.storage.kv import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/storage/kv/namespaces">client.storage.kv.namespaces.<a href="./src/cloudflare/resources/storage/kv/namespaces/namespaces.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/storage/kv/namespace_create_params.py">params</a>) -> <a href="./src/cloudflare/types/storage/kv/namespace_create_response.py">NamespaceCreateResponse</a></code>
+- <code title="post /accounts/{account_id}/storage/kv/namespaces">client.storage.kv.namespaces.<a href="./src/cloudflare/resources/storage/kv/namespaces/namespaces.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/storage/kv/namespace_create_params.py">params</a>) -> <a href="./src/cloudflare/types/storage/kv/namespace_create_response.py">NamespaceCreateResponse</a></code>
 - <code title="put /accounts/{account_id}/storage/kv/namespaces/{namespace_id}">client.storage.kv.namespaces.<a href="./src/cloudflare/resources/storage/kv/namespaces/namespaces.py">update</a>(namespace_id, \*, account_id, \*\*<a href="src/cloudflare/types/storage/kv/namespace_update_params.py">params</a>) -> <a href="./src/cloudflare/types/storage/kv/namespace_update_response.py">NamespaceUpdateResponse</a></code>
-- <code title="get /accounts/{account_id}/storage/kv/namespaces">client.storage.kv.namespaces.<a href="./src/cloudflare/resources/storage/kv/namespaces/namespaces.py">list</a>(account_id, \*\*<a href="src/cloudflare/types/storage/kv/namespace_list_params.py">params</a>) -> <a href="./src/cloudflare/types/storage/kv/namespace_list_response.py">SyncV4PagePaginationArray[NamespaceListResponse]</a></code>
+- <code title="get /accounts/{account_id}/storage/kv/namespaces">client.storage.kv.namespaces.<a href="./src/cloudflare/resources/storage/kv/namespaces/namespaces.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/storage/kv/namespace_list_params.py">params</a>) -> <a href="./src/cloudflare/types/storage/kv/namespace_list_response.py">SyncV4PagePaginationArray[NamespaceListResponse]</a></code>
 - <code title="delete /accounts/{account_id}/storage/kv/namespaces/{namespace_id}">client.storage.kv.namespaces.<a href="./src/cloudflare/resources/storage/kv/namespaces/namespaces.py">delete</a>(namespace_id, \*, account_id) -> <a href="./src/cloudflare/types/storage/kv/namespace_delete_response.py">NamespaceDeleteResponse</a></code>
 
 #### Bulk
@@ -4856,8 +4856,8 @@ from cloudflare.types import StreamListResponse, StreamGetResponse
 
 Methods:
 
-- <code title="post /accounts/{account_id}/stream">client.stream.<a href="./src/cloudflare/resources/stream/stream.py">create</a>(account_id) -> None</code>
-- <code title="get /accounts/{account_id}/stream">client.stream.<a href="./src/cloudflare/resources/stream/stream.py">list</a>(account_id, \*\*<a href="src/cloudflare/types/stream_list_params.py">params</a>) -> <a href="./src/cloudflare/types/stream_list_response.py">StreamListResponse</a></code>
+- <code title="post /accounts/{account_id}/stream">client.stream.<a href="./src/cloudflare/resources/stream/stream.py">create</a>(\*, account_id) -> None</code>
+- <code title="get /accounts/{account_id}/stream">client.stream.<a href="./src/cloudflare/resources/stream/stream.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/stream_list_params.py">params</a>) -> <a href="./src/cloudflare/types/stream_list_response.py">StreamListResponse</a></code>
 - <code title="delete /accounts/{account_id}/stream/{identifier}">client.stream.<a href="./src/cloudflare/resources/stream/stream.py">delete</a>(identifier, \*, account_id) -> None</code>
 - <code title="get /accounts/{account_id}/stream/{identifier}">client.stream.<a href="./src/cloudflare/resources/stream/stream.py">get</a>(identifier, \*, account_id) -> <a href="./src/cloudflare/types/stream_get_response.py">StreamGetResponse</a></code>
 
@@ -4891,7 +4891,7 @@ from cloudflare.types.stream import VideoStorageUsageResponse
 
 Methods:
 
-- <code title="get /accounts/{account_id}/stream/storage-usage">client.stream.videos.<a href="./src/cloudflare/resources/stream/videos.py">storage_usage</a>(account_id, \*\*<a href="src/cloudflare/types/stream/video_storage_usage_params.py">params</a>) -> <a href="./src/cloudflare/types/stream/video_storage_usage_response.py">VideoStorageUsageResponse</a></code>
+- <code title="get /accounts/{account_id}/stream/storage-usage">client.stream.videos.<a href="./src/cloudflare/resources/stream/videos.py">storage_usage</a>(\*, account_id, \*\*<a href="src/cloudflare/types/stream/video_storage_usage_params.py">params</a>) -> <a href="./src/cloudflare/types/stream/video_storage_usage_response.py">VideoStorageUsageResponse</a></code>
 
 ## Clips
 
@@ -4903,7 +4903,7 @@ from cloudflare.types.stream import ClipCreateResponse
 
 Methods:
 
-- <code title="post /accounts/{account_id}/stream/clip">client.stream.clips.<a href="./src/cloudflare/resources/stream/clips.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/stream/clip_create_params.py">params</a>) -> <a href="./src/cloudflare/types/stream/clip_create_response.py">ClipCreateResponse</a></code>
+- <code title="post /accounts/{account_id}/stream/clip">client.stream.clips.<a href="./src/cloudflare/resources/stream/clips.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/stream/clip_create_params.py">params</a>) -> <a href="./src/cloudflare/types/stream/clip_create_response.py">ClipCreateResponse</a></code>
 
 ## Copies
 
@@ -4915,7 +4915,7 @@ from cloudflare.types.stream import CopyCreateResponse
 
 Methods:
 
-- <code title="post /accounts/{account_id}/stream/copy">client.stream.copies.<a href="./src/cloudflare/resources/stream/copies.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/stream/copy_create_params.py">params</a>) -> <a href="./src/cloudflare/types/stream/copy_create_response.py">CopyCreateResponse</a></code>
+- <code title="post /accounts/{account_id}/stream/copy">client.stream.copies.<a href="./src/cloudflare/resources/stream/copies.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/stream/copy_create_params.py">params</a>) -> <a href="./src/cloudflare/types/stream/copy_create_response.py">CopyCreateResponse</a></code>
 
 ## DirectUploads
 
@@ -4927,7 +4927,7 @@ from cloudflare.types.stream import DirectUploadCreateResponse
 
 Methods:
 
-- <code title="post /accounts/{account_id}/stream/direct_upload">client.stream.direct_uploads.<a href="./src/cloudflare/resources/stream/direct_uploads.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/stream/direct_upload_create_params.py">params</a>) -> <a href="./src/cloudflare/types/stream/direct_upload_create_response.py">DirectUploadCreateResponse</a></code>
+- <code title="post /accounts/{account_id}/stream/direct_upload">client.stream.direct_uploads.<a href="./src/cloudflare/resources/stream/direct_uploads.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/stream/direct_upload_create_params.py">params</a>) -> <a href="./src/cloudflare/types/stream/direct_upload_create_response.py">DirectUploadCreateResponse</a></code>
 
 ## Keys
 
@@ -4939,8 +4939,8 @@ from cloudflare.types.stream import KeyCreateResponse, KeyListResponse, KeyDelet
 
 Methods:
 
-- <code title="post /accounts/{account_id}/stream/keys">client.stream.keys.<a href="./src/cloudflare/resources/stream/keys.py">create</a>(account_id) -> <a href="./src/cloudflare/types/stream/key_create_response.py">KeyCreateResponse</a></code>
-- <code title="get /accounts/{account_id}/stream/keys">client.stream.keys.<a href="./src/cloudflare/resources/stream/keys.py">list</a>(account_id) -> <a href="./src/cloudflare/types/stream/key_list_response.py">KeyListResponse</a></code>
+- <code title="post /accounts/{account_id}/stream/keys">client.stream.keys.<a href="./src/cloudflare/resources/stream/keys.py">create</a>(\*, account_id) -> <a href="./src/cloudflare/types/stream/key_create_response.py">KeyCreateResponse</a></code>
+- <code title="get /accounts/{account_id}/stream/keys">client.stream.keys.<a href="./src/cloudflare/resources/stream/keys.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/stream/key_list_response.py">KeyListResponse</a></code>
 - <code title="delete /accounts/{account_id}/stream/keys/{identifier}">client.stream.keys.<a href="./src/cloudflare/resources/stream/keys.py">delete</a>(identifier, \*, account_id) -> <a href="./src/cloudflare/types/stream/key_delete_response.py">KeyDeleteResponse</a></code>
 
 ## LiveInputs
@@ -4958,9 +4958,9 @@ from cloudflare.types.stream import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/stream/live_inputs">client.stream.live_inputs.<a href="./src/cloudflare/resources/stream/live_inputs/live_inputs.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/stream/live_input_create_params.py">params</a>) -> <a href="./src/cloudflare/types/stream/live_input_create_response.py">LiveInputCreateResponse</a></code>
+- <code title="post /accounts/{account_id}/stream/live_inputs">client.stream.live_inputs.<a href="./src/cloudflare/resources/stream/live_inputs/live_inputs.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/stream/live_input_create_params.py">params</a>) -> <a href="./src/cloudflare/types/stream/live_input_create_response.py">LiveInputCreateResponse</a></code>
 - <code title="put /accounts/{account_id}/stream/live_inputs/{live_input_identifier}">client.stream.live_inputs.<a href="./src/cloudflare/resources/stream/live_inputs/live_inputs.py">update</a>(live_input_identifier, \*, account_id, \*\*<a href="src/cloudflare/types/stream/live_input_update_params.py">params</a>) -> <a href="./src/cloudflare/types/stream/live_input_update_response.py">LiveInputUpdateResponse</a></code>
-- <code title="get /accounts/{account_id}/stream/live_inputs">client.stream.live_inputs.<a href="./src/cloudflare/resources/stream/live_inputs/live_inputs.py">list</a>(account_id, \*\*<a href="src/cloudflare/types/stream/live_input_list_params.py">params</a>) -> <a href="./src/cloudflare/types/stream/live_input_list_response.py">LiveInputListResponse</a></code>
+- <code title="get /accounts/{account_id}/stream/live_inputs">client.stream.live_inputs.<a href="./src/cloudflare/resources/stream/live_inputs/live_inputs.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/stream/live_input_list_params.py">params</a>) -> <a href="./src/cloudflare/types/stream/live_input_list_response.py">LiveInputListResponse</a></code>
 - <code title="delete /accounts/{account_id}/stream/live_inputs/{live_input_identifier}">client.stream.live_inputs.<a href="./src/cloudflare/resources/stream/live_inputs/live_inputs.py">delete</a>(live_input_identifier, \*, account_id) -> None</code>
 - <code title="get /accounts/{account_id}/stream/live_inputs/{live_input_identifier}">client.stream.live_inputs.<a href="./src/cloudflare/resources/stream/live_inputs/live_inputs.py">get</a>(live_input_identifier, \*, account_id) -> <a href="./src/cloudflare/types/stream/live_input_get_response.py">LiveInputGetResponse</a></code>
 
@@ -4998,8 +4998,8 @@ from cloudflare.types.stream import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/stream/watermarks">client.stream.watermarks.<a href="./src/cloudflare/resources/stream/watermarks.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/stream/watermark_create_params.py">params</a>) -> <a href="./src/cloudflare/types/stream/watermark_create_response.py">WatermarkCreateResponse</a></code>
-- <code title="get /accounts/{account_id}/stream/watermarks">client.stream.watermarks.<a href="./src/cloudflare/resources/stream/watermarks.py">list</a>(account_id) -> <a href="./src/cloudflare/types/stream/watermark_list_response.py">WatermarkListResponse</a></code>
+- <code title="post /accounts/{account_id}/stream/watermarks">client.stream.watermarks.<a href="./src/cloudflare/resources/stream/watermarks.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/stream/watermark_create_params.py">params</a>) -> <a href="./src/cloudflare/types/stream/watermark_create_response.py">WatermarkCreateResponse</a></code>
+- <code title="get /accounts/{account_id}/stream/watermarks">client.stream.watermarks.<a href="./src/cloudflare/resources/stream/watermarks.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/stream/watermark_list_response.py">WatermarkListResponse</a></code>
 - <code title="delete /accounts/{account_id}/stream/watermarks/{identifier}">client.stream.watermarks.<a href="./src/cloudflare/resources/stream/watermarks.py">delete</a>(identifier, \*, account_id) -> <a href="./src/cloudflare/types/stream/watermark_delete_response.py">WatermarkDeleteResponse</a></code>
 - <code title="get /accounts/{account_id}/stream/watermarks/{identifier}">client.stream.watermarks.<a href="./src/cloudflare/resources/stream/watermarks.py">get</a>(identifier, \*, account_id) -> <a href="./src/cloudflare/types/stream/watermark_get_response.py">WatermarkGetResponse</a></code>
 
@@ -5013,9 +5013,9 @@ from cloudflare.types.stream import WebhookUpdateResponse, WebhookDeleteResponse
 
 Methods:
 
-- <code title="put /accounts/{account_id}/stream/webhook">client.stream.webhooks.<a href="./src/cloudflare/resources/stream/webhooks.py">update</a>(account_id, \*\*<a href="src/cloudflare/types/stream/webhook_update_params.py">params</a>) -> <a href="./src/cloudflare/types/stream/webhook_update_response.py">WebhookUpdateResponse</a></code>
-- <code title="delete /accounts/{account_id}/stream/webhook">client.stream.webhooks.<a href="./src/cloudflare/resources/stream/webhooks.py">delete</a>(account_id) -> <a href="./src/cloudflare/types/stream/webhook_delete_response.py">WebhookDeleteResponse</a></code>
-- <code title="get /accounts/{account_id}/stream/webhook">client.stream.webhooks.<a href="./src/cloudflare/resources/stream/webhooks.py">get</a>(account_id) -> <a href="./src/cloudflare/types/stream/webhook_get_response.py">WebhookGetResponse</a></code>
+- <code title="put /accounts/{account_id}/stream/webhook">client.stream.webhooks.<a href="./src/cloudflare/resources/stream/webhooks.py">update</a>(\*, account_id, \*\*<a href="src/cloudflare/types/stream/webhook_update_params.py">params</a>) -> <a href="./src/cloudflare/types/stream/webhook_update_response.py">WebhookUpdateResponse</a></code>
+- <code title="delete /accounts/{account_id}/stream/webhook">client.stream.webhooks.<a href="./src/cloudflare/resources/stream/webhooks.py">delete</a>(\*, account_id) -> <a href="./src/cloudflare/types/stream/webhook_delete_response.py">WebhookDeleteResponse</a></code>
+- <code title="get /accounts/{account_id}/stream/webhook">client.stream.webhooks.<a href="./src/cloudflare/resources/stream/webhooks.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/stream/webhook_get_response.py">WebhookGetResponse</a></code>
 
 ## Captions
 
@@ -5089,7 +5089,7 @@ from cloudflare.types.teamnets import RouteListResponse
 
 Methods:
 
-- <code title="get /accounts/{account_id}/teamnet/routes">client.teamnets.routes.<a href="./src/cloudflare/resources/teamnets/routes/routes.py">list</a>(account_id, \*\*<a href="src/cloudflare/types/teamnets/route_list_params.py">params</a>) -> <a href="./src/cloudflare/types/teamnets/route_list_response.py">SyncV4PagePaginationArray[RouteListResponse]</a></code>
+- <code title="get /accounts/{account_id}/teamnet/routes">client.teamnets.routes.<a href="./src/cloudflare/resources/teamnets/routes/routes.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/teamnets/route_list_params.py">params</a>) -> <a href="./src/cloudflare/types/teamnets/route_list_response.py">SyncV4PagePaginationArray[RouteListResponse]</a></code>
 
 ### IPs
 
@@ -5136,8 +5136,8 @@ from cloudflare.types.teamnets import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/teamnet/virtual_networks">client.teamnets.virtual_networks.<a href="./src/cloudflare/resources/teamnets/virtual_networks.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/teamnets/virtual_network_create_params.py">params</a>) -> <a href="./src/cloudflare/types/teamnets/virtual_network_create_response.py">VirtualNetworkCreateResponse</a></code>
-- <code title="get /accounts/{account_id}/teamnet/virtual_networks">client.teamnets.virtual_networks.<a href="./src/cloudflare/resources/teamnets/virtual_networks.py">list</a>(account_id, \*\*<a href="src/cloudflare/types/teamnets/virtual_network_list_params.py">params</a>) -> <a href="./src/cloudflare/types/teamnets/virtual_network_list_response.py">Optional</a></code>
+- <code title="post /accounts/{account_id}/teamnet/virtual_networks">client.teamnets.virtual_networks.<a href="./src/cloudflare/resources/teamnets/virtual_networks.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/teamnets/virtual_network_create_params.py">params</a>) -> <a href="./src/cloudflare/types/teamnets/virtual_network_create_response.py">VirtualNetworkCreateResponse</a></code>
+- <code title="get /accounts/{account_id}/teamnet/virtual_networks">client.teamnets.virtual_networks.<a href="./src/cloudflare/resources/teamnets/virtual_networks.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/teamnets/virtual_network_list_params.py">params</a>) -> <a href="./src/cloudflare/types/teamnets/virtual_network_list_response.py">Optional</a></code>
 - <code title="delete /accounts/{account_id}/teamnet/virtual_networks/{virtual_network_id}">client.teamnets.virtual_networks.<a href="./src/cloudflare/resources/teamnets/virtual_networks.py">delete</a>(virtual_network_id, \*, account_id) -> <a href="./src/cloudflare/types/teamnets/virtual_network_delete_response.py">VirtualNetworkDeleteResponse</a></code>
 - <code title="patch /accounts/{account_id}/teamnet/virtual_networks/{virtual_network_id}">client.teamnets.virtual_networks.<a href="./src/cloudflare/resources/teamnets/virtual_networks.py">edit</a>(virtual_network_id, \*, account_id, \*\*<a href="src/cloudflare/types/teamnets/virtual_network_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/teamnets/virtual_network_edit_response.py">VirtualNetworkEditResponse</a></code>
 
@@ -5151,8 +5151,8 @@ from cloudflare.types import GatewayCreateResponse, GatewayListResponse
 
 Methods:
 
-- <code title="post /accounts/{account_id}/gateway">client.gateways.<a href="./src/cloudflare/resources/gateways/gateways.py">create</a>(account_id) -> <a href="./src/cloudflare/types/gateway_create_response.py">GatewayCreateResponse</a></code>
-- <code title="get /accounts/{account_id}/gateway">client.gateways.<a href="./src/cloudflare/resources/gateways/gateways.py">list</a>(account_id) -> <a href="./src/cloudflare/types/gateway_list_response.py">GatewayListResponse</a></code>
+- <code title="post /accounts/{account_id}/gateway">client.gateways.<a href="./src/cloudflare/resources/gateways/gateways.py">create</a>(\*, account_id) -> <a href="./src/cloudflare/types/gateway_create_response.py">GatewayCreateResponse</a></code>
+- <code title="get /accounts/{account_id}/gateway">client.gateways.<a href="./src/cloudflare/resources/gateways/gateways.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/gateway_list_response.py">GatewayListResponse</a></code>
 
 ## AuditSSHSettings
 
@@ -5164,8 +5164,8 @@ from cloudflare.types.gateways import AuditSSHSettingUpdateResponse, AuditSSHSet
 
 Methods:
 
-- <code title="put /accounts/{account_id}/gateway/audit_ssh_settings">client.gateways.audit_ssh_settings.<a href="./src/cloudflare/resources/gateways/audit_ssh_settings.py">update</a>(account_id, \*\*<a href="src/cloudflare/types/gateways/audit_ssh_setting_update_params.py">params</a>) -> <a href="./src/cloudflare/types/gateways/audit_ssh_setting_update_response.py">AuditSSHSettingUpdateResponse</a></code>
-- <code title="get /accounts/{account_id}/gateway/audit_ssh_settings">client.gateways.audit_ssh_settings.<a href="./src/cloudflare/resources/gateways/audit_ssh_settings.py">get</a>(account_id) -> <a href="./src/cloudflare/types/gateways/audit_ssh_setting_get_response.py">AuditSSHSettingGetResponse</a></code>
+- <code title="put /accounts/{account_id}/gateway/audit_ssh_settings">client.gateways.audit_ssh_settings.<a href="./src/cloudflare/resources/gateways/audit_ssh_settings.py">update</a>(\*, account_id, \*\*<a href="src/cloudflare/types/gateways/audit_ssh_setting_update_params.py">params</a>) -> <a href="./src/cloudflare/types/gateways/audit_ssh_setting_update_response.py">AuditSSHSettingUpdateResponse</a></code>
+- <code title="get /accounts/{account_id}/gateway/audit_ssh_settings">client.gateways.audit_ssh_settings.<a href="./src/cloudflare/resources/gateways/audit_ssh_settings.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/gateways/audit_ssh_setting_get_response.py">AuditSSHSettingGetResponse</a></code>
 
 ## Categories
 
@@ -5177,7 +5177,7 @@ from cloudflare.types.gateways import CategoryListResponse
 
 Methods:
 
-- <code title="get /accounts/{account_id}/gateway/categories">client.gateways.categories.<a href="./src/cloudflare/resources/gateways/categories.py">list</a>(account_id) -> <a href="./src/cloudflare/types/gateways/category_list_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/gateway/categories">client.gateways.categories.<a href="./src/cloudflare/resources/gateways/categories.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/gateways/category_list_response.py">Optional</a></code>
 
 ## AppTypes
 
@@ -5189,7 +5189,7 @@ from cloudflare.types.gateways import AppTypeListResponse
 
 Methods:
 
-- <code title="get /accounts/{account_id}/gateway/app_types">client.gateways.app_types.<a href="./src/cloudflare/resources/gateways/app_types.py">list</a>(account_id) -> <a href="./src/cloudflare/types/gateways/app_type_list_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/gateway/app_types">client.gateways.app_types.<a href="./src/cloudflare/resources/gateways/app_types.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/gateways/app_type_list_response.py">Optional</a></code>
 
 ## Configurations
 
@@ -5205,9 +5205,9 @@ from cloudflare.types.gateways import (
 
 Methods:
 
-- <code title="put /accounts/{account_id}/gateway/configuration">client.gateways.configurations.<a href="./src/cloudflare/resources/gateways/configurations.py">update</a>(account_id, \*\*<a href="src/cloudflare/types/gateways/configuration_update_params.py">params</a>) -> <a href="./src/cloudflare/types/gateways/configuration_update_response.py">ConfigurationUpdateResponse</a></code>
-- <code title="patch /accounts/{account_id}/gateway/configuration">client.gateways.configurations.<a href="./src/cloudflare/resources/gateways/configurations.py">edit</a>(account_id, \*\*<a href="src/cloudflare/types/gateways/configuration_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/gateways/configuration_edit_response.py">ConfigurationEditResponse</a></code>
-- <code title="get /accounts/{account_id}/gateway/configuration">client.gateways.configurations.<a href="./src/cloudflare/resources/gateways/configurations.py">get</a>(account_id) -> <a href="./src/cloudflare/types/gateways/configuration_get_response.py">ConfigurationGetResponse</a></code>
+- <code title="put /accounts/{account_id}/gateway/configuration">client.gateways.configurations.<a href="./src/cloudflare/resources/gateways/configurations.py">update</a>(\*, account_id, \*\*<a href="src/cloudflare/types/gateways/configuration_update_params.py">params</a>) -> <a href="./src/cloudflare/types/gateways/configuration_update_response.py">ConfigurationUpdateResponse</a></code>
+- <code title="patch /accounts/{account_id}/gateway/configuration">client.gateways.configurations.<a href="./src/cloudflare/resources/gateways/configurations.py">edit</a>(\*, account_id, \*\*<a href="src/cloudflare/types/gateways/configuration_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/gateways/configuration_edit_response.py">ConfigurationEditResponse</a></code>
+- <code title="get /accounts/{account_id}/gateway/configuration">client.gateways.configurations.<a href="./src/cloudflare/resources/gateways/configurations.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/gateways/configuration_get_response.py">ConfigurationGetResponse</a></code>
 
 ## Lists
 
@@ -5226,9 +5226,9 @@ from cloudflare.types.gateways import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/gateway/lists">client.gateways.lists.<a href="./src/cloudflare/resources/gateways/lists/lists.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/gateways/list_create_params.py">params</a>) -> <a href="./src/cloudflare/types/gateways/list_create_response.py">ListCreateResponse</a></code>
+- <code title="post /accounts/{account_id}/gateway/lists">client.gateways.lists.<a href="./src/cloudflare/resources/gateways/lists/lists.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/gateways/list_create_params.py">params</a>) -> <a href="./src/cloudflare/types/gateways/list_create_response.py">ListCreateResponse</a></code>
 - <code title="put /accounts/{account_id}/gateway/lists/{list_id}">client.gateways.lists.<a href="./src/cloudflare/resources/gateways/lists/lists.py">update</a>(list_id, \*, account_id, \*\*<a href="src/cloudflare/types/gateways/list_update_params.py">params</a>) -> <a href="./src/cloudflare/types/gateways/list_update_response.py">ListUpdateResponse</a></code>
-- <code title="get /accounts/{account_id}/gateway/lists">client.gateways.lists.<a href="./src/cloudflare/resources/gateways/lists/lists.py">list</a>(account_id) -> <a href="./src/cloudflare/types/gateways/list_list_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/gateway/lists">client.gateways.lists.<a href="./src/cloudflare/resources/gateways/lists/lists.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/gateways/list_list_response.py">Optional</a></code>
 - <code title="delete /accounts/{account_id}/gateway/lists/{list_id}">client.gateways.lists.<a href="./src/cloudflare/resources/gateways/lists/lists.py">delete</a>(list_id, \*, account_id) -> <a href="./src/cloudflare/types/gateways/list_delete_response.py">ListDeleteResponse</a></code>
 - <code title="patch /accounts/{account_id}/gateway/lists/{list_id}">client.gateways.lists.<a href="./src/cloudflare/resources/gateways/lists/lists.py">edit</a>(list_id, \*, account_id, \*\*<a href="src/cloudflare/types/gateways/list_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/gateways/list_edit_response.py">ListEditResponse</a></code>
 - <code title="get /accounts/{account_id}/gateway/lists/{list_id}">client.gateways.lists.<a href="./src/cloudflare/resources/gateways/lists/lists.py">get</a>(list_id, \*, account_id) -> <a href="./src/cloudflare/types/gateways/list_get_response.py">ListGetResponse</a></code>
@@ -5261,9 +5261,9 @@ from cloudflare.types.gateways import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/gateway/locations">client.gateways.locations.<a href="./src/cloudflare/resources/gateways/locations.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/gateways/location_create_params.py">params</a>) -> <a href="./src/cloudflare/types/gateways/location_create_response.py">LocationCreateResponse</a></code>
+- <code title="post /accounts/{account_id}/gateway/locations">client.gateways.locations.<a href="./src/cloudflare/resources/gateways/locations.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/gateways/location_create_params.py">params</a>) -> <a href="./src/cloudflare/types/gateways/location_create_response.py">LocationCreateResponse</a></code>
 - <code title="put /accounts/{account_id}/gateway/locations/{location_id}">client.gateways.locations.<a href="./src/cloudflare/resources/gateways/locations.py">update</a>(location_id, \*, account_id, \*\*<a href="src/cloudflare/types/gateways/location_update_params.py">params</a>) -> <a href="./src/cloudflare/types/gateways/location_update_response.py">LocationUpdateResponse</a></code>
-- <code title="get /accounts/{account_id}/gateway/locations">client.gateways.locations.<a href="./src/cloudflare/resources/gateways/locations.py">list</a>(account_id) -> <a href="./src/cloudflare/types/gateways/location_list_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/gateway/locations">client.gateways.locations.<a href="./src/cloudflare/resources/gateways/locations.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/gateways/location_list_response.py">Optional</a></code>
 - <code title="delete /accounts/{account_id}/gateway/locations/{location_id}">client.gateways.locations.<a href="./src/cloudflare/resources/gateways/locations.py">delete</a>(location_id, \*, account_id) -> <a href="./src/cloudflare/types/gateways/location_delete_response.py">LocationDeleteResponse</a></code>
 - <code title="get /accounts/{account_id}/gateway/locations/{location_id}">client.gateways.locations.<a href="./src/cloudflare/resources/gateways/locations.py">get</a>(location_id, \*, account_id) -> <a href="./src/cloudflare/types/gateways/location_get_response.py">LocationGetResponse</a></code>
 
@@ -5277,8 +5277,8 @@ from cloudflare.types.gateways import LoggingUpdateResponse, LoggingGetResponse
 
 Methods:
 
-- <code title="put /accounts/{account_id}/gateway/logging">client.gateways.loggings.<a href="./src/cloudflare/resources/gateways/loggings.py">update</a>(account_id, \*\*<a href="src/cloudflare/types/gateways/logging_update_params.py">params</a>) -> <a href="./src/cloudflare/types/gateways/logging_update_response.py">LoggingUpdateResponse</a></code>
-- <code title="get /accounts/{account_id}/gateway/logging">client.gateways.loggings.<a href="./src/cloudflare/resources/gateways/loggings.py">get</a>(account_id) -> <a href="./src/cloudflare/types/gateways/logging_get_response.py">LoggingGetResponse</a></code>
+- <code title="put /accounts/{account_id}/gateway/logging">client.gateways.loggings.<a href="./src/cloudflare/resources/gateways/loggings.py">update</a>(\*, account_id, \*\*<a href="src/cloudflare/types/gateways/logging_update_params.py">params</a>) -> <a href="./src/cloudflare/types/gateways/logging_update_response.py">LoggingUpdateResponse</a></code>
+- <code title="get /accounts/{account_id}/gateway/logging">client.gateways.loggings.<a href="./src/cloudflare/resources/gateways/loggings.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/gateways/logging_get_response.py">LoggingGetResponse</a></code>
 
 ## ProxyEndpoints
 
@@ -5296,8 +5296,8 @@ from cloudflare.types.gateways import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/gateway/proxy_endpoints">client.gateways.proxy_endpoints.<a href="./src/cloudflare/resources/gateways/proxy_endpoints.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/gateways/proxy_endpoint_create_params.py">params</a>) -> <a href="./src/cloudflare/types/gateways/proxy_endpoint_create_response.py">ProxyEndpointCreateResponse</a></code>
-- <code title="get /accounts/{account_id}/gateway/proxy_endpoints">client.gateways.proxy_endpoints.<a href="./src/cloudflare/resources/gateways/proxy_endpoints.py">list</a>(account_id) -> <a href="./src/cloudflare/types/gateways/proxy_endpoint_list_response.py">Optional</a></code>
+- <code title="post /accounts/{account_id}/gateway/proxy_endpoints">client.gateways.proxy_endpoints.<a href="./src/cloudflare/resources/gateways/proxy_endpoints.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/gateways/proxy_endpoint_create_params.py">params</a>) -> <a href="./src/cloudflare/types/gateways/proxy_endpoint_create_response.py">ProxyEndpointCreateResponse</a></code>
+- <code title="get /accounts/{account_id}/gateway/proxy_endpoints">client.gateways.proxy_endpoints.<a href="./src/cloudflare/resources/gateways/proxy_endpoints.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/gateways/proxy_endpoint_list_response.py">Optional</a></code>
 - <code title="delete /accounts/{account_id}/gateway/proxy_endpoints/{proxy_endpoint_id}">client.gateways.proxy_endpoints.<a href="./src/cloudflare/resources/gateways/proxy_endpoints.py">delete</a>(proxy_endpoint_id, \*, account_id) -> <a href="./src/cloudflare/types/gateways/proxy_endpoint_delete_response.py">ProxyEndpointDeleteResponse</a></code>
 - <code title="patch /accounts/{account_id}/gateway/proxy_endpoints/{proxy_endpoint_id}">client.gateways.proxy_endpoints.<a href="./src/cloudflare/resources/gateways/proxy_endpoints.py">edit</a>(proxy_endpoint_id, \*, account_id, \*\*<a href="src/cloudflare/types/gateways/proxy_endpoint_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/gateways/proxy_endpoint_edit_response.py">ProxyEndpointEditResponse</a></code>
 - <code title="get /accounts/{account_id}/gateway/proxy_endpoints/{proxy_endpoint_id}">client.gateways.proxy_endpoints.<a href="./src/cloudflare/resources/gateways/proxy_endpoints.py">get</a>(proxy_endpoint_id, \*, account_id) -> <a href="./src/cloudflare/types/gateways/proxy_endpoint_get_response.py">ProxyEndpointGetResponse</a></code>
@@ -5318,9 +5318,9 @@ from cloudflare.types.gateways import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/gateway/rules">client.gateways.rules.<a href="./src/cloudflare/resources/gateways/rules.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/gateways/rule_create_params.py">params</a>) -> <a href="./src/cloudflare/types/gateways/rule_create_response.py">RuleCreateResponse</a></code>
+- <code title="post /accounts/{account_id}/gateway/rules">client.gateways.rules.<a href="./src/cloudflare/resources/gateways/rules.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/gateways/rule_create_params.py">params</a>) -> <a href="./src/cloudflare/types/gateways/rule_create_response.py">RuleCreateResponse</a></code>
 - <code title="put /accounts/{account_id}/gateway/rules/{rule_id}">client.gateways.rules.<a href="./src/cloudflare/resources/gateways/rules.py">update</a>(rule_id, \*, account_id, \*\*<a href="src/cloudflare/types/gateways/rule_update_params.py">params</a>) -> <a href="./src/cloudflare/types/gateways/rule_update_response.py">RuleUpdateResponse</a></code>
-- <code title="get /accounts/{account_id}/gateway/rules">client.gateways.rules.<a href="./src/cloudflare/resources/gateways/rules.py">list</a>(account_id) -> <a href="./src/cloudflare/types/gateways/rule_list_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/gateway/rules">client.gateways.rules.<a href="./src/cloudflare/resources/gateways/rules.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/gateways/rule_list_response.py">Optional</a></code>
 - <code title="delete /accounts/{account_id}/gateway/rules/{rule_id}">client.gateways.rules.<a href="./src/cloudflare/resources/gateways/rules.py">delete</a>(rule_id, \*, account_id) -> <a href="./src/cloudflare/types/gateways/rule_delete_response.py">RuleDeleteResponse</a></code>
 - <code title="get /accounts/{account_id}/gateway/rules/{rule_id}">client.gateways.rules.<a href="./src/cloudflare/resources/gateways/rules.py">get</a>(rule_id, \*, account_id) -> <a href="./src/cloudflare/types/gateways/rule_get_response.py">RuleGetResponse</a></code>
 
@@ -5336,7 +5336,7 @@ from cloudflare.types.alerting import V3ListResponse
 
 Methods:
 
-- <code title="get /accounts/{account_id}/alerting/v3/available_alerts">client.alerting.v3.<a href="./src/cloudflare/resources/alerting/v3/v3.py">list</a>(account_id) -> <a href="./src/cloudflare/types/alerting/v3_list_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/alerting/v3/available_alerts">client.alerting.v3.<a href="./src/cloudflare/resources/alerting/v3/v3.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/alerting/v3_list_response.py">Optional</a></code>
 
 ### Destinations
 
@@ -5350,7 +5350,7 @@ from cloudflare.types.alerting.v3.destinations import EligibleGetResponse
 
 Methods:
 
-- <code title="get /accounts/{account_id}/alerting/v3/destinations/eligible">client.alerting.v3.destinations.eligible.<a href="./src/cloudflare/resources/alerting/v3/destinations/eligible.py">get</a>(account_id) -> <a href="./src/cloudflare/types/alerting/v3/destinations/eligible_get_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/alerting/v3/destinations/eligible">client.alerting.v3.destinations.eligible.<a href="./src/cloudflare/resources/alerting/v3/destinations/eligible.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/alerting/v3/destinations/eligible_get_response.py">Optional</a></code>
 
 #### Pagerduty
 
@@ -5367,9 +5367,9 @@ from cloudflare.types.alerting.v3.destinations import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/alerting/v3/destinations/pagerduty/connect">client.alerting.v3.destinations.pagerduty.<a href="./src/cloudflare/resources/alerting/v3/destinations/pagerduty.py">create</a>(account_id) -> <a href="./src/cloudflare/types/alerting/v3/destinations/pagerduty_create_response.py">PagerdutyCreateResponse</a></code>
-- <code title="delete /accounts/{account_id}/alerting/v3/destinations/pagerduty">client.alerting.v3.destinations.pagerduty.<a href="./src/cloudflare/resources/alerting/v3/destinations/pagerduty.py">delete</a>(account_id) -> <a href="./src/cloudflare/types/alerting/v3/destinations/pagerduty_delete_response.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/alerting/v3/destinations/pagerduty">client.alerting.v3.destinations.pagerduty.<a href="./src/cloudflare/resources/alerting/v3/destinations/pagerduty.py">get</a>(account_id) -> <a href="./src/cloudflare/types/alerting/v3/destinations/pagerduty_get_response.py">Optional</a></code>
+- <code title="post /accounts/{account_id}/alerting/v3/destinations/pagerduty/connect">client.alerting.v3.destinations.pagerduty.<a href="./src/cloudflare/resources/alerting/v3/destinations/pagerduty.py">create</a>(\*, account_id) -> <a href="./src/cloudflare/types/alerting/v3/destinations/pagerduty_create_response.py">PagerdutyCreateResponse</a></code>
+- <code title="delete /accounts/{account_id}/alerting/v3/destinations/pagerduty">client.alerting.v3.destinations.pagerduty.<a href="./src/cloudflare/resources/alerting/v3/destinations/pagerduty.py">delete</a>(\*, account_id) -> <a href="./src/cloudflare/types/alerting/v3/destinations/pagerduty_delete_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/alerting/v3/destinations/pagerduty">client.alerting.v3.destinations.pagerduty.<a href="./src/cloudflare/resources/alerting/v3/destinations/pagerduty.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/alerting/v3/destinations/pagerduty_get_response.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/alerting/v3/destinations/pagerduty/connect/{token_id}">client.alerting.v3.destinations.pagerduty.<a href="./src/cloudflare/resources/alerting/v3/destinations/pagerduty.py">link</a>(token_id, \*, account_id) -> <a href="./src/cloudflare/types/alerting/v3/destinations/pagerduty_link_response.py">PagerdutyLinkResponse</a></code>
 
 #### Webhooks
@@ -5388,9 +5388,9 @@ from cloudflare.types.alerting.v3.destinations import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/alerting/v3/destinations/webhooks">client.alerting.v3.destinations.webhooks.<a href="./src/cloudflare/resources/alerting/v3/destinations/webhooks.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/alerting/v3/destinations/webhook_create_params.py">params</a>) -> <a href="./src/cloudflare/types/alerting/v3/destinations/webhook_create_response.py">WebhookCreateResponse</a></code>
+- <code title="post /accounts/{account_id}/alerting/v3/destinations/webhooks">client.alerting.v3.destinations.webhooks.<a href="./src/cloudflare/resources/alerting/v3/destinations/webhooks.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/alerting/v3/destinations/webhook_create_params.py">params</a>) -> <a href="./src/cloudflare/types/alerting/v3/destinations/webhook_create_response.py">WebhookCreateResponse</a></code>
 - <code title="put /accounts/{account_id}/alerting/v3/destinations/webhooks/{webhook_id}">client.alerting.v3.destinations.webhooks.<a href="./src/cloudflare/resources/alerting/v3/destinations/webhooks.py">update</a>(webhook_id, \*, account_id, \*\*<a href="src/cloudflare/types/alerting/v3/destinations/webhook_update_params.py">params</a>) -> <a href="./src/cloudflare/types/alerting/v3/destinations/webhook_update_response.py">WebhookUpdateResponse</a></code>
-- <code title="get /accounts/{account_id}/alerting/v3/destinations/webhooks">client.alerting.v3.destinations.webhooks.<a href="./src/cloudflare/resources/alerting/v3/destinations/webhooks.py">list</a>(account_id) -> <a href="./src/cloudflare/types/alerting/v3/destinations/webhook_list_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/alerting/v3/destinations/webhooks">client.alerting.v3.destinations.webhooks.<a href="./src/cloudflare/resources/alerting/v3/destinations/webhooks.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/alerting/v3/destinations/webhook_list_response.py">Optional</a></code>
 - <code title="delete /accounts/{account_id}/alerting/v3/destinations/webhooks/{webhook_id}">client.alerting.v3.destinations.webhooks.<a href="./src/cloudflare/resources/alerting/v3/destinations/webhooks.py">delete</a>(webhook_id, \*, account_id) -> <a href="./src/cloudflare/types/alerting/v3/destinations/webhook_delete_response.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/alerting/v3/destinations/webhooks/{webhook_id}">client.alerting.v3.destinations.webhooks.<a href="./src/cloudflare/resources/alerting/v3/destinations/webhooks.py">get</a>(webhook_id, \*, account_id) -> <a href="./src/cloudflare/types/alerting/v3/destinations/webhook_get_response.py">WebhookGetResponse</a></code>
 
@@ -5404,7 +5404,7 @@ from cloudflare.types.alerting.v3 import HistoryListResponse
 
 Methods:
 
-- <code title="get /accounts/{account_id}/alerting/v3/history">client.alerting.v3.histories.<a href="./src/cloudflare/resources/alerting/v3/histories.py">list</a>(account_id, \*\*<a href="src/cloudflare/types/alerting/v3/history_list_params.py">params</a>) -> <a href="./src/cloudflare/types/alerting/v3/history_list_response.py">SyncV4PagePaginationArray[HistoryListResponse]</a></code>
+- <code title="get /accounts/{account_id}/alerting/v3/history">client.alerting.v3.histories.<a href="./src/cloudflare/resources/alerting/v3/histories.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/alerting/v3/history_list_params.py">params</a>) -> <a href="./src/cloudflare/types/alerting/v3/history_list_response.py">SyncV4PagePaginationArray[HistoryListResponse]</a></code>
 
 ### Policies
 
@@ -5422,9 +5422,9 @@ from cloudflare.types.alerting.v3 import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/alerting/v3/policies">client.alerting.v3.policies.<a href="./src/cloudflare/resources/alerting/v3/policies.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/alerting/v3/policy_create_params.py">params</a>) -> <a href="./src/cloudflare/types/alerting/v3/policy_create_response.py">PolicyCreateResponse</a></code>
+- <code title="post /accounts/{account_id}/alerting/v3/policies">client.alerting.v3.policies.<a href="./src/cloudflare/resources/alerting/v3/policies.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/alerting/v3/policy_create_params.py">params</a>) -> <a href="./src/cloudflare/types/alerting/v3/policy_create_response.py">PolicyCreateResponse</a></code>
 - <code title="put /accounts/{account_id}/alerting/v3/policies/{policy_id}">client.alerting.v3.policies.<a href="./src/cloudflare/resources/alerting/v3/policies.py">update</a>(policy_id, \*, account_id, \*\*<a href="src/cloudflare/types/alerting/v3/policy_update_params.py">params</a>) -> <a href="./src/cloudflare/types/alerting/v3/policy_update_response.py">PolicyUpdateResponse</a></code>
-- <code title="get /accounts/{account_id}/alerting/v3/policies">client.alerting.v3.policies.<a href="./src/cloudflare/resources/alerting/v3/policies.py">list</a>(account_id) -> <a href="./src/cloudflare/types/alerting/v3/policy_list_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/alerting/v3/policies">client.alerting.v3.policies.<a href="./src/cloudflare/resources/alerting/v3/policies.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/alerting/v3/policy_list_response.py">Optional</a></code>
 - <code title="delete /accounts/{account_id}/alerting/v3/policies/{policy_id}">client.alerting.v3.policies.<a href="./src/cloudflare/resources/alerting/v3/policies.py">delete</a>(policy_id, \*, account_id) -> <a href="./src/cloudflare/types/alerting/v3/policy_delete_response.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/alerting/v3/policies/{policy_id}">client.alerting.v3.policies.<a href="./src/cloudflare/resources/alerting/v3/policies.py">get</a>(policy_id, \*, account_id) -> <a href="./src/cloudflare/types/alerting/v3/policy_get_response.py">PolicyGetResponse</a></code>
 
@@ -5438,7 +5438,7 @@ from cloudflare.types import DeviceDevicesListDevicesResponse, DeviceGetResponse
 
 Methods:
 
-- <code title="get /accounts/{account_id}/devices">client.devices.<a href="./src/cloudflare/resources/devices/devices.py">devices_list_devices</a>(account_id) -> <a href="./src/cloudflare/types/device_devices_list_devices_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/devices">client.devices.<a href="./src/cloudflare/resources/devices/devices.py">devices_list_devices</a>(\*, account_id) -> <a href="./src/cloudflare/types/device_devices_list_devices_response.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/devices/{device_id}">client.devices.<a href="./src/cloudflare/resources/devices/devices.py">get</a>(device_id, \*, account_id) -> <a href="./src/cloudflare/types/device_get_response.py">Optional</a></code>
 
 ## DEXTests
@@ -5457,9 +5457,9 @@ from cloudflare.types.devices import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/devices/dex_tests">client.devices.dex_tests.<a href="./src/cloudflare/resources/devices/dex_tests.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/devices/dex_test_create_params.py">params</a>) -> <a href="./src/cloudflare/types/devices/dex_test_create_response.py">Optional</a></code>
+- <code title="post /accounts/{account_id}/devices/dex_tests">client.devices.dex_tests.<a href="./src/cloudflare/resources/devices/dex_tests.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/devices/dex_test_create_params.py">params</a>) -> <a href="./src/cloudflare/types/devices/dex_test_create_response.py">Optional</a></code>
 - <code title="put /accounts/{account_id}/devices/dex_tests/{dex_test_id}">client.devices.dex_tests.<a href="./src/cloudflare/resources/devices/dex_tests.py">update</a>(dex_test_id, \*, account_id, \*\*<a href="src/cloudflare/types/devices/dex_test_update_params.py">params</a>) -> <a href="./src/cloudflare/types/devices/dex_test_update_response.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/devices/dex_tests">client.devices.dex_tests.<a href="./src/cloudflare/resources/devices/dex_tests.py">list</a>(account_id) -> <a href="./src/cloudflare/types/devices/dex_test_list_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/devices/dex_tests">client.devices.dex_tests.<a href="./src/cloudflare/resources/devices/dex_tests.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/devices/dex_test_list_response.py">Optional</a></code>
 - <code title="delete /accounts/{account_id}/devices/dex_tests/{dex_test_id}">client.devices.dex_tests.<a href="./src/cloudflare/resources/devices/dex_tests.py">delete</a>(dex_test_id, \*, account_id) -> <a href="./src/cloudflare/types/devices/dex_test_delete_response.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/devices/dex_tests/{dex_test_id}">client.devices.dex_tests.<a href="./src/cloudflare/resources/devices/dex_tests.py">get</a>(dex_test_id, \*, account_id) -> <a href="./src/cloudflare/types/devices/dex_test_get_response.py">Optional</a></code>
 
@@ -5479,9 +5479,9 @@ from cloudflare.types.devices import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/devices/networks">client.devices.networks.<a href="./src/cloudflare/resources/devices/networks.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/devices/network_create_params.py">params</a>) -> <a href="./src/cloudflare/types/devices/network_create_response.py">Optional</a></code>
+- <code title="post /accounts/{account_id}/devices/networks">client.devices.networks.<a href="./src/cloudflare/resources/devices/networks.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/devices/network_create_params.py">params</a>) -> <a href="./src/cloudflare/types/devices/network_create_response.py">Optional</a></code>
 - <code title="put /accounts/{account_id}/devices/networks/{network_id}">client.devices.networks.<a href="./src/cloudflare/resources/devices/networks.py">update</a>(network_id, \*, account_id, \*\*<a href="src/cloudflare/types/devices/network_update_params.py">params</a>) -> <a href="./src/cloudflare/types/devices/network_update_response.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/devices/networks">client.devices.networks.<a href="./src/cloudflare/resources/devices/networks.py">list</a>(account_id) -> <a href="./src/cloudflare/types/devices/network_list_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/devices/networks">client.devices.networks.<a href="./src/cloudflare/resources/devices/networks.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/devices/network_list_response.py">Optional</a></code>
 - <code title="delete /accounts/{account_id}/devices/networks/{network_id}">client.devices.networks.<a href="./src/cloudflare/resources/devices/networks.py">delete</a>(network_id, \*, account_id) -> <a href="./src/cloudflare/types/devices/network_delete_response.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/devices/networks/{network_id}">client.devices.networks.<a href="./src/cloudflare/resources/devices/networks.py">get</a>(network_id, \*, account_id) -> <a href="./src/cloudflare/types/devices/network_get_response.py">Optional</a></code>
 
@@ -5501,8 +5501,8 @@ from cloudflare.types.devices import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/devices/policy">client.devices.policies.<a href="./src/cloudflare/resources/devices/policies/policies.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/devices/policy_create_params.py">params</a>) -> <a href="./src/cloudflare/types/devices/policy_create_response.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/devices/policies">client.devices.policies.<a href="./src/cloudflare/resources/devices/policies/policies.py">list</a>(account_id) -> <a href="./src/cloudflare/types/devices/policy_list_response.py">Optional</a></code>
+- <code title="post /accounts/{account_id}/devices/policy">client.devices.policies.<a href="./src/cloudflare/resources/devices/policies/policies.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/devices/policy_create_params.py">params</a>) -> <a href="./src/cloudflare/types/devices/policy_create_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/devices/policies">client.devices.policies.<a href="./src/cloudflare/resources/devices/policies/policies.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/devices/policy_list_response.py">Optional</a></code>
 - <code title="delete /accounts/{account_id}/devices/policy/{policy_id}">client.devices.policies.<a href="./src/cloudflare/resources/devices/policies/policies.py">delete</a>(policy_id, \*, account_id) -> <a href="./src/cloudflare/types/devices/policy_delete_response.py">Optional</a></code>
 - <code title="patch /accounts/{account_id}/devices/policy/{policy_id}">client.devices.policies.<a href="./src/cloudflare/resources/devices/policies/policies.py">edit</a>(policy_id, \*, account_id, \*\*<a href="src/cloudflare/types/devices/policy_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/devices/policy_edit_response.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/devices/policy/{policy_id}">client.devices.policies.<a href="./src/cloudflare/resources/devices/policies/policies.py">get</a>(policy_id, \*, account_id) -> <a href="./src/cloudflare/types/devices/policy_get_response.py">Optional</a></code>
@@ -5517,7 +5517,7 @@ from cloudflare.types.devices.policies import DefaultPolicyGetResponse
 
 Methods:
 
-- <code title="get /accounts/{account_id}/devices/policy">client.devices.policies.default_policy.<a href="./src/cloudflare/resources/devices/policies/default_policy.py">get</a>(account_id) -> <a href="./src/cloudflare/types/devices/policies/default_policy_get_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/devices/policy">client.devices.policies.default_policy.<a href="./src/cloudflare/resources/devices/policies/default_policy.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/devices/policies/default_policy_get_response.py">Optional</a></code>
 
 ### Excludes
 
@@ -5533,8 +5533,8 @@ from cloudflare.types.devices.policies import (
 
 Methods:
 
-- <code title="put /accounts/{account_id}/devices/policy/exclude">client.devices.policies.excludes.<a href="./src/cloudflare/resources/devices/policies/excludes.py">update</a>(account_id, \*\*<a href="src/cloudflare/types/devices/policies/exclude_update_params.py">params</a>) -> <a href="./src/cloudflare/types/devices/policies/exclude_update_response.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/devices/policy/exclude">client.devices.policies.excludes.<a href="./src/cloudflare/resources/devices/policies/excludes.py">list</a>(account_id) -> <a href="./src/cloudflare/types/devices/policies/exclude_list_response.py">Optional</a></code>
+- <code title="put /accounts/{account_id}/devices/policy/exclude">client.devices.policies.excludes.<a href="./src/cloudflare/resources/devices/policies/excludes.py">update</a>(\*, account_id, \*\*<a href="src/cloudflare/types/devices/policies/exclude_update_params.py">params</a>) -> <a href="./src/cloudflare/types/devices/policies/exclude_update_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/devices/policy/exclude">client.devices.policies.excludes.<a href="./src/cloudflare/resources/devices/policies/excludes.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/devices/policies/exclude_list_response.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/devices/policy/{policy_id}/exclude">client.devices.policies.excludes.<a href="./src/cloudflare/resources/devices/policies/excludes.py">get</a>(policy_id, \*, account_id) -> <a href="./src/cloudflare/types/devices/policies/exclude_get_response.py">Optional</a></code>
 
 ### FallbackDomains
@@ -5552,7 +5552,7 @@ from cloudflare.types.devices.policies import (
 Methods:
 
 - <code title="put /accounts/{account_id}/devices/policy/{policy_id}/fallback_domains">client.devices.policies.fallback_domains.<a href="./src/cloudflare/resources/devices/policies/fallback_domains.py">update</a>(policy_id, \*, account_id, \*\*<a href="src/cloudflare/types/devices/policies/fallback_domain_update_params.py">params</a>) -> <a href="./src/cloudflare/types/devices/policies/fallback_domain_update_response.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/devices/policy/fallback_domains">client.devices.policies.fallback_domains.<a href="./src/cloudflare/resources/devices/policies/fallback_domains.py">list</a>(account_id) -> <a href="./src/cloudflare/types/devices/policies/fallback_domain_list_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/devices/policy/fallback_domains">client.devices.policies.fallback_domains.<a href="./src/cloudflare/resources/devices/policies/fallback_domains.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/devices/policies/fallback_domain_list_response.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/devices/policy/{policy_id}/fallback_domains">client.devices.policies.fallback_domains.<a href="./src/cloudflare/resources/devices/policies/fallback_domains.py">get</a>(policy_id, \*, account_id) -> <a href="./src/cloudflare/types/devices/policies/fallback_domain_get_response.py">Optional</a></code>
 
 ### Includes
@@ -5569,8 +5569,8 @@ from cloudflare.types.devices.policies import (
 
 Methods:
 
-- <code title="put /accounts/{account_id}/devices/policy/include">client.devices.policies.includes.<a href="./src/cloudflare/resources/devices/policies/includes.py">update</a>(account_id, \*\*<a href="src/cloudflare/types/devices/policies/include_update_params.py">params</a>) -> <a href="./src/cloudflare/types/devices/policies/include_update_response.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/devices/policy/include">client.devices.policies.includes.<a href="./src/cloudflare/resources/devices/policies/includes.py">list</a>(account_id) -> <a href="./src/cloudflare/types/devices/policies/include_list_response.py">Optional</a></code>
+- <code title="put /accounts/{account_id}/devices/policy/include">client.devices.policies.includes.<a href="./src/cloudflare/resources/devices/policies/includes.py">update</a>(\*, account_id, \*\*<a href="src/cloudflare/types/devices/policies/include_update_params.py">params</a>) -> <a href="./src/cloudflare/types/devices/policies/include_update_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/devices/policy/include">client.devices.policies.includes.<a href="./src/cloudflare/resources/devices/policies/includes.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/devices/policies/include_list_response.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/devices/policy/{policy_id}/include">client.devices.policies.includes.<a href="./src/cloudflare/resources/devices/policies/includes.py">get</a>(policy_id, \*, account_id) -> <a href="./src/cloudflare/types/devices/policies/include_get_response.py">Optional</a></code>
 
 ## Postures
@@ -5589,9 +5589,9 @@ from cloudflare.types.devices import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/devices/posture">client.devices.postures.<a href="./src/cloudflare/resources/devices/postures/postures.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/devices/posture_create_params.py">params</a>) -> <a href="./src/cloudflare/types/devices/posture_create_response.py">Optional</a></code>
+- <code title="post /accounts/{account_id}/devices/posture">client.devices.postures.<a href="./src/cloudflare/resources/devices/postures/postures.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/devices/posture_create_params.py">params</a>) -> <a href="./src/cloudflare/types/devices/posture_create_response.py">Optional</a></code>
 - <code title="put /accounts/{account_id}/devices/posture/{rule_id}">client.devices.postures.<a href="./src/cloudflare/resources/devices/postures/postures.py">update</a>(rule_id, \*, account_id, \*\*<a href="src/cloudflare/types/devices/posture_update_params.py">params</a>) -> <a href="./src/cloudflare/types/devices/posture_update_response.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/devices/posture">client.devices.postures.<a href="./src/cloudflare/resources/devices/postures/postures.py">list</a>(account_id) -> <a href="./src/cloudflare/types/devices/posture_list_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/devices/posture">client.devices.postures.<a href="./src/cloudflare/resources/devices/postures/postures.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/devices/posture_list_response.py">Optional</a></code>
 - <code title="delete /accounts/{account_id}/devices/posture/{rule_id}">client.devices.postures.<a href="./src/cloudflare/resources/devices/postures/postures.py">delete</a>(rule_id, \*, account_id) -> <a href="./src/cloudflare/types/devices/posture_delete_response.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/devices/posture/{rule_id}">client.devices.postures.<a href="./src/cloudflare/resources/devices/postures/postures.py">get</a>(rule_id, \*, account_id) -> <a href="./src/cloudflare/types/devices/posture_get_response.py">Optional</a></code>
 
@@ -5611,8 +5611,8 @@ from cloudflare.types.devices.postures import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/devices/posture/integration">client.devices.postures.integrations.<a href="./src/cloudflare/resources/devices/postures/integrations.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/devices/postures/integration_create_params.py">params</a>) -> <a href="./src/cloudflare/types/devices/postures/integration_create_response.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/devices/posture/integration">client.devices.postures.integrations.<a href="./src/cloudflare/resources/devices/postures/integrations.py">list</a>(account_id) -> <a href="./src/cloudflare/types/devices/postures/integration_list_response.py">Optional</a></code>
+- <code title="post /accounts/{account_id}/devices/posture/integration">client.devices.postures.integrations.<a href="./src/cloudflare/resources/devices/postures/integrations.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/devices/postures/integration_create_params.py">params</a>) -> <a href="./src/cloudflare/types/devices/postures/integration_create_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/devices/posture/integration">client.devices.postures.integrations.<a href="./src/cloudflare/resources/devices/postures/integrations.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/devices/postures/integration_list_response.py">Optional</a></code>
 - <code title="delete /accounts/{account_id}/devices/posture/integration/{integration_id}">client.devices.postures.integrations.<a href="./src/cloudflare/resources/devices/postures/integrations.py">delete</a>(integration_id, \*, account_id) -> <a href="./src/cloudflare/types/devices/postures/integration_delete_response.py">Optional</a></code>
 - <code title="patch /accounts/{account_id}/devices/posture/integration/{integration_id}">client.devices.postures.integrations.<a href="./src/cloudflare/resources/devices/postures/integrations.py">edit</a>(integration_id, \*, account_id, \*\*<a href="src/cloudflare/types/devices/postures/integration_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/devices/postures/integration_edit_response.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/devices/posture/integration/{integration_id}">client.devices.postures.integrations.<a href="./src/cloudflare/resources/devices/postures/integrations.py">get</a>(integration_id, \*, account_id) -> <a href="./src/cloudflare/types/devices/postures/integration_get_response.py">Optional</a></code>
@@ -5627,7 +5627,7 @@ from cloudflare.types.devices import RevokeCreateResponse
 
 Methods:
 
-- <code title="post /accounts/{account_id}/devices/revoke">client.devices.revokes.<a href="./src/cloudflare/resources/devices/revokes.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/devices/revoke_create_params.py">params</a>) -> <a href="./src/cloudflare/types/devices/revoke_create_response.py">Optional</a></code>
+- <code title="post /accounts/{account_id}/devices/revoke">client.devices.revokes.<a href="./src/cloudflare/resources/devices/revokes.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/devices/revoke_create_params.py">params</a>) -> <a href="./src/cloudflare/types/devices/revoke_create_response.py">Optional</a></code>
 
 ## Settings
 
@@ -5639,8 +5639,8 @@ from cloudflare.types.devices import SettingUpdateResponse, SettingListResponse
 
 Methods:
 
-- <code title="put /accounts/{account_id}/devices/settings">client.devices.settings.<a href="./src/cloudflare/resources/devices/settings.py">update</a>(account_id, \*\*<a href="src/cloudflare/types/devices/setting_update_params.py">params</a>) -> <a href="./src/cloudflare/types/devices/setting_update_response.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/devices/settings">client.devices.settings.<a href="./src/cloudflare/resources/devices/settings.py">list</a>(account_id) -> <a href="./src/cloudflare/types/devices/setting_list_response.py">Optional</a></code>
+- <code title="put /accounts/{account_id}/devices/settings">client.devices.settings.<a href="./src/cloudflare/resources/devices/settings.py">update</a>(\*, account_id, \*\*<a href="src/cloudflare/types/devices/setting_update_params.py">params</a>) -> <a href="./src/cloudflare/types/devices/setting_update_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/devices/settings">client.devices.settings.<a href="./src/cloudflare/resources/devices/settings.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/devices/setting_list_response.py">Optional</a></code>
 
 ## Unrevokes
 
@@ -5652,7 +5652,7 @@ from cloudflare.types.devices import UnrevokeCreateResponse
 
 Methods:
 
-- <code title="post /accounts/{account_id}/devices/unrevoke">client.devices.unrevokes.<a href="./src/cloudflare/resources/devices/unrevokes.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/devices/unrevoke_create_params.py">params</a>) -> <a href="./src/cloudflare/types/devices/unrevoke_create_response.py">Optional</a></code>
+- <code title="post /accounts/{account_id}/devices/unrevoke">client.devices.unrevokes.<a href="./src/cloudflare/resources/devices/unrevokes.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/devices/unrevoke_create_params.py">params</a>) -> <a href="./src/cloudflare/types/devices/unrevoke_create_response.py">Optional</a></code>
 
 ## OverrideCodes
 
@@ -5678,8 +5678,8 @@ from cloudflare.types.d1 import DatabaseCreateResponse, DatabaseListResponse
 
 Methods:
 
-- <code title="post /accounts/{account_id}/d1/database">client.d1.databases.<a href="./src/cloudflare/resources/d1/databases.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/d1/database_create_params.py">params</a>) -> <a href="./src/cloudflare/types/d1/database_create_response.py">DatabaseCreateResponse</a></code>
-- <code title="get /accounts/{account_id}/d1/database">client.d1.databases.<a href="./src/cloudflare/resources/d1/databases.py">list</a>(account_id, \*\*<a href="src/cloudflare/types/d1/database_list_params.py">params</a>) -> <a href="./src/cloudflare/types/d1/database_list_response.py">SyncV4PagePaginationArray[DatabaseListResponse]</a></code>
+- <code title="post /accounts/{account_id}/d1/database">client.d1.databases.<a href="./src/cloudflare/resources/d1/databases.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/d1/database_create_params.py">params</a>) -> <a href="./src/cloudflare/types/d1/database_create_response.py">DatabaseCreateResponse</a></code>
+- <code title="get /accounts/{account_id}/d1/database">client.d1.databases.<a href="./src/cloudflare/resources/d1/databases.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/d1/database_list_params.py">params</a>) -> <a href="./src/cloudflare/types/d1/database_list_response.py">SyncV4PagePaginationArray[DatabaseListResponse]</a></code>
 
 ## Database
 
@@ -5707,7 +5707,7 @@ from cloudflare.types.dex import ColoListResponse
 
 Methods:
 
-- <code title="get /accounts/{account_id}/dex/colos">client.dex.colos.<a href="./src/cloudflare/resources/dex/colos.py">list</a>(account_id, \*\*<a href="src/cloudflare/types/dex/colo_list_params.py">params</a>) -> <a href="./src/cloudflare/types/dex/colo_list_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/dex/colos">client.dex.colos.<a href="./src/cloudflare/resources/dex/colos.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/dex/colo_list_params.py">params</a>) -> <a href="./src/cloudflare/types/dex/colo_list_response.py">Optional</a></code>
 
 ## FleetStatus
 
@@ -5721,7 +5721,7 @@ from cloudflare.types.dex.fleet_status import DeviceListResponse
 
 Methods:
 
-- <code title="get /accounts/{account_id}/dex/fleet-status/devices">client.dex.fleet_status.devices.<a href="./src/cloudflare/resources/dex/fleet_status/devices.py">list</a>(account_id, \*\*<a href="src/cloudflare/types/dex/fleet_status/device_list_params.py">params</a>) -> <a href="./src/cloudflare/types/dex/fleet_status/device_list_response.py">SyncV4PagePaginationArray[DeviceListResponse]</a></code>
+- <code title="get /accounts/{account_id}/dex/fleet-status/devices">client.dex.fleet_status.devices.<a href="./src/cloudflare/resources/dex/fleet_status/devices.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/dex/fleet_status/device_list_params.py">params</a>) -> <a href="./src/cloudflare/types/dex/fleet_status/device_list_response.py">SyncV4PagePaginationArray[DeviceListResponse]</a></code>
 
 ### Live
 
@@ -5733,13 +5733,13 @@ from cloudflare.types.dex.fleet_status import LiveListResponse
 
 Methods:
 
-- <code title="get /accounts/{account_id}/dex/fleet-status/live">client.dex.fleet_status.live.<a href="./src/cloudflare/resources/dex/fleet_status/live.py">list</a>(account_id, \*\*<a href="src/cloudflare/types/dex/fleet_status/live_list_params.py">params</a>) -> <a href="./src/cloudflare/types/dex/fleet_status/live_list_response.py">LiveListResponse</a></code>
+- <code title="get /accounts/{account_id}/dex/fleet-status/live">client.dex.fleet_status.live.<a href="./src/cloudflare/resources/dex/fleet_status/live.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/dex/fleet_status/live_list_params.py">params</a>) -> <a href="./src/cloudflare/types/dex/fleet_status/live_list_response.py">LiveListResponse</a></code>
 
 ### OverTime
 
 Methods:
 
-- <code title="get /accounts/{account_id}/dex/fleet-status/over-time">client.dex.fleet_status.over_time.<a href="./src/cloudflare/resources/dex/fleet_status/over_time.py">list</a>(account_id, \*\*<a href="src/cloudflare/types/dex/fleet_status/over_time_list_params.py">params</a>) -> None</code>
+- <code title="get /accounts/{account_id}/dex/fleet-status/over-time">client.dex.fleet_status.over_time.<a href="./src/cloudflare/resources/dex/fleet_status/over_time.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/dex/fleet_status/over_time_list_params.py">params</a>) -> None</code>
 
 ## HTTPTests
 
@@ -5775,7 +5775,7 @@ from cloudflare.types.dex import TestListResponse
 
 Methods:
 
-- <code title="get /accounts/{account_id}/dex/tests">client.dex.tests.<a href="./src/cloudflare/resources/dex/tests/tests.py">list</a>(account_id, \*\*<a href="src/cloudflare/types/dex/test_list_params.py">params</a>) -> <a href="./src/cloudflare/types/dex/test_list_response.py">SyncV4PagePagination[TestListResponse]</a></code>
+- <code title="get /accounts/{account_id}/dex/tests">client.dex.tests.<a href="./src/cloudflare/resources/dex/tests/tests.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/dex/test_list_params.py">params</a>) -> <a href="./src/cloudflare/types/dex/test_list_response.py">SyncV4PagePagination[TestListResponse]</a></code>
 
 ### UniqueDevices
 
@@ -5787,7 +5787,7 @@ from cloudflare.types.dex.tests import UniqueDeviceListResponse
 
 Methods:
 
-- <code title="get /accounts/{account_id}/dex/tests/unique-devices">client.dex.tests.unique_devices.<a href="./src/cloudflare/resources/dex/tests/unique_devices.py">list</a>(account_id, \*\*<a href="src/cloudflare/types/dex/tests/unique_device_list_params.py">params</a>) -> <a href="./src/cloudflare/types/dex/tests/unique_device_list_response.py">UniqueDeviceListResponse</a></code>
+- <code title="get /accounts/{account_id}/dex/tests/unique-devices">client.dex.tests.unique_devices.<a href="./src/cloudflare/resources/dex/tests/unique_devices.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/dex/tests/unique_device_list_params.py">params</a>) -> <a href="./src/cloudflare/types/dex/tests/unique_device_list_response.py">UniqueDeviceListResponse</a></code>
 
 ## TracerouteTestResults
 
@@ -5838,8 +5838,8 @@ from cloudflare.types.r2 import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/r2/buckets">client.r2.buckets.<a href="./src/cloudflare/resources/r2/buckets.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/r2/bucket_create_params.py">params</a>) -> <a href="./src/cloudflare/types/r2/bucket_create_response.py">BucketCreateResponse</a></code>
-- <code title="get /accounts/{account_id}/r2/buckets">client.r2.buckets.<a href="./src/cloudflare/resources/r2/buckets.py">list</a>(account_id, \*\*<a href="src/cloudflare/types/r2/bucket_list_params.py">params</a>) -> <a href="./src/cloudflare/types/r2/bucket_list_response.py">BucketListResponse</a></code>
+- <code title="post /accounts/{account_id}/r2/buckets">client.r2.buckets.<a href="./src/cloudflare/resources/r2/buckets.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/r2/bucket_create_params.py">params</a>) -> <a href="./src/cloudflare/types/r2/bucket_create_response.py">BucketCreateResponse</a></code>
+- <code title="get /accounts/{account_id}/r2/buckets">client.r2.buckets.<a href="./src/cloudflare/resources/r2/buckets.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/r2/bucket_list_params.py">params</a>) -> <a href="./src/cloudflare/types/r2/bucket_list_response.py">BucketListResponse</a></code>
 - <code title="delete /accounts/{account_id}/r2/buckets/{bucket_name}">client.r2.buckets.<a href="./src/cloudflare/resources/r2/buckets.py">delete</a>(bucket_name, \*, account_id) -> <a href="./src/cloudflare/types/r2/bucket_delete_response.py">object</a></code>
 - <code title="get /accounts/{account_id}/r2/buckets/{bucket_name}">client.r2.buckets.<a href="./src/cloudflare/resources/r2/buckets.py">get</a>(bucket_name, \*, account_id) -> <a href="./src/cloudflare/types/r2/bucket_get_response.py">BucketGetResponse</a></code>
 
@@ -5869,7 +5869,7 @@ from cloudflare.types.teamnet import RouteCreateResponse, RouteDeleteResponse, R
 
 Methods:
 
-- <code title="post /accounts/{account_id}/teamnet/routes">client.teamnet.routes.<a href="./src/cloudflare/resources/teamnet/routes.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/teamnet/route_create_params.py">params</a>) -> <a href="./src/cloudflare/types/teamnet/route_create_response.py">RouteCreateResponse</a></code>
+- <code title="post /accounts/{account_id}/teamnet/routes">client.teamnet.routes.<a href="./src/cloudflare/resources/teamnet/routes.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/teamnet/route_create_params.py">params</a>) -> <a href="./src/cloudflare/types/teamnet/route_create_response.py">RouteCreateResponse</a></code>
 - <code title="delete /accounts/{account_id}/teamnet/routes/{route_id}">client.teamnet.routes.<a href="./src/cloudflare/resources/teamnet/routes.py">delete</a>(route_id, \*, account_id) -> <a href="./src/cloudflare/types/teamnet/route_delete_response.py">RouteDeleteResponse</a></code>
 - <code title="patch /accounts/{account_id}/teamnet/routes/{route_id}">client.teamnet.routes.<a href="./src/cloudflare/resources/teamnet/routes.py">edit</a>(route_id, \*, account_id, \*\*<a href="src/cloudflare/types/teamnet/route_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/teamnet/route_edit_response.py">RouteEditResponse</a></code>
 
@@ -5890,8 +5890,8 @@ from cloudflare.types import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/warp_connector">client.warp_connector.<a href="./src/cloudflare/resources/warp_connector.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/warp_connector_create_params.py">params</a>) -> <a href="./src/cloudflare/types/warp_connector_create_response.py">WARPConnectorCreateResponse</a></code>
-- <code title="get /accounts/{account_id}/warp_connector">client.warp_connector.<a href="./src/cloudflare/resources/warp_connector.py">list</a>(account_id, \*\*<a href="src/cloudflare/types/warp_connector_list_params.py">params</a>) -> <a href="./src/cloudflare/types/warp_connector_list_response.py">SyncV4PagePaginationArray[WARPConnectorListResponse]</a></code>
+- <code title="post /accounts/{account_id}/warp_connector">client.warp_connector.<a href="./src/cloudflare/resources/warp_connector.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/warp_connector_create_params.py">params</a>) -> <a href="./src/cloudflare/types/warp_connector_create_response.py">WARPConnectorCreateResponse</a></code>
+- <code title="get /accounts/{account_id}/warp_connector">client.warp_connector.<a href="./src/cloudflare/resources/warp_connector.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/warp_connector_list_params.py">params</a>) -> <a href="./src/cloudflare/types/warp_connector_list_response.py">SyncV4PagePaginationArray[WARPConnectorListResponse]</a></code>
 - <code title="delete /accounts/{account_id}/warp_connector/{tunnel_id}">client.warp_connector.<a href="./src/cloudflare/resources/warp_connector.py">delete</a>(tunnel_id, \*, account_id, \*\*<a href="src/cloudflare/types/warp_connector_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/warp_connector_delete_response.py">WARPConnectorDeleteResponse</a></code>
 - <code title="patch /accounts/{account_id}/warp_connector/{tunnel_id}">client.warp_connector.<a href="./src/cloudflare/resources/warp_connector.py">edit</a>(tunnel_id, \*, account_id, \*\*<a href="src/cloudflare/types/warp_connector_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/warp_connector_edit_response.py">WARPConnectorEditResponse</a></code>
 - <code title="get /accounts/{account_id}/warp_connector/{tunnel_id}">client.warp_connector.<a href="./src/cloudflare/resources/warp_connector.py">get</a>(tunnel_id, \*, account_id) -> <a href="./src/cloudflare/types/warp_connector_get_response.py">WARPConnectorGetResponse</a></code>
@@ -6011,8 +6011,8 @@ from cloudflare.types.zerotrust import (
 
 Methods:
 
-- <code title="patch /accounts/{account_id}/zerotrust/connectivity_settings">client.zerotrust.connectivity_settings.<a href="./src/cloudflare/resources/zerotrust/connectivity_settings.py">edit</a>(account_id, \*\*<a href="src/cloudflare/types/zerotrust/connectivity_setting_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zerotrust/connectivity_setting_edit_response.py">ConnectivitySettingEditResponse</a></code>
-- <code title="get /accounts/{account_id}/zerotrust/connectivity_settings">client.zerotrust.connectivity_settings.<a href="./src/cloudflare/resources/zerotrust/connectivity_settings.py">get</a>(account_id) -> <a href="./src/cloudflare/types/zerotrust/connectivity_setting_get_response.py">ConnectivitySettingGetResponse</a></code>
+- <code title="patch /accounts/{account_id}/zerotrust/connectivity_settings">client.zerotrust.connectivity_settings.<a href="./src/cloudflare/resources/zerotrust/connectivity_settings.py">edit</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zerotrust/connectivity_setting_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zerotrust/connectivity_setting_edit_response.py">ConnectivitySettingEditResponse</a></code>
+- <code title="get /accounts/{account_id}/zerotrust/connectivity_settings">client.zerotrust.connectivity_settings.<a href="./src/cloudflare/resources/zerotrust/connectivity_settings.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/zerotrust/connectivity_setting_get_response.py">ConnectivitySettingGetResponse</a></code>
 
 # Addressing
 
@@ -6066,7 +6066,7 @@ from cloudflare.types.addressing import ServiceListResponse
 
 Methods:
 
-- <code title="get /accounts/{account_id}/addressing/services">client.addressing.services.<a href="./src/cloudflare/resources/addressing/services.py">list</a>(account_id) -> <a href="./src/cloudflare/types/addressing/service_list_response.py">ServiceListResponse</a></code>
+- <code title="get /accounts/{account_id}/addressing/services">client.addressing.services.<a href="./src/cloudflare/resources/addressing/services.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/addressing/service_list_response.py">ServiceListResponse</a></code>
 
 # Challenges
 
@@ -6113,9 +6113,9 @@ from cloudflare.types.hyperdrive import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/hyperdrive/configs">client.hyperdrive.configs.<a href="./src/cloudflare/resources/hyperdrive/configs.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/hyperdrive/config_create_params.py">params</a>) -> <a href="./src/cloudflare/types/hyperdrive/config_create_response.py">Optional</a></code>
+- <code title="post /accounts/{account_id}/hyperdrive/configs">client.hyperdrive.configs.<a href="./src/cloudflare/resources/hyperdrive/configs.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/hyperdrive/config_create_params.py">params</a>) -> <a href="./src/cloudflare/types/hyperdrive/config_create_response.py">Optional</a></code>
 - <code title="put /accounts/{account_id}/hyperdrive/configs/{hyperdrive_id}">client.hyperdrive.configs.<a href="./src/cloudflare/resources/hyperdrive/configs.py">update</a>(hyperdrive_id, \*, account_id, \*\*<a href="src/cloudflare/types/hyperdrive/config_update_params.py">params</a>) -> <a href="./src/cloudflare/types/hyperdrive/config_update_response.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/hyperdrive/configs">client.hyperdrive.configs.<a href="./src/cloudflare/resources/hyperdrive/configs.py">list</a>(account_id) -> <a href="./src/cloudflare/types/hyperdrive/config_list_response.py">ConfigListResponse</a></code>
+- <code title="get /accounts/{account_id}/hyperdrive/configs">client.hyperdrive.configs.<a href="./src/cloudflare/resources/hyperdrive/configs.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/hyperdrive/config_list_response.py">ConfigListResponse</a></code>
 - <code title="delete /accounts/{account_id}/hyperdrive/configs/{hyperdrive_id}">client.hyperdrive.configs.<a href="./src/cloudflare/resources/hyperdrive/configs.py">delete</a>(hyperdrive_id, \*, account_id) -> <a href="./src/cloudflare/types/hyperdrive/config_delete_response.py">Optional</a></code>
 - <code title="patch /accounts/{account_id}/hyperdrive/configs/{hyperdrive_id}">client.hyperdrive.configs.<a href="./src/cloudflare/resources/hyperdrive/configs.py">edit</a>(hyperdrive_id, \*, account_id, \*\*<a href="src/cloudflare/types/hyperdrive/config_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/hyperdrive/config_edit_response.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/hyperdrive/configs/{hyperdrive_id}">client.hyperdrive.configs.<a href="./src/cloudflare/resources/hyperdrive/configs.py">get</a>(hyperdrive_id, \*, account_id) -> <a href="./src/cloudflare/types/hyperdrive/config_get_response.py">Optional</a></code>
@@ -6138,9 +6138,9 @@ from cloudflare.types.rum import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/rum/site_info">client.rum.site_infos.<a href="./src/cloudflare/resources/rum/site_infos.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/rum/site_info_create_params.py">params</a>) -> <a href="./src/cloudflare/types/rum/site_info_create_response.py">Optional</a></code>
+- <code title="post /accounts/{account_id}/rum/site_info">client.rum.site_infos.<a href="./src/cloudflare/resources/rum/site_infos.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/rum/site_info_create_params.py">params</a>) -> <a href="./src/cloudflare/types/rum/site_info_create_response.py">Optional</a></code>
 - <code title="put /accounts/{account_id}/rum/site_info/{site_id}">client.rum.site_infos.<a href="./src/cloudflare/resources/rum/site_infos.py">update</a>(site_id, \*, account_id, \*\*<a href="src/cloudflare/types/rum/site_info_update_params.py">params</a>) -> <a href="./src/cloudflare/types/rum/site_info_update_response.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/rum/site_info/list">client.rum.site_infos.<a href="./src/cloudflare/resources/rum/site_infos.py">list</a>(account_id, \*\*<a href="src/cloudflare/types/rum/site_info_list_params.py">params</a>) -> <a href="./src/cloudflare/types/rum/site_info_list_response.py">SyncV4PagePaginationArray[SiteInfoListResponse]</a></code>
+- <code title="get /accounts/{account_id}/rum/site_info/list">client.rum.site_infos.<a href="./src/cloudflare/resources/rum/site_infos.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/rum/site_info_list_params.py">params</a>) -> <a href="./src/cloudflare/types/rum/site_info_list_response.py">SyncV4PagePaginationArray[SiteInfoListResponse]</a></code>
 - <code title="delete /accounts/{account_id}/rum/site_info/{site_id}">client.rum.site_infos.<a href="./src/cloudflare/resources/rum/site_infos.py">delete</a>(site_id, \*, account_id) -> <a href="./src/cloudflare/types/rum/site_info_delete_response.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/rum/site_info/{site_id}">client.rum.site_infos.<a href="./src/cloudflare/resources/rum/site_infos.py">get</a>(site_id, \*, account_id) -> <a href="./src/cloudflare/types/rum/site_info_get_response.py">Optional</a></code>
 
@@ -7348,8 +7348,8 @@ from cloudflare.types import BotManagementUpdateResponse, BotManagementGetRespon
 
 Methods:
 
-- <code title="put /zones/{zone_id}/bot_management">client.bot_management.<a href="./src/cloudflare/resources/bot_management.py">update</a>(zone_id, \*\*<a href="src/cloudflare/types/bot_management_update_params.py">params</a>) -> <a href="./src/cloudflare/types/bot_management_update_response.py">BotManagementUpdateResponse</a></code>
-- <code title="get /zones/{zone_id}/bot_management">client.bot_management.<a href="./src/cloudflare/resources/bot_management.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/bot_management_get_response.py">BotManagementGetResponse</a></code>
+- <code title="put /zones/{zone_id}/bot_management">client.bot_management.<a href="./src/cloudflare/resources/bot_management.py">update</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/bot_management_update_params.py">params</a>) -> <a href="./src/cloudflare/types/bot_management_update_response.py">BotManagementUpdateResponse</a></code>
+- <code title="get /zones/{zone_id}/bot_management">client.bot_management.<a href="./src/cloudflare/resources/bot_management.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/bot_management_get_response.py">BotManagementGetResponse</a></code>
 
 # OriginPostQuantumEncryption
 
@@ -7364,8 +7364,8 @@ from cloudflare.types import (
 
 Methods:
 
-- <code title="put /zones/{zone_id}/cache/origin_post_quantum_encryption">client.origin_post_quantum_encryption.<a href="./src/cloudflare/resources/origin_post_quantum_encryption.py">update</a>(zone_id, \*\*<a href="src/cloudflare/types/origin_post_quantum_encryption_update_params.py">params</a>) -> <a href="./src/cloudflare/types/origin_post_quantum_encryption_update_response.py">OriginPostQuantumEncryptionUpdateResponse</a></code>
-- <code title="get /zones/{zone_id}/cache/origin_post_quantum_encryption">client.origin_post_quantum_encryption.<a href="./src/cloudflare/resources/origin_post_quantum_encryption.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/origin_post_quantum_encryption_get_response.py">OriginPostQuantumEncryptionGetResponse</a></code>
+- <code title="put /zones/{zone_id}/cache/origin_post_quantum_encryption">client.origin_post_quantum_encryption.<a href="./src/cloudflare/resources/origin_post_quantum_encryption.py">update</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/origin_post_quantum_encryption_update_params.py">params</a>) -> <a href="./src/cloudflare/types/origin_post_quantum_encryption_update_response.py">OriginPostQuantumEncryptionUpdateResponse</a></code>
+- <code title="get /zones/{zone_id}/cache/origin_post_quantum_encryption">client.origin_post_quantum_encryption.<a href="./src/cloudflare/resources/origin_post_quantum_encryption.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/origin_post_quantum_encryption_get_response.py">OriginPostQuantumEncryptionGetResponse</a></code>
 
 # Firewall
 
@@ -7460,7 +7460,7 @@ from cloudflare.types.speed import AvailabilityListResponse
 
 Methods:
 
-- <code title="get /zones/{zone_id}/speed_api/availabilities">client.speed.availabilities.<a href="./src/cloudflare/resources/speed/availabilities.py">list</a>(zone_id) -> <a href="./src/cloudflare/types/speed/availability_list_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/speed_api/availabilities">client.speed.availabilities.<a href="./src/cloudflare/resources/speed/availabilities.py">list</a>(\*, zone_id) -> <a href="./src/cloudflare/types/speed/availability_list_response.py">Optional</a></code>
 
 ## Pages
 
@@ -7472,7 +7472,7 @@ from cloudflare.types.speed import PageListResponse
 
 Methods:
 
-- <code title="get /zones/{zone_id}/speed_api/pages">client.speed.pages.<a href="./src/cloudflare/resources/speed/pages.py">list</a>(zone_id) -> <a href="./src/cloudflare/types/speed/page_list_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/speed_api/pages">client.speed.pages.<a href="./src/cloudflare/resources/speed/pages.py">list</a>(\*, zone_id) -> <a href="./src/cloudflare/types/speed/page_list_response.py">Optional</a></code>
 
 # DcvDelegation
 
@@ -7486,7 +7486,7 @@ from cloudflare.types.dcv_delegation import UUIDGetResponse
 
 Methods:
 
-- <code title="get /zones/{zone_id}/dcv_delegation/uuid">client.dcv_delegation.uuid.<a href="./src/cloudflare/resources/dcv_delegation/uuid.py">get</a>(zone_id) -> <a href="./src/cloudflare/types/dcv_delegation/uuid_get_response.py">UUIDGetResponse</a></code>
+- <code title="get /zones/{zone_id}/dcv_delegation/uuid">client.dcv_delegation.uuid.<a href="./src/cloudflare/resources/dcv_delegation/uuid.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/dcv_delegation/uuid_get_response.py">UUIDGetResponse</a></code>
 
 # Hostnames
 
@@ -7561,9 +7561,9 @@ from cloudflare.types import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/calls/apps">client.calls.<a href="./src/cloudflare/resources/calls.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/call_create_params.py">params</a>) -> <a href="./src/cloudflare/types/call_create_response.py">CallCreateResponse</a></code>
+- <code title="post /accounts/{account_id}/calls/apps">client.calls.<a href="./src/cloudflare/resources/calls.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/call_create_params.py">params</a>) -> <a href="./src/cloudflare/types/call_create_response.py">CallCreateResponse</a></code>
 - <code title="put /accounts/{account_id}/calls/apps/{app_id}">client.calls.<a href="./src/cloudflare/resources/calls.py">update</a>(app_id, \*, account_id, \*\*<a href="src/cloudflare/types/call_update_params.py">params</a>) -> <a href="./src/cloudflare/types/call_update_response.py">CallUpdateResponse</a></code>
-- <code title="get /accounts/{account_id}/calls/apps">client.calls.<a href="./src/cloudflare/resources/calls.py">list</a>(account_id) -> <a href="./src/cloudflare/types/call_list_response.py">CallListResponse</a></code>
+- <code title="get /accounts/{account_id}/calls/apps">client.calls.<a href="./src/cloudflare/resources/calls.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/call_list_response.py">CallListResponse</a></code>
 - <code title="delete /accounts/{account_id}/calls/apps/{app_id}">client.calls.<a href="./src/cloudflare/resources/calls.py">delete</a>(app_id, \*, account_id) -> <a href="./src/cloudflare/types/call_delete_response.py">CallDeleteResponse</a></code>
 - <code title="get /accounts/{account_id}/calls/apps/{app_id}">client.calls.<a href="./src/cloudflare/resources/calls.py">get</a>(app_id, \*, account_id) -> <a href="./src/cloudflare/types/call_get_response.py">CallGetResponse</a></code>
 

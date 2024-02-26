@@ -48,8 +48,8 @@ class AccountMembers(SyncAPIResource):
 
     def create(
         self,
-        account_id: object,
         *,
+        account_id: object,
         email: str,
         roles: List[str],
         status: Literal["accepted", "pending"] | NotGiven = NOT_GIVEN,
@@ -142,8 +142,8 @@ class AccountMembers(SyncAPIResource):
 
     def list(
         self,
-        account_id: object,
         *,
+        account_id: object,
         direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         order: Literal["user.first_name", "user.last_name", "user.email", "status"] | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
@@ -292,8 +292,8 @@ class AsyncAccountMembers(AsyncAPIResource):
 
     async def create(
         self,
-        account_id: object,
         *,
+        account_id: object,
         email: str,
         roles: List[str],
         status: Literal["accepted", "pending"] | NotGiven = NOT_GIVEN,
@@ -386,8 +386,8 @@ class AsyncAccountMembers(AsyncAPIResource):
 
     def list(
         self,
-        account_id: object,
         *,
+        account_id: object,
         direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         order: Literal["user.first_name", "user.last_name", "user.email", "status"] | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,

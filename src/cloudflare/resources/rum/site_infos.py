@@ -48,8 +48,8 @@ class SiteInfos(SyncAPIResource):
 
     def create(
         self,
-        account_id: str,
         *,
+        account_id: str,
         auto_install: bool | NotGiven = NOT_GIVEN,
         host: str | NotGiven = NOT_GIVEN,
         zone_tag: str | NotGiven = NOT_GIVEN,
@@ -167,8 +167,8 @@ class SiteInfos(SyncAPIResource):
 
     def list(
         self,
-        account_id: str,
         *,
+        account_id: str,
         order_by: Literal["host", "created"] | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
@@ -321,8 +321,8 @@ class AsyncSiteInfos(AsyncAPIResource):
 
     async def create(
         self,
-        account_id: str,
         *,
+        account_id: str,
         auto_install: bool | NotGiven = NOT_GIVEN,
         host: str | NotGiven = NOT_GIVEN,
         zone_tag: str | NotGiven = NOT_GIVEN,
@@ -440,8 +440,8 @@ class AsyncSiteInfos(AsyncAPIResource):
 
     def list(
         self,
-        account_id: str,
         *,
+        account_id: str,
         order_by: Literal["host", "created"] | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,

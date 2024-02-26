@@ -8,6 +8,9 @@ __all__ = ["ImageResizingEditParams", "Value"]
 
 
 class ImageResizingEditParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     value: Required[Value]
     """
     Image Resizing provides on-demand resizing, conversion and optimisation for

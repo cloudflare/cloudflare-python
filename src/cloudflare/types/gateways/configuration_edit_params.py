@@ -22,6 +22,8 @@ __all__ = [
 
 
 class ConfigurationEditParams(TypedDict, total=False):
+    account_id: Required[object]
+
     settings: Settings
     """account settings."""
 

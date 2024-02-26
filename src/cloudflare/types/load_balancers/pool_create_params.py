@@ -20,6 +20,9 @@ __all__ = [
 
 
 class PoolCreateParams(TypedDict, total=False):
+    account_id: Required[str]
+    """Identifier"""
+
     name: Required[str]
     """A short name (tag) for the pool.
 

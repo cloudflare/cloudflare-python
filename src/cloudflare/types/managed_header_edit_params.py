@@ -9,6 +9,9 @@ __all__ = ["ManagedHeaderEditParams", "ManagedRequestHeader", "ManagedResponseHe
 
 
 class ManagedHeaderEditParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     managed_request_headers: Required[Iterable[ManagedRequestHeader]]
 
     managed_response_headers: Required[Iterable[ManagedResponseHeader]]

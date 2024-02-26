@@ -9,6 +9,9 @@ __all__ = ["CustomCreateParams", "Profile", "ProfileEntry", "ProfileEntryPattern
 
 
 class CustomCreateParams(TypedDict, total=False):
+    account_id: Required[str]
+    """Identifier"""
+
     profiles: Required[Iterable[Profile]]
 
 

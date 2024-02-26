@@ -22,7 +22,7 @@ class TestDirectUploads:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         direct_upload = client.stream.direct_uploads.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             max_duration_seconds=1,
         )
         assert_matches_type(DirectUploadCreateResponse, direct_upload, path=["response"])
@@ -31,7 +31,7 @@ class TestDirectUploads:
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         direct_upload = client.stream.direct_uploads.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             max_duration_seconds=1,
             allowed_origins=["example.com"],
             creator="creator-id_abcde12345",
@@ -48,7 +48,7 @@ class TestDirectUploads:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.stream.direct_uploads.with_raw_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             max_duration_seconds=1,
         )
 
@@ -61,7 +61,7 @@ class TestDirectUploads:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.stream.direct_uploads.with_streaming_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             max_duration_seconds=1,
         ) as response:
             assert not response.is_closed
@@ -77,7 +77,7 @@ class TestDirectUploads:
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.stream.direct_uploads.with_raw_response.create(
-                "",
+                account_id="",
                 max_duration_seconds=1,
             )
 
@@ -89,7 +89,7 @@ class TestAsyncDirectUploads:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         direct_upload = await async_client.stream.direct_uploads.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             max_duration_seconds=1,
         )
         assert_matches_type(DirectUploadCreateResponse, direct_upload, path=["response"])
@@ -98,7 +98,7 @@ class TestAsyncDirectUploads:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         direct_upload = await async_client.stream.direct_uploads.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             max_duration_seconds=1,
             allowed_origins=["example.com"],
             creator="creator-id_abcde12345",
@@ -115,7 +115,7 @@ class TestAsyncDirectUploads:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.stream.direct_uploads.with_raw_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             max_duration_seconds=1,
         )
 
@@ -128,7 +128,7 @@ class TestAsyncDirectUploads:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.stream.direct_uploads.with_streaming_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             max_duration_seconds=1,
         ) as response:
             assert not response.is_closed
@@ -144,6 +144,6 @@ class TestAsyncDirectUploads:
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.stream.direct_uploads.with_raw_response.create(
-                "",
+                account_id="",
                 max_duration_seconds=1,
             )

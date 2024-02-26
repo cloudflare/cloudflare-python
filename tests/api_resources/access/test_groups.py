@@ -28,7 +28,7 @@ class TestGroups:
     def test_method_create(self, client: Cloudflare) -> None:
         group = client.access.groups.create(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             include=[
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
@@ -43,7 +43,7 @@ class TestGroups:
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         group = client.access.groups.create(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             include=[
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
@@ -69,7 +69,7 @@ class TestGroups:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.access.groups.with_raw_response.create(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             include=[
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
@@ -88,7 +88,7 @@ class TestGroups:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.access.groups.with_streaming_response.create(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             include=[
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
@@ -110,7 +110,7 @@ class TestGroups:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.access.groups.with_raw_response.create(
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
                 include=[
                     {"email": {"email": "test@example.com"}},
                     {"email": {"email": "test@example.com"}},
@@ -137,7 +137,7 @@ class TestGroups:
         group = client.access.groups.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             include=[
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
@@ -153,7 +153,7 @@ class TestGroups:
         group = client.access.groups.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             include=[
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
@@ -180,7 +180,7 @@ class TestGroups:
         response = client.access.groups.with_raw_response.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             include=[
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
@@ -200,7 +200,7 @@ class TestGroups:
         with client.access.groups.with_streaming_response.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             include=[
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
@@ -223,7 +223,7 @@ class TestGroups:
             client.access.groups.with_raw_response.update(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
                 include=[
                     {"email": {"email": "test@example.com"}},
                     {"email": {"email": "test@example.com"}},
@@ -249,7 +249,7 @@ class TestGroups:
             client.access.groups.with_raw_response.update(
                 "",
                 account_id="string",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
                 include=[
                     {"email": {"email": "test@example.com"}},
                     {"email": {"email": "test@example.com"}},
@@ -263,7 +263,7 @@ class TestGroups:
     def test_method_list(self, client: Cloudflare) -> None:
         group = client.access.groups.list(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
         assert_matches_type(Optional[GroupListResponse], group, path=["response"])
 
@@ -272,7 +272,7 @@ class TestGroups:
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.access.groups.with_raw_response.list(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -285,7 +285,7 @@ class TestGroups:
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.access.groups.with_streaming_response.list(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -301,7 +301,7 @@ class TestGroups:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.access.groups.with_raw_response.list(
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -316,7 +316,7 @@ class TestGroups:
         group = client.access.groups.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
         assert_matches_type(GroupDeleteResponse, group, path=["response"])
 
@@ -326,7 +326,7 @@ class TestGroups:
         response = client.access.groups.with_raw_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -340,7 +340,7 @@ class TestGroups:
         with client.access.groups.with_streaming_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -357,7 +357,7 @@ class TestGroups:
             client.access.groups.with_raw_response.delete(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -371,7 +371,7 @@ class TestGroups:
             client.access.groups.with_raw_response.delete(
                 "",
                 account_id="string",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )
 
     @pytest.mark.skip()
@@ -380,7 +380,7 @@ class TestGroups:
         group = client.access.groups.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
         assert_matches_type(GroupGetResponse, group, path=["response"])
 
@@ -390,7 +390,7 @@ class TestGroups:
         response = client.access.groups.with_raw_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -404,7 +404,7 @@ class TestGroups:
         with client.access.groups.with_streaming_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -421,7 +421,7 @@ class TestGroups:
             client.access.groups.with_raw_response.get(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -435,7 +435,7 @@ class TestGroups:
             client.access.groups.with_raw_response.get(
                 "",
                 account_id="string",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )
 
 
@@ -447,7 +447,7 @@ class TestAsyncGroups:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         group = await async_client.access.groups.create(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             include=[
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
@@ -462,7 +462,7 @@ class TestAsyncGroups:
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         group = await async_client.access.groups.create(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             include=[
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
@@ -488,7 +488,7 @@ class TestAsyncGroups:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.access.groups.with_raw_response.create(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             include=[
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
@@ -507,7 +507,7 @@ class TestAsyncGroups:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.access.groups.with_streaming_response.create(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             include=[
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
@@ -529,7 +529,7 @@ class TestAsyncGroups:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.access.groups.with_raw_response.create(
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
                 include=[
                     {"email": {"email": "test@example.com"}},
                     {"email": {"email": "test@example.com"}},
@@ -556,7 +556,7 @@ class TestAsyncGroups:
         group = await async_client.access.groups.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             include=[
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
@@ -572,7 +572,7 @@ class TestAsyncGroups:
         group = await async_client.access.groups.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             include=[
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
@@ -599,7 +599,7 @@ class TestAsyncGroups:
         response = await async_client.access.groups.with_raw_response.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             include=[
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
@@ -619,7 +619,7 @@ class TestAsyncGroups:
         async with async_client.access.groups.with_streaming_response.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             include=[
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
@@ -642,7 +642,7 @@ class TestAsyncGroups:
             await async_client.access.groups.with_raw_response.update(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
                 include=[
                     {"email": {"email": "test@example.com"}},
                     {"email": {"email": "test@example.com"}},
@@ -668,7 +668,7 @@ class TestAsyncGroups:
             await async_client.access.groups.with_raw_response.update(
                 "",
                 account_id="string",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
                 include=[
                     {"email": {"email": "test@example.com"}},
                     {"email": {"email": "test@example.com"}},
@@ -682,7 +682,7 @@ class TestAsyncGroups:
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         group = await async_client.access.groups.list(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
         assert_matches_type(Optional[GroupListResponse], group, path=["response"])
 
@@ -691,7 +691,7 @@ class TestAsyncGroups:
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.access.groups.with_raw_response.list(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -704,7 +704,7 @@ class TestAsyncGroups:
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.access.groups.with_streaming_response.list(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -720,7 +720,7 @@ class TestAsyncGroups:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.access.groups.with_raw_response.list(
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -735,7 +735,7 @@ class TestAsyncGroups:
         group = await async_client.access.groups.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
         assert_matches_type(GroupDeleteResponse, group, path=["response"])
 
@@ -745,7 +745,7 @@ class TestAsyncGroups:
         response = await async_client.access.groups.with_raw_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -759,7 +759,7 @@ class TestAsyncGroups:
         async with async_client.access.groups.with_streaming_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -776,7 +776,7 @@ class TestAsyncGroups:
             await async_client.access.groups.with_raw_response.delete(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -790,7 +790,7 @@ class TestAsyncGroups:
             await async_client.access.groups.with_raw_response.delete(
                 "",
                 account_id="string",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )
 
     @pytest.mark.skip()
@@ -799,7 +799,7 @@ class TestAsyncGroups:
         group = await async_client.access.groups.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
         assert_matches_type(GroupGetResponse, group, path=["response"])
 
@@ -809,7 +809,7 @@ class TestAsyncGroups:
         response = await async_client.access.groups.with_raw_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -823,7 +823,7 @@ class TestAsyncGroups:
         async with async_client.access.groups.with_streaming_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -840,7 +840,7 @@ class TestAsyncGroups:
             await async_client.access.groups.with_raw_response.get(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -854,5 +854,5 @@ class TestAsyncGroups:
             await async_client.access.groups.with_raw_response.get(
                 "",
                 account_id="string",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )

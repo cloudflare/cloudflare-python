@@ -8,5 +8,8 @@ __all__ = ["FontSettingEditParams"]
 
 
 class FontSettingEditParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     value: Required[Literal["on", "off"]]
     """Whether the feature is enabled or disabled."""

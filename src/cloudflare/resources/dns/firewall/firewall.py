@@ -60,8 +60,8 @@ class Firewall(SyncAPIResource):
 
     def create(
         self,
-        account_id: str,
         *,
+        account_id: str,
         name: str,
         upstream_ips: List[Union[str, str]],
         attack_mitigation: Optional[firewall_create_params.AttackMitigation] | NotGiven = NOT_GIVEN,
@@ -148,8 +148,8 @@ class Firewall(SyncAPIResource):
 
     def list(
         self,
-        account_id: str,
         *,
+        account_id: str,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -397,8 +397,8 @@ class AsyncFirewall(AsyncAPIResource):
 
     async def create(
         self,
-        account_id: str,
         *,
+        account_id: str,
         name: str,
         upstream_ips: List[Union[str, str]],
         attack_mitigation: Optional[firewall_create_params.AttackMitigation] | NotGiven = NOT_GIVEN,
@@ -485,8 +485,8 @@ class AsyncFirewall(AsyncAPIResource):
 
     def list(
         self,
-        account_id: str,
         *,
+        account_id: str,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

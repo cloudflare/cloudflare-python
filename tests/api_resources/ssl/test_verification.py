@@ -24,7 +24,7 @@ class TestVerification:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         verification = client.ssl.verification.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[VerificationListResponse], verification, path=["response"])
 
@@ -32,7 +32,7 @@ class TestVerification:
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         verification = client.ssl.verification.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             retry=True,
         )
         assert_matches_type(Optional[VerificationListResponse], verification, path=["response"])
@@ -41,7 +41,7 @@ class TestVerification:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.ssl.verification.with_raw_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -53,7 +53,7 @@ class TestVerification:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.ssl.verification.with_streaming_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -68,7 +68,7 @@ class TestVerification:
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.ssl.verification.with_raw_response.list(
-                "",
+                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -136,7 +136,7 @@ class TestAsyncVerification:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         verification = await async_client.ssl.verification.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[VerificationListResponse], verification, path=["response"])
 
@@ -144,7 +144,7 @@ class TestAsyncVerification:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         verification = await async_client.ssl.verification.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             retry=True,
         )
         assert_matches_type(Optional[VerificationListResponse], verification, path=["response"])
@@ -153,7 +153,7 @@ class TestAsyncVerification:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.ssl.verification.with_raw_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -165,7 +165,7 @@ class TestAsyncVerification:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.ssl.verification.with_streaming_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -180,7 +180,7 @@ class TestAsyncVerification:
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.ssl.verification.with_raw_response.list(
-                "",
+                zone_id="",
             )
 
     @pytest.mark.skip()

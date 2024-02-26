@@ -8,5 +8,8 @@ __all__ = ["OriginMaxHTTPVersionEditParams"]
 
 
 class OriginMaxHTTPVersionEditParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     value: Required[Literal["2", "1"]]
     """Value of the Origin Max HTTP Version Setting."""

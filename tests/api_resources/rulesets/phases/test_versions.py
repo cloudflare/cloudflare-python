@@ -23,7 +23,7 @@ class TestVersions:
         version = client.rulesets.phases.versions.list(
             "http_request_firewall_custom",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
         )
         assert_matches_type(VersionListResponse, version, path=["response"])
 
@@ -33,7 +33,7 @@ class TestVersions:
         response = client.rulesets.phases.versions.with_raw_response.list(
             "http_request_firewall_custom",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -47,7 +47,7 @@ class TestVersions:
         with client.rulesets.phases.versions.with_streaming_response.list(
             "http_request_firewall_custom",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -64,7 +64,7 @@ class TestVersions:
             client.rulesets.phases.versions.with_raw_response.list(
                 "http_request_firewall_custom",
                 account_id="",
-                zone_id="abf9b32d38c5f572afde3336ec0ce302",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -80,7 +80,7 @@ class TestVersions:
         version = client.rulesets.phases.versions.get(
             "1",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
             ruleset_phase="http_request_firewall_custom",
         )
         assert_matches_type(VersionGetResponse, version, path=["response"])
@@ -91,7 +91,7 @@ class TestVersions:
         response = client.rulesets.phases.versions.with_raw_response.get(
             "1",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
             ruleset_phase="http_request_firewall_custom",
         )
 
@@ -106,7 +106,7 @@ class TestVersions:
         with client.rulesets.phases.versions.with_streaming_response.get(
             "1",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
             ruleset_phase="http_request_firewall_custom",
         ) as response:
             assert not response.is_closed
@@ -124,7 +124,7 @@ class TestVersions:
             client.rulesets.phases.versions.with_raw_response.get(
                 "1",
                 account_id="",
-                zone_id="abf9b32d38c5f572afde3336ec0ce302",
+                zone_id="string",
                 ruleset_phase="http_request_firewall_custom",
             )
 
@@ -140,7 +140,7 @@ class TestVersions:
             client.rulesets.phases.versions.with_raw_response.get(
                 "",
                 account_id="string",
-                zone_id="abf9b32d38c5f572afde3336ec0ce302",
+                zone_id="string",
                 ruleset_phase="http_request_firewall_custom",
             )
 
@@ -154,7 +154,7 @@ class TestAsyncVersions:
         version = await async_client.rulesets.phases.versions.list(
             "http_request_firewall_custom",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
         )
         assert_matches_type(VersionListResponse, version, path=["response"])
 
@@ -164,7 +164,7 @@ class TestAsyncVersions:
         response = await async_client.rulesets.phases.versions.with_raw_response.list(
             "http_request_firewall_custom",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -178,7 +178,7 @@ class TestAsyncVersions:
         async with async_client.rulesets.phases.versions.with_streaming_response.list(
             "http_request_firewall_custom",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -195,7 +195,7 @@ class TestAsyncVersions:
             await async_client.rulesets.phases.versions.with_raw_response.list(
                 "http_request_firewall_custom",
                 account_id="",
-                zone_id="abf9b32d38c5f572afde3336ec0ce302",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -211,7 +211,7 @@ class TestAsyncVersions:
         version = await async_client.rulesets.phases.versions.get(
             "1",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
             ruleset_phase="http_request_firewall_custom",
         )
         assert_matches_type(VersionGetResponse, version, path=["response"])
@@ -222,7 +222,7 @@ class TestAsyncVersions:
         response = await async_client.rulesets.phases.versions.with_raw_response.get(
             "1",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
             ruleset_phase="http_request_firewall_custom",
         )
 
@@ -237,7 +237,7 @@ class TestAsyncVersions:
         async with async_client.rulesets.phases.versions.with_streaming_response.get(
             "1",
             account_id="string",
-            zone_id="abf9b32d38c5f572afde3336ec0ce302",
+            zone_id="string",
             ruleset_phase="http_request_firewall_custom",
         ) as response:
             assert not response.is_closed
@@ -255,7 +255,7 @@ class TestAsyncVersions:
             await async_client.rulesets.phases.versions.with_raw_response.get(
                 "1",
                 account_id="",
-                zone_id="abf9b32d38c5f572afde3336ec0ce302",
+                zone_id="string",
                 ruleset_phase="http_request_firewall_custom",
             )
 
@@ -271,6 +271,6 @@ class TestAsyncVersions:
             await async_client.rulesets.phases.versions.with_raw_response.get(
                 "",
                 account_id="string",
-                zone_id="abf9b32d38c5f572afde3336ec0ce302",
+                zone_id="string",
                 ruleset_phase="http_request_firewall_custom",
             )

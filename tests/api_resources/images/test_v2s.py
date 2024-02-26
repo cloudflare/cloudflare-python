@@ -21,7 +21,7 @@ class TestV2s:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         v2 = client.images.v2s.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(V2ListResponse, v2, path=["response"])
 
@@ -29,7 +29,7 @@ class TestV2s:
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         v2 = client.images.v2s.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             continuation_token="string",
             per_page=10,
             sort_order="asc",
@@ -40,7 +40,7 @@ class TestV2s:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.images.v2s.with_raw_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -52,7 +52,7 @@ class TestV2s:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.images.v2s.with_streaming_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -67,7 +67,7 @@ class TestV2s:
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.images.v2s.with_raw_response.list(
-                "",
+                account_id="",
             )
 
 
@@ -78,7 +78,7 @@ class TestAsyncV2s:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         v2 = await async_client.images.v2s.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(V2ListResponse, v2, path=["response"])
 
@@ -86,7 +86,7 @@ class TestAsyncV2s:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         v2 = await async_client.images.v2s.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             continuation_token="string",
             per_page=10,
             sort_order="asc",
@@ -97,7 +97,7 @@ class TestAsyncV2s:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.images.v2s.with_raw_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -109,7 +109,7 @@ class TestAsyncV2s:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.images.v2s.with_streaming_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -124,5 +124,5 @@ class TestAsyncV2s:
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.images.v2s.with_raw_response.list(
-                "",
+                account_id="",
             )

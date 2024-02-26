@@ -8,5 +8,8 @@ __all__ = ["WebsocketEditParams"]
 
 
 class WebsocketEditParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     value: Required[Literal["off", "on"]]
     """Value of the zone setting."""

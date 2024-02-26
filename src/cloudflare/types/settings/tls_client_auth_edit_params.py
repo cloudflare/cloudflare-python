@@ -8,5 +8,8 @@ __all__ = ["TLSClientAuthEditParams"]
 
 
 class TLSClientAuthEditParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     value: Required[Literal["on", "off"]]
     """value of the zone setting."""

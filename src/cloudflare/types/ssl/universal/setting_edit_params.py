@@ -2,12 +2,15 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing_extensions import Required, TypedDict
 
 __all__ = ["SettingEditParams"]
 
 
 class SettingEditParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     enabled: bool
     """
     Disabling Universal SSL removes any currently active Universal SSL certificates

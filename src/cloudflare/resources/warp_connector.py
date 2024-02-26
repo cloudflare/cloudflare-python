@@ -50,8 +50,8 @@ class WARPConnector(SyncAPIResource):
 
     def create(
         self,
-        account_id: str,
         *,
+        account_id: str,
         name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -98,8 +98,8 @@ class WARPConnector(SyncAPIResource):
 
     def list(
         self,
-        account_id: str,
         *,
+        account_id: str,
         exclude_prefix: str | NotGiven = NOT_GIVEN,
         existed_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         include_prefix: str | NotGiven = NOT_GIVEN,
@@ -397,8 +397,8 @@ class AsyncWARPConnector(AsyncAPIResource):
 
     async def create(
         self,
-        account_id: str,
         *,
+        account_id: str,
         name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -445,8 +445,8 @@ class AsyncWARPConnector(AsyncAPIResource):
 
     def list(
         self,
-        account_id: str,
         *,
+        account_id: str,
         exclude_prefix: str | NotGiven = NOT_GIVEN,
         existed_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         include_prefix: str | NotGiven = NOT_GIVEN,

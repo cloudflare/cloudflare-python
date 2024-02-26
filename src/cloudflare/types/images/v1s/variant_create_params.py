@@ -10,6 +10,9 @@ __all__ = ["VariantCreateParams", "Options"]
 
 
 class VariantCreateParams(TypedDict, total=False):
+    account_id: Required[str]
+    """Account identifier tag."""
+
     id: Required[object]
 
     options: Required[Options]
