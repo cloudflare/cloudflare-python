@@ -8,5 +8,8 @@ __all__ = ["CacheReserveEditParams"]
 
 
 class CacheReserveEditParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     value: Required[Literal["on", "off"]]
     """Value of the Cache Reserve zone setting."""

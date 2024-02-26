@@ -8,6 +8,9 @@ __all__ = ["PCAPCreateParams", "FilterV1"]
 
 
 class PCAPCreateParams(TypedDict, total=False):
+    account_id: Required[str]
+    """Identifier"""
+
     system: Required[Literal["magic-transit"]]
     """The system used to collect packet captures."""
 

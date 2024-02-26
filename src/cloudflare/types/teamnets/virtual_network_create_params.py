@@ -8,6 +8,9 @@ __all__ = ["VirtualNetworkCreateParams"]
 
 
 class VirtualNetworkCreateParams(TypedDict, total=False):
+    account_id: Required[str]
+    """Cloudflare account ID"""
+
     name: Required[str]
     """A user-friendly name for the virtual network."""
 

@@ -72,6 +72,9 @@ __all__ = [
 
 
 class SettingEditParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     items: Required[Iterable[Item]]
     """One or more zone setting objects. Must contain an ID and a value."""
 

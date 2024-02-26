@@ -109,8 +109,8 @@ class Tunnels(SyncAPIResource):
 
     def create(
         self,
-        account_id: str,
         *,
+        account_id: str,
         name: str,
         tunnel_secret: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -162,8 +162,8 @@ class Tunnels(SyncAPIResource):
 
     def list(
         self,
-        account_id: str,
         *,
+        account_id: str,
         exclude_prefix: str | NotGiven = NOT_GIVEN,
         existed_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         include_prefix: str | NotGiven = NOT_GIVEN,
@@ -423,8 +423,8 @@ class AsyncTunnels(AsyncAPIResource):
 
     async def create(
         self,
-        account_id: str,
         *,
+        account_id: str,
         name: str,
         tunnel_secret: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -476,8 +476,8 @@ class AsyncTunnels(AsyncAPIResource):
 
     def list(
         self,
-        account_id: str,
         *,
+        account_id: str,
         exclude_prefix: str | NotGiven = NOT_GIVEN,
         existed_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         include_prefix: str | NotGiven = NOT_GIVEN,

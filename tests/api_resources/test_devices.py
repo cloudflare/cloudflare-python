@@ -21,7 +21,7 @@ class TestDevices:
     @parametrize
     def test_method_devices_list_devices(self, client: Cloudflare) -> None:
         device = client.devices.devices_list_devices(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[DeviceDevicesListDevicesResponse], device, path=["response"])
 
@@ -29,7 +29,7 @@ class TestDevices:
     @parametrize
     def test_raw_response_devices_list_devices(self, client: Cloudflare) -> None:
         response = client.devices.with_raw_response.devices_list_devices(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
 
         assert response.is_closed is True
@@ -41,7 +41,7 @@ class TestDevices:
     @parametrize
     def test_streaming_response_devices_list_devices(self, client: Cloudflare) -> None:
         with client.devices.with_streaming_response.devices_list_devices(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -105,7 +105,7 @@ class TestAsyncDevices:
     @parametrize
     async def test_method_devices_list_devices(self, async_client: AsyncCloudflare) -> None:
         device = await async_client.devices.devices_list_devices(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[DeviceDevicesListDevicesResponse], device, path=["response"])
 
@@ -113,7 +113,7 @@ class TestAsyncDevices:
     @parametrize
     async def test_raw_response_devices_list_devices(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.devices.with_raw_response.devices_list_devices(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
 
         assert response.is_closed is True
@@ -125,7 +125,7 @@ class TestAsyncDevices:
     @parametrize
     async def test_streaming_response_devices_list_devices(self, async_client: AsyncCloudflare) -> None:
         async with async_client.devices.with_streaming_response.devices_list_devices(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

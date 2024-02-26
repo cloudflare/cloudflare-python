@@ -24,7 +24,7 @@ class TestAutomaticPlatformOptimization:
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         automatic_platform_optimization = client.settings.automatic_platform_optimization.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value={
                 "cache_by_device_type": False,
                 "cf": True,
@@ -42,7 +42,7 @@ class TestAutomaticPlatformOptimization:
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.settings.automatic_platform_optimization.with_raw_response.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value={
                 "cache_by_device_type": False,
                 "cf": True,
@@ -64,7 +64,7 @@ class TestAutomaticPlatformOptimization:
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.settings.automatic_platform_optimization.with_streaming_response.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value={
                 "cache_by_device_type": False,
                 "cf": True,
@@ -89,7 +89,7 @@ class TestAutomaticPlatformOptimization:
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.settings.automatic_platform_optimization.with_raw_response.edit(
-                "",
+                zone_id="",
                 value={
                     "cache_by_device_type": False,
                     "cf": True,
@@ -104,7 +104,7 @@ class TestAutomaticPlatformOptimization:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         automatic_platform_optimization = client.settings.automatic_platform_optimization.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(
             Optional[AutomaticPlatformOptimizationGetResponse], automatic_platform_optimization, path=["response"]
@@ -114,7 +114,7 @@ class TestAutomaticPlatformOptimization:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.settings.automatic_platform_optimization.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -128,7 +128,7 @@ class TestAutomaticPlatformOptimization:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.settings.automatic_platform_optimization.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -145,7 +145,7 @@ class TestAutomaticPlatformOptimization:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.settings.automatic_platform_optimization.with_raw_response.get(
-                "",
+                zone_id="",
             )
 
 
@@ -156,7 +156,7 @@ class TestAsyncAutomaticPlatformOptimization:
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         automatic_platform_optimization = await async_client.settings.automatic_platform_optimization.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value={
                 "cache_by_device_type": False,
                 "cf": True,
@@ -174,7 +174,7 @@ class TestAsyncAutomaticPlatformOptimization:
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.settings.automatic_platform_optimization.with_raw_response.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value={
                 "cache_by_device_type": False,
                 "cf": True,
@@ -196,7 +196,7 @@ class TestAsyncAutomaticPlatformOptimization:
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.settings.automatic_platform_optimization.with_streaming_response.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value={
                 "cache_by_device_type": False,
                 "cf": True,
@@ -221,7 +221,7 @@ class TestAsyncAutomaticPlatformOptimization:
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.settings.automatic_platform_optimization.with_raw_response.edit(
-                "",
+                zone_id="",
                 value={
                     "cache_by_device_type": False,
                     "cf": True,
@@ -236,7 +236,7 @@ class TestAsyncAutomaticPlatformOptimization:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         automatic_platform_optimization = await async_client.settings.automatic_platform_optimization.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(
             Optional[AutomaticPlatformOptimizationGetResponse], automatic_platform_optimization, path=["response"]
@@ -246,7 +246,7 @@ class TestAsyncAutomaticPlatformOptimization:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.settings.automatic_platform_optimization.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -260,7 +260,7 @@ class TestAsyncAutomaticPlatformOptimization:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.settings.automatic_platform_optimization.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -277,5 +277,5 @@ class TestAsyncAutomaticPlatformOptimization:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.settings.automatic_platform_optimization.with_raw_response.get(
-                "",
+                zone_id="",
             )

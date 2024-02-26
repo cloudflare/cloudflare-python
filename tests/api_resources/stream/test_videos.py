@@ -21,7 +21,7 @@ class TestVideos:
     @parametrize
     def test_method_storage_usage(self, client: Cloudflare) -> None:
         video = client.stream.videos.storage_usage(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(VideoStorageUsageResponse, video, path=["response"])
 
@@ -29,7 +29,7 @@ class TestVideos:
     @parametrize
     def test_method_storage_usage_with_all_params(self, client: Cloudflare) -> None:
         video = client.stream.videos.storage_usage(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             creator="creator-id_abcde12345",
         )
         assert_matches_type(VideoStorageUsageResponse, video, path=["response"])
@@ -38,7 +38,7 @@ class TestVideos:
     @parametrize
     def test_raw_response_storage_usage(self, client: Cloudflare) -> None:
         response = client.stream.videos.with_raw_response.storage_usage(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -50,7 +50,7 @@ class TestVideos:
     @parametrize
     def test_streaming_response_storage_usage(self, client: Cloudflare) -> None:
         with client.stream.videos.with_streaming_response.storage_usage(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -65,7 +65,7 @@ class TestVideos:
     def test_path_params_storage_usage(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.stream.videos.with_raw_response.storage_usage(
-                "",
+                account_id="",
             )
 
 
@@ -76,7 +76,7 @@ class TestAsyncVideos:
     @parametrize
     async def test_method_storage_usage(self, async_client: AsyncCloudflare) -> None:
         video = await async_client.stream.videos.storage_usage(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(VideoStorageUsageResponse, video, path=["response"])
 
@@ -84,7 +84,7 @@ class TestAsyncVideos:
     @parametrize
     async def test_method_storage_usage_with_all_params(self, async_client: AsyncCloudflare) -> None:
         video = await async_client.stream.videos.storage_usage(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             creator="creator-id_abcde12345",
         )
         assert_matches_type(VideoStorageUsageResponse, video, path=["response"])
@@ -93,7 +93,7 @@ class TestAsyncVideos:
     @parametrize
     async def test_raw_response_storage_usage(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.stream.videos.with_raw_response.storage_usage(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -105,7 +105,7 @@ class TestAsyncVideos:
     @parametrize
     async def test_streaming_response_storage_usage(self, async_client: AsyncCloudflare) -> None:
         async with async_client.stream.videos.with_streaming_response.storage_usage(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -120,5 +120,5 @@ class TestAsyncVideos:
     async def test_path_params_storage_usage(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.stream.videos.with_raw_response.storage_usage(
-                "",
+                account_id="",
             )

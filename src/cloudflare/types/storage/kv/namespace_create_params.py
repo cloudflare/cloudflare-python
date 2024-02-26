@@ -8,5 +8,8 @@ __all__ = ["NamespaceCreateParams"]
 
 
 class NamespaceCreateParams(TypedDict, total=False):
+    account_id: Required[str]
+    """Identifier"""
+
     title: Required[str]
     """A human-readable string name for a Namespace."""

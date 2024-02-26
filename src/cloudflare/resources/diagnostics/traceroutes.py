@@ -36,8 +36,8 @@ class Traceroutes(SyncAPIResource):
 
     def create(
         self,
-        account_id: str,
         *,
+        account_id: str,
         targets: List[str],
         colos: List[str] | NotGiven = NOT_GIVEN,
         options: traceroute_create_params.Options | NotGiven = NOT_GIVEN,
@@ -99,8 +99,8 @@ class AsyncTraceroutes(AsyncAPIResource):
 
     async def create(
         self,
-        account_id: str,
         *,
+        account_id: str,
         targets: List[str],
         colos: List[str] | NotGiven = NOT_GIVEN,
         options: traceroute_create_params.Options | NotGiven = NOT_GIVEN,

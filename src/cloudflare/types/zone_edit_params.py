@@ -3,12 +3,15 @@
 from __future__ import annotations
 
 from typing import List
-from typing_extensions import Literal, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["ZoneEditParams", "Plan"]
 
 
 class ZoneEditParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     plan: Plan
     """
     (Deprecated) Please use the `/zones/{zone_id}/subscription` API to update a

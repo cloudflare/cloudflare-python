@@ -25,7 +25,7 @@ class TestIncludes:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         include = client.devices.policies.includes.update(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             body=[
                 {
                     "address": "192.0.2.0/24",
@@ -47,7 +47,7 @@ class TestIncludes:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.devices.policies.includes.with_raw_response.update(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             body=[
                 {
                     "address": "192.0.2.0/24",
@@ -73,7 +73,7 @@ class TestIncludes:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.devices.policies.includes.with_streaming_response.update(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             body=[
                 {
                     "address": "192.0.2.0/24",
@@ -101,7 +101,7 @@ class TestIncludes:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         include = client.devices.policies.includes.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[IncludeListResponse], include, path=["response"])
 
@@ -109,7 +109,7 @@ class TestIncludes:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.devices.policies.includes.with_raw_response.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
 
         assert response.is_closed is True
@@ -121,7 +121,7 @@ class TestIncludes:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.devices.policies.includes.with_streaming_response.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -185,7 +185,7 @@ class TestAsyncIncludes:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         include = await async_client.devices.policies.includes.update(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             body=[
                 {
                     "address": "192.0.2.0/24",
@@ -207,7 +207,7 @@ class TestAsyncIncludes:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.devices.policies.includes.with_raw_response.update(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             body=[
                 {
                     "address": "192.0.2.0/24",
@@ -233,7 +233,7 @@ class TestAsyncIncludes:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.devices.policies.includes.with_streaming_response.update(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             body=[
                 {
                     "address": "192.0.2.0/24",
@@ -261,7 +261,7 @@ class TestAsyncIncludes:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         include = await async_client.devices.policies.includes.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[IncludeListResponse], include, path=["response"])
 
@@ -269,7 +269,7 @@ class TestAsyncIncludes:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.devices.policies.includes.with_raw_response.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
 
         assert response.is_closed is True
@@ -281,7 +281,7 @@ class TestAsyncIncludes:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.devices.policies.includes.with_streaming_response.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

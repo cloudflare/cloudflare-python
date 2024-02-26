@@ -8,6 +8,9 @@ __all__ = ["TotalTLSCreateParams"]
 
 
 class TotalTLSCreateParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     enabled: Required[bool]
     """
     If enabled, Total TLS will order a hostname specific TLS certificate for any

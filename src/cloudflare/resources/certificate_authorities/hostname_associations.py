@@ -41,8 +41,8 @@ class HostnameAssociations(SyncAPIResource):
 
     def update(
         self,
-        zone_id: str,
         *,
+        zone_id: str,
         hostnames: List[str] | NotGiven = NOT_GIVEN,
         mtls_certificate_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -93,8 +93,8 @@ class HostnameAssociations(SyncAPIResource):
 
     def list(
         self,
-        zone_id: str,
         *,
+        zone_id: str,
         mtls_certificate_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -151,8 +151,8 @@ class AsyncHostnameAssociations(AsyncAPIResource):
 
     async def update(
         self,
-        zone_id: str,
         *,
+        zone_id: str,
         hostnames: List[str] | NotGiven = NOT_GIVEN,
         mtls_certificate_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -203,8 +203,8 @@ class AsyncHostnameAssociations(AsyncAPIResource):
 
     async def list(
         self,
-        zone_id: str,
         *,
+        zone_id: str,
         mtls_certificate_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

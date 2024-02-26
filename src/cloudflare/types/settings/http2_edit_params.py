@@ -8,5 +8,8 @@ __all__ = ["HTTP2EditParams"]
 
 
 class HTTP2EditParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     value: Required[Literal["on", "off"]]
     """Value of the HTTP2 setting."""

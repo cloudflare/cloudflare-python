@@ -21,7 +21,7 @@ class TestRevokes:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         revoke = client.devices.revokes.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             body=[
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -34,7 +34,7 @@ class TestRevokes:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.devices.revokes.with_raw_response.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             body=[
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -51,7 +51,7 @@ class TestRevokes:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.devices.revokes.with_streaming_response.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             body=[
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -74,7 +74,7 @@ class TestAsyncRevokes:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         revoke = await async_client.devices.revokes.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             body=[
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -87,7 +87,7 @@ class TestAsyncRevokes:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.devices.revokes.with_raw_response.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             body=[
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -104,7 +104,7 @@ class TestAsyncRevokes:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.devices.revokes.with_streaming_response.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             body=[
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",

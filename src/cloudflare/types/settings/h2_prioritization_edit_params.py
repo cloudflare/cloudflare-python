@@ -8,6 +8,9 @@ __all__ = ["H2PrioritizationEditParams", "Value"]
 
 
 class H2PrioritizationEditParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     value: Required[Value]
     """
     HTTP/2 Edge Prioritization optimises the delivery of resources served through

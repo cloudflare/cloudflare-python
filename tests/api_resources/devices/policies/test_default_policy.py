@@ -21,7 +21,7 @@ class TestDefaultPolicy:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         default_policy = client.devices.policies.default_policy.get(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[DefaultPolicyGetResponse], default_policy, path=["response"])
 
@@ -29,7 +29,7 @@ class TestDefaultPolicy:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.devices.policies.default_policy.with_raw_response.get(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
 
         assert response.is_closed is True
@@ -41,7 +41,7 @@ class TestDefaultPolicy:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.devices.policies.default_policy.with_streaming_response.get(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -59,7 +59,7 @@ class TestAsyncDefaultPolicy:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         default_policy = await async_client.devices.policies.default_policy.get(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[DefaultPolicyGetResponse], default_policy, path=["response"])
 
@@ -67,7 +67,7 @@ class TestAsyncDefaultPolicy:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.devices.policies.default_policy.with_raw_response.get(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
 
         assert response.is_closed is True
@@ -79,7 +79,7 @@ class TestAsyncDefaultPolicy:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.devices.policies.default_policy.with_streaming_response.get(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

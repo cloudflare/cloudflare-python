@@ -8,5 +8,8 @@ __all__ = ["ZeroRTTEditParams"]
 
 
 class ZeroRTTEditParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     value: Required[Literal["on", "off"]]
     """Value of the 0-RTT setting."""

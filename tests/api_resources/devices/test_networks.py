@@ -27,7 +27,7 @@ class TestNetworks:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         network = client.devices.networks.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             config={"tls_sockaddr": "foo.bar:1234"},
             name="managed-network-1",
             type="tls",
@@ -38,7 +38,7 @@ class TestNetworks:
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         network = client.devices.networks.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             config={
                 "sha256": "b5bb9d8014a0f9b1d61e21e796d78dccdf1352f23cd32812f4850b878ae4944c",
                 "tls_sockaddr": "foo.bar:1234",
@@ -52,7 +52,7 @@ class TestNetworks:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.devices.networks.with_raw_response.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             config={"tls_sockaddr": "foo.bar:1234"},
             name="managed-network-1",
             type="tls",
@@ -67,7 +67,7 @@ class TestNetworks:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.devices.networks.with_streaming_response.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             config={"tls_sockaddr": "foo.bar:1234"},
             name="managed-network-1",
             type="tls",
@@ -145,7 +145,7 @@ class TestNetworks:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         network = client.devices.networks.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[NetworkListResponse], network, path=["response"])
 
@@ -153,7 +153,7 @@ class TestNetworks:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.devices.networks.with_raw_response.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
 
         assert response.is_closed is True
@@ -165,7 +165,7 @@ class TestNetworks:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.devices.networks.with_streaming_response.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -275,7 +275,7 @@ class TestAsyncNetworks:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         network = await async_client.devices.networks.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             config={"tls_sockaddr": "foo.bar:1234"},
             name="managed-network-1",
             type="tls",
@@ -286,7 +286,7 @@ class TestAsyncNetworks:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         network = await async_client.devices.networks.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             config={
                 "sha256": "b5bb9d8014a0f9b1d61e21e796d78dccdf1352f23cd32812f4850b878ae4944c",
                 "tls_sockaddr": "foo.bar:1234",
@@ -300,7 +300,7 @@ class TestAsyncNetworks:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.devices.networks.with_raw_response.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             config={"tls_sockaddr": "foo.bar:1234"},
             name="managed-network-1",
             type="tls",
@@ -315,7 +315,7 @@ class TestAsyncNetworks:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.devices.networks.with_streaming_response.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             config={"tls_sockaddr": "foo.bar:1234"},
             name="managed-network-1",
             type="tls",
@@ -393,7 +393,7 @@ class TestAsyncNetworks:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         network = await async_client.devices.networks.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[NetworkListResponse], network, path=["response"])
 
@@ -401,7 +401,7 @@ class TestAsyncNetworks:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.devices.networks.with_raw_response.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
 
         assert response.is_closed is True
@@ -413,7 +413,7 @@ class TestAsyncNetworks:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.devices.networks.with_streaming_response.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

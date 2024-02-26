@@ -8,5 +8,8 @@ __all__ = ["TieredCacheSmartTopologyEditParams"]
 
 
 class TieredCacheSmartTopologyEditParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     value: Required[Literal["on", "off"]]
     """Enables Tiered Cache."""

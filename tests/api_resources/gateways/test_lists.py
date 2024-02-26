@@ -28,7 +28,7 @@ class TestLists:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         list = client.gateways.lists.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             name="Admin Serial Numbers",
             type="SERIAL",
         )
@@ -38,7 +38,7 @@ class TestLists:
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         list = client.gateways.lists.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             name="Admin Serial Numbers",
             type="SERIAL",
             description="The serial numbers for administrators",
@@ -50,7 +50,7 @@ class TestLists:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.gateways.lists.with_raw_response.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             name="Admin Serial Numbers",
             type="SERIAL",
         )
@@ -64,7 +64,7 @@ class TestLists:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.gateways.lists.with_streaming_response.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             name="Admin Serial Numbers",
             type="SERIAL",
         ) as response:
@@ -141,7 +141,7 @@ class TestLists:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         list = client.gateways.lists.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[ListListResponse], list, path=["response"])
 
@@ -149,7 +149,7 @@ class TestLists:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.gateways.lists.with_raw_response.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
 
         assert response.is_closed is True
@@ -161,7 +161,7 @@ class TestLists:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.gateways.lists.with_streaming_response.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -328,7 +328,7 @@ class TestAsyncLists:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         list = await async_client.gateways.lists.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             name="Admin Serial Numbers",
             type="SERIAL",
         )
@@ -338,7 +338,7 @@ class TestAsyncLists:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         list = await async_client.gateways.lists.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             name="Admin Serial Numbers",
             type="SERIAL",
             description="The serial numbers for administrators",
@@ -350,7 +350,7 @@ class TestAsyncLists:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.gateways.lists.with_raw_response.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             name="Admin Serial Numbers",
             type="SERIAL",
         )
@@ -364,7 +364,7 @@ class TestAsyncLists:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.gateways.lists.with_streaming_response.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             name="Admin Serial Numbers",
             type="SERIAL",
         ) as response:
@@ -441,7 +441,7 @@ class TestAsyncLists:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         list = await async_client.gateways.lists.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[ListListResponse], list, path=["response"])
 
@@ -449,7 +449,7 @@ class TestAsyncLists:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.gateways.lists.with_raw_response.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
 
         assert response.is_closed is True
@@ -461,7 +461,7 @@ class TestAsyncLists:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.gateways.lists.with_streaming_response.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

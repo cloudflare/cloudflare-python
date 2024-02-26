@@ -37,8 +37,8 @@ class Regions(SyncAPIResource):
 
     def list(
         self,
-        account_id: str,
         *,
+        account_id: str,
         country_code_a2: str | NotGiven = NOT_GIVEN,
         subdivision_code: str | NotGiven = NOT_GIVEN,
         subdivision_code_a2: str | NotGiven = NOT_GIVEN,
@@ -163,8 +163,8 @@ class AsyncRegions(AsyncAPIResource):
 
     async def list(
         self,
-        account_id: str,
         *,
+        account_id: str,
         country_code_a2: str | NotGiven = NOT_GIVEN,
         subdivision_code: str | NotGiven = NOT_GIVEN,
         subdivision_code_a2: str | NotGiven = NOT_GIVEN,

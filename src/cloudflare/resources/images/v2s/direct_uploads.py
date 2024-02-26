@@ -37,8 +37,8 @@ class DirectUploads(SyncAPIResource):
 
     def create(
         self,
-        account_id: str,
         *,
+        account_id: str,
         expiry: Union[str, datetime] | NotGiven = NOT_GIVEN,
         metadata: object | NotGiven = NOT_GIVEN,
         require_signed_urls: bool | NotGiven = NOT_GIVEN,
@@ -112,8 +112,8 @@ class AsyncDirectUploads(AsyncAPIResource):
 
     async def create(
         self,
-        account_id: str,
         *,
+        account_id: str,
         expiry: Union[str, datetime] | NotGiven = NOT_GIVEN,
         metadata: object | NotGiven = NOT_GIVEN,
         require_signed_urls: bool | NotGiven = NOT_GIVEN,

@@ -24,7 +24,7 @@ class TestAccountSettings:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         account_setting = client.workers.account_settings.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body="{'default_usage_model': 'unbound'}",
         )
         assert_matches_type(AccountSettingUpdateResponse, account_setting, path=["response"])
@@ -33,7 +33,7 @@ class TestAccountSettings:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.workers.account_settings.with_raw_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body="{'default_usage_model': 'unbound'}",
         )
 
@@ -46,7 +46,7 @@ class TestAccountSettings:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.workers.account_settings.with_streaming_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body="{'default_usage_model': 'unbound'}",
         ) as response:
             assert not response.is_closed
@@ -62,7 +62,7 @@ class TestAccountSettings:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.workers.account_settings.with_raw_response.update(
-                "",
+                account_id="",
                 body="{'default_usage_model': 'unbound'}",
             )
 
@@ -70,7 +70,7 @@ class TestAccountSettings:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         account_setting = client.workers.account_settings.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(AccountSettingGetResponse, account_setting, path=["response"])
 
@@ -78,7 +78,7 @@ class TestAccountSettings:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.workers.account_settings.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -90,7 +90,7 @@ class TestAccountSettings:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.workers.account_settings.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -105,7 +105,7 @@ class TestAccountSettings:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.workers.account_settings.with_raw_response.get(
-                "",
+                account_id="",
             )
 
 
@@ -116,7 +116,7 @@ class TestAsyncAccountSettings:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         account_setting = await async_client.workers.account_settings.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body="{'default_usage_model': 'unbound'}",
         )
         assert_matches_type(AccountSettingUpdateResponse, account_setting, path=["response"])
@@ -125,7 +125,7 @@ class TestAsyncAccountSettings:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers.account_settings.with_raw_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body="{'default_usage_model': 'unbound'}",
         )
 
@@ -138,7 +138,7 @@ class TestAsyncAccountSettings:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers.account_settings.with_streaming_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body="{'default_usage_model': 'unbound'}",
         ) as response:
             assert not response.is_closed
@@ -154,7 +154,7 @@ class TestAsyncAccountSettings:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.workers.account_settings.with_raw_response.update(
-                "",
+                account_id="",
                 body="{'default_usage_model': 'unbound'}",
             )
 
@@ -162,7 +162,7 @@ class TestAsyncAccountSettings:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         account_setting = await async_client.workers.account_settings.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(AccountSettingGetResponse, account_setting, path=["response"])
 
@@ -170,7 +170,7 @@ class TestAsyncAccountSettings:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers.account_settings.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -182,7 +182,7 @@ class TestAsyncAccountSettings:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers.account_settings.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -197,5 +197,5 @@ class TestAsyncAccountSettings:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.workers.account_settings.with_raw_response.get(
-                "",
+                account_id="",
             )

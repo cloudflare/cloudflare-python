@@ -21,7 +21,7 @@ class TestMinify:
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         minify = client.settings.minify.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value={},
         )
         assert_matches_type(Optional[MinifyEditResponse], minify, path=["response"])
@@ -30,7 +30,7 @@ class TestMinify:
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         minify = client.settings.minify.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value={
                 "css": "on",
                 "html": "on",
@@ -43,7 +43,7 @@ class TestMinify:
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.settings.minify.with_raw_response.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value={},
         )
 
@@ -56,7 +56,7 @@ class TestMinify:
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.settings.minify.with_streaming_response.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value={},
         ) as response:
             assert not response.is_closed
@@ -72,7 +72,7 @@ class TestMinify:
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.settings.minify.with_raw_response.edit(
-                "",
+                zone_id="",
                 value={},
             )
 
@@ -80,7 +80,7 @@ class TestMinify:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         minify = client.settings.minify.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[MinifyGetResponse], minify, path=["response"])
 
@@ -88,7 +88,7 @@ class TestMinify:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.settings.minify.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -100,7 +100,7 @@ class TestMinify:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.settings.minify.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -115,7 +115,7 @@ class TestMinify:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.settings.minify.with_raw_response.get(
-                "",
+                zone_id="",
             )
 
 
@@ -126,7 +126,7 @@ class TestAsyncMinify:
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         minify = await async_client.settings.minify.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value={},
         )
         assert_matches_type(Optional[MinifyEditResponse], minify, path=["response"])
@@ -135,7 +135,7 @@ class TestAsyncMinify:
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         minify = await async_client.settings.minify.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value={
                 "css": "on",
                 "html": "on",
@@ -148,7 +148,7 @@ class TestAsyncMinify:
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.settings.minify.with_raw_response.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value={},
         )
 
@@ -161,7 +161,7 @@ class TestAsyncMinify:
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.settings.minify.with_streaming_response.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value={},
         ) as response:
             assert not response.is_closed
@@ -177,7 +177,7 @@ class TestAsyncMinify:
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.settings.minify.with_raw_response.edit(
-                "",
+                zone_id="",
                 value={},
             )
 
@@ -185,7 +185,7 @@ class TestAsyncMinify:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         minify = await async_client.settings.minify.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[MinifyGetResponse], minify, path=["response"])
 
@@ -193,7 +193,7 @@ class TestAsyncMinify:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.settings.minify.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -205,7 +205,7 @@ class TestAsyncMinify:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.settings.minify.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -220,5 +220,5 @@ class TestAsyncMinify:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.settings.minify.with_raw_response.get(
-                "",
+                zone_id="",
             )

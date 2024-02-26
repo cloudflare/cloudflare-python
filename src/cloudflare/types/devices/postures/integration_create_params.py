@@ -19,6 +19,8 @@ __all__ = [
 
 
 class IntegrationCreateParams(TypedDict, total=False):
+    account_id: Required[object]
+
     config: Required[Config]
     """The configuration object containing third-party integration information."""
 

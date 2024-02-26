@@ -44,8 +44,8 @@ class ProxyEndpoints(SyncAPIResource):
 
     def create(
         self,
-        account_id: object,
         *,
+        account_id: object,
         ips: List[str],
         name: str,
         subdomain: str | NotGiven = NOT_GIVEN,
@@ -96,8 +96,8 @@ class ProxyEndpoints(SyncAPIResource):
 
     def list(
         self,
-        account_id: object,
         *,
+        account_id: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -271,8 +271,8 @@ class AsyncProxyEndpoints(AsyncAPIResource):
 
     async def create(
         self,
-        account_id: object,
         *,
+        account_id: object,
         ips: List[str],
         name: str,
         subdomain: str | NotGiven = NOT_GIVEN,
@@ -323,8 +323,8 @@ class AsyncProxyEndpoints(AsyncAPIResource):
 
     async def list(
         self,
-        account_id: object,
         *,
+        account_id: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

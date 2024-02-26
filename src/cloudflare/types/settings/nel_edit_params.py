@@ -8,6 +8,9 @@ __all__ = ["NELEditParams", "Value", "ValueValue"]
 
 
 class NELEditParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     value: Required[Value]
     """Enable Network Error Logging reporting on your zone. (Beta)"""
 

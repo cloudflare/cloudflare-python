@@ -42,8 +42,8 @@ class Domains(SyncAPIResource):
 
     def update(
         self,
-        account_id: object,
         *,
+        account_id: object,
         environment: str,
         hostname: str,
         service: str,
@@ -98,8 +98,8 @@ class Domains(SyncAPIResource):
 
     def list(
         self,
-        account_id: object,
         *,
+        account_id: object,
         environment: str | NotGiven = NOT_GIVEN,
         hostname: str | NotGiven = NOT_GIVEN,
         service: str | NotGiven = NOT_GIVEN,
@@ -241,8 +241,8 @@ class AsyncDomains(AsyncAPIResource):
 
     async def update(
         self,
-        account_id: object,
         *,
+        account_id: object,
         environment: str,
         hostname: str,
         service: str,
@@ -297,8 +297,8 @@ class AsyncDomains(AsyncAPIResource):
 
     async def list(
         self,
-        account_id: object,
         *,
+        account_id: object,
         environment: str | NotGiven = NOT_GIVEN,
         hostname: str | NotGiven = NOT_GIVEN,
         service: str | NotGiven = NOT_GIVEN,

@@ -9,6 +9,9 @@ __all__ = ["FirewallCreateParams", "AttackMitigation"]
 
 
 class FirewallCreateParams(TypedDict, total=False):
+    account_id: Required[str]
+    """Identifier"""
+
     name: Required[str]
     """DNS Firewall Cluster Name."""
 

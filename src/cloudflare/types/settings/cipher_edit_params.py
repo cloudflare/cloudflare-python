@@ -9,5 +9,8 @@ __all__ = ["CipherEditParams"]
 
 
 class CipherEditParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     value: Required[List[str]]
     """Value of the zone setting."""

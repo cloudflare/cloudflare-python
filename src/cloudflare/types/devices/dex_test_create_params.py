@@ -8,6 +8,8 @@ __all__ = ["DEXTestCreateParams", "Data"]
 
 
 class DEXTestCreateParams(TypedDict, total=False):
+    account_id: Required[object]
+
     data: Required[Data]
     """
     The configuration object which contains the details for the WARP client to

@@ -28,7 +28,7 @@ class TestCertificates:
     def test_method_create(self, client: Cloudflare) -> None:
         certificate = client.access.certificates.create(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             certificate="-----BEGIN CERTIFICATE-----\nMIIGAjCCA+qgAwIBAgIJAI7kymlF7CWT...N4RI7KKB7nikiuUf8vhULKy5IX10\nDrUtmu/B\n-----END CERTIFICATE-----",
             name="Allow devs",
         )
@@ -39,7 +39,7 @@ class TestCertificates:
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         certificate = client.access.certificates.create(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             certificate="-----BEGIN CERTIFICATE-----\nMIIGAjCCA+qgAwIBAgIJAI7kymlF7CWT...N4RI7KKB7nikiuUf8vhULKy5IX10\nDrUtmu/B\n-----END CERTIFICATE-----",
             name="Allow devs",
             associated_hostnames=["admin.example.com", "admin.example.com", "admin.example.com"],
@@ -51,7 +51,7 @@ class TestCertificates:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.access.certificates.with_raw_response.create(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             certificate="-----BEGIN CERTIFICATE-----\nMIIGAjCCA+qgAwIBAgIJAI7kymlF7CWT...N4RI7KKB7nikiuUf8vhULKy5IX10\nDrUtmu/B\n-----END CERTIFICATE-----",
             name="Allow devs",
         )
@@ -66,7 +66,7 @@ class TestCertificates:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.access.certificates.with_streaming_response.create(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             certificate="-----BEGIN CERTIFICATE-----\nMIIGAjCCA+qgAwIBAgIJAI7kymlF7CWT...N4RI7KKB7nikiuUf8vhULKy5IX10\nDrUtmu/B\n-----END CERTIFICATE-----",
             name="Allow devs",
         ) as response:
@@ -84,7 +84,7 @@ class TestCertificates:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.access.certificates.with_raw_response.create(
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
                 certificate="-----BEGIN CERTIFICATE-----\nMIIGAjCCA+qgAwIBAgIJAI7kymlF7CWT...N4RI7KKB7nikiuUf8vhULKy5IX10\nDrUtmu/B\n-----END CERTIFICATE-----",
                 name="Allow devs",
             )
@@ -103,7 +103,7 @@ class TestCertificates:
         certificate = client.access.certificates.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             associated_hostnames=["admin.example.com", "admin.example.com", "admin.example.com"],
         )
         assert_matches_type(CertificateUpdateResponse, certificate, path=["response"])
@@ -114,7 +114,7 @@ class TestCertificates:
         certificate = client.access.certificates.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             associated_hostnames=["admin.example.com", "admin.example.com", "admin.example.com"],
             name="Allow devs",
         )
@@ -126,7 +126,7 @@ class TestCertificates:
         response = client.access.certificates.with_raw_response.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             associated_hostnames=["admin.example.com", "admin.example.com", "admin.example.com"],
         )
 
@@ -141,7 +141,7 @@ class TestCertificates:
         with client.access.certificates.with_streaming_response.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             associated_hostnames=["admin.example.com", "admin.example.com", "admin.example.com"],
         ) as response:
             assert not response.is_closed
@@ -159,7 +159,7 @@ class TestCertificates:
             client.access.certificates.with_raw_response.update(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
                 associated_hostnames=["admin.example.com", "admin.example.com", "admin.example.com"],
             )
 
@@ -175,7 +175,7 @@ class TestCertificates:
             client.access.certificates.with_raw_response.update(
                 "",
                 account_id="string",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
                 associated_hostnames=["admin.example.com", "admin.example.com", "admin.example.com"],
             )
 
@@ -184,7 +184,7 @@ class TestCertificates:
     def test_method_list(self, client: Cloudflare) -> None:
         certificate = client.access.certificates.list(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
         assert_matches_type(Optional[CertificateListResponse], certificate, path=["response"])
 
@@ -193,7 +193,7 @@ class TestCertificates:
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.access.certificates.with_raw_response.list(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -206,7 +206,7 @@ class TestCertificates:
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.access.certificates.with_streaming_response.list(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -222,7 +222,7 @@ class TestCertificates:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.access.certificates.with_raw_response.list(
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -237,7 +237,7 @@ class TestCertificates:
         certificate = client.access.certificates.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
         assert_matches_type(CertificateDeleteResponse, certificate, path=["response"])
 
@@ -247,7 +247,7 @@ class TestCertificates:
         response = client.access.certificates.with_raw_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -261,7 +261,7 @@ class TestCertificates:
         with client.access.certificates.with_streaming_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -278,7 +278,7 @@ class TestCertificates:
             client.access.certificates.with_raw_response.delete(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -292,7 +292,7 @@ class TestCertificates:
             client.access.certificates.with_raw_response.delete(
                 "",
                 account_id="string",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )
 
     @pytest.mark.skip()
@@ -301,7 +301,7 @@ class TestCertificates:
         certificate = client.access.certificates.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
         assert_matches_type(CertificateGetResponse, certificate, path=["response"])
 
@@ -311,7 +311,7 @@ class TestCertificates:
         response = client.access.certificates.with_raw_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -325,7 +325,7 @@ class TestCertificates:
         with client.access.certificates.with_streaming_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -342,7 +342,7 @@ class TestCertificates:
             client.access.certificates.with_raw_response.get(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -356,7 +356,7 @@ class TestCertificates:
             client.access.certificates.with_raw_response.get(
                 "",
                 account_id="string",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )
 
 
@@ -368,7 +368,7 @@ class TestAsyncCertificates:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         certificate = await async_client.access.certificates.create(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             certificate="-----BEGIN CERTIFICATE-----\nMIIGAjCCA+qgAwIBAgIJAI7kymlF7CWT...N4RI7KKB7nikiuUf8vhULKy5IX10\nDrUtmu/B\n-----END CERTIFICATE-----",
             name="Allow devs",
         )
@@ -379,7 +379,7 @@ class TestAsyncCertificates:
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         certificate = await async_client.access.certificates.create(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             certificate="-----BEGIN CERTIFICATE-----\nMIIGAjCCA+qgAwIBAgIJAI7kymlF7CWT...N4RI7KKB7nikiuUf8vhULKy5IX10\nDrUtmu/B\n-----END CERTIFICATE-----",
             name="Allow devs",
             associated_hostnames=["admin.example.com", "admin.example.com", "admin.example.com"],
@@ -391,7 +391,7 @@ class TestAsyncCertificates:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.access.certificates.with_raw_response.create(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             certificate="-----BEGIN CERTIFICATE-----\nMIIGAjCCA+qgAwIBAgIJAI7kymlF7CWT...N4RI7KKB7nikiuUf8vhULKy5IX10\nDrUtmu/B\n-----END CERTIFICATE-----",
             name="Allow devs",
         )
@@ -406,7 +406,7 @@ class TestAsyncCertificates:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.access.certificates.with_streaming_response.create(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             certificate="-----BEGIN CERTIFICATE-----\nMIIGAjCCA+qgAwIBAgIJAI7kymlF7CWT...N4RI7KKB7nikiuUf8vhULKy5IX10\nDrUtmu/B\n-----END CERTIFICATE-----",
             name="Allow devs",
         ) as response:
@@ -424,7 +424,7 @@ class TestAsyncCertificates:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.access.certificates.with_raw_response.create(
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
                 certificate="-----BEGIN CERTIFICATE-----\nMIIGAjCCA+qgAwIBAgIJAI7kymlF7CWT...N4RI7KKB7nikiuUf8vhULKy5IX10\nDrUtmu/B\n-----END CERTIFICATE-----",
                 name="Allow devs",
             )
@@ -443,7 +443,7 @@ class TestAsyncCertificates:
         certificate = await async_client.access.certificates.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             associated_hostnames=["admin.example.com", "admin.example.com", "admin.example.com"],
         )
         assert_matches_type(CertificateUpdateResponse, certificate, path=["response"])
@@ -454,7 +454,7 @@ class TestAsyncCertificates:
         certificate = await async_client.access.certificates.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             associated_hostnames=["admin.example.com", "admin.example.com", "admin.example.com"],
             name="Allow devs",
         )
@@ -466,7 +466,7 @@ class TestAsyncCertificates:
         response = await async_client.access.certificates.with_raw_response.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             associated_hostnames=["admin.example.com", "admin.example.com", "admin.example.com"],
         )
 
@@ -481,7 +481,7 @@ class TestAsyncCertificates:
         async with async_client.access.certificates.with_streaming_response.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             associated_hostnames=["admin.example.com", "admin.example.com", "admin.example.com"],
         ) as response:
             assert not response.is_closed
@@ -499,7 +499,7 @@ class TestAsyncCertificates:
             await async_client.access.certificates.with_raw_response.update(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
                 associated_hostnames=["admin.example.com", "admin.example.com", "admin.example.com"],
             )
 
@@ -515,7 +515,7 @@ class TestAsyncCertificates:
             await async_client.access.certificates.with_raw_response.update(
                 "",
                 account_id="string",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
                 associated_hostnames=["admin.example.com", "admin.example.com", "admin.example.com"],
             )
 
@@ -524,7 +524,7 @@ class TestAsyncCertificates:
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         certificate = await async_client.access.certificates.list(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
         assert_matches_type(Optional[CertificateListResponse], certificate, path=["response"])
 
@@ -533,7 +533,7 @@ class TestAsyncCertificates:
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.access.certificates.with_raw_response.list(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -546,7 +546,7 @@ class TestAsyncCertificates:
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.access.certificates.with_streaming_response.list(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -562,7 +562,7 @@ class TestAsyncCertificates:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.access.certificates.with_raw_response.list(
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -577,7 +577,7 @@ class TestAsyncCertificates:
         certificate = await async_client.access.certificates.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
         assert_matches_type(CertificateDeleteResponse, certificate, path=["response"])
 
@@ -587,7 +587,7 @@ class TestAsyncCertificates:
         response = await async_client.access.certificates.with_raw_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -601,7 +601,7 @@ class TestAsyncCertificates:
         async with async_client.access.certificates.with_streaming_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -618,7 +618,7 @@ class TestAsyncCertificates:
             await async_client.access.certificates.with_raw_response.delete(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -632,7 +632,7 @@ class TestAsyncCertificates:
             await async_client.access.certificates.with_raw_response.delete(
                 "",
                 account_id="string",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )
 
     @pytest.mark.skip()
@@ -641,7 +641,7 @@ class TestAsyncCertificates:
         certificate = await async_client.access.certificates.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
         assert_matches_type(CertificateGetResponse, certificate, path=["response"])
 
@@ -651,7 +651,7 @@ class TestAsyncCertificates:
         response = await async_client.access.certificates.with_raw_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -665,7 +665,7 @@ class TestAsyncCertificates:
         async with async_client.access.certificates.with_streaming_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -682,7 +682,7 @@ class TestAsyncCertificates:
             await async_client.access.certificates.with_raw_response.get(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -696,5 +696,5 @@ class TestAsyncCertificates:
             await async_client.access.certificates.with_raw_response.get(
                 "",
                 account_id="string",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )

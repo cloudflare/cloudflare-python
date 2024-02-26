@@ -36,8 +36,8 @@ class DNS(SyncAPIResource):
 
     def get(
         self,
-        account_id: str,
         *,
+        account_id: str,
         ipv4: str | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
@@ -102,8 +102,8 @@ class AsyncDNS(AsyncAPIResource):
 
     async def get(
         self,
-        account_id: str,
         *,
+        account_id: str,
         ipv4: str | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,

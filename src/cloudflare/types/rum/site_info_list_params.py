@@ -2,12 +2,15 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["SiteInfoListParams"]
 
 
 class SiteInfoListParams(TypedDict, total=False):
+    account_id: Required[str]
+    """Identifier"""
+
     order_by: Literal["host", "created"]
     """The property used to sort the list of results."""
 

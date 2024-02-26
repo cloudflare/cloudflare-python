@@ -8,6 +8,8 @@ __all__ = ["NetworkCreateParams", "Config"]
 
 
 class NetworkCreateParams(TypedDict, total=False):
+    account_id: Required[object]
+
     config: Required[Config]
     """
     The configuration object containing information for the WARP client to detect

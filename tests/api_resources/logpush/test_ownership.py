@@ -25,7 +25,7 @@ class TestOwnership:
     def test_method_create(self, client: Cloudflare) -> None:
         ownership = client.logpush.ownership.create(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             destination_conf="s3://mybucket/logs?region=us-west-2",
         )
         assert_matches_type(Optional[OwnershipCreateResponse], ownership, path=["response"])
@@ -35,7 +35,7 @@ class TestOwnership:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.logpush.ownership.with_raw_response.create(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             destination_conf="s3://mybucket/logs?region=us-west-2",
         )
 
@@ -49,7 +49,7 @@ class TestOwnership:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.logpush.ownership.with_streaming_response.create(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             destination_conf="s3://mybucket/logs?region=us-west-2",
         ) as response:
             assert not response.is_closed
@@ -66,7 +66,7 @@ class TestOwnership:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.logpush.ownership.with_raw_response.create(
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
                 destination_conf="s3://mybucket/logs?region=us-west-2",
             )
 
@@ -82,7 +82,7 @@ class TestOwnership:
     def test_method_validate(self, client: Cloudflare) -> None:
         ownership = client.logpush.ownership.validate(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             destination_conf="s3://mybucket/logs?region=us-west-2",
             ownership_challenge="00000000000000000000",
         )
@@ -93,7 +93,7 @@ class TestOwnership:
     def test_raw_response_validate(self, client: Cloudflare) -> None:
         response = client.logpush.ownership.with_raw_response.validate(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             destination_conf="s3://mybucket/logs?region=us-west-2",
             ownership_challenge="00000000000000000000",
         )
@@ -108,7 +108,7 @@ class TestOwnership:
     def test_streaming_response_validate(self, client: Cloudflare) -> None:
         with client.logpush.ownership.with_streaming_response.validate(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             destination_conf="s3://mybucket/logs?region=us-west-2",
             ownership_challenge="00000000000000000000",
         ) as response:
@@ -126,7 +126,7 @@ class TestOwnership:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.logpush.ownership.with_raw_response.validate(
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
                 destination_conf="s3://mybucket/logs?region=us-west-2",
                 ownership_challenge="00000000000000000000",
             )
@@ -148,7 +148,7 @@ class TestAsyncOwnership:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         ownership = await async_client.logpush.ownership.create(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             destination_conf="s3://mybucket/logs?region=us-west-2",
         )
         assert_matches_type(Optional[OwnershipCreateResponse], ownership, path=["response"])
@@ -158,7 +158,7 @@ class TestAsyncOwnership:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.logpush.ownership.with_raw_response.create(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             destination_conf="s3://mybucket/logs?region=us-west-2",
         )
 
@@ -172,7 +172,7 @@ class TestAsyncOwnership:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.logpush.ownership.with_streaming_response.create(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             destination_conf="s3://mybucket/logs?region=us-west-2",
         ) as response:
             assert not response.is_closed
@@ -189,7 +189,7 @@ class TestAsyncOwnership:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.logpush.ownership.with_raw_response.create(
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
                 destination_conf="s3://mybucket/logs?region=us-west-2",
             )
 
@@ -205,7 +205,7 @@ class TestAsyncOwnership:
     async def test_method_validate(self, async_client: AsyncCloudflare) -> None:
         ownership = await async_client.logpush.ownership.validate(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             destination_conf="s3://mybucket/logs?region=us-west-2",
             ownership_challenge="00000000000000000000",
         )
@@ -216,7 +216,7 @@ class TestAsyncOwnership:
     async def test_raw_response_validate(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.logpush.ownership.with_raw_response.validate(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             destination_conf="s3://mybucket/logs?region=us-west-2",
             ownership_challenge="00000000000000000000",
         )
@@ -231,7 +231,7 @@ class TestAsyncOwnership:
     async def test_streaming_response_validate(self, async_client: AsyncCloudflare) -> None:
         async with async_client.logpush.ownership.with_streaming_response.validate(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
             destination_conf="s3://mybucket/logs?region=us-west-2",
             ownership_challenge="00000000000000000000",
         ) as response:
@@ -249,7 +249,7 @@ class TestAsyncOwnership:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.logpush.ownership.with_raw_response.validate(
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
                 destination_conf="s3://mybucket/logs?region=us-west-2",
                 ownership_challenge="00000000000000000000",
             )

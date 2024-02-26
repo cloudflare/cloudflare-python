@@ -37,8 +37,8 @@ class ChallengeTTL(SyncAPIResource):
 
     def edit(
         self,
-        zone_id: str,
         *,
+        zone_id: str,
         value: Literal[300, 900, 1800, 2700, 3600, 7200, 10800, 14400, 28800, 57600, 86400, 604800, 2592000, 31536000],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -84,8 +84,8 @@ class ChallengeTTL(SyncAPIResource):
 
     def get(
         self,
-        zone_id: str,
         *,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -137,8 +137,8 @@ class AsyncChallengeTTL(AsyncAPIResource):
 
     async def edit(
         self,
-        zone_id: str,
         *,
+        zone_id: str,
         value: Literal[300, 900, 1800, 2700, 3600, 7200, 10800, 14400, 28800, 57600, 86400, 604800, 2592000, 31536000],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -184,8 +184,8 @@ class AsyncChallengeTTL(AsyncAPIResource):
 
     async def get(
         self,
-        zone_id: str,
         *,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

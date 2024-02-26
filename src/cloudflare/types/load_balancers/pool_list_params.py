@@ -2,12 +2,15 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing_extensions import Required, TypedDict
 
 __all__ = ["PoolListParams"]
 
 
 class PoolListParams(TypedDict, total=False):
+    account_id: Required[str]
+    """Identifier"""
+
     monitor: object
     """
     The ID of the Monitor to use for checking the health of origins within this

@@ -2,12 +2,15 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["PolicyCreateParams"]
 
 
 class PolicyCreateParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     action: Literal["allow", "log"]
     """The action to take if the expression matches"""
 

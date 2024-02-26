@@ -8,5 +8,8 @@ __all__ = ["SSLEditParams"]
 
 
 class SSLEditParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     value: Required[Literal["off", "flexible", "full", "strict"]]
     """Value of the zone setting. Notes: Depends on the zone's plan level"""

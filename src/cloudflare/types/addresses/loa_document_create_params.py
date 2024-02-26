@@ -8,5 +8,8 @@ __all__ = ["LOADocumentCreateParams"]
 
 
 class LOADocumentCreateParams(TypedDict, total=False):
+    account_id: Required[str]
+    """Identifier"""
+
     loa_document: Required[str]
     """LOA document to upload."""

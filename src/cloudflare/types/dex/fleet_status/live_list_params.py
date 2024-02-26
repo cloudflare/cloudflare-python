@@ -8,5 +8,7 @@ __all__ = ["LiveListParams"]
 
 
 class LiveListParams(TypedDict, total=False):
+    account_id: Required[str]
+
     since_minutes: Required[float]
     """Number of minutes before current time"""

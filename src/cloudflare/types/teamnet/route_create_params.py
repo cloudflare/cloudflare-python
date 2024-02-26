@@ -8,6 +8,9 @@ __all__ = ["RouteCreateParams"]
 
 
 class RouteCreateParams(TypedDict, total=False):
+    account_id: Required[str]
+    """Cloudflare account ID"""
+
     ip_network: Required[str]
     """The private IPv4 or IPv6 range connected by the route, in CIDR notation."""
 

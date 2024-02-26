@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import List, Type, Optional, cast
 
 import httpx
 
@@ -84,9 +84,13 @@ class Cache(SyncAPIResource):
 
     def purge(
         self,
-        zone_id: str,
         *,
-        body: cache_purge_params.Body,
+        zone_id: str,
+        files: List[cache_purge_params.File] | NotGiven = NOT_GIVEN,
+        hosts: List[str] | NotGiven = NOT_GIVEN,
+        prefixes: List[str] | NotGiven = NOT_GIVEN,
+        purge_everything: bool | NotGiven = NOT_GIVEN,
+        tags: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -138,7 +142,16 @@ class Cache(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
             f"/zones/{zone_id}/purge_cache",
-            body=maybe_transform(body, cache_purge_params.CachePurgeParams),
+            body=maybe_transform(
+                {
+                    "files": files,
+                    "hosts": hosts,
+                    "prefixes": prefixes,
+                    "purge_everything": purge_everything,
+                    "tags": tags,
+                },
+                cache_purge_params.CachePurgeParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -177,9 +190,13 @@ class AsyncCache(AsyncAPIResource):
 
     async def purge(
         self,
-        zone_id: str,
         *,
-        body: cache_purge_params.Body,
+        zone_id: str,
+        files: List[cache_purge_params.File] | NotGiven = NOT_GIVEN,
+        hosts: List[str] | NotGiven = NOT_GIVEN,
+        prefixes: List[str] | NotGiven = NOT_GIVEN,
+        purge_everything: bool | NotGiven = NOT_GIVEN,
+        tags: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -231,7 +248,16 @@ class AsyncCache(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
             f"/zones/{zone_id}/purge_cache",
-            body=maybe_transform(body, cache_purge_params.CachePurgeParams),
+            body=maybe_transform(
+                {
+                    "files": files,
+                    "hosts": hosts,
+                    "prefixes": prefixes,
+                    "purge_everything": purge_everything,
+                    "tags": tags,
+                },
+                cache_purge_params.CachePurgeParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

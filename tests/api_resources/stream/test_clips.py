@@ -21,7 +21,7 @@ class TestClips:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         clip = client.stream.clips.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             clipped_from_video_uid="023e105f4ecef8ad9ca31a8372d0c353",
             end_time_seconds=0,
             start_time_seconds=0,
@@ -32,7 +32,7 @@ class TestClips:
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         clip = client.stream.clips.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             clipped_from_video_uid="023e105f4ecef8ad9ca31a8372d0c353",
             end_time_seconds=0,
             start_time_seconds=0,
@@ -49,7 +49,7 @@ class TestClips:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.stream.clips.with_raw_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             clipped_from_video_uid="023e105f4ecef8ad9ca31a8372d0c353",
             end_time_seconds=0,
             start_time_seconds=0,
@@ -64,7 +64,7 @@ class TestClips:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.stream.clips.with_streaming_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             clipped_from_video_uid="023e105f4ecef8ad9ca31a8372d0c353",
             end_time_seconds=0,
             start_time_seconds=0,
@@ -82,7 +82,7 @@ class TestClips:
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.stream.clips.with_raw_response.create(
-                "",
+                account_id="",
                 clipped_from_video_uid="023e105f4ecef8ad9ca31a8372d0c353",
                 end_time_seconds=0,
                 start_time_seconds=0,
@@ -96,7 +96,7 @@ class TestAsyncClips:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         clip = await async_client.stream.clips.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             clipped_from_video_uid="023e105f4ecef8ad9ca31a8372d0c353",
             end_time_seconds=0,
             start_time_seconds=0,
@@ -107,7 +107,7 @@ class TestAsyncClips:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         clip = await async_client.stream.clips.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             clipped_from_video_uid="023e105f4ecef8ad9ca31a8372d0c353",
             end_time_seconds=0,
             start_time_seconds=0,
@@ -124,7 +124,7 @@ class TestAsyncClips:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.stream.clips.with_raw_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             clipped_from_video_uid="023e105f4ecef8ad9ca31a8372d0c353",
             end_time_seconds=0,
             start_time_seconds=0,
@@ -139,7 +139,7 @@ class TestAsyncClips:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.stream.clips.with_streaming_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             clipped_from_video_uid="023e105f4ecef8ad9ca31a8372d0c353",
             end_time_seconds=0,
             start_time_seconds=0,
@@ -157,7 +157,7 @@ class TestAsyncClips:
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.stream.clips.with_raw_response.create(
-                "",
+                account_id="",
                 clipped_from_video_uid="023e105f4ecef8ad9ca31a8372d0c353",
                 end_time_seconds=0,
                 start_time_seconds=0,

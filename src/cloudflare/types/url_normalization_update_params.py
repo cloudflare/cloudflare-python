@@ -2,12 +2,15 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing_extensions import Required, TypedDict
 
 __all__ = ["URLNormalizationUpdateParams"]
 
 
 class URLNormalizationUpdateParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     scope: str
     """The scope of the URL normalization."""
 

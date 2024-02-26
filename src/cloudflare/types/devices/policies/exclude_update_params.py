@@ -9,6 +9,8 @@ __all__ = ["ExcludeUpdateParams", "Body"]
 
 
 class ExcludeUpdateParams(TypedDict, total=False):
+    account_id: Required[object]
+
     body: Required[Iterable[Body]]
 
 

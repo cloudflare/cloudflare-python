@@ -37,8 +37,8 @@ class Miscategorizations(SyncAPIResource):
 
     def create(
         self,
-        account_id: str,
         *,
+        account_id: str,
         content_adds: object | NotGiven = NOT_GIVEN,
         content_removes: object | NotGiven = NOT_GIVEN,
         indicator_type: Literal["domain", "ipv4", "ipv6", "url"] | NotGiven = NOT_GIVEN,
@@ -124,8 +124,8 @@ class AsyncMiscategorizations(AsyncAPIResource):
 
     async def create(
         self,
-        account_id: str,
         *,
+        account_id: str,
         content_adds: object | NotGiven = NOT_GIVEN,
         content_removes: object | NotGiven = NOT_GIVEN,
         indicator_type: Literal["domain", "ipv4", "ipv6", "url"] | NotGiven = NOT_GIVEN,

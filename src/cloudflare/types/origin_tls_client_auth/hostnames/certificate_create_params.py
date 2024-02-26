@@ -8,6 +8,9 @@ __all__ = ["CertificateCreateParams"]
 
 
 class CertificateCreateParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     certificate: Required[str]
     """The hostname certificate."""
 

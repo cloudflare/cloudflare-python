@@ -37,8 +37,8 @@ class Scripts(SyncAPIResource):
 
     def list(
         self,
-        zone_id: str,
         *,
+        zone_id: str,
         direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         exclude_cdn_cgi: bool | NotGiven = NOT_GIVEN,
         exclude_duplicates: bool | NotGiven = NOT_GIVEN,
@@ -208,8 +208,8 @@ class AsyncScripts(AsyncAPIResource):
 
     async def list(
         self,
-        zone_id: str,
         *,
+        zone_id: str,
         direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         exclude_cdn_cgi: bool | NotGiven = NOT_GIVEN,
         exclude_duplicates: bool | NotGiven = NOT_GIVEN,
