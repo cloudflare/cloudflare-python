@@ -2,77 +2,40 @@
 
 from __future__ import annotations
 
-from .force_axfr_secondary_dns_secondary_zone_force_axfr_response import (
-    ForceAxfrSecondaryDNSSecondaryZoneForceAxfrResponse as ForceAxfrSecondaryDNSSecondaryZoneForceAxfrResponse,
-)
-from .incoming_delete_response import IncomingDeleteResponse as IncomingDeleteResponse
-from .incoming_secondary_dns_secondary_zone_create_secondary_zone_configuration_response import (
-    IncomingSecondaryDNSSecondaryZoneCreateSecondaryZoneConfigurationResponse as IncomingSecondaryDNSSecondaryZoneCreateSecondaryZoneConfigurationResponse,
-)
-from .incoming_secondary_dns_secondary_zone_secondary_zone_configuration_details_response import (
-    IncomingSecondaryDNSSecondaryZoneSecondaryZoneConfigurationDetailsResponse as IncomingSecondaryDNSSecondaryZoneSecondaryZoneConfigurationDetailsResponse,
-)
-from .incoming_secondary_dns_secondary_zone_update_secondary_zone_configuration_response import (
-    IncomingSecondaryDNSSecondaryZoneUpdateSecondaryZoneConfigurationResponse as IncomingSecondaryDNSSecondaryZoneUpdateSecondaryZoneConfigurationResponse,
-)
-from .incoming_secondary_dns_secondary_zone_create_secondary_zone_configuration_params import (
-    IncomingSecondaryDNSSecondaryZoneCreateSecondaryZoneConfigurationParams as IncomingSecondaryDNSSecondaryZoneCreateSecondaryZoneConfigurationParams,
-)
-from .incoming_secondary_dns_secondary_zone_update_secondary_zone_configuration_params import (
-    IncomingSecondaryDNSSecondaryZoneUpdateSecondaryZoneConfigurationParams as IncomingSecondaryDNSSecondaryZoneUpdateSecondaryZoneConfigurationParams,
-)
-from .outgoing_delete_response import OutgoingDeleteResponse as OutgoingDeleteResponse
-from .outgoing_secondary_dns_primary_zone_create_primary_zone_configuration_response import (
-    OutgoingSecondaryDNSPrimaryZoneCreatePrimaryZoneConfigurationResponse as OutgoingSecondaryDNSPrimaryZoneCreatePrimaryZoneConfigurationResponse,
-)
-from .outgoing_secondary_dns_primary_zone_primary_zone_configuration_details_response import (
-    OutgoingSecondaryDNSPrimaryZonePrimaryZoneConfigurationDetailsResponse as OutgoingSecondaryDNSPrimaryZonePrimaryZoneConfigurationDetailsResponse,
-)
-from .outgoing_secondary_dns_primary_zone_update_primary_zone_configuration_response import (
-    OutgoingSecondaryDNSPrimaryZoneUpdatePrimaryZoneConfigurationResponse as OutgoingSecondaryDNSPrimaryZoneUpdatePrimaryZoneConfigurationResponse,
-)
-from .outgoing_secondary_dns_primary_zone_create_primary_zone_configuration_params import (
-    OutgoingSecondaryDNSPrimaryZoneCreatePrimaryZoneConfigurationParams as OutgoingSecondaryDNSPrimaryZoneCreatePrimaryZoneConfigurationParams,
-)
-from .outgoing_secondary_dns_primary_zone_update_primary_zone_configuration_params import (
-    OutgoingSecondaryDNSPrimaryZoneUpdatePrimaryZoneConfigurationParams as OutgoingSecondaryDNSPrimaryZoneUpdatePrimaryZoneConfigurationParams,
-)
-from .acl_update_response import ACLUpdateResponse as ACLUpdateResponse
-from .acl_delete_response import ACLDeleteResponse as ACLDeleteResponse
 from .acl_get_response import ACLGetResponse as ACLGetResponse
-from .acl_secondary_dns_acl_create_acl_response import (
-    ACLSecondaryDNSACLCreateACLResponse as ACLSecondaryDNSACLCreateACLResponse,
-)
-from .acl_secondary_dns_acl_list_acls_response import (
-    ACLSecondaryDNSACLListACLsResponse as ACLSecondaryDNSACLListACLsResponse,
-)
+from .acl_create_params import ACLCreateParams as ACLCreateParams
+from .acl_list_response import ACLListResponse as ACLListResponse
 from .acl_update_params import ACLUpdateParams as ACLUpdateParams
-from .acl_secondary_dns_acl_create_acl_params import (
-    ACLSecondaryDNSACLCreateACLParams as ACLSecondaryDNSACLCreateACLParams,
-)
-from .peer_update_response import PeerUpdateResponse as PeerUpdateResponse
-from .peer_delete_response import PeerDeleteResponse as PeerDeleteResponse
 from .peer_get_response import PeerGetResponse as PeerGetResponse
-from .peer_secondary_dns_peer_create_peer_response import (
-    PeerSecondaryDNSPeerCreatePeerResponse as PeerSecondaryDNSPeerCreatePeerResponse,
-)
-from .peer_secondary_dns_peer_list_peers_response import (
-    PeerSecondaryDNSPeerListPeersResponse as PeerSecondaryDNSPeerListPeersResponse,
-)
+from .tsig_get_response import TSIGGetResponse as TSIGGetResponse
+from .peer_create_params import PeerCreateParams as PeerCreateParams
+from .peer_list_response import PeerListResponse as PeerListResponse
 from .peer_update_params import PeerUpdateParams as PeerUpdateParams
-from .peer_secondary_dns_peer_create_peer_params import (
-    PeerSecondaryDNSPeerCreatePeerParams as PeerSecondaryDNSPeerCreatePeerParams,
-)
-from .tsig_update_response import TsigUpdateResponse as TsigUpdateResponse
-from .tsig_delete_response import TsigDeleteResponse as TsigDeleteResponse
-from .tsig_get_response import TsigGetResponse as TsigGetResponse
-from .tsig_secondary_dns_tsig_create_tsig_response import (
-    TsigSecondaryDNSTsigCreateTsigResponse as TsigSecondaryDNSTsigCreateTsigResponse,
-)
-from .tsig_secondary_dns_tsig_list_tsi_gs_response import (
-    TsigSecondaryDNSTsigListTsiGsResponse as TsigSecondaryDNSTsigListTsiGsResponse,
-)
-from .tsig_update_params import TsigUpdateParams as TsigUpdateParams
-from .tsig_secondary_dns_tsig_create_tsig_params import (
-    TsigSecondaryDNSTsigCreateTsigParams as TsigSecondaryDNSTsigCreateTsigParams,
-)
+from .tsig_create_params import TSIGCreateParams as TSIGCreateParams
+from .tsig_list_response import TSIGListResponse as TSIGListResponse
+from .tsig_update_params import TSIGUpdateParams as TSIGUpdateParams
+from .acl_create_response import ACLCreateResponse as ACLCreateResponse
+from .acl_delete_response import ACLDeleteResponse as ACLDeleteResponse
+from .acl_update_response import ACLUpdateResponse as ACLUpdateResponse
+from .peer_create_response import PeerCreateResponse as PeerCreateResponse
+from .peer_delete_response import PeerDeleteResponse as PeerDeleteResponse
+from .peer_update_response import PeerUpdateResponse as PeerUpdateResponse
+from .tsig_create_response import TSIGCreateResponse as TSIGCreateResponse
+from .tsig_delete_response import TSIGDeleteResponse as TSIGDeleteResponse
+from .tsig_update_response import TSIGUpdateResponse as TSIGUpdateResponse
+from .incoming_get_response import IncomingGetResponse as IncomingGetResponse
+from .outgoing_get_response import OutgoingGetResponse as OutgoingGetResponse
+from .incoming_create_params import IncomingCreateParams as IncomingCreateParams
+from .incoming_update_params import IncomingUpdateParams as IncomingUpdateParams
+from .outgoing_create_params import OutgoingCreateParams as OutgoingCreateParams
+from .outgoing_update_params import OutgoingUpdateParams as OutgoingUpdateParams
+from .incoming_create_response import IncomingCreateResponse as IncomingCreateResponse
+from .incoming_delete_response import IncomingDeleteResponse as IncomingDeleteResponse
+from .incoming_update_response import IncomingUpdateResponse as IncomingUpdateResponse
+from .outgoing_create_response import OutgoingCreateResponse as OutgoingCreateResponse
+from .outgoing_delete_response import OutgoingDeleteResponse as OutgoingDeleteResponse
+from .outgoing_enable_response import OutgoingEnableResponse as OutgoingEnableResponse
+from .outgoing_update_response import OutgoingUpdateResponse as OutgoingUpdateResponse
+from .outgoing_disable_response import OutgoingDisableResponse as OutgoingDisableResponse
+from .force_axfr_create_response import ForceAxfrCreateResponse as ForceAxfrCreateResponse
+from .outgoing_force_notify_response import OutgoingForceNotifyResponse as OutgoingForceNotifyResponse

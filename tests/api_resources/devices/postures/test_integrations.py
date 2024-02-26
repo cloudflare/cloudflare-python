@@ -2,27 +2,19 @@
 
 from __future__ import annotations
 
-from typing import Optional, Any, cast
-
-from cloudflare.types.devices.postures import (
-    IntegrationUpdateResponse,
-    IntegrationDeleteResponse,
-    IntegrationDevicePostureIntegrationsCreateDevicePostureIntegrationResponse,
-    IntegrationDevicePostureIntegrationsListDevicePostureIntegrationsResponse,
-    IntegrationGetResponse,
-)
-
 import os
+from typing import Any, Optional, cast
+
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.devices.postures import integration_update_params
 from cloudflare.types.devices.postures import (
-    integration_device_posture_integrations_create_device_posture_integration_params,
+    IntegrationGetResponse,
+    IntegrationEditResponse,
+    IntegrationListResponse,
+    IntegrationCreateResponse,
+    IntegrationDeleteResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -33,19 +25,9 @@ class TestIntegrations:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_update(self, client: Cloudflare) -> None:
-        integration = client.devices.postures.integrations.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            identifier="699d98642c564d2e855e9661899b7252",
-        )
-        assert_matches_type(Optional[IntegrationUpdateResponse], integration, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_method_update_with_all_params(self, client: Cloudflare) -> None:
-        integration = client.devices.postures.integrations.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            identifier="699d98642c564d2e855e9661899b7252",
+    def test_method_create(self, client: Cloudflare) -> None:
+        integration = client.devices.postures.integrations.create(
+            "699d98642c564d2e855e9661899b7252",
             config={
                 "api_url": "https://as123.awmdm.com/API",
                 "auth_url": "https://na.uemauth.vmwservices.com/connect/token",
@@ -56,51 +38,109 @@ class TestIntegrations:
             name="My Workspace One Integration",
             type="workspace_one",
         )
-        assert_matches_type(Optional[IntegrationUpdateResponse], integration, path=["response"])
+        assert_matches_type(Optional[IntegrationCreateResponse], integration, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_update(self, client: Cloudflare) -> None:
-        response = client.devices.postures.integrations.with_raw_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            identifier="699d98642c564d2e855e9661899b7252",
+    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
+        integration = client.devices.postures.integrations.create(
+            "699d98642c564d2e855e9661899b7252",
+            config={
+                "api_url": "https://as123.awmdm.com/API",
+                "auth_url": "https://na.uemauth.vmwservices.com/connect/token",
+                "client_id": "example client id",
+                "client_secret": "example client secret",
+            },
+            interval="10m",
+            name="My Workspace One Integration",
+            type="workspace_one",
+        )
+        assert_matches_type(Optional[IntegrationCreateResponse], integration, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_create(self, client: Cloudflare) -> None:
+        response = client.devices.postures.integrations.with_raw_response.create(
+            "699d98642c564d2e855e9661899b7252",
+            config={
+                "api_url": "https://as123.awmdm.com/API",
+                "auth_url": "https://na.uemauth.vmwservices.com/connect/token",
+                "client_id": "example client id",
+                "client_secret": "example client secret",
+            },
+            interval="10m",
+            name="My Workspace One Integration",
+            type="workspace_one",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         integration = response.parse()
-        assert_matches_type(Optional[IntegrationUpdateResponse], integration, path=["response"])
+        assert_matches_type(Optional[IntegrationCreateResponse], integration, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_update(self, client: Cloudflare) -> None:
-        with client.devices.postures.integrations.with_streaming_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            identifier="699d98642c564d2e855e9661899b7252",
+    def test_streaming_response_create(self, client: Cloudflare) -> None:
+        with client.devices.postures.integrations.with_streaming_response.create(
+            "699d98642c564d2e855e9661899b7252",
+            config={
+                "api_url": "https://as123.awmdm.com/API",
+                "auth_url": "https://na.uemauth.vmwservices.com/connect/token",
+                "client_id": "example client id",
+                "client_secret": "example client secret",
+            },
+            interval="10m",
+            name="My Workspace One Integration",
+            type="workspace_one",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             integration = response.parse()
-            assert_matches_type(Optional[IntegrationUpdateResponse], integration, path=["response"])
+            assert_matches_type(Optional[IntegrationCreateResponse], integration, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_update(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
-            client.devices.postures.integrations.with_raw_response.update(
-                "",
-                identifier="699d98642c564d2e855e9661899b7252",
-            )
+    def test_method_list(self, client: Cloudflare) -> None:
+        integration = client.devices.postures.integrations.list(
+            "699d98642c564d2e855e9661899b7252",
+        )
+        assert_matches_type(Optional[IntegrationListResponse], integration, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_list(self, client: Cloudflare) -> None:
+        response = client.devices.postures.integrations.with_raw_response.list(
+            "699d98642c564d2e855e9661899b7252",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        integration = response.parse()
+        assert_matches_type(Optional[IntegrationListResponse], integration, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_list(self, client: Cloudflare) -> None:
+        with client.devices.postures.integrations.with_streaming_response.list(
+            "699d98642c564d2e855e9661899b7252",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            integration = response.parse()
+            assert_matches_type(Optional[IntegrationListResponse], integration, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         integration = client.devices.postures.integrations.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            identifier="699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[IntegrationDeleteResponse], integration, path=["response"])
 
@@ -109,7 +149,7 @@ class TestIntegrations:
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.devices.postures.integrations.with_raw_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            identifier="699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
 
         assert response.is_closed is True
@@ -122,7 +162,7 @@ class TestIntegrations:
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.devices.postures.integrations.with_streaming_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            identifier="699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -135,67 +175,27 @@ class TestIntegrations:
     @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `integration_id` but received ''"):
             client.devices.postures.integrations.with_raw_response.delete(
                 "",
-                identifier="699d98642c564d2e855e9661899b7252",
+                account_id="699d98642c564d2e855e9661899b7252",
             )
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_device_posture_integrations_create_device_posture_integration(self, client: Cloudflare) -> None:
-        integration = (
-            client.devices.postures.integrations.device_posture_integrations_create_device_posture_integration(
-                "699d98642c564d2e855e9661899b7252",
-                config={
-                    "api_url": "https://as123.awmdm.com/API",
-                    "auth_url": "https://na.uemauth.vmwservices.com/connect/token",
-                    "client_id": "example client id",
-                    "client_secret": "example client secret",
-                },
-                interval="10m",
-                name="My Workspace One Integration",
-                type="workspace_one",
-            )
+    def test_method_edit(self, client: Cloudflare) -> None:
+        integration = client.devices.postures.integrations.edit(
+            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(
-            Optional[IntegrationDevicePostureIntegrationsCreateDevicePostureIntegrationResponse],
-            integration,
-            path=["response"],
-        )
+        assert_matches_type(Optional[IntegrationEditResponse], integration, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_device_posture_integrations_create_device_posture_integration_with_all_params(
-        self, client: Cloudflare
-    ) -> None:
-        integration = (
-            client.devices.postures.integrations.device_posture_integrations_create_device_posture_integration(
-                "699d98642c564d2e855e9661899b7252",
-                config={
-                    "api_url": "https://as123.awmdm.com/API",
-                    "auth_url": "https://na.uemauth.vmwservices.com/connect/token",
-                    "client_id": "example client id",
-                    "client_secret": "example client secret",
-                },
-                interval="10m",
-                name="My Workspace One Integration",
-                type="workspace_one",
-            )
-        )
-        assert_matches_type(
-            Optional[IntegrationDevicePostureIntegrationsCreateDevicePostureIntegrationResponse],
-            integration,
-            path=["response"],
-        )
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_raw_response_device_posture_integrations_create_device_posture_integration(
-        self, client: Cloudflare
-    ) -> None:
-        response = client.devices.postures.integrations.with_raw_response.device_posture_integrations_create_device_posture_integration(
-            "699d98642c564d2e855e9661899b7252",
+    def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
+        integration = client.devices.postures.integrations.edit(
+            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="699d98642c564d2e855e9661899b7252",
             config={
                 "api_url": "https://as123.awmdm.com/API",
                 "auth_url": "https://na.uemauth.vmwservices.com/connect/token",
@@ -206,101 +206,51 @@ class TestIntegrations:
             name="My Workspace One Integration",
             type="workspace_one",
         )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        integration = response.parse()
-        assert_matches_type(
-            Optional[IntegrationDevicePostureIntegrationsCreateDevicePostureIntegrationResponse],
-            integration,
-            path=["response"],
-        )
+        assert_matches_type(Optional[IntegrationEditResponse], integration, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_device_posture_integrations_create_device_posture_integration(
-        self, client: Cloudflare
-    ) -> None:
-        with client.devices.postures.integrations.with_streaming_response.device_posture_integrations_create_device_posture_integration(
-            "699d98642c564d2e855e9661899b7252",
-            config={
-                "api_url": "https://as123.awmdm.com/API",
-                "auth_url": "https://na.uemauth.vmwservices.com/connect/token",
-                "client_id": "example client id",
-                "client_secret": "example client secret",
-            },
-            interval="10m",
-            name="My Workspace One Integration",
-            type="workspace_one",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            integration = response.parse()
-            assert_matches_type(
-                Optional[IntegrationDevicePostureIntegrationsCreateDevicePostureIntegrationResponse],
-                integration,
-                path=["response"],
-            )
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_method_device_posture_integrations_list_device_posture_integrations(self, client: Cloudflare) -> None:
-        integration = client.devices.postures.integrations.device_posture_integrations_list_device_posture_integrations(
-            "699d98642c564d2e855e9661899b7252",
-        )
-        assert_matches_type(
-            Optional[IntegrationDevicePostureIntegrationsListDevicePostureIntegrationsResponse],
-            integration,
-            path=["response"],
-        )
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_raw_response_device_posture_integrations_list_device_posture_integrations(
-        self, client: Cloudflare
-    ) -> None:
-        response = client.devices.postures.integrations.with_raw_response.device_posture_integrations_list_device_posture_integrations(
-            "699d98642c564d2e855e9661899b7252",
+    def test_raw_response_edit(self, client: Cloudflare) -> None:
+        response = client.devices.postures.integrations.with_raw_response.edit(
+            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         integration = response.parse()
-        assert_matches_type(
-            Optional[IntegrationDevicePostureIntegrationsListDevicePostureIntegrationsResponse],
-            integration,
-            path=["response"],
-        )
+        assert_matches_type(Optional[IntegrationEditResponse], integration, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_device_posture_integrations_list_device_posture_integrations(
-        self, client: Cloudflare
-    ) -> None:
-        with client.devices.postures.integrations.with_streaming_response.device_posture_integrations_list_device_posture_integrations(
-            "699d98642c564d2e855e9661899b7252",
+    def test_streaming_response_edit(self, client: Cloudflare) -> None:
+        with client.devices.postures.integrations.with_streaming_response.edit(
+            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             integration = response.parse()
-            assert_matches_type(
-                Optional[IntegrationDevicePostureIntegrationsListDevicePostureIntegrationsResponse],
-                integration,
-                path=["response"],
-            )
+            assert_matches_type(Optional[IntegrationEditResponse], integration, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_edit(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `integration_id` but received ''"):
+            client.devices.postures.integrations.with_raw_response.edit(
+                "",
+                account_id="699d98642c564d2e855e9661899b7252",
+            )
 
     @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         integration = client.devices.postures.integrations.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            identifier="699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[IntegrationGetResponse], integration, path=["response"])
 
@@ -309,7 +259,7 @@ class TestIntegrations:
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.devices.postures.integrations.with_raw_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            identifier="699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
 
         assert response.is_closed is True
@@ -322,7 +272,7 @@ class TestIntegrations:
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.devices.postures.integrations.with_streaming_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            identifier="699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -335,10 +285,10 @@ class TestIntegrations:
     @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `integration_id` but received ''"):
             client.devices.postures.integrations.with_raw_response.get(
                 "",
-                identifier="699d98642c564d2e855e9661899b7252",
+                account_id="699d98642c564d2e855e9661899b7252",
             )
 
 
@@ -347,19 +297,9 @@ class TestAsyncIntegrations:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_update(self, async_client: AsyncCloudflare) -> None:
-        integration = await async_client.devices.postures.integrations.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            identifier="699d98642c564d2e855e9661899b7252",
-        )
-        assert_matches_type(Optional[IntegrationUpdateResponse], integration, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        integration = await async_client.devices.postures.integrations.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            identifier="699d98642c564d2e855e9661899b7252",
+    async def test_method_create(self, async_client: AsyncCloudflare) -> None:
+        integration = await async_client.devices.postures.integrations.create(
+            "699d98642c564d2e855e9661899b7252",
             config={
                 "api_url": "https://as123.awmdm.com/API",
                 "auth_url": "https://na.uemauth.vmwservices.com/connect/token",
@@ -370,51 +310,109 @@ class TestAsyncIntegrations:
             name="My Workspace One Integration",
             type="workspace_one",
         )
-        assert_matches_type(Optional[IntegrationUpdateResponse], integration, path=["response"])
+        assert_matches_type(Optional[IntegrationCreateResponse], integration, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.devices.postures.integrations.with_raw_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            identifier="699d98642c564d2e855e9661899b7252",
+    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        integration = await async_client.devices.postures.integrations.create(
+            "699d98642c564d2e855e9661899b7252",
+            config={
+                "api_url": "https://as123.awmdm.com/API",
+                "auth_url": "https://na.uemauth.vmwservices.com/connect/token",
+                "client_id": "example client id",
+                "client_secret": "example client secret",
+            },
+            interval="10m",
+            name="My Workspace One Integration",
+            type="workspace_one",
+        )
+        assert_matches_type(Optional[IntegrationCreateResponse], integration, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.devices.postures.integrations.with_raw_response.create(
+            "699d98642c564d2e855e9661899b7252",
+            config={
+                "api_url": "https://as123.awmdm.com/API",
+                "auth_url": "https://na.uemauth.vmwservices.com/connect/token",
+                "client_id": "example client id",
+                "client_secret": "example client secret",
+            },
+            interval="10m",
+            name="My Workspace One Integration",
+            type="workspace_one",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         integration = await response.parse()
-        assert_matches_type(Optional[IntegrationUpdateResponse], integration, path=["response"])
+        assert_matches_type(Optional[IntegrationCreateResponse], integration, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.devices.postures.integrations.with_streaming_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            identifier="699d98642c564d2e855e9661899b7252",
+    async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.devices.postures.integrations.with_streaming_response.create(
+            "699d98642c564d2e855e9661899b7252",
+            config={
+                "api_url": "https://as123.awmdm.com/API",
+                "auth_url": "https://na.uemauth.vmwservices.com/connect/token",
+                "client_id": "example client id",
+                "client_secret": "example client secret",
+            },
+            interval="10m",
+            name="My Workspace One Integration",
+            type="workspace_one",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             integration = await response.parse()
-            assert_matches_type(Optional[IntegrationUpdateResponse], integration, path=["response"])
+            assert_matches_type(Optional[IntegrationCreateResponse], integration, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
-            await async_client.devices.postures.integrations.with_raw_response.update(
-                "",
-                identifier="699d98642c564d2e855e9661899b7252",
-            )
+    async def test_method_list(self, async_client: AsyncCloudflare) -> None:
+        integration = await async_client.devices.postures.integrations.list(
+            "699d98642c564d2e855e9661899b7252",
+        )
+        assert_matches_type(Optional[IntegrationListResponse], integration, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.devices.postures.integrations.with_raw_response.list(
+            "699d98642c564d2e855e9661899b7252",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        integration = await response.parse()
+        assert_matches_type(Optional[IntegrationListResponse], integration, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.devices.postures.integrations.with_streaming_response.list(
+            "699d98642c564d2e855e9661899b7252",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            integration = await response.parse()
+            assert_matches_type(Optional[IntegrationListResponse], integration, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         integration = await async_client.devices.postures.integrations.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            identifier="699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[IntegrationDeleteResponse], integration, path=["response"])
 
@@ -423,7 +421,7 @@ class TestAsyncIntegrations:
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.devices.postures.integrations.with_raw_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            identifier="699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
 
         assert response.is_closed is True
@@ -436,7 +434,7 @@ class TestAsyncIntegrations:
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.devices.postures.integrations.with_streaming_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            identifier="699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -449,42 +447,27 @@ class TestAsyncIntegrations:
     @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `integration_id` but received ''"):
             await async_client.devices.postures.integrations.with_raw_response.delete(
                 "",
-                identifier="699d98642c564d2e855e9661899b7252",
+                account_id="699d98642c564d2e855e9661899b7252",
             )
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_device_posture_integrations_create_device_posture_integration(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        integration = await async_client.devices.postures.integrations.device_posture_integrations_create_device_posture_integration(
-            "699d98642c564d2e855e9661899b7252",
-            config={
-                "api_url": "https://as123.awmdm.com/API",
-                "auth_url": "https://na.uemauth.vmwservices.com/connect/token",
-                "client_id": "example client id",
-                "client_secret": "example client secret",
-            },
-            interval="10m",
-            name="My Workspace One Integration",
-            type="workspace_one",
+    async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
+        integration = await async_client.devices.postures.integrations.edit(
+            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(
-            Optional[IntegrationDevicePostureIntegrationsCreateDevicePostureIntegrationResponse],
-            integration,
-            path=["response"],
-        )
+        assert_matches_type(Optional[IntegrationEditResponse], integration, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_device_posture_integrations_create_device_posture_integration_with_all_params(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        integration = await async_client.devices.postures.integrations.device_posture_integrations_create_device_posture_integration(
-            "699d98642c564d2e855e9661899b7252",
+    async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        integration = await async_client.devices.postures.integrations.edit(
+            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="699d98642c564d2e855e9661899b7252",
             config={
                 "api_url": "https://as123.awmdm.com/API",
                 "auth_url": "https://na.uemauth.vmwservices.com/connect/token",
@@ -495,126 +478,51 @@ class TestAsyncIntegrations:
             name="My Workspace One Integration",
             type="workspace_one",
         )
-        assert_matches_type(
-            Optional[IntegrationDevicePostureIntegrationsCreateDevicePostureIntegrationResponse],
-            integration,
-            path=["response"],
-        )
+        assert_matches_type(Optional[IntegrationEditResponse], integration, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_device_posture_integrations_create_device_posture_integration(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        response = await async_client.devices.postures.integrations.with_raw_response.device_posture_integrations_create_device_posture_integration(
-            "699d98642c564d2e855e9661899b7252",
-            config={
-                "api_url": "https://as123.awmdm.com/API",
-                "auth_url": "https://na.uemauth.vmwservices.com/connect/token",
-                "client_id": "example client id",
-                "client_secret": "example client secret",
-            },
-            interval="10m",
-            name="My Workspace One Integration",
-            type="workspace_one",
+    async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.devices.postures.integrations.with_raw_response.edit(
+            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         integration = await response.parse()
-        assert_matches_type(
-            Optional[IntegrationDevicePostureIntegrationsCreateDevicePostureIntegrationResponse],
-            integration,
-            path=["response"],
-        )
+        assert_matches_type(Optional[IntegrationEditResponse], integration, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_device_posture_integrations_create_device_posture_integration(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        async with async_client.devices.postures.integrations.with_streaming_response.device_posture_integrations_create_device_posture_integration(
-            "699d98642c564d2e855e9661899b7252",
-            config={
-                "api_url": "https://as123.awmdm.com/API",
-                "auth_url": "https://na.uemauth.vmwservices.com/connect/token",
-                "client_id": "example client id",
-                "client_secret": "example client secret",
-            },
-            interval="10m",
-            name="My Workspace One Integration",
-            type="workspace_one",
+    async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.devices.postures.integrations.with_streaming_response.edit(
+            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             integration = await response.parse()
-            assert_matches_type(
-                Optional[IntegrationDevicePostureIntegrationsCreateDevicePostureIntegrationResponse],
-                integration,
-                path=["response"],
-            )
+            assert_matches_type(Optional[IntegrationEditResponse], integration, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_device_posture_integrations_list_device_posture_integrations(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        integration = await async_client.devices.postures.integrations.device_posture_integrations_list_device_posture_integrations(
-            "699d98642c564d2e855e9661899b7252",
-        )
-        assert_matches_type(
-            Optional[IntegrationDevicePostureIntegrationsListDevicePostureIntegrationsResponse],
-            integration,
-            path=["response"],
-        )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_raw_response_device_posture_integrations_list_device_posture_integrations(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        response = await async_client.devices.postures.integrations.with_raw_response.device_posture_integrations_list_device_posture_integrations(
-            "699d98642c564d2e855e9661899b7252",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        integration = await response.parse()
-        assert_matches_type(
-            Optional[IntegrationDevicePostureIntegrationsListDevicePostureIntegrationsResponse],
-            integration,
-            path=["response"],
-        )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_streaming_response_device_posture_integrations_list_device_posture_integrations(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        async with async_client.devices.postures.integrations.with_streaming_response.device_posture_integrations_list_device_posture_integrations(
-            "699d98642c564d2e855e9661899b7252",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            integration = await response.parse()
-            assert_matches_type(
-                Optional[IntegrationDevicePostureIntegrationsListDevicePostureIntegrationsResponse],
-                integration,
-                path=["response"],
+    async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `integration_id` but received ''"):
+            await async_client.devices.postures.integrations.with_raw_response.edit(
+                "",
+                account_id="699d98642c564d2e855e9661899b7252",
             )
-
-        assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         integration = await async_client.devices.postures.integrations.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            identifier="699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[IntegrationGetResponse], integration, path=["response"])
 
@@ -623,7 +531,7 @@ class TestAsyncIntegrations:
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.devices.postures.integrations.with_raw_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            identifier="699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
 
         assert response.is_closed is True
@@ -636,7 +544,7 @@ class TestAsyncIntegrations:
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.devices.postures.integrations.with_streaming_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            identifier="699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -649,8 +557,8 @@ class TestAsyncIntegrations:
     @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `integration_id` but received ''"):
             await async_client.devices.postures.integrations.with_raw_response.get(
                 "",
-                identifier="699d98642c564d2e855e9661899b7252",
+                account_id="699d98642c564d2e855e9661899b7252",
             )

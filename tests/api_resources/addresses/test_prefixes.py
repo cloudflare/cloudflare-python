@@ -2,26 +2,20 @@
 
 from __future__ import annotations
 
-from cloudflare.types.addresses import (
-    PrefixUpdateResponse,
-    PrefixDeleteResponse,
-    PrefixGetResponse,
-    PrefixIPAddressManagementPrefixesAddPrefixResponse,
-    PrefixIPAddressManagementPrefixesListPrefixesResponse,
-)
-
-from typing import Any, cast, Optional
-
 import os
+from typing import Any, Optional, cast
+
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.addresses import prefix_update_params
-from cloudflare.types.addresses import prefix_ip_address_management_prefixes_add_prefix_params
+from cloudflare.types.addresses import (
+    PrefixGetResponse,
+    PrefixEditResponse,
+    PrefixListResponse,
+    PrefixCreateResponse,
+    PrefixDeleteResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -31,59 +25,98 @@ class TestPrefixes:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_update(self, client: Cloudflare) -> None:
-        prefix = client.addresses.prefixes.update(
+    def test_method_create(self, client: Cloudflare) -> None:
+        prefix = client.addresses.prefixes.create(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            description="Internal test prefix",
+            asn=209242,
+            cidr="192.0.2.0/24",
+            loa_document_id="d933b1530bc56c9953cf8ce166da8004",
         )
-        assert_matches_type(PrefixUpdateResponse, prefix, path=["response"])
+        assert_matches_type(PrefixCreateResponse, prefix, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_update(self, client: Cloudflare) -> None:
-        response = client.addresses.prefixes.with_raw_response.update(
+    def test_raw_response_create(self, client: Cloudflare) -> None:
+        response = client.addresses.prefixes.with_raw_response.create(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            description="Internal test prefix",
+            asn=209242,
+            cidr="192.0.2.0/24",
+            loa_document_id="d933b1530bc56c9953cf8ce166da8004",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         prefix = response.parse()
-        assert_matches_type(PrefixUpdateResponse, prefix, path=["response"])
+        assert_matches_type(PrefixCreateResponse, prefix, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_update(self, client: Cloudflare) -> None:
-        with client.addresses.prefixes.with_streaming_response.update(
+    def test_streaming_response_create(self, client: Cloudflare) -> None:
+        with client.addresses.prefixes.with_streaming_response.create(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            description="Internal test prefix",
+            asn=209242,
+            cidr="192.0.2.0/24",
+            loa_document_id="d933b1530bc56c9953cf8ce166da8004",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             prefix = response.parse()
-            assert_matches_type(PrefixUpdateResponse, prefix, path=["response"])
+            assert_matches_type(PrefixCreateResponse, prefix, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_update(self, client: Cloudflare) -> None:
+    def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.addresses.prefixes.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
-                account_id="",
-                description="Internal test prefix",
+            client.addresses.prefixes.with_raw_response.create(
+                "",
+                asn=209242,
+                cidr="192.0.2.0/24",
+                loa_document_id="d933b1530bc56c9953cf8ce166da8004",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `prefix_id` but received ''"):
-            client.addresses.prefixes.with_raw_response.update(
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_list(self, client: Cloudflare) -> None:
+        prefix = client.addresses.prefixes.list(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(Optional[PrefixListResponse], prefix, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_list(self, client: Cloudflare) -> None:
+        response = client.addresses.prefixes.with_raw_response.list(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        prefix = response.parse()
+        assert_matches_type(Optional[PrefixListResponse], prefix, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_list(self, client: Cloudflare) -> None:
+        with client.addresses.prefixes.with_streaming_response.list(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            prefix = response.parse()
+            assert_matches_type(Optional[PrefixListResponse], prefix, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_list(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.addresses.prefixes.with_raw_response.list(
                 "",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                description="Internal test prefix",
             )
 
     @pytest.mark.skip()
@@ -140,6 +173,63 @@ class TestPrefixes:
 
     @pytest.mark.skip()
     @parametrize
+    def test_method_edit(self, client: Cloudflare) -> None:
+        prefix = client.addresses.prefixes.edit(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            description="Internal test prefix",
+        )
+        assert_matches_type(PrefixEditResponse, prefix, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_edit(self, client: Cloudflare) -> None:
+        response = client.addresses.prefixes.with_raw_response.edit(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            description="Internal test prefix",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        prefix = response.parse()
+        assert_matches_type(PrefixEditResponse, prefix, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_edit(self, client: Cloudflare) -> None:
+        with client.addresses.prefixes.with_streaming_response.edit(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            description="Internal test prefix",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            prefix = response.parse()
+            assert_matches_type(PrefixEditResponse, prefix, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_edit(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.addresses.prefixes.with_raw_response.edit(
+                "023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="",
+                description="Internal test prefix",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `prefix_id` but received ''"):
+            client.addresses.prefixes.with_raw_response.edit(
+                "",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                description="Internal test prefix",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         prefix = client.addresses.prefixes.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
@@ -190,21 +280,25 @@ class TestPrefixes:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
+
+class TestAsyncPrefixes:
+    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+
     @pytest.mark.skip()
     @parametrize
-    def test_method_ip_address_management_prefixes_add_prefix(self, client: Cloudflare) -> None:
-        prefix = client.addresses.prefixes.ip_address_management_prefixes_add_prefix(
+    async def test_method_create(self, async_client: AsyncCloudflare) -> None:
+        prefix = await async_client.addresses.prefixes.create(
             "023e105f4ecef8ad9ca31a8372d0c353",
             asn=209242,
             cidr="192.0.2.0/24",
             loa_document_id="d933b1530bc56c9953cf8ce166da8004",
         )
-        assert_matches_type(PrefixIPAddressManagementPrefixesAddPrefixResponse, prefix, path=["response"])
+        assert_matches_type(PrefixCreateResponse, prefix, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_ip_address_management_prefixes_add_prefix(self, client: Cloudflare) -> None:
-        response = client.addresses.prefixes.with_raw_response.ip_address_management_prefixes_add_prefix(
+    async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.addresses.prefixes.with_raw_response.create(
             "023e105f4ecef8ad9ca31a8372d0c353",
             asn=209242,
             cidr="192.0.2.0/24",
@@ -213,13 +307,13 @@ class TestPrefixes:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        prefix = response.parse()
-        assert_matches_type(PrefixIPAddressManagementPrefixesAddPrefixResponse, prefix, path=["response"])
+        prefix = await response.parse()
+        assert_matches_type(PrefixCreateResponse, prefix, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_ip_address_management_prefixes_add_prefix(self, client: Cloudflare) -> None:
-        with client.addresses.prefixes.with_streaming_response.ip_address_management_prefixes_add_prefix(
+    async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.addresses.prefixes.with_streaming_response.create(
             "023e105f4ecef8ad9ca31a8372d0c353",
             asn=209242,
             cidr="192.0.2.0/24",
@@ -228,16 +322,16 @@ class TestPrefixes:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            prefix = response.parse()
-            assert_matches_type(PrefixIPAddressManagementPrefixesAddPrefixResponse, prefix, path=["response"])
+            prefix = await response.parse()
+            assert_matches_type(PrefixCreateResponse, prefix, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_ip_address_management_prefixes_add_prefix(self, client: Cloudflare) -> None:
+    async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.addresses.prefixes.with_raw_response.ip_address_management_prefixes_add_prefix(
+            await async_client.addresses.prefixes.with_raw_response.create(
                 "",
                 asn=209242,
                 cidr="192.0.2.0/24",
@@ -246,107 +340,44 @@ class TestPrefixes:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_ip_address_management_prefixes_list_prefixes(self, client: Cloudflare) -> None:
-        prefix = client.addresses.prefixes.ip_address_management_prefixes_list_prefixes(
+    async def test_method_list(self, async_client: AsyncCloudflare) -> None:
+        prefix = await async_client.addresses.prefixes.list(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[PrefixIPAddressManagementPrefixesListPrefixesResponse], prefix, path=["response"])
+        assert_matches_type(Optional[PrefixListResponse], prefix, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_ip_address_management_prefixes_list_prefixes(self, client: Cloudflare) -> None:
-        response = client.addresses.prefixes.with_raw_response.ip_address_management_prefixes_list_prefixes(
+    async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.addresses.prefixes.with_raw_response.list(
             "023e105f4ecef8ad9ca31a8372d0c353",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        prefix = response.parse()
-        assert_matches_type(Optional[PrefixIPAddressManagementPrefixesListPrefixesResponse], prefix, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_streaming_response_ip_address_management_prefixes_list_prefixes(self, client: Cloudflare) -> None:
-        with client.addresses.prefixes.with_streaming_response.ip_address_management_prefixes_list_prefixes(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            prefix = response.parse()
-            assert_matches_type(
-                Optional[PrefixIPAddressManagementPrefixesListPrefixesResponse], prefix, path=["response"]
-            )
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_path_params_ip_address_management_prefixes_list_prefixes(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.addresses.prefixes.with_raw_response.ip_address_management_prefixes_list_prefixes(
-                "",
-            )
-
-
-class TestAsyncPrefixes:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_update(self, async_client: AsyncCloudflare) -> None:
-        prefix = await async_client.addresses.prefixes.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            description="Internal test prefix",
-        )
-        assert_matches_type(PrefixUpdateResponse, prefix, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.addresses.prefixes.with_raw_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            description="Internal test prefix",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         prefix = await response.parse()
-        assert_matches_type(PrefixUpdateResponse, prefix, path=["response"])
+        assert_matches_type(Optional[PrefixListResponse], prefix, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.addresses.prefixes.with_streaming_response.update(
+    async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.addresses.prefixes.with_streaming_response.list(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            description="Internal test prefix",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             prefix = await response.parse()
-            assert_matches_type(PrefixUpdateResponse, prefix, path=["response"])
+            assert_matches_type(Optional[PrefixListResponse], prefix, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
+    async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.addresses.prefixes.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
-                account_id="",
-                description="Internal test prefix",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `prefix_id` but received ''"):
-            await async_client.addresses.prefixes.with_raw_response.update(
+            await async_client.addresses.prefixes.with_raw_response.list(
                 "",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                description="Internal test prefix",
             )
 
     @pytest.mark.skip()
@@ -403,6 +434,63 @@ class TestAsyncPrefixes:
 
     @pytest.mark.skip()
     @parametrize
+    async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
+        prefix = await async_client.addresses.prefixes.edit(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            description="Internal test prefix",
+        )
+        assert_matches_type(PrefixEditResponse, prefix, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.addresses.prefixes.with_raw_response.edit(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            description="Internal test prefix",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        prefix = await response.parse()
+        assert_matches_type(PrefixEditResponse, prefix, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.addresses.prefixes.with_streaming_response.edit(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            description="Internal test prefix",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            prefix = await response.parse()
+            assert_matches_type(PrefixEditResponse, prefix, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.addresses.prefixes.with_raw_response.edit(
+                "023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="",
+                description="Internal test prefix",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `prefix_id` but received ''"):
+            await async_client.addresses.prefixes.with_raw_response.edit(
+                "",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                description="Internal test prefix",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         prefix = await async_client.addresses.prefixes.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
@@ -451,110 +539,4 @@ class TestAsyncPrefixes:
             await async_client.addresses.prefixes.with_raw_response.get(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_ip_address_management_prefixes_add_prefix(self, async_client: AsyncCloudflare) -> None:
-        prefix = await async_client.addresses.prefixes.ip_address_management_prefixes_add_prefix(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            asn=209242,
-            cidr="192.0.2.0/24",
-            loa_document_id="d933b1530bc56c9953cf8ce166da8004",
-        )
-        assert_matches_type(PrefixIPAddressManagementPrefixesAddPrefixResponse, prefix, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_raw_response_ip_address_management_prefixes_add_prefix(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.addresses.prefixes.with_raw_response.ip_address_management_prefixes_add_prefix(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            asn=209242,
-            cidr="192.0.2.0/24",
-            loa_document_id="d933b1530bc56c9953cf8ce166da8004",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        prefix = await response.parse()
-        assert_matches_type(PrefixIPAddressManagementPrefixesAddPrefixResponse, prefix, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_streaming_response_ip_address_management_prefixes_add_prefix(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        async with async_client.addresses.prefixes.with_streaming_response.ip_address_management_prefixes_add_prefix(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            asn=209242,
-            cidr="192.0.2.0/24",
-            loa_document_id="d933b1530bc56c9953cf8ce166da8004",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            prefix = await response.parse()
-            assert_matches_type(PrefixIPAddressManagementPrefixesAddPrefixResponse, prefix, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_path_params_ip_address_management_prefixes_add_prefix(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.addresses.prefixes.with_raw_response.ip_address_management_prefixes_add_prefix(
-                "",
-                asn=209242,
-                cidr="192.0.2.0/24",
-                loa_document_id="d933b1530bc56c9953cf8ce166da8004",
-            )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_ip_address_management_prefixes_list_prefixes(self, async_client: AsyncCloudflare) -> None:
-        prefix = await async_client.addresses.prefixes.ip_address_management_prefixes_list_prefixes(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(Optional[PrefixIPAddressManagementPrefixesListPrefixesResponse], prefix, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_raw_response_ip_address_management_prefixes_list_prefixes(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        response = await async_client.addresses.prefixes.with_raw_response.ip_address_management_prefixes_list_prefixes(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        prefix = await response.parse()
-        assert_matches_type(Optional[PrefixIPAddressManagementPrefixesListPrefixesResponse], prefix, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_streaming_response_ip_address_management_prefixes_list_prefixes(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        async with async_client.addresses.prefixes.with_streaming_response.ip_address_management_prefixes_list_prefixes(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            prefix = await response.parse()
-            assert_matches_type(
-                Optional[PrefixIPAddressManagementPrefixesListPrefixesResponse], prefix, path=["response"]
-            )
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_path_params_ip_address_management_prefixes_list_prefixes(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.addresses.prefixes.with_raw_response.ip_address_management_prefixes_list_prefixes(
-                "",
             )

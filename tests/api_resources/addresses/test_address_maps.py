@@ -2,26 +2,20 @@
 
 from __future__ import annotations
 
-from cloudflare.types.addresses import (
-    AddressMapCreateResponse,
-    AddressMapUpdateResponse,
-    AddressMapListResponse,
-    AddressMapDeleteResponse,
-    AddressMapGetResponse,
-)
-
-from typing import Any, cast, Optional
-
 import os
+from typing import Any, Optional, cast
+
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.addresses import address_map_create_params
-from cloudflare.types.addresses import address_map_update_params
+from cloudflare.types.addresses import (
+    AddressMapGetResponse,
+    AddressMapEditResponse,
+    AddressMapListResponse,
+    AddressMapCreateResponse,
+    AddressMapDeleteResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -79,70 +73,6 @@ class TestAddressMaps:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.addresses.address_maps.with_raw_response.create(
                 "",
-            )
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_method_update(self, client: Cloudflare) -> None:
-        address_map = client.addresses.address_maps.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(AddressMapUpdateResponse, address_map, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_method_update_with_all_params(self, client: Cloudflare) -> None:
-        address_map = client.addresses.address_maps.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            default_sni="*.example.com",
-            description="My Ecommerce zones",
-            enabled=True,
-        )
-        assert_matches_type(AddressMapUpdateResponse, address_map, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_raw_response_update(self, client: Cloudflare) -> None:
-        response = client.addresses.address_maps.with_raw_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        address_map = response.parse()
-        assert_matches_type(AddressMapUpdateResponse, address_map, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_streaming_response_update(self, client: Cloudflare) -> None:
-        with client.addresses.address_maps.with_streaming_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            address_map = response.parse()
-            assert_matches_type(AddressMapUpdateResponse, address_map, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_path_params_update(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.addresses.address_maps.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
-                account_id="",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `address_map_id` but received ''"):
-            client.addresses.address_maps.with_raw_response.update(
-                "",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @pytest.mark.skip()
@@ -235,6 +165,70 @@ class TestAddressMaps:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `address_map_id` but received ''"):
             client.addresses.address_maps.with_raw_response.delete(
+                "",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_edit(self, client: Cloudflare) -> None:
+        address_map = client.addresses.address_maps.edit(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(AddressMapEditResponse, address_map, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
+        address_map = client.addresses.address_maps.edit(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            default_sni="*.example.com",
+            description="My Ecommerce zones",
+            enabled=True,
+        )
+        assert_matches_type(AddressMapEditResponse, address_map, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_edit(self, client: Cloudflare) -> None:
+        response = client.addresses.address_maps.with_raw_response.edit(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        address_map = response.parse()
+        assert_matches_type(AddressMapEditResponse, address_map, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_edit(self, client: Cloudflare) -> None:
+        with client.addresses.address_maps.with_streaming_response.edit(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            address_map = response.parse()
+            assert_matches_type(AddressMapEditResponse, address_map, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_edit(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.addresses.address_maps.with_raw_response.edit(
+                "023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `address_map_id` but received ''"):
+            client.addresses.address_maps.with_raw_response.edit(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
@@ -349,70 +343,6 @@ class TestAsyncAddressMaps:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_update(self, async_client: AsyncCloudflare) -> None:
-        address_map = await async_client.addresses.address_maps.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(AddressMapUpdateResponse, address_map, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        address_map = await async_client.addresses.address_maps.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            default_sni="*.example.com",
-            description="My Ecommerce zones",
-            enabled=True,
-        )
-        assert_matches_type(AddressMapUpdateResponse, address_map, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.addresses.address_maps.with_raw_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        address_map = await response.parse()
-        assert_matches_type(AddressMapUpdateResponse, address_map, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.addresses.address_maps.with_streaming_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            address_map = await response.parse()
-            assert_matches_type(AddressMapUpdateResponse, address_map, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.addresses.address_maps.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
-                account_id="",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `address_map_id` but received ''"):
-            await async_client.addresses.address_maps.with_raw_response.update(
-                "",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            )
-
-    @pytest.mark.skip()
-    @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         address_map = await async_client.addresses.address_maps.list(
             "023e105f4ecef8ad9ca31a8372d0c353",
@@ -501,6 +431,70 @@ class TestAsyncAddressMaps:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `address_map_id` but received ''"):
             await async_client.addresses.address_maps.with_raw_response.delete(
+                "",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
+        address_map = await async_client.addresses.address_maps.edit(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(AddressMapEditResponse, address_map, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        address_map = await async_client.addresses.address_maps.edit(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            default_sni="*.example.com",
+            description="My Ecommerce zones",
+            enabled=True,
+        )
+        assert_matches_type(AddressMapEditResponse, address_map, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.addresses.address_maps.with_raw_response.edit(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        address_map = await response.parse()
+        assert_matches_type(AddressMapEditResponse, address_map, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.addresses.address_maps.with_streaming_response.edit(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            address_map = await response.parse()
+            assert_matches_type(AddressMapEditResponse, address_map, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.addresses.address_maps.with_raw_response.edit(
+                "023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `address_map_id` but received ''"):
+            await async_client.addresses.address_maps.with_raw_response.edit(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

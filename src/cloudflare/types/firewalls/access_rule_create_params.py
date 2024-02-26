@@ -2,15 +2,8 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, Literal
-
 from typing import Union
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
-from ..._utils import PropertyInfo
-from ...types import shared_params
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = [
     "AccessRuleCreateParams",
@@ -18,13 +11,17 @@ __all__ = [
     "ConfigurationLegacyJhsIPConfiguration",
     "ConfigurationLegacyJhsIPV6Configuration",
     "ConfigurationLegacyJhsCidrConfiguration",
-    "ConfigurationLegacyJhsAsnConfiguration",
+    "ConfigurationLegacyJhsASNConfiguration",
     "ConfigurationLegacyJhsCountryConfiguration",
 ]
 
 
 class AccessRuleCreateParams(TypedDict, total=False):
-    account_or_zone: Required[str]
+    account_id: Required[str]
+    """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
+
+    zone_id: Required[object]
+    """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
     configuration: Required[Configuration]
     """The rule configuration."""
@@ -79,7 +76,7 @@ class ConfigurationLegacyJhsCidrConfiguration(TypedDict, total=False):
     """
 
 
-class ConfigurationLegacyJhsAsnConfiguration(TypedDict, total=False):
+class ConfigurationLegacyJhsASNConfiguration(TypedDict, total=False):
     target: Literal["asn"]
     """The configuration target.
 
@@ -110,6 +107,6 @@ Configuration = Union[
     ConfigurationLegacyJhsIPConfiguration,
     ConfigurationLegacyJhsIPV6Configuration,
     ConfigurationLegacyJhsCidrConfiguration,
-    ConfigurationLegacyJhsAsnConfiguration,
+    ConfigurationLegacyJhsASNConfiguration,
     ConfigurationLegacyJhsCountryConfiguration,
 ]

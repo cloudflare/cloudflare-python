@@ -1,39 +1,32 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from typing import Optional, List
-
-from typing_extensions import Literal
-
+from typing import List, Optional
 from datetime import datetime
-
-from typing import Optional, Union, List, Dict, Any
 from typing_extensions import Literal
-from pydantic import Field as FieldInfo
+
 from .._models import BaseModel
-from ..types import shared
 
 __all__ = [
     "MembershipListResponse",
-    "MembershipListResponseItem",
-    "MembershipListResponseItemAccount",
-    "MembershipListResponseItemAccountSettings",
-    "MembershipListResponseItemPermissions",
-    "MembershipListResponseItemPermissionsAnalytics",
-    "MembershipListResponseItemPermissionsBilling",
-    "MembershipListResponseItemPermissionsCachePurge",
-    "MembershipListResponseItemPermissionsDNS",
-    "MembershipListResponseItemPermissionsDNSRecords",
-    "MembershipListResponseItemPermissionsLb",
-    "MembershipListResponseItemPermissionsLogs",
-    "MembershipListResponseItemPermissionsOrganization",
-    "MembershipListResponseItemPermissionsSSL",
-    "MembershipListResponseItemPermissionsWAF",
-    "MembershipListResponseItemPermissionsZoneSettings",
-    "MembershipListResponseItemPermissionsZones",
+    "Account",
+    "AccountSettings",
+    "Permissions",
+    "PermissionsAnalytics",
+    "PermissionsBilling",
+    "PermissionsCachePurge",
+    "PermissionsDNS",
+    "PermissionsDNSRecords",
+    "PermissionsLb",
+    "PermissionsLogs",
+    "PermissionsOrganization",
+    "PermissionsSSL",
+    "PermissionsWAF",
+    "PermissionsZoneSettings",
+    "PermissionsZones",
 ]
 
 
-class MembershipListResponseItemAccountSettings(BaseModel):
+class AccountSettings(BaseModel):
     default_nameservers: Optional[Literal["cloudflare.standard", "custom.account", "custom.tenant"]] = None
     """
     Specifies the default nameservers to be used for new zones added to this
@@ -63,7 +56,7 @@ class MembershipListResponseItemAccountSettings(BaseModel):
     """
 
 
-class MembershipListResponseItemAccount(BaseModel):
+class Account(BaseModel):
     id: str
     """Identifier"""
 
@@ -73,113 +66,113 @@ class MembershipListResponseItemAccount(BaseModel):
     created_on: Optional[datetime] = None
     """Timestamp for the creation of the account"""
 
-    settings: Optional[MembershipListResponseItemAccountSettings] = None
+    settings: Optional[AccountSettings] = None
     """Account settings"""
 
 
-class MembershipListResponseItemPermissionsAnalytics(BaseModel):
+class PermissionsAnalytics(BaseModel):
     read: Optional[bool] = None
 
     write: Optional[bool] = None
 
 
-class MembershipListResponseItemPermissionsBilling(BaseModel):
+class PermissionsBilling(BaseModel):
     read: Optional[bool] = None
 
     write: Optional[bool] = None
 
 
-class MembershipListResponseItemPermissionsCachePurge(BaseModel):
+class PermissionsCachePurge(BaseModel):
     read: Optional[bool] = None
 
     write: Optional[bool] = None
 
 
-class MembershipListResponseItemPermissionsDNS(BaseModel):
+class PermissionsDNS(BaseModel):
     read: Optional[bool] = None
 
     write: Optional[bool] = None
 
 
-class MembershipListResponseItemPermissionsDNSRecords(BaseModel):
+class PermissionsDNSRecords(BaseModel):
     read: Optional[bool] = None
 
     write: Optional[bool] = None
 
 
-class MembershipListResponseItemPermissionsLb(BaseModel):
+class PermissionsLb(BaseModel):
     read: Optional[bool] = None
 
     write: Optional[bool] = None
 
 
-class MembershipListResponseItemPermissionsLogs(BaseModel):
+class PermissionsLogs(BaseModel):
     read: Optional[bool] = None
 
     write: Optional[bool] = None
 
 
-class MembershipListResponseItemPermissionsOrganization(BaseModel):
+class PermissionsOrganization(BaseModel):
     read: Optional[bool] = None
 
     write: Optional[bool] = None
 
 
-class MembershipListResponseItemPermissionsSSL(BaseModel):
+class PermissionsSSL(BaseModel):
     read: Optional[bool] = None
 
     write: Optional[bool] = None
 
 
-class MembershipListResponseItemPermissionsWAF(BaseModel):
+class PermissionsWAF(BaseModel):
     read: Optional[bool] = None
 
     write: Optional[bool] = None
 
 
-class MembershipListResponseItemPermissionsZoneSettings(BaseModel):
+class PermissionsZoneSettings(BaseModel):
     read: Optional[bool] = None
 
     write: Optional[bool] = None
 
 
-class MembershipListResponseItemPermissionsZones(BaseModel):
+class PermissionsZones(BaseModel):
     read: Optional[bool] = None
 
     write: Optional[bool] = None
 
 
-class MembershipListResponseItemPermissions(BaseModel):
-    analytics: Optional[MembershipListResponseItemPermissionsAnalytics] = None
+class Permissions(BaseModel):
+    analytics: Optional[PermissionsAnalytics] = None
 
-    billing: Optional[MembershipListResponseItemPermissionsBilling] = None
+    billing: Optional[PermissionsBilling] = None
 
-    cache_purge: Optional[MembershipListResponseItemPermissionsCachePurge] = None
+    cache_purge: Optional[PermissionsCachePurge] = None
 
-    dns: Optional[MembershipListResponseItemPermissionsDNS] = None
+    dns: Optional[PermissionsDNS] = None
 
-    dns_records: Optional[MembershipListResponseItemPermissionsDNSRecords] = None
+    dns_records: Optional[PermissionsDNSRecords] = None
 
-    lb: Optional[MembershipListResponseItemPermissionsLb] = None
+    lb: Optional[PermissionsLb] = None
 
-    logs: Optional[MembershipListResponseItemPermissionsLogs] = None
+    logs: Optional[PermissionsLogs] = None
 
-    organization: Optional[MembershipListResponseItemPermissionsOrganization] = None
+    organization: Optional[PermissionsOrganization] = None
 
-    ssl: Optional[MembershipListResponseItemPermissionsSSL] = None
+    ssl: Optional[PermissionsSSL] = None
 
-    waf: Optional[MembershipListResponseItemPermissionsWAF] = None
+    waf: Optional[PermissionsWAF] = None
 
-    zone_settings: Optional[MembershipListResponseItemPermissionsZoneSettings] = None
+    zone_settings: Optional[PermissionsZoneSettings] = None
 
-    zones: Optional[MembershipListResponseItemPermissionsZones] = None
+    zones: Optional[PermissionsZones] = None
 
 
-class MembershipListResponseItem(BaseModel):
+class MembershipListResponse(BaseModel):
     id: Optional[str] = None
     """Membership identifier tag."""
 
-    account: Optional[MembershipListResponseItemAccount] = None
+    account: Optional[Account] = None
 
     api_access_enabled: Optional[bool] = None
     """Enterprise only.
@@ -191,7 +184,7 @@ class MembershipListResponseItem(BaseModel):
     code: Optional[str] = None
     """The unique activation code for the account membership."""
 
-    permissions: Optional[MembershipListResponseItemPermissions] = None
+    permissions: Optional[Permissions] = None
     """All access permissions for the user at the account."""
 
     roles: Optional[List[str]] = None
@@ -199,6 +192,3 @@ class MembershipListResponseItem(BaseModel):
 
     status: Optional[Literal["accepted", "pending", "rejected"]] = None
     """Status of this membership."""
-
-
-MembershipListResponse = List[MembershipListResponseItem]

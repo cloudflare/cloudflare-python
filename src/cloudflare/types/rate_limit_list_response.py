@@ -1,29 +1,23 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from typing import Optional, List
-
+from typing import List, Optional
 from typing_extensions import Literal
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
 from .._models import BaseModel
-from ..types import shared
 
 __all__ = [
     "RateLimitListResponse",
-    "RateLimitListResponseItem",
-    "RateLimitListResponseItemAction",
-    "RateLimitListResponseItemActionResponse",
-    "RateLimitListResponseItemBypass",
-    "RateLimitListResponseItemMatch",
-    "RateLimitListResponseItemMatchHeader",
-    "RateLimitListResponseItemMatchRequest",
-    "RateLimitListResponseItemMatchResponse",
+    "Action",
+    "ActionResponse",
+    "Bypass",
+    "Match",
+    "MatchHeader",
+    "MatchRequest",
+    "MatchResponse",
 ]
 
 
-class RateLimitListResponseItemActionResponse(BaseModel):
+class ActionResponse(BaseModel):
     body: Optional[str] = None
     """The response body to return.
 
@@ -37,11 +31,11 @@ class RateLimitListResponseItemActionResponse(BaseModel):
     """
 
 
-class RateLimitListResponseItemAction(BaseModel):
+class Action(BaseModel):
     mode: Optional[Literal["simulate", "ban", "challenge", "js_challenge", "managed_challenge"]] = None
     """The action to perform."""
 
-    response: Optional[RateLimitListResponseItemActionResponse] = None
+    response: Optional[ActionResponse] = None
     """A custom content type and reponse to return when the threshold is exceeded.
 
     The custom response configured in this object will override the custom error for
@@ -60,14 +54,14 @@ class RateLimitListResponseItemAction(BaseModel):
     """
 
 
-class RateLimitListResponseItemBypass(BaseModel):
+class Bypass(BaseModel):
     name: Optional[Literal["url"]] = None
 
     value: Optional[str] = None
     """The URL to bypass."""
 
 
-class RateLimitListResponseItemMatchHeader(BaseModel):
+class MatchHeader(BaseModel):
     name: Optional[str] = None
     """The name of the response header to match."""
 
@@ -78,7 +72,7 @@ class RateLimitListResponseItemMatchHeader(BaseModel):
     """The value of the response header, which must match exactly."""
 
 
-class RateLimitListResponseItemMatchRequest(BaseModel):
+class MatchRequest(BaseModel):
     methods: Optional[List[Literal["GET", "POST", "PUT", "DELETE", "PATCH", "HEAD", "_ALL_"]]] = None
     """The HTTP methods to match.
 
@@ -102,7 +96,7 @@ class RateLimitListResponseItemMatchRequest(BaseModel):
     """
 
 
-class RateLimitListResponseItemMatchResponse(BaseModel):
+class MatchResponse(BaseModel):
     origin_traffic: Optional[bool] = None
     """
     When true, only the uncached traffic served from your origin servers will count
@@ -113,25 +107,25 @@ class RateLimitListResponseItemMatchResponse(BaseModel):
     """
 
 
-class RateLimitListResponseItemMatch(BaseModel):
-    headers: Optional[List[RateLimitListResponseItemMatchHeader]] = None
+class Match(BaseModel):
+    headers: Optional[List[MatchHeader]] = None
 
-    request: Optional[RateLimitListResponseItemMatchRequest] = None
+    request: Optional[MatchRequest] = None
 
-    response: Optional[RateLimitListResponseItemMatchResponse] = None
+    response: Optional[MatchResponse] = None
 
 
-class RateLimitListResponseItem(BaseModel):
+class RateLimitListResponse(BaseModel):
     id: Optional[str] = None
     """The unique identifier of the rate limit."""
 
-    action: Optional[RateLimitListResponseItemAction] = None
+    action: Optional[Action] = None
     """
     The action to perform when the threshold of matched traffic within the
     configured period is exceeded.
     """
 
-    bypass: Optional[List[RateLimitListResponseItemBypass]] = None
+    bypass: Optional[List[Bypass]] = None
     """Criteria specifying when the current rate limit should be bypassed.
 
     You can specify that the rate limit should not apply to one or more URLs.
@@ -146,7 +140,7 @@ class RateLimitListResponseItem(BaseModel):
     disabled: Optional[bool] = None
     """When true, indicates that the rate limit is currently disabled."""
 
-    match: Optional[RateLimitListResponseItemMatch] = None
+    match: Optional[Match] = None
     """Determines which traffic the rate limit counts towards the threshold."""
 
     period: Optional[float] = None
@@ -162,6 +156,3 @@ class RateLimitListResponseItem(BaseModel):
     Configure this value along with the `period` property to establish a threshold
     per period.
     """
-
-
-RateLimitListResponse = List[RateLimitListResponseItem]

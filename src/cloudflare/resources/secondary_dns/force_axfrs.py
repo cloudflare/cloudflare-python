@@ -2,39 +2,23 @@
 
 from __future__ import annotations
 
+from typing import Type, cast
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._compat import cached_property
-
-from typing import Type
-
-from ...types.secondary_dns import ForceAxfrSecondaryDNSSecondaryZoneForceAxfrResponse
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
+from ..._base_client import (
+    make_request_options,
+)
 
 __all__ = ["ForceAxfrs", "AsyncForceAxfrs"]
 
@@ -48,7 +32,7 @@ class ForceAxfrs(SyncAPIResource):
     def with_streaming_response(self) -> ForceAxfrsWithStreamingResponse:
         return ForceAxfrsWithStreamingResponse(self)
 
-    def secondary_dns_secondary_zone_force_axfr(
+    def create(
         self,
         zone_id: object,
         *,
@@ -93,7 +77,7 @@ class AsyncForceAxfrs(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncForceAxfrsWithStreamingResponse:
         return AsyncForceAxfrsWithStreamingResponse(self)
 
-    async def secondary_dns_secondary_zone_force_axfr(
+    async def create(
         self,
         zone_id: object,
         *,
@@ -133,8 +117,8 @@ class ForceAxfrsWithRawResponse:
     def __init__(self, force_axfrs: ForceAxfrs) -> None:
         self._force_axfrs = force_axfrs
 
-        self.secondary_dns_secondary_zone_force_axfr = to_raw_response_wrapper(
-            force_axfrs.secondary_dns_secondary_zone_force_axfr,
+        self.create = to_raw_response_wrapper(
+            force_axfrs.create,
         )
 
 
@@ -142,8 +126,8 @@ class AsyncForceAxfrsWithRawResponse:
     def __init__(self, force_axfrs: AsyncForceAxfrs) -> None:
         self._force_axfrs = force_axfrs
 
-        self.secondary_dns_secondary_zone_force_axfr = async_to_raw_response_wrapper(
-            force_axfrs.secondary_dns_secondary_zone_force_axfr,
+        self.create = async_to_raw_response_wrapper(
+            force_axfrs.create,
         )
 
 
@@ -151,8 +135,8 @@ class ForceAxfrsWithStreamingResponse:
     def __init__(self, force_axfrs: ForceAxfrs) -> None:
         self._force_axfrs = force_axfrs
 
-        self.secondary_dns_secondary_zone_force_axfr = to_streamed_response_wrapper(
-            force_axfrs.secondary_dns_secondary_zone_force_axfr,
+        self.create = to_streamed_response_wrapper(
+            force_axfrs.create,
         )
 
 
@@ -160,6 +144,6 @@ class AsyncForceAxfrsWithStreamingResponse:
     def __init__(self, force_axfrs: AsyncForceAxfrs) -> None:
         self._force_axfrs = force_axfrs
 
-        self.secondary_dns_secondary_zone_force_axfr = async_to_streamed_response_wrapper(
-            force_axfrs.secondary_dns_secondary_zone_force_axfr,
+        self.create = async_to_streamed_response_wrapper(
+            force_axfrs.create,
         )

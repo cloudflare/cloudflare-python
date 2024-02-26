@@ -2,39 +2,24 @@
 
 from __future__ import annotations
 
+from typing import Type, cast
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._compat import cached_property
-
-from ...types.intel import SinkholeListResponse
-
-from typing import Type
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
+from ...types.intel import SinkholeListResponse
+from ..._base_client import (
+    make_request_options,
+)
 
 __all__ = ["Sinkholes", "AsyncSinkholes"]
 
@@ -50,7 +35,7 @@ class Sinkholes(SyncAPIResource):
 
     def list(
         self,
-        account_identifier: str,
+        account_id: str,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -63,7 +48,7 @@ class Sinkholes(SyncAPIResource):
         List sinkholes owned by this account
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -73,10 +58,10 @@ class Sinkholes(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
-            f"/accounts/{account_identifier}/intel/sinkholes",
+            f"/accounts/{account_id}/intel/sinkholes",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -99,7 +84,7 @@ class AsyncSinkholes(AsyncAPIResource):
 
     async def list(
         self,
-        account_identifier: str,
+        account_id: str,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -112,7 +97,7 @@ class AsyncSinkholes(AsyncAPIResource):
         List sinkholes owned by this account
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -122,10 +107,10 @@ class AsyncSinkholes(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
-            f"/accounts/{account_identifier}/intel/sinkholes",
+            f"/accounts/{account_id}/intel/sinkholes",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

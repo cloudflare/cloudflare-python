@@ -2,19 +2,14 @@
 
 from __future__ import annotations
 
-from cloudflare.types.radar import EntityIPsResponse
-
+import os
 from typing import Any, cast
 
-import os
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.radar import entity_ips_params
+from cloudflare.types.radar import EntityGetResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -24,44 +19,44 @@ class TestEntities:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_ips(self, client: Cloudflare) -> None:
-        entity = client.radar.entities.ips(
+    def test_method_get(self, client: Cloudflare) -> None:
+        entity = client.radar.entities.get(
             ip="8.8.8.8",
         )
-        assert_matches_type(EntityIPsResponse, entity, path=["response"])
+        assert_matches_type(EntityGetResponse, entity, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_ips_with_all_params(self, client: Cloudflare) -> None:
-        entity = client.radar.entities.ips(
+    def test_method_get_with_all_params(self, client: Cloudflare) -> None:
+        entity = client.radar.entities.get(
             ip="8.8.8.8",
             format="JSON",
         )
-        assert_matches_type(EntityIPsResponse, entity, path=["response"])
+        assert_matches_type(EntityGetResponse, entity, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_ips(self, client: Cloudflare) -> None:
-        response = client.radar.entities.with_raw_response.ips(
+    def test_raw_response_get(self, client: Cloudflare) -> None:
+        response = client.radar.entities.with_raw_response.get(
             ip="8.8.8.8",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         entity = response.parse()
-        assert_matches_type(EntityIPsResponse, entity, path=["response"])
+        assert_matches_type(EntityGetResponse, entity, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_ips(self, client: Cloudflare) -> None:
-        with client.radar.entities.with_streaming_response.ips(
+    def test_streaming_response_get(self, client: Cloudflare) -> None:
+        with client.radar.entities.with_streaming_response.get(
             ip="8.8.8.8",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             entity = response.parse()
-            assert_matches_type(EntityIPsResponse, entity, path=["response"])
+            assert_matches_type(EntityGetResponse, entity, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -71,43 +66,43 @@ class TestAsyncEntities:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_ips(self, async_client: AsyncCloudflare) -> None:
-        entity = await async_client.radar.entities.ips(
+    async def test_method_get(self, async_client: AsyncCloudflare) -> None:
+        entity = await async_client.radar.entities.get(
             ip="8.8.8.8",
         )
-        assert_matches_type(EntityIPsResponse, entity, path=["response"])
+        assert_matches_type(EntityGetResponse, entity, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_ips_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        entity = await async_client.radar.entities.ips(
+    async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        entity = await async_client.radar.entities.get(
             ip="8.8.8.8",
             format="JSON",
         )
-        assert_matches_type(EntityIPsResponse, entity, path=["response"])
+        assert_matches_type(EntityGetResponse, entity, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_ips(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.radar.entities.with_raw_response.ips(
+    async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.radar.entities.with_raw_response.get(
             ip="8.8.8.8",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         entity = await response.parse()
-        assert_matches_type(EntityIPsResponse, entity, path=["response"])
+        assert_matches_type(EntityGetResponse, entity, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_ips(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.radar.entities.with_streaming_response.ips(
+    async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.radar.entities.with_streaming_response.get(
             ip="8.8.8.8",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             entity = await response.parse()
-            assert_matches_type(EntityIPsResponse, entity, path=["response"])
+            assert_matches_type(EntityGetResponse, entity, path=["response"])
 
         assert cast(Any, response.is_closed) is True

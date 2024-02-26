@@ -2,60 +2,33 @@
 
 from __future__ import annotations
 
+from typing import Any, List, Type, Optional, cast
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._compat import cached_property
-
-from ...types.gateways import (
-    ProxyEndpointUpdateResponse,
-    ProxyEndpointListResponse,
-    ProxyEndpointDeleteResponse,
-    ProxyEndpointGetResponse,
-    ProxyEndpointZeroTrustGatewayProxyEndpointsCreateProxyEndpointResponse,
-    ProxyEndpointZeroTrustGatewayProxyEndpointsListProxyEndpointsResponse,
-)
-
-from typing import Type, List, Optional
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types.gateways import proxy_endpoint_update_params
-from ...types.gateways import proxy_endpoint_zero_trust_gateway_proxy_endpoints_create_proxy_endpoint_params
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ..._base_client import (
+    make_request_options,
+)
+from ...types.gateways import (
+    ProxyEndpointGetResponse,
+    ProxyEndpointEditResponse,
+    ProxyEndpointListResponse,
+    ProxyEndpointCreateResponse,
+    ProxyEndpointDeleteResponse,
+    proxy_endpoint_edit_params,
+    proxy_endpoint_create_params,
+)
 
 __all__ = ["ProxyEndpoints", "AsyncProxyEndpoints"]
 
@@ -69,13 +42,12 @@ class ProxyEndpoints(SyncAPIResource):
     def with_streaming_response(self) -> ProxyEndpointsWithStreamingResponse:
         return ProxyEndpointsWithStreamingResponse(self)
 
-    def update(
+    def create(
         self,
-        proxy_endpoint_id: object,
-        *,
         account_id: object,
-        ips: List[str] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
+        *,
+        ips: List[str],
+        name: str,
         subdomain: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -83,9 +55,9 @@ class ProxyEndpoints(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ProxyEndpointUpdateResponse:
+    ) -> ProxyEndpointCreateResponse:
         """
-        Updates a configured Zero Trust Gateway proxy endpoint.
+        Creates a new Zero Trust Gateway proxy endpoint.
 
         Args:
           ips: A list of CIDRs to restrict ingress connections.
@@ -102,15 +74,15 @@ class ProxyEndpoints(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._patch(
-            f"/accounts/{account_id}/gateway/proxy_endpoints/{proxy_endpoint_id}",
+        return self._post(
+            f"/accounts/{account_id}/gateway/proxy_endpoints",
             body=maybe_transform(
                 {
                     "ips": ips,
                     "name": name,
                     "subdomain": subdomain,
                 },
-                proxy_endpoint_update_params.ProxyEndpointUpdateParams,
+                proxy_endpoint_create_params.ProxyEndpointCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -119,23 +91,22 @@ class ProxyEndpoints(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ProxyEndpointUpdateResponse], ResultWrapper[ProxyEndpointUpdateResponse]),
+            cast_to=cast(Type[ProxyEndpointCreateResponse], ResultWrapper[ProxyEndpointCreateResponse]),
         )
 
     def list(
         self,
-        proxy_endpoint_id: object,
-        *,
         account_id: object,
+        *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ProxyEndpointListResponse:
+    ) -> Optional[ProxyEndpointListResponse]:
         """
-        Fetches all Zero Trust Gateway proxy endpoints for an account.
+        Fetches a single Zero Trust Gateway proxy endpoint.
 
         Args:
           extra_headers: Send extra headers
@@ -147,7 +118,7 @@ class ProxyEndpoints(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/accounts/{account_id}/gateway/proxy_endpoints/{proxy_endpoint_id}",
+            f"/accounts/{account_id}/gateway/proxy_endpoints",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -155,7 +126,7 @@ class ProxyEndpoints(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ProxyEndpointListResponse], ResultWrapper[ProxyEndpointListResponse]),
+            cast_to=cast(Type[Optional[ProxyEndpointListResponse]], ResultWrapper[ProxyEndpointListResponse]),
         )
 
     def delete(
@@ -199,6 +170,59 @@ class ProxyEndpoints(SyncAPIResource):
             ),
         )
 
+    def edit(
+        self,
+        proxy_endpoint_id: object,
+        *,
+        account_id: object,
+        ips: List[str] | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        subdomain: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ProxyEndpointEditResponse:
+        """
+        Updates a configured Zero Trust Gateway proxy endpoint.
+
+        Args:
+          ips: A list of CIDRs to restrict ingress connections.
+
+          name: The name of the proxy endpoint.
+
+          subdomain: The subdomain to be used as the destination in the proxy client.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._patch(
+            f"/accounts/{account_id}/gateway/proxy_endpoints/{proxy_endpoint_id}",
+            body=maybe_transform(
+                {
+                    "ips": ips,
+                    "name": name,
+                    "subdomain": subdomain,
+                },
+                proxy_endpoint_edit_params.ProxyEndpointEditParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[ProxyEndpointEditResponse], ResultWrapper[ProxyEndpointEditResponse]),
+        )
+
     def get(
         self,
         proxy_endpoint_id: object,
@@ -235,7 +259,17 @@ class ProxyEndpoints(SyncAPIResource):
             cast_to=cast(Type[ProxyEndpointGetResponse], ResultWrapper[ProxyEndpointGetResponse]),
         )
 
-    def zero_trust_gateway_proxy_endpoints_create_proxy_endpoint(
+
+class AsyncProxyEndpoints(AsyncAPIResource):
+    @cached_property
+    def with_raw_response(self) -> AsyncProxyEndpointsWithRawResponse:
+        return AsyncProxyEndpointsWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncProxyEndpointsWithStreamingResponse:
+        return AsyncProxyEndpointsWithStreamingResponse(self)
+
+    async def create(
         self,
         account_id: object,
         *,
@@ -248,7 +282,7 @@ class ProxyEndpoints(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ProxyEndpointZeroTrustGatewayProxyEndpointsCreateProxyEndpointResponse:
+    ) -> ProxyEndpointCreateResponse:
         """
         Creates a new Zero Trust Gateway proxy endpoint.
 
@@ -267,7 +301,7 @@ class ProxyEndpoints(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._post(
+        return await self._post(
             f"/accounts/{account_id}/gateway/proxy_endpoints",
             body=maybe_transform(
                 {
@@ -275,7 +309,7 @@ class ProxyEndpoints(SyncAPIResource):
                     "name": name,
                     "subdomain": subdomain,
                 },
-                proxy_endpoint_zero_trust_gateway_proxy_endpoints_create_proxy_endpoint_params.ProxyEndpointZeroTrustGatewayProxyEndpointsCreateProxyEndpointParams,
+                proxy_endpoint_create_params.ProxyEndpointCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -284,13 +318,10 @@ class ProxyEndpoints(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[ProxyEndpointZeroTrustGatewayProxyEndpointsCreateProxyEndpointResponse],
-                ResultWrapper[ProxyEndpointZeroTrustGatewayProxyEndpointsCreateProxyEndpointResponse],
-            ),
+            cast_to=cast(Type[ProxyEndpointCreateResponse], ResultWrapper[ProxyEndpointCreateResponse]),
         )
 
-    def zero_trust_gateway_proxy_endpoints_list_proxy_endpoints(
+    async def list(
         self,
         account_id: object,
         *,
@@ -300,7 +331,7 @@ class ProxyEndpoints(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ProxyEndpointZeroTrustGatewayProxyEndpointsListProxyEndpointsResponse]:
+    ) -> Optional[ProxyEndpointListResponse]:
         """
         Fetches a single Zero Trust Gateway proxy endpoint.
 
@@ -313,7 +344,7 @@ class ProxyEndpoints(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return await self._get(
             f"/accounts/{account_id}/gateway/proxy_endpoints",
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -322,109 +353,7 @@ class ProxyEndpoints(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[ProxyEndpointZeroTrustGatewayProxyEndpointsListProxyEndpointsResponse]],
-                ResultWrapper[ProxyEndpointZeroTrustGatewayProxyEndpointsListProxyEndpointsResponse],
-            ),
-        )
-
-
-class AsyncProxyEndpoints(AsyncAPIResource):
-    @cached_property
-    def with_raw_response(self) -> AsyncProxyEndpointsWithRawResponse:
-        return AsyncProxyEndpointsWithRawResponse(self)
-
-    @cached_property
-    def with_streaming_response(self) -> AsyncProxyEndpointsWithStreamingResponse:
-        return AsyncProxyEndpointsWithStreamingResponse(self)
-
-    async def update(
-        self,
-        proxy_endpoint_id: object,
-        *,
-        account_id: object,
-        ips: List[str] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        subdomain: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ProxyEndpointUpdateResponse:
-        """
-        Updates a configured Zero Trust Gateway proxy endpoint.
-
-        Args:
-          ips: A list of CIDRs to restrict ingress connections.
-
-          name: The name of the proxy endpoint.
-
-          subdomain: The subdomain to be used as the destination in the proxy client.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._patch(
-            f"/accounts/{account_id}/gateway/proxy_endpoints/{proxy_endpoint_id}",
-            body=maybe_transform(
-                {
-                    "ips": ips,
-                    "name": name,
-                    "subdomain": subdomain,
-                },
-                proxy_endpoint_update_params.ProxyEndpointUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(Type[ProxyEndpointUpdateResponse], ResultWrapper[ProxyEndpointUpdateResponse]),
-        )
-
-    async def list(
-        self,
-        proxy_endpoint_id: object,
-        *,
-        account_id: object,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ProxyEndpointListResponse:
-        """
-        Fetches all Zero Trust Gateway proxy endpoints for an account.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._get(
-            f"/accounts/{account_id}/gateway/proxy_endpoints/{proxy_endpoint_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(Type[ProxyEndpointListResponse], ResultWrapper[ProxyEndpointListResponse]),
+            cast_to=cast(Type[Optional[ProxyEndpointListResponse]], ResultWrapper[ProxyEndpointListResponse]),
         )
 
     async def delete(
@@ -468,6 +397,59 @@ class AsyncProxyEndpoints(AsyncAPIResource):
             ),
         )
 
+    async def edit(
+        self,
+        proxy_endpoint_id: object,
+        *,
+        account_id: object,
+        ips: List[str] | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        subdomain: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ProxyEndpointEditResponse:
+        """
+        Updates a configured Zero Trust Gateway proxy endpoint.
+
+        Args:
+          ips: A list of CIDRs to restrict ingress connections.
+
+          name: The name of the proxy endpoint.
+
+          subdomain: The subdomain to be used as the destination in the proxy client.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._patch(
+            f"/accounts/{account_id}/gateway/proxy_endpoints/{proxy_endpoint_id}",
+            body=maybe_transform(
+                {
+                    "ips": ips,
+                    "name": name,
+                    "subdomain": subdomain,
+                },
+                proxy_endpoint_edit_params.ProxyEndpointEditParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[ProxyEndpointEditResponse], ResultWrapper[ProxyEndpointEditResponse]),
+        )
+
     async def get(
         self,
         proxy_endpoint_id: object,
@@ -504,106 +486,13 @@ class AsyncProxyEndpoints(AsyncAPIResource):
             cast_to=cast(Type[ProxyEndpointGetResponse], ResultWrapper[ProxyEndpointGetResponse]),
         )
 
-    async def zero_trust_gateway_proxy_endpoints_create_proxy_endpoint(
-        self,
-        account_id: object,
-        *,
-        ips: List[str],
-        name: str,
-        subdomain: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ProxyEndpointZeroTrustGatewayProxyEndpointsCreateProxyEndpointResponse:
-        """
-        Creates a new Zero Trust Gateway proxy endpoint.
-
-        Args:
-          ips: A list of CIDRs to restrict ingress connections.
-
-          name: The name of the proxy endpoint.
-
-          subdomain: The subdomain to be used as the destination in the proxy client.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._post(
-            f"/accounts/{account_id}/gateway/proxy_endpoints",
-            body=maybe_transform(
-                {
-                    "ips": ips,
-                    "name": name,
-                    "subdomain": subdomain,
-                },
-                proxy_endpoint_zero_trust_gateway_proxy_endpoints_create_proxy_endpoint_params.ProxyEndpointZeroTrustGatewayProxyEndpointsCreateProxyEndpointParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[ProxyEndpointZeroTrustGatewayProxyEndpointsCreateProxyEndpointResponse],
-                ResultWrapper[ProxyEndpointZeroTrustGatewayProxyEndpointsCreateProxyEndpointResponse],
-            ),
-        )
-
-    async def zero_trust_gateway_proxy_endpoints_list_proxy_endpoints(
-        self,
-        account_id: object,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ProxyEndpointZeroTrustGatewayProxyEndpointsListProxyEndpointsResponse]:
-        """
-        Fetches a single Zero Trust Gateway proxy endpoint.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._get(
-            f"/accounts/{account_id}/gateway/proxy_endpoints",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[Optional[ProxyEndpointZeroTrustGatewayProxyEndpointsListProxyEndpointsResponse]],
-                ResultWrapper[ProxyEndpointZeroTrustGatewayProxyEndpointsListProxyEndpointsResponse],
-            ),
-        )
-
 
 class ProxyEndpointsWithRawResponse:
     def __init__(self, proxy_endpoints: ProxyEndpoints) -> None:
         self._proxy_endpoints = proxy_endpoints
 
-        self.update = to_raw_response_wrapper(
-            proxy_endpoints.update,
+        self.create = to_raw_response_wrapper(
+            proxy_endpoints.create,
         )
         self.list = to_raw_response_wrapper(
             proxy_endpoints.list,
@@ -611,14 +500,11 @@ class ProxyEndpointsWithRawResponse:
         self.delete = to_raw_response_wrapper(
             proxy_endpoints.delete,
         )
+        self.edit = to_raw_response_wrapper(
+            proxy_endpoints.edit,
+        )
         self.get = to_raw_response_wrapper(
             proxy_endpoints.get,
-        )
-        self.zero_trust_gateway_proxy_endpoints_create_proxy_endpoint = to_raw_response_wrapper(
-            proxy_endpoints.zero_trust_gateway_proxy_endpoints_create_proxy_endpoint,
-        )
-        self.zero_trust_gateway_proxy_endpoints_list_proxy_endpoints = to_raw_response_wrapper(
-            proxy_endpoints.zero_trust_gateway_proxy_endpoints_list_proxy_endpoints,
         )
 
 
@@ -626,8 +512,8 @@ class AsyncProxyEndpointsWithRawResponse:
     def __init__(self, proxy_endpoints: AsyncProxyEndpoints) -> None:
         self._proxy_endpoints = proxy_endpoints
 
-        self.update = async_to_raw_response_wrapper(
-            proxy_endpoints.update,
+        self.create = async_to_raw_response_wrapper(
+            proxy_endpoints.create,
         )
         self.list = async_to_raw_response_wrapper(
             proxy_endpoints.list,
@@ -635,14 +521,11 @@ class AsyncProxyEndpointsWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             proxy_endpoints.delete,
         )
+        self.edit = async_to_raw_response_wrapper(
+            proxy_endpoints.edit,
+        )
         self.get = async_to_raw_response_wrapper(
             proxy_endpoints.get,
-        )
-        self.zero_trust_gateway_proxy_endpoints_create_proxy_endpoint = async_to_raw_response_wrapper(
-            proxy_endpoints.zero_trust_gateway_proxy_endpoints_create_proxy_endpoint,
-        )
-        self.zero_trust_gateway_proxy_endpoints_list_proxy_endpoints = async_to_raw_response_wrapper(
-            proxy_endpoints.zero_trust_gateway_proxy_endpoints_list_proxy_endpoints,
         )
 
 
@@ -650,8 +533,8 @@ class ProxyEndpointsWithStreamingResponse:
     def __init__(self, proxy_endpoints: ProxyEndpoints) -> None:
         self._proxy_endpoints = proxy_endpoints
 
-        self.update = to_streamed_response_wrapper(
-            proxy_endpoints.update,
+        self.create = to_streamed_response_wrapper(
+            proxy_endpoints.create,
         )
         self.list = to_streamed_response_wrapper(
             proxy_endpoints.list,
@@ -659,14 +542,11 @@ class ProxyEndpointsWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             proxy_endpoints.delete,
         )
+        self.edit = to_streamed_response_wrapper(
+            proxy_endpoints.edit,
+        )
         self.get = to_streamed_response_wrapper(
             proxy_endpoints.get,
-        )
-        self.zero_trust_gateway_proxy_endpoints_create_proxy_endpoint = to_streamed_response_wrapper(
-            proxy_endpoints.zero_trust_gateway_proxy_endpoints_create_proxy_endpoint,
-        )
-        self.zero_trust_gateway_proxy_endpoints_list_proxy_endpoints = to_streamed_response_wrapper(
-            proxy_endpoints.zero_trust_gateway_proxy_endpoints_list_proxy_endpoints,
         )
 
 
@@ -674,8 +554,8 @@ class AsyncProxyEndpointsWithStreamingResponse:
     def __init__(self, proxy_endpoints: AsyncProxyEndpoints) -> None:
         self._proxy_endpoints = proxy_endpoints
 
-        self.update = async_to_streamed_response_wrapper(
-            proxy_endpoints.update,
+        self.create = async_to_streamed_response_wrapper(
+            proxy_endpoints.create,
         )
         self.list = async_to_streamed_response_wrapper(
             proxy_endpoints.list,
@@ -683,12 +563,9 @@ class AsyncProxyEndpointsWithStreamingResponse:
         self.delete = async_to_streamed_response_wrapper(
             proxy_endpoints.delete,
         )
+        self.edit = async_to_streamed_response_wrapper(
+            proxy_endpoints.edit,
+        )
         self.get = async_to_streamed_response_wrapper(
             proxy_endpoints.get,
-        )
-        self.zero_trust_gateway_proxy_endpoints_create_proxy_endpoint = async_to_streamed_response_wrapper(
-            proxy_endpoints.zero_trust_gateway_proxy_endpoints_create_proxy_endpoint,
-        )
-        self.zero_trust_gateway_proxy_endpoints_list_proxy_endpoints = async_to_streamed_response_wrapper(
-            proxy_endpoints.zero_trust_gateway_proxy_endpoints_list_proxy_endpoints,
         )

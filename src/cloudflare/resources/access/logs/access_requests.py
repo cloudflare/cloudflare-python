@@ -2,39 +2,24 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+
 import httpx
 
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._compat import cached_property
-
-from ....types.access.logs import AccessRequestAccessAuthenticationLogsGetAccessAuthenticationLogsResponse
-
-from typing import Type, Optional
-
+from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ....types import shared_params
 from ...._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
+from ...._base_client import (
+    make_request_options,
+)
+from ....types.access.logs import AccessRequestListResponse
 
 __all__ = ["AccessRequests", "AsyncAccessRequests"]
 
@@ -48,7 +33,7 @@ class AccessRequests(SyncAPIResource):
     def with_streaming_response(self) -> AccessRequestsWithStreamingResponse:
         return AccessRequestsWithStreamingResponse(self)
 
-    def access_authentication_logs_get_access_authentication_logs(
+    def list(
         self,
         identifier: str,
         *,
@@ -58,7 +43,7 @@ class AccessRequests(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AccessRequestAccessAuthenticationLogsGetAccessAuthenticationLogsResponse]:
+    ) -> Optional[AccessRequestListResponse]:
         """
         Gets a list of Access authentication audit logs for an account.
 
@@ -84,10 +69,7 @@ class AccessRequests(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[AccessRequestAccessAuthenticationLogsGetAccessAuthenticationLogsResponse]],
-                ResultWrapper[AccessRequestAccessAuthenticationLogsGetAccessAuthenticationLogsResponse],
-            ),
+            cast_to=cast(Type[Optional[AccessRequestListResponse]], ResultWrapper[AccessRequestListResponse]),
         )
 
 
@@ -100,7 +82,7 @@ class AsyncAccessRequests(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncAccessRequestsWithStreamingResponse:
         return AsyncAccessRequestsWithStreamingResponse(self)
 
-    async def access_authentication_logs_get_access_authentication_logs(
+    async def list(
         self,
         identifier: str,
         *,
@@ -110,7 +92,7 @@ class AsyncAccessRequests(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AccessRequestAccessAuthenticationLogsGetAccessAuthenticationLogsResponse]:
+    ) -> Optional[AccessRequestListResponse]:
         """
         Gets a list of Access authentication audit logs for an account.
 
@@ -136,10 +118,7 @@ class AsyncAccessRequests(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[AccessRequestAccessAuthenticationLogsGetAccessAuthenticationLogsResponse]],
-                ResultWrapper[AccessRequestAccessAuthenticationLogsGetAccessAuthenticationLogsResponse],
-            ),
+            cast_to=cast(Type[Optional[AccessRequestListResponse]], ResultWrapper[AccessRequestListResponse]),
         )
 
 
@@ -147,8 +126,8 @@ class AccessRequestsWithRawResponse:
     def __init__(self, access_requests: AccessRequests) -> None:
         self._access_requests = access_requests
 
-        self.access_authentication_logs_get_access_authentication_logs = to_raw_response_wrapper(
-            access_requests.access_authentication_logs_get_access_authentication_logs,
+        self.list = to_raw_response_wrapper(
+            access_requests.list,
         )
 
 
@@ -156,8 +135,8 @@ class AsyncAccessRequestsWithRawResponse:
     def __init__(self, access_requests: AsyncAccessRequests) -> None:
         self._access_requests = access_requests
 
-        self.access_authentication_logs_get_access_authentication_logs = async_to_raw_response_wrapper(
-            access_requests.access_authentication_logs_get_access_authentication_logs,
+        self.list = async_to_raw_response_wrapper(
+            access_requests.list,
         )
 
 
@@ -165,8 +144,8 @@ class AccessRequestsWithStreamingResponse:
     def __init__(self, access_requests: AccessRequests) -> None:
         self._access_requests = access_requests
 
-        self.access_authentication_logs_get_access_authentication_logs = to_streamed_response_wrapper(
-            access_requests.access_authentication_logs_get_access_authentication_logs,
+        self.list = to_streamed_response_wrapper(
+            access_requests.list,
         )
 
 
@@ -174,6 +153,6 @@ class AsyncAccessRequestsWithStreamingResponse:
     def __init__(self, access_requests: AsyncAccessRequests) -> None:
         self._access_requests = access_requests
 
-        self.access_authentication_logs_get_access_authentication_logs = async_to_streamed_response_wrapper(
-            access_requests.access_authentication_logs_get_access_authentication_logs,
+        self.list = async_to_streamed_response_wrapper(
+            access_requests.list,
         )

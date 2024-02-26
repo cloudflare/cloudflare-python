@@ -2,59 +2,35 @@
 
 from __future__ import annotations
 
+from typing import Any, Type, Optional, cast
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._compat import cached_property
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ..._wrappers import ResultWrapper
+from ..._base_client import (
+    make_request_options,
+)
 from ...types.hyperdrive import (
-    ConfigCreateResponse,
-    ConfigUpdateResponse,
-    ConfigListResponse,
-    ConfigDeleteResponse,
     ConfigGetResponse,
+    ConfigEditResponse,
+    ConfigListResponse,
+    ConfigCreateResponse,
+    ConfigDeleteResponse,
+    ConfigUpdateResponse,
+    config_edit_params,
     config_create_params,
     config_update_params,
 )
-
-from typing import Type, Optional
-
-from ..._response import (
-    to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types.hyperdrive import config_create_params
-from ...types.hyperdrive import config_update_params
-from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
 
 __all__ = ["Configs", "AsyncConfigs"]
 
@@ -241,6 +217,54 @@ class Configs(SyncAPIResource):
                     Any, ResultWrapper[ConfigDeleteResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
+        )
+
+    def edit(
+        self,
+        hyperdrive_id: str,
+        *,
+        account_id: str,
+        origin: config_edit_params.Origin | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ConfigEditResponse]:
+        """Patches and returns the specified Hyperdrive configuration.
+
+        Updates to the
+        origin and caching settings are applied with an all-or-nothing approach.
+
+        Args:
+          account_id: Identifier
+
+          hyperdrive_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not hyperdrive_id:
+            raise ValueError(f"Expected a non-empty value for `hyperdrive_id` but received {hyperdrive_id!r}")
+        return self._patch(
+            f"/accounts/{account_id}/hyperdrive/configs/{hyperdrive_id}",
+            body=maybe_transform({"origin": origin}, config_edit_params.ConfigEditParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[ConfigEditResponse]], ResultWrapper[ConfigEditResponse]),
         )
 
     def get(
@@ -472,6 +496,54 @@ class AsyncConfigs(AsyncAPIResource):
             ),
         )
 
+    async def edit(
+        self,
+        hyperdrive_id: str,
+        *,
+        account_id: str,
+        origin: config_edit_params.Origin | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ConfigEditResponse]:
+        """Patches and returns the specified Hyperdrive configuration.
+
+        Updates to the
+        origin and caching settings are applied with an all-or-nothing approach.
+
+        Args:
+          account_id: Identifier
+
+          hyperdrive_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not hyperdrive_id:
+            raise ValueError(f"Expected a non-empty value for `hyperdrive_id` but received {hyperdrive_id!r}")
+        return await self._patch(
+            f"/accounts/{account_id}/hyperdrive/configs/{hyperdrive_id}",
+            body=maybe_transform({"origin": origin}, config_edit_params.ConfigEditParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[ConfigEditResponse]], ResultWrapper[ConfigEditResponse]),
+        )
+
     async def get(
         self,
         hyperdrive_id: str,
@@ -533,6 +605,9 @@ class ConfigsWithRawResponse:
         self.delete = to_raw_response_wrapper(
             configs.delete,
         )
+        self.edit = to_raw_response_wrapper(
+            configs.edit,
+        )
         self.get = to_raw_response_wrapper(
             configs.get,
         )
@@ -553,6 +628,9 @@ class AsyncConfigsWithRawResponse:
         )
         self.delete = async_to_raw_response_wrapper(
             configs.delete,
+        )
+        self.edit = async_to_raw_response_wrapper(
+            configs.edit,
         )
         self.get = async_to_raw_response_wrapper(
             configs.get,
@@ -575,6 +653,9 @@ class ConfigsWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             configs.delete,
         )
+        self.edit = to_streamed_response_wrapper(
+            configs.edit,
+        )
         self.get = to_streamed_response_wrapper(
             configs.get,
         )
@@ -595,6 +676,9 @@ class AsyncConfigsWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             configs.delete,
+        )
+        self.edit = async_to_streamed_response_wrapper(
+            configs.edit,
         )
         self.get = async_to_streamed_response_wrapper(
             configs.get,

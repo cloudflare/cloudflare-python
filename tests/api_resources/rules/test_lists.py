@@ -2,32 +2,87 @@
 
 from __future__ import annotations
 
-from typing import Optional, Any, cast
-
-from cloudflare.types.rules import (
-    ListUpdateResponse,
-    ListDeleteResponse,
-    ListGetResponse,
-    ListListsCreateAListResponse,
-    ListListsGetListsResponse,
-)
-
 import os
+from typing import Any, Optional, cast
+
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.rules import list_update_params
-from cloudflare.types.rules import list_lists_create_a_list_params
+from cloudflare.types.rules import (
+    ListGetResponse,
+    ListListResponse,
+    ListCreateResponse,
+    ListDeleteResponse,
+    ListUpdateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
 class TestLists:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_create(self, client: Cloudflare) -> None:
+        list = client.rules.lists.create(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            kind="ip",
+            name="list1",
+        )
+        assert_matches_type(Optional[ListCreateResponse], list, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
+        list = client.rules.lists.create(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            kind="ip",
+            name="list1",
+            description="This is a note",
+        )
+        assert_matches_type(Optional[ListCreateResponse], list, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_create(self, client: Cloudflare) -> None:
+        response = client.rules.lists.with_raw_response.create(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            kind="ip",
+            name="list1",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        list = response.parse()
+        assert_matches_type(Optional[ListCreateResponse], list, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_create(self, client: Cloudflare) -> None:
+        with client.rules.lists.with_streaming_response.create(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            kind="ip",
+            name="list1",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            list = response.parse()
+            assert_matches_type(Optional[ListCreateResponse], list, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_create(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.rules.lists.with_raw_response.create(
+                "",
+                kind="ip",
+                name="list1",
+            )
 
     @pytest.mark.skip()
     @parametrize
@@ -89,6 +144,48 @@ class TestLists:
             client.rules.lists.with_raw_response.update(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_list(self, client: Cloudflare) -> None:
+        list = client.rules.lists.list(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(Optional[ListListResponse], list, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_list(self, client: Cloudflare) -> None:
+        response = client.rules.lists.with_raw_response.list(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        list = response.parse()
+        assert_matches_type(Optional[ListListResponse], list, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_list(self, client: Cloudflare) -> None:
+        with client.rules.lists.with_streaming_response.list(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            list = response.parse()
+            assert_matches_type(Optional[ListListResponse], list, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_list(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.rules.lists.with_raw_response.list(
+                "",
             )
 
     @pytest.mark.skip()
@@ -195,31 +292,35 @@ class TestLists:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
+
+class TestAsyncLists:
+    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+
     @pytest.mark.skip()
     @parametrize
-    def test_method_lists_create_a_list(self, client: Cloudflare) -> None:
-        list = client.rules.lists.lists_create_a_list(
+    async def test_method_create(self, async_client: AsyncCloudflare) -> None:
+        list = await async_client.rules.lists.create(
             "023e105f4ecef8ad9ca31a8372d0c353",
             kind="ip",
             name="list1",
         )
-        assert_matches_type(Optional[ListListsCreateAListResponse], list, path=["response"])
+        assert_matches_type(Optional[ListCreateResponse], list, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_lists_create_a_list_with_all_params(self, client: Cloudflare) -> None:
-        list = client.rules.lists.lists_create_a_list(
+    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        list = await async_client.rules.lists.create(
             "023e105f4ecef8ad9ca31a8372d0c353",
             kind="ip",
             name="list1",
             description="This is a note",
         )
-        assert_matches_type(Optional[ListListsCreateAListResponse], list, path=["response"])
+        assert_matches_type(Optional[ListCreateResponse], list, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_lists_create_a_list(self, client: Cloudflare) -> None:
-        response = client.rules.lists.with_raw_response.lists_create_a_list(
+    async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.rules.lists.with_raw_response.create(
             "023e105f4ecef8ad9ca31a8372d0c353",
             kind="ip",
             name="list1",
@@ -227,13 +328,13 @@ class TestLists:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        list = response.parse()
-        assert_matches_type(Optional[ListListsCreateAListResponse], list, path=["response"])
+        list = await response.parse()
+        assert_matches_type(Optional[ListCreateResponse], list, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_lists_create_a_list(self, client: Cloudflare) -> None:
-        with client.rules.lists.with_streaming_response.lists_create_a_list(
+    async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.rules.lists.with_streaming_response.create(
             "023e105f4ecef8ad9ca31a8372d0c353",
             kind="ip",
             name="list1",
@@ -241,66 +342,20 @@ class TestLists:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            list = response.parse()
-            assert_matches_type(Optional[ListListsCreateAListResponse], list, path=["response"])
+            list = await response.parse()
+            assert_matches_type(Optional[ListCreateResponse], list, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_lists_create_a_list(self, client: Cloudflare) -> None:
+    async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.rules.lists.with_raw_response.lists_create_a_list(
+            await async_client.rules.lists.with_raw_response.create(
                 "",
                 kind="ip",
                 name="list1",
             )
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_method_lists_get_lists(self, client: Cloudflare) -> None:
-        list = client.rules.lists.lists_get_lists(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(Optional[ListListsGetListsResponse], list, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_raw_response_lists_get_lists(self, client: Cloudflare) -> None:
-        response = client.rules.lists.with_raw_response.lists_get_lists(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        list = response.parse()
-        assert_matches_type(Optional[ListListsGetListsResponse], list, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_streaming_response_lists_get_lists(self, client: Cloudflare) -> None:
-        with client.rules.lists.with_streaming_response.lists_get_lists(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            list = response.parse()
-            assert_matches_type(Optional[ListListsGetListsResponse], list, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_path_params_lists_get_lists(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.rules.lists.with_raw_response.lists_get_lists(
-                "",
-            )
-
-
-class TestAsyncLists:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip()
     @parametrize
@@ -362,6 +417,48 @@ class TestAsyncLists:
             await async_client.rules.lists.with_raw_response.update(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_list(self, async_client: AsyncCloudflare) -> None:
+        list = await async_client.rules.lists.list(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(Optional[ListListResponse], list, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.rules.lists.with_raw_response.list(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        list = await response.parse()
+        assert_matches_type(Optional[ListListResponse], list, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.rules.lists.with_streaming_response.list(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            list = await response.parse()
+            assert_matches_type(Optional[ListListResponse], list, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.rules.lists.with_raw_response.list(
+                "",
             )
 
     @pytest.mark.skip()
@@ -466,107 +563,4 @@ class TestAsyncLists:
             await async_client.rules.lists.with_raw_response.get(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_lists_create_a_list(self, async_client: AsyncCloudflare) -> None:
-        list = await async_client.rules.lists.lists_create_a_list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            kind="ip",
-            name="list1",
-        )
-        assert_matches_type(Optional[ListListsCreateAListResponse], list, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_lists_create_a_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        list = await async_client.rules.lists.lists_create_a_list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            kind="ip",
-            name="list1",
-            description="This is a note",
-        )
-        assert_matches_type(Optional[ListListsCreateAListResponse], list, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_raw_response_lists_create_a_list(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.rules.lists.with_raw_response.lists_create_a_list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            kind="ip",
-            name="list1",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        list = await response.parse()
-        assert_matches_type(Optional[ListListsCreateAListResponse], list, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_streaming_response_lists_create_a_list(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.rules.lists.with_streaming_response.lists_create_a_list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            kind="ip",
-            name="list1",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            list = await response.parse()
-            assert_matches_type(Optional[ListListsCreateAListResponse], list, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_path_params_lists_create_a_list(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.rules.lists.with_raw_response.lists_create_a_list(
-                "",
-                kind="ip",
-                name="list1",
-            )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_lists_get_lists(self, async_client: AsyncCloudflare) -> None:
-        list = await async_client.rules.lists.lists_get_lists(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(Optional[ListListsGetListsResponse], list, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_raw_response_lists_get_lists(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.rules.lists.with_raw_response.lists_get_lists(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        list = await response.parse()
-        assert_matches_type(Optional[ListListsGetListsResponse], list, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_streaming_response_lists_get_lists(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.rules.lists.with_streaming_response.lists_get_lists(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            list = await response.parse()
-            assert_matches_type(Optional[ListListsGetListsResponse], list, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_path_params_lists_get_lists(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.rules.lists.with_raw_response.lists_get_lists(
-                "",
             )

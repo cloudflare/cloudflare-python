@@ -2,26 +2,21 @@
 
 from __future__ import annotations
 
-from cloudflare.types import (
-    LoadBalancerCreateResponse,
-    LoadBalancerUpdateResponse,
-    LoadBalancerListResponse,
-    LoadBalancerDeleteResponse,
-    LoadBalancerGetResponse,
-)
-
-from typing import Any, cast, Optional
-
 import os
+from typing import Any, Optional, cast
+
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types import load_balancer_create_params
-from cloudflare.types import load_balancer_update_params
+from cloudflare.types import (
+    LoadBalancerGetResponse,
+    LoadBalancerEditResponse,
+    LoadBalancerListResponse,
+    LoadBalancerCreateResponse,
+    LoadBalancerDeleteResponse,
+    LoadBalancerUpdateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -335,6 +330,13 @@ class TestLoadBalancers:
         load_balancer = client.load_balancers.update(
             "699d98642c564d2e855e9661899b7252",
             zone_id="699d98642c564d2e855e9661899b7252",
+            default_pools=[
+                "17b5962d775c646f3f9725cbc7a53df4",
+                "9290f38c5d07c2e2f4df57b1f61d4196",
+                "00920f38ce07c2e2f4df50b1f61d4194",
+            ],
+            fallback_pool={},
+            name="www.example.com",
         )
         assert_matches_type(LoadBalancerUpdateResponse, load_balancer, path=["response"])
 
@@ -342,6 +344,412 @@ class TestLoadBalancers:
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         load_balancer = client.load_balancers.update(
+            "699d98642c564d2e855e9661899b7252",
+            zone_id="699d98642c564d2e855e9661899b7252",
+            default_pools=[
+                "17b5962d775c646f3f9725cbc7a53df4",
+                "9290f38c5d07c2e2f4df57b1f61d4196",
+                "00920f38ce07c2e2f4df50b1f61d4194",
+            ],
+            fallback_pool={},
+            name="www.example.com",
+            adaptive_routing={"failover_across_pools": True},
+            country_pools={
+                "GB": ["abd90f38ced07c2e2f4df50b1f61d4194"],
+                "US": ["de90f38ced07c2e2f4df50b1f61d4194", "00920f38ce07c2e2f4df50b1f61d4194"],
+            },
+            description="Load Balancer for www.example.com",
+            enabled=True,
+            location_strategy={
+                "mode": "resolver_ip",
+                "prefer_ecs": "always",
+            },
+            pop_pools={
+                "LAX": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                "LHR": ["abd90f38ced07c2e2f4df50b1f61d4194", "f9138c5d07c2e2f4df57b1f61d4196"],
+                "SJC": ["00920f38ce07c2e2f4df50b1f61d4194"],
+            },
+            proxied=True,
+            random_steering={
+                "default_weight": 0.2,
+                "pool_weights": {
+                    "9290f38c5d07c2e2f4df57b1f61d4196": 0.5,
+                    "de90f38ced07c2e2f4df50b1f61d4194": 0.3,
+                },
+            },
+            region_pools={
+                "ENAM": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                "WNAM": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+            },
+            rules=[
+                {
+                    "condition": 'http.request.uri.path contains "/testing"',
+                    "disabled": True,
+                    "fixed_response": {
+                        "content_type": "application/json",
+                        "location": "www.example.com",
+                        "message_body": "Testing Hello",
+                        "status_code": 0,
+                    },
+                    "name": "route the path /testing to testing datacenter.",
+                    "overrides": {
+                        "adaptive_routing": {"failover_across_pools": True},
+                        "country_pools": {
+                            "GB": ["abd90f38ced07c2e2f4df50b1f61d4194"],
+                            "US": ["de90f38ced07c2e2f4df50b1f61d4194", "00920f38ce07c2e2f4df50b1f61d4194"],
+                        },
+                        "default_pools": [
+                            "17b5962d775c646f3f9725cbc7a53df4",
+                            "9290f38c5d07c2e2f4df57b1f61d4196",
+                            "00920f38ce07c2e2f4df50b1f61d4194",
+                        ],
+                        "fallback_pool": {},
+                        "location_strategy": {
+                            "mode": "resolver_ip",
+                            "prefer_ecs": "always",
+                        },
+                        "pop_pools": {
+                            "LAX": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                            "LHR": ["abd90f38ced07c2e2f4df50b1f61d4194", "f9138c5d07c2e2f4df57b1f61d4196"],
+                            "SJC": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                        },
+                        "random_steering": {
+                            "default_weight": 0.2,
+                            "pool_weights": {
+                                "9290f38c5d07c2e2f4df57b1f61d4196": 0.5,
+                                "de90f38ced07c2e2f4df50b1f61d4194": 0.3,
+                            },
+                        },
+                        "region_pools": {
+                            "ENAM": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                            "WNAM": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                        },
+                        "session_affinity": "cookie",
+                        "session_affinity_attributes": {
+                            "drain_duration": 100,
+                            "headers": ["x"],
+                            "require_all_headers": True,
+                            "samesite": "Auto",
+                            "secure": "Auto",
+                            "zero_downtime_failover": "sticky",
+                        },
+                        "session_affinity_ttl": 1800,
+                        "steering_policy": "dynamic_latency",
+                        "ttl": 30,
+                    },
+                    "priority": 0,
+                    "terminates": True,
+                },
+                {
+                    "condition": 'http.request.uri.path contains "/testing"',
+                    "disabled": True,
+                    "fixed_response": {
+                        "content_type": "application/json",
+                        "location": "www.example.com",
+                        "message_body": "Testing Hello",
+                        "status_code": 0,
+                    },
+                    "name": "route the path /testing to testing datacenter.",
+                    "overrides": {
+                        "adaptive_routing": {"failover_across_pools": True},
+                        "country_pools": {
+                            "GB": ["abd90f38ced07c2e2f4df50b1f61d4194"],
+                            "US": ["de90f38ced07c2e2f4df50b1f61d4194", "00920f38ce07c2e2f4df50b1f61d4194"],
+                        },
+                        "default_pools": [
+                            "17b5962d775c646f3f9725cbc7a53df4",
+                            "9290f38c5d07c2e2f4df57b1f61d4196",
+                            "00920f38ce07c2e2f4df50b1f61d4194",
+                        ],
+                        "fallback_pool": {},
+                        "location_strategy": {
+                            "mode": "resolver_ip",
+                            "prefer_ecs": "always",
+                        },
+                        "pop_pools": {
+                            "LAX": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                            "LHR": ["abd90f38ced07c2e2f4df50b1f61d4194", "f9138c5d07c2e2f4df57b1f61d4196"],
+                            "SJC": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                        },
+                        "random_steering": {
+                            "default_weight": 0.2,
+                            "pool_weights": {
+                                "9290f38c5d07c2e2f4df57b1f61d4196": 0.5,
+                                "de90f38ced07c2e2f4df50b1f61d4194": 0.3,
+                            },
+                        },
+                        "region_pools": {
+                            "ENAM": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                            "WNAM": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                        },
+                        "session_affinity": "cookie",
+                        "session_affinity_attributes": {
+                            "drain_duration": 100,
+                            "headers": ["x"],
+                            "require_all_headers": True,
+                            "samesite": "Auto",
+                            "secure": "Auto",
+                            "zero_downtime_failover": "sticky",
+                        },
+                        "session_affinity_ttl": 1800,
+                        "steering_policy": "dynamic_latency",
+                        "ttl": 30,
+                    },
+                    "priority": 0,
+                    "terminates": True,
+                },
+                {
+                    "condition": 'http.request.uri.path contains "/testing"',
+                    "disabled": True,
+                    "fixed_response": {
+                        "content_type": "application/json",
+                        "location": "www.example.com",
+                        "message_body": "Testing Hello",
+                        "status_code": 0,
+                    },
+                    "name": "route the path /testing to testing datacenter.",
+                    "overrides": {
+                        "adaptive_routing": {"failover_across_pools": True},
+                        "country_pools": {
+                            "GB": ["abd90f38ced07c2e2f4df50b1f61d4194"],
+                            "US": ["de90f38ced07c2e2f4df50b1f61d4194", "00920f38ce07c2e2f4df50b1f61d4194"],
+                        },
+                        "default_pools": [
+                            "17b5962d775c646f3f9725cbc7a53df4",
+                            "9290f38c5d07c2e2f4df57b1f61d4196",
+                            "00920f38ce07c2e2f4df50b1f61d4194",
+                        ],
+                        "fallback_pool": {},
+                        "location_strategy": {
+                            "mode": "resolver_ip",
+                            "prefer_ecs": "always",
+                        },
+                        "pop_pools": {
+                            "LAX": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                            "LHR": ["abd90f38ced07c2e2f4df50b1f61d4194", "f9138c5d07c2e2f4df57b1f61d4196"],
+                            "SJC": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                        },
+                        "random_steering": {
+                            "default_weight": 0.2,
+                            "pool_weights": {
+                                "9290f38c5d07c2e2f4df57b1f61d4196": 0.5,
+                                "de90f38ced07c2e2f4df50b1f61d4194": 0.3,
+                            },
+                        },
+                        "region_pools": {
+                            "ENAM": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                            "WNAM": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                        },
+                        "session_affinity": "cookie",
+                        "session_affinity_attributes": {
+                            "drain_duration": 100,
+                            "headers": ["x"],
+                            "require_all_headers": True,
+                            "samesite": "Auto",
+                            "secure": "Auto",
+                            "zero_downtime_failover": "sticky",
+                        },
+                        "session_affinity_ttl": 1800,
+                        "steering_policy": "dynamic_latency",
+                        "ttl": 30,
+                    },
+                    "priority": 0,
+                    "terminates": True,
+                },
+            ],
+            session_affinity="cookie",
+            session_affinity_attributes={
+                "drain_duration": 100,
+                "headers": ["x"],
+                "require_all_headers": True,
+                "samesite": "Auto",
+                "secure": "Auto",
+                "zero_downtime_failover": "sticky",
+            },
+            session_affinity_ttl=1800,
+            steering_policy="dynamic_latency",
+            ttl=30,
+        )
+        assert_matches_type(LoadBalancerUpdateResponse, load_balancer, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_update(self, client: Cloudflare) -> None:
+        response = client.load_balancers.with_raw_response.update(
+            "699d98642c564d2e855e9661899b7252",
+            zone_id="699d98642c564d2e855e9661899b7252",
+            default_pools=[
+                "17b5962d775c646f3f9725cbc7a53df4",
+                "9290f38c5d07c2e2f4df57b1f61d4196",
+                "00920f38ce07c2e2f4df50b1f61d4194",
+            ],
+            fallback_pool={},
+            name="www.example.com",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        load_balancer = response.parse()
+        assert_matches_type(LoadBalancerUpdateResponse, load_balancer, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_update(self, client: Cloudflare) -> None:
+        with client.load_balancers.with_streaming_response.update(
+            "699d98642c564d2e855e9661899b7252",
+            zone_id="699d98642c564d2e855e9661899b7252",
+            default_pools=[
+                "17b5962d775c646f3f9725cbc7a53df4",
+                "9290f38c5d07c2e2f4df57b1f61d4196",
+                "00920f38ce07c2e2f4df50b1f61d4194",
+            ],
+            fallback_pool={},
+            name="www.example.com",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            load_balancer = response.parse()
+            assert_matches_type(LoadBalancerUpdateResponse, load_balancer, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_update(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            client.load_balancers.with_raw_response.update(
+                "699d98642c564d2e855e9661899b7252",
+                zone_id="",
+                default_pools=[
+                    "17b5962d775c646f3f9725cbc7a53df4",
+                    "9290f38c5d07c2e2f4df57b1f61d4196",
+                    "00920f38ce07c2e2f4df50b1f61d4194",
+                ],
+                fallback_pool={},
+                name="www.example.com",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `load_balancer_id` but received ''"):
+            client.load_balancers.with_raw_response.update(
+                "",
+                zone_id="699d98642c564d2e855e9661899b7252",
+                default_pools=[
+                    "17b5962d775c646f3f9725cbc7a53df4",
+                    "9290f38c5d07c2e2f4df57b1f61d4196",
+                    "00920f38ce07c2e2f4df50b1f61d4194",
+                ],
+                fallback_pool={},
+                name="www.example.com",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_list(self, client: Cloudflare) -> None:
+        load_balancer = client.load_balancers.list(
+            "699d98642c564d2e855e9661899b7252",
+        )
+        assert_matches_type(Optional[LoadBalancerListResponse], load_balancer, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_list(self, client: Cloudflare) -> None:
+        response = client.load_balancers.with_raw_response.list(
+            "699d98642c564d2e855e9661899b7252",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        load_balancer = response.parse()
+        assert_matches_type(Optional[LoadBalancerListResponse], load_balancer, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_list(self, client: Cloudflare) -> None:
+        with client.load_balancers.with_streaming_response.list(
+            "699d98642c564d2e855e9661899b7252",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            load_balancer = response.parse()
+            assert_matches_type(Optional[LoadBalancerListResponse], load_balancer, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_list(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            client.load_balancers.with_raw_response.list(
+                "",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_delete(self, client: Cloudflare) -> None:
+        load_balancer = client.load_balancers.delete(
+            "699d98642c564d2e855e9661899b7252",
+            zone_id="699d98642c564d2e855e9661899b7252",
+        )
+        assert_matches_type(LoadBalancerDeleteResponse, load_balancer, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_delete(self, client: Cloudflare) -> None:
+        response = client.load_balancers.with_raw_response.delete(
+            "699d98642c564d2e855e9661899b7252",
+            zone_id="699d98642c564d2e855e9661899b7252",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        load_balancer = response.parse()
+        assert_matches_type(LoadBalancerDeleteResponse, load_balancer, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_delete(self, client: Cloudflare) -> None:
+        with client.load_balancers.with_streaming_response.delete(
+            "699d98642c564d2e855e9661899b7252",
+            zone_id="699d98642c564d2e855e9661899b7252",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            load_balancer = response.parse()
+            assert_matches_type(LoadBalancerDeleteResponse, load_balancer, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_delete(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            client.load_balancers.with_raw_response.delete(
+                "699d98642c564d2e855e9661899b7252",
+                zone_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `load_balancer_id` but received ''"):
+            client.load_balancers.with_raw_response.delete(
+                "",
+                zone_id="699d98642c564d2e855e9661899b7252",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_edit(self, client: Cloudflare) -> None:
+        load_balancer = client.load_balancers.edit(
+            "699d98642c564d2e855e9661899b7252",
+            zone_id="699d98642c564d2e855e9661899b7252",
+        )
+        assert_matches_type(LoadBalancerEditResponse, load_balancer, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
+        load_balancer = client.load_balancers.edit(
             "699d98642c564d2e855e9661899b7252",
             zone_id="699d98642c564d2e855e9661899b7252",
             adaptive_routing={"failover_across_pools": True},
@@ -568,12 +976,12 @@ class TestLoadBalancers:
             steering_policy="dynamic_latency",
             ttl=30,
         )
-        assert_matches_type(LoadBalancerUpdateResponse, load_balancer, path=["response"])
+        assert_matches_type(LoadBalancerEditResponse, load_balancer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_update(self, client: Cloudflare) -> None:
-        response = client.load_balancers.with_raw_response.update(
+    def test_raw_response_edit(self, client: Cloudflare) -> None:
+        response = client.load_balancers.with_raw_response.edit(
             "699d98642c564d2e855e9661899b7252",
             zone_id="699d98642c564d2e855e9661899b7252",
         )
@@ -581,12 +989,12 @@ class TestLoadBalancers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         load_balancer = response.parse()
-        assert_matches_type(LoadBalancerUpdateResponse, load_balancer, path=["response"])
+        assert_matches_type(LoadBalancerEditResponse, load_balancer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_update(self, client: Cloudflare) -> None:
-        with client.load_balancers.with_streaming_response.update(
+    def test_streaming_response_edit(self, client: Cloudflare) -> None:
+        with client.load_balancers.with_streaming_response.edit(
             "699d98642c564d2e855e9661899b7252",
             zone_id="699d98642c564d2e855e9661899b7252",
         ) as response:
@@ -594,115 +1002,21 @@ class TestLoadBalancers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             load_balancer = response.parse()
-            assert_matches_type(LoadBalancerUpdateResponse, load_balancer, path=["response"])
+            assert_matches_type(LoadBalancerEditResponse, load_balancer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_update(self, client: Cloudflare) -> None:
+    def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.load_balancers.with_raw_response.update(
+            client.load_balancers.with_raw_response.edit(
                 "699d98642c564d2e855e9661899b7252",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `load_balancer_id` but received ''"):
-            client.load_balancers.with_raw_response.update(
-                "",
-                zone_id="699d98642c564d2e855e9661899b7252",
-            )
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_method_list(self, client: Cloudflare) -> None:
-        load_balancer = client.load_balancers.list(
-            "699d98642c564d2e855e9661899b7252",
-        )
-        assert_matches_type(Optional[LoadBalancerListResponse], load_balancer, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_raw_response_list(self, client: Cloudflare) -> None:
-        response = client.load_balancers.with_raw_response.list(
-            "699d98642c564d2e855e9661899b7252",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        load_balancer = response.parse()
-        assert_matches_type(Optional[LoadBalancerListResponse], load_balancer, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_streaming_response_list(self, client: Cloudflare) -> None:
-        with client.load_balancers.with_streaming_response.list(
-            "699d98642c564d2e855e9661899b7252",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            load_balancer = response.parse()
-            assert_matches_type(Optional[LoadBalancerListResponse], load_balancer, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_path_params_list(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.load_balancers.with_raw_response.list(
-                "",
-            )
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_method_delete(self, client: Cloudflare) -> None:
-        load_balancer = client.load_balancers.delete(
-            "699d98642c564d2e855e9661899b7252",
-            zone_id="699d98642c564d2e855e9661899b7252",
-        )
-        assert_matches_type(LoadBalancerDeleteResponse, load_balancer, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_raw_response_delete(self, client: Cloudflare) -> None:
-        response = client.load_balancers.with_raw_response.delete(
-            "699d98642c564d2e855e9661899b7252",
-            zone_id="699d98642c564d2e855e9661899b7252",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        load_balancer = response.parse()
-        assert_matches_type(LoadBalancerDeleteResponse, load_balancer, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_streaming_response_delete(self, client: Cloudflare) -> None:
-        with client.load_balancers.with_streaming_response.delete(
-            "699d98642c564d2e855e9661899b7252",
-            zone_id="699d98642c564d2e855e9661899b7252",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            load_balancer = response.parse()
-            assert_matches_type(LoadBalancerDeleteResponse, load_balancer, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_path_params_delete(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.load_balancers.with_raw_response.delete(
-                "699d98642c564d2e855e9661899b7252",
-                zone_id="",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `load_balancer_id` but received ''"):
-            client.load_balancers.with_raw_response.delete(
+            client.load_balancers.with_raw_response.edit(
                 "",
                 zone_id="699d98642c564d2e855e9661899b7252",
             )
@@ -1069,6 +1383,13 @@ class TestAsyncLoadBalancers:
         load_balancer = await async_client.load_balancers.update(
             "699d98642c564d2e855e9661899b7252",
             zone_id="699d98642c564d2e855e9661899b7252",
+            default_pools=[
+                "17b5962d775c646f3f9725cbc7a53df4",
+                "9290f38c5d07c2e2f4df57b1f61d4196",
+                "00920f38ce07c2e2f4df50b1f61d4194",
+            ],
+            fallback_pool={},
+            name="www.example.com",
         )
         assert_matches_type(LoadBalancerUpdateResponse, load_balancer, path=["response"])
 
@@ -1076,6 +1397,412 @@ class TestAsyncLoadBalancers:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         load_balancer = await async_client.load_balancers.update(
+            "699d98642c564d2e855e9661899b7252",
+            zone_id="699d98642c564d2e855e9661899b7252",
+            default_pools=[
+                "17b5962d775c646f3f9725cbc7a53df4",
+                "9290f38c5d07c2e2f4df57b1f61d4196",
+                "00920f38ce07c2e2f4df50b1f61d4194",
+            ],
+            fallback_pool={},
+            name="www.example.com",
+            adaptive_routing={"failover_across_pools": True},
+            country_pools={
+                "GB": ["abd90f38ced07c2e2f4df50b1f61d4194"],
+                "US": ["de90f38ced07c2e2f4df50b1f61d4194", "00920f38ce07c2e2f4df50b1f61d4194"],
+            },
+            description="Load Balancer for www.example.com",
+            enabled=True,
+            location_strategy={
+                "mode": "resolver_ip",
+                "prefer_ecs": "always",
+            },
+            pop_pools={
+                "LAX": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                "LHR": ["abd90f38ced07c2e2f4df50b1f61d4194", "f9138c5d07c2e2f4df57b1f61d4196"],
+                "SJC": ["00920f38ce07c2e2f4df50b1f61d4194"],
+            },
+            proxied=True,
+            random_steering={
+                "default_weight": 0.2,
+                "pool_weights": {
+                    "9290f38c5d07c2e2f4df57b1f61d4196": 0.5,
+                    "de90f38ced07c2e2f4df50b1f61d4194": 0.3,
+                },
+            },
+            region_pools={
+                "ENAM": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                "WNAM": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+            },
+            rules=[
+                {
+                    "condition": 'http.request.uri.path contains "/testing"',
+                    "disabled": True,
+                    "fixed_response": {
+                        "content_type": "application/json",
+                        "location": "www.example.com",
+                        "message_body": "Testing Hello",
+                        "status_code": 0,
+                    },
+                    "name": "route the path /testing to testing datacenter.",
+                    "overrides": {
+                        "adaptive_routing": {"failover_across_pools": True},
+                        "country_pools": {
+                            "GB": ["abd90f38ced07c2e2f4df50b1f61d4194"],
+                            "US": ["de90f38ced07c2e2f4df50b1f61d4194", "00920f38ce07c2e2f4df50b1f61d4194"],
+                        },
+                        "default_pools": [
+                            "17b5962d775c646f3f9725cbc7a53df4",
+                            "9290f38c5d07c2e2f4df57b1f61d4196",
+                            "00920f38ce07c2e2f4df50b1f61d4194",
+                        ],
+                        "fallback_pool": {},
+                        "location_strategy": {
+                            "mode": "resolver_ip",
+                            "prefer_ecs": "always",
+                        },
+                        "pop_pools": {
+                            "LAX": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                            "LHR": ["abd90f38ced07c2e2f4df50b1f61d4194", "f9138c5d07c2e2f4df57b1f61d4196"],
+                            "SJC": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                        },
+                        "random_steering": {
+                            "default_weight": 0.2,
+                            "pool_weights": {
+                                "9290f38c5d07c2e2f4df57b1f61d4196": 0.5,
+                                "de90f38ced07c2e2f4df50b1f61d4194": 0.3,
+                            },
+                        },
+                        "region_pools": {
+                            "ENAM": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                            "WNAM": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                        },
+                        "session_affinity": "cookie",
+                        "session_affinity_attributes": {
+                            "drain_duration": 100,
+                            "headers": ["x"],
+                            "require_all_headers": True,
+                            "samesite": "Auto",
+                            "secure": "Auto",
+                            "zero_downtime_failover": "sticky",
+                        },
+                        "session_affinity_ttl": 1800,
+                        "steering_policy": "dynamic_latency",
+                        "ttl": 30,
+                    },
+                    "priority": 0,
+                    "terminates": True,
+                },
+                {
+                    "condition": 'http.request.uri.path contains "/testing"',
+                    "disabled": True,
+                    "fixed_response": {
+                        "content_type": "application/json",
+                        "location": "www.example.com",
+                        "message_body": "Testing Hello",
+                        "status_code": 0,
+                    },
+                    "name": "route the path /testing to testing datacenter.",
+                    "overrides": {
+                        "adaptive_routing": {"failover_across_pools": True},
+                        "country_pools": {
+                            "GB": ["abd90f38ced07c2e2f4df50b1f61d4194"],
+                            "US": ["de90f38ced07c2e2f4df50b1f61d4194", "00920f38ce07c2e2f4df50b1f61d4194"],
+                        },
+                        "default_pools": [
+                            "17b5962d775c646f3f9725cbc7a53df4",
+                            "9290f38c5d07c2e2f4df57b1f61d4196",
+                            "00920f38ce07c2e2f4df50b1f61d4194",
+                        ],
+                        "fallback_pool": {},
+                        "location_strategy": {
+                            "mode": "resolver_ip",
+                            "prefer_ecs": "always",
+                        },
+                        "pop_pools": {
+                            "LAX": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                            "LHR": ["abd90f38ced07c2e2f4df50b1f61d4194", "f9138c5d07c2e2f4df57b1f61d4196"],
+                            "SJC": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                        },
+                        "random_steering": {
+                            "default_weight": 0.2,
+                            "pool_weights": {
+                                "9290f38c5d07c2e2f4df57b1f61d4196": 0.5,
+                                "de90f38ced07c2e2f4df50b1f61d4194": 0.3,
+                            },
+                        },
+                        "region_pools": {
+                            "ENAM": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                            "WNAM": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                        },
+                        "session_affinity": "cookie",
+                        "session_affinity_attributes": {
+                            "drain_duration": 100,
+                            "headers": ["x"],
+                            "require_all_headers": True,
+                            "samesite": "Auto",
+                            "secure": "Auto",
+                            "zero_downtime_failover": "sticky",
+                        },
+                        "session_affinity_ttl": 1800,
+                        "steering_policy": "dynamic_latency",
+                        "ttl": 30,
+                    },
+                    "priority": 0,
+                    "terminates": True,
+                },
+                {
+                    "condition": 'http.request.uri.path contains "/testing"',
+                    "disabled": True,
+                    "fixed_response": {
+                        "content_type": "application/json",
+                        "location": "www.example.com",
+                        "message_body": "Testing Hello",
+                        "status_code": 0,
+                    },
+                    "name": "route the path /testing to testing datacenter.",
+                    "overrides": {
+                        "adaptive_routing": {"failover_across_pools": True},
+                        "country_pools": {
+                            "GB": ["abd90f38ced07c2e2f4df50b1f61d4194"],
+                            "US": ["de90f38ced07c2e2f4df50b1f61d4194", "00920f38ce07c2e2f4df50b1f61d4194"],
+                        },
+                        "default_pools": [
+                            "17b5962d775c646f3f9725cbc7a53df4",
+                            "9290f38c5d07c2e2f4df57b1f61d4196",
+                            "00920f38ce07c2e2f4df50b1f61d4194",
+                        ],
+                        "fallback_pool": {},
+                        "location_strategy": {
+                            "mode": "resolver_ip",
+                            "prefer_ecs": "always",
+                        },
+                        "pop_pools": {
+                            "LAX": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                            "LHR": ["abd90f38ced07c2e2f4df50b1f61d4194", "f9138c5d07c2e2f4df57b1f61d4196"],
+                            "SJC": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                        },
+                        "random_steering": {
+                            "default_weight": 0.2,
+                            "pool_weights": {
+                                "9290f38c5d07c2e2f4df57b1f61d4196": 0.5,
+                                "de90f38ced07c2e2f4df50b1f61d4194": 0.3,
+                            },
+                        },
+                        "region_pools": {
+                            "ENAM": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                            "WNAM": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                        },
+                        "session_affinity": "cookie",
+                        "session_affinity_attributes": {
+                            "drain_duration": 100,
+                            "headers": ["x"],
+                            "require_all_headers": True,
+                            "samesite": "Auto",
+                            "secure": "Auto",
+                            "zero_downtime_failover": "sticky",
+                        },
+                        "session_affinity_ttl": 1800,
+                        "steering_policy": "dynamic_latency",
+                        "ttl": 30,
+                    },
+                    "priority": 0,
+                    "terminates": True,
+                },
+            ],
+            session_affinity="cookie",
+            session_affinity_attributes={
+                "drain_duration": 100,
+                "headers": ["x"],
+                "require_all_headers": True,
+                "samesite": "Auto",
+                "secure": "Auto",
+                "zero_downtime_failover": "sticky",
+            },
+            session_affinity_ttl=1800,
+            steering_policy="dynamic_latency",
+            ttl=30,
+        )
+        assert_matches_type(LoadBalancerUpdateResponse, load_balancer, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.load_balancers.with_raw_response.update(
+            "699d98642c564d2e855e9661899b7252",
+            zone_id="699d98642c564d2e855e9661899b7252",
+            default_pools=[
+                "17b5962d775c646f3f9725cbc7a53df4",
+                "9290f38c5d07c2e2f4df57b1f61d4196",
+                "00920f38ce07c2e2f4df50b1f61d4194",
+            ],
+            fallback_pool={},
+            name="www.example.com",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        load_balancer = await response.parse()
+        assert_matches_type(LoadBalancerUpdateResponse, load_balancer, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.load_balancers.with_streaming_response.update(
+            "699d98642c564d2e855e9661899b7252",
+            zone_id="699d98642c564d2e855e9661899b7252",
+            default_pools=[
+                "17b5962d775c646f3f9725cbc7a53df4",
+                "9290f38c5d07c2e2f4df57b1f61d4196",
+                "00920f38ce07c2e2f4df50b1f61d4194",
+            ],
+            fallback_pool={},
+            name="www.example.com",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            load_balancer = await response.parse()
+            assert_matches_type(LoadBalancerUpdateResponse, load_balancer, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            await async_client.load_balancers.with_raw_response.update(
+                "699d98642c564d2e855e9661899b7252",
+                zone_id="",
+                default_pools=[
+                    "17b5962d775c646f3f9725cbc7a53df4",
+                    "9290f38c5d07c2e2f4df57b1f61d4196",
+                    "00920f38ce07c2e2f4df50b1f61d4194",
+                ],
+                fallback_pool={},
+                name="www.example.com",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `load_balancer_id` but received ''"):
+            await async_client.load_balancers.with_raw_response.update(
+                "",
+                zone_id="699d98642c564d2e855e9661899b7252",
+                default_pools=[
+                    "17b5962d775c646f3f9725cbc7a53df4",
+                    "9290f38c5d07c2e2f4df57b1f61d4196",
+                    "00920f38ce07c2e2f4df50b1f61d4194",
+                ],
+                fallback_pool={},
+                name="www.example.com",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_list(self, async_client: AsyncCloudflare) -> None:
+        load_balancer = await async_client.load_balancers.list(
+            "699d98642c564d2e855e9661899b7252",
+        )
+        assert_matches_type(Optional[LoadBalancerListResponse], load_balancer, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.load_balancers.with_raw_response.list(
+            "699d98642c564d2e855e9661899b7252",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        load_balancer = await response.parse()
+        assert_matches_type(Optional[LoadBalancerListResponse], load_balancer, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.load_balancers.with_streaming_response.list(
+            "699d98642c564d2e855e9661899b7252",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            load_balancer = await response.parse()
+            assert_matches_type(Optional[LoadBalancerListResponse], load_balancer, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            await async_client.load_balancers.with_raw_response.list(
+                "",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
+        load_balancer = await async_client.load_balancers.delete(
+            "699d98642c564d2e855e9661899b7252",
+            zone_id="699d98642c564d2e855e9661899b7252",
+        )
+        assert_matches_type(LoadBalancerDeleteResponse, load_balancer, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.load_balancers.with_raw_response.delete(
+            "699d98642c564d2e855e9661899b7252",
+            zone_id="699d98642c564d2e855e9661899b7252",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        load_balancer = await response.parse()
+        assert_matches_type(LoadBalancerDeleteResponse, load_balancer, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.load_balancers.with_streaming_response.delete(
+            "699d98642c564d2e855e9661899b7252",
+            zone_id="699d98642c564d2e855e9661899b7252",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            load_balancer = await response.parse()
+            assert_matches_type(LoadBalancerDeleteResponse, load_balancer, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            await async_client.load_balancers.with_raw_response.delete(
+                "699d98642c564d2e855e9661899b7252",
+                zone_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `load_balancer_id` but received ''"):
+            await async_client.load_balancers.with_raw_response.delete(
+                "",
+                zone_id="699d98642c564d2e855e9661899b7252",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
+        load_balancer = await async_client.load_balancers.edit(
+            "699d98642c564d2e855e9661899b7252",
+            zone_id="699d98642c564d2e855e9661899b7252",
+        )
+        assert_matches_type(LoadBalancerEditResponse, load_balancer, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        load_balancer = await async_client.load_balancers.edit(
             "699d98642c564d2e855e9661899b7252",
             zone_id="699d98642c564d2e855e9661899b7252",
             adaptive_routing={"failover_across_pools": True},
@@ -1302,12 +2029,12 @@ class TestAsyncLoadBalancers:
             steering_policy="dynamic_latency",
             ttl=30,
         )
-        assert_matches_type(LoadBalancerUpdateResponse, load_balancer, path=["response"])
+        assert_matches_type(LoadBalancerEditResponse, load_balancer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.load_balancers.with_raw_response.update(
+    async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.load_balancers.with_raw_response.edit(
             "699d98642c564d2e855e9661899b7252",
             zone_id="699d98642c564d2e855e9661899b7252",
         )
@@ -1315,12 +2042,12 @@ class TestAsyncLoadBalancers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         load_balancer = await response.parse()
-        assert_matches_type(LoadBalancerUpdateResponse, load_balancer, path=["response"])
+        assert_matches_type(LoadBalancerEditResponse, load_balancer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.load_balancers.with_streaming_response.update(
+    async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.load_balancers.with_streaming_response.edit(
             "699d98642c564d2e855e9661899b7252",
             zone_id="699d98642c564d2e855e9661899b7252",
         ) as response:
@@ -1328,115 +2055,21 @@ class TestAsyncLoadBalancers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             load_balancer = await response.parse()
-            assert_matches_type(LoadBalancerUpdateResponse, load_balancer, path=["response"])
+            assert_matches_type(LoadBalancerEditResponse, load_balancer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
+    async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.load_balancers.with_raw_response.update(
+            await async_client.load_balancers.with_raw_response.edit(
                 "699d98642c564d2e855e9661899b7252",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `load_balancer_id` but received ''"):
-            await async_client.load_balancers.with_raw_response.update(
-                "",
-                zone_id="699d98642c564d2e855e9661899b7252",
-            )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_list(self, async_client: AsyncCloudflare) -> None:
-        load_balancer = await async_client.load_balancers.list(
-            "699d98642c564d2e855e9661899b7252",
-        )
-        assert_matches_type(Optional[LoadBalancerListResponse], load_balancer, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.load_balancers.with_raw_response.list(
-            "699d98642c564d2e855e9661899b7252",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        load_balancer = await response.parse()
-        assert_matches_type(Optional[LoadBalancerListResponse], load_balancer, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.load_balancers.with_streaming_response.list(
-            "699d98642c564d2e855e9661899b7252",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            load_balancer = await response.parse()
-            assert_matches_type(Optional[LoadBalancerListResponse], load_balancer, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.load_balancers.with_raw_response.list(
-                "",
-            )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
-        load_balancer = await async_client.load_balancers.delete(
-            "699d98642c564d2e855e9661899b7252",
-            zone_id="699d98642c564d2e855e9661899b7252",
-        )
-        assert_matches_type(LoadBalancerDeleteResponse, load_balancer, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.load_balancers.with_raw_response.delete(
-            "699d98642c564d2e855e9661899b7252",
-            zone_id="699d98642c564d2e855e9661899b7252",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        load_balancer = await response.parse()
-        assert_matches_type(LoadBalancerDeleteResponse, load_balancer, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.load_balancers.with_streaming_response.delete(
-            "699d98642c564d2e855e9661899b7252",
-            zone_id="699d98642c564d2e855e9661899b7252",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            load_balancer = await response.parse()
-            assert_matches_type(LoadBalancerDeleteResponse, load_balancer, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.load_balancers.with_raw_response.delete(
-                "699d98642c564d2e855e9661899b7252",
-                zone_id="",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `load_balancer_id` but received ''"):
-            await async_client.load_balancers.with_raw_response.delete(
+            await async_client.load_balancers.with_raw_response.edit(
                 "",
                 zone_id="699d98642c564d2e855e9661899b7252",
             )

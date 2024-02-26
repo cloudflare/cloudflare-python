@@ -4,35 +4,22 @@ from __future__ import annotations
 
 import httpx
 
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._compat import cached_property
-
+from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     BinaryAPIResponse,
     AsyncBinaryAPIResponse,
-    to_custom_raw_response_wrapper,
-    async_to_custom_raw_response_wrapper,
-    to_custom_streamed_response_wrapper,
     StreamedBinaryAPIResponse,
-    async_to_custom_streamed_response_wrapper,
     AsyncStreamedBinaryAPIResponse,
+    to_custom_raw_response_wrapper,
+    to_custom_streamed_response_wrapper,
+    async_to_custom_raw_response_wrapper,
+    async_to_custom_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
     make_request_options,
-    HttpxBinaryResponseContent,
 )
-from ....types import shared_params
-from ...._wrappers import ResultWrapper
 
 __all__ = ["Blobs", "AsyncBlobs"]
 
@@ -46,7 +33,7 @@ class Blobs(SyncAPIResource):
     def with_streaming_response(self) -> BlobsWithStreamingResponse:
         return BlobsWithStreamingResponse(self)
 
-    def cloudflare_images_base_image(
+    def get(
         self,
         image_id: str,
         *,
@@ -80,6 +67,7 @@ class Blobs(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not image_id:
             raise ValueError(f"Expected a non-empty value for `image_id` but received {image_id!r}")
+        extra_headers = {"Accept": "image/*", **(extra_headers or {})}
         return self._get(
             f"/accounts/{account_id}/images/v1/{image_id}/blob",
             options=make_request_options(
@@ -98,7 +86,7 @@ class AsyncBlobs(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncBlobsWithStreamingResponse:
         return AsyncBlobsWithStreamingResponse(self)
 
-    async def cloudflare_images_base_image(
+    async def get(
         self,
         image_id: str,
         *,
@@ -132,6 +120,7 @@ class AsyncBlobs(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not image_id:
             raise ValueError(f"Expected a non-empty value for `image_id` but received {image_id!r}")
+        extra_headers = {"Accept": "image/*", **(extra_headers or {})}
         return await self._get(
             f"/accounts/{account_id}/images/v1/{image_id}/blob",
             options=make_request_options(
@@ -145,8 +134,8 @@ class BlobsWithRawResponse:
     def __init__(self, blobs: Blobs) -> None:
         self._blobs = blobs
 
-        self.cloudflare_images_base_image = to_custom_raw_response_wrapper(
-            blobs.cloudflare_images_base_image,
+        self.get = to_custom_raw_response_wrapper(
+            blobs.get,
             BinaryAPIResponse,
         )
 
@@ -155,8 +144,8 @@ class AsyncBlobsWithRawResponse:
     def __init__(self, blobs: AsyncBlobs) -> None:
         self._blobs = blobs
 
-        self.cloudflare_images_base_image = async_to_custom_raw_response_wrapper(
-            blobs.cloudflare_images_base_image,
+        self.get = async_to_custom_raw_response_wrapper(
+            blobs.get,
             AsyncBinaryAPIResponse,
         )
 
@@ -165,8 +154,8 @@ class BlobsWithStreamingResponse:
     def __init__(self, blobs: Blobs) -> None:
         self._blobs = blobs
 
-        self.cloudflare_images_base_image = to_custom_streamed_response_wrapper(
-            blobs.cloudflare_images_base_image,
+        self.get = to_custom_streamed_response_wrapper(
+            blobs.get,
             StreamedBinaryAPIResponse,
         )
 
@@ -175,7 +164,7 @@ class AsyncBlobsWithStreamingResponse:
     def __init__(self, blobs: AsyncBlobs) -> None:
         self._blobs = blobs
 
-        self.cloudflare_images_base_image = async_to_custom_streamed_response_wrapper(
-            blobs.cloudflare_images_base_image,
+        self.get = async_to_custom_streamed_response_wrapper(
+            blobs.get,
             AsyncStreamedBinaryAPIResponse,
         )

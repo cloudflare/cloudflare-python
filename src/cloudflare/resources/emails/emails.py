@@ -2,42 +2,25 @@
 
 from __future__ import annotations
 
-from .routings.routings import Routings, AsyncRoutings
-
+from .routing import (
+    Routing,
+    AsyncRouting,
+    RoutingWithRawResponse,
+    AsyncRoutingWithRawResponse,
+    RoutingWithStreamingResponse,
+    AsyncRoutingWithStreamingResponse,
+)
 from ..._compat import cached_property
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from .routings import (
-    Routings,
-    AsyncRoutings,
-    RoutingsWithRawResponse,
-    AsyncRoutingsWithRawResponse,
-    RoutingsWithStreamingResponse,
-    AsyncRoutingsWithStreamingResponse,
-)
-from ..._wrappers import ResultWrapper
+from .routing.routing import Routing, AsyncRouting
 
 __all__ = ["Emails", "AsyncEmails"]
 
 
 class Emails(SyncAPIResource):
     @cached_property
-    def routings(self) -> Routings:
-        return Routings(self._client)
+    def routing(self) -> Routing:
+        return Routing(self._client)
 
     @cached_property
     def with_raw_response(self) -> EmailsWithRawResponse:
@@ -50,8 +33,8 @@ class Emails(SyncAPIResource):
 
 class AsyncEmails(AsyncAPIResource):
     @cached_property
-    def routings(self) -> AsyncRoutings:
-        return AsyncRoutings(self._client)
+    def routing(self) -> AsyncRouting:
+        return AsyncRouting(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncEmailsWithRawResponse:
@@ -67,8 +50,8 @@ class EmailsWithRawResponse:
         self._emails = emails
 
     @cached_property
-    def routings(self) -> RoutingsWithRawResponse:
-        return RoutingsWithRawResponse(self._emails.routings)
+    def routing(self) -> RoutingWithRawResponse:
+        return RoutingWithRawResponse(self._emails.routing)
 
 
 class AsyncEmailsWithRawResponse:
@@ -76,8 +59,8 @@ class AsyncEmailsWithRawResponse:
         self._emails = emails
 
     @cached_property
-    def routings(self) -> AsyncRoutingsWithRawResponse:
-        return AsyncRoutingsWithRawResponse(self._emails.routings)
+    def routing(self) -> AsyncRoutingWithRawResponse:
+        return AsyncRoutingWithRawResponse(self._emails.routing)
 
 
 class EmailsWithStreamingResponse:
@@ -85,8 +68,8 @@ class EmailsWithStreamingResponse:
         self._emails = emails
 
     @cached_property
-    def routings(self) -> RoutingsWithStreamingResponse:
-        return RoutingsWithStreamingResponse(self._emails.routings)
+    def routing(self) -> RoutingWithStreamingResponse:
+        return RoutingWithStreamingResponse(self._emails.routing)
 
 
 class AsyncEmailsWithStreamingResponse:
@@ -94,5 +77,5 @@ class AsyncEmailsWithStreamingResponse:
         self._emails = emails
 
     @cached_property
-    def routings(self) -> AsyncRoutingsWithStreamingResponse:
-        return AsyncRoutingsWithStreamingResponse(self._emails.routings)
+    def routing(self) -> AsyncRoutingWithStreamingResponse:
+        return AsyncRoutingWithStreamingResponse(self._emails.routing)

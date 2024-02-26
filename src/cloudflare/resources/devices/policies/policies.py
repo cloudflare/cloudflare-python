@@ -2,56 +2,10 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+
 import httpx
 
-from .excludes import Excludes, AsyncExcludes
-
-from ...._compat import cached_property
-
-from .fallback_domains import FallbackDomains, AsyncFallbackDomains
-
-from .includes import Includes, AsyncIncludes
-
-from ....types.devices import (
-    PolicyUpdateResponse,
-    PolicyDeleteResponse,
-    PolicyDevicesCreateDeviceSettingsPolicyResponse,
-    PolicyDevicesGetDefaultDeviceSettingsPolicyResponse,
-    PolicyDevicesListDeviceSettingsPoliciesResponse,
-    PolicyDevicesUpdateDefaultDeviceSettingsPolicyResponse,
-    PolicyGetResponse,
-    policy_update_params,
-    policy_devices_create_device_settings_policy_params,
-    policy_devices_update_default_device_settings_policy_params,
-)
-
-from typing import Type, Optional
-
-from ...._response import (
-    to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ....types import shared_params
-from ....types.devices import policy_update_params
-from ....types.devices import policy_devices_create_device_settings_policy_params
-from ....types.devices import policy_devices_update_default_device_settings_policy_params
 from .excludes import (
     Excludes,
     AsyncExcludes,
@@ -59,14 +13,6 @@ from .excludes import (
     AsyncExcludesWithRawResponse,
     ExcludesWithStreamingResponse,
     AsyncExcludesWithStreamingResponse,
-)
-from .fallback_domains import (
-    FallbackDomains,
-    AsyncFallbackDomains,
-    FallbackDomainsWithRawResponse,
-    AsyncFallbackDomainsWithRawResponse,
-    FallbackDomainsWithStreamingResponse,
-    AsyncFallbackDomainsWithStreamingResponse,
 )
 from .includes import (
     Includes,
@@ -76,26 +22,54 @@ from .includes import (
     IncludesWithStreamingResponse,
     AsyncIncludesWithStreamingResponse,
 )
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import maybe_transform
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
 from ...._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from .default_policy import (
+    DefaultPolicy,
+    AsyncDefaultPolicy,
+    DefaultPolicyWithRawResponse,
+    AsyncDefaultPolicyWithRawResponse,
+    DefaultPolicyWithStreamingResponse,
+    AsyncDefaultPolicyWithStreamingResponse,
+)
+from ...._base_client import (
+    make_request_options,
+)
+from ....types.devices import (
+    PolicyGetResponse,
+    PolicyEditResponse,
+    PolicyListResponse,
+    PolicyCreateResponse,
+    PolicyDeleteResponse,
+    policy_edit_params,
+    policy_create_params,
+)
+from .fallback_domains import (
+    FallbackDomains,
+    AsyncFallbackDomains,
+    FallbackDomainsWithRawResponse,
+    AsyncFallbackDomainsWithRawResponse,
+    FallbackDomainsWithStreamingResponse,
+    AsyncFallbackDomainsWithStreamingResponse,
+)
 
 __all__ = ["Policies", "AsyncPolicies"]
 
 
 class Policies(SyncAPIResource):
+    @cached_property
+    def default_policy(self) -> DefaultPolicy:
+        return DefaultPolicy(self._client)
+
     @cached_property
     def excludes(self) -> Excludes:
         return Excludes(self._client)
@@ -116,157 +90,9 @@ class Policies(SyncAPIResource):
     def with_streaming_response(self) -> PoliciesWithStreamingResponse:
         return PoliciesWithStreamingResponse(self)
 
-    def update(
+    def create(
         self,
-        uuid: str,
-        *,
-        identifier: object,
-        allow_mode_switch: bool | NotGiven = NOT_GIVEN,
-        allow_updates: bool | NotGiven = NOT_GIVEN,
-        allowed_to_leave: bool | NotGiven = NOT_GIVEN,
-        auto_connect: float | NotGiven = NOT_GIVEN,
-        captive_portal: float | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        disable_auto_fallback: bool | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        exclude_office_ips: bool | NotGiven = NOT_GIVEN,
-        match: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        precedence: float | NotGiven = NOT_GIVEN,
-        service_mode_v2: policy_update_params.ServiceModeV2 | NotGiven = NOT_GIVEN,
-        support_url: str | NotGiven = NOT_GIVEN,
-        switch_locked: bool | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PolicyUpdateResponse]:
-        """
-        Updates a configured device settings profile.
-
-        Args:
-          uuid: Device ID.
-
-          allow_mode_switch: Whether to allow the user to switch WARP between modes.
-
-          allow_updates: Whether to receive update notifications when a new version of the client is
-              available.
-
-          allowed_to_leave: Whether to allow devices to leave the organization.
-
-          auto_connect: The amount of time in minutes to reconnect after having been disabled.
-
-          captive_portal: Turn on the captive portal after the specified amount of time.
-
-          description: A description of the policy.
-
-          disable_auto_fallback: If the `dns_server` field of a fallback domain is not present, the client will
-              fall back to a best guess of the default/system DNS resolvers unless this policy
-              option is set to `true`.
-
-          enabled: Whether the policy will be applied to matching devices.
-
-          exclude_office_ips: Whether to add Microsoft IPs to Split Tunnel exclusions.
-
-          match: The wirefilter expression to match devices.
-
-          name: The name of the device settings profile.
-
-          precedence: The precedence of the policy. Lower values indicate higher precedence. Policies
-              will be evaluated in ascending order of this field.
-
-          support_url: The URL to launch when the Send Feedback button is clicked.
-
-          switch_locked: Whether to allow the user to turn off the WARP switch and disconnect the client.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
-        return self._patch(
-            f"/accounts/{identifier}/devices/policy/{uuid}",
-            body=maybe_transform(
-                {
-                    "allow_mode_switch": allow_mode_switch,
-                    "allow_updates": allow_updates,
-                    "allowed_to_leave": allowed_to_leave,
-                    "auto_connect": auto_connect,
-                    "captive_portal": captive_portal,
-                    "description": description,
-                    "disable_auto_fallback": disable_auto_fallback,
-                    "enabled": enabled,
-                    "exclude_office_ips": exclude_office_ips,
-                    "match": match,
-                    "name": name,
-                    "precedence": precedence,
-                    "service_mode_v2": service_mode_v2,
-                    "support_url": support_url,
-                    "switch_locked": switch_locked,
-                },
-                policy_update_params.PolicyUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(Type[Optional[PolicyUpdateResponse]], ResultWrapper[PolicyUpdateResponse]),
-        )
-
-    def delete(
-        self,
-        uuid: str,
-        *,
-        identifier: object,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PolicyDeleteResponse]:
-        """
-        Deletes a device settings profile and fetches a list of the remaining profiles
-        for an account.
-
-        Args:
-          uuid: Device ID.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
-        return self._delete(
-            f"/accounts/{identifier}/devices/policy/{uuid}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(Type[Optional[PolicyDeleteResponse]], ResultWrapper[PolicyDeleteResponse]),
-        )
-
-    def devices_create_device_settings_policy(
-        self,
-        identifier: object,
+        account_id: object,
         *,
         match: str,
         name: str,
@@ -282,7 +108,7 @@ class Policies(SyncAPIResource):
         exclude_office_ips: bool | NotGiven = NOT_GIVEN,
         lan_allow_minutes: float | NotGiven = NOT_GIVEN,
         lan_allow_subnet_size: float | NotGiven = NOT_GIVEN,
-        service_mode_v2: policy_devices_create_device_settings_policy_params.ServiceModeV2 | NotGiven = NOT_GIVEN,
+        service_mode_v2: policy_create_params.ServiceModeV2 | NotGiven = NOT_GIVEN,
         support_url: str | NotGiven = NOT_GIVEN,
         switch_locked: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -291,7 +117,7 @@ class Policies(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PolicyDevicesCreateDeviceSettingsPolicyResponse]:
+    ) -> Optional[PolicyCreateResponse]:
         """
         Creates a device settings profile to be applied to certain devices matching the
         criteria.
@@ -346,7 +172,7 @@ class Policies(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            f"/accounts/{identifier}/devices/policy",
+            f"/accounts/{account_id}/devices/policy",
             body=maybe_transform(
                 {
                     "match": match,
@@ -367,7 +193,7 @@ class Policies(SyncAPIResource):
                     "support_url": support_url,
                     "switch_locked": switch_locked,
                 },
-                policy_devices_create_device_settings_policy_params.PolicyDevicesCreateDeviceSettingsPolicyParams,
+                policy_create_params.PolicyCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -376,15 +202,12 @@ class Policies(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[PolicyDevicesCreateDeviceSettingsPolicyResponse]],
-                ResultWrapper[PolicyDevicesCreateDeviceSettingsPolicyResponse],
-            ),
+            cast_to=cast(Type[Optional[PolicyCreateResponse]], ResultWrapper[PolicyCreateResponse]),
         )
 
-    def devices_get_default_device_settings_policy(
+    def list(
         self,
-        identifier: object,
+        account_id: object,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -392,45 +215,7 @@ class Policies(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PolicyDevicesGetDefaultDeviceSettingsPolicyResponse]:
-        """
-        Fetches the default device settings profile for an account.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._get(
-            f"/accounts/{identifier}/devices/policy",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[Optional[PolicyDevicesGetDefaultDeviceSettingsPolicyResponse]],
-                ResultWrapper[PolicyDevicesGetDefaultDeviceSettingsPolicyResponse],
-            ),
-        )
-
-    def devices_list_device_settings_policies(
-        self,
-        identifier: object,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PolicyDevicesListDeviceSettingsPoliciesResponse]:
+    ) -> Optional[PolicyListResponse]:
         """
         Fetches a list of the device settings profiles for an account.
 
@@ -444,7 +229,7 @@ class Policies(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/accounts/{identifier}/devices/policies",
+            f"/accounts/{account_id}/devices/policies",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -452,58 +237,27 @@ class Policies(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[PolicyDevicesListDeviceSettingsPoliciesResponse]],
-                ResultWrapper[PolicyDevicesListDeviceSettingsPoliciesResponse],
-            ),
+            cast_to=cast(Type[Optional[PolicyListResponse]], ResultWrapper[PolicyListResponse]),
         )
 
-    def devices_update_default_device_settings_policy(
+    def delete(
         self,
-        identifier: object,
+        policy_id: str,
         *,
-        allow_mode_switch: bool | NotGiven = NOT_GIVEN,
-        allow_updates: bool | NotGiven = NOT_GIVEN,
-        allowed_to_leave: bool | NotGiven = NOT_GIVEN,
-        auto_connect: float | NotGiven = NOT_GIVEN,
-        captive_portal: float | NotGiven = NOT_GIVEN,
-        disable_auto_fallback: bool | NotGiven = NOT_GIVEN,
-        exclude_office_ips: bool | NotGiven = NOT_GIVEN,
-        service_mode_v2: policy_devices_update_default_device_settings_policy_params.ServiceModeV2
-        | NotGiven = NOT_GIVEN,
-        support_url: str | NotGiven = NOT_GIVEN,
-        switch_locked: bool | NotGiven = NOT_GIVEN,
+        account_id: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PolicyDevicesUpdateDefaultDeviceSettingsPolicyResponse]:
+    ) -> Optional[PolicyDeleteResponse]:
         """
-        Updates the default device settings profile for an account.
+        Deletes a device settings profile and fetches a list of the remaining profiles
+        for an account.
 
         Args:
-          allow_mode_switch: Whether to allow the user to switch WARP between modes.
-
-          allow_updates: Whether to receive update notifications when a new version of the client is
-              available.
-
-          allowed_to_leave: Whether to allow devices to leave the organization.
-
-          auto_connect: The amount of time in minutes to reconnect after having been disabled.
-
-          captive_portal: Turn on the captive portal after the specified amount of time.
-
-          disable_auto_fallback: If the `dns_server` field of a fallback domain is not present, the client will
-              fall back to a best guess of the default/system DNS resolvers unless this policy
-              option is set to `true`.
-
-          exclude_office_ips: Whether to add Microsoft IPs to Split Tunnel exclusions.
-
-          support_url: The URL to launch when the Send Feedback button is clicked.
-
-          switch_locked: Whether to allow the user to turn off the WARP switch and disconnect the client.
+          policy_id: Device ID.
 
           extra_headers: Send extra headers
 
@@ -513,23 +267,10 @@ class Policies(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._patch(
-            f"/accounts/{identifier}/devices/policy",
-            body=maybe_transform(
-                {
-                    "allow_mode_switch": allow_mode_switch,
-                    "allow_updates": allow_updates,
-                    "allowed_to_leave": allowed_to_leave,
-                    "auto_connect": auto_connect,
-                    "captive_portal": captive_portal,
-                    "disable_auto_fallback": disable_auto_fallback,
-                    "exclude_office_ips": exclude_office_ips,
-                    "service_mode_v2": service_mode_v2,
-                    "support_url": support_url,
-                    "switch_locked": switch_locked,
-                },
-                policy_devices_update_default_device_settings_policy_params.PolicyDevicesUpdateDefaultDeviceSettingsPolicyParams,
-            ),
+        if not policy_id:
+            raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
+        return self._delete(
+            f"/accounts/{account_id}/devices/policy/{policy_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -537,79 +278,14 @@ class Policies(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[PolicyDevicesUpdateDefaultDeviceSettingsPolicyResponse]],
-                ResultWrapper[PolicyDevicesUpdateDefaultDeviceSettingsPolicyResponse],
-            ),
+            cast_to=cast(Type[Optional[PolicyDeleteResponse]], ResultWrapper[PolicyDeleteResponse]),
         )
 
-    def get(
+    def edit(
         self,
-        uuid: str,
+        policy_id: str,
         *,
-        identifier: object,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PolicyGetResponse]:
-        """
-        Fetches a device settings profile by ID.
-
-        Args:
-          uuid: Device ID.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
-        return self._get(
-            f"/accounts/{identifier}/devices/policy/{uuid}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(Type[Optional[PolicyGetResponse]], ResultWrapper[PolicyGetResponse]),
-        )
-
-
-class AsyncPolicies(AsyncAPIResource):
-    @cached_property
-    def excludes(self) -> AsyncExcludes:
-        return AsyncExcludes(self._client)
-
-    @cached_property
-    def fallback_domains(self) -> AsyncFallbackDomains:
-        return AsyncFallbackDomains(self._client)
-
-    @cached_property
-    def includes(self) -> AsyncIncludes:
-        return AsyncIncludes(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> AsyncPoliciesWithRawResponse:
-        return AsyncPoliciesWithRawResponse(self)
-
-    @cached_property
-    def with_streaming_response(self) -> AsyncPoliciesWithStreamingResponse:
-        return AsyncPoliciesWithStreamingResponse(self)
-
-    async def update(
-        self,
-        uuid: str,
-        *,
-        identifier: object,
+        account_id: object,
         allow_mode_switch: bool | NotGiven = NOT_GIVEN,
         allow_updates: bool | NotGiven = NOT_GIVEN,
         allowed_to_leave: bool | NotGiven = NOT_GIVEN,
@@ -622,7 +298,7 @@ class AsyncPolicies(AsyncAPIResource):
         match: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         precedence: float | NotGiven = NOT_GIVEN,
-        service_mode_v2: policy_update_params.ServiceModeV2 | NotGiven = NOT_GIVEN,
+        service_mode_v2: policy_edit_params.ServiceModeV2 | NotGiven = NOT_GIVEN,
         support_url: str | NotGiven = NOT_GIVEN,
         switch_locked: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -631,12 +307,12 @@ class AsyncPolicies(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PolicyUpdateResponse]:
+    ) -> Optional[PolicyEditResponse]:
         """
         Updates a configured device settings profile.
 
         Args:
-          uuid: Device ID.
+          policy_id: Device ID.
 
           allow_mode_switch: Whether to allow the user to switch WARP between modes.
 
@@ -678,10 +354,10 @@ class AsyncPolicies(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
-        return await self._patch(
-            f"/accounts/{identifier}/devices/policy/{uuid}",
+        if not policy_id:
+            raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
+        return self._patch(
+            f"/accounts/{account_id}/devices/policy/{policy_id}",
             body=maybe_transform(
                 {
                     "allow_mode_switch": allow_mode_switch,
@@ -700,7 +376,7 @@ class AsyncPolicies(AsyncAPIResource):
                     "support_url": support_url,
                     "switch_locked": switch_locked,
                 },
-                policy_update_params.PolicyUpdateParams,
+                policy_edit_params.PolicyEditParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -709,27 +385,26 @@ class AsyncPolicies(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[PolicyUpdateResponse]], ResultWrapper[PolicyUpdateResponse]),
+            cast_to=cast(Type[Optional[PolicyEditResponse]], ResultWrapper[PolicyEditResponse]),
         )
 
-    async def delete(
+    def get(
         self,
-        uuid: str,
+        policy_id: str,
         *,
-        identifier: object,
+        account_id: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PolicyDeleteResponse]:
+    ) -> Optional[PolicyGetResponse]:
         """
-        Deletes a device settings profile and fetches a list of the remaining profiles
-        for an account.
+        Fetches a device settings profile by ID.
 
         Args:
-          uuid: Device ID.
+          policy_id: Device ID.
 
           extra_headers: Send extra headers
 
@@ -739,10 +414,10 @@ class AsyncPolicies(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
-        return await self._delete(
-            f"/accounts/{identifier}/devices/policy/{uuid}",
+        if not policy_id:
+            raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
+        return self._get(
+            f"/accounts/{account_id}/devices/policy/{policy_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -750,12 +425,38 @@ class AsyncPolicies(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[PolicyDeleteResponse]], ResultWrapper[PolicyDeleteResponse]),
+            cast_to=cast(Type[Optional[PolicyGetResponse]], ResultWrapper[PolicyGetResponse]),
         )
 
-    async def devices_create_device_settings_policy(
+
+class AsyncPolicies(AsyncAPIResource):
+    @cached_property
+    def default_policy(self) -> AsyncDefaultPolicy:
+        return AsyncDefaultPolicy(self._client)
+
+    @cached_property
+    def excludes(self) -> AsyncExcludes:
+        return AsyncExcludes(self._client)
+
+    @cached_property
+    def fallback_domains(self) -> AsyncFallbackDomains:
+        return AsyncFallbackDomains(self._client)
+
+    @cached_property
+    def includes(self) -> AsyncIncludes:
+        return AsyncIncludes(self._client)
+
+    @cached_property
+    def with_raw_response(self) -> AsyncPoliciesWithRawResponse:
+        return AsyncPoliciesWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncPoliciesWithStreamingResponse:
+        return AsyncPoliciesWithStreamingResponse(self)
+
+    async def create(
         self,
-        identifier: object,
+        account_id: object,
         *,
         match: str,
         name: str,
@@ -771,7 +472,7 @@ class AsyncPolicies(AsyncAPIResource):
         exclude_office_ips: bool | NotGiven = NOT_GIVEN,
         lan_allow_minutes: float | NotGiven = NOT_GIVEN,
         lan_allow_subnet_size: float | NotGiven = NOT_GIVEN,
-        service_mode_v2: policy_devices_create_device_settings_policy_params.ServiceModeV2 | NotGiven = NOT_GIVEN,
+        service_mode_v2: policy_create_params.ServiceModeV2 | NotGiven = NOT_GIVEN,
         support_url: str | NotGiven = NOT_GIVEN,
         switch_locked: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -780,7 +481,7 @@ class AsyncPolicies(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PolicyDevicesCreateDeviceSettingsPolicyResponse]:
+    ) -> Optional[PolicyCreateResponse]:
         """
         Creates a device settings profile to be applied to certain devices matching the
         criteria.
@@ -835,7 +536,7 @@ class AsyncPolicies(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            f"/accounts/{identifier}/devices/policy",
+            f"/accounts/{account_id}/devices/policy",
             body=maybe_transform(
                 {
                     "match": match,
@@ -856,7 +557,7 @@ class AsyncPolicies(AsyncAPIResource):
                     "support_url": support_url,
                     "switch_locked": switch_locked,
                 },
-                policy_devices_create_device_settings_policy_params.PolicyDevicesCreateDeviceSettingsPolicyParams,
+                policy_create_params.PolicyCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -865,15 +566,12 @@ class AsyncPolicies(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[PolicyDevicesCreateDeviceSettingsPolicyResponse]],
-                ResultWrapper[PolicyDevicesCreateDeviceSettingsPolicyResponse],
-            ),
+            cast_to=cast(Type[Optional[PolicyCreateResponse]], ResultWrapper[PolicyCreateResponse]),
         )
 
-    async def devices_get_default_device_settings_policy(
+    async def list(
         self,
-        identifier: object,
+        account_id: object,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -881,45 +579,7 @@ class AsyncPolicies(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PolicyDevicesGetDefaultDeviceSettingsPolicyResponse]:
-        """
-        Fetches the default device settings profile for an account.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._get(
-            f"/accounts/{identifier}/devices/policy",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[Optional[PolicyDevicesGetDefaultDeviceSettingsPolicyResponse]],
-                ResultWrapper[PolicyDevicesGetDefaultDeviceSettingsPolicyResponse],
-            ),
-        )
-
-    async def devices_list_device_settings_policies(
-        self,
-        identifier: object,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PolicyDevicesListDeviceSettingsPoliciesResponse]:
+    ) -> Optional[PolicyListResponse]:
         """
         Fetches a list of the device settings profiles for an account.
 
@@ -933,7 +593,7 @@ class AsyncPolicies(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/accounts/{identifier}/devices/policies",
+            f"/accounts/{account_id}/devices/policies",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -941,25 +601,68 @@ class AsyncPolicies(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[PolicyDevicesListDeviceSettingsPoliciesResponse]],
-                ResultWrapper[PolicyDevicesListDeviceSettingsPoliciesResponse],
-            ),
+            cast_to=cast(Type[Optional[PolicyListResponse]], ResultWrapper[PolicyListResponse]),
         )
 
-    async def devices_update_default_device_settings_policy(
+    async def delete(
         self,
-        identifier: object,
+        policy_id: str,
         *,
+        account_id: object,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[PolicyDeleteResponse]:
+        """
+        Deletes a device settings profile and fetches a list of the remaining profiles
+        for an account.
+
+        Args:
+          policy_id: Device ID.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not policy_id:
+            raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
+        return await self._delete(
+            f"/accounts/{account_id}/devices/policy/{policy_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[PolicyDeleteResponse]], ResultWrapper[PolicyDeleteResponse]),
+        )
+
+    async def edit(
+        self,
+        policy_id: str,
+        *,
+        account_id: object,
         allow_mode_switch: bool | NotGiven = NOT_GIVEN,
         allow_updates: bool | NotGiven = NOT_GIVEN,
         allowed_to_leave: bool | NotGiven = NOT_GIVEN,
         auto_connect: float | NotGiven = NOT_GIVEN,
         captive_portal: float | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
         disable_auto_fallback: bool | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
         exclude_office_ips: bool | NotGiven = NOT_GIVEN,
-        service_mode_v2: policy_devices_update_default_device_settings_policy_params.ServiceModeV2
-        | NotGiven = NOT_GIVEN,
+        match: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        precedence: float | NotGiven = NOT_GIVEN,
+        service_mode_v2: policy_edit_params.ServiceModeV2 | NotGiven = NOT_GIVEN,
         support_url: str | NotGiven = NOT_GIVEN,
         switch_locked: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -968,11 +671,13 @@ class AsyncPolicies(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PolicyDevicesUpdateDefaultDeviceSettingsPolicyResponse]:
+    ) -> Optional[PolicyEditResponse]:
         """
-        Updates the default device settings profile for an account.
+        Updates a configured device settings profile.
 
         Args:
+          policy_id: Device ID.
+
           allow_mode_switch: Whether to allow the user to switch WARP between modes.
 
           allow_updates: Whether to receive update notifications when a new version of the client is
@@ -984,11 +689,22 @@ class AsyncPolicies(AsyncAPIResource):
 
           captive_portal: Turn on the captive portal after the specified amount of time.
 
+          description: A description of the policy.
+
           disable_auto_fallback: If the `dns_server` field of a fallback domain is not present, the client will
               fall back to a best guess of the default/system DNS resolvers unless this policy
               option is set to `true`.
 
+          enabled: Whether the policy will be applied to matching devices.
+
           exclude_office_ips: Whether to add Microsoft IPs to Split Tunnel exclusions.
+
+          match: The wirefilter expression to match devices.
+
+          name: The name of the device settings profile.
+
+          precedence: The precedence of the policy. Lower values indicate higher precedence. Policies
+              will be evaluated in ascending order of this field.
 
           support_url: The URL to launch when the Send Feedback button is clicked.
 
@@ -1002,8 +718,10 @@ class AsyncPolicies(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not policy_id:
+            raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         return await self._patch(
-            f"/accounts/{identifier}/devices/policy",
+            f"/accounts/{account_id}/devices/policy/{policy_id}",
             body=maybe_transform(
                 {
                     "allow_mode_switch": allow_mode_switch,
@@ -1011,13 +729,18 @@ class AsyncPolicies(AsyncAPIResource):
                     "allowed_to_leave": allowed_to_leave,
                     "auto_connect": auto_connect,
                     "captive_portal": captive_portal,
+                    "description": description,
                     "disable_auto_fallback": disable_auto_fallback,
+                    "enabled": enabled,
                     "exclude_office_ips": exclude_office_ips,
+                    "match": match,
+                    "name": name,
+                    "precedence": precedence,
                     "service_mode_v2": service_mode_v2,
                     "support_url": support_url,
                     "switch_locked": switch_locked,
                 },
-                policy_devices_update_default_device_settings_policy_params.PolicyDevicesUpdateDefaultDeviceSettingsPolicyParams,
+                policy_edit_params.PolicyEditParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -1026,17 +749,14 @@ class AsyncPolicies(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[PolicyDevicesUpdateDefaultDeviceSettingsPolicyResponse]],
-                ResultWrapper[PolicyDevicesUpdateDefaultDeviceSettingsPolicyResponse],
-            ),
+            cast_to=cast(Type[Optional[PolicyEditResponse]], ResultWrapper[PolicyEditResponse]),
         )
 
     async def get(
         self,
-        uuid: str,
+        policy_id: str,
         *,
-        identifier: object,
+        account_id: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1048,7 +768,7 @@ class AsyncPolicies(AsyncAPIResource):
         Fetches a device settings profile by ID.
 
         Args:
-          uuid: Device ID.
+          policy_id: Device ID.
 
           extra_headers: Send extra headers
 
@@ -1058,10 +778,10 @@ class AsyncPolicies(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not policy_id:
+            raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         return await self._get(
-            f"/accounts/{identifier}/devices/policy/{uuid}",
+            f"/accounts/{account_id}/devices/policy/{policy_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1077,27 +797,25 @@ class PoliciesWithRawResponse:
     def __init__(self, policies: Policies) -> None:
         self._policies = policies
 
-        self.update = to_raw_response_wrapper(
-            policies.update,
+        self.create = to_raw_response_wrapper(
+            policies.create,
+        )
+        self.list = to_raw_response_wrapper(
+            policies.list,
         )
         self.delete = to_raw_response_wrapper(
             policies.delete,
         )
-        self.devices_create_device_settings_policy = to_raw_response_wrapper(
-            policies.devices_create_device_settings_policy,
-        )
-        self.devices_get_default_device_settings_policy = to_raw_response_wrapper(
-            policies.devices_get_default_device_settings_policy,
-        )
-        self.devices_list_device_settings_policies = to_raw_response_wrapper(
-            policies.devices_list_device_settings_policies,
-        )
-        self.devices_update_default_device_settings_policy = to_raw_response_wrapper(
-            policies.devices_update_default_device_settings_policy,
+        self.edit = to_raw_response_wrapper(
+            policies.edit,
         )
         self.get = to_raw_response_wrapper(
             policies.get,
         )
+
+    @cached_property
+    def default_policy(self) -> DefaultPolicyWithRawResponse:
+        return DefaultPolicyWithRawResponse(self._policies.default_policy)
 
     @cached_property
     def excludes(self) -> ExcludesWithRawResponse:
@@ -1116,27 +834,25 @@ class AsyncPoliciesWithRawResponse:
     def __init__(self, policies: AsyncPolicies) -> None:
         self._policies = policies
 
-        self.update = async_to_raw_response_wrapper(
-            policies.update,
+        self.create = async_to_raw_response_wrapper(
+            policies.create,
+        )
+        self.list = async_to_raw_response_wrapper(
+            policies.list,
         )
         self.delete = async_to_raw_response_wrapper(
             policies.delete,
         )
-        self.devices_create_device_settings_policy = async_to_raw_response_wrapper(
-            policies.devices_create_device_settings_policy,
-        )
-        self.devices_get_default_device_settings_policy = async_to_raw_response_wrapper(
-            policies.devices_get_default_device_settings_policy,
-        )
-        self.devices_list_device_settings_policies = async_to_raw_response_wrapper(
-            policies.devices_list_device_settings_policies,
-        )
-        self.devices_update_default_device_settings_policy = async_to_raw_response_wrapper(
-            policies.devices_update_default_device_settings_policy,
+        self.edit = async_to_raw_response_wrapper(
+            policies.edit,
         )
         self.get = async_to_raw_response_wrapper(
             policies.get,
         )
+
+    @cached_property
+    def default_policy(self) -> AsyncDefaultPolicyWithRawResponse:
+        return AsyncDefaultPolicyWithRawResponse(self._policies.default_policy)
 
     @cached_property
     def excludes(self) -> AsyncExcludesWithRawResponse:
@@ -1155,27 +871,25 @@ class PoliciesWithStreamingResponse:
     def __init__(self, policies: Policies) -> None:
         self._policies = policies
 
-        self.update = to_streamed_response_wrapper(
-            policies.update,
+        self.create = to_streamed_response_wrapper(
+            policies.create,
+        )
+        self.list = to_streamed_response_wrapper(
+            policies.list,
         )
         self.delete = to_streamed_response_wrapper(
             policies.delete,
         )
-        self.devices_create_device_settings_policy = to_streamed_response_wrapper(
-            policies.devices_create_device_settings_policy,
-        )
-        self.devices_get_default_device_settings_policy = to_streamed_response_wrapper(
-            policies.devices_get_default_device_settings_policy,
-        )
-        self.devices_list_device_settings_policies = to_streamed_response_wrapper(
-            policies.devices_list_device_settings_policies,
-        )
-        self.devices_update_default_device_settings_policy = to_streamed_response_wrapper(
-            policies.devices_update_default_device_settings_policy,
+        self.edit = to_streamed_response_wrapper(
+            policies.edit,
         )
         self.get = to_streamed_response_wrapper(
             policies.get,
         )
+
+    @cached_property
+    def default_policy(self) -> DefaultPolicyWithStreamingResponse:
+        return DefaultPolicyWithStreamingResponse(self._policies.default_policy)
 
     @cached_property
     def excludes(self) -> ExcludesWithStreamingResponse:
@@ -1194,27 +908,25 @@ class AsyncPoliciesWithStreamingResponse:
     def __init__(self, policies: AsyncPolicies) -> None:
         self._policies = policies
 
-        self.update = async_to_streamed_response_wrapper(
-            policies.update,
+        self.create = async_to_streamed_response_wrapper(
+            policies.create,
+        )
+        self.list = async_to_streamed_response_wrapper(
+            policies.list,
         )
         self.delete = async_to_streamed_response_wrapper(
             policies.delete,
         )
-        self.devices_create_device_settings_policy = async_to_streamed_response_wrapper(
-            policies.devices_create_device_settings_policy,
-        )
-        self.devices_get_default_device_settings_policy = async_to_streamed_response_wrapper(
-            policies.devices_get_default_device_settings_policy,
-        )
-        self.devices_list_device_settings_policies = async_to_streamed_response_wrapper(
-            policies.devices_list_device_settings_policies,
-        )
-        self.devices_update_default_device_settings_policy = async_to_streamed_response_wrapper(
-            policies.devices_update_default_device_settings_policy,
+        self.edit = async_to_streamed_response_wrapper(
+            policies.edit,
         )
         self.get = async_to_streamed_response_wrapper(
             policies.get,
         )
+
+    @cached_property
+    def default_policy(self) -> AsyncDefaultPolicyWithStreamingResponse:
+        return AsyncDefaultPolicyWithStreamingResponse(self._policies.default_policy)
 
     @cached_property
     def excludes(self) -> AsyncExcludesWithStreamingResponse:

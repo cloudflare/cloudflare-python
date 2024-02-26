@@ -2,26 +2,21 @@
 
 from __future__ import annotations
 
-from typing import Optional, Any, cast
-
-from cloudflare.types.hyperdrive import (
-    ConfigCreateResponse,
-    ConfigUpdateResponse,
-    ConfigListResponse,
-    ConfigDeleteResponse,
-    ConfigGetResponse,
-)
-
 import os
+from typing import Any, Optional, cast
+
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.hyperdrive import config_create_params
-from cloudflare.types.hyperdrive import config_update_params
+from cloudflare.types.hyperdrive import (
+    ConfigGetResponse,
+    ConfigEditResponse,
+    ConfigListResponse,
+    ConfigCreateResponse,
+    ConfigDeleteResponse,
+    ConfigUpdateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -222,6 +217,68 @@ class TestConfigs:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `hyperdrive_id` but received ''"):
             client.hyperdrive.configs.with_raw_response.delete(
+                "",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_edit(self, client: Cloudflare) -> None:
+        config = client.hyperdrive.configs.edit(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(Optional[ConfigEditResponse], config, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
+        config = client.hyperdrive.configs.edit(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            origin={"password": "password1234!"},
+        )
+        assert_matches_type(Optional[ConfigEditResponse], config, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_edit(self, client: Cloudflare) -> None:
+        response = client.hyperdrive.configs.with_raw_response.edit(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        config = response.parse()
+        assert_matches_type(Optional[ConfigEditResponse], config, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_edit(self, client: Cloudflare) -> None:
+        with client.hyperdrive.configs.with_streaming_response.edit(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            config = response.parse()
+            assert_matches_type(Optional[ConfigEditResponse], config, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_edit(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.hyperdrive.configs.with_raw_response.edit(
+                "023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `hyperdrive_id` but received ''"):
+            client.hyperdrive.configs.with_raw_response.edit(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
@@ -475,6 +532,68 @@ class TestAsyncConfigs:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `hyperdrive_id` but received ''"):
             await async_client.hyperdrive.configs.with_raw_response.delete(
+                "",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
+        config = await async_client.hyperdrive.configs.edit(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(Optional[ConfigEditResponse], config, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        config = await async_client.hyperdrive.configs.edit(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            origin={"password": "password1234!"},
+        )
+        assert_matches_type(Optional[ConfigEditResponse], config, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.hyperdrive.configs.with_raw_response.edit(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        config = await response.parse()
+        assert_matches_type(Optional[ConfigEditResponse], config, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.hyperdrive.configs.with_streaming_response.edit(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            config = await response.parse()
+            assert_matches_type(Optional[ConfigEditResponse], config, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.hyperdrive.configs.with_raw_response.edit(
+                "023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `hyperdrive_id` but received ''"):
+            await async_client.hyperdrive.configs.with_raw_response.edit(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

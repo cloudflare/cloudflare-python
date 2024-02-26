@@ -2,55 +2,33 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._compat import cached_property
-
-from ...types.secondary_dns import (
-    PeerUpdateResponse,
-    PeerDeleteResponse,
-    PeerGetResponse,
-    PeerSecondaryDNSPeerCreatePeerResponse,
-    PeerSecondaryDNSPeerListPeersResponse,
-)
-
-from typing import Type, Optional
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types.secondary_dns import peer_update_params
-from ...types.secondary_dns import peer_secondary_dns_peer_create_peer_params
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ..._base_client import (
+    make_request_options,
+)
+from ...types.secondary_dns import (
+    PeerGetResponse,
+    PeerListResponse,
+    PeerCreateResponse,
+    PeerDeleteResponse,
+    PeerUpdateResponse,
+    peer_create_params,
+    peer_update_params,
+)
 
 __all__ = ["Peers", "AsyncPeers"]
 
@@ -63,6 +41,43 @@ class Peers(SyncAPIResource):
     @cached_property
     def with_streaming_response(self) -> PeersWithStreamingResponse:
         return PeersWithStreamingResponse(self)
+
+    def create(
+        self,
+        account_id: object,
+        *,
+        body: object,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> PeerCreateResponse:
+        """
+        Create Peer.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._post(
+            f"/accounts/{account_id}/secondary_dns/peers",
+            body=maybe_transform(body, peer_create_params.PeerCreateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[PeerCreateResponse], ResultWrapper[PeerCreateResponse]),
+        )
 
     def update(
         self,
@@ -129,6 +144,41 @@ class Peers(SyncAPIResource):
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(Type[PeerUpdateResponse], ResultWrapper[PeerUpdateResponse]),
+        )
+
+    def list(
+        self,
+        account_id: object,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[PeerListResponse]:
+        """
+        List Peers.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get(
+            f"/accounts/{account_id}/secondary_dns/peers",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[PeerListResponse]], ResultWrapper[PeerListResponse]),
         )
 
     def delete(
@@ -203,7 +253,17 @@ class Peers(SyncAPIResource):
             cast_to=cast(Type[PeerGetResponse], ResultWrapper[PeerGetResponse]),
         )
 
-    def secondary_dns_peer_create_peer(
+
+class AsyncPeers(AsyncAPIResource):
+    @cached_property
+    def with_raw_response(self) -> AsyncPeersWithRawResponse:
+        return AsyncPeersWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncPeersWithStreamingResponse:
+        return AsyncPeersWithStreamingResponse(self)
+
+    async def create(
         self,
         account_id: object,
         *,
@@ -214,7 +274,7 @@ class Peers(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PeerSecondaryDNSPeerCreatePeerResponse:
+    ) -> PeerCreateResponse:
         """
         Create Peer.
 
@@ -227,9 +287,9 @@ class Peers(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._post(
+        return await self._post(
             f"/accounts/{account_id}/secondary_dns/peers",
-            body=maybe_transform(body, peer_secondary_dns_peer_create_peer_params.PeerSecondaryDNSPeerCreatePeerParams),
+            body=maybe_transform(body, peer_create_params.PeerCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -237,58 +297,8 @@ class Peers(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[PeerSecondaryDNSPeerCreatePeerResponse], ResultWrapper[PeerSecondaryDNSPeerCreatePeerResponse]
-            ),
+            cast_to=cast(Type[PeerCreateResponse], ResultWrapper[PeerCreateResponse]),
         )
-
-    def secondary_dns_peer_list_peers(
-        self,
-        account_id: object,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PeerSecondaryDNSPeerListPeersResponse]:
-        """
-        List Peers.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._get(
-            f"/accounts/{account_id}/secondary_dns/peers",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[Optional[PeerSecondaryDNSPeerListPeersResponse]],
-                ResultWrapper[PeerSecondaryDNSPeerListPeersResponse],
-            ),
-        )
-
-
-class AsyncPeers(AsyncAPIResource):
-    @cached_property
-    def with_raw_response(self) -> AsyncPeersWithRawResponse:
-        return AsyncPeersWithRawResponse(self)
-
-    @cached_property
-    def with_streaming_response(self) -> AsyncPeersWithStreamingResponse:
-        return AsyncPeersWithStreamingResponse(self)
 
     async def update(
         self,
@@ -355,6 +365,41 @@ class AsyncPeers(AsyncAPIResource):
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(Type[PeerUpdateResponse], ResultWrapper[PeerUpdateResponse]),
+        )
+
+    async def list(
+        self,
+        account_id: object,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[PeerListResponse]:
+        """
+        List Peers.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._get(
+            f"/accounts/{account_id}/secondary_dns/peers",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[PeerListResponse]], ResultWrapper[PeerListResponse]),
         )
 
     async def delete(
@@ -429,90 +474,19 @@ class AsyncPeers(AsyncAPIResource):
             cast_to=cast(Type[PeerGetResponse], ResultWrapper[PeerGetResponse]),
         )
 
-    async def secondary_dns_peer_create_peer(
-        self,
-        account_id: object,
-        *,
-        body: object,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PeerSecondaryDNSPeerCreatePeerResponse:
-        """
-        Create Peer.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._post(
-            f"/accounts/{account_id}/secondary_dns/peers",
-            body=maybe_transform(body, peer_secondary_dns_peer_create_peer_params.PeerSecondaryDNSPeerCreatePeerParams),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[PeerSecondaryDNSPeerCreatePeerResponse], ResultWrapper[PeerSecondaryDNSPeerCreatePeerResponse]
-            ),
-        )
-
-    async def secondary_dns_peer_list_peers(
-        self,
-        account_id: object,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PeerSecondaryDNSPeerListPeersResponse]:
-        """
-        List Peers.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._get(
-            f"/accounts/{account_id}/secondary_dns/peers",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[Optional[PeerSecondaryDNSPeerListPeersResponse]],
-                ResultWrapper[PeerSecondaryDNSPeerListPeersResponse],
-            ),
-        )
-
 
 class PeersWithRawResponse:
     def __init__(self, peers: Peers) -> None:
         self._peers = peers
 
+        self.create = to_raw_response_wrapper(
+            peers.create,
+        )
         self.update = to_raw_response_wrapper(
             peers.update,
+        )
+        self.list = to_raw_response_wrapper(
+            peers.list,
         )
         self.delete = to_raw_response_wrapper(
             peers.delete,
@@ -520,20 +494,20 @@ class PeersWithRawResponse:
         self.get = to_raw_response_wrapper(
             peers.get,
         )
-        self.secondary_dns_peer_create_peer = to_raw_response_wrapper(
-            peers.secondary_dns_peer_create_peer,
-        )
-        self.secondary_dns_peer_list_peers = to_raw_response_wrapper(
-            peers.secondary_dns_peer_list_peers,
-        )
 
 
 class AsyncPeersWithRawResponse:
     def __init__(self, peers: AsyncPeers) -> None:
         self._peers = peers
 
+        self.create = async_to_raw_response_wrapper(
+            peers.create,
+        )
         self.update = async_to_raw_response_wrapper(
             peers.update,
+        )
+        self.list = async_to_raw_response_wrapper(
+            peers.list,
         )
         self.delete = async_to_raw_response_wrapper(
             peers.delete,
@@ -541,20 +515,20 @@ class AsyncPeersWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             peers.get,
         )
-        self.secondary_dns_peer_create_peer = async_to_raw_response_wrapper(
-            peers.secondary_dns_peer_create_peer,
-        )
-        self.secondary_dns_peer_list_peers = async_to_raw_response_wrapper(
-            peers.secondary_dns_peer_list_peers,
-        )
 
 
 class PeersWithStreamingResponse:
     def __init__(self, peers: Peers) -> None:
         self._peers = peers
 
+        self.create = to_streamed_response_wrapper(
+            peers.create,
+        )
         self.update = to_streamed_response_wrapper(
             peers.update,
+        )
+        self.list = to_streamed_response_wrapper(
+            peers.list,
         )
         self.delete = to_streamed_response_wrapper(
             peers.delete,
@@ -562,30 +536,24 @@ class PeersWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             peers.get,
         )
-        self.secondary_dns_peer_create_peer = to_streamed_response_wrapper(
-            peers.secondary_dns_peer_create_peer,
-        )
-        self.secondary_dns_peer_list_peers = to_streamed_response_wrapper(
-            peers.secondary_dns_peer_list_peers,
-        )
 
 
 class AsyncPeersWithStreamingResponse:
     def __init__(self, peers: AsyncPeers) -> None:
         self._peers = peers
 
+        self.create = async_to_streamed_response_wrapper(
+            peers.create,
+        )
         self.update = async_to_streamed_response_wrapper(
             peers.update,
+        )
+        self.list = async_to_streamed_response_wrapper(
+            peers.list,
         )
         self.delete = async_to_streamed_response_wrapper(
             peers.delete,
         )
         self.get = async_to_streamed_response_wrapper(
             peers.get,
-        )
-        self.secondary_dns_peer_create_peer = async_to_streamed_response_wrapper(
-            peers.secondary_dns_peer_create_peer,
-        )
-        self.secondary_dns_peer_list_peers = async_to_streamed_response_wrapper(
-            peers.secondary_dns_peer_list_peers,
         )

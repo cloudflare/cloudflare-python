@@ -2,59 +2,34 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+from typing_extensions import Literal
+
 import httpx
 
-from .._compat import cached_property
-
 from ..types import (
-    KeylessCertificateCreateResponse,
-    KeylessCertificateUpdateResponse,
-    KeylessCertificateListResponse,
-    KeylessCertificateDeleteResponse,
     KeylessCertificateGetResponse,
+    KeylessCertificateEditResponse,
+    KeylessCertificateListResponse,
+    KeylessCertificateCreateResponse,
+    KeylessCertificateDeleteResponse,
+    keyless_certificate_edit_params,
     keyless_certificate_create_params,
-    keyless_certificate_update_params,
 )
-
-from typing import Type, Optional
-
-from typing_extensions import Literal
-
+from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._utils import maybe_transform
+from .._compat import cached_property
+from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from .._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from .._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from .._resource import SyncAPIResource, AsyncAPIResource
-from .._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ..types import shared_params
-from ..types import keyless_certificate_create_params
-from ..types import keyless_certificate_update_params
 from .._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from .._base_client import (
+    make_request_options,
+)
 
 __all__ = ["KeylessCertificates", "AsyncKeylessCertificates"]
 
@@ -140,80 +115,6 @@ class KeylessCertificates(SyncAPIResource):
             cast_to=cast(Type[KeylessCertificateCreateResponse], ResultWrapper[KeylessCertificateCreateResponse]),
         )
 
-    def update(
-        self,
-        keyless_certificate_id: str,
-        *,
-        zone_id: str,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        host: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        port: float | NotGiven = NOT_GIVEN,
-        tunnel: keyless_certificate_update_params.Tunnel | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> KeylessCertificateUpdateResponse:
-        """This will update attributes of a Keyless SSL.
-
-        Consists of one or more of the
-        following: host,name,port.
-
-        Args:
-          zone_id: Identifier
-
-          keyless_certificate_id: Identifier
-
-          enabled: Whether or not the Keyless SSL is on or off.
-
-          host: The keyless SSL name.
-
-          name: The keyless SSL name.
-
-          port: The keyless SSL port used to communicate between Cloudflare and the client's
-              Keyless SSL server.
-
-          tunnel: Configuration for using Keyless SSL through a Cloudflare Tunnel
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not keyless_certificate_id:
-            raise ValueError(
-                f"Expected a non-empty value for `keyless_certificate_id` but received {keyless_certificate_id!r}"
-            )
-        return self._patch(
-            f"/zones/{zone_id}/keyless_certificates/{keyless_certificate_id}",
-            body=maybe_transform(
-                {
-                    "enabled": enabled,
-                    "host": host,
-                    "name": name,
-                    "port": port,
-                    "tunnel": tunnel,
-                },
-                keyless_certificate_update_params.KeylessCertificateUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(Type[KeylessCertificateUpdateResponse], ResultWrapper[KeylessCertificateUpdateResponse]),
-        )
-
     def list(
         self,
         zone_id: str,
@@ -297,6 +198,80 @@ class KeylessCertificates(SyncAPIResource):
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(Type[KeylessCertificateDeleteResponse], ResultWrapper[KeylessCertificateDeleteResponse]),
+        )
+
+    def edit(
+        self,
+        keyless_certificate_id: str,
+        *,
+        zone_id: str,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        host: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        port: float | NotGiven = NOT_GIVEN,
+        tunnel: keyless_certificate_edit_params.Tunnel | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> KeylessCertificateEditResponse:
+        """This will update attributes of a Keyless SSL.
+
+        Consists of one or more of the
+        following: host,name,port.
+
+        Args:
+          zone_id: Identifier
+
+          keyless_certificate_id: Identifier
+
+          enabled: Whether or not the Keyless SSL is on or off.
+
+          host: The keyless SSL name.
+
+          name: The keyless SSL name.
+
+          port: The keyless SSL port used to communicate between Cloudflare and the client's
+              Keyless SSL server.
+
+          tunnel: Configuration for using Keyless SSL through a Cloudflare Tunnel
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not keyless_certificate_id:
+            raise ValueError(
+                f"Expected a non-empty value for `keyless_certificate_id` but received {keyless_certificate_id!r}"
+            )
+        return self._patch(
+            f"/zones/{zone_id}/keyless_certificates/{keyless_certificate_id}",
+            body=maybe_transform(
+                {
+                    "enabled": enabled,
+                    "host": host,
+                    "name": name,
+                    "port": port,
+                    "tunnel": tunnel,
+                },
+                keyless_certificate_edit_params.KeylessCertificateEditParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[KeylessCertificateEditResponse], ResultWrapper[KeylessCertificateEditResponse]),
         )
 
     def get(
@@ -427,80 +402,6 @@ class AsyncKeylessCertificates(AsyncAPIResource):
             cast_to=cast(Type[KeylessCertificateCreateResponse], ResultWrapper[KeylessCertificateCreateResponse]),
         )
 
-    async def update(
-        self,
-        keyless_certificate_id: str,
-        *,
-        zone_id: str,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        host: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        port: float | NotGiven = NOT_GIVEN,
-        tunnel: keyless_certificate_update_params.Tunnel | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> KeylessCertificateUpdateResponse:
-        """This will update attributes of a Keyless SSL.
-
-        Consists of one or more of the
-        following: host,name,port.
-
-        Args:
-          zone_id: Identifier
-
-          keyless_certificate_id: Identifier
-
-          enabled: Whether or not the Keyless SSL is on or off.
-
-          host: The keyless SSL name.
-
-          name: The keyless SSL name.
-
-          port: The keyless SSL port used to communicate between Cloudflare and the client's
-              Keyless SSL server.
-
-          tunnel: Configuration for using Keyless SSL through a Cloudflare Tunnel
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not keyless_certificate_id:
-            raise ValueError(
-                f"Expected a non-empty value for `keyless_certificate_id` but received {keyless_certificate_id!r}"
-            )
-        return await self._patch(
-            f"/zones/{zone_id}/keyless_certificates/{keyless_certificate_id}",
-            body=maybe_transform(
-                {
-                    "enabled": enabled,
-                    "host": host,
-                    "name": name,
-                    "port": port,
-                    "tunnel": tunnel,
-                },
-                keyless_certificate_update_params.KeylessCertificateUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(Type[KeylessCertificateUpdateResponse], ResultWrapper[KeylessCertificateUpdateResponse]),
-        )
-
     async def list(
         self,
         zone_id: str,
@@ -586,6 +487,80 @@ class AsyncKeylessCertificates(AsyncAPIResource):
             cast_to=cast(Type[KeylessCertificateDeleteResponse], ResultWrapper[KeylessCertificateDeleteResponse]),
         )
 
+    async def edit(
+        self,
+        keyless_certificate_id: str,
+        *,
+        zone_id: str,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        host: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        port: float | NotGiven = NOT_GIVEN,
+        tunnel: keyless_certificate_edit_params.Tunnel | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> KeylessCertificateEditResponse:
+        """This will update attributes of a Keyless SSL.
+
+        Consists of one or more of the
+        following: host,name,port.
+
+        Args:
+          zone_id: Identifier
+
+          keyless_certificate_id: Identifier
+
+          enabled: Whether or not the Keyless SSL is on or off.
+
+          host: The keyless SSL name.
+
+          name: The keyless SSL name.
+
+          port: The keyless SSL port used to communicate between Cloudflare and the client's
+              Keyless SSL server.
+
+          tunnel: Configuration for using Keyless SSL through a Cloudflare Tunnel
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not keyless_certificate_id:
+            raise ValueError(
+                f"Expected a non-empty value for `keyless_certificate_id` but received {keyless_certificate_id!r}"
+            )
+        return await self._patch(
+            f"/zones/{zone_id}/keyless_certificates/{keyless_certificate_id}",
+            body=maybe_transform(
+                {
+                    "enabled": enabled,
+                    "host": host,
+                    "name": name,
+                    "port": port,
+                    "tunnel": tunnel,
+                },
+                keyless_certificate_edit_params.KeylessCertificateEditParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[KeylessCertificateEditResponse], ResultWrapper[KeylessCertificateEditResponse]),
+        )
+
     async def get(
         self,
         keyless_certificate_id: str,
@@ -640,14 +615,14 @@ class KeylessCertificatesWithRawResponse:
         self.create = to_raw_response_wrapper(
             keyless_certificates.create,
         )
-        self.update = to_raw_response_wrapper(
-            keyless_certificates.update,
-        )
         self.list = to_raw_response_wrapper(
             keyless_certificates.list,
         )
         self.delete = to_raw_response_wrapper(
             keyless_certificates.delete,
+        )
+        self.edit = to_raw_response_wrapper(
+            keyless_certificates.edit,
         )
         self.get = to_raw_response_wrapper(
             keyless_certificates.get,
@@ -661,14 +636,14 @@ class AsyncKeylessCertificatesWithRawResponse:
         self.create = async_to_raw_response_wrapper(
             keyless_certificates.create,
         )
-        self.update = async_to_raw_response_wrapper(
-            keyless_certificates.update,
-        )
         self.list = async_to_raw_response_wrapper(
             keyless_certificates.list,
         )
         self.delete = async_to_raw_response_wrapper(
             keyless_certificates.delete,
+        )
+        self.edit = async_to_raw_response_wrapper(
+            keyless_certificates.edit,
         )
         self.get = async_to_raw_response_wrapper(
             keyless_certificates.get,
@@ -682,14 +657,14 @@ class KeylessCertificatesWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             keyless_certificates.create,
         )
-        self.update = to_streamed_response_wrapper(
-            keyless_certificates.update,
-        )
         self.list = to_streamed_response_wrapper(
             keyless_certificates.list,
         )
         self.delete = to_streamed_response_wrapper(
             keyless_certificates.delete,
+        )
+        self.edit = to_streamed_response_wrapper(
+            keyless_certificates.edit,
         )
         self.get = to_streamed_response_wrapper(
             keyless_certificates.get,
@@ -703,14 +678,14 @@ class AsyncKeylessCertificatesWithStreamingResponse:
         self.create = async_to_streamed_response_wrapper(
             keyless_certificates.create,
         )
-        self.update = async_to_streamed_response_wrapper(
-            keyless_certificates.update,
-        )
         self.list = async_to_streamed_response_wrapper(
             keyless_certificates.list,
         )
         self.delete = async_to_streamed_response_wrapper(
             keyless_certificates.delete,
+        )
+        self.edit = async_to_streamed_response_wrapper(
+            keyless_certificates.edit,
         )
         self.get = async_to_streamed_response_wrapper(
             keyless_certificates.get,

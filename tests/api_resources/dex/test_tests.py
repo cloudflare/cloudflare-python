@@ -2,19 +2,15 @@
 
 from __future__ import annotations
 
-from cloudflare.types.dex import TestListResponse
-
+import os
 from typing import Any, cast
 
-import os
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.dex import test_list_params
+from cloudflare.types.dex import TestListResponse
+from cloudflare.pagination import SyncV4PagePagination, AsyncV4PagePagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -28,7 +24,7 @@ class TestTests:
         test = client.dex.tests.list(
             "01a7362d577a6c3019a474fd6f485823",
         )
-        assert_matches_type(TestListResponse, test, path=["response"])
+        assert_matches_type(SyncV4PagePagination[TestListResponse], test, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -41,7 +37,7 @@ class TestTests:
             per_page=1,
             test_name="string",
         )
-        assert_matches_type(TestListResponse, test, path=["response"])
+        assert_matches_type(SyncV4PagePagination[TestListResponse], test, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -53,7 +49,7 @@ class TestTests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         test = response.parse()
-        assert_matches_type(TestListResponse, test, path=["response"])
+        assert_matches_type(SyncV4PagePagination[TestListResponse], test, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -65,7 +61,7 @@ class TestTests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             test = response.parse()
-            assert_matches_type(TestListResponse, test, path=["response"])
+            assert_matches_type(SyncV4PagePagination[TestListResponse], test, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -87,7 +83,7 @@ class TestAsyncTests:
         test = await async_client.dex.tests.list(
             "01a7362d577a6c3019a474fd6f485823",
         )
-        assert_matches_type(TestListResponse, test, path=["response"])
+        assert_matches_type(AsyncV4PagePagination[TestListResponse], test, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -100,7 +96,7 @@ class TestAsyncTests:
             per_page=1,
             test_name="string",
         )
-        assert_matches_type(TestListResponse, test, path=["response"])
+        assert_matches_type(AsyncV4PagePagination[TestListResponse], test, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -112,7 +108,7 @@ class TestAsyncTests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         test = await response.parse()
-        assert_matches_type(TestListResponse, test, path=["response"])
+        assert_matches_type(AsyncV4PagePagination[TestListResponse], test, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -124,7 +120,7 @@ class TestAsyncTests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             test = await response.parse()
-            assert_matches_type(TestListResponse, test, path=["response"])
+            assert_matches_type(AsyncV4PagePagination[TestListResponse], test, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

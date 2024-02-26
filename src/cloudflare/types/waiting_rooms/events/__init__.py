@@ -2,6 +2,4 @@
 
 from __future__ import annotations
 
-from .detail_waiting_room_preview_active_event_details_response import (
-    DetailWaitingRoomPreviewActiveEventDetailsResponse as DetailWaitingRoomPreviewActiveEventDetailsResponse,
-)
+from .detail_get_response import DetailGetResponse as DetailGetResponse

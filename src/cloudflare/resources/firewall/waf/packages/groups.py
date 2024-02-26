@@ -2,51 +2,34 @@
 
 from __future__ import annotations
 
+from typing import Any, cast
+from typing_extensions import Literal
+
 import httpx
 
+from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._utils import maybe_transform
 from ....._compat import cached_property
-
-from .....types.firewall.waf.packages import GroupUpdateResponse, GroupListResponse, GroupGetResponse
-
-from typing_extensions import Literal
-
-from typing import Type, Optional
-
+from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ....._resource import SyncAPIResource, AsyncAPIResource
+from ....._wrappers import ResultWrapper
+from .....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ....._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
     AsyncPaginator,
     make_request_options,
-    HttpxBinaryResponseContent,
 )
-from .....types import shared_params
-from .....types.firewall.waf.packages import group_update_params
-from .....types.firewall.waf.packages import group_list_params
-from ....._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from .....types.firewall.waf.packages import (
+    GroupGetResponse,
+    GroupEditResponse,
+    GroupListResponse,
+    group_edit_params,
+    group_list_params,
+)
 
 __all__ = ["Groups", "AsyncGroups"]
 
@@ -59,70 +42,6 @@ class Groups(SyncAPIResource):
     @cached_property
     def with_streaming_response(self) -> GroupsWithStreamingResponse:
         return GroupsWithStreamingResponse(self)
-
-    def update(
-        self,
-        group_id: str,
-        *,
-        zone_id: str,
-        package_id: str,
-        mode: Literal["on", "off"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GroupUpdateResponse:
-        """Updates a WAF rule group.
-
-        You can update the state (`mode` parameter) of a rule
-        group.
-
-        **Note:** Applies only to the
-        [previous version of WAF managed rules](https://developers.cloudflare.com/support/firewall/managed-rules-web-application-firewall-waf/understanding-waf-managed-rules-web-application-firewall/).
-
-        Args:
-          zone_id: Identifier
-
-          package_id: The unique identifier of a WAF package.
-
-          group_id: The unique identifier of a WAF package.
-
-          mode: The state of the rules contained in the rule group. When `on`, the rules in the
-              group are configurable/usable.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not package_id:
-            raise ValueError(f"Expected a non-empty value for `package_id` but received {package_id!r}")
-        if not group_id:
-            raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
-        return cast(
-            GroupUpdateResponse,
-            self._patch(
-                f"/zones/{zone_id}/firewall/waf/packages/{package_id}/groups/{group_id}",
-                body=maybe_transform({"mode": mode}, group_update_params.GroupUpdateParams),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[GroupUpdateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
 
     def list(
         self,
@@ -141,7 +60,7 @@ class Groups(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[GroupListResponse]:
+    ) -> SyncV4PagePaginationArray[GroupListResponse]:
         """
         Fetches the WAF rule groups in a WAF package.
 
@@ -179,8 +98,9 @@ class Groups(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not package_id:
             raise ValueError(f"Expected a non-empty value for `package_id` but received {package_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/zones/{zone_id}/firewall/waf/packages/{package_id}/groups",
+            page=SyncV4PagePaginationArray[GroupListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -197,9 +117,72 @@ class Groups(SyncAPIResource):
                     },
                     group_list_params.GroupListParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[GroupListResponse]], ResultWrapper[GroupListResponse]),
+            model=GroupListResponse,
+        )
+
+    def edit(
+        self,
+        group_id: str,
+        *,
+        zone_id: str,
+        package_id: str,
+        mode: Literal["on", "off"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> GroupEditResponse:
+        """Updates a WAF rule group.
+
+        You can update the state (`mode` parameter) of a rule
+        group.
+
+        **Note:** Applies only to the
+        [previous version of WAF managed rules](https://developers.cloudflare.com/support/firewall/managed-rules-web-application-firewall-waf/understanding-waf-managed-rules-web-application-firewall/).
+
+        Args:
+          zone_id: Identifier
+
+          package_id: The unique identifier of a WAF package.
+
+          group_id: The unique identifier of a WAF package.
+
+          mode: The state of the rules contained in the rule group. When `on`, the rules in the
+              group are configurable/usable.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not package_id:
+            raise ValueError(f"Expected a non-empty value for `package_id` but received {package_id!r}")
+        if not group_id:
+            raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
+        return cast(
+            GroupEditResponse,
+            self._patch(
+                f"/zones/{zone_id}/firewall/waf/packages/{package_id}/groups/{group_id}",
+                body=maybe_transform({"mode": mode}, group_edit_params.GroupEditParams),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[GroupEditResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
         )
 
     def get(
@@ -269,71 +252,7 @@ class AsyncGroups(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncGroupsWithStreamingResponse:
         return AsyncGroupsWithStreamingResponse(self)
 
-    async def update(
-        self,
-        group_id: str,
-        *,
-        zone_id: str,
-        package_id: str,
-        mode: Literal["on", "off"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GroupUpdateResponse:
-        """Updates a WAF rule group.
-
-        You can update the state (`mode` parameter) of a rule
-        group.
-
-        **Note:** Applies only to the
-        [previous version of WAF managed rules](https://developers.cloudflare.com/support/firewall/managed-rules-web-application-firewall-waf/understanding-waf-managed-rules-web-application-firewall/).
-
-        Args:
-          zone_id: Identifier
-
-          package_id: The unique identifier of a WAF package.
-
-          group_id: The unique identifier of a WAF package.
-
-          mode: The state of the rules contained in the rule group. When `on`, the rules in the
-              group are configurable/usable.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not package_id:
-            raise ValueError(f"Expected a non-empty value for `package_id` but received {package_id!r}")
-        if not group_id:
-            raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
-        return cast(
-            GroupUpdateResponse,
-            await self._patch(
-                f"/zones/{zone_id}/firewall/waf/packages/{package_id}/groups/{group_id}",
-                body=maybe_transform({"mode": mode}, group_update_params.GroupUpdateParams),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[GroupUpdateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
-
-    async def list(
+    def list(
         self,
         package_id: str,
         *,
@@ -350,7 +269,7 @@ class AsyncGroups(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[GroupListResponse]:
+    ) -> AsyncPaginator[GroupListResponse, AsyncV4PagePaginationArray[GroupListResponse]]:
         """
         Fetches the WAF rule groups in a WAF package.
 
@@ -388,8 +307,9 @@ class AsyncGroups(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not package_id:
             raise ValueError(f"Expected a non-empty value for `package_id` but received {package_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/zones/{zone_id}/firewall/waf/packages/{package_id}/groups",
+            page=AsyncV4PagePaginationArray[GroupListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -406,9 +326,72 @@ class AsyncGroups(AsyncAPIResource):
                     },
                     group_list_params.GroupListParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[GroupListResponse]], ResultWrapper[GroupListResponse]),
+            model=GroupListResponse,
+        )
+
+    async def edit(
+        self,
+        group_id: str,
+        *,
+        zone_id: str,
+        package_id: str,
+        mode: Literal["on", "off"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> GroupEditResponse:
+        """Updates a WAF rule group.
+
+        You can update the state (`mode` parameter) of a rule
+        group.
+
+        **Note:** Applies only to the
+        [previous version of WAF managed rules](https://developers.cloudflare.com/support/firewall/managed-rules-web-application-firewall-waf/understanding-waf-managed-rules-web-application-firewall/).
+
+        Args:
+          zone_id: Identifier
+
+          package_id: The unique identifier of a WAF package.
+
+          group_id: The unique identifier of a WAF package.
+
+          mode: The state of the rules contained in the rule group. When `on`, the rules in the
+              group are configurable/usable.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not package_id:
+            raise ValueError(f"Expected a non-empty value for `package_id` but received {package_id!r}")
+        if not group_id:
+            raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
+        return cast(
+            GroupEditResponse,
+            await self._patch(
+                f"/zones/{zone_id}/firewall/waf/packages/{package_id}/groups/{group_id}",
+                body=maybe_transform({"mode": mode}, group_edit_params.GroupEditParams),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[GroupEditResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
         )
 
     async def get(
@@ -473,11 +456,11 @@ class GroupsWithRawResponse:
     def __init__(self, groups: Groups) -> None:
         self._groups = groups
 
-        self.update = to_raw_response_wrapper(
-            groups.update,
-        )
         self.list = to_raw_response_wrapper(
             groups.list,
+        )
+        self.edit = to_raw_response_wrapper(
+            groups.edit,
         )
         self.get = to_raw_response_wrapper(
             groups.get,
@@ -488,11 +471,11 @@ class AsyncGroupsWithRawResponse:
     def __init__(self, groups: AsyncGroups) -> None:
         self._groups = groups
 
-        self.update = async_to_raw_response_wrapper(
-            groups.update,
-        )
         self.list = async_to_raw_response_wrapper(
             groups.list,
+        )
+        self.edit = async_to_raw_response_wrapper(
+            groups.edit,
         )
         self.get = async_to_raw_response_wrapper(
             groups.get,
@@ -503,11 +486,11 @@ class GroupsWithStreamingResponse:
     def __init__(self, groups: Groups) -> None:
         self._groups = groups
 
-        self.update = to_streamed_response_wrapper(
-            groups.update,
-        )
         self.list = to_streamed_response_wrapper(
             groups.list,
+        )
+        self.edit = to_streamed_response_wrapper(
+            groups.edit,
         )
         self.get = to_streamed_response_wrapper(
             groups.get,
@@ -518,11 +501,11 @@ class AsyncGroupsWithStreamingResponse:
     def __init__(self, groups: AsyncGroups) -> None:
         self._groups = groups
 
-        self.update = async_to_streamed_response_wrapper(
-            groups.update,
-        )
         self.list = async_to_streamed_response_wrapper(
             groups.list,
+        )
+        self.edit = async_to_streamed_response_wrapper(
+            groups.edit,
         )
         self.get = async_to_streamed_response_wrapper(
             groups.get,

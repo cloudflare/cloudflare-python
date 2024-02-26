@@ -2,44 +2,30 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+from typing_extensions import Literal
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._compat import cached_property
-
-from ...types.settings import ServerSideExcludeUpdateResponse, ServerSideExcludeGetResponse
-
-from typing import Type, Optional
-
-from typing_extensions import Literal
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types.settings import server_side_exclude_update_params
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ..._base_client import (
+    make_request_options,
+)
+from ...types.settings import (
+    ServerSideExcludeGetResponse,
+    ServerSideExcludeEditResponse,
+    server_side_exclude_edit_params,
+)
 
 __all__ = ["ServerSideExcludes", "AsyncServerSideExcludes"]
 
@@ -53,7 +39,7 @@ class ServerSideExcludes(SyncAPIResource):
     def with_streaming_response(self) -> ServerSideExcludesWithStreamingResponse:
         return ServerSideExcludesWithStreamingResponse(self)
 
-    def update(
+    def edit(
         self,
         zone_id: str,
         *,
@@ -64,7 +50,7 @@ class ServerSideExcludes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ServerSideExcludeUpdateResponse]:
+    ) -> Optional[ServerSideExcludeEditResponse]:
         """
         If there is sensitive content on your website that you want visible to real
         visitors, but that you want to hide from suspicious visitors, all you have to do
@@ -95,7 +81,7 @@ class ServerSideExcludes(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._patch(
             f"/zones/{zone_id}/settings/server_side_exclude",
-            body=maybe_transform({"value": value}, server_side_exclude_update_params.ServerSideExcludeUpdateParams),
+            body=maybe_transform({"value": value}, server_side_exclude_edit_params.ServerSideExcludeEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -103,9 +89,7 @@ class ServerSideExcludes(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[ServerSideExcludeUpdateResponse]], ResultWrapper[ServerSideExcludeUpdateResponse]
-            ),
+            cast_to=cast(Type[Optional[ServerSideExcludeEditResponse]], ResultWrapper[ServerSideExcludeEditResponse]),
         )
 
     def get(
@@ -167,7 +151,7 @@ class AsyncServerSideExcludes(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncServerSideExcludesWithStreamingResponse:
         return AsyncServerSideExcludesWithStreamingResponse(self)
 
-    async def update(
+    async def edit(
         self,
         zone_id: str,
         *,
@@ -178,7 +162,7 @@ class AsyncServerSideExcludes(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ServerSideExcludeUpdateResponse]:
+    ) -> Optional[ServerSideExcludeEditResponse]:
         """
         If there is sensitive content on your website that you want visible to real
         visitors, but that you want to hide from suspicious visitors, all you have to do
@@ -209,7 +193,7 @@ class AsyncServerSideExcludes(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._patch(
             f"/zones/{zone_id}/settings/server_side_exclude",
-            body=maybe_transform({"value": value}, server_side_exclude_update_params.ServerSideExcludeUpdateParams),
+            body=maybe_transform({"value": value}, server_side_exclude_edit_params.ServerSideExcludeEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -217,9 +201,7 @@ class AsyncServerSideExcludes(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[ServerSideExcludeUpdateResponse]], ResultWrapper[ServerSideExcludeUpdateResponse]
-            ),
+            cast_to=cast(Type[Optional[ServerSideExcludeEditResponse]], ResultWrapper[ServerSideExcludeEditResponse]),
         )
 
     async def get(
@@ -276,8 +258,8 @@ class ServerSideExcludesWithRawResponse:
     def __init__(self, server_side_excludes: ServerSideExcludes) -> None:
         self._server_side_excludes = server_side_excludes
 
-        self.update = to_raw_response_wrapper(
-            server_side_excludes.update,
+        self.edit = to_raw_response_wrapper(
+            server_side_excludes.edit,
         )
         self.get = to_raw_response_wrapper(
             server_side_excludes.get,
@@ -288,8 +270,8 @@ class AsyncServerSideExcludesWithRawResponse:
     def __init__(self, server_side_excludes: AsyncServerSideExcludes) -> None:
         self._server_side_excludes = server_side_excludes
 
-        self.update = async_to_raw_response_wrapper(
-            server_side_excludes.update,
+        self.edit = async_to_raw_response_wrapper(
+            server_side_excludes.edit,
         )
         self.get = async_to_raw_response_wrapper(
             server_side_excludes.get,
@@ -300,8 +282,8 @@ class ServerSideExcludesWithStreamingResponse:
     def __init__(self, server_side_excludes: ServerSideExcludes) -> None:
         self._server_side_excludes = server_side_excludes
 
-        self.update = to_streamed_response_wrapper(
-            server_side_excludes.update,
+        self.edit = to_streamed_response_wrapper(
+            server_side_excludes.edit,
         )
         self.get = to_streamed_response_wrapper(
             server_side_excludes.get,
@@ -312,8 +294,8 @@ class AsyncServerSideExcludesWithStreamingResponse:
     def __init__(self, server_side_excludes: AsyncServerSideExcludes) -> None:
         self._server_side_excludes = server_side_excludes
 
-        self.update = async_to_streamed_response_wrapper(
-            server_side_excludes.update,
+        self.edit = async_to_streamed_response_wrapper(
+            server_side_excludes.edit,
         )
         self.get = async_to_streamed_response_wrapper(
             server_side_excludes.get,

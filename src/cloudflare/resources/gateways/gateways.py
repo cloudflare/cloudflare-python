@@ -2,79 +2,10 @@
 
 from __future__ import annotations
 
+from typing import Type, cast
+
 import httpx
 
-from .categories import Categories, AsyncCategories
-
-from ..._compat import cached_property
-
-from .app_types import AppTypes, AsyncAppTypes
-
-from .configurations import Configurations, AsyncConfigurations
-
-from .lists.lists import Lists, AsyncLists
-
-from .locations import Locations, AsyncLocations
-
-from .loggings import Loggings, AsyncLoggings
-
-from .proxy_endpoints import ProxyEndpoints, AsyncProxyEndpoints
-
-from .rules import Rules, AsyncRules
-
-from ...types import (
-    GatewayZeroTrustAccountsCreateZeroTrustAccountResponse,
-    GatewayZeroTrustAccountsGetZeroTrustAccountInformationResponse,
-)
-
-from typing import Type
-
-from ..._response import (
-    to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from .categories import (
-    Categories,
-    AsyncCategories,
-    CategoriesWithRawResponse,
-    AsyncCategoriesWithRawResponse,
-    CategoriesWithStreamingResponse,
-    AsyncCategoriesWithStreamingResponse,
-)
-from .app_types import (
-    AppTypes,
-    AsyncAppTypes,
-    AppTypesWithRawResponse,
-    AsyncAppTypesWithRawResponse,
-    AppTypesWithStreamingResponse,
-    AsyncAppTypesWithStreamingResponse,
-)
-from .configurations import (
-    Configurations,
-    AsyncConfigurations,
-    ConfigurationsWithRawResponse,
-    AsyncConfigurationsWithRawResponse,
-    ConfigurationsWithStreamingResponse,
-    AsyncConfigurationsWithStreamingResponse,
-)
 from .lists import (
     Lists,
     AsyncLists,
@@ -82,30 +13,6 @@ from .lists import (
     AsyncListsWithRawResponse,
     ListsWithStreamingResponse,
     AsyncListsWithStreamingResponse,
-)
-from .locations import (
-    Locations,
-    AsyncLocations,
-    LocationsWithRawResponse,
-    AsyncLocationsWithRawResponse,
-    LocationsWithStreamingResponse,
-    AsyncLocationsWithStreamingResponse,
-)
-from .loggings import (
-    Loggings,
-    AsyncLoggings,
-    LoggingsWithRawResponse,
-    AsyncLoggingsWithRawResponse,
-    LoggingsWithStreamingResponse,
-    AsyncLoggingsWithStreamingResponse,
-)
-from .proxy_endpoints import (
-    ProxyEndpoints,
-    AsyncProxyEndpoints,
-    ProxyEndpointsWithRawResponse,
-    AsyncProxyEndpointsWithRawResponse,
-    ProxyEndpointsWithStreamingResponse,
-    AsyncProxyEndpointsWithStreamingResponse,
 )
 from .rules import (
     Rules,
@@ -115,16 +22,86 @@ from .rules import (
     RulesWithStreamingResponse,
     AsyncRulesWithStreamingResponse,
 )
+from ...types import GatewayListResponse, GatewayCreateResponse
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .loggings import (
+    Loggings,
+    AsyncLoggings,
+    LoggingsWithRawResponse,
+    AsyncLoggingsWithRawResponse,
+    LoggingsWithStreamingResponse,
+    AsyncLoggingsWithStreamingResponse,
+)
+from ..._compat import cached_property
+from .app_types import (
+    AppTypes,
+    AsyncAppTypes,
+    AppTypesWithRawResponse,
+    AsyncAppTypesWithRawResponse,
+    AppTypesWithStreamingResponse,
+    AsyncAppTypesWithStreamingResponse,
+)
+from .locations import (
+    Locations,
+    AsyncLocations,
+    LocationsWithRawResponse,
+    AsyncLocationsWithRawResponse,
+    LocationsWithStreamingResponse,
+    AsyncLocationsWithStreamingResponse,
+)
+from .categories import (
+    Categories,
+    AsyncCategories,
+    CategoriesWithRawResponse,
+    AsyncCategoriesWithRawResponse,
+    CategoriesWithStreamingResponse,
+    AsyncCategoriesWithStreamingResponse,
+)
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from .lists.lists import Lists, AsyncLists
+from ..._base_client import (
+    make_request_options,
+)
+from .configurations import (
+    Configurations,
+    AsyncConfigurations,
+    ConfigurationsWithRawResponse,
+    AsyncConfigurationsWithRawResponse,
+    ConfigurationsWithStreamingResponse,
+    AsyncConfigurationsWithStreamingResponse,
+)
+from .proxy_endpoints import (
+    ProxyEndpoints,
+    AsyncProxyEndpoints,
+    ProxyEndpointsWithRawResponse,
+    AsyncProxyEndpointsWithRawResponse,
+    ProxyEndpointsWithStreamingResponse,
+    AsyncProxyEndpointsWithStreamingResponse,
+)
+from .audit_ssh_settings import (
+    AuditSSHSettings,
+    AsyncAuditSSHSettings,
+    AuditSSHSettingsWithRawResponse,
+    AsyncAuditSSHSettingsWithRawResponse,
+    AuditSSHSettingsWithStreamingResponse,
+    AsyncAuditSSHSettingsWithStreamingResponse,
+)
 
 __all__ = ["Gateways", "AsyncGateways"]
 
 
 class Gateways(SyncAPIResource):
+    @cached_property
+    def audit_ssh_settings(self) -> AuditSSHSettings:
+        return AuditSSHSettings(self._client)
+
     @cached_property
     def categories(self) -> Categories:
         return Categories(self._client)
@@ -165,7 +142,7 @@ class Gateways(SyncAPIResource):
     def with_streaming_response(self) -> GatewaysWithStreamingResponse:
         return GatewaysWithStreamingResponse(self)
 
-    def zero_trust_accounts_create_zero_trust_account(
+    def create(
         self,
         account_id: object,
         *,
@@ -175,7 +152,7 @@ class Gateways(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GatewayZeroTrustAccountsCreateZeroTrustAccountResponse:
+    ) -> GatewayCreateResponse:
         """
         Creates a Zero Trust account with an existing Cloudflare account.
 
@@ -197,13 +174,10 @@ class Gateways(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[GatewayZeroTrustAccountsCreateZeroTrustAccountResponse],
-                ResultWrapper[GatewayZeroTrustAccountsCreateZeroTrustAccountResponse],
-            ),
+            cast_to=cast(Type[GatewayCreateResponse], ResultWrapper[GatewayCreateResponse]),
         )
 
-    def zero_trust_accounts_get_zero_trust_account_information(
+    def list(
         self,
         account_id: object,
         *,
@@ -213,7 +187,7 @@ class Gateways(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GatewayZeroTrustAccountsGetZeroTrustAccountInformationResponse:
+    ) -> GatewayListResponse:
         """
         Gets information about the current Zero Trust account.
 
@@ -235,14 +209,15 @@ class Gateways(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[GatewayZeroTrustAccountsGetZeroTrustAccountInformationResponse],
-                ResultWrapper[GatewayZeroTrustAccountsGetZeroTrustAccountInformationResponse],
-            ),
+            cast_to=cast(Type[GatewayListResponse], ResultWrapper[GatewayListResponse]),
         )
 
 
 class AsyncGateways(AsyncAPIResource):
+    @cached_property
+    def audit_ssh_settings(self) -> AsyncAuditSSHSettings:
+        return AsyncAuditSSHSettings(self._client)
+
     @cached_property
     def categories(self) -> AsyncCategories:
         return AsyncCategories(self._client)
@@ -283,7 +258,7 @@ class AsyncGateways(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncGatewaysWithStreamingResponse:
         return AsyncGatewaysWithStreamingResponse(self)
 
-    async def zero_trust_accounts_create_zero_trust_account(
+    async def create(
         self,
         account_id: object,
         *,
@@ -293,7 +268,7 @@ class AsyncGateways(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GatewayZeroTrustAccountsCreateZeroTrustAccountResponse:
+    ) -> GatewayCreateResponse:
         """
         Creates a Zero Trust account with an existing Cloudflare account.
 
@@ -315,13 +290,10 @@ class AsyncGateways(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[GatewayZeroTrustAccountsCreateZeroTrustAccountResponse],
-                ResultWrapper[GatewayZeroTrustAccountsCreateZeroTrustAccountResponse],
-            ),
+            cast_to=cast(Type[GatewayCreateResponse], ResultWrapper[GatewayCreateResponse]),
         )
 
-    async def zero_trust_accounts_get_zero_trust_account_information(
+    async def list(
         self,
         account_id: object,
         *,
@@ -331,7 +303,7 @@ class AsyncGateways(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GatewayZeroTrustAccountsGetZeroTrustAccountInformationResponse:
+    ) -> GatewayListResponse:
         """
         Gets information about the current Zero Trust account.
 
@@ -353,10 +325,7 @@ class AsyncGateways(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[GatewayZeroTrustAccountsGetZeroTrustAccountInformationResponse],
-                ResultWrapper[GatewayZeroTrustAccountsGetZeroTrustAccountInformationResponse],
-            ),
+            cast_to=cast(Type[GatewayListResponse], ResultWrapper[GatewayListResponse]),
         )
 
 
@@ -364,12 +333,16 @@ class GatewaysWithRawResponse:
     def __init__(self, gateways: Gateways) -> None:
         self._gateways = gateways
 
-        self.zero_trust_accounts_create_zero_trust_account = to_raw_response_wrapper(
-            gateways.zero_trust_accounts_create_zero_trust_account,
+        self.create = to_raw_response_wrapper(
+            gateways.create,
         )
-        self.zero_trust_accounts_get_zero_trust_account_information = to_raw_response_wrapper(
-            gateways.zero_trust_accounts_get_zero_trust_account_information,
+        self.list = to_raw_response_wrapper(
+            gateways.list,
         )
+
+    @cached_property
+    def audit_ssh_settings(self) -> AuditSSHSettingsWithRawResponse:
+        return AuditSSHSettingsWithRawResponse(self._gateways.audit_ssh_settings)
 
     @cached_property
     def categories(self) -> CategoriesWithRawResponse:
@@ -408,12 +381,16 @@ class AsyncGatewaysWithRawResponse:
     def __init__(self, gateways: AsyncGateways) -> None:
         self._gateways = gateways
 
-        self.zero_trust_accounts_create_zero_trust_account = async_to_raw_response_wrapper(
-            gateways.zero_trust_accounts_create_zero_trust_account,
+        self.create = async_to_raw_response_wrapper(
+            gateways.create,
         )
-        self.zero_trust_accounts_get_zero_trust_account_information = async_to_raw_response_wrapper(
-            gateways.zero_trust_accounts_get_zero_trust_account_information,
+        self.list = async_to_raw_response_wrapper(
+            gateways.list,
         )
+
+    @cached_property
+    def audit_ssh_settings(self) -> AsyncAuditSSHSettingsWithRawResponse:
+        return AsyncAuditSSHSettingsWithRawResponse(self._gateways.audit_ssh_settings)
 
     @cached_property
     def categories(self) -> AsyncCategoriesWithRawResponse:
@@ -452,12 +429,16 @@ class GatewaysWithStreamingResponse:
     def __init__(self, gateways: Gateways) -> None:
         self._gateways = gateways
 
-        self.zero_trust_accounts_create_zero_trust_account = to_streamed_response_wrapper(
-            gateways.zero_trust_accounts_create_zero_trust_account,
+        self.create = to_streamed_response_wrapper(
+            gateways.create,
         )
-        self.zero_trust_accounts_get_zero_trust_account_information = to_streamed_response_wrapper(
-            gateways.zero_trust_accounts_get_zero_trust_account_information,
+        self.list = to_streamed_response_wrapper(
+            gateways.list,
         )
+
+    @cached_property
+    def audit_ssh_settings(self) -> AuditSSHSettingsWithStreamingResponse:
+        return AuditSSHSettingsWithStreamingResponse(self._gateways.audit_ssh_settings)
 
     @cached_property
     def categories(self) -> CategoriesWithStreamingResponse:
@@ -496,12 +477,16 @@ class AsyncGatewaysWithStreamingResponse:
     def __init__(self, gateways: AsyncGateways) -> None:
         self._gateways = gateways
 
-        self.zero_trust_accounts_create_zero_trust_account = async_to_streamed_response_wrapper(
-            gateways.zero_trust_accounts_create_zero_trust_account,
+        self.create = async_to_streamed_response_wrapper(
+            gateways.create,
         )
-        self.zero_trust_accounts_get_zero_trust_account_information = async_to_streamed_response_wrapper(
-            gateways.zero_trust_accounts_get_zero_trust_account_information,
+        self.list = async_to_streamed_response_wrapper(
+            gateways.list,
         )
+
+    @cached_property
+    def audit_ssh_settings(self) -> AsyncAuditSSHSettingsWithStreamingResponse:
+        return AsyncAuditSSHSettingsWithStreamingResponse(self._gateways.audit_ssh_settings)
 
     @cached_property
     def categories(self) -> AsyncCategoriesWithStreamingResponse:

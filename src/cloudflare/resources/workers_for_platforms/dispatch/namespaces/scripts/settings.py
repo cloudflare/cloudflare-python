@@ -2,48 +2,30 @@
 
 from __future__ import annotations
 
+from typing import Type, Iterable, cast
+from typing_extensions import Literal
+
 import httpx
 
+from ......_types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ......_utils import maybe_transform
 from ......_compat import cached_property
-
-from ......types.workers_for_platforms.dispatch.namespaces.scripts import (
-    SettingUpdateResponse,
-    SettingGetResponse,
-    setting_update_params,
-)
-
-from typing import Type, Iterable
-
-from typing_extensions import Literal
-
+from ......_resource import SyncAPIResource, AsyncAPIResource
 from ......_response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ......_utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ......_types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ......_resource import SyncAPIResource, AsyncAPIResource
-from ......_base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ......types import shared_params
-from ......types.workers_for_platforms.dispatch.namespaces.scripts import setting_update_params
 from ......_wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ......_base_client import (
+    make_request_options,
+)
+from ......types.workers_for_platforms.dispatch.namespaces.scripts import (
+    SettingGetResponse,
+    SettingEditResponse,
+    setting_edit_params,
+)
 
 __all__ = ["Settings", "AsyncSettings"]
 
@@ -57,15 +39,15 @@ class Settings(SyncAPIResource):
     def with_streaming_response(self) -> SettingsWithStreamingResponse:
         return SettingsWithStreamingResponse(self)
 
-    def update(
+    def edit(
         self,
         script_name: str,
         *,
         account_id: str,
         dispatch_namespace: str,
-        errors: Iterable[setting_update_params.Error],
-        messages: Iterable[setting_update_params.Message],
-        result: setting_update_params.Result,
+        errors: Iterable[setting_edit_params.Error],
+        messages: Iterable[setting_edit_params.Message],
+        result: setting_edit_params.Result,
         success: Literal[True],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -73,7 +55,7 @@ class Settings(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SettingUpdateResponse:
+    ) -> SettingEditResponse:
         """
         Patch script metadata, such as bindings
 
@@ -109,7 +91,7 @@ class Settings(SyncAPIResource):
                     "result": result,
                     "success": success,
                 },
-                setting_update_params.SettingUpdateParams,
+                setting_edit_params.SettingEditParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -118,7 +100,7 @@ class Settings(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[SettingUpdateResponse], ResultWrapper[SettingUpdateResponse]),
+            cast_to=cast(Type[SettingEditResponse], ResultWrapper[SettingEditResponse]),
         )
 
     def get(
@@ -180,15 +162,15 @@ class AsyncSettings(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncSettingsWithStreamingResponse:
         return AsyncSettingsWithStreamingResponse(self)
 
-    async def update(
+    async def edit(
         self,
         script_name: str,
         *,
         account_id: str,
         dispatch_namespace: str,
-        errors: Iterable[setting_update_params.Error],
-        messages: Iterable[setting_update_params.Message],
-        result: setting_update_params.Result,
+        errors: Iterable[setting_edit_params.Error],
+        messages: Iterable[setting_edit_params.Message],
+        result: setting_edit_params.Result,
         success: Literal[True],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -196,7 +178,7 @@ class AsyncSettings(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SettingUpdateResponse:
+    ) -> SettingEditResponse:
         """
         Patch script metadata, such as bindings
 
@@ -232,7 +214,7 @@ class AsyncSettings(AsyncAPIResource):
                     "result": result,
                     "success": success,
                 },
-                setting_update_params.SettingUpdateParams,
+                setting_edit_params.SettingEditParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -241,7 +223,7 @@ class AsyncSettings(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[SettingUpdateResponse], ResultWrapper[SettingUpdateResponse]),
+            cast_to=cast(Type[SettingEditResponse], ResultWrapper[SettingEditResponse]),
         )
 
     async def get(
@@ -298,8 +280,8 @@ class SettingsWithRawResponse:
     def __init__(self, settings: Settings) -> None:
         self._settings = settings
 
-        self.update = to_raw_response_wrapper(
-            settings.update,
+        self.edit = to_raw_response_wrapper(
+            settings.edit,
         )
         self.get = to_raw_response_wrapper(
             settings.get,
@@ -310,8 +292,8 @@ class AsyncSettingsWithRawResponse:
     def __init__(self, settings: AsyncSettings) -> None:
         self._settings = settings
 
-        self.update = async_to_raw_response_wrapper(
-            settings.update,
+        self.edit = async_to_raw_response_wrapper(
+            settings.edit,
         )
         self.get = async_to_raw_response_wrapper(
             settings.get,
@@ -322,8 +304,8 @@ class SettingsWithStreamingResponse:
     def __init__(self, settings: Settings) -> None:
         self._settings = settings
 
-        self.update = to_streamed_response_wrapper(
-            settings.update,
+        self.edit = to_streamed_response_wrapper(
+            settings.edit,
         )
         self.get = to_streamed_response_wrapper(
             settings.get,
@@ -334,8 +316,8 @@ class AsyncSettingsWithStreamingResponse:
     def __init__(self, settings: AsyncSettings) -> None:
         self._settings = settings
 
-        self.update = async_to_streamed_response_wrapper(
-            settings.update,
+        self.edit = async_to_streamed_response_wrapper(
+            settings.edit,
         )
         self.get = async_to_streamed_response_wrapper(
             settings.get,

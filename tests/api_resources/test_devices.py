@@ -2,18 +2,14 @@
 
 from __future__ import annotations
 
-from typing import Optional, Any, cast
-
-from cloudflare.types import DeviceDevicesListDevicesResponse, DeviceGetResponse
-
 import os
+from typing import Any, Optional, cast
+
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.types import DeviceGetResponse, DeviceDevicesListDevicesResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -60,7 +56,7 @@ class TestDevices:
     def test_method_get(self, client: Cloudflare) -> None:
         device = client.devices.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            identifier="699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[DeviceGetResponse], device, path=["response"])
 
@@ -69,7 +65,7 @@ class TestDevices:
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.devices.with_raw_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            identifier="699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
 
         assert response.is_closed is True
@@ -82,7 +78,7 @@ class TestDevices:
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.devices.with_streaming_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            identifier="699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -95,10 +91,10 @@ class TestDevices:
     @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `device_id` but received ''"):
             client.devices.with_raw_response.get(
                 "",
-                identifier="699d98642c564d2e855e9661899b7252",
+                account_id="699d98642c564d2e855e9661899b7252",
             )
 
 
@@ -144,7 +140,7 @@ class TestAsyncDevices:
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         device = await async_client.devices.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            identifier="699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[DeviceGetResponse], device, path=["response"])
 
@@ -153,7 +149,7 @@ class TestAsyncDevices:
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.devices.with_raw_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            identifier="699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
 
         assert response.is_closed is True
@@ -166,7 +162,7 @@ class TestAsyncDevices:
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.devices.with_streaming_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            identifier="699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -179,8 +175,8 @@ class TestAsyncDevices:
     @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `device_id` but received ''"):
             await async_client.devices.with_raw_response.get(
                 "",
-                identifier="699d98642c564d2e855e9661899b7252",
+                account_id="699d98642c564d2e855e9661899b7252",
             )

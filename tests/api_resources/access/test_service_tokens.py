@@ -2,25 +2,21 @@
 
 from __future__ import annotations
 
-from cloudflare.types.access import (
-    ServiceTokenUpdateResponse,
-    ServiceTokenDeleteResponse,
-    ServiceTokenAccessServiceTokensCreateAServiceTokenResponse,
-    ServiceTokenAccessServiceTokensListServiceTokensResponse,
-)
-
-from typing import Any, cast, Optional
-
 import os
+from typing import Any, Optional, cast
+
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.access import service_token_update_params
-from cloudflare.types.access import service_token_access_service_tokens_create_a_service_token_params
+from cloudflare.types.access import (
+    ServiceTokenListResponse,
+    ServiceTokenCreateResponse,
+    ServiceTokenDeleteResponse,
+    ServiceTokenRotateResponse,
+    ServiceTokenUpdateResponse,
+    ServiceTokenRefreshResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -30,11 +26,79 @@ class TestServiceTokens:
 
     @pytest.mark.skip()
     @parametrize
+    def test_method_create(self, client: Cloudflare) -> None:
+        service_token = client.access.service_tokens.create(
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="CI/CD token",
+        )
+        assert_matches_type(ServiceTokenCreateResponse, service_token, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
+        service_token = client.access.service_tokens.create(
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="CI/CD token",
+            duration="60m",
+        )
+        assert_matches_type(ServiceTokenCreateResponse, service_token, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_create(self, client: Cloudflare) -> None:
+        response = client.access.service_tokens.with_raw_response.create(
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="CI/CD token",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        service_token = response.parse()
+        assert_matches_type(ServiceTokenCreateResponse, service_token, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_create(self, client: Cloudflare) -> None:
+        with client.access.service_tokens.with_streaming_response.create(
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="CI/CD token",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            service_token = response.parse()
+            assert_matches_type(ServiceTokenCreateResponse, service_token, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_create(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.access.service_tokens.with_raw_response.create(
+                account_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="CI/CD token",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            client.access.service_tokens.with_raw_response.create(
+                account_id="string",
+                zone_id="",
+                name="CI/CD token",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         service_token = client.access.service_tokens.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_or_zone="string",
-            account_or_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(ServiceTokenUpdateResponse, service_token, path=["response"])
 
@@ -43,8 +107,8 @@ class TestServiceTokens:
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         service_token = client.access.service_tokens.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_or_zone="string",
-            account_or_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             duration="60m",
             name="CI/CD token",
         )
@@ -55,8 +119,8 @@ class TestServiceTokens:
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.access.service_tokens.with_raw_response.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_or_zone="string",
-            account_or_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -69,8 +133,8 @@ class TestServiceTokens:
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.access.service_tokens.with_streaming_response.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_or_zone="string",
-            account_or_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -83,25 +147,77 @@ class TestServiceTokens:
     @pytest.mark.skip()
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_or_zone` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.access.service_tokens.with_raw_response.update(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                account_or_zone="",
-                account_or_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_or_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.access.service_tokens.with_raw_response.update(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                account_or_zone="string",
-                account_or_zone_id="",
+                account_id="string",
+                zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
             client.access.service_tokens.with_raw_response.update(
                 "",
-                account_or_zone="string",
-                account_or_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="string",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_list(self, client: Cloudflare) -> None:
+        service_token = client.access.service_tokens.list(
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(Optional[ServiceTokenListResponse], service_token, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_list(self, client: Cloudflare) -> None:
+        response = client.access.service_tokens.with_raw_response.list(
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        service_token = response.parse()
+        assert_matches_type(Optional[ServiceTokenListResponse], service_token, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_list(self, client: Cloudflare) -> None:
+        with client.access.service_tokens.with_streaming_response.list(
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            service_token = response.parse()
+            assert_matches_type(Optional[ServiceTokenListResponse], service_token, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_list(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.access.service_tokens.with_raw_response.list(
+                account_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            client.access.service_tokens.with_raw_response.list(
+                account_id="string",
+                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -109,8 +225,8 @@ class TestServiceTokens:
     def test_method_delete(self, client: Cloudflare) -> None:
         service_token = client.access.service_tokens.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_or_zone="string",
-            account_or_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(ServiceTokenDeleteResponse, service_token, path=["response"])
 
@@ -119,8 +235,8 @@ class TestServiceTokens:
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.access.service_tokens.with_raw_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_or_zone="string",
-            account_or_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -133,8 +249,8 @@ class TestServiceTokens:
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.access.service_tokens.with_streaming_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_or_zone="string",
-            account_or_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -147,159 +263,129 @@ class TestServiceTokens:
     @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_or_zone` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.access.service_tokens.with_raw_response.delete(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                account_or_zone="",
-                account_or_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_or_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.access.service_tokens.with_raw_response.delete(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                account_or_zone="string",
-                account_or_zone_id="",
+                account_id="string",
+                zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
             client.access.service_tokens.with_raw_response.delete(
                 "",
-                account_or_zone="string",
-                account_or_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="string",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_access_service_tokens_create_a_service_token(self, client: Cloudflare) -> None:
-        service_token = client.access.service_tokens.access_service_tokens_create_a_service_token(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_or_zone="string",
-            name="CI/CD token",
+    def test_method_refresh(self, client: Cloudflare) -> None:
+        service_token = client.access.service_tokens.refresh(
+            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(
-            ServiceTokenAccessServiceTokensCreateAServiceTokenResponse, service_token, path=["response"]
-        )
+        assert_matches_type(ServiceTokenRefreshResponse, service_token, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_access_service_tokens_create_a_service_token_with_all_params(self, client: Cloudflare) -> None:
-        service_token = client.access.service_tokens.access_service_tokens_create_a_service_token(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_or_zone="string",
-            name="CI/CD token",
-            duration="60m",
-        )
-        assert_matches_type(
-            ServiceTokenAccessServiceTokensCreateAServiceTokenResponse, service_token, path=["response"]
-        )
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_raw_response_access_service_tokens_create_a_service_token(self, client: Cloudflare) -> None:
-        response = client.access.service_tokens.with_raw_response.access_service_tokens_create_a_service_token(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_or_zone="string",
-            name="CI/CD token",
+    def test_raw_response_refresh(self, client: Cloudflare) -> None:
+        response = client.access.service_tokens.with_raw_response.refresh(
+            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         service_token = response.parse()
-        assert_matches_type(
-            ServiceTokenAccessServiceTokensCreateAServiceTokenResponse, service_token, path=["response"]
-        )
+        assert_matches_type(ServiceTokenRefreshResponse, service_token, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_access_service_tokens_create_a_service_token(self, client: Cloudflare) -> None:
-        with client.access.service_tokens.with_streaming_response.access_service_tokens_create_a_service_token(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_or_zone="string",
-            name="CI/CD token",
+    def test_streaming_response_refresh(self, client: Cloudflare) -> None:
+        with client.access.service_tokens.with_streaming_response.refresh(
+            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identifier="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             service_token = response.parse()
-            assert_matches_type(
-                ServiceTokenAccessServiceTokensCreateAServiceTokenResponse, service_token, path=["response"]
-            )
+            assert_matches_type(ServiceTokenRefreshResponse, service_token, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_access_service_tokens_create_a_service_token(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_or_zone` but received ''"):
-            client.access.service_tokens.with_raw_response.access_service_tokens_create_a_service_token(
-                "023e105f4ecef8ad9ca31a8372d0c353",
-                account_or_zone="",
-                name="CI/CD token",
+    def test_path_params_refresh(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
+            client.access.service_tokens.with_raw_response.refresh(
+                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identifier="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_or_zone_id` but received ''"):
-            client.access.service_tokens.with_raw_response.access_service_tokens_create_a_service_token(
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
+            client.access.service_tokens.with_raw_response.refresh(
                 "",
-                account_or_zone="string",
-                name="CI/CD token",
+                identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_access_service_tokens_list_service_tokens(self, client: Cloudflare) -> None:
-        service_token = client.access.service_tokens.access_service_tokens_list_service_tokens(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_or_zone="string",
+    def test_method_rotate(self, client: Cloudflare) -> None:
+        service_token = client.access.service_tokens.rotate(
+            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(
-            Optional[ServiceTokenAccessServiceTokensListServiceTokensResponse], service_token, path=["response"]
-        )
+        assert_matches_type(ServiceTokenRotateResponse, service_token, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_access_service_tokens_list_service_tokens(self, client: Cloudflare) -> None:
-        response = client.access.service_tokens.with_raw_response.access_service_tokens_list_service_tokens(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_or_zone="string",
+    def test_raw_response_rotate(self, client: Cloudflare) -> None:
+        response = client.access.service_tokens.with_raw_response.rotate(
+            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         service_token = response.parse()
-        assert_matches_type(
-            Optional[ServiceTokenAccessServiceTokensListServiceTokensResponse], service_token, path=["response"]
-        )
+        assert_matches_type(ServiceTokenRotateResponse, service_token, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_access_service_tokens_list_service_tokens(self, client: Cloudflare) -> None:
-        with client.access.service_tokens.with_streaming_response.access_service_tokens_list_service_tokens(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_or_zone="string",
+    def test_streaming_response_rotate(self, client: Cloudflare) -> None:
+        with client.access.service_tokens.with_streaming_response.rotate(
+            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identifier="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             service_token = response.parse()
-            assert_matches_type(
-                Optional[ServiceTokenAccessServiceTokensListServiceTokensResponse], service_token, path=["response"]
-            )
+            assert_matches_type(ServiceTokenRotateResponse, service_token, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_access_service_tokens_list_service_tokens(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_or_zone` but received ''"):
-            client.access.service_tokens.with_raw_response.access_service_tokens_list_service_tokens(
-                "023e105f4ecef8ad9ca31a8372d0c353",
-                account_or_zone="",
+    def test_path_params_rotate(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
+            client.access.service_tokens.with_raw_response.rotate(
+                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identifier="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_or_zone_id` but received ''"):
-            client.access.service_tokens.with_raw_response.access_service_tokens_list_service_tokens(
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
+            client.access.service_tokens.with_raw_response.rotate(
                 "",
-                account_or_zone="string",
+                identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
 
@@ -308,11 +394,79 @@ class TestAsyncServiceTokens:
 
     @pytest.mark.skip()
     @parametrize
+    async def test_method_create(self, async_client: AsyncCloudflare) -> None:
+        service_token = await async_client.access.service_tokens.create(
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="CI/CD token",
+        )
+        assert_matches_type(ServiceTokenCreateResponse, service_token, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        service_token = await async_client.access.service_tokens.create(
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="CI/CD token",
+            duration="60m",
+        )
+        assert_matches_type(ServiceTokenCreateResponse, service_token, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.access.service_tokens.with_raw_response.create(
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="CI/CD token",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        service_token = await response.parse()
+        assert_matches_type(ServiceTokenCreateResponse, service_token, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.access.service_tokens.with_streaming_response.create(
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="CI/CD token",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            service_token = await response.parse()
+            assert_matches_type(ServiceTokenCreateResponse, service_token, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.access.service_tokens.with_raw_response.create(
+                account_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="CI/CD token",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            await async_client.access.service_tokens.with_raw_response.create(
+                account_id="string",
+                zone_id="",
+                name="CI/CD token",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         service_token = await async_client.access.service_tokens.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_or_zone="string",
-            account_or_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(ServiceTokenUpdateResponse, service_token, path=["response"])
 
@@ -321,8 +475,8 @@ class TestAsyncServiceTokens:
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         service_token = await async_client.access.service_tokens.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_or_zone="string",
-            account_or_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             duration="60m",
             name="CI/CD token",
         )
@@ -333,8 +487,8 @@ class TestAsyncServiceTokens:
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.access.service_tokens.with_raw_response.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_or_zone="string",
-            account_or_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -347,8 +501,8 @@ class TestAsyncServiceTokens:
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.access.service_tokens.with_streaming_response.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_or_zone="string",
-            account_or_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -361,25 +515,77 @@ class TestAsyncServiceTokens:
     @pytest.mark.skip()
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_or_zone` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.access.service_tokens.with_raw_response.update(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                account_or_zone="",
-                account_or_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_or_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.access.service_tokens.with_raw_response.update(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                account_or_zone="string",
-                account_or_zone_id="",
+                account_id="string",
+                zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
             await async_client.access.service_tokens.with_raw_response.update(
                 "",
-                account_or_zone="string",
-                account_or_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="string",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_list(self, async_client: AsyncCloudflare) -> None:
+        service_token = await async_client.access.service_tokens.list(
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(Optional[ServiceTokenListResponse], service_token, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.access.service_tokens.with_raw_response.list(
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        service_token = await response.parse()
+        assert_matches_type(Optional[ServiceTokenListResponse], service_token, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.access.service_tokens.with_streaming_response.list(
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            service_token = await response.parse()
+            assert_matches_type(Optional[ServiceTokenListResponse], service_token, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.access.service_tokens.with_raw_response.list(
+                account_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            await async_client.access.service_tokens.with_raw_response.list(
+                account_id="string",
+                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -387,8 +593,8 @@ class TestAsyncServiceTokens:
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         service_token = await async_client.access.service_tokens.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_or_zone="string",
-            account_or_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(ServiceTokenDeleteResponse, service_token, path=["response"])
 
@@ -397,8 +603,8 @@ class TestAsyncServiceTokens:
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.access.service_tokens.with_raw_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_or_zone="string",
-            account_or_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -411,8 +617,8 @@ class TestAsyncServiceTokens:
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.access.service_tokens.with_streaming_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_or_zone="string",
-            account_or_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -425,169 +631,127 @@ class TestAsyncServiceTokens:
     @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_or_zone` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.access.service_tokens.with_raw_response.delete(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                account_or_zone="",
-                account_or_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_or_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.access.service_tokens.with_raw_response.delete(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                account_or_zone="string",
-                account_or_zone_id="",
+                account_id="string",
+                zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
             await async_client.access.service_tokens.with_raw_response.delete(
                 "",
-                account_or_zone="string",
-                account_or_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="string",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_access_service_tokens_create_a_service_token(self, async_client: AsyncCloudflare) -> None:
-        service_token = await async_client.access.service_tokens.access_service_tokens_create_a_service_token(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_or_zone="string",
-            name="CI/CD token",
+    async def test_method_refresh(self, async_client: AsyncCloudflare) -> None:
+        service_token = await async_client.access.service_tokens.refresh(
+            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(
-            ServiceTokenAccessServiceTokensCreateAServiceTokenResponse, service_token, path=["response"]
-        )
+        assert_matches_type(ServiceTokenRefreshResponse, service_token, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_access_service_tokens_create_a_service_token_with_all_params(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        service_token = await async_client.access.service_tokens.access_service_tokens_create_a_service_token(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_or_zone="string",
-            name="CI/CD token",
-            duration="60m",
-        )
-        assert_matches_type(
-            ServiceTokenAccessServiceTokensCreateAServiceTokenResponse, service_token, path=["response"]
-        )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_raw_response_access_service_tokens_create_a_service_token(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        response = (
-            await async_client.access.service_tokens.with_raw_response.access_service_tokens_create_a_service_token(
-                "023e105f4ecef8ad9ca31a8372d0c353",
-                account_or_zone="string",
-                name="CI/CD token",
-            )
+    async def test_raw_response_refresh(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.access.service_tokens.with_raw_response.refresh(
+            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         service_token = await response.parse()
-        assert_matches_type(
-            ServiceTokenAccessServiceTokensCreateAServiceTokenResponse, service_token, path=["response"]
-        )
+        assert_matches_type(ServiceTokenRefreshResponse, service_token, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_access_service_tokens_create_a_service_token(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        async with async_client.access.service_tokens.with_streaming_response.access_service_tokens_create_a_service_token(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_or_zone="string",
-            name="CI/CD token",
+    async def test_streaming_response_refresh(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.access.service_tokens.with_streaming_response.refresh(
+            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identifier="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             service_token = await response.parse()
-            assert_matches_type(
-                ServiceTokenAccessServiceTokensCreateAServiceTokenResponse, service_token, path=["response"]
-            )
+            assert_matches_type(ServiceTokenRefreshResponse, service_token, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_access_service_tokens_create_a_service_token(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_or_zone` but received ''"):
-            await async_client.access.service_tokens.with_raw_response.access_service_tokens_create_a_service_token(
-                "023e105f4ecef8ad9ca31a8372d0c353",
-                account_or_zone="",
-                name="CI/CD token",
+    async def test_path_params_refresh(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
+            await async_client.access.service_tokens.with_raw_response.refresh(
+                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identifier="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_or_zone_id` but received ''"):
-            await async_client.access.service_tokens.with_raw_response.access_service_tokens_create_a_service_token(
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
+            await async_client.access.service_tokens.with_raw_response.refresh(
                 "",
-                account_or_zone="string",
-                name="CI/CD token",
+                identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_access_service_tokens_list_service_tokens(self, async_client: AsyncCloudflare) -> None:
-        service_token = await async_client.access.service_tokens.access_service_tokens_list_service_tokens(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_or_zone="string",
+    async def test_method_rotate(self, async_client: AsyncCloudflare) -> None:
+        service_token = await async_client.access.service_tokens.rotate(
+            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(
-            Optional[ServiceTokenAccessServiceTokensListServiceTokensResponse], service_token, path=["response"]
-        )
+        assert_matches_type(ServiceTokenRotateResponse, service_token, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_access_service_tokens_list_service_tokens(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.access.service_tokens.with_raw_response.access_service_tokens_list_service_tokens(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_or_zone="string",
+    async def test_raw_response_rotate(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.access.service_tokens.with_raw_response.rotate(
+            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         service_token = await response.parse()
-        assert_matches_type(
-            Optional[ServiceTokenAccessServiceTokensListServiceTokensResponse], service_token, path=["response"]
-        )
+        assert_matches_type(ServiceTokenRotateResponse, service_token, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_access_service_tokens_list_service_tokens(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        async with async_client.access.service_tokens.with_streaming_response.access_service_tokens_list_service_tokens(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_or_zone="string",
+    async def test_streaming_response_rotate(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.access.service_tokens.with_streaming_response.rotate(
+            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identifier="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             service_token = await response.parse()
-            assert_matches_type(
-                Optional[ServiceTokenAccessServiceTokensListServiceTokensResponse], service_token, path=["response"]
-            )
+            assert_matches_type(ServiceTokenRotateResponse, service_token, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_access_service_tokens_list_service_tokens(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_or_zone` but received ''"):
-            await async_client.access.service_tokens.with_raw_response.access_service_tokens_list_service_tokens(
-                "023e105f4ecef8ad9ca31a8372d0c353",
-                account_or_zone="",
+    async def test_path_params_rotate(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
+            await async_client.access.service_tokens.with_raw_response.rotate(
+                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identifier="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_or_zone_id` but received ''"):
-            await async_client.access.service_tokens.with_raw_response.access_service_tokens_list_service_tokens(
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
+            await async_client.access.service_tokens.with_raw_response.rotate(
                 "",
-                account_or_zone="string",
+                identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )

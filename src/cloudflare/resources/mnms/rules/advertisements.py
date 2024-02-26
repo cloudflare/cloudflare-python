@@ -2,39 +2,24 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+
 import httpx
 
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._compat import cached_property
-
-from ....types.mnms.rules import AdvertisementMagicNetworkMonitoringRulesUpdateAdvertisementForRuleResponse
-
-from typing import Type, Optional
-
+from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ....types import shared_params
 from ...._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
+from ...._base_client import (
+    make_request_options,
+)
+from ....types.mnms.rules import AdvertisementEditResponse
 
 __all__ = ["Advertisements", "AsyncAdvertisements"]
 
@@ -48,7 +33,7 @@ class Advertisements(SyncAPIResource):
     def with_streaming_response(self) -> AdvertisementsWithStreamingResponse:
         return AdvertisementsWithStreamingResponse(self)
 
-    def magic_network_monitoring_rules_update_advertisement_for_rule(
+    def edit(
         self,
         rule_identifier: object,
         *,
@@ -59,7 +44,7 @@ class Advertisements(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AdvertisementMagicNetworkMonitoringRulesUpdateAdvertisementForRuleResponse]:
+    ) -> Optional[AdvertisementEditResponse]:
         """
         Update advertisement for rule.
 
@@ -81,10 +66,7 @@ class Advertisements(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[AdvertisementMagicNetworkMonitoringRulesUpdateAdvertisementForRuleResponse]],
-                ResultWrapper[AdvertisementMagicNetworkMonitoringRulesUpdateAdvertisementForRuleResponse],
-            ),
+            cast_to=cast(Type[Optional[AdvertisementEditResponse]], ResultWrapper[AdvertisementEditResponse]),
         )
 
 
@@ -97,7 +79,7 @@ class AsyncAdvertisements(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncAdvertisementsWithStreamingResponse:
         return AsyncAdvertisementsWithStreamingResponse(self)
 
-    async def magic_network_monitoring_rules_update_advertisement_for_rule(
+    async def edit(
         self,
         rule_identifier: object,
         *,
@@ -108,7 +90,7 @@ class AsyncAdvertisements(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AdvertisementMagicNetworkMonitoringRulesUpdateAdvertisementForRuleResponse]:
+    ) -> Optional[AdvertisementEditResponse]:
         """
         Update advertisement for rule.
 
@@ -130,10 +112,7 @@ class AsyncAdvertisements(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[AdvertisementMagicNetworkMonitoringRulesUpdateAdvertisementForRuleResponse]],
-                ResultWrapper[AdvertisementMagicNetworkMonitoringRulesUpdateAdvertisementForRuleResponse],
-            ),
+            cast_to=cast(Type[Optional[AdvertisementEditResponse]], ResultWrapper[AdvertisementEditResponse]),
         )
 
 
@@ -141,8 +120,8 @@ class AdvertisementsWithRawResponse:
     def __init__(self, advertisements: Advertisements) -> None:
         self._advertisements = advertisements
 
-        self.magic_network_monitoring_rules_update_advertisement_for_rule = to_raw_response_wrapper(
-            advertisements.magic_network_monitoring_rules_update_advertisement_for_rule,
+        self.edit = to_raw_response_wrapper(
+            advertisements.edit,
         )
 
 
@@ -150,8 +129,8 @@ class AsyncAdvertisementsWithRawResponse:
     def __init__(self, advertisements: AsyncAdvertisements) -> None:
         self._advertisements = advertisements
 
-        self.magic_network_monitoring_rules_update_advertisement_for_rule = async_to_raw_response_wrapper(
-            advertisements.magic_network_monitoring_rules_update_advertisement_for_rule,
+        self.edit = async_to_raw_response_wrapper(
+            advertisements.edit,
         )
 
 
@@ -159,8 +138,8 @@ class AdvertisementsWithStreamingResponse:
     def __init__(self, advertisements: Advertisements) -> None:
         self._advertisements = advertisements
 
-        self.magic_network_monitoring_rules_update_advertisement_for_rule = to_streamed_response_wrapper(
-            advertisements.magic_network_monitoring_rules_update_advertisement_for_rule,
+        self.edit = to_streamed_response_wrapper(
+            advertisements.edit,
         )
 
 
@@ -168,6 +147,6 @@ class AsyncAdvertisementsWithStreamingResponse:
     def __init__(self, advertisements: AsyncAdvertisements) -> None:
         self._advertisements = advertisements
 
-        self.magic_network_monitoring_rules_update_advertisement_for_rule = async_to_streamed_response_wrapper(
-            advertisements.magic_network_monitoring_rules_update_advertisement_for_rule,
+        self.edit = async_to_streamed_response_wrapper(
+            advertisements.edit,
         )

@@ -1,31 +1,19 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from typing import Optional, List
-
-from typing_extensions import Literal
-
+from typing import List, Optional
 from datetime import datetime
-
-from typing import Optional, Union, List, Dict, Any
 from typing_extensions import Literal
-from pydantic import Field as FieldInfo
+
 from .._models import BaseModel
-from ..types import shared
 
-__all__ = [
-    "CustomCertificateListResponse",
-    "CustomCertificateListResponseItem",
-    "CustomCertificateListResponseItemGeoRestrictions",
-    "CustomCertificateListResponseItemKeylessServer",
-    "CustomCertificateListResponseItemKeylessServerTunnel",
-]
+__all__ = ["CustomCertificateListResponse", "GeoRestrictions", "KeylessServer", "KeylessServerTunnel"]
 
 
-class CustomCertificateListResponseItemGeoRestrictions(BaseModel):
+class GeoRestrictions(BaseModel):
     label: Optional[Literal["us", "eu", "highest_security"]] = None
 
 
-class CustomCertificateListResponseItemKeylessServerTunnel(BaseModel):
+class KeylessServerTunnel(BaseModel):
     private_ip: str
     """Private IP of the Key Server Host"""
 
@@ -33,7 +21,7 @@ class CustomCertificateListResponseItemKeylessServerTunnel(BaseModel):
     """Cloudflare Tunnel Virtual Network ID"""
 
 
-class CustomCertificateListResponseItemKeylessServer(BaseModel):
+class KeylessServer(BaseModel):
     id: str
     """Keyless certificate identifier tag."""
 
@@ -67,11 +55,11 @@ class CustomCertificateListResponseItemKeylessServer(BaseModel):
     status: Literal["active", "deleted"]
     """Status of the Keyless SSL."""
 
-    tunnel: Optional[CustomCertificateListResponseItemKeylessServerTunnel] = None
+    tunnel: Optional[KeylessServerTunnel] = None
     """Configuration for using Keyless SSL through a Cloudflare Tunnel"""
 
 
-class CustomCertificateListResponseItem(BaseModel):
+class CustomCertificateListResponse(BaseModel):
     id: str
     """Identifier"""
 
@@ -114,7 +102,7 @@ class CustomCertificateListResponseItem(BaseModel):
     zone_id: str
     """Identifier"""
 
-    geo_restrictions: Optional[CustomCertificateListResponseItemGeoRestrictions] = None
+    geo_restrictions: Optional[GeoRestrictions] = None
     """
     Specify the region where your private key can be held locally for optimal TLS
     performance. HTTPS connections to any excluded data center will still be fully
@@ -125,7 +113,7 @@ class CustomCertificateListResponseItem(BaseModel):
     for optimal performance.
     """
 
-    keyless_server: Optional[CustomCertificateListResponseItemKeylessServer] = None
+    keyless_server: Optional[KeylessServer] = None
 
     policy: Optional[str] = None
     """
@@ -139,6 +127,3 @@ class CustomCertificateListResponseItem(BaseModel):
     the EU region. If there are too few data centers satisfying the policy, it will
     be rejected.
     """
-
-
-CustomCertificateListResponse = List[CustomCertificateListResponseItem]

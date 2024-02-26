@@ -2,26 +2,20 @@
 
 from __future__ import annotations
 
-from typing import Optional, Any, cast
-
-from cloudflare.types.logpush import (
-    JobCreateResponse,
-    JobUpdateResponse,
-    JobListResponse,
-    JobDeleteResponse,
-    JobGetResponse,
-)
-
 import os
+from typing import Any, Optional, cast
+
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.logpush import job_create_params
-from cloudflare.types.logpush import job_update_params
+from cloudflare.types.logpush import (
+    JobGetResponse,
+    JobListResponse,
+    JobCreateResponse,
+    JobDeleteResponse,
+    JobUpdateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -33,8 +27,8 @@ class TestJobs:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         job = client.logpush.jobs.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_or_zone="string",
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             destination_conf="s3://mybucket/logs?region=us-west-2",
         )
         assert_matches_type(Optional[JobCreateResponse], job, path=["response"])
@@ -43,8 +37,8 @@ class TestJobs:
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         job = client.logpush.jobs.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_or_zone="string",
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             destination_conf="s3://mybucket/logs?region=us-west-2",
             dataset="http_requests",
             enabled=False,
@@ -73,8 +67,8 @@ class TestJobs:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.logpush.jobs.with_raw_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_or_zone="string",
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             destination_conf="s3://mybucket/logs?region=us-west-2",
         )
 
@@ -87,8 +81,8 @@ class TestJobs:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.logpush.jobs.with_streaming_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_or_zone="string",
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             destination_conf="s3://mybucket/logs?region=us-west-2",
         ) as response:
             assert not response.is_closed
@@ -102,17 +96,17 @@ class TestJobs:
     @pytest.mark.skip()
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_or_zone` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.logpush.jobs.with_raw_response.create(
-                "023e105f4ecef8ad9ca31a8372d0c353",
-                account_or_zone="",
+                account_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 destination_conf="s3://mybucket/logs?region=us-west-2",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_or_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.logpush.jobs.with_raw_response.create(
-                "",
-                account_or_zone="string",
+                account_id="string",
+                zone_id="",
                 destination_conf="s3://mybucket/logs?region=us-west-2",
             )
 
@@ -121,8 +115,8 @@ class TestJobs:
     def test_method_update(self, client: Cloudflare) -> None:
         job = client.logpush.jobs.update(
             1,
-            account_or_zone="string",
-            account_or_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[JobUpdateResponse], job, path=["response"])
 
@@ -131,8 +125,8 @@ class TestJobs:
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         job = client.logpush.jobs.update(
             1,
-            account_or_zone="string",
-            account_or_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             destination_conf="s3://mybucket/logs?region=us-west-2",
             enabled=False,
             frequency="high",
@@ -160,8 +154,8 @@ class TestJobs:
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.logpush.jobs.with_raw_response.update(
             1,
-            account_or_zone="string",
-            account_or_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -174,8 +168,8 @@ class TestJobs:
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.logpush.jobs.with_streaming_response.update(
             1,
-            account_or_zone="string",
-            account_or_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -188,26 +182,26 @@ class TestJobs:
     @pytest.mark.skip()
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_or_zone` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.logpush.jobs.with_raw_response.update(
                 1,
-                account_or_zone="",
-                account_or_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_or_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.logpush.jobs.with_raw_response.update(
                 1,
-                account_or_zone="string",
-                account_or_zone_id="",
+                account_id="string",
+                zone_id="",
             )
 
     @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         job = client.logpush.jobs.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_or_zone="string",
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(JobListResponse, job, path=["response"])
 
@@ -215,8 +209,8 @@ class TestJobs:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.logpush.jobs.with_raw_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_or_zone="string",
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -228,8 +222,8 @@ class TestJobs:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.logpush.jobs.with_streaming_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_or_zone="string",
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -242,16 +236,16 @@ class TestJobs:
     @pytest.mark.skip()
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_or_zone` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.logpush.jobs.with_raw_response.list(
-                "023e105f4ecef8ad9ca31a8372d0c353",
-                account_or_zone="",
+                account_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_or_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.logpush.jobs.with_raw_response.list(
-                "",
-                account_or_zone="string",
+                account_id="string",
+                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -259,8 +253,8 @@ class TestJobs:
     def test_method_delete(self, client: Cloudflare) -> None:
         job = client.logpush.jobs.delete(
             1,
-            account_or_zone="string",
-            account_or_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[JobDeleteResponse], job, path=["response"])
 
@@ -269,8 +263,8 @@ class TestJobs:
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.logpush.jobs.with_raw_response.delete(
             1,
-            account_or_zone="string",
-            account_or_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -283,8 +277,8 @@ class TestJobs:
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.logpush.jobs.with_streaming_response.delete(
             1,
-            account_or_zone="string",
-            account_or_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -297,18 +291,18 @@ class TestJobs:
     @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_or_zone` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.logpush.jobs.with_raw_response.delete(
                 1,
-                account_or_zone="",
-                account_or_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_or_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.logpush.jobs.with_raw_response.delete(
                 1,
-                account_or_zone="string",
-                account_or_zone_id="",
+                account_id="string",
+                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -316,8 +310,8 @@ class TestJobs:
     def test_method_get(self, client: Cloudflare) -> None:
         job = client.logpush.jobs.get(
             1,
-            account_or_zone="string",
-            account_or_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[JobGetResponse], job, path=["response"])
 
@@ -326,8 +320,8 @@ class TestJobs:
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.logpush.jobs.with_raw_response.get(
             1,
-            account_or_zone="string",
-            account_or_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -340,8 +334,8 @@ class TestJobs:
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.logpush.jobs.with_streaming_response.get(
             1,
-            account_or_zone="string",
-            account_or_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -354,18 +348,18 @@ class TestJobs:
     @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_or_zone` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.logpush.jobs.with_raw_response.get(
                 1,
-                account_or_zone="",
-                account_or_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_or_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.logpush.jobs.with_raw_response.get(
                 1,
-                account_or_zone="string",
-                account_or_zone_id="",
+                account_id="string",
+                zone_id="",
             )
 
 
@@ -376,8 +370,8 @@ class TestAsyncJobs:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         job = await async_client.logpush.jobs.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_or_zone="string",
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             destination_conf="s3://mybucket/logs?region=us-west-2",
         )
         assert_matches_type(Optional[JobCreateResponse], job, path=["response"])
@@ -386,8 +380,8 @@ class TestAsyncJobs:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         job = await async_client.logpush.jobs.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_or_zone="string",
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             destination_conf="s3://mybucket/logs?region=us-west-2",
             dataset="http_requests",
             enabled=False,
@@ -416,8 +410,8 @@ class TestAsyncJobs:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.logpush.jobs.with_raw_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_or_zone="string",
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             destination_conf="s3://mybucket/logs?region=us-west-2",
         )
 
@@ -430,8 +424,8 @@ class TestAsyncJobs:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.logpush.jobs.with_streaming_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_or_zone="string",
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             destination_conf="s3://mybucket/logs?region=us-west-2",
         ) as response:
             assert not response.is_closed
@@ -445,17 +439,17 @@ class TestAsyncJobs:
     @pytest.mark.skip()
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_or_zone` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.logpush.jobs.with_raw_response.create(
-                "023e105f4ecef8ad9ca31a8372d0c353",
-                account_or_zone="",
+                account_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 destination_conf="s3://mybucket/logs?region=us-west-2",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_or_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.logpush.jobs.with_raw_response.create(
-                "",
-                account_or_zone="string",
+                account_id="string",
+                zone_id="",
                 destination_conf="s3://mybucket/logs?region=us-west-2",
             )
 
@@ -464,8 +458,8 @@ class TestAsyncJobs:
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         job = await async_client.logpush.jobs.update(
             1,
-            account_or_zone="string",
-            account_or_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[JobUpdateResponse], job, path=["response"])
 
@@ -474,8 +468,8 @@ class TestAsyncJobs:
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         job = await async_client.logpush.jobs.update(
             1,
-            account_or_zone="string",
-            account_or_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             destination_conf="s3://mybucket/logs?region=us-west-2",
             enabled=False,
             frequency="high",
@@ -503,8 +497,8 @@ class TestAsyncJobs:
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.logpush.jobs.with_raw_response.update(
             1,
-            account_or_zone="string",
-            account_or_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -517,8 +511,8 @@ class TestAsyncJobs:
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.logpush.jobs.with_streaming_response.update(
             1,
-            account_or_zone="string",
-            account_or_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -531,26 +525,26 @@ class TestAsyncJobs:
     @pytest.mark.skip()
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_or_zone` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.logpush.jobs.with_raw_response.update(
                 1,
-                account_or_zone="",
-                account_or_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_or_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.logpush.jobs.with_raw_response.update(
                 1,
-                account_or_zone="string",
-                account_or_zone_id="",
+                account_id="string",
+                zone_id="",
             )
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         job = await async_client.logpush.jobs.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_or_zone="string",
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(JobListResponse, job, path=["response"])
 
@@ -558,8 +552,8 @@ class TestAsyncJobs:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.logpush.jobs.with_raw_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_or_zone="string",
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -571,8 +565,8 @@ class TestAsyncJobs:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.logpush.jobs.with_streaming_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_or_zone="string",
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -585,16 +579,16 @@ class TestAsyncJobs:
     @pytest.mark.skip()
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_or_zone` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.logpush.jobs.with_raw_response.list(
-                "023e105f4ecef8ad9ca31a8372d0c353",
-                account_or_zone="",
+                account_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_or_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.logpush.jobs.with_raw_response.list(
-                "",
-                account_or_zone="string",
+                account_id="string",
+                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -602,8 +596,8 @@ class TestAsyncJobs:
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         job = await async_client.logpush.jobs.delete(
             1,
-            account_or_zone="string",
-            account_or_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[JobDeleteResponse], job, path=["response"])
 
@@ -612,8 +606,8 @@ class TestAsyncJobs:
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.logpush.jobs.with_raw_response.delete(
             1,
-            account_or_zone="string",
-            account_or_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -626,8 +620,8 @@ class TestAsyncJobs:
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.logpush.jobs.with_streaming_response.delete(
             1,
-            account_or_zone="string",
-            account_or_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -640,18 +634,18 @@ class TestAsyncJobs:
     @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_or_zone` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.logpush.jobs.with_raw_response.delete(
                 1,
-                account_or_zone="",
-                account_or_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_or_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.logpush.jobs.with_raw_response.delete(
                 1,
-                account_or_zone="string",
-                account_or_zone_id="",
+                account_id="string",
+                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -659,8 +653,8 @@ class TestAsyncJobs:
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         job = await async_client.logpush.jobs.get(
             1,
-            account_or_zone="string",
-            account_or_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[JobGetResponse], job, path=["response"])
 
@@ -669,8 +663,8 @@ class TestAsyncJobs:
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.logpush.jobs.with_raw_response.get(
             1,
-            account_or_zone="string",
-            account_or_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -683,8 +677,8 @@ class TestAsyncJobs:
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.logpush.jobs.with_streaming_response.get(
             1,
-            account_or_zone="string",
-            account_or_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="string",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -697,16 +691,16 @@ class TestAsyncJobs:
     @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_or_zone` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.logpush.jobs.with_raw_response.get(
                 1,
-                account_or_zone="",
-                account_or_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_or_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.logpush.jobs.with_raw_response.get(
                 1,
-                account_or_zone="string",
-                account_or_zone_id="",
+                account_id="string",
+                zone_id="",
             )

@@ -2,45 +2,32 @@
 
 from __future__ import annotations
 
+from typing import Type, cast
+from typing_extensions import Literal
+
 import httpx
 
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import maybe_transform
 from ...._compat import cached_property
-
-from ....types.teamnets.routes import NetworkUpdateResponse, NetworkDeleteResponse
-
-from typing import Type
-
-from typing_extensions import Literal
-
+from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ....types import shared_params
-from ....types.teamnets.routes import network_update_params
-from ....types.teamnets.routes import network_delete_params
 from ...._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ...._base_client import (
+    make_request_options,
+)
+from ....types.teamnets.routes import (
+    NetworkEditResponse,
+    NetworkCreateResponse,
+    NetworkDeleteResponse,
+    network_create_params,
+    network_delete_params,
+)
 
 __all__ = ["Networks", "AsyncNetworks"]
 
@@ -54,7 +41,7 @@ class Networks(SyncAPIResource):
     def with_streaming_response(self) -> NetworksWithStreamingResponse:
         return NetworksWithStreamingResponse(self)
 
-    def update(
+    def create(
         self,
         ip_network_encoded: str,
         *,
@@ -67,7 +54,7 @@ class Networks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> NetworkUpdateResponse:
+    ) -> NetworkCreateResponse:
         """Routes a private network through a Cloudflare Tunnel.
 
         The CIDR in
@@ -103,7 +90,7 @@ class Networks(SyncAPIResource):
                     "comment": comment,
                     "virtual_network_id": virtual_network_id,
                 },
-                network_update_params.NetworkUpdateParams,
+                network_create_params.NetworkCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -112,7 +99,7 @@ class Networks(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[NetworkUpdateResponse], ResultWrapper[NetworkUpdateResponse]),
+            cast_to=cast(Type[NetworkCreateResponse], ResultWrapper[NetworkCreateResponse]),
         )
 
     def delete(
@@ -170,6 +157,52 @@ class Networks(SyncAPIResource):
             cast_to=cast(Type[NetworkDeleteResponse], ResultWrapper[NetworkDeleteResponse]),
         )
 
+    def edit(
+        self,
+        ip_network_encoded: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> NetworkEditResponse:
+        """Updates an existing private network route in an account.
+
+        The CIDR in
+        `ip_network_encoded` must be written in URL-encoded format.
+
+        Args:
+          account_id: Cloudflare account ID
+
+          ip_network_encoded: IP/CIDR range in URL-encoded format
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not ip_network_encoded:
+            raise ValueError(f"Expected a non-empty value for `ip_network_encoded` but received {ip_network_encoded!r}")
+        return self._patch(
+            f"/accounts/{account_id}/teamnet/routes/network/{ip_network_encoded}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[NetworkEditResponse], ResultWrapper[NetworkEditResponse]),
+        )
+
 
 class AsyncNetworks(AsyncAPIResource):
     @cached_property
@@ -180,7 +213,7 @@ class AsyncNetworks(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncNetworksWithStreamingResponse:
         return AsyncNetworksWithStreamingResponse(self)
 
-    async def update(
+    async def create(
         self,
         ip_network_encoded: str,
         *,
@@ -193,7 +226,7 @@ class AsyncNetworks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> NetworkUpdateResponse:
+    ) -> NetworkCreateResponse:
         """Routes a private network through a Cloudflare Tunnel.
 
         The CIDR in
@@ -229,7 +262,7 @@ class AsyncNetworks(AsyncAPIResource):
                     "comment": comment,
                     "virtual_network_id": virtual_network_id,
                 },
-                network_update_params.NetworkUpdateParams,
+                network_create_params.NetworkCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -238,7 +271,7 @@ class AsyncNetworks(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[NetworkUpdateResponse], ResultWrapper[NetworkUpdateResponse]),
+            cast_to=cast(Type[NetworkCreateResponse], ResultWrapper[NetworkCreateResponse]),
         )
 
     async def delete(
@@ -296,16 +329,65 @@ class AsyncNetworks(AsyncAPIResource):
             cast_to=cast(Type[NetworkDeleteResponse], ResultWrapper[NetworkDeleteResponse]),
         )
 
+    async def edit(
+        self,
+        ip_network_encoded: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> NetworkEditResponse:
+        """Updates an existing private network route in an account.
+
+        The CIDR in
+        `ip_network_encoded` must be written in URL-encoded format.
+
+        Args:
+          account_id: Cloudflare account ID
+
+          ip_network_encoded: IP/CIDR range in URL-encoded format
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not ip_network_encoded:
+            raise ValueError(f"Expected a non-empty value for `ip_network_encoded` but received {ip_network_encoded!r}")
+        return await self._patch(
+            f"/accounts/{account_id}/teamnet/routes/network/{ip_network_encoded}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[NetworkEditResponse], ResultWrapper[NetworkEditResponse]),
+        )
+
 
 class NetworksWithRawResponse:
     def __init__(self, networks: Networks) -> None:
         self._networks = networks
 
-        self.update = to_raw_response_wrapper(
-            networks.update,
+        self.create = to_raw_response_wrapper(
+            networks.create,
         )
         self.delete = to_raw_response_wrapper(
             networks.delete,
+        )
+        self.edit = to_raw_response_wrapper(
+            networks.edit,
         )
 
 
@@ -313,11 +395,14 @@ class AsyncNetworksWithRawResponse:
     def __init__(self, networks: AsyncNetworks) -> None:
         self._networks = networks
 
-        self.update = async_to_raw_response_wrapper(
-            networks.update,
+        self.create = async_to_raw_response_wrapper(
+            networks.create,
         )
         self.delete = async_to_raw_response_wrapper(
             networks.delete,
+        )
+        self.edit = async_to_raw_response_wrapper(
+            networks.edit,
         )
 
 
@@ -325,11 +410,14 @@ class NetworksWithStreamingResponse:
     def __init__(self, networks: Networks) -> None:
         self._networks = networks
 
-        self.update = to_streamed_response_wrapper(
-            networks.update,
+        self.create = to_streamed_response_wrapper(
+            networks.create,
         )
         self.delete = to_streamed_response_wrapper(
             networks.delete,
+        )
+        self.edit = to_streamed_response_wrapper(
+            networks.edit,
         )
 
 
@@ -337,9 +425,12 @@ class AsyncNetworksWithStreamingResponse:
     def __init__(self, networks: AsyncNetworks) -> None:
         self._networks = networks
 
-        self.update = async_to_streamed_response_wrapper(
-            networks.update,
+        self.create = async_to_streamed_response_wrapper(
+            networks.create,
         )
         self.delete = async_to_streamed_response_wrapper(
             networks.delete,
+        )
+        self.edit = async_to_streamed_response_wrapper(
+            networks.edit,
         )

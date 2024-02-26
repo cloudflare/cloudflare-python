@@ -2,51 +2,25 @@
 
 from __future__ import annotations
 
+from typing import Any, Type, Iterable, Optional, cast
+from typing_extensions import Literal
+
 import httpx
 
-from .settings import Settings, AsyncSettings
-
-from ..._compat import cached_property
-
 from ...types import (
-    PageruleCreateResponse,
-    PageruleUpdateResponse,
-    PageruleListResponse,
-    PageruleDeleteResponse,
     PageruleGetResponse,
+    PageruleEditResponse,
+    PageruleListResponse,
+    PageruleCreateResponse,
+    PageruleDeleteResponse,
+    PageruleUpdateResponse,
+    pagerule_edit_params,
+    pagerule_list_params,
     pagerule_create_params,
     pagerule_update_params,
 )
-
-from typing import Iterable, Type, Optional
-
-from typing_extensions import Literal
-
-from ..._response import (
-    to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types import pagerule_create_params
-from ...types import pagerule_update_params
-from ...types import pagerule_list_params
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from .settings import (
     Settings,
     AsyncSettings,
@@ -55,23 +29,18 @@ from .settings import (
     SettingsWithStreamingResponse,
     AsyncSettingsWithStreamingResponse,
 )
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ..._base_client import (
+    make_request_options,
+)
 
 __all__ = ["Pagerules", "AsyncPagerules"]
 
@@ -339,6 +308,81 @@ class Pagerules(SyncAPIResource):
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(Type[Optional[PageruleDeleteResponse]], ResultWrapper[PageruleDeleteResponse]),
+        )
+
+    def edit(
+        self,
+        pagerule_id: str,
+        *,
+        zone_id: str,
+        actions: Iterable[pagerule_edit_params.Action] | NotGiven = NOT_GIVEN,
+        priority: int | NotGiven = NOT_GIVEN,
+        status: Literal["active", "disabled"] | NotGiven = NOT_GIVEN,
+        targets: Iterable[pagerule_edit_params.Target] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> PageruleEditResponse:
+        """
+        Updates one or more fields of an existing Page Rule.
+
+        Args:
+          zone_id: Identifier
+
+          pagerule_id: Identifier
+
+          actions: The set of actions to perform if the targets of this rule match the request.
+              Actions can redirect to another URL or override settings, but not both.
+
+          priority: The priority of the rule, used to define which Page Rule is processed over
+              another. A higher number indicates a higher priority. For example, if you have a
+              catch-all Page Rule (rule A: `/images/*`) but want a more specific Page Rule to
+              take precedence (rule B: `/images/special/*`), specify a higher priority for
+              rule B so it overrides rule A.
+
+          status: The status of the Page Rule.
+
+          targets: The rule targets to evaluate on each request.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not pagerule_id:
+            raise ValueError(f"Expected a non-empty value for `pagerule_id` but received {pagerule_id!r}")
+        return cast(
+            PageruleEditResponse,
+            self._patch(
+                f"/zones/{zone_id}/pagerules/{pagerule_id}",
+                body=maybe_transform(
+                    {
+                        "actions": actions,
+                        "priority": priority,
+                        "status": status,
+                        "targets": targets,
+                    },
+                    pagerule_edit_params.PageruleEditParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[PageruleEditResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
         )
 
     def get(
@@ -656,6 +700,81 @@ class AsyncPagerules(AsyncAPIResource):
             cast_to=cast(Type[Optional[PageruleDeleteResponse]], ResultWrapper[PageruleDeleteResponse]),
         )
 
+    async def edit(
+        self,
+        pagerule_id: str,
+        *,
+        zone_id: str,
+        actions: Iterable[pagerule_edit_params.Action] | NotGiven = NOT_GIVEN,
+        priority: int | NotGiven = NOT_GIVEN,
+        status: Literal["active", "disabled"] | NotGiven = NOT_GIVEN,
+        targets: Iterable[pagerule_edit_params.Target] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> PageruleEditResponse:
+        """
+        Updates one or more fields of an existing Page Rule.
+
+        Args:
+          zone_id: Identifier
+
+          pagerule_id: Identifier
+
+          actions: The set of actions to perform if the targets of this rule match the request.
+              Actions can redirect to another URL or override settings, but not both.
+
+          priority: The priority of the rule, used to define which Page Rule is processed over
+              another. A higher number indicates a higher priority. For example, if you have a
+              catch-all Page Rule (rule A: `/images/*`) but want a more specific Page Rule to
+              take precedence (rule B: `/images/special/*`), specify a higher priority for
+              rule B so it overrides rule A.
+
+          status: The status of the Page Rule.
+
+          targets: The rule targets to evaluate on each request.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not pagerule_id:
+            raise ValueError(f"Expected a non-empty value for `pagerule_id` but received {pagerule_id!r}")
+        return cast(
+            PageruleEditResponse,
+            await self._patch(
+                f"/zones/{zone_id}/pagerules/{pagerule_id}",
+                body=maybe_transform(
+                    {
+                        "actions": actions,
+                        "priority": priority,
+                        "status": status,
+                        "targets": targets,
+                    },
+                    pagerule_edit_params.PageruleEditParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[PageruleEditResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
+        )
+
     async def get(
         self,
         pagerule_id: str,
@@ -722,6 +841,9 @@ class PagerulesWithRawResponse:
         self.delete = to_raw_response_wrapper(
             pagerules.delete,
         )
+        self.edit = to_raw_response_wrapper(
+            pagerules.edit,
+        )
         self.get = to_raw_response_wrapper(
             pagerules.get,
         )
@@ -746,6 +868,9 @@ class AsyncPagerulesWithRawResponse:
         )
         self.delete = async_to_raw_response_wrapper(
             pagerules.delete,
+        )
+        self.edit = async_to_raw_response_wrapper(
+            pagerules.edit,
         )
         self.get = async_to_raw_response_wrapper(
             pagerules.get,
@@ -772,6 +897,9 @@ class PagerulesWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             pagerules.delete,
         )
+        self.edit = to_streamed_response_wrapper(
+            pagerules.edit,
+        )
         self.get = to_streamed_response_wrapper(
             pagerules.get,
         )
@@ -796,6 +924,9 @@ class AsyncPagerulesWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             pagerules.delete,
+        )
+        self.edit = async_to_streamed_response_wrapper(
+            pagerules.edit,
         )
         self.get = async_to_streamed_response_wrapper(
             pagerules.get,

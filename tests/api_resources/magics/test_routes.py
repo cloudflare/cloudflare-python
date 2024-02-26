@@ -2,34 +2,73 @@
 
 from __future__ import annotations
 
-from cloudflare.types.magics import (
-    RouteUpdateResponse,
-    RouteDeleteResponse,
-    RouteGetResponse,
-    RouteMagicStaticRoutesCreateRoutesResponse,
-    RouteMagicStaticRoutesListRoutesResponse,
-    RouteMagicStaticRoutesUpdateManyRoutesResponse,
-)
-
+import os
 from typing import Any, cast
 
-import os
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.magics import route_update_params
-from cloudflare.types.magics import route_magic_static_routes_create_routes_params
-from cloudflare.types.magics import route_magic_static_routes_update_many_routes_params
+from cloudflare.types.magics import (
+    RouteGetResponse,
+    RouteListResponse,
+    RouteEmptyResponse,
+    RouteCreateResponse,
+    RouteDeleteResponse,
+    RouteUpdateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
 class TestRoutes:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_create(self, client: Cloudflare) -> None:
+        route = client.magics.routes.create(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
+        )
+        assert_matches_type(RouteCreateResponse, route, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_create(self, client: Cloudflare) -> None:
+        response = client.magics.routes.with_raw_response.create(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        route = response.parse()
+        assert_matches_type(RouteCreateResponse, route, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_create(self, client: Cloudflare) -> None:
+        with client.magics.routes.with_streaming_response.create(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            route = response.parse()
+            assert_matches_type(RouteCreateResponse, route, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_create(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
+            client.magics.routes.with_raw_response.create(
+                "",
+                body={},
+            )
 
     @pytest.mark.skip()
     @parametrize
@@ -118,6 +157,48 @@ class TestRoutes:
 
     @pytest.mark.skip()
     @parametrize
+    def test_method_list(self, client: Cloudflare) -> None:
+        route = client.magics.routes.list(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(RouteListResponse, route, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_list(self, client: Cloudflare) -> None:
+        response = client.magics.routes.with_raw_response.list(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        route = response.parse()
+        assert_matches_type(RouteListResponse, route, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_list(self, client: Cloudflare) -> None:
+        with client.magics.routes.with_streaming_response.list(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            route = response.parse()
+            assert_matches_type(RouteListResponse, route, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_list(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
+            client.magics.routes.with_raw_response.list(
+                "",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         route = client.magics.routes.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
@@ -166,6 +247,52 @@ class TestRoutes:
             client.magics.routes.with_raw_response.delete(
                 "",
                 account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_empty(self, client: Cloudflare) -> None:
+        route = client.magics.routes.empty(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            routes=[{}, {}, {}],
+        )
+        assert_matches_type(RouteEmptyResponse, route, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_empty(self, client: Cloudflare) -> None:
+        response = client.magics.routes.with_raw_response.empty(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            routes=[{}, {}, {}],
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        route = response.parse()
+        assert_matches_type(RouteEmptyResponse, route, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_empty(self, client: Cloudflare) -> None:
+        with client.magics.routes.with_streaming_response.empty(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            routes=[{}, {}, {}],
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            route = response.parse()
+            assert_matches_type(RouteEmptyResponse, route, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_empty(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
+            client.magics.routes.with_raw_response.empty(
+                "",
+                routes=[{}, {}, {}],
             )
 
     @pytest.mark.skip()
@@ -220,207 +347,55 @@ class TestRoutes:
                 account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip()
-    @parametrize
-    def test_method_magic_static_routes_create_routes(self, client: Cloudflare) -> None:
-        route = client.magics.routes.magic_static_routes_create_routes(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
-        )
-        assert_matches_type(RouteMagicStaticRoutesCreateRoutesResponse, route, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_raw_response_magic_static_routes_create_routes(self, client: Cloudflare) -> None:
-        response = client.magics.routes.with_raw_response.magic_static_routes_create_routes(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        route = response.parse()
-        assert_matches_type(RouteMagicStaticRoutesCreateRoutesResponse, route, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_streaming_response_magic_static_routes_create_routes(self, client: Cloudflare) -> None:
-        with client.magics.routes.with_streaming_response.magic_static_routes_create_routes(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            route = response.parse()
-            assert_matches_type(RouteMagicStaticRoutesCreateRoutesResponse, route, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_path_params_magic_static_routes_create_routes(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
-            client.magics.routes.with_raw_response.magic_static_routes_create_routes(
-                "",
-                body={},
-            )
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_method_magic_static_routes_list_routes(self, client: Cloudflare) -> None:
-        route = client.magics.routes.magic_static_routes_list_routes(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(RouteMagicStaticRoutesListRoutesResponse, route, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_raw_response_magic_static_routes_list_routes(self, client: Cloudflare) -> None:
-        response = client.magics.routes.with_raw_response.magic_static_routes_list_routes(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        route = response.parse()
-        assert_matches_type(RouteMagicStaticRoutesListRoutesResponse, route, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_streaming_response_magic_static_routes_list_routes(self, client: Cloudflare) -> None:
-        with client.magics.routes.with_streaming_response.magic_static_routes_list_routes(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            route = response.parse()
-            assert_matches_type(RouteMagicStaticRoutesListRoutesResponse, route, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_path_params_magic_static_routes_list_routes(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
-            client.magics.routes.with_raw_response.magic_static_routes_list_routes(
-                "",
-            )
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_method_magic_static_routes_update_many_routes(self, client: Cloudflare) -> None:
-        route = client.magics.routes.magic_static_routes_update_many_routes(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            routes=[
-                {
-                    "nexthop": "203.0.113.1",
-                    "prefix": "192.0.2.0/24",
-                    "priority": 0,
-                },
-                {
-                    "nexthop": "203.0.113.1",
-                    "prefix": "192.0.2.0/24",
-                    "priority": 0,
-                },
-                {
-                    "nexthop": "203.0.113.1",
-                    "prefix": "192.0.2.0/24",
-                    "priority": 0,
-                },
-            ],
-        )
-        assert_matches_type(RouteMagicStaticRoutesUpdateManyRoutesResponse, route, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_raw_response_magic_static_routes_update_many_routes(self, client: Cloudflare) -> None:
-        response = client.magics.routes.with_raw_response.magic_static_routes_update_many_routes(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            routes=[
-                {
-                    "nexthop": "203.0.113.1",
-                    "prefix": "192.0.2.0/24",
-                    "priority": 0,
-                },
-                {
-                    "nexthop": "203.0.113.1",
-                    "prefix": "192.0.2.0/24",
-                    "priority": 0,
-                },
-                {
-                    "nexthop": "203.0.113.1",
-                    "prefix": "192.0.2.0/24",
-                    "priority": 0,
-                },
-            ],
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        route = response.parse()
-        assert_matches_type(RouteMagicStaticRoutesUpdateManyRoutesResponse, route, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_streaming_response_magic_static_routes_update_many_routes(self, client: Cloudflare) -> None:
-        with client.magics.routes.with_streaming_response.magic_static_routes_update_many_routes(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            routes=[
-                {
-                    "nexthop": "203.0.113.1",
-                    "prefix": "192.0.2.0/24",
-                    "priority": 0,
-                },
-                {
-                    "nexthop": "203.0.113.1",
-                    "prefix": "192.0.2.0/24",
-                    "priority": 0,
-                },
-                {
-                    "nexthop": "203.0.113.1",
-                    "prefix": "192.0.2.0/24",
-                    "priority": 0,
-                },
-            ],
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            route = response.parse()
-            assert_matches_type(RouteMagicStaticRoutesUpdateManyRoutesResponse, route, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_path_params_magic_static_routes_update_many_routes(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
-            client.magics.routes.with_raw_response.magic_static_routes_update_many_routes(
-                "",
-                routes=[
-                    {
-                        "nexthop": "203.0.113.1",
-                        "prefix": "192.0.2.0/24",
-                        "priority": 0,
-                    },
-                    {
-                        "nexthop": "203.0.113.1",
-                        "prefix": "192.0.2.0/24",
-                        "priority": 0,
-                    },
-                    {
-                        "nexthop": "203.0.113.1",
-                        "prefix": "192.0.2.0/24",
-                        "priority": 0,
-                    },
-                ],
-            )
-
 
 class TestAsyncRoutes:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_create(self, async_client: AsyncCloudflare) -> None:
+        route = await async_client.magics.routes.create(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
+        )
+        assert_matches_type(RouteCreateResponse, route, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.magics.routes.with_raw_response.create(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        route = await response.parse()
+        assert_matches_type(RouteCreateResponse, route, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.magics.routes.with_streaming_response.create(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            route = await response.parse()
+            assert_matches_type(RouteCreateResponse, route, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
+            await async_client.magics.routes.with_raw_response.create(
+                "",
+                body={},
+            )
 
     @pytest.mark.skip()
     @parametrize
@@ -509,6 +484,48 @@ class TestAsyncRoutes:
 
     @pytest.mark.skip()
     @parametrize
+    async def test_method_list(self, async_client: AsyncCloudflare) -> None:
+        route = await async_client.magics.routes.list(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(RouteListResponse, route, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.magics.routes.with_raw_response.list(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        route = await response.parse()
+        assert_matches_type(RouteListResponse, route, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.magics.routes.with_streaming_response.list(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            route = await response.parse()
+            assert_matches_type(RouteListResponse, route, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
+            await async_client.magics.routes.with_raw_response.list(
+                "",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         route = await async_client.magics.routes.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
@@ -561,6 +578,52 @@ class TestAsyncRoutes:
 
     @pytest.mark.skip()
     @parametrize
+    async def test_method_empty(self, async_client: AsyncCloudflare) -> None:
+        route = await async_client.magics.routes.empty(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            routes=[{}, {}, {}],
+        )
+        assert_matches_type(RouteEmptyResponse, route, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_empty(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.magics.routes.with_raw_response.empty(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            routes=[{}, {}, {}],
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        route = await response.parse()
+        assert_matches_type(RouteEmptyResponse, route, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_empty(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.magics.routes.with_streaming_response.empty(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            routes=[{}, {}, {}],
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            route = await response.parse()
+            assert_matches_type(RouteEmptyResponse, route, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_empty(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
+            await async_client.magics.routes.with_raw_response.empty(
+                "",
+                routes=[{}, {}, {}],
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         route = await async_client.magics.routes.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
@@ -609,204 +672,4 @@ class TestAsyncRoutes:
             await async_client.magics.routes.with_raw_response.get(
                 "",
                 account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_magic_static_routes_create_routes(self, async_client: AsyncCloudflare) -> None:
-        route = await async_client.magics.routes.magic_static_routes_create_routes(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
-        )
-        assert_matches_type(RouteMagicStaticRoutesCreateRoutesResponse, route, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_raw_response_magic_static_routes_create_routes(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.magics.routes.with_raw_response.magic_static_routes_create_routes(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        route = await response.parse()
-        assert_matches_type(RouteMagicStaticRoutesCreateRoutesResponse, route, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_streaming_response_magic_static_routes_create_routes(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.magics.routes.with_streaming_response.magic_static_routes_create_routes(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            route = await response.parse()
-            assert_matches_type(RouteMagicStaticRoutesCreateRoutesResponse, route, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_path_params_magic_static_routes_create_routes(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
-            await async_client.magics.routes.with_raw_response.magic_static_routes_create_routes(
-                "",
-                body={},
-            )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_magic_static_routes_list_routes(self, async_client: AsyncCloudflare) -> None:
-        route = await async_client.magics.routes.magic_static_routes_list_routes(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(RouteMagicStaticRoutesListRoutesResponse, route, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_raw_response_magic_static_routes_list_routes(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.magics.routes.with_raw_response.magic_static_routes_list_routes(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        route = await response.parse()
-        assert_matches_type(RouteMagicStaticRoutesListRoutesResponse, route, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_streaming_response_magic_static_routes_list_routes(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.magics.routes.with_streaming_response.magic_static_routes_list_routes(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            route = await response.parse()
-            assert_matches_type(RouteMagicStaticRoutesListRoutesResponse, route, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_path_params_magic_static_routes_list_routes(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
-            await async_client.magics.routes.with_raw_response.magic_static_routes_list_routes(
-                "",
-            )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_magic_static_routes_update_many_routes(self, async_client: AsyncCloudflare) -> None:
-        route = await async_client.magics.routes.magic_static_routes_update_many_routes(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            routes=[
-                {
-                    "nexthop": "203.0.113.1",
-                    "prefix": "192.0.2.0/24",
-                    "priority": 0,
-                },
-                {
-                    "nexthop": "203.0.113.1",
-                    "prefix": "192.0.2.0/24",
-                    "priority": 0,
-                },
-                {
-                    "nexthop": "203.0.113.1",
-                    "prefix": "192.0.2.0/24",
-                    "priority": 0,
-                },
-            ],
-        )
-        assert_matches_type(RouteMagicStaticRoutesUpdateManyRoutesResponse, route, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_raw_response_magic_static_routes_update_many_routes(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.magics.routes.with_raw_response.magic_static_routes_update_many_routes(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            routes=[
-                {
-                    "nexthop": "203.0.113.1",
-                    "prefix": "192.0.2.0/24",
-                    "priority": 0,
-                },
-                {
-                    "nexthop": "203.0.113.1",
-                    "prefix": "192.0.2.0/24",
-                    "priority": 0,
-                },
-                {
-                    "nexthop": "203.0.113.1",
-                    "prefix": "192.0.2.0/24",
-                    "priority": 0,
-                },
-            ],
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        route = await response.parse()
-        assert_matches_type(RouteMagicStaticRoutesUpdateManyRoutesResponse, route, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_streaming_response_magic_static_routes_update_many_routes(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        async with async_client.magics.routes.with_streaming_response.magic_static_routes_update_many_routes(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            routes=[
-                {
-                    "nexthop": "203.0.113.1",
-                    "prefix": "192.0.2.0/24",
-                    "priority": 0,
-                },
-                {
-                    "nexthop": "203.0.113.1",
-                    "prefix": "192.0.2.0/24",
-                    "priority": 0,
-                },
-                {
-                    "nexthop": "203.0.113.1",
-                    "prefix": "192.0.2.0/24",
-                    "priority": 0,
-                },
-            ],
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            route = await response.parse()
-            assert_matches_type(RouteMagicStaticRoutesUpdateManyRoutesResponse, route, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_path_params_magic_static_routes_update_many_routes(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
-            await async_client.magics.routes.with_raw_response.magic_static_routes_update_many_routes(
-                "",
-                routes=[
-                    {
-                        "nexthop": "203.0.113.1",
-                        "prefix": "192.0.2.0/24",
-                        "priority": 0,
-                    },
-                    {
-                        "nexthop": "203.0.113.1",
-                        "prefix": "192.0.2.0/24",
-                        "priority": 0,
-                    },
-                    {
-                        "nexthop": "203.0.113.1",
-                        "prefix": "192.0.2.0/24",
-                        "priority": 0,
-                    },
-                ],
             )

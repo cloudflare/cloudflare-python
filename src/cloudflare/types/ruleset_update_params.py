@@ -2,15 +2,8 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, Literal
-
-from typing import Iterable, List, Dict, Union
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from .._types import FileTypes
-from .._utils import PropertyInfo
-from ..types import shared_params
+from typing import Dict, List, Union, Iterable
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = [
     "RulesetUpdateParams",
@@ -35,10 +28,11 @@ __all__ = [
 
 
 class RulesetUpdateParams(TypedDict, total=False):
-    account_or_zone: Required[str]
+    account_id: Required[str]
+    """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
 
-    account_or_zone_id: Required[str]
-    """The unique ID of the account."""
+    zone_id: Required[str]
+    """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
     id: Required[str]
     """The unique ID of the ruleset."""

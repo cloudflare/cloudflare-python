@@ -2,53 +2,30 @@
 
 from __future__ import annotations
 
+from typing import Type, cast
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._compat import cached_property
-
-from ...types.magics import (
-    CfInterconnectUpdateResponse,
-    CfInterconnectGetResponse,
-    CfInterconnectMagicInterconnectsListInterconnectsResponse,
-    CfInterconnectMagicInterconnectsUpdateMultipleInterconnectsResponse,
-    cf_interconnect_update_params,
-)
-
-from typing import Type
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types.magics import cf_interconnect_update_params
-from ...types.magics import cf_interconnect_magic_interconnects_update_multiple_interconnects_params
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ..._base_client import (
+    make_request_options,
+)
+from ...types.magics import (
+    CfInterconnectGetResponse,
+    CfInterconnectListResponse,
+    CfInterconnectUpdateResponse,
+    cf_interconnect_update_params,
+)
 
 __all__ = ["CfInterconnects", "AsyncCfInterconnects"]
 
@@ -68,7 +45,7 @@ class CfInterconnects(SyncAPIResource):
         *,
         account_identifier: str,
         description: str | NotGiven = NOT_GIVEN,
-        gre: cf_interconnect_update_params.Gre | NotGiven = NOT_GIVEN,
+        gre: cf_interconnect_update_params.GRE | NotGiven = NOT_GIVEN,
         health_check: cf_interconnect_update_params.HealthCheck | NotGiven = NOT_GIVEN,
         interface_address: str | NotGiven = NOT_GIVEN,
         mtu: int | NotGiven = NOT_GIVEN,
@@ -133,6 +110,45 @@ class CfInterconnects(SyncAPIResource):
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(Type[CfInterconnectUpdateResponse], ResultWrapper[CfInterconnectUpdateResponse]),
+        )
+
+    def list(
+        self,
+        account_identifier: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> CfInterconnectListResponse:
+        """
+        Lists interconnects associated with an account.
+
+        Args:
+          account_identifier: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_identifier:
+            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        return self._get(
+            f"/accounts/{account_identifier}/magic/cf_interconnects",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[CfInterconnectListResponse], ResultWrapper[CfInterconnectListResponse]),
         )
 
     def get(
@@ -179,98 +195,6 @@ class CfInterconnects(SyncAPIResource):
             cast_to=cast(Type[CfInterconnectGetResponse], ResultWrapper[CfInterconnectGetResponse]),
         )
 
-    def magic_interconnects_list_interconnects(
-        self,
-        account_identifier: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CfInterconnectMagicInterconnectsListInterconnectsResponse:
-        """
-        Lists interconnects associated with an account.
-
-        Args:
-          account_identifier: Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        return self._get(
-            f"/accounts/{account_identifier}/magic/cf_interconnects",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[CfInterconnectMagicInterconnectsListInterconnectsResponse],
-                ResultWrapper[CfInterconnectMagicInterconnectsListInterconnectsResponse],
-            ),
-        )
-
-    def magic_interconnects_update_multiple_interconnects(
-        self,
-        account_identifier: str,
-        *,
-        body: object,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CfInterconnectMagicInterconnectsUpdateMultipleInterconnectsResponse:
-        """Updates multiple interconnects associated with an account.
-
-        Use
-        `?validate_only=true` as an optional query parameter to only run validation
-        without persisting changes.
-
-        Args:
-          account_identifier: Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        return self._put(
-            f"/accounts/{account_identifier}/magic/cf_interconnects",
-            body=maybe_transform(
-                body,
-                cf_interconnect_magic_interconnects_update_multiple_interconnects_params.CfInterconnectMagicInterconnectsUpdateMultipleInterconnectsParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[CfInterconnectMagicInterconnectsUpdateMultipleInterconnectsResponse],
-                ResultWrapper[CfInterconnectMagicInterconnectsUpdateMultipleInterconnectsResponse],
-            ),
-        )
-
 
 class AsyncCfInterconnects(AsyncAPIResource):
     @cached_property
@@ -287,7 +211,7 @@ class AsyncCfInterconnects(AsyncAPIResource):
         *,
         account_identifier: str,
         description: str | NotGiven = NOT_GIVEN,
-        gre: cf_interconnect_update_params.Gre | NotGiven = NOT_GIVEN,
+        gre: cf_interconnect_update_params.GRE | NotGiven = NOT_GIVEN,
         health_check: cf_interconnect_update_params.HealthCheck | NotGiven = NOT_GIVEN,
         interface_address: str | NotGiven = NOT_GIVEN,
         mtu: int | NotGiven = NOT_GIVEN,
@@ -354,6 +278,45 @@ class AsyncCfInterconnects(AsyncAPIResource):
             cast_to=cast(Type[CfInterconnectUpdateResponse], ResultWrapper[CfInterconnectUpdateResponse]),
         )
 
+    async def list(
+        self,
+        account_identifier: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> CfInterconnectListResponse:
+        """
+        Lists interconnects associated with an account.
+
+        Args:
+          account_identifier: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_identifier:
+            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        return await self._get(
+            f"/accounts/{account_identifier}/magic/cf_interconnects",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[CfInterconnectListResponse], ResultWrapper[CfInterconnectListResponse]),
+        )
+
     async def get(
         self,
         tunnel_identifier: str,
@@ -398,98 +361,6 @@ class AsyncCfInterconnects(AsyncAPIResource):
             cast_to=cast(Type[CfInterconnectGetResponse], ResultWrapper[CfInterconnectGetResponse]),
         )
 
-    async def magic_interconnects_list_interconnects(
-        self,
-        account_identifier: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CfInterconnectMagicInterconnectsListInterconnectsResponse:
-        """
-        Lists interconnects associated with an account.
-
-        Args:
-          account_identifier: Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        return await self._get(
-            f"/accounts/{account_identifier}/magic/cf_interconnects",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[CfInterconnectMagicInterconnectsListInterconnectsResponse],
-                ResultWrapper[CfInterconnectMagicInterconnectsListInterconnectsResponse],
-            ),
-        )
-
-    async def magic_interconnects_update_multiple_interconnects(
-        self,
-        account_identifier: str,
-        *,
-        body: object,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CfInterconnectMagicInterconnectsUpdateMultipleInterconnectsResponse:
-        """Updates multiple interconnects associated with an account.
-
-        Use
-        `?validate_only=true` as an optional query parameter to only run validation
-        without persisting changes.
-
-        Args:
-          account_identifier: Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        return await self._put(
-            f"/accounts/{account_identifier}/magic/cf_interconnects",
-            body=maybe_transform(
-                body,
-                cf_interconnect_magic_interconnects_update_multiple_interconnects_params.CfInterconnectMagicInterconnectsUpdateMultipleInterconnectsParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[CfInterconnectMagicInterconnectsUpdateMultipleInterconnectsResponse],
-                ResultWrapper[CfInterconnectMagicInterconnectsUpdateMultipleInterconnectsResponse],
-            ),
-        )
-
 
 class CfInterconnectsWithRawResponse:
     def __init__(self, cf_interconnects: CfInterconnects) -> None:
@@ -498,14 +369,11 @@ class CfInterconnectsWithRawResponse:
         self.update = to_raw_response_wrapper(
             cf_interconnects.update,
         )
+        self.list = to_raw_response_wrapper(
+            cf_interconnects.list,
+        )
         self.get = to_raw_response_wrapper(
             cf_interconnects.get,
-        )
-        self.magic_interconnects_list_interconnects = to_raw_response_wrapper(
-            cf_interconnects.magic_interconnects_list_interconnects,
-        )
-        self.magic_interconnects_update_multiple_interconnects = to_raw_response_wrapper(
-            cf_interconnects.magic_interconnects_update_multiple_interconnects,
         )
 
 
@@ -516,14 +384,11 @@ class AsyncCfInterconnectsWithRawResponse:
         self.update = async_to_raw_response_wrapper(
             cf_interconnects.update,
         )
+        self.list = async_to_raw_response_wrapper(
+            cf_interconnects.list,
+        )
         self.get = async_to_raw_response_wrapper(
             cf_interconnects.get,
-        )
-        self.magic_interconnects_list_interconnects = async_to_raw_response_wrapper(
-            cf_interconnects.magic_interconnects_list_interconnects,
-        )
-        self.magic_interconnects_update_multiple_interconnects = async_to_raw_response_wrapper(
-            cf_interconnects.magic_interconnects_update_multiple_interconnects,
         )
 
 
@@ -534,14 +399,11 @@ class CfInterconnectsWithStreamingResponse:
         self.update = to_streamed_response_wrapper(
             cf_interconnects.update,
         )
+        self.list = to_streamed_response_wrapper(
+            cf_interconnects.list,
+        )
         self.get = to_streamed_response_wrapper(
             cf_interconnects.get,
-        )
-        self.magic_interconnects_list_interconnects = to_streamed_response_wrapper(
-            cf_interconnects.magic_interconnects_list_interconnects,
-        )
-        self.magic_interconnects_update_multiple_interconnects = to_streamed_response_wrapper(
-            cf_interconnects.magic_interconnects_update_multiple_interconnects,
         )
 
 
@@ -552,12 +414,9 @@ class AsyncCfInterconnectsWithStreamingResponse:
         self.update = async_to_streamed_response_wrapper(
             cf_interconnects.update,
         )
+        self.list = async_to_streamed_response_wrapper(
+            cf_interconnects.list,
+        )
         self.get = async_to_streamed_response_wrapper(
             cf_interconnects.get,
-        )
-        self.magic_interconnects_list_interconnects = async_to_streamed_response_wrapper(
-            cf_interconnects.magic_interconnects_list_interconnects,
-        )
-        self.magic_interconnects_update_multiple_interconnects = async_to_streamed_response_wrapper(
-            cf_interconnects.magic_interconnects_update_multiple_interconnects,
         )

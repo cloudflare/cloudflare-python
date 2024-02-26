@@ -2,27 +2,21 @@
 
 from __future__ import annotations
 
-from cloudflare.types import (
-    CustomHostnameUpdateResponse,
-    CustomHostnameDeleteResponse,
-    CustomHostnameCustomHostnameForAZoneCreateCustomHostnameResponse,
-    CustomHostnameCustomHostnameForAZoneListCustomHostnamesResponse,
-    CustomHostnameGetResponse,
-)
-
-from typing import Any, cast, Optional
-
 import os
+from typing import Any, cast
+
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types import custom_hostname_update_params
-from cloudflare.types import custom_hostname_custom_hostname_for_a_zone_create_custom_hostname_params
-from cloudflare.types import custom_hostname_custom_hostname_for_a_zone_list_custom_hostnames_params
+from cloudflare.types import (
+    CustomHostnameGetResponse,
+    CustomHostnameEditResponse,
+    CustomHostnameListResponse,
+    CustomHostnameCreateResponse,
+    CustomHostnameDeleteResponse,
+)
+from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -32,22 +26,20 @@ class TestCustomHostnames:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_update(self, client: Cloudflare) -> None:
-        custom_hostname = client.custom_hostnames.update(
+    def test_method_create(self, client: Cloudflare) -> None:
+        custom_hostname = client.custom_hostnames.create(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            hostname="app.example.com",
+            ssl={},
         )
-        assert_matches_type(CustomHostnameUpdateResponse, custom_hostname, path=["response"])
+        assert_matches_type(CustomHostnameCreateResponse, custom_hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_update_with_all_params(self, client: Cloudflare) -> None:
-        custom_hostname = client.custom_hostnames.update(
+    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
+        custom_hostname = client.custom_hostnames.create(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            custom_metadata={"key": "value"},
-            custom_origin_server="origin2.example.com",
-            custom_origin_sni="sni.example.com",
+            hostname="app.example.com",
             ssl={
                 "bundle_method": "ubiquitous",
                 "certificate_authority": "google",
@@ -64,50 +56,107 @@ class TestCustomHostnames:
                 "type": "dv",
                 "wildcard": False,
             },
+            custom_metadata={"key": "value"},
         )
-        assert_matches_type(CustomHostnameUpdateResponse, custom_hostname, path=["response"])
+        assert_matches_type(CustomHostnameCreateResponse, custom_hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_update(self, client: Cloudflare) -> None:
-        response = client.custom_hostnames.with_raw_response.update(
+    def test_raw_response_create(self, client: Cloudflare) -> None:
+        response = client.custom_hostnames.with_raw_response.create(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            hostname="app.example.com",
+            ssl={},
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_hostname = response.parse()
-        assert_matches_type(CustomHostnameUpdateResponse, custom_hostname, path=["response"])
+        assert_matches_type(CustomHostnameCreateResponse, custom_hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_update(self, client: Cloudflare) -> None:
-        with client.custom_hostnames.with_streaming_response.update(
+    def test_streaming_response_create(self, client: Cloudflare) -> None:
+        with client.custom_hostnames.with_streaming_response.create(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            hostname="app.example.com",
+            ssl={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_hostname = response.parse()
-            assert_matches_type(CustomHostnameUpdateResponse, custom_hostname, path=["response"])
+            assert_matches_type(CustomHostnameCreateResponse, custom_hostname, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_update(self, client: Cloudflare) -> None:
+    def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.custom_hostnames.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
-                zone_id="",
+            client.custom_hostnames.with_raw_response.create(
+                "",
+                hostname="app.example.com",
+                ssl={},
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `custom_hostname_id` but received ''"):
-            client.custom_hostnames.with_raw_response.update(
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_list(self, client: Cloudflare) -> None:
+        custom_hostname = client.custom_hostnames.list(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(SyncV4PagePaginationArray[CustomHostnameListResponse], custom_hostname, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_list_with_all_params(self, client: Cloudflare) -> None:
+        custom_hostname = client.custom_hostnames.list(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
+            direction="desc",
+            hostname="app.example.com",
+            order="ssl",
+            page=1,
+            per_page=5,
+            ssl=0,
+        )
+        assert_matches_type(SyncV4PagePaginationArray[CustomHostnameListResponse], custom_hostname, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_list(self, client: Cloudflare) -> None:
+        response = client.custom_hostnames.with_raw_response.list(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        custom_hostname = response.parse()
+        assert_matches_type(SyncV4PagePaginationArray[CustomHostnameListResponse], custom_hostname, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_list(self, client: Cloudflare) -> None:
+        with client.custom_hostnames.with_streaming_response.list(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            custom_hostname = response.parse()
+            assert_matches_type(
+                SyncV4PagePaginationArray[CustomHostnameListResponse], custom_hostname, path=["response"]
+            )
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_list(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            client.custom_hostnames.with_raw_response.list(
                 "",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @pytest.mark.skip()
@@ -164,22 +213,22 @@ class TestCustomHostnames:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_custom_hostname_for_a_zone_create_custom_hostname(self, client: Cloudflare) -> None:
-        custom_hostname = client.custom_hostnames.custom_hostname_for_a_zone_create_custom_hostname(
+    def test_method_edit(self, client: Cloudflare) -> None:
+        custom_hostname = client.custom_hostnames.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            hostname="app.example.com",
-            ssl={},
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(
-            CustomHostnameCustomHostnameForAZoneCreateCustomHostnameResponse, custom_hostname, path=["response"]
-        )
+        assert_matches_type(CustomHostnameEditResponse, custom_hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_custom_hostname_for_a_zone_create_custom_hostname_with_all_params(self, client: Cloudflare) -> None:
-        custom_hostname = client.custom_hostnames.custom_hostname_for_a_zone_create_custom_hostname(
+    def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
+        custom_hostname = client.custom_hostnames.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            hostname="app.example.com",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            custom_metadata={"key": "value"},
+            custom_origin_server="origin2.example.com",
+            custom_origin_sni="sni.example.com",
             ssl={
                 "bundle_method": "ubiquitous",
                 "certificate_authority": "google",
@@ -196,127 +245,50 @@ class TestCustomHostnames:
                 "type": "dv",
                 "wildcard": False,
             },
-            custom_metadata={"key": "value"},
         )
-        assert_matches_type(
-            CustomHostnameCustomHostnameForAZoneCreateCustomHostnameResponse, custom_hostname, path=["response"]
-        )
+        assert_matches_type(CustomHostnameEditResponse, custom_hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_custom_hostname_for_a_zone_create_custom_hostname(self, client: Cloudflare) -> None:
-        response = client.custom_hostnames.with_raw_response.custom_hostname_for_a_zone_create_custom_hostname(
+    def test_raw_response_edit(self, client: Cloudflare) -> None:
+        response = client.custom_hostnames.with_raw_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            hostname="app.example.com",
-            ssl={},
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_hostname = response.parse()
-        assert_matches_type(
-            CustomHostnameCustomHostnameForAZoneCreateCustomHostnameResponse, custom_hostname, path=["response"]
-        )
+        assert_matches_type(CustomHostnameEditResponse, custom_hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_custom_hostname_for_a_zone_create_custom_hostname(self, client: Cloudflare) -> None:
-        with client.custom_hostnames.with_streaming_response.custom_hostname_for_a_zone_create_custom_hostname(
+    def test_streaming_response_edit(self, client: Cloudflare) -> None:
+        with client.custom_hostnames.with_streaming_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            hostname="app.example.com",
-            ssl={},
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_hostname = response.parse()
-            assert_matches_type(
-                CustomHostnameCustomHostnameForAZoneCreateCustomHostnameResponse, custom_hostname, path=["response"]
-            )
+            assert_matches_type(CustomHostnameEditResponse, custom_hostname, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_custom_hostname_for_a_zone_create_custom_hostname(self, client: Cloudflare) -> None:
+    def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.custom_hostnames.with_raw_response.custom_hostname_for_a_zone_create_custom_hostname(
-                "",
-                hostname="app.example.com",
-                ssl={},
+            client.custom_hostnames.with_raw_response.edit(
+                "023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
             )
 
-    @pytest.mark.skip()
-    @parametrize
-    def test_method_custom_hostname_for_a_zone_list_custom_hostnames(self, client: Cloudflare) -> None:
-        custom_hostname = client.custom_hostnames.custom_hostname_for_a_zone_list_custom_hostnames(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(
-            Optional[CustomHostnameCustomHostnameForAZoneListCustomHostnamesResponse],
-            custom_hostname,
-            path=["response"],
-        )
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_method_custom_hostname_for_a_zone_list_custom_hostnames_with_all_params(self, client: Cloudflare) -> None:
-        custom_hostname = client.custom_hostnames.custom_hostname_for_a_zone_list_custom_hostnames(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
-            direction="desc",
-            hostname="app.example.com",
-            order="ssl",
-            page=1,
-            per_page=5,
-            ssl=0,
-        )
-        assert_matches_type(
-            Optional[CustomHostnameCustomHostnameForAZoneListCustomHostnamesResponse],
-            custom_hostname,
-            path=["response"],
-        )
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_raw_response_custom_hostname_for_a_zone_list_custom_hostnames(self, client: Cloudflare) -> None:
-        response = client.custom_hostnames.with_raw_response.custom_hostname_for_a_zone_list_custom_hostnames(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        custom_hostname = response.parse()
-        assert_matches_type(
-            Optional[CustomHostnameCustomHostnameForAZoneListCustomHostnamesResponse],
-            custom_hostname,
-            path=["response"],
-        )
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_streaming_response_custom_hostname_for_a_zone_list_custom_hostnames(self, client: Cloudflare) -> None:
-        with client.custom_hostnames.with_streaming_response.custom_hostname_for_a_zone_list_custom_hostnames(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            custom_hostname = response.parse()
-            assert_matches_type(
-                Optional[CustomHostnameCustomHostnameForAZoneListCustomHostnamesResponse],
-                custom_hostname,
-                path=["response"],
-            )
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_path_params_custom_hostname_for_a_zone_list_custom_hostnames(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.custom_hostnames.with_raw_response.custom_hostname_for_a_zone_list_custom_hostnames(
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `custom_hostname_id` but received ''"):
+            client.custom_hostnames.with_raw_response.edit(
                 "",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @pytest.mark.skip()
@@ -377,22 +349,20 @@ class TestAsyncCustomHostnames:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_update(self, async_client: AsyncCloudflare) -> None:
-        custom_hostname = await async_client.custom_hostnames.update(
+    async def test_method_create(self, async_client: AsyncCloudflare) -> None:
+        custom_hostname = await async_client.custom_hostnames.create(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            hostname="app.example.com",
+            ssl={},
         )
-        assert_matches_type(CustomHostnameUpdateResponse, custom_hostname, path=["response"])
+        assert_matches_type(CustomHostnameCreateResponse, custom_hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        custom_hostname = await async_client.custom_hostnames.update(
+    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        custom_hostname = await async_client.custom_hostnames.create(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            custom_metadata={"key": "value"},
-            custom_origin_server="origin2.example.com",
-            custom_origin_sni="sni.example.com",
+            hostname="app.example.com",
             ssl={
                 "bundle_method": "ubiquitous",
                 "certificate_authority": "google",
@@ -409,50 +379,107 @@ class TestAsyncCustomHostnames:
                 "type": "dv",
                 "wildcard": False,
             },
+            custom_metadata={"key": "value"},
         )
-        assert_matches_type(CustomHostnameUpdateResponse, custom_hostname, path=["response"])
+        assert_matches_type(CustomHostnameCreateResponse, custom_hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.custom_hostnames.with_raw_response.update(
+    async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.custom_hostnames.with_raw_response.create(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            hostname="app.example.com",
+            ssl={},
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_hostname = await response.parse()
-        assert_matches_type(CustomHostnameUpdateResponse, custom_hostname, path=["response"])
+        assert_matches_type(CustomHostnameCreateResponse, custom_hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.custom_hostnames.with_streaming_response.update(
+    async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.custom_hostnames.with_streaming_response.create(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            hostname="app.example.com",
+            ssl={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_hostname = await response.parse()
-            assert_matches_type(CustomHostnameUpdateResponse, custom_hostname, path=["response"])
+            assert_matches_type(CustomHostnameCreateResponse, custom_hostname, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
+    async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.custom_hostnames.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
-                zone_id="",
+            await async_client.custom_hostnames.with_raw_response.create(
+                "",
+                hostname="app.example.com",
+                ssl={},
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `custom_hostname_id` but received ''"):
-            await async_client.custom_hostnames.with_raw_response.update(
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_list(self, async_client: AsyncCloudflare) -> None:
+        custom_hostname = await async_client.custom_hostnames.list(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(AsyncV4PagePaginationArray[CustomHostnameListResponse], custom_hostname, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        custom_hostname = await async_client.custom_hostnames.list(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
+            direction="desc",
+            hostname="app.example.com",
+            order="ssl",
+            page=1,
+            per_page=5,
+            ssl=0,
+        )
+        assert_matches_type(AsyncV4PagePaginationArray[CustomHostnameListResponse], custom_hostname, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.custom_hostnames.with_raw_response.list(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        custom_hostname = await response.parse()
+        assert_matches_type(AsyncV4PagePaginationArray[CustomHostnameListResponse], custom_hostname, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.custom_hostnames.with_streaming_response.list(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            custom_hostname = await response.parse()
+            assert_matches_type(
+                AsyncV4PagePaginationArray[CustomHostnameListResponse], custom_hostname, path=["response"]
+            )
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            await async_client.custom_hostnames.with_raw_response.list(
                 "",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @pytest.mark.skip()
@@ -509,26 +536,22 @@ class TestAsyncCustomHostnames:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_custom_hostname_for_a_zone_create_custom_hostname(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        custom_hostname = await async_client.custom_hostnames.custom_hostname_for_a_zone_create_custom_hostname(
+    async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
+        custom_hostname = await async_client.custom_hostnames.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            hostname="app.example.com",
-            ssl={},
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(
-            CustomHostnameCustomHostnameForAZoneCreateCustomHostnameResponse, custom_hostname, path=["response"]
-        )
+        assert_matches_type(CustomHostnameEditResponse, custom_hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_custom_hostname_for_a_zone_create_custom_hostname_with_all_params(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        custom_hostname = await async_client.custom_hostnames.custom_hostname_for_a_zone_create_custom_hostname(
+    async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        custom_hostname = await async_client.custom_hostnames.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            hostname="app.example.com",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            custom_metadata={"key": "value"},
+            custom_origin_server="origin2.example.com",
+            custom_origin_sni="sni.example.com",
             ssl={
                 "bundle_method": "ubiquitous",
                 "certificate_authority": "google",
@@ -545,145 +568,50 @@ class TestAsyncCustomHostnames:
                 "type": "dv",
                 "wildcard": False,
             },
-            custom_metadata={"key": "value"},
         )
-        assert_matches_type(
-            CustomHostnameCustomHostnameForAZoneCreateCustomHostnameResponse, custom_hostname, path=["response"]
-        )
+        assert_matches_type(CustomHostnameEditResponse, custom_hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_custom_hostname_for_a_zone_create_custom_hostname(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        response = (
-            await async_client.custom_hostnames.with_raw_response.custom_hostname_for_a_zone_create_custom_hostname(
-                "023e105f4ecef8ad9ca31a8372d0c353",
-                hostname="app.example.com",
-                ssl={},
-            )
+    async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.custom_hostnames.with_raw_response.edit(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_hostname = await response.parse()
-        assert_matches_type(
-            CustomHostnameCustomHostnameForAZoneCreateCustomHostnameResponse, custom_hostname, path=["response"]
-        )
+        assert_matches_type(CustomHostnameEditResponse, custom_hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_custom_hostname_for_a_zone_create_custom_hostname(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        async with async_client.custom_hostnames.with_streaming_response.custom_hostname_for_a_zone_create_custom_hostname(
+    async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.custom_hostnames.with_streaming_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            hostname="app.example.com",
-            ssl={},
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_hostname = await response.parse()
-            assert_matches_type(
-                CustomHostnameCustomHostnameForAZoneCreateCustomHostnameResponse, custom_hostname, path=["response"]
-            )
+            assert_matches_type(CustomHostnameEditResponse, custom_hostname, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_custom_hostname_for_a_zone_create_custom_hostname(
-        self, async_client: AsyncCloudflare
-    ) -> None:
+    async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.custom_hostnames.with_raw_response.custom_hostname_for_a_zone_create_custom_hostname(
-                "",
-                hostname="app.example.com",
-                ssl={},
-            )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_custom_hostname_for_a_zone_list_custom_hostnames(self, async_client: AsyncCloudflare) -> None:
-        custom_hostname = await async_client.custom_hostnames.custom_hostname_for_a_zone_list_custom_hostnames(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(
-            Optional[CustomHostnameCustomHostnameForAZoneListCustomHostnamesResponse],
-            custom_hostname,
-            path=["response"],
-        )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_custom_hostname_for_a_zone_list_custom_hostnames_with_all_params(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        custom_hostname = await async_client.custom_hostnames.custom_hostname_for_a_zone_list_custom_hostnames(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
-            direction="desc",
-            hostname="app.example.com",
-            order="ssl",
-            page=1,
-            per_page=5,
-            ssl=0,
-        )
-        assert_matches_type(
-            Optional[CustomHostnameCustomHostnameForAZoneListCustomHostnamesResponse],
-            custom_hostname,
-            path=["response"],
-        )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_raw_response_custom_hostname_for_a_zone_list_custom_hostnames(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        response = (
-            await async_client.custom_hostnames.with_raw_response.custom_hostname_for_a_zone_list_custom_hostnames(
+            await async_client.custom_hostnames.with_raw_response.edit(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-            )
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        custom_hostname = await response.parse()
-        assert_matches_type(
-            Optional[CustomHostnameCustomHostnameForAZoneListCustomHostnamesResponse],
-            custom_hostname,
-            path=["response"],
-        )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_streaming_response_custom_hostname_for_a_zone_list_custom_hostnames(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        async with async_client.custom_hostnames.with_streaming_response.custom_hostname_for_a_zone_list_custom_hostnames(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            custom_hostname = await response.parse()
-            assert_matches_type(
-                Optional[CustomHostnameCustomHostnameForAZoneListCustomHostnamesResponse],
-                custom_hostname,
-                path=["response"],
+                zone_id="",
             )
 
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_path_params_custom_hostname_for_a_zone_list_custom_hostnames(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.custom_hostnames.with_raw_response.custom_hostname_for_a_zone_list_custom_hostnames(
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `custom_hostname_id` but received ''"):
+            await async_client.custom_hostnames.with_raw_response.edit(
                 "",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @pytest.mark.skip()

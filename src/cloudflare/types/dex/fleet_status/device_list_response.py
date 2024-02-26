@@ -2,16 +2,14 @@
 
 from typing import Optional
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
 from pydantic import Field as FieldInfo
+
 from ...._models import BaseModel
-from ....types import shared
 
-__all__ = ["DeviceListResponse", "DeviceListResponseItem"]
+__all__ = ["DeviceListResponse"]
 
 
-class DeviceListResponseItem(BaseModel):
+class DeviceListResponse(BaseModel):
     colo: str
     """Cloudflare colo"""
 
@@ -32,6 +30,3 @@ class DeviceListResponseItem(BaseModel):
 
     person_email: Optional[str] = FieldInfo(alias="personEmail", default=None)
     """User contact email address"""
-
-
-DeviceListResponse = List[DeviceListResponseItem]

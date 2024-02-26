@@ -2,18 +2,12 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required
+from typing_extensions import Required, TypedDict
 
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
-from ..._utils import PropertyInfo
-from ...types import shared_params
-
-__all__ = ["UaRuleUpdateParams"]
+__all__ = ["UARuleUpdateParams"]
 
 
-class UaRuleUpdateParams(TypedDict, total=False):
+class UARuleUpdateParams(TypedDict, total=False):
     zone_identifier: Required[str]
     """Identifier"""
 

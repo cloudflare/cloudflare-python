@@ -2,40 +2,25 @@
 
 from __future__ import annotations
 
+from typing import Type, Iterable, Optional, cast
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._compat import cached_property
-
-from ...types.access import SeatZeroTrustSeatsUpdateAUserSeatResponse, seat_zero_trust_seats_update_a_user_seat_params
-
-from typing import Type, Optional, Iterable
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types.access import seat_zero_trust_seats_update_a_user_seat_params
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
+from ..._base_client import (
+    make_request_options,
+)
+from ...types.access import SeatEditResponse, seat_edit_params
 
 __all__ = ["Seats", "AsyncSeats"]
 
@@ -49,18 +34,18 @@ class Seats(SyncAPIResource):
     def with_streaming_response(self) -> SeatsWithStreamingResponse:
         return SeatsWithStreamingResponse(self)
 
-    def zero_trust_seats_update_a_user_seat(
+    def edit(
         self,
         identifier: str,
         *,
-        body: Iterable[seat_zero_trust_seats_update_a_user_seat_params.Body],
+        body: Iterable[seat_edit_params.Body],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SeatZeroTrustSeatsUpdateAUserSeatResponse]:
+    ) -> Optional[SeatEditResponse]:
         """
         Removes a user from a Zero Trust seat when both `access_seat` and `gateway_seat`
         are set to false.
@@ -80,9 +65,7 @@ class Seats(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return self._patch(
             f"/accounts/{identifier}/access/seats",
-            body=maybe_transform(
-                body, seat_zero_trust_seats_update_a_user_seat_params.SeatZeroTrustSeatsUpdateAUserSeatParams
-            ),
+            body=maybe_transform(body, seat_edit_params.SeatEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -90,10 +73,7 @@ class Seats(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[SeatZeroTrustSeatsUpdateAUserSeatResponse]],
-                ResultWrapper[SeatZeroTrustSeatsUpdateAUserSeatResponse],
-            ),
+            cast_to=cast(Type[Optional[SeatEditResponse]], ResultWrapper[SeatEditResponse]),
         )
 
 
@@ -106,18 +86,18 @@ class AsyncSeats(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncSeatsWithStreamingResponse:
         return AsyncSeatsWithStreamingResponse(self)
 
-    async def zero_trust_seats_update_a_user_seat(
+    async def edit(
         self,
         identifier: str,
         *,
-        body: Iterable[seat_zero_trust_seats_update_a_user_seat_params.Body],
+        body: Iterable[seat_edit_params.Body],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SeatZeroTrustSeatsUpdateAUserSeatResponse]:
+    ) -> Optional[SeatEditResponse]:
         """
         Removes a user from a Zero Trust seat when both `access_seat` and `gateway_seat`
         are set to false.
@@ -137,9 +117,7 @@ class AsyncSeats(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return await self._patch(
             f"/accounts/{identifier}/access/seats",
-            body=maybe_transform(
-                body, seat_zero_trust_seats_update_a_user_seat_params.SeatZeroTrustSeatsUpdateAUserSeatParams
-            ),
+            body=maybe_transform(body, seat_edit_params.SeatEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -147,10 +125,7 @@ class AsyncSeats(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[SeatZeroTrustSeatsUpdateAUserSeatResponse]],
-                ResultWrapper[SeatZeroTrustSeatsUpdateAUserSeatResponse],
-            ),
+            cast_to=cast(Type[Optional[SeatEditResponse]], ResultWrapper[SeatEditResponse]),
         )
 
 
@@ -158,8 +133,8 @@ class SeatsWithRawResponse:
     def __init__(self, seats: Seats) -> None:
         self._seats = seats
 
-        self.zero_trust_seats_update_a_user_seat = to_raw_response_wrapper(
-            seats.zero_trust_seats_update_a_user_seat,
+        self.edit = to_raw_response_wrapper(
+            seats.edit,
         )
 
 
@@ -167,8 +142,8 @@ class AsyncSeatsWithRawResponse:
     def __init__(self, seats: AsyncSeats) -> None:
         self._seats = seats
 
-        self.zero_trust_seats_update_a_user_seat = async_to_raw_response_wrapper(
-            seats.zero_trust_seats_update_a_user_seat,
+        self.edit = async_to_raw_response_wrapper(
+            seats.edit,
         )
 
 
@@ -176,8 +151,8 @@ class SeatsWithStreamingResponse:
     def __init__(self, seats: Seats) -> None:
         self._seats = seats
 
-        self.zero_trust_seats_update_a_user_seat = to_streamed_response_wrapper(
-            seats.zero_trust_seats_update_a_user_seat,
+        self.edit = to_streamed_response_wrapper(
+            seats.edit,
         )
 
 
@@ -185,6 +160,6 @@ class AsyncSeatsWithStreamingResponse:
     def __init__(self, seats: AsyncSeats) -> None:
         self._seats = seats
 
-        self.zero_trust_seats_update_a_user_seat = async_to_streamed_response_wrapper(
-            seats.zero_trust_seats_update_a_user_seat,
+        self.edit = async_to_streamed_response_wrapper(
+            seats.edit,
         )

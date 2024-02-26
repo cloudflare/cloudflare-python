@@ -2,49 +2,26 @@
 
 from __future__ import annotations
 
+from typing import Any, cast
+from typing_extensions import Literal
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._compat import cached_property
-
-from ...types.argo import (
-    TieredCachingTieredCachingGetTieredCachingSettingResponse,
-    TieredCachingTieredCachingPatchTieredCachingSettingResponse,
-)
-
-from typing_extensions import Literal
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types.argo import tiered_caching_tiered_caching_patch_tiered_caching_setting_params
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ...types.argo import TieredCachingGetResponse, TieredCachingEditResponse, tiered_caching_edit_params
+from ..._base_client import (
+    make_request_options,
+)
 
 __all__ = ["TieredCaching", "AsyncTieredCaching"]
 
@@ -58,51 +35,7 @@ class TieredCaching(SyncAPIResource):
     def with_streaming_response(self) -> TieredCachingWithStreamingResponse:
         return TieredCachingWithStreamingResponse(self)
 
-    def tiered_caching_get_tiered_caching_setting(
-        self,
-        zone_id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TieredCachingTieredCachingGetTieredCachingSettingResponse:
-        """
-        Get Tiered Caching setting
-
-        Args:
-          zone_id: Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return cast(
-            TieredCachingTieredCachingGetTieredCachingSettingResponse,
-            self._get(
-                f"/zones/{zone_id}/argo/tiered_caching",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[TieredCachingTieredCachingGetTieredCachingSettingResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
-
-    def tiered_caching_patch_tiered_caching_setting(
+    def edit(
         self,
         zone_id: str,
         *,
@@ -113,7 +46,7 @@ class TieredCaching(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TieredCachingTieredCachingPatchTieredCachingSettingResponse:
+    ) -> TieredCachingEditResponse:
         """
         Updates enablement of Tiered Caching
 
@@ -133,13 +66,10 @@ class TieredCaching(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            TieredCachingTieredCachingPatchTieredCachingSettingResponse,
+            TieredCachingEditResponse,
             self._patch(
                 f"/zones/{zone_id}/argo/tiered_caching",
-                body=maybe_transform(
-                    {"value": value},
-                    tiered_caching_tiered_caching_patch_tiered_caching_setting_params.TieredCachingTieredCachingPatchTieredCachingSettingParams,
-                ),
+                body=maybe_transform({"value": value}, tiered_caching_edit_params.TieredCachingEditParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -148,7 +78,51 @@ class TieredCaching(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[TieredCachingTieredCachingPatchTieredCachingSettingResponse]
+                    Any, ResultWrapper[TieredCachingEditResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
+        )
+
+    def get(
+        self,
+        zone_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TieredCachingGetResponse:
+        """
+        Get Tiered Caching setting
+
+        Args:
+          zone_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return cast(
+            TieredCachingGetResponse,
+            self._get(
+                f"/zones/{zone_id}/argo/tiered_caching",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[TieredCachingGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -163,51 +137,7 @@ class AsyncTieredCaching(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncTieredCachingWithStreamingResponse:
         return AsyncTieredCachingWithStreamingResponse(self)
 
-    async def tiered_caching_get_tiered_caching_setting(
-        self,
-        zone_id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TieredCachingTieredCachingGetTieredCachingSettingResponse:
-        """
-        Get Tiered Caching setting
-
-        Args:
-          zone_id: Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return cast(
-            TieredCachingTieredCachingGetTieredCachingSettingResponse,
-            await self._get(
-                f"/zones/{zone_id}/argo/tiered_caching",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[TieredCachingTieredCachingGetTieredCachingSettingResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
-
-    async def tiered_caching_patch_tiered_caching_setting(
+    async def edit(
         self,
         zone_id: str,
         *,
@@ -218,7 +148,7 @@ class AsyncTieredCaching(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TieredCachingTieredCachingPatchTieredCachingSettingResponse:
+    ) -> TieredCachingEditResponse:
         """
         Updates enablement of Tiered Caching
 
@@ -238,13 +168,10 @@ class AsyncTieredCaching(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            TieredCachingTieredCachingPatchTieredCachingSettingResponse,
+            TieredCachingEditResponse,
             await self._patch(
                 f"/zones/{zone_id}/argo/tiered_caching",
-                body=maybe_transform(
-                    {"value": value},
-                    tiered_caching_tiered_caching_patch_tiered_caching_setting_params.TieredCachingTieredCachingPatchTieredCachingSettingParams,
-                ),
+                body=maybe_transform({"value": value}, tiered_caching_edit_params.TieredCachingEditParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -253,7 +180,51 @@ class AsyncTieredCaching(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[TieredCachingTieredCachingPatchTieredCachingSettingResponse]
+                    Any, ResultWrapper[TieredCachingEditResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
+        )
+
+    async def get(
+        self,
+        zone_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TieredCachingGetResponse:
+        """
+        Get Tiered Caching setting
+
+        Args:
+          zone_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return cast(
+            TieredCachingGetResponse,
+            await self._get(
+                f"/zones/{zone_id}/argo/tiered_caching",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[TieredCachingGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -263,11 +234,11 @@ class TieredCachingWithRawResponse:
     def __init__(self, tiered_caching: TieredCaching) -> None:
         self._tiered_caching = tiered_caching
 
-        self.tiered_caching_get_tiered_caching_setting = to_raw_response_wrapper(
-            tiered_caching.tiered_caching_get_tiered_caching_setting,
+        self.edit = to_raw_response_wrapper(
+            tiered_caching.edit,
         )
-        self.tiered_caching_patch_tiered_caching_setting = to_raw_response_wrapper(
-            tiered_caching.tiered_caching_patch_tiered_caching_setting,
+        self.get = to_raw_response_wrapper(
+            tiered_caching.get,
         )
 
 
@@ -275,11 +246,11 @@ class AsyncTieredCachingWithRawResponse:
     def __init__(self, tiered_caching: AsyncTieredCaching) -> None:
         self._tiered_caching = tiered_caching
 
-        self.tiered_caching_get_tiered_caching_setting = async_to_raw_response_wrapper(
-            tiered_caching.tiered_caching_get_tiered_caching_setting,
+        self.edit = async_to_raw_response_wrapper(
+            tiered_caching.edit,
         )
-        self.tiered_caching_patch_tiered_caching_setting = async_to_raw_response_wrapper(
-            tiered_caching.tiered_caching_patch_tiered_caching_setting,
+        self.get = async_to_raw_response_wrapper(
+            tiered_caching.get,
         )
 
 
@@ -287,11 +258,11 @@ class TieredCachingWithStreamingResponse:
     def __init__(self, tiered_caching: TieredCaching) -> None:
         self._tiered_caching = tiered_caching
 
-        self.tiered_caching_get_tiered_caching_setting = to_streamed_response_wrapper(
-            tiered_caching.tiered_caching_get_tiered_caching_setting,
+        self.edit = to_streamed_response_wrapper(
+            tiered_caching.edit,
         )
-        self.tiered_caching_patch_tiered_caching_setting = to_streamed_response_wrapper(
-            tiered_caching.tiered_caching_patch_tiered_caching_setting,
+        self.get = to_streamed_response_wrapper(
+            tiered_caching.get,
         )
 
 
@@ -299,9 +270,9 @@ class AsyncTieredCachingWithStreamingResponse:
     def __init__(self, tiered_caching: AsyncTieredCaching) -> None:
         self._tiered_caching = tiered_caching
 
-        self.tiered_caching_get_tiered_caching_setting = async_to_streamed_response_wrapper(
-            tiered_caching.tiered_caching_get_tiered_caching_setting,
+        self.edit = async_to_streamed_response_wrapper(
+            tiered_caching.edit,
         )
-        self.tiered_caching_patch_tiered_caching_setting = async_to_streamed_response_wrapper(
-            tiered_caching.tiered_caching_patch_tiered_caching_setting,
+        self.get = async_to_streamed_response_wrapper(
+            tiered_caching.get,
         )

@@ -2,18 +2,12 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required
+from typing_extensions import Literal, Required, TypedDict
 
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
-from ..._utils import PropertyInfo
-from ...types import shared_params
-
-__all__ = ["IpsecTunnelUpdateParams"]
+__all__ = ["IPSECTunnelUpdateParams", "HealthCheck"]
 
 
-class IpsecTunnelUpdateParams(TypedDict, total=False):
+class IPSECTunnelUpdateParams(TypedDict, total=False):
     account_identifier: Required[str]
     """Identifier"""
 
@@ -36,6 +30,8 @@ class IpsecTunnelUpdateParams(TypedDict, total=False):
     description: str
     """An optional description forthe IPsec tunnel."""
 
+    health_check: HealthCheck
+
     psk: str
     """A randomly generated or provided string for use in the IPsec tunnel."""
 
@@ -44,3 +40,34 @@ class IpsecTunnelUpdateParams(TypedDict, total=False):
     If `true`, then IPsec replay protection will be supported in the
     Cloudflare-to-customer direction.
     """
+
+
+class HealthCheck(TypedDict, total=False):
+    direction: Literal["unidirectional", "bidirectional"]
+    """The direction of the flow of the healthcheck.
+
+    Either unidirectional, where the probe comes to you via the tunnel and the
+    result comes back to Cloudflare via the open Internet, or bidirectional where
+    both the probe and result come and go via the tunnel. Note in the case of
+    bidirecitonal healthchecks, the target field in health_check is ignored as the
+    interface_address is used to send traffic into the tunnel.
+    """
+
+    enabled: bool
+    """Determines whether to run healthchecks for a tunnel."""
+
+    rate: Literal["low", "mid", "high"]
+    """How frequent the health check is run. The default value is `mid`."""
+
+    target: str
+    """The destination address in a request type health check.
+
+    After the healthcheck is decapsulated at the customer end of the tunnel, the
+    ICMP echo will be forwarded to this address. This field defaults to
+    `customer_gre_endpoint address`. This field is ignored for bidirectional
+    healthchecks as the interface_address (not assigned to the Cloudflare side of
+    the tunnel) is used as the target.
+    """
+
+    type: Literal["reply", "request"]
+    """The type of healthcheck to run, reply or request. The default value is `reply`."""

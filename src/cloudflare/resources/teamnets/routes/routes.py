@@ -4,39 +4,6 @@ from __future__ import annotations
 
 import httpx
 
-from .ips import IPs, AsyncIPs
-
-from ...._compat import cached_property
-
-from .networks import Networks, AsyncNetworks
-
-from ....types.teamnets import RouteTunnelRouteListTunnelRoutesResponse
-
-from typing import Type, Optional
-
-from ...._response import (
-    to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ....types import shared_params
-from ....types.teamnets import route_tunnel_route_list_tunnel_routes_params
 from .ips import (
     IPs,
     AsyncIPs,
@@ -53,9 +20,22 @@ from .networks import (
     NetworksWithStreamingResponse,
     AsyncNetworksWithStreamingResponse,
 )
-from ...._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import maybe_transform
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from ...._base_client import (
+    AsyncPaginator,
+    make_request_options,
+)
+from ....types.teamnets import RouteListResponse, route_list_params
 
 __all__ = ["Routes", "AsyncRoutes"]
 
@@ -77,7 +57,7 @@ class Routes(SyncAPIResource):
     def with_streaming_response(self) -> RoutesWithStreamingResponse:
         return RoutesWithStreamingResponse(self)
 
-    def tunnel_route_list_tunnel_routes(
+    def list(
         self,
         account_id: str,
         *,
@@ -97,7 +77,7 @@ class Routes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RouteTunnelRouteListTunnelRoutesResponse]:
+    ) -> SyncV4PagePaginationArray[RouteListResponse]:
         """
         Lists and filters private network routes in an account.
 
@@ -138,8 +118,9 @@ class Routes(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/teamnet/routes",
+            page=SyncV4PagePaginationArray[RouteListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -158,14 +139,10 @@ class Routes(SyncAPIResource):
                         "tunnel_id": tunnel_id,
                         "virtual_network_id": virtual_network_id,
                     },
-                    route_tunnel_route_list_tunnel_routes_params.RouteTunnelRouteListTunnelRoutesParams,
+                    route_list_params.RouteListParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[RouteTunnelRouteListTunnelRoutesResponse]],
-                ResultWrapper[RouteTunnelRouteListTunnelRoutesResponse],
-            ),
+            model=RouteListResponse,
         )
 
 
@@ -186,7 +163,7 @@ class AsyncRoutes(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncRoutesWithStreamingResponse:
         return AsyncRoutesWithStreamingResponse(self)
 
-    async def tunnel_route_list_tunnel_routes(
+    def list(
         self,
         account_id: str,
         *,
@@ -206,7 +183,7 @@ class AsyncRoutes(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RouteTunnelRouteListTunnelRoutesResponse]:
+    ) -> AsyncPaginator[RouteListResponse, AsyncV4PagePaginationArray[RouteListResponse]]:
         """
         Lists and filters private network routes in an account.
 
@@ -247,8 +224,9 @@ class AsyncRoutes(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/teamnet/routes",
+            page=AsyncV4PagePaginationArray[RouteListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -267,14 +245,10 @@ class AsyncRoutes(AsyncAPIResource):
                         "tunnel_id": tunnel_id,
                         "virtual_network_id": virtual_network_id,
                     },
-                    route_tunnel_route_list_tunnel_routes_params.RouteTunnelRouteListTunnelRoutesParams,
+                    route_list_params.RouteListParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[RouteTunnelRouteListTunnelRoutesResponse]],
-                ResultWrapper[RouteTunnelRouteListTunnelRoutesResponse],
-            ),
+            model=RouteListResponse,
         )
 
 
@@ -282,8 +256,8 @@ class RoutesWithRawResponse:
     def __init__(self, routes: Routes) -> None:
         self._routes = routes
 
-        self.tunnel_route_list_tunnel_routes = to_raw_response_wrapper(
-            routes.tunnel_route_list_tunnel_routes,
+        self.list = to_raw_response_wrapper(
+            routes.list,
         )
 
     @cached_property
@@ -299,8 +273,8 @@ class AsyncRoutesWithRawResponse:
     def __init__(self, routes: AsyncRoutes) -> None:
         self._routes = routes
 
-        self.tunnel_route_list_tunnel_routes = async_to_raw_response_wrapper(
-            routes.tunnel_route_list_tunnel_routes,
+        self.list = async_to_raw_response_wrapper(
+            routes.list,
         )
 
     @cached_property
@@ -316,8 +290,8 @@ class RoutesWithStreamingResponse:
     def __init__(self, routes: Routes) -> None:
         self._routes = routes
 
-        self.tunnel_route_list_tunnel_routes = to_streamed_response_wrapper(
-            routes.tunnel_route_list_tunnel_routes,
+        self.list = to_streamed_response_wrapper(
+            routes.list,
         )
 
     @cached_property
@@ -333,8 +307,8 @@ class AsyncRoutesWithStreamingResponse:
     def __init__(self, routes: AsyncRoutes) -> None:
         self._routes = routes
 
-        self.tunnel_route_list_tunnel_routes = async_to_streamed_response_wrapper(
-            routes.tunnel_route_list_tunnel_routes,
+        self.list = async_to_streamed_response_wrapper(
+            routes.list,
         )
 
     @cached_property

@@ -2,60 +2,20 @@
 
 from __future__ import annotations
 
+from typing import Any, Type, Optional, cast
+
 import httpx
 
-from .dex_tests import DEXTests, AsyncDEXTests
-
-from ..._compat import cached_property
-
-from .networks import Networks, AsyncNetworks
-
-from .policies.policies import Policies, AsyncPolicies
-
-from .postures.postures import Postures, AsyncPostures
-
-from .revokes import Revokes, AsyncRevokes
-
-from .settings import Settings, AsyncSettings
-
-from .unrevokes import Unrevokes, AsyncUnrevokes
-
-from .override_codes import OverrideCodes, AsyncOverrideCodes
-
-from ...types import DeviceDevicesListDevicesResponse, DeviceGetResponse
-
-from typing import Type, Optional
-
-from ..._response import (
-    to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_streamed_response_wrapper,
+from ...types import DeviceGetResponse, DeviceDevicesListDevicesResponse
+from .revokes import (
+    Revokes,
+    AsyncRevokes,
+    RevokesWithRawResponse,
+    AsyncRevokesWithRawResponse,
+    RevokesWithStreamingResponse,
+    AsyncRevokesWithStreamingResponse,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from .dex_tests import (
-    DEXTests,
-    AsyncDEXTests,
-    DEXTestsWithRawResponse,
-    AsyncDEXTestsWithRawResponse,
-    DEXTestsWithStreamingResponse,
-    AsyncDEXTestsWithStreamingResponse,
-)
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .networks import (
     Networks,
     AsyncNetworks,
@@ -80,14 +40,6 @@ from .postures import (
     PosturesWithStreamingResponse,
     AsyncPosturesWithStreamingResponse,
 )
-from .revokes import (
-    Revokes,
-    AsyncRevokes,
-    RevokesWithRawResponse,
-    AsyncRevokesWithRawResponse,
-    RevokesWithStreamingResponse,
-    AsyncRevokesWithStreamingResponse,
-)
 from .settings import (
     Settings,
     AsyncSettings,
@@ -95,6 +47,15 @@ from .settings import (
     AsyncSettingsWithRawResponse,
     SettingsWithStreamingResponse,
     AsyncSettingsWithStreamingResponse,
+)
+from ..._compat import cached_property
+from .dex_tests import (
+    DEXTests,
+    AsyncDEXTests,
+    DEXTestsWithRawResponse,
+    AsyncDEXTestsWithRawResponse,
+    DEXTestsWithStreamingResponse,
+    AsyncDEXTestsWithStreamingResponse,
 )
 from .unrevokes import (
     Unrevokes,
@@ -104,6 +65,17 @@ from .unrevokes import (
     UnrevokesWithStreamingResponse,
     AsyncUnrevokesWithStreamingResponse,
 )
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ..._wrappers import ResultWrapper
+from ..._base_client import (
+    make_request_options,
+)
 from .override_codes import (
     OverrideCodes,
     AsyncOverrideCodes,
@@ -112,13 +84,8 @@ from .override_codes import (
     OverrideCodesWithStreamingResponse,
     AsyncOverrideCodesWithStreamingResponse,
 )
-from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from .policies.policies import Policies, AsyncPolicies
+from .postures.postures import Postures, AsyncPostures
 
 __all__ = ["Devices", "AsyncDevices"]
 
@@ -166,7 +133,7 @@ class Devices(SyncAPIResource):
 
     def devices_list_devices(
         self,
-        identifier: object,
+        account_id: object,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -188,7 +155,7 @@ class Devices(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/accounts/{identifier}/devices",
+            f"/accounts/{account_id}/devices",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -203,9 +170,9 @@ class Devices(SyncAPIResource):
 
     def get(
         self,
-        uuid: str,
+        device_id: str,
         *,
-        identifier: object,
+        account_id: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -217,7 +184,7 @@ class Devices(SyncAPIResource):
         Fetches details for a single device.
 
         Args:
-          uuid: Device ID.
+          device_id: Device ID.
 
           extra_headers: Send extra headers
 
@@ -227,12 +194,12 @@ class Devices(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not device_id:
+            raise ValueError(f"Expected a non-empty value for `device_id` but received {device_id!r}")
         return cast(
             Optional[DeviceGetResponse],
             self._get(
-                f"/accounts/{identifier}/devices/{uuid}",
+                f"/accounts/{account_id}/devices/{device_id}",
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -290,7 +257,7 @@ class AsyncDevices(AsyncAPIResource):
 
     async def devices_list_devices(
         self,
-        identifier: object,
+        account_id: object,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -312,7 +279,7 @@ class AsyncDevices(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/accounts/{identifier}/devices",
+            f"/accounts/{account_id}/devices",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -327,9 +294,9 @@ class AsyncDevices(AsyncAPIResource):
 
     async def get(
         self,
-        uuid: str,
+        device_id: str,
         *,
-        identifier: object,
+        account_id: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -341,7 +308,7 @@ class AsyncDevices(AsyncAPIResource):
         Fetches details for a single device.
 
         Args:
-          uuid: Device ID.
+          device_id: Device ID.
 
           extra_headers: Send extra headers
 
@@ -351,12 +318,12 @@ class AsyncDevices(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not device_id:
+            raise ValueError(f"Expected a non-empty value for `device_id` but received {device_id!r}")
         return cast(
             Optional[DeviceGetResponse],
             await self._get(
-                f"/accounts/{identifier}/devices/{uuid}",
+                f"/accounts/{account_id}/devices/{device_id}",
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

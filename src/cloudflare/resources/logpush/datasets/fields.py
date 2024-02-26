@@ -2,37 +2,23 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+
 import httpx
 
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._compat import cached_property
-
-from typing import Type, Optional
-
+from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ....types import shared_params
 from ...._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
+from ...._base_client import (
+    make_request_options,
+)
 
 __all__ = ["Fields", "AsyncFields"]
 
@@ -50,8 +36,8 @@ class Fields(SyncAPIResource):
         self,
         dataset_id: Optional[str],
         *,
-        account_or_zone: str,
-        account_or_zone_id: str,
+        account_id: str,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -65,7 +51,9 @@ class Fields(SyncAPIResource):
         key-value pairs, where keys are field names, and values are descriptions.
 
         Args:
-          account_or_zone_id: Identifier
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           dataset_id: Name of the dataset.
 
@@ -77,14 +65,14 @@ class Fields(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_or_zone:
-            raise ValueError(f"Expected a non-empty value for `account_or_zone` but received {account_or_zone!r}")
-        if not account_or_zone_id:
-            raise ValueError(f"Expected a non-empty value for `account_or_zone_id` but received {account_or_zone_id!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not dataset_id:
             raise ValueError(f"Expected a non-empty value for `dataset_id` but received {dataset_id!r}")
         return self._get(
-            f"/{account_or_zone}/{account_or_zone_id}/logpush/datasets/{dataset_id}/fields",
+            f"/{account_id}/{zone_id}/logpush/datasets/{dataset_id}/fields",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -109,8 +97,8 @@ class AsyncFields(AsyncAPIResource):
         self,
         dataset_id: Optional[str],
         *,
-        account_or_zone: str,
-        account_or_zone_id: str,
+        account_id: str,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -124,7 +112,9 @@ class AsyncFields(AsyncAPIResource):
         key-value pairs, where keys are field names, and values are descriptions.
 
         Args:
-          account_or_zone_id: Identifier
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           dataset_id: Name of the dataset.
 
@@ -136,14 +126,14 @@ class AsyncFields(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_or_zone:
-            raise ValueError(f"Expected a non-empty value for `account_or_zone` but received {account_or_zone!r}")
-        if not account_or_zone_id:
-            raise ValueError(f"Expected a non-empty value for `account_or_zone_id` but received {account_or_zone_id!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not dataset_id:
             raise ValueError(f"Expected a non-empty value for `dataset_id` but received {dataset_id!r}")
         return await self._get(
-            f"/{account_or_zone}/{account_or_zone_id}/logpush/datasets/{dataset_id}/fields",
+            f"/{account_id}/{zone_id}/logpush/datasets/{dataset_id}/fields",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

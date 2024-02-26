@@ -2,42 +2,25 @@
 
 from __future__ import annotations
 
+from typing import List, Type, Optional, cast
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._compat import cached_property
-
-from ...types.settings import CipherUpdateResponse, CipherGetResponse
-
-from typing import Type, Optional, List
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types.settings import cipher_update_params
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ..._base_client import (
+    make_request_options,
+)
+from ...types.settings import CipherGetResponse, CipherEditResponse, cipher_edit_params
 
 __all__ = ["Ciphers", "AsyncCiphers"]
 
@@ -51,7 +34,7 @@ class Ciphers(SyncAPIResource):
     def with_streaming_response(self) -> CiphersWithStreamingResponse:
         return CiphersWithStreamingResponse(self)
 
-    def update(
+    def edit(
         self,
         zone_id: str,
         *,
@@ -62,7 +45,7 @@ class Ciphers(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CipherUpdateResponse]:
+    ) -> Optional[CipherEditResponse]:
         """
         Changes ciphers setting.
 
@@ -83,7 +66,7 @@ class Ciphers(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._patch(
             f"/zones/{zone_id}/settings/ciphers",
-            body=maybe_transform({"value": value}, cipher_update_params.CipherUpdateParams),
+            body=maybe_transform({"value": value}, cipher_edit_params.CipherEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -91,7 +74,7 @@ class Ciphers(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[CipherUpdateResponse]], ResultWrapper[CipherUpdateResponse]),
+            cast_to=cast(Type[Optional[CipherEditResponse]], ResultWrapper[CipherEditResponse]),
         )
 
     def get(
@@ -143,7 +126,7 @@ class AsyncCiphers(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncCiphersWithStreamingResponse:
         return AsyncCiphersWithStreamingResponse(self)
 
-    async def update(
+    async def edit(
         self,
         zone_id: str,
         *,
@@ -154,7 +137,7 @@ class AsyncCiphers(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CipherUpdateResponse]:
+    ) -> Optional[CipherEditResponse]:
         """
         Changes ciphers setting.
 
@@ -175,7 +158,7 @@ class AsyncCiphers(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._patch(
             f"/zones/{zone_id}/settings/ciphers",
-            body=maybe_transform({"value": value}, cipher_update_params.CipherUpdateParams),
+            body=maybe_transform({"value": value}, cipher_edit_params.CipherEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -183,7 +166,7 @@ class AsyncCiphers(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[CipherUpdateResponse]], ResultWrapper[CipherUpdateResponse]),
+            cast_to=cast(Type[Optional[CipherEditResponse]], ResultWrapper[CipherEditResponse]),
         )
 
     async def get(
@@ -230,8 +213,8 @@ class CiphersWithRawResponse:
     def __init__(self, ciphers: Ciphers) -> None:
         self._ciphers = ciphers
 
-        self.update = to_raw_response_wrapper(
-            ciphers.update,
+        self.edit = to_raw_response_wrapper(
+            ciphers.edit,
         )
         self.get = to_raw_response_wrapper(
             ciphers.get,
@@ -242,8 +225,8 @@ class AsyncCiphersWithRawResponse:
     def __init__(self, ciphers: AsyncCiphers) -> None:
         self._ciphers = ciphers
 
-        self.update = async_to_raw_response_wrapper(
-            ciphers.update,
+        self.edit = async_to_raw_response_wrapper(
+            ciphers.edit,
         )
         self.get = async_to_raw_response_wrapper(
             ciphers.get,
@@ -254,8 +237,8 @@ class CiphersWithStreamingResponse:
     def __init__(self, ciphers: Ciphers) -> None:
         self._ciphers = ciphers
 
-        self.update = to_streamed_response_wrapper(
-            ciphers.update,
+        self.edit = to_streamed_response_wrapper(
+            ciphers.edit,
         )
         self.get = to_streamed_response_wrapper(
             ciphers.get,
@@ -266,8 +249,8 @@ class AsyncCiphersWithStreamingResponse:
     def __init__(self, ciphers: AsyncCiphers) -> None:
         self._ciphers = ciphers
 
-        self.update = async_to_streamed_response_wrapper(
-            ciphers.update,
+        self.edit = async_to_streamed_response_wrapper(
+            ciphers.edit,
         )
         self.get = async_to_streamed_response_wrapper(
             ciphers.get,

@@ -1,11 +1,7 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
-from ..._models import BaseModel
-from ...types import shared
+from typing import Union
 
-__all__ = ["UaRuleUpdateResponse"]
+__all__ = ["UARuleUpdateResponse"]
 
-UaRuleUpdateResponse = Union[object, str, None]
+UARuleUpdateResponse = Union[object, str, None]

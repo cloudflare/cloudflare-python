@@ -2,11 +2,9 @@
 
 from typing import List, Optional
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
 from pydantic import Field as FieldInfo
+
 from ..._models import BaseModel
-from ...types import shared
 
 __all__ = [
     "ScanHarResponse",
@@ -67,7 +65,7 @@ class HarLogEntryResponseHeader(BaseModel):
 
 
 class HarLogEntryResponse(BaseModel):
-    api_transfer_size: float = FieldInfo(alias="_transferSize")
+    transfer_size: float = FieldInfo(alias="_transferSize")
 
     body_size: float = FieldInfo(alias="bodySize")
 
@@ -87,17 +85,17 @@ class HarLogEntryResponse(BaseModel):
 
 
 class HarLogEntry(BaseModel):
-    api_initial_priority: str = FieldInfo(alias="_initialPriority")
+    initial_priority: str = FieldInfo(alias="_initialPriority")
 
-    api_initiator_type: str = FieldInfo(alias="_initiator_type")
+    initiator_type: str = FieldInfo(alias="_initiator_type")
 
-    api_priority: str = FieldInfo(alias="_priority")
+    priority: str = FieldInfo(alias="_priority")
 
-    api_request_id: str = FieldInfo(alias="_requestId")
+    request_id: str = FieldInfo(alias="_requestId")
 
-    api_request_time: float = FieldInfo(alias="_requestTime")
+    request_time: float = FieldInfo(alias="_requestTime")
 
-    api_resource_type: str = FieldInfo(alias="_resourceType")
+    resource_type: str = FieldInfo(alias="_resourceType")
 
     cache: object
 

@@ -2,25 +2,20 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, Literal
+from typing import Iterable
+from typing_extensions import Literal, Required, TypedDict
 
-from typing import Union
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
-from ..._utils import PropertyInfo
-from ...types import shared_params
-
-__all__ = ["RuleUpdateParams", "Position", "PositionIndex", "PositionBefore", "PositionAfter"]
+__all__ = ["RuleUpdateParams", "Body"]
 
 
 class RuleUpdateParams(TypedDict, total=False):
     zone_identifier: Required[str]
     """Identifier"""
 
-    waiting_room_id: Required[object]
+    body: Required[Iterable[Body]]
 
+
+class Body(TypedDict, total=False):
     action: Required[Literal["bypass_waiting_room"]]
     """The action to take when the expression matches."""
 
@@ -32,37 +27,3 @@ class RuleUpdateParams(TypedDict, total=False):
 
     enabled: bool
     """When set to true, the rule is enabled."""
-
-    position: Position
-    """Reorder the position of a rule"""
-
-
-class PositionIndex(TypedDict, total=False):
-    index: int
-    """
-    Places the rule in the exact position specified by the integer number
-    <POSITION_NUMBER>. Position numbers start with 1. Existing rules in the ruleset
-    from the specified position number onward are shifted one position (no rule is
-    overwritten).
-    """
-
-
-class PositionBefore(TypedDict, total=False):
-    before: str
-    """Places the rule before rule <RULE_ID>.
-
-    Use this argument with an empty rule ID value ("") to set the rule as the first
-    rule in the ruleset.
-    """
-
-
-class PositionAfter(TypedDict, total=False):
-    after: str
-    """Places the rule after rule <RULE_ID>.
-
-    Use this argument with an empty rule ID value ("") to set the rule as the last
-    rule in the ruleset.
-    """
-
-
-Position = Union[PositionIndex, PositionBefore, PositionAfter]
