@@ -8,5 +8,8 @@ __all__ = ["IPV6EditParams"]
 
 
 class IPV6EditParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     value: Required[Literal["off", "on"]]
     """Value of the zone setting."""

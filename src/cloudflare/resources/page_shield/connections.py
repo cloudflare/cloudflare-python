@@ -37,8 +37,8 @@ class Connections(SyncAPIResource):
 
     def list(
         self,
-        zone_id: str,
         *,
+        zone_id: str,
         direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         exclude_cdn_cgi: bool | NotGiven = NOT_GIVEN,
         exclude_urls: str | NotGiven = NOT_GIVEN,
@@ -201,8 +201,8 @@ class AsyncConnections(AsyncAPIResource):
 
     async def list(
         self,
-        zone_id: str,
         *,
+        zone_id: str,
         direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         exclude_cdn_cgi: bool | NotGiven = NOT_GIVEN,
         exclude_urls: str | NotGiven = NOT_GIVEN,

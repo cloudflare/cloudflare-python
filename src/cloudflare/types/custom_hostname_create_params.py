@@ -9,6 +9,9 @@ __all__ = ["CustomHostnameCreateParams", "SSL", "SSLSettings", "CustomMetadata"]
 
 
 class CustomHostnameCreateParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     hostname: Required[str]
     """The custom hostname that will point to your hostname via CNAME."""
 

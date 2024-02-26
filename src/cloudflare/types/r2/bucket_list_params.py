@@ -2,12 +2,15 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["BucketListParams"]
 
 
 class BucketListParams(TypedDict, total=False):
+    account_id: Required[str]
+    """Account ID"""
+
     cursor: str
     """Pagination cursor received during the last List Buckets call.
 

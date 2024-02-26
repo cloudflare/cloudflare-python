@@ -8,6 +8,9 @@ __all__ = ["CustomCertificateCreateParams", "GeoRestrictions"]
 
 
 class CustomCertificateCreateParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     certificate: Required[str]
     """The zone's SSL certificate or certificate and the intermediate(s)."""
 

@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Iterable, Optional
-from typing_extensions import Literal, Annotated, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
@@ -57,6 +57,9 @@ __all__ = [
 
 
 class ProjectCreateParams(TypedDict, total=False):
+    account_id: Required[str]
+    """Identifier"""
+
     build_config: BuildConfig
     """Configs for the project build process."""
 

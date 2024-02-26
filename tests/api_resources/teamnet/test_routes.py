@@ -25,7 +25,7 @@ class TestRoutes:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         route = client.teamnet.routes.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             ip_network="172.16.0.0/16",
         )
         assert_matches_type(RouteCreateResponse, route, path=["response"])
@@ -34,7 +34,7 @@ class TestRoutes:
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         route = client.teamnet.routes.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             ip_network="172.16.0.0/16",
             comment="Example comment for this route.",
             virtual_network_id={},
@@ -45,7 +45,7 @@ class TestRoutes:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.teamnet.routes.with_raw_response.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             ip_network="172.16.0.0/16",
         )
 
@@ -58,7 +58,7 @@ class TestRoutes:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.teamnet.routes.with_streaming_response.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             ip_network="172.16.0.0/16",
         ) as response:
             assert not response.is_closed
@@ -74,7 +74,7 @@ class TestRoutes:
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.teamnet.routes.with_raw_response.create(
-                "",
+                account_id="",
                 ip_network="172.16.0.0/16",
             )
 
@@ -204,7 +204,7 @@ class TestAsyncRoutes:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         route = await async_client.teamnet.routes.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             ip_network="172.16.0.0/16",
         )
         assert_matches_type(RouteCreateResponse, route, path=["response"])
@@ -213,7 +213,7 @@ class TestAsyncRoutes:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         route = await async_client.teamnet.routes.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             ip_network="172.16.0.0/16",
             comment="Example comment for this route.",
             virtual_network_id={},
@@ -224,7 +224,7 @@ class TestAsyncRoutes:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.teamnet.routes.with_raw_response.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             ip_network="172.16.0.0/16",
         )
 
@@ -237,7 +237,7 @@ class TestAsyncRoutes:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.teamnet.routes.with_streaming_response.create(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             ip_network="172.16.0.0/16",
         ) as response:
             assert not response.is_closed
@@ -253,7 +253,7 @@ class TestAsyncRoutes:
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.teamnet.routes.with_raw_response.create(
-                "",
+                account_id="",
                 ip_network="172.16.0.0/16",
             )
 

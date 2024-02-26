@@ -72,8 +72,8 @@ class Pools(SyncAPIResource):
 
     def create(
         self,
-        account_id: str,
         *,
+        account_id: str,
         name: str,
         origins: Iterable[pool_create_params.Origin],
         description: str | NotGiven = NOT_GIVEN,
@@ -314,8 +314,8 @@ class Pools(SyncAPIResource):
 
     def list(
         self,
-        account_id: str,
         *,
+        account_id: str,
         monitor: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -595,8 +595,8 @@ class AsyncPools(AsyncAPIResource):
 
     async def create(
         self,
-        account_id: str,
         *,
+        account_id: str,
         name: str,
         origins: Iterable[pool_create_params.Origin],
         description: str | NotGiven = NOT_GIVEN,
@@ -837,8 +837,8 @@ class AsyncPools(AsyncAPIResource):
 
     async def list(
         self,
-        account_id: str,
         *,
+        account_id: str,
         monitor: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

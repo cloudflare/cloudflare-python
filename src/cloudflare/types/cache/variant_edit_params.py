@@ -9,6 +9,9 @@ __all__ = ["VariantEditParams", "Value"]
 
 
 class VariantEditParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     value: Required[Value]
     """Value of the zone setting."""
 

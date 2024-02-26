@@ -8,6 +8,9 @@ __all__ = ["FilterCreateParams"]
 
 
 class FilterCreateParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     enabled: Required[bool]
 
     pattern: Required[str]

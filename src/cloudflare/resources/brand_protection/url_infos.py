@@ -36,8 +36,8 @@ class URLInfos(SyncAPIResource):
 
     def get(
         self,
-        account_id: str,
         *,
+        account_id: str,
         url: str | NotGiven = NOT_GIVEN,
         url_id_param: url_info_get_params.URLIDParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -94,8 +94,8 @@ class AsyncURLInfos(AsyncAPIResource):
 
     async def get(
         self,
-        account_id: str,
         *,
+        account_id: str,
         url: str | NotGiven = NOT_GIVEN,
         url_id_param: url_info_get_params.URLIDParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

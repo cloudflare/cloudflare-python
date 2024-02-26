@@ -36,8 +36,8 @@ class CustomNameservers(SyncAPIResource):
 
     def update(
         self,
-        zone_id: str,
         *,
+        zone_id: str,
         enabled: bool | NotGiven = NOT_GIVEN,
         ns_set: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -97,8 +97,8 @@ class CustomNameservers(SyncAPIResource):
 
     def get(
         self,
-        zone_id: str,
         *,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -151,8 +151,8 @@ class AsyncCustomNameservers(AsyncAPIResource):
 
     async def update(
         self,
-        zone_id: str,
         *,
+        zone_id: str,
         enabled: bool | NotGiven = NOT_GIVEN,
         ns_set: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -212,8 +212,8 @@ class AsyncCustomNameservers(AsyncAPIResource):
 
     async def get(
         self,
-        zone_id: str,
         *,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

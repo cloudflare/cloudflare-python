@@ -21,7 +21,7 @@ class TestSearches:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         search = client.load_balancers.searches.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[SearchListResponse], search, path=["response"])
 
@@ -29,7 +29,7 @@ class TestSearches:
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         search = client.load_balancers.searches.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             page={},
             per_page={},
             search_params={
@@ -43,7 +43,7 @@ class TestSearches:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.load_balancers.searches.with_raw_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -55,7 +55,7 @@ class TestSearches:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.load_balancers.searches.with_streaming_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -70,7 +70,7 @@ class TestSearches:
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.load_balancers.searches.with_raw_response.list(
-                "",
+                account_id="",
             )
 
 
@@ -81,7 +81,7 @@ class TestAsyncSearches:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         search = await async_client.load_balancers.searches.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[SearchListResponse], search, path=["response"])
 
@@ -89,7 +89,7 @@ class TestAsyncSearches:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         search = await async_client.load_balancers.searches.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             page={},
             per_page={},
             search_params={
@@ -103,7 +103,7 @@ class TestAsyncSearches:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.load_balancers.searches.with_raw_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -115,7 +115,7 @@ class TestAsyncSearches:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.load_balancers.searches.with_streaming_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -130,5 +130,5 @@ class TestAsyncSearches:
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.load_balancers.searches.with_raw_response.list(
-                "",
+                account_id="",
             )

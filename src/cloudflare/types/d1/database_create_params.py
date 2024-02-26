@@ -8,4 +8,7 @@ __all__ = ["DatabaseCreateParams"]
 
 
 class DatabaseCreateParams(TypedDict, total=False):
+    account_id: Required[str]
+    """Account identifier tag."""
+
     name: Required[str]

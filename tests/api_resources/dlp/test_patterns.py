@@ -21,7 +21,7 @@ class TestPatterns:
     @parametrize
     def test_method_validate(self, client: Cloudflare) -> None:
         pattern = client.dlp.patterns.validate(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             regex="^4[0-9]{6,}$",
         )
         assert_matches_type(PatternValidateResponse, pattern, path=["response"])
@@ -30,7 +30,7 @@ class TestPatterns:
     @parametrize
     def test_raw_response_validate(self, client: Cloudflare) -> None:
         response = client.dlp.patterns.with_raw_response.validate(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             regex="^4[0-9]{6,}$",
         )
 
@@ -43,7 +43,7 @@ class TestPatterns:
     @parametrize
     def test_streaming_response_validate(self, client: Cloudflare) -> None:
         with client.dlp.patterns.with_streaming_response.validate(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             regex="^4[0-9]{6,}$",
         ) as response:
             assert not response.is_closed
@@ -59,7 +59,7 @@ class TestPatterns:
     def test_path_params_validate(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.dlp.patterns.with_raw_response.validate(
-                "",
+                account_id="",
                 regex="^4[0-9]{6,}$",
             )
 
@@ -71,7 +71,7 @@ class TestAsyncPatterns:
     @parametrize
     async def test_method_validate(self, async_client: AsyncCloudflare) -> None:
         pattern = await async_client.dlp.patterns.validate(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             regex="^4[0-9]{6,}$",
         )
         assert_matches_type(PatternValidateResponse, pattern, path=["response"])
@@ -80,7 +80,7 @@ class TestAsyncPatterns:
     @parametrize
     async def test_raw_response_validate(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dlp.patterns.with_raw_response.validate(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             regex="^4[0-9]{6,}$",
         )
 
@@ -93,7 +93,7 @@ class TestAsyncPatterns:
     @parametrize
     async def test_streaming_response_validate(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dlp.patterns.with_streaming_response.validate(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             regex="^4[0-9]{6,}$",
         ) as response:
             assert not response.is_closed
@@ -109,6 +109,6 @@ class TestAsyncPatterns:
     async def test_path_params_validate(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.dlp.patterns.with_raw_response.validate(
-                "",
+                account_id="",
                 regex="^4[0-9]{6,}$",
             )

@@ -23,7 +23,7 @@ class TestUserPolicyChecks:
         user_policy_check = client.access.applications.user_policy_checks.list(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
         assert_matches_type(UserPolicyCheckListResponse, user_policy_check, path=["response"])
 
@@ -33,7 +33,7 @@ class TestUserPolicyChecks:
         response = client.access.applications.user_policy_checks.with_raw_response.list(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -47,7 +47,7 @@ class TestUserPolicyChecks:
         with client.access.applications.user_policy_checks.with_streaming_response.list(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -64,7 +64,7 @@ class TestUserPolicyChecks:
             client.access.applications.user_policy_checks.with_raw_response.list(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -84,7 +84,7 @@ class TestAsyncUserPolicyChecks:
         user_policy_check = await async_client.access.applications.user_policy_checks.list(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
         assert_matches_type(UserPolicyCheckListResponse, user_policy_check, path=["response"])
 
@@ -94,7 +94,7 @@ class TestAsyncUserPolicyChecks:
         response = await async_client.access.applications.user_policy_checks.with_raw_response.list(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -108,7 +108,7 @@ class TestAsyncUserPolicyChecks:
         async with async_client.access.applications.user_policy_checks.with_streaming_response.list(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -125,7 +125,7 @@ class TestAsyncUserPolicyChecks:
             await async_client.access.applications.user_policy_checks.with_raw_response.list(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):

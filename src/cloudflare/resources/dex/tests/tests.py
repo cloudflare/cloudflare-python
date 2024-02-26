@@ -51,8 +51,8 @@ class Tests(SyncAPIResource):
 
     def list(
         self,
-        account_id: str,
         *,
+        account_id: str,
         colo: str | NotGiven = NOT_GIVEN,
         device_id: List[str] | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
@@ -129,8 +129,8 @@ class AsyncTests(AsyncAPIResource):
 
     def list(
         self,
-        account_id: str,
         *,
+        account_id: str,
         colo: str | NotGiven = NOT_GIVEN,
         device_id: List[str] | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,

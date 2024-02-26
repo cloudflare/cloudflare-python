@@ -8,6 +8,9 @@ __all__ = ["BrowserCacheTTLEditParams"]
 
 
 class BrowserCacheTTLEditParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     value: Required[
         Literal[
             0,

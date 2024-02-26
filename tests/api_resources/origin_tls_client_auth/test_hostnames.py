@@ -21,7 +21,7 @@ class TestHostnames:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         hostname = client.origin_tls_client_auth.hostnames.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             config=[{}, {}, {}],
         )
         assert_matches_type(Optional[HostnameUpdateResponse], hostname, path=["response"])
@@ -30,7 +30,7 @@ class TestHostnames:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.origin_tls_client_auth.hostnames.with_raw_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             config=[{}, {}, {}],
         )
 
@@ -43,7 +43,7 @@ class TestHostnames:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.origin_tls_client_auth.hostnames.with_streaming_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             config=[{}, {}, {}],
         ) as response:
             assert not response.is_closed
@@ -59,7 +59,7 @@ class TestHostnames:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.origin_tls_client_auth.hostnames.with_raw_response.update(
-                "",
+                zone_id="",
                 config=[{}, {}, {}],
             )
 
@@ -123,7 +123,7 @@ class TestAsyncHostnames:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         hostname = await async_client.origin_tls_client_auth.hostnames.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             config=[{}, {}, {}],
         )
         assert_matches_type(Optional[HostnameUpdateResponse], hostname, path=["response"])
@@ -132,7 +132,7 @@ class TestAsyncHostnames:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.origin_tls_client_auth.hostnames.with_raw_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             config=[{}, {}, {}],
         )
 
@@ -145,7 +145,7 @@ class TestAsyncHostnames:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.origin_tls_client_auth.hostnames.with_streaming_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             config=[{}, {}, {}],
         ) as response:
             assert not response.is_closed
@@ -161,7 +161,7 @@ class TestAsyncHostnames:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.origin_tls_client_auth.hostnames.with_raw_response.update(
-                "",
+                zone_id="",
                 config=[{}, {}, {}],
             )
 

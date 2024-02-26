@@ -56,8 +56,8 @@ class LiveInputs(SyncAPIResource):
 
     def create(
         self,
-        account_id: str,
         *,
+        account_id: str,
         default_creator: str | NotGiven = NOT_GIVEN,
         delete_recording_after_days: float | NotGiven = NOT_GIVEN,
         meta: object | NotGiven = NOT_GIVEN,
@@ -198,8 +198,8 @@ class LiveInputs(SyncAPIResource):
 
     def list(
         self,
-        account_id: str,
         *,
+        account_id: str,
         include_counts: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -348,8 +348,8 @@ class AsyncLiveInputs(AsyncAPIResource):
 
     async def create(
         self,
-        account_id: str,
         *,
+        account_id: str,
         default_creator: str | NotGiven = NOT_GIVEN,
         delete_recording_after_days: float | NotGiven = NOT_GIVEN,
         meta: object | NotGiven = NOT_GIVEN,
@@ -490,8 +490,8 @@ class AsyncLiveInputs(AsyncAPIResource):
 
     async def list(
         self,
-        account_id: str,
         *,
+        account_id: str,
         include_counts: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

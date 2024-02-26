@@ -36,8 +36,8 @@ class Clips(SyncAPIResource):
 
     def create(
         self,
-        account_id: str,
         *,
+        account_id: str,
         clipped_from_video_uid: str,
         end_time_seconds: int,
         start_time_seconds: int,
@@ -133,8 +133,8 @@ class AsyncClips(AsyncAPIResource):
 
     async def create(
         self,
-        account_id: str,
         *,
+        account_id: str,
         clipped_from_video_uid: str,
         end_time_seconds: int,
         start_time_seconds: int,

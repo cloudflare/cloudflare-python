@@ -49,7 +49,7 @@ class AccessRules(SyncAPIResource):
         self,
         *,
         account_id: str,
-        zone_id: object,
+        zone_id: str,
         configuration: access_rule_create_params.Configuration,
         mode: Literal["block", "challenge", "whitelist", "js_challenge", "managed_challenge"],
         notes: str | NotGiven = NOT_GIVEN,
@@ -89,6 +89,8 @@ class AccessRules(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
             Optional[AccessRuleCreateResponse],
             self._post(
@@ -118,7 +120,7 @@ class AccessRules(SyncAPIResource):
         self,
         *,
         account_id: str,
-        zone_id: object,
+        zone_id: str,
         direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         egs_pagination: access_rule_list_params.EgsPagination | NotGiven = NOT_GIVEN,
         filters: access_rule_list_params.Filters | NotGiven = NOT_GIVEN,
@@ -161,6 +163,8 @@ class AccessRules(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/{account_id}/{zone_id}/firewall/access_rules/rules",
             page=SyncV4PagePaginationArray[object],
@@ -189,7 +193,7 @@ class AccessRules(SyncAPIResource):
         identifier: object,
         *,
         account_id: str,
-        zone_id: object,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -217,6 +221,8 @@ class AccessRules(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._delete(
             f"/{account_id}/{zone_id}/firewall/access_rules/rules/{identifier}",
             options=make_request_options(
@@ -294,7 +300,7 @@ class AccessRules(SyncAPIResource):
         identifier: object,
         *,
         account_id: str,
-        zone_id: object,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -320,6 +326,8 @@ class AccessRules(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
             Optional[AccessRuleGetResponse],
             self._get(
@@ -351,7 +359,7 @@ class AsyncAccessRules(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        zone_id: object,
+        zone_id: str,
         configuration: access_rule_create_params.Configuration,
         mode: Literal["block", "challenge", "whitelist", "js_challenge", "managed_challenge"],
         notes: str | NotGiven = NOT_GIVEN,
@@ -391,6 +399,8 @@ class AsyncAccessRules(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
             Optional[AccessRuleCreateResponse],
             await self._post(
@@ -420,7 +430,7 @@ class AsyncAccessRules(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        zone_id: object,
+        zone_id: str,
         direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         egs_pagination: access_rule_list_params.EgsPagination | NotGiven = NOT_GIVEN,
         filters: access_rule_list_params.Filters | NotGiven = NOT_GIVEN,
@@ -463,6 +473,8 @@ class AsyncAccessRules(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/{account_id}/{zone_id}/firewall/access_rules/rules",
             page=AsyncV4PagePaginationArray[object],
@@ -491,7 +503,7 @@ class AsyncAccessRules(AsyncAPIResource):
         identifier: object,
         *,
         account_id: str,
-        zone_id: object,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -519,6 +531,8 @@ class AsyncAccessRules(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._delete(
             f"/{account_id}/{zone_id}/firewall/access_rules/rules/{identifier}",
             options=make_request_options(
@@ -596,7 +610,7 @@ class AsyncAccessRules(AsyncAPIResource):
         identifier: object,
         *,
         account_id: str,
-        zone_id: object,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -622,6 +636,8 @@ class AsyncAccessRules(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
             Optional[AccessRuleGetResponse],
             await self._get(

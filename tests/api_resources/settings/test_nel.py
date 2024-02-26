@@ -21,7 +21,7 @@ class TestNEL:
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         nel = client.settings.nel.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value={
                 "id": "nel",
                 "value": {},
@@ -33,7 +33,7 @@ class TestNEL:
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         nel = client.settings.nel.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value={
                 "id": "nel",
                 "value": {"enabled": False},
@@ -45,7 +45,7 @@ class TestNEL:
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.settings.nel.with_raw_response.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value={
                 "id": "nel",
                 "value": {},
@@ -61,7 +61,7 @@ class TestNEL:
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.settings.nel.with_streaming_response.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value={
                 "id": "nel",
                 "value": {},
@@ -80,7 +80,7 @@ class TestNEL:
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.settings.nel.with_raw_response.edit(
-                "",
+                zone_id="",
                 value={
                     "id": "nel",
                     "value": {},
@@ -91,7 +91,7 @@ class TestNEL:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         nel = client.settings.nel.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[NELGetResponse], nel, path=["response"])
 
@@ -99,7 +99,7 @@ class TestNEL:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.settings.nel.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -111,7 +111,7 @@ class TestNEL:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.settings.nel.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -126,7 +126,7 @@ class TestNEL:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.settings.nel.with_raw_response.get(
-                "",
+                zone_id="",
             )
 
 
@@ -137,7 +137,7 @@ class TestAsyncNEL:
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         nel = await async_client.settings.nel.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value={
                 "id": "nel",
                 "value": {},
@@ -149,7 +149,7 @@ class TestAsyncNEL:
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         nel = await async_client.settings.nel.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value={
                 "id": "nel",
                 "value": {"enabled": False},
@@ -161,7 +161,7 @@ class TestAsyncNEL:
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.settings.nel.with_raw_response.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value={
                 "id": "nel",
                 "value": {},
@@ -177,7 +177,7 @@ class TestAsyncNEL:
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.settings.nel.with_streaming_response.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value={
                 "id": "nel",
                 "value": {},
@@ -196,7 +196,7 @@ class TestAsyncNEL:
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.settings.nel.with_raw_response.edit(
-                "",
+                zone_id="",
                 value={
                     "id": "nel",
                     "value": {},
@@ -207,7 +207,7 @@ class TestAsyncNEL:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         nel = await async_client.settings.nel.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[NELGetResponse], nel, path=["response"])
 
@@ -215,7 +215,7 @@ class TestAsyncNEL:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.settings.nel.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -227,7 +227,7 @@ class TestAsyncNEL:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.settings.nel.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -242,5 +242,5 @@ class TestAsyncNEL:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.settings.nel.with_raw_response.get(
-                "",
+                zone_id="",
             )

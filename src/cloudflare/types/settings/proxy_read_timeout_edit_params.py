@@ -8,6 +8,9 @@ __all__ = ["ProxyReadTimeoutEditParams", "Value"]
 
 
 class ProxyReadTimeoutEditParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     value: Required[Value]
     """Maximum time between two read operations from origin."""
 

@@ -3,12 +3,15 @@
 from __future__ import annotations
 
 from typing import List
-from typing_extensions import TypedDict
+from typing_extensions import Required, TypedDict
 
 __all__ = ["HostnameAssociationUpdateParams"]
 
 
 class HostnameAssociationUpdateParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     hostnames: List[str]
 
     mtls_certificate_id: str

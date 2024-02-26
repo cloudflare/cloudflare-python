@@ -21,7 +21,7 @@ class TestQuota:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         quota = client.ssl.certificate_packs.quota.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(QuotaListResponse, quota, path=["response"])
 
@@ -29,7 +29,7 @@ class TestQuota:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.ssl.certificate_packs.quota.with_raw_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -41,7 +41,7 @@ class TestQuota:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.ssl.certificate_packs.quota.with_streaming_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -56,7 +56,7 @@ class TestQuota:
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.ssl.certificate_packs.quota.with_raw_response.list(
-                "",
+                zone_id="",
             )
 
 
@@ -67,7 +67,7 @@ class TestAsyncQuota:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         quota = await async_client.ssl.certificate_packs.quota.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(QuotaListResponse, quota, path=["response"])
 
@@ -75,7 +75,7 @@ class TestAsyncQuota:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.ssl.certificate_packs.quota.with_raw_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -87,7 +87,7 @@ class TestAsyncQuota:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.ssl.certificate_packs.quota.with_streaming_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -102,5 +102,5 @@ class TestAsyncQuota:
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.ssl.certificate_packs.quota.with_raw_response.list(
-                "",
+                zone_id="",
             )

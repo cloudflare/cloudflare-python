@@ -9,6 +9,8 @@ __all__ = ["ProxyEndpointCreateParams"]
 
 
 class ProxyEndpointCreateParams(TypedDict, total=False):
+    account_id: Required[object]
+
     ips: Required[List[str]]
     """A list of CIDRs to restrict ingress connections."""
 

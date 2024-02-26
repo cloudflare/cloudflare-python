@@ -2,12 +2,14 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing_extensions import Required, TypedDict
 
 __all__ = ["LoggingUpdateParams", "SettingsByRuleType"]
 
 
 class LoggingUpdateParams(TypedDict, total=False):
+    account_id: Required[object]
+
     redact_pii: bool
     """
     Redact personally identifiable information from activity logging (PII fields

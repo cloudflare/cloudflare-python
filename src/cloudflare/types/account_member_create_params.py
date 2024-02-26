@@ -9,6 +9,8 @@ __all__ = ["AccountMemberCreateParams"]
 
 
 class AccountMemberCreateParams(TypedDict, total=False):
+    account_id: Required[object]
+
     email: Required[str]
     """The contact email address of the user."""
 

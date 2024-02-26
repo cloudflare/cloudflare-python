@@ -60,8 +60,8 @@ class CustomHostnames(SyncAPIResource):
 
     def create(
         self,
-        zone_id: str,
         *,
+        zone_id: str,
         hostname: str,
         ssl: custom_hostname_create_params.SSL,
         custom_metadata: custom_hostname_create_params.CustomMetadata | NotGiven = NOT_GIVEN,
@@ -122,8 +122,8 @@ class CustomHostnames(SyncAPIResource):
 
     def list(
         self,
-        zone_id: str,
         *,
+        zone_id: str,
         id: str | NotGiven = NOT_GIVEN,
         direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         hostname: str | NotGiven = NOT_GIVEN,
@@ -369,8 +369,8 @@ class AsyncCustomHostnames(AsyncAPIResource):
 
     async def create(
         self,
-        zone_id: str,
         *,
+        zone_id: str,
         hostname: str,
         ssl: custom_hostname_create_params.SSL,
         custom_metadata: custom_hostname_create_params.CustomMetadata | NotGiven = NOT_GIVEN,
@@ -431,8 +431,8 @@ class AsyncCustomHostnames(AsyncAPIResource):
 
     def list(
         self,
-        zone_id: str,
         *,
+        zone_id: str,
         id: str | NotGiven = NOT_GIVEN,
         direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         hostname: str | NotGiven = NOT_GIVEN,

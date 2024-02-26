@@ -8,6 +8,9 @@ __all__ = ["OpportunisticEncryptionEditParams"]
 
 
 class OpportunisticEncryptionEditParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     value: Required[Literal["on", "off"]]
     """
     Value of the zone setting. Notes: Default value depends on the zone's plan

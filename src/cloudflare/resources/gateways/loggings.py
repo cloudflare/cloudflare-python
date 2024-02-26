@@ -36,8 +36,8 @@ class Loggings(SyncAPIResource):
 
     def update(
         self,
-        account_id: object,
         *,
+        account_id: object,
         redact_pii: bool | NotGiven = NOT_GIVEN,
         settings_by_rule_type: logging_update_params.SettingsByRuleType | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -85,8 +85,8 @@ class Loggings(SyncAPIResource):
 
     def get(
         self,
-        account_id: object,
         *,
+        account_id: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -130,8 +130,8 @@ class AsyncLoggings(AsyncAPIResource):
 
     async def update(
         self,
-        account_id: object,
         *,
+        account_id: object,
         redact_pii: bool | NotGiven = NOT_GIVEN,
         settings_by_rule_type: logging_update_params.SettingsByRuleType | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -179,8 +179,8 @@ class AsyncLoggings(AsyncAPIResource):
 
     async def get(
         self,
-        account_id: object,
         *,
+        account_id: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

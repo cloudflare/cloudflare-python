@@ -9,6 +9,9 @@ __all__ = ["TracerouteCreateParams", "Options"]
 
 
 class TracerouteCreateParams(TypedDict, total=False):
+    account_id: Required[str]
+    """Identifier"""
+
     targets: Required[List[str]]
 
     colos: List[str]

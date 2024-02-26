@@ -25,7 +25,7 @@ class TestAnalytics:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         analytics = client.storage.analytics.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(AnalyticsListResponse, analytics, path=["response"])
 
@@ -33,7 +33,7 @@ class TestAnalytics:
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         analytics = client.storage.analytics.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             query={
                 "dimensions": ["accountId", "responseCode", "requestType"],
                 "filters": "requestType==read AND responseCode!=200",
@@ -50,7 +50,7 @@ class TestAnalytics:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.storage.analytics.with_raw_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -62,7 +62,7 @@ class TestAnalytics:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.storage.analytics.with_streaming_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -77,14 +77,14 @@ class TestAnalytics:
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.storage.analytics.with_raw_response.list(
-                "",
+                account_id="",
             )
 
     @pytest.mark.skip()
     @parametrize
     def test_method_stored(self, client: Cloudflare) -> None:
         analytics = client.storage.analytics.stored(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(AnalyticsStoredResponse, analytics, path=["response"])
 
@@ -92,7 +92,7 @@ class TestAnalytics:
     @parametrize
     def test_method_stored_with_all_params(self, client: Cloudflare) -> None:
         analytics = client.storage.analytics.stored(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             query={
                 "dimensions": ["namespaceId"],
                 "filters": "namespaceId==a4e8cbb7-1b58-4990-925e-e026d40c4c64",
@@ -109,7 +109,7 @@ class TestAnalytics:
     @parametrize
     def test_raw_response_stored(self, client: Cloudflare) -> None:
         response = client.storage.analytics.with_raw_response.stored(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -121,7 +121,7 @@ class TestAnalytics:
     @parametrize
     def test_streaming_response_stored(self, client: Cloudflare) -> None:
         with client.storage.analytics.with_streaming_response.stored(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -136,7 +136,7 @@ class TestAnalytics:
     def test_path_params_stored(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.storage.analytics.with_raw_response.stored(
-                "",
+                account_id="",
             )
 
 
@@ -147,7 +147,7 @@ class TestAsyncAnalytics:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         analytics = await async_client.storage.analytics.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(AnalyticsListResponse, analytics, path=["response"])
 
@@ -155,7 +155,7 @@ class TestAsyncAnalytics:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         analytics = await async_client.storage.analytics.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             query={
                 "dimensions": ["accountId", "responseCode", "requestType"],
                 "filters": "requestType==read AND responseCode!=200",
@@ -172,7 +172,7 @@ class TestAsyncAnalytics:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.storage.analytics.with_raw_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -184,7 +184,7 @@ class TestAsyncAnalytics:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.storage.analytics.with_streaming_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -199,14 +199,14 @@ class TestAsyncAnalytics:
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.storage.analytics.with_raw_response.list(
-                "",
+                account_id="",
             )
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_stored(self, async_client: AsyncCloudflare) -> None:
         analytics = await async_client.storage.analytics.stored(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(AnalyticsStoredResponse, analytics, path=["response"])
 
@@ -214,7 +214,7 @@ class TestAsyncAnalytics:
     @parametrize
     async def test_method_stored_with_all_params(self, async_client: AsyncCloudflare) -> None:
         analytics = await async_client.storage.analytics.stored(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             query={
                 "dimensions": ["namespaceId"],
                 "filters": "namespaceId==a4e8cbb7-1b58-4990-925e-e026d40c4c64",
@@ -231,7 +231,7 @@ class TestAsyncAnalytics:
     @parametrize
     async def test_raw_response_stored(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.storage.analytics.with_raw_response.stored(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -243,7 +243,7 @@ class TestAsyncAnalytics:
     @parametrize
     async def test_streaming_response_stored(self, async_client: AsyncCloudflare) -> None:
         async with async_client.storage.analytics.with_streaming_response.stored(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -258,5 +258,5 @@ class TestAsyncAnalytics:
     async def test_path_params_stored(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.storage.analytics.with_raw_response.stored(
-                "",
+                account_id="",
             )

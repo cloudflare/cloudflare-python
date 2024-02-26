@@ -23,7 +23,7 @@ class TestCAs:
         ca = client.access.applications.cas.create(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
         assert_matches_type(CACreateResponse, ca, path=["response"])
 
@@ -33,7 +33,7 @@ class TestCAs:
         response = client.access.applications.cas.with_raw_response.create(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -47,7 +47,7 @@ class TestCAs:
         with client.access.applications.cas.with_streaming_response.create(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -64,7 +64,7 @@ class TestCAs:
             client.access.applications.cas.with_raw_response.create(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -78,7 +78,7 @@ class TestCAs:
             client.access.applications.cas.with_raw_response.create(
                 "",
                 account_id="string",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )
 
     @pytest.mark.skip()
@@ -86,7 +86,7 @@ class TestCAs:
     def test_method_list(self, client: Cloudflare) -> None:
         ca = client.access.applications.cas.list(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
         assert_matches_type(Optional[CAListResponse], ca, path=["response"])
 
@@ -95,7 +95,7 @@ class TestCAs:
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.access.applications.cas.with_raw_response.list(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -108,7 +108,7 @@ class TestCAs:
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.access.applications.cas.with_streaming_response.list(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -124,7 +124,7 @@ class TestCAs:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.access.applications.cas.with_raw_response.list(
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -139,7 +139,7 @@ class TestCAs:
         ca = client.access.applications.cas.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
         assert_matches_type(CADeleteResponse, ca, path=["response"])
 
@@ -149,7 +149,7 @@ class TestCAs:
         response = client.access.applications.cas.with_raw_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -163,7 +163,7 @@ class TestCAs:
         with client.access.applications.cas.with_streaming_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -180,7 +180,7 @@ class TestCAs:
             client.access.applications.cas.with_raw_response.delete(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -194,7 +194,7 @@ class TestCAs:
             client.access.applications.cas.with_raw_response.delete(
                 "",
                 account_id="string",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )
 
     @pytest.mark.skip()
@@ -203,7 +203,7 @@ class TestCAs:
         ca = client.access.applications.cas.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
         assert_matches_type(CAGetResponse, ca, path=["response"])
 
@@ -213,7 +213,7 @@ class TestCAs:
         response = client.access.applications.cas.with_raw_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -227,7 +227,7 @@ class TestCAs:
         with client.access.applications.cas.with_streaming_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -244,7 +244,7 @@ class TestCAs:
             client.access.applications.cas.with_raw_response.get(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -258,7 +258,7 @@ class TestCAs:
             client.access.applications.cas.with_raw_response.get(
                 "",
                 account_id="string",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )
 
 
@@ -271,7 +271,7 @@ class TestAsyncCAs:
         ca = await async_client.access.applications.cas.create(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
         assert_matches_type(CACreateResponse, ca, path=["response"])
 
@@ -281,7 +281,7 @@ class TestAsyncCAs:
         response = await async_client.access.applications.cas.with_raw_response.create(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -295,7 +295,7 @@ class TestAsyncCAs:
         async with async_client.access.applications.cas.with_streaming_response.create(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -312,7 +312,7 @@ class TestAsyncCAs:
             await async_client.access.applications.cas.with_raw_response.create(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -326,7 +326,7 @@ class TestAsyncCAs:
             await async_client.access.applications.cas.with_raw_response.create(
                 "",
                 account_id="string",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )
 
     @pytest.mark.skip()
@@ -334,7 +334,7 @@ class TestAsyncCAs:
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         ca = await async_client.access.applications.cas.list(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
         assert_matches_type(Optional[CAListResponse], ca, path=["response"])
 
@@ -343,7 +343,7 @@ class TestAsyncCAs:
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.access.applications.cas.with_raw_response.list(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -356,7 +356,7 @@ class TestAsyncCAs:
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.access.applications.cas.with_streaming_response.list(
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -372,7 +372,7 @@ class TestAsyncCAs:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.access.applications.cas.with_raw_response.list(
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -387,7 +387,7 @@ class TestAsyncCAs:
         ca = await async_client.access.applications.cas.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
         assert_matches_type(CADeleteResponse, ca, path=["response"])
 
@@ -397,7 +397,7 @@ class TestAsyncCAs:
         response = await async_client.access.applications.cas.with_raw_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -411,7 +411,7 @@ class TestAsyncCAs:
         async with async_client.access.applications.cas.with_streaming_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -428,7 +428,7 @@ class TestAsyncCAs:
             await async_client.access.applications.cas.with_raw_response.delete(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -442,7 +442,7 @@ class TestAsyncCAs:
             await async_client.access.applications.cas.with_raw_response.delete(
                 "",
                 account_id="string",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )
 
     @pytest.mark.skip()
@@ -451,7 +451,7 @@ class TestAsyncCAs:
         ca = await async_client.access.applications.cas.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
         assert_matches_type(CAGetResponse, ca, path=["response"])
 
@@ -461,7 +461,7 @@ class TestAsyncCAs:
         response = await async_client.access.applications.cas.with_raw_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -475,7 +475,7 @@ class TestAsyncCAs:
         async with async_client.access.applications.cas.with_streaming_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -492,7 +492,7 @@ class TestAsyncCAs:
             await async_client.access.applications.cas.with_raw_response.get(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -506,5 +506,5 @@ class TestAsyncCAs:
             await async_client.access.applications.cas.with_raw_response.get(
                 "",
                 account_id="string",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="string",
             )

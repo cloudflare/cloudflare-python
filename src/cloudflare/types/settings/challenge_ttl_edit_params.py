@@ -8,6 +8,9 @@ __all__ = ["ChallengeTTLEditParams"]
 
 
 class ChallengeTTLEditParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     value: Required[
         Literal[300, 900, 1800, 2700, 3600, 7200, 10800, 14400, 28800, 57600, 86400, 604800, 2592000, 31536000]
     ]

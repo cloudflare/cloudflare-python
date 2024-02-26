@@ -2,12 +2,15 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["MiscategorizationCreateParams"]
 
 
 class MiscategorizationCreateParams(TypedDict, total=False):
+    account_id: Required[str]
+    """Identifier"""
+
     content_adds: object
     """Content category IDs to add."""
 

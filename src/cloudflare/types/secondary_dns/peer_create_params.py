@@ -8,4 +8,6 @@ __all__ = ["PeerCreateParams"]
 
 
 class PeerCreateParams(TypedDict, total=False):
+    account_id: Required[object]
+
     body: Required[object]

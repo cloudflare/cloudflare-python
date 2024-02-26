@@ -44,8 +44,8 @@ class VirtualNetworks(SyncAPIResource):
 
     def create(
         self,
-        account_id: str,
         *,
+        account_id: str,
         name: str,
         comment: str | NotGiven = NOT_GIVEN,
         is_default: bool | NotGiven = NOT_GIVEN,
@@ -105,8 +105,8 @@ class VirtualNetworks(SyncAPIResource):
 
     def list(
         self,
-        account_id: str,
         *,
+        account_id: str,
         is_default: object | NotGiven = NOT_GIVEN,
         is_deleted: object | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
@@ -292,8 +292,8 @@ class AsyncVirtualNetworks(AsyncAPIResource):
 
     async def create(
         self,
-        account_id: str,
         *,
+        account_id: str,
         name: str,
         comment: str | NotGiven = NOT_GIVEN,
         is_default: bool | NotGiven = NOT_GIVEN,
@@ -353,8 +353,8 @@ class AsyncVirtualNetworks(AsyncAPIResource):
 
     async def list(
         self,
-        account_id: str,
         *,
+        account_id: str,
         is_default: object | NotGiven = NOT_GIVEN,
         is_deleted: object | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,

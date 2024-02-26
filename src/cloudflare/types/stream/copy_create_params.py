@@ -12,6 +12,9 @@ __all__ = ["CopyCreateParams", "Watermark"]
 
 
 class CopyCreateParams(TypedDict, total=False):
+    account_id: Required[str]
+    """The account identifier tag."""
+
     url: Required[str]
     """A video's URL.
 

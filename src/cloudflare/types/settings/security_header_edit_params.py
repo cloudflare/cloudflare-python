@@ -8,6 +8,9 @@ __all__ = ["SecurityHeaderEditParams", "Value", "ValueStrictTransportSecurity"]
 
 
 class SecurityHeaderEditParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     value: Required[Value]
 
 

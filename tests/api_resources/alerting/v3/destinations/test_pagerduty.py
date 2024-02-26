@@ -26,7 +26,7 @@ class TestPagerduty:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         pagerduty = client.alerting.v3.destinations.pagerduty.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(PagerdutyCreateResponse, pagerduty, path=["response"])
 
@@ -34,7 +34,7 @@ class TestPagerduty:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.alerting.v3.destinations.pagerduty.with_raw_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -46,7 +46,7 @@ class TestPagerduty:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.alerting.v3.destinations.pagerduty.with_streaming_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -61,14 +61,14 @@ class TestPagerduty:
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.alerting.v3.destinations.pagerduty.with_raw_response.create(
-                "",
+                account_id="",
             )
 
     @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         pagerduty = client.alerting.v3.destinations.pagerduty.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[PagerdutyDeleteResponse], pagerduty, path=["response"])
 
@@ -76,7 +76,7 @@ class TestPagerduty:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.alerting.v3.destinations.pagerduty.with_raw_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -88,7 +88,7 @@ class TestPagerduty:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.alerting.v3.destinations.pagerduty.with_streaming_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -103,14 +103,14 @@ class TestPagerduty:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.alerting.v3.destinations.pagerduty.with_raw_response.delete(
-                "",
+                account_id="",
             )
 
     @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         pagerduty = client.alerting.v3.destinations.pagerduty.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[PagerdutyGetResponse], pagerduty, path=["response"])
 
@@ -118,7 +118,7 @@ class TestPagerduty:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.alerting.v3.destinations.pagerduty.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -130,7 +130,7 @@ class TestPagerduty:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.alerting.v3.destinations.pagerduty.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -145,7 +145,7 @@ class TestPagerduty:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.alerting.v3.destinations.pagerduty.with_raw_response.get(
-                "",
+                account_id="",
             )
 
     @pytest.mark.skip()
@@ -208,7 +208,7 @@ class TestAsyncPagerduty:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         pagerduty = await async_client.alerting.v3.destinations.pagerduty.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(PagerdutyCreateResponse, pagerduty, path=["response"])
 
@@ -216,7 +216,7 @@ class TestAsyncPagerduty:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.alerting.v3.destinations.pagerduty.with_raw_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -228,7 +228,7 @@ class TestAsyncPagerduty:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.alerting.v3.destinations.pagerduty.with_streaming_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -243,14 +243,14 @@ class TestAsyncPagerduty:
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.alerting.v3.destinations.pagerduty.with_raw_response.create(
-                "",
+                account_id="",
             )
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         pagerduty = await async_client.alerting.v3.destinations.pagerduty.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[PagerdutyDeleteResponse], pagerduty, path=["response"])
 
@@ -258,7 +258,7 @@ class TestAsyncPagerduty:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.alerting.v3.destinations.pagerduty.with_raw_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -270,7 +270,7 @@ class TestAsyncPagerduty:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.alerting.v3.destinations.pagerduty.with_streaming_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -285,14 +285,14 @@ class TestAsyncPagerduty:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.alerting.v3.destinations.pagerduty.with_raw_response.delete(
-                "",
+                account_id="",
             )
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         pagerduty = await async_client.alerting.v3.destinations.pagerduty.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[PagerdutyGetResponse], pagerduty, path=["response"])
 
@@ -300,7 +300,7 @@ class TestAsyncPagerduty:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.alerting.v3.destinations.pagerduty.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -312,7 +312,7 @@ class TestAsyncPagerduty:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.alerting.v3.destinations.pagerduty.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -327,7 +327,7 @@ class TestAsyncPagerduty:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.alerting.v3.destinations.pagerduty.with_raw_response.get(
-                "",
+                account_id="",
             )
 
     @pytest.mark.skip()

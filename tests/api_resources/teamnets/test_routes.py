@@ -22,7 +22,7 @@ class TestRoutes:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         route = client.teamnets.routes.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(SyncV4PagePaginationArray[RouteListResponse], route, path=["response"])
 
@@ -30,7 +30,7 @@ class TestRoutes:
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         route = client.teamnets.routes.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             comment="Example comment for this route.",
             existed_at={},
             is_deleted={},
@@ -48,7 +48,7 @@ class TestRoutes:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.teamnets.routes.with_raw_response.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
 
         assert response.is_closed is True
@@ -60,7 +60,7 @@ class TestRoutes:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.teamnets.routes.with_streaming_response.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -75,7 +75,7 @@ class TestRoutes:
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.teamnets.routes.with_raw_response.list(
-                "",
+                account_id="",
             )
 
 
@@ -86,7 +86,7 @@ class TestAsyncRoutes:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         route = await async_client.teamnets.routes.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(AsyncV4PagePaginationArray[RouteListResponse], route, path=["response"])
 
@@ -94,7 +94,7 @@ class TestAsyncRoutes:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         route = await async_client.teamnets.routes.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             comment="Example comment for this route.",
             existed_at={},
             is_deleted={},
@@ -112,7 +112,7 @@ class TestAsyncRoutes:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.teamnets.routes.with_raw_response.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
 
         assert response.is_closed is True
@@ -124,7 +124,7 @@ class TestAsyncRoutes:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.teamnets.routes.with_streaming_response.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -139,5 +139,5 @@ class TestAsyncRoutes:
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.teamnets.routes.with_raw_response.list(
-                "",
+                account_id="",
             )

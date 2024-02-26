@@ -9,6 +9,9 @@ __all__ = ["PolicyCreateParams", "Mechanisms", "Filters"]
 
 
 class PolicyCreateParams(TypedDict, total=False):
+    account_id: Required[str]
+    """The account id"""
+
     alert_type: Required[
         Literal[
             "access_custom_certificate_expiration_type",

@@ -43,8 +43,8 @@ class Buckets(SyncAPIResource):
 
     def create(
         self,
-        account_id: str,
         *,
+        account_id: str,
         name: str,
         location_hint: Literal["apac", "eeur", "enam", "weur", "wnam"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -95,8 +95,8 @@ class Buckets(SyncAPIResource):
 
     def list(
         self,
-        account_id: str,
         *,
+        account_id: str,
         cursor: str | NotGiven = NOT_GIVEN,
         direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         name_contains: str | NotGiven = NOT_GIVEN,
@@ -263,8 +263,8 @@ class AsyncBuckets(AsyncAPIResource):
 
     async def create(
         self,
-        account_id: str,
         *,
+        account_id: str,
         name: str,
         location_hint: Literal["apac", "eeur", "enam", "weur", "wnam"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -315,8 +315,8 @@ class AsyncBuckets(AsyncAPIResource):
 
     async def list(
         self,
-        account_id: str,
         *,
+        account_id: str,
         cursor: str | NotGiven = NOT_GIVEN,
         direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         name_contains: str | NotGiven = NOT_GIVEN,

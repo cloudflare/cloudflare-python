@@ -9,5 +9,7 @@ __all__ = ["UnrevokeCreateParams"]
 
 
 class UnrevokeCreateParams(TypedDict, total=False):
+    account_id: Required[object]
+
     body: Required[List[str]]
     """A list of device ids to unrevoke."""

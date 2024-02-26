@@ -10,5 +10,8 @@ __all__ = ["WebhookUpdateParams"]
 
 
 class WebhookUpdateParams(TypedDict, total=False):
+    account_id: Required[str]
+    """The account identifier tag."""
+
     notification_url: Required[Annotated[str, PropertyInfo(alias="notificationUrl")]]
     """The URL where webhooks will be sent."""

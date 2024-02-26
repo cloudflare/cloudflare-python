@@ -21,7 +21,7 @@ class TestLoggings:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         logging = client.gateways.loggings.update(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(LoggingUpdateResponse, logging, path=["response"])
 
@@ -29,7 +29,7 @@ class TestLoggings:
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         logging = client.gateways.loggings.update(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             redact_pii=True,
             settings_by_rule_type={
                 "dns": {},
@@ -43,7 +43,7 @@ class TestLoggings:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.gateways.loggings.with_raw_response.update(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
 
         assert response.is_closed is True
@@ -55,7 +55,7 @@ class TestLoggings:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.gateways.loggings.with_streaming_response.update(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -69,7 +69,7 @@ class TestLoggings:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         logging = client.gateways.loggings.get(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(LoggingGetResponse, logging, path=["response"])
 
@@ -77,7 +77,7 @@ class TestLoggings:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.gateways.loggings.with_raw_response.get(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
 
         assert response.is_closed is True
@@ -89,7 +89,7 @@ class TestLoggings:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.gateways.loggings.with_streaming_response.get(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -107,7 +107,7 @@ class TestAsyncLoggings:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         logging = await async_client.gateways.loggings.update(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(LoggingUpdateResponse, logging, path=["response"])
 
@@ -115,7 +115,7 @@ class TestAsyncLoggings:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         logging = await async_client.gateways.loggings.update(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
             redact_pii=True,
             settings_by_rule_type={
                 "dns": {},
@@ -129,7 +129,7 @@ class TestAsyncLoggings:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.gateways.loggings.with_raw_response.update(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
 
         assert response.is_closed is True
@@ -141,7 +141,7 @@ class TestAsyncLoggings:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.gateways.loggings.with_streaming_response.update(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -155,7 +155,7 @@ class TestAsyncLoggings:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         logging = await async_client.gateways.loggings.get(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(LoggingGetResponse, logging, path=["response"])
 
@@ -163,7 +163,7 @@ class TestAsyncLoggings:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.gateways.loggings.with_raw_response.get(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
 
         assert response.is_closed is True
@@ -175,7 +175,7 @@ class TestAsyncLoggings:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.gateways.loggings.with_streaming_response.get(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

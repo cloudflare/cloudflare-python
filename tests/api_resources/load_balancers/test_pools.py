@@ -28,7 +28,7 @@ class TestPools:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         pool = client.load_balancers.pools.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="primary-dc-1",
             origins=[{}, {}, {}],
         )
@@ -38,7 +38,7 @@ class TestPools:
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         pool = client.load_balancers.pools.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="primary-dc-1",
             origins=[
                 {
@@ -97,7 +97,7 @@ class TestPools:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.load_balancers.pools.with_raw_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="primary-dc-1",
             origins=[{}, {}, {}],
         )
@@ -111,7 +111,7 @@ class TestPools:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.load_balancers.pools.with_streaming_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="primary-dc-1",
             origins=[{}, {}, {}],
         ) as response:
@@ -128,7 +128,7 @@ class TestPools:
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.load_balancers.pools.with_raw_response.create(
-                "",
+                account_id="",
                 name="primary-dc-1",
                 origins=[{}, {}, {}],
             )
@@ -260,7 +260,7 @@ class TestPools:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         pool = client.load_balancers.pools.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[PoolListResponse], pool, path=["response"])
 
@@ -268,7 +268,7 @@ class TestPools:
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         pool = client.load_balancers.pools.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             monitor={},
         )
         assert_matches_type(Optional[PoolListResponse], pool, path=["response"])
@@ -277,7 +277,7 @@ class TestPools:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.load_balancers.pools.with_raw_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -289,7 +289,7 @@ class TestPools:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.load_balancers.pools.with_streaming_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -304,7 +304,7 @@ class TestPools:
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.load_balancers.pools.with_raw_response.list(
-                "",
+                account_id="",
             )
 
     @pytest.mark.skip()
@@ -532,7 +532,7 @@ class TestAsyncPools:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         pool = await async_client.load_balancers.pools.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="primary-dc-1",
             origins=[{}, {}, {}],
         )
@@ -542,7 +542,7 @@ class TestAsyncPools:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         pool = await async_client.load_balancers.pools.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="primary-dc-1",
             origins=[
                 {
@@ -601,7 +601,7 @@ class TestAsyncPools:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.load_balancers.pools.with_raw_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="primary-dc-1",
             origins=[{}, {}, {}],
         )
@@ -615,7 +615,7 @@ class TestAsyncPools:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.load_balancers.pools.with_streaming_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="primary-dc-1",
             origins=[{}, {}, {}],
         ) as response:
@@ -632,7 +632,7 @@ class TestAsyncPools:
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.load_balancers.pools.with_raw_response.create(
-                "",
+                account_id="",
                 name="primary-dc-1",
                 origins=[{}, {}, {}],
             )
@@ -764,7 +764,7 @@ class TestAsyncPools:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         pool = await async_client.load_balancers.pools.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[PoolListResponse], pool, path=["response"])
 
@@ -772,7 +772,7 @@ class TestAsyncPools:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         pool = await async_client.load_balancers.pools.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             monitor={},
         )
         assert_matches_type(Optional[PoolListResponse], pool, path=["response"])
@@ -781,7 +781,7 @@ class TestAsyncPools:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.load_balancers.pools.with_raw_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -793,7 +793,7 @@ class TestAsyncPools:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.load_balancers.pools.with_streaming_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -808,7 +808,7 @@ class TestAsyncPools:
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.load_balancers.pools.with_raw_response.list(
-                "",
+                account_id="",
             )
 
     @pytest.mark.skip()

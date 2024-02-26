@@ -37,8 +37,8 @@ class Devices(SyncAPIResource):
 
     def list(
         self,
-        account_id: str,
         *,
+        account_id: str,
         page: float,
         per_page: float,
         time_end: str,
@@ -134,8 +134,8 @@ class AsyncDevices(AsyncAPIResource):
 
     def list(
         self,
-        account_id: str,
         *,
+        account_id: str,
         page: float,
         per_page: float,
         time_end: str,

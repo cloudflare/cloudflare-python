@@ -44,8 +44,8 @@ class Variants(SyncAPIResource):
 
     def create(
         self,
-        account_id: str,
         *,
+        account_id: str,
         id: object,
         options: variant_create_params.Options,
         never_require_signed_urls: bool | NotGiven = NOT_GIVEN,
@@ -99,8 +99,8 @@ class Variants(SyncAPIResource):
 
     def list(
         self,
-        account_id: str,
         *,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -287,8 +287,8 @@ class AsyncVariants(AsyncAPIResource):
 
     async def create(
         self,
-        account_id: str,
         *,
+        account_id: str,
         id: object,
         options: variant_create_params.Options,
         never_require_signed_urls: bool | NotGiven = NOT_GIVEN,
@@ -342,8 +342,8 @@ class AsyncVariants(AsyncAPIResource):
 
     async def list(
         self,
-        account_id: str,
         *,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

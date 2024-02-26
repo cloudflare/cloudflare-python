@@ -27,7 +27,7 @@ class TestPrefixes:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         prefix = client.addresses.prefixes.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             asn=209242,
             cidr="192.0.2.0/24",
             loa_document_id="d933b1530bc56c9953cf8ce166da8004",
@@ -38,7 +38,7 @@ class TestPrefixes:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.addresses.prefixes.with_raw_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             asn=209242,
             cidr="192.0.2.0/24",
             loa_document_id="d933b1530bc56c9953cf8ce166da8004",
@@ -53,7 +53,7 @@ class TestPrefixes:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.addresses.prefixes.with_streaming_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             asn=209242,
             cidr="192.0.2.0/24",
             loa_document_id="d933b1530bc56c9953cf8ce166da8004",
@@ -71,7 +71,7 @@ class TestPrefixes:
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.addresses.prefixes.with_raw_response.create(
-                "",
+                account_id="",
                 asn=209242,
                 cidr="192.0.2.0/24",
                 loa_document_id="d933b1530bc56c9953cf8ce166da8004",
@@ -81,7 +81,7 @@ class TestPrefixes:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         prefix = client.addresses.prefixes.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[PrefixListResponse], prefix, path=["response"])
 
@@ -89,7 +89,7 @@ class TestPrefixes:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.addresses.prefixes.with_raw_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -101,7 +101,7 @@ class TestPrefixes:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.addresses.prefixes.with_streaming_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -116,7 +116,7 @@ class TestPrefixes:
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.addresses.prefixes.with_raw_response.list(
-                "",
+                account_id="",
             )
 
     @pytest.mark.skip()
@@ -288,7 +288,7 @@ class TestAsyncPrefixes:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         prefix = await async_client.addresses.prefixes.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             asn=209242,
             cidr="192.0.2.0/24",
             loa_document_id="d933b1530bc56c9953cf8ce166da8004",
@@ -299,7 +299,7 @@ class TestAsyncPrefixes:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.addresses.prefixes.with_raw_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             asn=209242,
             cidr="192.0.2.0/24",
             loa_document_id="d933b1530bc56c9953cf8ce166da8004",
@@ -314,7 +314,7 @@ class TestAsyncPrefixes:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.addresses.prefixes.with_streaming_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             asn=209242,
             cidr="192.0.2.0/24",
             loa_document_id="d933b1530bc56c9953cf8ce166da8004",
@@ -332,7 +332,7 @@ class TestAsyncPrefixes:
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.addresses.prefixes.with_raw_response.create(
-                "",
+                account_id="",
                 asn=209242,
                 cidr="192.0.2.0/24",
                 loa_document_id="d933b1530bc56c9953cf8ce166da8004",
@@ -342,7 +342,7 @@ class TestAsyncPrefixes:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         prefix = await async_client.addresses.prefixes.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[PrefixListResponse], prefix, path=["response"])
 
@@ -350,7 +350,7 @@ class TestAsyncPrefixes:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.addresses.prefixes.with_raw_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -362,7 +362,7 @@ class TestAsyncPrefixes:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.addresses.prefixes.with_streaming_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -377,7 +377,7 @@ class TestAsyncPrefixes:
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.addresses.prefixes.with_raw_response.list(
-                "",
+                account_id="",
             )
 
     @pytest.mark.skip()

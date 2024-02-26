@@ -8,6 +8,8 @@ __all__ = ["AuditSSHSettingUpdateParams"]
 
 
 class AuditSSHSettingUpdateParams(TypedDict, total=False):
+    account_id: Required[object]
+
     public_key: Required[str]
     """SSH encryption public key"""
 

@@ -8,5 +8,8 @@ __all__ = ["PseudoIPV4EditParams"]
 
 
 class PseudoIPV4EditParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     value: Required[Literal["off", "add_header", "overwrite_header"]]
     """Value of the Pseudo IPv4 setting."""

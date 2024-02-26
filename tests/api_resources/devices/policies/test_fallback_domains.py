@@ -75,7 +75,7 @@ class TestFallbackDomains:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         fallback_domain = client.devices.policies.fallback_domains.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[FallbackDomainListResponse], fallback_domain, path=["response"])
 
@@ -83,7 +83,7 @@ class TestFallbackDomains:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.devices.policies.fallback_domains.with_raw_response.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
 
         assert response.is_closed is True
@@ -95,7 +95,7 @@ class TestFallbackDomains:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.devices.policies.fallback_domains.with_streaming_response.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -209,7 +209,7 @@ class TestAsyncFallbackDomains:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         fallback_domain = await async_client.devices.policies.fallback_domains.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[FallbackDomainListResponse], fallback_domain, path=["response"])
 
@@ -217,7 +217,7 @@ class TestAsyncFallbackDomains:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.devices.policies.fallback_domains.with_raw_response.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
 
         assert response.is_closed is True
@@ -229,7 +229,7 @@ class TestAsyncFallbackDomains:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.devices.policies.fallback_domains.with_streaming_response.list(
-            "699d98642c564d2e855e9661899b7252",
+            account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

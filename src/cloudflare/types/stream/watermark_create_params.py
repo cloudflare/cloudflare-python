@@ -8,6 +8,9 @@ __all__ = ["WatermarkCreateParams"]
 
 
 class WatermarkCreateParams(TypedDict, total=False):
+    account_id: Required[str]
+    """The account identifier tag."""
+
     file: Required[str]
     """The image file to upload."""
 
