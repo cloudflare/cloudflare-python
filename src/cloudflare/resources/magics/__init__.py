@@ -1,39 +1,44 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from .cf_interconnects import CfInterconnects, AsyncCfInterconnects
-from .cf_interconnects import (
-    CfInterconnectsWithRawResponse,
-    AsyncCfInterconnectsWithRawResponse,
-    CfInterconnectsWithStreamingResponse,
-    AsyncCfInterconnectsWithStreamingResponse,
+from .magics import (
+    Magics,
+    AsyncMagics,
+    MagicsWithRawResponse,
+    AsyncMagicsWithRawResponse,
+    MagicsWithStreamingResponse,
+    AsyncMagicsWithStreamingResponse,
 )
-from .gre_tunnels import GreTunnels, AsyncGreTunnels
-from .gre_tunnels import (
-    GreTunnelsWithRawResponse,
-    AsyncGreTunnelsWithRawResponse,
-    GreTunnelsWithStreamingResponse,
-    AsyncGreTunnelsWithStreamingResponse,
-)
-from .ipsec_tunnels import IpsecTunnels, AsyncIpsecTunnels
-from .ipsec_tunnels import (
-    IpsecTunnelsWithRawResponse,
-    AsyncIpsecTunnelsWithRawResponse,
-    IpsecTunnelsWithStreamingResponse,
-    AsyncIpsecTunnelsWithStreamingResponse,
-)
-from .routes import Routes, AsyncRoutes
 from .routes import (
+    Routes,
+    AsyncRoutes,
     RoutesWithRawResponse,
     AsyncRoutesWithRawResponse,
     RoutesWithStreamingResponse,
     AsyncRoutesWithStreamingResponse,
 )
-from .magics import Magics, AsyncMagics
-from .magics import (
-    MagicsWithRawResponse,
-    AsyncMagicsWithRawResponse,
-    MagicsWithStreamingResponse,
-    AsyncMagicsWithStreamingResponse,
+from .gre_tunnels import (
+    GRETunnels,
+    AsyncGRETunnels,
+    GRETunnelsWithRawResponse,
+    AsyncGRETunnelsWithRawResponse,
+    GRETunnelsWithStreamingResponse,
+    AsyncGRETunnelsWithStreamingResponse,
+)
+from .ipsec_tunnels import (
+    IPSECTunnels,
+    AsyncIPSECTunnels,
+    IPSECTunnelsWithRawResponse,
+    AsyncIPSECTunnelsWithRawResponse,
+    IPSECTunnelsWithStreamingResponse,
+    AsyncIPSECTunnelsWithStreamingResponse,
+)
+from .cf_interconnects import (
+    CfInterconnects,
+    AsyncCfInterconnects,
+    CfInterconnectsWithRawResponse,
+    AsyncCfInterconnectsWithRawResponse,
+    CfInterconnectsWithStreamingResponse,
+    AsyncCfInterconnectsWithStreamingResponse,
 )
 
 __all__ = [
@@ -43,18 +48,18 @@ __all__ = [
     "AsyncCfInterconnectsWithRawResponse",
     "CfInterconnectsWithStreamingResponse",
     "AsyncCfInterconnectsWithStreamingResponse",
-    "GreTunnels",
-    "AsyncGreTunnels",
-    "GreTunnelsWithRawResponse",
-    "AsyncGreTunnelsWithRawResponse",
-    "GreTunnelsWithStreamingResponse",
-    "AsyncGreTunnelsWithStreamingResponse",
-    "IpsecTunnels",
-    "AsyncIpsecTunnels",
-    "IpsecTunnelsWithRawResponse",
-    "AsyncIpsecTunnelsWithRawResponse",
-    "IpsecTunnelsWithStreamingResponse",
-    "AsyncIpsecTunnelsWithStreamingResponse",
+    "GRETunnels",
+    "AsyncGRETunnels",
+    "GRETunnelsWithRawResponse",
+    "AsyncGRETunnelsWithRawResponse",
+    "GRETunnelsWithStreamingResponse",
+    "AsyncGRETunnelsWithStreamingResponse",
+    "IPSECTunnels",
+    "AsyncIPSECTunnels",
+    "IPSECTunnelsWithRawResponse",
+    "AsyncIPSECTunnelsWithRawResponse",
+    "IPSECTunnelsWithStreamingResponse",
+    "AsyncIPSECTunnelsWithStreamingResponse",
     "Routes",
     "AsyncRoutes",
     "RoutesWithRawResponse",

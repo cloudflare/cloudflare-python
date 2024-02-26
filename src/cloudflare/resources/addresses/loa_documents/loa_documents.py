@@ -2,39 +2,12 @@
 
 from __future__ import annotations
 
+from typing import Type, cast
+
 import httpx
 
-from .downloads import Downloads, AsyncDownloads
-
-from ...._compat import cached_property
-
-from ....types.addresses import LoaDocumentIPAddressManagementPrefixesUploadLoaDocumentResponse
-
-from typing import Type
-
-from ...._response import (
-    to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ....types import shared_params
-from ....types.addresses import loa_document_ip_address_management_prefixes_upload_loa_document_params
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import maybe_transform
 from .downloads import (
     Downloads,
     AsyncDownloads,
@@ -43,27 +16,37 @@ from .downloads import (
     DownloadsWithStreamingResponse,
     AsyncDownloadsWithStreamingResponse,
 )
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
 from ...._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
+from ...._base_client import (
+    make_request_options,
+)
+from ....types.addresses import LOADocumentCreateResponse, loa_document_create_params
 
-__all__ = ["LoaDocuments", "AsyncLoaDocuments"]
+__all__ = ["LOADocuments", "AsyncLOADocuments"]
 
 
-class LoaDocuments(SyncAPIResource):
+class LOADocuments(SyncAPIResource):
     @cached_property
     def downloads(self) -> Downloads:
         return Downloads(self._client)
 
     @cached_property
-    def with_raw_response(self) -> LoaDocumentsWithRawResponse:
-        return LoaDocumentsWithRawResponse(self)
+    def with_raw_response(self) -> LOADocumentsWithRawResponse:
+        return LOADocumentsWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> LoaDocumentsWithStreamingResponse:
-        return LoaDocumentsWithStreamingResponse(self)
+    def with_streaming_response(self) -> LOADocumentsWithStreamingResponse:
+        return LOADocumentsWithStreamingResponse(self)
 
-    def ip_address_management_prefixes_upload_loa_document(
+    def create(
         self,
         account_id: str,
         *,
@@ -74,7 +57,7 @@ class LoaDocuments(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LoaDocumentIPAddressManagementPrefixesUploadLoaDocumentResponse:
+    ) -> LOADocumentCreateResponse:
         """
         Submit LOA document (pdf format) under the account.
 
@@ -95,10 +78,7 @@ class LoaDocuments(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
             f"/accounts/{account_id}/addressing/loa_documents",
-            body=maybe_transform(
-                {"loa_document": loa_document},
-                loa_document_ip_address_management_prefixes_upload_loa_document_params.LoaDocumentIPAddressManagementPrefixesUploadLoaDocumentParams,
-            ),
+            body=maybe_transform({"loa_document": loa_document}, loa_document_create_params.LOADocumentCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -106,27 +86,24 @@ class LoaDocuments(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[LoaDocumentIPAddressManagementPrefixesUploadLoaDocumentResponse],
-                ResultWrapper[LoaDocumentIPAddressManagementPrefixesUploadLoaDocumentResponse],
-            ),
+            cast_to=cast(Type[LOADocumentCreateResponse], ResultWrapper[LOADocumentCreateResponse]),
         )
 
 
-class AsyncLoaDocuments(AsyncAPIResource):
+class AsyncLOADocuments(AsyncAPIResource):
     @cached_property
     def downloads(self) -> AsyncDownloads:
         return AsyncDownloads(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncLoaDocumentsWithRawResponse:
-        return AsyncLoaDocumentsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncLOADocumentsWithRawResponse:
+        return AsyncLOADocumentsWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncLoaDocumentsWithStreamingResponse:
-        return AsyncLoaDocumentsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncLOADocumentsWithStreamingResponse:
+        return AsyncLOADocumentsWithStreamingResponse(self)
 
-    async def ip_address_management_prefixes_upload_loa_document(
+    async def create(
         self,
         account_id: str,
         *,
@@ -137,7 +114,7 @@ class AsyncLoaDocuments(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LoaDocumentIPAddressManagementPrefixesUploadLoaDocumentResponse:
+    ) -> LOADocumentCreateResponse:
         """
         Submit LOA document (pdf format) under the account.
 
@@ -158,10 +135,7 @@ class AsyncLoaDocuments(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/addressing/loa_documents",
-            body=maybe_transform(
-                {"loa_document": loa_document},
-                loa_document_ip_address_management_prefixes_upload_loa_document_params.LoaDocumentIPAddressManagementPrefixesUploadLoaDocumentParams,
-            ),
+            body=maybe_transform({"loa_document": loa_document}, loa_document_create_params.LOADocumentCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -169,19 +143,16 @@ class AsyncLoaDocuments(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[LoaDocumentIPAddressManagementPrefixesUploadLoaDocumentResponse],
-                ResultWrapper[LoaDocumentIPAddressManagementPrefixesUploadLoaDocumentResponse],
-            ),
+            cast_to=cast(Type[LOADocumentCreateResponse], ResultWrapper[LOADocumentCreateResponse]),
         )
 
 
-class LoaDocumentsWithRawResponse:
-    def __init__(self, loa_documents: LoaDocuments) -> None:
+class LOADocumentsWithRawResponse:
+    def __init__(self, loa_documents: LOADocuments) -> None:
         self._loa_documents = loa_documents
 
-        self.ip_address_management_prefixes_upload_loa_document = to_raw_response_wrapper(
-            loa_documents.ip_address_management_prefixes_upload_loa_document,
+        self.create = to_raw_response_wrapper(
+            loa_documents.create,
         )
 
     @cached_property
@@ -189,12 +160,12 @@ class LoaDocumentsWithRawResponse:
         return DownloadsWithRawResponse(self._loa_documents.downloads)
 
 
-class AsyncLoaDocumentsWithRawResponse:
-    def __init__(self, loa_documents: AsyncLoaDocuments) -> None:
+class AsyncLOADocumentsWithRawResponse:
+    def __init__(self, loa_documents: AsyncLOADocuments) -> None:
         self._loa_documents = loa_documents
 
-        self.ip_address_management_prefixes_upload_loa_document = async_to_raw_response_wrapper(
-            loa_documents.ip_address_management_prefixes_upload_loa_document,
+        self.create = async_to_raw_response_wrapper(
+            loa_documents.create,
         )
 
     @cached_property
@@ -202,12 +173,12 @@ class AsyncLoaDocumentsWithRawResponse:
         return AsyncDownloadsWithRawResponse(self._loa_documents.downloads)
 
 
-class LoaDocumentsWithStreamingResponse:
-    def __init__(self, loa_documents: LoaDocuments) -> None:
+class LOADocumentsWithStreamingResponse:
+    def __init__(self, loa_documents: LOADocuments) -> None:
         self._loa_documents = loa_documents
 
-        self.ip_address_management_prefixes_upload_loa_document = to_streamed_response_wrapper(
-            loa_documents.ip_address_management_prefixes_upload_loa_document,
+        self.create = to_streamed_response_wrapper(
+            loa_documents.create,
         )
 
     @cached_property
@@ -215,12 +186,12 @@ class LoaDocumentsWithStreamingResponse:
         return DownloadsWithStreamingResponse(self._loa_documents.downloads)
 
 
-class AsyncLoaDocumentsWithStreamingResponse:
-    def __init__(self, loa_documents: AsyncLoaDocuments) -> None:
+class AsyncLOADocumentsWithStreamingResponse:
+    def __init__(self, loa_documents: AsyncLOADocuments) -> None:
         self._loa_documents = loa_documents
 
-        self.ip_address_management_prefixes_upload_loa_document = async_to_streamed_response_wrapper(
-            loa_documents.ip_address_management_prefixes_upload_loa_document,
+        self.create = async_to_streamed_response_wrapper(
+            loa_documents.create,
         )
 
     @cached_property

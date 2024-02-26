@@ -2,33 +2,39 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, Literal, Annotated
-
-from typing import Optional, List, Iterable
+from typing import List, Iterable, Optional
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
-from ..._utils import PropertyInfo
-from ...types import shared_params
 
 __all__ = [
     "PoolUpdateParams",
+    "Origin",
+    "OriginHeader",
     "LoadShedding",
     "NotificationFilter",
     "NotificationFilterOrigin",
     "NotificationFilterPool",
     "OriginSteering",
-    "Origin",
-    "OriginHeader",
 ]
 
 
 class PoolUpdateParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier"""
+
+    name: Required[str]
+    """A short name (tag) for the pool.
+
+    Only alphanumeric characters, hyphens, and underscores are allowed.
+    """
+
+    origins: Required[Iterable[Origin]]
+    """The list of origins within this pool.
+
+    Traffic directed at this pool is balanced across all currently healthy origins,
+    provided the pool itself is healthy.
+    """
 
     check_regions: Optional[
         List[
@@ -94,12 +100,6 @@ class PoolUpdateParams(TypedDict, total=False):
     pool.
     """
 
-    name: str
-    """A short name (tag) for the pool.
-
-    Only alphanumeric characters, hyphens, and underscores are allowed.
-    """
-
     notification_email: str
     """This field is now deprecated.
 
@@ -122,11 +122,56 @@ class PoolUpdateParams(TypedDict, total=False):
     affinity.
     """
 
-    origins: Iterable[Origin]
-    """The list of origins within this pool.
 
-    Traffic directed at this pool is balanced across all currently healthy origins,
-    provided the pool itself is healthy.
+class OriginHeader(TypedDict, total=False):
+    host: Annotated[List[str], PropertyInfo(alias="Host")]
+    """The 'Host' header allows to override the hostname set in the HTTP request.
+
+    Current support is 1 'Host' header override per origin.
+    """
+
+
+class Origin(TypedDict, total=False):
+    address: str
+    """
+    The IP address (IPv4 or IPv6) of the origin, or its publicly addressable
+    hostname. Hostnames entered here should resolve directly to the origin, and not
+    be a hostname proxied by Cloudflare. To set an internal/reserved address,
+    virtual_network_id must also be set.
+    """
+
+    enabled: bool
+    """Whether to enable (the default) this origin within the pool.
+
+    Disabled origins will not receive traffic and are excluded from health checks.
+    The origin will only be disabled for the current pool.
+    """
+
+    header: OriginHeader
+    """The request header is used to pass additional information with an HTTP request.
+
+    Currently supported header is 'Host'.
+    """
+
+    name: str
+    """A human-identifiable name for the origin."""
+
+    virtual_network_id: str
+    """The virtual network subnet ID the origin belongs in.
+
+    Virtual network must also belong to the account.
+    """
+
+    weight: float
+    """The weight of this origin relative to other origins in the pool.
+
+    Based on the configured weight the total traffic is distributed among origins
+    within the pool.
+
+    - `origin_steering.policy="least_outstanding_requests"`: Use weight to scale the
+      origin's outstanding requests.
+    - `origin_steering.policy="least_connections"`: Use weight to scale the origin's
+      open connections.
     """
 
 
@@ -209,56 +254,4 @@ class OriginSteering(TypedDict, total=False):
       weights, as well as each origin's number of open connections. Origins with
       more open connections are weighted proportionately less relative to others.
       Supported for HTTP/1 and HTTP/2 connections.
-    """
-
-
-class OriginHeader(TypedDict, total=False):
-    host: Annotated[List[str], PropertyInfo(alias="Host")]
-    """The 'Host' header allows to override the hostname set in the HTTP request.
-
-    Current support is 1 'Host' header override per origin.
-    """
-
-
-class Origin(TypedDict, total=False):
-    address: str
-    """
-    The IP address (IPv4 or IPv6) of the origin, or its publicly addressable
-    hostname. Hostnames entered here should resolve directly to the origin, and not
-    be a hostname proxied by Cloudflare. To set an internal/reserved address,
-    virtual_network_id must also be set.
-    """
-
-    enabled: bool
-    """Whether to enable (the default) this origin within the pool.
-
-    Disabled origins will not receive traffic and are excluded from health checks.
-    The origin will only be disabled for the current pool.
-    """
-
-    header: OriginHeader
-    """The request header is used to pass additional information with an HTTP request.
-
-    Currently supported header is 'Host'.
-    """
-
-    name: str
-    """A human-identifiable name for the origin."""
-
-    virtual_network_id: str
-    """The virtual network subnet ID the origin belongs in.
-
-    Virtual network must also belong to the account.
-    """
-
-    weight: float
-    """The weight of this origin relative to other origins in the pool.
-
-    Based on the configured weight the total traffic is distributed among origins
-    within the pool.
-
-    - `origin_steering.policy="least_outstanding_requests"`: Use weight to scale the
-      origin's outstanding requests.
-    - `origin_steering.policy="least_connections"`: Use weight to scale the origin's
-      open connections.
     """

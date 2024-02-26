@@ -2,9 +2,5 @@
 
 from __future__ import annotations
 
-from .prioritize_custom_ssl_for_a_zone_re_prioritize_ssl_certificates_response import (
-    PrioritizeCustomSSLForAZoneRePrioritizeSSLCertificatesResponse as PrioritizeCustomSSLForAZoneRePrioritizeSSLCertificatesResponse,
-)
-from .prioritize_custom_ssl_for_a_zone_re_prioritize_ssl_certificates_params import (
-    PrioritizeCustomSSLForAZoneRePrioritizeSSLCertificatesParams as PrioritizeCustomSSLForAZoneRePrioritizeSSLCertificatesParams,
-)
+from .prioritize_update_params import PrioritizeUpdateParams as PrioritizeUpdateParams
+from .prioritize_update_response import PrioritizeUpdateResponse as PrioritizeUpdateResponse

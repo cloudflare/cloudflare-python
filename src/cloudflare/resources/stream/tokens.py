@@ -2,43 +2,25 @@
 
 from __future__ import annotations
 
+from typing import Type, Iterable, cast
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._compat import cached_property
-
-from ...types.stream import (
-    TokenStreamVideosCreateSignedURLTokensForVideosResponse,
-    token_stream_videos_create_signed_url_tokens_for_videos_params,
-)
-
-from typing import Type, Iterable
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types.stream import token_stream_videos_create_signed_url_tokens_for_videos_params
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
+from ..._base_client import (
+    make_request_options,
+)
+from ...types.stream import TokenCreateResponse, token_create_params
 
 __all__ = ["Tokens", "AsyncTokens"]
 
@@ -52,14 +34,13 @@ class Tokens(SyncAPIResource):
     def with_streaming_response(self) -> TokensWithStreamingResponse:
         return TokensWithStreamingResponse(self)
 
-    def stream_videos_create_signed_url_tokens_for_videos(
+    def create(
         self,
         identifier: str,
         *,
         account_id: str,
         id: str | NotGiven = NOT_GIVEN,
-        access_rules: Iterable[token_stream_videos_create_signed_url_tokens_for_videos_params.AccessRule]
-        | NotGiven = NOT_GIVEN,
+        access_rules: Iterable[token_create_params.AccessRule] | NotGiven = NOT_GIVEN,
         downloadable: bool | NotGiven = NOT_GIVEN,
         exp: int | NotGiven = NOT_GIVEN,
         nbf: int | NotGiven = NOT_GIVEN,
@@ -70,7 +51,7 @@ class Tokens(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TokenStreamVideosCreateSignedURLTokensForVideosResponse:
+    ) -> TokenCreateResponse:
         """Creates a signed URL token for a video.
 
         If a body is not provided in the
@@ -125,7 +106,7 @@ class Tokens(SyncAPIResource):
                     "nbf": nbf,
                     "pem": pem,
                 },
-                token_stream_videos_create_signed_url_tokens_for_videos_params.TokenStreamVideosCreateSignedURLTokensForVideosParams,
+                token_create_params.TokenCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -134,10 +115,7 @@ class Tokens(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[TokenStreamVideosCreateSignedURLTokensForVideosResponse],
-                ResultWrapper[TokenStreamVideosCreateSignedURLTokensForVideosResponse],
-            ),
+            cast_to=cast(Type[TokenCreateResponse], ResultWrapper[TokenCreateResponse]),
         )
 
 
@@ -150,14 +128,13 @@ class AsyncTokens(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncTokensWithStreamingResponse:
         return AsyncTokensWithStreamingResponse(self)
 
-    async def stream_videos_create_signed_url_tokens_for_videos(
+    async def create(
         self,
         identifier: str,
         *,
         account_id: str,
         id: str | NotGiven = NOT_GIVEN,
-        access_rules: Iterable[token_stream_videos_create_signed_url_tokens_for_videos_params.AccessRule]
-        | NotGiven = NOT_GIVEN,
+        access_rules: Iterable[token_create_params.AccessRule] | NotGiven = NOT_GIVEN,
         downloadable: bool | NotGiven = NOT_GIVEN,
         exp: int | NotGiven = NOT_GIVEN,
         nbf: int | NotGiven = NOT_GIVEN,
@@ -168,7 +145,7 @@ class AsyncTokens(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TokenStreamVideosCreateSignedURLTokensForVideosResponse:
+    ) -> TokenCreateResponse:
         """Creates a signed URL token for a video.
 
         If a body is not provided in the
@@ -223,7 +200,7 @@ class AsyncTokens(AsyncAPIResource):
                     "nbf": nbf,
                     "pem": pem,
                 },
-                token_stream_videos_create_signed_url_tokens_for_videos_params.TokenStreamVideosCreateSignedURLTokensForVideosParams,
+                token_create_params.TokenCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -232,10 +209,7 @@ class AsyncTokens(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[TokenStreamVideosCreateSignedURLTokensForVideosResponse],
-                ResultWrapper[TokenStreamVideosCreateSignedURLTokensForVideosResponse],
-            ),
+            cast_to=cast(Type[TokenCreateResponse], ResultWrapper[TokenCreateResponse]),
         )
 
 
@@ -243,8 +217,8 @@ class TokensWithRawResponse:
     def __init__(self, tokens: Tokens) -> None:
         self._tokens = tokens
 
-        self.stream_videos_create_signed_url_tokens_for_videos = to_raw_response_wrapper(
-            tokens.stream_videos_create_signed_url_tokens_for_videos,
+        self.create = to_raw_response_wrapper(
+            tokens.create,
         )
 
 
@@ -252,8 +226,8 @@ class AsyncTokensWithRawResponse:
     def __init__(self, tokens: AsyncTokens) -> None:
         self._tokens = tokens
 
-        self.stream_videos_create_signed_url_tokens_for_videos = async_to_raw_response_wrapper(
-            tokens.stream_videos_create_signed_url_tokens_for_videos,
+        self.create = async_to_raw_response_wrapper(
+            tokens.create,
         )
 
 
@@ -261,8 +235,8 @@ class TokensWithStreamingResponse:
     def __init__(self, tokens: Tokens) -> None:
         self._tokens = tokens
 
-        self.stream_videos_create_signed_url_tokens_for_videos = to_streamed_response_wrapper(
-            tokens.stream_videos_create_signed_url_tokens_for_videos,
+        self.create = to_streamed_response_wrapper(
+            tokens.create,
         )
 
 
@@ -270,6 +244,6 @@ class AsyncTokensWithStreamingResponse:
     def __init__(self, tokens: AsyncTokens) -> None:
         self._tokens = tokens
 
-        self.stream_videos_create_signed_url_tokens_for_videos = async_to_streamed_response_wrapper(
-            tokens.stream_videos_create_signed_url_tokens_for_videos,
+        self.create = async_to_streamed_response_wrapper(
+            tokens.create,
         )

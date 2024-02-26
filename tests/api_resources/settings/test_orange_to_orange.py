@@ -2,19 +2,17 @@
 
 from __future__ import annotations
 
-from typing import Optional, Any, cast
-
-from cloudflare.types.settings import OrangeToOrangeUpdateResponse, OrangeToOrangeGetResponse
-
 import os
+from typing import Any, Optional, cast
+
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.settings import orange_to_orange_update_params
+from cloudflare.types.settings import (
+    OrangeToOrangeGetResponse,
+    OrangeToOrangeEditResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -24,32 +22,32 @@ class TestOrangeToOrange:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_update(self, client: Cloudflare) -> None:
-        orange_to_orange = client.settings.orange_to_orange.update(
+    def test_method_edit(self, client: Cloudflare) -> None:
+        orange_to_orange = client.settings.orange_to_orange.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
             value={
                 "id": "orange_to_orange",
                 "value": "on",
             },
         )
-        assert_matches_type(Optional[OrangeToOrangeUpdateResponse], orange_to_orange, path=["response"])
+        assert_matches_type(Optional[OrangeToOrangeEditResponse], orange_to_orange, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_update_with_all_params(self, client: Cloudflare) -> None:
-        orange_to_orange = client.settings.orange_to_orange.update(
+    def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
+        orange_to_orange = client.settings.orange_to_orange.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
             value={
                 "id": "orange_to_orange",
                 "value": "on",
             },
         )
-        assert_matches_type(Optional[OrangeToOrangeUpdateResponse], orange_to_orange, path=["response"])
+        assert_matches_type(Optional[OrangeToOrangeEditResponse], orange_to_orange, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_update(self, client: Cloudflare) -> None:
-        response = client.settings.orange_to_orange.with_raw_response.update(
+    def test_raw_response_edit(self, client: Cloudflare) -> None:
+        response = client.settings.orange_to_orange.with_raw_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
             value={
                 "id": "orange_to_orange",
@@ -60,12 +58,12 @@ class TestOrangeToOrange:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         orange_to_orange = response.parse()
-        assert_matches_type(Optional[OrangeToOrangeUpdateResponse], orange_to_orange, path=["response"])
+        assert_matches_type(Optional[OrangeToOrangeEditResponse], orange_to_orange, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_update(self, client: Cloudflare) -> None:
-        with client.settings.orange_to_orange.with_streaming_response.update(
+    def test_streaming_response_edit(self, client: Cloudflare) -> None:
+        with client.settings.orange_to_orange.with_streaming_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
             value={
                 "id": "orange_to_orange",
@@ -76,15 +74,15 @@ class TestOrangeToOrange:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             orange_to_orange = response.parse()
-            assert_matches_type(Optional[OrangeToOrangeUpdateResponse], orange_to_orange, path=["response"])
+            assert_matches_type(Optional[OrangeToOrangeEditResponse], orange_to_orange, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_update(self, client: Cloudflare) -> None:
+    def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.settings.orange_to_orange.with_raw_response.update(
+            client.settings.orange_to_orange.with_raw_response.edit(
                 "",
                 value={
                     "id": "orange_to_orange",
@@ -140,32 +138,32 @@ class TestAsyncOrangeToOrange:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_update(self, async_client: AsyncCloudflare) -> None:
-        orange_to_orange = await async_client.settings.orange_to_orange.update(
+    async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
+        orange_to_orange = await async_client.settings.orange_to_orange.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
             value={
                 "id": "orange_to_orange",
                 "value": "on",
             },
         )
-        assert_matches_type(Optional[OrangeToOrangeUpdateResponse], orange_to_orange, path=["response"])
+        assert_matches_type(Optional[OrangeToOrangeEditResponse], orange_to_orange, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        orange_to_orange = await async_client.settings.orange_to_orange.update(
+    async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        orange_to_orange = await async_client.settings.orange_to_orange.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
             value={
                 "id": "orange_to_orange",
                 "value": "on",
             },
         )
-        assert_matches_type(Optional[OrangeToOrangeUpdateResponse], orange_to_orange, path=["response"])
+        assert_matches_type(Optional[OrangeToOrangeEditResponse], orange_to_orange, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.settings.orange_to_orange.with_raw_response.update(
+    async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.settings.orange_to_orange.with_raw_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
             value={
                 "id": "orange_to_orange",
@@ -176,12 +174,12 @@ class TestAsyncOrangeToOrange:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         orange_to_orange = await response.parse()
-        assert_matches_type(Optional[OrangeToOrangeUpdateResponse], orange_to_orange, path=["response"])
+        assert_matches_type(Optional[OrangeToOrangeEditResponse], orange_to_orange, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.settings.orange_to_orange.with_streaming_response.update(
+    async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.settings.orange_to_orange.with_streaming_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
             value={
                 "id": "orange_to_orange",
@@ -192,15 +190,15 @@ class TestAsyncOrangeToOrange:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             orange_to_orange = await response.parse()
-            assert_matches_type(Optional[OrangeToOrangeUpdateResponse], orange_to_orange, path=["response"])
+            assert_matches_type(Optional[OrangeToOrangeEditResponse], orange_to_orange, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
+    async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.settings.orange_to_orange.with_raw_response.update(
+            await async_client.settings.orange_to_orange.with_raw_response.edit(
                 "",
                 value={
                     "id": "orange_to_orange",

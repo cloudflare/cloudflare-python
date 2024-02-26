@@ -2,50 +2,30 @@
 
 from __future__ import annotations
 
+from typing import List, Type, cast
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._compat import cached_property
-
-from ...types.certificate_authorities import (
-    HostnameAssociationClientCertificateForAZoneListHostnameAssociationsResponse,
-    HostnameAssociationClientCertificateForAZonePutHostnameAssociationsResponse,
-)
-
-from typing import Type, List
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types.certificate_authorities import (
-    hostname_association_client_certificate_for_a_zone_list_hostname_associations_params,
-)
-from ...types.certificate_authorities import (
-    hostname_association_client_certificate_for_a_zone_put_hostname_associations_params,
-)
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ..._base_client import (
+    make_request_options,
+)
+from ...types.certificate_authorities import (
+    HostnameAssociationListResponse,
+    HostnameAssociationUpdateResponse,
+    hostname_association_list_params,
+    hostname_association_update_params,
+)
 
 __all__ = ["HostnameAssociations", "AsyncHostnameAssociations"]
 
@@ -59,7 +39,59 @@ class HostnameAssociations(SyncAPIResource):
     def with_streaming_response(self) -> HostnameAssociationsWithStreamingResponse:
         return HostnameAssociationsWithStreamingResponse(self)
 
-    def client_certificate_for_a_zone_list_hostname_associations(
+    def update(
+        self,
+        zone_id: str,
+        *,
+        hostnames: List[str] | NotGiven = NOT_GIVEN,
+        mtls_certificate_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> HostnameAssociationUpdateResponse:
+        """
+        Replace Hostname Associations
+
+        Args:
+          zone_id: Identifier
+
+          mtls_certificate_id: The UUID for a certificate that was uploaded to the mTLS Certificate Management
+              endpoint. If no mtls_certificate_id is given, the hostnames will be associated
+              to your active Cloudflare Managed CA.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return self._put(
+            f"/zones/{zone_id}/certificate_authorities/hostname_associations",
+            body=maybe_transform(
+                {
+                    "hostnames": hostnames,
+                    "mtls_certificate_id": mtls_certificate_id,
+                },
+                hostname_association_update_params.HostnameAssociationUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[HostnameAssociationUpdateResponse], ResultWrapper[HostnameAssociationUpdateResponse]),
+        )
+
+    def list(
         self,
         zone_id: str,
         *,
@@ -70,7 +102,7 @@ class HostnameAssociations(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> HostnameAssociationClientCertificateForAZoneListHostnameAssociationsResponse:
+    ) -> HostnameAssociationListResponse:
         """
         List Hostname Associations
 
@@ -100,17 +132,24 @@ class HostnameAssociations(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {"mtls_certificate_id": mtls_certificate_id},
-                    hostname_association_client_certificate_for_a_zone_list_hostname_associations_params.HostnameAssociationClientCertificateForAZoneListHostnameAssociationsParams,
+                    hostname_association_list_params.HostnameAssociationListParams,
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[HostnameAssociationClientCertificateForAZoneListHostnameAssociationsResponse],
-                ResultWrapper[HostnameAssociationClientCertificateForAZoneListHostnameAssociationsResponse],
-            ),
+            cast_to=cast(Type[HostnameAssociationListResponse], ResultWrapper[HostnameAssociationListResponse]),
         )
 
-    def client_certificate_for_a_zone_put_hostname_associations(
+
+class AsyncHostnameAssociations(AsyncAPIResource):
+    @cached_property
+    def with_raw_response(self) -> AsyncHostnameAssociationsWithRawResponse:
+        return AsyncHostnameAssociationsWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncHostnameAssociationsWithStreamingResponse:
+        return AsyncHostnameAssociationsWithStreamingResponse(self)
+
+    async def update(
         self,
         zone_id: str,
         *,
@@ -122,7 +161,7 @@ class HostnameAssociations(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> HostnameAssociationClientCertificateForAZonePutHostnameAssociationsResponse:
+    ) -> HostnameAssociationUpdateResponse:
         """
         Replace Hostname Associations
 
@@ -143,14 +182,14 @@ class HostnameAssociations(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return self._put(
+        return await self._put(
             f"/zones/{zone_id}/certificate_authorities/hostname_associations",
             body=maybe_transform(
                 {
                     "hostnames": hostnames,
                     "mtls_certificate_id": mtls_certificate_id,
                 },
-                hostname_association_client_certificate_for_a_zone_put_hostname_associations_params.HostnameAssociationClientCertificateForAZonePutHostnameAssociationsParams,
+                hostname_association_update_params.HostnameAssociationUpdateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -159,23 +198,10 @@ class HostnameAssociations(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[HostnameAssociationClientCertificateForAZonePutHostnameAssociationsResponse],
-                ResultWrapper[HostnameAssociationClientCertificateForAZonePutHostnameAssociationsResponse],
-            ),
+            cast_to=cast(Type[HostnameAssociationUpdateResponse], ResultWrapper[HostnameAssociationUpdateResponse]),
         )
 
-
-class AsyncHostnameAssociations(AsyncAPIResource):
-    @cached_property
-    def with_raw_response(self) -> AsyncHostnameAssociationsWithRawResponse:
-        return AsyncHostnameAssociationsWithRawResponse(self)
-
-    @cached_property
-    def with_streaming_response(self) -> AsyncHostnameAssociationsWithStreamingResponse:
-        return AsyncHostnameAssociationsWithStreamingResponse(self)
-
-    async def client_certificate_for_a_zone_list_hostname_associations(
+    async def list(
         self,
         zone_id: str,
         *,
@@ -186,7 +212,7 @@ class AsyncHostnameAssociations(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> HostnameAssociationClientCertificateForAZoneListHostnameAssociationsResponse:
+    ) -> HostnameAssociationListResponse:
         """
         List Hostname Associations
 
@@ -216,69 +242,11 @@ class AsyncHostnameAssociations(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {"mtls_certificate_id": mtls_certificate_id},
-                    hostname_association_client_certificate_for_a_zone_list_hostname_associations_params.HostnameAssociationClientCertificateForAZoneListHostnameAssociationsParams,
+                    hostname_association_list_params.HostnameAssociationListParams,
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[HostnameAssociationClientCertificateForAZoneListHostnameAssociationsResponse],
-                ResultWrapper[HostnameAssociationClientCertificateForAZoneListHostnameAssociationsResponse],
-            ),
-        )
-
-    async def client_certificate_for_a_zone_put_hostname_associations(
-        self,
-        zone_id: str,
-        *,
-        hostnames: List[str] | NotGiven = NOT_GIVEN,
-        mtls_certificate_id: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> HostnameAssociationClientCertificateForAZonePutHostnameAssociationsResponse:
-        """
-        Replace Hostname Associations
-
-        Args:
-          zone_id: Identifier
-
-          mtls_certificate_id: The UUID for a certificate that was uploaded to the mTLS Certificate Management
-              endpoint. If no mtls_certificate_id is given, the hostnames will be associated
-              to your active Cloudflare Managed CA.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return await self._put(
-            f"/zones/{zone_id}/certificate_authorities/hostname_associations",
-            body=maybe_transform(
-                {
-                    "hostnames": hostnames,
-                    "mtls_certificate_id": mtls_certificate_id,
-                },
-                hostname_association_client_certificate_for_a_zone_put_hostname_associations_params.HostnameAssociationClientCertificateForAZonePutHostnameAssociationsParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[HostnameAssociationClientCertificateForAZonePutHostnameAssociationsResponse],
-                ResultWrapper[HostnameAssociationClientCertificateForAZonePutHostnameAssociationsResponse],
-            ),
+            cast_to=cast(Type[HostnameAssociationListResponse], ResultWrapper[HostnameAssociationListResponse]),
         )
 
 
@@ -286,11 +254,11 @@ class HostnameAssociationsWithRawResponse:
     def __init__(self, hostname_associations: HostnameAssociations) -> None:
         self._hostname_associations = hostname_associations
 
-        self.client_certificate_for_a_zone_list_hostname_associations = to_raw_response_wrapper(
-            hostname_associations.client_certificate_for_a_zone_list_hostname_associations,
+        self.update = to_raw_response_wrapper(
+            hostname_associations.update,
         )
-        self.client_certificate_for_a_zone_put_hostname_associations = to_raw_response_wrapper(
-            hostname_associations.client_certificate_for_a_zone_put_hostname_associations,
+        self.list = to_raw_response_wrapper(
+            hostname_associations.list,
         )
 
 
@@ -298,11 +266,11 @@ class AsyncHostnameAssociationsWithRawResponse:
     def __init__(self, hostname_associations: AsyncHostnameAssociations) -> None:
         self._hostname_associations = hostname_associations
 
-        self.client_certificate_for_a_zone_list_hostname_associations = async_to_raw_response_wrapper(
-            hostname_associations.client_certificate_for_a_zone_list_hostname_associations,
+        self.update = async_to_raw_response_wrapper(
+            hostname_associations.update,
         )
-        self.client_certificate_for_a_zone_put_hostname_associations = async_to_raw_response_wrapper(
-            hostname_associations.client_certificate_for_a_zone_put_hostname_associations,
+        self.list = async_to_raw_response_wrapper(
+            hostname_associations.list,
         )
 
 
@@ -310,11 +278,11 @@ class HostnameAssociationsWithStreamingResponse:
     def __init__(self, hostname_associations: HostnameAssociations) -> None:
         self._hostname_associations = hostname_associations
 
-        self.client_certificate_for_a_zone_list_hostname_associations = to_streamed_response_wrapper(
-            hostname_associations.client_certificate_for_a_zone_list_hostname_associations,
+        self.update = to_streamed_response_wrapper(
+            hostname_associations.update,
         )
-        self.client_certificate_for_a_zone_put_hostname_associations = to_streamed_response_wrapper(
-            hostname_associations.client_certificate_for_a_zone_put_hostname_associations,
+        self.list = to_streamed_response_wrapper(
+            hostname_associations.list,
         )
 
 
@@ -322,9 +290,9 @@ class AsyncHostnameAssociationsWithStreamingResponse:
     def __init__(self, hostname_associations: AsyncHostnameAssociations) -> None:
         self._hostname_associations = hostname_associations
 
-        self.client_certificate_for_a_zone_list_hostname_associations = async_to_streamed_response_wrapper(
-            hostname_associations.client_certificate_for_a_zone_list_hostname_associations,
+        self.update = async_to_streamed_response_wrapper(
+            hostname_associations.update,
         )
-        self.client_certificate_for_a_zone_put_hostname_associations = async_to_streamed_response_wrapper(
-            hostname_associations.client_certificate_for_a_zone_put_hostname_associations,
+        self.list = async_to_streamed_response_wrapper(
+            hostname_associations.list,
         )

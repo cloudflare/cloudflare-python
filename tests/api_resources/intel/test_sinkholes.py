@@ -2,18 +2,14 @@
 
 from __future__ import annotations
 
-from cloudflare.types.intel import SinkholeListResponse
-
+import os
 from typing import Any, cast
 
-import os
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.types.intel import SinkholeListResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -58,7 +54,7 @@ class TestSinkholes:
     @pytest.mark.skip()
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.intel.sinkholes.with_raw_response.list(
                 "",
             )
@@ -104,7 +100,7 @@ class TestAsyncSinkholes:
     @pytest.mark.skip()
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.intel.sinkholes.with_raw_response.list(
                 "",
             )

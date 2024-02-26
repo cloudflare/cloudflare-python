@@ -1,19 +1,14 @@
 # File generated from our OpenAPI spec by Stainless.
 
 from typing import List, Optional
-
 from typing_extensions import Literal
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
 from .._models import BaseModel
-from ..types import shared
 
-__all__ = ["AccountMemberListResponse", "AccountMemberListResponseItem", "AccountMemberListResponseItemRole"]
+__all__ = ["AccountMemberListResponse", "Role"]
 
 
-class AccountMemberListResponseItemRole(BaseModel):
+class Role(BaseModel):
     id: str
     """Role identifier tag."""
 
@@ -27,7 +22,7 @@ class AccountMemberListResponseItemRole(BaseModel):
     """Access permissions for this User."""
 
 
-class AccountMemberListResponseItem(BaseModel):
+class AccountMemberListResponse(BaseModel):
     id: str
     """Identifier"""
 
@@ -37,11 +32,8 @@ class AccountMemberListResponseItem(BaseModel):
     name: Optional[str] = None
     """Member Name."""
 
-    roles: List[AccountMemberListResponseItemRole]
+    roles: List[Role]
     """Roles assigned to this Member."""
 
     status: Literal["accepted", "invited"]
     """A member's status in the organization."""
-
-
-AccountMemberListResponse = List[AccountMemberListResponseItem]

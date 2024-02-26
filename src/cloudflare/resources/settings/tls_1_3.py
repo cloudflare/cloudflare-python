@@ -2,44 +2,26 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+from typing_extensions import Literal
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._compat import cached_property
-
-from ...types.settings import TLS1_3UpdateResponse, TLS1_3GetResponse
-
-from typing import Type, Optional
-
-from typing_extensions import Literal
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types.settings import tls_1_3_update_params
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ..._base_client import (
+    make_request_options,
+)
+from ...types.settings import TLS1_3GetResponse, TLS1_3EditResponse, tls_1_3_edit_params
 
 __all__ = ["TLS1_3", "AsyncTLS1_3"]
 
@@ -53,7 +35,7 @@ class TLS1_3(SyncAPIResource):
     def with_streaming_response(self) -> TLS1_3WithStreamingResponse:
         return TLS1_3WithStreamingResponse(self)
 
-    def update(
+    def edit(
         self,
         zone_id: str,
         *,
@@ -64,7 +46,7 @@ class TLS1_3(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[TLS1_3UpdateResponse]:
+    ) -> Optional[TLS1_3EditResponse]:
         """
         Changes TLS 1.3 setting.
 
@@ -86,7 +68,7 @@ class TLS1_3(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._patch(
             f"/zones/{zone_id}/settings/tls_1_3",
-            body=maybe_transform({"value": value}, tls_1_3_update_params.TLS1_3UpdateParams),
+            body=maybe_transform({"value": value}, tls_1_3_edit_params.TLS1_3EditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -94,7 +76,7 @@ class TLS1_3(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[TLS1_3UpdateResponse]], ResultWrapper[TLS1_3UpdateResponse]),
+            cast_to=cast(Type[Optional[TLS1_3EditResponse]], ResultWrapper[TLS1_3EditResponse]),
         )
 
     def get(
@@ -146,7 +128,7 @@ class AsyncTLS1_3(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncTLS1_3WithStreamingResponse:
         return AsyncTLS1_3WithStreamingResponse(self)
 
-    async def update(
+    async def edit(
         self,
         zone_id: str,
         *,
@@ -157,7 +139,7 @@ class AsyncTLS1_3(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[TLS1_3UpdateResponse]:
+    ) -> Optional[TLS1_3EditResponse]:
         """
         Changes TLS 1.3 setting.
 
@@ -179,7 +161,7 @@ class AsyncTLS1_3(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._patch(
             f"/zones/{zone_id}/settings/tls_1_3",
-            body=maybe_transform({"value": value}, tls_1_3_update_params.TLS1_3UpdateParams),
+            body=maybe_transform({"value": value}, tls_1_3_edit_params.TLS1_3EditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -187,7 +169,7 @@ class AsyncTLS1_3(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[TLS1_3UpdateResponse]], ResultWrapper[TLS1_3UpdateResponse]),
+            cast_to=cast(Type[Optional[TLS1_3EditResponse]], ResultWrapper[TLS1_3EditResponse]),
         )
 
     async def get(
@@ -234,8 +216,8 @@ class TLS1_3WithRawResponse:
     def __init__(self, tls_1_3: TLS1_3) -> None:
         self._tls_1_3 = tls_1_3
 
-        self.update = to_raw_response_wrapper(
-            tls_1_3.update,
+        self.edit = to_raw_response_wrapper(
+            tls_1_3.edit,
         )
         self.get = to_raw_response_wrapper(
             tls_1_3.get,
@@ -246,8 +228,8 @@ class AsyncTLS1_3WithRawResponse:
     def __init__(self, tls_1_3: AsyncTLS1_3) -> None:
         self._tls_1_3 = tls_1_3
 
-        self.update = async_to_raw_response_wrapper(
-            tls_1_3.update,
+        self.edit = async_to_raw_response_wrapper(
+            tls_1_3.edit,
         )
         self.get = async_to_raw_response_wrapper(
             tls_1_3.get,
@@ -258,8 +240,8 @@ class TLS1_3WithStreamingResponse:
     def __init__(self, tls_1_3: TLS1_3) -> None:
         self._tls_1_3 = tls_1_3
 
-        self.update = to_streamed_response_wrapper(
-            tls_1_3.update,
+        self.edit = to_streamed_response_wrapper(
+            tls_1_3.edit,
         )
         self.get = to_streamed_response_wrapper(
             tls_1_3.get,
@@ -270,8 +252,8 @@ class AsyncTLS1_3WithStreamingResponse:
     def __init__(self, tls_1_3: AsyncTLS1_3) -> None:
         self._tls_1_3 = tls_1_3
 
-        self.update = async_to_streamed_response_wrapper(
-            tls_1_3.update,
+        self.edit = async_to_streamed_response_wrapper(
+            tls_1_3.edit,
         )
         self.get = async_to_streamed_response_wrapper(
             tls_1_3.get,

@@ -2,8 +2,11 @@
 
 from __future__ import annotations
 
-from .hold_enforce_response import HoldEnforceResponse as HoldEnforceResponse
 from .hold_get_response import HoldGetResponse as HoldGetResponse
-from .hold_remove_response import HoldRemoveResponse as HoldRemoveResponse
-from .hold_enforce_params import HoldEnforceParams as HoldEnforceParams
-from .hold_remove_params import HoldRemoveParams as HoldRemoveParams
+from .hold_create_params import HoldCreateParams as HoldCreateParams
+from .hold_delete_params import HoldDeleteParams as HoldDeleteParams
+from .hold_create_response import HoldCreateResponse as HoldCreateResponse
+from .hold_delete_response import HoldDeleteResponse as HoldDeleteResponse
+from .custom_nameserver_get_response import CustomNameserverGetResponse as CustomNameserverGetResponse
+from .custom_nameserver_update_params import CustomNameserverUpdateParams as CustomNameserverUpdateParams
+from .custom_nameserver_update_response import CustomNameserverUpdateResponse as CustomNameserverUpdateResponse

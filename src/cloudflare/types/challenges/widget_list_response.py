@@ -1,21 +1,15 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from typing_extensions import Literal
-
-from datetime import datetime
-
 from typing import List
-
-from typing import Optional, Union, List, Dict, Any
+from datetime import datetime
 from typing_extensions import Literal
-from pydantic import Field as FieldInfo
+
 from ..._models import BaseModel
-from ...types import shared
 
-__all__ = ["WidgetListResponse", "WidgetListResponseItem"]
+__all__ = ["WidgetListResponse"]
 
 
-class WidgetListResponseItem(BaseModel):
+class WidgetListResponse(BaseModel):
     bot_fight_mode: bool
     """
     If bot_fight_mode is set to `true`, Cloudflare issues computationally expensive
@@ -54,6 +48,3 @@ class WidgetListResponseItem(BaseModel):
 
     sitekey: str
     """Widget item identifier tag."""
-
-
-WidgetListResponse = List[WidgetListResponseItem]

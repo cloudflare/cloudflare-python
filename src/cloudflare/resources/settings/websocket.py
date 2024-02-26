@@ -2,44 +2,26 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+from typing_extensions import Literal
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._compat import cached_property
-
-from ...types.settings import WebsocketUpdateResponse, WebsocketGetResponse
-
-from typing import Type, Optional
-
-from typing_extensions import Literal
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types.settings import websocket_update_params
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ..._base_client import (
+    make_request_options,
+)
+from ...types.settings import WebsocketGetResponse, WebsocketEditResponse, websocket_edit_params
 
 __all__ = ["Websocket", "AsyncWebsocket"]
 
@@ -53,7 +35,7 @@ class Websocket(SyncAPIResource):
     def with_streaming_response(self) -> WebsocketWithStreamingResponse:
         return WebsocketWithStreamingResponse(self)
 
-    def update(
+    def edit(
         self,
         zone_id: str,
         *,
@@ -64,7 +46,7 @@ class Websocket(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[WebsocketUpdateResponse]:
+    ) -> Optional[WebsocketEditResponse]:
         """Changes Websockets setting.
 
         For more information about Websockets, please refer
@@ -88,7 +70,7 @@ class Websocket(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._patch(
             f"/zones/{zone_id}/settings/websockets",
-            body=maybe_transform({"value": value}, websocket_update_params.WebsocketUpdateParams),
+            body=maybe_transform({"value": value}, websocket_edit_params.WebsocketEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -96,7 +78,7 @@ class Websocket(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[WebsocketUpdateResponse]], ResultWrapper[WebsocketUpdateResponse]),
+            cast_to=cast(Type[Optional[WebsocketEditResponse]], ResultWrapper[WebsocketEditResponse]),
         )
 
     def get(
@@ -150,7 +132,7 @@ class AsyncWebsocket(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncWebsocketWithStreamingResponse:
         return AsyncWebsocketWithStreamingResponse(self)
 
-    async def update(
+    async def edit(
         self,
         zone_id: str,
         *,
@@ -161,7 +143,7 @@ class AsyncWebsocket(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[WebsocketUpdateResponse]:
+    ) -> Optional[WebsocketEditResponse]:
         """Changes Websockets setting.
 
         For more information about Websockets, please refer
@@ -185,7 +167,7 @@ class AsyncWebsocket(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._patch(
             f"/zones/{zone_id}/settings/websockets",
-            body=maybe_transform({"value": value}, websocket_update_params.WebsocketUpdateParams),
+            body=maybe_transform({"value": value}, websocket_edit_params.WebsocketEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -193,7 +175,7 @@ class AsyncWebsocket(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[WebsocketUpdateResponse]], ResultWrapper[WebsocketUpdateResponse]),
+            cast_to=cast(Type[Optional[WebsocketEditResponse]], ResultWrapper[WebsocketEditResponse]),
         )
 
     async def get(
@@ -242,8 +224,8 @@ class WebsocketWithRawResponse:
     def __init__(self, websocket: Websocket) -> None:
         self._websocket = websocket
 
-        self.update = to_raw_response_wrapper(
-            websocket.update,
+        self.edit = to_raw_response_wrapper(
+            websocket.edit,
         )
         self.get = to_raw_response_wrapper(
             websocket.get,
@@ -254,8 +236,8 @@ class AsyncWebsocketWithRawResponse:
     def __init__(self, websocket: AsyncWebsocket) -> None:
         self._websocket = websocket
 
-        self.update = async_to_raw_response_wrapper(
-            websocket.update,
+        self.edit = async_to_raw_response_wrapper(
+            websocket.edit,
         )
         self.get = async_to_raw_response_wrapper(
             websocket.get,
@@ -266,8 +248,8 @@ class WebsocketWithStreamingResponse:
     def __init__(self, websocket: Websocket) -> None:
         self._websocket = websocket
 
-        self.update = to_streamed_response_wrapper(
-            websocket.update,
+        self.edit = to_streamed_response_wrapper(
+            websocket.edit,
         )
         self.get = to_streamed_response_wrapper(
             websocket.get,
@@ -278,8 +260,8 @@ class AsyncWebsocketWithStreamingResponse:
     def __init__(self, websocket: AsyncWebsocket) -> None:
         self._websocket = websocket
 
-        self.update = async_to_streamed_response_wrapper(
-            websocket.update,
+        self.edit = async_to_streamed_response_wrapper(
+            websocket.edit,
         )
         self.get = async_to_streamed_response_wrapper(
             websocket.get,

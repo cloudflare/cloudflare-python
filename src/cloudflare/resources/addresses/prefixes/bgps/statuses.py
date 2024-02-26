@@ -2,47 +2,25 @@
 
 from __future__ import annotations
 
+from typing import Type, cast
+
 import httpx
 
+from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._utils import maybe_transform
 from ....._compat import cached_property
-
-from .....types.addresses.prefixes.bgps import (
-    StatusIPAddressManagementDynamicAdvertisementGetAdvertisementStatusResponse,
-    StatusIPAddressManagementDynamicAdvertisementUpdatePrefixDynamicAdvertisementStatusResponse,
-)
-
-from typing import Type
-
+from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ....._resource import SyncAPIResource, AsyncAPIResource
-from ....._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from .....types import shared_params
-from .....types.addresses.prefixes.bgps import (
-    status_ip_address_management_dynamic_advertisement_update_prefix_dynamic_advertisement_status_params,
-)
 from ....._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ....._base_client import (
+    make_request_options,
+)
+from .....types.addresses.prefixes.bgps import StatusGetResponse, StatusEditResponse, status_edit_params
 
 __all__ = ["Statuses", "AsyncStatuses"]
 
@@ -56,7 +34,55 @@ class Statuses(SyncAPIResource):
     def with_streaming_response(self) -> StatusesWithStreamingResponse:
         return StatusesWithStreamingResponse(self)
 
-    def ip_address_management_dynamic_advertisement_get_advertisement_status(
+    def edit(
+        self,
+        prefix_id: str,
+        *,
+        account_id: str,
+        advertised: bool,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> StatusEditResponse:
+        """
+        Advertise or withdraw BGP route for a prefix.
+
+        Args:
+          account_id: Identifier
+
+          prefix_id: Identifier
+
+          advertised: Enablement of prefix advertisement to the Internet.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not prefix_id:
+            raise ValueError(f"Expected a non-empty value for `prefix_id` but received {prefix_id!r}")
+        return self._patch(
+            f"/accounts/{account_id}/addressing/prefixes/{prefix_id}/bgp/status",
+            body=maybe_transform({"advertised": advertised}, status_edit_params.StatusEditParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[StatusEditResponse], ResultWrapper[StatusEditResponse]),
+        )
+
+    def get(
         self,
         prefix_id: str,
         *,
@@ -67,7 +93,7 @@ class Statuses(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> StatusIPAddressManagementDynamicAdvertisementGetAdvertisementStatusResponse:
+    ) -> StatusGetResponse:
         """
         List the current advertisement state for a prefix.
 
@@ -97,13 +123,20 @@ class Statuses(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[StatusIPAddressManagementDynamicAdvertisementGetAdvertisementStatusResponse],
-                ResultWrapper[StatusIPAddressManagementDynamicAdvertisementGetAdvertisementStatusResponse],
-            ),
+            cast_to=cast(Type[StatusGetResponse], ResultWrapper[StatusGetResponse]),
         )
 
-    def ip_address_management_dynamic_advertisement_update_prefix_dynamic_advertisement_status(
+
+class AsyncStatuses(AsyncAPIResource):
+    @cached_property
+    def with_raw_response(self) -> AsyncStatusesWithRawResponse:
+        return AsyncStatusesWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncStatusesWithStreamingResponse:
+        return AsyncStatusesWithStreamingResponse(self)
+
+    async def edit(
         self,
         prefix_id: str,
         *,
@@ -115,7 +148,7 @@ class Statuses(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> StatusIPAddressManagementDynamicAdvertisementUpdatePrefixDynamicAdvertisementStatusResponse:
+    ) -> StatusEditResponse:
         """
         Advertise or withdraw BGP route for a prefix.
 
@@ -138,12 +171,9 @@ class Statuses(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not prefix_id:
             raise ValueError(f"Expected a non-empty value for `prefix_id` but received {prefix_id!r}")
-        return self._patch(
+        return await self._patch(
             f"/accounts/{account_id}/addressing/prefixes/{prefix_id}/bgp/status",
-            body=maybe_transform(
-                {"advertised": advertised},
-                status_ip_address_management_dynamic_advertisement_update_prefix_dynamic_advertisement_status_params.StatusIPAddressManagementDynamicAdvertisementUpdatePrefixDynamicAdvertisementStatusParams,
-            ),
+            body=maybe_transform({"advertised": advertised}, status_edit_params.StatusEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -151,25 +181,10 @@ class Statuses(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[StatusIPAddressManagementDynamicAdvertisementUpdatePrefixDynamicAdvertisementStatusResponse],
-                ResultWrapper[
-                    StatusIPAddressManagementDynamicAdvertisementUpdatePrefixDynamicAdvertisementStatusResponse
-                ],
-            ),
+            cast_to=cast(Type[StatusEditResponse], ResultWrapper[StatusEditResponse]),
         )
 
-
-class AsyncStatuses(AsyncAPIResource):
-    @cached_property
-    def with_raw_response(self) -> AsyncStatusesWithRawResponse:
-        return AsyncStatusesWithRawResponse(self)
-
-    @cached_property
-    def with_streaming_response(self) -> AsyncStatusesWithStreamingResponse:
-        return AsyncStatusesWithStreamingResponse(self)
-
-    async def ip_address_management_dynamic_advertisement_get_advertisement_status(
+    async def get(
         self,
         prefix_id: str,
         *,
@@ -180,7 +195,7 @@ class AsyncStatuses(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> StatusIPAddressManagementDynamicAdvertisementGetAdvertisementStatusResponse:
+    ) -> StatusGetResponse:
         """
         List the current advertisement state for a prefix.
 
@@ -210,66 +225,7 @@ class AsyncStatuses(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[StatusIPAddressManagementDynamicAdvertisementGetAdvertisementStatusResponse],
-                ResultWrapper[StatusIPAddressManagementDynamicAdvertisementGetAdvertisementStatusResponse],
-            ),
-        )
-
-    async def ip_address_management_dynamic_advertisement_update_prefix_dynamic_advertisement_status(
-        self,
-        prefix_id: str,
-        *,
-        account_id: str,
-        advertised: bool,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> StatusIPAddressManagementDynamicAdvertisementUpdatePrefixDynamicAdvertisementStatusResponse:
-        """
-        Advertise or withdraw BGP route for a prefix.
-
-        Args:
-          account_id: Identifier
-
-          prefix_id: Identifier
-
-          advertised: Enablement of prefix advertisement to the Internet.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not prefix_id:
-            raise ValueError(f"Expected a non-empty value for `prefix_id` but received {prefix_id!r}")
-        return await self._patch(
-            f"/accounts/{account_id}/addressing/prefixes/{prefix_id}/bgp/status",
-            body=maybe_transform(
-                {"advertised": advertised},
-                status_ip_address_management_dynamic_advertisement_update_prefix_dynamic_advertisement_status_params.StatusIPAddressManagementDynamicAdvertisementUpdatePrefixDynamicAdvertisementStatusParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[StatusIPAddressManagementDynamicAdvertisementUpdatePrefixDynamicAdvertisementStatusResponse],
-                ResultWrapper[
-                    StatusIPAddressManagementDynamicAdvertisementUpdatePrefixDynamicAdvertisementStatusResponse
-                ],
-            ),
+            cast_to=cast(Type[StatusGetResponse], ResultWrapper[StatusGetResponse]),
         )
 
 
@@ -277,13 +233,11 @@ class StatusesWithRawResponse:
     def __init__(self, statuses: Statuses) -> None:
         self._statuses = statuses
 
-        self.ip_address_management_dynamic_advertisement_get_advertisement_status = to_raw_response_wrapper(
-            statuses.ip_address_management_dynamic_advertisement_get_advertisement_status,
+        self.edit = to_raw_response_wrapper(
+            statuses.edit,
         )
-        self.ip_address_management_dynamic_advertisement_update_prefix_dynamic_advertisement_status = (
-            to_raw_response_wrapper(
-                statuses.ip_address_management_dynamic_advertisement_update_prefix_dynamic_advertisement_status,
-            )
+        self.get = to_raw_response_wrapper(
+            statuses.get,
         )
 
 
@@ -291,13 +245,11 @@ class AsyncStatusesWithRawResponse:
     def __init__(self, statuses: AsyncStatuses) -> None:
         self._statuses = statuses
 
-        self.ip_address_management_dynamic_advertisement_get_advertisement_status = async_to_raw_response_wrapper(
-            statuses.ip_address_management_dynamic_advertisement_get_advertisement_status,
+        self.edit = async_to_raw_response_wrapper(
+            statuses.edit,
         )
-        self.ip_address_management_dynamic_advertisement_update_prefix_dynamic_advertisement_status = (
-            async_to_raw_response_wrapper(
-                statuses.ip_address_management_dynamic_advertisement_update_prefix_dynamic_advertisement_status,
-            )
+        self.get = async_to_raw_response_wrapper(
+            statuses.get,
         )
 
 
@@ -305,13 +257,11 @@ class StatusesWithStreamingResponse:
     def __init__(self, statuses: Statuses) -> None:
         self._statuses = statuses
 
-        self.ip_address_management_dynamic_advertisement_get_advertisement_status = to_streamed_response_wrapper(
-            statuses.ip_address_management_dynamic_advertisement_get_advertisement_status,
+        self.edit = to_streamed_response_wrapper(
+            statuses.edit,
         )
-        self.ip_address_management_dynamic_advertisement_update_prefix_dynamic_advertisement_status = (
-            to_streamed_response_wrapper(
-                statuses.ip_address_management_dynamic_advertisement_update_prefix_dynamic_advertisement_status,
-            )
+        self.get = to_streamed_response_wrapper(
+            statuses.get,
         )
 
 
@@ -319,11 +269,9 @@ class AsyncStatusesWithStreamingResponse:
     def __init__(self, statuses: AsyncStatuses) -> None:
         self._statuses = statuses
 
-        self.ip_address_management_dynamic_advertisement_get_advertisement_status = async_to_streamed_response_wrapper(
-            statuses.ip_address_management_dynamic_advertisement_get_advertisement_status,
+        self.edit = async_to_streamed_response_wrapper(
+            statuses.edit,
         )
-        self.ip_address_management_dynamic_advertisement_update_prefix_dynamic_advertisement_status = (
-            async_to_streamed_response_wrapper(
-                statuses.ip_address_management_dynamic_advertisement_update_prefix_dynamic_advertisement_status,
-            )
+        self.get = async_to_streamed_response_wrapper(
+            statuses.get,
         )

@@ -2,72 +2,88 @@
 
 from __future__ import annotations
 
+from typing import Type, cast
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._compat import cached_property
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ..._wrappers import ResultWrapper
+from ..._base_client import (
+    make_request_options,
+)
 from ...types.magics import (
-    GreTunnelUpdateResponse,
-    GreTunnelDeleteResponse,
-    GreTunnelGetResponse,
-    GreTunnelMagicGreTunnelsCreateGreTunnelsResponse,
-    GreTunnelMagicGreTunnelsListGreTunnelsResponse,
-    GreTunnelMagicGreTunnelsUpdateMultipleGreTunnelsResponse,
+    GRETunnelGetResponse,
+    GRETunnelListResponse,
+    GRETunnelCreateResponse,
+    GRETunnelDeleteResponse,
+    GRETunnelUpdateResponse,
+    gre_tunnel_create_params,
     gre_tunnel_update_params,
 )
 
-from typing import Type
-
-from ..._response import (
-    to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types.magics import gre_tunnel_update_params
-from ...types.magics import gre_tunnel_magic_gre_tunnels_create_gre_tunnels_params
-from ...types.magics import gre_tunnel_magic_gre_tunnels_update_multiple_gre_tunnels_params
-from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-
-__all__ = ["GreTunnels", "AsyncGreTunnels"]
+__all__ = ["GRETunnels", "AsyncGRETunnels"]
 
 
-class GreTunnels(SyncAPIResource):
+class GRETunnels(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> GreTunnelsWithRawResponse:
-        return GreTunnelsWithRawResponse(self)
+    def with_raw_response(self) -> GRETunnelsWithRawResponse:
+        return GRETunnelsWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> GreTunnelsWithStreamingResponse:
-        return GreTunnelsWithStreamingResponse(self)
+    def with_streaming_response(self) -> GRETunnelsWithStreamingResponse:
+        return GRETunnelsWithStreamingResponse(self)
+
+    def create(
+        self,
+        account_identifier: str,
+        *,
+        body: object,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> GRETunnelCreateResponse:
+        """Creates new GRE tunnels.
+
+        Use `?validate_only=true` as an optional query
+        parameter to only run validation without persisting changes.
+
+        Args:
+          account_identifier: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_identifier:
+            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        return self._post(
+            f"/accounts/{account_identifier}/magic/gre_tunnels",
+            body=maybe_transform(body, gre_tunnel_create_params.GRETunnelCreateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[GRETunnelCreateResponse], ResultWrapper[GRETunnelCreateResponse]),
+        )
 
     def update(
         self,
@@ -88,7 +104,7 @@ class GreTunnels(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GreTunnelUpdateResponse:
+    ) -> GRETunnelUpdateResponse:
         """Updates a specific GRE tunnel.
 
         Use `?validate_only=true` as an optional query
@@ -142,7 +158,7 @@ class GreTunnels(SyncAPIResource):
                     "mtu": mtu,
                     "ttl": ttl,
                 },
-                gre_tunnel_update_params.GreTunnelUpdateParams,
+                gre_tunnel_update_params.GRETunnelUpdateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -151,7 +167,46 @@ class GreTunnels(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[GreTunnelUpdateResponse], ResultWrapper[GreTunnelUpdateResponse]),
+            cast_to=cast(Type[GRETunnelUpdateResponse], ResultWrapper[GRETunnelUpdateResponse]),
+        )
+
+    def list(
+        self,
+        account_identifier: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> GRETunnelListResponse:
+        """
+        Lists GRE tunnels associated with an account.
+
+        Args:
+          account_identifier: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_identifier:
+            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        return self._get(
+            f"/accounts/{account_identifier}/magic/gre_tunnels",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[GRETunnelListResponse], ResultWrapper[GRETunnelListResponse]),
         )
 
     def delete(
@@ -165,7 +220,7 @@ class GreTunnels(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GreTunnelDeleteResponse:
+    ) -> GRETunnelDeleteResponse:
         """Disables and removes a specific static GRE tunnel.
 
         Use `?validate_only=true` as
@@ -197,7 +252,7 @@ class GreTunnels(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[GreTunnelDeleteResponse], ResultWrapper[GreTunnelDeleteResponse]),
+            cast_to=cast(Type[GRETunnelDeleteResponse], ResultWrapper[GRETunnelDeleteResponse]),
         )
 
     def get(
@@ -211,7 +266,7 @@ class GreTunnels(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GreTunnelGetResponse:
+    ) -> GRETunnelGetResponse:
         """
         Lists informtion for a specific GRE tunnel.
 
@@ -241,10 +296,20 @@ class GreTunnels(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[GreTunnelGetResponse], ResultWrapper[GreTunnelGetResponse]),
+            cast_to=cast(Type[GRETunnelGetResponse], ResultWrapper[GRETunnelGetResponse]),
         )
 
-    def magic_gre_tunnels_create_gre_tunnels(
+
+class AsyncGRETunnels(AsyncAPIResource):
+    @cached_property
+    def with_raw_response(self) -> AsyncGRETunnelsWithRawResponse:
+        return AsyncGRETunnelsWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncGRETunnelsWithStreamingResponse:
+        return AsyncGRETunnelsWithStreamingResponse(self)
+
+    async def create(
         self,
         account_identifier: str,
         *,
@@ -255,7 +320,7 @@ class GreTunnels(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GreTunnelMagicGreTunnelsCreateGreTunnelsResponse:
+    ) -> GRETunnelCreateResponse:
         """Creates new GRE tunnels.
 
         Use `?validate_only=true` as an optional query
@@ -274,12 +339,9 @@ class GreTunnels(SyncAPIResource):
         """
         if not account_identifier:
             raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        return self._post(
+        return await self._post(
             f"/accounts/{account_identifier}/magic/gre_tunnels",
-            body=maybe_transform(
-                body,
-                gre_tunnel_magic_gre_tunnels_create_gre_tunnels_params.GreTunnelMagicGreTunnelsCreateGreTunnelsParams,
-            ),
+            body=maybe_transform(body, gre_tunnel_create_params.GRETunnelCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -287,112 +349,8 @@ class GreTunnels(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[GreTunnelMagicGreTunnelsCreateGreTunnelsResponse],
-                ResultWrapper[GreTunnelMagicGreTunnelsCreateGreTunnelsResponse],
-            ),
+            cast_to=cast(Type[GRETunnelCreateResponse], ResultWrapper[GRETunnelCreateResponse]),
         )
-
-    def magic_gre_tunnels_list_gre_tunnels(
-        self,
-        account_identifier: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GreTunnelMagicGreTunnelsListGreTunnelsResponse:
-        """
-        Lists GRE tunnels associated with an account.
-
-        Args:
-          account_identifier: Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        return self._get(
-            f"/accounts/{account_identifier}/magic/gre_tunnels",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[GreTunnelMagicGreTunnelsListGreTunnelsResponse],
-                ResultWrapper[GreTunnelMagicGreTunnelsListGreTunnelsResponse],
-            ),
-        )
-
-    def magic_gre_tunnels_update_multiple_gre_tunnels(
-        self,
-        account_identifier: str,
-        *,
-        body: object,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GreTunnelMagicGreTunnelsUpdateMultipleGreTunnelsResponse:
-        """Updates multiple GRE tunnels.
-
-        Use `?validate_only=true` as an optional query
-        parameter to only run validation without persisting changes.
-
-        Args:
-          account_identifier: Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        return self._put(
-            f"/accounts/{account_identifier}/magic/gre_tunnels",
-            body=maybe_transform(
-                body,
-                gre_tunnel_magic_gre_tunnels_update_multiple_gre_tunnels_params.GreTunnelMagicGreTunnelsUpdateMultipleGreTunnelsParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[GreTunnelMagicGreTunnelsUpdateMultipleGreTunnelsResponse],
-                ResultWrapper[GreTunnelMagicGreTunnelsUpdateMultipleGreTunnelsResponse],
-            ),
-        )
-
-
-class AsyncGreTunnels(AsyncAPIResource):
-    @cached_property
-    def with_raw_response(self) -> AsyncGreTunnelsWithRawResponse:
-        return AsyncGreTunnelsWithRawResponse(self)
-
-    @cached_property
-    def with_streaming_response(self) -> AsyncGreTunnelsWithStreamingResponse:
-        return AsyncGreTunnelsWithStreamingResponse(self)
 
     async def update(
         self,
@@ -413,7 +371,7 @@ class AsyncGreTunnels(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GreTunnelUpdateResponse:
+    ) -> GRETunnelUpdateResponse:
         """Updates a specific GRE tunnel.
 
         Use `?validate_only=true` as an optional query
@@ -467,7 +425,7 @@ class AsyncGreTunnels(AsyncAPIResource):
                     "mtu": mtu,
                     "ttl": ttl,
                 },
-                gre_tunnel_update_params.GreTunnelUpdateParams,
+                gre_tunnel_update_params.GRETunnelUpdateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -476,7 +434,46 @@ class AsyncGreTunnels(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[GreTunnelUpdateResponse], ResultWrapper[GreTunnelUpdateResponse]),
+            cast_to=cast(Type[GRETunnelUpdateResponse], ResultWrapper[GRETunnelUpdateResponse]),
+        )
+
+    async def list(
+        self,
+        account_identifier: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> GRETunnelListResponse:
+        """
+        Lists GRE tunnels associated with an account.
+
+        Args:
+          account_identifier: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_identifier:
+            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        return await self._get(
+            f"/accounts/{account_identifier}/magic/gre_tunnels",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[GRETunnelListResponse], ResultWrapper[GRETunnelListResponse]),
         )
 
     async def delete(
@@ -490,7 +487,7 @@ class AsyncGreTunnels(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GreTunnelDeleteResponse:
+    ) -> GRETunnelDeleteResponse:
         """Disables and removes a specific static GRE tunnel.
 
         Use `?validate_only=true` as
@@ -522,7 +519,7 @@ class AsyncGreTunnels(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[GreTunnelDeleteResponse], ResultWrapper[GreTunnelDeleteResponse]),
+            cast_to=cast(Type[GRETunnelDeleteResponse], ResultWrapper[GRETunnelDeleteResponse]),
         )
 
     async def get(
@@ -536,7 +533,7 @@ class AsyncGreTunnels(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GreTunnelGetResponse:
+    ) -> GRETunnelGetResponse:
         """
         Lists informtion for a specific GRE tunnel.
 
@@ -566,156 +563,22 @@ class AsyncGreTunnels(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[GreTunnelGetResponse], ResultWrapper[GreTunnelGetResponse]),
-        )
-
-    async def magic_gre_tunnels_create_gre_tunnels(
-        self,
-        account_identifier: str,
-        *,
-        body: object,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GreTunnelMagicGreTunnelsCreateGreTunnelsResponse:
-        """Creates new GRE tunnels.
-
-        Use `?validate_only=true` as an optional query
-        parameter to only run validation without persisting changes.
-
-        Args:
-          account_identifier: Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        return await self._post(
-            f"/accounts/{account_identifier}/magic/gre_tunnels",
-            body=maybe_transform(
-                body,
-                gre_tunnel_magic_gre_tunnels_create_gre_tunnels_params.GreTunnelMagicGreTunnelsCreateGreTunnelsParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[GreTunnelMagicGreTunnelsCreateGreTunnelsResponse],
-                ResultWrapper[GreTunnelMagicGreTunnelsCreateGreTunnelsResponse],
-            ),
-        )
-
-    async def magic_gre_tunnels_list_gre_tunnels(
-        self,
-        account_identifier: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GreTunnelMagicGreTunnelsListGreTunnelsResponse:
-        """
-        Lists GRE tunnels associated with an account.
-
-        Args:
-          account_identifier: Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        return await self._get(
-            f"/accounts/{account_identifier}/magic/gre_tunnels",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[GreTunnelMagicGreTunnelsListGreTunnelsResponse],
-                ResultWrapper[GreTunnelMagicGreTunnelsListGreTunnelsResponse],
-            ),
-        )
-
-    async def magic_gre_tunnels_update_multiple_gre_tunnels(
-        self,
-        account_identifier: str,
-        *,
-        body: object,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GreTunnelMagicGreTunnelsUpdateMultipleGreTunnelsResponse:
-        """Updates multiple GRE tunnels.
-
-        Use `?validate_only=true` as an optional query
-        parameter to only run validation without persisting changes.
-
-        Args:
-          account_identifier: Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        return await self._put(
-            f"/accounts/{account_identifier}/magic/gre_tunnels",
-            body=maybe_transform(
-                body,
-                gre_tunnel_magic_gre_tunnels_update_multiple_gre_tunnels_params.GreTunnelMagicGreTunnelsUpdateMultipleGreTunnelsParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[GreTunnelMagicGreTunnelsUpdateMultipleGreTunnelsResponse],
-                ResultWrapper[GreTunnelMagicGreTunnelsUpdateMultipleGreTunnelsResponse],
-            ),
+            cast_to=cast(Type[GRETunnelGetResponse], ResultWrapper[GRETunnelGetResponse]),
         )
 
 
-class GreTunnelsWithRawResponse:
-    def __init__(self, gre_tunnels: GreTunnels) -> None:
+class GRETunnelsWithRawResponse:
+    def __init__(self, gre_tunnels: GRETunnels) -> None:
         self._gre_tunnels = gre_tunnels
 
+        self.create = to_raw_response_wrapper(
+            gre_tunnels.create,
+        )
         self.update = to_raw_response_wrapper(
             gre_tunnels.update,
+        )
+        self.list = to_raw_response_wrapper(
+            gre_tunnels.list,
         )
         self.delete = to_raw_response_wrapper(
             gre_tunnels.delete,
@@ -723,23 +586,20 @@ class GreTunnelsWithRawResponse:
         self.get = to_raw_response_wrapper(
             gre_tunnels.get,
         )
-        self.magic_gre_tunnels_create_gre_tunnels = to_raw_response_wrapper(
-            gre_tunnels.magic_gre_tunnels_create_gre_tunnels,
-        )
-        self.magic_gre_tunnels_list_gre_tunnels = to_raw_response_wrapper(
-            gre_tunnels.magic_gre_tunnels_list_gre_tunnels,
-        )
-        self.magic_gre_tunnels_update_multiple_gre_tunnels = to_raw_response_wrapper(
-            gre_tunnels.magic_gre_tunnels_update_multiple_gre_tunnels,
-        )
 
 
-class AsyncGreTunnelsWithRawResponse:
-    def __init__(self, gre_tunnels: AsyncGreTunnels) -> None:
+class AsyncGRETunnelsWithRawResponse:
+    def __init__(self, gre_tunnels: AsyncGRETunnels) -> None:
         self._gre_tunnels = gre_tunnels
 
+        self.create = async_to_raw_response_wrapper(
+            gre_tunnels.create,
+        )
         self.update = async_to_raw_response_wrapper(
             gre_tunnels.update,
+        )
+        self.list = async_to_raw_response_wrapper(
+            gre_tunnels.list,
         )
         self.delete = async_to_raw_response_wrapper(
             gre_tunnels.delete,
@@ -747,23 +607,20 @@ class AsyncGreTunnelsWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             gre_tunnels.get,
         )
-        self.magic_gre_tunnels_create_gre_tunnels = async_to_raw_response_wrapper(
-            gre_tunnels.magic_gre_tunnels_create_gre_tunnels,
-        )
-        self.magic_gre_tunnels_list_gre_tunnels = async_to_raw_response_wrapper(
-            gre_tunnels.magic_gre_tunnels_list_gre_tunnels,
-        )
-        self.magic_gre_tunnels_update_multiple_gre_tunnels = async_to_raw_response_wrapper(
-            gre_tunnels.magic_gre_tunnels_update_multiple_gre_tunnels,
-        )
 
 
-class GreTunnelsWithStreamingResponse:
-    def __init__(self, gre_tunnels: GreTunnels) -> None:
+class GRETunnelsWithStreamingResponse:
+    def __init__(self, gre_tunnels: GRETunnels) -> None:
         self._gre_tunnels = gre_tunnels
 
+        self.create = to_streamed_response_wrapper(
+            gre_tunnels.create,
+        )
         self.update = to_streamed_response_wrapper(
             gre_tunnels.update,
+        )
+        self.list = to_streamed_response_wrapper(
+            gre_tunnels.list,
         )
         self.delete = to_streamed_response_wrapper(
             gre_tunnels.delete,
@@ -771,36 +628,24 @@ class GreTunnelsWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             gre_tunnels.get,
         )
-        self.magic_gre_tunnels_create_gre_tunnels = to_streamed_response_wrapper(
-            gre_tunnels.magic_gre_tunnels_create_gre_tunnels,
-        )
-        self.magic_gre_tunnels_list_gre_tunnels = to_streamed_response_wrapper(
-            gre_tunnels.magic_gre_tunnels_list_gre_tunnels,
-        )
-        self.magic_gre_tunnels_update_multiple_gre_tunnels = to_streamed_response_wrapper(
-            gre_tunnels.magic_gre_tunnels_update_multiple_gre_tunnels,
-        )
 
 
-class AsyncGreTunnelsWithStreamingResponse:
-    def __init__(self, gre_tunnels: AsyncGreTunnels) -> None:
+class AsyncGRETunnelsWithStreamingResponse:
+    def __init__(self, gre_tunnels: AsyncGRETunnels) -> None:
         self._gre_tunnels = gre_tunnels
 
+        self.create = async_to_streamed_response_wrapper(
+            gre_tunnels.create,
+        )
         self.update = async_to_streamed_response_wrapper(
             gre_tunnels.update,
+        )
+        self.list = async_to_streamed_response_wrapper(
+            gre_tunnels.list,
         )
         self.delete = async_to_streamed_response_wrapper(
             gre_tunnels.delete,
         )
         self.get = async_to_streamed_response_wrapper(
             gre_tunnels.get,
-        )
-        self.magic_gre_tunnels_create_gre_tunnels = async_to_streamed_response_wrapper(
-            gre_tunnels.magic_gre_tunnels_create_gre_tunnels,
-        )
-        self.magic_gre_tunnels_list_gre_tunnels = async_to_streamed_response_wrapper(
-            gre_tunnels.magic_gre_tunnels_list_gre_tunnels,
-        )
-        self.magic_gre_tunnels_update_multiple_gre_tunnels = async_to_streamed_response_wrapper(
-            gre_tunnels.magic_gre_tunnels_update_multiple_gre_tunnels,
         )

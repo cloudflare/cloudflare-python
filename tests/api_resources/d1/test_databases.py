@@ -2,20 +2,18 @@
 
 from __future__ import annotations
 
-from cloudflare.types.d1 import DatabaseCreateResponse, DatabaseListResponse
-
+import os
 from typing import Any, cast
 
-import os
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.d1 import database_create_params
-from cloudflare.types.d1 import database_list_params
+from cloudflare.types.d1 import (
+    DatabaseListResponse,
+    DatabaseCreateResponse,
+)
+from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -75,7 +73,7 @@ class TestDatabases:
         database = client.d1.databases.list(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(DatabaseListResponse, database, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[DatabaseListResponse], database, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -86,7 +84,7 @@ class TestDatabases:
             page=1,
             per_page=10,
         )
-        assert_matches_type(DatabaseListResponse, database, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[DatabaseListResponse], database, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -98,7 +96,7 @@ class TestDatabases:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         database = response.parse()
-        assert_matches_type(DatabaseListResponse, database, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[DatabaseListResponse], database, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -110,7 +108,7 @@ class TestDatabases:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             database = response.parse()
-            assert_matches_type(DatabaseListResponse, database, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[DatabaseListResponse], database, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -178,7 +176,7 @@ class TestAsyncDatabases:
         database = await async_client.d1.databases.list(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(DatabaseListResponse, database, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[DatabaseListResponse], database, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -189,7 +187,7 @@ class TestAsyncDatabases:
             page=1,
             per_page=10,
         )
-        assert_matches_type(DatabaseListResponse, database, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[DatabaseListResponse], database, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -201,7 +199,7 @@ class TestAsyncDatabases:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         database = await response.parse()
-        assert_matches_type(DatabaseListResponse, database, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[DatabaseListResponse], database, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -213,7 +211,7 @@ class TestAsyncDatabases:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             database = await response.parse()
-            assert_matches_type(DatabaseListResponse, database, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[DatabaseListResponse], database, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -1,14 +1,11 @@
 # File generated from our OpenAPI spec by Stainless.
 
+from typing import List, Union, Optional
 from typing_extensions import Literal
 
-from typing import Optional, List
-
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
 from pydantic import Field as FieldInfo
+
 from ..._models import BaseModel
-from ...types import shared
 
 __all__ = [
     "PostureGetResponse",
@@ -16,7 +13,7 @@ __all__ = [
     "InputTeamsDevicesFileInputRequest",
     "InputTeamsDevicesUniqueClientIDInputRequest",
     "InputTeamsDevicesDomainJoinedInputRequest",
-    "InputTeamsDevicesOsVersionInputRequest",
+    "InputTeamsDevicesOSVersionInputRequest",
     "InputTeamsDevicesFirewallInputRequest",
     "InputTeamsDevicesSentineloneInputRequest",
     "InputTeamsDevicesCarbonblackInputRequest",
@@ -66,7 +63,7 @@ class InputTeamsDevicesDomainJoinedInputRequest(BaseModel):
     """Domain"""
 
 
-class InputTeamsDevicesOsVersionInputRequest(BaseModel):
+class InputTeamsDevicesOSVersionInputRequest(BaseModel):
     operating_system: Literal["windows"]
     """Operating System"""
 
@@ -168,6 +165,9 @@ class InputTeamsDevicesCrowdstrikeInputRequest(BaseModel):
     connection_id: str
     """Posture Integration ID."""
 
+    last_seen: Optional[str] = None
+    """For more details on last seen, please refer to the Crowdstrike documentation."""
+
     operator: Optional[Literal["<", "<=", ">", ">=", "=="]] = None
     """Operator"""
 
@@ -179,6 +179,9 @@ class InputTeamsDevicesCrowdstrikeInputRequest(BaseModel):
 
     sensor_config: Optional[str] = None
     """SensorConfig"""
+
+    state: Optional[Literal["online", "offline", "unknown"]] = None
+    """For more details on state, please refer to the Crowdstrike documentation."""
 
     version: Optional[str] = None
     """Version"""
@@ -250,7 +253,7 @@ Input = Union[
     InputTeamsDevicesFileInputRequest,
     InputTeamsDevicesUniqueClientIDInputRequest,
     InputTeamsDevicesDomainJoinedInputRequest,
-    InputTeamsDevicesOsVersionInputRequest,
+    InputTeamsDevicesOSVersionInputRequest,
     InputTeamsDevicesFirewallInputRequest,
     InputTeamsDevicesSentineloneInputRequest,
     InputTeamsDevicesCarbonblackInputRequest,

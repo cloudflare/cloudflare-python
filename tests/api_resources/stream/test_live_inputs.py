@@ -2,32 +2,84 @@
 
 from __future__ import annotations
 
-from cloudflare.types.stream import (
-    LiveInputUpdateResponse,
-    LiveInputGetResponse,
-    LiveInputStreamLiveInputsCreateALiveInputResponse,
-    LiveInputStreamLiveInputsListLiveInputsResponse,
-)
-
+import os
 from typing import Any, cast
 
-import os
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.stream import live_input_update_params
-from cloudflare.types.stream import live_input_stream_live_inputs_create_a_live_input_params
-from cloudflare.types.stream import live_input_stream_live_inputs_list_live_inputs_params
+from cloudflare.types.stream import (
+    LiveInputGetResponse,
+    LiveInputListResponse,
+    LiveInputCreateResponse,
+    LiveInputUpdateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
 class TestLiveInputs:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_create(self, client: Cloudflare) -> None:
+        live_input = client.stream.live_inputs.create(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(LiveInputCreateResponse, live_input, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
+        live_input = client.stream.live_inputs.create(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            default_creator="string",
+            delete_recording_after_days=45,
+            meta={"name": "test stream 1"},
+            recording={
+                "allowed_origins": ["example.com"],
+                "mode": "off",
+                "require_signed_urls": False,
+                "timeout_seconds": 0,
+            },
+        )
+        assert_matches_type(LiveInputCreateResponse, live_input, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_create(self, client: Cloudflare) -> None:
+        response = client.stream.live_inputs.with_raw_response.create(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        live_input = response.parse()
+        assert_matches_type(LiveInputCreateResponse, live_input, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_create(self, client: Cloudflare) -> None:
+        with client.stream.live_inputs.with_streaming_response.create(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            live_input = response.parse()
+            assert_matches_type(LiveInputCreateResponse, live_input, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_create(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.stream.live_inputs.with_raw_response.create(
+                "",
+            )
 
     @pytest.mark.skip()
     @parametrize
@@ -97,6 +149,57 @@ class TestLiveInputs:
             client.stream.live_inputs.with_raw_response.update(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_list(self, client: Cloudflare) -> None:
+        live_input = client.stream.live_inputs.list(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(LiveInputListResponse, live_input, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_list_with_all_params(self, client: Cloudflare) -> None:
+        live_input = client.stream.live_inputs.list(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            include_counts=True,
+        )
+        assert_matches_type(LiveInputListResponse, live_input, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_list(self, client: Cloudflare) -> None:
+        response = client.stream.live_inputs.with_raw_response.list(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        live_input = response.parse()
+        assert_matches_type(LiveInputListResponse, live_input, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_list(self, client: Cloudflare) -> None:
+        with client.stream.live_inputs.with_streaming_response.list(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            live_input = response.parse()
+            assert_matches_type(LiveInputListResponse, live_input, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_list(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.stream.live_inputs.with_raw_response.list(
+                "",
             )
 
     @pytest.mark.skip()
@@ -203,18 +306,22 @@ class TestLiveInputs:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip()
-    @parametrize
-    def test_method_stream_live_inputs_create_a_live_input(self, client: Cloudflare) -> None:
-        live_input = client.stream.live_inputs.stream_live_inputs_create_a_live_input(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(LiveInputStreamLiveInputsCreateALiveInputResponse, live_input, path=["response"])
+
+class TestAsyncLiveInputs:
+    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_stream_live_inputs_create_a_live_input_with_all_params(self, client: Cloudflare) -> None:
-        live_input = client.stream.live_inputs.stream_live_inputs_create_a_live_input(
+    async def test_method_create(self, async_client: AsyncCloudflare) -> None:
+        live_input = await async_client.stream.live_inputs.create(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(LiveInputCreateResponse, live_input, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        live_input = await async_client.stream.live_inputs.create(
             "023e105f4ecef8ad9ca31a8372d0c353",
             default_creator="string",
             delete_recording_after_days=45,
@@ -226,96 +333,41 @@ class TestLiveInputs:
                 "timeout_seconds": 0,
             },
         )
-        assert_matches_type(LiveInputStreamLiveInputsCreateALiveInputResponse, live_input, path=["response"])
+        assert_matches_type(LiveInputCreateResponse, live_input, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_stream_live_inputs_create_a_live_input(self, client: Cloudflare) -> None:
-        response = client.stream.live_inputs.with_raw_response.stream_live_inputs_create_a_live_input(
+    async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.stream.live_inputs.with_raw_response.create(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        live_input = response.parse()
-        assert_matches_type(LiveInputStreamLiveInputsCreateALiveInputResponse, live_input, path=["response"])
+        live_input = await response.parse()
+        assert_matches_type(LiveInputCreateResponse, live_input, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_stream_live_inputs_create_a_live_input(self, client: Cloudflare) -> None:
-        with client.stream.live_inputs.with_streaming_response.stream_live_inputs_create_a_live_input(
+    async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.stream.live_inputs.with_streaming_response.create(
             "023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            live_input = response.parse()
-            assert_matches_type(LiveInputStreamLiveInputsCreateALiveInputResponse, live_input, path=["response"])
+            live_input = await response.parse()
+            assert_matches_type(LiveInputCreateResponse, live_input, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_stream_live_inputs_create_a_live_input(self, client: Cloudflare) -> None:
+    async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.stream.live_inputs.with_raw_response.stream_live_inputs_create_a_live_input(
+            await async_client.stream.live_inputs.with_raw_response.create(
                 "",
             )
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_method_stream_live_inputs_list_live_inputs(self, client: Cloudflare) -> None:
-        live_input = client.stream.live_inputs.stream_live_inputs_list_live_inputs(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(LiveInputStreamLiveInputsListLiveInputsResponse, live_input, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_method_stream_live_inputs_list_live_inputs_with_all_params(self, client: Cloudflare) -> None:
-        live_input = client.stream.live_inputs.stream_live_inputs_list_live_inputs(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            include_counts=True,
-        )
-        assert_matches_type(LiveInputStreamLiveInputsListLiveInputsResponse, live_input, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_raw_response_stream_live_inputs_list_live_inputs(self, client: Cloudflare) -> None:
-        response = client.stream.live_inputs.with_raw_response.stream_live_inputs_list_live_inputs(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        live_input = response.parse()
-        assert_matches_type(LiveInputStreamLiveInputsListLiveInputsResponse, live_input, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_streaming_response_stream_live_inputs_list_live_inputs(self, client: Cloudflare) -> None:
-        with client.stream.live_inputs.with_streaming_response.stream_live_inputs_list_live_inputs(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            live_input = response.parse()
-            assert_matches_type(LiveInputStreamLiveInputsListLiveInputsResponse, live_input, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_path_params_stream_live_inputs_list_live_inputs(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.stream.live_inputs.with_raw_response.stream_live_inputs_list_live_inputs(
-                "",
-            )
-
-
-class TestAsyncLiveInputs:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip()
     @parametrize
@@ -385,6 +437,57 @@ class TestAsyncLiveInputs:
             await async_client.stream.live_inputs.with_raw_response.update(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_list(self, async_client: AsyncCloudflare) -> None:
+        live_input = await async_client.stream.live_inputs.list(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(LiveInputListResponse, live_input, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        live_input = await async_client.stream.live_inputs.list(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            include_counts=True,
+        )
+        assert_matches_type(LiveInputListResponse, live_input, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.stream.live_inputs.with_raw_response.list(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        live_input = await response.parse()
+        assert_matches_type(LiveInputListResponse, live_input, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.stream.live_inputs.with_streaming_response.list(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            live_input = await response.parse()
+            assert_matches_type(LiveInputListResponse, live_input, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.stream.live_inputs.with_raw_response.list(
+                "",
             )
 
     @pytest.mark.skip()
@@ -489,120 +592,4 @@ class TestAsyncLiveInputs:
             await async_client.stream.live_inputs.with_raw_response.get(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_stream_live_inputs_create_a_live_input(self, async_client: AsyncCloudflare) -> None:
-        live_input = await async_client.stream.live_inputs.stream_live_inputs_create_a_live_input(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(LiveInputStreamLiveInputsCreateALiveInputResponse, live_input, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_stream_live_inputs_create_a_live_input_with_all_params(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        live_input = await async_client.stream.live_inputs.stream_live_inputs_create_a_live_input(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            default_creator="string",
-            delete_recording_after_days=45,
-            meta={"name": "test stream 1"},
-            recording={
-                "allowed_origins": ["example.com"],
-                "mode": "off",
-                "require_signed_urls": False,
-                "timeout_seconds": 0,
-            },
-        )
-        assert_matches_type(LiveInputStreamLiveInputsCreateALiveInputResponse, live_input, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_raw_response_stream_live_inputs_create_a_live_input(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.stream.live_inputs.with_raw_response.stream_live_inputs_create_a_live_input(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        live_input = await response.parse()
-        assert_matches_type(LiveInputStreamLiveInputsCreateALiveInputResponse, live_input, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_streaming_response_stream_live_inputs_create_a_live_input(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        async with async_client.stream.live_inputs.with_streaming_response.stream_live_inputs_create_a_live_input(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            live_input = await response.parse()
-            assert_matches_type(LiveInputStreamLiveInputsCreateALiveInputResponse, live_input, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_path_params_stream_live_inputs_create_a_live_input(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.stream.live_inputs.with_raw_response.stream_live_inputs_create_a_live_input(
-                "",
-            )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_stream_live_inputs_list_live_inputs(self, async_client: AsyncCloudflare) -> None:
-        live_input = await async_client.stream.live_inputs.stream_live_inputs_list_live_inputs(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(LiveInputStreamLiveInputsListLiveInputsResponse, live_input, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_stream_live_inputs_list_live_inputs_with_all_params(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        live_input = await async_client.stream.live_inputs.stream_live_inputs_list_live_inputs(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            include_counts=True,
-        )
-        assert_matches_type(LiveInputStreamLiveInputsListLiveInputsResponse, live_input, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_raw_response_stream_live_inputs_list_live_inputs(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.stream.live_inputs.with_raw_response.stream_live_inputs_list_live_inputs(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        live_input = await response.parse()
-        assert_matches_type(LiveInputStreamLiveInputsListLiveInputsResponse, live_input, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_streaming_response_stream_live_inputs_list_live_inputs(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.stream.live_inputs.with_streaming_response.stream_live_inputs_list_live_inputs(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            live_input = await response.parse()
-            assert_matches_type(LiveInputStreamLiveInputsListLiveInputsResponse, live_input, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_path_params_stream_live_inputs_list_live_inputs(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.stream.live_inputs.with_raw_response.stream_live_inputs_list_live_inputs(
-                "",
             )

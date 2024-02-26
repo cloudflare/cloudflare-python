@@ -2,43 +2,24 @@
 
 from __future__ import annotations
 
+from typing import Any, Type, Optional, cast
+
 import httpx
 
+from ..types import RoleGetResponse, RoleListResponse
+from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._compat import cached_property
-
-from ..types import RoleAccountRolesListRolesResponse, RoleGetResponse
-
-from typing import Type, Optional
-
+from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from .._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from .._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from .._resource import SyncAPIResource, AsyncAPIResource
-from .._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ..types import shared_params
 from .._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from .._base_client import (
+    make_request_options,
+)
 
 __all__ = ["Roles", "AsyncRoles"]
 
@@ -52,7 +33,7 @@ class Roles(SyncAPIResource):
     def with_streaming_response(self) -> RolesWithStreamingResponse:
         return RolesWithStreamingResponse(self)
 
-    def account_roles_list_roles(
+    def list(
         self,
         account_id: object,
         *,
@@ -62,7 +43,7 @@ class Roles(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RoleAccountRolesListRolesResponse]:
+    ) -> Optional[RoleListResponse]:
         """
         Get all available roles for an account.
 
@@ -84,9 +65,7 @@ class Roles(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[RoleAccountRolesListRolesResponse]], ResultWrapper[RoleAccountRolesListRolesResponse]
-            ),
+            cast_to=cast(Type[Optional[RoleListResponse]], ResultWrapper[RoleListResponse]),
         )
 
     def get(
@@ -140,7 +119,7 @@ class AsyncRoles(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncRolesWithStreamingResponse:
         return AsyncRolesWithStreamingResponse(self)
 
-    async def account_roles_list_roles(
+    async def list(
         self,
         account_id: object,
         *,
@@ -150,7 +129,7 @@ class AsyncRoles(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RoleAccountRolesListRolesResponse]:
+    ) -> Optional[RoleListResponse]:
         """
         Get all available roles for an account.
 
@@ -172,9 +151,7 @@ class AsyncRoles(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[RoleAccountRolesListRolesResponse]], ResultWrapper[RoleAccountRolesListRolesResponse]
-            ),
+            cast_to=cast(Type[Optional[RoleListResponse]], ResultWrapper[RoleListResponse]),
         )
 
     async def get(
@@ -223,8 +200,8 @@ class RolesWithRawResponse:
     def __init__(self, roles: Roles) -> None:
         self._roles = roles
 
-        self.account_roles_list_roles = to_raw_response_wrapper(
-            roles.account_roles_list_roles,
+        self.list = to_raw_response_wrapper(
+            roles.list,
         )
         self.get = to_raw_response_wrapper(
             roles.get,
@@ -235,8 +212,8 @@ class AsyncRolesWithRawResponse:
     def __init__(self, roles: AsyncRoles) -> None:
         self._roles = roles
 
-        self.account_roles_list_roles = async_to_raw_response_wrapper(
-            roles.account_roles_list_roles,
+        self.list = async_to_raw_response_wrapper(
+            roles.list,
         )
         self.get = async_to_raw_response_wrapper(
             roles.get,
@@ -247,8 +224,8 @@ class RolesWithStreamingResponse:
     def __init__(self, roles: Roles) -> None:
         self._roles = roles
 
-        self.account_roles_list_roles = to_streamed_response_wrapper(
-            roles.account_roles_list_roles,
+        self.list = to_streamed_response_wrapper(
+            roles.list,
         )
         self.get = to_streamed_response_wrapper(
             roles.get,
@@ -259,8 +236,8 @@ class AsyncRolesWithStreamingResponse:
     def __init__(self, roles: AsyncRoles) -> None:
         self._roles = roles
 
-        self.account_roles_list_roles = async_to_streamed_response_wrapper(
-            roles.account_roles_list_roles,
+        self.list = async_to_streamed_response_wrapper(
+            roles.list,
         )
         self.get = async_to_streamed_response_wrapper(
             roles.get,

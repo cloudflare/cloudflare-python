@@ -2,39 +2,24 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+
 import httpx
 
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._compat import cached_property
-
-from ....types.gateways.lists import ItemZeroTrustListsZeroTrustListItemsResponse
-
-from typing import Type, Optional
-
+from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ....types import shared_params
 from ...._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
+from ...._base_client import (
+    make_request_options,
+)
+from ....types.gateways.lists import ItemListResponse
 
 __all__ = ["Items", "AsyncItems"]
 
@@ -48,7 +33,7 @@ class Items(SyncAPIResource):
     def with_streaming_response(self) -> ItemsWithStreamingResponse:
         return ItemsWithStreamingResponse(self)
 
-    def zero_trust_lists_zero_trust_list_items(
+    def list(
         self,
         list_id: str,
         *,
@@ -59,7 +44,7 @@ class Items(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ItemZeroTrustListsZeroTrustListItemsResponse]:
+    ) -> Optional[ItemListResponse]:
         """
         Fetches all items in a single Zero Trust list.
 
@@ -85,10 +70,7 @@ class Items(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[ItemZeroTrustListsZeroTrustListItemsResponse]],
-                ResultWrapper[ItemZeroTrustListsZeroTrustListItemsResponse],
-            ),
+            cast_to=cast(Type[Optional[ItemListResponse]], ResultWrapper[ItemListResponse]),
         )
 
 
@@ -101,7 +83,7 @@ class AsyncItems(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncItemsWithStreamingResponse:
         return AsyncItemsWithStreamingResponse(self)
 
-    async def zero_trust_lists_zero_trust_list_items(
+    async def list(
         self,
         list_id: str,
         *,
@@ -112,7 +94,7 @@ class AsyncItems(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ItemZeroTrustListsZeroTrustListItemsResponse]:
+    ) -> Optional[ItemListResponse]:
         """
         Fetches all items in a single Zero Trust list.
 
@@ -138,10 +120,7 @@ class AsyncItems(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[ItemZeroTrustListsZeroTrustListItemsResponse]],
-                ResultWrapper[ItemZeroTrustListsZeroTrustListItemsResponse],
-            ),
+            cast_to=cast(Type[Optional[ItemListResponse]], ResultWrapper[ItemListResponse]),
         )
 
 
@@ -149,8 +128,8 @@ class ItemsWithRawResponse:
     def __init__(self, items: Items) -> None:
         self._items = items
 
-        self.zero_trust_lists_zero_trust_list_items = to_raw_response_wrapper(
-            items.zero_trust_lists_zero_trust_list_items,
+        self.list = to_raw_response_wrapper(
+            items.list,
         )
 
 
@@ -158,8 +137,8 @@ class AsyncItemsWithRawResponse:
     def __init__(self, items: AsyncItems) -> None:
         self._items = items
 
-        self.zero_trust_lists_zero_trust_list_items = async_to_raw_response_wrapper(
-            items.zero_trust_lists_zero_trust_list_items,
+        self.list = async_to_raw_response_wrapper(
+            items.list,
         )
 
 
@@ -167,8 +146,8 @@ class ItemsWithStreamingResponse:
     def __init__(self, items: Items) -> None:
         self._items = items
 
-        self.zero_trust_lists_zero_trust_list_items = to_streamed_response_wrapper(
-            items.zero_trust_lists_zero_trust_list_items,
+        self.list = to_streamed_response_wrapper(
+            items.list,
         )
 
 
@@ -176,6 +155,6 @@ class AsyncItemsWithStreamingResponse:
     def __init__(self, items: AsyncItems) -> None:
         self._items = items
 
-        self.zero_trust_lists_zero_trust_list_items = async_to_streamed_response_wrapper(
-            items.zero_trust_lists_zero_trust_list_items,
+        self.list = async_to_streamed_response_wrapper(
+            items.list,
         )

@@ -2,61 +2,18 @@
 
 from __future__ import annotations
 
+from typing import Any, Type, cast
+from typing_extensions import Literal
+
 import httpx
 
-from .bulks import Bulks, AsyncBulks
-
-from ....._compat import cached_property
-
-from .keys import Keys, AsyncKeys
-
-from .metadata import Metadata, AsyncMetadata
-
-from .values import Values, AsyncValues
-
-from .....types.storage.kv import (
-    NamespaceUpdateResponse,
-    NamespaceListResponse,
-    NamespaceDeleteResponse,
-    NamespaceWorkersKvNamespaceCreateANamespaceResponse,
-)
-
-from typing import Type, Optional
-
-from typing_extensions import Literal
-
-from ....._response import (
-    to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ....._resource import SyncAPIResource, AsyncAPIResource
-from ....._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from .....types import shared_params
-from .....types.storage.kv import namespace_update_params
-from .....types.storage.kv import namespace_list_params
-from .....types.storage.kv import namespace_workers_kv_namespace_create_a_namespace_params
-from .bulks import (
-    Bulks,
-    AsyncBulks,
-    BulksWithRawResponse,
-    AsyncBulksWithRawResponse,
-    BulksWithStreamingResponse,
-    AsyncBulksWithStreamingResponse,
+from .bulk import (
+    Bulk,
+    AsyncBulk,
+    BulkWithRawResponse,
+    AsyncBulkWithRawResponse,
+    BulkWithStreamingResponse,
+    AsyncBulkWithStreamingResponse,
 )
 from .keys import (
     Keys,
@@ -66,14 +23,6 @@ from .keys import (
     KeysWithStreamingResponse,
     AsyncKeysWithStreamingResponse,
 )
-from .metadata import (
-    Metadata,
-    AsyncMetadata,
-    MetadataWithRawResponse,
-    AsyncMetadataWithRawResponse,
-    MetadataWithStreamingResponse,
-    AsyncMetadataWithStreamingResponse,
-)
 from .values import (
     Values,
     AsyncValues,
@@ -82,27 +31,47 @@ from .values import (
     ValuesWithStreamingResponse,
     AsyncValuesWithStreamingResponse,
 )
+from .metadata import (
+    Metadata,
+    AsyncMetadata,
+    MetadataWithRawResponse,
+    AsyncMetadataWithRawResponse,
+    MetadataWithStreamingResponse,
+    AsyncMetadataWithStreamingResponse,
+)
+from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._utils import maybe_transform
+from ....._compat import cached_property
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from ....._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
 from ....._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from .....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from ....._base_client import (
+    AsyncPaginator,
+    make_request_options,
+)
+from .....types.storage.kv import (
+    NamespaceListResponse,
+    NamespaceCreateResponse,
+    NamespaceDeleteResponse,
+    NamespaceUpdateResponse,
+    namespace_list_params,
+    namespace_create_params,
+    namespace_update_params,
+)
 
 __all__ = ["Namespaces", "AsyncNamespaces"]
 
 
 class Namespaces(SyncAPIResource):
     @cached_property
-    def bulks(self) -> Bulks:
-        return Bulks(self._client)
+    def bulk(self) -> Bulk:
+        return Bulk(self._client)
 
     @cached_property
     def keys(self) -> Keys:
@@ -123,6 +92,52 @@ class Namespaces(SyncAPIResource):
     @cached_property
     def with_streaming_response(self) -> NamespacesWithStreamingResponse:
         return NamespacesWithStreamingResponse(self)
+
+    def create(
+        self,
+        account_id: str,
+        *,
+        title: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> NamespaceCreateResponse:
+        """Creates a namespace under the given title.
+
+        A `400` is returned if the account
+        already owns a namespace with this title. A namespace must be explicitly deleted
+        to be replaced.
+
+        Args:
+          account_id: Identifier
+
+          title: A human-readable string name for a Namespace.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._post(
+            f"/accounts/{account_id}/storage/kv/namespaces",
+            body=maybe_transform({"title": title}, namespace_create_params.NamespaceCreateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[NamespaceCreateResponse], ResultWrapper[NamespaceCreateResponse]),
+        )
 
     def update(
         self,
@@ -191,7 +206,7 @@ class Namespaces(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[NamespaceListResponse]:
+    ) -> SyncV4PagePaginationArray[NamespaceListResponse]:
         """
         Returns the namespaces owned by an account.
 
@@ -216,8 +231,9 @@ class Namespaces(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/storage/kv/namespaces",
+            page=SyncV4PagePaginationArray[NamespaceListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -232,9 +248,8 @@ class Namespaces(SyncAPIResource):
                     },
                     namespace_list_params.NamespaceListParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[NamespaceListResponse]], ResultWrapper[NamespaceListResponse]),
+            model=NamespaceListResponse,
         )
 
     def delete(
@@ -286,7 +301,33 @@ class Namespaces(SyncAPIResource):
             ),
         )
 
-    def workers_kv_namespace_create_a_namespace(
+
+class AsyncNamespaces(AsyncAPIResource):
+    @cached_property
+    def bulk(self) -> AsyncBulk:
+        return AsyncBulk(self._client)
+
+    @cached_property
+    def keys(self) -> AsyncKeys:
+        return AsyncKeys(self._client)
+
+    @cached_property
+    def metadata(self) -> AsyncMetadata:
+        return AsyncMetadata(self._client)
+
+    @cached_property
+    def values(self) -> AsyncValues:
+        return AsyncValues(self._client)
+
+    @cached_property
+    def with_raw_response(self) -> AsyncNamespacesWithRawResponse:
+        return AsyncNamespacesWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncNamespacesWithStreamingResponse:
+        return AsyncNamespacesWithStreamingResponse(self)
+
+    async def create(
         self,
         account_id: str,
         *,
@@ -297,7 +338,7 @@ class Namespaces(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> NamespaceWorkersKvNamespaceCreateANamespaceResponse:
+    ) -> NamespaceCreateResponse:
         """Creates a namespace under the given title.
 
         A `400` is returned if the account
@@ -319,12 +360,9 @@ class Namespaces(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._post(
+        return await self._post(
             f"/accounts/{account_id}/storage/kv/namespaces",
-            body=maybe_transform(
-                {"title": title},
-                namespace_workers_kv_namespace_create_a_namespace_params.NamespaceWorkersKvNamespaceCreateANamespaceParams,
-            ),
+            body=maybe_transform({"title": title}, namespace_create_params.NamespaceCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -332,37 +370,8 @@ class Namespaces(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[NamespaceWorkersKvNamespaceCreateANamespaceResponse],
-                ResultWrapper[NamespaceWorkersKvNamespaceCreateANamespaceResponse],
-            ),
+            cast_to=cast(Type[NamespaceCreateResponse], ResultWrapper[NamespaceCreateResponse]),
         )
-
-
-class AsyncNamespaces(AsyncAPIResource):
-    @cached_property
-    def bulks(self) -> AsyncBulks:
-        return AsyncBulks(self._client)
-
-    @cached_property
-    def keys(self) -> AsyncKeys:
-        return AsyncKeys(self._client)
-
-    @cached_property
-    def metadata(self) -> AsyncMetadata:
-        return AsyncMetadata(self._client)
-
-    @cached_property
-    def values(self) -> AsyncValues:
-        return AsyncValues(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> AsyncNamespacesWithRawResponse:
-        return AsyncNamespacesWithRawResponse(self)
-
-    @cached_property
-    def with_streaming_response(self) -> AsyncNamespacesWithStreamingResponse:
-        return AsyncNamespacesWithStreamingResponse(self)
 
     async def update(
         self,
@@ -417,7 +426,7 @@ class AsyncNamespaces(AsyncAPIResource):
             ),
         )
 
-    async def list(
+    def list(
         self,
         account_id: str,
         *,
@@ -431,7 +440,7 @@ class AsyncNamespaces(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[NamespaceListResponse]:
+    ) -> AsyncPaginator[NamespaceListResponse, AsyncV4PagePaginationArray[NamespaceListResponse]]:
         """
         Returns the namespaces owned by an account.
 
@@ -456,8 +465,9 @@ class AsyncNamespaces(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/storage/kv/namespaces",
+            page=AsyncV4PagePaginationArray[NamespaceListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -472,9 +482,8 @@ class AsyncNamespaces(AsyncAPIResource):
                     },
                     namespace_list_params.NamespaceListParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[NamespaceListResponse]], ResultWrapper[NamespaceListResponse]),
+            model=NamespaceListResponse,
         )
 
     async def delete(
@@ -526,63 +535,14 @@ class AsyncNamespaces(AsyncAPIResource):
             ),
         )
 
-    async def workers_kv_namespace_create_a_namespace(
-        self,
-        account_id: str,
-        *,
-        title: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> NamespaceWorkersKvNamespaceCreateANamespaceResponse:
-        """Creates a namespace under the given title.
-
-        A `400` is returned if the account
-        already owns a namespace with this title. A namespace must be explicitly deleted
-        to be replaced.
-
-        Args:
-          account_id: Identifier
-
-          title: A human-readable string name for a Namespace.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._post(
-            f"/accounts/{account_id}/storage/kv/namespaces",
-            body=maybe_transform(
-                {"title": title},
-                namespace_workers_kv_namespace_create_a_namespace_params.NamespaceWorkersKvNamespaceCreateANamespaceParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[NamespaceWorkersKvNamespaceCreateANamespaceResponse],
-                ResultWrapper[NamespaceWorkersKvNamespaceCreateANamespaceResponse],
-            ),
-        )
-
 
 class NamespacesWithRawResponse:
     def __init__(self, namespaces: Namespaces) -> None:
         self._namespaces = namespaces
 
+        self.create = to_raw_response_wrapper(
+            namespaces.create,
+        )
         self.update = to_raw_response_wrapper(
             namespaces.update,
         )
@@ -592,13 +552,10 @@ class NamespacesWithRawResponse:
         self.delete = to_raw_response_wrapper(
             namespaces.delete,
         )
-        self.workers_kv_namespace_create_a_namespace = to_raw_response_wrapper(
-            namespaces.workers_kv_namespace_create_a_namespace,
-        )
 
     @cached_property
-    def bulks(self) -> BulksWithRawResponse:
-        return BulksWithRawResponse(self._namespaces.bulks)
+    def bulk(self) -> BulkWithRawResponse:
+        return BulkWithRawResponse(self._namespaces.bulk)
 
     @cached_property
     def keys(self) -> KeysWithRawResponse:
@@ -617,6 +574,9 @@ class AsyncNamespacesWithRawResponse:
     def __init__(self, namespaces: AsyncNamespaces) -> None:
         self._namespaces = namespaces
 
+        self.create = async_to_raw_response_wrapper(
+            namespaces.create,
+        )
         self.update = async_to_raw_response_wrapper(
             namespaces.update,
         )
@@ -626,13 +586,10 @@ class AsyncNamespacesWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             namespaces.delete,
         )
-        self.workers_kv_namespace_create_a_namespace = async_to_raw_response_wrapper(
-            namespaces.workers_kv_namespace_create_a_namespace,
-        )
 
     @cached_property
-    def bulks(self) -> AsyncBulksWithRawResponse:
-        return AsyncBulksWithRawResponse(self._namespaces.bulks)
+    def bulk(self) -> AsyncBulkWithRawResponse:
+        return AsyncBulkWithRawResponse(self._namespaces.bulk)
 
     @cached_property
     def keys(self) -> AsyncKeysWithRawResponse:
@@ -651,6 +608,9 @@ class NamespacesWithStreamingResponse:
     def __init__(self, namespaces: Namespaces) -> None:
         self._namespaces = namespaces
 
+        self.create = to_streamed_response_wrapper(
+            namespaces.create,
+        )
         self.update = to_streamed_response_wrapper(
             namespaces.update,
         )
@@ -660,13 +620,10 @@ class NamespacesWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             namespaces.delete,
         )
-        self.workers_kv_namespace_create_a_namespace = to_streamed_response_wrapper(
-            namespaces.workers_kv_namespace_create_a_namespace,
-        )
 
     @cached_property
-    def bulks(self) -> BulksWithStreamingResponse:
-        return BulksWithStreamingResponse(self._namespaces.bulks)
+    def bulk(self) -> BulkWithStreamingResponse:
+        return BulkWithStreamingResponse(self._namespaces.bulk)
 
     @cached_property
     def keys(self) -> KeysWithStreamingResponse:
@@ -685,6 +642,9 @@ class AsyncNamespacesWithStreamingResponse:
     def __init__(self, namespaces: AsyncNamespaces) -> None:
         self._namespaces = namespaces
 
+        self.create = async_to_streamed_response_wrapper(
+            namespaces.create,
+        )
         self.update = async_to_streamed_response_wrapper(
             namespaces.update,
         )
@@ -694,13 +654,10 @@ class AsyncNamespacesWithStreamingResponse:
         self.delete = async_to_streamed_response_wrapper(
             namespaces.delete,
         )
-        self.workers_kv_namespace_create_a_namespace = async_to_streamed_response_wrapper(
-            namespaces.workers_kv_namespace_create_a_namespace,
-        )
 
     @cached_property
-    def bulks(self) -> AsyncBulksWithStreamingResponse:
-        return AsyncBulksWithStreamingResponse(self._namespaces.bulks)
+    def bulk(self) -> AsyncBulkWithStreamingResponse:
+        return AsyncBulkWithStreamingResponse(self._namespaces.bulk)
 
     @cached_property
     def keys(self) -> AsyncKeysWithStreamingResponse:

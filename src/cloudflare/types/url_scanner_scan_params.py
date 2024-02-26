@@ -2,19 +2,11 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Annotated
-
 from typing import Union
-
 from datetime import datetime
+from typing_extensions import Annotated, TypedDict
 
 from .._utils import PropertyInfo
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from .._types import FileTypes
-from .._utils import PropertyInfo
-from ..types import shared_params
 
 __all__ = ["URLScannerScanParams"]
 
@@ -32,6 +24,9 @@ class URLScannerScanParams(TypedDict, total=False):
     hostname: str
     """Filter scans by hostname of _any_ request made by the webpage."""
 
+    ip: str
+    """Filter scans by IP address (IPv4 or IPv6) of _any_ request made by the webpage."""
+
     limit: int
     """Limit the number of objects in the response."""
 
@@ -40,6 +35,9 @@ class URLScannerScanParams(TypedDict, total=False):
 
     page_hostname: str
     """Filter scans by main page hostname ."""
+
+    page_ip: str
+    """Filter scans by main page IP address (IPv4 or IPv6)."""
 
     page_path: str
     """Filter scans by exact match URL path (also supports suffix search)."""

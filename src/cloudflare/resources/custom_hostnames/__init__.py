@@ -1,14 +1,16 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from .fallback_origins import FallbackOrigins, AsyncFallbackOrigins
-from .fallback_origins import (
-    FallbackOriginsWithRawResponse,
-    AsyncFallbackOriginsWithRawResponse,
-    FallbackOriginsWithStreamingResponse,
-    AsyncFallbackOriginsWithStreamingResponse,
+from .fallback_origin import (
+    FallbackOrigin,
+    AsyncFallbackOrigin,
+    FallbackOriginWithRawResponse,
+    AsyncFallbackOriginWithRawResponse,
+    FallbackOriginWithStreamingResponse,
+    AsyncFallbackOriginWithStreamingResponse,
 )
-from .custom_hostnames import CustomHostnames, AsyncCustomHostnames
 from .custom_hostnames import (
+    CustomHostnames,
+    AsyncCustomHostnames,
     CustomHostnamesWithRawResponse,
     AsyncCustomHostnamesWithRawResponse,
     CustomHostnamesWithStreamingResponse,
@@ -16,12 +18,12 @@ from .custom_hostnames import (
 )
 
 __all__ = [
-    "FallbackOrigins",
-    "AsyncFallbackOrigins",
-    "FallbackOriginsWithRawResponse",
-    "AsyncFallbackOriginsWithRawResponse",
-    "FallbackOriginsWithStreamingResponse",
-    "AsyncFallbackOriginsWithStreamingResponse",
+    "FallbackOrigin",
+    "AsyncFallbackOrigin",
+    "FallbackOriginWithRawResponse",
+    "AsyncFallbackOriginWithRawResponse",
+    "FallbackOriginWithStreamingResponse",
+    "AsyncFallbackOriginWithStreamingResponse",
     "CustomHostnames",
     "AsyncCustomHostnames",
     "CustomHostnamesWithRawResponse",

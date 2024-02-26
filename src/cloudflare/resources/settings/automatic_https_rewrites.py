@@ -2,44 +2,30 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+from typing_extensions import Literal
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._compat import cached_property
-
-from ...types.settings import AutomaticHTTPSRewriteUpdateResponse, AutomaticHTTPSRewriteGetResponse
-
-from typing import Type, Optional
-
-from typing_extensions import Literal
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types.settings import automatic_https_rewrite_update_params
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ..._base_client import (
+    make_request_options,
+)
+from ...types.settings import (
+    AutomaticHTTPSRewriteGetResponse,
+    AutomaticHTTPSRewriteEditResponse,
+    automatic_https_rewrite_edit_params,
+)
 
 __all__ = ["AutomaticHTTPSRewrites", "AsyncAutomaticHTTPSRewrites"]
 
@@ -53,7 +39,7 @@ class AutomaticHTTPSRewrites(SyncAPIResource):
     def with_streaming_response(self) -> AutomaticHTTPSRewritesWithStreamingResponse:
         return AutomaticHTTPSRewritesWithStreamingResponse(self)
 
-    def update(
+    def edit(
         self,
         zone_id: str,
         *,
@@ -64,7 +50,7 @@ class AutomaticHTTPSRewrites(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AutomaticHTTPSRewriteUpdateResponse]:
+    ) -> Optional[AutomaticHTTPSRewriteEditResponse]:
         """
         Enable the Automatic HTTPS Rewrites feature for this zone.
 
@@ -86,9 +72,7 @@ class AutomaticHTTPSRewrites(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._patch(
             f"/zones/{zone_id}/settings/automatic_https_rewrites",
-            body=maybe_transform(
-                {"value": value}, automatic_https_rewrite_update_params.AutomaticHTTPSRewriteUpdateParams
-            ),
+            body=maybe_transform({"value": value}, automatic_https_rewrite_edit_params.AutomaticHTTPSRewriteEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -97,7 +81,7 @@ class AutomaticHTTPSRewrites(SyncAPIResource):
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(
-                Type[Optional[AutomaticHTTPSRewriteUpdateResponse]], ResultWrapper[AutomaticHTTPSRewriteUpdateResponse]
+                Type[Optional[AutomaticHTTPSRewriteEditResponse]], ResultWrapper[AutomaticHTTPSRewriteEditResponse]
             ),
         )
 
@@ -152,7 +136,7 @@ class AsyncAutomaticHTTPSRewrites(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncAutomaticHTTPSRewritesWithStreamingResponse:
         return AsyncAutomaticHTTPSRewritesWithStreamingResponse(self)
 
-    async def update(
+    async def edit(
         self,
         zone_id: str,
         *,
@@ -163,7 +147,7 @@ class AsyncAutomaticHTTPSRewrites(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AutomaticHTTPSRewriteUpdateResponse]:
+    ) -> Optional[AutomaticHTTPSRewriteEditResponse]:
         """
         Enable the Automatic HTTPS Rewrites feature for this zone.
 
@@ -185,9 +169,7 @@ class AsyncAutomaticHTTPSRewrites(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._patch(
             f"/zones/{zone_id}/settings/automatic_https_rewrites",
-            body=maybe_transform(
-                {"value": value}, automatic_https_rewrite_update_params.AutomaticHTTPSRewriteUpdateParams
-            ),
+            body=maybe_transform({"value": value}, automatic_https_rewrite_edit_params.AutomaticHTTPSRewriteEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -196,7 +178,7 @@ class AsyncAutomaticHTTPSRewrites(AsyncAPIResource):
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(
-                Type[Optional[AutomaticHTTPSRewriteUpdateResponse]], ResultWrapper[AutomaticHTTPSRewriteUpdateResponse]
+                Type[Optional[AutomaticHTTPSRewriteEditResponse]], ResultWrapper[AutomaticHTTPSRewriteEditResponse]
             ),
         )
 
@@ -246,8 +228,8 @@ class AutomaticHTTPSRewritesWithRawResponse:
     def __init__(self, automatic_https_rewrites: AutomaticHTTPSRewrites) -> None:
         self._automatic_https_rewrites = automatic_https_rewrites
 
-        self.update = to_raw_response_wrapper(
-            automatic_https_rewrites.update,
+        self.edit = to_raw_response_wrapper(
+            automatic_https_rewrites.edit,
         )
         self.get = to_raw_response_wrapper(
             automatic_https_rewrites.get,
@@ -258,8 +240,8 @@ class AsyncAutomaticHTTPSRewritesWithRawResponse:
     def __init__(self, automatic_https_rewrites: AsyncAutomaticHTTPSRewrites) -> None:
         self._automatic_https_rewrites = automatic_https_rewrites
 
-        self.update = async_to_raw_response_wrapper(
-            automatic_https_rewrites.update,
+        self.edit = async_to_raw_response_wrapper(
+            automatic_https_rewrites.edit,
         )
         self.get = async_to_raw_response_wrapper(
             automatic_https_rewrites.get,
@@ -270,8 +252,8 @@ class AutomaticHTTPSRewritesWithStreamingResponse:
     def __init__(self, automatic_https_rewrites: AutomaticHTTPSRewrites) -> None:
         self._automatic_https_rewrites = automatic_https_rewrites
 
-        self.update = to_streamed_response_wrapper(
-            automatic_https_rewrites.update,
+        self.edit = to_streamed_response_wrapper(
+            automatic_https_rewrites.edit,
         )
         self.get = to_streamed_response_wrapper(
             automatic_https_rewrites.get,
@@ -282,8 +264,8 @@ class AsyncAutomaticHTTPSRewritesWithStreamingResponse:
     def __init__(self, automatic_https_rewrites: AsyncAutomaticHTTPSRewrites) -> None:
         self._automatic_https_rewrites = automatic_https_rewrites
 
-        self.update = async_to_streamed_response_wrapper(
-            automatic_https_rewrites.update,
+        self.edit = async_to_streamed_response_wrapper(
+            automatic_https_rewrites.edit,
         )
         self.get = async_to_streamed_response_wrapper(
             automatic_https_rewrites.get,

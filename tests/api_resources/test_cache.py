@@ -2,19 +2,14 @@
 
 from __future__ import annotations
 
-from cloudflare.types import CacheRegionalTieredCachesResponse, CacheUpdateRegionalTieredCacheResponse
-
-from typing import Any, cast
-
 import os
+from typing import Any, Optional, cast
+
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types import cache_update_regional_tiered_cache_params
+from cloudflare.types import CachePurgeResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -24,90 +19,57 @@ class TestCache:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_regional_tiered_caches(self, client: Cloudflare) -> None:
-        cache = client.cache.regional_tiered_caches(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+    def test_method_purge(self, client: Cloudflare) -> None:
+        cache = client.cache.purge(
+            "string",
+            body={},
         )
-        assert_matches_type(CacheRegionalTieredCachesResponse, cache, path=["response"])
+        assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_regional_tiered_caches(self, client: Cloudflare) -> None:
-        response = client.cache.with_raw_response.regional_tiered_caches(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+    def test_method_purge_with_all_params(self, client: Cloudflare) -> None:
+        cache = client.cache.purge(
+            "string",
+            body={"tags": ["some-tag", "another-tag"]},
         )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        cache = response.parse()
-        assert_matches_type(CacheRegionalTieredCachesResponse, cache, path=["response"])
+        assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_regional_tiered_caches(self, client: Cloudflare) -> None:
-        with client.cache.with_streaming_response.regional_tiered_caches(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            cache = response.parse()
-            assert_matches_type(CacheRegionalTieredCachesResponse, cache, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_path_params_regional_tiered_caches(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.cache.with_raw_response.regional_tiered_caches(
-                "",
-            )
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_method_update_regional_tiered_cache(self, client: Cloudflare) -> None:
-        cache = client.cache.update_regional_tiered_cache(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            value="on",
-        )
-        assert_matches_type(CacheUpdateRegionalTieredCacheResponse, cache, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_raw_response_update_regional_tiered_cache(self, client: Cloudflare) -> None:
-        response = client.cache.with_raw_response.update_regional_tiered_cache(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            value="on",
+    def test_raw_response_purge(self, client: Cloudflare) -> None:
+        response = client.cache.with_raw_response.purge(
+            "string",
+            body={},
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         cache = response.parse()
-        assert_matches_type(CacheUpdateRegionalTieredCacheResponse, cache, path=["response"])
+        assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_update_regional_tiered_cache(self, client: Cloudflare) -> None:
-        with client.cache.with_streaming_response.update_regional_tiered_cache(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            value="on",
+    def test_streaming_response_purge(self, client: Cloudflare) -> None:
+        with client.cache.with_streaming_response.purge(
+            "string",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             cache = response.parse()
-            assert_matches_type(CacheUpdateRegionalTieredCacheResponse, cache, path=["response"])
+            assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_update_regional_tiered_cache(self, client: Cloudflare) -> None:
+    def test_path_params_purge(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.cache.with_raw_response.update_regional_tiered_cache(
+            client.cache.with_raw_response.purge(
                 "",
-                value="on",
+                body={},
             )
 
 
@@ -116,88 +78,55 @@ class TestAsyncCache:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_regional_tiered_caches(self, async_client: AsyncCloudflare) -> None:
-        cache = await async_client.cache.regional_tiered_caches(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+    async def test_method_purge(self, async_client: AsyncCloudflare) -> None:
+        cache = await async_client.cache.purge(
+            "string",
+            body={},
         )
-        assert_matches_type(CacheRegionalTieredCachesResponse, cache, path=["response"])
+        assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_regional_tiered_caches(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.cache.with_raw_response.regional_tiered_caches(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+    async def test_method_purge_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        cache = await async_client.cache.purge(
+            "string",
+            body={"tags": ["some-tag", "another-tag"]},
         )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        cache = await response.parse()
-        assert_matches_type(CacheRegionalTieredCachesResponse, cache, path=["response"])
+        assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_regional_tiered_caches(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.cache.with_streaming_response.regional_tiered_caches(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            cache = await response.parse()
-            assert_matches_type(CacheRegionalTieredCachesResponse, cache, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_path_params_regional_tiered_caches(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.cache.with_raw_response.regional_tiered_caches(
-                "",
-            )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_update_regional_tiered_cache(self, async_client: AsyncCloudflare) -> None:
-        cache = await async_client.cache.update_regional_tiered_cache(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            value="on",
-        )
-        assert_matches_type(CacheUpdateRegionalTieredCacheResponse, cache, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_raw_response_update_regional_tiered_cache(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.cache.with_raw_response.update_regional_tiered_cache(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            value="on",
+    async def test_raw_response_purge(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.cache.with_raw_response.purge(
+            "string",
+            body={},
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         cache = await response.parse()
-        assert_matches_type(CacheUpdateRegionalTieredCacheResponse, cache, path=["response"])
+        assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_update_regional_tiered_cache(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.cache.with_streaming_response.update_regional_tiered_cache(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            value="on",
+    async def test_streaming_response_purge(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.cache.with_streaming_response.purge(
+            "string",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             cache = await response.parse()
-            assert_matches_type(CacheUpdateRegionalTieredCacheResponse, cache, path=["response"])
+            assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_update_regional_tiered_cache(self, async_client: AsyncCloudflare) -> None:
+    async def test_path_params_purge(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.cache.with_raw_response.update_regional_tiered_cache(
+            await async_client.cache.with_raw_response.purge(
                 "",
-                value="on",
+                body={},
             )

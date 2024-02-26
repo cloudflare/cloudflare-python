@@ -2,34 +2,72 @@
 
 from __future__ import annotations
 
-from cloudflare.types.magics import (
-    GreTunnelUpdateResponse,
-    GreTunnelDeleteResponse,
-    GreTunnelGetResponse,
-    GreTunnelMagicGreTunnelsCreateGreTunnelsResponse,
-    GreTunnelMagicGreTunnelsListGreTunnelsResponse,
-    GreTunnelMagicGreTunnelsUpdateMultipleGreTunnelsResponse,
-)
-
+import os
 from typing import Any, cast
 
-import os
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.magics import gre_tunnel_update_params
-from cloudflare.types.magics import gre_tunnel_magic_gre_tunnels_create_gre_tunnels_params
-from cloudflare.types.magics import gre_tunnel_magic_gre_tunnels_update_multiple_gre_tunnels_params
+from cloudflare.types.magics import (
+    GRETunnelGetResponse,
+    GRETunnelListResponse,
+    GRETunnelCreateResponse,
+    GRETunnelDeleteResponse,
+    GRETunnelUpdateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
-class TestGreTunnels:
+class TestGRETunnels:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_create(self, client: Cloudflare) -> None:
+        gre_tunnel = client.magics.gre_tunnels.create(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
+        )
+        assert_matches_type(GRETunnelCreateResponse, gre_tunnel, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_create(self, client: Cloudflare) -> None:
+        response = client.magics.gre_tunnels.with_raw_response.create(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        gre_tunnel = response.parse()
+        assert_matches_type(GRETunnelCreateResponse, gre_tunnel, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_create(self, client: Cloudflare) -> None:
+        with client.magics.gre_tunnels.with_streaming_response.create(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            gre_tunnel = response.parse()
+            assert_matches_type(GRETunnelCreateResponse, gre_tunnel, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_create(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
+            client.magics.gre_tunnels.with_raw_response.create(
+                "",
+                body={},
+            )
 
     @pytest.mark.skip()
     @parametrize
@@ -42,7 +80,7 @@ class TestGreTunnels:
             interface_address="192.0.2.0/31",
             name="GRE_1",
         )
-        assert_matches_type(GreTunnelUpdateResponse, gre_tunnel, path=["response"])
+        assert_matches_type(GRETunnelUpdateResponse, gre_tunnel, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -65,7 +103,7 @@ class TestGreTunnels:
             mtu=0,
             ttl=0,
         )
-        assert_matches_type(GreTunnelUpdateResponse, gre_tunnel, path=["response"])
+        assert_matches_type(GRETunnelUpdateResponse, gre_tunnel, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -82,7 +120,7 @@ class TestGreTunnels:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         gre_tunnel = response.parse()
-        assert_matches_type(GreTunnelUpdateResponse, gre_tunnel, path=["response"])
+        assert_matches_type(GRETunnelUpdateResponse, gre_tunnel, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -99,7 +137,7 @@ class TestGreTunnels:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             gre_tunnel = response.parse()
-            assert_matches_type(GreTunnelUpdateResponse, gre_tunnel, path=["response"])
+            assert_matches_type(GRETunnelUpdateResponse, gre_tunnel, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -128,12 +166,54 @@ class TestGreTunnels:
 
     @pytest.mark.skip()
     @parametrize
+    def test_method_list(self, client: Cloudflare) -> None:
+        gre_tunnel = client.magics.gre_tunnels.list(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(GRETunnelListResponse, gre_tunnel, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_list(self, client: Cloudflare) -> None:
+        response = client.magics.gre_tunnels.with_raw_response.list(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        gre_tunnel = response.parse()
+        assert_matches_type(GRETunnelListResponse, gre_tunnel, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_list(self, client: Cloudflare) -> None:
+        with client.magics.gre_tunnels.with_streaming_response.list(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            gre_tunnel = response.parse()
+            assert_matches_type(GRETunnelListResponse, gre_tunnel, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_list(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
+            client.magics.gre_tunnels.with_raw_response.list(
+                "",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         gre_tunnel = client.magics.gre_tunnels.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(GreTunnelDeleteResponse, gre_tunnel, path=["response"])
+        assert_matches_type(GRETunnelDeleteResponse, gre_tunnel, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -146,7 +226,7 @@ class TestGreTunnels:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         gre_tunnel = response.parse()
-        assert_matches_type(GreTunnelDeleteResponse, gre_tunnel, path=["response"])
+        assert_matches_type(GRETunnelDeleteResponse, gre_tunnel, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -159,7 +239,7 @@ class TestGreTunnels:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             gre_tunnel = response.parse()
-            assert_matches_type(GreTunnelDeleteResponse, gre_tunnel, path=["response"])
+            assert_matches_type(GRETunnelDeleteResponse, gre_tunnel, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -185,7 +265,7 @@ class TestGreTunnels:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(GreTunnelGetResponse, gre_tunnel, path=["response"])
+        assert_matches_type(GRETunnelGetResponse, gre_tunnel, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -198,7 +278,7 @@ class TestGreTunnels:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         gre_tunnel = response.parse()
-        assert_matches_type(GreTunnelGetResponse, gre_tunnel, path=["response"])
+        assert_matches_type(GRETunnelGetResponse, gre_tunnel, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -211,7 +291,7 @@ class TestGreTunnels:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             gre_tunnel = response.parse()
-            assert_matches_type(GreTunnelGetResponse, gre_tunnel, path=["response"])
+            assert_matches_type(GRETunnelGetResponse, gre_tunnel, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -230,143 +310,55 @@ class TestGreTunnels:
                 account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip()
-    @parametrize
-    def test_method_magic_gre_tunnels_create_gre_tunnels(self, client: Cloudflare) -> None:
-        gre_tunnel = client.magics.gre_tunnels.magic_gre_tunnels_create_gre_tunnels(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
-        )
-        assert_matches_type(GreTunnelMagicGreTunnelsCreateGreTunnelsResponse, gre_tunnel, path=["response"])
 
-    @pytest.mark.skip()
-    @parametrize
-    def test_raw_response_magic_gre_tunnels_create_gre_tunnels(self, client: Cloudflare) -> None:
-        response = client.magics.gre_tunnels.with_raw_response.magic_gre_tunnels_create_gre_tunnels(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        gre_tunnel = response.parse()
-        assert_matches_type(GreTunnelMagicGreTunnelsCreateGreTunnelsResponse, gre_tunnel, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_streaming_response_magic_gre_tunnels_create_gre_tunnels(self, client: Cloudflare) -> None:
-        with client.magics.gre_tunnels.with_streaming_response.magic_gre_tunnels_create_gre_tunnels(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            gre_tunnel = response.parse()
-            assert_matches_type(GreTunnelMagicGreTunnelsCreateGreTunnelsResponse, gre_tunnel, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_path_params_magic_gre_tunnels_create_gre_tunnels(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
-            client.magics.gre_tunnels.with_raw_response.magic_gre_tunnels_create_gre_tunnels(
-                "",
-                body={},
-            )
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_method_magic_gre_tunnels_list_gre_tunnels(self, client: Cloudflare) -> None:
-        gre_tunnel = client.magics.gre_tunnels.magic_gre_tunnels_list_gre_tunnels(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(GreTunnelMagicGreTunnelsListGreTunnelsResponse, gre_tunnel, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_raw_response_magic_gre_tunnels_list_gre_tunnels(self, client: Cloudflare) -> None:
-        response = client.magics.gre_tunnels.with_raw_response.magic_gre_tunnels_list_gre_tunnels(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        gre_tunnel = response.parse()
-        assert_matches_type(GreTunnelMagicGreTunnelsListGreTunnelsResponse, gre_tunnel, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_streaming_response_magic_gre_tunnels_list_gre_tunnels(self, client: Cloudflare) -> None:
-        with client.magics.gre_tunnels.with_streaming_response.magic_gre_tunnels_list_gre_tunnels(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            gre_tunnel = response.parse()
-            assert_matches_type(GreTunnelMagicGreTunnelsListGreTunnelsResponse, gre_tunnel, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_path_params_magic_gre_tunnels_list_gre_tunnels(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
-            client.magics.gre_tunnels.with_raw_response.magic_gre_tunnels_list_gre_tunnels(
-                "",
-            )
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_method_magic_gre_tunnels_update_multiple_gre_tunnels(self, client: Cloudflare) -> None:
-        gre_tunnel = client.magics.gre_tunnels.magic_gre_tunnels_update_multiple_gre_tunnels(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
-        )
-        assert_matches_type(GreTunnelMagicGreTunnelsUpdateMultipleGreTunnelsResponse, gre_tunnel, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_raw_response_magic_gre_tunnels_update_multiple_gre_tunnels(self, client: Cloudflare) -> None:
-        response = client.magics.gre_tunnels.with_raw_response.magic_gre_tunnels_update_multiple_gre_tunnels(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        gre_tunnel = response.parse()
-        assert_matches_type(GreTunnelMagicGreTunnelsUpdateMultipleGreTunnelsResponse, gre_tunnel, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_streaming_response_magic_gre_tunnels_update_multiple_gre_tunnels(self, client: Cloudflare) -> None:
-        with client.magics.gre_tunnels.with_streaming_response.magic_gre_tunnels_update_multiple_gre_tunnels(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            gre_tunnel = response.parse()
-            assert_matches_type(GreTunnelMagicGreTunnelsUpdateMultipleGreTunnelsResponse, gre_tunnel, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_path_params_magic_gre_tunnels_update_multiple_gre_tunnels(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
-            client.magics.gre_tunnels.with_raw_response.magic_gre_tunnels_update_multiple_gre_tunnels(
-                "",
-                body={},
-            )
-
-
-class TestAsyncGreTunnels:
+class TestAsyncGRETunnels:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_create(self, async_client: AsyncCloudflare) -> None:
+        gre_tunnel = await async_client.magics.gre_tunnels.create(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
+        )
+        assert_matches_type(GRETunnelCreateResponse, gre_tunnel, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.magics.gre_tunnels.with_raw_response.create(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        gre_tunnel = await response.parse()
+        assert_matches_type(GRETunnelCreateResponse, gre_tunnel, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.magics.gre_tunnels.with_streaming_response.create(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            gre_tunnel = await response.parse()
+            assert_matches_type(GRETunnelCreateResponse, gre_tunnel, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
+            await async_client.magics.gre_tunnels.with_raw_response.create(
+                "",
+                body={},
+            )
 
     @pytest.mark.skip()
     @parametrize
@@ -379,7 +371,7 @@ class TestAsyncGreTunnels:
             interface_address="192.0.2.0/31",
             name="GRE_1",
         )
-        assert_matches_type(GreTunnelUpdateResponse, gre_tunnel, path=["response"])
+        assert_matches_type(GRETunnelUpdateResponse, gre_tunnel, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -402,7 +394,7 @@ class TestAsyncGreTunnels:
             mtu=0,
             ttl=0,
         )
-        assert_matches_type(GreTunnelUpdateResponse, gre_tunnel, path=["response"])
+        assert_matches_type(GRETunnelUpdateResponse, gre_tunnel, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -419,7 +411,7 @@ class TestAsyncGreTunnels:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         gre_tunnel = await response.parse()
-        assert_matches_type(GreTunnelUpdateResponse, gre_tunnel, path=["response"])
+        assert_matches_type(GRETunnelUpdateResponse, gre_tunnel, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -436,7 +428,7 @@ class TestAsyncGreTunnels:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             gre_tunnel = await response.parse()
-            assert_matches_type(GreTunnelUpdateResponse, gre_tunnel, path=["response"])
+            assert_matches_type(GRETunnelUpdateResponse, gre_tunnel, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -465,12 +457,54 @@ class TestAsyncGreTunnels:
 
     @pytest.mark.skip()
     @parametrize
+    async def test_method_list(self, async_client: AsyncCloudflare) -> None:
+        gre_tunnel = await async_client.magics.gre_tunnels.list(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(GRETunnelListResponse, gre_tunnel, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.magics.gre_tunnels.with_raw_response.list(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        gre_tunnel = await response.parse()
+        assert_matches_type(GRETunnelListResponse, gre_tunnel, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.magics.gre_tunnels.with_streaming_response.list(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            gre_tunnel = await response.parse()
+            assert_matches_type(GRETunnelListResponse, gre_tunnel, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
+            await async_client.magics.gre_tunnels.with_raw_response.list(
+                "",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         gre_tunnel = await async_client.magics.gre_tunnels.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(GreTunnelDeleteResponse, gre_tunnel, path=["response"])
+        assert_matches_type(GRETunnelDeleteResponse, gre_tunnel, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -483,7 +517,7 @@ class TestAsyncGreTunnels:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         gre_tunnel = await response.parse()
-        assert_matches_type(GreTunnelDeleteResponse, gre_tunnel, path=["response"])
+        assert_matches_type(GRETunnelDeleteResponse, gre_tunnel, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -496,7 +530,7 @@ class TestAsyncGreTunnels:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             gre_tunnel = await response.parse()
-            assert_matches_type(GreTunnelDeleteResponse, gre_tunnel, path=["response"])
+            assert_matches_type(GRETunnelDeleteResponse, gre_tunnel, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -522,7 +556,7 @@ class TestAsyncGreTunnels:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(GreTunnelGetResponse, gre_tunnel, path=["response"])
+        assert_matches_type(GRETunnelGetResponse, gre_tunnel, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -535,7 +569,7 @@ class TestAsyncGreTunnels:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         gre_tunnel = await response.parse()
-        assert_matches_type(GreTunnelGetResponse, gre_tunnel, path=["response"])
+        assert_matches_type(GRETunnelGetResponse, gre_tunnel, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -548,7 +582,7 @@ class TestAsyncGreTunnels:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             gre_tunnel = await response.parse()
-            assert_matches_type(GreTunnelGetResponse, gre_tunnel, path=["response"])
+            assert_matches_type(GRETunnelGetResponse, gre_tunnel, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -565,146 +599,4 @@ class TestAsyncGreTunnels:
             await async_client.magics.gre_tunnels.with_raw_response.get(
                 "",
                 account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_magic_gre_tunnels_create_gre_tunnels(self, async_client: AsyncCloudflare) -> None:
-        gre_tunnel = await async_client.magics.gre_tunnels.magic_gre_tunnels_create_gre_tunnels(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
-        )
-        assert_matches_type(GreTunnelMagicGreTunnelsCreateGreTunnelsResponse, gre_tunnel, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_raw_response_magic_gre_tunnels_create_gre_tunnels(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.magics.gre_tunnels.with_raw_response.magic_gre_tunnels_create_gre_tunnels(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        gre_tunnel = await response.parse()
-        assert_matches_type(GreTunnelMagicGreTunnelsCreateGreTunnelsResponse, gre_tunnel, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_streaming_response_magic_gre_tunnels_create_gre_tunnels(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.magics.gre_tunnels.with_streaming_response.magic_gre_tunnels_create_gre_tunnels(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            gre_tunnel = await response.parse()
-            assert_matches_type(GreTunnelMagicGreTunnelsCreateGreTunnelsResponse, gre_tunnel, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_path_params_magic_gre_tunnels_create_gre_tunnels(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
-            await async_client.magics.gre_tunnels.with_raw_response.magic_gre_tunnels_create_gre_tunnels(
-                "",
-                body={},
-            )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_magic_gre_tunnels_list_gre_tunnels(self, async_client: AsyncCloudflare) -> None:
-        gre_tunnel = await async_client.magics.gre_tunnels.magic_gre_tunnels_list_gre_tunnels(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(GreTunnelMagicGreTunnelsListGreTunnelsResponse, gre_tunnel, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_raw_response_magic_gre_tunnels_list_gre_tunnels(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.magics.gre_tunnels.with_raw_response.magic_gre_tunnels_list_gre_tunnels(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        gre_tunnel = await response.parse()
-        assert_matches_type(GreTunnelMagicGreTunnelsListGreTunnelsResponse, gre_tunnel, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_streaming_response_magic_gre_tunnels_list_gre_tunnels(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.magics.gre_tunnels.with_streaming_response.magic_gre_tunnels_list_gre_tunnels(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            gre_tunnel = await response.parse()
-            assert_matches_type(GreTunnelMagicGreTunnelsListGreTunnelsResponse, gre_tunnel, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_path_params_magic_gre_tunnels_list_gre_tunnels(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
-            await async_client.magics.gre_tunnels.with_raw_response.magic_gre_tunnels_list_gre_tunnels(
-                "",
-            )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_magic_gre_tunnels_update_multiple_gre_tunnels(self, async_client: AsyncCloudflare) -> None:
-        gre_tunnel = await async_client.magics.gre_tunnels.magic_gre_tunnels_update_multiple_gre_tunnels(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
-        )
-        assert_matches_type(GreTunnelMagicGreTunnelsUpdateMultipleGreTunnelsResponse, gre_tunnel, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_raw_response_magic_gre_tunnels_update_multiple_gre_tunnels(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        response = (
-            await async_client.magics.gre_tunnels.with_raw_response.magic_gre_tunnels_update_multiple_gre_tunnels(
-                "023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
-            )
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        gre_tunnel = await response.parse()
-        assert_matches_type(GreTunnelMagicGreTunnelsUpdateMultipleGreTunnelsResponse, gre_tunnel, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_streaming_response_magic_gre_tunnels_update_multiple_gre_tunnels(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        async with async_client.magics.gre_tunnels.with_streaming_response.magic_gre_tunnels_update_multiple_gre_tunnels(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            gre_tunnel = await response.parse()
-            assert_matches_type(GreTunnelMagicGreTunnelsUpdateMultipleGreTunnelsResponse, gre_tunnel, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_path_params_magic_gre_tunnels_update_multiple_gre_tunnels(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
-            await async_client.magics.gre_tunnels.with_raw_response.magic_gre_tunnels_update_multiple_gre_tunnels(
-                "",
-                body={},
             )

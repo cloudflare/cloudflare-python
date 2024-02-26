@@ -2,45 +2,28 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+
 import httpx
 
-from .advertisements import Advertisements, AsyncAdvertisements
-
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._compat import cached_property
-
-from ....types.mnms import (
-    RuleUpdateResponse,
-    RuleDeleteResponse,
-    RuleGetResponse,
-    RuleMagicNetworkMonitoringRulesCreateRulesResponse,
-    RuleMagicNetworkMonitoringRulesListRulesResponse,
-    RuleMagicNetworkMonitoringRulesUpdateRulesResponse,
-)
-
-from typing import Type, Optional
-
+from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
+from ...._wrappers import ResultWrapper
+from ....types.mnms import (
+    RuleGetResponse,
+    RuleEditResponse,
+    RuleListResponse,
+    RuleCreateResponse,
+    RuleDeleteResponse,
+    RuleUpdateResponse,
 )
-from ....types import shared_params
 from .advertisements import (
     Advertisements,
     AsyncAdvertisements,
@@ -49,19 +32,9 @@ from .advertisements import (
     AdvertisementsWithStreamingResponse,
     AsyncAdvertisementsWithStreamingResponse,
 )
-from ...._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ...._base_client import (
+    make_request_options,
+)
 
 __all__ = ["Rules", "AsyncRules"]
 
@@ -79,20 +52,21 @@ class Rules(SyncAPIResource):
     def with_streaming_response(self) -> RulesWithStreamingResponse:
         return RulesWithStreamingResponse(self)
 
-    def update(
+    def create(
         self,
-        rule_identifier: object,
-        *,
         account_identifier: object,
+        *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RuleUpdateResponse]:
-        """
-        Update a network monitoring rule for account.
+    ) -> Optional[RuleCreateResponse]:
+        """Create network monitoring rules for account.
+
+        Currently only supports creating a
+        single rule per API request.
 
         Args:
           extra_headers: Send extra headers
@@ -103,8 +77,43 @@ class Rules(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._patch(
-            f"/accounts/{account_identifier}/mnm/rules/{rule_identifier}",
+        return self._post(
+            f"/accounts/{account_identifier}/mnm/rules",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[RuleCreateResponse]], ResultWrapper[RuleCreateResponse]),
+        )
+
+    def update(
+        self,
+        account_identifier: object,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RuleUpdateResponse]:
+        """
+        Update network monitoring rules for account.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._put(
+            f"/accounts/{account_identifier}/mnm/rules",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -113,6 +122,41 @@ class Rules(SyncAPIResource):
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(Type[Optional[RuleUpdateResponse]], ResultWrapper[RuleUpdateResponse]),
+        )
+
+    def list(
+        self,
+        account_identifier: object,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RuleListResponse]:
+        """
+        Lists network monitoring rules for account.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get(
+            f"/accounts/{account_identifier}/mnm/rules",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[RuleListResponse]], ResultWrapper[RuleListResponse]),
         )
 
     def delete(
@@ -151,6 +195,42 @@ class Rules(SyncAPIResource):
             cast_to=cast(Type[Optional[RuleDeleteResponse]], ResultWrapper[RuleDeleteResponse]),
         )
 
+    def edit(
+        self,
+        rule_identifier: object,
+        *,
+        account_identifier: object,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RuleEditResponse]:
+        """
+        Update a network monitoring rule for account.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._patch(
+            f"/accounts/{account_identifier}/mnm/rules/{rule_identifier}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[RuleEditResponse]], ResultWrapper[RuleEditResponse]),
+        )
+
     def get(
         self,
         rule_identifier: object,
@@ -187,122 +267,6 @@ class Rules(SyncAPIResource):
             cast_to=cast(Type[Optional[RuleGetResponse]], ResultWrapper[RuleGetResponse]),
         )
 
-    def magic_network_monitoring_rules_create_rules(
-        self,
-        account_identifier: object,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RuleMagicNetworkMonitoringRulesCreateRulesResponse]:
-        """Create network monitoring rules for account.
-
-        Currently only supports creating a
-        single rule per API request.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._post(
-            f"/accounts/{account_identifier}/mnm/rules",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[Optional[RuleMagicNetworkMonitoringRulesCreateRulesResponse]],
-                ResultWrapper[RuleMagicNetworkMonitoringRulesCreateRulesResponse],
-            ),
-        )
-
-    def magic_network_monitoring_rules_list_rules(
-        self,
-        account_identifier: object,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RuleMagicNetworkMonitoringRulesListRulesResponse]:
-        """
-        Lists network monitoring rules for account.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._get(
-            f"/accounts/{account_identifier}/mnm/rules",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[Optional[RuleMagicNetworkMonitoringRulesListRulesResponse]],
-                ResultWrapper[RuleMagicNetworkMonitoringRulesListRulesResponse],
-            ),
-        )
-
-    def magic_network_monitoring_rules_update_rules(
-        self,
-        account_identifier: object,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RuleMagicNetworkMonitoringRulesUpdateRulesResponse]:
-        """
-        Update network monitoring rules for account.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._put(
-            f"/accounts/{account_identifier}/mnm/rules",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[Optional[RuleMagicNetworkMonitoringRulesUpdateRulesResponse]],
-                ResultWrapper[RuleMagicNetworkMonitoringRulesUpdateRulesResponse],
-            ),
-        )
-
 
 class AsyncRules(AsyncAPIResource):
     @cached_property
@@ -317,20 +281,21 @@ class AsyncRules(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncRulesWithStreamingResponse:
         return AsyncRulesWithStreamingResponse(self)
 
-    async def update(
+    async def create(
         self,
-        rule_identifier: object,
-        *,
         account_identifier: object,
+        *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RuleUpdateResponse]:
-        """
-        Update a network monitoring rule for account.
+    ) -> Optional[RuleCreateResponse]:
+        """Create network monitoring rules for account.
+
+        Currently only supports creating a
+        single rule per API request.
 
         Args:
           extra_headers: Send extra headers
@@ -341,8 +306,43 @@ class AsyncRules(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._patch(
-            f"/accounts/{account_identifier}/mnm/rules/{rule_identifier}",
+        return await self._post(
+            f"/accounts/{account_identifier}/mnm/rules",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[RuleCreateResponse]], ResultWrapper[RuleCreateResponse]),
+        )
+
+    async def update(
+        self,
+        account_identifier: object,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RuleUpdateResponse]:
+        """
+        Update network monitoring rules for account.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._put(
+            f"/accounts/{account_identifier}/mnm/rules",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -351,6 +351,41 @@ class AsyncRules(AsyncAPIResource):
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(Type[Optional[RuleUpdateResponse]], ResultWrapper[RuleUpdateResponse]),
+        )
+
+    async def list(
+        self,
+        account_identifier: object,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RuleListResponse]:
+        """
+        Lists network monitoring rules for account.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._get(
+            f"/accounts/{account_identifier}/mnm/rules",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[RuleListResponse]], ResultWrapper[RuleListResponse]),
         )
 
     async def delete(
@@ -389,6 +424,42 @@ class AsyncRules(AsyncAPIResource):
             cast_to=cast(Type[Optional[RuleDeleteResponse]], ResultWrapper[RuleDeleteResponse]),
         )
 
+    async def edit(
+        self,
+        rule_identifier: object,
+        *,
+        account_identifier: object,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RuleEditResponse]:
+        """
+        Update a network monitoring rule for account.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._patch(
+            f"/accounts/{account_identifier}/mnm/rules/{rule_identifier}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[RuleEditResponse]], ResultWrapper[RuleEditResponse]),
+        )
+
     async def get(
         self,
         rule_identifier: object,
@@ -425,144 +496,28 @@ class AsyncRules(AsyncAPIResource):
             cast_to=cast(Type[Optional[RuleGetResponse]], ResultWrapper[RuleGetResponse]),
         )
 
-    async def magic_network_monitoring_rules_create_rules(
-        self,
-        account_identifier: object,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RuleMagicNetworkMonitoringRulesCreateRulesResponse]:
-        """Create network monitoring rules for account.
-
-        Currently only supports creating a
-        single rule per API request.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._post(
-            f"/accounts/{account_identifier}/mnm/rules",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[Optional[RuleMagicNetworkMonitoringRulesCreateRulesResponse]],
-                ResultWrapper[RuleMagicNetworkMonitoringRulesCreateRulesResponse],
-            ),
-        )
-
-    async def magic_network_monitoring_rules_list_rules(
-        self,
-        account_identifier: object,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RuleMagicNetworkMonitoringRulesListRulesResponse]:
-        """
-        Lists network monitoring rules for account.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._get(
-            f"/accounts/{account_identifier}/mnm/rules",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[Optional[RuleMagicNetworkMonitoringRulesListRulesResponse]],
-                ResultWrapper[RuleMagicNetworkMonitoringRulesListRulesResponse],
-            ),
-        )
-
-    async def magic_network_monitoring_rules_update_rules(
-        self,
-        account_identifier: object,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RuleMagicNetworkMonitoringRulesUpdateRulesResponse]:
-        """
-        Update network monitoring rules for account.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._put(
-            f"/accounts/{account_identifier}/mnm/rules",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[Optional[RuleMagicNetworkMonitoringRulesUpdateRulesResponse]],
-                ResultWrapper[RuleMagicNetworkMonitoringRulesUpdateRulesResponse],
-            ),
-        )
-
 
 class RulesWithRawResponse:
     def __init__(self, rules: Rules) -> None:
         self._rules = rules
 
+        self.create = to_raw_response_wrapper(
+            rules.create,
+        )
         self.update = to_raw_response_wrapper(
             rules.update,
+        )
+        self.list = to_raw_response_wrapper(
+            rules.list,
         )
         self.delete = to_raw_response_wrapper(
             rules.delete,
         )
+        self.edit = to_raw_response_wrapper(
+            rules.edit,
+        )
         self.get = to_raw_response_wrapper(
             rules.get,
-        )
-        self.magic_network_monitoring_rules_create_rules = to_raw_response_wrapper(
-            rules.magic_network_monitoring_rules_create_rules,
-        )
-        self.magic_network_monitoring_rules_list_rules = to_raw_response_wrapper(
-            rules.magic_network_monitoring_rules_list_rules,
-        )
-        self.magic_network_monitoring_rules_update_rules = to_raw_response_wrapper(
-            rules.magic_network_monitoring_rules_update_rules,
         )
 
     @cached_property
@@ -574,23 +529,23 @@ class AsyncRulesWithRawResponse:
     def __init__(self, rules: AsyncRules) -> None:
         self._rules = rules
 
+        self.create = async_to_raw_response_wrapper(
+            rules.create,
+        )
         self.update = async_to_raw_response_wrapper(
             rules.update,
+        )
+        self.list = async_to_raw_response_wrapper(
+            rules.list,
         )
         self.delete = async_to_raw_response_wrapper(
             rules.delete,
         )
+        self.edit = async_to_raw_response_wrapper(
+            rules.edit,
+        )
         self.get = async_to_raw_response_wrapper(
             rules.get,
-        )
-        self.magic_network_monitoring_rules_create_rules = async_to_raw_response_wrapper(
-            rules.magic_network_monitoring_rules_create_rules,
-        )
-        self.magic_network_monitoring_rules_list_rules = async_to_raw_response_wrapper(
-            rules.magic_network_monitoring_rules_list_rules,
-        )
-        self.magic_network_monitoring_rules_update_rules = async_to_raw_response_wrapper(
-            rules.magic_network_monitoring_rules_update_rules,
         )
 
     @cached_property
@@ -602,23 +557,23 @@ class RulesWithStreamingResponse:
     def __init__(self, rules: Rules) -> None:
         self._rules = rules
 
+        self.create = to_streamed_response_wrapper(
+            rules.create,
+        )
         self.update = to_streamed_response_wrapper(
             rules.update,
+        )
+        self.list = to_streamed_response_wrapper(
+            rules.list,
         )
         self.delete = to_streamed_response_wrapper(
             rules.delete,
         )
+        self.edit = to_streamed_response_wrapper(
+            rules.edit,
+        )
         self.get = to_streamed_response_wrapper(
             rules.get,
-        )
-        self.magic_network_monitoring_rules_create_rules = to_streamed_response_wrapper(
-            rules.magic_network_monitoring_rules_create_rules,
-        )
-        self.magic_network_monitoring_rules_list_rules = to_streamed_response_wrapper(
-            rules.magic_network_monitoring_rules_list_rules,
-        )
-        self.magic_network_monitoring_rules_update_rules = to_streamed_response_wrapper(
-            rules.magic_network_monitoring_rules_update_rules,
         )
 
     @cached_property
@@ -630,23 +585,23 @@ class AsyncRulesWithStreamingResponse:
     def __init__(self, rules: AsyncRules) -> None:
         self._rules = rules
 
+        self.create = async_to_streamed_response_wrapper(
+            rules.create,
+        )
         self.update = async_to_streamed_response_wrapper(
             rules.update,
+        )
+        self.list = async_to_streamed_response_wrapper(
+            rules.list,
         )
         self.delete = async_to_streamed_response_wrapper(
             rules.delete,
         )
+        self.edit = async_to_streamed_response_wrapper(
+            rules.edit,
+        )
         self.get = async_to_streamed_response_wrapper(
             rules.get,
-        )
-        self.magic_network_monitoring_rules_create_rules = async_to_streamed_response_wrapper(
-            rules.magic_network_monitoring_rules_create_rules,
-        )
-        self.magic_network_monitoring_rules_list_rules = async_to_streamed_response_wrapper(
-            rules.magic_network_monitoring_rules_list_rules,
-        )
-        self.magic_network_monitoring_rules_update_rules = async_to_streamed_response_wrapper(
-            rules.magic_network_monitoring_rules_update_rules,
         )
 
     @cached_property

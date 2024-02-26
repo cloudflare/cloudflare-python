@@ -1,22 +1,19 @@
 # File generated from our OpenAPI spec by Stainless.
 
+from typing import List, Union
 from typing_extensions import Literal
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
 from ...._models import BaseModel
-from ....types import shared
 
 __all__ = [
     "BindingListResponse",
     "BindingListResponseItem",
-    "BindingListResponseItemWorkersKvNamespaceBinding",
+    "BindingListResponseItemWorkersKVNamespaceBinding",
     "BindingListResponseItemWorkersWasmModuleBinding",
 ]
 
 
-class BindingListResponseItemWorkersKvNamespaceBinding(BaseModel):
+class BindingListResponseItemWorkersKVNamespaceBinding(BaseModel):
     name: str
     """A JavaScript variable name for the binding."""
 
@@ -36,7 +33,7 @@ class BindingListResponseItemWorkersWasmModuleBinding(BaseModel):
 
 
 BindingListResponseItem = Union[
-    BindingListResponseItemWorkersKvNamespaceBinding, BindingListResponseItemWorkersWasmModuleBinding
+    BindingListResponseItemWorkersKVNamespaceBinding, BindingListResponseItemWorkersWasmModuleBinding
 ]
 
 BindingListResponse = List[BindingListResponseItem]

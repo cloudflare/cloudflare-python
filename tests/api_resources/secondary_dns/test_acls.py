@@ -2,32 +2,63 @@
 
 from __future__ import annotations
 
-from cloudflare.types.secondary_dns import (
-    ACLUpdateResponse,
-    ACLDeleteResponse,
-    ACLGetResponse,
-    ACLSecondaryDNSACLCreateACLResponse,
-    ACLSecondaryDNSACLListACLsResponse,
-)
-
-from typing import Any, cast, Optional
-
 import os
+from typing import Any, Optional, cast
+
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.secondary_dns import acl_update_params
-from cloudflare.types.secondary_dns import acl_secondary_dns_acl_create_acl_params
+from cloudflare.types.secondary_dns import (
+    ACLGetResponse,
+    ACLListResponse,
+    ACLCreateResponse,
+    ACLDeleteResponse,
+    ACLUpdateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
 class TestACLs:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_create(self, client: Cloudflare) -> None:
+        acl = client.secondary_dns.acls.create(
+            "01a7362d577a6c3019a474fd6f485823",
+            body={},
+        )
+        assert_matches_type(ACLCreateResponse, acl, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_create(self, client: Cloudflare) -> None:
+        response = client.secondary_dns.acls.with_raw_response.create(
+            "01a7362d577a6c3019a474fd6f485823",
+            body={},
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        acl = response.parse()
+        assert_matches_type(ACLCreateResponse, acl, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_create(self, client: Cloudflare) -> None:
+        with client.secondary_dns.acls.with_streaming_response.create(
+            "01a7362d577a6c3019a474fd6f485823",
+            body={},
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            acl = response.parse()
+            assert_matches_type(ACLCreateResponse, acl, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
@@ -69,6 +100,40 @@ class TestACLs:
 
             acl = response.parse()
             assert_matches_type(ACLUpdateResponse, acl, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_list(self, client: Cloudflare) -> None:
+        acl = client.secondary_dns.acls.list(
+            "01a7362d577a6c3019a474fd6f485823",
+        )
+        assert_matches_type(Optional[ACLListResponse], acl, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_list(self, client: Cloudflare) -> None:
+        response = client.secondary_dns.acls.with_raw_response.list(
+            "01a7362d577a6c3019a474fd6f485823",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        acl = response.parse()
+        assert_matches_type(Optional[ACLListResponse], acl, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_list(self, client: Cloudflare) -> None:
+        with client.secondary_dns.acls.with_streaming_response.list(
+            "01a7362d577a6c3019a474fd6f485823",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            acl = response.parse()
+            assert_matches_type(Optional[ACLListResponse], acl, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -146,80 +211,46 @@ class TestACLs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
-    @parametrize
-    def test_method_secondary_dns_acl_create_acl(self, client: Cloudflare) -> None:
-        acl = client.secondary_dns.acls.secondary_dns_acl_create_acl(
-            "01a7362d577a6c3019a474fd6f485823",
-            body={},
-        )
-        assert_matches_type(ACLSecondaryDNSACLCreateACLResponse, acl, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_raw_response_secondary_dns_acl_create_acl(self, client: Cloudflare) -> None:
-        response = client.secondary_dns.acls.with_raw_response.secondary_dns_acl_create_acl(
-            "01a7362d577a6c3019a474fd6f485823",
-            body={},
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        acl = response.parse()
-        assert_matches_type(ACLSecondaryDNSACLCreateACLResponse, acl, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_streaming_response_secondary_dns_acl_create_acl(self, client: Cloudflare) -> None:
-        with client.secondary_dns.acls.with_streaming_response.secondary_dns_acl_create_acl(
-            "01a7362d577a6c3019a474fd6f485823",
-            body={},
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            acl = response.parse()
-            assert_matches_type(ACLSecondaryDNSACLCreateACLResponse, acl, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_method_secondary_dns_acl_list_acls(self, client: Cloudflare) -> None:
-        acl = client.secondary_dns.acls.secondary_dns_acl_list_acls(
-            "01a7362d577a6c3019a474fd6f485823",
-        )
-        assert_matches_type(Optional[ACLSecondaryDNSACLListACLsResponse], acl, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_raw_response_secondary_dns_acl_list_acls(self, client: Cloudflare) -> None:
-        response = client.secondary_dns.acls.with_raw_response.secondary_dns_acl_list_acls(
-            "01a7362d577a6c3019a474fd6f485823",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        acl = response.parse()
-        assert_matches_type(Optional[ACLSecondaryDNSACLListACLsResponse], acl, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_streaming_response_secondary_dns_acl_list_acls(self, client: Cloudflare) -> None:
-        with client.secondary_dns.acls.with_streaming_response.secondary_dns_acl_list_acls(
-            "01a7362d577a6c3019a474fd6f485823",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            acl = response.parse()
-            assert_matches_type(Optional[ACLSecondaryDNSACLListACLsResponse], acl, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
 
 class TestAsyncACLs:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_create(self, async_client: AsyncCloudflare) -> None:
+        acl = await async_client.secondary_dns.acls.create(
+            "01a7362d577a6c3019a474fd6f485823",
+            body={},
+        )
+        assert_matches_type(ACLCreateResponse, acl, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.secondary_dns.acls.with_raw_response.create(
+            "01a7362d577a6c3019a474fd6f485823",
+            body={},
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        acl = await response.parse()
+        assert_matches_type(ACLCreateResponse, acl, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.secondary_dns.acls.with_streaming_response.create(
+            "01a7362d577a6c3019a474fd6f485823",
+            body={},
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            acl = await response.parse()
+            assert_matches_type(ACLCreateResponse, acl, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
@@ -261,6 +292,40 @@ class TestAsyncACLs:
 
             acl = await response.parse()
             assert_matches_type(ACLUpdateResponse, acl, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_list(self, async_client: AsyncCloudflare) -> None:
+        acl = await async_client.secondary_dns.acls.list(
+            "01a7362d577a6c3019a474fd6f485823",
+        )
+        assert_matches_type(Optional[ACLListResponse], acl, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.secondary_dns.acls.with_raw_response.list(
+            "01a7362d577a6c3019a474fd6f485823",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        acl = await response.parse()
+        assert_matches_type(Optional[ACLListResponse], acl, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.secondary_dns.acls.with_streaming_response.list(
+            "01a7362d577a6c3019a474fd6f485823",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            acl = await response.parse()
+            assert_matches_type(Optional[ACLListResponse], acl, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -335,76 +400,5 @@ class TestAsyncACLs:
 
             acl = await response.parse()
             assert_matches_type(ACLGetResponse, acl, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_secondary_dns_acl_create_acl(self, async_client: AsyncCloudflare) -> None:
-        acl = await async_client.secondary_dns.acls.secondary_dns_acl_create_acl(
-            "01a7362d577a6c3019a474fd6f485823",
-            body={},
-        )
-        assert_matches_type(ACLSecondaryDNSACLCreateACLResponse, acl, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_raw_response_secondary_dns_acl_create_acl(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.secondary_dns.acls.with_raw_response.secondary_dns_acl_create_acl(
-            "01a7362d577a6c3019a474fd6f485823",
-            body={},
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        acl = await response.parse()
-        assert_matches_type(ACLSecondaryDNSACLCreateACLResponse, acl, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_streaming_response_secondary_dns_acl_create_acl(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.secondary_dns.acls.with_streaming_response.secondary_dns_acl_create_acl(
-            "01a7362d577a6c3019a474fd6f485823",
-            body={},
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            acl = await response.parse()
-            assert_matches_type(ACLSecondaryDNSACLCreateACLResponse, acl, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_secondary_dns_acl_list_acls(self, async_client: AsyncCloudflare) -> None:
-        acl = await async_client.secondary_dns.acls.secondary_dns_acl_list_acls(
-            "01a7362d577a6c3019a474fd6f485823",
-        )
-        assert_matches_type(Optional[ACLSecondaryDNSACLListACLsResponse], acl, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_raw_response_secondary_dns_acl_list_acls(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.secondary_dns.acls.with_raw_response.secondary_dns_acl_list_acls(
-            "01a7362d577a6c3019a474fd6f485823",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        acl = await response.parse()
-        assert_matches_type(Optional[ACLSecondaryDNSACLListACLsResponse], acl, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_streaming_response_secondary_dns_acl_list_acls(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.secondary_dns.acls.with_streaming_response.secondary_dns_acl_list_acls(
-            "01a7362d577a6c3019a474fd6f485823",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            acl = await response.parse()
-            assert_matches_type(Optional[ACLSecondaryDNSACLListACLsResponse], acl, path=["response"])
 
         assert cast(Any, response.is_closed) is True

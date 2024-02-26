@@ -1,16 +1,12 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from typing import Optional, List
-
+from typing import List, Optional
 from datetime import datetime
-
 from typing_extensions import Literal
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
 from pydantic import Field as FieldInfo
+
 from ..._models import BaseModel
-from ...types import shared
 
 __all__ = [
     "ProjectGetResponse",
@@ -31,8 +27,8 @@ __all__ = [
     "DeploymentConfigsPreviewDurableObjectNamespacesDoBinding",
     "DeploymentConfigsPreviewEnvVars",
     "DeploymentConfigsPreviewEnvVarsEnvironmentVariable",
-    "DeploymentConfigsPreviewKvNamespaces",
-    "DeploymentConfigsPreviewKvNamespacesKvBinding",
+    "DeploymentConfigsPreviewKVNamespaces",
+    "DeploymentConfigsPreviewKVNamespacesKVBinding",
     "DeploymentConfigsPreviewPlacement",
     "DeploymentConfigsPreviewQueueProducers",
     "DeploymentConfigsPreviewQueueProducersQueueProducerBinding",
@@ -51,8 +47,8 @@ __all__ = [
     "DeploymentConfigsProductionDurableObjectNamespacesDoBinding",
     "DeploymentConfigsProductionEnvVars",
     "DeploymentConfigsProductionEnvVarsEnvironmentVariable",
-    "DeploymentConfigsProductionKvNamespaces",
-    "DeploymentConfigsProductionKvNamespacesKvBinding",
+    "DeploymentConfigsProductionKVNamespaces",
+    "DeploymentConfigsProductionKVNamespacesKVBinding",
     "DeploymentConfigsProductionPlacement",
     "DeploymentConfigsProductionQueueProducers",
     "DeploymentConfigsProductionQueueProducersQueueProducerBinding",
@@ -225,13 +221,13 @@ class DeploymentConfigsPreviewEnvVars(BaseModel):
     """Environment variable."""
 
 
-class DeploymentConfigsPreviewKvNamespacesKvBinding(BaseModel):
+class DeploymentConfigsPreviewKVNamespacesKVBinding(BaseModel):
     namespace_id: Optional[str] = None
     """ID of the KV namespace."""
 
 
-class DeploymentConfigsPreviewKvNamespaces(BaseModel):
-    kv_binding: Optional[DeploymentConfigsPreviewKvNamespacesKvBinding] = FieldInfo(alias="KV_BINDING", default=None)
+class DeploymentConfigsPreviewKVNamespaces(BaseModel):
+    kv_binding: Optional[DeploymentConfigsPreviewKVNamespacesKVBinding] = FieldInfo(alias="KV_BINDING", default=None)
     """KV binding."""
 
 
@@ -299,7 +295,7 @@ class DeploymentConfigsPreview(BaseModel):
     env_vars: Optional[DeploymentConfigsPreviewEnvVars] = None
     """Environment variables for build configs."""
 
-    kv_namespaces: Optional[DeploymentConfigsPreviewKvNamespaces] = None
+    kv_namespaces: Optional[DeploymentConfigsPreviewKVNamespaces] = None
     """KV namespaces used for Pages Functions."""
 
     placement: Optional[DeploymentConfigsPreviewPlacement] = None
@@ -373,13 +369,13 @@ class DeploymentConfigsProductionEnvVars(BaseModel):
     """Environment variable."""
 
 
-class DeploymentConfigsProductionKvNamespacesKvBinding(BaseModel):
+class DeploymentConfigsProductionKVNamespacesKVBinding(BaseModel):
     namespace_id: Optional[str] = None
     """ID of the KV namespace."""
 
 
-class DeploymentConfigsProductionKvNamespaces(BaseModel):
-    kv_binding: Optional[DeploymentConfigsProductionKvNamespacesKvBinding] = FieldInfo(alias="KV_BINDING", default=None)
+class DeploymentConfigsProductionKVNamespaces(BaseModel):
+    kv_binding: Optional[DeploymentConfigsProductionKVNamespacesKVBinding] = FieldInfo(alias="KV_BINDING", default=None)
     """KV binding."""
 
 
@@ -447,7 +443,7 @@ class DeploymentConfigsProduction(BaseModel):
     env_vars: Optional[DeploymentConfigsProductionEnvVars] = None
     """Environment variables for build configs."""
 
-    kv_namespaces: Optional[DeploymentConfigsProductionKvNamespaces] = None
+    kv_namespaces: Optional[DeploymentConfigsProductionKVNamespaces] = None
     """KV namespaces used for Pages Functions."""
 
     placement: Optional[DeploymentConfigsProductionPlacement] = None

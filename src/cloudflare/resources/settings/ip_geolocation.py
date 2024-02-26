@@ -2,44 +2,26 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+from typing_extensions import Literal
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._compat import cached_property
-
-from ...types.settings import IPGeolocationUpdateResponse, IPGeolocationGetResponse
-
-from typing import Type, Optional
-
-from typing_extensions import Literal
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types.settings import ip_geolocation_update_params
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ..._base_client import (
+    make_request_options,
+)
+from ...types.settings import IPGeolocationGetResponse, IPGeolocationEditResponse, ip_geolocation_edit_params
 
 __all__ = ["IPGeolocation", "AsyncIPGeolocation"]
 
@@ -53,7 +35,7 @@ class IPGeolocation(SyncAPIResource):
     def with_streaming_response(self) -> IPGeolocationWithStreamingResponse:
         return IPGeolocationWithStreamingResponse(self)
 
-    def update(
+    def edit(
         self,
         zone_id: str,
         *,
@@ -64,7 +46,7 @@ class IPGeolocation(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IPGeolocationUpdateResponse]:
+    ) -> Optional[IPGeolocationEditResponse]:
         """
         Enable IP Geolocation to have Cloudflare geolocate visitors to your website and
         pass the country code to you.
@@ -87,7 +69,7 @@ class IPGeolocation(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._patch(
             f"/zones/{zone_id}/settings/ip_geolocation",
-            body=maybe_transform({"value": value}, ip_geolocation_update_params.IPGeolocationUpdateParams),
+            body=maybe_transform({"value": value}, ip_geolocation_edit_params.IPGeolocationEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -95,7 +77,7 @@ class IPGeolocation(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[IPGeolocationUpdateResponse]], ResultWrapper[IPGeolocationUpdateResponse]),
+            cast_to=cast(Type[Optional[IPGeolocationEditResponse]], ResultWrapper[IPGeolocationEditResponse]),
         )
 
     def get(
@@ -149,7 +131,7 @@ class AsyncIPGeolocation(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncIPGeolocationWithStreamingResponse:
         return AsyncIPGeolocationWithStreamingResponse(self)
 
-    async def update(
+    async def edit(
         self,
         zone_id: str,
         *,
@@ -160,7 +142,7 @@ class AsyncIPGeolocation(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IPGeolocationUpdateResponse]:
+    ) -> Optional[IPGeolocationEditResponse]:
         """
         Enable IP Geolocation to have Cloudflare geolocate visitors to your website and
         pass the country code to you.
@@ -183,7 +165,7 @@ class AsyncIPGeolocation(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._patch(
             f"/zones/{zone_id}/settings/ip_geolocation",
-            body=maybe_transform({"value": value}, ip_geolocation_update_params.IPGeolocationUpdateParams),
+            body=maybe_transform({"value": value}, ip_geolocation_edit_params.IPGeolocationEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -191,7 +173,7 @@ class AsyncIPGeolocation(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[IPGeolocationUpdateResponse]], ResultWrapper[IPGeolocationUpdateResponse]),
+            cast_to=cast(Type[Optional[IPGeolocationEditResponse]], ResultWrapper[IPGeolocationEditResponse]),
         )
 
     async def get(
@@ -240,8 +222,8 @@ class IPGeolocationWithRawResponse:
     def __init__(self, ip_geolocation: IPGeolocation) -> None:
         self._ip_geolocation = ip_geolocation
 
-        self.update = to_raw_response_wrapper(
-            ip_geolocation.update,
+        self.edit = to_raw_response_wrapper(
+            ip_geolocation.edit,
         )
         self.get = to_raw_response_wrapper(
             ip_geolocation.get,
@@ -252,8 +234,8 @@ class AsyncIPGeolocationWithRawResponse:
     def __init__(self, ip_geolocation: AsyncIPGeolocation) -> None:
         self._ip_geolocation = ip_geolocation
 
-        self.update = async_to_raw_response_wrapper(
-            ip_geolocation.update,
+        self.edit = async_to_raw_response_wrapper(
+            ip_geolocation.edit,
         )
         self.get = async_to_raw_response_wrapper(
             ip_geolocation.get,
@@ -264,8 +246,8 @@ class IPGeolocationWithStreamingResponse:
     def __init__(self, ip_geolocation: IPGeolocation) -> None:
         self._ip_geolocation = ip_geolocation
 
-        self.update = to_streamed_response_wrapper(
-            ip_geolocation.update,
+        self.edit = to_streamed_response_wrapper(
+            ip_geolocation.edit,
         )
         self.get = to_streamed_response_wrapper(
             ip_geolocation.get,
@@ -276,8 +258,8 @@ class AsyncIPGeolocationWithStreamingResponse:
     def __init__(self, ip_geolocation: AsyncIPGeolocation) -> None:
         self._ip_geolocation = ip_geolocation
 
-        self.update = async_to_streamed_response_wrapper(
-            ip_geolocation.update,
+        self.edit = async_to_streamed_response_wrapper(
+            ip_geolocation.edit,
         )
         self.get = async_to_streamed_response_wrapper(
             ip_geolocation.get,

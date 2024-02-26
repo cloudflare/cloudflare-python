@@ -2,44 +2,30 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+from typing_extensions import Literal
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._compat import cached_property
-
-from ...types.settings import HotlinkProtectionUpdateResponse, HotlinkProtectionGetResponse
-
-from typing import Type, Optional
-
-from typing_extensions import Literal
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types.settings import hotlink_protection_update_params
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ..._base_client import (
+    make_request_options,
+)
+from ...types.settings import (
+    HotlinkProtectionGetResponse,
+    HotlinkProtectionEditResponse,
+    hotlink_protection_edit_params,
+)
 
 __all__ = ["HotlinkProtection", "AsyncHotlinkProtection"]
 
@@ -53,7 +39,7 @@ class HotlinkProtection(SyncAPIResource):
     def with_streaming_response(self) -> HotlinkProtectionWithStreamingResponse:
         return HotlinkProtectionWithStreamingResponse(self)
 
-    def update(
+    def edit(
         self,
         zone_id: str,
         *,
@@ -64,7 +50,7 @@ class HotlinkProtection(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[HotlinkProtectionUpdateResponse]:
+    ) -> Optional[HotlinkProtectionEditResponse]:
         """
         When enabled, the Hotlink Protection option ensures that other sites cannot suck
         up your bandwidth by building pages that use images hosted on your site. Anytime
@@ -91,7 +77,7 @@ class HotlinkProtection(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._patch(
             f"/zones/{zone_id}/settings/hotlink_protection",
-            body=maybe_transform({"value": value}, hotlink_protection_update_params.HotlinkProtectionUpdateParams),
+            body=maybe_transform({"value": value}, hotlink_protection_edit_params.HotlinkProtectionEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -99,9 +85,7 @@ class HotlinkProtection(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[HotlinkProtectionUpdateResponse]], ResultWrapper[HotlinkProtectionUpdateResponse]
-            ),
+            cast_to=cast(Type[Optional[HotlinkProtectionEditResponse]], ResultWrapper[HotlinkProtectionEditResponse]),
         )
 
     def get(
@@ -159,7 +143,7 @@ class AsyncHotlinkProtection(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncHotlinkProtectionWithStreamingResponse:
         return AsyncHotlinkProtectionWithStreamingResponse(self)
 
-    async def update(
+    async def edit(
         self,
         zone_id: str,
         *,
@@ -170,7 +154,7 @@ class AsyncHotlinkProtection(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[HotlinkProtectionUpdateResponse]:
+    ) -> Optional[HotlinkProtectionEditResponse]:
         """
         When enabled, the Hotlink Protection option ensures that other sites cannot suck
         up your bandwidth by building pages that use images hosted on your site. Anytime
@@ -197,7 +181,7 @@ class AsyncHotlinkProtection(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._patch(
             f"/zones/{zone_id}/settings/hotlink_protection",
-            body=maybe_transform({"value": value}, hotlink_protection_update_params.HotlinkProtectionUpdateParams),
+            body=maybe_transform({"value": value}, hotlink_protection_edit_params.HotlinkProtectionEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -205,9 +189,7 @@ class AsyncHotlinkProtection(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[HotlinkProtectionUpdateResponse]], ResultWrapper[HotlinkProtectionUpdateResponse]
-            ),
+            cast_to=cast(Type[Optional[HotlinkProtectionEditResponse]], ResultWrapper[HotlinkProtectionEditResponse]),
         )
 
     async def get(
@@ -260,8 +242,8 @@ class HotlinkProtectionWithRawResponse:
     def __init__(self, hotlink_protection: HotlinkProtection) -> None:
         self._hotlink_protection = hotlink_protection
 
-        self.update = to_raw_response_wrapper(
-            hotlink_protection.update,
+        self.edit = to_raw_response_wrapper(
+            hotlink_protection.edit,
         )
         self.get = to_raw_response_wrapper(
             hotlink_protection.get,
@@ -272,8 +254,8 @@ class AsyncHotlinkProtectionWithRawResponse:
     def __init__(self, hotlink_protection: AsyncHotlinkProtection) -> None:
         self._hotlink_protection = hotlink_protection
 
-        self.update = async_to_raw_response_wrapper(
-            hotlink_protection.update,
+        self.edit = async_to_raw_response_wrapper(
+            hotlink_protection.edit,
         )
         self.get = async_to_raw_response_wrapper(
             hotlink_protection.get,
@@ -284,8 +266,8 @@ class HotlinkProtectionWithStreamingResponse:
     def __init__(self, hotlink_protection: HotlinkProtection) -> None:
         self._hotlink_protection = hotlink_protection
 
-        self.update = to_streamed_response_wrapper(
-            hotlink_protection.update,
+        self.edit = to_streamed_response_wrapper(
+            hotlink_protection.edit,
         )
         self.get = to_streamed_response_wrapper(
             hotlink_protection.get,
@@ -296,8 +278,8 @@ class AsyncHotlinkProtectionWithStreamingResponse:
     def __init__(self, hotlink_protection: AsyncHotlinkProtection) -> None:
         self._hotlink_protection = hotlink_protection
 
-        self.update = async_to_streamed_response_wrapper(
-            hotlink_protection.update,
+        self.edit = async_to_streamed_response_wrapper(
+            hotlink_protection.edit,
         )
         self.get = async_to_streamed_response_wrapper(
             hotlink_protection.get,

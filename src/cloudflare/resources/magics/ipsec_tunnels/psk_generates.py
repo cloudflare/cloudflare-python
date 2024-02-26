@@ -2,53 +2,38 @@
 
 from __future__ import annotations
 
+from typing import Type, cast
+
 import httpx
 
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._compat import cached_property
-
-from ....types.magics.ipsec_tunnels import PskGenerateMagicIPsecTunnelsGeneratePreSharedKeyPskForIPsecTunnelsResponse
-
-from typing import Type
-
+from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ....types import shared_params
 from ...._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
+from ...._base_client import (
+    make_request_options,
+)
+from ....types.magics.ipsec_tunnels import PSKGenerateCreateResponse
 
-__all__ = ["PskGenerates", "AsyncPskGenerates"]
+__all__ = ["PSKGenerates", "AsyncPSKGenerates"]
 
 
-class PskGenerates(SyncAPIResource):
+class PSKGenerates(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> PskGeneratesWithRawResponse:
-        return PskGeneratesWithRawResponse(self)
+    def with_raw_response(self) -> PSKGeneratesWithRawResponse:
+        return PSKGeneratesWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> PskGeneratesWithStreamingResponse:
-        return PskGeneratesWithStreamingResponse(self)
+    def with_streaming_response(self) -> PSKGeneratesWithStreamingResponse:
+        return PSKGeneratesWithStreamingResponse(self)
 
-    def magic_i_psec_tunnels_generate_pre_shared_key_psk_for_i_psec_tunnels(
+    def create(
         self,
         tunnel_identifier: str,
         *,
@@ -59,7 +44,7 @@ class PskGenerates(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PskGenerateMagicIPsecTunnelsGeneratePreSharedKeyPskForIPsecTunnelsResponse:
+    ) -> PSKGenerateCreateResponse:
         """
         Generates a Pre Shared Key for a specific IPsec tunnel used in the IKE session.
         Use `?validate_only=true` as an optional query parameter to only run validation
@@ -93,23 +78,20 @@ class PskGenerates(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[PskGenerateMagicIPsecTunnelsGeneratePreSharedKeyPskForIPsecTunnelsResponse],
-                ResultWrapper[PskGenerateMagicIPsecTunnelsGeneratePreSharedKeyPskForIPsecTunnelsResponse],
-            ),
+            cast_to=cast(Type[PSKGenerateCreateResponse], ResultWrapper[PSKGenerateCreateResponse]),
         )
 
 
-class AsyncPskGenerates(AsyncAPIResource):
+class AsyncPSKGenerates(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncPskGeneratesWithRawResponse:
-        return AsyncPskGeneratesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncPSKGeneratesWithRawResponse:
+        return AsyncPSKGeneratesWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncPskGeneratesWithStreamingResponse:
-        return AsyncPskGeneratesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncPSKGeneratesWithStreamingResponse:
+        return AsyncPSKGeneratesWithStreamingResponse(self)
 
-    async def magic_i_psec_tunnels_generate_pre_shared_key_psk_for_i_psec_tunnels(
+    async def create(
         self,
         tunnel_identifier: str,
         *,
@@ -120,7 +102,7 @@ class AsyncPskGenerates(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PskGenerateMagicIPsecTunnelsGeneratePreSharedKeyPskForIPsecTunnelsResponse:
+    ) -> PSKGenerateCreateResponse:
         """
         Generates a Pre Shared Key for a specific IPsec tunnel used in the IKE session.
         Use `?validate_only=true` as an optional query parameter to only run validation
@@ -154,44 +136,41 @@ class AsyncPskGenerates(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[PskGenerateMagicIPsecTunnelsGeneratePreSharedKeyPskForIPsecTunnelsResponse],
-                ResultWrapper[PskGenerateMagicIPsecTunnelsGeneratePreSharedKeyPskForIPsecTunnelsResponse],
-            ),
+            cast_to=cast(Type[PSKGenerateCreateResponse], ResultWrapper[PSKGenerateCreateResponse]),
         )
 
 
-class PskGeneratesWithRawResponse:
-    def __init__(self, psk_generates: PskGenerates) -> None:
+class PSKGeneratesWithRawResponse:
+    def __init__(self, psk_generates: PSKGenerates) -> None:
         self._psk_generates = psk_generates
 
-        self.magic_i_psec_tunnels_generate_pre_shared_key_psk_for_i_psec_tunnels = to_raw_response_wrapper(
-            psk_generates.magic_i_psec_tunnels_generate_pre_shared_key_psk_for_i_psec_tunnels,
+        self.create = to_raw_response_wrapper(
+            psk_generates.create,
         )
 
 
-class AsyncPskGeneratesWithRawResponse:
-    def __init__(self, psk_generates: AsyncPskGenerates) -> None:
+class AsyncPSKGeneratesWithRawResponse:
+    def __init__(self, psk_generates: AsyncPSKGenerates) -> None:
         self._psk_generates = psk_generates
 
-        self.magic_i_psec_tunnels_generate_pre_shared_key_psk_for_i_psec_tunnels = async_to_raw_response_wrapper(
-            psk_generates.magic_i_psec_tunnels_generate_pre_shared_key_psk_for_i_psec_tunnels,
+        self.create = async_to_raw_response_wrapper(
+            psk_generates.create,
         )
 
 
-class PskGeneratesWithStreamingResponse:
-    def __init__(self, psk_generates: PskGenerates) -> None:
+class PSKGeneratesWithStreamingResponse:
+    def __init__(self, psk_generates: PSKGenerates) -> None:
         self._psk_generates = psk_generates
 
-        self.magic_i_psec_tunnels_generate_pre_shared_key_psk_for_i_psec_tunnels = to_streamed_response_wrapper(
-            psk_generates.magic_i_psec_tunnels_generate_pre_shared_key_psk_for_i_psec_tunnels,
+        self.create = to_streamed_response_wrapper(
+            psk_generates.create,
         )
 
 
-class AsyncPskGeneratesWithStreamingResponse:
-    def __init__(self, psk_generates: AsyncPskGenerates) -> None:
+class AsyncPSKGeneratesWithStreamingResponse:
+    def __init__(self, psk_generates: AsyncPSKGenerates) -> None:
         self._psk_generates = psk_generates
 
-        self.magic_i_psec_tunnels_generate_pre_shared_key_psk_for_i_psec_tunnels = async_to_streamed_response_wrapper(
-            psk_generates.magic_i_psec_tunnels_generate_pre_shared_key_psk_for_i_psec_tunnels,
+        self.create = async_to_streamed_response_wrapper(
+            psk_generates.create,
         )

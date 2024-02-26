@@ -2,15 +2,9 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, Literal
+from typing_extensions import Literal, Required, TypedDict
 
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
-from ..._utils import PropertyInfo
-from ...types import shared_params
-
-__all__ = ["CfInterconnectUpdateParams", "Gre", "HealthCheck"]
+__all__ = ["CfInterconnectUpdateParams", "GRE", "HealthCheck"]
 
 
 class CfInterconnectUpdateParams(TypedDict, total=False):
@@ -20,7 +14,7 @@ class CfInterconnectUpdateParams(TypedDict, total=False):
     description: str
     """An optional description of the interconnect."""
 
-    gre: Gre
+    gre: GRE
     """The configuration specific to GRE interconnects."""
 
     health_check: HealthCheck
@@ -39,7 +33,7 @@ class CfInterconnectUpdateParams(TypedDict, total=False):
     """
 
 
-class Gre(TypedDict, total=False):
+class GRE(TypedDict, total=False):
     cloudflare_endpoint: str
     """
     The IP address assigned to the Cloudflare side of the GRE tunnel created as part

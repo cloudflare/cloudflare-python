@@ -2,9 +2,7 @@
 
 from __future__ import annotations
 
-from .attack_list_response import AttackListResponse as AttackListResponse
-from .attack_list_params import AttackListParams as AttackListParams
-from .industry_list_response import IndustryListResponse as IndustryListResponse
-from .industry_list_params import IndustryListParams as IndustryListParams
-from .vertical_list_response import VerticalListResponse as VerticalListResponse
-from .vertical_list_params import VerticalListParams as VerticalListParams
+from .location_origin_params import LocationOriginParams as LocationOriginParams
+from .location_target_params import LocationTargetParams as LocationTargetParams
+from .location_origin_response import LocationOriginResponse as LocationOriginResponse
+from .location_target_response import LocationTargetResponse as LocationTargetResponse

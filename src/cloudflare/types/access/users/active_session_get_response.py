@@ -1,12 +1,10 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from typing import Optional, Dict
+from typing import Dict, Optional
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
 from pydantic import Field as FieldInfo
+
 from ...._models import BaseModel
-from ....types import shared
 
 __all__ = [
     "ActiveSessionGetResponse",
@@ -15,7 +13,7 @@ __all__ = [
     "DevicePostureCheck",
     "Geo",
     "Idp",
-    "MtlsAuth",
+    "MTLSAuth",
 ]
 
 
@@ -59,7 +57,7 @@ class Idp(BaseModel):
     type: Optional[str] = None
 
 
-class MtlsAuth(BaseModel):
+class MTLSAuth(BaseModel):
     auth_status: Optional[str] = None
 
     cert_issuer_dn: Optional[str] = None
@@ -100,7 +98,7 @@ class ActiveSessionGetResponse(BaseModel):
 
     is_active: Optional[bool] = FieldInfo(alias="isActive", default=None)
 
-    mtls_auth: Optional[MtlsAuth] = None
+    mtls_auth: Optional[MTLSAuth] = None
 
     service_token_id: Optional[str] = None
 

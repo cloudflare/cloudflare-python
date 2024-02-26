@@ -2,41 +2,11 @@
 
 from __future__ import annotations
 
-import httpx
-
-from .scans import Scans, AsyncScans
-
-from ..._compat import cached_property
-
-from ...types import URLScannerScanResponse
-
-from typing import Type, Union
-
+from typing import Type, Union, cast
 from datetime import datetime
 
-from ..._response import (
-    to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
+import httpx
 
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types import url_scanner_scan_params
 from .scans import (
     Scans,
     AsyncScans,
@@ -45,9 +15,21 @@ from .scans import (
     ScansWithStreamingResponse,
     AsyncScansWithStreamingResponse,
 )
+from ...types import URLScannerScanResponse, url_scanner_scan_params
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
+from ..._base_client import (
+    make_request_options,
+)
 
 __all__ = ["URLScanner", "AsyncURLScanner"]
 
@@ -73,9 +55,11 @@ class URLScanner(SyncAPIResource):
         date_end: Union[str, datetime] | NotGiven = NOT_GIVEN,
         date_start: Union[str, datetime] | NotGiven = NOT_GIVEN,
         hostname: str | NotGiven = NOT_GIVEN,
+        ip: str | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         next_cursor: str | NotGiven = NOT_GIVEN,
         page_hostname: str | NotGiven = NOT_GIVEN,
+        page_ip: str | NotGiven = NOT_GIVEN,
         page_path: str | NotGiven = NOT_GIVEN,
         page_url: str | NotGiven = NOT_GIVEN,
         path: str | NotGiven = NOT_GIVEN,
@@ -107,11 +91,15 @@ class URLScanner(SyncAPIResource):
 
           hostname: Filter scans by hostname of _any_ request made by the webpage.
 
+          ip: Filter scans by IP address (IPv4 or IPv6) of _any_ request made by the webpage.
+
           limit: Limit the number of objects in the response.
 
           next_cursor: Pagination cursor to get the next set of results.
 
           page_hostname: Filter scans by main page hostname .
+
+          page_ip: Filter scans by main page IP address (IPv4 or IPv6).
 
           page_path: Filter scans by exact match URL path (also supports suffix search).
 
@@ -146,9 +134,11 @@ class URLScanner(SyncAPIResource):
                         "date_end": date_end,
                         "date_start": date_start,
                         "hostname": hostname,
+                        "ip": ip,
                         "limit": limit,
                         "next_cursor": next_cursor,
                         "page_hostname": page_hostname,
+                        "page_ip": page_ip,
                         "page_path": page_path,
                         "page_url": page_url,
                         "path": path,
@@ -184,9 +174,11 @@ class AsyncURLScanner(AsyncAPIResource):
         date_end: Union[str, datetime] | NotGiven = NOT_GIVEN,
         date_start: Union[str, datetime] | NotGiven = NOT_GIVEN,
         hostname: str | NotGiven = NOT_GIVEN,
+        ip: str | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         next_cursor: str | NotGiven = NOT_GIVEN,
         page_hostname: str | NotGiven = NOT_GIVEN,
+        page_ip: str | NotGiven = NOT_GIVEN,
         page_path: str | NotGiven = NOT_GIVEN,
         page_url: str | NotGiven = NOT_GIVEN,
         path: str | NotGiven = NOT_GIVEN,
@@ -218,11 +210,15 @@ class AsyncURLScanner(AsyncAPIResource):
 
           hostname: Filter scans by hostname of _any_ request made by the webpage.
 
+          ip: Filter scans by IP address (IPv4 or IPv6) of _any_ request made by the webpage.
+
           limit: Limit the number of objects in the response.
 
           next_cursor: Pagination cursor to get the next set of results.
 
           page_hostname: Filter scans by main page hostname .
+
+          page_ip: Filter scans by main page IP address (IPv4 or IPv6).
 
           page_path: Filter scans by exact match URL path (also supports suffix search).
 
@@ -257,9 +253,11 @@ class AsyncURLScanner(AsyncAPIResource):
                         "date_end": date_end,
                         "date_start": date_start,
                         "hostname": hostname,
+                        "ip": ip,
                         "limit": limit,
                         "next_cursor": next_cursor,
                         "page_hostname": page_hostname,
+                        "page_ip": page_ip,
                         "page_path": page_path,
                         "page_url": page_url,
                         "path": path,

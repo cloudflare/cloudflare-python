@@ -2,15 +2,11 @@
 
 from typing import Optional
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
 from ..._models import BaseModel
-from ...types import shared
 
-__all__ = ["UaRuleDeleteResponse"]
+__all__ = ["UARuleDeleteResponse"]
 
 
-class UaRuleDeleteResponse(BaseModel):
+class UARuleDeleteResponse(BaseModel):
     id: Optional[str] = None
     """The unique identifier of the User Agent Blocking rule."""

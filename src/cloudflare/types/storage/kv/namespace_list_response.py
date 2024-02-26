@@ -2,16 +2,12 @@
 
 from typing import Optional
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
 from ...._models import BaseModel
-from ....types import shared
 
-__all__ = ["NamespaceListResponse", "NamespaceListResponseItem"]
+__all__ = ["NamespaceListResponse"]
 
 
-class NamespaceListResponseItem(BaseModel):
+class NamespaceListResponse(BaseModel):
     id: str
     """Namespace identifier tag."""
 
@@ -24,6 +20,3 @@ class NamespaceListResponseItem(BaseModel):
     For example, if set to "true", a key written on the URL as "%3F" will be stored
     as "?".
     """
-
-
-NamespaceListResponse = List[NamespaceListResponseItem]

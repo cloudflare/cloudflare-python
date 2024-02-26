@@ -2,43 +2,25 @@
 
 from __future__ import annotations
 
+from typing import List, Type, cast
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._compat import cached_property
-
-from ...types.stream import (
-    ClipStreamVideoClippingClipVideosGivenAStartAndEndTimeResponse,
-    clip_stream_video_clipping_clip_videos_given_a_start_and_end_time_params,
-)
-
-from typing import Type, List
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types.stream import clip_stream_video_clipping_clip_videos_given_a_start_and_end_time_params
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
+from ..._base_client import (
+    make_request_options,
+)
+from ...types.stream import ClipCreateResponse, clip_create_params
 
 __all__ = ["Clips", "AsyncClips"]
 
@@ -52,7 +34,7 @@ class Clips(SyncAPIResource):
     def with_streaming_response(self) -> ClipsWithStreamingResponse:
         return ClipsWithStreamingResponse(self)
 
-    def stream_video_clipping_clip_videos_given_a_start_and_end_time(
+    def create(
         self,
         account_id: str,
         *,
@@ -64,15 +46,14 @@ class Clips(SyncAPIResource):
         max_duration_seconds: int | NotGiven = NOT_GIVEN,
         require_signed_urls: bool | NotGiven = NOT_GIVEN,
         thumbnail_timestamp_pct: float | NotGiven = NOT_GIVEN,
-        watermark: clip_stream_video_clipping_clip_videos_given_a_start_and_end_time_params.Watermark
-        | NotGiven = NOT_GIVEN,
+        watermark: clip_create_params.Watermark | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ClipStreamVideoClippingClipVideosGivenAStartAndEndTimeResponse:
+    ) -> ClipCreateResponse:
         """
         Clips a video based on the specified start and end times provided in seconds.
 
@@ -128,7 +109,7 @@ class Clips(SyncAPIResource):
                     "thumbnail_timestamp_pct": thumbnail_timestamp_pct,
                     "watermark": watermark,
                 },
-                clip_stream_video_clipping_clip_videos_given_a_start_and_end_time_params.ClipStreamVideoClippingClipVideosGivenAStartAndEndTimeParams,
+                clip_create_params.ClipCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -137,10 +118,7 @@ class Clips(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[ClipStreamVideoClippingClipVideosGivenAStartAndEndTimeResponse],
-                ResultWrapper[ClipStreamVideoClippingClipVideosGivenAStartAndEndTimeResponse],
-            ),
+            cast_to=cast(Type[ClipCreateResponse], ResultWrapper[ClipCreateResponse]),
         )
 
 
@@ -153,7 +131,7 @@ class AsyncClips(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncClipsWithStreamingResponse:
         return AsyncClipsWithStreamingResponse(self)
 
-    async def stream_video_clipping_clip_videos_given_a_start_and_end_time(
+    async def create(
         self,
         account_id: str,
         *,
@@ -165,15 +143,14 @@ class AsyncClips(AsyncAPIResource):
         max_duration_seconds: int | NotGiven = NOT_GIVEN,
         require_signed_urls: bool | NotGiven = NOT_GIVEN,
         thumbnail_timestamp_pct: float | NotGiven = NOT_GIVEN,
-        watermark: clip_stream_video_clipping_clip_videos_given_a_start_and_end_time_params.Watermark
-        | NotGiven = NOT_GIVEN,
+        watermark: clip_create_params.Watermark | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ClipStreamVideoClippingClipVideosGivenAStartAndEndTimeResponse:
+    ) -> ClipCreateResponse:
         """
         Clips a video based on the specified start and end times provided in seconds.
 
@@ -229,7 +206,7 @@ class AsyncClips(AsyncAPIResource):
                     "thumbnail_timestamp_pct": thumbnail_timestamp_pct,
                     "watermark": watermark,
                 },
-                clip_stream_video_clipping_clip_videos_given_a_start_and_end_time_params.ClipStreamVideoClippingClipVideosGivenAStartAndEndTimeParams,
+                clip_create_params.ClipCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -238,10 +215,7 @@ class AsyncClips(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[ClipStreamVideoClippingClipVideosGivenAStartAndEndTimeResponse],
-                ResultWrapper[ClipStreamVideoClippingClipVideosGivenAStartAndEndTimeResponse],
-            ),
+            cast_to=cast(Type[ClipCreateResponse], ResultWrapper[ClipCreateResponse]),
         )
 
 
@@ -249,8 +223,8 @@ class ClipsWithRawResponse:
     def __init__(self, clips: Clips) -> None:
         self._clips = clips
 
-        self.stream_video_clipping_clip_videos_given_a_start_and_end_time = to_raw_response_wrapper(
-            clips.stream_video_clipping_clip_videos_given_a_start_and_end_time,
+        self.create = to_raw_response_wrapper(
+            clips.create,
         )
 
 
@@ -258,8 +232,8 @@ class AsyncClipsWithRawResponse:
     def __init__(self, clips: AsyncClips) -> None:
         self._clips = clips
 
-        self.stream_video_clipping_clip_videos_given_a_start_and_end_time = async_to_raw_response_wrapper(
-            clips.stream_video_clipping_clip_videos_given_a_start_and_end_time,
+        self.create = async_to_raw_response_wrapper(
+            clips.create,
         )
 
 
@@ -267,8 +241,8 @@ class ClipsWithStreamingResponse:
     def __init__(self, clips: Clips) -> None:
         self._clips = clips
 
-        self.stream_video_clipping_clip_videos_given_a_start_and_end_time = to_streamed_response_wrapper(
-            clips.stream_video_clipping_clip_videos_given_a_start_and_end_time,
+        self.create = to_streamed_response_wrapper(
+            clips.create,
         )
 
 
@@ -276,6 +250,6 @@ class AsyncClipsWithStreamingResponse:
     def __init__(self, clips: AsyncClips) -> None:
         self._clips = clips
 
-        self.stream_video_clipping_clip_videos_given_a_start_and_end_time = async_to_streamed_response_wrapper(
-            clips.stream_video_clipping_clip_videos_given_a_start_and_end_time,
+        self.create = async_to_streamed_response_wrapper(
+            clips.create,
         )

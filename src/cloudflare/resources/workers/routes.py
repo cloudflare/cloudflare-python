@@ -2,59 +2,33 @@
 
 from __future__ import annotations
 
+from typing import Any, Type, cast
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._compat import cached_property
-
-from ...types.workers import (
-    RouteUpdateResponse,
-    RouteDeleteResponse,
-    RouteGetResponse,
-    RouteWorkerRoutesCreateRouteResponse,
-    RouteWorkerRoutesListRoutesResponse,
-)
-
-from typing import Type
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types.workers import route_update_params
-from ...types.workers import route_worker_routes_create_route_params
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ..._base_client import (
+    make_request_options,
+)
+from ...types.workers import (
+    RouteGetResponse,
+    RouteListResponse,
+    RouteCreateResponse,
+    RouteDeleteResponse,
+    RouteUpdateResponse,
+    route_create_params,
+    route_update_params,
+)
 
 __all__ = ["Routes", "AsyncRoutes"]
 
@@ -67,6 +41,61 @@ class Routes(SyncAPIResource):
     @cached_property
     def with_streaming_response(self) -> RoutesWithStreamingResponse:
         return RoutesWithStreamingResponse(self)
+
+    def create(
+        self,
+        zone_id: str,
+        *,
+        pattern: str,
+        script: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RouteCreateResponse:
+        """
+        Creates a route that maps a URL pattern to a Worker.
+
+        Args:
+          zone_id: Identifier
+
+          script: Name of the script, used in URLs and route configuration.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return cast(
+            RouteCreateResponse,
+            self._post(
+                f"/zones/{zone_id}/workers/routes",
+                body=maybe_transform(
+                    {
+                        "pattern": pattern,
+                        "script": script,
+                    },
+                    route_create_params.RouteCreateParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[RouteCreateResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
+        )
 
     def update(
         self,
@@ -121,6 +150,45 @@ class Routes(SyncAPIResource):
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(Type[RouteUpdateResponse], ResultWrapper[RouteUpdateResponse]),
+        )
+
+    def list(
+        self,
+        zone_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RouteListResponse:
+        """
+        Returns routes for a zone.
+
+        Args:
+          zone_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return self._get(
+            f"/zones/{zone_id}/workers/routes",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[RouteListResponse], ResultWrapper[RouteListResponse]),
         )
 
     def delete(
@@ -216,7 +284,17 @@ class Routes(SyncAPIResource):
             cast_to=cast(Type[RouteGetResponse], ResultWrapper[RouteGetResponse]),
         )
 
-    def worker_routes_create_route(
+
+class AsyncRoutes(AsyncAPIResource):
+    @cached_property
+    def with_raw_response(self) -> AsyncRoutesWithRawResponse:
+        return AsyncRoutesWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncRoutesWithStreamingResponse:
+        return AsyncRoutesWithStreamingResponse(self)
+
+    async def create(
         self,
         zone_id: str,
         *,
@@ -228,7 +306,7 @@ class Routes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RouteWorkerRoutesCreateRouteResponse:
+    ) -> RouteCreateResponse:
         """
         Creates a route that maps a URL pattern to a Worker.
 
@@ -248,15 +326,15 @@ class Routes(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            RouteWorkerRoutesCreateRouteResponse,
-            self._post(
+            RouteCreateResponse,
+            await self._post(
                 f"/zones/{zone_id}/workers/routes",
                 body=maybe_transform(
                     {
                         "pattern": pattern,
                         "script": script,
                     },
-                    route_worker_routes_create_route_params.RouteWorkerRoutesCreateRouteParams,
+                    route_create_params.RouteCreateParams,
                 ),
                 options=make_request_options(
                     extra_headers=extra_headers,
@@ -266,59 +344,10 @@ class Routes(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[RouteWorkerRoutesCreateRouteResponse]
+                    Any, ResultWrapper[RouteCreateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
-
-    def worker_routes_list_routes(
-        self,
-        zone_id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RouteWorkerRoutesListRoutesResponse:
-        """
-        Returns routes for a zone.
-
-        Args:
-          zone_id: Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return self._get(
-            f"/zones/{zone_id}/workers/routes",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(Type[RouteWorkerRoutesListRoutesResponse], ResultWrapper[RouteWorkerRoutesListRoutesResponse]),
-        )
-
-
-class AsyncRoutes(AsyncAPIResource):
-    @cached_property
-    def with_raw_response(self) -> AsyncRoutesWithRawResponse:
-        return AsyncRoutesWithRawResponse(self)
-
-    @cached_property
-    def with_streaming_response(self) -> AsyncRoutesWithStreamingResponse:
-        return AsyncRoutesWithStreamingResponse(self)
 
     async def update(
         self,
@@ -373,6 +402,45 @@ class AsyncRoutes(AsyncAPIResource):
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(Type[RouteUpdateResponse], ResultWrapper[RouteUpdateResponse]),
+        )
+
+    async def list(
+        self,
+        zone_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RouteListResponse:
+        """
+        Returns routes for a zone.
+
+        Args:
+          zone_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return await self._get(
+            f"/zones/{zone_id}/workers/routes",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[RouteListResponse], ResultWrapper[RouteListResponse]),
         )
 
     async def delete(
@@ -468,107 +536,19 @@ class AsyncRoutes(AsyncAPIResource):
             cast_to=cast(Type[RouteGetResponse], ResultWrapper[RouteGetResponse]),
         )
 
-    async def worker_routes_create_route(
-        self,
-        zone_id: str,
-        *,
-        pattern: str,
-        script: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RouteWorkerRoutesCreateRouteResponse:
-        """
-        Creates a route that maps a URL pattern to a Worker.
-
-        Args:
-          zone_id: Identifier
-
-          script: Name of the script, used in URLs and route configuration.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return cast(
-            RouteWorkerRoutesCreateRouteResponse,
-            await self._post(
-                f"/zones/{zone_id}/workers/routes",
-                body=maybe_transform(
-                    {
-                        "pattern": pattern,
-                        "script": script,
-                    },
-                    route_worker_routes_create_route_params.RouteWorkerRoutesCreateRouteParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[RouteWorkerRoutesCreateRouteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
-
-    async def worker_routes_list_routes(
-        self,
-        zone_id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RouteWorkerRoutesListRoutesResponse:
-        """
-        Returns routes for a zone.
-
-        Args:
-          zone_id: Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return await self._get(
-            f"/zones/{zone_id}/workers/routes",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(Type[RouteWorkerRoutesListRoutesResponse], ResultWrapper[RouteWorkerRoutesListRoutesResponse]),
-        )
-
 
 class RoutesWithRawResponse:
     def __init__(self, routes: Routes) -> None:
         self._routes = routes
 
+        self.create = to_raw_response_wrapper(
+            routes.create,
+        )
         self.update = to_raw_response_wrapper(
             routes.update,
+        )
+        self.list = to_raw_response_wrapper(
+            routes.list,
         )
         self.delete = to_raw_response_wrapper(
             routes.delete,
@@ -576,20 +556,20 @@ class RoutesWithRawResponse:
         self.get = to_raw_response_wrapper(
             routes.get,
         )
-        self.worker_routes_create_route = to_raw_response_wrapper(
-            routes.worker_routes_create_route,
-        )
-        self.worker_routes_list_routes = to_raw_response_wrapper(
-            routes.worker_routes_list_routes,
-        )
 
 
 class AsyncRoutesWithRawResponse:
     def __init__(self, routes: AsyncRoutes) -> None:
         self._routes = routes
 
+        self.create = async_to_raw_response_wrapper(
+            routes.create,
+        )
         self.update = async_to_raw_response_wrapper(
             routes.update,
+        )
+        self.list = async_to_raw_response_wrapper(
+            routes.list,
         )
         self.delete = async_to_raw_response_wrapper(
             routes.delete,
@@ -597,20 +577,20 @@ class AsyncRoutesWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             routes.get,
         )
-        self.worker_routes_create_route = async_to_raw_response_wrapper(
-            routes.worker_routes_create_route,
-        )
-        self.worker_routes_list_routes = async_to_raw_response_wrapper(
-            routes.worker_routes_list_routes,
-        )
 
 
 class RoutesWithStreamingResponse:
     def __init__(self, routes: Routes) -> None:
         self._routes = routes
 
+        self.create = to_streamed_response_wrapper(
+            routes.create,
+        )
         self.update = to_streamed_response_wrapper(
             routes.update,
+        )
+        self.list = to_streamed_response_wrapper(
+            routes.list,
         )
         self.delete = to_streamed_response_wrapper(
             routes.delete,
@@ -618,30 +598,24 @@ class RoutesWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             routes.get,
         )
-        self.worker_routes_create_route = to_streamed_response_wrapper(
-            routes.worker_routes_create_route,
-        )
-        self.worker_routes_list_routes = to_streamed_response_wrapper(
-            routes.worker_routes_list_routes,
-        )
 
 
 class AsyncRoutesWithStreamingResponse:
     def __init__(self, routes: AsyncRoutes) -> None:
         self._routes = routes
 
+        self.create = async_to_streamed_response_wrapper(
+            routes.create,
+        )
         self.update = async_to_streamed_response_wrapper(
             routes.update,
+        )
+        self.list = async_to_streamed_response_wrapper(
+            routes.list,
         )
         self.delete = async_to_streamed_response_wrapper(
             routes.delete,
         )
         self.get = async_to_streamed_response_wrapper(
             routes.get,
-        )
-        self.worker_routes_create_route = async_to_streamed_response_wrapper(
-            routes.worker_routes_create_route,
-        )
-        self.worker_routes_list_routes = async_to_streamed_response_wrapper(
-            routes.worker_routes_list_routes,
         )

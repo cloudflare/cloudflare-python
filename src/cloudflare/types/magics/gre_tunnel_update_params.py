@@ -2,18 +2,12 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, Literal
+from typing_extensions import Literal, Required, TypedDict
 
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
-from ..._utils import PropertyInfo
-from ...types import shared_params
-
-__all__ = ["GreTunnelUpdateParams", "HealthCheck"]
+__all__ = ["GRETunnelUpdateParams", "HealthCheck"]
 
 
-class GreTunnelUpdateParams(TypedDict, total=False):
+class GRETunnelUpdateParams(TypedDict, total=False):
     account_identifier: Required[str]
     """Identifier"""
 
@@ -58,7 +52,9 @@ class HealthCheck(TypedDict, total=False):
 
     Either unidirectional, where the probe comes to you via the tunnel and the
     result comes back to Cloudflare via the open Internet, or bidirectional where
-    both the probe and result come and go via the tunnel.
+    both the probe and result come and go via the tunnel. Note in the case of
+    bidirecitonal healthchecks, the target field in health_check is ignored as the
+    interface_address is used to send traffic into the tunnel.
     """
 
     enabled: bool
@@ -72,7 +68,9 @@ class HealthCheck(TypedDict, total=False):
 
     After the healthcheck is decapsulated at the customer end of the tunnel, the
     ICMP echo will be forwarded to this address. This field defaults to
-    `customer_gre_endpoint address`.
+    `customer_gre_endpoint address`. This field is ignored for bidirectional
+    healthchecks as the interface_address (not assigned to the Cloudflare side of
+    the tunnel) is used as the target.
     """
 
     type: Literal["reply", "request"]

@@ -2,22 +2,17 @@
 
 from __future__ import annotations
 
-from cloudflare.types.workers import (
-    AccountSettingWorkerAccountSettingsCreateWorkerAccountSettingsResponse,
-    AccountSettingWorkerAccountSettingsFetchWorkerAccountSettingsResponse,
-)
-
+import os
 from typing import Any, cast
 
-import os
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.workers import account_setting_worker_account_settings_create_worker_account_settings_params
+from cloudflare.types.workers import (
+    AccountSettingGetResponse,
+    AccountSettingUpdateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -27,38 +22,30 @@ class TestAccountSettings:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_worker_account_settings_create_worker_account_settings(self, client: Cloudflare) -> None:
-        account_setting = client.workers.account_settings.worker_account_settings_create_worker_account_settings(
+    def test_method_update(self, client: Cloudflare) -> None:
+        account_setting = client.workers.account_settings.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             body="{'default_usage_model': 'unbound'}",
         )
-        assert_matches_type(
-            AccountSettingWorkerAccountSettingsCreateWorkerAccountSettingsResponse, account_setting, path=["response"]
-        )
+        assert_matches_type(AccountSettingUpdateResponse, account_setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_worker_account_settings_create_worker_account_settings(self, client: Cloudflare) -> None:
-        response = (
-            client.workers.account_settings.with_raw_response.worker_account_settings_create_worker_account_settings(
-                "023e105f4ecef8ad9ca31a8372d0c353",
-                body="{'default_usage_model': 'unbound'}",
-            )
+    def test_raw_response_update(self, client: Cloudflare) -> None:
+        response = client.workers.account_settings.with_raw_response.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            body="{'default_usage_model': 'unbound'}",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         account_setting = response.parse()
-        assert_matches_type(
-            AccountSettingWorkerAccountSettingsCreateWorkerAccountSettingsResponse, account_setting, path=["response"]
-        )
+        assert_matches_type(AccountSettingUpdateResponse, account_setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_worker_account_settings_create_worker_account_settings(
-        self, client: Cloudflare
-    ) -> None:
-        with client.workers.account_settings.with_streaming_response.worker_account_settings_create_worker_account_settings(
+    def test_streaming_response_update(self, client: Cloudflare) -> None:
+        with client.workers.account_settings.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             body="{'default_usage_model': 'unbound'}",
         ) as response:
@@ -66,72 +53,58 @@ class TestAccountSettings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             account_setting = response.parse()
-            assert_matches_type(
-                AccountSettingWorkerAccountSettingsCreateWorkerAccountSettingsResponse,
-                account_setting,
-                path=["response"],
-            )
+            assert_matches_type(AccountSettingUpdateResponse, account_setting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_worker_account_settings_create_worker_account_settings(self, client: Cloudflare) -> None:
+    def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.workers.account_settings.with_raw_response.worker_account_settings_create_worker_account_settings(
+            client.workers.account_settings.with_raw_response.update(
                 "",
                 body="{'default_usage_model': 'unbound'}",
             )
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_worker_account_settings_fetch_worker_account_settings(self, client: Cloudflare) -> None:
-        account_setting = client.workers.account_settings.worker_account_settings_fetch_worker_account_settings(
+    def test_method_get(self, client: Cloudflare) -> None:
+        account_setting = client.workers.account_settings.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(
-            AccountSettingWorkerAccountSettingsFetchWorkerAccountSettingsResponse, account_setting, path=["response"]
-        )
+        assert_matches_type(AccountSettingGetResponse, account_setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_worker_account_settings_fetch_worker_account_settings(self, client: Cloudflare) -> None:
-        response = (
-            client.workers.account_settings.with_raw_response.worker_account_settings_fetch_worker_account_settings(
-                "023e105f4ecef8ad9ca31a8372d0c353",
-            )
+    def test_raw_response_get(self, client: Cloudflare) -> None:
+        response = client.workers.account_settings.with_raw_response.get(
+            "023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         account_setting = response.parse()
-        assert_matches_type(
-            AccountSettingWorkerAccountSettingsFetchWorkerAccountSettingsResponse, account_setting, path=["response"]
-        )
+        assert_matches_type(AccountSettingGetResponse, account_setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_worker_account_settings_fetch_worker_account_settings(self, client: Cloudflare) -> None:
-        with client.workers.account_settings.with_streaming_response.worker_account_settings_fetch_worker_account_settings(
+    def test_streaming_response_get(self, client: Cloudflare) -> None:
+        with client.workers.account_settings.with_streaming_response.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             account_setting = response.parse()
-            assert_matches_type(
-                AccountSettingWorkerAccountSettingsFetchWorkerAccountSettingsResponse,
-                account_setting,
-                path=["response"],
-            )
+            assert_matches_type(AccountSettingGetResponse, account_setting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_worker_account_settings_fetch_worker_account_settings(self, client: Cloudflare) -> None:
+    def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.workers.account_settings.with_raw_response.worker_account_settings_fetch_worker_account_settings(
+            client.workers.account_settings.with_raw_response.get(
                 "",
             )
 
@@ -141,25 +114,17 @@ class TestAsyncAccountSettings:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_worker_account_settings_create_worker_account_settings(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        account_setting = (
-            await async_client.workers.account_settings.worker_account_settings_create_worker_account_settings(
-                "023e105f4ecef8ad9ca31a8372d0c353",
-                body="{'default_usage_model': 'unbound'}",
-            )
+    async def test_method_update(self, async_client: AsyncCloudflare) -> None:
+        account_setting = await async_client.workers.account_settings.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            body="{'default_usage_model': 'unbound'}",
         )
-        assert_matches_type(
-            AccountSettingWorkerAccountSettingsCreateWorkerAccountSettingsResponse, account_setting, path=["response"]
-        )
+        assert_matches_type(AccountSettingUpdateResponse, account_setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_worker_account_settings_create_worker_account_settings(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        response = await async_client.workers.account_settings.with_raw_response.worker_account_settings_create_worker_account_settings(
+    async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.workers.account_settings.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             body="{'default_usage_model': 'unbound'}",
         )
@@ -167,16 +132,12 @@ class TestAsyncAccountSettings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         account_setting = await response.parse()
-        assert_matches_type(
-            AccountSettingWorkerAccountSettingsCreateWorkerAccountSettingsResponse, account_setting, path=["response"]
-        )
+        assert_matches_type(AccountSettingUpdateResponse, account_setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_worker_account_settings_create_worker_account_settings(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        async with async_client.workers.account_settings.with_streaming_response.worker_account_settings_create_worker_account_settings(
+    async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.workers.account_settings.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             body="{'default_usage_model': 'unbound'}",
         ) as response:
@@ -184,81 +145,57 @@ class TestAsyncAccountSettings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             account_setting = await response.parse()
-            assert_matches_type(
-                AccountSettingWorkerAccountSettingsCreateWorkerAccountSettingsResponse,
-                account_setting,
-                path=["response"],
-            )
+            assert_matches_type(AccountSettingUpdateResponse, account_setting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_worker_account_settings_create_worker_account_settings(
-        self, async_client: AsyncCloudflare
-    ) -> None:
+    async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.workers.account_settings.with_raw_response.worker_account_settings_create_worker_account_settings(
+            await async_client.workers.account_settings.with_raw_response.update(
                 "",
                 body="{'default_usage_model': 'unbound'}",
             )
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_worker_account_settings_fetch_worker_account_settings(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        account_setting = (
-            await async_client.workers.account_settings.worker_account_settings_fetch_worker_account_settings(
-                "023e105f4ecef8ad9ca31a8372d0c353",
-            )
+    async def test_method_get(self, async_client: AsyncCloudflare) -> None:
+        account_setting = await async_client.workers.account_settings.get(
+            "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(
-            AccountSettingWorkerAccountSettingsFetchWorkerAccountSettingsResponse, account_setting, path=["response"]
-        )
+        assert_matches_type(AccountSettingGetResponse, account_setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_worker_account_settings_fetch_worker_account_settings(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        response = await async_client.workers.account_settings.with_raw_response.worker_account_settings_fetch_worker_account_settings(
+    async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.workers.account_settings.with_raw_response.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         account_setting = await response.parse()
-        assert_matches_type(
-            AccountSettingWorkerAccountSettingsFetchWorkerAccountSettingsResponse, account_setting, path=["response"]
-        )
+        assert_matches_type(AccountSettingGetResponse, account_setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_worker_account_settings_fetch_worker_account_settings(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        async with async_client.workers.account_settings.with_streaming_response.worker_account_settings_fetch_worker_account_settings(
+    async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.workers.account_settings.with_streaming_response.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             account_setting = await response.parse()
-            assert_matches_type(
-                AccountSettingWorkerAccountSettingsFetchWorkerAccountSettingsResponse,
-                account_setting,
-                path=["response"],
-            )
+            assert_matches_type(AccountSettingGetResponse, account_setting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_worker_account_settings_fetch_worker_account_settings(
-        self, async_client: AsyncCloudflare
-    ) -> None:
+    async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.workers.account_settings.with_raw_response.worker_account_settings_fetch_worker_account_settings(
+            await async_client.workers.account_settings.with_raw_response.get(
                 "",
             )

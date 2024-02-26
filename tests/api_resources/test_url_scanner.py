@@ -2,22 +2,14 @@
 
 from __future__ import annotations
 
-from cloudflare.types import URLScannerScanResponse
-
+import os
 from typing import Any, cast
 
-import os
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types import url_scanner_scan_params
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
+from cloudflare.types import URLScannerScanResponse
 from cloudflare._utils import parse_datetime
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -43,9 +35,11 @@ class TestURLScanner:
             date_end=parse_datetime("2019-12-27T18:11:19.117Z"),
             date_start=parse_datetime("2019-12-27T18:11:19.117Z"),
             hostname="example.com",
+            ip="1.1.1.1",
             limit=100,
             next_cursor="string",
             page_hostname="string",
+            page_ip="string",
             page_path="string",
             page_url="string",
             path="/samples/subresource-integrity/",
@@ -109,9 +103,11 @@ class TestAsyncURLScanner:
             date_end=parse_datetime("2019-12-27T18:11:19.117Z"),
             date_start=parse_datetime("2019-12-27T18:11:19.117Z"),
             hostname="example.com",
+            ip="1.1.1.1",
             limit=100,
             next_cursor="string",
             page_hostname="string",
+            page_ip="string",
             page_path="string",
             page_url="string",
             path="/samples/subresource-integrity/",

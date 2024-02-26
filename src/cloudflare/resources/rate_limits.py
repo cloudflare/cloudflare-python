@@ -2,49 +2,36 @@
 
 from __future__ import annotations
 
+from typing import Any, Type, Optional, cast
+
 import httpx
 
+from ..types import (
+    RateLimitGetResponse,
+    RateLimitEditResponse,
+    RateLimitListResponse,
+    RateLimitCreateResponse,
+    RateLimitDeleteResponse,
+    rate_limit_edit_params,
+    rate_limit_list_params,
+    rate_limit_create_params,
+)
+from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._utils import maybe_transform
 from .._compat import cached_property
-
-from ..types import RateLimitUpdateResponse, RateLimitListResponse, RateLimitGetResponse
-
-from typing import Optional, Type
-
+from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from .._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from .._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from .._resource import SyncAPIResource, AsyncAPIResource
+from .._wrappers import ResultWrapper
+from ..pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from .._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
     AsyncPaginator,
     make_request_options,
-    HttpxBinaryResponseContent,
 )
-from ..types import shared_params
-from ..types import rate_limit_update_params
-from ..types import rate_limit_list_params
-from .._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
 
 __all__ = ["RateLimits", "AsyncRateLimits"]
 
@@ -58,11 +45,10 @@ class RateLimits(SyncAPIResource):
     def with_streaming_response(self) -> RateLimitsWithStreamingResponse:
         return RateLimitsWithStreamingResponse(self)
 
-    def update(
+    def create(
         self,
-        id: str,
-        *,
         zone_identifier: str,
+        *,
         body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -70,14 +56,14 @@ class RateLimits(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RateLimitUpdateResponse]:
-        """
-        Updates an existing rate limit.
+    ) -> Optional[RateLimitCreateResponse]:
+        """Creates a new rate limit for a zone.
+
+        Refer to the object definition for a list
+        of required attributes.
 
         Args:
           zone_identifier: Identifier
-
-          id: The unique identifier of the rate limit.
 
           extra_headers: Send extra headers
 
@@ -89,13 +75,11 @@ class RateLimits(SyncAPIResource):
         """
         if not zone_identifier:
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return cast(
-            Optional[RateLimitUpdateResponse],
-            self._put(
-                f"/zones/{zone_identifier}/rate_limits/{id}",
-                body=maybe_transform(body, rate_limit_update_params.RateLimitUpdateParams),
+            Optional[RateLimitCreateResponse],
+            self._post(
+                f"/zones/{zone_identifier}/rate_limits",
+                body=maybe_transform(body, rate_limit_create_params.RateLimitCreateParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -104,7 +88,7 @@ class RateLimits(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[RateLimitUpdateResponse]
+                    Any, ResultWrapper[RateLimitCreateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -121,7 +105,7 @@ class RateLimits(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RateLimitListResponse]:
+    ) -> SyncV4PagePaginationArray[RateLimitListResponse]:
         """
         Fetches the rate limits for a zone.
 
@@ -143,8 +127,9 @@ class RateLimits(SyncAPIResource):
         """
         if not zone_identifier:
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        return self._get(
+        return self._get_api_list(
             f"/zones/{zone_identifier}/rate_limits",
+            page=SyncV4PagePaginationArray[RateLimitListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -157,9 +142,103 @@ class RateLimits(SyncAPIResource):
                     },
                     rate_limit_list_params.RateLimitListParams,
                 ),
+            ),
+            model=RateLimitListResponse,
+        )
+
+    def delete(
+        self,
+        id: str,
+        *,
+        zone_identifier: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RateLimitDeleteResponse]:
+        """
+        Deletes an existing rate limit.
+
+        Args:
+          zone_identifier: Identifier
+
+          id: The unique identifier of the rate limit.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_identifier:
+            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._delete(
+            f"/zones/{zone_identifier}/rate_limits/{id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[RateLimitListResponse]], ResultWrapper[RateLimitListResponse]),
+            cast_to=cast(Type[Optional[RateLimitDeleteResponse]], ResultWrapper[RateLimitDeleteResponse]),
+        )
+
+    def edit(
+        self,
+        id: str,
+        *,
+        zone_identifier: str,
+        body: object,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RateLimitEditResponse]:
+        """
+        Updates an existing rate limit.
+
+        Args:
+          zone_identifier: Identifier
+
+          id: The unique identifier of the rate limit.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_identifier:
+            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return cast(
+            Optional[RateLimitEditResponse],
+            self._put(
+                f"/zones/{zone_identifier}/rate_limits/{id}",
+                body=maybe_transform(body, rate_limit_edit_params.RateLimitEditParams),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[RateLimitEditResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
         )
 
     def get(
@@ -221,11 +300,10 @@ class AsyncRateLimits(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncRateLimitsWithStreamingResponse:
         return AsyncRateLimitsWithStreamingResponse(self)
 
-    async def update(
+    async def create(
         self,
-        id: str,
-        *,
         zone_identifier: str,
+        *,
         body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -233,14 +311,14 @@ class AsyncRateLimits(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RateLimitUpdateResponse]:
-        """
-        Updates an existing rate limit.
+    ) -> Optional[RateLimitCreateResponse]:
+        """Creates a new rate limit for a zone.
+
+        Refer to the object definition for a list
+        of required attributes.
 
         Args:
           zone_identifier: Identifier
-
-          id: The unique identifier of the rate limit.
 
           extra_headers: Send extra headers
 
@@ -252,13 +330,11 @@ class AsyncRateLimits(AsyncAPIResource):
         """
         if not zone_identifier:
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return cast(
-            Optional[RateLimitUpdateResponse],
-            await self._put(
-                f"/zones/{zone_identifier}/rate_limits/{id}",
-                body=maybe_transform(body, rate_limit_update_params.RateLimitUpdateParams),
+            Optional[RateLimitCreateResponse],
+            await self._post(
+                f"/zones/{zone_identifier}/rate_limits",
+                body=maybe_transform(body, rate_limit_create_params.RateLimitCreateParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -267,12 +343,12 @@ class AsyncRateLimits(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[RateLimitUpdateResponse]
+                    Any, ResultWrapper[RateLimitCreateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
 
-    async def list(
+    def list(
         self,
         zone_identifier: str,
         *,
@@ -284,7 +360,7 @@ class AsyncRateLimits(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RateLimitListResponse]:
+    ) -> AsyncPaginator[RateLimitListResponse, AsyncV4PagePaginationArray[RateLimitListResponse]]:
         """
         Fetches the rate limits for a zone.
 
@@ -306,8 +382,9 @@ class AsyncRateLimits(AsyncAPIResource):
         """
         if not zone_identifier:
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/zones/{zone_identifier}/rate_limits",
+            page=AsyncV4PagePaginationArray[RateLimitListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -320,9 +397,103 @@ class AsyncRateLimits(AsyncAPIResource):
                     },
                     rate_limit_list_params.RateLimitListParams,
                 ),
+            ),
+            model=RateLimitListResponse,
+        )
+
+    async def delete(
+        self,
+        id: str,
+        *,
+        zone_identifier: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RateLimitDeleteResponse]:
+        """
+        Deletes an existing rate limit.
+
+        Args:
+          zone_identifier: Identifier
+
+          id: The unique identifier of the rate limit.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_identifier:
+            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return await self._delete(
+            f"/zones/{zone_identifier}/rate_limits/{id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[RateLimitListResponse]], ResultWrapper[RateLimitListResponse]),
+            cast_to=cast(Type[Optional[RateLimitDeleteResponse]], ResultWrapper[RateLimitDeleteResponse]),
+        )
+
+    async def edit(
+        self,
+        id: str,
+        *,
+        zone_identifier: str,
+        body: object,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RateLimitEditResponse]:
+        """
+        Updates an existing rate limit.
+
+        Args:
+          zone_identifier: Identifier
+
+          id: The unique identifier of the rate limit.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_identifier:
+            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return cast(
+            Optional[RateLimitEditResponse],
+            await self._put(
+                f"/zones/{zone_identifier}/rate_limits/{id}",
+                body=maybe_transform(body, rate_limit_edit_params.RateLimitEditParams),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[RateLimitEditResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
         )
 
     async def get(
@@ -379,11 +550,17 @@ class RateLimitsWithRawResponse:
     def __init__(self, rate_limits: RateLimits) -> None:
         self._rate_limits = rate_limits
 
-        self.update = to_raw_response_wrapper(
-            rate_limits.update,
+        self.create = to_raw_response_wrapper(
+            rate_limits.create,
         )
         self.list = to_raw_response_wrapper(
             rate_limits.list,
+        )
+        self.delete = to_raw_response_wrapper(
+            rate_limits.delete,
+        )
+        self.edit = to_raw_response_wrapper(
+            rate_limits.edit,
         )
         self.get = to_raw_response_wrapper(
             rate_limits.get,
@@ -394,11 +571,17 @@ class AsyncRateLimitsWithRawResponse:
     def __init__(self, rate_limits: AsyncRateLimits) -> None:
         self._rate_limits = rate_limits
 
-        self.update = async_to_raw_response_wrapper(
-            rate_limits.update,
+        self.create = async_to_raw_response_wrapper(
+            rate_limits.create,
         )
         self.list = async_to_raw_response_wrapper(
             rate_limits.list,
+        )
+        self.delete = async_to_raw_response_wrapper(
+            rate_limits.delete,
+        )
+        self.edit = async_to_raw_response_wrapper(
+            rate_limits.edit,
         )
         self.get = async_to_raw_response_wrapper(
             rate_limits.get,
@@ -409,11 +592,17 @@ class RateLimitsWithStreamingResponse:
     def __init__(self, rate_limits: RateLimits) -> None:
         self._rate_limits = rate_limits
 
-        self.update = to_streamed_response_wrapper(
-            rate_limits.update,
+        self.create = to_streamed_response_wrapper(
+            rate_limits.create,
         )
         self.list = to_streamed_response_wrapper(
             rate_limits.list,
+        )
+        self.delete = to_streamed_response_wrapper(
+            rate_limits.delete,
+        )
+        self.edit = to_streamed_response_wrapper(
+            rate_limits.edit,
         )
         self.get = to_streamed_response_wrapper(
             rate_limits.get,
@@ -424,11 +613,17 @@ class AsyncRateLimitsWithStreamingResponse:
     def __init__(self, rate_limits: AsyncRateLimits) -> None:
         self._rate_limits = rate_limits
 
-        self.update = async_to_streamed_response_wrapper(
-            rate_limits.update,
+        self.create = async_to_streamed_response_wrapper(
+            rate_limits.create,
         )
         self.list = async_to_streamed_response_wrapper(
             rate_limits.list,
+        )
+        self.delete = async_to_streamed_response_wrapper(
+            rate_limits.delete,
+        )
+        self.edit = async_to_streamed_response_wrapper(
+            rate_limits.edit,
         )
         self.get = async_to_streamed_response_wrapper(
             rate_limits.get,

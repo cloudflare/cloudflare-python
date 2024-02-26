@@ -2,42 +2,25 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._compat import cached_property
-
-from ...types.settings import MobileRedirectUpdateResponse, MobileRedirectGetResponse, mobile_redirect_update_params
-
-from typing import Type, Optional
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types.settings import mobile_redirect_update_params
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ..._base_client import (
+    make_request_options,
+)
+from ...types.settings import MobileRedirectGetResponse, MobileRedirectEditResponse, mobile_redirect_edit_params
 
 __all__ = ["MobileRedirect", "AsyncMobileRedirect"]
 
@@ -51,18 +34,18 @@ class MobileRedirect(SyncAPIResource):
     def with_streaming_response(self) -> MobileRedirectWithStreamingResponse:
         return MobileRedirectWithStreamingResponse(self)
 
-    def update(
+    def edit(
         self,
         zone_id: str,
         *,
-        value: mobile_redirect_update_params.Value,
+        value: mobile_redirect_edit_params.Value,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MobileRedirectUpdateResponse]:
+    ) -> Optional[MobileRedirectEditResponse]:
         """
         Automatically redirect visitors on mobile devices to a mobile-optimized
         subdomain. Refer to
@@ -86,7 +69,7 @@ class MobileRedirect(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._patch(
             f"/zones/{zone_id}/settings/mobile_redirect",
-            body=maybe_transform({"value": value}, mobile_redirect_update_params.MobileRedirectUpdateParams),
+            body=maybe_transform({"value": value}, mobile_redirect_edit_params.MobileRedirectEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -94,7 +77,7 @@ class MobileRedirect(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[MobileRedirectUpdateResponse]], ResultWrapper[MobileRedirectUpdateResponse]),
+            cast_to=cast(Type[Optional[MobileRedirectEditResponse]], ResultWrapper[MobileRedirectEditResponse]),
         )
 
     def get(
@@ -149,18 +132,18 @@ class AsyncMobileRedirect(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncMobileRedirectWithStreamingResponse:
         return AsyncMobileRedirectWithStreamingResponse(self)
 
-    async def update(
+    async def edit(
         self,
         zone_id: str,
         *,
-        value: mobile_redirect_update_params.Value,
+        value: mobile_redirect_edit_params.Value,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MobileRedirectUpdateResponse]:
+    ) -> Optional[MobileRedirectEditResponse]:
         """
         Automatically redirect visitors on mobile devices to a mobile-optimized
         subdomain. Refer to
@@ -184,7 +167,7 @@ class AsyncMobileRedirect(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._patch(
             f"/zones/{zone_id}/settings/mobile_redirect",
-            body=maybe_transform({"value": value}, mobile_redirect_update_params.MobileRedirectUpdateParams),
+            body=maybe_transform({"value": value}, mobile_redirect_edit_params.MobileRedirectEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -192,7 +175,7 @@ class AsyncMobileRedirect(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[MobileRedirectUpdateResponse]], ResultWrapper[MobileRedirectUpdateResponse]),
+            cast_to=cast(Type[Optional[MobileRedirectEditResponse]], ResultWrapper[MobileRedirectEditResponse]),
         )
 
     async def get(
@@ -242,8 +225,8 @@ class MobileRedirectWithRawResponse:
     def __init__(self, mobile_redirect: MobileRedirect) -> None:
         self._mobile_redirect = mobile_redirect
 
-        self.update = to_raw_response_wrapper(
-            mobile_redirect.update,
+        self.edit = to_raw_response_wrapper(
+            mobile_redirect.edit,
         )
         self.get = to_raw_response_wrapper(
             mobile_redirect.get,
@@ -254,8 +237,8 @@ class AsyncMobileRedirectWithRawResponse:
     def __init__(self, mobile_redirect: AsyncMobileRedirect) -> None:
         self._mobile_redirect = mobile_redirect
 
-        self.update = async_to_raw_response_wrapper(
-            mobile_redirect.update,
+        self.edit = async_to_raw_response_wrapper(
+            mobile_redirect.edit,
         )
         self.get = async_to_raw_response_wrapper(
             mobile_redirect.get,
@@ -266,8 +249,8 @@ class MobileRedirectWithStreamingResponse:
     def __init__(self, mobile_redirect: MobileRedirect) -> None:
         self._mobile_redirect = mobile_redirect
 
-        self.update = to_streamed_response_wrapper(
-            mobile_redirect.update,
+        self.edit = to_streamed_response_wrapper(
+            mobile_redirect.edit,
         )
         self.get = to_streamed_response_wrapper(
             mobile_redirect.get,
@@ -278,8 +261,8 @@ class AsyncMobileRedirectWithStreamingResponse:
     def __init__(self, mobile_redirect: AsyncMobileRedirect) -> None:
         self._mobile_redirect = mobile_redirect
 
-        self.update = async_to_streamed_response_wrapper(
-            mobile_redirect.update,
+        self.edit = async_to_streamed_response_wrapper(
+            mobile_redirect.edit,
         )
         self.get = async_to_streamed_response_wrapper(
             mobile_redirect.get,

@@ -2,13 +2,17 @@
 
 from __future__ import annotations
 
-from .dmarc_list_response import DmarcListResponse as DmarcListResponse
-from .dmarc_list_params import DmarcListParams as DmarcListParams
-from .malicious_list_response import MaliciousListResponse as MaliciousListResponse
-from .malicious_list_params import MaliciousListParams as MaliciousListParams
-from .spam_list_response import SpamListResponse as SpamListResponse
-from .spam_list_params import SpamListParams as SpamListParams
-from .spf_list_response import SPFListResponse as SPFListResponse
-from .spf_list_params import SPFListParams as SPFListParams
-from .threat_category_list_response import ThreatCategoryListResponse as ThreatCategoryListResponse
-from .threat_category_list_params import ThreatCategoryListParams as ThreatCategoryListParams
+from .timeseries_group_spf_params import TimeseriesGroupSPFParams as TimeseriesGroupSPFParams
+from .timeseries_group_spam_params import TimeseriesGroupSpamParams as TimeseriesGroupSpamParams
+from .timeseries_group_dmarc_params import TimeseriesGroupDMARCParams as TimeseriesGroupDMARCParams
+from .timeseries_group_spf_response import TimeseriesGroupSPFResponse as TimeseriesGroupSPFResponse
+from .timeseries_group_spam_response import TimeseriesGroupSpamResponse as TimeseriesGroupSpamResponse
+from .timeseries_group_dmarc_response import TimeseriesGroupDMARCResponse as TimeseriesGroupDMARCResponse
+from .timeseries_group_malicious_params import TimeseriesGroupMaliciousParams as TimeseriesGroupMaliciousParams
+from .timeseries_group_malicious_response import TimeseriesGroupMaliciousResponse as TimeseriesGroupMaliciousResponse
+from .timeseries_group_threat_category_params import (
+    TimeseriesGroupThreatCategoryParams as TimeseriesGroupThreatCategoryParams,
+)
+from .timeseries_group_threat_category_response import (
+    TimeseriesGroupThreatCategoryResponse as TimeseriesGroupThreatCategoryResponse,
+)

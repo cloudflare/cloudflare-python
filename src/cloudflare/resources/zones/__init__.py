@@ -1,27 +1,43 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from .hold import Hold, AsyncHold
-from .hold import (
-    HoldWithRawResponse,
-    AsyncHoldWithRawResponse,
-    HoldWithStreamingResponse,
-    AsyncHoldWithStreamingResponse,
+from .holds import (
+    Holds,
+    AsyncHolds,
+    HoldsWithRawResponse,
+    AsyncHoldsWithRawResponse,
+    HoldsWithStreamingResponse,
+    AsyncHoldsWithStreamingResponse,
 )
-from .zones import Zones, AsyncZones
 from .zones import (
+    Zones,
+    AsyncZones,
     ZonesWithRawResponse,
     AsyncZonesWithRawResponse,
     ZonesWithStreamingResponse,
     AsyncZonesWithStreamingResponse,
 )
+from .custom_nameservers import (
+    CustomNameservers,
+    AsyncCustomNameservers,
+    CustomNameserversWithRawResponse,
+    AsyncCustomNameserversWithRawResponse,
+    CustomNameserversWithStreamingResponse,
+    AsyncCustomNameserversWithStreamingResponse,
+)
 
 __all__ = [
-    "Hold",
-    "AsyncHold",
-    "HoldWithRawResponse",
-    "AsyncHoldWithRawResponse",
-    "HoldWithStreamingResponse",
-    "AsyncHoldWithStreamingResponse",
+    "CustomNameservers",
+    "AsyncCustomNameservers",
+    "CustomNameserversWithRawResponse",
+    "AsyncCustomNameserversWithRawResponse",
+    "CustomNameserversWithStreamingResponse",
+    "AsyncCustomNameserversWithStreamingResponse",
+    "Holds",
+    "AsyncHolds",
+    "HoldsWithRawResponse",
+    "AsyncHoldsWithRawResponse",
+    "HoldsWithStreamingResponse",
+    "AsyncHoldsWithStreamingResponse",
     "Zones",
     "AsyncZones",
     "ZonesWithRawResponse",

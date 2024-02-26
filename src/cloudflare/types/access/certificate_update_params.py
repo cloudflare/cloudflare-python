@@ -2,24 +2,18 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required
-
 from typing import List
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
-from ..._utils import PropertyInfo
-from ...types import shared_params
+from typing_extensions import Required, TypedDict
 
 __all__ = ["CertificateUpdateParams"]
 
 
 class CertificateUpdateParams(TypedDict, total=False):
-    account_or_zone: Required[str]
+    account_id: Required[str]
+    """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
 
-    account_or_zone_id: Required[str]
-    """Identifier"""
+    zone_id: Required[str]
+    """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
     associated_hostnames: Required[List[str]]
     """The hostnames of the applications that will use this certificate."""

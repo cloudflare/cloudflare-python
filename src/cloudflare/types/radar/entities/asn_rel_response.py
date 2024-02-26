@@ -2,13 +2,9 @@
 
 from typing import List
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
 from ...._models import BaseModel
-from ....types import shared
 
-__all__ = ["AsnRelResponse", "Meta", "Rel"]
+__all__ = ["ASNRelResponse", "Meta", "Rel"]
 
 
 class Meta(BaseModel):
@@ -35,7 +31,7 @@ class Rel(BaseModel):
     rel: str
 
 
-class AsnRelResponse(BaseModel):
+class ASNRelResponse(BaseModel):
     meta: Meta
 
     rels: List[Rel]

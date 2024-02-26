@@ -2,44 +2,30 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+from typing_extensions import Literal
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._compat import cached_property
-
-from ...types.settings import TrueClientIPHeaderUpdateResponse, TrueClientIPHeaderGetResponse
-
-from typing import Type, Optional
-
-from typing_extensions import Literal
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types.settings import true_client_ip_header_update_params
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ..._base_client import (
+    make_request_options,
+)
+from ...types.settings import (
+    TrueClientIPHeaderGetResponse,
+    TrueClientIPHeaderEditResponse,
+    true_client_ip_header_edit_params,
+)
 
 __all__ = ["TrueClientIPHeader", "AsyncTrueClientIPHeader"]
 
@@ -53,7 +39,7 @@ class TrueClientIPHeader(SyncAPIResource):
     def with_streaming_response(self) -> TrueClientIPHeaderWithStreamingResponse:
         return TrueClientIPHeaderWithStreamingResponse(self)
 
-    def update(
+    def edit(
         self,
         zone_id: str,
         *,
@@ -64,7 +50,7 @@ class TrueClientIPHeader(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[TrueClientIPHeaderUpdateResponse]:
+    ) -> Optional[TrueClientIPHeaderEditResponse]:
         """
         Allows customer to continue to use True Client IP (Akamai feature) in the
         headers we send to the origin. This is limited to Enterprise Zones.
@@ -86,7 +72,7 @@ class TrueClientIPHeader(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._patch(
             f"/zones/{zone_id}/settings/true_client_ip_header",
-            body=maybe_transform({"value": value}, true_client_ip_header_update_params.TrueClientIPHeaderUpdateParams),
+            body=maybe_transform({"value": value}, true_client_ip_header_edit_params.TrueClientIPHeaderEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -94,9 +80,7 @@ class TrueClientIPHeader(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[TrueClientIPHeaderUpdateResponse]], ResultWrapper[TrueClientIPHeaderUpdateResponse]
-            ),
+            cast_to=cast(Type[Optional[TrueClientIPHeaderEditResponse]], ResultWrapper[TrueClientIPHeaderEditResponse]),
         )
 
     def get(
@@ -149,7 +133,7 @@ class AsyncTrueClientIPHeader(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncTrueClientIPHeaderWithStreamingResponse:
         return AsyncTrueClientIPHeaderWithStreamingResponse(self)
 
-    async def update(
+    async def edit(
         self,
         zone_id: str,
         *,
@@ -160,7 +144,7 @@ class AsyncTrueClientIPHeader(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[TrueClientIPHeaderUpdateResponse]:
+    ) -> Optional[TrueClientIPHeaderEditResponse]:
         """
         Allows customer to continue to use True Client IP (Akamai feature) in the
         headers we send to the origin. This is limited to Enterprise Zones.
@@ -182,7 +166,7 @@ class AsyncTrueClientIPHeader(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._patch(
             f"/zones/{zone_id}/settings/true_client_ip_header",
-            body=maybe_transform({"value": value}, true_client_ip_header_update_params.TrueClientIPHeaderUpdateParams),
+            body=maybe_transform({"value": value}, true_client_ip_header_edit_params.TrueClientIPHeaderEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -190,9 +174,7 @@ class AsyncTrueClientIPHeader(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[TrueClientIPHeaderUpdateResponse]], ResultWrapper[TrueClientIPHeaderUpdateResponse]
-            ),
+            cast_to=cast(Type[Optional[TrueClientIPHeaderEditResponse]], ResultWrapper[TrueClientIPHeaderEditResponse]),
         )
 
     async def get(
@@ -240,8 +222,8 @@ class TrueClientIPHeaderWithRawResponse:
     def __init__(self, true_client_ip_header: TrueClientIPHeader) -> None:
         self._true_client_ip_header = true_client_ip_header
 
-        self.update = to_raw_response_wrapper(
-            true_client_ip_header.update,
+        self.edit = to_raw_response_wrapper(
+            true_client_ip_header.edit,
         )
         self.get = to_raw_response_wrapper(
             true_client_ip_header.get,
@@ -252,8 +234,8 @@ class AsyncTrueClientIPHeaderWithRawResponse:
     def __init__(self, true_client_ip_header: AsyncTrueClientIPHeader) -> None:
         self._true_client_ip_header = true_client_ip_header
 
-        self.update = async_to_raw_response_wrapper(
-            true_client_ip_header.update,
+        self.edit = async_to_raw_response_wrapper(
+            true_client_ip_header.edit,
         )
         self.get = async_to_raw_response_wrapper(
             true_client_ip_header.get,
@@ -264,8 +246,8 @@ class TrueClientIPHeaderWithStreamingResponse:
     def __init__(self, true_client_ip_header: TrueClientIPHeader) -> None:
         self._true_client_ip_header = true_client_ip_header
 
-        self.update = to_streamed_response_wrapper(
-            true_client_ip_header.update,
+        self.edit = to_streamed_response_wrapper(
+            true_client_ip_header.edit,
         )
         self.get = to_streamed_response_wrapper(
             true_client_ip_header.get,
@@ -276,8 +258,8 @@ class AsyncTrueClientIPHeaderWithStreamingResponse:
     def __init__(self, true_client_ip_header: AsyncTrueClientIPHeader) -> None:
         self._true_client_ip_header = true_client_ip_header
 
-        self.update = async_to_streamed_response_wrapper(
-            true_client_ip_header.update,
+        self.edit = async_to_streamed_response_wrapper(
+            true_client_ip_header.edit,
         )
         self.get = async_to_streamed_response_wrapper(
             true_client_ip_header.get,

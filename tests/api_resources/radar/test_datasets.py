@@ -2,20 +2,17 @@
 
 from __future__ import annotations
 
-from cloudflare.types.radar import DatasetListResponse, DatasetGetResponse
-
+import os
 from typing import Any, cast
 
-import os
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.radar import dataset_list_params
-from cloudflare.types.radar import dataset_get_params
+from cloudflare.types.radar import (
+    DatasetListResponse,
+    DatasetDownloadResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -59,6 +56,49 @@ class TestDatasets:
 
             dataset = response.parse()
             assert_matches_type(DatasetListResponse, dataset, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_download(self, client: Cloudflare) -> None:
+        dataset = client.radar.datasets.download(
+            dataset_id=3,
+        )
+        assert_matches_type(DatasetDownloadResponse, dataset, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_download_with_all_params(self, client: Cloudflare) -> None:
+        dataset = client.radar.datasets.download(
+            dataset_id=3,
+            format="JSON",
+        )
+        assert_matches_type(DatasetDownloadResponse, dataset, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_download(self, client: Cloudflare) -> None:
+        response = client.radar.datasets.with_raw_response.download(
+            dataset_id=3,
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        dataset = response.parse()
+        assert_matches_type(DatasetDownloadResponse, dataset, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_download(self, client: Cloudflare) -> None:
+        with client.radar.datasets.with_streaming_response.download(
+            dataset_id=3,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            dataset = response.parse()
+            assert_matches_type(DatasetDownloadResponse, dataset, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -153,6 +193,49 @@ class TestAsyncDatasets:
 
             dataset = await response.parse()
             assert_matches_type(DatasetListResponse, dataset, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_download(self, async_client: AsyncCloudflare) -> None:
+        dataset = await async_client.radar.datasets.download(
+            dataset_id=3,
+        )
+        assert_matches_type(DatasetDownloadResponse, dataset, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_download_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        dataset = await async_client.radar.datasets.download(
+            dataset_id=3,
+            format="JSON",
+        )
+        assert_matches_type(DatasetDownloadResponse, dataset, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_download(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.radar.datasets.with_raw_response.download(
+            dataset_id=3,
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        dataset = await response.parse()
+        assert_matches_type(DatasetDownloadResponse, dataset, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_download(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.radar.datasets.with_streaming_response.download(
+            dataset_id=3,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            dataset = await response.parse()
+            assert_matches_type(DatasetDownloadResponse, dataset, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

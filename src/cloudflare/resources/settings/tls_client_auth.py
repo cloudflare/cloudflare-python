@@ -2,44 +2,26 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+from typing_extensions import Literal
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._compat import cached_property
-
-from ...types.settings import TLSClientAuthUpdateResponse, TLSClientAuthGetResponse
-
-from typing import Type, Optional
-
-from typing_extensions import Literal
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types.settings import tls_client_auth_update_params
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ..._base_client import (
+    make_request_options,
+)
+from ...types.settings import TLSClientAuthGetResponse, TLSClientAuthEditResponse, tls_client_auth_edit_params
 
 __all__ = ["TLSClientAuth", "AsyncTLSClientAuth"]
 
@@ -53,7 +35,7 @@ class TLSClientAuth(SyncAPIResource):
     def with_streaming_response(self) -> TLSClientAuthWithStreamingResponse:
         return TLSClientAuthWithStreamingResponse(self)
 
-    def update(
+    def edit(
         self,
         zone_id: str,
         *,
@@ -64,7 +46,7 @@ class TLSClientAuth(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[TLSClientAuthUpdateResponse]:
+    ) -> Optional[TLSClientAuthEditResponse]:
         """
         TLS Client Auth requires Cloudflare to connect to your origin server using a
         client certificate (Enterprise Only).
@@ -86,7 +68,7 @@ class TLSClientAuth(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._patch(
             f"/zones/{zone_id}/settings/tls_client_auth",
-            body=maybe_transform({"value": value}, tls_client_auth_update_params.TLSClientAuthUpdateParams),
+            body=maybe_transform({"value": value}, tls_client_auth_edit_params.TLSClientAuthEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -94,7 +76,7 @@ class TLSClientAuth(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[TLSClientAuthUpdateResponse]], ResultWrapper[TLSClientAuthUpdateResponse]),
+            cast_to=cast(Type[Optional[TLSClientAuthEditResponse]], ResultWrapper[TLSClientAuthEditResponse]),
         )
 
     def get(
@@ -147,7 +129,7 @@ class AsyncTLSClientAuth(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncTLSClientAuthWithStreamingResponse:
         return AsyncTLSClientAuthWithStreamingResponse(self)
 
-    async def update(
+    async def edit(
         self,
         zone_id: str,
         *,
@@ -158,7 +140,7 @@ class AsyncTLSClientAuth(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[TLSClientAuthUpdateResponse]:
+    ) -> Optional[TLSClientAuthEditResponse]:
         """
         TLS Client Auth requires Cloudflare to connect to your origin server using a
         client certificate (Enterprise Only).
@@ -180,7 +162,7 @@ class AsyncTLSClientAuth(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._patch(
             f"/zones/{zone_id}/settings/tls_client_auth",
-            body=maybe_transform({"value": value}, tls_client_auth_update_params.TLSClientAuthUpdateParams),
+            body=maybe_transform({"value": value}, tls_client_auth_edit_params.TLSClientAuthEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -188,7 +170,7 @@ class AsyncTLSClientAuth(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[TLSClientAuthUpdateResponse]], ResultWrapper[TLSClientAuthUpdateResponse]),
+            cast_to=cast(Type[Optional[TLSClientAuthEditResponse]], ResultWrapper[TLSClientAuthEditResponse]),
         )
 
     async def get(
@@ -236,8 +218,8 @@ class TLSClientAuthWithRawResponse:
     def __init__(self, tls_client_auth: TLSClientAuth) -> None:
         self._tls_client_auth = tls_client_auth
 
-        self.update = to_raw_response_wrapper(
-            tls_client_auth.update,
+        self.edit = to_raw_response_wrapper(
+            tls_client_auth.edit,
         )
         self.get = to_raw_response_wrapper(
             tls_client_auth.get,
@@ -248,8 +230,8 @@ class AsyncTLSClientAuthWithRawResponse:
     def __init__(self, tls_client_auth: AsyncTLSClientAuth) -> None:
         self._tls_client_auth = tls_client_auth
 
-        self.update = async_to_raw_response_wrapper(
-            tls_client_auth.update,
+        self.edit = async_to_raw_response_wrapper(
+            tls_client_auth.edit,
         )
         self.get = async_to_raw_response_wrapper(
             tls_client_auth.get,
@@ -260,8 +242,8 @@ class TLSClientAuthWithStreamingResponse:
     def __init__(self, tls_client_auth: TLSClientAuth) -> None:
         self._tls_client_auth = tls_client_auth
 
-        self.update = to_streamed_response_wrapper(
-            tls_client_auth.update,
+        self.edit = to_streamed_response_wrapper(
+            tls_client_auth.edit,
         )
         self.get = to_streamed_response_wrapper(
             tls_client_auth.get,
@@ -272,8 +254,8 @@ class AsyncTLSClientAuthWithStreamingResponse:
     def __init__(self, tls_client_auth: AsyncTLSClientAuth) -> None:
         self._tls_client_auth = tls_client_auth
 
-        self.update = async_to_streamed_response_wrapper(
-            tls_client_auth.update,
+        self.edit = async_to_streamed_response_wrapper(
+            tls_client_auth.edit,
         )
         self.get = async_to_streamed_response_wrapper(
             tls_client_auth.get,

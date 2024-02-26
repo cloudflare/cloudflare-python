@@ -2,61 +2,34 @@
 
 from __future__ import annotations
 
+from typing import Any, Type, Optional, cast
+from typing_extensions import Literal
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._compat import cached_property
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ..._wrappers import ResultWrapper
+from ..._base_client import (
+    make_request_options,
+)
 from ...types.logpush import (
-    JobCreateResponse,
-    JobUpdateResponse,
-    JobListResponse,
-    JobDeleteResponse,
     JobGetResponse,
+    JobListResponse,
+    JobCreateResponse,
+    JobDeleteResponse,
+    JobUpdateResponse,
     job_create_params,
     job_update_params,
 )
-
-from typing import Type, Optional
-
-from typing_extensions import Literal
-
-from ..._response import (
-    to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types.logpush import job_create_params
-from ...types.logpush import job_update_params
-from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
 
 __all__ = ["Jobs", "AsyncJobs"]
 
@@ -72,9 +45,9 @@ class Jobs(SyncAPIResource):
 
     def create(
         self,
-        account_or_zone_id: str,
         *,
-        account_or_zone: str,
+        account_id: str,
+        zone_id: str,
         destination_conf: str,
         dataset: Optional[str] | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
@@ -94,7 +67,9 @@ class Jobs(SyncAPIResource):
         Creates a new Logpush job for an account or zone.
 
         Args:
-          account_or_zone_id: Identifier
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           destination_conf: Uniquely identifies a resource (such as an s3 bucket) where data will be pushed.
               Additional configuration parameters supported by the destination may be
@@ -131,12 +106,12 @@ class Jobs(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_or_zone:
-            raise ValueError(f"Expected a non-empty value for `account_or_zone` but received {account_or_zone!r}")
-        if not account_or_zone_id:
-            raise ValueError(f"Expected a non-empty value for `account_or_zone_id` but received {account_or_zone_id!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
-            f"/{account_or_zone}/{account_or_zone_id}/logpush/jobs",
+            f"/{account_id}/{zone_id}/logpush/jobs",
             body=maybe_transform(
                 {
                     "destination_conf": destination_conf,
@@ -164,8 +139,8 @@ class Jobs(SyncAPIResource):
         self,
         job_id: int,
         *,
-        account_or_zone: str,
-        account_or_zone_id: str,
+        account_id: str,
+        zone_id: str,
         destination_conf: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         frequency: Optional[Literal["high", "low"]] | NotGiven = NOT_GIVEN,
@@ -183,7 +158,9 @@ class Jobs(SyncAPIResource):
         Updates a Logpush job.
 
         Args:
-          account_or_zone_id: Identifier
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           job_id: Unique id of the job.
 
@@ -216,12 +193,12 @@ class Jobs(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_or_zone:
-            raise ValueError(f"Expected a non-empty value for `account_or_zone` but received {account_or_zone!r}")
-        if not account_or_zone_id:
-            raise ValueError(f"Expected a non-empty value for `account_or_zone_id` but received {account_or_zone_id!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._put(
-            f"/{account_or_zone}/{account_or_zone_id}/logpush/jobs/{job_id}",
+            f"/{account_id}/{zone_id}/logpush/jobs/{job_id}",
             body=maybe_transform(
                 {
                     "destination_conf": destination_conf,
@@ -245,9 +222,9 @@ class Jobs(SyncAPIResource):
 
     def list(
         self,
-        account_or_zone_id: str,
         *,
-        account_or_zone: str,
+        account_id: str,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -259,7 +236,9 @@ class Jobs(SyncAPIResource):
         Lists Logpush jobs for an account or zone.
 
         Args:
-          account_or_zone_id: Identifier
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           extra_headers: Send extra headers
 
@@ -269,12 +248,12 @@ class Jobs(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_or_zone:
-            raise ValueError(f"Expected a non-empty value for `account_or_zone` but received {account_or_zone!r}")
-        if not account_or_zone_id:
-            raise ValueError(f"Expected a non-empty value for `account_or_zone_id` but received {account_or_zone_id!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get(
-            f"/{account_or_zone}/{account_or_zone_id}/logpush/jobs",
+            f"/{account_id}/{zone_id}/logpush/jobs",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -289,8 +268,8 @@ class Jobs(SyncAPIResource):
         self,
         job_id: int,
         *,
-        account_or_zone: str,
-        account_or_zone_id: str,
+        account_id: str,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -302,7 +281,9 @@ class Jobs(SyncAPIResource):
         Deletes a Logpush job.
 
         Args:
-          account_or_zone_id: Identifier
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           job_id: Unique id of the job.
 
@@ -314,14 +295,14 @@ class Jobs(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_or_zone:
-            raise ValueError(f"Expected a non-empty value for `account_or_zone` but received {account_or_zone!r}")
-        if not account_or_zone_id:
-            raise ValueError(f"Expected a non-empty value for `account_or_zone_id` but received {account_or_zone_id!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
             Optional[JobDeleteResponse],
             self._delete(
-                f"/{account_or_zone}/{account_or_zone_id}/logpush/jobs/{job_id}",
+                f"/{account_id}/{zone_id}/logpush/jobs/{job_id}",
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -339,8 +320,8 @@ class Jobs(SyncAPIResource):
         self,
         job_id: int,
         *,
-        account_or_zone: str,
-        account_or_zone_id: str,
+        account_id: str,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -352,7 +333,9 @@ class Jobs(SyncAPIResource):
         Gets the details of a Logpush job.
 
         Args:
-          account_or_zone_id: Identifier
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           job_id: Unique id of the job.
 
@@ -364,12 +347,12 @@ class Jobs(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_or_zone:
-            raise ValueError(f"Expected a non-empty value for `account_or_zone` but received {account_or_zone!r}")
-        if not account_or_zone_id:
-            raise ValueError(f"Expected a non-empty value for `account_or_zone_id` but received {account_or_zone_id!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get(
-            f"/{account_or_zone}/{account_or_zone_id}/logpush/jobs/{job_id}",
+            f"/{account_id}/{zone_id}/logpush/jobs/{job_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -392,9 +375,9 @@ class AsyncJobs(AsyncAPIResource):
 
     async def create(
         self,
-        account_or_zone_id: str,
         *,
-        account_or_zone: str,
+        account_id: str,
+        zone_id: str,
         destination_conf: str,
         dataset: Optional[str] | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
@@ -414,7 +397,9 @@ class AsyncJobs(AsyncAPIResource):
         Creates a new Logpush job for an account or zone.
 
         Args:
-          account_or_zone_id: Identifier
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           destination_conf: Uniquely identifies a resource (such as an s3 bucket) where data will be pushed.
               Additional configuration parameters supported by the destination may be
@@ -451,12 +436,12 @@ class AsyncJobs(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_or_zone:
-            raise ValueError(f"Expected a non-empty value for `account_or_zone` but received {account_or_zone!r}")
-        if not account_or_zone_id:
-            raise ValueError(f"Expected a non-empty value for `account_or_zone_id` but received {account_or_zone_id!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
-            f"/{account_or_zone}/{account_or_zone_id}/logpush/jobs",
+            f"/{account_id}/{zone_id}/logpush/jobs",
             body=maybe_transform(
                 {
                     "destination_conf": destination_conf,
@@ -484,8 +469,8 @@ class AsyncJobs(AsyncAPIResource):
         self,
         job_id: int,
         *,
-        account_or_zone: str,
-        account_or_zone_id: str,
+        account_id: str,
+        zone_id: str,
         destination_conf: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         frequency: Optional[Literal["high", "low"]] | NotGiven = NOT_GIVEN,
@@ -503,7 +488,9 @@ class AsyncJobs(AsyncAPIResource):
         Updates a Logpush job.
 
         Args:
-          account_or_zone_id: Identifier
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           job_id: Unique id of the job.
 
@@ -536,12 +523,12 @@ class AsyncJobs(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_or_zone:
-            raise ValueError(f"Expected a non-empty value for `account_or_zone` but received {account_or_zone!r}")
-        if not account_or_zone_id:
-            raise ValueError(f"Expected a non-empty value for `account_or_zone_id` but received {account_or_zone_id!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._put(
-            f"/{account_or_zone}/{account_or_zone_id}/logpush/jobs/{job_id}",
+            f"/{account_id}/{zone_id}/logpush/jobs/{job_id}",
             body=maybe_transform(
                 {
                     "destination_conf": destination_conf,
@@ -565,9 +552,9 @@ class AsyncJobs(AsyncAPIResource):
 
     async def list(
         self,
-        account_or_zone_id: str,
         *,
-        account_or_zone: str,
+        account_id: str,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -579,7 +566,9 @@ class AsyncJobs(AsyncAPIResource):
         Lists Logpush jobs for an account or zone.
 
         Args:
-          account_or_zone_id: Identifier
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           extra_headers: Send extra headers
 
@@ -589,12 +578,12 @@ class AsyncJobs(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_or_zone:
-            raise ValueError(f"Expected a non-empty value for `account_or_zone` but received {account_or_zone!r}")
-        if not account_or_zone_id:
-            raise ValueError(f"Expected a non-empty value for `account_or_zone_id` but received {account_or_zone_id!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._get(
-            f"/{account_or_zone}/{account_or_zone_id}/logpush/jobs",
+            f"/{account_id}/{zone_id}/logpush/jobs",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -609,8 +598,8 @@ class AsyncJobs(AsyncAPIResource):
         self,
         job_id: int,
         *,
-        account_or_zone: str,
-        account_or_zone_id: str,
+        account_id: str,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -622,7 +611,9 @@ class AsyncJobs(AsyncAPIResource):
         Deletes a Logpush job.
 
         Args:
-          account_or_zone_id: Identifier
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           job_id: Unique id of the job.
 
@@ -634,14 +625,14 @@ class AsyncJobs(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_or_zone:
-            raise ValueError(f"Expected a non-empty value for `account_or_zone` but received {account_or_zone!r}")
-        if not account_or_zone_id:
-            raise ValueError(f"Expected a non-empty value for `account_or_zone_id` but received {account_or_zone_id!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
             Optional[JobDeleteResponse],
             await self._delete(
-                f"/{account_or_zone}/{account_or_zone_id}/logpush/jobs/{job_id}",
+                f"/{account_id}/{zone_id}/logpush/jobs/{job_id}",
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -659,8 +650,8 @@ class AsyncJobs(AsyncAPIResource):
         self,
         job_id: int,
         *,
-        account_or_zone: str,
-        account_or_zone_id: str,
+        account_id: str,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -672,7 +663,9 @@ class AsyncJobs(AsyncAPIResource):
         Gets the details of a Logpush job.
 
         Args:
-          account_or_zone_id: Identifier
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           job_id: Unique id of the job.
 
@@ -684,12 +677,12 @@ class AsyncJobs(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_or_zone:
-            raise ValueError(f"Expected a non-empty value for `account_or_zone` but received {account_or_zone!r}")
-        if not account_or_zone_id:
-            raise ValueError(f"Expected a non-empty value for `account_or_zone_id` but received {account_or_zone_id!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._get(
-            f"/{account_or_zone}/{account_or_zone_id}/logpush/jobs/{job_id}",
+            f"/{account_id}/{zone_id}/logpush/jobs/{job_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

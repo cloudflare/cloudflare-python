@@ -1,24 +1,14 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from typing import Optional, List
-
+from typing import List, Optional
 from datetime import datetime
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
 from ..._models import BaseModel
-from ...types import shared
 
-__all__ = [
-    "SiteInfoListResponse",
-    "SiteInfoListResponseItem",
-    "SiteInfoListResponseItemRule",
-    "SiteInfoListResponseItemRuleset",
-]
+__all__ = ["SiteInfoListResponse", "Rule", "Ruleset"]
 
 
-class SiteInfoListResponseItemRule(BaseModel):
+class Rule(BaseModel):
     id: Optional[str] = None
     """The Web Analytics rule identifier."""
 
@@ -39,7 +29,7 @@ class SiteInfoListResponseItemRule(BaseModel):
     priority: Optional[float] = None
 
 
-class SiteInfoListResponseItemRuleset(BaseModel):
+class Ruleset(BaseModel):
     id: Optional[str] = None
     """The Web Analytics ruleset identifier."""
 
@@ -52,7 +42,7 @@ class SiteInfoListResponseItemRuleset(BaseModel):
     """The zone identifier."""
 
 
-class SiteInfoListResponseItem(BaseModel):
+class SiteInfoListResponse(BaseModel):
     auto_install: Optional[bool] = None
     """
     If enabled, the JavaScript snippet is automatically injected for orange-clouded
@@ -61,10 +51,10 @@ class SiteInfoListResponseItem(BaseModel):
 
     created: Optional[datetime] = None
 
-    rules: Optional[List[SiteInfoListResponseItemRule]] = None
+    rules: Optional[List[Rule]] = None
     """A list of rules."""
 
-    ruleset: Optional[SiteInfoListResponseItemRuleset] = None
+    ruleset: Optional[Ruleset] = None
 
     site_tag: Optional[str] = None
     """The Web Analytics site identifier."""
@@ -74,6 +64,3 @@ class SiteInfoListResponseItem(BaseModel):
 
     snippet: Optional[str] = None
     """Encoded JavaScript snippet."""
-
-
-SiteInfoListResponse = List[SiteInfoListResponseItem]

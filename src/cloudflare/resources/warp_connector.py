@@ -2,79 +2,51 @@
 
 from __future__ import annotations
 
-import httpx
-
-from .._compat import cached_property
-
-from ..types import (
-    WarpConnectorCreateResponse,
-    WarpConnectorUpdateResponse,
-    WarpConnectorListResponse,
-    WarpConnectorDeleteResponse,
-    WarpConnectorGetResponse,
-)
-
-from typing import Type, Optional, Union
-
+from typing import Any, Union, cast
 from datetime import datetime
 
+import httpx
+
+from ..types import (
+    WARPConnectorGetResponse,
+    WARPConnectorEditResponse,
+    WARPConnectorListResponse,
+    WARPConnectorTokenResponse,
+    WARPConnectorCreateResponse,
+    WARPConnectorDeleteResponse,
+    warp_connector_edit_params,
+    warp_connector_list_params,
+    warp_connector_create_params,
+    warp_connector_delete_params,
+)
+from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._utils import maybe_transform
+from .._compat import cached_property
+from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from .._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from .._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from .._resource import SyncAPIResource, AsyncAPIResource
+from .._wrappers import ResultWrapper
+from ..pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from .._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
     AsyncPaginator,
     make_request_options,
-    HttpxBinaryResponseContent,
 )
-from ..types import shared_params
-from ..types import warp_connector_create_params
-from ..types import warp_connector_update_params
-from ..types import warp_connector_list_params
-from ..types import warp_connector_delete_params
-from .._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
 
-__all__ = ["WarpConnector", "AsyncWarpConnector"]
+__all__ = ["WARPConnector", "AsyncWARPConnector"]
 
 
-class WarpConnector(SyncAPIResource):
+class WARPConnector(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> WarpConnectorWithRawResponse:
-        return WarpConnectorWithRawResponse(self)
+    def with_raw_response(self) -> WARPConnectorWithRawResponse:
+        return WARPConnectorWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> WarpConnectorWithStreamingResponse:
-        return WarpConnectorWithStreamingResponse(self)
+    def with_streaming_response(self) -> WARPConnectorWithStreamingResponse:
+        return WARPConnectorWithStreamingResponse(self)
 
     def create(
         self,
@@ -87,7 +59,7 @@ class WarpConnector(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WarpConnectorCreateResponse:
+    ) -> WARPConnectorCreateResponse:
         """
         Creates a new Warp Connector Tunnel in an account.
 
@@ -107,10 +79,10 @@ class WarpConnector(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
-            WarpConnectorCreateResponse,
+            WARPConnectorCreateResponse,
             self._post(
                 f"/accounts/{account_id}/warp_connector",
-                body=maybe_transform({"name": name}, warp_connector_create_params.WarpConnectorCreateParams),
+                body=maybe_transform({"name": name}, warp_connector_create_params.WARPConnectorCreateParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -119,70 +91,7 @@ class WarpConnector(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[WarpConnectorCreateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
-
-    def update(
-        self,
-        tunnel_id: str,
-        *,
-        account_id: str,
-        name: str | NotGiven = NOT_GIVEN,
-        tunnel_secret: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WarpConnectorUpdateResponse:
-        """
-        Updates an existing Warp Connector Tunnel.
-
-        Args:
-          account_id: Cloudflare account ID
-
-          tunnel_id: UUID of the tunnel.
-
-          name: A user-friendly name for the tunnel.
-
-          tunnel_secret: Sets the password required to run a locally-managed tunnel. Must be at least 32
-              bytes and encoded as a base64 string.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not tunnel_id:
-            raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
-        return cast(
-            WarpConnectorUpdateResponse,
-            self._patch(
-                f"/accounts/{account_id}/warp_connector/{tunnel_id}",
-                body=maybe_transform(
-                    {
-                        "name": name,
-                        "tunnel_secret": tunnel_secret,
-                    },
-                    warp_connector_update_params.WarpConnectorUpdateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[WarpConnectorUpdateResponse]
+                    Any, ResultWrapper[WARPConnectorCreateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -206,7 +115,7 @@ class WarpConnector(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[WarpConnectorListResponse]:
+    ) -> SyncV4PagePaginationArray[WARPConnectorListResponse]:
         """
         Lists and filters Warp Connector Tunnels in an account.
 
@@ -235,8 +144,9 @@ class WarpConnector(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/warp_connector",
+            page=SyncV4PagePaginationArray[WARPConnectorListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -254,11 +164,12 @@ class WarpConnector(SyncAPIResource):
                         "was_active_at": was_active_at,
                         "was_inactive_at": was_inactive_at,
                     },
-                    warp_connector_list_params.WarpConnectorListParams,
+                    warp_connector_list_params.WARPConnectorListParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[WarpConnectorListResponse]], ResultWrapper[WarpConnectorListResponse]),
+            model=cast(
+                Any, WARPConnectorListResponse
+            ),  # Union types cannot be passed in as arguments in the type system
         )
 
     def delete(
@@ -273,7 +184,7 @@ class WarpConnector(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WarpConnectorDeleteResponse:
+    ) -> WARPConnectorDeleteResponse:
         """
         Deletes a Warp Connector Tunnel from an account.
 
@@ -295,10 +206,10 @@ class WarpConnector(SyncAPIResource):
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
         return cast(
-            WarpConnectorDeleteResponse,
+            WARPConnectorDeleteResponse,
             self._delete(
                 f"/accounts/{account_id}/warp_connector/{tunnel_id}",
-                body=maybe_transform(body, warp_connector_delete_params.WarpConnectorDeleteParams),
+                body=maybe_transform(body, warp_connector_delete_params.WARPConnectorDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -307,119 +218,12 @@ class WarpConnector(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[WarpConnectorDeleteResponse]
+                    Any, ResultWrapper[WARPConnectorDeleteResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
 
-    def get(
-        self,
-        tunnel_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WarpConnectorGetResponse:
-        """
-        Fetches a single Warp Connector Tunnel.
-
-        Args:
-          account_id: Cloudflare account ID
-
-          tunnel_id: UUID of the tunnel.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not tunnel_id:
-            raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
-        return cast(
-            WarpConnectorGetResponse,
-            self._get(
-                f"/accounts/{account_id}/warp_connector/{tunnel_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[WarpConnectorGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
-
-
-class AsyncWarpConnector(AsyncAPIResource):
-    @cached_property
-    def with_raw_response(self) -> AsyncWarpConnectorWithRawResponse:
-        return AsyncWarpConnectorWithRawResponse(self)
-
-    @cached_property
-    def with_streaming_response(self) -> AsyncWarpConnectorWithStreamingResponse:
-        return AsyncWarpConnectorWithStreamingResponse(self)
-
-    async def create(
-        self,
-        account_id: str,
-        *,
-        name: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WarpConnectorCreateResponse:
-        """
-        Creates a new Warp Connector Tunnel in an account.
-
-        Args:
-          account_id: Cloudflare account ID
-
-          name: A user-friendly name for the tunnel.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return cast(
-            WarpConnectorCreateResponse,
-            await self._post(
-                f"/accounts/{account_id}/warp_connector",
-                body=maybe_transform({"name": name}, warp_connector_create_params.WarpConnectorCreateParams),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[WarpConnectorCreateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
-
-    async def update(
+    def edit(
         self,
         tunnel_id: str,
         *,
@@ -432,7 +236,7 @@ class AsyncWarpConnector(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WarpConnectorUpdateResponse:
+    ) -> WARPConnectorEditResponse:
         """
         Updates an existing Warp Connector Tunnel.
 
@@ -459,15 +263,15 @@ class AsyncWarpConnector(AsyncAPIResource):
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
         return cast(
-            WarpConnectorUpdateResponse,
-            await self._patch(
+            WARPConnectorEditResponse,
+            self._patch(
                 f"/accounts/{account_id}/warp_connector/{tunnel_id}",
                 body=maybe_transform(
                     {
                         "name": name,
                         "tunnel_secret": tunnel_secret,
                     },
-                    warp_connector_update_params.WarpConnectorUpdateParams,
+                    warp_connector_edit_params.WARPConnectorEditParams,
                 ),
                 options=make_request_options(
                     extra_headers=extra_headers,
@@ -477,12 +281,169 @@ class AsyncWarpConnector(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[WarpConnectorUpdateResponse]
+                    Any, ResultWrapper[WARPConnectorEditResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
 
-    async def list(
+    def get(
+        self,
+        tunnel_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> WARPConnectorGetResponse:
+        """
+        Fetches a single Warp Connector Tunnel.
+
+        Args:
+          account_id: Cloudflare account ID
+
+          tunnel_id: UUID of the tunnel.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not tunnel_id:
+            raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
+        return cast(
+            WARPConnectorGetResponse,
+            self._get(
+                f"/accounts/{account_id}/warp_connector/{tunnel_id}",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[WARPConnectorGetResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
+        )
+
+    def token(
+        self,
+        tunnel_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> WARPConnectorTokenResponse:
+        """
+        Gets the token used to associate warp device with a specific Warp Connector
+        tunnel.
+
+        Args:
+          account_id: Cloudflare account ID
+
+          tunnel_id: UUID of the tunnel.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not tunnel_id:
+            raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
+        return cast(
+            WARPConnectorTokenResponse,
+            self._get(
+                f"/accounts/{account_id}/warp_connector/{tunnel_id}/token",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[WARPConnectorTokenResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
+        )
+
+
+class AsyncWARPConnector(AsyncAPIResource):
+    @cached_property
+    def with_raw_response(self) -> AsyncWARPConnectorWithRawResponse:
+        return AsyncWARPConnectorWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncWARPConnectorWithStreamingResponse:
+        return AsyncWARPConnectorWithStreamingResponse(self)
+
+    async def create(
+        self,
+        account_id: str,
+        *,
+        name: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> WARPConnectorCreateResponse:
+        """
+        Creates a new Warp Connector Tunnel in an account.
+
+        Args:
+          account_id: Cloudflare account ID
+
+          name: A user-friendly name for the tunnel.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return cast(
+            WARPConnectorCreateResponse,
+            await self._post(
+                f"/accounts/{account_id}/warp_connector",
+                body=maybe_transform({"name": name}, warp_connector_create_params.WARPConnectorCreateParams),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[WARPConnectorCreateResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
+        )
+
+    def list(
         self,
         account_id: str,
         *,
@@ -501,7 +462,7 @@ class AsyncWarpConnector(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[WarpConnectorListResponse]:
+    ) -> AsyncPaginator[WARPConnectorListResponse, AsyncV4PagePaginationArray[WARPConnectorListResponse]]:
         """
         Lists and filters Warp Connector Tunnels in an account.
 
@@ -530,8 +491,9 @@ class AsyncWarpConnector(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/warp_connector",
+            page=AsyncV4PagePaginationArray[WARPConnectorListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -549,11 +511,12 @@ class AsyncWarpConnector(AsyncAPIResource):
                         "was_active_at": was_active_at,
                         "was_inactive_at": was_inactive_at,
                     },
-                    warp_connector_list_params.WarpConnectorListParams,
+                    warp_connector_list_params.WARPConnectorListParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[WarpConnectorListResponse]], ResultWrapper[WarpConnectorListResponse]),
+            model=cast(
+                Any, WARPConnectorListResponse
+            ),  # Union types cannot be passed in as arguments in the type system
         )
 
     async def delete(
@@ -568,7 +531,7 @@ class AsyncWarpConnector(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WarpConnectorDeleteResponse:
+    ) -> WARPConnectorDeleteResponse:
         """
         Deletes a Warp Connector Tunnel from an account.
 
@@ -590,10 +553,10 @@ class AsyncWarpConnector(AsyncAPIResource):
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
         return cast(
-            WarpConnectorDeleteResponse,
+            WARPConnectorDeleteResponse,
             await self._delete(
                 f"/accounts/{account_id}/warp_connector/{tunnel_id}",
-                body=maybe_transform(body, warp_connector_delete_params.WarpConnectorDeleteParams),
+                body=maybe_transform(body, warp_connector_delete_params.WARPConnectorDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -602,7 +565,70 @@ class AsyncWarpConnector(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[WarpConnectorDeleteResponse]
+                    Any, ResultWrapper[WARPConnectorDeleteResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
+        )
+
+    async def edit(
+        self,
+        tunnel_id: str,
+        *,
+        account_id: str,
+        name: str | NotGiven = NOT_GIVEN,
+        tunnel_secret: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> WARPConnectorEditResponse:
+        """
+        Updates an existing Warp Connector Tunnel.
+
+        Args:
+          account_id: Cloudflare account ID
+
+          tunnel_id: UUID of the tunnel.
+
+          name: A user-friendly name for the tunnel.
+
+          tunnel_secret: Sets the password required to run a locally-managed tunnel. Must be at least 32
+              bytes and encoded as a base64 string.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not tunnel_id:
+            raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
+        return cast(
+            WARPConnectorEditResponse,
+            await self._patch(
+                f"/accounts/{account_id}/warp_connector/{tunnel_id}",
+                body=maybe_transform(
+                    {
+                        "name": name,
+                        "tunnel_secret": tunnel_secret,
+                    },
+                    warp_connector_edit_params.WARPConnectorEditParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[WARPConnectorEditResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -618,7 +644,7 @@ class AsyncWarpConnector(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WarpConnectorGetResponse:
+    ) -> WARPConnectorGetResponse:
         """
         Fetches a single Warp Connector Tunnel.
 
@@ -640,7 +666,7 @@ class AsyncWarpConnector(AsyncAPIResource):
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
         return cast(
-            WarpConnectorGetResponse,
+            WARPConnectorGetResponse,
             await self._get(
                 f"/accounts/{account_id}/warp_connector/{tunnel_id}",
                 options=make_request_options(
@@ -651,21 +677,68 @@ class AsyncWarpConnector(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[WarpConnectorGetResponse]
+                    Any, ResultWrapper[WARPConnectorGetResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
+        )
+
+    async def token(
+        self,
+        tunnel_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> WARPConnectorTokenResponse:
+        """
+        Gets the token used to associate warp device with a specific Warp Connector
+        tunnel.
+
+        Args:
+          account_id: Cloudflare account ID
+
+          tunnel_id: UUID of the tunnel.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not tunnel_id:
+            raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
+        return cast(
+            WARPConnectorTokenResponse,
+            await self._get(
+                f"/accounts/{account_id}/warp_connector/{tunnel_id}/token",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[WARPConnectorTokenResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
 
 
-class WarpConnectorWithRawResponse:
-    def __init__(self, warp_connector: WarpConnector) -> None:
+class WARPConnectorWithRawResponse:
+    def __init__(self, warp_connector: WARPConnector) -> None:
         self._warp_connector = warp_connector
 
         self.create = to_raw_response_wrapper(
             warp_connector.create,
-        )
-        self.update = to_raw_response_wrapper(
-            warp_connector.update,
         )
         self.list = to_raw_response_wrapper(
             warp_connector.list,
@@ -673,20 +746,23 @@ class WarpConnectorWithRawResponse:
         self.delete = to_raw_response_wrapper(
             warp_connector.delete,
         )
+        self.edit = to_raw_response_wrapper(
+            warp_connector.edit,
+        )
         self.get = to_raw_response_wrapper(
             warp_connector.get,
         )
+        self.token = to_raw_response_wrapper(
+            warp_connector.token,
+        )
 
 
-class AsyncWarpConnectorWithRawResponse:
-    def __init__(self, warp_connector: AsyncWarpConnector) -> None:
+class AsyncWARPConnectorWithRawResponse:
+    def __init__(self, warp_connector: AsyncWARPConnector) -> None:
         self._warp_connector = warp_connector
 
         self.create = async_to_raw_response_wrapper(
             warp_connector.create,
-        )
-        self.update = async_to_raw_response_wrapper(
-            warp_connector.update,
         )
         self.list = async_to_raw_response_wrapper(
             warp_connector.list,
@@ -694,20 +770,23 @@ class AsyncWarpConnectorWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             warp_connector.delete,
         )
+        self.edit = async_to_raw_response_wrapper(
+            warp_connector.edit,
+        )
         self.get = async_to_raw_response_wrapper(
             warp_connector.get,
         )
+        self.token = async_to_raw_response_wrapper(
+            warp_connector.token,
+        )
 
 
-class WarpConnectorWithStreamingResponse:
-    def __init__(self, warp_connector: WarpConnector) -> None:
+class WARPConnectorWithStreamingResponse:
+    def __init__(self, warp_connector: WARPConnector) -> None:
         self._warp_connector = warp_connector
 
         self.create = to_streamed_response_wrapper(
             warp_connector.create,
-        )
-        self.update = to_streamed_response_wrapper(
-            warp_connector.update,
         )
         self.list = to_streamed_response_wrapper(
             warp_connector.list,
@@ -715,20 +794,23 @@ class WarpConnectorWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             warp_connector.delete,
         )
+        self.edit = to_streamed_response_wrapper(
+            warp_connector.edit,
+        )
         self.get = to_streamed_response_wrapper(
             warp_connector.get,
         )
+        self.token = to_streamed_response_wrapper(
+            warp_connector.token,
+        )
 
 
-class AsyncWarpConnectorWithStreamingResponse:
-    def __init__(self, warp_connector: AsyncWarpConnector) -> None:
+class AsyncWARPConnectorWithStreamingResponse:
+    def __init__(self, warp_connector: AsyncWARPConnector) -> None:
         self._warp_connector = warp_connector
 
         self.create = async_to_streamed_response_wrapper(
             warp_connector.create,
-        )
-        self.update = async_to_streamed_response_wrapper(
-            warp_connector.update,
         )
         self.list = async_to_streamed_response_wrapper(
             warp_connector.list,
@@ -736,6 +818,12 @@ class AsyncWarpConnectorWithStreamingResponse:
         self.delete = async_to_streamed_response_wrapper(
             warp_connector.delete,
         )
+        self.edit = async_to_streamed_response_wrapper(
+            warp_connector.edit,
+        )
         self.get = async_to_streamed_response_wrapper(
             warp_connector.get,
+        )
+        self.token = async_to_streamed_response_wrapper(
+            warp_connector.token,
         )

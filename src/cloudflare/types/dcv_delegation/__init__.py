@@ -2,4 +2,4 @@
 
 from __future__ import annotations
 
-from .uuid_get_response import UuidGetResponse as UuidGetResponse
+from .uuid_get_response import UUIDGetResponse as UUIDGetResponse

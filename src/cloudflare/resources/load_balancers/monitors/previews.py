@@ -2,42 +2,26 @@
 
 from __future__ import annotations
 
+from typing import Type, cast
+from typing_extensions import Literal
+
 import httpx
 
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import maybe_transform
 from ...._compat import cached_property
-
-from ....types.load_balancers.monitors import PreviewAccountLoadBalancerMonitorsPreviewMonitorResponse
-
-from typing import Type
-
-from typing_extensions import Literal
-
+from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ....types import shared_params
-from ....types.load_balancers.monitors import preview_account_load_balancer_monitors_preview_monitor_params
 from ...._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
+from ...._base_client import (
+    make_request_options,
+)
+from ....types.load_balancers.monitors import PreviewCreateResponse, preview_create_params
 
 __all__ = ["Previews", "AsyncPreviews"]
 
@@ -51,7 +35,7 @@ class Previews(SyncAPIResource):
     def with_streaming_response(self) -> PreviewsWithStreamingResponse:
         return PreviewsWithStreamingResponse(self)
 
-    def account_load_balancer_monitors_preview_monitor(
+    def create(
         self,
         monitor_id: str,
         *,
@@ -70,7 +54,7 @@ class Previews(SyncAPIResource):
         port: int | NotGiven = NOT_GIVEN,
         probe_zone: str | NotGiven = NOT_GIVEN,
         retries: int | NotGiven = NOT_GIVEN,
-        api_timeout: int | NotGiven = NOT_GIVEN,
+        load_balancer_monitor_timeout: int | NotGiven = NOT_GIVEN,
         type: Literal["http", "https", "tcp", "udp_icmp", "icmp_ping", "smtp"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -78,7 +62,7 @@ class Previews(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PreviewAccountLoadBalancerMonitorsPreviewMonitorResponse:
+    ) -> PreviewCreateResponse:
         """Preview pools using the specified monitor with provided monitor details.
 
         The
@@ -131,7 +115,7 @@ class Previews(SyncAPIResource):
           retries: The number of retries to attempt in case of a timeout before marking the origin
               as unhealthy. Retries are attempted immediately.
 
-          api_timeout: The timeout (in seconds) before marking the health check as failed.
+          load_balancer_monitor_timeout: The timeout (in seconds) before marking the health check as failed.
 
           type: The protocol to use for the health check. Currently supported protocols are
               'HTTP','HTTPS', 'TCP', 'ICMP-PING', 'UDP-ICMP', and 'SMTP'.
@@ -166,10 +150,10 @@ class Previews(SyncAPIResource):
                     "port": port,
                     "probe_zone": probe_zone,
                     "retries": retries,
-                    "timeout": api_timeout,
+                    "timeout": load_balancer_monitor_timeout,
                     "type": type,
                 },
-                preview_account_load_balancer_monitors_preview_monitor_params.PreviewAccountLoadBalancerMonitorsPreviewMonitorParams,
+                preview_create_params.PreviewCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -178,10 +162,7 @@ class Previews(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[PreviewAccountLoadBalancerMonitorsPreviewMonitorResponse],
-                ResultWrapper[PreviewAccountLoadBalancerMonitorsPreviewMonitorResponse],
-            ),
+            cast_to=cast(Type[PreviewCreateResponse], ResultWrapper[PreviewCreateResponse]),
         )
 
 
@@ -194,7 +175,7 @@ class AsyncPreviews(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncPreviewsWithStreamingResponse:
         return AsyncPreviewsWithStreamingResponse(self)
 
-    async def account_load_balancer_monitors_preview_monitor(
+    async def create(
         self,
         monitor_id: str,
         *,
@@ -213,7 +194,7 @@ class AsyncPreviews(AsyncAPIResource):
         port: int | NotGiven = NOT_GIVEN,
         probe_zone: str | NotGiven = NOT_GIVEN,
         retries: int | NotGiven = NOT_GIVEN,
-        api_timeout: int | NotGiven = NOT_GIVEN,
+        load_balancer_monitor_timeout: int | NotGiven = NOT_GIVEN,
         type: Literal["http", "https", "tcp", "udp_icmp", "icmp_ping", "smtp"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -221,7 +202,7 @@ class AsyncPreviews(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PreviewAccountLoadBalancerMonitorsPreviewMonitorResponse:
+    ) -> PreviewCreateResponse:
         """Preview pools using the specified monitor with provided monitor details.
 
         The
@@ -274,7 +255,7 @@ class AsyncPreviews(AsyncAPIResource):
           retries: The number of retries to attempt in case of a timeout before marking the origin
               as unhealthy. Retries are attempted immediately.
 
-          api_timeout: The timeout (in seconds) before marking the health check as failed.
+          load_balancer_monitor_timeout: The timeout (in seconds) before marking the health check as failed.
 
           type: The protocol to use for the health check. Currently supported protocols are
               'HTTP','HTTPS', 'TCP', 'ICMP-PING', 'UDP-ICMP', and 'SMTP'.
@@ -309,10 +290,10 @@ class AsyncPreviews(AsyncAPIResource):
                     "port": port,
                     "probe_zone": probe_zone,
                     "retries": retries,
-                    "timeout": api_timeout,
+                    "timeout": load_balancer_monitor_timeout,
                     "type": type,
                 },
-                preview_account_load_balancer_monitors_preview_monitor_params.PreviewAccountLoadBalancerMonitorsPreviewMonitorParams,
+                preview_create_params.PreviewCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -321,10 +302,7 @@ class AsyncPreviews(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[PreviewAccountLoadBalancerMonitorsPreviewMonitorResponse],
-                ResultWrapper[PreviewAccountLoadBalancerMonitorsPreviewMonitorResponse],
-            ),
+            cast_to=cast(Type[PreviewCreateResponse], ResultWrapper[PreviewCreateResponse]),
         )
 
 
@@ -332,8 +310,8 @@ class PreviewsWithRawResponse:
     def __init__(self, previews: Previews) -> None:
         self._previews = previews
 
-        self.account_load_balancer_monitors_preview_monitor = to_raw_response_wrapper(
-            previews.account_load_balancer_monitors_preview_monitor,
+        self.create = to_raw_response_wrapper(
+            previews.create,
         )
 
 
@@ -341,8 +319,8 @@ class AsyncPreviewsWithRawResponse:
     def __init__(self, previews: AsyncPreviews) -> None:
         self._previews = previews
 
-        self.account_load_balancer_monitors_preview_monitor = async_to_raw_response_wrapper(
-            previews.account_load_balancer_monitors_preview_monitor,
+        self.create = async_to_raw_response_wrapper(
+            previews.create,
         )
 
 
@@ -350,8 +328,8 @@ class PreviewsWithStreamingResponse:
     def __init__(self, previews: Previews) -> None:
         self._previews = previews
 
-        self.account_load_balancer_monitors_preview_monitor = to_streamed_response_wrapper(
-            previews.account_load_balancer_monitors_preview_monitor,
+        self.create = to_streamed_response_wrapper(
+            previews.create,
         )
 
 
@@ -359,6 +337,6 @@ class AsyncPreviewsWithStreamingResponse:
     def __init__(self, previews: AsyncPreviews) -> None:
         self._previews = previews
 
-        self.account_load_balancer_monitors_preview_monitor = async_to_streamed_response_wrapper(
-            previews.account_load_balancer_monitors_preview_monitor,
+        self.create = async_to_streamed_response_wrapper(
+            previews.create,
         )

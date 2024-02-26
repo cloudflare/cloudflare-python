@@ -2,32 +2,72 @@
 
 from __future__ import annotations
 
-from cloudflare.types.storage.kv import (
-    NamespaceUpdateResponse,
-    NamespaceListResponse,
-    NamespaceDeleteResponse,
-    NamespaceWorkersKvNamespaceCreateANamespaceResponse,
-)
-
-from typing import Any, cast, Optional
-
 import os
+from typing import Any, cast
+
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.storage.kv import namespace_update_params
-from cloudflare.types.storage.kv import namespace_list_params
-from cloudflare.types.storage.kv import namespace_workers_kv_namespace_create_a_namespace_params
+from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from cloudflare.types.storage.kv import (
+    NamespaceListResponse,
+    NamespaceCreateResponse,
+    NamespaceDeleteResponse,
+    NamespaceUpdateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
 class TestNamespaces:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_create(self, client: Cloudflare) -> None:
+        namespace = client.storage.kv.namespaces.create(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            title="My Own Namespace",
+        )
+        assert_matches_type(NamespaceCreateResponse, namespace, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_create(self, client: Cloudflare) -> None:
+        response = client.storage.kv.namespaces.with_raw_response.create(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            title="My Own Namespace",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        namespace = response.parse()
+        assert_matches_type(NamespaceCreateResponse, namespace, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_create(self, client: Cloudflare) -> None:
+        with client.storage.kv.namespaces.with_streaming_response.create(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            title="My Own Namespace",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            namespace = response.parse()
+            assert_matches_type(NamespaceCreateResponse, namespace, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_create(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.storage.kv.namespaces.with_raw_response.create(
+                "",
+                title="My Own Namespace",
+            )
 
     @pytest.mark.skip()
     @parametrize
@@ -92,7 +132,7 @@ class TestNamespaces:
         namespace = client.storage.kv.namespaces.list(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[NamespaceListResponse], namespace, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[NamespaceListResponse], namespace, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -104,7 +144,7 @@ class TestNamespaces:
             page=1,
             per_page=5,
         )
-        assert_matches_type(Optional[NamespaceListResponse], namespace, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[NamespaceListResponse], namespace, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -116,7 +156,7 @@ class TestNamespaces:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         namespace = response.parse()
-        assert_matches_type(Optional[NamespaceListResponse], namespace, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[NamespaceListResponse], namespace, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -128,7 +168,7 @@ class TestNamespaces:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             namespace = response.parse()
-            assert_matches_type(Optional[NamespaceListResponse], namespace, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[NamespaceListResponse], namespace, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -192,55 +232,55 @@ class TestNamespaces:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip()
-    @parametrize
-    def test_method_workers_kv_namespace_create_a_namespace(self, client: Cloudflare) -> None:
-        namespace = client.storage.kv.namespaces.workers_kv_namespace_create_a_namespace(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            title="My Own Namespace",
-        )
-        assert_matches_type(NamespaceWorkersKvNamespaceCreateANamespaceResponse, namespace, path=["response"])
+
+class TestAsyncNamespaces:
+    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_workers_kv_namespace_create_a_namespace(self, client: Cloudflare) -> None:
-        response = client.storage.kv.namespaces.with_raw_response.workers_kv_namespace_create_a_namespace(
+    async def test_method_create(self, async_client: AsyncCloudflare) -> None:
+        namespace = await async_client.storage.kv.namespaces.create(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            title="My Own Namespace",
+        )
+        assert_matches_type(NamespaceCreateResponse, namespace, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.storage.kv.namespaces.with_raw_response.create(
             "023e105f4ecef8ad9ca31a8372d0c353",
             title="My Own Namespace",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        namespace = response.parse()
-        assert_matches_type(NamespaceWorkersKvNamespaceCreateANamespaceResponse, namespace, path=["response"])
+        namespace = await response.parse()
+        assert_matches_type(NamespaceCreateResponse, namespace, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_workers_kv_namespace_create_a_namespace(self, client: Cloudflare) -> None:
-        with client.storage.kv.namespaces.with_streaming_response.workers_kv_namespace_create_a_namespace(
+    async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.storage.kv.namespaces.with_streaming_response.create(
             "023e105f4ecef8ad9ca31a8372d0c353",
             title="My Own Namespace",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            namespace = response.parse()
-            assert_matches_type(NamespaceWorkersKvNamespaceCreateANamespaceResponse, namespace, path=["response"])
+            namespace = await response.parse()
+            assert_matches_type(NamespaceCreateResponse, namespace, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_workers_kv_namespace_create_a_namespace(self, client: Cloudflare) -> None:
+    async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.storage.kv.namespaces.with_raw_response.workers_kv_namespace_create_a_namespace(
+            await async_client.storage.kv.namespaces.with_raw_response.create(
                 "",
                 title="My Own Namespace",
             )
-
-
-class TestAsyncNamespaces:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip()
     @parametrize
@@ -305,7 +345,7 @@ class TestAsyncNamespaces:
         namespace = await async_client.storage.kv.namespaces.list(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[NamespaceListResponse], namespace, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[NamespaceListResponse], namespace, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -317,7 +357,7 @@ class TestAsyncNamespaces:
             page=1,
             per_page=5,
         )
-        assert_matches_type(Optional[NamespaceListResponse], namespace, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[NamespaceListResponse], namespace, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -329,7 +369,7 @@ class TestAsyncNamespaces:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         namespace = await response.parse()
-        assert_matches_type(Optional[NamespaceListResponse], namespace, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[NamespaceListResponse], namespace, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -341,7 +381,7 @@ class TestAsyncNamespaces:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             namespace = await response.parse()
-            assert_matches_type(Optional[NamespaceListResponse], namespace, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[NamespaceListResponse], namespace, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -403,52 +443,4 @@ class TestAsyncNamespaces:
             await async_client.storage.kv.namespaces.with_raw_response.delete(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_workers_kv_namespace_create_a_namespace(self, async_client: AsyncCloudflare) -> None:
-        namespace = await async_client.storage.kv.namespaces.workers_kv_namespace_create_a_namespace(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            title="My Own Namespace",
-        )
-        assert_matches_type(NamespaceWorkersKvNamespaceCreateANamespaceResponse, namespace, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_raw_response_workers_kv_namespace_create_a_namespace(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.storage.kv.namespaces.with_raw_response.workers_kv_namespace_create_a_namespace(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            title="My Own Namespace",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        namespace = await response.parse()
-        assert_matches_type(NamespaceWorkersKvNamespaceCreateANamespaceResponse, namespace, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_streaming_response_workers_kv_namespace_create_a_namespace(
-        self, async_client: AsyncCloudflare
-    ) -> None:
-        async with async_client.storage.kv.namespaces.with_streaming_response.workers_kv_namespace_create_a_namespace(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            title="My Own Namespace",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            namespace = await response.parse()
-            assert_matches_type(NamespaceWorkersKvNamespaceCreateANamespaceResponse, namespace, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_path_params_workers_kv_namespace_create_a_namespace(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.storage.kv.namespaces.with_raw_response.workers_kv_namespace_create_a_namespace(
-                "",
-                title="My Own Namespace",
             )

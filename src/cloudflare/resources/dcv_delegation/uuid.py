@@ -2,51 +2,36 @@
 
 from __future__ import annotations
 
+from typing import Type, cast
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._compat import cached_property
-
-from ...types.dcv_delegation import UuidGetResponse
-
-from typing import Type
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
+from ..._base_client import (
+    make_request_options,
+)
+from ...types.dcv_delegation import UUIDGetResponse
 
-__all__ = ["Uuid", "AsyncUuid"]
+__all__ = ["UUID", "AsyncUUID"]
 
 
-class Uuid(SyncAPIResource):
+class UUID(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> UuidWithRawResponse:
-        return UuidWithRawResponse(self)
+    def with_raw_response(self) -> UUIDWithRawResponse:
+        return UUIDWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> UuidWithStreamingResponse:
-        return UuidWithStreamingResponse(self)
+    def with_streaming_response(self) -> UUIDWithStreamingResponse:
+        return UUIDWithStreamingResponse(self)
 
     def get(
         self,
@@ -58,7 +43,7 @@ class Uuid(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UuidGetResponse:
+    ) -> UUIDGetResponse:
         """
         Retrieve the account and zone specific unique identifier used as part of the
         CNAME target for DCV Delegation.
@@ -85,18 +70,18 @@ class Uuid(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[UuidGetResponse], ResultWrapper[UuidGetResponse]),
+            cast_to=cast(Type[UUIDGetResponse], ResultWrapper[UUIDGetResponse]),
         )
 
 
-class AsyncUuid(AsyncAPIResource):
+class AsyncUUID(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncUuidWithRawResponse:
-        return AsyncUuidWithRawResponse(self)
+    def with_raw_response(self) -> AsyncUUIDWithRawResponse:
+        return AsyncUUIDWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncUuidWithStreamingResponse:
-        return AsyncUuidWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncUUIDWithStreamingResponse:
+        return AsyncUUIDWithStreamingResponse(self)
 
     async def get(
         self,
@@ -108,7 +93,7 @@ class AsyncUuid(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UuidGetResponse:
+    ) -> UUIDGetResponse:
         """
         Retrieve the account and zone specific unique identifier used as part of the
         CNAME target for DCV Delegation.
@@ -135,12 +120,12 @@ class AsyncUuid(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[UuidGetResponse], ResultWrapper[UuidGetResponse]),
+            cast_to=cast(Type[UUIDGetResponse], ResultWrapper[UUIDGetResponse]),
         )
 
 
-class UuidWithRawResponse:
-    def __init__(self, uuid: Uuid) -> None:
+class UUIDWithRawResponse:
+    def __init__(self, uuid: UUID) -> None:
         self._uuid = uuid
 
         self.get = to_raw_response_wrapper(
@@ -148,8 +133,8 @@ class UuidWithRawResponse:
         )
 
 
-class AsyncUuidWithRawResponse:
-    def __init__(self, uuid: AsyncUuid) -> None:
+class AsyncUUIDWithRawResponse:
+    def __init__(self, uuid: AsyncUUID) -> None:
         self._uuid = uuid
 
         self.get = async_to_raw_response_wrapper(
@@ -157,8 +142,8 @@ class AsyncUuidWithRawResponse:
         )
 
 
-class UuidWithStreamingResponse:
-    def __init__(self, uuid: Uuid) -> None:
+class UUIDWithStreamingResponse:
+    def __init__(self, uuid: UUID) -> None:
         self._uuid = uuid
 
         self.get = to_streamed_response_wrapper(
@@ -166,8 +151,8 @@ class UuidWithStreamingResponse:
         )
 
 
-class AsyncUuidWithStreamingResponse:
-    def __init__(self, uuid: AsyncUuid) -> None:
+class AsyncUUIDWithStreamingResponse:
+    def __init__(self, uuid: AsyncUUID) -> None:
         self._uuid = uuid
 
         self.get = async_to_streamed_response_wrapper(

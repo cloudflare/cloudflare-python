@@ -2,90 +2,49 @@
 
 from __future__ import annotations
 
+from typing import Type, cast
+
 import httpx
 
-from .histories.histories import Histories, AsyncHistories
-
+from .history import (
+    History,
+    AsyncHistory,
+    HistoryWithRawResponse,
+    AsyncHistoryWithRawResponse,
+    HistoryWithStreamingResponse,
+    AsyncHistoryWithStreamingResponse,
+)
+from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._utils import maybe_transform
 from ....._compat import cached_property
-
-from .retries import Retries, AsyncRetries
-
-from .rollbacks import Rollbacks, AsyncRollbacks
-
-from .....types.pages.projects import DeploymentCreateResponse, DeploymentListResponse, DeploymentGetResponse
-
-from typing import Type
-
+from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ....._resource import SyncAPIResource, AsyncAPIResource
-from ....._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from .....types import shared_params
-from .....types.pages.projects import deployment_create_params
-from .histories import (
-    Histories,
-    AsyncHistories,
-    HistoriesWithRawResponse,
-    AsyncHistoriesWithRawResponse,
-    HistoriesWithStreamingResponse,
-    AsyncHistoriesWithStreamingResponse,
-)
-from .retries import (
-    Retries,
-    AsyncRetries,
-    RetriesWithRawResponse,
-    AsyncRetriesWithRawResponse,
-    RetriesWithStreamingResponse,
-    AsyncRetriesWithStreamingResponse,
-)
-from .rollbacks import (
-    Rollbacks,
-    AsyncRollbacks,
-    RollbacksWithRawResponse,
-    AsyncRollbacksWithRawResponse,
-    RollbacksWithStreamingResponse,
-    AsyncRollbacksWithStreamingResponse,
-)
 from ....._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from .history.history import History, AsyncHistory
+from ....._base_client import (
+    make_request_options,
+)
+from .....types.pages.projects import (
+    DeploymentGetResponse,
+    DeploymentListResponse,
+    DeploymentRetryResponse,
+    DeploymentCreateResponse,
+    DeploymentRollbackResponse,
+    deployment_create_params,
+)
 
 __all__ = ["Deployments", "AsyncDeployments"]
 
 
 class Deployments(SyncAPIResource):
     @cached_property
-    def histories(self) -> Histories:
-        return Histories(self._client)
-
-    @cached_property
-    def retries(self) -> Retries:
-        return Retries(self._client)
-
-    @cached_property
-    def rollbacks(self) -> Rollbacks:
-        return Rollbacks(self._client)
+    def history(self) -> History:
+        return History(self._client)
 
     @cached_property
     def with_raw_response(self) -> DeploymentsWithRawResponse:
@@ -284,19 +243,111 @@ class Deployments(SyncAPIResource):
             cast_to=cast(Type[DeploymentGetResponse], ResultWrapper[DeploymentGetResponse]),
         )
 
+    def retry(
+        self,
+        deployment_id: str,
+        *,
+        account_id: str,
+        project_name: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> DeploymentRetryResponse:
+        """
+        Retry a previous deployment.
+
+        Args:
+          account_id: Identifier
+
+          project_name: Name of the project.
+
+          deployment_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not project_name:
+            raise ValueError(f"Expected a non-empty value for `project_name` but received {project_name!r}")
+        if not deployment_id:
+            raise ValueError(f"Expected a non-empty value for `deployment_id` but received {deployment_id!r}")
+        return self._post(
+            f"/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/retry",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[DeploymentRetryResponse], ResultWrapper[DeploymentRetryResponse]),
+        )
+
+    def rollback(
+        self,
+        deployment_id: str,
+        *,
+        account_id: str,
+        project_name: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> DeploymentRollbackResponse:
+        """Rollback the production deployment to a previous deployment.
+
+        You can only
+        rollback to succesful builds on production.
+
+        Args:
+          account_id: Identifier
+
+          project_name: Name of the project.
+
+          deployment_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not project_name:
+            raise ValueError(f"Expected a non-empty value for `project_name` but received {project_name!r}")
+        if not deployment_id:
+            raise ValueError(f"Expected a non-empty value for `deployment_id` but received {deployment_id!r}")
+        return self._post(
+            f"/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/rollback",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[DeploymentRollbackResponse], ResultWrapper[DeploymentRollbackResponse]),
+        )
+
 
 class AsyncDeployments(AsyncAPIResource):
     @cached_property
-    def histories(self) -> AsyncHistories:
-        return AsyncHistories(self._client)
-
-    @cached_property
-    def retries(self) -> AsyncRetries:
-        return AsyncRetries(self._client)
-
-    @cached_property
-    def rollbacks(self) -> AsyncRollbacks:
-        return AsyncRollbacks(self._client)
+    def history(self) -> AsyncHistory:
+        return AsyncHistory(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncDeploymentsWithRawResponse:
@@ -495,6 +546,106 @@ class AsyncDeployments(AsyncAPIResource):
             cast_to=cast(Type[DeploymentGetResponse], ResultWrapper[DeploymentGetResponse]),
         )
 
+    async def retry(
+        self,
+        deployment_id: str,
+        *,
+        account_id: str,
+        project_name: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> DeploymentRetryResponse:
+        """
+        Retry a previous deployment.
+
+        Args:
+          account_id: Identifier
+
+          project_name: Name of the project.
+
+          deployment_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not project_name:
+            raise ValueError(f"Expected a non-empty value for `project_name` but received {project_name!r}")
+        if not deployment_id:
+            raise ValueError(f"Expected a non-empty value for `deployment_id` but received {deployment_id!r}")
+        return await self._post(
+            f"/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/retry",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[DeploymentRetryResponse], ResultWrapper[DeploymentRetryResponse]),
+        )
+
+    async def rollback(
+        self,
+        deployment_id: str,
+        *,
+        account_id: str,
+        project_name: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> DeploymentRollbackResponse:
+        """Rollback the production deployment to a previous deployment.
+
+        You can only
+        rollback to succesful builds on production.
+
+        Args:
+          account_id: Identifier
+
+          project_name: Name of the project.
+
+          deployment_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not project_name:
+            raise ValueError(f"Expected a non-empty value for `project_name` but received {project_name!r}")
+        if not deployment_id:
+            raise ValueError(f"Expected a non-empty value for `deployment_id` but received {deployment_id!r}")
+        return await self._post(
+            f"/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/rollback",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[DeploymentRollbackResponse], ResultWrapper[DeploymentRollbackResponse]),
+        )
+
 
 class DeploymentsWithRawResponse:
     def __init__(self, deployments: Deployments) -> None:
@@ -512,18 +663,16 @@ class DeploymentsWithRawResponse:
         self.get = to_raw_response_wrapper(
             deployments.get,
         )
+        self.retry = to_raw_response_wrapper(
+            deployments.retry,
+        )
+        self.rollback = to_raw_response_wrapper(
+            deployments.rollback,
+        )
 
     @cached_property
-    def histories(self) -> HistoriesWithRawResponse:
-        return HistoriesWithRawResponse(self._deployments.histories)
-
-    @cached_property
-    def retries(self) -> RetriesWithRawResponse:
-        return RetriesWithRawResponse(self._deployments.retries)
-
-    @cached_property
-    def rollbacks(self) -> RollbacksWithRawResponse:
-        return RollbacksWithRawResponse(self._deployments.rollbacks)
+    def history(self) -> HistoryWithRawResponse:
+        return HistoryWithRawResponse(self._deployments.history)
 
 
 class AsyncDeploymentsWithRawResponse:
@@ -542,18 +691,16 @@ class AsyncDeploymentsWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             deployments.get,
         )
+        self.retry = async_to_raw_response_wrapper(
+            deployments.retry,
+        )
+        self.rollback = async_to_raw_response_wrapper(
+            deployments.rollback,
+        )
 
     @cached_property
-    def histories(self) -> AsyncHistoriesWithRawResponse:
-        return AsyncHistoriesWithRawResponse(self._deployments.histories)
-
-    @cached_property
-    def retries(self) -> AsyncRetriesWithRawResponse:
-        return AsyncRetriesWithRawResponse(self._deployments.retries)
-
-    @cached_property
-    def rollbacks(self) -> AsyncRollbacksWithRawResponse:
-        return AsyncRollbacksWithRawResponse(self._deployments.rollbacks)
+    def history(self) -> AsyncHistoryWithRawResponse:
+        return AsyncHistoryWithRawResponse(self._deployments.history)
 
 
 class DeploymentsWithStreamingResponse:
@@ -572,18 +719,16 @@ class DeploymentsWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             deployments.get,
         )
+        self.retry = to_streamed_response_wrapper(
+            deployments.retry,
+        )
+        self.rollback = to_streamed_response_wrapper(
+            deployments.rollback,
+        )
 
     @cached_property
-    def histories(self) -> HistoriesWithStreamingResponse:
-        return HistoriesWithStreamingResponse(self._deployments.histories)
-
-    @cached_property
-    def retries(self) -> RetriesWithStreamingResponse:
-        return RetriesWithStreamingResponse(self._deployments.retries)
-
-    @cached_property
-    def rollbacks(self) -> RollbacksWithStreamingResponse:
-        return RollbacksWithStreamingResponse(self._deployments.rollbacks)
+    def history(self) -> HistoryWithStreamingResponse:
+        return HistoryWithStreamingResponse(self._deployments.history)
 
 
 class AsyncDeploymentsWithStreamingResponse:
@@ -602,15 +747,13 @@ class AsyncDeploymentsWithStreamingResponse:
         self.get = async_to_streamed_response_wrapper(
             deployments.get,
         )
+        self.retry = async_to_streamed_response_wrapper(
+            deployments.retry,
+        )
+        self.rollback = async_to_streamed_response_wrapper(
+            deployments.rollback,
+        )
 
     @cached_property
-    def histories(self) -> AsyncHistoriesWithStreamingResponse:
-        return AsyncHistoriesWithStreamingResponse(self._deployments.histories)
-
-    @cached_property
-    def retries(self) -> AsyncRetriesWithStreamingResponse:
-        return AsyncRetriesWithStreamingResponse(self._deployments.retries)
-
-    @cached_property
-    def rollbacks(self) -> AsyncRollbacksWithStreamingResponse:
-        return AsyncRollbacksWithStreamingResponse(self._deployments.rollbacks)
+    def history(self) -> AsyncHistoryWithStreamingResponse:
+        return AsyncHistoryWithStreamingResponse(self._deployments.history)

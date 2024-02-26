@@ -2,51 +2,28 @@
 
 from __future__ import annotations
 
+from typing import Any, cast
+from typing_extensions import Literal
+
 import httpx
 
+from ..types import AccountGetResponse, AccountUpdateResponse, account_list_params, account_update_params
+from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._utils import maybe_transform
 from .._compat import cached_property
-
-from ..types import AccountUpdateResponse, AccountListResponse, AccountGetResponse, account_update_params
-
-from typing import Type, Optional
-
-from typing_extensions import Literal
-
+from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from .._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from .._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from .._resource import SyncAPIResource, AsyncAPIResource
+from .._wrappers import ResultWrapper
+from ..pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from .._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
     AsyncPaginator,
     make_request_options,
-    HttpxBinaryResponseContent,
 )
-from ..types import shared_params
-from ..types import account_update_params
-from ..types import account_list_params
-from .._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
 
 __all__ = ["Accounts", "AsyncAccounts"]
 
@@ -125,7 +102,7 @@ class Accounts(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AccountListResponse]:
+    ) -> SyncV4PagePaginationArray[object]:
         """
         List all accounts you have ownership or verified access to.
 
@@ -144,8 +121,9 @@ class Accounts(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/accounts",
+            page=SyncV4PagePaginationArray[object],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -159,9 +137,8 @@ class Accounts(SyncAPIResource):
                     },
                     account_list_params.AccountListParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[AccountListResponse]], ResultWrapper[AccountListResponse]),
+            model=object,
         )
 
     def get(
@@ -267,7 +244,7 @@ class AsyncAccounts(AsyncAPIResource):
             ),
         )
 
-    async def list(
+    def list(
         self,
         *,
         direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
@@ -279,7 +256,7 @@ class AsyncAccounts(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AccountListResponse]:
+    ) -> AsyncPaginator[object, AsyncV4PagePaginationArray[object]]:
         """
         List all accounts you have ownership or verified access to.
 
@@ -298,8 +275,9 @@ class AsyncAccounts(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/accounts",
+            page=AsyncV4PagePaginationArray[object],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -313,9 +291,8 @@ class AsyncAccounts(AsyncAPIResource):
                     },
                     account_list_params.AccountListParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[AccountListResponse]], ResultWrapper[AccountListResponse]),
+            model=object,
         )
 
     async def get(

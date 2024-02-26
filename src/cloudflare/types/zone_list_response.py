@@ -1,25 +1,14 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from typing import Optional, List
-
+from typing import List, Optional
 from datetime import datetime
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
 from .._models import BaseModel
-from ..types import shared
 
-__all__ = [
-    "ZoneListResponse",
-    "ZoneListResponseItem",
-    "ZoneListResponseItemAccount",
-    "ZoneListResponseItemMeta",
-    "ZoneListResponseItemOwner",
-]
+__all__ = ["ZoneListResponse", "Account", "Meta", "Owner"]
 
 
-class ZoneListResponseItemAccount(BaseModel):
+class Account(BaseModel):
     id: Optional[str] = None
     """Identifier"""
 
@@ -27,7 +16,7 @@ class ZoneListResponseItemAccount(BaseModel):
     """The name of the account"""
 
 
-class ZoneListResponseItemMeta(BaseModel):
+class Meta(BaseModel):
     cdn_only: Optional[bool] = None
     """The zone is only configured for CDN"""
 
@@ -49,7 +38,7 @@ class ZoneListResponseItemMeta(BaseModel):
     step: Optional[int] = None
 
 
-class ZoneListResponseItemOwner(BaseModel):
+class Owner(BaseModel):
     id: Optional[str] = None
     """Identifier"""
 
@@ -60,11 +49,11 @@ class ZoneListResponseItemOwner(BaseModel):
     """The type of owner"""
 
 
-class ZoneListResponseItem(BaseModel):
+class ZoneListResponse(BaseModel):
     id: str
     """Identifier"""
 
-    account: ZoneListResponseItemAccount
+    account: Account
     """The account the zone belongs to"""
 
     activated_on: Optional[datetime] = None
@@ -80,7 +69,7 @@ class ZoneListResponseItem(BaseModel):
     been enabled, this value is 0.
     """
 
-    meta: ZoneListResponseItemMeta
+    meta: Meta
     """Metadata about the zone"""
 
     modified_on: datetime
@@ -101,7 +90,7 @@ class ZoneListResponseItem(BaseModel):
     original_registrar: Optional[str] = None
     """Registrar for the domain at the time of switching to Cloudflare"""
 
-    owner: ZoneListResponseItemOwner
+    owner: Owner
     """The owner of the zone"""
 
     vanity_name_servers: Optional[List[str]] = None
@@ -109,6 +98,3 @@ class ZoneListResponseItem(BaseModel):
 
     This is only available for Business and Enterprise plans.
     """
-
-
-ZoneListResponse = List[ZoneListResponseItem]

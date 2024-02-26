@@ -2,15 +2,8 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, Literal
-
 from typing import List, Iterable
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from .._types import FileTypes
-from .._utils import PropertyInfo
-from ..types import shared_params
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = [
     "LoadBalancerUpdateParams",
@@ -31,6 +24,23 @@ __all__ = [
 class LoadBalancerUpdateParams(TypedDict, total=False):
     zone_id: Required[str]
 
+    default_pools: Required[List[str]]
+    """A list of pool IDs ordered by their failover priority.
+
+    Pools defined here are used by default, or when region_pools are not configured
+    for a given region.
+    """
+
+    fallback_pool: Required[object]
+    """The pool ID to use when all other pools are detected as unhealthy."""
+
+    name: Required[str]
+    """The DNS hostname to associate with your Load Balancer.
+
+    If this hostname already exists as a DNS record in Cloudflare's DNS, the Load
+    Balancer will take precedence and the DNS record will not be used.
+    """
+
     adaptive_routing: AdaptiveRouting
     """
     Controls features that modify the routing of requests to pools and origins in
@@ -49,33 +59,16 @@ class LoadBalancerUpdateParams(TypedDict, total=False):
     default_pools.
     """
 
-    default_pools: List[str]
-    """A list of pool IDs ordered by their failover priority.
-
-    Pools defined here are used by default, or when region_pools are not configured
-    for a given region.
-    """
-
     description: str
     """Object description."""
 
     enabled: bool
     """Whether to enable (the default) this load balancer."""
 
-    fallback_pool: object
-    """The pool ID to use when all other pools are detected as unhealthy."""
-
     location_strategy: LocationStrategy
     """Controls location-based steering for non-proxied requests.
 
     See `steering_policy` to learn how steering is affected.
-    """
-
-    name: str
-    """The DNS hostname to associate with your Load Balancer.
-
-    If this hostname already exists as a DNS record in Cloudflare's DNS, the Load
-    Balancer will take precedence and the DNS record will not be used.
     """
 
     pop_pools: object

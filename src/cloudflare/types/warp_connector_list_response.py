@@ -1,28 +1,21 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from typing import Optional, List
-
+from typing import List, Union, Optional
 from datetime import datetime
-
 from typing_extensions import Literal
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
 from .._models import BaseModel
-from ..types import shared
 
 __all__ = [
-    "WarpConnectorListResponse",
-    "WarpConnectorListResponseItem",
-    "WarpConnectorListResponseItemTunnelCfdTunnel",
-    "WarpConnectorListResponseItemTunnelCfdTunnelConnection",
-    "WarpConnectorListResponseItemTunnelWarpConnectorTunnel",
-    "WarpConnectorListResponseItemTunnelWarpConnectorTunnelConnection",
+    "WARPConnectorListResponse",
+    "TunnelCfdTunnel",
+    "TunnelCfdTunnelConnection",
+    "TunnelWARPConnectorTunnel",
+    "TunnelWARPConnectorTunnelConnection",
 ]
 
 
-class WarpConnectorListResponseItemTunnelCfdTunnelConnection(BaseModel):
+class TunnelCfdTunnelConnection(BaseModel):
     id: Optional[str] = None
     """UUID of the Cloudflare Tunnel connection."""
 
@@ -53,14 +46,14 @@ class WarpConnectorListResponseItemTunnelCfdTunnelConnection(BaseModel):
     """UUID of the Cloudflare Tunnel connection."""
 
 
-class WarpConnectorListResponseItemTunnelCfdTunnel(BaseModel):
+class TunnelCfdTunnel(BaseModel):
     id: Optional[str] = None
     """UUID of the tunnel."""
 
     account_tag: Optional[str] = None
     """Cloudflare account ID"""
 
-    connections: Optional[List[WarpConnectorListResponseItemTunnelCfdTunnelConnection]] = None
+    connections: Optional[List[TunnelCfdTunnelConnection]] = None
     """The Cloudflare Tunnel connections between your origin and Cloudflare's edge."""
 
     conns_active_at: Optional[datetime] = None
@@ -109,7 +102,7 @@ class WarpConnectorListResponseItemTunnelCfdTunnel(BaseModel):
     """The type of tunnel."""
 
 
-class WarpConnectorListResponseItemTunnelWarpConnectorTunnelConnection(BaseModel):
+class TunnelWARPConnectorTunnelConnection(BaseModel):
     id: Optional[str] = None
     """UUID of the Cloudflare Tunnel connection."""
 
@@ -140,14 +133,14 @@ class WarpConnectorListResponseItemTunnelWarpConnectorTunnelConnection(BaseModel
     """UUID of the Cloudflare Tunnel connection."""
 
 
-class WarpConnectorListResponseItemTunnelWarpConnectorTunnel(BaseModel):
+class TunnelWARPConnectorTunnel(BaseModel):
     id: Optional[str] = None
     """UUID of the tunnel."""
 
     account_tag: Optional[str] = None
     """Cloudflare account ID"""
 
-    connections: Optional[List[WarpConnectorListResponseItemTunnelWarpConnectorTunnelConnection]] = None
+    connections: Optional[List[TunnelWARPConnectorTunnelConnection]] = None
     """The Cloudflare Tunnel connections between your origin and Cloudflare's edge."""
 
     conns_active_at: Optional[datetime] = None
@@ -190,8 +183,4 @@ class WarpConnectorListResponseItemTunnelWarpConnectorTunnel(BaseModel):
     """The type of tunnel."""
 
 
-WarpConnectorListResponseItem = Union[
-    WarpConnectorListResponseItemTunnelCfdTunnel, WarpConnectorListResponseItemTunnelWarpConnectorTunnel
-]
-
-WarpConnectorListResponse = List[WarpConnectorListResponseItem]
+WARPConnectorListResponse = Union[TunnelCfdTunnel, TunnelWARPConnectorTunnel]

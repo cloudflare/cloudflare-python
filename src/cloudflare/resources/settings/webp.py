@@ -2,44 +2,26 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+from typing_extensions import Literal
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._compat import cached_property
-
-from ...types.settings import WebpUpdateResponse, WebpGetResponse
-
-from typing import Type, Optional
-
-from typing_extensions import Literal
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types.settings import webp_update_params
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ..._base_client import (
+    make_request_options,
+)
+from ...types.settings import WebpGetResponse, WebpEditResponse, webp_edit_params
 
 __all__ = ["Webp", "AsyncWebp"]
 
@@ -53,7 +35,7 @@ class Webp(SyncAPIResource):
     def with_streaming_response(self) -> WebpWithStreamingResponse:
         return WebpWithStreamingResponse(self)
 
-    def update(
+    def edit(
         self,
         zone_id: str,
         *,
@@ -64,7 +46,7 @@ class Webp(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[WebpUpdateResponse]:
+    ) -> Optional[WebpEditResponse]:
         """
         When the client requesting the image supports the WebP image codec, and WebP
         offers a performance advantage over the original image format, Cloudflare will
@@ -87,7 +69,7 @@ class Webp(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._patch(
             f"/zones/{zone_id}/settings/webp",
-            body=maybe_transform({"value": value}, webp_update_params.WebpUpdateParams),
+            body=maybe_transform({"value": value}, webp_edit_params.WebpEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -95,7 +77,7 @@ class Webp(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[WebpUpdateResponse]], ResultWrapper[WebpUpdateResponse]),
+            cast_to=cast(Type[Optional[WebpEditResponse]], ResultWrapper[WebpEditResponse]),
         )
 
     def get(
@@ -149,7 +131,7 @@ class AsyncWebp(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncWebpWithStreamingResponse:
         return AsyncWebpWithStreamingResponse(self)
 
-    async def update(
+    async def edit(
         self,
         zone_id: str,
         *,
@@ -160,7 +142,7 @@ class AsyncWebp(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[WebpUpdateResponse]:
+    ) -> Optional[WebpEditResponse]:
         """
         When the client requesting the image supports the WebP image codec, and WebP
         offers a performance advantage over the original image format, Cloudflare will
@@ -183,7 +165,7 @@ class AsyncWebp(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._patch(
             f"/zones/{zone_id}/settings/webp",
-            body=maybe_transform({"value": value}, webp_update_params.WebpUpdateParams),
+            body=maybe_transform({"value": value}, webp_edit_params.WebpEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -191,7 +173,7 @@ class AsyncWebp(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[WebpUpdateResponse]], ResultWrapper[WebpUpdateResponse]),
+            cast_to=cast(Type[Optional[WebpEditResponse]], ResultWrapper[WebpEditResponse]),
         )
 
     async def get(
@@ -240,8 +222,8 @@ class WebpWithRawResponse:
     def __init__(self, webp: Webp) -> None:
         self._webp = webp
 
-        self.update = to_raw_response_wrapper(
-            webp.update,
+        self.edit = to_raw_response_wrapper(
+            webp.edit,
         )
         self.get = to_raw_response_wrapper(
             webp.get,
@@ -252,8 +234,8 @@ class AsyncWebpWithRawResponse:
     def __init__(self, webp: AsyncWebp) -> None:
         self._webp = webp
 
-        self.update = async_to_raw_response_wrapper(
-            webp.update,
+        self.edit = async_to_raw_response_wrapper(
+            webp.edit,
         )
         self.get = async_to_raw_response_wrapper(
             webp.get,
@@ -264,8 +246,8 @@ class WebpWithStreamingResponse:
     def __init__(self, webp: Webp) -> None:
         self._webp = webp
 
-        self.update = to_streamed_response_wrapper(
-            webp.update,
+        self.edit = to_streamed_response_wrapper(
+            webp.edit,
         )
         self.get = to_streamed_response_wrapper(
             webp.get,
@@ -276,8 +258,8 @@ class AsyncWebpWithStreamingResponse:
     def __init__(self, webp: AsyncWebp) -> None:
         self._webp = webp
 
-        self.update = async_to_streamed_response_wrapper(
-            webp.update,
+        self.edit = async_to_streamed_response_wrapper(
+            webp.edit,
         )
         self.get = async_to_streamed_response_wrapper(
             webp.get,

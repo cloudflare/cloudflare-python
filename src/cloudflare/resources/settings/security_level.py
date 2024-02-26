@@ -2,44 +2,26 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+from typing_extensions import Literal
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._compat import cached_property
-
-from ...types.settings import SecurityLevelUpdateResponse, SecurityLevelGetResponse
-
-from typing import Type, Optional
-
-from typing_extensions import Literal
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types.settings import security_level_update_params
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ..._base_client import (
+    make_request_options,
+)
+from ...types.settings import SecurityLevelGetResponse, SecurityLevelEditResponse, security_level_edit_params
 
 __all__ = ["SecurityLevel", "AsyncSecurityLevel"]
 
@@ -53,7 +35,7 @@ class SecurityLevel(SyncAPIResource):
     def with_streaming_response(self) -> SecurityLevelWithStreamingResponse:
         return SecurityLevelWithStreamingResponse(self)
 
-    def update(
+    def edit(
         self,
         zone_id: str,
         *,
@@ -64,7 +46,7 @@ class SecurityLevel(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SecurityLevelUpdateResponse]:
+    ) -> Optional[SecurityLevelEditResponse]:
         """
         Choose the appropriate security profile for your website, which will
         automatically adjust each of the security settings. If you choose to customize
@@ -88,7 +70,7 @@ class SecurityLevel(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._patch(
             f"/zones/{zone_id}/settings/security_level",
-            body=maybe_transform({"value": value}, security_level_update_params.SecurityLevelUpdateParams),
+            body=maybe_transform({"value": value}, security_level_edit_params.SecurityLevelEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -96,7 +78,7 @@ class SecurityLevel(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SecurityLevelUpdateResponse]], ResultWrapper[SecurityLevelUpdateResponse]),
+            cast_to=cast(Type[Optional[SecurityLevelEditResponse]], ResultWrapper[SecurityLevelEditResponse]),
         )
 
     def get(
@@ -151,7 +133,7 @@ class AsyncSecurityLevel(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncSecurityLevelWithStreamingResponse:
         return AsyncSecurityLevelWithStreamingResponse(self)
 
-    async def update(
+    async def edit(
         self,
         zone_id: str,
         *,
@@ -162,7 +144,7 @@ class AsyncSecurityLevel(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SecurityLevelUpdateResponse]:
+    ) -> Optional[SecurityLevelEditResponse]:
         """
         Choose the appropriate security profile for your website, which will
         automatically adjust each of the security settings. If you choose to customize
@@ -186,7 +168,7 @@ class AsyncSecurityLevel(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._patch(
             f"/zones/{zone_id}/settings/security_level",
-            body=maybe_transform({"value": value}, security_level_update_params.SecurityLevelUpdateParams),
+            body=maybe_transform({"value": value}, security_level_edit_params.SecurityLevelEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -194,7 +176,7 @@ class AsyncSecurityLevel(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SecurityLevelUpdateResponse]], ResultWrapper[SecurityLevelUpdateResponse]),
+            cast_to=cast(Type[Optional[SecurityLevelEditResponse]], ResultWrapper[SecurityLevelEditResponse]),
         )
 
     async def get(
@@ -244,8 +226,8 @@ class SecurityLevelWithRawResponse:
     def __init__(self, security_level: SecurityLevel) -> None:
         self._security_level = security_level
 
-        self.update = to_raw_response_wrapper(
-            security_level.update,
+        self.edit = to_raw_response_wrapper(
+            security_level.edit,
         )
         self.get = to_raw_response_wrapper(
             security_level.get,
@@ -256,8 +238,8 @@ class AsyncSecurityLevelWithRawResponse:
     def __init__(self, security_level: AsyncSecurityLevel) -> None:
         self._security_level = security_level
 
-        self.update = async_to_raw_response_wrapper(
-            security_level.update,
+        self.edit = async_to_raw_response_wrapper(
+            security_level.edit,
         )
         self.get = async_to_raw_response_wrapper(
             security_level.get,
@@ -268,8 +250,8 @@ class SecurityLevelWithStreamingResponse:
     def __init__(self, security_level: SecurityLevel) -> None:
         self._security_level = security_level
 
-        self.update = to_streamed_response_wrapper(
-            security_level.update,
+        self.edit = to_streamed_response_wrapper(
+            security_level.edit,
         )
         self.get = to_streamed_response_wrapper(
             security_level.get,
@@ -280,8 +262,8 @@ class AsyncSecurityLevelWithStreamingResponse:
     def __init__(self, security_level: AsyncSecurityLevel) -> None:
         self._security_level = security_level
 
-        self.update = async_to_streamed_response_wrapper(
-            security_level.update,
+        self.edit = async_to_streamed_response_wrapper(
+            security_level.edit,
         )
         self.get = async_to_streamed_response_wrapper(
             security_level.get,

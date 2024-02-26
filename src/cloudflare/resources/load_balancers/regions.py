@@ -2,46 +2,26 @@
 
 from __future__ import annotations
 
+from typing import Any, cast
+from typing_extensions import Literal
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._compat import cached_property
-
-from ...types.load_balancers import RegionGetResponse, RegionLoadBalancerRegionsListRegionsResponse
-
-from typing_extensions import Literal
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types.load_balancers import region_load_balancer_regions_list_regions_params
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ..._base_client import (
+    make_request_options,
+)
+from ...types.load_balancers import RegionGetResponse, RegionListResponse, region_list_params
 
 __all__ = ["Regions", "AsyncRegions"]
 
@@ -54,6 +34,67 @@ class Regions(SyncAPIResource):
     @cached_property
     def with_streaming_response(self) -> RegionsWithStreamingResponse:
         return RegionsWithStreamingResponse(self)
+
+    def list(
+        self,
+        account_id: str,
+        *,
+        country_code_a2: str | NotGiven = NOT_GIVEN,
+        subdivision_code: str | NotGiven = NOT_GIVEN,
+        subdivision_code_a2: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RegionListResponse:
+        """
+        List all region mappings.
+
+        Args:
+          account_id: Identifier
+
+          country_code_a2: Two-letter alpha-2 country code followed in ISO 3166-1.
+
+          subdivision_code: Two-letter subdivision code followed in ISO 3166-2.
+
+          subdivision_code_a2: Two-letter subdivision code followed in ISO 3166-2.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return cast(
+            RegionListResponse,
+            self._get(
+                f"/accounts/{account_id}/load_balancers/regions",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=maybe_transform(
+                        {
+                            "country_code_a2": country_code_a2,
+                            "subdivision_code": subdivision_code,
+                            "subdivision_code_a2": subdivision_code_a2,
+                        },
+                        region_list_params.RegionListParams,
+                    ),
+                    post_parser=ResultWrapper._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[RegionListResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
+        )
 
     def get(
         self,
@@ -110,7 +151,17 @@ class Regions(SyncAPIResource):
             ),
         )
 
-    def load_balancer_regions_list_regions(
+
+class AsyncRegions(AsyncAPIResource):
+    @cached_property
+    def with_raw_response(self) -> AsyncRegionsWithRawResponse:
+        return AsyncRegionsWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncRegionsWithStreamingResponse:
+        return AsyncRegionsWithStreamingResponse(self)
+
+    async def list(
         self,
         account_id: str,
         *,
@@ -123,7 +174,7 @@ class Regions(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RegionLoadBalancerRegionsListRegionsResponse:
+    ) -> RegionListResponse:
         """
         List all region mappings.
 
@@ -147,8 +198,8 @@ class Regions(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
-            RegionLoadBalancerRegionsListRegionsResponse,
-            self._get(
+            RegionListResponse,
+            await self._get(
                 f"/accounts/{account_id}/load_balancers/regions",
                 options=make_request_options(
                     extra_headers=extra_headers,
@@ -161,25 +212,15 @@ class Regions(SyncAPIResource):
                             "subdivision_code": subdivision_code,
                             "subdivision_code_a2": subdivision_code_a2,
                         },
-                        region_load_balancer_regions_list_regions_params.RegionLoadBalancerRegionsListRegionsParams,
+                        region_list_params.RegionListParams,
                     ),
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[RegionLoadBalancerRegionsListRegionsResponse]
+                    Any, ResultWrapper[RegionListResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
-
-
-class AsyncRegions(AsyncAPIResource):
-    @cached_property
-    def with_raw_response(self) -> AsyncRegionsWithRawResponse:
-        return AsyncRegionsWithRawResponse(self)
-
-    @cached_property
-    def with_streaming_response(self) -> AsyncRegionsWithStreamingResponse:
-        return AsyncRegionsWithStreamingResponse(self)
 
     async def get(
         self,
@@ -236,77 +277,16 @@ class AsyncRegions(AsyncAPIResource):
             ),
         )
 
-    async def load_balancer_regions_list_regions(
-        self,
-        account_id: str,
-        *,
-        country_code_a2: str | NotGiven = NOT_GIVEN,
-        subdivision_code: str | NotGiven = NOT_GIVEN,
-        subdivision_code_a2: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RegionLoadBalancerRegionsListRegionsResponse:
-        """
-        List all region mappings.
-
-        Args:
-          account_id: Identifier
-
-          country_code_a2: Two-letter alpha-2 country code followed in ISO 3166-1.
-
-          subdivision_code: Two-letter subdivision code followed in ISO 3166-2.
-
-          subdivision_code_a2: Two-letter subdivision code followed in ISO 3166-2.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return cast(
-            RegionLoadBalancerRegionsListRegionsResponse,
-            await self._get(
-                f"/accounts/{account_id}/load_balancers/regions",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    query=maybe_transform(
-                        {
-                            "country_code_a2": country_code_a2,
-                            "subdivision_code": subdivision_code,
-                            "subdivision_code_a2": subdivision_code_a2,
-                        },
-                        region_load_balancer_regions_list_regions_params.RegionLoadBalancerRegionsListRegionsParams,
-                    ),
-                    post_parser=ResultWrapper._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[RegionLoadBalancerRegionsListRegionsResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
-
 
 class RegionsWithRawResponse:
     def __init__(self, regions: Regions) -> None:
         self._regions = regions
 
+        self.list = to_raw_response_wrapper(
+            regions.list,
+        )
         self.get = to_raw_response_wrapper(
             regions.get,
-        )
-        self.load_balancer_regions_list_regions = to_raw_response_wrapper(
-            regions.load_balancer_regions_list_regions,
         )
 
 
@@ -314,11 +294,11 @@ class AsyncRegionsWithRawResponse:
     def __init__(self, regions: AsyncRegions) -> None:
         self._regions = regions
 
+        self.list = async_to_raw_response_wrapper(
+            regions.list,
+        )
         self.get = async_to_raw_response_wrapper(
             regions.get,
-        )
-        self.load_balancer_regions_list_regions = async_to_raw_response_wrapper(
-            regions.load_balancer_regions_list_regions,
         )
 
 
@@ -326,11 +306,11 @@ class RegionsWithStreamingResponse:
     def __init__(self, regions: Regions) -> None:
         self._regions = regions
 
+        self.list = to_streamed_response_wrapper(
+            regions.list,
+        )
         self.get = to_streamed_response_wrapper(
             regions.get,
-        )
-        self.load_balancer_regions_list_regions = to_streamed_response_wrapper(
-            regions.load_balancer_regions_list_regions,
         )
 
 
@@ -338,9 +318,9 @@ class AsyncRegionsWithStreamingResponse:
     def __init__(self, regions: AsyncRegions) -> None:
         self._regions = regions
 
+        self.list = async_to_streamed_response_wrapper(
+            regions.list,
+        )
         self.get = async_to_streamed_response_wrapper(
             regions.get,
-        )
-        self.load_balancer_regions_list_regions = async_to_streamed_response_wrapper(
-            regions.load_balancer_regions_list_regions,
         )

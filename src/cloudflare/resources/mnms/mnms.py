@@ -2,35 +2,6 @@
 
 from __future__ import annotations
 
-from .configs.configs import Configs, AsyncConfigs
-
-from ..._compat import cached_property
-
-from .rules.rules import Rules, AsyncRules
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from .configs import (
-    Configs,
-    AsyncConfigs,
-    ConfigsWithRawResponse,
-    AsyncConfigsWithRawResponse,
-    ConfigsWithStreamingResponse,
-    AsyncConfigsWithStreamingResponse,
-)
 from .rules import (
     Rules,
     AsyncRules,
@@ -39,12 +10,23 @@ from .rules import (
     RulesWithStreamingResponse,
     AsyncRulesWithStreamingResponse,
 )
-from ..._wrappers import ResultWrapper
+from .configs import (
+    Configs,
+    AsyncConfigs,
+    ConfigsWithRawResponse,
+    AsyncConfigsWithRawResponse,
+    ConfigsWithStreamingResponse,
+    AsyncConfigsWithStreamingResponse,
+)
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from .rules.rules import Rules, AsyncRules
+from .configs.configs import Configs, AsyncConfigs
 
-__all__ = ["Mnms", "AsyncMnms"]
+__all__ = ["MNMs", "AsyncMNMs"]
 
 
-class Mnms(SyncAPIResource):
+class MNMs(SyncAPIResource):
     @cached_property
     def configs(self) -> Configs:
         return Configs(self._client)
@@ -54,15 +36,15 @@ class Mnms(SyncAPIResource):
         return Rules(self._client)
 
     @cached_property
-    def with_raw_response(self) -> MnmsWithRawResponse:
-        return MnmsWithRawResponse(self)
+    def with_raw_response(self) -> MNMsWithRawResponse:
+        return MNMsWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> MnmsWithStreamingResponse:
-        return MnmsWithStreamingResponse(self)
+    def with_streaming_response(self) -> MNMsWithStreamingResponse:
+        return MNMsWithStreamingResponse(self)
 
 
-class AsyncMnms(AsyncAPIResource):
+class AsyncMNMs(AsyncAPIResource):
     @cached_property
     def configs(self) -> AsyncConfigs:
         return AsyncConfigs(self._client)
@@ -72,16 +54,16 @@ class AsyncMnms(AsyncAPIResource):
         return AsyncRules(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncMnmsWithRawResponse:
-        return AsyncMnmsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncMNMsWithRawResponse:
+        return AsyncMNMsWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncMnmsWithStreamingResponse:
-        return AsyncMnmsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncMNMsWithStreamingResponse:
+        return AsyncMNMsWithStreamingResponse(self)
 
 
-class MnmsWithRawResponse:
-    def __init__(self, mnms: Mnms) -> None:
+class MNMsWithRawResponse:
+    def __init__(self, mnms: MNMs) -> None:
         self._mnms = mnms
 
     @cached_property
@@ -93,8 +75,8 @@ class MnmsWithRawResponse:
         return RulesWithRawResponse(self._mnms.rules)
 
 
-class AsyncMnmsWithRawResponse:
-    def __init__(self, mnms: AsyncMnms) -> None:
+class AsyncMNMsWithRawResponse:
+    def __init__(self, mnms: AsyncMNMs) -> None:
         self._mnms = mnms
 
     @cached_property
@@ -106,8 +88,8 @@ class AsyncMnmsWithRawResponse:
         return AsyncRulesWithRawResponse(self._mnms.rules)
 
 
-class MnmsWithStreamingResponse:
-    def __init__(self, mnms: Mnms) -> None:
+class MNMsWithStreamingResponse:
+    def __init__(self, mnms: MNMs) -> None:
         self._mnms = mnms
 
     @cached_property
@@ -119,8 +101,8 @@ class MnmsWithStreamingResponse:
         return RulesWithStreamingResponse(self._mnms.rules)
 
 
-class AsyncMnmsWithStreamingResponse:
-    def __init__(self, mnms: AsyncMnms) -> None:
+class AsyncMNMsWithStreamingResponse:
+    def __init__(self, mnms: AsyncMNMs) -> None:
         self._mnms = mnms
 
     @cached_property

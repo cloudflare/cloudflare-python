@@ -2,61 +2,35 @@
 
 from __future__ import annotations
 
+from typing import Type, Iterable, cast
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._compat import cached_property
-
-from ...types.magics import (
-    RouteUpdateResponse,
-    RouteDeleteResponse,
-    RouteGetResponse,
-    RouteMagicStaticRoutesCreateRoutesResponse,
-    RouteMagicStaticRoutesListRoutesResponse,
-    RouteMagicStaticRoutesUpdateManyRoutesResponse,
-    route_update_params,
-    route_magic_static_routes_update_many_routes_params,
-)
-
-from typing import Type, Iterable
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import (
-    SyncAPIClient,
-    AsyncAPIClient,
-    _merge_mappings,
-    AsyncPaginator,
-    make_request_options,
-    HttpxBinaryResponseContent,
-)
-from ...types import shared_params
-from ...types.magics import route_update_params
-from ...types.magics import route_magic_static_routes_create_routes_params
-from ...types.magics import route_magic_static_routes_update_many_routes_params
 from ..._wrappers import ResultWrapper
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ..._base_client import (
+    make_request_options,
+)
+from ...types.magics import (
+    RouteGetResponse,
+    RouteListResponse,
+    RouteEmptyResponse,
+    RouteCreateResponse,
+    RouteDeleteResponse,
+    RouteUpdateResponse,
+    route_empty_params,
+    route_create_params,
+    route_update_params,
+)
 
 __all__ = ["Routes", "AsyncRoutes"]
 
@@ -69,6 +43,49 @@ class Routes(SyncAPIResource):
     @cached_property
     def with_streaming_response(self) -> RoutesWithStreamingResponse:
         return RoutesWithStreamingResponse(self)
+
+    def create(
+        self,
+        account_identifier: str,
+        *,
+        body: object,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RouteCreateResponse:
+        """Creates a new Magic static route.
+
+        Use `?validate_only=true` as an optional query
+        parameter to run validation only without persisting changes.
+
+        Args:
+          account_identifier: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_identifier:
+            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        return self._post(
+            f"/accounts/{account_identifier}/magic/routes",
+            body=maybe_transform(body, route_create_params.RouteCreateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[RouteCreateResponse], ResultWrapper[RouteCreateResponse]),
+        )
 
     def update(
         self,
@@ -145,6 +162,45 @@ class Routes(SyncAPIResource):
             cast_to=cast(Type[RouteUpdateResponse], ResultWrapper[RouteUpdateResponse]),
         )
 
+    def list(
+        self,
+        account_identifier: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RouteListResponse:
+        """
+        List all Magic static routes.
+
+        Args:
+          account_identifier: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_identifier:
+            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        return self._get(
+            f"/accounts/{account_identifier}/magic/routes",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[RouteListResponse], ResultWrapper[RouteListResponse]),
+        )
+
     def delete(
         self,
         route_identifier: str,
@@ -187,6 +243,47 @@ class Routes(SyncAPIResource):
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(Type[RouteDeleteResponse], ResultWrapper[RouteDeleteResponse]),
+        )
+
+    def empty(
+        self,
+        account_identifier: str,
+        *,
+        routes: Iterable[route_empty_params.Route],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RouteEmptyResponse:
+        """
+        Delete multiple Magic static routes.
+
+        Args:
+          account_identifier: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_identifier:
+            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        return self._delete(
+            f"/accounts/{account_identifier}/magic/routes",
+            body=maybe_transform({"routes": routes}, route_empty_params.RouteEmptyParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[RouteEmptyResponse], ResultWrapper[RouteEmptyResponse]),
         )
 
     def get(
@@ -233,7 +330,17 @@ class Routes(SyncAPIResource):
             cast_to=cast(Type[RouteGetResponse], ResultWrapper[RouteGetResponse]),
         )
 
-    def magic_static_routes_create_routes(
+
+class AsyncRoutes(AsyncAPIResource):
+    @cached_property
+    def with_raw_response(self) -> AsyncRoutesWithRawResponse:
+        return AsyncRoutesWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncRoutesWithStreamingResponse:
+        return AsyncRoutesWithStreamingResponse(self)
+
+    async def create(
         self,
         account_identifier: str,
         *,
@@ -244,7 +351,7 @@ class Routes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RouteMagicStaticRoutesCreateRoutesResponse:
+    ) -> RouteCreateResponse:
         """Creates a new Magic static route.
 
         Use `?validate_only=true` as an optional query
@@ -263,11 +370,9 @@ class Routes(SyncAPIResource):
         """
         if not account_identifier:
             raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        return self._post(
+        return await self._post(
             f"/accounts/{account_identifier}/magic/routes",
-            body=maybe_transform(
-                body, route_magic_static_routes_create_routes_params.RouteMagicStaticRoutesCreateRoutesParams
-            ),
+            body=maybe_transform(body, route_create_params.RouteCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -275,112 +380,8 @@ class Routes(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[RouteMagicStaticRoutesCreateRoutesResponse],
-                ResultWrapper[RouteMagicStaticRoutesCreateRoutesResponse],
-            ),
+            cast_to=cast(Type[RouteCreateResponse], ResultWrapper[RouteCreateResponse]),
         )
-
-    def magic_static_routes_list_routes(
-        self,
-        account_identifier: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RouteMagicStaticRoutesListRoutesResponse:
-        """
-        List all Magic static routes.
-
-        Args:
-          account_identifier: Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        return self._get(
-            f"/accounts/{account_identifier}/magic/routes",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[RouteMagicStaticRoutesListRoutesResponse], ResultWrapper[RouteMagicStaticRoutesListRoutesResponse]
-            ),
-        )
-
-    def magic_static_routes_update_many_routes(
-        self,
-        account_identifier: str,
-        *,
-        routes: Iterable[route_magic_static_routes_update_many_routes_params.Route],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RouteMagicStaticRoutesUpdateManyRoutesResponse:
-        """Update multiple Magic static routes.
-
-        Use `?validate_only=true` as an optional
-        query parameter to run validation only without persisting changes. Only fields
-        for a route that need to be changed need be provided.
-
-        Args:
-          account_identifier: Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        return self._put(
-            f"/accounts/{account_identifier}/magic/routes",
-            body=maybe_transform(
-                {"routes": routes},
-                route_magic_static_routes_update_many_routes_params.RouteMagicStaticRoutesUpdateManyRoutesParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[RouteMagicStaticRoutesUpdateManyRoutesResponse],
-                ResultWrapper[RouteMagicStaticRoutesUpdateManyRoutesResponse],
-            ),
-        )
-
-
-class AsyncRoutes(AsyncAPIResource):
-    @cached_property
-    def with_raw_response(self) -> AsyncRoutesWithRawResponse:
-        return AsyncRoutesWithRawResponse(self)
-
-    @cached_property
-    def with_streaming_response(self) -> AsyncRoutesWithStreamingResponse:
-        return AsyncRoutesWithStreamingResponse(self)
 
     async def update(
         self,
@@ -457,6 +458,45 @@ class AsyncRoutes(AsyncAPIResource):
             cast_to=cast(Type[RouteUpdateResponse], ResultWrapper[RouteUpdateResponse]),
         )
 
+    async def list(
+        self,
+        account_identifier: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RouteListResponse:
+        """
+        List all Magic static routes.
+
+        Args:
+          account_identifier: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_identifier:
+            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        return await self._get(
+            f"/accounts/{account_identifier}/magic/routes",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[RouteListResponse], ResultWrapper[RouteListResponse]),
+        )
+
     async def delete(
         self,
         route_identifier: str,
@@ -499,6 +539,47 @@ class AsyncRoutes(AsyncAPIResource):
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(Type[RouteDeleteResponse], ResultWrapper[RouteDeleteResponse]),
+        )
+
+    async def empty(
+        self,
+        account_identifier: str,
+        *,
+        routes: Iterable[route_empty_params.Route],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RouteEmptyResponse:
+        """
+        Delete multiple Magic static routes.
+
+        Args:
+          account_identifier: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_identifier:
+            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        return await self._delete(
+            f"/accounts/{account_identifier}/magic/routes",
+            body=maybe_transform({"routes": routes}, route_empty_params.RouteEmptyParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[RouteEmptyResponse], ResultWrapper[RouteEmptyResponse]),
         )
 
     async def get(
@@ -545,167 +626,28 @@ class AsyncRoutes(AsyncAPIResource):
             cast_to=cast(Type[RouteGetResponse], ResultWrapper[RouteGetResponse]),
         )
 
-    async def magic_static_routes_create_routes(
-        self,
-        account_identifier: str,
-        *,
-        body: object,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RouteMagicStaticRoutesCreateRoutesResponse:
-        """Creates a new Magic static route.
-
-        Use `?validate_only=true` as an optional query
-        parameter to run validation only without persisting changes.
-
-        Args:
-          account_identifier: Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        return await self._post(
-            f"/accounts/{account_identifier}/magic/routes",
-            body=maybe_transform(
-                body, route_magic_static_routes_create_routes_params.RouteMagicStaticRoutesCreateRoutesParams
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[RouteMagicStaticRoutesCreateRoutesResponse],
-                ResultWrapper[RouteMagicStaticRoutesCreateRoutesResponse],
-            ),
-        )
-
-    async def magic_static_routes_list_routes(
-        self,
-        account_identifier: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RouteMagicStaticRoutesListRoutesResponse:
-        """
-        List all Magic static routes.
-
-        Args:
-          account_identifier: Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        return await self._get(
-            f"/accounts/{account_identifier}/magic/routes",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[RouteMagicStaticRoutesListRoutesResponse], ResultWrapper[RouteMagicStaticRoutesListRoutesResponse]
-            ),
-        )
-
-    async def magic_static_routes_update_many_routes(
-        self,
-        account_identifier: str,
-        *,
-        routes: Iterable[route_magic_static_routes_update_many_routes_params.Route],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RouteMagicStaticRoutesUpdateManyRoutesResponse:
-        """Update multiple Magic static routes.
-
-        Use `?validate_only=true` as an optional
-        query parameter to run validation only without persisting changes. Only fields
-        for a route that need to be changed need be provided.
-
-        Args:
-          account_identifier: Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        return await self._put(
-            f"/accounts/{account_identifier}/magic/routes",
-            body=maybe_transform(
-                {"routes": routes},
-                route_magic_static_routes_update_many_routes_params.RouteMagicStaticRoutesUpdateManyRoutesParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[RouteMagicStaticRoutesUpdateManyRoutesResponse],
-                ResultWrapper[RouteMagicStaticRoutesUpdateManyRoutesResponse],
-            ),
-        )
-
 
 class RoutesWithRawResponse:
     def __init__(self, routes: Routes) -> None:
         self._routes = routes
 
+        self.create = to_raw_response_wrapper(
+            routes.create,
+        )
         self.update = to_raw_response_wrapper(
             routes.update,
+        )
+        self.list = to_raw_response_wrapper(
+            routes.list,
         )
         self.delete = to_raw_response_wrapper(
             routes.delete,
         )
+        self.empty = to_raw_response_wrapper(
+            routes.empty,
+        )
         self.get = to_raw_response_wrapper(
             routes.get,
-        )
-        self.magic_static_routes_create_routes = to_raw_response_wrapper(
-            routes.magic_static_routes_create_routes,
-        )
-        self.magic_static_routes_list_routes = to_raw_response_wrapper(
-            routes.magic_static_routes_list_routes,
-        )
-        self.magic_static_routes_update_many_routes = to_raw_response_wrapper(
-            routes.magic_static_routes_update_many_routes,
         )
 
 
@@ -713,23 +655,23 @@ class AsyncRoutesWithRawResponse:
     def __init__(self, routes: AsyncRoutes) -> None:
         self._routes = routes
 
+        self.create = async_to_raw_response_wrapper(
+            routes.create,
+        )
         self.update = async_to_raw_response_wrapper(
             routes.update,
+        )
+        self.list = async_to_raw_response_wrapper(
+            routes.list,
         )
         self.delete = async_to_raw_response_wrapper(
             routes.delete,
         )
+        self.empty = async_to_raw_response_wrapper(
+            routes.empty,
+        )
         self.get = async_to_raw_response_wrapper(
             routes.get,
-        )
-        self.magic_static_routes_create_routes = async_to_raw_response_wrapper(
-            routes.magic_static_routes_create_routes,
-        )
-        self.magic_static_routes_list_routes = async_to_raw_response_wrapper(
-            routes.magic_static_routes_list_routes,
-        )
-        self.magic_static_routes_update_many_routes = async_to_raw_response_wrapper(
-            routes.magic_static_routes_update_many_routes,
         )
 
 
@@ -737,23 +679,23 @@ class RoutesWithStreamingResponse:
     def __init__(self, routes: Routes) -> None:
         self._routes = routes
 
+        self.create = to_streamed_response_wrapper(
+            routes.create,
+        )
         self.update = to_streamed_response_wrapper(
             routes.update,
+        )
+        self.list = to_streamed_response_wrapper(
+            routes.list,
         )
         self.delete = to_streamed_response_wrapper(
             routes.delete,
         )
+        self.empty = to_streamed_response_wrapper(
+            routes.empty,
+        )
         self.get = to_streamed_response_wrapper(
             routes.get,
-        )
-        self.magic_static_routes_create_routes = to_streamed_response_wrapper(
-            routes.magic_static_routes_create_routes,
-        )
-        self.magic_static_routes_list_routes = to_streamed_response_wrapper(
-            routes.magic_static_routes_list_routes,
-        )
-        self.magic_static_routes_update_many_routes = to_streamed_response_wrapper(
-            routes.magic_static_routes_update_many_routes,
         )
 
 
@@ -761,21 +703,21 @@ class AsyncRoutesWithStreamingResponse:
     def __init__(self, routes: AsyncRoutes) -> None:
         self._routes = routes
 
+        self.create = async_to_streamed_response_wrapper(
+            routes.create,
+        )
         self.update = async_to_streamed_response_wrapper(
             routes.update,
+        )
+        self.list = async_to_streamed_response_wrapper(
+            routes.list,
         )
         self.delete = async_to_streamed_response_wrapper(
             routes.delete,
         )
+        self.empty = async_to_streamed_response_wrapper(
+            routes.empty,
+        )
         self.get = async_to_streamed_response_wrapper(
             routes.get,
-        )
-        self.magic_static_routes_create_routes = async_to_streamed_response_wrapper(
-            routes.magic_static_routes_create_routes,
-        )
-        self.magic_static_routes_list_routes = async_to_streamed_response_wrapper(
-            routes.magic_static_routes_list_routes,
-        )
-        self.magic_static_routes_update_many_routes = async_to_streamed_response_wrapper(
-            routes.magic_static_routes_update_many_routes,
         )
