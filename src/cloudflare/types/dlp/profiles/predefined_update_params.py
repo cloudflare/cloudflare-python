@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Required, TypedDict
 
-__all__ = ["PredefinedUpdateParams", "ContextAwareness", "ContextAwarenessSkip", "Entry"]
+__all__ = ["PredefinedUpdateParams", "Entry"]
 
 
 class PredefinedUpdateParams(TypedDict, total=False):
@@ -15,30 +15,8 @@ class PredefinedUpdateParams(TypedDict, total=False):
     allowed_match_count: float
     """Related DLP policies will trigger when the match count exceeds the number set."""
 
-    context_awareness: ContextAwareness
-    """
-    Scan the context of predefined entries to only return matches surrounded by
-    keywords.
-    """
-
     entries: Iterable[Entry]
     """The entries for this profile."""
-
-
-class ContextAwarenessSkip(TypedDict, total=False):
-    files: Required[bool]
-    """If the content type is a file, skip context analysis and return all matches."""
-
-
-class ContextAwareness(TypedDict, total=False):
-    enabled: Required[bool]
-    """
-    If true, scan the context of predefined entries to only return matches
-    surrounded by keywords.
-    """
-
-    skip: Required[ContextAwarenessSkip]
-    """Content types to exclude from context analysis and return all matches."""
 
 
 class Entry(TypedDict, total=False):
