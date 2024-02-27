@@ -1,12 +1,12 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from .bgps import (
-    BGPs,
-    AsyncBGPs,
-    BGPsWithRawResponse,
-    AsyncBGPsWithRawResponse,
-    BGPsWithStreamingResponse,
-    AsyncBGPsWithStreamingResponse,
+from .bgp import (
+    BGP,
+    AsyncBGP,
+    BGPWithRawResponse,
+    AsyncBGPWithRawResponse,
+    BGPWithStreamingResponse,
+    AsyncBGPWithStreamingResponse,
 )
 from .prefixes import (
     Prefixes,
@@ -26,12 +26,12 @@ from .delegations import (
 )
 
 __all__ = [
-    "BGPs",
-    "AsyncBGPs",
-    "BGPsWithRawResponse",
-    "AsyncBGPsWithRawResponse",
-    "BGPsWithStreamingResponse",
-    "AsyncBGPsWithStreamingResponse",
+    "BGP",
+    "AsyncBGP",
+    "BGPWithRawResponse",
+    "AsyncBGPWithRawResponse",
+    "BGPWithStreamingResponse",
+    "AsyncBGPWithStreamingResponse",
     "Delegations",
     "AsyncDelegations",
     "DelegationsWithRawResponse",

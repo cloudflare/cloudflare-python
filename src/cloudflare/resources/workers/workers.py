@@ -26,14 +26,6 @@ from .routes import (
     RoutesWithStreamingResponse,
     AsyncRoutesWithStreamingResponse,
 )
-from .script import (
-    Script,
-    AsyncScript,
-    ScriptWithRawResponse,
-    AsyncScriptWithRawResponse,
-    ScriptWithStreamingResponse,
-    AsyncScriptWithStreamingResponse,
-)
 from .domains import (
     Domains,
     AsyncDomains,
@@ -103,14 +95,6 @@ from .account_settings import (
     AsyncAccountSettingsWithStreamingResponse,
 )
 from .services.services import Services, AsyncServices
-from .deployments_by_script import (
-    DeploymentsByScript,
-    AsyncDeploymentsByScript,
-    DeploymentsByScriptWithRawResponse,
-    AsyncDeploymentsByScriptWithRawResponse,
-    DeploymentsByScriptWithStreamingResponse,
-    AsyncDeploymentsByScriptWithStreamingResponse,
-)
 from .deployments.deployments import Deployments, AsyncDeployments
 from .durable_objects.durable_objects import DurableObjects, AsyncDurableObjects
 
@@ -159,16 +143,8 @@ class Workers(SyncAPIResource):
         return Subdomains(self._client)
 
     @cached_property
-    def deployments_by_script(self) -> DeploymentsByScript:
-        return DeploymentsByScript(self._client)
-
-    @cached_property
     def services(self) -> Services:
         return Services(self._client)
-
-    @cached_property
-    def script(self) -> Script:
-        return Script(self._client)
 
     @cached_property
     def with_raw_response(self) -> WorkersWithRawResponse:
@@ -221,16 +197,8 @@ class AsyncWorkers(AsyncAPIResource):
         return AsyncSubdomains(self._client)
 
     @cached_property
-    def deployments_by_script(self) -> AsyncDeploymentsByScript:
-        return AsyncDeploymentsByScript(self._client)
-
-    @cached_property
     def services(self) -> AsyncServices:
         return AsyncServices(self._client)
-
-    @cached_property
-    def script(self) -> AsyncScript:
-        return AsyncScript(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncWorkersWithRawResponse:
@@ -286,16 +254,8 @@ class WorkersWithRawResponse:
         return SubdomainsWithRawResponse(self._workers.subdomains)
 
     @cached_property
-    def deployments_by_script(self) -> DeploymentsByScriptWithRawResponse:
-        return DeploymentsByScriptWithRawResponse(self._workers.deployments_by_script)
-
-    @cached_property
     def services(self) -> ServicesWithRawResponse:
         return ServicesWithRawResponse(self._workers.services)
-
-    @cached_property
-    def script(self) -> ScriptWithRawResponse:
-        return ScriptWithRawResponse(self._workers.script)
 
 
 class AsyncWorkersWithRawResponse:
@@ -343,16 +303,8 @@ class AsyncWorkersWithRawResponse:
         return AsyncSubdomainsWithRawResponse(self._workers.subdomains)
 
     @cached_property
-    def deployments_by_script(self) -> AsyncDeploymentsByScriptWithRawResponse:
-        return AsyncDeploymentsByScriptWithRawResponse(self._workers.deployments_by_script)
-
-    @cached_property
     def services(self) -> AsyncServicesWithRawResponse:
         return AsyncServicesWithRawResponse(self._workers.services)
-
-    @cached_property
-    def script(self) -> AsyncScriptWithRawResponse:
-        return AsyncScriptWithRawResponse(self._workers.script)
 
 
 class WorkersWithStreamingResponse:
@@ -400,16 +352,8 @@ class WorkersWithStreamingResponse:
         return SubdomainsWithStreamingResponse(self._workers.subdomains)
 
     @cached_property
-    def deployments_by_script(self) -> DeploymentsByScriptWithStreamingResponse:
-        return DeploymentsByScriptWithStreamingResponse(self._workers.deployments_by_script)
-
-    @cached_property
     def services(self) -> ServicesWithStreamingResponse:
         return ServicesWithStreamingResponse(self._workers.services)
-
-    @cached_property
-    def script(self) -> ScriptWithStreamingResponse:
-        return ScriptWithStreamingResponse(self._workers.script)
 
 
 class AsyncWorkersWithStreamingResponse:
@@ -457,13 +401,5 @@ class AsyncWorkersWithStreamingResponse:
         return AsyncSubdomainsWithStreamingResponse(self._workers.subdomains)
 
     @cached_property
-    def deployments_by_script(self) -> AsyncDeploymentsByScriptWithStreamingResponse:
-        return AsyncDeploymentsByScriptWithStreamingResponse(self._workers.deployments_by_script)
-
-    @cached_property
     def services(self) -> AsyncServicesWithStreamingResponse:
         return AsyncServicesWithStreamingResponse(self._workers.services)
-
-    @cached_property
-    def script(self) -> AsyncScriptWithStreamingResponse:
-        return AsyncScriptWithStreamingResponse(self._workers.script)

@@ -25,8 +25,24 @@ from ...types import (
     zone_list_params,
     zone_create_params,
 )
+from .workers import (
+    Workers,
+    AsyncWorkers,
+    WorkersWithRawResponse,
+    AsyncWorkersWithRawResponse,
+    WorkersWithStreamingResponse,
+    AsyncWorkersWithStreamingResponse,
+)
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import maybe_transform
+from .settings import (
+    Settings,
+    AsyncSettings,
+    SettingsWithRawResponse,
+    AsyncSettingsWithRawResponse,
+    SettingsWithStreamingResponse,
+    AsyncSettingsWithStreamingResponse,
+)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -41,6 +57,16 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from .workers.workers import Workers, AsyncWorkers
+from .activation_check import (
+    ActivationCheck,
+    AsyncActivationCheck,
+    ActivationCheckWithRawResponse,
+    AsyncActivationCheckWithRawResponse,
+    ActivationCheckWithStreamingResponse,
+    AsyncActivationCheckWithStreamingResponse,
+)
+from .settings.settings import Settings, AsyncSettings
 from .custom_nameservers import (
     CustomNameservers,
     AsyncCustomNameservers,
@@ -55,12 +81,24 @@ __all__ = ["Zones", "AsyncZones"]
 
 class Zones(SyncAPIResource):
     @cached_property
+    def activation_check(self) -> ActivationCheck:
+        return ActivationCheck(self._client)
+
+    @cached_property
+    def settings(self) -> Settings:
+        return Settings(self._client)
+
+    @cached_property
     def custom_nameservers(self) -> CustomNameservers:
         return CustomNameservers(self._client)
 
     @cached_property
     def holds(self) -> Holds:
         return Holds(self._client)
+
+    @cached_property
+    def workers(self) -> Workers:
+        return Workers(self._client)
 
     @cached_property
     def with_raw_response(self) -> ZonesWithRawResponse:
@@ -343,12 +381,24 @@ class Zones(SyncAPIResource):
 
 class AsyncZones(AsyncAPIResource):
     @cached_property
+    def activation_check(self) -> AsyncActivationCheck:
+        return AsyncActivationCheck(self._client)
+
+    @cached_property
+    def settings(self) -> AsyncSettings:
+        return AsyncSettings(self._client)
+
+    @cached_property
     def custom_nameservers(self) -> AsyncCustomNameservers:
         return AsyncCustomNameservers(self._client)
 
     @cached_property
     def holds(self) -> AsyncHolds:
         return AsyncHolds(self._client)
+
+    @cached_property
+    def workers(self) -> AsyncWorkers:
+        return AsyncWorkers(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncZonesWithRawResponse:
@@ -650,12 +700,24 @@ class ZonesWithRawResponse:
         )
 
     @cached_property
+    def activation_check(self) -> ActivationCheckWithRawResponse:
+        return ActivationCheckWithRawResponse(self._zones.activation_check)
+
+    @cached_property
+    def settings(self) -> SettingsWithRawResponse:
+        return SettingsWithRawResponse(self._zones.settings)
+
+    @cached_property
     def custom_nameservers(self) -> CustomNameserversWithRawResponse:
         return CustomNameserversWithRawResponse(self._zones.custom_nameservers)
 
     @cached_property
     def holds(self) -> HoldsWithRawResponse:
         return HoldsWithRawResponse(self._zones.holds)
+
+    @cached_property
+    def workers(self) -> WorkersWithRawResponse:
+        return WorkersWithRawResponse(self._zones.workers)
 
 
 class AsyncZonesWithRawResponse:
@@ -679,12 +741,24 @@ class AsyncZonesWithRawResponse:
         )
 
     @cached_property
+    def activation_check(self) -> AsyncActivationCheckWithRawResponse:
+        return AsyncActivationCheckWithRawResponse(self._zones.activation_check)
+
+    @cached_property
+    def settings(self) -> AsyncSettingsWithRawResponse:
+        return AsyncSettingsWithRawResponse(self._zones.settings)
+
+    @cached_property
     def custom_nameservers(self) -> AsyncCustomNameserversWithRawResponse:
         return AsyncCustomNameserversWithRawResponse(self._zones.custom_nameservers)
 
     @cached_property
     def holds(self) -> AsyncHoldsWithRawResponse:
         return AsyncHoldsWithRawResponse(self._zones.holds)
+
+    @cached_property
+    def workers(self) -> AsyncWorkersWithRawResponse:
+        return AsyncWorkersWithRawResponse(self._zones.workers)
 
 
 class ZonesWithStreamingResponse:
@@ -708,12 +782,24 @@ class ZonesWithStreamingResponse:
         )
 
     @cached_property
+    def activation_check(self) -> ActivationCheckWithStreamingResponse:
+        return ActivationCheckWithStreamingResponse(self._zones.activation_check)
+
+    @cached_property
+    def settings(self) -> SettingsWithStreamingResponse:
+        return SettingsWithStreamingResponse(self._zones.settings)
+
+    @cached_property
     def custom_nameservers(self) -> CustomNameserversWithStreamingResponse:
         return CustomNameserversWithStreamingResponse(self._zones.custom_nameservers)
 
     @cached_property
     def holds(self) -> HoldsWithStreamingResponse:
         return HoldsWithStreamingResponse(self._zones.holds)
+
+    @cached_property
+    def workers(self) -> WorkersWithStreamingResponse:
+        return WorkersWithStreamingResponse(self._zones.workers)
 
 
 class AsyncZonesWithStreamingResponse:
@@ -737,9 +823,21 @@ class AsyncZonesWithStreamingResponse:
         )
 
     @cached_property
+    def activation_check(self) -> AsyncActivationCheckWithStreamingResponse:
+        return AsyncActivationCheckWithStreamingResponse(self._zones.activation_check)
+
+    @cached_property
+    def settings(self) -> AsyncSettingsWithStreamingResponse:
+        return AsyncSettingsWithStreamingResponse(self._zones.settings)
+
+    @cached_property
     def custom_nameservers(self) -> AsyncCustomNameserversWithStreamingResponse:
         return AsyncCustomNameserversWithStreamingResponse(self._zones.custom_nameservers)
 
     @cached_property
     def holds(self) -> AsyncHoldsWithStreamingResponse:
         return AsyncHoldsWithStreamingResponse(self._zones.holds)
+
+    @cached_property
+    def workers(self) -> AsyncWorkersWithStreamingResponse:
+        return AsyncWorkersWithStreamingResponse(self._zones.workers)

@@ -54,7 +54,6 @@ class Cloudflare(SyncAPIClient):
     zones: resources.Zones
     load_balancers: resources.LoadBalancers
     access: resources.Access
-    dns_analytics: resources.DNSAnalytics
     cache: resources.Cache
     ssl: resources.SSL
     subscriptions: resources.Subscriptions
@@ -71,7 +70,7 @@ class Cloudflare(SyncAPIClient):
     dnssec: resources.DNSSEC
     emails: resources.Emails
     filters: resources.Filters
-    firewalls: resources.Firewalls
+    firewall: resources.Firewall
     healthchecks: resources.Healthchecks
     keyless_certificates: resources.KeylessCertificates
     logpush: resources.Logpush
@@ -80,11 +79,10 @@ class Cloudflare(SyncAPIClient):
     pagerules: resources.Pagerules
     rate_limits: resources.RateLimits
     secondary_dns: resources.SecondaryDNS
-    settings: resources.Settings
     waiting_rooms: resources.WaitingRooms
     web3: resources.Web3
     workers: resources.Workers
-    activation_checks: resources.ActivationChecks
+    kv: resources.KV
     managed_headers: resources.ManagedHeaders
     page_shield: resources.PageShield
     rulesets: resources.Rulesets
@@ -99,8 +97,7 @@ class Cloudflare(SyncAPIClient):
     dlp: resources.DLP
     images: resources.Images
     intel: resources.Intel
-    magics: resources.Magics
-    account_members: resources.AccountMembers
+    magic_transit: resources.MagicTransit
     mnms: resources.MNMs
     mtls_certificates: resources.MTLSCertificates
     pages: resources.Pages
@@ -111,7 +108,6 @@ class Cloudflare(SyncAPIClient):
     rules: resources.Rules
     storage: resources.Storage
     stream: resources.Stream
-    teamnets: resources.Teamnets
     gateways: resources.Gateways
     alerting: resources.Alerting
     devices: resources.Devices
@@ -122,10 +118,7 @@ class Cloudflare(SyncAPIClient):
     warp_connector: resources.WARPConnector
     dispatchers: resources.Dispatchers
     workers_for_platforms: resources.WorkersForPlatforms
-    worker_domains: resources.WorkerDomains
-    worker_scripts: resources.WorkerScripts
-    zerotrust: resources.Zerotrust
-    addressing: resources.Addressing
+    zero_trust: resources.ZeroTrust
     challenges: resources.Challenges
     hyperdrive: resources.Hyperdrive
     rum: resources.RUM
@@ -134,7 +127,6 @@ class Cloudflare(SyncAPIClient):
     radar: resources.Radar
     bot_management: resources.BotManagement
     origin_post_quantum_encryption: resources.OriginPostQuantumEncryption
-    firewall: resources.Firewall
     speed: resources.Speed
     dcv_delegation: resources.DcvDelegation
     hostnames: resources.Hostnames
@@ -238,7 +230,6 @@ class Cloudflare(SyncAPIClient):
         self.zones = resources.Zones(self)
         self.load_balancers = resources.LoadBalancers(self)
         self.access = resources.Access(self)
-        self.dns_analytics = resources.DNSAnalytics(self)
         self.cache = resources.Cache(self)
         self.ssl = resources.SSL(self)
         self.subscriptions = resources.Subscriptions(self)
@@ -255,7 +246,7 @@ class Cloudflare(SyncAPIClient):
         self.dnssec = resources.DNSSEC(self)
         self.emails = resources.Emails(self)
         self.filters = resources.Filters(self)
-        self.firewalls = resources.Firewalls(self)
+        self.firewall = resources.Firewall(self)
         self.healthchecks = resources.Healthchecks(self)
         self.keyless_certificates = resources.KeylessCertificates(self)
         self.logpush = resources.Logpush(self)
@@ -264,11 +255,10 @@ class Cloudflare(SyncAPIClient):
         self.pagerules = resources.Pagerules(self)
         self.rate_limits = resources.RateLimits(self)
         self.secondary_dns = resources.SecondaryDNS(self)
-        self.settings = resources.Settings(self)
         self.waiting_rooms = resources.WaitingRooms(self)
         self.web3 = resources.Web3(self)
         self.workers = resources.Workers(self)
-        self.activation_checks = resources.ActivationChecks(self)
+        self.kv = resources.KV(self)
         self.managed_headers = resources.ManagedHeaders(self)
         self.page_shield = resources.PageShield(self)
         self.rulesets = resources.Rulesets(self)
@@ -283,8 +273,7 @@ class Cloudflare(SyncAPIClient):
         self.dlp = resources.DLP(self)
         self.images = resources.Images(self)
         self.intel = resources.Intel(self)
-        self.magics = resources.Magics(self)
-        self.account_members = resources.AccountMembers(self)
+        self.magic_transit = resources.MagicTransit(self)
         self.mnms = resources.MNMs(self)
         self.mtls_certificates = resources.MTLSCertificates(self)
         self.pages = resources.Pages(self)
@@ -295,7 +284,6 @@ class Cloudflare(SyncAPIClient):
         self.rules = resources.Rules(self)
         self.storage = resources.Storage(self)
         self.stream = resources.Stream(self)
-        self.teamnets = resources.Teamnets(self)
         self.gateways = resources.Gateways(self)
         self.alerting = resources.Alerting(self)
         self.devices = resources.Devices(self)
@@ -306,10 +294,7 @@ class Cloudflare(SyncAPIClient):
         self.warp_connector = resources.WARPConnector(self)
         self.dispatchers = resources.Dispatchers(self)
         self.workers_for_platforms = resources.WorkersForPlatforms(self)
-        self.worker_domains = resources.WorkerDomains(self)
-        self.worker_scripts = resources.WorkerScripts(self)
-        self.zerotrust = resources.Zerotrust(self)
-        self.addressing = resources.Addressing(self)
+        self.zero_trust = resources.ZeroTrust(self)
         self.challenges = resources.Challenges(self)
         self.hyperdrive = resources.Hyperdrive(self)
         self.rum = resources.RUM(self)
@@ -318,7 +303,6 @@ class Cloudflare(SyncAPIClient):
         self.radar = resources.Radar(self)
         self.bot_management = resources.BotManagement(self)
         self.origin_post_quantum_encryption = resources.OriginPostQuantumEncryption(self)
-        self.firewall = resources.Firewall(self)
         self.speed = resources.Speed(self)
         self.dcv_delegation = resources.DcvDelegation(self)
         self.hostnames = resources.Hostnames(self)
@@ -476,7 +460,6 @@ class AsyncCloudflare(AsyncAPIClient):
     zones: resources.AsyncZones
     load_balancers: resources.AsyncLoadBalancers
     access: resources.AsyncAccess
-    dns_analytics: resources.AsyncDNSAnalytics
     cache: resources.AsyncCache
     ssl: resources.AsyncSSL
     subscriptions: resources.AsyncSubscriptions
@@ -493,7 +476,7 @@ class AsyncCloudflare(AsyncAPIClient):
     dnssec: resources.AsyncDNSSEC
     emails: resources.AsyncEmails
     filters: resources.AsyncFilters
-    firewalls: resources.AsyncFirewalls
+    firewall: resources.AsyncFirewall
     healthchecks: resources.AsyncHealthchecks
     keyless_certificates: resources.AsyncKeylessCertificates
     logpush: resources.AsyncLogpush
@@ -502,11 +485,10 @@ class AsyncCloudflare(AsyncAPIClient):
     pagerules: resources.AsyncPagerules
     rate_limits: resources.AsyncRateLimits
     secondary_dns: resources.AsyncSecondaryDNS
-    settings: resources.AsyncSettings
     waiting_rooms: resources.AsyncWaitingRooms
     web3: resources.AsyncWeb3
     workers: resources.AsyncWorkers
-    activation_checks: resources.AsyncActivationChecks
+    kv: resources.AsyncKV
     managed_headers: resources.AsyncManagedHeaders
     page_shield: resources.AsyncPageShield
     rulesets: resources.AsyncRulesets
@@ -521,8 +503,7 @@ class AsyncCloudflare(AsyncAPIClient):
     dlp: resources.AsyncDLP
     images: resources.AsyncImages
     intel: resources.AsyncIntel
-    magics: resources.AsyncMagics
-    account_members: resources.AsyncAccountMembers
+    magic_transit: resources.AsyncMagicTransit
     mnms: resources.AsyncMNMs
     mtls_certificates: resources.AsyncMTLSCertificates
     pages: resources.AsyncPages
@@ -533,7 +514,6 @@ class AsyncCloudflare(AsyncAPIClient):
     rules: resources.AsyncRules
     storage: resources.AsyncStorage
     stream: resources.AsyncStream
-    teamnets: resources.AsyncTeamnets
     gateways: resources.AsyncGateways
     alerting: resources.AsyncAlerting
     devices: resources.AsyncDevices
@@ -544,10 +524,7 @@ class AsyncCloudflare(AsyncAPIClient):
     warp_connector: resources.AsyncWARPConnector
     dispatchers: resources.AsyncDispatchers
     workers_for_platforms: resources.AsyncWorkersForPlatforms
-    worker_domains: resources.AsyncWorkerDomains
-    worker_scripts: resources.AsyncWorkerScripts
-    zerotrust: resources.AsyncZerotrust
-    addressing: resources.AsyncAddressing
+    zero_trust: resources.AsyncZeroTrust
     challenges: resources.AsyncChallenges
     hyperdrive: resources.AsyncHyperdrive
     rum: resources.AsyncRUM
@@ -556,7 +533,6 @@ class AsyncCloudflare(AsyncAPIClient):
     radar: resources.AsyncRadar
     bot_management: resources.AsyncBotManagement
     origin_post_quantum_encryption: resources.AsyncOriginPostQuantumEncryption
-    firewall: resources.AsyncFirewall
     speed: resources.AsyncSpeed
     dcv_delegation: resources.AsyncDcvDelegation
     hostnames: resources.AsyncHostnames
@@ -660,7 +636,6 @@ class AsyncCloudflare(AsyncAPIClient):
         self.zones = resources.AsyncZones(self)
         self.load_balancers = resources.AsyncLoadBalancers(self)
         self.access = resources.AsyncAccess(self)
-        self.dns_analytics = resources.AsyncDNSAnalytics(self)
         self.cache = resources.AsyncCache(self)
         self.ssl = resources.AsyncSSL(self)
         self.subscriptions = resources.AsyncSubscriptions(self)
@@ -677,7 +652,7 @@ class AsyncCloudflare(AsyncAPIClient):
         self.dnssec = resources.AsyncDNSSEC(self)
         self.emails = resources.AsyncEmails(self)
         self.filters = resources.AsyncFilters(self)
-        self.firewalls = resources.AsyncFirewalls(self)
+        self.firewall = resources.AsyncFirewall(self)
         self.healthchecks = resources.AsyncHealthchecks(self)
         self.keyless_certificates = resources.AsyncKeylessCertificates(self)
         self.logpush = resources.AsyncLogpush(self)
@@ -686,11 +661,10 @@ class AsyncCloudflare(AsyncAPIClient):
         self.pagerules = resources.AsyncPagerules(self)
         self.rate_limits = resources.AsyncRateLimits(self)
         self.secondary_dns = resources.AsyncSecondaryDNS(self)
-        self.settings = resources.AsyncSettings(self)
         self.waiting_rooms = resources.AsyncWaitingRooms(self)
         self.web3 = resources.AsyncWeb3(self)
         self.workers = resources.AsyncWorkers(self)
-        self.activation_checks = resources.AsyncActivationChecks(self)
+        self.kv = resources.AsyncKV(self)
         self.managed_headers = resources.AsyncManagedHeaders(self)
         self.page_shield = resources.AsyncPageShield(self)
         self.rulesets = resources.AsyncRulesets(self)
@@ -705,8 +679,7 @@ class AsyncCloudflare(AsyncAPIClient):
         self.dlp = resources.AsyncDLP(self)
         self.images = resources.AsyncImages(self)
         self.intel = resources.AsyncIntel(self)
-        self.magics = resources.AsyncMagics(self)
-        self.account_members = resources.AsyncAccountMembers(self)
+        self.magic_transit = resources.AsyncMagicTransit(self)
         self.mnms = resources.AsyncMNMs(self)
         self.mtls_certificates = resources.AsyncMTLSCertificates(self)
         self.pages = resources.AsyncPages(self)
@@ -717,7 +690,6 @@ class AsyncCloudflare(AsyncAPIClient):
         self.rules = resources.AsyncRules(self)
         self.storage = resources.AsyncStorage(self)
         self.stream = resources.AsyncStream(self)
-        self.teamnets = resources.AsyncTeamnets(self)
         self.gateways = resources.AsyncGateways(self)
         self.alerting = resources.AsyncAlerting(self)
         self.devices = resources.AsyncDevices(self)
@@ -728,10 +700,7 @@ class AsyncCloudflare(AsyncAPIClient):
         self.warp_connector = resources.AsyncWARPConnector(self)
         self.dispatchers = resources.AsyncDispatchers(self)
         self.workers_for_platforms = resources.AsyncWorkersForPlatforms(self)
-        self.worker_domains = resources.AsyncWorkerDomains(self)
-        self.worker_scripts = resources.AsyncWorkerScripts(self)
-        self.zerotrust = resources.AsyncZerotrust(self)
-        self.addressing = resources.AsyncAddressing(self)
+        self.zero_trust = resources.AsyncZeroTrust(self)
         self.challenges = resources.AsyncChallenges(self)
         self.hyperdrive = resources.AsyncHyperdrive(self)
         self.rum = resources.AsyncRUM(self)
@@ -740,7 +709,6 @@ class AsyncCloudflare(AsyncAPIClient):
         self.radar = resources.AsyncRadar(self)
         self.bot_management = resources.AsyncBotManagement(self)
         self.origin_post_quantum_encryption = resources.AsyncOriginPostQuantumEncryption(self)
-        self.firewall = resources.AsyncFirewall(self)
         self.speed = resources.AsyncSpeed(self)
         self.dcv_delegation = resources.AsyncDcvDelegation(self)
         self.hostnames = resources.AsyncHostnames(self)
@@ -899,7 +867,6 @@ class CloudflareWithRawResponse:
         self.zones = resources.ZonesWithRawResponse(client.zones)
         self.load_balancers = resources.LoadBalancersWithRawResponse(client.load_balancers)
         self.access = resources.AccessWithRawResponse(client.access)
-        self.dns_analytics = resources.DNSAnalyticsWithRawResponse(client.dns_analytics)
         self.cache = resources.CacheWithRawResponse(client.cache)
         self.ssl = resources.SSLWithRawResponse(client.ssl)
         self.subscriptions = resources.SubscriptionsWithRawResponse(client.subscriptions)
@@ -916,7 +883,7 @@ class CloudflareWithRawResponse:
         self.dnssec = resources.DNSSECWithRawResponse(client.dnssec)
         self.emails = resources.EmailsWithRawResponse(client.emails)
         self.filters = resources.FiltersWithRawResponse(client.filters)
-        self.firewalls = resources.FirewallsWithRawResponse(client.firewalls)
+        self.firewall = resources.FirewallWithRawResponse(client.firewall)
         self.healthchecks = resources.HealthchecksWithRawResponse(client.healthchecks)
         self.keyless_certificates = resources.KeylessCertificatesWithRawResponse(client.keyless_certificates)
         self.logpush = resources.LogpushWithRawResponse(client.logpush)
@@ -925,11 +892,10 @@ class CloudflareWithRawResponse:
         self.pagerules = resources.PagerulesWithRawResponse(client.pagerules)
         self.rate_limits = resources.RateLimitsWithRawResponse(client.rate_limits)
         self.secondary_dns = resources.SecondaryDNSWithRawResponse(client.secondary_dns)
-        self.settings = resources.SettingsWithRawResponse(client.settings)
         self.waiting_rooms = resources.WaitingRoomsWithRawResponse(client.waiting_rooms)
         self.web3 = resources.Web3WithRawResponse(client.web3)
         self.workers = resources.WorkersWithRawResponse(client.workers)
-        self.activation_checks = resources.ActivationChecksWithRawResponse(client.activation_checks)
+        self.kv = resources.KVWithRawResponse(client.kv)
         self.managed_headers = resources.ManagedHeadersWithRawResponse(client.managed_headers)
         self.page_shield = resources.PageShieldWithRawResponse(client.page_shield)
         self.rulesets = resources.RulesetsWithRawResponse(client.rulesets)
@@ -944,8 +910,7 @@ class CloudflareWithRawResponse:
         self.dlp = resources.DLPWithRawResponse(client.dlp)
         self.images = resources.ImagesWithRawResponse(client.images)
         self.intel = resources.IntelWithRawResponse(client.intel)
-        self.magics = resources.MagicsWithRawResponse(client.magics)
-        self.account_members = resources.AccountMembersWithRawResponse(client.account_members)
+        self.magic_transit = resources.MagicTransitWithRawResponse(client.magic_transit)
         self.mnms = resources.MNMsWithRawResponse(client.mnms)
         self.mtls_certificates = resources.MTLSCertificatesWithRawResponse(client.mtls_certificates)
         self.pages = resources.PagesWithRawResponse(client.pages)
@@ -956,7 +921,6 @@ class CloudflareWithRawResponse:
         self.rules = resources.RulesWithRawResponse(client.rules)
         self.storage = resources.StorageWithRawResponse(client.storage)
         self.stream = resources.StreamWithRawResponse(client.stream)
-        self.teamnets = resources.TeamnetsWithRawResponse(client.teamnets)
         self.gateways = resources.GatewaysWithRawResponse(client.gateways)
         self.alerting = resources.AlertingWithRawResponse(client.alerting)
         self.devices = resources.DevicesWithRawResponse(client.devices)
@@ -967,10 +931,7 @@ class CloudflareWithRawResponse:
         self.warp_connector = resources.WARPConnectorWithRawResponse(client.warp_connector)
         self.dispatchers = resources.DispatchersWithRawResponse(client.dispatchers)
         self.workers_for_platforms = resources.WorkersForPlatformsWithRawResponse(client.workers_for_platforms)
-        self.worker_domains = resources.WorkerDomainsWithRawResponse(client.worker_domains)
-        self.worker_scripts = resources.WorkerScriptsWithRawResponse(client.worker_scripts)
-        self.zerotrust = resources.ZerotrustWithRawResponse(client.zerotrust)
-        self.addressing = resources.AddressingWithRawResponse(client.addressing)
+        self.zero_trust = resources.ZeroTrustWithRawResponse(client.zero_trust)
         self.challenges = resources.ChallengesWithRawResponse(client.challenges)
         self.hyperdrive = resources.HyperdriveWithRawResponse(client.hyperdrive)
         self.rum = resources.RUMWithRawResponse(client.rum)
@@ -981,7 +942,6 @@ class CloudflareWithRawResponse:
         self.origin_post_quantum_encryption = resources.OriginPostQuantumEncryptionWithRawResponse(
             client.origin_post_quantum_encryption
         )
-        self.firewall = resources.FirewallWithRawResponse(client.firewall)
         self.speed = resources.SpeedWithRawResponse(client.speed)
         self.dcv_delegation = resources.DcvDelegationWithRawResponse(client.dcv_delegation)
         self.hostnames = resources.HostnamesWithRawResponse(client.hostnames)
@@ -1000,7 +960,6 @@ class AsyncCloudflareWithRawResponse:
         self.zones = resources.AsyncZonesWithRawResponse(client.zones)
         self.load_balancers = resources.AsyncLoadBalancersWithRawResponse(client.load_balancers)
         self.access = resources.AsyncAccessWithRawResponse(client.access)
-        self.dns_analytics = resources.AsyncDNSAnalyticsWithRawResponse(client.dns_analytics)
         self.cache = resources.AsyncCacheWithRawResponse(client.cache)
         self.ssl = resources.AsyncSSLWithRawResponse(client.ssl)
         self.subscriptions = resources.AsyncSubscriptionsWithRawResponse(client.subscriptions)
@@ -1019,7 +978,7 @@ class AsyncCloudflareWithRawResponse:
         self.dnssec = resources.AsyncDNSSECWithRawResponse(client.dnssec)
         self.emails = resources.AsyncEmailsWithRawResponse(client.emails)
         self.filters = resources.AsyncFiltersWithRawResponse(client.filters)
-        self.firewalls = resources.AsyncFirewallsWithRawResponse(client.firewalls)
+        self.firewall = resources.AsyncFirewallWithRawResponse(client.firewall)
         self.healthchecks = resources.AsyncHealthchecksWithRawResponse(client.healthchecks)
         self.keyless_certificates = resources.AsyncKeylessCertificatesWithRawResponse(client.keyless_certificates)
         self.logpush = resources.AsyncLogpushWithRawResponse(client.logpush)
@@ -1028,11 +987,10 @@ class AsyncCloudflareWithRawResponse:
         self.pagerules = resources.AsyncPagerulesWithRawResponse(client.pagerules)
         self.rate_limits = resources.AsyncRateLimitsWithRawResponse(client.rate_limits)
         self.secondary_dns = resources.AsyncSecondaryDNSWithRawResponse(client.secondary_dns)
-        self.settings = resources.AsyncSettingsWithRawResponse(client.settings)
         self.waiting_rooms = resources.AsyncWaitingRoomsWithRawResponse(client.waiting_rooms)
         self.web3 = resources.AsyncWeb3WithRawResponse(client.web3)
         self.workers = resources.AsyncWorkersWithRawResponse(client.workers)
-        self.activation_checks = resources.AsyncActivationChecksWithRawResponse(client.activation_checks)
+        self.kv = resources.AsyncKVWithRawResponse(client.kv)
         self.managed_headers = resources.AsyncManagedHeadersWithRawResponse(client.managed_headers)
         self.page_shield = resources.AsyncPageShieldWithRawResponse(client.page_shield)
         self.rulesets = resources.AsyncRulesetsWithRawResponse(client.rulesets)
@@ -1047,8 +1005,7 @@ class AsyncCloudflareWithRawResponse:
         self.dlp = resources.AsyncDLPWithRawResponse(client.dlp)
         self.images = resources.AsyncImagesWithRawResponse(client.images)
         self.intel = resources.AsyncIntelWithRawResponse(client.intel)
-        self.magics = resources.AsyncMagicsWithRawResponse(client.magics)
-        self.account_members = resources.AsyncAccountMembersWithRawResponse(client.account_members)
+        self.magic_transit = resources.AsyncMagicTransitWithRawResponse(client.magic_transit)
         self.mnms = resources.AsyncMNMsWithRawResponse(client.mnms)
         self.mtls_certificates = resources.AsyncMTLSCertificatesWithRawResponse(client.mtls_certificates)
         self.pages = resources.AsyncPagesWithRawResponse(client.pages)
@@ -1059,7 +1016,6 @@ class AsyncCloudflareWithRawResponse:
         self.rules = resources.AsyncRulesWithRawResponse(client.rules)
         self.storage = resources.AsyncStorageWithRawResponse(client.storage)
         self.stream = resources.AsyncStreamWithRawResponse(client.stream)
-        self.teamnets = resources.AsyncTeamnetsWithRawResponse(client.teamnets)
         self.gateways = resources.AsyncGatewaysWithRawResponse(client.gateways)
         self.alerting = resources.AsyncAlertingWithRawResponse(client.alerting)
         self.devices = resources.AsyncDevicesWithRawResponse(client.devices)
@@ -1070,10 +1026,7 @@ class AsyncCloudflareWithRawResponse:
         self.warp_connector = resources.AsyncWARPConnectorWithRawResponse(client.warp_connector)
         self.dispatchers = resources.AsyncDispatchersWithRawResponse(client.dispatchers)
         self.workers_for_platforms = resources.AsyncWorkersForPlatformsWithRawResponse(client.workers_for_platforms)
-        self.worker_domains = resources.AsyncWorkerDomainsWithRawResponse(client.worker_domains)
-        self.worker_scripts = resources.AsyncWorkerScriptsWithRawResponse(client.worker_scripts)
-        self.zerotrust = resources.AsyncZerotrustWithRawResponse(client.zerotrust)
-        self.addressing = resources.AsyncAddressingWithRawResponse(client.addressing)
+        self.zero_trust = resources.AsyncZeroTrustWithRawResponse(client.zero_trust)
         self.challenges = resources.AsyncChallengesWithRawResponse(client.challenges)
         self.hyperdrive = resources.AsyncHyperdriveWithRawResponse(client.hyperdrive)
         self.rum = resources.AsyncRUMWithRawResponse(client.rum)
@@ -1084,7 +1037,6 @@ class AsyncCloudflareWithRawResponse:
         self.origin_post_quantum_encryption = resources.AsyncOriginPostQuantumEncryptionWithRawResponse(
             client.origin_post_quantum_encryption
         )
-        self.firewall = resources.AsyncFirewallWithRawResponse(client.firewall)
         self.speed = resources.AsyncSpeedWithRawResponse(client.speed)
         self.dcv_delegation = resources.AsyncDcvDelegationWithRawResponse(client.dcv_delegation)
         self.hostnames = resources.AsyncHostnamesWithRawResponse(client.hostnames)
@@ -1103,7 +1055,6 @@ class CloudflareWithStreamedResponse:
         self.zones = resources.ZonesWithStreamingResponse(client.zones)
         self.load_balancers = resources.LoadBalancersWithStreamingResponse(client.load_balancers)
         self.access = resources.AccessWithStreamingResponse(client.access)
-        self.dns_analytics = resources.DNSAnalyticsWithStreamingResponse(client.dns_analytics)
         self.cache = resources.CacheWithStreamingResponse(client.cache)
         self.ssl = resources.SSLWithStreamingResponse(client.ssl)
         self.subscriptions = resources.SubscriptionsWithStreamingResponse(client.subscriptions)
@@ -1122,7 +1073,7 @@ class CloudflareWithStreamedResponse:
         self.dnssec = resources.DNSSECWithStreamingResponse(client.dnssec)
         self.emails = resources.EmailsWithStreamingResponse(client.emails)
         self.filters = resources.FiltersWithStreamingResponse(client.filters)
-        self.firewalls = resources.FirewallsWithStreamingResponse(client.firewalls)
+        self.firewall = resources.FirewallWithStreamingResponse(client.firewall)
         self.healthchecks = resources.HealthchecksWithStreamingResponse(client.healthchecks)
         self.keyless_certificates = resources.KeylessCertificatesWithStreamingResponse(client.keyless_certificates)
         self.logpush = resources.LogpushWithStreamingResponse(client.logpush)
@@ -1131,11 +1082,10 @@ class CloudflareWithStreamedResponse:
         self.pagerules = resources.PagerulesWithStreamingResponse(client.pagerules)
         self.rate_limits = resources.RateLimitsWithStreamingResponse(client.rate_limits)
         self.secondary_dns = resources.SecondaryDNSWithStreamingResponse(client.secondary_dns)
-        self.settings = resources.SettingsWithStreamingResponse(client.settings)
         self.waiting_rooms = resources.WaitingRoomsWithStreamingResponse(client.waiting_rooms)
         self.web3 = resources.Web3WithStreamingResponse(client.web3)
         self.workers = resources.WorkersWithStreamingResponse(client.workers)
-        self.activation_checks = resources.ActivationChecksWithStreamingResponse(client.activation_checks)
+        self.kv = resources.KVWithStreamingResponse(client.kv)
         self.managed_headers = resources.ManagedHeadersWithStreamingResponse(client.managed_headers)
         self.page_shield = resources.PageShieldWithStreamingResponse(client.page_shield)
         self.rulesets = resources.RulesetsWithStreamingResponse(client.rulesets)
@@ -1150,8 +1100,7 @@ class CloudflareWithStreamedResponse:
         self.dlp = resources.DLPWithStreamingResponse(client.dlp)
         self.images = resources.ImagesWithStreamingResponse(client.images)
         self.intel = resources.IntelWithStreamingResponse(client.intel)
-        self.magics = resources.MagicsWithStreamingResponse(client.magics)
-        self.account_members = resources.AccountMembersWithStreamingResponse(client.account_members)
+        self.magic_transit = resources.MagicTransitWithStreamingResponse(client.magic_transit)
         self.mnms = resources.MNMsWithStreamingResponse(client.mnms)
         self.mtls_certificates = resources.MTLSCertificatesWithStreamingResponse(client.mtls_certificates)
         self.pages = resources.PagesWithStreamingResponse(client.pages)
@@ -1162,7 +1111,6 @@ class CloudflareWithStreamedResponse:
         self.rules = resources.RulesWithStreamingResponse(client.rules)
         self.storage = resources.StorageWithStreamingResponse(client.storage)
         self.stream = resources.StreamWithStreamingResponse(client.stream)
-        self.teamnets = resources.TeamnetsWithStreamingResponse(client.teamnets)
         self.gateways = resources.GatewaysWithStreamingResponse(client.gateways)
         self.alerting = resources.AlertingWithStreamingResponse(client.alerting)
         self.devices = resources.DevicesWithStreamingResponse(client.devices)
@@ -1173,10 +1121,7 @@ class CloudflareWithStreamedResponse:
         self.warp_connector = resources.WARPConnectorWithStreamingResponse(client.warp_connector)
         self.dispatchers = resources.DispatchersWithStreamingResponse(client.dispatchers)
         self.workers_for_platforms = resources.WorkersForPlatformsWithStreamingResponse(client.workers_for_platforms)
-        self.worker_domains = resources.WorkerDomainsWithStreamingResponse(client.worker_domains)
-        self.worker_scripts = resources.WorkerScriptsWithStreamingResponse(client.worker_scripts)
-        self.zerotrust = resources.ZerotrustWithStreamingResponse(client.zerotrust)
-        self.addressing = resources.AddressingWithStreamingResponse(client.addressing)
+        self.zero_trust = resources.ZeroTrustWithStreamingResponse(client.zero_trust)
         self.challenges = resources.ChallengesWithStreamingResponse(client.challenges)
         self.hyperdrive = resources.HyperdriveWithStreamingResponse(client.hyperdrive)
         self.rum = resources.RUMWithStreamingResponse(client.rum)
@@ -1187,7 +1132,6 @@ class CloudflareWithStreamedResponse:
         self.origin_post_quantum_encryption = resources.OriginPostQuantumEncryptionWithStreamingResponse(
             client.origin_post_quantum_encryption
         )
-        self.firewall = resources.FirewallWithStreamingResponse(client.firewall)
         self.speed = resources.SpeedWithStreamingResponse(client.speed)
         self.dcv_delegation = resources.DcvDelegationWithStreamingResponse(client.dcv_delegation)
         self.hostnames = resources.HostnamesWithStreamingResponse(client.hostnames)
@@ -1206,7 +1150,6 @@ class AsyncCloudflareWithStreamedResponse:
         self.zones = resources.AsyncZonesWithStreamingResponse(client.zones)
         self.load_balancers = resources.AsyncLoadBalancersWithStreamingResponse(client.load_balancers)
         self.access = resources.AsyncAccessWithStreamingResponse(client.access)
-        self.dns_analytics = resources.AsyncDNSAnalyticsWithStreamingResponse(client.dns_analytics)
         self.cache = resources.AsyncCacheWithStreamingResponse(client.cache)
         self.ssl = resources.AsyncSSLWithStreamingResponse(client.ssl)
         self.subscriptions = resources.AsyncSubscriptionsWithStreamingResponse(client.subscriptions)
@@ -1225,7 +1168,7 @@ class AsyncCloudflareWithStreamedResponse:
         self.dnssec = resources.AsyncDNSSECWithStreamingResponse(client.dnssec)
         self.emails = resources.AsyncEmailsWithStreamingResponse(client.emails)
         self.filters = resources.AsyncFiltersWithStreamingResponse(client.filters)
-        self.firewalls = resources.AsyncFirewallsWithStreamingResponse(client.firewalls)
+        self.firewall = resources.AsyncFirewallWithStreamingResponse(client.firewall)
         self.healthchecks = resources.AsyncHealthchecksWithStreamingResponse(client.healthchecks)
         self.keyless_certificates = resources.AsyncKeylessCertificatesWithStreamingResponse(client.keyless_certificates)
         self.logpush = resources.AsyncLogpushWithStreamingResponse(client.logpush)
@@ -1236,11 +1179,10 @@ class AsyncCloudflareWithStreamedResponse:
         self.pagerules = resources.AsyncPagerulesWithStreamingResponse(client.pagerules)
         self.rate_limits = resources.AsyncRateLimitsWithStreamingResponse(client.rate_limits)
         self.secondary_dns = resources.AsyncSecondaryDNSWithStreamingResponse(client.secondary_dns)
-        self.settings = resources.AsyncSettingsWithStreamingResponse(client.settings)
         self.waiting_rooms = resources.AsyncWaitingRoomsWithStreamingResponse(client.waiting_rooms)
         self.web3 = resources.AsyncWeb3WithStreamingResponse(client.web3)
         self.workers = resources.AsyncWorkersWithStreamingResponse(client.workers)
-        self.activation_checks = resources.AsyncActivationChecksWithStreamingResponse(client.activation_checks)
+        self.kv = resources.AsyncKVWithStreamingResponse(client.kv)
         self.managed_headers = resources.AsyncManagedHeadersWithStreamingResponse(client.managed_headers)
         self.page_shield = resources.AsyncPageShieldWithStreamingResponse(client.page_shield)
         self.rulesets = resources.AsyncRulesetsWithStreamingResponse(client.rulesets)
@@ -1255,8 +1197,7 @@ class AsyncCloudflareWithStreamedResponse:
         self.dlp = resources.AsyncDLPWithStreamingResponse(client.dlp)
         self.images = resources.AsyncImagesWithStreamingResponse(client.images)
         self.intel = resources.AsyncIntelWithStreamingResponse(client.intel)
-        self.magics = resources.AsyncMagicsWithStreamingResponse(client.magics)
-        self.account_members = resources.AsyncAccountMembersWithStreamingResponse(client.account_members)
+        self.magic_transit = resources.AsyncMagicTransitWithStreamingResponse(client.magic_transit)
         self.mnms = resources.AsyncMNMsWithStreamingResponse(client.mnms)
         self.mtls_certificates = resources.AsyncMTLSCertificatesWithStreamingResponse(client.mtls_certificates)
         self.pages = resources.AsyncPagesWithStreamingResponse(client.pages)
@@ -1267,7 +1208,6 @@ class AsyncCloudflareWithStreamedResponse:
         self.rules = resources.AsyncRulesWithStreamingResponse(client.rules)
         self.storage = resources.AsyncStorageWithStreamingResponse(client.storage)
         self.stream = resources.AsyncStreamWithStreamingResponse(client.stream)
-        self.teamnets = resources.AsyncTeamnetsWithStreamingResponse(client.teamnets)
         self.gateways = resources.AsyncGatewaysWithStreamingResponse(client.gateways)
         self.alerting = resources.AsyncAlertingWithStreamingResponse(client.alerting)
         self.devices = resources.AsyncDevicesWithStreamingResponse(client.devices)
@@ -1280,10 +1220,7 @@ class AsyncCloudflareWithStreamedResponse:
         self.workers_for_platforms = resources.AsyncWorkersForPlatformsWithStreamingResponse(
             client.workers_for_platforms
         )
-        self.worker_domains = resources.AsyncWorkerDomainsWithStreamingResponse(client.worker_domains)
-        self.worker_scripts = resources.AsyncWorkerScriptsWithStreamingResponse(client.worker_scripts)
-        self.zerotrust = resources.AsyncZerotrustWithStreamingResponse(client.zerotrust)
-        self.addressing = resources.AsyncAddressingWithStreamingResponse(client.addressing)
+        self.zero_trust = resources.AsyncZeroTrustWithStreamingResponse(client.zero_trust)
         self.challenges = resources.AsyncChallengesWithStreamingResponse(client.challenges)
         self.hyperdrive = resources.AsyncHyperdriveWithStreamingResponse(client.hyperdrive)
         self.rum = resources.AsyncRUMWithStreamingResponse(client.rum)
@@ -1294,7 +1231,6 @@ class AsyncCloudflareWithStreamedResponse:
         self.origin_post_quantum_encryption = resources.AsyncOriginPostQuantumEncryptionWithStreamingResponse(
             client.origin_post_quantum_encryption
         )
-        self.firewall = resources.AsyncFirewallWithStreamingResponse(client.firewall)
         self.speed = resources.AsyncSpeedWithStreamingResponse(client.speed)
         self.dcv_delegation = resources.AsyncDcvDelegationWithStreamingResponse(client.dcv_delegation)
         self.hostnames = resources.AsyncHostnamesWithStreamingResponse(client.hostnames)

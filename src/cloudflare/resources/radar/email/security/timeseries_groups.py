@@ -24,9 +24,19 @@ from ....._base_client import (
 )
 from .....types.radar.email.security import (
     TimeseriesGroupARCResponse,
+    TimeseriesGroupSPFResponse,
     TimeseriesGroupDKIMResponse,
+    TimeseriesGroupSpamResponse,
+    TimeseriesGroupDMARCResponse,
+    TimeseriesGroupMaliciousResponse,
+    TimeseriesGroupThreatCategoryResponse,
     timeseries_group_arc_params,
+    timeseries_group_spf_params,
     timeseries_group_dkim_params,
+    timeseries_group_spam_params,
+    timeseries_group_dmarc_params,
+    timeseries_group_malicious_params,
+    timeseries_group_threat_category_params,
 )
 
 __all__ = ["TimeseriesGroups", "AsyncTimeseriesGroups"]
@@ -261,6 +271,570 @@ class TimeseriesGroups(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupDKIMResponse], ResultWrapper[TimeseriesGroupDKIMResponse]),
         )
 
+    def dmarc(
+        self,
+        *,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[
+            Literal[
+                "1d",
+                "2d",
+                "7d",
+                "14d",
+                "28d",
+                "12w",
+                "24w",
+                "52w",
+                "1dControl",
+                "2dControl",
+                "7dControl",
+                "14dControl",
+                "28dControl",
+                "12wControl",
+                "24wControl",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TimeseriesGroupDMARCResponse:
+        """
+        Percentage distribution of emails classified per DMARC validation over time.
+
+        Args:
+          agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
+              or 1 hour intervals). Refer to
+              [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
+
+          arc: Filter for arc (Authenticated Received Chain).
+
+          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
+              For example, `-174, 3356` excludes results from AS174, but includes results from
+              AS3356.
+
+          date_end: End of the date range (inclusive).
+
+          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
+              week. Use this parameter or set specific start and end dates (`dateStart` and
+              `dateEnd` parameters).
+
+          date_start: Array of datetimes to filter the start of a series.
+
+          dkim: Filter for dkim.
+
+          format: Format results are returned in.
+
+          location: Array of comma separated list of locations (alpha-2 country codes). Start with
+              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
+              but includes results from PT.
+
+          name: Array of names that will be used to name the series in responses.
+
+          spf: Filter for spf.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get(
+            "/radar/email/security/timeseries_groups/dmarc",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "agg_interval": agg_interval,
+                        "arc": arc,
+                        "asn": asn,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "dkim": dkim,
+                        "format": format,
+                        "location": location,
+                        "name": name,
+                        "spf": spf,
+                    },
+                    timeseries_group_dmarc_params.TimeseriesGroupDMARCParams,
+                ),
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[TimeseriesGroupDMARCResponse], ResultWrapper[TimeseriesGroupDMARCResponse]),
+        )
+
+    def malicious(
+        self,
+        *,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[
+            Literal[
+                "1d",
+                "2d",
+                "7d",
+                "14d",
+                "28d",
+                "12w",
+                "24w",
+                "52w",
+                "1dControl",
+                "2dControl",
+                "7dControl",
+                "14dControl",
+                "28dControl",
+                "12wControl",
+                "24wControl",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TimeseriesGroupMaliciousResponse:
+        """
+        Percentage distribution of emails classified as MALICIOUS over time.
+
+        Args:
+          agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
+              or 1 hour intervals). Refer to
+              [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
+
+          arc: Filter for arc (Authenticated Received Chain).
+
+          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
+              For example, `-174, 3356` excludes results from AS174, but includes results from
+              AS3356.
+
+          date_end: End of the date range (inclusive).
+
+          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
+              week. Use this parameter or set specific start and end dates (`dateStart` and
+              `dateEnd` parameters).
+
+          date_start: Array of datetimes to filter the start of a series.
+
+          dkim: Filter for dkim.
+
+          dmarc: Filter for dmarc.
+
+          format: Format results are returned in.
+
+          location: Array of comma separated list of locations (alpha-2 country codes). Start with
+              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
+              but includes results from PT.
+
+          name: Array of names that will be used to name the series in responses.
+
+          spf: Filter for spf.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get(
+            "/radar/email/security/timeseries_groups/malicious",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "agg_interval": agg_interval,
+                        "arc": arc,
+                        "asn": asn,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "dkim": dkim,
+                        "dmarc": dmarc,
+                        "format": format,
+                        "location": location,
+                        "name": name,
+                        "spf": spf,
+                    },
+                    timeseries_group_malicious_params.TimeseriesGroupMaliciousParams,
+                ),
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[TimeseriesGroupMaliciousResponse], ResultWrapper[TimeseriesGroupMaliciousResponse]),
+        )
+
+    def spam(
+        self,
+        *,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[
+            Literal[
+                "1d",
+                "2d",
+                "7d",
+                "14d",
+                "28d",
+                "12w",
+                "24w",
+                "52w",
+                "1dControl",
+                "2dControl",
+                "7dControl",
+                "14dControl",
+                "28dControl",
+                "12wControl",
+                "24wControl",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TimeseriesGroupSpamResponse:
+        """
+        Percentage distribution of emails classified as SPAM over time.
+
+        Args:
+          agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
+              or 1 hour intervals). Refer to
+              [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
+
+          arc: Filter for arc (Authenticated Received Chain).
+
+          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
+              For example, `-174, 3356` excludes results from AS174, but includes results from
+              AS3356.
+
+          date_end: End of the date range (inclusive).
+
+          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
+              week. Use this parameter or set specific start and end dates (`dateStart` and
+              `dateEnd` parameters).
+
+          date_start: Array of datetimes to filter the start of a series.
+
+          dkim: Filter for dkim.
+
+          dmarc: Filter for dmarc.
+
+          format: Format results are returned in.
+
+          location: Array of comma separated list of locations (alpha-2 country codes). Start with
+              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
+              but includes results from PT.
+
+          name: Array of names that will be used to name the series in responses.
+
+          spf: Filter for spf.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get(
+            "/radar/email/security/timeseries_groups/spam",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "agg_interval": agg_interval,
+                        "arc": arc,
+                        "asn": asn,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "dkim": dkim,
+                        "dmarc": dmarc,
+                        "format": format,
+                        "location": location,
+                        "name": name,
+                        "spf": spf,
+                    },
+                    timeseries_group_spam_params.TimeseriesGroupSpamParams,
+                ),
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[TimeseriesGroupSpamResponse], ResultWrapper[TimeseriesGroupSpamResponse]),
+        )
+
+    def spf(
+        self,
+        *,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[
+            Literal[
+                "1d",
+                "2d",
+                "7d",
+                "14d",
+                "28d",
+                "12w",
+                "24w",
+                "52w",
+                "1dControl",
+                "2dControl",
+                "7dControl",
+                "14dControl",
+                "28dControl",
+                "12wControl",
+                "24wControl",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TimeseriesGroupSPFResponse:
+        """
+        Percentage distribution of emails classified per SPF validation over time.
+
+        Args:
+          agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
+              or 1 hour intervals). Refer to
+              [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
+
+          arc: Filter for arc (Authenticated Received Chain).
+
+          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
+              For example, `-174, 3356` excludes results from AS174, but includes results from
+              AS3356.
+
+          date_end: End of the date range (inclusive).
+
+          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
+              week. Use this parameter or set specific start and end dates (`dateStart` and
+              `dateEnd` parameters).
+
+          date_start: Array of datetimes to filter the start of a series.
+
+          dkim: Filter for dkim.
+
+          dmarc: Filter for dmarc.
+
+          format: Format results are returned in.
+
+          location: Array of comma separated list of locations (alpha-2 country codes). Start with
+              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
+              but includes results from PT.
+
+          name: Array of names that will be used to name the series in responses.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get(
+            "/radar/email/security/timeseries_groups/spf",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "agg_interval": agg_interval,
+                        "arc": arc,
+                        "asn": asn,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "dkim": dkim,
+                        "dmarc": dmarc,
+                        "format": format,
+                        "location": location,
+                        "name": name,
+                    },
+                    timeseries_group_spf_params.TimeseriesGroupSPFParams,
+                ),
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[TimeseriesGroupSPFResponse], ResultWrapper[TimeseriesGroupSPFResponse]),
+        )
+
+    def threat_category(
+        self,
+        *,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[
+            Literal[
+                "1d",
+                "2d",
+                "7d",
+                "14d",
+                "28d",
+                "12w",
+                "24w",
+                "52w",
+                "1dControl",
+                "2dControl",
+                "7dControl",
+                "14dControl",
+                "28dControl",
+                "12wControl",
+                "24wControl",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TimeseriesGroupThreatCategoryResponse:
+        """
+        Percentage distribution of emails classified in Threat Categories over time.
+
+        Args:
+          agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
+              or 1 hour intervals). Refer to
+              [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
+
+          arc: Filter for arc (Authenticated Received Chain).
+
+          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
+              For example, `-174, 3356` excludes results from AS174, but includes results from
+              AS3356.
+
+          date_end: End of the date range (inclusive).
+
+          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
+              week. Use this parameter or set specific start and end dates (`dateStart` and
+              `dateEnd` parameters).
+
+          date_start: Array of datetimes to filter the start of a series.
+
+          dkim: Filter for dkim.
+
+          dmarc: Filter for dmarc.
+
+          format: Format results are returned in.
+
+          location: Array of comma separated list of locations (alpha-2 country codes). Start with
+              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
+              but includes results from PT.
+
+          name: Array of names that will be used to name the series in responses.
+
+          spf: Filter for spf.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get(
+            "/radar/email/security/timeseries_groups/threat_category",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "agg_interval": agg_interval,
+                        "arc": arc,
+                        "asn": asn,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "dkim": dkim,
+                        "dmarc": dmarc,
+                        "format": format,
+                        "location": location,
+                        "name": name,
+                        "spf": spf,
+                    },
+                    timeseries_group_threat_category_params.TimeseriesGroupThreatCategoryParams,
+                ),
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(
+                Type[TimeseriesGroupThreatCategoryResponse], ResultWrapper[TimeseriesGroupThreatCategoryResponse]
+            ),
+        )
+
 
 class AsyncTimeseriesGroups(AsyncAPIResource):
     @cached_property
@@ -491,6 +1065,570 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupDKIMResponse], ResultWrapper[TimeseriesGroupDKIMResponse]),
         )
 
+    async def dmarc(
+        self,
+        *,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[
+            Literal[
+                "1d",
+                "2d",
+                "7d",
+                "14d",
+                "28d",
+                "12w",
+                "24w",
+                "52w",
+                "1dControl",
+                "2dControl",
+                "7dControl",
+                "14dControl",
+                "28dControl",
+                "12wControl",
+                "24wControl",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TimeseriesGroupDMARCResponse:
+        """
+        Percentage distribution of emails classified per DMARC validation over time.
+
+        Args:
+          agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
+              or 1 hour intervals). Refer to
+              [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
+
+          arc: Filter for arc (Authenticated Received Chain).
+
+          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
+              For example, `-174, 3356` excludes results from AS174, but includes results from
+              AS3356.
+
+          date_end: End of the date range (inclusive).
+
+          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
+              week. Use this parameter or set specific start and end dates (`dateStart` and
+              `dateEnd` parameters).
+
+          date_start: Array of datetimes to filter the start of a series.
+
+          dkim: Filter for dkim.
+
+          format: Format results are returned in.
+
+          location: Array of comma separated list of locations (alpha-2 country codes). Start with
+              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
+              but includes results from PT.
+
+          name: Array of names that will be used to name the series in responses.
+
+          spf: Filter for spf.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._get(
+            "/radar/email/security/timeseries_groups/dmarc",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "agg_interval": agg_interval,
+                        "arc": arc,
+                        "asn": asn,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "dkim": dkim,
+                        "format": format,
+                        "location": location,
+                        "name": name,
+                        "spf": spf,
+                    },
+                    timeseries_group_dmarc_params.TimeseriesGroupDMARCParams,
+                ),
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[TimeseriesGroupDMARCResponse], ResultWrapper[TimeseriesGroupDMARCResponse]),
+        )
+
+    async def malicious(
+        self,
+        *,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[
+            Literal[
+                "1d",
+                "2d",
+                "7d",
+                "14d",
+                "28d",
+                "12w",
+                "24w",
+                "52w",
+                "1dControl",
+                "2dControl",
+                "7dControl",
+                "14dControl",
+                "28dControl",
+                "12wControl",
+                "24wControl",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TimeseriesGroupMaliciousResponse:
+        """
+        Percentage distribution of emails classified as MALICIOUS over time.
+
+        Args:
+          agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
+              or 1 hour intervals). Refer to
+              [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
+
+          arc: Filter for arc (Authenticated Received Chain).
+
+          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
+              For example, `-174, 3356` excludes results from AS174, but includes results from
+              AS3356.
+
+          date_end: End of the date range (inclusive).
+
+          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
+              week. Use this parameter or set specific start and end dates (`dateStart` and
+              `dateEnd` parameters).
+
+          date_start: Array of datetimes to filter the start of a series.
+
+          dkim: Filter for dkim.
+
+          dmarc: Filter for dmarc.
+
+          format: Format results are returned in.
+
+          location: Array of comma separated list of locations (alpha-2 country codes). Start with
+              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
+              but includes results from PT.
+
+          name: Array of names that will be used to name the series in responses.
+
+          spf: Filter for spf.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._get(
+            "/radar/email/security/timeseries_groups/malicious",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "agg_interval": agg_interval,
+                        "arc": arc,
+                        "asn": asn,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "dkim": dkim,
+                        "dmarc": dmarc,
+                        "format": format,
+                        "location": location,
+                        "name": name,
+                        "spf": spf,
+                    },
+                    timeseries_group_malicious_params.TimeseriesGroupMaliciousParams,
+                ),
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[TimeseriesGroupMaliciousResponse], ResultWrapper[TimeseriesGroupMaliciousResponse]),
+        )
+
+    async def spam(
+        self,
+        *,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[
+            Literal[
+                "1d",
+                "2d",
+                "7d",
+                "14d",
+                "28d",
+                "12w",
+                "24w",
+                "52w",
+                "1dControl",
+                "2dControl",
+                "7dControl",
+                "14dControl",
+                "28dControl",
+                "12wControl",
+                "24wControl",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TimeseriesGroupSpamResponse:
+        """
+        Percentage distribution of emails classified as SPAM over time.
+
+        Args:
+          agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
+              or 1 hour intervals). Refer to
+              [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
+
+          arc: Filter for arc (Authenticated Received Chain).
+
+          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
+              For example, `-174, 3356` excludes results from AS174, but includes results from
+              AS3356.
+
+          date_end: End of the date range (inclusive).
+
+          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
+              week. Use this parameter or set specific start and end dates (`dateStart` and
+              `dateEnd` parameters).
+
+          date_start: Array of datetimes to filter the start of a series.
+
+          dkim: Filter for dkim.
+
+          dmarc: Filter for dmarc.
+
+          format: Format results are returned in.
+
+          location: Array of comma separated list of locations (alpha-2 country codes). Start with
+              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
+              but includes results from PT.
+
+          name: Array of names that will be used to name the series in responses.
+
+          spf: Filter for spf.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._get(
+            "/radar/email/security/timeseries_groups/spam",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "agg_interval": agg_interval,
+                        "arc": arc,
+                        "asn": asn,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "dkim": dkim,
+                        "dmarc": dmarc,
+                        "format": format,
+                        "location": location,
+                        "name": name,
+                        "spf": spf,
+                    },
+                    timeseries_group_spam_params.TimeseriesGroupSpamParams,
+                ),
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[TimeseriesGroupSpamResponse], ResultWrapper[TimeseriesGroupSpamResponse]),
+        )
+
+    async def spf(
+        self,
+        *,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[
+            Literal[
+                "1d",
+                "2d",
+                "7d",
+                "14d",
+                "28d",
+                "12w",
+                "24w",
+                "52w",
+                "1dControl",
+                "2dControl",
+                "7dControl",
+                "14dControl",
+                "28dControl",
+                "12wControl",
+                "24wControl",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TimeseriesGroupSPFResponse:
+        """
+        Percentage distribution of emails classified per SPF validation over time.
+
+        Args:
+          agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
+              or 1 hour intervals). Refer to
+              [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
+
+          arc: Filter for arc (Authenticated Received Chain).
+
+          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
+              For example, `-174, 3356` excludes results from AS174, but includes results from
+              AS3356.
+
+          date_end: End of the date range (inclusive).
+
+          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
+              week. Use this parameter or set specific start and end dates (`dateStart` and
+              `dateEnd` parameters).
+
+          date_start: Array of datetimes to filter the start of a series.
+
+          dkim: Filter for dkim.
+
+          dmarc: Filter for dmarc.
+
+          format: Format results are returned in.
+
+          location: Array of comma separated list of locations (alpha-2 country codes). Start with
+              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
+              but includes results from PT.
+
+          name: Array of names that will be used to name the series in responses.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._get(
+            "/radar/email/security/timeseries_groups/spf",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "agg_interval": agg_interval,
+                        "arc": arc,
+                        "asn": asn,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "dkim": dkim,
+                        "dmarc": dmarc,
+                        "format": format,
+                        "location": location,
+                        "name": name,
+                    },
+                    timeseries_group_spf_params.TimeseriesGroupSPFParams,
+                ),
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[TimeseriesGroupSPFResponse], ResultWrapper[TimeseriesGroupSPFResponse]),
+        )
+
+    async def threat_category(
+        self,
+        *,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[
+            Literal[
+                "1d",
+                "2d",
+                "7d",
+                "14d",
+                "28d",
+                "12w",
+                "24w",
+                "52w",
+                "1dControl",
+                "2dControl",
+                "7dControl",
+                "14dControl",
+                "28dControl",
+                "12wControl",
+                "24wControl",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TimeseriesGroupThreatCategoryResponse:
+        """
+        Percentage distribution of emails classified in Threat Categories over time.
+
+        Args:
+          agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
+              or 1 hour intervals). Refer to
+              [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
+
+          arc: Filter for arc (Authenticated Received Chain).
+
+          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
+              For example, `-174, 3356` excludes results from AS174, but includes results from
+              AS3356.
+
+          date_end: End of the date range (inclusive).
+
+          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
+              week. Use this parameter or set specific start and end dates (`dateStart` and
+              `dateEnd` parameters).
+
+          date_start: Array of datetimes to filter the start of a series.
+
+          dkim: Filter for dkim.
+
+          dmarc: Filter for dmarc.
+
+          format: Format results are returned in.
+
+          location: Array of comma separated list of locations (alpha-2 country codes). Start with
+              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
+              but includes results from PT.
+
+          name: Array of names that will be used to name the series in responses.
+
+          spf: Filter for spf.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._get(
+            "/radar/email/security/timeseries_groups/threat_category",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "agg_interval": agg_interval,
+                        "arc": arc,
+                        "asn": asn,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "dkim": dkim,
+                        "dmarc": dmarc,
+                        "format": format,
+                        "location": location,
+                        "name": name,
+                        "spf": spf,
+                    },
+                    timeseries_group_threat_category_params.TimeseriesGroupThreatCategoryParams,
+                ),
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(
+                Type[TimeseriesGroupThreatCategoryResponse], ResultWrapper[TimeseriesGroupThreatCategoryResponse]
+            ),
+        )
+
 
 class TimeseriesGroupsWithRawResponse:
     def __init__(self, timeseries_groups: TimeseriesGroups) -> None:
@@ -501,6 +1639,21 @@ class TimeseriesGroupsWithRawResponse:
         )
         self.dkim = to_raw_response_wrapper(
             timeseries_groups.dkim,
+        )
+        self.dmarc = to_raw_response_wrapper(
+            timeseries_groups.dmarc,
+        )
+        self.malicious = to_raw_response_wrapper(
+            timeseries_groups.malicious,
+        )
+        self.spam = to_raw_response_wrapper(
+            timeseries_groups.spam,
+        )
+        self.spf = to_raw_response_wrapper(
+            timeseries_groups.spf,
+        )
+        self.threat_category = to_raw_response_wrapper(
+            timeseries_groups.threat_category,
         )
 
 
@@ -514,6 +1667,21 @@ class AsyncTimeseriesGroupsWithRawResponse:
         self.dkim = async_to_raw_response_wrapper(
             timeseries_groups.dkim,
         )
+        self.dmarc = async_to_raw_response_wrapper(
+            timeseries_groups.dmarc,
+        )
+        self.malicious = async_to_raw_response_wrapper(
+            timeseries_groups.malicious,
+        )
+        self.spam = async_to_raw_response_wrapper(
+            timeseries_groups.spam,
+        )
+        self.spf = async_to_raw_response_wrapper(
+            timeseries_groups.spf,
+        )
+        self.threat_category = async_to_raw_response_wrapper(
+            timeseries_groups.threat_category,
+        )
 
 
 class TimeseriesGroupsWithStreamingResponse:
@@ -526,6 +1694,21 @@ class TimeseriesGroupsWithStreamingResponse:
         self.dkim = to_streamed_response_wrapper(
             timeseries_groups.dkim,
         )
+        self.dmarc = to_streamed_response_wrapper(
+            timeseries_groups.dmarc,
+        )
+        self.malicious = to_streamed_response_wrapper(
+            timeseries_groups.malicious,
+        )
+        self.spam = to_streamed_response_wrapper(
+            timeseries_groups.spam,
+        )
+        self.spf = to_streamed_response_wrapper(
+            timeseries_groups.spf,
+        )
+        self.threat_category = to_streamed_response_wrapper(
+            timeseries_groups.threat_category,
+        )
 
 
 class AsyncTimeseriesGroupsWithStreamingResponse:
@@ -537,4 +1720,19 @@ class AsyncTimeseriesGroupsWithStreamingResponse:
         )
         self.dkim = async_to_streamed_response_wrapper(
             timeseries_groups.dkim,
+        )
+        self.dmarc = async_to_streamed_response_wrapper(
+            timeseries_groups.dmarc,
+        )
+        self.malicious = async_to_streamed_response_wrapper(
+            timeseries_groups.malicious,
+        )
+        self.spam = async_to_streamed_response_wrapper(
+            timeseries_groups.spam,
+        )
+        self.spf = async_to_streamed_response_wrapper(
+            timeseries_groups.spf,
+        )
+        self.threat_category = async_to_streamed_response_wrapper(
+            timeseries_groups.threat_category,
         )

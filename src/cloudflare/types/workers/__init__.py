@@ -38,7 +38,3 @@ from .subdomain_update_response import SubdomainUpdateResponse as SubdomainUpdat
 from .account_setting_get_response import AccountSettingGetResponse as AccountSettingGetResponse
 from .account_setting_update_params import AccountSettingUpdateParams as AccountSettingUpdateParams
 from .account_setting_update_response import AccountSettingUpdateResponse as AccountSettingUpdateResponse
-from .deployments_by_script_list_response import DeploymentsByScriptListResponse as DeploymentsByScriptListResponse
-from .deployments_by_script_detail_response import (
-    DeploymentsByScriptDetailResponse as DeploymentsByScriptDetailResponse,
-)

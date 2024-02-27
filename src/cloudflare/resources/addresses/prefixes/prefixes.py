@@ -6,17 +6,17 @@ from typing import Any, Type, Optional, cast
 
 import httpx
 
-from .bgps import (
-    BGPs,
-    AsyncBGPs,
-    BGPsWithRawResponse,
-    AsyncBGPsWithRawResponse,
-    BGPsWithStreamingResponse,
-    AsyncBGPsWithStreamingResponse,
+from .bgp import (
+    BGP,
+    AsyncBGP,
+    BGPWithRawResponse,
+    AsyncBGPWithRawResponse,
+    BGPWithStreamingResponse,
+    AsyncBGPWithStreamingResponse,
 )
+from .bgp.bgp import BGP, AsyncBGP
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._utils import maybe_transform
-from .bgps.bgps import BGPs, AsyncBGPs
 from ...._compat import cached_property
 from .delegations import (
     Delegations,
@@ -52,8 +52,8 @@ __all__ = ["Prefixes", "AsyncPrefixes"]
 
 class Prefixes(SyncAPIResource):
     @cached_property
-    def bgps(self) -> BGPs:
-        return BGPs(self._client)
+    def bgp(self) -> BGP:
+        return BGP(self._client)
 
     @cached_property
     def delegations(self) -> Delegations:
@@ -306,8 +306,8 @@ class Prefixes(SyncAPIResource):
 
 class AsyncPrefixes(AsyncAPIResource):
     @cached_property
-    def bgps(self) -> AsyncBGPs:
-        return AsyncBGPs(self._client)
+    def bgp(self) -> AsyncBGP:
+        return AsyncBGP(self._client)
 
     @cached_property
     def delegations(self) -> AsyncDelegations:
@@ -579,8 +579,8 @@ class PrefixesWithRawResponse:
         )
 
     @cached_property
-    def bgps(self) -> BGPsWithRawResponse:
-        return BGPsWithRawResponse(self._prefixes.bgps)
+    def bgp(self) -> BGPWithRawResponse:
+        return BGPWithRawResponse(self._prefixes.bgp)
 
     @cached_property
     def delegations(self) -> DelegationsWithRawResponse:
@@ -608,8 +608,8 @@ class AsyncPrefixesWithRawResponse:
         )
 
     @cached_property
-    def bgps(self) -> AsyncBGPsWithRawResponse:
-        return AsyncBGPsWithRawResponse(self._prefixes.bgps)
+    def bgp(self) -> AsyncBGPWithRawResponse:
+        return AsyncBGPWithRawResponse(self._prefixes.bgp)
 
     @cached_property
     def delegations(self) -> AsyncDelegationsWithRawResponse:
@@ -637,8 +637,8 @@ class PrefixesWithStreamingResponse:
         )
 
     @cached_property
-    def bgps(self) -> BGPsWithStreamingResponse:
-        return BGPsWithStreamingResponse(self._prefixes.bgps)
+    def bgp(self) -> BGPWithStreamingResponse:
+        return BGPWithStreamingResponse(self._prefixes.bgp)
 
     @cached_property
     def delegations(self) -> DelegationsWithStreamingResponse:
@@ -666,8 +666,8 @@ class AsyncPrefixesWithStreamingResponse:
         )
 
     @cached_property
-    def bgps(self) -> AsyncBGPsWithStreamingResponse:
-        return AsyncBGPsWithStreamingResponse(self._prefixes.bgps)
+    def bgp(self) -> AsyncBGPWithStreamingResponse:
+        return AsyncBGPWithStreamingResponse(self._prefixes.bgp)
 
     @cached_property
     def delegations(self) -> AsyncDelegationsWithStreamingResponse:
