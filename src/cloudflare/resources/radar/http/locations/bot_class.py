@@ -41,6 +41,7 @@ class BotClass(SyncAPIResource):
         bot_class: Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
         *,
         asn: List[str] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -94,6 +95,10 @@ class BotClass(SyncAPIResource):
           asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
               For example, `-174, 3356` excludes results from AS174, but includes results from
               AS3356.
+
+          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
+              with `-` to exclude from results. For example, `-EU,NA` excludes results from
+              Europe, but includes results from North America.
 
           date_end: End of the date range (inclusive).
 
@@ -145,6 +150,7 @@ class BotClass(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "asn": asn,
+                        "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
@@ -181,6 +187,7 @@ class AsyncBotClass(AsyncAPIResource):
         bot_class: Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
         *,
         asn: List[str] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -235,6 +242,10 @@ class AsyncBotClass(AsyncAPIResource):
               For example, `-174, 3356` excludes results from AS174, but includes results from
               AS3356.
 
+          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
+              with `-` to exclude from results. For example, `-EU,NA` excludes results from
+              Europe, but includes results from North America.
+
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -285,6 +296,7 @@ class AsyncBotClass(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "asn": asn,
+                        "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,

@@ -36,6 +36,7 @@ class TestSummary:
     def test_method_dnssec_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.as112.summary.dnssec(
             asn=["string", "string", "string"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -86,6 +87,7 @@ class TestSummary:
     def test_method_edns_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.as112.summary.edns(
             asn=["string", "string", "string"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -136,6 +138,7 @@ class TestSummary:
     def test_method_ip_version_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.as112.summary.ip_version(
             asn=["string", "string", "string"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -186,6 +189,7 @@ class TestSummary:
     def test_method_protocol_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.as112.summary.protocol(
             asn=["string", "string", "string"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -236,6 +240,7 @@ class TestSummary:
     def test_method_query_type_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.as112.summary.query_type(
             asn=["string", "string", "string"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -286,6 +291,7 @@ class TestSummary:
     def test_method_response_codes_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.as112.summary.response_codes(
             asn=["string", "string", "string"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -340,6 +346,7 @@ class TestAsyncSummary:
     async def test_method_dnssec_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.as112.summary.dnssec(
             asn=["string", "string", "string"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -390,6 +397,7 @@ class TestAsyncSummary:
     async def test_method_edns_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.as112.summary.edns(
             asn=["string", "string", "string"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -440,6 +448,7 @@ class TestAsyncSummary:
     async def test_method_ip_version_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.as112.summary.ip_version(
             asn=["string", "string", "string"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -490,6 +499,7 @@ class TestAsyncSummary:
     async def test_method_protocol_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.as112.summary.protocol(
             asn=["string", "string", "string"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -540,6 +550,7 @@ class TestAsyncSummary:
     async def test_method_query_type_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.as112.summary.query_type(
             asn=["string", "string", "string"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -590,6 +601,7 @@ class TestAsyncSummary:
     async def test_method_response_codes_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.as112.summary.response_codes(
             asn=["string", "string", "string"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),

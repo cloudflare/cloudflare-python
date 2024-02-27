@@ -37,6 +37,7 @@ class TestTop:
         top = client.radar.as112.top.dnssec(
             "SUPPORTED",
             asn=["string", "string", "string"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -95,6 +96,7 @@ class TestTop:
         top = client.radar.as112.top.edns(
             "SUPPORTED",
             asn=["string", "string", "string"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -153,6 +155,7 @@ class TestTop:
         top = client.radar.as112.top.ip_version(
             "IPv4",
             asn=["string", "string", "string"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -208,6 +211,7 @@ class TestTop:
     def test_method_locations_with_all_params(self, client: Cloudflare) -> None:
         top = client.radar.as112.top.locations(
             asn=["string", "string", "string"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -266,6 +270,7 @@ class TestAsyncTop:
         top = await async_client.radar.as112.top.dnssec(
             "SUPPORTED",
             asn=["string", "string", "string"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -324,6 +329,7 @@ class TestAsyncTop:
         top = await async_client.radar.as112.top.edns(
             "SUPPORTED",
             asn=["string", "string", "string"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -382,6 +388,7 @@ class TestAsyncTop:
         top = await async_client.radar.as112.top.ip_version(
             "IPv4",
             asn=["string", "string", "string"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -437,6 +444,7 @@ class TestAsyncTop:
     async def test_method_locations_with_all_params(self, async_client: AsyncCloudflare) -> None:
         top = await async_client.radar.as112.top.locations(
             asn=["string", "string", "string"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),

@@ -31,6 +31,13 @@ class Layer7TimeseriesParams(TypedDict, total=False):
     ]
     """Array of L7 attack types."""
 
+    continent: List[str]
+    """Array of comma separated list of continents (alpha-2 continent codes).
+
+    Start with `-` to exclude from results. For example, `-EU,NA` excludes results
+    from Europe, but includes results from North America.
+    """
+
     date_end: Annotated[List[Union[str, datetime]], PropertyInfo(alias="dateEnd", format="iso8601")]
     """End of the date range (inclusive)."""
 
