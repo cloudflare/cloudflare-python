@@ -225,7 +225,8 @@ class WaitingRoomEditResponse(BaseModel):
 
     An example cURL to a waiting room could be:
 
-        curl -X GET "https://example.com/waitingroom" \    	-H "Accept: application/json"
+        curl -X GET "https://example.com/waitingroom" \\
+        	-H "Accept: application/json"
 
     If `json_response_enabled` is **true** and the request hits the waiting room, an
     example JSON response when `queueingMethod` is **fifo** and no event is active

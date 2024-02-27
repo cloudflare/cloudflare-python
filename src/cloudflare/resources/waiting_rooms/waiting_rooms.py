@@ -293,38 +293,39 @@ class WaitingRooms(SyncAPIResource):
 
               An example cURL to a waiting room could be:
 
-                  curl -X GET "https://example.com/waitingroom" \          	-H "Accept: application/json"
+                  curl -X GET "https://example.com/waitingroom" \\
+                  	-H "Accept: application/json"
 
               If `json_response_enabled` is **true** and the request hits the waiting room, an
               example JSON response when `queueingMethod` is **fifo** and no event is active
               could be:
 
                   {
-                        "cfWaitingRoom": {
-                                "inWaitingRoom": true,
-                                "waitTimeKnown": true,
-                                "waitTime": 10,
-                                "waitTime25Percentile": 0,
-                                "waitTime50Percentile": 0,
-                                "waitTime75Percentile": 0,
-                                "waitTimeFormatted": "10 minutes",
-                                "queueIsFull": false,
-                                "queueAll": false,
-                                "lastUpdated": "2020-08-03T23:46:00.000Z",
-                                "refreshIntervalSeconds": 20,
-                                "queueingMethod": "fifo",
-                                "isFIFOQueue": true,
-                                "isRandomQueue": false,
-                                "isPassthroughQueue": false,
-                                "isRejectQueue": false,
-                                "isEventActive": false,
-                                "isEventPrequeueing": false,
-                                "timeUntilEventStart": 0,
-                                "timeUntilEventStartFormatted": "unavailable",
-                                "timeUntilEventEnd": 0,
-                                "timeUntilEventEndFormatted": "unavailable",
-                                "shuffleAtEventStart": false
-                        }
+                  	"cfWaitingRoom": {
+                  		"inWaitingRoom": true,
+                  		"waitTimeKnown": true,
+                  		"waitTime": 10,
+                  		"waitTime25Percentile": 0,
+                  		"waitTime50Percentile": 0,
+                  		"waitTime75Percentile": 0,
+                  		"waitTimeFormatted": "10 minutes",
+                  		"queueIsFull": false,
+                  		"queueAll": false,
+                  		"lastUpdated": "2020-08-03T23:46:00.000Z",
+                  		"refreshIntervalSeconds": 20,
+                  		"queueingMethod": "fifo",
+                  		"isFIFOQueue": true,
+                  		"isRandomQueue": false,
+                  		"isPassthroughQueue": false,
+                  		"isRejectQueue": false,
+                  		"isEventActive": false,
+                  		"isEventPrequeueing": false,
+                  		"timeUntilEventStart": 0,
+                  		"timeUntilEventStartFormatted": "unavailable",
+                  		"timeUntilEventEnd": 0,
+                  		"timeUntilEventEndFormatted": "unavailable",
+                  		"shuffleAtEventStart": false
+                  	}
                   }
 
               If `json_response_enabled` is **true** and the request hits the waiting room, an
@@ -332,31 +333,31 @@ class WaitingRooms(SyncAPIResource):
               could be:
 
                   {
-                        "cfWaitingRoom": {
-                                "inWaitingRoom": true,
-                                "waitTimeKnown": true,
-                                "waitTime": 10,
-                                "waitTime25Percentile": 5,
-                                "waitTime50Percentile": 10,
-                                "waitTime75Percentile": 15,
-                                "waitTimeFormatted": "5 minutes to 15 minutes",
-                                "queueIsFull": false,
-                                "queueAll": false,
-                                "lastUpdated": "2020-08-03T23:46:00.000Z",
-                                "refreshIntervalSeconds": 20,
-                                "queueingMethod": "random",
-                                "isFIFOQueue": false,
-                                "isRandomQueue": true,
-                                "isPassthroughQueue": false,
-                                "isRejectQueue": false,
-                                "isEventActive": true,
-                                "isEventPrequeueing": false,
-                                "timeUntilEventStart": 0,
-                                "timeUntilEventStartFormatted": "unavailable",
-                                "timeUntilEventEnd": 15,
-                                "timeUntilEventEndFormatted": "15 minutes",
-                                "shuffleAtEventStart": true
-                        }
+                  	"cfWaitingRoom": {
+                  		"inWaitingRoom": true,
+                  		"waitTimeKnown": true,
+                  		"waitTime": 10,
+                  		"waitTime25Percentile": 5,
+                  		"waitTime50Percentile": 10,
+                  		"waitTime75Percentile": 15,
+                  		"waitTimeFormatted": "5 minutes to 15 minutes",
+                  		"queueIsFull": false,
+                  		"queueAll": false,
+                  		"lastUpdated": "2020-08-03T23:46:00.000Z",
+                  		"refreshIntervalSeconds": 20,
+                  		"queueingMethod": "random",
+                  		"isFIFOQueue": false,
+                  		"isRandomQueue": true,
+                  		"isPassthroughQueue": false,
+                  		"isRejectQueue": false,
+                  		"isEventActive": true,
+                  		"isEventPrequeueing": false,
+                  		"timeUntilEventStart": 0,
+                  		"timeUntilEventStartFormatted": "unavailable",
+                  		"timeUntilEventEnd": 15,
+                  		"timeUntilEventEndFormatted": "15 minutes",
+                  		"shuffleAtEventStart": true
+                  	}
                   }.
 
           path: Sets the path within the host to enable the waiting room on. The waiting room
@@ -648,38 +649,39 @@ class WaitingRooms(SyncAPIResource):
 
               An example cURL to a waiting room could be:
 
-                  curl -X GET "https://example.com/waitingroom" \          	-H "Accept: application/json"
+                  curl -X GET "https://example.com/waitingroom" \\
+                  	-H "Accept: application/json"
 
               If `json_response_enabled` is **true** and the request hits the waiting room, an
               example JSON response when `queueingMethod` is **fifo** and no event is active
               could be:
 
                   {
-                        "cfWaitingRoom": {
-                                "inWaitingRoom": true,
-                                "waitTimeKnown": true,
-                                "waitTime": 10,
-                                "waitTime25Percentile": 0,
-                                "waitTime50Percentile": 0,
-                                "waitTime75Percentile": 0,
-                                "waitTimeFormatted": "10 minutes",
-                                "queueIsFull": false,
-                                "queueAll": false,
-                                "lastUpdated": "2020-08-03T23:46:00.000Z",
-                                "refreshIntervalSeconds": 20,
-                                "queueingMethod": "fifo",
-                                "isFIFOQueue": true,
-                                "isRandomQueue": false,
-                                "isPassthroughQueue": false,
-                                "isRejectQueue": false,
-                                "isEventActive": false,
-                                "isEventPrequeueing": false,
-                                "timeUntilEventStart": 0,
-                                "timeUntilEventStartFormatted": "unavailable",
-                                "timeUntilEventEnd": 0,
-                                "timeUntilEventEndFormatted": "unavailable",
-                                "shuffleAtEventStart": false
-                        }
+                  	"cfWaitingRoom": {
+                  		"inWaitingRoom": true,
+                  		"waitTimeKnown": true,
+                  		"waitTime": 10,
+                  		"waitTime25Percentile": 0,
+                  		"waitTime50Percentile": 0,
+                  		"waitTime75Percentile": 0,
+                  		"waitTimeFormatted": "10 minutes",
+                  		"queueIsFull": false,
+                  		"queueAll": false,
+                  		"lastUpdated": "2020-08-03T23:46:00.000Z",
+                  		"refreshIntervalSeconds": 20,
+                  		"queueingMethod": "fifo",
+                  		"isFIFOQueue": true,
+                  		"isRandomQueue": false,
+                  		"isPassthroughQueue": false,
+                  		"isRejectQueue": false,
+                  		"isEventActive": false,
+                  		"isEventPrequeueing": false,
+                  		"timeUntilEventStart": 0,
+                  		"timeUntilEventStartFormatted": "unavailable",
+                  		"timeUntilEventEnd": 0,
+                  		"timeUntilEventEndFormatted": "unavailable",
+                  		"shuffleAtEventStart": false
+                  	}
                   }
 
               If `json_response_enabled` is **true** and the request hits the waiting room, an
@@ -687,31 +689,31 @@ class WaitingRooms(SyncAPIResource):
               could be:
 
                   {
-                        "cfWaitingRoom": {
-                                "inWaitingRoom": true,
-                                "waitTimeKnown": true,
-                                "waitTime": 10,
-                                "waitTime25Percentile": 5,
-                                "waitTime50Percentile": 10,
-                                "waitTime75Percentile": 15,
-                                "waitTimeFormatted": "5 minutes to 15 minutes",
-                                "queueIsFull": false,
-                                "queueAll": false,
-                                "lastUpdated": "2020-08-03T23:46:00.000Z",
-                                "refreshIntervalSeconds": 20,
-                                "queueingMethod": "random",
-                                "isFIFOQueue": false,
-                                "isRandomQueue": true,
-                                "isPassthroughQueue": false,
-                                "isRejectQueue": false,
-                                "isEventActive": true,
-                                "isEventPrequeueing": false,
-                                "timeUntilEventStart": 0,
-                                "timeUntilEventStartFormatted": "unavailable",
-                                "timeUntilEventEnd": 15,
-                                "timeUntilEventEndFormatted": "15 minutes",
-                                "shuffleAtEventStart": true
-                        }
+                  	"cfWaitingRoom": {
+                  		"inWaitingRoom": true,
+                  		"waitTimeKnown": true,
+                  		"waitTime": 10,
+                  		"waitTime25Percentile": 5,
+                  		"waitTime50Percentile": 10,
+                  		"waitTime75Percentile": 15,
+                  		"waitTimeFormatted": "5 minutes to 15 minutes",
+                  		"queueIsFull": false,
+                  		"queueAll": false,
+                  		"lastUpdated": "2020-08-03T23:46:00.000Z",
+                  		"refreshIntervalSeconds": 20,
+                  		"queueingMethod": "random",
+                  		"isFIFOQueue": false,
+                  		"isRandomQueue": true,
+                  		"isPassthroughQueue": false,
+                  		"isRejectQueue": false,
+                  		"isEventActive": true,
+                  		"isEventPrequeueing": false,
+                  		"timeUntilEventStart": 0,
+                  		"timeUntilEventStartFormatted": "unavailable",
+                  		"timeUntilEventEnd": 15,
+                  		"timeUntilEventEndFormatted": "15 minutes",
+                  		"shuffleAtEventStart": true
+                  	}
                   }.
 
           path: Sets the path within the host to enable the waiting room on. The waiting room
@@ -1082,38 +1084,39 @@ class WaitingRooms(SyncAPIResource):
 
               An example cURL to a waiting room could be:
 
-                  curl -X GET "https://example.com/waitingroom" \          	-H "Accept: application/json"
+                  curl -X GET "https://example.com/waitingroom" \\
+                  	-H "Accept: application/json"
 
               If `json_response_enabled` is **true** and the request hits the waiting room, an
               example JSON response when `queueingMethod` is **fifo** and no event is active
               could be:
 
                   {
-                        "cfWaitingRoom": {
-                                "inWaitingRoom": true,
-                                "waitTimeKnown": true,
-                                "waitTime": 10,
-                                "waitTime25Percentile": 0,
-                                "waitTime50Percentile": 0,
-                                "waitTime75Percentile": 0,
-                                "waitTimeFormatted": "10 minutes",
-                                "queueIsFull": false,
-                                "queueAll": false,
-                                "lastUpdated": "2020-08-03T23:46:00.000Z",
-                                "refreshIntervalSeconds": 20,
-                                "queueingMethod": "fifo",
-                                "isFIFOQueue": true,
-                                "isRandomQueue": false,
-                                "isPassthroughQueue": false,
-                                "isRejectQueue": false,
-                                "isEventActive": false,
-                                "isEventPrequeueing": false,
-                                "timeUntilEventStart": 0,
-                                "timeUntilEventStartFormatted": "unavailable",
-                                "timeUntilEventEnd": 0,
-                                "timeUntilEventEndFormatted": "unavailable",
-                                "shuffleAtEventStart": false
-                        }
+                  	"cfWaitingRoom": {
+                  		"inWaitingRoom": true,
+                  		"waitTimeKnown": true,
+                  		"waitTime": 10,
+                  		"waitTime25Percentile": 0,
+                  		"waitTime50Percentile": 0,
+                  		"waitTime75Percentile": 0,
+                  		"waitTimeFormatted": "10 minutes",
+                  		"queueIsFull": false,
+                  		"queueAll": false,
+                  		"lastUpdated": "2020-08-03T23:46:00.000Z",
+                  		"refreshIntervalSeconds": 20,
+                  		"queueingMethod": "fifo",
+                  		"isFIFOQueue": true,
+                  		"isRandomQueue": false,
+                  		"isPassthroughQueue": false,
+                  		"isRejectQueue": false,
+                  		"isEventActive": false,
+                  		"isEventPrequeueing": false,
+                  		"timeUntilEventStart": 0,
+                  		"timeUntilEventStartFormatted": "unavailable",
+                  		"timeUntilEventEnd": 0,
+                  		"timeUntilEventEndFormatted": "unavailable",
+                  		"shuffleAtEventStart": false
+                  	}
                   }
 
               If `json_response_enabled` is **true** and the request hits the waiting room, an
@@ -1121,31 +1124,31 @@ class WaitingRooms(SyncAPIResource):
               could be:
 
                   {
-                        "cfWaitingRoom": {
-                                "inWaitingRoom": true,
-                                "waitTimeKnown": true,
-                                "waitTime": 10,
-                                "waitTime25Percentile": 5,
-                                "waitTime50Percentile": 10,
-                                "waitTime75Percentile": 15,
-                                "waitTimeFormatted": "5 minutes to 15 minutes",
-                                "queueIsFull": false,
-                                "queueAll": false,
-                                "lastUpdated": "2020-08-03T23:46:00.000Z",
-                                "refreshIntervalSeconds": 20,
-                                "queueingMethod": "random",
-                                "isFIFOQueue": false,
-                                "isRandomQueue": true,
-                                "isPassthroughQueue": false,
-                                "isRejectQueue": false,
-                                "isEventActive": true,
-                                "isEventPrequeueing": false,
-                                "timeUntilEventStart": 0,
-                                "timeUntilEventStartFormatted": "unavailable",
-                                "timeUntilEventEnd": 15,
-                                "timeUntilEventEndFormatted": "15 minutes",
-                                "shuffleAtEventStart": true
-                        }
+                  	"cfWaitingRoom": {
+                  		"inWaitingRoom": true,
+                  		"waitTimeKnown": true,
+                  		"waitTime": 10,
+                  		"waitTime25Percentile": 5,
+                  		"waitTime50Percentile": 10,
+                  		"waitTime75Percentile": 15,
+                  		"waitTimeFormatted": "5 minutes to 15 minutes",
+                  		"queueIsFull": false,
+                  		"queueAll": false,
+                  		"lastUpdated": "2020-08-03T23:46:00.000Z",
+                  		"refreshIntervalSeconds": 20,
+                  		"queueingMethod": "random",
+                  		"isFIFOQueue": false,
+                  		"isRandomQueue": true,
+                  		"isPassthroughQueue": false,
+                  		"isRejectQueue": false,
+                  		"isEventActive": true,
+                  		"isEventPrequeueing": false,
+                  		"timeUntilEventStart": 0,
+                  		"timeUntilEventStartFormatted": "unavailable",
+                  		"timeUntilEventEnd": 15,
+                  		"timeUntilEventEndFormatted": "15 minutes",
+                  		"shuffleAtEventStart": true
+                  	}
                   }.
 
           path: Sets the path within the host to enable the waiting room on. The waiting room
@@ -1601,38 +1604,39 @@ class AsyncWaitingRooms(AsyncAPIResource):
 
               An example cURL to a waiting room could be:
 
-                  curl -X GET "https://example.com/waitingroom" \          	-H "Accept: application/json"
+                  curl -X GET "https://example.com/waitingroom" \\
+                  	-H "Accept: application/json"
 
               If `json_response_enabled` is **true** and the request hits the waiting room, an
               example JSON response when `queueingMethod` is **fifo** and no event is active
               could be:
 
                   {
-                        "cfWaitingRoom": {
-                                "inWaitingRoom": true,
-                                "waitTimeKnown": true,
-                                "waitTime": 10,
-                                "waitTime25Percentile": 0,
-                                "waitTime50Percentile": 0,
-                                "waitTime75Percentile": 0,
-                                "waitTimeFormatted": "10 minutes",
-                                "queueIsFull": false,
-                                "queueAll": false,
-                                "lastUpdated": "2020-08-03T23:46:00.000Z",
-                                "refreshIntervalSeconds": 20,
-                                "queueingMethod": "fifo",
-                                "isFIFOQueue": true,
-                                "isRandomQueue": false,
-                                "isPassthroughQueue": false,
-                                "isRejectQueue": false,
-                                "isEventActive": false,
-                                "isEventPrequeueing": false,
-                                "timeUntilEventStart": 0,
-                                "timeUntilEventStartFormatted": "unavailable",
-                                "timeUntilEventEnd": 0,
-                                "timeUntilEventEndFormatted": "unavailable",
-                                "shuffleAtEventStart": false
-                        }
+                  	"cfWaitingRoom": {
+                  		"inWaitingRoom": true,
+                  		"waitTimeKnown": true,
+                  		"waitTime": 10,
+                  		"waitTime25Percentile": 0,
+                  		"waitTime50Percentile": 0,
+                  		"waitTime75Percentile": 0,
+                  		"waitTimeFormatted": "10 minutes",
+                  		"queueIsFull": false,
+                  		"queueAll": false,
+                  		"lastUpdated": "2020-08-03T23:46:00.000Z",
+                  		"refreshIntervalSeconds": 20,
+                  		"queueingMethod": "fifo",
+                  		"isFIFOQueue": true,
+                  		"isRandomQueue": false,
+                  		"isPassthroughQueue": false,
+                  		"isRejectQueue": false,
+                  		"isEventActive": false,
+                  		"isEventPrequeueing": false,
+                  		"timeUntilEventStart": 0,
+                  		"timeUntilEventStartFormatted": "unavailable",
+                  		"timeUntilEventEnd": 0,
+                  		"timeUntilEventEndFormatted": "unavailable",
+                  		"shuffleAtEventStart": false
+                  	}
                   }
 
               If `json_response_enabled` is **true** and the request hits the waiting room, an
@@ -1640,31 +1644,31 @@ class AsyncWaitingRooms(AsyncAPIResource):
               could be:
 
                   {
-                        "cfWaitingRoom": {
-                                "inWaitingRoom": true,
-                                "waitTimeKnown": true,
-                                "waitTime": 10,
-                                "waitTime25Percentile": 5,
-                                "waitTime50Percentile": 10,
-                                "waitTime75Percentile": 15,
-                                "waitTimeFormatted": "5 minutes to 15 minutes",
-                                "queueIsFull": false,
-                                "queueAll": false,
-                                "lastUpdated": "2020-08-03T23:46:00.000Z",
-                                "refreshIntervalSeconds": 20,
-                                "queueingMethod": "random",
-                                "isFIFOQueue": false,
-                                "isRandomQueue": true,
-                                "isPassthroughQueue": false,
-                                "isRejectQueue": false,
-                                "isEventActive": true,
-                                "isEventPrequeueing": false,
-                                "timeUntilEventStart": 0,
-                                "timeUntilEventStartFormatted": "unavailable",
-                                "timeUntilEventEnd": 15,
-                                "timeUntilEventEndFormatted": "15 minutes",
-                                "shuffleAtEventStart": true
-                        }
+                  	"cfWaitingRoom": {
+                  		"inWaitingRoom": true,
+                  		"waitTimeKnown": true,
+                  		"waitTime": 10,
+                  		"waitTime25Percentile": 5,
+                  		"waitTime50Percentile": 10,
+                  		"waitTime75Percentile": 15,
+                  		"waitTimeFormatted": "5 minutes to 15 minutes",
+                  		"queueIsFull": false,
+                  		"queueAll": false,
+                  		"lastUpdated": "2020-08-03T23:46:00.000Z",
+                  		"refreshIntervalSeconds": 20,
+                  		"queueingMethod": "random",
+                  		"isFIFOQueue": false,
+                  		"isRandomQueue": true,
+                  		"isPassthroughQueue": false,
+                  		"isRejectQueue": false,
+                  		"isEventActive": true,
+                  		"isEventPrequeueing": false,
+                  		"timeUntilEventStart": 0,
+                  		"timeUntilEventStartFormatted": "unavailable",
+                  		"timeUntilEventEnd": 15,
+                  		"timeUntilEventEndFormatted": "15 minutes",
+                  		"shuffleAtEventStart": true
+                  	}
                   }.
 
           path: Sets the path within the host to enable the waiting room on. The waiting room
@@ -1956,38 +1960,39 @@ class AsyncWaitingRooms(AsyncAPIResource):
 
               An example cURL to a waiting room could be:
 
-                  curl -X GET "https://example.com/waitingroom" \          	-H "Accept: application/json"
+                  curl -X GET "https://example.com/waitingroom" \\
+                  	-H "Accept: application/json"
 
               If `json_response_enabled` is **true** and the request hits the waiting room, an
               example JSON response when `queueingMethod` is **fifo** and no event is active
               could be:
 
                   {
-                        "cfWaitingRoom": {
-                                "inWaitingRoom": true,
-                                "waitTimeKnown": true,
-                                "waitTime": 10,
-                                "waitTime25Percentile": 0,
-                                "waitTime50Percentile": 0,
-                                "waitTime75Percentile": 0,
-                                "waitTimeFormatted": "10 minutes",
-                                "queueIsFull": false,
-                                "queueAll": false,
-                                "lastUpdated": "2020-08-03T23:46:00.000Z",
-                                "refreshIntervalSeconds": 20,
-                                "queueingMethod": "fifo",
-                                "isFIFOQueue": true,
-                                "isRandomQueue": false,
-                                "isPassthroughQueue": false,
-                                "isRejectQueue": false,
-                                "isEventActive": false,
-                                "isEventPrequeueing": false,
-                                "timeUntilEventStart": 0,
-                                "timeUntilEventStartFormatted": "unavailable",
-                                "timeUntilEventEnd": 0,
-                                "timeUntilEventEndFormatted": "unavailable",
-                                "shuffleAtEventStart": false
-                        }
+                  	"cfWaitingRoom": {
+                  		"inWaitingRoom": true,
+                  		"waitTimeKnown": true,
+                  		"waitTime": 10,
+                  		"waitTime25Percentile": 0,
+                  		"waitTime50Percentile": 0,
+                  		"waitTime75Percentile": 0,
+                  		"waitTimeFormatted": "10 minutes",
+                  		"queueIsFull": false,
+                  		"queueAll": false,
+                  		"lastUpdated": "2020-08-03T23:46:00.000Z",
+                  		"refreshIntervalSeconds": 20,
+                  		"queueingMethod": "fifo",
+                  		"isFIFOQueue": true,
+                  		"isRandomQueue": false,
+                  		"isPassthroughQueue": false,
+                  		"isRejectQueue": false,
+                  		"isEventActive": false,
+                  		"isEventPrequeueing": false,
+                  		"timeUntilEventStart": 0,
+                  		"timeUntilEventStartFormatted": "unavailable",
+                  		"timeUntilEventEnd": 0,
+                  		"timeUntilEventEndFormatted": "unavailable",
+                  		"shuffleAtEventStart": false
+                  	}
                   }
 
               If `json_response_enabled` is **true** and the request hits the waiting room, an
@@ -1995,31 +2000,31 @@ class AsyncWaitingRooms(AsyncAPIResource):
               could be:
 
                   {
-                        "cfWaitingRoom": {
-                                "inWaitingRoom": true,
-                                "waitTimeKnown": true,
-                                "waitTime": 10,
-                                "waitTime25Percentile": 5,
-                                "waitTime50Percentile": 10,
-                                "waitTime75Percentile": 15,
-                                "waitTimeFormatted": "5 minutes to 15 minutes",
-                                "queueIsFull": false,
-                                "queueAll": false,
-                                "lastUpdated": "2020-08-03T23:46:00.000Z",
-                                "refreshIntervalSeconds": 20,
-                                "queueingMethod": "random",
-                                "isFIFOQueue": false,
-                                "isRandomQueue": true,
-                                "isPassthroughQueue": false,
-                                "isRejectQueue": false,
-                                "isEventActive": true,
-                                "isEventPrequeueing": false,
-                                "timeUntilEventStart": 0,
-                                "timeUntilEventStartFormatted": "unavailable",
-                                "timeUntilEventEnd": 15,
-                                "timeUntilEventEndFormatted": "15 minutes",
-                                "shuffleAtEventStart": true
-                        }
+                  	"cfWaitingRoom": {
+                  		"inWaitingRoom": true,
+                  		"waitTimeKnown": true,
+                  		"waitTime": 10,
+                  		"waitTime25Percentile": 5,
+                  		"waitTime50Percentile": 10,
+                  		"waitTime75Percentile": 15,
+                  		"waitTimeFormatted": "5 minutes to 15 minutes",
+                  		"queueIsFull": false,
+                  		"queueAll": false,
+                  		"lastUpdated": "2020-08-03T23:46:00.000Z",
+                  		"refreshIntervalSeconds": 20,
+                  		"queueingMethod": "random",
+                  		"isFIFOQueue": false,
+                  		"isRandomQueue": true,
+                  		"isPassthroughQueue": false,
+                  		"isRejectQueue": false,
+                  		"isEventActive": true,
+                  		"isEventPrequeueing": false,
+                  		"timeUntilEventStart": 0,
+                  		"timeUntilEventStartFormatted": "unavailable",
+                  		"timeUntilEventEnd": 15,
+                  		"timeUntilEventEndFormatted": "15 minutes",
+                  		"shuffleAtEventStart": true
+                  	}
                   }.
 
           path: Sets the path within the host to enable the waiting room on. The waiting room
@@ -2390,38 +2395,39 @@ class AsyncWaitingRooms(AsyncAPIResource):
 
               An example cURL to a waiting room could be:
 
-                  curl -X GET "https://example.com/waitingroom" \          	-H "Accept: application/json"
+                  curl -X GET "https://example.com/waitingroom" \\
+                  	-H "Accept: application/json"
 
               If `json_response_enabled` is **true** and the request hits the waiting room, an
               example JSON response when `queueingMethod` is **fifo** and no event is active
               could be:
 
                   {
-                        "cfWaitingRoom": {
-                                "inWaitingRoom": true,
-                                "waitTimeKnown": true,
-                                "waitTime": 10,
-                                "waitTime25Percentile": 0,
-                                "waitTime50Percentile": 0,
-                                "waitTime75Percentile": 0,
-                                "waitTimeFormatted": "10 minutes",
-                                "queueIsFull": false,
-                                "queueAll": false,
-                                "lastUpdated": "2020-08-03T23:46:00.000Z",
-                                "refreshIntervalSeconds": 20,
-                                "queueingMethod": "fifo",
-                                "isFIFOQueue": true,
-                                "isRandomQueue": false,
-                                "isPassthroughQueue": false,
-                                "isRejectQueue": false,
-                                "isEventActive": false,
-                                "isEventPrequeueing": false,
-                                "timeUntilEventStart": 0,
-                                "timeUntilEventStartFormatted": "unavailable",
-                                "timeUntilEventEnd": 0,
-                                "timeUntilEventEndFormatted": "unavailable",
-                                "shuffleAtEventStart": false
-                        }
+                  	"cfWaitingRoom": {
+                  		"inWaitingRoom": true,
+                  		"waitTimeKnown": true,
+                  		"waitTime": 10,
+                  		"waitTime25Percentile": 0,
+                  		"waitTime50Percentile": 0,
+                  		"waitTime75Percentile": 0,
+                  		"waitTimeFormatted": "10 minutes",
+                  		"queueIsFull": false,
+                  		"queueAll": false,
+                  		"lastUpdated": "2020-08-03T23:46:00.000Z",
+                  		"refreshIntervalSeconds": 20,
+                  		"queueingMethod": "fifo",
+                  		"isFIFOQueue": true,
+                  		"isRandomQueue": false,
+                  		"isPassthroughQueue": false,
+                  		"isRejectQueue": false,
+                  		"isEventActive": false,
+                  		"isEventPrequeueing": false,
+                  		"timeUntilEventStart": 0,
+                  		"timeUntilEventStartFormatted": "unavailable",
+                  		"timeUntilEventEnd": 0,
+                  		"timeUntilEventEndFormatted": "unavailable",
+                  		"shuffleAtEventStart": false
+                  	}
                   }
 
               If `json_response_enabled` is **true** and the request hits the waiting room, an
@@ -2429,31 +2435,31 @@ class AsyncWaitingRooms(AsyncAPIResource):
               could be:
 
                   {
-                        "cfWaitingRoom": {
-                                "inWaitingRoom": true,
-                                "waitTimeKnown": true,
-                                "waitTime": 10,
-                                "waitTime25Percentile": 5,
-                                "waitTime50Percentile": 10,
-                                "waitTime75Percentile": 15,
-                                "waitTimeFormatted": "5 minutes to 15 minutes",
-                                "queueIsFull": false,
-                                "queueAll": false,
-                                "lastUpdated": "2020-08-03T23:46:00.000Z",
-                                "refreshIntervalSeconds": 20,
-                                "queueingMethod": "random",
-                                "isFIFOQueue": false,
-                                "isRandomQueue": true,
-                                "isPassthroughQueue": false,
-                                "isRejectQueue": false,
-                                "isEventActive": true,
-                                "isEventPrequeueing": false,
-                                "timeUntilEventStart": 0,
-                                "timeUntilEventStartFormatted": "unavailable",
-                                "timeUntilEventEnd": 15,
-                                "timeUntilEventEndFormatted": "15 minutes",
-                                "shuffleAtEventStart": true
-                        }
+                  	"cfWaitingRoom": {
+                  		"inWaitingRoom": true,
+                  		"waitTimeKnown": true,
+                  		"waitTime": 10,
+                  		"waitTime25Percentile": 5,
+                  		"waitTime50Percentile": 10,
+                  		"waitTime75Percentile": 15,
+                  		"waitTimeFormatted": "5 minutes to 15 minutes",
+                  		"queueIsFull": false,
+                  		"queueAll": false,
+                  		"lastUpdated": "2020-08-03T23:46:00.000Z",
+                  		"refreshIntervalSeconds": 20,
+                  		"queueingMethod": "random",
+                  		"isFIFOQueue": false,
+                  		"isRandomQueue": true,
+                  		"isPassthroughQueue": false,
+                  		"isRejectQueue": false,
+                  		"isEventActive": true,
+                  		"isEventPrequeueing": false,
+                  		"timeUntilEventStart": 0,
+                  		"timeUntilEventStartFormatted": "unavailable",
+                  		"timeUntilEventEnd": 15,
+                  		"timeUntilEventEndFormatted": "15 minutes",
+                  		"shuffleAtEventStart": true
+                  	}
                   }.
 
           path: Sets the path within the host to enable the waiting room on. The waiting room
