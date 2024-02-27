@@ -40,6 +40,7 @@ class TestTimeseriesGroups:
         timeseries_group = client.radar.http.timeseries_groups.bot_class(
             agg_interval="1h",
             asn=["string", "string", "string"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -98,6 +99,7 @@ class TestTimeseriesGroups:
             agg_interval="1h",
             asn=["string", "string", "string"],
             bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -157,6 +159,7 @@ class TestTimeseriesGroups:
             agg_interval="1h",
             asn=["string", "string", "string"],
             bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -215,6 +218,7 @@ class TestTimeseriesGroups:
             agg_interval="1h",
             asn=["string", "string", "string"],
             bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -272,6 +276,7 @@ class TestTimeseriesGroups:
             agg_interval="1h",
             asn=["string", "string", "string"],
             bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -329,6 +334,7 @@ class TestTimeseriesGroups:
             agg_interval="1h",
             asn=["string", "string", "string"],
             bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -386,6 +392,7 @@ class TestTimeseriesGroups:
             agg_interval="1h",
             asn=["string", "string", "string"],
             bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -443,6 +450,7 @@ class TestTimeseriesGroups:
             agg_interval="1h",
             asn=["string", "string", "string"],
             bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -500,6 +508,7 @@ class TestTimeseriesGroups:
             agg_interval="1h",
             asn=["string", "string", "string"],
             bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -560,6 +569,7 @@ class TestAsyncTimeseriesGroups:
         timeseries_group = await async_client.radar.http.timeseries_groups.bot_class(
             agg_interval="1h",
             asn=["string", "string", "string"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -618,6 +628,7 @@ class TestAsyncTimeseriesGroups:
             agg_interval="1h",
             asn=["string", "string", "string"],
             bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -677,6 +688,7 @@ class TestAsyncTimeseriesGroups:
             agg_interval="1h",
             asn=["string", "string", "string"],
             bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -735,6 +747,7 @@ class TestAsyncTimeseriesGroups:
             agg_interval="1h",
             asn=["string", "string", "string"],
             bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -792,6 +805,7 @@ class TestAsyncTimeseriesGroups:
             agg_interval="1h",
             asn=["string", "string", "string"],
             bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -849,6 +863,7 @@ class TestAsyncTimeseriesGroups:
             agg_interval="1h",
             asn=["string", "string", "string"],
             bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -906,6 +921,7 @@ class TestAsyncTimeseriesGroups:
             agg_interval="1h",
             asn=["string", "string", "string"],
             bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -963,6 +979,7 @@ class TestAsyncTimeseriesGroups:
             agg_interval="1h",
             asn=["string", "string", "string"],
             bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -1020,6 +1037,7 @@ class TestAsyncTimeseriesGroups:
             agg_interval="1h",
             asn=["string", "string", "string"],
             bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),

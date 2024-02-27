@@ -55,7 +55,6 @@ class TimeseriesGroups(SyncAPIResource):
         self,
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -81,9 +80,9 @@ class TimeseriesGroups(SyncAPIResource):
         dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -99,10 +98,6 @@ class TimeseriesGroups(SyncAPIResource):
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -117,13 +112,11 @@ class TimeseriesGroups(SyncAPIResource):
 
           format: Format results are returned in.
 
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
-
           name: Array of names that will be used to name the series in responses.
 
           spf: Filter for spf.
+
+          tls_version: Filter for tls version.
 
           extra_headers: Send extra headers
 
@@ -143,16 +136,15 @@ class TimeseriesGroups(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "agg_interval": agg_interval,
-                        "asn": asn,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
                         "dkim": dkim,
                         "dmarc": dmarc,
                         "format": format,
-                        "location": location,
                         "name": name,
                         "spf": spf,
+                        "tls_version": tls_version,
                     },
                     timeseries_group_arc_params.TimeseriesGroupARCParams,
                 ),
@@ -166,7 +158,6 @@ class TimeseriesGroups(SyncAPIResource):
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -191,9 +182,9 @@ class TimeseriesGroups(SyncAPIResource):
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -211,10 +202,6 @@ class TimeseriesGroups(SyncAPIResource):
 
           arc: Filter for arc (Authenticated Received Chain).
 
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -227,13 +214,11 @@ class TimeseriesGroups(SyncAPIResource):
 
           format: Format results are returned in.
 
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
-
           name: Array of names that will be used to name the series in responses.
 
           spf: Filter for spf.
+
+          tls_version: Filter for tls version.
 
           extra_headers: Send extra headers
 
@@ -254,15 +239,14 @@ class TimeseriesGroups(SyncAPIResource):
                     {
                         "agg_interval": agg_interval,
                         "arc": arc,
-                        "asn": asn,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
                         "dmarc": dmarc,
                         "format": format,
-                        "location": location,
                         "name": name,
                         "spf": spf,
+                        "tls_version": tls_version,
                     },
                     timeseries_group_dkim_params.TimeseriesGroupDKIMParams,
                 ),
@@ -276,7 +260,6 @@ class TimeseriesGroups(SyncAPIResource):
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -301,9 +284,9 @@ class TimeseriesGroups(SyncAPIResource):
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -321,10 +304,6 @@ class TimeseriesGroups(SyncAPIResource):
 
           arc: Filter for arc (Authenticated Received Chain).
 
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -337,13 +316,11 @@ class TimeseriesGroups(SyncAPIResource):
 
           format: Format results are returned in.
 
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
-
           name: Array of names that will be used to name the series in responses.
 
           spf: Filter for spf.
+
+          tls_version: Filter for tls version.
 
           extra_headers: Send extra headers
 
@@ -364,15 +341,14 @@ class TimeseriesGroups(SyncAPIResource):
                     {
                         "agg_interval": agg_interval,
                         "arc": arc,
-                        "asn": asn,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
                         "dkim": dkim,
                         "format": format,
-                        "location": location,
                         "name": name,
                         "spf": spf,
+                        "tls_version": tls_version,
                     },
                     timeseries_group_dmarc_params.TimeseriesGroupDMARCParams,
                 ),
@@ -386,7 +362,6 @@ class TimeseriesGroups(SyncAPIResource):
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -412,9 +387,9 @@ class TimeseriesGroups(SyncAPIResource):
         dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -432,10 +407,6 @@ class TimeseriesGroups(SyncAPIResource):
 
           arc: Filter for arc (Authenticated Received Chain).
 
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -450,13 +421,11 @@ class TimeseriesGroups(SyncAPIResource):
 
           format: Format results are returned in.
 
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
-
           name: Array of names that will be used to name the series in responses.
 
           spf: Filter for spf.
+
+          tls_version: Filter for tls version.
 
           extra_headers: Send extra headers
 
@@ -477,16 +446,15 @@ class TimeseriesGroups(SyncAPIResource):
                     {
                         "agg_interval": agg_interval,
                         "arc": arc,
-                        "asn": asn,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
                         "dkim": dkim,
                         "dmarc": dmarc,
                         "format": format,
-                        "location": location,
                         "name": name,
                         "spf": spf,
+                        "tls_version": tls_version,
                     },
                     timeseries_group_malicious_params.TimeseriesGroupMaliciousParams,
                 ),
@@ -500,7 +468,6 @@ class TimeseriesGroups(SyncAPIResource):
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -526,9 +493,9 @@ class TimeseriesGroups(SyncAPIResource):
         dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -546,10 +513,6 @@ class TimeseriesGroups(SyncAPIResource):
 
           arc: Filter for arc (Authenticated Received Chain).
 
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -564,13 +527,11 @@ class TimeseriesGroups(SyncAPIResource):
 
           format: Format results are returned in.
 
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
-
           name: Array of names that will be used to name the series in responses.
 
           spf: Filter for spf.
+
+          tls_version: Filter for tls version.
 
           extra_headers: Send extra headers
 
@@ -591,16 +552,15 @@ class TimeseriesGroups(SyncAPIResource):
                     {
                         "agg_interval": agg_interval,
                         "arc": arc,
-                        "asn": asn,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
                         "dkim": dkim,
                         "dmarc": dmarc,
                         "format": format,
-                        "location": location,
                         "name": name,
                         "spf": spf,
+                        "tls_version": tls_version,
                     },
                     timeseries_group_spam_params.TimeseriesGroupSpamParams,
                 ),
@@ -614,7 +574,6 @@ class TimeseriesGroups(SyncAPIResource):
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -640,8 +599,8 @@ class TimeseriesGroups(SyncAPIResource):
         dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -659,10 +618,6 @@ class TimeseriesGroups(SyncAPIResource):
 
           arc: Filter for arc (Authenticated Received Chain).
 
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -677,11 +632,9 @@ class TimeseriesGroups(SyncAPIResource):
 
           format: Format results are returned in.
 
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
-
           name: Array of names that will be used to name the series in responses.
+
+          tls_version: Filter for tls version.
 
           extra_headers: Send extra headers
 
@@ -702,15 +655,14 @@ class TimeseriesGroups(SyncAPIResource):
                     {
                         "agg_interval": agg_interval,
                         "arc": arc,
-                        "asn": asn,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
                         "dkim": dkim,
                         "dmarc": dmarc,
                         "format": format,
-                        "location": location,
                         "name": name,
+                        "tls_version": tls_version,
                     },
                     timeseries_group_spf_params.TimeseriesGroupSPFParams,
                 ),
@@ -724,7 +676,6 @@ class TimeseriesGroups(SyncAPIResource):
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -750,9 +701,9 @@ class TimeseriesGroups(SyncAPIResource):
         dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -770,10 +721,6 @@ class TimeseriesGroups(SyncAPIResource):
 
           arc: Filter for arc (Authenticated Received Chain).
 
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -788,13 +735,11 @@ class TimeseriesGroups(SyncAPIResource):
 
           format: Format results are returned in.
 
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
-
           name: Array of names that will be used to name the series in responses.
 
           spf: Filter for spf.
+
+          tls_version: Filter for tls version.
 
           extra_headers: Send extra headers
 
@@ -815,16 +760,15 @@ class TimeseriesGroups(SyncAPIResource):
                     {
                         "agg_interval": agg_interval,
                         "arc": arc,
-                        "asn": asn,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
                         "dkim": dkim,
                         "dmarc": dmarc,
                         "format": format,
-                        "location": location,
                         "name": name,
                         "spf": spf,
+                        "tls_version": tls_version,
                     },
                     timeseries_group_threat_category_params.TimeseriesGroupThreatCategoryParams,
                 ),
@@ -849,7 +793,6 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
         self,
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -875,9 +818,9 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
         dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -893,10 +836,6 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -911,13 +850,11 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
 
           format: Format results are returned in.
 
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
-
           name: Array of names that will be used to name the series in responses.
 
           spf: Filter for spf.
+
+          tls_version: Filter for tls version.
 
           extra_headers: Send extra headers
 
@@ -937,16 +874,15 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "agg_interval": agg_interval,
-                        "asn": asn,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
                         "dkim": dkim,
                         "dmarc": dmarc,
                         "format": format,
-                        "location": location,
                         "name": name,
                         "spf": spf,
+                        "tls_version": tls_version,
                     },
                     timeseries_group_arc_params.TimeseriesGroupARCParams,
                 ),
@@ -960,7 +896,6 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -985,9 +920,9 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1005,10 +940,6 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
 
           arc: Filter for arc (Authenticated Received Chain).
 
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -1021,13 +952,11 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
 
           format: Format results are returned in.
 
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
-
           name: Array of names that will be used to name the series in responses.
 
           spf: Filter for spf.
+
+          tls_version: Filter for tls version.
 
           extra_headers: Send extra headers
 
@@ -1048,15 +977,14 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
                     {
                         "agg_interval": agg_interval,
                         "arc": arc,
-                        "asn": asn,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
                         "dmarc": dmarc,
                         "format": format,
-                        "location": location,
                         "name": name,
                         "spf": spf,
+                        "tls_version": tls_version,
                     },
                     timeseries_group_dkim_params.TimeseriesGroupDKIMParams,
                 ),
@@ -1070,7 +998,6 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -1095,9 +1022,9 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1115,10 +1042,6 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
 
           arc: Filter for arc (Authenticated Received Chain).
 
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -1131,13 +1054,11 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
 
           format: Format results are returned in.
 
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
-
           name: Array of names that will be used to name the series in responses.
 
           spf: Filter for spf.
+
+          tls_version: Filter for tls version.
 
           extra_headers: Send extra headers
 
@@ -1158,15 +1079,14 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
                     {
                         "agg_interval": agg_interval,
                         "arc": arc,
-                        "asn": asn,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
                         "dkim": dkim,
                         "format": format,
-                        "location": location,
                         "name": name,
                         "spf": spf,
+                        "tls_version": tls_version,
                     },
                     timeseries_group_dmarc_params.TimeseriesGroupDMARCParams,
                 ),
@@ -1180,7 +1100,6 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -1206,9 +1125,9 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
         dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1226,10 +1145,6 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
 
           arc: Filter for arc (Authenticated Received Chain).
 
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -1244,13 +1159,11 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
 
           format: Format results are returned in.
 
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
-
           name: Array of names that will be used to name the series in responses.
 
           spf: Filter for spf.
+
+          tls_version: Filter for tls version.
 
           extra_headers: Send extra headers
 
@@ -1271,16 +1184,15 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
                     {
                         "agg_interval": agg_interval,
                         "arc": arc,
-                        "asn": asn,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
                         "dkim": dkim,
                         "dmarc": dmarc,
                         "format": format,
-                        "location": location,
                         "name": name,
                         "spf": spf,
+                        "tls_version": tls_version,
                     },
                     timeseries_group_malicious_params.TimeseriesGroupMaliciousParams,
                 ),
@@ -1294,7 +1206,6 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -1320,9 +1231,9 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
         dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1340,10 +1251,6 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
 
           arc: Filter for arc (Authenticated Received Chain).
 
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -1358,13 +1265,11 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
 
           format: Format results are returned in.
 
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
-
           name: Array of names that will be used to name the series in responses.
 
           spf: Filter for spf.
+
+          tls_version: Filter for tls version.
 
           extra_headers: Send extra headers
 
@@ -1385,16 +1290,15 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
                     {
                         "agg_interval": agg_interval,
                         "arc": arc,
-                        "asn": asn,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
                         "dkim": dkim,
                         "dmarc": dmarc,
                         "format": format,
-                        "location": location,
                         "name": name,
                         "spf": spf,
+                        "tls_version": tls_version,
                     },
                     timeseries_group_spam_params.TimeseriesGroupSpamParams,
                 ),
@@ -1408,7 +1312,6 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -1434,8 +1337,8 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
         dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1453,10 +1356,6 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
 
           arc: Filter for arc (Authenticated Received Chain).
 
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -1471,11 +1370,9 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
 
           format: Format results are returned in.
 
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
-
           name: Array of names that will be used to name the series in responses.
+
+          tls_version: Filter for tls version.
 
           extra_headers: Send extra headers
 
@@ -1496,15 +1393,14 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
                     {
                         "agg_interval": agg_interval,
                         "arc": arc,
-                        "asn": asn,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
                         "dkim": dkim,
                         "dmarc": dmarc,
                         "format": format,
-                        "location": location,
                         "name": name,
+                        "tls_version": tls_version,
                     },
                     timeseries_group_spf_params.TimeseriesGroupSPFParams,
                 ),
@@ -1518,7 +1414,6 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -1544,9 +1439,9 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
         dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1564,10 +1459,6 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
 
           arc: Filter for arc (Authenticated Received Chain).
 
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -1582,13 +1473,11 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
 
           format: Format results are returned in.
 
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
-
           name: Array of names that will be used to name the series in responses.
 
           spf: Filter for spf.
+
+          tls_version: Filter for tls version.
 
           extra_headers: Send extra headers
 
@@ -1609,16 +1498,15 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
                     {
                         "agg_interval": agg_interval,
                         "arc": arc,
-                        "asn": asn,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
                         "dkim": dkim,
                         "dmarc": dmarc,
                         "format": format,
-                        "location": location,
                         "name": name,
                         "spf": spf,
+                        "tls_version": tls_version,
                     },
                     timeseries_group_threat_category_params.TimeseriesGroupThreatCategoryParams,
                 ),

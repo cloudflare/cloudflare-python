@@ -58,6 +58,7 @@ class Top(SyncAPIResource):
     def attacks(
         self,
         *,
+        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -103,6 +104,10 @@ class Top(SyncAPIResource):
         are from or to the same location).
 
         Args:
+          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
+              with `-` to exclude from results. For example, `-EU,NA` excludes results from
+              Europe, but includes results from North America.
+
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -149,6 +154,7 @@ class Top(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
@@ -171,6 +177,7 @@ class Top(SyncAPIResource):
     def industry(
         self,
         *,
+        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -210,6 +217,10 @@ class Top(SyncAPIResource):
         Get the Industry of attacks.
 
         Args:
+          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
+              with `-` to exclude from results. For example, `-EU,NA` excludes results from
+              Europe, but includes results from North America.
+
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -249,6 +260,7 @@ class Top(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
@@ -269,6 +281,7 @@ class Top(SyncAPIResource):
     def vertical(
         self,
         *,
+        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -308,6 +321,10 @@ class Top(SyncAPIResource):
         Get the Verticals of attacks.
 
         Args:
+          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
+              with `-` to exclude from results. For example, `-EU,NA` excludes results from
+              Europe, but includes results from North America.
+
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -347,6 +364,7 @@ class Top(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
@@ -381,6 +399,7 @@ class AsyncTop(AsyncAPIResource):
     async def attacks(
         self,
         *,
+        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -426,6 +445,10 @@ class AsyncTop(AsyncAPIResource):
         are from or to the same location).
 
         Args:
+          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
+              with `-` to exclude from results. For example, `-EU,NA` excludes results from
+              Europe, but includes results from North America.
+
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -472,6 +495,7 @@ class AsyncTop(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
@@ -494,6 +518,7 @@ class AsyncTop(AsyncAPIResource):
     async def industry(
         self,
         *,
+        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -533,6 +558,10 @@ class AsyncTop(AsyncAPIResource):
         Get the Industry of attacks.
 
         Args:
+          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
+              with `-` to exclude from results. For example, `-EU,NA` excludes results from
+              Europe, but includes results from North America.
+
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -572,6 +601,7 @@ class AsyncTop(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
@@ -592,6 +622,7 @@ class AsyncTop(AsyncAPIResource):
     async def vertical(
         self,
         *,
+        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -631,6 +662,10 @@ class AsyncTop(AsyncAPIResource):
         Get the Verticals of attacks.
 
         Args:
+          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
+              with `-` to exclude from results. For example, `-EU,NA` excludes results from
+              Europe, but includes results from North America.
+
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -670,6 +705,7 @@ class AsyncTop(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
