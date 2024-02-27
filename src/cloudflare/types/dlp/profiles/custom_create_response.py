@@ -9,9 +9,27 @@ from ...._models import BaseModel
 __all__ = [
     "CustomCreateResponse",
     "CustomCreateResponseItem",
+    "CustomCreateResponseItemContextAwareness",
+    "CustomCreateResponseItemContextAwarenessSkip",
     "CustomCreateResponseItemEntry",
     "CustomCreateResponseItemEntryPattern",
 ]
+
+
+class CustomCreateResponseItemContextAwarenessSkip(BaseModel):
+    files: bool
+    """If the content type is a file, skip context analysis and return all matches."""
+
+
+class CustomCreateResponseItemContextAwareness(BaseModel):
+    enabled: bool
+    """
+    If true, scan the context of predefined entries to only return matches
+    surrounded by keywords.
+    """
+
+    skip: CustomCreateResponseItemContextAwarenessSkip
+    """Content types to exclude from context analysis and return all matches."""
 
 
 class CustomCreateResponseItemEntryPattern(BaseModel):
@@ -53,6 +71,12 @@ class CustomCreateResponseItem(BaseModel):
 
     allowed_match_count: Optional[float] = None
     """Related DLP policies will trigger when the match count exceeds the number set."""
+
+    context_awareness: Optional[CustomCreateResponseItemContextAwareness] = None
+    """
+    Scan the context of predefined entries to only return matches surrounded by
+    keywords.
+    """
 
     created_at: Optional[datetime] = None
 
