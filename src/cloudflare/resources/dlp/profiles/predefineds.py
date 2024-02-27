@@ -40,6 +40,7 @@ class Predefineds(SyncAPIResource):
         *,
         account_id: str,
         allowed_match_count: float | NotGiven = NOT_GIVEN,
+        context_awareness: predefined_update_params.ContextAwareness | NotGiven = NOT_GIVEN,
         entries: Iterable[predefined_update_params.Entry] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -58,6 +59,9 @@ class Predefineds(SyncAPIResource):
           profile_id: The ID for this profile
 
           allowed_match_count: Related DLP policies will trigger when the match count exceeds the number set.
+
+          context_awareness: Scan the context of predefined entries to only return matches surrounded by
+              keywords.
 
           entries: The entries for this profile.
 
@@ -78,6 +82,7 @@ class Predefineds(SyncAPIResource):
             body=maybe_transform(
                 {
                     "allowed_match_count": allowed_match_count,
+                    "context_awareness": context_awareness,
                     "entries": entries,
                 },
                 predefined_update_params.PredefinedUpdateParams,
@@ -148,6 +153,7 @@ class AsyncPredefineds(AsyncAPIResource):
         *,
         account_id: str,
         allowed_match_count: float | NotGiven = NOT_GIVEN,
+        context_awareness: predefined_update_params.ContextAwareness | NotGiven = NOT_GIVEN,
         entries: Iterable[predefined_update_params.Entry] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -166,6 +172,9 @@ class AsyncPredefineds(AsyncAPIResource):
           profile_id: The ID for this profile
 
           allowed_match_count: Related DLP policies will trigger when the match count exceeds the number set.
+
+          context_awareness: Scan the context of predefined entries to only return matches surrounded by
+              keywords.
 
           entries: The entries for this profile.
 
@@ -186,6 +195,7 @@ class AsyncPredefineds(AsyncAPIResource):
             body=maybe_transform(
                 {
                     "allowed_match_count": allowed_match_count,
+                    "context_awareness": context_awareness,
                     "entries": entries,
                 },
                 predefined_update_params.PredefinedUpdateParams,
