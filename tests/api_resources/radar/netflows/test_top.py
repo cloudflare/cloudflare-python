@@ -29,7 +29,6 @@ class TestTop:
     def test_method_ases_with_all_params(self, client: Cloudflare) -> None:
         top = client.radar.netflows.top.ases(
             asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -81,7 +80,6 @@ class TestTop:
     def test_method_locations_with_all_params(self, client: Cloudflare) -> None:
         top = client.radar.netflows.top.locations(
             asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -137,7 +135,6 @@ class TestAsyncTop:
     async def test_method_ases_with_all_params(self, async_client: AsyncCloudflare) -> None:
         top = await async_client.radar.netflows.top.ases(
             asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -189,7 +186,6 @@ class TestAsyncTop:
     async def test_method_locations_with_all_params(self, async_client: AsyncCloudflare) -> None:
         top = await async_client.radar.netflows.top.locations(
             asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),

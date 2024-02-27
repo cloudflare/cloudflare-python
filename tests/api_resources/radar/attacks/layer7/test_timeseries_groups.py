@@ -39,7 +39,6 @@ class TestTimeseriesGroups:
         timeseries_group = client.radar.attacks.layer7.timeseries_groups.get(
             agg_interval="1h",
             asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -91,7 +90,6 @@ class TestTimeseriesGroups:
         timeseries_group = client.radar.attacks.layer7.timeseries_groups.http_method(
             agg_interval="1h",
             asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -147,7 +145,6 @@ class TestTimeseriesGroups:
         timeseries_group = client.radar.attacks.layer7.timeseries_groups.http_version(
             agg_interval="1h",
             asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -203,7 +200,6 @@ class TestTimeseriesGroups:
         timeseries_group = client.radar.attacks.layer7.timeseries_groups.industry(
             agg_interval="1h",
             asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -261,7 +257,6 @@ class TestTimeseriesGroups:
         timeseries_group = client.radar.attacks.layer7.timeseries_groups.ip_version(
             agg_interval="1h",
             asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -317,7 +312,6 @@ class TestTimeseriesGroups:
         timeseries_group = client.radar.attacks.layer7.timeseries_groups.managed_rules(
             agg_interval="1h",
             asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -374,7 +368,6 @@ class TestTimeseriesGroups:
         timeseries_group = client.radar.attacks.layer7.timeseries_groups.mitigation_product(
             agg_interval="1h",
             asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -430,7 +423,6 @@ class TestTimeseriesGroups:
         timeseries_group = client.radar.attacks.layer7.timeseries_groups.vertical(
             agg_interval="1h",
             asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -492,7 +484,6 @@ class TestAsyncTimeseriesGroups:
         timeseries_group = await async_client.radar.attacks.layer7.timeseries_groups.get(
             agg_interval="1h",
             asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -544,7 +535,6 @@ class TestAsyncTimeseriesGroups:
         timeseries_group = await async_client.radar.attacks.layer7.timeseries_groups.http_method(
             agg_interval="1h",
             asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -600,7 +590,6 @@ class TestAsyncTimeseriesGroups:
         timeseries_group = await async_client.radar.attacks.layer7.timeseries_groups.http_version(
             agg_interval="1h",
             asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -656,7 +645,6 @@ class TestAsyncTimeseriesGroups:
         timeseries_group = await async_client.radar.attacks.layer7.timeseries_groups.industry(
             agg_interval="1h",
             asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -714,7 +702,6 @@ class TestAsyncTimeseriesGroups:
         timeseries_group = await async_client.radar.attacks.layer7.timeseries_groups.ip_version(
             agg_interval="1h",
             asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -770,7 +757,6 @@ class TestAsyncTimeseriesGroups:
         timeseries_group = await async_client.radar.attacks.layer7.timeseries_groups.managed_rules(
             agg_interval="1h",
             asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -827,7 +813,6 @@ class TestAsyncTimeseriesGroups:
         timeseries_group = await async_client.radar.attacks.layer7.timeseries_groups.mitigation_product(
             agg_interval="1h",
             asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -883,7 +868,6 @@ class TestAsyncTimeseriesGroups:
         timeseries_group = await async_client.radar.attacks.layer7.timeseries_groups.vertical(
             agg_interval="1h",
             asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),

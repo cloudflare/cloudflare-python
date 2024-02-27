@@ -53,7 +53,6 @@ class Summary(SyncAPIResource):
         self,
         *,
         asn: List[str] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -94,10 +93,6 @@ class Summary(SyncAPIResource):
               For example, `-174, 3356` excludes results from AS174, but includes results from
               AS3356.
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -132,7 +127,6 @@ class Summary(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "asn": asn,
-                        "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
@@ -151,7 +145,6 @@ class Summary(SyncAPIResource):
         self,
         *,
         asn: List[str] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -200,10 +193,6 @@ class Summary(SyncAPIResource):
               For example, `-174, 3356` excludes results from AS174, but includes results from
               AS3356.
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -244,7 +233,6 @@ class Summary(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "asn": asn,
-                        "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
@@ -266,7 +254,6 @@ class Summary(SyncAPIResource):
         self,
         *,
         asn: List[str] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -365,10 +352,6 @@ class Summary(SyncAPIResource):
               For example, `-174, 3356` excludes results from AS174, but includes results from
               AS3356.
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -409,7 +392,6 @@ class Summary(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "asn": asn,
-                        "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
@@ -431,7 +413,6 @@ class Summary(SyncAPIResource):
         self,
         *,
         asn: List[str] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -530,10 +511,6 @@ class Summary(SyncAPIResource):
               For example, `-174, 3356` excludes results from AS174, but includes results from
               AS3356.
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -574,7 +551,6 @@ class Summary(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "asn": asn,
-                        "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
@@ -596,7 +572,6 @@ class Summary(SyncAPIResource):
         self,
         *,
         asn: List[str] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -696,10 +671,6 @@ class Summary(SyncAPIResource):
               For example, `-174, 3356` excludes results from AS174, but includes results from
               AS3356.
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -742,7 +713,6 @@ class Summary(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "asn": asn,
-                        "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
@@ -765,7 +735,6 @@ class Summary(SyncAPIResource):
         self,
         *,
         asn: List[str] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -859,10 +828,6 @@ class Summary(SyncAPIResource):
               For example, `-174, 3356` excludes results from AS174, but includes results from
               AS3356.
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -903,7 +868,6 @@ class Summary(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "asn": asn,
-                        "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
@@ -935,7 +899,6 @@ class AsyncSummary(AsyncAPIResource):
         self,
         *,
         asn: List[str] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -976,10 +939,6 @@ class AsyncSummary(AsyncAPIResource):
               For example, `-174, 3356` excludes results from AS174, but includes results from
               AS3356.
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -1014,7 +973,6 @@ class AsyncSummary(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "asn": asn,
-                        "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
@@ -1033,7 +991,6 @@ class AsyncSummary(AsyncAPIResource):
         self,
         *,
         asn: List[str] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -1082,10 +1039,6 @@ class AsyncSummary(AsyncAPIResource):
               For example, `-174, 3356` excludes results from AS174, but includes results from
               AS3356.
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -1126,7 +1079,6 @@ class AsyncSummary(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "asn": asn,
-                        "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
@@ -1148,7 +1100,6 @@ class AsyncSummary(AsyncAPIResource):
         self,
         *,
         asn: List[str] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -1247,10 +1198,6 @@ class AsyncSummary(AsyncAPIResource):
               For example, `-174, 3356` excludes results from AS174, but includes results from
               AS3356.
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -1291,7 +1238,6 @@ class AsyncSummary(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "asn": asn,
-                        "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
@@ -1313,7 +1259,6 @@ class AsyncSummary(AsyncAPIResource):
         self,
         *,
         asn: List[str] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -1412,10 +1357,6 @@ class AsyncSummary(AsyncAPIResource):
               For example, `-174, 3356` excludes results from AS174, but includes results from
               AS3356.
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -1456,7 +1397,6 @@ class AsyncSummary(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "asn": asn,
-                        "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
@@ -1478,7 +1418,6 @@ class AsyncSummary(AsyncAPIResource):
         self,
         *,
         asn: List[str] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -1578,10 +1517,6 @@ class AsyncSummary(AsyncAPIResource):
               For example, `-174, 3356` excludes results from AS174, but includes results from
               AS3356.
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -1624,7 +1559,6 @@ class AsyncSummary(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "asn": asn,
-                        "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
@@ -1647,7 +1581,6 @@ class AsyncSummary(AsyncAPIResource):
         self,
         *,
         asn: List[str] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -1741,10 +1674,6 @@ class AsyncSummary(AsyncAPIResource):
               For example, `-174, 3356` excludes results from AS174, but includes results from
               AS3356.
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -1785,7 +1714,6 @@ class AsyncSummary(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "asn": asn,
-                        "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,

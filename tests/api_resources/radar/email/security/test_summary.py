@@ -36,6 +36,7 @@ class TestSummary:
     @parametrize
     def test_method_arc_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.email.security.summary.arc(
+            asn=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -50,9 +51,9 @@ class TestSummary:
             dkim=["PASS", "NONE", "FAIL"],
             dmarc=["PASS", "NONE", "FAIL"],
             format="JSON",
+            location=["string", "string", "string"],
             name=["string", "string", "string"],
             spf=["PASS", "NONE", "FAIL"],
-            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
         )
         assert_matches_type(SummaryARCResponse, summary, path=["response"])
 
@@ -89,6 +90,7 @@ class TestSummary:
     def test_method_dkim_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.email.security.summary.dkim(
             arc=["PASS", "NONE", "FAIL"],
+            asn=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -102,9 +104,9 @@ class TestSummary:
             ],
             dmarc=["PASS", "NONE", "FAIL"],
             format="JSON",
+            location=["string", "string", "string"],
             name=["string", "string", "string"],
             spf=["PASS", "NONE", "FAIL"],
-            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
         )
         assert_matches_type(SummaryDKIMResponse, summary, path=["response"])
 
@@ -141,6 +143,7 @@ class TestSummary:
     def test_method_dmarc_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.email.security.summary.dmarc(
             arc=["PASS", "NONE", "FAIL"],
+            asn=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -154,9 +157,9 @@ class TestSummary:
             ],
             dkim=["PASS", "NONE", "FAIL"],
             format="JSON",
+            location=["string", "string", "string"],
             name=["string", "string", "string"],
             spf=["PASS", "NONE", "FAIL"],
-            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
         )
         assert_matches_type(SummaryDMARCResponse, summary, path=["response"])
 
@@ -193,6 +196,7 @@ class TestSummary:
     def test_method_malicious_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.email.security.summary.malicious(
             arc=["PASS", "NONE", "FAIL"],
+            asn=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -207,9 +211,9 @@ class TestSummary:
             dkim=["PASS", "NONE", "FAIL"],
             dmarc=["PASS", "NONE", "FAIL"],
             format="JSON",
+            location=["string", "string", "string"],
             name=["string", "string", "string"],
             spf=["PASS", "NONE", "FAIL"],
-            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
         )
         assert_matches_type(SummaryMaliciousResponse, summary, path=["response"])
 
@@ -246,6 +250,7 @@ class TestSummary:
     def test_method_spam_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.email.security.summary.spam(
             arc=["PASS", "NONE", "FAIL"],
+            asn=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -260,9 +265,9 @@ class TestSummary:
             dkim=["PASS", "NONE", "FAIL"],
             dmarc=["PASS", "NONE", "FAIL"],
             format="JSON",
+            location=["string", "string", "string"],
             name=["string", "string", "string"],
             spf=["PASS", "NONE", "FAIL"],
-            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
         )
         assert_matches_type(SummarySpamResponse, summary, path=["response"])
 
@@ -299,6 +304,7 @@ class TestSummary:
     def test_method_spf_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.email.security.summary.spf(
             arc=["PASS", "NONE", "FAIL"],
+            asn=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -313,8 +319,8 @@ class TestSummary:
             dkim=["PASS", "NONE", "FAIL"],
             dmarc=["PASS", "NONE", "FAIL"],
             format="JSON",
+            location=["string", "string", "string"],
             name=["string", "string", "string"],
-            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
         )
         assert_matches_type(SummarySPFResponse, summary, path=["response"])
 
@@ -351,6 +357,7 @@ class TestSummary:
     def test_method_threat_category_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.email.security.summary.threat_category(
             arc=["PASS", "NONE", "FAIL"],
+            asn=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -365,9 +372,9 @@ class TestSummary:
             dkim=["PASS", "NONE", "FAIL"],
             dmarc=["PASS", "NONE", "FAIL"],
             format="JSON",
+            location=["string", "string", "string"],
             name=["string", "string", "string"],
             spf=["PASS", "NONE", "FAIL"],
-            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
         )
         assert_matches_type(SummaryThreatCategoryResponse, summary, path=["response"])
 
@@ -407,6 +414,7 @@ class TestAsyncSummary:
     @parametrize
     async def test_method_arc_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.email.security.summary.arc(
+            asn=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -421,9 +429,9 @@ class TestAsyncSummary:
             dkim=["PASS", "NONE", "FAIL"],
             dmarc=["PASS", "NONE", "FAIL"],
             format="JSON",
+            location=["string", "string", "string"],
             name=["string", "string", "string"],
             spf=["PASS", "NONE", "FAIL"],
-            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
         )
         assert_matches_type(SummaryARCResponse, summary, path=["response"])
 
@@ -460,6 +468,7 @@ class TestAsyncSummary:
     async def test_method_dkim_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.email.security.summary.dkim(
             arc=["PASS", "NONE", "FAIL"],
+            asn=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -473,9 +482,9 @@ class TestAsyncSummary:
             ],
             dmarc=["PASS", "NONE", "FAIL"],
             format="JSON",
+            location=["string", "string", "string"],
             name=["string", "string", "string"],
             spf=["PASS", "NONE", "FAIL"],
-            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
         )
         assert_matches_type(SummaryDKIMResponse, summary, path=["response"])
 
@@ -512,6 +521,7 @@ class TestAsyncSummary:
     async def test_method_dmarc_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.email.security.summary.dmarc(
             arc=["PASS", "NONE", "FAIL"],
+            asn=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -525,9 +535,9 @@ class TestAsyncSummary:
             ],
             dkim=["PASS", "NONE", "FAIL"],
             format="JSON",
+            location=["string", "string", "string"],
             name=["string", "string", "string"],
             spf=["PASS", "NONE", "FAIL"],
-            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
         )
         assert_matches_type(SummaryDMARCResponse, summary, path=["response"])
 
@@ -564,6 +574,7 @@ class TestAsyncSummary:
     async def test_method_malicious_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.email.security.summary.malicious(
             arc=["PASS", "NONE", "FAIL"],
+            asn=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -578,9 +589,9 @@ class TestAsyncSummary:
             dkim=["PASS", "NONE", "FAIL"],
             dmarc=["PASS", "NONE", "FAIL"],
             format="JSON",
+            location=["string", "string", "string"],
             name=["string", "string", "string"],
             spf=["PASS", "NONE", "FAIL"],
-            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
         )
         assert_matches_type(SummaryMaliciousResponse, summary, path=["response"])
 
@@ -617,6 +628,7 @@ class TestAsyncSummary:
     async def test_method_spam_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.email.security.summary.spam(
             arc=["PASS", "NONE", "FAIL"],
+            asn=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -631,9 +643,9 @@ class TestAsyncSummary:
             dkim=["PASS", "NONE", "FAIL"],
             dmarc=["PASS", "NONE", "FAIL"],
             format="JSON",
+            location=["string", "string", "string"],
             name=["string", "string", "string"],
             spf=["PASS", "NONE", "FAIL"],
-            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
         )
         assert_matches_type(SummarySpamResponse, summary, path=["response"])
 
@@ -670,6 +682,7 @@ class TestAsyncSummary:
     async def test_method_spf_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.email.security.summary.spf(
             arc=["PASS", "NONE", "FAIL"],
+            asn=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -684,8 +697,8 @@ class TestAsyncSummary:
             dkim=["PASS", "NONE", "FAIL"],
             dmarc=["PASS", "NONE", "FAIL"],
             format="JSON",
+            location=["string", "string", "string"],
             name=["string", "string", "string"],
-            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
         )
         assert_matches_type(SummarySPFResponse, summary, path=["response"])
 
@@ -722,6 +735,7 @@ class TestAsyncSummary:
     async def test_method_threat_category_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.email.security.summary.threat_category(
             arc=["PASS", "NONE", "FAIL"],
+            asn=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -736,9 +750,9 @@ class TestAsyncSummary:
             dkim=["PASS", "NONE", "FAIL"],
             dmarc=["PASS", "NONE", "FAIL"],
             format="JSON",
+            location=["string", "string", "string"],
             name=["string", "string", "string"],
             spf=["PASS", "NONE", "FAIL"],
-            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
         )
         assert_matches_type(SummaryThreatCategoryResponse, summary, path=["response"])
 
