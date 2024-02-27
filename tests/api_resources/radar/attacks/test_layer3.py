@@ -30,6 +30,7 @@ class TestLayer3:
         layer3 = client.radar.attacks.layer3.timeseries(
             agg_interval="1h",
             asn=["string", "string", "string"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -90,6 +91,7 @@ class TestAsyncLayer3:
         layer3 = await async_client.radar.attacks.layer3.timeseries(
             agg_interval="1h",
             asn=["string", "string", "string"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
