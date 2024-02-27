@@ -44,6 +44,7 @@ class Locations(SyncAPIResource):
     def origin(
         self,
         *,
+        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -83,6 +84,10 @@ class Locations(SyncAPIResource):
         Get the origin locations of attacks.
 
         Args:
+          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
+              with `-` to exclude from results. For example, `-EU,NA` excludes results from
+              Europe, but includes results from North America.
+
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -122,6 +127,7 @@ class Locations(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
@@ -142,6 +148,7 @@ class Locations(SyncAPIResource):
     def target(
         self,
         *,
+        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -181,6 +188,10 @@ class Locations(SyncAPIResource):
         Get the target locations of attacks.
 
         Args:
+          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
+              with `-` to exclude from results. For example, `-EU,NA` excludes results from
+              Europe, but includes results from North America.
+
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -220,6 +231,7 @@ class Locations(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
@@ -250,6 +262,7 @@ class AsyncLocations(AsyncAPIResource):
     async def origin(
         self,
         *,
+        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -289,6 +302,10 @@ class AsyncLocations(AsyncAPIResource):
         Get the origin locations of attacks.
 
         Args:
+          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
+              with `-` to exclude from results. For example, `-EU,NA` excludes results from
+              Europe, but includes results from North America.
+
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -328,6 +345,7 @@ class AsyncLocations(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
@@ -348,6 +366,7 @@ class AsyncLocations(AsyncAPIResource):
     async def target(
         self,
         *,
+        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -387,6 +406,10 @@ class AsyncLocations(AsyncAPIResource):
         Get the target locations of attacks.
 
         Args:
+          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
+              with `-` to exclude from results. For example, `-EU,NA` excludes results from
+              Europe, but includes results from North America.
+
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -426,6 +449,7 @@ class AsyncLocations(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
