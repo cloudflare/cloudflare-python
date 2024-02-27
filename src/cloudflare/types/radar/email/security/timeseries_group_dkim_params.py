@@ -22,6 +22,13 @@ class TimeseriesGroupDKIMParams(TypedDict, total=False):
     arc: List[Literal["PASS", "NONE", "FAIL"]]
     """Filter for arc (Authenticated Received Chain)."""
 
+    asn: List[str]
+    """Array of comma separated list of ASNs, start with `-` to exclude from results.
+
+    For example, `-174, 3356` excludes results from AS174, but includes results from
+    AS3356.
+    """
+
     date_end: Annotated[List[Union[str, datetime]], PropertyInfo(alias="dateEnd", format="iso8601")]
     """End of the date range (inclusive)."""
 
@@ -62,11 +69,15 @@ class TimeseriesGroupDKIMParams(TypedDict, total=False):
     format: Literal["JSON", "CSV"]
     """Format results are returned in."""
 
+    location: List[str]
+    """Array of comma separated list of locations (alpha-2 country codes).
+
+    Start with `-` to exclude from results. For example, `-US,PT` excludes results
+    from the US, but includes results from PT.
+    """
+
     name: List[str]
     """Array of names that will be used to name the series in responses."""
 
     spf: List[Literal["PASS", "NONE", "FAIL"]]
     """Filter for spf."""
-
-    tls_version: Annotated[List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]], PropertyInfo(alias="tlsVersion")]
-    """Filter for tls version."""

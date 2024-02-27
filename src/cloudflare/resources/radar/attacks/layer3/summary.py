@@ -52,7 +52,6 @@ class Summary(SyncAPIResource):
     def bitrate(
         self,
         *,
-        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -92,10 +91,6 @@ class Summary(SyncAPIResource):
         Percentage distribution of attacks by bitrate.
 
         Args:
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -136,7 +131,6 @@ class Summary(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
@@ -157,7 +151,6 @@ class Summary(SyncAPIResource):
     def duration(
         self,
         *,
-        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -197,10 +190,6 @@ class Summary(SyncAPIResource):
         Percentage distribution of attacks by duration.
 
         Args:
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -241,7 +230,6 @@ class Summary(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
@@ -263,7 +251,6 @@ class Summary(SyncAPIResource):
         self,
         *,
         asn: List[str] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -305,10 +292,6 @@ class Summary(SyncAPIResource):
               For example, `-174, 3356` excludes results from AS174, but includes results from
               AS3356.
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -343,7 +326,6 @@ class Summary(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "asn": asn,
-                        "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
@@ -361,7 +343,6 @@ class Summary(SyncAPIResource):
     def ip_version(
         self,
         *,
-        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -400,10 +381,6 @@ class Summary(SyncAPIResource):
         Percentage distribution of attacks by ip version used.
 
         Args:
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -442,7 +419,6 @@ class Summary(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
@@ -462,7 +438,6 @@ class Summary(SyncAPIResource):
     def protocol(
         self,
         *,
-        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -501,10 +476,6 @@ class Summary(SyncAPIResource):
         Percentage distribution of attacks by protocol used.
 
         Args:
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -543,7 +514,6 @@ class Summary(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
@@ -563,7 +533,6 @@ class Summary(SyncAPIResource):
     def vector(
         self,
         *,
-        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -603,10 +572,6 @@ class Summary(SyncAPIResource):
         Percentage distribution of attacks by vector.
 
         Args:
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -647,7 +612,6 @@ class Summary(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
@@ -678,7 +642,6 @@ class AsyncSummary(AsyncAPIResource):
     async def bitrate(
         self,
         *,
-        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -718,10 +681,6 @@ class AsyncSummary(AsyncAPIResource):
         Percentage distribution of attacks by bitrate.
 
         Args:
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -762,7 +721,6 @@ class AsyncSummary(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
@@ -783,7 +741,6 @@ class AsyncSummary(AsyncAPIResource):
     async def duration(
         self,
         *,
-        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -823,10 +780,6 @@ class AsyncSummary(AsyncAPIResource):
         Percentage distribution of attacks by duration.
 
         Args:
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -867,7 +820,6 @@ class AsyncSummary(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
@@ -889,7 +841,6 @@ class AsyncSummary(AsyncAPIResource):
         self,
         *,
         asn: List[str] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -931,10 +882,6 @@ class AsyncSummary(AsyncAPIResource):
               For example, `-174, 3356` excludes results from AS174, but includes results from
               AS3356.
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -969,7 +916,6 @@ class AsyncSummary(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "asn": asn,
-                        "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
@@ -987,7 +933,6 @@ class AsyncSummary(AsyncAPIResource):
     async def ip_version(
         self,
         *,
-        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -1026,10 +971,6 @@ class AsyncSummary(AsyncAPIResource):
         Percentage distribution of attacks by ip version used.
 
         Args:
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -1068,7 +1009,6 @@ class AsyncSummary(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
@@ -1088,7 +1028,6 @@ class AsyncSummary(AsyncAPIResource):
     async def protocol(
         self,
         *,
-        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -1127,10 +1066,6 @@ class AsyncSummary(AsyncAPIResource):
         Percentage distribution of attacks by protocol used.
 
         Args:
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -1169,7 +1104,6 @@ class AsyncSummary(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
@@ -1189,7 +1123,6 @@ class AsyncSummary(AsyncAPIResource):
     async def vector(
         self,
         *,
-        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -1229,10 +1162,6 @@ class AsyncSummary(AsyncAPIResource):
         Percentage distribution of attacks by vector.
 
         Args:
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -1273,7 +1202,6 @@ class AsyncSummary(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,

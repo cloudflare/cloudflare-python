@@ -58,7 +58,6 @@ class Speed(SyncAPIResource):
         *,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bucket_size: int | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
@@ -81,10 +80,6 @@ class Speed(SyncAPIResource):
               AS3356.
 
           bucket_size: The width for every bucket in the histogram.
-
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
 
           date_end: End of the date range (inclusive).
 
@@ -117,7 +112,6 @@ class Speed(SyncAPIResource):
                     {
                         "asn": asn,
                         "bucket_size": bucket_size,
-                        "continent": continent,
                         "date_end": date_end,
                         "format": format,
                         "location": location,
@@ -135,7 +129,6 @@ class Speed(SyncAPIResource):
         self,
         *,
         asn: List[str] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
@@ -155,10 +148,6 @@ class Speed(SyncAPIResource):
           asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
               For example, `-174, 3356` excludes results from AS174, but includes results from
               AS3356.
-
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
 
           date_end: End of the date range (inclusive).
 
@@ -188,7 +177,6 @@ class Speed(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "asn": asn,
-                        "continent": continent,
                         "date_end": date_end,
                         "format": format,
                         "location": location,
@@ -220,7 +208,6 @@ class AsyncSpeed(AsyncAPIResource):
         *,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bucket_size: int | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
@@ -243,10 +230,6 @@ class AsyncSpeed(AsyncAPIResource):
               AS3356.
 
           bucket_size: The width for every bucket in the histogram.
-
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
 
           date_end: End of the date range (inclusive).
 
@@ -279,7 +262,6 @@ class AsyncSpeed(AsyncAPIResource):
                     {
                         "asn": asn,
                         "bucket_size": bucket_size,
-                        "continent": continent,
                         "date_end": date_end,
                         "format": format,
                         "location": location,
@@ -297,7 +279,6 @@ class AsyncSpeed(AsyncAPIResource):
         self,
         *,
         asn: List[str] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
@@ -317,10 +298,6 @@ class AsyncSpeed(AsyncAPIResource):
           asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
               For example, `-174, 3356` excludes results from AS174, but includes results from
               AS3356.
-
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
 
           date_end: End of the date range (inclusive).
 
@@ -350,7 +327,6 @@ class AsyncSpeed(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "asn": asn,
-                        "continent": continent,
                         "date_end": date_end,
                         "format": format,
                         "location": location,

@@ -33,7 +33,6 @@ class TestHTTPProtocol:
             "HTTP",
             asn=["string", "string", "string"],
             bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
-            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -101,7 +100,6 @@ class TestAsyncHTTPProtocol:
             "HTTP",
             asn=["string", "string", "string"],
             bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
-            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),

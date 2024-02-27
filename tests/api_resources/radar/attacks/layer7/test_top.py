@@ -33,7 +33,6 @@ class TestTop:
     def test_method_attacks_with_all_params(self, client: Cloudflare) -> None:
         top = client.radar.attacks.layer7.top.attacks(
             asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -88,7 +87,6 @@ class TestTop:
     def test_method_industry_with_all_params(self, client: Cloudflare) -> None:
         top = client.radar.attacks.layer7.top.industry(
             asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -140,7 +138,6 @@ class TestTop:
     def test_method_vertical_with_all_params(self, client: Cloudflare) -> None:
         top = client.radar.attacks.layer7.top.vertical(
             asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -196,7 +193,6 @@ class TestAsyncTop:
     async def test_method_attacks_with_all_params(self, async_client: AsyncCloudflare) -> None:
         top = await async_client.radar.attacks.layer7.top.attacks(
             asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -251,7 +247,6 @@ class TestAsyncTop:
     async def test_method_industry_with_all_params(self, async_client: AsyncCloudflare) -> None:
         top = await async_client.radar.attacks.layer7.top.industry(
             asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -303,7 +298,6 @@ class TestAsyncTop:
     async def test_method_vertical_with_all_params(self, async_client: AsyncCloudflare) -> None:
         top = await async_client.radar.attacks.layer7.top.vertical(
             asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
