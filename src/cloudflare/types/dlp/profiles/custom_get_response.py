@@ -6,7 +6,23 @@ from typing_extensions import Literal
 
 from ...._models import BaseModel
 
-__all__ = ["CustomGetResponse", "Entry", "EntryPattern"]
+__all__ = ["CustomGetResponse", "ContextAwareness", "ContextAwarenessSkip", "Entry", "EntryPattern"]
+
+
+class ContextAwarenessSkip(BaseModel):
+    files: bool
+    """If the content type is a file, skip context analysis and return all matches."""
+
+
+class ContextAwareness(BaseModel):
+    enabled: bool
+    """
+    If true, scan the context of predefined entries to only return matches
+    surrounded by keywords.
+    """
+
+    skip: ContextAwarenessSkip
+    """Content types to exclude from context analysis and return all matches."""
 
 
 class EntryPattern(BaseModel):
@@ -48,6 +64,12 @@ class CustomGetResponse(BaseModel):
 
     allowed_match_count: Optional[float] = None
     """Related DLP policies will trigger when the match count exceeds the number set."""
+
+    context_awareness: Optional[ContextAwareness] = None
+    """
+    Scan the context of predefined entries to only return matches surrounded by
+    keywords.
+    """
 
     created_at: Optional[datetime] = None
 

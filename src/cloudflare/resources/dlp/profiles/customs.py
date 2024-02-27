@@ -88,6 +88,7 @@ class Customs(SyncAPIResource):
         *,
         account_id: str,
         allowed_match_count: float | NotGiven = NOT_GIVEN,
+        context_awareness: custom_update_params.ContextAwareness | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         entries: Iterable[custom_update_params.Entry] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
@@ -108,6 +109,9 @@ class Customs(SyncAPIResource):
           profile_id: The ID for this profile
 
           allowed_match_count: Related DLP policies will trigger when the match count exceeds the number set.
+
+          context_awareness: Scan the context of predefined entries to only return matches surrounded by
+              keywords.
 
           description: The description of the profile.
 
@@ -137,6 +141,7 @@ class Customs(SyncAPIResource):
             body=maybe_transform(
                 {
                     "allowed_match_count": allowed_match_count,
+                    "context_awareness": context_awareness,
                     "description": description,
                     "entries": entries,
                     "name": name,
@@ -300,6 +305,7 @@ class AsyncCustoms(AsyncAPIResource):
         *,
         account_id: str,
         allowed_match_count: float | NotGiven = NOT_GIVEN,
+        context_awareness: custom_update_params.ContextAwareness | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         entries: Iterable[custom_update_params.Entry] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
@@ -320,6 +326,9 @@ class AsyncCustoms(AsyncAPIResource):
           profile_id: The ID for this profile
 
           allowed_match_count: Related DLP policies will trigger when the match count exceeds the number set.
+
+          context_awareness: Scan the context of predefined entries to only return matches surrounded by
+              keywords.
 
           description: The description of the profile.
 
@@ -349,6 +358,7 @@ class AsyncCustoms(AsyncAPIResource):
             body=maybe_transform(
                 {
                     "allowed_match_count": allowed_match_count,
+                    "context_awareness": context_awareness,
                     "description": description,
                     "entries": entries,
                     "name": name,
