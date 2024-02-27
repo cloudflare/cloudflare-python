@@ -33,10 +33,6 @@ class TestPredefineds:
             "384e129d-25bd-403c-8019-bc19eb7a8a5f",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             allowed_match_count=5,
-            context_awareness={
-                "enabled": True,
-                "skip": {"files": True},
-            },
             entries=[{"enabled": True}, {"enabled": True}, {"enabled": True}],
         )
         assert_matches_type(PredefinedUpdateResponse, predefined, path=["response"])
@@ -156,10 +152,6 @@ class TestAsyncPredefineds:
             "384e129d-25bd-403c-8019-bc19eb7a8a5f",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             allowed_match_count=5,
-            context_awareness={
-                "enabled": True,
-                "skip": {"files": True},
-            },
             entries=[{"enabled": True}, {"enabled": True}, {"enabled": True}],
         )
         assert_matches_type(PredefinedUpdateResponse, predefined, path=["response"])
