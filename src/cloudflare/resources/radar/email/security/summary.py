@@ -54,6 +54,7 @@ class Summary(SyncAPIResource):
     def arc(
         self,
         *,
+        asn: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -79,9 +80,9 @@ class Summary(SyncAPIResource):
         dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -93,6 +94,10 @@ class Summary(SyncAPIResource):
         Percentage distribution of emails classified per ARC validation.
 
         Args:
+          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
+              For example, `-174, 3356` excludes results from AS174, but includes results from
+              AS3356.
+
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -107,11 +112,13 @@ class Summary(SyncAPIResource):
 
           format: Format results are returned in.
 
+          location: Array of comma separated list of locations (alpha-2 country codes). Start with
+              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
+              but includes results from PT.
+
           name: Array of names that will be used to name the series in responses.
 
           spf: Filter for spf.
-
-          tls_version: Filter for tls version.
 
           extra_headers: Send extra headers
 
@@ -130,15 +137,16 @@ class Summary(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "asn": asn,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
                         "dkim": dkim,
                         "dmarc": dmarc,
                         "format": format,
+                        "location": location,
                         "name": name,
                         "spf": spf,
-                        "tls_version": tls_version,
                     },
                     summary_arc_params.SummaryARCParams,
                 ),
@@ -151,6 +159,7 @@ class Summary(SyncAPIResource):
         self,
         *,
         arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        asn: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -175,9 +184,9 @@ class Summary(SyncAPIResource):
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -191,6 +200,10 @@ class Summary(SyncAPIResource):
         Args:
           arc: Filter for arc (Authenticated Received Chain).
 
+          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
+              For example, `-174, 3356` excludes results from AS174, but includes results from
+              AS3356.
+
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -203,11 +216,13 @@ class Summary(SyncAPIResource):
 
           format: Format results are returned in.
 
+          location: Array of comma separated list of locations (alpha-2 country codes). Start with
+              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
+              but includes results from PT.
+
           name: Array of names that will be used to name the series in responses.
 
           spf: Filter for spf.
-
-          tls_version: Filter for tls version.
 
           extra_headers: Send extra headers
 
@@ -227,14 +242,15 @@ class Summary(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "arc": arc,
+                        "asn": asn,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
                         "dmarc": dmarc,
                         "format": format,
+                        "location": location,
                         "name": name,
                         "spf": spf,
-                        "tls_version": tls_version,
                     },
                     summary_dkim_params.SummaryDKIMParams,
                 ),
@@ -247,6 +263,7 @@ class Summary(SyncAPIResource):
         self,
         *,
         arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        asn: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -271,9 +288,9 @@ class Summary(SyncAPIResource):
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -287,6 +304,10 @@ class Summary(SyncAPIResource):
         Args:
           arc: Filter for arc (Authenticated Received Chain).
 
+          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
+              For example, `-174, 3356` excludes results from AS174, but includes results from
+              AS3356.
+
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -299,11 +320,13 @@ class Summary(SyncAPIResource):
 
           format: Format results are returned in.
 
+          location: Array of comma separated list of locations (alpha-2 country codes). Start with
+              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
+              but includes results from PT.
+
           name: Array of names that will be used to name the series in responses.
 
           spf: Filter for spf.
-
-          tls_version: Filter for tls version.
 
           extra_headers: Send extra headers
 
@@ -323,14 +346,15 @@ class Summary(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "arc": arc,
+                        "asn": asn,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
                         "dkim": dkim,
                         "format": format,
+                        "location": location,
                         "name": name,
                         "spf": spf,
-                        "tls_version": tls_version,
                     },
                     summary_dmarc_params.SummaryDMARCParams,
                 ),
@@ -343,6 +367,7 @@ class Summary(SyncAPIResource):
         self,
         *,
         arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        asn: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -368,9 +393,9 @@ class Summary(SyncAPIResource):
         dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -383,6 +408,10 @@ class Summary(SyncAPIResource):
 
         Args:
           arc: Filter for arc (Authenticated Received Chain).
+
+          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
+              For example, `-174, 3356` excludes results from AS174, but includes results from
+              AS3356.
 
           date_end: End of the date range (inclusive).
 
@@ -398,11 +427,13 @@ class Summary(SyncAPIResource):
 
           format: Format results are returned in.
 
+          location: Array of comma separated list of locations (alpha-2 country codes). Start with
+              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
+              but includes results from PT.
+
           name: Array of names that will be used to name the series in responses.
 
           spf: Filter for spf.
-
-          tls_version: Filter for tls version.
 
           extra_headers: Send extra headers
 
@@ -422,15 +453,16 @@ class Summary(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "arc": arc,
+                        "asn": asn,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
                         "dkim": dkim,
                         "dmarc": dmarc,
                         "format": format,
+                        "location": location,
                         "name": name,
                         "spf": spf,
-                        "tls_version": tls_version,
                     },
                     summary_malicious_params.SummaryMaliciousParams,
                 ),
@@ -443,6 +475,7 @@ class Summary(SyncAPIResource):
         self,
         *,
         arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        asn: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -468,9 +501,9 @@ class Summary(SyncAPIResource):
         dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -483,6 +516,10 @@ class Summary(SyncAPIResource):
 
         Args:
           arc: Filter for arc (Authenticated Received Chain).
+
+          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
+              For example, `-174, 3356` excludes results from AS174, but includes results from
+              AS3356.
 
           date_end: End of the date range (inclusive).
 
@@ -498,11 +535,13 @@ class Summary(SyncAPIResource):
 
           format: Format results are returned in.
 
+          location: Array of comma separated list of locations (alpha-2 country codes). Start with
+              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
+              but includes results from PT.
+
           name: Array of names that will be used to name the series in responses.
 
           spf: Filter for spf.
-
-          tls_version: Filter for tls version.
 
           extra_headers: Send extra headers
 
@@ -522,15 +561,16 @@ class Summary(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "arc": arc,
+                        "asn": asn,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
                         "dkim": dkim,
                         "dmarc": dmarc,
                         "format": format,
+                        "location": location,
                         "name": name,
                         "spf": spf,
-                        "tls_version": tls_version,
                     },
                     summary_spam_params.SummarySpamParams,
                 ),
@@ -543,6 +583,7 @@ class Summary(SyncAPIResource):
         self,
         *,
         arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        asn: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -568,8 +609,8 @@ class Summary(SyncAPIResource):
         dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
-        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -582,6 +623,10 @@ class Summary(SyncAPIResource):
 
         Args:
           arc: Filter for arc (Authenticated Received Chain).
+
+          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
+              For example, `-174, 3356` excludes results from AS174, but includes results from
+              AS3356.
 
           date_end: End of the date range (inclusive).
 
@@ -597,9 +642,11 @@ class Summary(SyncAPIResource):
 
           format: Format results are returned in.
 
-          name: Array of names that will be used to name the series in responses.
+          location: Array of comma separated list of locations (alpha-2 country codes). Start with
+              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
+              but includes results from PT.
 
-          tls_version: Filter for tls version.
+          name: Array of names that will be used to name the series in responses.
 
           extra_headers: Send extra headers
 
@@ -619,14 +666,15 @@ class Summary(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "arc": arc,
+                        "asn": asn,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
                         "dkim": dkim,
                         "dmarc": dmarc,
                         "format": format,
+                        "location": location,
                         "name": name,
-                        "tls_version": tls_version,
                     },
                     summary_spf_params.SummarySPFParams,
                 ),
@@ -639,6 +687,7 @@ class Summary(SyncAPIResource):
         self,
         *,
         arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        asn: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -664,9 +713,9 @@ class Summary(SyncAPIResource):
         dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -679,6 +728,10 @@ class Summary(SyncAPIResource):
 
         Args:
           arc: Filter for arc (Authenticated Received Chain).
+
+          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
+              For example, `-174, 3356` excludes results from AS174, but includes results from
+              AS3356.
 
           date_end: End of the date range (inclusive).
 
@@ -694,11 +747,13 @@ class Summary(SyncAPIResource):
 
           format: Format results are returned in.
 
+          location: Array of comma separated list of locations (alpha-2 country codes). Start with
+              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
+              but includes results from PT.
+
           name: Array of names that will be used to name the series in responses.
 
           spf: Filter for spf.
-
-          tls_version: Filter for tls version.
 
           extra_headers: Send extra headers
 
@@ -718,15 +773,16 @@ class Summary(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "arc": arc,
+                        "asn": asn,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
                         "dkim": dkim,
                         "dmarc": dmarc,
                         "format": format,
+                        "location": location,
                         "name": name,
                         "spf": spf,
-                        "tls_version": tls_version,
                     },
                     summary_threat_category_params.SummaryThreatCategoryParams,
                 ),
@@ -748,6 +804,7 @@ class AsyncSummary(AsyncAPIResource):
     async def arc(
         self,
         *,
+        asn: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -773,9 +830,9 @@ class AsyncSummary(AsyncAPIResource):
         dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -787,6 +844,10 @@ class AsyncSummary(AsyncAPIResource):
         Percentage distribution of emails classified per ARC validation.
 
         Args:
+          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
+              For example, `-174, 3356` excludes results from AS174, but includes results from
+              AS3356.
+
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -801,11 +862,13 @@ class AsyncSummary(AsyncAPIResource):
 
           format: Format results are returned in.
 
+          location: Array of comma separated list of locations (alpha-2 country codes). Start with
+              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
+              but includes results from PT.
+
           name: Array of names that will be used to name the series in responses.
 
           spf: Filter for spf.
-
-          tls_version: Filter for tls version.
 
           extra_headers: Send extra headers
 
@@ -824,15 +887,16 @@ class AsyncSummary(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "asn": asn,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
                         "dkim": dkim,
                         "dmarc": dmarc,
                         "format": format,
+                        "location": location,
                         "name": name,
                         "spf": spf,
-                        "tls_version": tls_version,
                     },
                     summary_arc_params.SummaryARCParams,
                 ),
@@ -845,6 +909,7 @@ class AsyncSummary(AsyncAPIResource):
         self,
         *,
         arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        asn: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -869,9 +934,9 @@ class AsyncSummary(AsyncAPIResource):
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -885,6 +950,10 @@ class AsyncSummary(AsyncAPIResource):
         Args:
           arc: Filter for arc (Authenticated Received Chain).
 
+          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
+              For example, `-174, 3356` excludes results from AS174, but includes results from
+              AS3356.
+
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -897,11 +966,13 @@ class AsyncSummary(AsyncAPIResource):
 
           format: Format results are returned in.
 
+          location: Array of comma separated list of locations (alpha-2 country codes). Start with
+              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
+              but includes results from PT.
+
           name: Array of names that will be used to name the series in responses.
 
           spf: Filter for spf.
-
-          tls_version: Filter for tls version.
 
           extra_headers: Send extra headers
 
@@ -921,14 +992,15 @@ class AsyncSummary(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "arc": arc,
+                        "asn": asn,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
                         "dmarc": dmarc,
                         "format": format,
+                        "location": location,
                         "name": name,
                         "spf": spf,
-                        "tls_version": tls_version,
                     },
                     summary_dkim_params.SummaryDKIMParams,
                 ),
@@ -941,6 +1013,7 @@ class AsyncSummary(AsyncAPIResource):
         self,
         *,
         arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        asn: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -965,9 +1038,9 @@ class AsyncSummary(AsyncAPIResource):
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -981,6 +1054,10 @@ class AsyncSummary(AsyncAPIResource):
         Args:
           arc: Filter for arc (Authenticated Received Chain).
 
+          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
+              For example, `-174, 3356` excludes results from AS174, but includes results from
+              AS3356.
+
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -993,11 +1070,13 @@ class AsyncSummary(AsyncAPIResource):
 
           format: Format results are returned in.
 
+          location: Array of comma separated list of locations (alpha-2 country codes). Start with
+              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
+              but includes results from PT.
+
           name: Array of names that will be used to name the series in responses.
 
           spf: Filter for spf.
-
-          tls_version: Filter for tls version.
 
           extra_headers: Send extra headers
 
@@ -1017,14 +1096,15 @@ class AsyncSummary(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "arc": arc,
+                        "asn": asn,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
                         "dkim": dkim,
                         "format": format,
+                        "location": location,
                         "name": name,
                         "spf": spf,
-                        "tls_version": tls_version,
                     },
                     summary_dmarc_params.SummaryDMARCParams,
                 ),
@@ -1037,6 +1117,7 @@ class AsyncSummary(AsyncAPIResource):
         self,
         *,
         arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        asn: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -1062,9 +1143,9 @@ class AsyncSummary(AsyncAPIResource):
         dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1077,6 +1158,10 @@ class AsyncSummary(AsyncAPIResource):
 
         Args:
           arc: Filter for arc (Authenticated Received Chain).
+
+          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
+              For example, `-174, 3356` excludes results from AS174, but includes results from
+              AS3356.
 
           date_end: End of the date range (inclusive).
 
@@ -1092,11 +1177,13 @@ class AsyncSummary(AsyncAPIResource):
 
           format: Format results are returned in.
 
+          location: Array of comma separated list of locations (alpha-2 country codes). Start with
+              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
+              but includes results from PT.
+
           name: Array of names that will be used to name the series in responses.
 
           spf: Filter for spf.
-
-          tls_version: Filter for tls version.
 
           extra_headers: Send extra headers
 
@@ -1116,15 +1203,16 @@ class AsyncSummary(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "arc": arc,
+                        "asn": asn,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
                         "dkim": dkim,
                         "dmarc": dmarc,
                         "format": format,
+                        "location": location,
                         "name": name,
                         "spf": spf,
-                        "tls_version": tls_version,
                     },
                     summary_malicious_params.SummaryMaliciousParams,
                 ),
@@ -1137,6 +1225,7 @@ class AsyncSummary(AsyncAPIResource):
         self,
         *,
         arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        asn: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -1162,9 +1251,9 @@ class AsyncSummary(AsyncAPIResource):
         dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1177,6 +1266,10 @@ class AsyncSummary(AsyncAPIResource):
 
         Args:
           arc: Filter for arc (Authenticated Received Chain).
+
+          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
+              For example, `-174, 3356` excludes results from AS174, but includes results from
+              AS3356.
 
           date_end: End of the date range (inclusive).
 
@@ -1192,11 +1285,13 @@ class AsyncSummary(AsyncAPIResource):
 
           format: Format results are returned in.
 
+          location: Array of comma separated list of locations (alpha-2 country codes). Start with
+              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
+              but includes results from PT.
+
           name: Array of names that will be used to name the series in responses.
 
           spf: Filter for spf.
-
-          tls_version: Filter for tls version.
 
           extra_headers: Send extra headers
 
@@ -1216,15 +1311,16 @@ class AsyncSummary(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "arc": arc,
+                        "asn": asn,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
                         "dkim": dkim,
                         "dmarc": dmarc,
                         "format": format,
+                        "location": location,
                         "name": name,
                         "spf": spf,
-                        "tls_version": tls_version,
                     },
                     summary_spam_params.SummarySpamParams,
                 ),
@@ -1237,6 +1333,7 @@ class AsyncSummary(AsyncAPIResource):
         self,
         *,
         arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        asn: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -1262,8 +1359,8 @@ class AsyncSummary(AsyncAPIResource):
         dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
-        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1276,6 +1373,10 @@ class AsyncSummary(AsyncAPIResource):
 
         Args:
           arc: Filter for arc (Authenticated Received Chain).
+
+          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
+              For example, `-174, 3356` excludes results from AS174, but includes results from
+              AS3356.
 
           date_end: End of the date range (inclusive).
 
@@ -1291,9 +1392,11 @@ class AsyncSummary(AsyncAPIResource):
 
           format: Format results are returned in.
 
-          name: Array of names that will be used to name the series in responses.
+          location: Array of comma separated list of locations (alpha-2 country codes). Start with
+              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
+              but includes results from PT.
 
-          tls_version: Filter for tls version.
+          name: Array of names that will be used to name the series in responses.
 
           extra_headers: Send extra headers
 
@@ -1313,14 +1416,15 @@ class AsyncSummary(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "arc": arc,
+                        "asn": asn,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
                         "dkim": dkim,
                         "dmarc": dmarc,
                         "format": format,
+                        "location": location,
                         "name": name,
-                        "tls_version": tls_version,
                     },
                     summary_spf_params.SummarySPFParams,
                 ),
@@ -1333,6 +1437,7 @@ class AsyncSummary(AsyncAPIResource):
         self,
         *,
         arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        asn: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -1358,9 +1463,9 @@ class AsyncSummary(AsyncAPIResource):
         dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1373,6 +1478,10 @@ class AsyncSummary(AsyncAPIResource):
 
         Args:
           arc: Filter for arc (Authenticated Received Chain).
+
+          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
+              For example, `-174, 3356` excludes results from AS174, but includes results from
+              AS3356.
 
           date_end: End of the date range (inclusive).
 
@@ -1388,11 +1497,13 @@ class AsyncSummary(AsyncAPIResource):
 
           format: Format results are returned in.
 
+          location: Array of comma separated list of locations (alpha-2 country codes). Start with
+              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
+              but includes results from PT.
+
           name: Array of names that will be used to name the series in responses.
 
           spf: Filter for spf.
-
-          tls_version: Filter for tls version.
 
           extra_headers: Send extra headers
 
@@ -1412,15 +1523,16 @@ class AsyncSummary(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "arc": arc,
+                        "asn": asn,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
                         "dkim": dkim,
                         "dmarc": dmarc,
                         "format": format,
+                        "location": location,
                         "name": name,
                         "spf": spf,
-                        "tls_version": tls_version,
                     },
                     summary_threat_category_params.SummaryThreatCategoryParams,
                 ),

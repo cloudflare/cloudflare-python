@@ -32,7 +32,6 @@ class TestBotClass:
         bot_class = client.radar.http.ases.bot_class.get(
             "LIKELY_AUTOMATED",
             asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -101,7 +100,6 @@ class TestAsyncBotClass:
         bot_class = await async_client.radar.http.ases.bot_class.get(
             "LIKELY_AUTOMATED",
             asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),

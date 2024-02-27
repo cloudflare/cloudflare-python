@@ -32,7 +32,6 @@ class TestConnectionTampering:
     def test_method_summary_with_all_params(self, client: Cloudflare) -> None:
         connection_tampering = client.radar.connection_tampering.summary(
             asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -84,7 +83,6 @@ class TestConnectionTampering:
         connection_tampering = client.radar.connection_tampering.timeseries_groups(
             agg_interval="1h",
             asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -139,7 +137,6 @@ class TestAsyncConnectionTampering:
     async def test_method_summary_with_all_params(self, async_client: AsyncCloudflare) -> None:
         connection_tampering = await async_client.radar.connection_tampering.summary(
             asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -191,7 +188,6 @@ class TestAsyncConnectionTampering:
         connection_tampering = await async_client.radar.connection_tampering.timeseries_groups(
             agg_interval="1h",
             asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
