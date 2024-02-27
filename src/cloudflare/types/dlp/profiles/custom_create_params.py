@@ -5,7 +5,14 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["CustomCreateParams", "Profile", "ProfileEntry", "ProfileEntryPattern"]
+__all__ = [
+    "CustomCreateParams",
+    "Profile",
+    "ProfileContextAwareness",
+    "ProfileContextAwarenessSkip",
+    "ProfileEntry",
+    "ProfileEntryPattern",
+]
 
 
 class CustomCreateParams(TypedDict, total=False):
@@ -13,6 +20,22 @@ class CustomCreateParams(TypedDict, total=False):
     """Identifier"""
 
     profiles: Required[Iterable[Profile]]
+
+
+class ProfileContextAwarenessSkip(TypedDict, total=False):
+    files: Required[bool]
+    """If the content type is a file, skip context analysis and return all matches."""
+
+
+class ProfileContextAwareness(TypedDict, total=False):
+    enabled: Required[bool]
+    """
+    If true, scan the context of predefined entries to only return matches
+    surrounded by keywords.
+    """
+
+    skip: Required[ProfileContextAwarenessSkip]
+    """Content types to exclude from context analysis and return all matches."""
 
 
 class ProfileEntryPattern(TypedDict, total=False):
@@ -41,6 +64,12 @@ class ProfileEntry(TypedDict, total=False):
 class Profile(TypedDict, total=False):
     allowed_match_count: float
     """Related DLP policies will trigger when the match count exceeds the number set."""
+
+    context_awareness: ProfileContextAwareness
+    """
+    Scan the context of predefined entries to only return matches surrounded by
+    keywords.
+    """
 
     description: str
     """The description of the profile."""
