@@ -36,6 +36,7 @@ class TestSummary:
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.attacks.layer7.summary.get(
             asn=["string", "string", "string"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -86,6 +87,7 @@ class TestSummary:
     def test_method_http_method_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.attacks.layer7.summary.http_method(
             asn=["string", "string", "string"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -139,6 +141,7 @@ class TestSummary:
     def test_method_http_version_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.attacks.layer7.summary.http_version(
             asn=["string", "string", "string"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -192,6 +195,7 @@ class TestSummary:
     def test_method_ip_version_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.attacks.layer7.summary.ip_version(
             asn=["string", "string", "string"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -245,6 +249,7 @@ class TestSummary:
     def test_method_managed_rules_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.attacks.layer7.summary.managed_rules(
             asn=["string", "string", "string"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -299,6 +304,7 @@ class TestSummary:
     def test_method_mitigation_product_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.attacks.layer7.summary.mitigation_product(
             asn=["string", "string", "string"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -356,6 +362,7 @@ class TestAsyncSummary:
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.attacks.layer7.summary.get(
             asn=["string", "string", "string"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -406,6 +413,7 @@ class TestAsyncSummary:
     async def test_method_http_method_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.attacks.layer7.summary.http_method(
             asn=["string", "string", "string"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -459,6 +467,7 @@ class TestAsyncSummary:
     async def test_method_http_version_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.attacks.layer7.summary.http_version(
             asn=["string", "string", "string"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -512,6 +521,7 @@ class TestAsyncSummary:
     async def test_method_ip_version_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.attacks.layer7.summary.ip_version(
             asn=["string", "string", "string"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -565,6 +575,7 @@ class TestAsyncSummary:
     async def test_method_managed_rules_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.attacks.layer7.summary.managed_rules(
             asn=["string", "string", "string"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -619,6 +630,7 @@ class TestAsyncSummary:
     async def test_method_mitigation_product_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.attacks.layer7.summary.mitigation_product(
             asn=["string", "string", "string"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
