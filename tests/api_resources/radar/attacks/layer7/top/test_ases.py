@@ -28,7 +28,6 @@ class TestAses:
     @parametrize
     def test_method_origin_with_all_params(self, client: Cloudflare) -> None:
         ase = client.radar.attacks.layer7.top.ases.origin(
-            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -83,7 +82,6 @@ class TestAsyncAses:
     @parametrize
     async def test_method_origin_with_all_params(self, async_client: AsyncCloudflare) -> None:
         ase = await async_client.radar.attacks.layer7.top.ases.origin(
-            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),

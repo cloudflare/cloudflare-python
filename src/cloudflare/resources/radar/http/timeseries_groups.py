@@ -60,7 +60,6 @@ class TimeseriesGroups(SyncAPIResource):
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         asn: List[str] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -115,10 +114,6 @@ class TimeseriesGroups(SyncAPIResource):
               For example, `-174, 3356` excludes results from AS174, but includes results from
               AS3356.
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -166,7 +161,6 @@ class TimeseriesGroups(SyncAPIResource):
                     {
                         "agg_interval": agg_interval,
                         "asn": asn,
-                        "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
@@ -193,7 +187,6 @@ class TimeseriesGroups(SyncAPIResource):
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -250,10 +243,6 @@ class TimeseriesGroups(SyncAPIResource):
           bot_class: Filter for bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -305,7 +294,6 @@ class TimeseriesGroups(SyncAPIResource):
                         "agg_interval": agg_interval,
                         "asn": asn,
                         "bot_class": bot_class,
-                        "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
@@ -333,7 +321,6 @@ class TimeseriesGroups(SyncAPIResource):
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -389,10 +376,6 @@ class TimeseriesGroups(SyncAPIResource):
           bot_class: Filter for bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -441,7 +424,6 @@ class TimeseriesGroups(SyncAPIResource):
                         "agg_interval": agg_interval,
                         "asn": asn,
                         "bot_class": bot_class,
-                        "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
@@ -470,7 +452,6 @@ class TimeseriesGroups(SyncAPIResource):
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -524,10 +505,6 @@ class TimeseriesGroups(SyncAPIResource):
           bot_class: Filter for bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -574,7 +551,6 @@ class TimeseriesGroups(SyncAPIResource):
                         "agg_interval": agg_interval,
                         "asn": asn,
                         "bot_class": bot_class,
-                        "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
@@ -600,7 +576,6 @@ class TimeseriesGroups(SyncAPIResource):
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -654,10 +629,6 @@ class TimeseriesGroups(SyncAPIResource):
           bot_class: Filter for bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -704,7 +675,6 @@ class TimeseriesGroups(SyncAPIResource):
                         "agg_interval": agg_interval,
                         "asn": asn,
                         "bot_class": bot_class,
-                        "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
@@ -730,7 +700,6 @@ class TimeseriesGroups(SyncAPIResource):
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -785,10 +754,6 @@ class TimeseriesGroups(SyncAPIResource):
           bot_class: Filter for bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -835,7 +800,6 @@ class TimeseriesGroups(SyncAPIResource):
                         "agg_interval": agg_interval,
                         "asn": asn,
                         "bot_class": bot_class,
-                        "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
@@ -861,7 +825,6 @@ class TimeseriesGroups(SyncAPIResource):
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -916,10 +879,6 @@ class TimeseriesGroups(SyncAPIResource):
           bot_class: Filter for bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -966,7 +925,6 @@ class TimeseriesGroups(SyncAPIResource):
                         "agg_interval": agg_interval,
                         "asn": asn,
                         "bot_class": bot_class,
-                        "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
@@ -992,7 +950,6 @@ class TimeseriesGroups(SyncAPIResource):
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -1046,10 +1003,6 @@ class TimeseriesGroups(SyncAPIResource):
           bot_class: Filter for bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -1096,7 +1049,6 @@ class TimeseriesGroups(SyncAPIResource):
                         "agg_interval": agg_interval,
                         "asn": asn,
                         "bot_class": bot_class,
-                        "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
@@ -1122,7 +1074,6 @@ class TimeseriesGroups(SyncAPIResource):
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -1177,10 +1128,6 @@ class TimeseriesGroups(SyncAPIResource):
           bot_class: Filter for bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -1227,7 +1174,6 @@ class TimeseriesGroups(SyncAPIResource):
                         "agg_interval": agg_interval,
                         "asn": asn,
                         "bot_class": bot_class,
-                        "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
@@ -1262,7 +1208,6 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         asn: List[str] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -1317,10 +1262,6 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
               For example, `-174, 3356` excludes results from AS174, but includes results from
               AS3356.
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -1368,7 +1309,6 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
                     {
                         "agg_interval": agg_interval,
                         "asn": asn,
-                        "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
@@ -1395,7 +1335,6 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -1452,10 +1391,6 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
           bot_class: Filter for bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -1507,7 +1442,6 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
                         "agg_interval": agg_interval,
                         "asn": asn,
                         "bot_class": bot_class,
-                        "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
@@ -1535,7 +1469,6 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -1591,10 +1524,6 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
           bot_class: Filter for bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -1643,7 +1572,6 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
                         "agg_interval": agg_interval,
                         "asn": asn,
                         "bot_class": bot_class,
-                        "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
@@ -1672,7 +1600,6 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -1726,10 +1653,6 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
           bot_class: Filter for bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -1776,7 +1699,6 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
                         "agg_interval": agg_interval,
                         "asn": asn,
                         "bot_class": bot_class,
-                        "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
@@ -1802,7 +1724,6 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -1856,10 +1777,6 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
           bot_class: Filter for bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -1906,7 +1823,6 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
                         "agg_interval": agg_interval,
                         "asn": asn,
                         "bot_class": bot_class,
-                        "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
@@ -1932,7 +1848,6 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -1987,10 +1902,6 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
           bot_class: Filter for bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -2037,7 +1948,6 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
                         "agg_interval": agg_interval,
                         "asn": asn,
                         "bot_class": bot_class,
-                        "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
@@ -2063,7 +1973,6 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -2118,10 +2027,6 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
           bot_class: Filter for bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -2168,7 +2073,6 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
                         "agg_interval": agg_interval,
                         "asn": asn,
                         "bot_class": bot_class,
-                        "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
@@ -2194,7 +2098,6 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -2248,10 +2151,6 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
           bot_class: Filter for bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -2298,7 +2197,6 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
                         "agg_interval": agg_interval,
                         "asn": asn,
                         "bot_class": bot_class,
-                        "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
@@ -2324,7 +2222,6 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
             Literal[
@@ -2379,10 +2276,6 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
           bot_class: Filter for bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
-
           date_end: End of the date range (inclusive).
 
           date_range: For example, use `7d` and `7dControl` to compare this week with the previous
@@ -2429,7 +2322,6 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
                         "agg_interval": agg_interval,
                         "asn": asn,
                         "bot_class": bot_class,
-                        "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,

@@ -6461,6 +6461,176 @@ Methods:
 
 ### Security
 
+#### Top
+
+##### Ases
+
+Types:
+
+```python
+from cloudflare.types.radar.email.security.top import AseGetResponse
+```
+
+Methods:
+
+- <code title="get /radar/email/security/top/ases">client.radar.email.security.top.ases.<a href="./src/cloudflare/resources/radar/email/security/top/ases/ases.py">get</a>(\*\*<a href="src/cloudflare/types/radar/email/security/top/ase_get_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/email/security/top/ase_get_response.py">AseGetResponse</a></code>
+
+###### ARC
+
+Types:
+
+```python
+from cloudflare.types.radar.email.security.top.ases import ARCGetResponse
+```
+
+Methods:
+
+- <code title="get /radar/email/security/top/ases/arc/{arc}">client.radar.email.security.top.ases.arc.<a href="./src/cloudflare/resources/radar/email/security/top/ases/arc.py">get</a>(arc, \*\*<a href="src/cloudflare/types/radar/email/security/top/ases/arc_get_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/email/security/top/ases/arc_get_response.py">ARCGetResponse</a></code>
+
+###### DKIM
+
+Types:
+
+```python
+from cloudflare.types.radar.email.security.top.ases import DKIMGetResponse
+```
+
+Methods:
+
+- <code title="get /radar/email/security/top/ases/dkim/{dkim}">client.radar.email.security.top.ases.dkim.<a href="./src/cloudflare/resources/radar/email/security/top/ases/dkim.py">get</a>(dkim, \*\*<a href="src/cloudflare/types/radar/email/security/top/ases/dkim_get_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/email/security/top/ases/dkim_get_response.py">DKIMGetResponse</a></code>
+
+###### DMARC
+
+Types:
+
+```python
+from cloudflare.types.radar.email.security.top.ases import DMARCGetResponse
+```
+
+Methods:
+
+- <code title="get /radar/email/security/top/ases/dmarc/{dmarc}">client.radar.email.security.top.ases.dmarc.<a href="./src/cloudflare/resources/radar/email/security/top/ases/dmarc.py">get</a>(dmarc, \*\*<a href="src/cloudflare/types/radar/email/security/top/ases/dmarc_get_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/email/security/top/ases/dmarc_get_response.py">DMARCGetResponse</a></code>
+
+###### Malicious
+
+Types:
+
+```python
+from cloudflare.types.radar.email.security.top.ases import MaliciousGetResponse
+```
+
+Methods:
+
+- <code title="get /radar/email/security/top/ases/malicious/{malicious}">client.radar.email.security.top.ases.malicious.<a href="./src/cloudflare/resources/radar/email/security/top/ases/malicious.py">get</a>(malicious, \*\*<a href="src/cloudflare/types/radar/email/security/top/ases/malicious_get_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/email/security/top/ases/malicious_get_response.py">MaliciousGetResponse</a></code>
+
+###### Spam
+
+Types:
+
+```python
+from cloudflare.types.radar.email.security.top.ases import SpamGetResponse
+```
+
+Methods:
+
+- <code title="get /radar/email/security/top/ases/spam/{spam}">client.radar.email.security.top.ases.spam.<a href="./src/cloudflare/resources/radar/email/security/top/ases/spam.py">get</a>(spam, \*\*<a href="src/cloudflare/types/radar/email/security/top/ases/spam_get_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/email/security/top/ases/spam_get_response.py">SpamGetResponse</a></code>
+
+###### SPF
+
+Types:
+
+```python
+from cloudflare.types.radar.email.security.top.ases import SPFGetResponse
+```
+
+Methods:
+
+- <code title="get /radar/email/security/top/ases/spf/{spf}">client.radar.email.security.top.ases.spf.<a href="./src/cloudflare/resources/radar/email/security/top/ases/spf.py">get</a>(spf, \*\*<a href="src/cloudflare/types/radar/email/security/top/ases/spf_get_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/email/security/top/ases/spf_get_response.py">SPFGetResponse</a></code>
+
+##### Locations
+
+Types:
+
+```python
+from cloudflare.types.radar.email.security.top import LocationGetResponse
+```
+
+Methods:
+
+- <code title="get /radar/email/security/top/locations">client.radar.email.security.top.locations.<a href="./src/cloudflare/resources/radar/email/security/top/locations/locations.py">get</a>(\*\*<a href="src/cloudflare/types/radar/email/security/top/location_get_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/email/security/top/location_get_response.py">LocationGetResponse</a></code>
+
+###### ARC
+
+Types:
+
+```python
+from cloudflare.types.radar.email.security.top.locations import ARCGetResponse
+```
+
+Methods:
+
+- <code title="get /radar/email/security/top/locations/arc/{arc}">client.radar.email.security.top.locations.arc.<a href="./src/cloudflare/resources/radar/email/security/top/locations/arc.py">get</a>(arc, \*\*<a href="src/cloudflare/types/radar/email/security/top/locations/arc_get_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/email/security/top/locations/arc_get_response.py">ARCGetResponse</a></code>
+
+###### DKIM
+
+Types:
+
+```python
+from cloudflare.types.radar.email.security.top.locations import DKIMGetResponse
+```
+
+Methods:
+
+- <code title="get /radar/email/security/top/locations/dkim/{dkim}">client.radar.email.security.top.locations.dkim.<a href="./src/cloudflare/resources/radar/email/security/top/locations/dkim.py">get</a>(dkim, \*\*<a href="src/cloudflare/types/radar/email/security/top/locations/dkim_get_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/email/security/top/locations/dkim_get_response.py">DKIMGetResponse</a></code>
+
+###### DMARC
+
+Types:
+
+```python
+from cloudflare.types.radar.email.security.top.locations import DMARCGetResponse
+```
+
+Methods:
+
+- <code title="get /radar/email/security/top/locations/dmarc/{dmarc}">client.radar.email.security.top.locations.dmarc.<a href="./src/cloudflare/resources/radar/email/security/top/locations/dmarc.py">get</a>(dmarc, \*\*<a href="src/cloudflare/types/radar/email/security/top/locations/dmarc_get_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/email/security/top/locations/dmarc_get_response.py">DMARCGetResponse</a></code>
+
+###### Malicious
+
+Types:
+
+```python
+from cloudflare.types.radar.email.security.top.locations import MaliciousGetResponse
+```
+
+Methods:
+
+- <code title="get /radar/email/security/top/locations/malicious/{malicious}">client.radar.email.security.top.locations.malicious.<a href="./src/cloudflare/resources/radar/email/security/top/locations/malicious.py">get</a>(malicious, \*\*<a href="src/cloudflare/types/radar/email/security/top/locations/malicious_get_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/email/security/top/locations/malicious_get_response.py">MaliciousGetResponse</a></code>
+
+###### Spam
+
+Types:
+
+```python
+from cloudflare.types.radar.email.security.top.locations import SpamGetResponse
+```
+
+Methods:
+
+- <code title="get /radar/email/security/top/locations/spam/{spam}">client.radar.email.security.top.locations.spam.<a href="./src/cloudflare/resources/radar/email/security/top/locations/spam.py">get</a>(spam, \*\*<a href="src/cloudflare/types/radar/email/security/top/locations/spam_get_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/email/security/top/locations/spam_get_response.py">SpamGetResponse</a></code>
+
+###### SPF
+
+Types:
+
+```python
+from cloudflare.types.radar.email.security.top.locations import SPFGetResponse
+```
+
+Methods:
+
+- <code title="get /radar/email/security/top/locations/spf/{spf}">client.radar.email.security.top.locations.spf.<a href="./src/cloudflare/resources/radar/email/security/top/locations/spf.py">get</a>(spf, \*\*<a href="src/cloudflare/types/radar/email/security/top/locations/spf_get_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/email/security/top/locations/spf_get_response.py">SPFGetResponse</a></code>
+
 #### Summary
 
 Types:

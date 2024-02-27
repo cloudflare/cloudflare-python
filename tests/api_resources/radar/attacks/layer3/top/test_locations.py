@@ -31,7 +31,6 @@ class TestLocations:
     @parametrize
     def test_method_origin_with_all_params(self, client: Cloudflare) -> None:
         location = client.radar.attacks.layer3.top.locations.origin(
-            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -84,7 +83,6 @@ class TestLocations:
     @parametrize
     def test_method_target_with_all_params(self, client: Cloudflare) -> None:
         location = client.radar.attacks.layer3.top.locations.target(
-            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -141,7 +139,6 @@ class TestAsyncLocations:
     @parametrize
     async def test_method_origin_with_all_params(self, async_client: AsyncCloudflare) -> None:
         location = await async_client.radar.attacks.layer3.top.locations.origin(
-            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -194,7 +191,6 @@ class TestAsyncLocations:
     @parametrize
     async def test_method_target_with_all_params(self, async_client: AsyncCloudflare) -> None:
         location = await async_client.radar.attacks.layer3.top.locations.target(
-            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
