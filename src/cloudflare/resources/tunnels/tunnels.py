@@ -7,13 +7,13 @@ from datetime import datetime
 
 import httpx
 
-from .tokens import (
-    Tokens,
-    AsyncTokens,
-    TokensWithRawResponse,
-    AsyncTokensWithRawResponse,
-    TokensWithStreamingResponse,
-    AsyncTokensWithStreamingResponse,
+from .token import (
+    Token,
+    AsyncToken,
+    TokenWithRawResponse,
+    AsyncTokenWithRawResponse,
+    TokenWithStreamingResponse,
+    AsyncTokenWithStreamingResponse,
 )
 from ...types import (
     TunnelGetResponse,
@@ -88,8 +88,8 @@ class Tunnels(SyncAPIResource):
         return Connections(self._client)
 
     @cached_property
-    def tokens(self) -> Tokens:
-        return Tokens(self._client)
+    def token(self) -> Token:
+        return Token(self._client)
 
     @cached_property
     def connectors(self) -> Connectors:
@@ -402,8 +402,8 @@ class AsyncTunnels(AsyncAPIResource):
         return AsyncConnections(self._client)
 
     @cached_property
-    def tokens(self) -> AsyncTokens:
-        return AsyncTokens(self._client)
+    def token(self) -> AsyncToken:
+        return AsyncToken(self._client)
 
     @cached_property
     def connectors(self) -> AsyncConnectors:
@@ -735,8 +735,8 @@ class TunnelsWithRawResponse:
         return ConnectionsWithRawResponse(self._tunnels.connections)
 
     @cached_property
-    def tokens(self) -> TokensWithRawResponse:
-        return TokensWithRawResponse(self._tunnels.tokens)
+    def token(self) -> TokenWithRawResponse:
+        return TokenWithRawResponse(self._tunnels.token)
 
     @cached_property
     def connectors(self) -> ConnectorsWithRawResponse:
@@ -776,8 +776,8 @@ class AsyncTunnelsWithRawResponse:
         return AsyncConnectionsWithRawResponse(self._tunnels.connections)
 
     @cached_property
-    def tokens(self) -> AsyncTokensWithRawResponse:
-        return AsyncTokensWithRawResponse(self._tunnels.tokens)
+    def token(self) -> AsyncTokenWithRawResponse:
+        return AsyncTokenWithRawResponse(self._tunnels.token)
 
     @cached_property
     def connectors(self) -> AsyncConnectorsWithRawResponse:
@@ -817,8 +817,8 @@ class TunnelsWithStreamingResponse:
         return ConnectionsWithStreamingResponse(self._tunnels.connections)
 
     @cached_property
-    def tokens(self) -> TokensWithStreamingResponse:
-        return TokensWithStreamingResponse(self._tunnels.tokens)
+    def token(self) -> TokenWithStreamingResponse:
+        return TokenWithStreamingResponse(self._tunnels.token)
 
     @cached_property
     def connectors(self) -> ConnectorsWithStreamingResponse:
@@ -858,8 +858,8 @@ class AsyncTunnelsWithStreamingResponse:
         return AsyncConnectionsWithStreamingResponse(self._tunnels.connections)
 
     @cached_property
-    def tokens(self) -> AsyncTokensWithStreamingResponse:
-        return AsyncTokensWithStreamingResponse(self._tunnels.tokens)
+    def token(self) -> AsyncTokenWithStreamingResponse:
+        return AsyncTokenWithStreamingResponse(self._tunnels.token)
 
     @cached_property
     def connectors(self) -> AsyncConnectorsWithStreamingResponse:

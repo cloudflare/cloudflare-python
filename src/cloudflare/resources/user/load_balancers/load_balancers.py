@@ -26,8 +26,17 @@ from .monitors import (
     MonitorsWithStreamingResponse,
     AsyncMonitorsWithStreamingResponse,
 )
+from .analytics import (
+    Analytics,
+    AsyncAnalytics,
+    AnalyticsWithRawResponse,
+    AsyncAnalyticsWithRawResponse,
+    AnalyticsWithStreamingResponse,
+    AsyncAnalyticsWithStreamingResponse,
+)
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
+from .analytics.analytics import Analytics, AsyncAnalytics
 
 __all__ = ["LoadBalancers", "AsyncLoadBalancers"]
 
@@ -44,6 +53,10 @@ class LoadBalancers(SyncAPIResource):
     @cached_property
     def preview(self) -> Preview:
         return Preview(self._client)
+
+    @cached_property
+    def analytics(self) -> Analytics:
+        return Analytics(self._client)
 
     @cached_property
     def with_raw_response(self) -> LoadBalancersWithRawResponse:
@@ -66,6 +79,10 @@ class AsyncLoadBalancers(AsyncAPIResource):
     @cached_property
     def preview(self) -> AsyncPreview:
         return AsyncPreview(self._client)
+
+    @cached_property
+    def analytics(self) -> AsyncAnalytics:
+        return AsyncAnalytics(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncLoadBalancersWithRawResponse:
@@ -92,6 +109,10 @@ class LoadBalancersWithRawResponse:
     def preview(self) -> PreviewWithRawResponse:
         return PreviewWithRawResponse(self._load_balancers.preview)
 
+    @cached_property
+    def analytics(self) -> AnalyticsWithRawResponse:
+        return AnalyticsWithRawResponse(self._load_balancers.analytics)
+
 
 class AsyncLoadBalancersWithRawResponse:
     def __init__(self, load_balancers: AsyncLoadBalancers) -> None:
@@ -108,6 +129,10 @@ class AsyncLoadBalancersWithRawResponse:
     @cached_property
     def preview(self) -> AsyncPreviewWithRawResponse:
         return AsyncPreviewWithRawResponse(self._load_balancers.preview)
+
+    @cached_property
+    def analytics(self) -> AsyncAnalyticsWithRawResponse:
+        return AsyncAnalyticsWithRawResponse(self._load_balancers.analytics)
 
 
 class LoadBalancersWithStreamingResponse:
@@ -126,6 +151,10 @@ class LoadBalancersWithStreamingResponse:
     def preview(self) -> PreviewWithStreamingResponse:
         return PreviewWithStreamingResponse(self._load_balancers.preview)
 
+    @cached_property
+    def analytics(self) -> AnalyticsWithStreamingResponse:
+        return AnalyticsWithStreamingResponse(self._load_balancers.analytics)
+
 
 class AsyncLoadBalancersWithStreamingResponse:
     def __init__(self, load_balancers: AsyncLoadBalancers) -> None:
@@ -142,3 +171,7 @@ class AsyncLoadBalancersWithStreamingResponse:
     @cached_property
     def preview(self) -> AsyncPreviewWithStreamingResponse:
         return AsyncPreviewWithStreamingResponse(self._load_balancers.preview)
+
+    @cached_property
+    def analytics(self) -> AsyncAnalyticsWithStreamingResponse:
+        return AsyncAnalyticsWithStreamingResponse(self._load_balancers.analytics)

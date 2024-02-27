@@ -11,24 +11,12 @@ from .database import (
     AsyncDatabaseWithStreamingResponse,
 )
 from ..._compat import cached_property
-from .databases import (
-    Databases,
-    AsyncDatabases,
-    DatabasesWithRawResponse,
-    AsyncDatabasesWithRawResponse,
-    DatabasesWithStreamingResponse,
-    AsyncDatabasesWithStreamingResponse,
-)
 from ..._resource import SyncAPIResource, AsyncAPIResource
 
 __all__ = ["D1", "AsyncD1"]
 
 
 class D1(SyncAPIResource):
-    @cached_property
-    def databases(self) -> Databases:
-        return Databases(self._client)
-
     @cached_property
     def database(self) -> Database:
         return Database(self._client)
@@ -43,10 +31,6 @@ class D1(SyncAPIResource):
 
 
 class AsyncD1(AsyncAPIResource):
-    @cached_property
-    def databases(self) -> AsyncDatabases:
-        return AsyncDatabases(self._client)
-
     @cached_property
     def database(self) -> AsyncDatabase:
         return AsyncDatabase(self._client)
@@ -65,10 +49,6 @@ class D1WithRawResponse:
         self._d1 = d1
 
     @cached_property
-    def databases(self) -> DatabasesWithRawResponse:
-        return DatabasesWithRawResponse(self._d1.databases)
-
-    @cached_property
     def database(self) -> DatabaseWithRawResponse:
         return DatabaseWithRawResponse(self._d1.database)
 
@@ -76,10 +56,6 @@ class D1WithRawResponse:
 class AsyncD1WithRawResponse:
     def __init__(self, d1: AsyncD1) -> None:
         self._d1 = d1
-
-    @cached_property
-    def databases(self) -> AsyncDatabasesWithRawResponse:
-        return AsyncDatabasesWithRawResponse(self._d1.databases)
 
     @cached_property
     def database(self) -> AsyncDatabaseWithRawResponse:
@@ -91,10 +67,6 @@ class D1WithStreamingResponse:
         self._d1 = d1
 
     @cached_property
-    def databases(self) -> DatabasesWithStreamingResponse:
-        return DatabasesWithStreamingResponse(self._d1.databases)
-
-    @cached_property
     def database(self) -> DatabaseWithStreamingResponse:
         return DatabaseWithStreamingResponse(self._d1.database)
 
@@ -102,10 +74,6 @@ class D1WithStreamingResponse:
 class AsyncD1WithStreamingResponse:
     def __init__(self, d1: AsyncD1) -> None:
         self._d1 = d1
-
-    @cached_property
-    def databases(self) -> AsyncDatabasesWithStreamingResponse:
-        return AsyncDatabasesWithStreamingResponse(self._d1.databases)
 
     @cached_property
     def database(self) -> AsyncDatabaseWithStreamingResponse:

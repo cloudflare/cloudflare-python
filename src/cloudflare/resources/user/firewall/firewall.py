@@ -12,7 +12,6 @@ from .access_rules import (
     AccessRulesWithStreamingResponse,
     AsyncAccessRulesWithStreamingResponse,
 )
-from .access_rules.access_rules import AccessRules, AsyncAccessRules
 
 __all__ = ["Firewall", "AsyncFirewall"]
 
