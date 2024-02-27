@@ -31,6 +31,7 @@ class TestLayer7:
             agg_interval="1h",
             asn=["string", "string", "string"],
             attack=["DDOS", "WAF", "BOT_MANAGEMENT"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -88,6 +89,7 @@ class TestAsyncLayer7:
             agg_interval="1h",
             asn=["string", "string", "string"],
             attack=["DDOS", "WAF", "BOT_MANAGEMENT"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),

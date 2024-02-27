@@ -32,6 +32,7 @@ class TestTop:
         top = client.radar.dns.top.ases(
             domain=["string", "string", "string"],
             asn=["string", "string", "string"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -90,6 +91,7 @@ class TestTop:
         top = client.radar.dns.top.locations(
             domain=["string", "string", "string"],
             asn=["string", "string", "string"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -152,6 +154,7 @@ class TestAsyncTop:
         top = await async_client.radar.dns.top.ases(
             domain=["string", "string", "string"],
             asn=["string", "string", "string"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -210,6 +213,7 @@ class TestAsyncTop:
         top = await async_client.radar.dns.top.locations(
             domain=["string", "string", "string"],
             asn=["string", "string", "string"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
