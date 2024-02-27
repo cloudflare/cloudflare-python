@@ -7,8 +7,6 @@ from typing_extensions import Literal, Required, TypedDict
 
 __all__ = [
     "CustomUpdateParams",
-    "ContextAwareness",
-    "ContextAwarenessSkip",
     "Entry",
     "EntryPattern",
     "SharedEntry",
@@ -23,12 +21,6 @@ class CustomUpdateParams(TypedDict, total=False):
 
     allowed_match_count: float
     """Related DLP policies will trigger when the match count exceeds the number set."""
-
-    context_awareness: ContextAwareness
-    """
-    Scan the context of predefined entries to only return matches surrounded by
-    keywords.
-    """
 
     description: str
     """The description of the profile."""
@@ -49,22 +41,6 @@ class CustomUpdateParams(TypedDict, total=False):
     pre-defined Cloudflare profiles, or your Microsoft Information Protection
     profiles).
     """
-
-
-class ContextAwarenessSkip(TypedDict, total=False):
-    files: Required[bool]
-    """If the content type is a file, skip context analysis and return all matches."""
-
-
-class ContextAwareness(TypedDict, total=False):
-    enabled: Required[bool]
-    """
-    If true, scan the context of predefined entries to only return matches
-    surrounded by keywords.
-    """
-
-    skip: Required[ContextAwarenessSkip]
-    """Content types to exclude from context analysis and return all matches."""
 
 
 class EntryPattern(TypedDict, total=False):

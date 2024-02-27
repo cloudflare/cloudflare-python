@@ -9,33 +9,13 @@ from ..._models import BaseModel
 __all__ = [
     "ProfileGetResponse",
     "DLPPredefinedProfile",
-    "DLPPredefinedProfileContextAwareness",
-    "DLPPredefinedProfileContextAwarenessSkip",
     "DLPPredefinedProfileEntry",
     "DLPCustomProfile",
-    "DLPCustomProfileContextAwareness",
-    "DLPCustomProfileContextAwarenessSkip",
     "DLPCustomProfileEntry",
     "DLPCustomProfileEntryPattern",
     "DLPIntegrationProfile",
     "DLPIntegrationProfileEntry",
 ]
-
-
-class DLPPredefinedProfileContextAwarenessSkip(BaseModel):
-    files: bool
-    """If the content type is a file, skip context analysis and return all matches."""
-
-
-class DLPPredefinedProfileContextAwareness(BaseModel):
-    enabled: bool
-    """
-    If true, scan the context of predefined entries to only return matches
-    surrounded by keywords.
-    """
-
-    skip: DLPPredefinedProfileContextAwarenessSkip
-    """Content types to exclude from context analysis and return all matches."""
 
 
 class DLPPredefinedProfileEntry(BaseModel):
@@ -59,12 +39,6 @@ class DLPPredefinedProfile(BaseModel):
     allowed_match_count: Optional[float] = None
     """Related DLP policies will trigger when the match count exceeds the number set."""
 
-    context_awareness: Optional[DLPPredefinedProfileContextAwareness] = None
-    """
-    Scan the context of predefined entries to only return matches surrounded by
-    keywords.
-    """
-
     entries: Optional[List[DLPPredefinedProfileEntry]] = None
     """The entries for this profile."""
 
@@ -73,22 +47,6 @@ class DLPPredefinedProfile(BaseModel):
 
     type: Optional[Literal["predefined"]] = None
     """The type of the profile."""
-
-
-class DLPCustomProfileContextAwarenessSkip(BaseModel):
-    files: bool
-    """If the content type is a file, skip context analysis and return all matches."""
-
-
-class DLPCustomProfileContextAwareness(BaseModel):
-    enabled: bool
-    """
-    If true, scan the context of predefined entries to only return matches
-    surrounded by keywords.
-    """
-
-    skip: DLPCustomProfileContextAwarenessSkip
-    """Content types to exclude from context analysis and return all matches."""
 
 
 class DLPCustomProfileEntryPattern(BaseModel):
@@ -130,12 +88,6 @@ class DLPCustomProfile(BaseModel):
 
     allowed_match_count: Optional[float] = None
     """Related DLP policies will trigger when the match count exceeds the number set."""
-
-    context_awareness: Optional[DLPCustomProfileContextAwareness] = None
-    """
-    Scan the context of predefined entries to only return matches surrounded by
-    keywords.
-    """
 
     created_at: Optional[datetime] = None
 
