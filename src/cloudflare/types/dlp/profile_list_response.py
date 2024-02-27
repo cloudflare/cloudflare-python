@@ -10,13 +10,33 @@ __all__ = [
     "ProfileListResponse",
     "ProfileListResponseItem",
     "ProfileListResponseItemDLPPredefinedProfile",
+    "ProfileListResponseItemDLPPredefinedProfileContextAwareness",
+    "ProfileListResponseItemDLPPredefinedProfileContextAwarenessSkip",
     "ProfileListResponseItemDLPPredefinedProfileEntry",
     "ProfileListResponseItemDLPCustomProfile",
+    "ProfileListResponseItemDLPCustomProfileContextAwareness",
+    "ProfileListResponseItemDLPCustomProfileContextAwarenessSkip",
     "ProfileListResponseItemDLPCustomProfileEntry",
     "ProfileListResponseItemDLPCustomProfileEntryPattern",
     "ProfileListResponseItemDLPIntegrationProfile",
     "ProfileListResponseItemDLPIntegrationProfileEntry",
 ]
+
+
+class ProfileListResponseItemDLPPredefinedProfileContextAwarenessSkip(BaseModel):
+    files: bool
+    """If the content type is a file, skip context analysis and return all matches."""
+
+
+class ProfileListResponseItemDLPPredefinedProfileContextAwareness(BaseModel):
+    enabled: bool
+    """
+    If true, scan the context of predefined entries to only return matches
+    surrounded by keywords.
+    """
+
+    skip: ProfileListResponseItemDLPPredefinedProfileContextAwarenessSkip
+    """Content types to exclude from context analysis and return all matches."""
 
 
 class ProfileListResponseItemDLPPredefinedProfileEntry(BaseModel):
@@ -40,6 +60,12 @@ class ProfileListResponseItemDLPPredefinedProfile(BaseModel):
     allowed_match_count: Optional[float] = None
     """Related DLP policies will trigger when the match count exceeds the number set."""
 
+    context_awareness: Optional[ProfileListResponseItemDLPPredefinedProfileContextAwareness] = None
+    """
+    Scan the context of predefined entries to only return matches surrounded by
+    keywords.
+    """
+
     entries: Optional[List[ProfileListResponseItemDLPPredefinedProfileEntry]] = None
     """The entries for this profile."""
 
@@ -48,6 +74,22 @@ class ProfileListResponseItemDLPPredefinedProfile(BaseModel):
 
     type: Optional[Literal["predefined"]] = None
     """The type of the profile."""
+
+
+class ProfileListResponseItemDLPCustomProfileContextAwarenessSkip(BaseModel):
+    files: bool
+    """If the content type is a file, skip context analysis and return all matches."""
+
+
+class ProfileListResponseItemDLPCustomProfileContextAwareness(BaseModel):
+    enabled: bool
+    """
+    If true, scan the context of predefined entries to only return matches
+    surrounded by keywords.
+    """
+
+    skip: ProfileListResponseItemDLPCustomProfileContextAwarenessSkip
+    """Content types to exclude from context analysis and return all matches."""
 
 
 class ProfileListResponseItemDLPCustomProfileEntryPattern(BaseModel):
@@ -89,6 +131,12 @@ class ProfileListResponseItemDLPCustomProfile(BaseModel):
 
     allowed_match_count: Optional[float] = None
     """Related DLP policies will trigger when the match count exceeds the number set."""
+
+    context_awareness: Optional[ProfileListResponseItemDLPCustomProfileContextAwareness] = None
+    """
+    Scan the context of predefined entries to only return matches surrounded by
+    keywords.
+    """
 
     created_at: Optional[datetime] = None
 
