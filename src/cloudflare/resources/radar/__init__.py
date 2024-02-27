@@ -48,14 +48,6 @@ from .radar import (
     RadarWithStreamingResponse,
     AsyncRadarWithStreamingResponse,
 )
-from .emails import (
-    Emails,
-    AsyncEmails,
-    EmailsWithRawResponse,
-    AsyncEmailsWithRawResponse,
-    EmailsWithStreamingResponse,
-    AsyncEmailsWithStreamingResponse,
-)
 from .search import (
     Search,
     AsyncSearch,
@@ -212,12 +204,6 @@ __all__ = [
     "AsyncAttacksWithRawResponse",
     "AttacksWithStreamingResponse",
     "AsyncAttacksWithStreamingResponse",
-    "Emails",
-    "AsyncEmails",
-    "EmailsWithRawResponse",
-    "AsyncEmailsWithRawResponse",
-    "EmailsWithStreamingResponse",
-    "AsyncEmailsWithStreamingResponse",
     "Entities",
     "AsyncEntities",
     "EntitiesWithRawResponse",

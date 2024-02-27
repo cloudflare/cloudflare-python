@@ -24,6 +24,14 @@ from .monitors import (
     MonitorsWithStreamingResponse,
     AsyncMonitorsWithStreamingResponse,
 )
+from .analytics import (
+    Analytics,
+    AsyncAnalytics,
+    AnalyticsWithRawResponse,
+    AsyncAnalyticsWithRawResponse,
+    AnalyticsWithStreamingResponse,
+    AsyncAnalyticsWithStreamingResponse,
+)
 from .load_balancers import (
     LoadBalancers,
     AsyncLoadBalancers,
@@ -52,6 +60,12 @@ __all__ = [
     "AsyncPreviewWithRawResponse",
     "PreviewWithStreamingResponse",
     "AsyncPreviewWithStreamingResponse",
+    "Analytics",
+    "AsyncAnalytics",
+    "AnalyticsWithRawResponse",
+    "AsyncAnalyticsWithRawResponse",
+    "AnalyticsWithStreamingResponse",
+    "AsyncAnalyticsWithStreamingResponse",
     "LoadBalancers",
     "AsyncLoadBalancers",
     "LoadBalancersWithRawResponse",

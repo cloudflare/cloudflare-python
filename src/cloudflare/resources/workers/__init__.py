@@ -24,14 +24,6 @@ from .routes import (
     RoutesWithStreamingResponse,
     AsyncRoutesWithStreamingResponse,
 )
-from .script import (
-    Script,
-    AsyncScript,
-    ScriptWithRawResponse,
-    AsyncScriptWithRawResponse,
-    ScriptWithStreamingResponse,
-    AsyncScriptWithStreamingResponse,
-)
 from .domains import (
     Domains,
     AsyncDomains,
@@ -104,14 +96,6 @@ from .account_settings import (
     AccountSettingsWithStreamingResponse,
     AsyncAccountSettingsWithStreamingResponse,
 )
-from .deployments_by_script import (
-    DeploymentsByScript,
-    AsyncDeploymentsByScript,
-    DeploymentsByScriptWithRawResponse,
-    AsyncDeploymentsByScriptWithRawResponse,
-    DeploymentsByScriptWithStreamingResponse,
-    AsyncDeploymentsByScriptWithStreamingResponse,
-)
 
 __all__ = [
     "AI",
@@ -174,24 +158,12 @@ __all__ = [
     "AsyncSubdomainsWithRawResponse",
     "SubdomainsWithStreamingResponse",
     "AsyncSubdomainsWithStreamingResponse",
-    "DeploymentsByScript",
-    "AsyncDeploymentsByScript",
-    "DeploymentsByScriptWithRawResponse",
-    "AsyncDeploymentsByScriptWithRawResponse",
-    "DeploymentsByScriptWithStreamingResponse",
-    "AsyncDeploymentsByScriptWithStreamingResponse",
     "Services",
     "AsyncServices",
     "ServicesWithRawResponse",
     "AsyncServicesWithRawResponse",
     "ServicesWithStreamingResponse",
     "AsyncServicesWithStreamingResponse",
-    "Script",
-    "AsyncScript",
-    "ScriptWithRawResponse",
-    "AsyncScriptWithRawResponse",
-    "ScriptWithStreamingResponse",
-    "AsyncScriptWithStreamingResponse",
     "Workers",
     "AsyncWorkers",
     "WorkersWithRawResponse",

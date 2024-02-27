@@ -1,5 +1,13 @@
 # File generated from our OpenAPI spec by Stainless.
 
+from .value import (
+    Value,
+    AsyncValue,
+    ValueWithRawResponse,
+    AsyncValueWithRawResponse,
+    ValueWithStreamingResponse,
+    AsyncValueWithStreamingResponse,
+)
 from .tokens import (
     Tokens,
     AsyncTokens,
@@ -7,14 +15,6 @@ from .tokens import (
     AsyncTokensWithRawResponse,
     TokensWithStreamingResponse,
     AsyncTokensWithStreamingResponse,
-)
-from .values import (
-    Values,
-    AsyncValues,
-    ValuesWithRawResponse,
-    AsyncValuesWithRawResponse,
-    ValuesWithStreamingResponse,
-    AsyncValuesWithStreamingResponse,
 )
 from .permission_groups import (
     PermissionGroups,
@@ -32,12 +32,12 @@ __all__ = [
     "AsyncPermissionGroupsWithRawResponse",
     "PermissionGroupsWithStreamingResponse",
     "AsyncPermissionGroupsWithStreamingResponse",
-    "Values",
-    "AsyncValues",
-    "ValuesWithRawResponse",
-    "AsyncValuesWithRawResponse",
-    "ValuesWithStreamingResponse",
-    "AsyncValuesWithStreamingResponse",
+    "Value",
+    "AsyncValue",
+    "ValueWithRawResponse",
+    "AsyncValueWithRawResponse",
+    "ValueWithStreamingResponse",
+    "AsyncValueWithStreamingResponse",
     "Tokens",
     "AsyncTokens",
     "TokensWithRawResponse",

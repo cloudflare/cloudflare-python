@@ -1,12 +1,12 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from .tokens import (
-    Tokens,
-    AsyncTokens,
-    TokensWithRawResponse,
-    AsyncTokensWithRawResponse,
-    TokensWithStreamingResponse,
-    AsyncTokensWithStreamingResponse,
+from .token import (
+    Token,
+    AsyncToken,
+    TokenWithRawResponse,
+    AsyncTokenWithRawResponse,
+    TokenWithStreamingResponse,
+    AsyncTokenWithStreamingResponse,
 )
 from .tunnels import (
     Tunnels,
@@ -62,12 +62,12 @@ __all__ = [
     "AsyncConnectionsWithRawResponse",
     "ConnectionsWithStreamingResponse",
     "AsyncConnectionsWithStreamingResponse",
-    "Tokens",
-    "AsyncTokens",
-    "TokensWithRawResponse",
-    "AsyncTokensWithRawResponse",
-    "TokensWithStreamingResponse",
-    "AsyncTokensWithStreamingResponse",
+    "Token",
+    "AsyncToken",
+    "TokenWithRawResponse",
+    "AsyncTokenWithRawResponse",
+    "TokenWithStreamingResponse",
+    "AsyncTokenWithStreamingResponse",
     "Connectors",
     "AsyncConnectors",
     "ConnectorsWithRawResponse",

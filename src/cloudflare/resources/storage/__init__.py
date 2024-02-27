@@ -1,13 +1,5 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from .kv import (
-    KV,
-    AsyncKV,
-    KVWithRawResponse,
-    AsyncKVWithRawResponse,
-    KVWithStreamingResponse,
-    AsyncKVWithStreamingResponse,
-)
 from .storage import (
     Storage,
     AsyncStorage,
@@ -32,12 +24,6 @@ __all__ = [
     "AsyncAnalyticsWithRawResponse",
     "AnalyticsWithStreamingResponse",
     "AsyncAnalyticsWithStreamingResponse",
-    "KV",
-    "AsyncKV",
-    "KVWithRawResponse",
-    "AsyncKVWithRawResponse",
-    "KVWithStreamingResponse",
-    "AsyncKVWithStreamingResponse",
     "Storage",
     "AsyncStorage",
     "StorageWithRawResponse",

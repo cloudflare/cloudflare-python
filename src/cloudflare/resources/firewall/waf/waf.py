@@ -10,6 +10,14 @@ from .packages import (
     PackagesWithStreamingResponse,
     AsyncPackagesWithStreamingResponse,
 )
+from .overrides import (
+    Overrides,
+    AsyncOverrides,
+    OverridesWithRawResponse,
+    AsyncOverridesWithRawResponse,
+    OverridesWithStreamingResponse,
+    AsyncOverridesWithStreamingResponse,
+)
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from .packages.packages import Packages, AsyncPackages
@@ -18,6 +26,10 @@ __all__ = ["WAF", "AsyncWAF"]
 
 
 class WAF(SyncAPIResource):
+    @cached_property
+    def overrides(self) -> Overrides:
+        return Overrides(self._client)
+
     @cached_property
     def packages(self) -> Packages:
         return Packages(self._client)
@@ -32,6 +44,10 @@ class WAF(SyncAPIResource):
 
 
 class AsyncWAF(AsyncAPIResource):
+    @cached_property
+    def overrides(self) -> AsyncOverrides:
+        return AsyncOverrides(self._client)
+
     @cached_property
     def packages(self) -> AsyncPackages:
         return AsyncPackages(self._client)
@@ -50,6 +66,10 @@ class WAFWithRawResponse:
         self._waf = waf
 
     @cached_property
+    def overrides(self) -> OverridesWithRawResponse:
+        return OverridesWithRawResponse(self._waf.overrides)
+
+    @cached_property
     def packages(self) -> PackagesWithRawResponse:
         return PackagesWithRawResponse(self._waf.packages)
 
@@ -57,6 +77,10 @@ class WAFWithRawResponse:
 class AsyncWAFWithRawResponse:
     def __init__(self, waf: AsyncWAF) -> None:
         self._waf = waf
+
+    @cached_property
+    def overrides(self) -> AsyncOverridesWithRawResponse:
+        return AsyncOverridesWithRawResponse(self._waf.overrides)
 
     @cached_property
     def packages(self) -> AsyncPackagesWithRawResponse:
@@ -68,6 +92,10 @@ class WAFWithStreamingResponse:
         self._waf = waf
 
     @cached_property
+    def overrides(self) -> OverridesWithStreamingResponse:
+        return OverridesWithStreamingResponse(self._waf.overrides)
+
+    @cached_property
     def packages(self) -> PackagesWithStreamingResponse:
         return PackagesWithStreamingResponse(self._waf.packages)
 
@@ -75,6 +103,10 @@ class WAFWithStreamingResponse:
 class AsyncWAFWithStreamingResponse:
     def __init__(self, waf: AsyncWAF) -> None:
         self._waf = waf
+
+    @cached_property
+    def overrides(self) -> AsyncOverridesWithStreamingResponse:
+        return AsyncOverridesWithStreamingResponse(self._waf.overrides)
 
     @cached_property
     def packages(self) -> AsyncPackagesWithStreamingResponse:

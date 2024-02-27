@@ -1,20 +1,20 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from .v1s import (
-    V1s,
-    AsyncV1s,
-    V1sWithRawResponse,
-    AsyncV1sWithRawResponse,
-    V1sWithStreamingResponse,
-    AsyncV1sWithStreamingResponse,
+from .v1 import (
+    V1,
+    AsyncV1,
+    V1WithRawResponse,
+    AsyncV1WithRawResponse,
+    V1WithStreamingResponse,
+    AsyncV1WithStreamingResponse,
 )
-from .v2s import (
-    V2s,
-    AsyncV2s,
-    V2sWithRawResponse,
-    AsyncV2sWithRawResponse,
-    V2sWithStreamingResponse,
-    AsyncV2sWithStreamingResponse,
+from .v2 import (
+    V2,
+    AsyncV2,
+    V2WithRawResponse,
+    AsyncV2WithRawResponse,
+    V2WithStreamingResponse,
+    AsyncV2WithStreamingResponse,
 )
 from .images import (
     Images,
@@ -26,18 +26,18 @@ from .images import (
 )
 
 __all__ = [
-    "V1s",
-    "AsyncV1s",
-    "V1sWithRawResponse",
-    "AsyncV1sWithRawResponse",
-    "V1sWithStreamingResponse",
-    "AsyncV1sWithStreamingResponse",
-    "V2s",
-    "AsyncV2s",
-    "V2sWithRawResponse",
-    "AsyncV2sWithRawResponse",
-    "V2sWithStreamingResponse",
-    "AsyncV2sWithStreamingResponse",
+    "V1",
+    "AsyncV1",
+    "V1WithRawResponse",
+    "AsyncV1WithRawResponse",
+    "V1WithStreamingResponse",
+    "AsyncV1WithStreamingResponse",
+    "V2",
+    "AsyncV2",
+    "V2WithRawResponse",
+    "AsyncV2WithRawResponse",
+    "V2WithStreamingResponse",
+    "AsyncV2WithStreamingResponse",
     "Images",
     "AsyncImages",
     "ImagesWithRawResponse",
