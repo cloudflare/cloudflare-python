@@ -18,10 +18,18 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._wrappers import ResultWrapper
+from .....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ....._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
-from .....types.firewall.waf.packages import RuleGetResponse, RuleEditResponse, rule_edit_params
+from .....types.firewall.waf.packages import (
+    RuleGetResponse,
+    RuleEditResponse,
+    RuleListResponse,
+    rule_edit_params,
+    rule_list_params,
+)
 
 __all__ = ["Rules", "AsyncRules"]
 
@@ -34,6 +42,83 @@ class Rules(SyncAPIResource):
     @cached_property
     def with_streaming_response(self) -> RulesWithStreamingResponse:
         return RulesWithStreamingResponse(self)
+
+    def list(
+        self,
+        package_id: str,
+        *,
+        zone_id: str,
+        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
+        mode: Literal["DIS", "CHL", "BLK", "SIM"] | NotGiven = NOT_GIVEN,
+        order: Literal["priority", "group_id", "description"] | NotGiven = NOT_GIVEN,
+        page: float | NotGiven = NOT_GIVEN,
+        per_page: float | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SyncV4PagePaginationArray[RuleListResponse]:
+        """
+        Fetches WAF rules in a WAF package.
+
+        **Note:** Applies only to the
+        [previous version of WAF managed rules](https://developers.cloudflare.com/support/firewall/managed-rules-web-application-firewall-waf/understanding-waf-managed-rules-web-application-firewall/).
+
+        Args:
+          zone_id: Identifier
+
+          package_id: The unique identifier of a WAF package.
+
+          direction: The direction used to sort returned rules.
+
+          match: When set to `all`, all the search requirements must match. When set to `any`,
+              only one of the search requirements has to match.
+
+          mode: The action/mode a rule has been overridden to perform.
+
+          order: The field used to sort returned rules.
+
+          page: The page number of paginated results.
+
+          per_page: The number of rules per page.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not package_id:
+            raise ValueError(f"Expected a non-empty value for `package_id` but received {package_id!r}")
+        return self._get_api_list(
+            f"/zones/{zone_id}/firewall/waf/packages/{package_id}/rules",
+            page=SyncV4PagePaginationArray[RuleListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "direction": direction,
+                        "match": match,
+                        "mode": mode,
+                        "order": order,
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    rule_list_params.RuleListParams,
+                ),
+            ),
+            model=cast(Any, RuleListResponse),  # Union types cannot be passed in as arguments in the type system
+        )
 
     def edit(
         self,
@@ -165,6 +250,83 @@ class AsyncRules(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncRulesWithStreamingResponse:
         return AsyncRulesWithStreamingResponse(self)
 
+    def list(
+        self,
+        package_id: str,
+        *,
+        zone_id: str,
+        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
+        mode: Literal["DIS", "CHL", "BLK", "SIM"] | NotGiven = NOT_GIVEN,
+        order: Literal["priority", "group_id", "description"] | NotGiven = NOT_GIVEN,
+        page: float | NotGiven = NOT_GIVEN,
+        per_page: float | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AsyncPaginator[RuleListResponse, AsyncV4PagePaginationArray[RuleListResponse]]:
+        """
+        Fetches WAF rules in a WAF package.
+
+        **Note:** Applies only to the
+        [previous version of WAF managed rules](https://developers.cloudflare.com/support/firewall/managed-rules-web-application-firewall-waf/understanding-waf-managed-rules-web-application-firewall/).
+
+        Args:
+          zone_id: Identifier
+
+          package_id: The unique identifier of a WAF package.
+
+          direction: The direction used to sort returned rules.
+
+          match: When set to `all`, all the search requirements must match. When set to `any`,
+              only one of the search requirements has to match.
+
+          mode: The action/mode a rule has been overridden to perform.
+
+          order: The field used to sort returned rules.
+
+          page: The page number of paginated results.
+
+          per_page: The number of rules per page.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not package_id:
+            raise ValueError(f"Expected a non-empty value for `package_id` but received {package_id!r}")
+        return self._get_api_list(
+            f"/zones/{zone_id}/firewall/waf/packages/{package_id}/rules",
+            page=AsyncV4PagePaginationArray[RuleListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "direction": direction,
+                        "match": match,
+                        "mode": mode,
+                        "order": order,
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    rule_list_params.RuleListParams,
+                ),
+            ),
+            model=cast(Any, RuleListResponse),  # Union types cannot be passed in as arguments in the type system
+        )
+
     async def edit(
         self,
         rule_id: str,
@@ -290,6 +452,9 @@ class RulesWithRawResponse:
     def __init__(self, rules: Rules) -> None:
         self._rules = rules
 
+        self.list = to_raw_response_wrapper(
+            rules.list,
+        )
         self.edit = to_raw_response_wrapper(
             rules.edit,
         )
@@ -302,6 +467,9 @@ class AsyncRulesWithRawResponse:
     def __init__(self, rules: AsyncRules) -> None:
         self._rules = rules
 
+        self.list = async_to_raw_response_wrapper(
+            rules.list,
+        )
         self.edit = async_to_raw_response_wrapper(
             rules.edit,
         )
@@ -314,6 +482,9 @@ class RulesWithStreamingResponse:
     def __init__(self, rules: Rules) -> None:
         self._rules = rules
 
+        self.list = to_streamed_response_wrapper(
+            rules.list,
+        )
         self.edit = to_streamed_response_wrapper(
             rules.edit,
         )
@@ -326,6 +497,9 @@ class AsyncRulesWithStreamingResponse:
     def __init__(self, rules: AsyncRules) -> None:
         self._rules = rules
 
+        self.list = async_to_streamed_response_wrapper(
+            rules.list,
+        )
         self.edit = async_to_streamed_response_wrapper(
             rules.edit,
         )

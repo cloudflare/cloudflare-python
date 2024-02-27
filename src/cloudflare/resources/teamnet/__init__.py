@@ -16,6 +16,14 @@ from .teamnet import (
     TeamnetWithStreamingResponse,
     AsyncTeamnetWithStreamingResponse,
 )
+from .virtual_networks import (
+    VirtualNetworks,
+    AsyncVirtualNetworks,
+    VirtualNetworksWithRawResponse,
+    AsyncVirtualNetworksWithRawResponse,
+    VirtualNetworksWithStreamingResponse,
+    AsyncVirtualNetworksWithStreamingResponse,
+)
 
 __all__ = [
     "Routes",
@@ -24,6 +32,12 @@ __all__ = [
     "AsyncRoutesWithRawResponse",
     "RoutesWithStreamingResponse",
     "AsyncRoutesWithStreamingResponse",
+    "VirtualNetworks",
+    "AsyncVirtualNetworks",
+    "VirtualNetworksWithRawResponse",
+    "AsyncVirtualNetworksWithRawResponse",
+    "VirtualNetworksWithStreamingResponse",
+    "AsyncVirtualNetworksWithStreamingResponse",
     "Teamnet",
     "AsyncTeamnet",
     "TeamnetWithRawResponse",

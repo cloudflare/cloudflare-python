@@ -14,6 +14,14 @@ from .tail import (
     TailWithStreamingResponse,
     AsyncTailWithStreamingResponse,
 )
+from .content import (
+    Content,
+    AsyncContent,
+    ContentWithRawResponse,
+    AsyncContentWithRawResponse,
+    ContentWithStreamingResponse,
+    AsyncContentWithStreamingResponse,
+)
 from .bindings import (
     Bindings,
     AsyncBindings,
@@ -21,6 +29,14 @@ from .bindings import (
     AsyncBindingsWithRawResponse,
     BindingsWithStreamingResponse,
     AsyncBindingsWithStreamingResponse,
+)
+from .settings import (
+    Settings,
+    AsyncSettings,
+    SettingsWithRawResponse,
+    AsyncSettingsWithRawResponse,
+    SettingsWithStreamingResponse,
+    AsyncSettingsWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven, FileTypes
 from ...._utils import maybe_transform
@@ -33,6 +49,14 @@ from .schedules import (
     AsyncSchedulesWithStreamingResponse,
 )
 from ...._compat import cached_property
+from .content_v2 import (
+    ContentV2,
+    AsyncContentV2,
+    ContentV2WithRawResponse,
+    AsyncContentV2WithRawResponse,
+    ContentV2WithStreamingResponse,
+    AsyncContentV2WithStreamingResponse,
+)
 from .usage_model import (
     UsageModel,
     AsyncUsageModel,
@@ -81,6 +105,18 @@ class Scripts(SyncAPIResource):
     @cached_property
     def usage_model(self) -> UsageModel:
         return UsageModel(self._client)
+
+    @cached_property
+    def content(self) -> Content:
+        return Content(self._client)
+
+    @cached_property
+    def content_v2(self) -> ContentV2:
+        return ContentV2(self._client)
+
+    @cached_property
+    def settings(self) -> Settings:
+        return Settings(self._client)
 
     @cached_property
     def with_raw_response(self) -> ScriptsWithRawResponse:
@@ -310,6 +346,18 @@ class AsyncScripts(AsyncAPIResource):
     @cached_property
     def usage_model(self) -> AsyncUsageModel:
         return AsyncUsageModel(self._client)
+
+    @cached_property
+    def content(self) -> AsyncContent:
+        return AsyncContent(self._client)
+
+    @cached_property
+    def content_v2(self) -> AsyncContentV2:
+        return AsyncContentV2(self._client)
+
+    @cached_property
+    def settings(self) -> AsyncSettings:
+        return AsyncSettings(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncScriptsWithRawResponse:
@@ -557,6 +605,18 @@ class ScriptsWithRawResponse:
     def usage_model(self) -> UsageModelWithRawResponse:
         return UsageModelWithRawResponse(self._scripts.usage_model)
 
+    @cached_property
+    def content(self) -> ContentWithRawResponse:
+        return ContentWithRawResponse(self._scripts.content)
+
+    @cached_property
+    def content_v2(self) -> ContentV2WithRawResponse:
+        return ContentV2WithRawResponse(self._scripts.content_v2)
+
+    @cached_property
+    def settings(self) -> SettingsWithRawResponse:
+        return SettingsWithRawResponse(self._scripts.settings)
+
 
 class AsyncScriptsWithRawResponse:
     def __init__(self, scripts: AsyncScripts) -> None:
@@ -591,6 +651,18 @@ class AsyncScriptsWithRawResponse:
     @cached_property
     def usage_model(self) -> AsyncUsageModelWithRawResponse:
         return AsyncUsageModelWithRawResponse(self._scripts.usage_model)
+
+    @cached_property
+    def content(self) -> AsyncContentWithRawResponse:
+        return AsyncContentWithRawResponse(self._scripts.content)
+
+    @cached_property
+    def content_v2(self) -> AsyncContentV2WithRawResponse:
+        return AsyncContentV2WithRawResponse(self._scripts.content_v2)
+
+    @cached_property
+    def settings(self) -> AsyncSettingsWithRawResponse:
+        return AsyncSettingsWithRawResponse(self._scripts.settings)
 
 
 class ScriptsWithStreamingResponse:
@@ -627,6 +699,18 @@ class ScriptsWithStreamingResponse:
     def usage_model(self) -> UsageModelWithStreamingResponse:
         return UsageModelWithStreamingResponse(self._scripts.usage_model)
 
+    @cached_property
+    def content(self) -> ContentWithStreamingResponse:
+        return ContentWithStreamingResponse(self._scripts.content)
+
+    @cached_property
+    def content_v2(self) -> ContentV2WithStreamingResponse:
+        return ContentV2WithStreamingResponse(self._scripts.content_v2)
+
+    @cached_property
+    def settings(self) -> SettingsWithStreamingResponse:
+        return SettingsWithStreamingResponse(self._scripts.settings)
+
 
 class AsyncScriptsWithStreamingResponse:
     def __init__(self, scripts: AsyncScripts) -> None:
@@ -661,3 +745,15 @@ class AsyncScriptsWithStreamingResponse:
     @cached_property
     def usage_model(self) -> AsyncUsageModelWithStreamingResponse:
         return AsyncUsageModelWithStreamingResponse(self._scripts.usage_model)
+
+    @cached_property
+    def content(self) -> AsyncContentWithStreamingResponse:
+        return AsyncContentWithStreamingResponse(self._scripts.content)
+
+    @cached_property
+    def content_v2(self) -> AsyncContentV2WithStreamingResponse:
+        return AsyncContentV2WithStreamingResponse(self._scripts.content_v2)
+
+    @cached_property
+    def settings(self) -> AsyncSettingsWithStreamingResponse:
+        return AsyncSettingsWithStreamingResponse(self._scripts.settings)

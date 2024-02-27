@@ -42,14 +42,6 @@ from .email import (
     EmailWithStreamingResponse,
     AsyncEmailWithStreamingResponse,
 )
-from .emails import (
-    Emails,
-    AsyncEmails,
-    EmailsWithRawResponse,
-    AsyncEmailsWithRawResponse,
-    EmailsWithStreamingResponse,
-    AsyncEmailsWithStreamingResponse,
-)
 from .search import (
     Search,
     AsyncSearch,
@@ -121,7 +113,6 @@ from .annotations import (
 )
 from .as112.as112 import As112, AsyncAs112
 from .email.email import Email, AsyncEmail
-from .emails.emails import Emails, AsyncEmails
 from .verified_bots import (
     VerifiedBots,
     AsyncVerifiedBots,
@@ -204,10 +195,6 @@ class Radar(SyncAPIResource):
         return Attacks(self._client)
 
     @cached_property
-    def emails(self) -> Emails:
-        return Emails(self._client)
-
-    @cached_property
     def entities(self) -> Entities:
         return Entities(self._client)
 
@@ -280,10 +267,6 @@ class AsyncRadar(AsyncAPIResource):
     @cached_property
     def attacks(self) -> AsyncAttacks:
         return AsyncAttacks(self._client)
-
-    @cached_property
-    def emails(self) -> AsyncEmails:
-        return AsyncEmails(self._client)
 
     @cached_property
     def entities(self) -> AsyncEntities:
@@ -363,10 +346,6 @@ class RadarWithRawResponse:
         return AttacksWithRawResponse(self._radar.attacks)
 
     @cached_property
-    def emails(self) -> EmailsWithRawResponse:
-        return EmailsWithRawResponse(self._radar.emails)
-
-    @cached_property
     def entities(self) -> EntitiesWithRawResponse:
         return EntitiesWithRawResponse(self._radar.entities)
 
@@ -434,10 +413,6 @@ class AsyncRadarWithRawResponse:
     @cached_property
     def attacks(self) -> AsyncAttacksWithRawResponse:
         return AsyncAttacksWithRawResponse(self._radar.attacks)
-
-    @cached_property
-    def emails(self) -> AsyncEmailsWithRawResponse:
-        return AsyncEmailsWithRawResponse(self._radar.emails)
 
     @cached_property
     def entities(self) -> AsyncEntitiesWithRawResponse:
@@ -509,10 +484,6 @@ class RadarWithStreamingResponse:
         return AttacksWithStreamingResponse(self._radar.attacks)
 
     @cached_property
-    def emails(self) -> EmailsWithStreamingResponse:
-        return EmailsWithStreamingResponse(self._radar.emails)
-
-    @cached_property
     def entities(self) -> EntitiesWithStreamingResponse:
         return EntitiesWithStreamingResponse(self._radar.entities)
 
@@ -580,10 +551,6 @@ class AsyncRadarWithStreamingResponse:
     @cached_property
     def attacks(self) -> AsyncAttacksWithStreamingResponse:
         return AsyncAttacksWithStreamingResponse(self._radar.attacks)
-
-    @cached_property
-    def emails(self) -> AsyncEmailsWithStreamingResponse:
-        return AsyncEmailsWithStreamingResponse(self._radar.emails)
 
     @cached_property
     def entities(self) -> AsyncEntitiesWithStreamingResponse:

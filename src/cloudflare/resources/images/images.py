@@ -2,24 +2,24 @@
 
 from __future__ import annotations
 
-from .v1s import (
-    V1s,
-    AsyncV1s,
-    V1sWithRawResponse,
-    AsyncV1sWithRawResponse,
-    V1sWithStreamingResponse,
-    AsyncV1sWithStreamingResponse,
+from .v1 import (
+    V1,
+    AsyncV1,
+    V1WithRawResponse,
+    AsyncV1WithRawResponse,
+    V1WithStreamingResponse,
+    AsyncV1WithStreamingResponse,
 )
-from .v2s import (
-    V2s,
-    AsyncV2s,
-    V2sWithRawResponse,
-    AsyncV2sWithRawResponse,
-    V2sWithStreamingResponse,
-    AsyncV2sWithStreamingResponse,
+from .v2 import (
+    V2,
+    AsyncV2,
+    V2WithRawResponse,
+    AsyncV2WithRawResponse,
+    V2WithStreamingResponse,
+    AsyncV2WithStreamingResponse,
 )
-from .v1s.v1s import V1s, AsyncV1s
-from .v2s.v2s import V2s, AsyncV2s
+from .v1.v1 import V1, AsyncV1
+from .v2.v2 import V2, AsyncV2
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 
@@ -28,12 +28,12 @@ __all__ = ["Images", "AsyncImages"]
 
 class Images(SyncAPIResource):
     @cached_property
-    def v1s(self) -> V1s:
-        return V1s(self._client)
+    def v1(self) -> V1:
+        return V1(self._client)
 
     @cached_property
-    def v2s(self) -> V2s:
-        return V2s(self._client)
+    def v2(self) -> V2:
+        return V2(self._client)
 
     @cached_property
     def with_raw_response(self) -> ImagesWithRawResponse:
@@ -46,12 +46,12 @@ class Images(SyncAPIResource):
 
 class AsyncImages(AsyncAPIResource):
     @cached_property
-    def v1s(self) -> AsyncV1s:
-        return AsyncV1s(self._client)
+    def v1(self) -> AsyncV1:
+        return AsyncV1(self._client)
 
     @cached_property
-    def v2s(self) -> AsyncV2s:
-        return AsyncV2s(self._client)
+    def v2(self) -> AsyncV2:
+        return AsyncV2(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncImagesWithRawResponse:
@@ -67,12 +67,12 @@ class ImagesWithRawResponse:
         self._images = images
 
     @cached_property
-    def v1s(self) -> V1sWithRawResponse:
-        return V1sWithRawResponse(self._images.v1s)
+    def v1(self) -> V1WithRawResponse:
+        return V1WithRawResponse(self._images.v1)
 
     @cached_property
-    def v2s(self) -> V2sWithRawResponse:
-        return V2sWithRawResponse(self._images.v2s)
+    def v2(self) -> V2WithRawResponse:
+        return V2WithRawResponse(self._images.v2)
 
 
 class AsyncImagesWithRawResponse:
@@ -80,12 +80,12 @@ class AsyncImagesWithRawResponse:
         self._images = images
 
     @cached_property
-    def v1s(self) -> AsyncV1sWithRawResponse:
-        return AsyncV1sWithRawResponse(self._images.v1s)
+    def v1(self) -> AsyncV1WithRawResponse:
+        return AsyncV1WithRawResponse(self._images.v1)
 
     @cached_property
-    def v2s(self) -> AsyncV2sWithRawResponse:
-        return AsyncV2sWithRawResponse(self._images.v2s)
+    def v2(self) -> AsyncV2WithRawResponse:
+        return AsyncV2WithRawResponse(self._images.v2)
 
 
 class ImagesWithStreamingResponse:
@@ -93,12 +93,12 @@ class ImagesWithStreamingResponse:
         self._images = images
 
     @cached_property
-    def v1s(self) -> V1sWithStreamingResponse:
-        return V1sWithStreamingResponse(self._images.v1s)
+    def v1(self) -> V1WithStreamingResponse:
+        return V1WithStreamingResponse(self._images.v1)
 
     @cached_property
-    def v2s(self) -> V2sWithStreamingResponse:
-        return V2sWithStreamingResponse(self._images.v2s)
+    def v2(self) -> V2WithStreamingResponse:
+        return V2WithStreamingResponse(self._images.v2)
 
 
 class AsyncImagesWithStreamingResponse:
@@ -106,9 +106,9 @@ class AsyncImagesWithStreamingResponse:
         self._images = images
 
     @cached_property
-    def v1s(self) -> AsyncV1sWithStreamingResponse:
-        return AsyncV1sWithStreamingResponse(self._images.v1s)
+    def v1(self) -> AsyncV1WithStreamingResponse:
+        return AsyncV1WithStreamingResponse(self._images.v1)
 
     @cached_property
-    def v2s(self) -> AsyncV2sWithStreamingResponse:
-        return AsyncV2sWithStreamingResponse(self._images.v2s)
+    def v2(self) -> AsyncV2WithStreamingResponse:
+        return AsyncV2WithStreamingResponse(self._images.v2)

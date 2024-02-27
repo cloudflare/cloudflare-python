@@ -10,6 +10,14 @@ from .prefixes import (
     PrefixesWithStreamingResponse,
     AsyncPrefixesWithStreamingResponse,
 )
+from .services import (
+    Services,
+    AsyncServices,
+    ServicesWithRawResponse,
+    AsyncServicesWithRawResponse,
+    ServicesWithStreamingResponse,
+    AsyncServicesWithStreamingResponse,
+)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from .address_maps import (
@@ -37,6 +45,10 @@ __all__ = ["Addresses", "AsyncAddresses"]
 
 class Addresses(SyncAPIResource):
     @cached_property
+    def services(self) -> Services:
+        return Services(self._client)
+
+    @cached_property
     def address_maps(self) -> AddressMaps:
         return AddressMaps(self._client)
 
@@ -58,6 +70,10 @@ class Addresses(SyncAPIResource):
 
 
 class AsyncAddresses(AsyncAPIResource):
+    @cached_property
+    def services(self) -> AsyncServices:
+        return AsyncServices(self._client)
+
     @cached_property
     def address_maps(self) -> AsyncAddressMaps:
         return AsyncAddressMaps(self._client)
@@ -84,6 +100,10 @@ class AddressesWithRawResponse:
         self._addresses = addresses
 
     @cached_property
+    def services(self) -> ServicesWithRawResponse:
+        return ServicesWithRawResponse(self._addresses.services)
+
+    @cached_property
     def address_maps(self) -> AddressMapsWithRawResponse:
         return AddressMapsWithRawResponse(self._addresses.address_maps)
 
@@ -99,6 +119,10 @@ class AddressesWithRawResponse:
 class AsyncAddressesWithRawResponse:
     def __init__(self, addresses: AsyncAddresses) -> None:
         self._addresses = addresses
+
+    @cached_property
+    def services(self) -> AsyncServicesWithRawResponse:
+        return AsyncServicesWithRawResponse(self._addresses.services)
 
     @cached_property
     def address_maps(self) -> AsyncAddressMapsWithRawResponse:
@@ -118,6 +142,10 @@ class AddressesWithStreamingResponse:
         self._addresses = addresses
 
     @cached_property
+    def services(self) -> ServicesWithStreamingResponse:
+        return ServicesWithStreamingResponse(self._addresses.services)
+
+    @cached_property
     def address_maps(self) -> AddressMapsWithStreamingResponse:
         return AddressMapsWithStreamingResponse(self._addresses.address_maps)
 
@@ -133,6 +161,10 @@ class AddressesWithStreamingResponse:
 class AsyncAddressesWithStreamingResponse:
     def __init__(self, addresses: AsyncAddresses) -> None:
         self._addresses = addresses
+
+    @cached_property
+    def services(self) -> AsyncServicesWithStreamingResponse:
+        return AsyncServicesWithStreamingResponse(self._addresses.services)
 
     @cached_property
     def address_maps(self) -> AsyncAddressMapsWithStreamingResponse:

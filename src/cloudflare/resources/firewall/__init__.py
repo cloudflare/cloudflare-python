@@ -8,6 +8,14 @@ from .waf import (
     WAFWithStreamingResponse,
     AsyncWAFWithStreamingResponse,
 )
+from .rules import (
+    Rules,
+    AsyncRules,
+    RulesWithRawResponse,
+    AsyncRulesWithRawResponse,
+    RulesWithStreamingResponse,
+    AsyncRulesWithStreamingResponse,
+)
 from .firewall import (
     Firewall,
     AsyncFirewall,
@@ -16,8 +24,56 @@ from .firewall import (
     FirewallWithStreamingResponse,
     AsyncFirewallWithStreamingResponse,
 )
+from .ua_rules import (
+    UARules,
+    AsyncUARules,
+    UARulesWithRawResponse,
+    AsyncUARulesWithRawResponse,
+    UARulesWithStreamingResponse,
+    AsyncUARulesWithStreamingResponse,
+)
+from .lockdowns import (
+    Lockdowns,
+    AsyncLockdowns,
+    LockdownsWithRawResponse,
+    AsyncLockdownsWithRawResponse,
+    LockdownsWithStreamingResponse,
+    AsyncLockdownsWithStreamingResponse,
+)
+from .access_rules import (
+    AccessRules,
+    AsyncAccessRules,
+    AccessRulesWithRawResponse,
+    AsyncAccessRulesWithRawResponse,
+    AccessRulesWithStreamingResponse,
+    AsyncAccessRulesWithStreamingResponse,
+)
 
 __all__ = [
+    "Lockdowns",
+    "AsyncLockdowns",
+    "LockdownsWithRawResponse",
+    "AsyncLockdownsWithRawResponse",
+    "LockdownsWithStreamingResponse",
+    "AsyncLockdownsWithStreamingResponse",
+    "Rules",
+    "AsyncRules",
+    "RulesWithRawResponse",
+    "AsyncRulesWithRawResponse",
+    "RulesWithStreamingResponse",
+    "AsyncRulesWithStreamingResponse",
+    "AccessRules",
+    "AsyncAccessRules",
+    "AccessRulesWithRawResponse",
+    "AsyncAccessRulesWithRawResponse",
+    "AccessRulesWithStreamingResponse",
+    "AsyncAccessRulesWithStreamingResponse",
+    "UARules",
+    "AsyncUARules",
+    "UARulesWithRawResponse",
+    "AsyncUARulesWithRawResponse",
+    "UARulesWithStreamingResponse",
+    "AsyncUARulesWithStreamingResponse",
     "WAF",
     "AsyncWAF",
     "WAFWithRawResponse",

@@ -16,6 +16,30 @@ from .zones import (
     ZonesWithStreamingResponse,
     AsyncZonesWithStreamingResponse,
 )
+from .workers import (
+    Workers,
+    AsyncWorkers,
+    WorkersWithRawResponse,
+    AsyncWorkersWithRawResponse,
+    WorkersWithStreamingResponse,
+    AsyncWorkersWithStreamingResponse,
+)
+from .settings import (
+    Settings,
+    AsyncSettings,
+    SettingsWithRawResponse,
+    AsyncSettingsWithRawResponse,
+    SettingsWithStreamingResponse,
+    AsyncSettingsWithStreamingResponse,
+)
+from .activation_check import (
+    ActivationCheck,
+    AsyncActivationCheck,
+    ActivationCheckWithRawResponse,
+    AsyncActivationCheckWithRawResponse,
+    ActivationCheckWithStreamingResponse,
+    AsyncActivationCheckWithStreamingResponse,
+)
 from .custom_nameservers import (
     CustomNameservers,
     AsyncCustomNameservers,
@@ -26,6 +50,18 @@ from .custom_nameservers import (
 )
 
 __all__ = [
+    "ActivationCheck",
+    "AsyncActivationCheck",
+    "ActivationCheckWithRawResponse",
+    "AsyncActivationCheckWithRawResponse",
+    "ActivationCheckWithStreamingResponse",
+    "AsyncActivationCheckWithStreamingResponse",
+    "Settings",
+    "AsyncSettings",
+    "SettingsWithRawResponse",
+    "AsyncSettingsWithRawResponse",
+    "SettingsWithStreamingResponse",
+    "AsyncSettingsWithStreamingResponse",
     "CustomNameservers",
     "AsyncCustomNameservers",
     "CustomNameserversWithRawResponse",
@@ -38,6 +74,12 @@ __all__ = [
     "AsyncHoldsWithRawResponse",
     "HoldsWithStreamingResponse",
     "AsyncHoldsWithStreamingResponse",
+    "Workers",
+    "AsyncWorkers",
+    "WorkersWithRawResponse",
+    "AsyncWorkersWithRawResponse",
+    "WorkersWithStreamingResponse",
+    "AsyncWorkersWithStreamingResponse",
     "Zones",
     "AsyncZones",
     "ZonesWithRawResponse",
