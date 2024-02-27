@@ -33,6 +33,7 @@ class TestSpeed:
         speed = client.radar.quality.speed.histogram(
             asn=["string", "string", "string"],
             bucket_size=0,
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -78,6 +79,7 @@ class TestSpeed:
     def test_method_summary_with_all_params(self, client: Cloudflare) -> None:
         speed = client.radar.quality.speed.summary(
             asn=["string", "string", "string"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -127,6 +129,7 @@ class TestAsyncSpeed:
         speed = await async_client.radar.quality.speed.histogram(
             asn=["string", "string", "string"],
             bucket_size=0,
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -172,6 +175,7 @@ class TestAsyncSpeed:
     async def test_method_summary_with_all_params(self, async_client: AsyncCloudflare) -> None:
         speed = await async_client.radar.quality.speed.summary(
             asn=["string", "string", "string"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),

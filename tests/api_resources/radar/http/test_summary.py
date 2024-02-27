@@ -37,6 +37,7 @@ class TestSummary:
     def test_method_bot_class_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.http.summary.bot_class(
             asn=["string", "string", "string"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -94,6 +95,7 @@ class TestSummary:
         summary = client.radar.http.summary.device_type(
             asn=["string", "string", "string"],
             bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -150,6 +152,7 @@ class TestSummary:
         summary = client.radar.http.summary.http_protocol(
             asn=["string", "string", "string"],
             bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -206,6 +209,7 @@ class TestSummary:
         summary = client.radar.http.summary.http_version(
             asn=["string", "string", "string"],
             bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -262,6 +266,7 @@ class TestSummary:
         summary = client.radar.http.summary.ip_version(
             asn=["string", "string", "string"],
             bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -318,6 +323,7 @@ class TestSummary:
         summary = client.radar.http.summary.os(
             asn=["string", "string", "string"],
             bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -374,6 +380,7 @@ class TestSummary:
         summary = client.radar.http.summary.tls_version(
             asn=["string", "string", "string"],
             bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -433,6 +440,7 @@ class TestAsyncSummary:
     async def test_method_bot_class_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.http.summary.bot_class(
             asn=["string", "string", "string"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -490,6 +498,7 @@ class TestAsyncSummary:
         summary = await async_client.radar.http.summary.device_type(
             asn=["string", "string", "string"],
             bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -546,6 +555,7 @@ class TestAsyncSummary:
         summary = await async_client.radar.http.summary.http_protocol(
             asn=["string", "string", "string"],
             bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -602,6 +612,7 @@ class TestAsyncSummary:
         summary = await async_client.radar.http.summary.http_version(
             asn=["string", "string", "string"],
             bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -658,6 +669,7 @@ class TestAsyncSummary:
         summary = await async_client.radar.http.summary.ip_version(
             asn=["string", "string", "string"],
             bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -714,6 +726,7 @@ class TestAsyncSummary:
         summary = await async_client.radar.http.summary.os(
             asn=["string", "string", "string"],
             bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -770,6 +783,7 @@ class TestAsyncSummary:
         summary = await async_client.radar.http.summary.tls_version(
             asn=["string", "string", "string"],
             bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),

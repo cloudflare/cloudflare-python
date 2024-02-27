@@ -33,6 +33,7 @@ class TestTop:
         top = client.radar.http.top.browser_families(
             asn=["string", "string", "string"],
             bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -91,6 +92,7 @@ class TestTop:
         top = client.radar.http.top.browsers(
             asn=["string", "string", "string"],
             bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -153,6 +155,7 @@ class TestAsyncTop:
         top = await async_client.radar.http.top.browser_families(
             asn=["string", "string", "string"],
             bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -211,6 +214,7 @@ class TestAsyncTop:
         top = await async_client.radar.http.top.browsers(
             asn=["string", "string", "string"],
             bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
+            continent=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),

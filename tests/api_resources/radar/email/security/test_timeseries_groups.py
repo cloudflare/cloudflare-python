@@ -37,7 +37,6 @@ class TestTimeseriesGroups:
     def test_method_arc_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.email.security.timeseries_groups.arc(
             agg_interval="1h",
-            asn=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -52,9 +51,9 @@ class TestTimeseriesGroups:
             dkim=["PASS", "NONE", "FAIL"],
             dmarc=["PASS", "NONE", "FAIL"],
             format="JSON",
-            location=["string", "string", "string"],
             name=["string", "string", "string"],
             spf=["PASS", "NONE", "FAIL"],
+            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
         )
         assert_matches_type(TimeseriesGroupARCResponse, timeseries_group, path=["response"])
 
@@ -92,7 +91,6 @@ class TestTimeseriesGroups:
         timeseries_group = client.radar.email.security.timeseries_groups.dkim(
             agg_interval="1h",
             arc=["PASS", "NONE", "FAIL"],
-            asn=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -106,9 +104,9 @@ class TestTimeseriesGroups:
             ],
             dmarc=["PASS", "NONE", "FAIL"],
             format="JSON",
-            location=["string", "string", "string"],
             name=["string", "string", "string"],
             spf=["PASS", "NONE", "FAIL"],
+            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
         )
         assert_matches_type(TimeseriesGroupDKIMResponse, timeseries_group, path=["response"])
 
@@ -146,7 +144,6 @@ class TestTimeseriesGroups:
         timeseries_group = client.radar.email.security.timeseries_groups.dmarc(
             agg_interval="1h",
             arc=["PASS", "NONE", "FAIL"],
-            asn=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -160,9 +157,9 @@ class TestTimeseriesGroups:
             ],
             dkim=["PASS", "NONE", "FAIL"],
             format="JSON",
-            location=["string", "string", "string"],
             name=["string", "string", "string"],
             spf=["PASS", "NONE", "FAIL"],
+            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
         )
         assert_matches_type(TimeseriesGroupDMARCResponse, timeseries_group, path=["response"])
 
@@ -200,7 +197,6 @@ class TestTimeseriesGroups:
         timeseries_group = client.radar.email.security.timeseries_groups.malicious(
             agg_interval="1h",
             arc=["PASS", "NONE", "FAIL"],
-            asn=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -215,9 +211,9 @@ class TestTimeseriesGroups:
             dkim=["PASS", "NONE", "FAIL"],
             dmarc=["PASS", "NONE", "FAIL"],
             format="JSON",
-            location=["string", "string", "string"],
             name=["string", "string", "string"],
             spf=["PASS", "NONE", "FAIL"],
+            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
         )
         assert_matches_type(TimeseriesGroupMaliciousResponse, timeseries_group, path=["response"])
 
@@ -255,7 +251,6 @@ class TestTimeseriesGroups:
         timeseries_group = client.radar.email.security.timeseries_groups.spam(
             agg_interval="1h",
             arc=["PASS", "NONE", "FAIL"],
-            asn=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -270,9 +265,9 @@ class TestTimeseriesGroups:
             dkim=["PASS", "NONE", "FAIL"],
             dmarc=["PASS", "NONE", "FAIL"],
             format="JSON",
-            location=["string", "string", "string"],
             name=["string", "string", "string"],
             spf=["PASS", "NONE", "FAIL"],
+            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
         )
         assert_matches_type(TimeseriesGroupSpamResponse, timeseries_group, path=["response"])
 
@@ -310,7 +305,6 @@ class TestTimeseriesGroups:
         timeseries_group = client.radar.email.security.timeseries_groups.spf(
             agg_interval="1h",
             arc=["PASS", "NONE", "FAIL"],
-            asn=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -325,8 +319,8 @@ class TestTimeseriesGroups:
             dkim=["PASS", "NONE", "FAIL"],
             dmarc=["PASS", "NONE", "FAIL"],
             format="JSON",
-            location=["string", "string", "string"],
             name=["string", "string", "string"],
+            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
         )
         assert_matches_type(TimeseriesGroupSPFResponse, timeseries_group, path=["response"])
 
@@ -364,7 +358,6 @@ class TestTimeseriesGroups:
         timeseries_group = client.radar.email.security.timeseries_groups.threat_category(
             agg_interval="1h",
             arc=["PASS", "NONE", "FAIL"],
-            asn=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -379,9 +372,9 @@ class TestTimeseriesGroups:
             dkim=["PASS", "NONE", "FAIL"],
             dmarc=["PASS", "NONE", "FAIL"],
             format="JSON",
-            location=["string", "string", "string"],
             name=["string", "string", "string"],
             spf=["PASS", "NONE", "FAIL"],
+            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
         )
         assert_matches_type(TimeseriesGroupThreatCategoryResponse, timeseries_group, path=["response"])
 
@@ -422,7 +415,6 @@ class TestAsyncTimeseriesGroups:
     async def test_method_arc_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.email.security.timeseries_groups.arc(
             agg_interval="1h",
-            asn=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -437,9 +429,9 @@ class TestAsyncTimeseriesGroups:
             dkim=["PASS", "NONE", "FAIL"],
             dmarc=["PASS", "NONE", "FAIL"],
             format="JSON",
-            location=["string", "string", "string"],
             name=["string", "string", "string"],
             spf=["PASS", "NONE", "FAIL"],
+            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
         )
         assert_matches_type(TimeseriesGroupARCResponse, timeseries_group, path=["response"])
 
@@ -477,7 +469,6 @@ class TestAsyncTimeseriesGroups:
         timeseries_group = await async_client.radar.email.security.timeseries_groups.dkim(
             agg_interval="1h",
             arc=["PASS", "NONE", "FAIL"],
-            asn=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -491,9 +482,9 @@ class TestAsyncTimeseriesGroups:
             ],
             dmarc=["PASS", "NONE", "FAIL"],
             format="JSON",
-            location=["string", "string", "string"],
             name=["string", "string", "string"],
             spf=["PASS", "NONE", "FAIL"],
+            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
         )
         assert_matches_type(TimeseriesGroupDKIMResponse, timeseries_group, path=["response"])
 
@@ -531,7 +522,6 @@ class TestAsyncTimeseriesGroups:
         timeseries_group = await async_client.radar.email.security.timeseries_groups.dmarc(
             agg_interval="1h",
             arc=["PASS", "NONE", "FAIL"],
-            asn=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -545,9 +535,9 @@ class TestAsyncTimeseriesGroups:
             ],
             dkim=["PASS", "NONE", "FAIL"],
             format="JSON",
-            location=["string", "string", "string"],
             name=["string", "string", "string"],
             spf=["PASS", "NONE", "FAIL"],
+            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
         )
         assert_matches_type(TimeseriesGroupDMARCResponse, timeseries_group, path=["response"])
 
@@ -585,7 +575,6 @@ class TestAsyncTimeseriesGroups:
         timeseries_group = await async_client.radar.email.security.timeseries_groups.malicious(
             agg_interval="1h",
             arc=["PASS", "NONE", "FAIL"],
-            asn=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -600,9 +589,9 @@ class TestAsyncTimeseriesGroups:
             dkim=["PASS", "NONE", "FAIL"],
             dmarc=["PASS", "NONE", "FAIL"],
             format="JSON",
-            location=["string", "string", "string"],
             name=["string", "string", "string"],
             spf=["PASS", "NONE", "FAIL"],
+            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
         )
         assert_matches_type(TimeseriesGroupMaliciousResponse, timeseries_group, path=["response"])
 
@@ -640,7 +629,6 @@ class TestAsyncTimeseriesGroups:
         timeseries_group = await async_client.radar.email.security.timeseries_groups.spam(
             agg_interval="1h",
             arc=["PASS", "NONE", "FAIL"],
-            asn=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -655,9 +643,9 @@ class TestAsyncTimeseriesGroups:
             dkim=["PASS", "NONE", "FAIL"],
             dmarc=["PASS", "NONE", "FAIL"],
             format="JSON",
-            location=["string", "string", "string"],
             name=["string", "string", "string"],
             spf=["PASS", "NONE", "FAIL"],
+            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
         )
         assert_matches_type(TimeseriesGroupSpamResponse, timeseries_group, path=["response"])
 
@@ -695,7 +683,6 @@ class TestAsyncTimeseriesGroups:
         timeseries_group = await async_client.radar.email.security.timeseries_groups.spf(
             agg_interval="1h",
             arc=["PASS", "NONE", "FAIL"],
-            asn=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -710,8 +697,8 @@ class TestAsyncTimeseriesGroups:
             dkim=["PASS", "NONE", "FAIL"],
             dmarc=["PASS", "NONE", "FAIL"],
             format="JSON",
-            location=["string", "string", "string"],
             name=["string", "string", "string"],
+            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
         )
         assert_matches_type(TimeseriesGroupSPFResponse, timeseries_group, path=["response"])
 
@@ -749,7 +736,6 @@ class TestAsyncTimeseriesGroups:
         timeseries_group = await async_client.radar.email.security.timeseries_groups.threat_category(
             agg_interval="1h",
             arc=["PASS", "NONE", "FAIL"],
-            asn=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -764,9 +750,9 @@ class TestAsyncTimeseriesGroups:
             dkim=["PASS", "NONE", "FAIL"],
             dmarc=["PASS", "NONE", "FAIL"],
             format="JSON",
-            location=["string", "string", "string"],
             name=["string", "string", "string"],
             spf=["PASS", "NONE", "FAIL"],
+            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
         )
         assert_matches_type(TimeseriesGroupThreatCategoryResponse, timeseries_group, path=["response"])
 
