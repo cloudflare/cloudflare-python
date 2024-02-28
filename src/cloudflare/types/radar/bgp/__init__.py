@@ -14,3 +14,5 @@ from .route_stats_response import RouteStatsResponse as RouteStatsResponse
 from .route_pfx2as_response import RoutePfx2asResponse as RoutePfx2asResponse
 from .top_prefixes_response import TopPrefixesResponse as TopPrefixesResponse
 from .hijack_events_response import HijackEventsResponse as HijackEventsResponse
+from .route_timeseries_params import RouteTimeseriesParams as RouteTimeseriesParams
+from .route_timeseries_response import RouteTimeseriesResponse as RouteTimeseriesResponse
