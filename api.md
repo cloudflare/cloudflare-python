@@ -4829,7 +4829,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.request_tracers import THy7ZvEaTrace, TraceCreateResponse
+from cloudflare.types.request_tracers import TraceCreateResponse
 ```
 
 Methods:
