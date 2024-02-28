@@ -4829,7 +4829,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.request_tracers import TraceCreateResponse
+from cloudflare.types.request_tracers import THy7ZvEaTrace, TraceCreateResponse
 ```
 
 Methods:
@@ -6283,7 +6283,12 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.radar.bgp import RouteMoasResponse, RoutePfx2asResponse, RouteStatsResponse
+from cloudflare.types.radar.bgp import (
+    RouteMoasResponse,
+    RoutePfx2asResponse,
+    RouteStatsResponse,
+    RouteTimeseriesResponse,
+)
 ```
 
 Methods:
@@ -6291,6 +6296,7 @@ Methods:
 - <code title="get /radar/bgp/routes/moas">client.radar.bgp.routes.<a href="./src/cloudflare/resources/radar/bgp/routes.py">moas</a>(\*\*<a href="src/cloudflare/types/radar/bgp/route_moas_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/bgp/route_moas_response.py">RouteMoasResponse</a></code>
 - <code title="get /radar/bgp/routes/pfx2as">client.radar.bgp.routes.<a href="./src/cloudflare/resources/radar/bgp/routes.py">pfx2as</a>(\*\*<a href="src/cloudflare/types/radar/bgp/route_pfx2as_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/bgp/route_pfx2as_response.py">RoutePfx2asResponse</a></code>
 - <code title="get /radar/bgp/routes/stats">client.radar.bgp.routes.<a href="./src/cloudflare/resources/radar/bgp/routes.py">stats</a>(\*\*<a href="src/cloudflare/types/radar/bgp/route_stats_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/bgp/route_stats_response.py">RouteStatsResponse</a></code>
+- <code title="get /radar/bgp/routes/timeseries">client.radar.bgp.routes.<a href="./src/cloudflare/resources/radar/bgp/routes.py">timeseries</a>(\*\*<a href="src/cloudflare/types/radar/bgp/route_timeseries_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/bgp/route_timeseries_response.py">RouteTimeseriesResponse</a></code>
 
 ## Datasets
 
@@ -6471,7 +6477,107 @@ Methods:
 
 ## Email
 
+### Routing
+
+#### Summary
+
+Types:
+
+```python
+from cloudflare.types.radar.email.routing import (
+    SummaryARCResponse,
+    SummaryDKIMResponse,
+    SummaryDMARCResponse,
+    SummaryEncryptedResponse,
+    SummaryIPVersionResponse,
+    SummarySPFResponse,
+)
+```
+
+Methods:
+
+- <code title="get /radar/email/routing/summary/arc">client.radar.email.routing.summary.<a href="./src/cloudflare/resources/radar/email/routing/summary.py">arc</a>(\*\*<a href="src/cloudflare/types/radar/email/routing/summary_arc_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/email/routing/summary_arc_response.py">SummaryARCResponse</a></code>
+- <code title="get /radar/email/routing/summary/dkim">client.radar.email.routing.summary.<a href="./src/cloudflare/resources/radar/email/routing/summary.py">dkim</a>(\*\*<a href="src/cloudflare/types/radar/email/routing/summary_dkim_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/email/routing/summary_dkim_response.py">SummaryDKIMResponse</a></code>
+- <code title="get /radar/email/routing/summary/dmarc">client.radar.email.routing.summary.<a href="./src/cloudflare/resources/radar/email/routing/summary.py">dmarc</a>(\*\*<a href="src/cloudflare/types/radar/email/routing/summary_dmarc_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/email/routing/summary_dmarc_response.py">SummaryDMARCResponse</a></code>
+- <code title="get /radar/email/routing/summary/encrypted">client.radar.email.routing.summary.<a href="./src/cloudflare/resources/radar/email/routing/summary.py">encrypted</a>(\*\*<a href="src/cloudflare/types/radar/email/routing/summary_encrypted_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/email/routing/summary_encrypted_response.py">SummaryEncryptedResponse</a></code>
+- <code title="get /radar/email/routing/summary/ip_version">client.radar.email.routing.summary.<a href="./src/cloudflare/resources/radar/email/routing/summary.py">ip_version</a>(\*\*<a href="src/cloudflare/types/radar/email/routing/summary_ip_version_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/email/routing/summary_ip_version_response.py">SummaryIPVersionResponse</a></code>
+- <code title="get /radar/email/routing/summary/spf">client.radar.email.routing.summary.<a href="./src/cloudflare/resources/radar/email/routing/summary.py">spf</a>(\*\*<a href="src/cloudflare/types/radar/email/routing/summary_spf_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/email/routing/summary_spf_response.py">SummarySPFResponse</a></code>
+
+#### TimeseriesGroups
+
+Types:
+
+```python
+from cloudflare.types.radar.email.routing import (
+    TimeseriesGroupARCResponse,
+    TimeseriesGroupDKIMResponse,
+    TimeseriesGroupDMARCResponse,
+    TimeseriesGroupEncryptedResponse,
+    TimeseriesGroupIPVersionResponse,
+    TimeseriesGroupSPFResponse,
+)
+```
+
+Methods:
+
+- <code title="get /radar/email/routing/timeseries_groups/arc">client.radar.email.routing.timeseries_groups.<a href="./src/cloudflare/resources/radar/email/routing/timeseries_groups.py">arc</a>(\*\*<a href="src/cloudflare/types/radar/email/routing/timeseries_group_arc_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/email/routing/timeseries_group_arc_response.py">TimeseriesGroupARCResponse</a></code>
+- <code title="get /radar/email/routing/timeseries_groups/dkim">client.radar.email.routing.timeseries_groups.<a href="./src/cloudflare/resources/radar/email/routing/timeseries_groups.py">dkim</a>(\*\*<a href="src/cloudflare/types/radar/email/routing/timeseries_group_dkim_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/email/routing/timeseries_group_dkim_response.py">TimeseriesGroupDKIMResponse</a></code>
+- <code title="get /radar/email/routing/timeseries_groups/dmarc">client.radar.email.routing.timeseries_groups.<a href="./src/cloudflare/resources/radar/email/routing/timeseries_groups.py">dmarc</a>(\*\*<a href="src/cloudflare/types/radar/email/routing/timeseries_group_dmarc_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/email/routing/timeseries_group_dmarc_response.py">TimeseriesGroupDMARCResponse</a></code>
+- <code title="get /radar/email/routing/timeseries_groups/encrypted">client.radar.email.routing.timeseries_groups.<a href="./src/cloudflare/resources/radar/email/routing/timeseries_groups.py">encrypted</a>(\*\*<a href="src/cloudflare/types/radar/email/routing/timeseries_group_encrypted_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/email/routing/timeseries_group_encrypted_response.py">TimeseriesGroupEncryptedResponse</a></code>
+- <code title="get /radar/email/routing/timeseries_groups/ip_version">client.radar.email.routing.timeseries_groups.<a href="./src/cloudflare/resources/radar/email/routing/timeseries_groups.py">ip_version</a>(\*\*<a href="src/cloudflare/types/radar/email/routing/timeseries_group_ip_version_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/email/routing/timeseries_group_ip_version_response.py">TimeseriesGroupIPVersionResponse</a></code>
+- <code title="get /radar/email/routing/timeseries_groups/spf">client.radar.email.routing.timeseries_groups.<a href="./src/cloudflare/resources/radar/email/routing/timeseries_groups.py">spf</a>(\*\*<a href="src/cloudflare/types/radar/email/routing/timeseries_group_spf_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/email/routing/timeseries_group_spf_response.py">TimeseriesGroupSPFResponse</a></code>
+
 ### Security
+
+#### Top
+
+##### Tlds
+
+Types:
+
+```python
+from cloudflare.types.radar.email.security.top import TldGetResponse
+```
+
+Methods:
+
+- <code title="get /radar/email/security/top/tlds">client.radar.email.security.top.tlds.<a href="./src/cloudflare/resources/radar/email/security/top/tlds/tlds.py">get</a>(\*\*<a href="src/cloudflare/types/radar/email/security/top/tld_get_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/email/security/top/tld_get_response.py">TldGetResponse</a></code>
+
+###### Malicious
+
+Types:
+
+```python
+from cloudflare.types.radar.email.security.top.tlds import MaliciousGetResponse
+```
+
+Methods:
+
+- <code title="get /radar/email/security/top/tlds/malicious/{malicious}">client.radar.email.security.top.tlds.malicious.<a href="./src/cloudflare/resources/radar/email/security/top/tlds/malicious.py">get</a>(malicious, \*\*<a href="src/cloudflare/types/radar/email/security/top/tlds/malicious_get_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/email/security/top/tlds/malicious_get_response.py">MaliciousGetResponse</a></code>
+
+###### Spam
+
+Types:
+
+```python
+from cloudflare.types.radar.email.security.top.tlds import SpamGetResponse
+```
+
+Methods:
+
+- <code title="get /radar/email/security/top/tlds/spam/{spam}">client.radar.email.security.top.tlds.spam.<a href="./src/cloudflare/resources/radar/email/security/top/tlds/spam.py">get</a>(spam, \*\*<a href="src/cloudflare/types/radar/email/security/top/tlds/spam_get_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/email/security/top/tlds/spam_get_response.py">SpamGetResponse</a></code>
+
+###### Spoof
+
+Types:
+
+```python
+from cloudflare.types.radar.email.security.top.tlds import SpoofGetResponse
+```
+
+Methods:
+
+- <code title="get /radar/email/security/top/tlds/spoof/{spoof}">client.radar.email.security.top.tlds.spoof.<a href="./src/cloudflare/resources/radar/email/security/top/tlds/spoof.py">get</a>(spoof, \*\*<a href="src/cloudflare/types/radar/email/security/top/tlds/spoof_get_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/email/security/top/tlds/spoof_get_response.py">SpoofGetResponse</a></code>
 
 #### Summary
 
@@ -6485,7 +6591,9 @@ from cloudflare.types.radar.email.security import (
     SummaryMaliciousResponse,
     SummarySpamResponse,
     SummarySPFResponse,
+    SummarySpoofResponse,
     SummaryThreatCategoryResponse,
+    SummaryTLSVersionResponse,
 )
 ```
 
@@ -6497,7 +6605,9 @@ Methods:
 - <code title="get /radar/email/security/summary/malicious">client.radar.email.security.summary.<a href="./src/cloudflare/resources/radar/email/security/summary.py">malicious</a>(\*\*<a href="src/cloudflare/types/radar/email/security/summary_malicious_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/email/security/summary_malicious_response.py">SummaryMaliciousResponse</a></code>
 - <code title="get /radar/email/security/summary/spam">client.radar.email.security.summary.<a href="./src/cloudflare/resources/radar/email/security/summary.py">spam</a>(\*\*<a href="src/cloudflare/types/radar/email/security/summary_spam_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/email/security/summary_spam_response.py">SummarySpamResponse</a></code>
 - <code title="get /radar/email/security/summary/spf">client.radar.email.security.summary.<a href="./src/cloudflare/resources/radar/email/security/summary.py">spf</a>(\*\*<a href="src/cloudflare/types/radar/email/security/summary_spf_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/email/security/summary_spf_response.py">SummarySPFResponse</a></code>
+- <code title="get /radar/email/security/summary/spoof">client.radar.email.security.summary.<a href="./src/cloudflare/resources/radar/email/security/summary.py">spoof</a>(\*\*<a href="src/cloudflare/types/radar/email/security/summary_spoof_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/email/security/summary_spoof_response.py">SummarySpoofResponse</a></code>
 - <code title="get /radar/email/security/summary/threat_category">client.radar.email.security.summary.<a href="./src/cloudflare/resources/radar/email/security/summary.py">threat_category</a>(\*\*<a href="src/cloudflare/types/radar/email/security/summary_threat_category_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/email/security/summary_threat_category_response.py">SummaryThreatCategoryResponse</a></code>
+- <code title="get /radar/email/security/summary/tls_version">client.radar.email.security.summary.<a href="./src/cloudflare/resources/radar/email/security/summary.py">tls_version</a>(\*\*<a href="src/cloudflare/types/radar/email/security/summary_tls_version_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/email/security/summary_tls_version_response.py">SummaryTLSVersionResponse</a></code>
 
 #### TimeseriesGroups
 
@@ -6511,7 +6621,9 @@ from cloudflare.types.radar.email.security import (
     TimeseriesGroupMaliciousResponse,
     TimeseriesGroupSpamResponse,
     TimeseriesGroupSPFResponse,
+    TimeseriesGroupSpoofResponse,
     TimeseriesGroupThreatCategoryResponse,
+    TimeseriesGroupTLSVersionResponse,
 )
 ```
 
@@ -6523,7 +6635,9 @@ Methods:
 - <code title="get /radar/email/security/timeseries_groups/malicious">client.radar.email.security.timeseries_groups.<a href="./src/cloudflare/resources/radar/email/security/timeseries_groups.py">malicious</a>(\*\*<a href="src/cloudflare/types/radar/email/security/timeseries_group_malicious_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/email/security/timeseries_group_malicious_response.py">TimeseriesGroupMaliciousResponse</a></code>
 - <code title="get /radar/email/security/timeseries_groups/spam">client.radar.email.security.timeseries_groups.<a href="./src/cloudflare/resources/radar/email/security/timeseries_groups.py">spam</a>(\*\*<a href="src/cloudflare/types/radar/email/security/timeseries_group_spam_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/email/security/timeseries_group_spam_response.py">TimeseriesGroupSpamResponse</a></code>
 - <code title="get /radar/email/security/timeseries_groups/spf">client.radar.email.security.timeseries_groups.<a href="./src/cloudflare/resources/radar/email/security/timeseries_groups.py">spf</a>(\*\*<a href="src/cloudflare/types/radar/email/security/timeseries_group_spf_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/email/security/timeseries_group_spf_response.py">TimeseriesGroupSPFResponse</a></code>
+- <code title="get /radar/email/security/timeseries_groups/spoof">client.radar.email.security.timeseries_groups.<a href="./src/cloudflare/resources/radar/email/security/timeseries_groups.py">spoof</a>(\*\*<a href="src/cloudflare/types/radar/email/security/timeseries_group_spoof_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/email/security/timeseries_group_spoof_response.py">TimeseriesGroupSpoofResponse</a></code>
 - <code title="get /radar/email/security/timeseries_groups/threat_category">client.radar.email.security.timeseries_groups.<a href="./src/cloudflare/resources/radar/email/security/timeseries_groups.py">threat_category</a>(\*\*<a href="src/cloudflare/types/radar/email/security/timeseries_group_threat_category_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/email/security/timeseries_group_threat_category_response.py">TimeseriesGroupThreatCategoryResponse</a></code>
+- <code title="get /radar/email/security/timeseries_groups/tls_version">client.radar.email.security.timeseries_groups.<a href="./src/cloudflare/resources/radar/email/security/timeseries_groups.py">tls_version</a>(\*\*<a href="src/cloudflare/types/radar/email/security/timeseries_group_tls_version_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/email/security/timeseries_group_tls_version_response.py">TimeseriesGroupTLSVersionResponse</a></code>
 
 ## Attacks
 

@@ -16,7 +16,9 @@ from cloudflare.types.radar.email.security import (
     SummaryDKIMResponse,
     SummarySpamResponse,
     SummaryDMARCResponse,
+    SummarySpoofResponse,
     SummaryMaliciousResponse,
+    SummaryTLSVersionResponse,
     SummaryThreatCategoryResponse,
 )
 
@@ -342,6 +344,59 @@ class TestSummary:
 
     @pytest.mark.skip()
     @parametrize
+    def test_method_spoof(self, client: Cloudflare) -> None:
+        summary = client.radar.email.security.summary.spoof()
+        assert_matches_type(SummarySpoofResponse, summary, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_spoof_with_all_params(self, client: Cloudflare) -> None:
+        summary = client.radar.email.security.summary.spoof(
+            arc=["PASS", "NONE", "FAIL"],
+            date_end=[
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+            ],
+            date_range=["1d", "2d", "7d"],
+            date_start=[
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+            ],
+            dkim=["PASS", "NONE", "FAIL"],
+            dmarc=["PASS", "NONE", "FAIL"],
+            format="JSON",
+            name=["string", "string", "string"],
+            spf=["PASS", "NONE", "FAIL"],
+            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
+        )
+        assert_matches_type(SummarySpoofResponse, summary, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_spoof(self, client: Cloudflare) -> None:
+        response = client.radar.email.security.summary.with_raw_response.spoof()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        summary = response.parse()
+        assert_matches_type(SummarySpoofResponse, summary, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_spoof(self, client: Cloudflare) -> None:
+        with client.radar.email.security.summary.with_streaming_response.spoof() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            summary = response.parse()
+            assert_matches_type(SummarySpoofResponse, summary, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
     def test_method_threat_category(self, client: Cloudflare) -> None:
         summary = client.radar.email.security.summary.threat_category()
         assert_matches_type(SummaryThreatCategoryResponse, summary, path=["response"])
@@ -390,6 +445,58 @@ class TestSummary:
 
             summary = response.parse()
             assert_matches_type(SummaryThreatCategoryResponse, summary, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_tls_version(self, client: Cloudflare) -> None:
+        summary = client.radar.email.security.summary.tls_version()
+        assert_matches_type(SummaryTLSVersionResponse, summary, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_tls_version_with_all_params(self, client: Cloudflare) -> None:
+        summary = client.radar.email.security.summary.tls_version(
+            arc=["PASS", "NONE", "FAIL"],
+            date_end=[
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+            ],
+            date_range=["1d", "2d", "7d"],
+            date_start=[
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+            ],
+            dkim=["PASS", "NONE", "FAIL"],
+            dmarc=["PASS", "NONE", "FAIL"],
+            format="JSON",
+            name=["string", "string", "string"],
+            spf=["PASS", "NONE", "FAIL"],
+        )
+        assert_matches_type(SummaryTLSVersionResponse, summary, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_tls_version(self, client: Cloudflare) -> None:
+        response = client.radar.email.security.summary.with_raw_response.tls_version()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        summary = response.parse()
+        assert_matches_type(SummaryTLSVersionResponse, summary, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_tls_version(self, client: Cloudflare) -> None:
+        with client.radar.email.security.summary.with_streaming_response.tls_version() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            summary = response.parse()
+            assert_matches_type(SummaryTLSVersionResponse, summary, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -713,6 +820,59 @@ class TestAsyncSummary:
 
     @pytest.mark.skip()
     @parametrize
+    async def test_method_spoof(self, async_client: AsyncCloudflare) -> None:
+        summary = await async_client.radar.email.security.summary.spoof()
+        assert_matches_type(SummarySpoofResponse, summary, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_spoof_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        summary = await async_client.radar.email.security.summary.spoof(
+            arc=["PASS", "NONE", "FAIL"],
+            date_end=[
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+            ],
+            date_range=["1d", "2d", "7d"],
+            date_start=[
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+            ],
+            dkim=["PASS", "NONE", "FAIL"],
+            dmarc=["PASS", "NONE", "FAIL"],
+            format="JSON",
+            name=["string", "string", "string"],
+            spf=["PASS", "NONE", "FAIL"],
+            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
+        )
+        assert_matches_type(SummarySpoofResponse, summary, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_spoof(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.radar.email.security.summary.with_raw_response.spoof()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        summary = await response.parse()
+        assert_matches_type(SummarySpoofResponse, summary, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_spoof(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.radar.email.security.summary.with_streaming_response.spoof() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            summary = await response.parse()
+            assert_matches_type(SummarySpoofResponse, summary, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
     async def test_method_threat_category(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.email.security.summary.threat_category()
         assert_matches_type(SummaryThreatCategoryResponse, summary, path=["response"])
@@ -761,5 +921,57 @@ class TestAsyncSummary:
 
             summary = await response.parse()
             assert_matches_type(SummaryThreatCategoryResponse, summary, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_tls_version(self, async_client: AsyncCloudflare) -> None:
+        summary = await async_client.radar.email.security.summary.tls_version()
+        assert_matches_type(SummaryTLSVersionResponse, summary, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_tls_version_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        summary = await async_client.radar.email.security.summary.tls_version(
+            arc=["PASS", "NONE", "FAIL"],
+            date_end=[
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+            ],
+            date_range=["1d", "2d", "7d"],
+            date_start=[
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+            ],
+            dkim=["PASS", "NONE", "FAIL"],
+            dmarc=["PASS", "NONE", "FAIL"],
+            format="JSON",
+            name=["string", "string", "string"],
+            spf=["PASS", "NONE", "FAIL"],
+        )
+        assert_matches_type(SummaryTLSVersionResponse, summary, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_tls_version(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.radar.email.security.summary.with_raw_response.tls_version()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        summary = await response.parse()
+        assert_matches_type(SummaryTLSVersionResponse, summary, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_tls_version(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.radar.email.security.summary.with_streaming_response.tls_version() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            summary = await response.parse()
+            assert_matches_type(SummaryTLSVersionResponse, summary, path=["response"])
 
         assert cast(Any, response.is_closed) is True
