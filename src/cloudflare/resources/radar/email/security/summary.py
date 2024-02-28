@@ -28,14 +28,18 @@ from .....types.radar.email.security import (
     SummaryDKIMResponse,
     SummarySpamResponse,
     SummaryDMARCResponse,
+    SummarySpoofResponse,
     SummaryMaliciousResponse,
+    SummaryTLSVersionResponse,
     SummaryThreatCategoryResponse,
     summary_arc_params,
     summary_spf_params,
     summary_dkim_params,
     summary_spam_params,
     summary_dmarc_params,
+    summary_spoof_params,
     summary_malicious_params,
+    summary_tls_version_params,
     summary_threat_category_params,
 )
 
@@ -635,6 +639,106 @@ class Summary(SyncAPIResource):
             cast_to=cast(Type[SummarySPFResponse], ResultWrapper[SummarySPFResponse]),
         )
 
+    def spoof(
+        self,
+        *,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[
+            Literal[
+                "1d",
+                "2d",
+                "7d",
+                "14d",
+                "28d",
+                "12w",
+                "24w",
+                "52w",
+                "1dControl",
+                "2dControl",
+                "7dControl",
+                "14dControl",
+                "28dControl",
+                "12wControl",
+                "24wControl",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SummarySpoofResponse:
+        """
+        Proportion of emails categorized as either spoof or legitimate (non-spoof).
+
+        Args:
+          arc: Filter for arc (Authenticated Received Chain).
+
+          date_end: End of the date range (inclusive).
+
+          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
+              week. Use this parameter or set specific start and end dates (`dateStart` and
+              `dateEnd` parameters).
+
+          date_start: Array of datetimes to filter the start of a series.
+
+          dkim: Filter for dkim.
+
+          dmarc: Filter for dmarc.
+
+          format: Format results are returned in.
+
+          name: Array of names that will be used to name the series in responses.
+
+          spf: Filter for spf.
+
+          tls_version: Filter for tls version.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get(
+            "/radar/email/security/summary/spoof",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "arc": arc,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "dkim": dkim,
+                        "dmarc": dmarc,
+                        "format": format,
+                        "name": name,
+                        "spf": spf,
+                        "tls_version": tls_version,
+                    },
+                    summary_spoof_params.SummarySpoofParams,
+                ),
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[SummarySpoofResponse], ResultWrapper[SummarySpoofResponse]),
+        )
+
     def threat_category(
         self,
         *,
@@ -733,6 +837,102 @@ class Summary(SyncAPIResource):
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(Type[SummaryThreatCategoryResponse], ResultWrapper[SummaryThreatCategoryResponse]),
+        )
+
+    def tls_version(
+        self,
+        *,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[
+            Literal[
+                "1d",
+                "2d",
+                "7d",
+                "14d",
+                "28d",
+                "12w",
+                "24w",
+                "52w",
+                "1dControl",
+                "2dControl",
+                "7dControl",
+                "14dControl",
+                "28dControl",
+                "12wControl",
+                "24wControl",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SummaryTLSVersionResponse:
+        """
+        Percentage distribution of emails classified per TLS Version.
+
+        Args:
+          arc: Filter for arc (Authenticated Received Chain).
+
+          date_end: End of the date range (inclusive).
+
+          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
+              week. Use this parameter or set specific start and end dates (`dateStart` and
+              `dateEnd` parameters).
+
+          date_start: Array of datetimes to filter the start of a series.
+
+          dkim: Filter for dkim.
+
+          dmarc: Filter for dmarc.
+
+          format: Format results are returned in.
+
+          name: Array of names that will be used to name the series in responses.
+
+          spf: Filter for spf.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get(
+            "/radar/email/security/summary/tls_version",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "arc": arc,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "dkim": dkim,
+                        "dmarc": dmarc,
+                        "format": format,
+                        "name": name,
+                        "spf": spf,
+                    },
+                    summary_tls_version_params.SummaryTLSVersionParams,
+                ),
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[SummaryTLSVersionResponse], ResultWrapper[SummaryTLSVersionResponse]),
         )
 
 
@@ -1329,6 +1529,106 @@ class AsyncSummary(AsyncAPIResource):
             cast_to=cast(Type[SummarySPFResponse], ResultWrapper[SummarySPFResponse]),
         )
 
+    async def spoof(
+        self,
+        *,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[
+            Literal[
+                "1d",
+                "2d",
+                "7d",
+                "14d",
+                "28d",
+                "12w",
+                "24w",
+                "52w",
+                "1dControl",
+                "2dControl",
+                "7dControl",
+                "14dControl",
+                "28dControl",
+                "12wControl",
+                "24wControl",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SummarySpoofResponse:
+        """
+        Proportion of emails categorized as either spoof or legitimate (non-spoof).
+
+        Args:
+          arc: Filter for arc (Authenticated Received Chain).
+
+          date_end: End of the date range (inclusive).
+
+          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
+              week. Use this parameter or set specific start and end dates (`dateStart` and
+              `dateEnd` parameters).
+
+          date_start: Array of datetimes to filter the start of a series.
+
+          dkim: Filter for dkim.
+
+          dmarc: Filter for dmarc.
+
+          format: Format results are returned in.
+
+          name: Array of names that will be used to name the series in responses.
+
+          spf: Filter for spf.
+
+          tls_version: Filter for tls version.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._get(
+            "/radar/email/security/summary/spoof",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "arc": arc,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "dkim": dkim,
+                        "dmarc": dmarc,
+                        "format": format,
+                        "name": name,
+                        "spf": spf,
+                        "tls_version": tls_version,
+                    },
+                    summary_spoof_params.SummarySpoofParams,
+                ),
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[SummarySpoofResponse], ResultWrapper[SummarySpoofResponse]),
+        )
+
     async def threat_category(
         self,
         *,
@@ -1429,6 +1729,102 @@ class AsyncSummary(AsyncAPIResource):
             cast_to=cast(Type[SummaryThreatCategoryResponse], ResultWrapper[SummaryThreatCategoryResponse]),
         )
 
+    async def tls_version(
+        self,
+        *,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[
+            Literal[
+                "1d",
+                "2d",
+                "7d",
+                "14d",
+                "28d",
+                "12w",
+                "24w",
+                "52w",
+                "1dControl",
+                "2dControl",
+                "7dControl",
+                "14dControl",
+                "28dControl",
+                "12wControl",
+                "24wControl",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SummaryTLSVersionResponse:
+        """
+        Percentage distribution of emails classified per TLS Version.
+
+        Args:
+          arc: Filter for arc (Authenticated Received Chain).
+
+          date_end: End of the date range (inclusive).
+
+          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
+              week. Use this parameter or set specific start and end dates (`dateStart` and
+              `dateEnd` parameters).
+
+          date_start: Array of datetimes to filter the start of a series.
+
+          dkim: Filter for dkim.
+
+          dmarc: Filter for dmarc.
+
+          format: Format results are returned in.
+
+          name: Array of names that will be used to name the series in responses.
+
+          spf: Filter for spf.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._get(
+            "/radar/email/security/summary/tls_version",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "arc": arc,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "dkim": dkim,
+                        "dmarc": dmarc,
+                        "format": format,
+                        "name": name,
+                        "spf": spf,
+                    },
+                    summary_tls_version_params.SummaryTLSVersionParams,
+                ),
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[SummaryTLSVersionResponse], ResultWrapper[SummaryTLSVersionResponse]),
+        )
+
 
 class SummaryWithRawResponse:
     def __init__(self, summary: Summary) -> None:
@@ -1452,8 +1848,14 @@ class SummaryWithRawResponse:
         self.spf = to_raw_response_wrapper(
             summary.spf,
         )
+        self.spoof = to_raw_response_wrapper(
+            summary.spoof,
+        )
         self.threat_category = to_raw_response_wrapper(
             summary.threat_category,
+        )
+        self.tls_version = to_raw_response_wrapper(
+            summary.tls_version,
         )
 
 
@@ -1479,8 +1881,14 @@ class AsyncSummaryWithRawResponse:
         self.spf = async_to_raw_response_wrapper(
             summary.spf,
         )
+        self.spoof = async_to_raw_response_wrapper(
+            summary.spoof,
+        )
         self.threat_category = async_to_raw_response_wrapper(
             summary.threat_category,
+        )
+        self.tls_version = async_to_raw_response_wrapper(
+            summary.tls_version,
         )
 
 
@@ -1506,8 +1914,14 @@ class SummaryWithStreamingResponse:
         self.spf = to_streamed_response_wrapper(
             summary.spf,
         )
+        self.spoof = to_streamed_response_wrapper(
+            summary.spoof,
+        )
         self.threat_category = to_streamed_response_wrapper(
             summary.threat_category,
+        )
+        self.tls_version = to_streamed_response_wrapper(
+            summary.tls_version,
         )
 
 
@@ -1533,6 +1947,12 @@ class AsyncSummaryWithStreamingResponse:
         self.spf = async_to_streamed_response_wrapper(
             summary.spf,
         )
+        self.spoof = async_to_streamed_response_wrapper(
+            summary.spoof,
+        )
         self.threat_category = async_to_streamed_response_wrapper(
             summary.threat_category,
+        )
+        self.tls_version = async_to_streamed_response_wrapper(
+            summary.tls_version,
         )

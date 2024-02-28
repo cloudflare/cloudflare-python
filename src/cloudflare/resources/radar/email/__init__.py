@@ -8,6 +8,14 @@ from .email import (
     EmailWithStreamingResponse,
     AsyncEmailWithStreamingResponse,
 )
+from .routing import (
+    Routing,
+    AsyncRouting,
+    RoutingWithRawResponse,
+    AsyncRoutingWithRawResponse,
+    RoutingWithStreamingResponse,
+    AsyncRoutingWithStreamingResponse,
+)
 from .security import (
     Security,
     AsyncSecurity,
@@ -18,6 +26,12 @@ from .security import (
 )
 
 __all__ = [
+    "Routing",
+    "AsyncRouting",
+    "RoutingWithRawResponse",
+    "AsyncRoutingWithRawResponse",
+    "RoutingWithStreamingResponse",
+    "AsyncRoutingWithStreamingResponse",
     "Security",
     "AsyncSecurity",
     "SecurityWithRawResponse",
