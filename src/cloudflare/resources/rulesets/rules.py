@@ -154,6 +154,7 @@ class Rules(SyncAPIResource):
         rule_id: str,
         *,
         account_id: str,
+        zone_id: str,
         ruleset_id: str,
         position: rule_edit_params.Position | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -167,7 +168,9 @@ class Rules(SyncAPIResource):
         Updates an existing rule in an account ruleset.
 
         Args:
-          account_id: The unique ID of the account.
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           ruleset_id: The unique ID of the ruleset.
 
@@ -185,12 +188,14 @@ class Rules(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not ruleset_id:
             raise ValueError(f"Expected a non-empty value for `ruleset_id` but received {ruleset_id!r}")
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return self._patch(
-            f"/{account_id}/{ruleset_id}/rulesets/{rule_id}/rules/:rule_id",
+            f"/{account_id}/{zone_id}/rulesets/{ruleset_id}/rules/{rule_id}",
             body=maybe_transform({"position": position}, rule_edit_params.RuleEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -326,6 +331,7 @@ class AsyncRules(AsyncAPIResource):
         rule_id: str,
         *,
         account_id: str,
+        zone_id: str,
         ruleset_id: str,
         position: rule_edit_params.Position | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -339,7 +345,9 @@ class AsyncRules(AsyncAPIResource):
         Updates an existing rule in an account ruleset.
 
         Args:
-          account_id: The unique ID of the account.
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           ruleset_id: The unique ID of the ruleset.
 
@@ -357,12 +365,14 @@ class AsyncRules(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not ruleset_id:
             raise ValueError(f"Expected a non-empty value for `ruleset_id` but received {ruleset_id!r}")
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return await self._patch(
-            f"/{account_id}/{ruleset_id}/rulesets/{rule_id}/rules/:rule_id",
+            f"/{account_id}/{zone_id}/rulesets/{ruleset_id}/rules/{rule_id}",
             body=maybe_transform({"position": position}, rule_edit_params.RuleEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
