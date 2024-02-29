@@ -29,6 +29,16 @@ class TestJobs:
 
     @pytest.mark.skip()
     @parametrize
+    def test_method_list_with_all_params(self, client: Cloudflare) -> None:
+        job = client.logpush.datasets.jobs.list(
+            "http_requests",
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(JobListResponse, job, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.logpush.datasets.jobs.with_raw_response.list(
             "http_requests",
@@ -60,6 +70,13 @@ class TestJobs:
     @pytest.mark.skip()
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `dataset_id` but received ''"):
+            client.logpush.datasets.jobs.with_raw_response.list(
+                "",
+                account_id="string",
+                zone_id="string",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.logpush.datasets.jobs.with_raw_response.list(
                 "http_requests",
@@ -74,13 +91,6 @@ class TestJobs:
                 zone_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `dataset_id` but received ''"):
-            client.logpush.datasets.jobs.with_raw_response.list(
-                "",
-                account_id="string",
-                zone_id="string",
-            )
-
 
 class TestAsyncJobs:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
@@ -88,6 +98,16 @@ class TestAsyncJobs:
     @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
+        job = await async_client.logpush.datasets.jobs.list(
+            "http_requests",
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(JobListResponse, job, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         job = await async_client.logpush.datasets.jobs.list(
             "http_requests",
             account_id="string",
@@ -128,6 +148,13 @@ class TestAsyncJobs:
     @pytest.mark.skip()
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `dataset_id` but received ''"):
+            await async_client.logpush.datasets.jobs.with_raw_response.list(
+                "",
+                account_id="string",
+                zone_id="string",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.logpush.datasets.jobs.with_raw_response.list(
                 "http_requests",
@@ -140,11 +167,4 @@ class TestAsyncJobs:
                 "http_requests",
                 account_id="string",
                 zone_id="",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `dataset_id` but received ''"):
-            await async_client.logpush.datasets.jobs.with_raw_response.list(
-                "",
-                account_id="string",
-                zone_id="string",
             )

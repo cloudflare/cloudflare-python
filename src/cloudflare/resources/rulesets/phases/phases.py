@@ -75,10 +75,10 @@ class Phases(SyncAPIResource):
             "magic_transit_managed",
         ],
         *,
-        account_id: str,
-        zone_id: str,
         id: str,
         rules: Iterable[phase_update_params.Rule],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         kind: Literal["managed", "custom", "root", "zone"] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
@@ -119,15 +119,15 @@ class Phases(SyncAPIResource):
         Updates an account or zone entry point ruleset, creating a new version.
 
         Args:
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
           ruleset_phase: The phase of the ruleset.
 
           id: The unique ID of the ruleset.
 
           rules: The list of rules in the ruleset.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           description: An informative description of the ruleset.
 
@@ -145,14 +145,25 @@ class Phases(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not ruleset_phase:
+            raise ValueError(f"Expected a non-empty value for `ruleset_phase` but received {ruleset_phase!r}")
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not ruleset_phase:
-            raise ValueError(f"Expected a non-empty value for `ruleset_phase` but received {ruleset_phase!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._put(
-            f"/{account_id}/{zone_id}/rulesets/phases/{ruleset_phase}/entrypoint",
+            f"/{account_or_zone}/{account_or_zone_id}/rulesets/phases/{ruleset_phase}/entrypoint",
             body=maybe_transform(
                 {
                     "id": id,
@@ -202,8 +213,8 @@ class Phases(SyncAPIResource):
             "magic_transit_managed",
         ],
         *,
-        account_id: str,
-        zone_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -216,11 +227,11 @@ class Phases(SyncAPIResource):
         given phase.
 
         Args:
+          ruleset_phase: The phase of the ruleset.
+
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          ruleset_phase: The phase of the ruleset.
 
           extra_headers: Send extra headers
 
@@ -230,14 +241,25 @@ class Phases(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not ruleset_phase:
+            raise ValueError(f"Expected a non-empty value for `ruleset_phase` but received {ruleset_phase!r}")
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not ruleset_phase:
-            raise ValueError(f"Expected a non-empty value for `ruleset_phase` but received {ruleset_phase!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._get(
-            f"/{account_id}/{zone_id}/rulesets/phases/{ruleset_phase}/entrypoint",
+            f"/{account_or_zone}/{account_or_zone_id}/rulesets/phases/{ruleset_phase}/entrypoint",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -290,10 +312,10 @@ class AsyncPhases(AsyncAPIResource):
             "magic_transit_managed",
         ],
         *,
-        account_id: str,
-        zone_id: str,
         id: str,
         rules: Iterable[phase_update_params.Rule],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         kind: Literal["managed", "custom", "root", "zone"] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
@@ -334,15 +356,15 @@ class AsyncPhases(AsyncAPIResource):
         Updates an account or zone entry point ruleset, creating a new version.
 
         Args:
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
           ruleset_phase: The phase of the ruleset.
 
           id: The unique ID of the ruleset.
 
           rules: The list of rules in the ruleset.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           description: An informative description of the ruleset.
 
@@ -360,14 +382,25 @@ class AsyncPhases(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not ruleset_phase:
+            raise ValueError(f"Expected a non-empty value for `ruleset_phase` but received {ruleset_phase!r}")
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not ruleset_phase:
-            raise ValueError(f"Expected a non-empty value for `ruleset_phase` but received {ruleset_phase!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return await self._put(
-            f"/{account_id}/{zone_id}/rulesets/phases/{ruleset_phase}/entrypoint",
+            f"/{account_or_zone}/{account_or_zone_id}/rulesets/phases/{ruleset_phase}/entrypoint",
             body=maybe_transform(
                 {
                     "id": id,
@@ -417,8 +450,8 @@ class AsyncPhases(AsyncAPIResource):
             "magic_transit_managed",
         ],
         *,
-        account_id: str,
-        zone_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -431,11 +464,11 @@ class AsyncPhases(AsyncAPIResource):
         given phase.
 
         Args:
+          ruleset_phase: The phase of the ruleset.
+
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          ruleset_phase: The phase of the ruleset.
 
           extra_headers: Send extra headers
 
@@ -445,14 +478,25 @@ class AsyncPhases(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not ruleset_phase:
+            raise ValueError(f"Expected a non-empty value for `ruleset_phase` but received {ruleset_phase!r}")
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not ruleset_phase:
-            raise ValueError(f"Expected a non-empty value for `ruleset_phase` but received {ruleset_phase!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return await self._get(
-            f"/{account_id}/{zone_id}/rulesets/phases/{ruleset_phase}/entrypoint",
+            f"/{account_or_zone}/{account_or_zone_id}/rulesets/phases/{ruleset_phase}/entrypoint",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

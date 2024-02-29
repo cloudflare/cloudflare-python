@@ -8,14 +8,14 @@ __all__ = ["ServiceTokenCreateParams"]
 
 
 class ServiceTokenCreateParams(TypedDict, total=False):
-    account_id: Required[str]
-    """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
-
-    zone_id: Required[str]
-    """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
-
     name: Required[str]
     """The name of the service token."""
+
+    account_id: str
+    """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
+
+    zone_id: str
+    """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
     duration: str
     """The duration for how long the service token will be valid.

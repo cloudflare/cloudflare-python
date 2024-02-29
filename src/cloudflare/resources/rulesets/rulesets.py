@@ -83,8 +83,6 @@ class Rulesets(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
-        zone_id: str,
         kind: Literal["managed", "custom", "root", "zone"],
         name: str,
         phase: Literal[
@@ -113,6 +111,8 @@ class Rulesets(SyncAPIResource):
             "magic_transit_managed",
         ],
         rules: Iterable[ruleset_create_params.Rule],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -121,15 +121,10 @@ class Rulesets(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RulesetCreateResponse:
-        """Creates a ruleset.
+        """
+        Creates a ruleset.
 
         Args:
-          account_id: The Account ID to use for this endpoint.
-
-        Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
           kind: The kind of the ruleset.
 
           name: The human-readable name of the ruleset.
@@ -137,6 +132,10 @@ class Rulesets(SyncAPIResource):
           phase: The phase of the ruleset.
 
           rules: The list of rules in the ruleset.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           description: An informative description of the ruleset.
 
@@ -152,8 +151,19 @@ class Rulesets(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._post(
-            f"/{account_id}/{zone_id}/rulesets",
+            f"/{account_or_zone}/{account_or_zone_id}/rulesets",
             body=maybe_transform(
                 {
                     "kind": kind,
@@ -178,10 +188,10 @@ class Rulesets(SyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        account_id: str,
-        zone_id: str,
         id: str,
         rules: Iterable[ruleset_update_params.Rule],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         kind: Literal["managed", "custom", "root", "zone"] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
@@ -222,15 +232,15 @@ class Rulesets(SyncAPIResource):
         Updates an account or zone ruleset, creating a new version.
 
         Args:
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
           ruleset_id: The unique ID of the ruleset.
 
           id: The unique ID of the ruleset.
 
           rules: The list of rules in the ruleset.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           description: An informative description of the ruleset.
 
@@ -248,14 +258,25 @@ class Rulesets(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not ruleset_id:
+            raise ValueError(f"Expected a non-empty value for `ruleset_id` but received {ruleset_id!r}")
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not ruleset_id:
-            raise ValueError(f"Expected a non-empty value for `ruleset_id` but received {ruleset_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._put(
-            f"/{account_id}/{zone_id}/rulesets/{ruleset_id}",
+            f"/{account_or_zone}/{account_or_zone_id}/rulesets/{ruleset_id}",
             body=maybe_transform(
                 {
                     "id": id,
@@ -280,8 +301,8 @@ class Rulesets(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
-        zone_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -309,8 +330,19 @@ class Rulesets(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._get(
-            f"/{account_id}/{zone_id}/rulesets",
+            f"/{account_or_zone}/{account_or_zone_id}/rulesets",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -325,8 +357,8 @@ class Rulesets(SyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        account_id: str,
-        zone_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -338,11 +370,11 @@ class Rulesets(SyncAPIResource):
         Deletes all versions of an existing account or zone ruleset.
 
         Args:
+          ruleset_id: The unique ID of the ruleset.
+
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          ruleset_id: The unique ID of the ruleset.
 
           extra_headers: Send extra headers
 
@@ -352,15 +384,26 @@ class Rulesets(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not ruleset_id:
+            raise ValueError(f"Expected a non-empty value for `ruleset_id` but received {ruleset_id!r}")
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not ruleset_id:
-            raise ValueError(f"Expected a non-empty value for `ruleset_id` but received {ruleset_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/{account_id}/{zone_id}/rulesets/{ruleset_id}",
+            f"/{account_or_zone}/{account_or_zone_id}/rulesets/{ruleset_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -371,8 +414,8 @@ class Rulesets(SyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        account_id: str,
-        zone_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -384,11 +427,11 @@ class Rulesets(SyncAPIResource):
         Fetches the latest version of an account or zone ruleset.
 
         Args:
+          ruleset_id: The unique ID of the ruleset.
+
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          ruleset_id: The unique ID of the ruleset.
 
           extra_headers: Send extra headers
 
@@ -398,14 +441,25 @@ class Rulesets(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not ruleset_id:
+            raise ValueError(f"Expected a non-empty value for `ruleset_id` but received {ruleset_id!r}")
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not ruleset_id:
-            raise ValueError(f"Expected a non-empty value for `ruleset_id` but received {ruleset_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._get(
-            f"/{account_id}/{zone_id}/rulesets/{ruleset_id}",
+            f"/{account_or_zone}/{account_or_zone_id}/rulesets/{ruleset_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -441,8 +495,6 @@ class AsyncRulesets(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
-        zone_id: str,
         kind: Literal["managed", "custom", "root", "zone"],
         name: str,
         phase: Literal[
@@ -471,6 +523,8 @@ class AsyncRulesets(AsyncAPIResource):
             "magic_transit_managed",
         ],
         rules: Iterable[ruleset_create_params.Rule],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -479,15 +533,10 @@ class AsyncRulesets(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RulesetCreateResponse:
-        """Creates a ruleset.
+        """
+        Creates a ruleset.
 
         Args:
-          account_id: The Account ID to use for this endpoint.
-
-        Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
           kind: The kind of the ruleset.
 
           name: The human-readable name of the ruleset.
@@ -495,6 +544,10 @@ class AsyncRulesets(AsyncAPIResource):
           phase: The phase of the ruleset.
 
           rules: The list of rules in the ruleset.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           description: An informative description of the ruleset.
 
@@ -510,8 +563,19 @@ class AsyncRulesets(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return await self._post(
-            f"/{account_id}/{zone_id}/rulesets",
+            f"/{account_or_zone}/{account_or_zone_id}/rulesets",
             body=maybe_transform(
                 {
                     "kind": kind,
@@ -536,10 +600,10 @@ class AsyncRulesets(AsyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        account_id: str,
-        zone_id: str,
         id: str,
         rules: Iterable[ruleset_update_params.Rule],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         kind: Literal["managed", "custom", "root", "zone"] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
@@ -580,15 +644,15 @@ class AsyncRulesets(AsyncAPIResource):
         Updates an account or zone ruleset, creating a new version.
 
         Args:
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
           ruleset_id: The unique ID of the ruleset.
 
           id: The unique ID of the ruleset.
 
           rules: The list of rules in the ruleset.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           description: An informative description of the ruleset.
 
@@ -606,14 +670,25 @@ class AsyncRulesets(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not ruleset_id:
+            raise ValueError(f"Expected a non-empty value for `ruleset_id` but received {ruleset_id!r}")
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not ruleset_id:
-            raise ValueError(f"Expected a non-empty value for `ruleset_id` but received {ruleset_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return await self._put(
-            f"/{account_id}/{zone_id}/rulesets/{ruleset_id}",
+            f"/{account_or_zone}/{account_or_zone_id}/rulesets/{ruleset_id}",
             body=maybe_transform(
                 {
                     "id": id,
@@ -638,8 +713,8 @@ class AsyncRulesets(AsyncAPIResource):
     async def list(
         self,
         *,
-        account_id: str,
-        zone_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -667,8 +742,19 @@ class AsyncRulesets(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return await self._get(
-            f"/{account_id}/{zone_id}/rulesets",
+            f"/{account_or_zone}/{account_or_zone_id}/rulesets",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -683,8 +769,8 @@ class AsyncRulesets(AsyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        account_id: str,
-        zone_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -696,11 +782,11 @@ class AsyncRulesets(AsyncAPIResource):
         Deletes all versions of an existing account or zone ruleset.
 
         Args:
+          ruleset_id: The unique ID of the ruleset.
+
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          ruleset_id: The unique ID of the ruleset.
 
           extra_headers: Send extra headers
 
@@ -710,15 +796,26 @@ class AsyncRulesets(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not ruleset_id:
+            raise ValueError(f"Expected a non-empty value for `ruleset_id` but received {ruleset_id!r}")
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not ruleset_id:
-            raise ValueError(f"Expected a non-empty value for `ruleset_id` but received {ruleset_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/{account_id}/{zone_id}/rulesets/{ruleset_id}",
+            f"/{account_or_zone}/{account_or_zone_id}/rulesets/{ruleset_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -729,8 +826,8 @@ class AsyncRulesets(AsyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        account_id: str,
-        zone_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -742,11 +839,11 @@ class AsyncRulesets(AsyncAPIResource):
         Fetches the latest version of an account or zone ruleset.
 
         Args:
+          ruleset_id: The unique ID of the ruleset.
+
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          ruleset_id: The unique ID of the ruleset.
 
           extra_headers: Send extra headers
 
@@ -756,14 +853,25 @@ class AsyncRulesets(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not ruleset_id:
+            raise ValueError(f"Expected a non-empty value for `ruleset_id` but received {ruleset_id!r}")
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not ruleset_id:
-            raise ValueError(f"Expected a non-empty value for `ruleset_id` but received {ruleset_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return await self._get(
-            f"/{account_id}/{zone_id}/rulesets/{ruleset_id}",
+            f"/{account_or_zone}/{account_or_zone_id}/rulesets/{ruleset_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

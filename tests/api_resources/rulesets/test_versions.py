@@ -29,6 +29,16 @@ class TestVersions:
 
     @pytest.mark.skip()
     @parametrize
+    def test_method_list_with_all_params(self, client: Cloudflare) -> None:
+        version = client.rulesets.versions.list(
+            "2f2feab2026849078ba485f918791bdc",
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(VersionListResponse, version, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.rulesets.versions.with_raw_response.list(
             "2f2feab2026849078ba485f918791bdc",
@@ -60,6 +70,13 @@ class TestVersions:
     @pytest.mark.skip()
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+            client.rulesets.versions.with_raw_response.list(
+                "",
+                account_id="string",
+                zone_id="string",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.rulesets.versions.with_raw_response.list(
                 "2f2feab2026849078ba485f918791bdc",
@@ -74,21 +91,25 @@ class TestVersions:
                 zone_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
-            client.rulesets.versions.with_raw_response.list(
-                "",
-                account_id="string",
-                zone_id="string",
-            )
-
     @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         version = client.rulesets.versions.delete(
             "1",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
             zone_id="string",
+        )
+        assert version is None
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_delete_with_all_params(self, client: Cloudflare) -> None:
+        version = client.rulesets.versions.delete(
+            "1",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="string",
+            zone_id="string",
         )
         assert version is None
 
@@ -97,9 +118,9 @@ class TestVersions:
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.rulesets.versions.with_raw_response.delete(
             "1",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
             zone_id="string",
-            ruleset_id="2f2feab2026849078ba485f918791bdc",
         )
 
         assert response.is_closed is True
@@ -112,9 +133,9 @@ class TestVersions:
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.rulesets.versions.with_streaming_response.delete(
             "1",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
             zone_id="string",
-            ruleset_id="2f2feab2026849078ba485f918791bdc",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -127,36 +148,36 @@ class TestVersions:
     @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.rulesets.versions.with_raw_response.delete(
-                "1",
-                account_id="",
-                zone_id="string",
-                ruleset_id="2f2feab2026849078ba485f918791bdc",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.rulesets.versions.with_raw_response.delete(
-                "1",
-                account_id="string",
-                zone_id="",
-                ruleset_id="2f2feab2026849078ba485f918791bdc",
-            )
-
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
             client.rulesets.versions.with_raw_response.delete(
                 "1",
+                ruleset_id="",
                 account_id="string",
                 zone_id="string",
-                ruleset_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_version` but received ''"):
             client.rulesets.versions.with_raw_response.delete(
                 "",
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
                 zone_id="string",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.rulesets.versions.with_raw_response.delete(
+                "1",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
+                account_id="",
+                zone_id="string",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            client.rulesets.versions.with_raw_response.delete(
+                "1",
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
+                account_id="string",
+                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -164,9 +185,20 @@ class TestVersions:
     def test_method_get(self, client: Cloudflare) -> None:
         version = client.rulesets.versions.get(
             "1",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
             zone_id="string",
+        )
+        assert_matches_type(VersionGetResponse, version, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_get_with_all_params(self, client: Cloudflare) -> None:
+        version = client.rulesets.versions.get(
+            "1",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="string",
+            zone_id="string",
         )
         assert_matches_type(VersionGetResponse, version, path=["response"])
 
@@ -175,9 +207,9 @@ class TestVersions:
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.rulesets.versions.with_raw_response.get(
             "1",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
             zone_id="string",
-            ruleset_id="2f2feab2026849078ba485f918791bdc",
         )
 
         assert response.is_closed is True
@@ -190,9 +222,9 @@ class TestVersions:
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.rulesets.versions.with_streaming_response.get(
             "1",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
             zone_id="string",
-            ruleset_id="2f2feab2026849078ba485f918791bdc",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -205,36 +237,36 @@ class TestVersions:
     @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.rulesets.versions.with_raw_response.get(
-                "1",
-                account_id="",
-                zone_id="string",
-                ruleset_id="2f2feab2026849078ba485f918791bdc",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.rulesets.versions.with_raw_response.get(
-                "1",
-                account_id="string",
-                zone_id="",
-                ruleset_id="2f2feab2026849078ba485f918791bdc",
-            )
-
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
             client.rulesets.versions.with_raw_response.get(
                 "1",
+                ruleset_id="",
                 account_id="string",
                 zone_id="string",
-                ruleset_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_version` but received ''"):
             client.rulesets.versions.with_raw_response.get(
                 "",
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
                 zone_id="string",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.rulesets.versions.with_raw_response.get(
+                "1",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
+                account_id="",
+                zone_id="string",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            client.rulesets.versions.with_raw_response.get(
+                "1",
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
+                account_id="string",
+                zone_id="",
             )
 
 
@@ -244,6 +276,16 @@ class TestAsyncVersions:
     @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
+        version = await async_client.rulesets.versions.list(
+            "2f2feab2026849078ba485f918791bdc",
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(VersionListResponse, version, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         version = await async_client.rulesets.versions.list(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
@@ -284,6 +326,13 @@ class TestAsyncVersions:
     @pytest.mark.skip()
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+            await async_client.rulesets.versions.with_raw_response.list(
+                "",
+                account_id="string",
+                zone_id="string",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.rulesets.versions.with_raw_response.list(
                 "2f2feab2026849078ba485f918791bdc",
@@ -298,21 +347,25 @@ class TestAsyncVersions:
                 zone_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
-            await async_client.rulesets.versions.with_raw_response.list(
-                "",
-                account_id="string",
-                zone_id="string",
-            )
-
     @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         version = await async_client.rulesets.versions.delete(
             "1",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
             zone_id="string",
+        )
+        assert version is None
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_delete_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        version = await async_client.rulesets.versions.delete(
+            "1",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="string",
+            zone_id="string",
         )
         assert version is None
 
@@ -321,9 +374,9 @@ class TestAsyncVersions:
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.rulesets.versions.with_raw_response.delete(
             "1",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
             zone_id="string",
-            ruleset_id="2f2feab2026849078ba485f918791bdc",
         )
 
         assert response.is_closed is True
@@ -336,9 +389,9 @@ class TestAsyncVersions:
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.rulesets.versions.with_streaming_response.delete(
             "1",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
             zone_id="string",
-            ruleset_id="2f2feab2026849078ba485f918791bdc",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -351,36 +404,36 @@ class TestAsyncVersions:
     @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.rulesets.versions.with_raw_response.delete(
-                "1",
-                account_id="",
-                zone_id="string",
-                ruleset_id="2f2feab2026849078ba485f918791bdc",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.rulesets.versions.with_raw_response.delete(
-                "1",
-                account_id="string",
-                zone_id="",
-                ruleset_id="2f2feab2026849078ba485f918791bdc",
-            )
-
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
             await async_client.rulesets.versions.with_raw_response.delete(
                 "1",
+                ruleset_id="",
                 account_id="string",
                 zone_id="string",
-                ruleset_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_version` but received ''"):
             await async_client.rulesets.versions.with_raw_response.delete(
                 "",
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
                 zone_id="string",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.rulesets.versions.with_raw_response.delete(
+                "1",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
+                account_id="",
+                zone_id="string",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            await async_client.rulesets.versions.with_raw_response.delete(
+                "1",
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
+                account_id="string",
+                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -388,9 +441,20 @@ class TestAsyncVersions:
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         version = await async_client.rulesets.versions.get(
             "1",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
             zone_id="string",
+        )
+        assert_matches_type(VersionGetResponse, version, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        version = await async_client.rulesets.versions.get(
+            "1",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="string",
+            zone_id="string",
         )
         assert_matches_type(VersionGetResponse, version, path=["response"])
 
@@ -399,9 +463,9 @@ class TestAsyncVersions:
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.rulesets.versions.with_raw_response.get(
             "1",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
             zone_id="string",
-            ruleset_id="2f2feab2026849078ba485f918791bdc",
         )
 
         assert response.is_closed is True
@@ -414,9 +478,9 @@ class TestAsyncVersions:
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.rulesets.versions.with_streaming_response.get(
             "1",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
             zone_id="string",
-            ruleset_id="2f2feab2026849078ba485f918791bdc",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -429,34 +493,34 @@ class TestAsyncVersions:
     @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.rulesets.versions.with_raw_response.get(
-                "1",
-                account_id="",
-                zone_id="string",
-                ruleset_id="2f2feab2026849078ba485f918791bdc",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.rulesets.versions.with_raw_response.get(
-                "1",
-                account_id="string",
-                zone_id="",
-                ruleset_id="2f2feab2026849078ba485f918791bdc",
-            )
-
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
             await async_client.rulesets.versions.with_raw_response.get(
                 "1",
+                ruleset_id="",
                 account_id="string",
                 zone_id="string",
-                ruleset_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_version` but received ''"):
             await async_client.rulesets.versions.with_raw_response.get(
                 "",
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
                 zone_id="string",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.rulesets.versions.with_raw_response.get(
+                "1",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
+                account_id="",
+                zone_id="string",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            await async_client.rulesets.versions.with_raw_response.get(
+                "1",
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
+                account_id="string",
+                zone_id="",
             )

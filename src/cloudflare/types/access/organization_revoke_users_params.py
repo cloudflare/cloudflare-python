@@ -8,11 +8,11 @@ __all__ = ["OrganizationRevokeUsersParams"]
 
 
 class OrganizationRevokeUsersParams(TypedDict, total=False):
-    account_id: Required[str]
-    """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
-
-    zone_id: Required[str]
-    """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
-
     email: Required[str]
     """The email of the user to revoke."""
+
+    account_id: str
+    """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
+
+    zone_id: str
+    """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
