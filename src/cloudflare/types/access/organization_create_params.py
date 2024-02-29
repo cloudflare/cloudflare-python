@@ -8,17 +8,17 @@ __all__ = ["OrganizationCreateParams", "LoginDesign"]
 
 
 class OrganizationCreateParams(TypedDict, total=False):
-    account_id: Required[str]
-    """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
-
-    zone_id: Required[str]
-    """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
-
     auth_domain: Required[str]
     """The unique subdomain assigned to your Zero Trust organization."""
 
     name: Required[str]
     """The name of your Zero Trust organization."""
+
+    account_id: str
+    """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
+
+    zone_id: str
+    """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
     allow_authenticate_via_warp: bool
     """

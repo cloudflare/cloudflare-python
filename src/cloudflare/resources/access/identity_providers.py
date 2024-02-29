@@ -46,8 +46,6 @@ class IdentityProviders(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
-        zone_id: str,
         config: identity_provider_create_params.Config,
         name: str,
         type: Literal[
@@ -66,6 +64,8 @@ class IdentityProviders(SyncAPIResource):
             "pingone",
             "yandex",
         ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         scim_config: identity_provider_create_params.ScimConfig | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -78,15 +78,15 @@ class IdentityProviders(SyncAPIResource):
         Adds a new identity provider to Access.
 
         Args:
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
           name: The name of the identity provider, shown to users on the login page.
 
           type: The type of identity provider. To determine the value for a specific provider,
               refer to our
               [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           extra_headers: Send extra headers
 
@@ -100,10 +100,21 @@ class IdentityProviders(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return cast(
             IdentityProviderCreateResponse,
             self._post(
-                f"/{account_id}/{zone_id}/access/identity_providers",
+                f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers",
                 body=maybe_transform(
                     {
                         "config": config,
@@ -130,8 +141,6 @@ class IdentityProviders(SyncAPIResource):
         self,
         uuid: str,
         *,
-        account_id: str,
-        zone_id: str,
         config: identity_provider_update_params.Config,
         name: str,
         type: Literal[
@@ -150,6 +159,8 @@ class IdentityProviders(SyncAPIResource):
             "pingone",
             "yandex",
         ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         scim_config: identity_provider_update_params.ScimConfig | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -162,10 +173,6 @@ class IdentityProviders(SyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
           uuid: UUID
 
           name: The name of the identity provider, shown to users on the login page.
@@ -173,6 +180,10 @@ class IdentityProviders(SyncAPIResource):
           type: The type of identity provider. To determine the value for a specific provider,
               refer to our
               [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           extra_headers: Send extra headers
 
@@ -182,16 +193,27 @@ class IdentityProviders(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not uuid:
+            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return cast(
             IdentityProviderUpdateResponse,
             self._put(
-                f"/{account_id}/{zone_id}/access/identity_providers/{uuid}",
+                f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers/{uuid}",
                 body=maybe_transform(
                     {
                         "config": config,
@@ -217,8 +239,8 @@ class IdentityProviders(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
-        zone_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -246,8 +268,19 @@ class IdentityProviders(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._get(
-            f"/{account_id}/{zone_id}/access/identity_providers",
+            f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -262,8 +295,8 @@ class IdentityProviders(SyncAPIResource):
         self,
         uuid: str,
         *,
-        account_id: str,
-        zone_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -275,11 +308,11 @@ class IdentityProviders(SyncAPIResource):
         Deletes an identity provider from Access.
 
         Args:
+          uuid: UUID
+
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          uuid: UUID
 
           extra_headers: Send extra headers
 
@@ -289,14 +322,25 @@ class IdentityProviders(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not uuid:
+            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._delete(
-            f"/{account_id}/{zone_id}/access/identity_providers/{uuid}",
+            f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers/{uuid}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -311,8 +355,8 @@ class IdentityProviders(SyncAPIResource):
         self,
         uuid: str,
         *,
-        account_id: str,
-        zone_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -324,11 +368,11 @@ class IdentityProviders(SyncAPIResource):
         Fetches a configured identity provider.
 
         Args:
+          uuid: UUID
+
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          uuid: UUID
 
           extra_headers: Send extra headers
 
@@ -338,16 +382,27 @@ class IdentityProviders(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not uuid:
+            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return cast(
             IdentityProviderGetResponse,
             self._get(
-                f"/{account_id}/{zone_id}/access/identity_providers/{uuid}",
+                f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers/{uuid}",
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -374,8 +429,6 @@ class AsyncIdentityProviders(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
-        zone_id: str,
         config: identity_provider_create_params.Config,
         name: str,
         type: Literal[
@@ -394,6 +447,8 @@ class AsyncIdentityProviders(AsyncAPIResource):
             "pingone",
             "yandex",
         ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         scim_config: identity_provider_create_params.ScimConfig | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -406,15 +461,15 @@ class AsyncIdentityProviders(AsyncAPIResource):
         Adds a new identity provider to Access.
 
         Args:
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
           name: The name of the identity provider, shown to users on the login page.
 
           type: The type of identity provider. To determine the value for a specific provider,
               refer to our
               [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           extra_headers: Send extra headers
 
@@ -428,10 +483,21 @@ class AsyncIdentityProviders(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return cast(
             IdentityProviderCreateResponse,
             await self._post(
-                f"/{account_id}/{zone_id}/access/identity_providers",
+                f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers",
                 body=maybe_transform(
                     {
                         "config": config,
@@ -458,8 +524,6 @@ class AsyncIdentityProviders(AsyncAPIResource):
         self,
         uuid: str,
         *,
-        account_id: str,
-        zone_id: str,
         config: identity_provider_update_params.Config,
         name: str,
         type: Literal[
@@ -478,6 +542,8 @@ class AsyncIdentityProviders(AsyncAPIResource):
             "pingone",
             "yandex",
         ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         scim_config: identity_provider_update_params.ScimConfig | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -490,10 +556,6 @@ class AsyncIdentityProviders(AsyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
           uuid: UUID
 
           name: The name of the identity provider, shown to users on the login page.
@@ -501,6 +563,10 @@ class AsyncIdentityProviders(AsyncAPIResource):
           type: The type of identity provider. To determine the value for a specific provider,
               refer to our
               [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           extra_headers: Send extra headers
 
@@ -510,16 +576,27 @@ class AsyncIdentityProviders(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not uuid:
+            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return cast(
             IdentityProviderUpdateResponse,
             await self._put(
-                f"/{account_id}/{zone_id}/access/identity_providers/{uuid}",
+                f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers/{uuid}",
                 body=maybe_transform(
                     {
                         "config": config,
@@ -545,8 +622,8 @@ class AsyncIdentityProviders(AsyncAPIResource):
     async def list(
         self,
         *,
-        account_id: str,
-        zone_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -574,8 +651,19 @@ class AsyncIdentityProviders(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return await self._get(
-            f"/{account_id}/{zone_id}/access/identity_providers",
+            f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -590,8 +678,8 @@ class AsyncIdentityProviders(AsyncAPIResource):
         self,
         uuid: str,
         *,
-        account_id: str,
-        zone_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -603,11 +691,11 @@ class AsyncIdentityProviders(AsyncAPIResource):
         Deletes an identity provider from Access.
 
         Args:
+          uuid: UUID
+
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          uuid: UUID
 
           extra_headers: Send extra headers
 
@@ -617,14 +705,25 @@ class AsyncIdentityProviders(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not uuid:
+            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return await self._delete(
-            f"/{account_id}/{zone_id}/access/identity_providers/{uuid}",
+            f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers/{uuid}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -639,8 +738,8 @@ class AsyncIdentityProviders(AsyncAPIResource):
         self,
         uuid: str,
         *,
-        account_id: str,
-        zone_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -652,11 +751,11 @@ class AsyncIdentityProviders(AsyncAPIResource):
         Fetches a configured identity provider.
 
         Args:
+          uuid: UUID
+
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          uuid: UUID
 
           extra_headers: Send extra headers
 
@@ -666,16 +765,27 @@ class AsyncIdentityProviders(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not uuid:
+            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return cast(
             IdentityProviderGetResponse,
             await self._get(
-                f"/{account_id}/{zone_id}/access/identity_providers/{uuid}",
+                f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers/{uuid}",
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

@@ -27,14 +27,14 @@ class TestGroups:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         group = client.access.groups.create(
-            account_id="string",
-            zone_id="string",
             include=[
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
             ],
             name="Allow devs",
+            account_id="string",
+            zone_id="string",
         )
         assert_matches_type(GroupCreateResponse, group, path=["response"])
 
@@ -42,14 +42,14 @@ class TestGroups:
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         group = client.access.groups.create(
-            account_id="string",
-            zone_id="string",
             include=[
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
             ],
             name="Allow devs",
+            account_id="string",
+            zone_id="string",
             exclude=[
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
@@ -68,14 +68,14 @@ class TestGroups:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.access.groups.with_raw_response.create(
-            account_id="string",
-            zone_id="string",
             include=[
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
             ],
             name="Allow devs",
+            account_id="string",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -87,14 +87,14 @@ class TestGroups:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.access.groups.with_streaming_response.create(
-            account_id="string",
-            zone_id="string",
             include=[
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
             ],
             name="Allow devs",
+            account_id="string",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -109,26 +109,26 @@ class TestGroups:
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.access.groups.with_raw_response.create(
-                account_id="",
-                zone_id="string",
                 include=[
                     {"email": {"email": "test@example.com"}},
                     {"email": {"email": "test@example.com"}},
                     {"email": {"email": "test@example.com"}},
                 ],
                 name="Allow devs",
+                account_id="",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.access.groups.with_raw_response.create(
-                account_id="string",
-                zone_id="",
                 include=[
                     {"email": {"email": "test@example.com"}},
                     {"email": {"email": "test@example.com"}},
                     {"email": {"email": "test@example.com"}},
                 ],
                 name="Allow devs",
+                account_id="string",
+                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -136,14 +136,14 @@ class TestGroups:
     def test_method_update(self, client: Cloudflare) -> None:
         group = client.access.groups.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_id="string",
-            zone_id="string",
             include=[
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
             ],
             name="Allow devs",
+            account_id="string",
+            zone_id="string",
         )
         assert_matches_type(GroupUpdateResponse, group, path=["response"])
 
@@ -152,14 +152,14 @@ class TestGroups:
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         group = client.access.groups.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_id="string",
-            zone_id="string",
             include=[
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
             ],
             name="Allow devs",
+            account_id="string",
+            zone_id="string",
             exclude=[
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
@@ -179,14 +179,14 @@ class TestGroups:
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.access.groups.with_raw_response.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_id="string",
-            zone_id="string",
             include=[
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
             ],
             name="Allow devs",
+            account_id="string",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -199,14 +199,14 @@ class TestGroups:
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.access.groups.with_streaming_response.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_id="string",
-            zone_id="string",
             include=[
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
             ],
             name="Allow devs",
+            account_id="string",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -219,48 +219,57 @@ class TestGroups:
     @pytest.mark.skip()
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
             client.access.groups.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                account_id="",
-                zone_id="string",
+                "",
                 include=[
                     {"email": {"email": "test@example.com"}},
                     {"email": {"email": "test@example.com"}},
                     {"email": {"email": "test@example.com"}},
                 ],
                 name="Allow devs",
+                account_id="string",
+                zone_id="string",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.access.groups.with_raw_response.update(
+                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                include=[
+                    {"email": {"email": "test@example.com"}},
+                    {"email": {"email": "test@example.com"}},
+                    {"email": {"email": "test@example.com"}},
+                ],
+                name="Allow devs",
+                account_id="",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.access.groups.with_raw_response.update(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                include=[
+                    {"email": {"email": "test@example.com"}},
+                    {"email": {"email": "test@example.com"}},
+                    {"email": {"email": "test@example.com"}},
+                ],
+                name="Allow devs",
                 account_id="string",
                 zone_id="",
-                include=[
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                ],
-                name="Allow devs",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
-            client.access.groups.with_raw_response.update(
-                "",
-                account_id="string",
-                zone_id="string",
-                include=[
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                ],
-                name="Allow devs",
             )
 
     @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
+        group = client.access.groups.list(
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(Optional[GroupListResponse], group, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         group = client.access.groups.list(
             account_id="string",
             zone_id="string",
@@ -322,6 +331,16 @@ class TestGroups:
 
     @pytest.mark.skip()
     @parametrize
+    def test_method_delete_with_all_params(self, client: Cloudflare) -> None:
+        group = client.access.groups.delete(
+            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(GroupDeleteResponse, group, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.access.groups.with_raw_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -353,6 +372,13 @@ class TestGroups:
     @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
+            client.access.groups.with_raw_response.delete(
+                "",
+                account_id="string",
+                zone_id="string",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.access.groups.with_raw_response.delete(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -367,16 +393,19 @@ class TestGroups:
                 zone_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
-            client.access.groups.with_raw_response.delete(
-                "",
-                account_id="string",
-                zone_id="string",
-            )
-
     @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
+        group = client.access.groups.get(
+            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(GroupGetResponse, group, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         group = client.access.groups.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
@@ -417,6 +446,13 @@ class TestGroups:
     @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
+            client.access.groups.with_raw_response.get(
+                "",
+                account_id="string",
+                zone_id="string",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.access.groups.with_raw_response.get(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -431,13 +467,6 @@ class TestGroups:
                 zone_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
-            client.access.groups.with_raw_response.get(
-                "",
-                account_id="string",
-                zone_id="string",
-            )
-
 
 class TestAsyncGroups:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
@@ -446,14 +475,14 @@ class TestAsyncGroups:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         group = await async_client.access.groups.create(
-            account_id="string",
-            zone_id="string",
             include=[
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
             ],
             name="Allow devs",
+            account_id="string",
+            zone_id="string",
         )
         assert_matches_type(GroupCreateResponse, group, path=["response"])
 
@@ -461,14 +490,14 @@ class TestAsyncGroups:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         group = await async_client.access.groups.create(
-            account_id="string",
-            zone_id="string",
             include=[
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
             ],
             name="Allow devs",
+            account_id="string",
+            zone_id="string",
             exclude=[
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
@@ -487,14 +516,14 @@ class TestAsyncGroups:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.access.groups.with_raw_response.create(
-            account_id="string",
-            zone_id="string",
             include=[
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
             ],
             name="Allow devs",
+            account_id="string",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -506,14 +535,14 @@ class TestAsyncGroups:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.access.groups.with_streaming_response.create(
-            account_id="string",
-            zone_id="string",
             include=[
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
             ],
             name="Allow devs",
+            account_id="string",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -528,26 +557,26 @@ class TestAsyncGroups:
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.access.groups.with_raw_response.create(
-                account_id="",
-                zone_id="string",
                 include=[
                     {"email": {"email": "test@example.com"}},
                     {"email": {"email": "test@example.com"}},
                     {"email": {"email": "test@example.com"}},
                 ],
                 name="Allow devs",
+                account_id="",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.access.groups.with_raw_response.create(
-                account_id="string",
-                zone_id="",
                 include=[
                     {"email": {"email": "test@example.com"}},
                     {"email": {"email": "test@example.com"}},
                     {"email": {"email": "test@example.com"}},
                 ],
                 name="Allow devs",
+                account_id="string",
+                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -555,14 +584,14 @@ class TestAsyncGroups:
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         group = await async_client.access.groups.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_id="string",
-            zone_id="string",
             include=[
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
             ],
             name="Allow devs",
+            account_id="string",
+            zone_id="string",
         )
         assert_matches_type(GroupUpdateResponse, group, path=["response"])
 
@@ -571,14 +600,14 @@ class TestAsyncGroups:
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         group = await async_client.access.groups.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_id="string",
-            zone_id="string",
             include=[
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
             ],
             name="Allow devs",
+            account_id="string",
+            zone_id="string",
             exclude=[
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
@@ -598,14 +627,14 @@ class TestAsyncGroups:
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.access.groups.with_raw_response.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_id="string",
-            zone_id="string",
             include=[
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
             ],
             name="Allow devs",
+            account_id="string",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -618,14 +647,14 @@ class TestAsyncGroups:
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.access.groups.with_streaming_response.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_id="string",
-            zone_id="string",
             include=[
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
             ],
             name="Allow devs",
+            account_id="string",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -638,48 +667,57 @@ class TestAsyncGroups:
     @pytest.mark.skip()
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
             await async_client.access.groups.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                account_id="",
-                zone_id="string",
+                "",
                 include=[
                     {"email": {"email": "test@example.com"}},
                     {"email": {"email": "test@example.com"}},
                     {"email": {"email": "test@example.com"}},
                 ],
                 name="Allow devs",
+                account_id="string",
+                zone_id="string",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.access.groups.with_raw_response.update(
+                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                include=[
+                    {"email": {"email": "test@example.com"}},
+                    {"email": {"email": "test@example.com"}},
+                    {"email": {"email": "test@example.com"}},
+                ],
+                name="Allow devs",
+                account_id="",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.access.groups.with_raw_response.update(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                include=[
+                    {"email": {"email": "test@example.com"}},
+                    {"email": {"email": "test@example.com"}},
+                    {"email": {"email": "test@example.com"}},
+                ],
+                name="Allow devs",
                 account_id="string",
                 zone_id="",
-                include=[
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                ],
-                name="Allow devs",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
-            await async_client.access.groups.with_raw_response.update(
-                "",
-                account_id="string",
-                zone_id="string",
-                include=[
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                ],
-                name="Allow devs",
             )
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
+        group = await async_client.access.groups.list(
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(Optional[GroupListResponse], group, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         group = await async_client.access.groups.list(
             account_id="string",
             zone_id="string",
@@ -741,6 +779,16 @@ class TestAsyncGroups:
 
     @pytest.mark.skip()
     @parametrize
+    async def test_method_delete_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        group = await async_client.access.groups.delete(
+            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(GroupDeleteResponse, group, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.access.groups.with_raw_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -772,6 +820,13 @@ class TestAsyncGroups:
     @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
+            await async_client.access.groups.with_raw_response.delete(
+                "",
+                account_id="string",
+                zone_id="string",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.access.groups.with_raw_response.delete(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -786,16 +841,19 @@ class TestAsyncGroups:
                 zone_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
-            await async_client.access.groups.with_raw_response.delete(
-                "",
-                account_id="string",
-                zone_id="string",
-            )
-
     @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
+        group = await async_client.access.groups.get(
+            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(GroupGetResponse, group, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         group = await async_client.access.groups.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
@@ -836,6 +894,13 @@ class TestAsyncGroups:
     @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
+            await async_client.access.groups.with_raw_response.get(
+                "",
+                account_id="string",
+                zone_id="string",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.access.groups.with_raw_response.get(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -848,11 +913,4 @@ class TestAsyncGroups:
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="string",
                 zone_id="",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
-            await async_client.access.groups.with_raw_response.get(
-                "",
-                account_id="string",
-                zone_id="string",
             )

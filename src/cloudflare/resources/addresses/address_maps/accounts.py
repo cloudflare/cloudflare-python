@@ -68,7 +68,7 @@ class Accounts(SyncAPIResource):
         return cast(
             Optional[AccountUpdateResponse],
             self._put(
-                f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/accounts/:account_id",
+                f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/accounts/{account_id}",
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -117,7 +117,7 @@ class Accounts(SyncAPIResource):
         return cast(
             Optional[AccountDeleteResponse],
             self._delete(
-                f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/accounts/:account_id",
+                f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/accounts/{account_id}",
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -176,7 +176,7 @@ class AsyncAccounts(AsyncAPIResource):
         return cast(
             Optional[AccountUpdateResponse],
             await self._put(
-                f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/accounts/:account_id",
+                f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/accounts/{account_id}",
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -225,7 +225,7 @@ class AsyncAccounts(AsyncAPIResource):
         return cast(
             Optional[AccountDeleteResponse],
             await self._delete(
-                f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/accounts/:account_id",
+                f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/accounts/{account_id}",
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

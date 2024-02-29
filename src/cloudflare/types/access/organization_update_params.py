@@ -2,16 +2,16 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict
 
 __all__ = ["OrganizationUpdateParams", "CustomPages", "LoginDesign"]
 
 
 class OrganizationUpdateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
 
-    zone_id: Required[str]
+    zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
     allow_authenticate_via_warp: bool

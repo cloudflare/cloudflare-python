@@ -42,9 +42,9 @@ class Validate(SyncAPIResource):
     def destination(
         self,
         *,
-        account_id: str,
-        zone_id: str,
         destination_conf: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -56,13 +56,13 @@ class Validate(SyncAPIResource):
         Checks if there is an existing job with a destination.
 
         Args:
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
           destination_conf: Uniquely identifies a resource (such as an s3 bucket) where data will be pushed.
               Additional configuration parameters supported by the destination may be
               included.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           extra_headers: Send extra headers
 
@@ -76,8 +76,19 @@ class Validate(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._post(
-            f"/{account_id}/{zone_id}/logpush/validate/destination/exists",
+            f"/{account_or_zone}/{account_or_zone_id}/logpush/validate/destination/exists",
             body=maybe_transform(
                 {"destination_conf": destination_conf}, validate_destination_params.ValidateDestinationParams
             ),
@@ -94,9 +105,9 @@ class Validate(SyncAPIResource):
     def origin(
         self,
         *,
-        account_id: str,
-        zone_id: str,
         logpull_options: Optional[str],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -108,15 +119,15 @@ class Validate(SyncAPIResource):
         Validates logpull origin with logpull_options.
 
         Args:
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
           logpull_options: This field is deprecated. Use `output_options` instead. Configuration string. It
               specifies things like requested fields and timestamp formats. If migrating from
               the logpull api, copy the url (full url or just the query string) of your call
               here, and logpush will keep on making this call for you, setting start and end
               times appropriately.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           extra_headers: Send extra headers
 
@@ -130,8 +141,19 @@ class Validate(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._post(
-            f"/{account_id}/{zone_id}/logpush/validate/origin",
+            f"/{account_or_zone}/{account_or_zone_id}/logpush/validate/origin",
             body=maybe_transform({"logpull_options": logpull_options}, validate_origin_params.ValidateOriginParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -156,9 +178,9 @@ class AsyncValidate(AsyncAPIResource):
     async def destination(
         self,
         *,
-        account_id: str,
-        zone_id: str,
         destination_conf: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -170,13 +192,13 @@ class AsyncValidate(AsyncAPIResource):
         Checks if there is an existing job with a destination.
 
         Args:
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
           destination_conf: Uniquely identifies a resource (such as an s3 bucket) where data will be pushed.
               Additional configuration parameters supported by the destination may be
               included.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           extra_headers: Send extra headers
 
@@ -190,8 +212,19 @@ class AsyncValidate(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return await self._post(
-            f"/{account_id}/{zone_id}/logpush/validate/destination/exists",
+            f"/{account_or_zone}/{account_or_zone_id}/logpush/validate/destination/exists",
             body=maybe_transform(
                 {"destination_conf": destination_conf}, validate_destination_params.ValidateDestinationParams
             ),
@@ -208,9 +241,9 @@ class AsyncValidate(AsyncAPIResource):
     async def origin(
         self,
         *,
-        account_id: str,
-        zone_id: str,
         logpull_options: Optional[str],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -222,15 +255,15 @@ class AsyncValidate(AsyncAPIResource):
         Validates logpull origin with logpull_options.
 
         Args:
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
           logpull_options: This field is deprecated. Use `output_options` instead. Configuration string. It
               specifies things like requested fields and timestamp formats. If migrating from
               the logpull api, copy the url (full url or just the query string) of your call
               here, and logpush will keep on making this call for you, setting start and end
               times appropriately.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           extra_headers: Send extra headers
 
@@ -244,8 +277,19 @@ class AsyncValidate(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return await self._post(
-            f"/{account_id}/{zone_id}/logpush/validate/origin",
+            f"/{account_or_zone}/{account_or_zone_id}/logpush/validate/origin",
             body=maybe_transform({"logpull_options": logpull_options}, validate_origin_params.ValidateOriginParams),
             options=make_request_options(
                 extra_headers=extra_headers,

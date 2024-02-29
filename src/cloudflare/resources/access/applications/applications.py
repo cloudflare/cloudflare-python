@@ -81,8 +81,8 @@ class Applications(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
-        zone_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
         allowed_idps: List[str] | NotGiven = NOT_GIVEN,
         app_launcher_visible: object | NotGiven = NOT_GIVEN,
@@ -188,10 +188,21 @@ class Applications(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return cast(
             ApplicationCreateResponse,
             self._post(
-                f"/{account_id}/{zone_id}/access/apps",
+                f"/{account_or_zone}/{account_or_zone_id}/access/apps",
                 body=maybe_transform(
                     {
                         "allow_authenticate_via_warp": allow_authenticate_via_warp,
@@ -237,8 +248,8 @@ class Applications(SyncAPIResource):
         self,
         app_id: Union[str, str],
         *,
-        account_id: str,
-        zone_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
         allowed_idps: List[str] | NotGiven = NOT_GIVEN,
         app_launcher_visible: object | NotGiven = NOT_GIVEN,
@@ -273,11 +284,11 @@ class Applications(SyncAPIResource):
         Updates an Access application.
 
         Args:
+          app_id: Identifier
+
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          app_id: Identifier
 
           allow_authenticate_via_warp: When set to true, users can authenticate to this application using their WARP
               session. When set to false this application will always require direct IdP
@@ -346,10 +357,21 @@ class Applications(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return cast(
             ApplicationUpdateResponse,
             self._put(
-                f"/{account_id}/{zone_id}/access/apps/{app_id}",
+                f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}",
                 body=maybe_transform(
                     {
                         "allow_authenticate_via_warp": allow_authenticate_via_warp,
@@ -394,8 +416,8 @@ class Applications(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
-        zone_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -423,8 +445,19 @@ class Applications(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._get(
-            f"/{account_id}/{zone_id}/access/apps",
+            f"/{account_or_zone}/{account_or_zone_id}/access/apps",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -439,8 +472,8 @@ class Applications(SyncAPIResource):
         self,
         app_id: Union[str, str],
         *,
-        account_id: str,
-        zone_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -452,11 +485,11 @@ class Applications(SyncAPIResource):
         Deletes an application from Access.
 
         Args:
+          app_id: Identifier
+
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          app_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -470,8 +503,19 @@ class Applications(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._delete(
-            f"/{account_id}/{zone_id}/access/apps/{app_id}",
+            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -486,8 +530,8 @@ class Applications(SyncAPIResource):
         self,
         app_id: Union[str, str],
         *,
-        account_id: str,
-        zone_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -499,11 +543,11 @@ class Applications(SyncAPIResource):
         Fetches information about an Access application.
 
         Args:
+          app_id: Identifier
+
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          app_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -517,10 +561,21 @@ class Applications(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return cast(
             ApplicationGetResponse,
             self._get(
-                f"/{account_id}/{zone_id}/access/apps/{app_id}",
+                f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}",
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -538,8 +593,8 @@ class Applications(SyncAPIResource):
         self,
         app_id: Union[str, str],
         *,
-        account_id: str,
-        zone_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -551,11 +606,11 @@ class Applications(SyncAPIResource):
         Revokes all tokens issued for an application.
 
         Args:
+          app_id: Identifier
+
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          app_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -569,8 +624,19 @@ class Applications(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._post(
-            f"/{account_id}/{zone_id}/access/apps/{app_id}/revoke_tokens",
+            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/revoke_tokens",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -606,8 +672,8 @@ class AsyncApplications(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
-        zone_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
         allowed_idps: List[str] | NotGiven = NOT_GIVEN,
         app_launcher_visible: object | NotGiven = NOT_GIVEN,
@@ -713,10 +779,21 @@ class AsyncApplications(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return cast(
             ApplicationCreateResponse,
             await self._post(
-                f"/{account_id}/{zone_id}/access/apps",
+                f"/{account_or_zone}/{account_or_zone_id}/access/apps",
                 body=maybe_transform(
                     {
                         "allow_authenticate_via_warp": allow_authenticate_via_warp,
@@ -762,8 +839,8 @@ class AsyncApplications(AsyncAPIResource):
         self,
         app_id: Union[str, str],
         *,
-        account_id: str,
-        zone_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
         allowed_idps: List[str] | NotGiven = NOT_GIVEN,
         app_launcher_visible: object | NotGiven = NOT_GIVEN,
@@ -798,11 +875,11 @@ class AsyncApplications(AsyncAPIResource):
         Updates an Access application.
 
         Args:
+          app_id: Identifier
+
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          app_id: Identifier
 
           allow_authenticate_via_warp: When set to true, users can authenticate to this application using their WARP
               session. When set to false this application will always require direct IdP
@@ -871,10 +948,21 @@ class AsyncApplications(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return cast(
             ApplicationUpdateResponse,
             await self._put(
-                f"/{account_id}/{zone_id}/access/apps/{app_id}",
+                f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}",
                 body=maybe_transform(
                     {
                         "allow_authenticate_via_warp": allow_authenticate_via_warp,
@@ -919,8 +1007,8 @@ class AsyncApplications(AsyncAPIResource):
     async def list(
         self,
         *,
-        account_id: str,
-        zone_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -948,8 +1036,19 @@ class AsyncApplications(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return await self._get(
-            f"/{account_id}/{zone_id}/access/apps",
+            f"/{account_or_zone}/{account_or_zone_id}/access/apps",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -964,8 +1063,8 @@ class AsyncApplications(AsyncAPIResource):
         self,
         app_id: Union[str, str],
         *,
-        account_id: str,
-        zone_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -977,11 +1076,11 @@ class AsyncApplications(AsyncAPIResource):
         Deletes an application from Access.
 
         Args:
+          app_id: Identifier
+
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          app_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -995,8 +1094,19 @@ class AsyncApplications(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return await self._delete(
-            f"/{account_id}/{zone_id}/access/apps/{app_id}",
+            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1011,8 +1121,8 @@ class AsyncApplications(AsyncAPIResource):
         self,
         app_id: Union[str, str],
         *,
-        account_id: str,
-        zone_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1024,11 +1134,11 @@ class AsyncApplications(AsyncAPIResource):
         Fetches information about an Access application.
 
         Args:
+          app_id: Identifier
+
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          app_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -1042,10 +1152,21 @@ class AsyncApplications(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return cast(
             ApplicationGetResponse,
             await self._get(
-                f"/{account_id}/{zone_id}/access/apps/{app_id}",
+                f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}",
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -1063,8 +1184,8 @@ class AsyncApplications(AsyncAPIResource):
         self,
         app_id: Union[str, str],
         *,
-        account_id: str,
-        zone_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1076,11 +1197,11 @@ class AsyncApplications(AsyncAPIResource):
         Revokes all tokens issued for an application.
 
         Args:
+          app_id: Identifier
+
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          app_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -1094,8 +1215,19 @@ class AsyncApplications(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return await self._post(
-            f"/{account_id}/{zone_id}/access/apps/{app_id}/revoke_tokens",
+            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/revoke_tokens",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

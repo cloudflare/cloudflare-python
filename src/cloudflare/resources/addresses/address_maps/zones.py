@@ -70,10 +70,21 @@ class Zones(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not address_map_id:
             raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return cast(
             Optional[ZoneUpdateResponse],
             self._put(
-                f"/accounts/{zone_id}/addressing/address_maps/{account_id}/zones/{address_map_id}",
+                f"/accounts/{account_or_zone}/addressing/address_maps/{address_map_id}/zones/{account_or_zone_id}",
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -124,10 +135,21 @@ class Zones(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not address_map_id:
             raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return cast(
             Optional[ZoneDeleteResponse],
             self._delete(
-                f"/accounts/{zone_id}/addressing/address_maps/{account_id}/zones/{address_map_id}",
+                f"/accounts/{account_or_zone}/addressing/address_maps/{address_map_id}/zones/{account_or_zone_id}",
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -188,10 +210,21 @@ class AsyncZones(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not address_map_id:
             raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return cast(
             Optional[ZoneUpdateResponse],
             await self._put(
-                f"/accounts/{zone_id}/addressing/address_maps/{account_id}/zones/{address_map_id}",
+                f"/accounts/{account_or_zone}/addressing/address_maps/{address_map_id}/zones/{account_or_zone_id}",
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -242,10 +275,21 @@ class AsyncZones(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not address_map_id:
             raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return cast(
             Optional[ZoneDeleteResponse],
             await self._delete(
-                f"/accounts/{zone_id}/addressing/address_maps/{account_id}/zones/{address_map_id}",
+                f"/accounts/{account_or_zone}/addressing/address_maps/{address_map_id}/zones/{account_or_zone_id}",
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
