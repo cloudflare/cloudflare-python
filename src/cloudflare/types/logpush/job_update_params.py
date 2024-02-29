@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import List, Optional
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing_extensions import Literal, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
@@ -11,10 +11,10 @@ __all__ = ["JobUpdateParams", "OutputOptions"]
 
 
 class JobUpdateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
 
-    zone_id: Required[str]
+    zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
     destination_conf: str

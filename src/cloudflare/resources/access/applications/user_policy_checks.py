@@ -37,8 +37,8 @@ class UserPolicyChecks(SyncAPIResource):
         self,
         app_id: Union[str, str],
         *,
-        account_id: str,
-        zone_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -50,11 +50,11 @@ class UserPolicyChecks(SyncAPIResource):
         Tests if a specific user has permission to access an application.
 
         Args:
+          app_id: Identifier
+
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          app_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -68,8 +68,19 @@ class UserPolicyChecks(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._get(
-            f"/{account_id}/{zone_id}/access/apps/{app_id}/user_policy_checks",
+            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/user_policy_checks",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -94,8 +105,8 @@ class AsyncUserPolicyChecks(AsyncAPIResource):
         self,
         app_id: Union[str, str],
         *,
-        account_id: str,
-        zone_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -107,11 +118,11 @@ class AsyncUserPolicyChecks(AsyncAPIResource):
         Tests if a specific user has permission to access an application.
 
         Args:
+          app_id: Identifier
+
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          app_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -125,8 +136,19 @@ class AsyncUserPolicyChecks(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return await self._get(
-            f"/{account_id}/{zone_id}/access/apps/{app_id}/user_policy_checks",
+            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/user_policy_checks",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

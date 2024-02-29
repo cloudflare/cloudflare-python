@@ -3,16 +3,16 @@
 from __future__ import annotations
 
 from typing import Union
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict
 
 __all__ = ["RuleCreateParams", "Position", "PositionPosition"]
 
 
 class RuleCreateParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
 
-    zone_id: Required[str]
+    zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
     position: Position

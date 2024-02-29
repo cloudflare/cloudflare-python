@@ -27,11 +27,11 @@ class TestIdentityProviders:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         identity_provider = client.access.identity_providers.create(
-            account_id="string",
-            zone_id="string",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
+            account_id="string",
+            zone_id="string",
         )
         assert_matches_type(IdentityProviderCreateResponse, identity_provider, path=["response"])
 
@@ -39,8 +39,6 @@ class TestIdentityProviders:
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         identity_provider = client.access.identity_providers.create(
-            account_id="string",
-            zone_id="string",
             config={
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
@@ -83,6 +81,8 @@ class TestIdentityProviders:
             },
             name="Widget Corps IDP",
             type="onetimepin",
+            account_id="string",
+            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -97,11 +97,11 @@ class TestIdentityProviders:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.access.identity_providers.with_raw_response.create(
-            account_id="string",
-            zone_id="string",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
+            account_id="string",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -113,11 +113,11 @@ class TestIdentityProviders:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.access.identity_providers.with_streaming_response.create(
-            account_id="string",
-            zone_id="string",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
+            account_id="string",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -132,20 +132,20 @@ class TestIdentityProviders:
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.access.identity_providers.with_raw_response.create(
-                account_id="",
-                zone_id="string",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
+                account_id="",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.access.identity_providers.with_raw_response.create(
-                account_id="string",
-                zone_id="",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
+                account_id="string",
+                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -153,11 +153,11 @@ class TestIdentityProviders:
     def test_method_update(self, client: Cloudflare) -> None:
         identity_provider = client.access.identity_providers.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_id="string",
-            zone_id="string",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
+            account_id="string",
+            zone_id="string",
         )
         assert_matches_type(IdentityProviderUpdateResponse, identity_provider, path=["response"])
 
@@ -166,8 +166,6 @@ class TestIdentityProviders:
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         identity_provider = client.access.identity_providers.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_id="string",
-            zone_id="string",
             config={
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
@@ -210,6 +208,8 @@ class TestIdentityProviders:
             },
             name="Widget Corps IDP",
             type="onetimepin",
+            account_id="string",
+            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -225,11 +225,11 @@ class TestIdentityProviders:
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.access.identity_providers.with_raw_response.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_id="string",
-            zone_id="string",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
+            account_id="string",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -242,11 +242,11 @@ class TestIdentityProviders:
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.access.identity_providers.with_streaming_response.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_id="string",
-            zone_id="string",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
+            account_id="string",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -259,39 +259,48 @@ class TestIdentityProviders:
     @pytest.mark.skip()
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
             client.access.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                account_id="",
-                zone_id="string",
+                "",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
+                account_id="string",
+                zone_id="string",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.access.identity_providers.with_raw_response.update(
+                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.access.identity_providers.with_raw_response.update(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
                 account_id="string",
                 zone_id="",
-                config={},
-                name="Widget Corps IDP",
-                type="onetimepin",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
-            client.access.identity_providers.with_raw_response.update(
-                "",
-                account_id="string",
-                zone_id="string",
-                config={},
-                name="Widget Corps IDP",
-                type="onetimepin",
             )
 
     @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
+        identity_provider = client.access.identity_providers.list(
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(Optional[IdentityProviderListResponse], identity_provider, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         identity_provider = client.access.identity_providers.list(
             account_id="string",
             zone_id="string",
@@ -353,6 +362,16 @@ class TestIdentityProviders:
 
     @pytest.mark.skip()
     @parametrize
+    def test_method_delete_with_all_params(self, client: Cloudflare) -> None:
+        identity_provider = client.access.identity_providers.delete(
+            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(IdentityProviderDeleteResponse, identity_provider, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.access.identity_providers.with_raw_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -384,6 +403,13 @@ class TestIdentityProviders:
     @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
+            client.access.identity_providers.with_raw_response.delete(
+                "",
+                account_id="string",
+                zone_id="string",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.access.identity_providers.with_raw_response.delete(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -398,16 +424,19 @@ class TestIdentityProviders:
                 zone_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
-            client.access.identity_providers.with_raw_response.delete(
-                "",
-                account_id="string",
-                zone_id="string",
-            )
-
     @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
+        identity_provider = client.access.identity_providers.get(
+            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(IdentityProviderGetResponse, identity_provider, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         identity_provider = client.access.identity_providers.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
@@ -448,6 +477,13 @@ class TestIdentityProviders:
     @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
+            client.access.identity_providers.with_raw_response.get(
+                "",
+                account_id="string",
+                zone_id="string",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.access.identity_providers.with_raw_response.get(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -462,13 +498,6 @@ class TestIdentityProviders:
                 zone_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
-            client.access.identity_providers.with_raw_response.get(
-                "",
-                account_id="string",
-                zone_id="string",
-            )
-
 
 class TestAsyncIdentityProviders:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
@@ -477,11 +506,11 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.access.identity_providers.create(
-            account_id="string",
-            zone_id="string",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
+            account_id="string",
+            zone_id="string",
         )
         assert_matches_type(IdentityProviderCreateResponse, identity_provider, path=["response"])
 
@@ -489,8 +518,6 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.access.identity_providers.create(
-            account_id="string",
-            zone_id="string",
             config={
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
@@ -533,6 +560,8 @@ class TestAsyncIdentityProviders:
             },
             name="Widget Corps IDP",
             type="onetimepin",
+            account_id="string",
+            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -547,11 +576,11 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.access.identity_providers.with_raw_response.create(
-            account_id="string",
-            zone_id="string",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
+            account_id="string",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -563,11 +592,11 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.access.identity_providers.with_streaming_response.create(
-            account_id="string",
-            zone_id="string",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
+            account_id="string",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -582,20 +611,20 @@ class TestAsyncIdentityProviders:
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.access.identity_providers.with_raw_response.create(
-                account_id="",
-                zone_id="string",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
+                account_id="",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.access.identity_providers.with_raw_response.create(
-                account_id="string",
-                zone_id="",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
+                account_id="string",
+                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -603,11 +632,11 @@ class TestAsyncIdentityProviders:
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.access.identity_providers.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_id="string",
-            zone_id="string",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
+            account_id="string",
+            zone_id="string",
         )
         assert_matches_type(IdentityProviderUpdateResponse, identity_provider, path=["response"])
 
@@ -616,8 +645,6 @@ class TestAsyncIdentityProviders:
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.access.identity_providers.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_id="string",
-            zone_id="string",
             config={
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
@@ -660,6 +687,8 @@ class TestAsyncIdentityProviders:
             },
             name="Widget Corps IDP",
             type="onetimepin",
+            account_id="string",
+            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -675,11 +704,11 @@ class TestAsyncIdentityProviders:
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.access.identity_providers.with_raw_response.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_id="string",
-            zone_id="string",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
+            account_id="string",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -692,11 +721,11 @@ class TestAsyncIdentityProviders:
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.access.identity_providers.with_streaming_response.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_id="string",
-            zone_id="string",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
+            account_id="string",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -709,39 +738,48 @@ class TestAsyncIdentityProviders:
     @pytest.mark.skip()
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
             await async_client.access.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                account_id="",
-                zone_id="string",
+                "",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
+                account_id="string",
+                zone_id="string",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.access.identity_providers.with_raw_response.update(
+                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.access.identity_providers.with_raw_response.update(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
                 account_id="string",
                 zone_id="",
-                config={},
-                name="Widget Corps IDP",
-                type="onetimepin",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
-            await async_client.access.identity_providers.with_raw_response.update(
-                "",
-                account_id="string",
-                zone_id="string",
-                config={},
-                name="Widget Corps IDP",
-                type="onetimepin",
             )
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
+        identity_provider = await async_client.access.identity_providers.list(
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(Optional[IdentityProviderListResponse], identity_provider, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.access.identity_providers.list(
             account_id="string",
             zone_id="string",
@@ -803,6 +841,16 @@ class TestAsyncIdentityProviders:
 
     @pytest.mark.skip()
     @parametrize
+    async def test_method_delete_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        identity_provider = await async_client.access.identity_providers.delete(
+            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(IdentityProviderDeleteResponse, identity_provider, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.access.identity_providers.with_raw_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -834,6 +882,13 @@ class TestAsyncIdentityProviders:
     @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
+            await async_client.access.identity_providers.with_raw_response.delete(
+                "",
+                account_id="string",
+                zone_id="string",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.access.identity_providers.with_raw_response.delete(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -848,16 +903,19 @@ class TestAsyncIdentityProviders:
                 zone_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
-            await async_client.access.identity_providers.with_raw_response.delete(
-                "",
-                account_id="string",
-                zone_id="string",
-            )
-
     @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
+        identity_provider = await async_client.access.identity_providers.get(
+            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(IdentityProviderGetResponse, identity_provider, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.access.identity_providers.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
@@ -898,6 +956,13 @@ class TestAsyncIdentityProviders:
     @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
+            await async_client.access.identity_providers.with_raw_response.get(
+                "",
+                account_id="string",
+                zone_id="string",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.access.identity_providers.with_raw_response.get(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -910,11 +975,4 @@ class TestAsyncIdentityProviders:
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="string",
                 zone_id="",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
-            await async_client.access.identity_providers.with_raw_response.get(
-                "",
-                account_id="string",
-                zone_id="string",
             )

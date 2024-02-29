@@ -9,12 +9,6 @@ __all__ = ["IdentityProviderCreateParams", "Config", "ConfigHeaderAttribute", "S
 
 
 class IdentityProviderCreateParams(TypedDict, total=False):
-    account_id: Required[str]
-    """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
-
-    zone_id: Required[str]
-    """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
-
     config: Required[Config]
 
     name: Required[str]
@@ -43,6 +37,12 @@ class IdentityProviderCreateParams(TypedDict, total=False):
     To determine the value for a specific provider, refer to our
     [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
     """
+
+    account_id: str
+    """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
+
+    zone_id: str
+    """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
     scim_config: ScimConfig
 

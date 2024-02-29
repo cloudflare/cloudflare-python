@@ -121,12 +121,6 @@ __all__ = [
 
 
 class GroupUpdateParams(TypedDict, total=False):
-    account_id: Required[str]
-    """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
-
-    zone_id: Required[str]
-    """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
-
     include: Required[Iterable[Include]]
     """Rules evaluated with an OR logical operator.
 
@@ -135,6 +129,12 @@ class GroupUpdateParams(TypedDict, total=False):
 
     name: Required[str]
     """The name of the Access group."""
+
+    account_id: str
+    """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
+
+    zone_id: str
+    """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
     exclude: Iterable[Exclude]
     """Rules evaluated with a NOT logical operator.

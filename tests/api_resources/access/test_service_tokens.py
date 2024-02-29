@@ -28,9 +28,9 @@ class TestServiceTokens:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         service_token = client.access.service_tokens.create(
+            name="CI/CD token",
             account_id="string",
             zone_id="string",
-            name="CI/CD token",
         )
         assert_matches_type(ServiceTokenCreateResponse, service_token, path=["response"])
 
@@ -38,9 +38,9 @@ class TestServiceTokens:
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         service_token = client.access.service_tokens.create(
+            name="CI/CD token",
             account_id="string",
             zone_id="string",
-            name="CI/CD token",
             duration="60m",
         )
         assert_matches_type(ServiceTokenCreateResponse, service_token, path=["response"])
@@ -49,9 +49,9 @@ class TestServiceTokens:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.access.service_tokens.with_raw_response.create(
+            name="CI/CD token",
             account_id="string",
             zone_id="string",
-            name="CI/CD token",
         )
 
         assert response.is_closed is True
@@ -63,9 +63,9 @@ class TestServiceTokens:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.access.service_tokens.with_streaming_response.create(
+            name="CI/CD token",
             account_id="string",
             zone_id="string",
-            name="CI/CD token",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -80,16 +80,16 @@ class TestServiceTokens:
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.access.service_tokens.with_raw_response.create(
+                name="CI/CD token",
                 account_id="",
                 zone_id="string",
-                name="CI/CD token",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.access.service_tokens.with_raw_response.create(
+                name="CI/CD token",
                 account_id="string",
                 zone_id="",
-                name="CI/CD token",
             )
 
     @pytest.mark.skip()
@@ -147,6 +147,13 @@ class TestServiceTokens:
     @pytest.mark.skip()
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
+            client.access.service_tokens.with_raw_response.update(
+                "",
+                account_id="string",
+                zone_id="string",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.access.service_tokens.with_raw_response.update(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -161,16 +168,18 @@ class TestServiceTokens:
                 zone_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
-            client.access.service_tokens.with_raw_response.update(
-                "",
-                account_id="string",
-                zone_id="string",
-            )
-
     @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
+        service_token = client.access.service_tokens.list(
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(Optional[ServiceTokenListResponse], service_token, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         service_token = client.access.service_tokens.list(
             account_id="string",
             zone_id="string",
@@ -232,6 +241,16 @@ class TestServiceTokens:
 
     @pytest.mark.skip()
     @parametrize
+    def test_method_delete_with_all_params(self, client: Cloudflare) -> None:
+        service_token = client.access.service_tokens.delete(
+            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(ServiceTokenDeleteResponse, service_token, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.access.service_tokens.with_raw_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -263,6 +282,13 @@ class TestServiceTokens:
     @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
+            client.access.service_tokens.with_raw_response.delete(
+                "",
+                account_id="string",
+                zone_id="string",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.access.service_tokens.with_raw_response.delete(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -275,13 +301,6 @@ class TestServiceTokens:
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="string",
                 zone_id="",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
-            client.access.service_tokens.with_raw_response.delete(
-                "",
-                account_id="string",
-                zone_id="string",
             )
 
     @pytest.mark.skip()
@@ -396,9 +415,9 @@ class TestAsyncServiceTokens:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         service_token = await async_client.access.service_tokens.create(
+            name="CI/CD token",
             account_id="string",
             zone_id="string",
-            name="CI/CD token",
         )
         assert_matches_type(ServiceTokenCreateResponse, service_token, path=["response"])
 
@@ -406,9 +425,9 @@ class TestAsyncServiceTokens:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         service_token = await async_client.access.service_tokens.create(
+            name="CI/CD token",
             account_id="string",
             zone_id="string",
-            name="CI/CD token",
             duration="60m",
         )
         assert_matches_type(ServiceTokenCreateResponse, service_token, path=["response"])
@@ -417,9 +436,9 @@ class TestAsyncServiceTokens:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.access.service_tokens.with_raw_response.create(
+            name="CI/CD token",
             account_id="string",
             zone_id="string",
-            name="CI/CD token",
         )
 
         assert response.is_closed is True
@@ -431,9 +450,9 @@ class TestAsyncServiceTokens:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.access.service_tokens.with_streaming_response.create(
+            name="CI/CD token",
             account_id="string",
             zone_id="string",
-            name="CI/CD token",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -448,16 +467,16 @@ class TestAsyncServiceTokens:
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.access.service_tokens.with_raw_response.create(
+                name="CI/CD token",
                 account_id="",
                 zone_id="string",
-                name="CI/CD token",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.access.service_tokens.with_raw_response.create(
+                name="CI/CD token",
                 account_id="string",
                 zone_id="",
-                name="CI/CD token",
             )
 
     @pytest.mark.skip()
@@ -515,6 +534,13 @@ class TestAsyncServiceTokens:
     @pytest.mark.skip()
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
+            await async_client.access.service_tokens.with_raw_response.update(
+                "",
+                account_id="string",
+                zone_id="string",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.access.service_tokens.with_raw_response.update(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -529,16 +555,18 @@ class TestAsyncServiceTokens:
                 zone_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
-            await async_client.access.service_tokens.with_raw_response.update(
-                "",
-                account_id="string",
-                zone_id="string",
-            )
-
     @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
+        service_token = await async_client.access.service_tokens.list(
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(Optional[ServiceTokenListResponse], service_token, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         service_token = await async_client.access.service_tokens.list(
             account_id="string",
             zone_id="string",
@@ -600,6 +628,16 @@ class TestAsyncServiceTokens:
 
     @pytest.mark.skip()
     @parametrize
+    async def test_method_delete_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        service_token = await async_client.access.service_tokens.delete(
+            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(ServiceTokenDeleteResponse, service_token, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.access.service_tokens.with_raw_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -631,6 +669,13 @@ class TestAsyncServiceTokens:
     @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
+            await async_client.access.service_tokens.with_raw_response.delete(
+                "",
+                account_id="string",
+                zone_id="string",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.access.service_tokens.with_raw_response.delete(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -643,13 +688,6 @@ class TestAsyncServiceTokens:
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="string",
                 zone_id="",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
-            await async_client.access.service_tokens.with_raw_response.delete(
-                "",
-                account_id="string",
-                zone_id="string",
             )
 
     @pytest.mark.skip()

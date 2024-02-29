@@ -28,6 +28,16 @@ class TestFields:
 
     @pytest.mark.skip()
     @parametrize
+    def test_method_list_with_all_params(self, client: Cloudflare) -> None:
+        field = client.logpush.datasets.fields.list(
+            "http_requests",
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(object, field, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.logpush.datasets.fields.with_raw_response.list(
             "http_requests",
@@ -59,6 +69,13 @@ class TestFields:
     @pytest.mark.skip()
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `dataset_id` but received ''"):
+            client.logpush.datasets.fields.with_raw_response.list(
+                "",
+                account_id="string",
+                zone_id="string",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.logpush.datasets.fields.with_raw_response.list(
                 "http_requests",
@@ -73,13 +90,6 @@ class TestFields:
                 zone_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `dataset_id` but received ''"):
-            client.logpush.datasets.fields.with_raw_response.list(
-                "",
-                account_id="string",
-                zone_id="string",
-            )
-
 
 class TestAsyncFields:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
@@ -87,6 +97,16 @@ class TestAsyncFields:
     @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
+        field = await async_client.logpush.datasets.fields.list(
+            "http_requests",
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(object, field, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         field = await async_client.logpush.datasets.fields.list(
             "http_requests",
             account_id="string",
@@ -127,6 +147,13 @@ class TestAsyncFields:
     @pytest.mark.skip()
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `dataset_id` but received ''"):
+            await async_client.logpush.datasets.fields.with_raw_response.list(
+                "",
+                account_id="string",
+                zone_id="string",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.logpush.datasets.fields.with_raw_response.list(
                 "http_requests",
@@ -139,11 +166,4 @@ class TestAsyncFields:
                 "http_requests",
                 account_id="string",
                 zone_id="",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `dataset_id` but received ''"):
-            await async_client.logpush.datasets.fields.with_raw_response.list(
-                "",
-                account_id="string",
-                zone_id="string",
             )

@@ -9,13 +9,13 @@ __all__ = ["SettingUpdateParams", "Setting"]
 
 
 class SettingUpdateParams(TypedDict, total=False):
-    account_id: Required[str]
+    settings: Required[Iterable[Setting]]
+
+    account_id: str
     """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
 
-    zone_id: Required[str]
+    zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
-
-    settings: Required[Iterable[Setting]]
 
 
 class Setting(TypedDict, total=False):

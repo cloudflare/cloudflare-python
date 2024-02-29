@@ -9,17 +9,17 @@ __all__ = ["CertificateCreateParams"]
 
 
 class CertificateCreateParams(TypedDict, total=False):
-    account_id: Required[str]
-    """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
-
-    zone_id: Required[str]
-    """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
-
     certificate: Required[str]
     """The certificate content."""
 
     name: Required[str]
     """The name of the certificate."""
+
+    account_id: str
+    """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
+
+    zone_id: str
+    """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
     associated_hostnames: List[str]
     """The hostnames of the applications that will use this certificate."""

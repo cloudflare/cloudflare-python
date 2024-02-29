@@ -28,12 +28,6 @@ __all__ = [
 
 
 class RulesetCreateParams(TypedDict, total=False):
-    account_id: Required[str]
-    """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
-
-    zone_id: Required[str]
-    """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
-
     kind: Required[Literal["managed", "custom", "root", "zone"]]
     """The kind of the ruleset."""
 
@@ -71,6 +65,12 @@ class RulesetCreateParams(TypedDict, total=False):
 
     rules: Required[Iterable[Rule]]
     """The list of rules in the ruleset."""
+
+    account_id: str
+    """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
+
+    zone_id: str
+    """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
     description: str
     """An informative description of the ruleset."""

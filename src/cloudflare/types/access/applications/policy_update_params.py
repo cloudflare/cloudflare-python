@@ -122,12 +122,6 @@ __all__ = [
 
 
 class PolicyUpdateParams(TypedDict, total=False):
-    account_id: Required[str]
-    """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
-
-    zone_id: Required[str]
-    """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
-
     uuid1: Required[str]
     """UUID"""
 
@@ -142,6 +136,12 @@ class PolicyUpdateParams(TypedDict, total=False):
 
     name: Required[str]
     """The name of the Access policy."""
+
+    account_id: str
+    """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
+
+    zone_id: str
+    """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
     approval_groups: Iterable[ApprovalGroup]
     """Administrators who can approve a temporary authentication request."""
