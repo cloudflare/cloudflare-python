@@ -239,7 +239,8 @@ class AccessRules(SyncAPIResource):
         self,
         identifier: object,
         *,
-        account_identifier: object,
+        account_id: str,
+        zone_id: str,
         configuration: access_rule_edit_params.Configuration,
         mode: Literal["block", "challenge", "whitelist", "js_challenge", "managed_challenge"],
         notes: str | NotGiven = NOT_GIVEN,
@@ -256,6 +257,10 @@ class AccessRules(SyncAPIResource):
         Note: This operation will affect all zones in the account.
 
         Args:
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
           configuration: The rule configuration.
 
           mode: The action to apply to a matched request.
@@ -270,10 +275,14 @@ class AccessRules(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
             Optional[AccessRuleEditResponse],
             self._patch(
-                f"/{account_identifier}/{identifier}/firewall/access_rules/rules/:identifier",
+                f"/{account_id}/{zone_id}/firewall/access_rules/rules/{identifier}",
                 body=maybe_transform(
                     {
                         "configuration": configuration,
@@ -549,7 +558,8 @@ class AsyncAccessRules(AsyncAPIResource):
         self,
         identifier: object,
         *,
-        account_identifier: object,
+        account_id: str,
+        zone_id: str,
         configuration: access_rule_edit_params.Configuration,
         mode: Literal["block", "challenge", "whitelist", "js_challenge", "managed_challenge"],
         notes: str | NotGiven = NOT_GIVEN,
@@ -566,6 +576,10 @@ class AsyncAccessRules(AsyncAPIResource):
         Note: This operation will affect all zones in the account.
 
         Args:
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
           configuration: The rule configuration.
 
           mode: The action to apply to a matched request.
@@ -580,10 +594,14 @@ class AsyncAccessRules(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
             Optional[AccessRuleEditResponse],
             await self._patch(
-                f"/{account_identifier}/{identifier}/firewall/access_rules/rules/:identifier",
+                f"/{account_id}/{zone_id}/firewall/access_rules/rules/{identifier}",
                 body=maybe_transform(
                     {
                         "configuration": configuration,

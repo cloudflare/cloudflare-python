@@ -240,7 +240,8 @@ class TestAccessRules:
     def test_method_edit(self, client: Cloudflare) -> None:
         access_rule = client.firewall.access_rules.edit(
             {},
-            account_identifier={},
+            account_id="string",
+            zone_id="string",
             configuration={},
             mode="challenge",
         )
@@ -251,7 +252,8 @@ class TestAccessRules:
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         access_rule = client.firewall.access_rules.edit(
             {},
-            account_identifier={},
+            account_id="string",
+            zone_id="string",
             configuration={
                 "target": "ip",
                 "value": "198.51.100.4",
@@ -266,7 +268,8 @@ class TestAccessRules:
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.firewall.access_rules.with_raw_response.edit(
             {},
-            account_identifier={},
+            account_id="string",
+            zone_id="string",
             configuration={},
             mode="challenge",
         )
@@ -281,7 +284,8 @@ class TestAccessRules:
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.firewall.access_rules.with_streaming_response.edit(
             {},
-            account_identifier={},
+            account_id="string",
+            zone_id="string",
             configuration={},
             mode="challenge",
         ) as response:
@@ -292,6 +296,27 @@ class TestAccessRules:
             assert_matches_type(Optional[AccessRuleEditResponse], access_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_edit(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.firewall.access_rules.with_raw_response.edit(
+                {},
+                account_id="",
+                zone_id="string",
+                configuration={},
+                mode="challenge",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            client.firewall.access_rules.with_raw_response.edit(
+                {},
+                account_id="string",
+                zone_id="",
+                configuration={},
+                mode="challenge",
+            )
 
     @pytest.mark.skip()
     @parametrize
@@ -571,7 +596,8 @@ class TestAsyncAccessRules:
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         access_rule = await async_client.firewall.access_rules.edit(
             {},
-            account_identifier={},
+            account_id="string",
+            zone_id="string",
             configuration={},
             mode="challenge",
         )
@@ -582,7 +608,8 @@ class TestAsyncAccessRules:
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         access_rule = await async_client.firewall.access_rules.edit(
             {},
-            account_identifier={},
+            account_id="string",
+            zone_id="string",
             configuration={
                 "target": "ip",
                 "value": "198.51.100.4",
@@ -597,7 +624,8 @@ class TestAsyncAccessRules:
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.firewall.access_rules.with_raw_response.edit(
             {},
-            account_identifier={},
+            account_id="string",
+            zone_id="string",
             configuration={},
             mode="challenge",
         )
@@ -612,7 +640,8 @@ class TestAsyncAccessRules:
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.firewall.access_rules.with_streaming_response.edit(
             {},
-            account_identifier={},
+            account_id="string",
+            zone_id="string",
             configuration={},
             mode="challenge",
         ) as response:
@@ -623,6 +652,27 @@ class TestAsyncAccessRules:
             assert_matches_type(Optional[AccessRuleEditResponse], access_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.firewall.access_rules.with_raw_response.edit(
+                {},
+                account_id="",
+                zone_id="string",
+                configuration={},
+                mode="challenge",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            await async_client.firewall.access_rules.with_raw_response.edit(
+                {},
+                account_id="string",
+                zone_id="",
+                configuration={},
+                mode="challenge",
+            )
 
     @pytest.mark.skip()
     @parametrize

@@ -179,7 +179,8 @@ class TestRules:
     def test_method_edit(self, client: Cloudflare) -> None:
         rule = client.rulesets.rules.edit(
             "3a03d665bac047339bb530ecb439a90d",
-            account_id="abf9b32d38c5f572afde3336ec0ce302",
+            account_id="string",
+            zone_id="string",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
@@ -189,7 +190,8 @@ class TestRules:
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         rule = client.rulesets.rules.edit(
             "3a03d665bac047339bb530ecb439a90d",
-            account_id="abf9b32d38c5f572afde3336ec0ce302",
+            account_id="string",
+            zone_id="string",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
         )
@@ -200,7 +202,8 @@ class TestRules:
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.rulesets.rules.with_raw_response.edit(
             "3a03d665bac047339bb530ecb439a90d",
-            account_id="abf9b32d38c5f572afde3336ec0ce302",
+            account_id="string",
+            zone_id="string",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
         )
 
@@ -214,7 +217,8 @@ class TestRules:
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.rulesets.rules.with_streaming_response.edit(
             "3a03d665bac047339bb530ecb439a90d",
-            account_id="abf9b32d38c5f572afde3336ec0ce302",
+            account_id="string",
+            zone_id="string",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
         ) as response:
             assert not response.is_closed
@@ -232,20 +236,31 @@ class TestRules:
             client.rulesets.rules.with_raw_response.edit(
                 "3a03d665bac047339bb530ecb439a90d",
                 account_id="",
+                zone_id="string",
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            client.rulesets.rules.with_raw_response.edit(
+                "3a03d665bac047339bb530ecb439a90d",
+                account_id="string",
+                zone_id="",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
             client.rulesets.rules.with_raw_response.edit(
                 "3a03d665bac047339bb530ecb439a90d",
-                account_id="abf9b32d38c5f572afde3336ec0ce302",
+                account_id="string",
+                zone_id="string",
                 ruleset_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
             client.rulesets.rules.with_raw_response.edit(
                 "",
-                account_id="abf9b32d38c5f572afde3336ec0ce302",
+                account_id="string",
+                zone_id="string",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
             )
 
@@ -411,7 +426,8 @@ class TestAsyncRules:
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         rule = await async_client.rulesets.rules.edit(
             "3a03d665bac047339bb530ecb439a90d",
-            account_id="abf9b32d38c5f572afde3336ec0ce302",
+            account_id="string",
+            zone_id="string",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
@@ -421,7 +437,8 @@ class TestAsyncRules:
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         rule = await async_client.rulesets.rules.edit(
             "3a03d665bac047339bb530ecb439a90d",
-            account_id="abf9b32d38c5f572afde3336ec0ce302",
+            account_id="string",
+            zone_id="string",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
         )
@@ -432,7 +449,8 @@ class TestAsyncRules:
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.rulesets.rules.with_raw_response.edit(
             "3a03d665bac047339bb530ecb439a90d",
-            account_id="abf9b32d38c5f572afde3336ec0ce302",
+            account_id="string",
+            zone_id="string",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
         )
 
@@ -446,7 +464,8 @@ class TestAsyncRules:
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.rulesets.rules.with_streaming_response.edit(
             "3a03d665bac047339bb530ecb439a90d",
-            account_id="abf9b32d38c5f572afde3336ec0ce302",
+            account_id="string",
+            zone_id="string",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
         ) as response:
             assert not response.is_closed
@@ -464,19 +483,30 @@ class TestAsyncRules:
             await async_client.rulesets.rules.with_raw_response.edit(
                 "3a03d665bac047339bb530ecb439a90d",
                 account_id="",
+                zone_id="string",
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            await async_client.rulesets.rules.with_raw_response.edit(
+                "3a03d665bac047339bb530ecb439a90d",
+                account_id="string",
+                zone_id="",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 "3a03d665bac047339bb530ecb439a90d",
-                account_id="abf9b32d38c5f572afde3336ec0ce302",
+                account_id="string",
+                zone_id="string",
                 ruleset_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 "",
-                account_id="abf9b32d38c5f572afde3336ec0ce302",
+                account_id="string",
+                zone_id="string",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
             )
