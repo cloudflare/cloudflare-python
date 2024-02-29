@@ -57,10 +57,10 @@ class Certificates(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
-        zone_id: str,
         certificate: str,
         name: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         associated_hostnames: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -73,13 +73,13 @@ class Certificates(SyncAPIResource):
         Adds a new mTLS root certificate to Access.
 
         Args:
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
           certificate: The certificate content.
 
           name: The name of the certificate.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           associated_hostnames: The hostnames of the applications that will use this certificate.
 
@@ -95,8 +95,19 @@ class Certificates(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._post(
-            f"/{account_id}/{zone_id}/access/certificates",
+            f"/{account_or_zone}/{account_or_zone_id}/access/certificates",
             body=maybe_transform(
                 {
                     "certificate": certificate,
@@ -119,9 +130,9 @@ class Certificates(SyncAPIResource):
         self,
         uuid: str,
         *,
-        account_id: str,
-        zone_id: str,
         associated_hostnames: List[str],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -134,13 +145,13 @@ class Certificates(SyncAPIResource):
         Updates a configured mTLS certificate.
 
         Args:
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
           uuid: UUID
 
           associated_hostnames: The hostnames of the applications that will use this certificate.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           name: The name of the certificate.
 
@@ -152,14 +163,25 @@ class Certificates(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not uuid:
+            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._put(
-            f"/{account_id}/{zone_id}/access/certificates/{uuid}",
+            f"/{account_or_zone}/{account_or_zone_id}/access/certificates/{uuid}",
             body=maybe_transform(
                 {
                     "associated_hostnames": associated_hostnames,
@@ -180,8 +202,8 @@ class Certificates(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
-        zone_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -209,8 +231,19 @@ class Certificates(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._get(
-            f"/{account_id}/{zone_id}/access/certificates",
+            f"/{account_or_zone}/{account_or_zone_id}/access/certificates",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -225,8 +258,8 @@ class Certificates(SyncAPIResource):
         self,
         uuid: str,
         *,
-        account_id: str,
-        zone_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -238,11 +271,11 @@ class Certificates(SyncAPIResource):
         Deletes an mTLS certificate.
 
         Args:
+          uuid: UUID
+
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          uuid: UUID
 
           extra_headers: Send extra headers
 
@@ -252,14 +285,25 @@ class Certificates(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not uuid:
+            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._delete(
-            f"/{account_id}/{zone_id}/access/certificates/{uuid}",
+            f"/{account_or_zone}/{account_or_zone_id}/access/certificates/{uuid}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -274,8 +318,8 @@ class Certificates(SyncAPIResource):
         self,
         uuid: str,
         *,
-        account_id: str,
-        zone_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -287,11 +331,11 @@ class Certificates(SyncAPIResource):
         Fetches a single mTLS certificate.
 
         Args:
+          uuid: UUID
+
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          uuid: UUID
 
           extra_headers: Send extra headers
 
@@ -301,14 +345,25 @@ class Certificates(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not uuid:
+            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._get(
-            f"/{account_id}/{zone_id}/access/certificates/{uuid}",
+            f"/{account_or_zone}/{account_or_zone_id}/access/certificates/{uuid}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -336,10 +391,10 @@ class AsyncCertificates(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
-        zone_id: str,
         certificate: str,
         name: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         associated_hostnames: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -352,13 +407,13 @@ class AsyncCertificates(AsyncAPIResource):
         Adds a new mTLS root certificate to Access.
 
         Args:
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
           certificate: The certificate content.
 
           name: The name of the certificate.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           associated_hostnames: The hostnames of the applications that will use this certificate.
 
@@ -374,8 +429,19 @@ class AsyncCertificates(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return await self._post(
-            f"/{account_id}/{zone_id}/access/certificates",
+            f"/{account_or_zone}/{account_or_zone_id}/access/certificates",
             body=maybe_transform(
                 {
                     "certificate": certificate,
@@ -398,9 +464,9 @@ class AsyncCertificates(AsyncAPIResource):
         self,
         uuid: str,
         *,
-        account_id: str,
-        zone_id: str,
         associated_hostnames: List[str],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -413,13 +479,13 @@ class AsyncCertificates(AsyncAPIResource):
         Updates a configured mTLS certificate.
 
         Args:
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
           uuid: UUID
 
           associated_hostnames: The hostnames of the applications that will use this certificate.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           name: The name of the certificate.
 
@@ -431,14 +497,25 @@ class AsyncCertificates(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not uuid:
+            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return await self._put(
-            f"/{account_id}/{zone_id}/access/certificates/{uuid}",
+            f"/{account_or_zone}/{account_or_zone_id}/access/certificates/{uuid}",
             body=maybe_transform(
                 {
                     "associated_hostnames": associated_hostnames,
@@ -459,8 +536,8 @@ class AsyncCertificates(AsyncAPIResource):
     async def list(
         self,
         *,
-        account_id: str,
-        zone_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -488,8 +565,19 @@ class AsyncCertificates(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return await self._get(
-            f"/{account_id}/{zone_id}/access/certificates",
+            f"/{account_or_zone}/{account_or_zone_id}/access/certificates",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -504,8 +592,8 @@ class AsyncCertificates(AsyncAPIResource):
         self,
         uuid: str,
         *,
-        account_id: str,
-        zone_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -517,11 +605,11 @@ class AsyncCertificates(AsyncAPIResource):
         Deletes an mTLS certificate.
 
         Args:
+          uuid: UUID
+
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          uuid: UUID
 
           extra_headers: Send extra headers
 
@@ -531,14 +619,25 @@ class AsyncCertificates(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not uuid:
+            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return await self._delete(
-            f"/{account_id}/{zone_id}/access/certificates/{uuid}",
+            f"/{account_or_zone}/{account_or_zone_id}/access/certificates/{uuid}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -553,8 +652,8 @@ class AsyncCertificates(AsyncAPIResource):
         self,
         uuid: str,
         *,
-        account_id: str,
-        zone_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -566,11 +665,11 @@ class AsyncCertificates(AsyncAPIResource):
         Fetches a single mTLS certificate.
 
         Args:
+          uuid: UUID
+
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          uuid: UUID
 
           extra_headers: Send extra headers
 
@@ -580,14 +679,25 @@ class AsyncCertificates(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not uuid:
+            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return await self._get(
-            f"/{account_id}/{zone_id}/access/certificates/{uuid}",
+            f"/{account_or_zone}/{account_or_zone_id}/access/certificates/{uuid}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

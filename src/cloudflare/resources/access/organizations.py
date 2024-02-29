@@ -45,10 +45,10 @@ class Organizations(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
-        zone_id: str,
         auth_domain: str,
         name: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
         is_ui_read_only: bool | NotGiven = NOT_GIVEN,
@@ -68,13 +68,13 @@ class Organizations(SyncAPIResource):
         Sets up a Zero Trust organization for your account or zone.
 
         Args:
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
           auth_domain: The unique subdomain assigned to your Zero Trust organization.
 
           name: The name of your Zero Trust organization.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           allow_authenticate_via_warp: When set to true, users can authenticate via WARP for any application in your
               organization. Application settings will take precedence over this value.
@@ -111,8 +111,19 @@ class Organizations(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._post(
-            f"/{account_id}/{zone_id}/access/organizations",
+            f"/{account_or_zone}/{account_or_zone_id}/access/organizations",
             body=maybe_transform(
                 {
                     "auth_domain": auth_domain,
@@ -141,8 +152,8 @@ class Organizations(SyncAPIResource):
     def update(
         self,
         *,
-        account_id: str,
-        zone_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
         auth_domain: str | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
@@ -208,8 +219,19 @@ class Organizations(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._put(
-            f"/{account_id}/{zone_id}/access/organizations",
+            f"/{account_or_zone}/{account_or_zone_id}/access/organizations",
             body=maybe_transform(
                 {
                     "allow_authenticate_via_warp": allow_authenticate_via_warp,
@@ -239,8 +261,8 @@ class Organizations(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
-        zone_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -268,8 +290,19 @@ class Organizations(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._get(
-            f"/{account_id}/{zone_id}/access/organizations",
+            f"/{account_or_zone}/{account_or_zone_id}/access/organizations",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -283,9 +316,9 @@ class Organizations(SyncAPIResource):
     def revoke_users(
         self,
         *,
-        account_id: str,
-        zone_id: str,
         email: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -297,11 +330,11 @@ class Organizations(SyncAPIResource):
         Revokes a user's access across all applications.
 
         Args:
+          email: The email of the user to revoke.
+
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          email: The email of the user to revoke.
 
           extra_headers: Send extra headers
 
@@ -315,8 +348,19 @@ class Organizations(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._post(
-            f"/{account_id}/{zone_id}/access/organizations/revoke_user",
+            f"/{account_or_zone}/{account_or_zone_id}/access/organizations/revoke_user",
             body=maybe_transform({"email": email}, organization_revoke_users_params.OrganizationRevokeUsersParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -343,10 +387,10 @@ class AsyncOrganizations(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
-        zone_id: str,
         auth_domain: str,
         name: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
         is_ui_read_only: bool | NotGiven = NOT_GIVEN,
@@ -366,13 +410,13 @@ class AsyncOrganizations(AsyncAPIResource):
         Sets up a Zero Trust organization for your account or zone.
 
         Args:
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
           auth_domain: The unique subdomain assigned to your Zero Trust organization.
 
           name: The name of your Zero Trust organization.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           allow_authenticate_via_warp: When set to true, users can authenticate via WARP for any application in your
               organization. Application settings will take precedence over this value.
@@ -409,8 +453,19 @@ class AsyncOrganizations(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return await self._post(
-            f"/{account_id}/{zone_id}/access/organizations",
+            f"/{account_or_zone}/{account_or_zone_id}/access/organizations",
             body=maybe_transform(
                 {
                     "auth_domain": auth_domain,
@@ -439,8 +494,8 @@ class AsyncOrganizations(AsyncAPIResource):
     async def update(
         self,
         *,
-        account_id: str,
-        zone_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
         auth_domain: str | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
@@ -506,8 +561,19 @@ class AsyncOrganizations(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return await self._put(
-            f"/{account_id}/{zone_id}/access/organizations",
+            f"/{account_or_zone}/{account_or_zone_id}/access/organizations",
             body=maybe_transform(
                 {
                     "allow_authenticate_via_warp": allow_authenticate_via_warp,
@@ -537,8 +603,8 @@ class AsyncOrganizations(AsyncAPIResource):
     async def list(
         self,
         *,
-        account_id: str,
-        zone_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -566,8 +632,19 @@ class AsyncOrganizations(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return await self._get(
-            f"/{account_id}/{zone_id}/access/organizations",
+            f"/{account_or_zone}/{account_or_zone_id}/access/organizations",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -581,9 +658,9 @@ class AsyncOrganizations(AsyncAPIResource):
     async def revoke_users(
         self,
         *,
-        account_id: str,
-        zone_id: str,
         email: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -595,11 +672,11 @@ class AsyncOrganizations(AsyncAPIResource):
         Revokes a user's access across all applications.
 
         Args:
+          email: The email of the user to revoke.
+
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          email: The email of the user to revoke.
 
           extra_headers: Send extra headers
 
@@ -613,8 +690,19 @@ class AsyncOrganizations(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return await self._post(
-            f"/{account_id}/{zone_id}/access/organizations/revoke_user",
+            f"/{account_or_zone}/{account_or_zone_id}/access/organizations/revoke_user",
             body=maybe_transform({"email": email}, organization_revoke_users_params.OrganizationRevokeUsersParams),
             options=make_request_options(
                 extra_headers=extra_headers,

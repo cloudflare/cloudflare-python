@@ -48,10 +48,10 @@ class AccessRules(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
-        zone_id: str,
         configuration: access_rule_create_params.Configuration,
         mode: Literal["block", "challenge", "whitelist", "js_challenge", "managed_challenge"],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         notes: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -69,13 +69,13 @@ class AccessRules(SyncAPIResource):
         [IP Access rules for a zone](#ip-access-rules-for-a-zone) endpoints.
 
         Args:
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
           configuration: The rule configuration.
 
           mode: The action to apply to a matched request.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           notes: An informative summary of the rule, typically used as a reminder or explanation.
 
@@ -91,10 +91,21 @@ class AccessRules(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return cast(
             Optional[AccessRuleCreateResponse],
             self._post(
-                f"/{account_id}/{zone_id}/firewall/access_rules/rules",
+                f"/{account_or_zone}/{account_or_zone_id}/firewall/access_rules/rules",
                 body=maybe_transform(
                     {
                         "configuration": configuration,
@@ -119,8 +130,8 @@ class AccessRules(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
-        zone_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         egs_pagination: access_rule_list_params.EgsPagination | NotGiven = NOT_GIVEN,
         filters: access_rule_list_params.Filters | NotGiven = NOT_GIVEN,
@@ -165,8 +176,19 @@ class AccessRules(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._get_api_list(
-            f"/{account_id}/{zone_id}/firewall/access_rules/rules",
+            f"/{account_or_zone}/{account_or_zone_id}/firewall/access_rules/rules",
             page=SyncV4PagePaginationArray[object],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -192,8 +214,8 @@ class AccessRules(SyncAPIResource):
         self,
         identifier: object,
         *,
-        account_id: str,
-        zone_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -223,8 +245,19 @@ class AccessRules(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._delete(
-            f"/{account_id}/{zone_id}/firewall/access_rules/rules/{identifier}",
+            f"/{account_or_zone}/{account_or_zone_id}/firewall/access_rules/rules/{identifier}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -239,10 +272,10 @@ class AccessRules(SyncAPIResource):
         self,
         identifier: object,
         *,
-        account_id: str,
-        zone_id: str,
         configuration: access_rule_edit_params.Configuration,
         mode: Literal["block", "challenge", "whitelist", "js_challenge", "managed_challenge"],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         notes: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -257,13 +290,13 @@ class AccessRules(SyncAPIResource):
         Note: This operation will affect all zones in the account.
 
         Args:
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
           configuration: The rule configuration.
 
           mode: The action to apply to a matched request.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           notes: An informative summary of the rule, typically used as a reminder or explanation.
 
@@ -279,10 +312,21 @@ class AccessRules(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return cast(
             Optional[AccessRuleEditResponse],
             self._patch(
-                f"/{account_id}/{zone_id}/firewall/access_rules/rules/{identifier}",
+                f"/{account_or_zone}/{account_or_zone_id}/firewall/access_rules/rules/{identifier}",
                 body=maybe_transform(
                     {
                         "configuration": configuration,
@@ -308,8 +352,8 @@ class AccessRules(SyncAPIResource):
         self,
         identifier: object,
         *,
-        account_id: str,
-        zone_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -337,10 +381,21 @@ class AccessRules(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return cast(
             Optional[AccessRuleGetResponse],
             self._get(
-                f"/{account_id}/{zone_id}/firewall/access_rules/rules/{identifier}",
+                f"/{account_or_zone}/{account_or_zone_id}/firewall/access_rules/rules/{identifier}",
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -367,10 +422,10 @@ class AsyncAccessRules(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
-        zone_id: str,
         configuration: access_rule_create_params.Configuration,
         mode: Literal["block", "challenge", "whitelist", "js_challenge", "managed_challenge"],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         notes: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -388,13 +443,13 @@ class AsyncAccessRules(AsyncAPIResource):
         [IP Access rules for a zone](#ip-access-rules-for-a-zone) endpoints.
 
         Args:
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
           configuration: The rule configuration.
 
           mode: The action to apply to a matched request.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           notes: An informative summary of the rule, typically used as a reminder or explanation.
 
@@ -410,10 +465,21 @@ class AsyncAccessRules(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return cast(
             Optional[AccessRuleCreateResponse],
             await self._post(
-                f"/{account_id}/{zone_id}/firewall/access_rules/rules",
+                f"/{account_or_zone}/{account_or_zone_id}/firewall/access_rules/rules",
                 body=maybe_transform(
                     {
                         "configuration": configuration,
@@ -438,8 +504,8 @@ class AsyncAccessRules(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str,
-        zone_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         egs_pagination: access_rule_list_params.EgsPagination | NotGiven = NOT_GIVEN,
         filters: access_rule_list_params.Filters | NotGiven = NOT_GIVEN,
@@ -484,8 +550,19 @@ class AsyncAccessRules(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._get_api_list(
-            f"/{account_id}/{zone_id}/firewall/access_rules/rules",
+            f"/{account_or_zone}/{account_or_zone_id}/firewall/access_rules/rules",
             page=AsyncV4PagePaginationArray[object],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -511,8 +588,8 @@ class AsyncAccessRules(AsyncAPIResource):
         self,
         identifier: object,
         *,
-        account_id: str,
-        zone_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -542,8 +619,19 @@ class AsyncAccessRules(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return await self._delete(
-            f"/{account_id}/{zone_id}/firewall/access_rules/rules/{identifier}",
+            f"/{account_or_zone}/{account_or_zone_id}/firewall/access_rules/rules/{identifier}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -558,10 +646,10 @@ class AsyncAccessRules(AsyncAPIResource):
         self,
         identifier: object,
         *,
-        account_id: str,
-        zone_id: str,
         configuration: access_rule_edit_params.Configuration,
         mode: Literal["block", "challenge", "whitelist", "js_challenge", "managed_challenge"],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         notes: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -576,13 +664,13 @@ class AsyncAccessRules(AsyncAPIResource):
         Note: This operation will affect all zones in the account.
 
         Args:
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
           configuration: The rule configuration.
 
           mode: The action to apply to a matched request.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           notes: An informative summary of the rule, typically used as a reminder or explanation.
 
@@ -598,10 +686,21 @@ class AsyncAccessRules(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return cast(
             Optional[AccessRuleEditResponse],
             await self._patch(
-                f"/{account_id}/{zone_id}/firewall/access_rules/rules/{identifier}",
+                f"/{account_or_zone}/{account_or_zone_id}/firewall/access_rules/rules/{identifier}",
                 body=maybe_transform(
                     {
                         "configuration": configuration,
@@ -627,8 +726,8 @@ class AsyncAccessRules(AsyncAPIResource):
         self,
         identifier: object,
         *,
-        account_id: str,
-        zone_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -656,10 +755,21 @@ class AsyncAccessRules(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return cast(
             Optional[AccessRuleGetResponse],
             await self._get(
-                f"/{account_id}/{zone_id}/firewall/access_rules/rules/{identifier}",
+                f"/{account_or_zone}/{account_or_zone_id}/firewall/access_rules/rules/{identifier}",
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

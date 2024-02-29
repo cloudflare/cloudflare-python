@@ -42,9 +42,9 @@ class Ownership(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
-        zone_id: str,
         destination_conf: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -56,13 +56,13 @@ class Ownership(SyncAPIResource):
         Gets a new ownership challenge sent to your destination.
 
         Args:
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
           destination_conf: Uniquely identifies a resource (such as an s3 bucket) where data will be pushed.
               Additional configuration parameters supported by the destination may be
               included.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           extra_headers: Send extra headers
 
@@ -76,8 +76,19 @@ class Ownership(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._post(
-            f"/{account_id}/{zone_id}/logpush/ownership",
+            f"/{account_or_zone}/{account_or_zone_id}/logpush/ownership",
             body=maybe_transform({"destination_conf": destination_conf}, ownership_create_params.OwnershipCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -92,10 +103,10 @@ class Ownership(SyncAPIResource):
     def validate(
         self,
         *,
-        account_id: str,
-        zone_id: str,
         destination_conf: str,
         ownership_challenge: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -107,15 +118,15 @@ class Ownership(SyncAPIResource):
         Validates ownership challenge of the destination.
 
         Args:
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
           destination_conf: Uniquely identifies a resource (such as an s3 bucket) where data will be pushed.
               Additional configuration parameters supported by the destination may be
               included.
 
           ownership_challenge: Ownership challenge token to prove destination ownership.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           extra_headers: Send extra headers
 
@@ -129,8 +140,19 @@ class Ownership(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._post(
-            f"/{account_id}/{zone_id}/logpush/ownership/validate",
+            f"/{account_or_zone}/{account_or_zone_id}/logpush/ownership/validate",
             body=maybe_transform(
                 {
                     "destination_conf": destination_conf,
@@ -161,9 +183,9 @@ class AsyncOwnership(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
-        zone_id: str,
         destination_conf: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -175,13 +197,13 @@ class AsyncOwnership(AsyncAPIResource):
         Gets a new ownership challenge sent to your destination.
 
         Args:
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
           destination_conf: Uniquely identifies a resource (such as an s3 bucket) where data will be pushed.
               Additional configuration parameters supported by the destination may be
               included.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           extra_headers: Send extra headers
 
@@ -195,8 +217,19 @@ class AsyncOwnership(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return await self._post(
-            f"/{account_id}/{zone_id}/logpush/ownership",
+            f"/{account_or_zone}/{account_or_zone_id}/logpush/ownership",
             body=maybe_transform({"destination_conf": destination_conf}, ownership_create_params.OwnershipCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -211,10 +244,10 @@ class AsyncOwnership(AsyncAPIResource):
     async def validate(
         self,
         *,
-        account_id: str,
-        zone_id: str,
         destination_conf: str,
         ownership_challenge: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -226,15 +259,15 @@ class AsyncOwnership(AsyncAPIResource):
         Validates ownership challenge of the destination.
 
         Args:
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
           destination_conf: Uniquely identifies a resource (such as an s3 bucket) where data will be pushed.
               Additional configuration parameters supported by the destination may be
               included.
 
           ownership_challenge: Ownership challenge token to prove destination ownership.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           extra_headers: Send extra headers
 
@@ -248,8 +281,19 @@ class AsyncOwnership(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return await self._post(
-            f"/{account_id}/{zone_id}/logpush/ownership/validate",
+            f"/{account_or_zone}/{account_or_zone_id}/logpush/ownership/validate",
             body=maybe_transform(
                 {
                     "destination_conf": destination_conf,

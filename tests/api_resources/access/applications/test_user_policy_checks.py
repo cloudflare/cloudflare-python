@@ -29,6 +29,16 @@ class TestUserPolicyChecks:
 
     @pytest.mark.skip()
     @parametrize
+    def test_method_list_with_all_params(self, client: Cloudflare) -> None:
+        user_policy_check = client.access.applications.user_policy_checks.list(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(UserPolicyCheckListResponse, user_policy_check, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.access.applications.user_policy_checks.with_raw_response.list(
             "023e105f4ecef8ad9ca31a8372d0c353",
@@ -81,6 +91,16 @@ class TestAsyncUserPolicyChecks:
     @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
+        user_policy_check = await async_client.access.applications.user_policy_checks.list(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(UserPolicyCheckListResponse, user_policy_check, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         user_policy_check = await async_client.access.applications.user_policy_checks.list(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="string",

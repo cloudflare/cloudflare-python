@@ -21,8 +21,6 @@ class TestSettings:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         setting = client.access.certificates.settings.update(
-            account_id="string",
-            zone_id="string",
             settings=[
                 {
                     "china_network": False,
@@ -40,6 +38,34 @@ class TestSettings:
                     "hostname": "admin.example.com",
                 },
             ],
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(Optional[SettingUpdateResponse], setting, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_update_with_all_params(self, client: Cloudflare) -> None:
+        setting = client.access.certificates.settings.update(
+            settings=[
+                {
+                    "china_network": False,
+                    "client_certificate_forwarding": True,
+                    "hostname": "admin.example.com",
+                },
+                {
+                    "china_network": False,
+                    "client_certificate_forwarding": True,
+                    "hostname": "admin.example.com",
+                },
+                {
+                    "china_network": False,
+                    "client_certificate_forwarding": True,
+                    "hostname": "admin.example.com",
+                },
+            ],
+            account_id="string",
+            zone_id="string",
         )
         assert_matches_type(Optional[SettingUpdateResponse], setting, path=["response"])
 
@@ -47,8 +73,6 @@ class TestSettings:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.access.certificates.settings.with_raw_response.update(
-            account_id="string",
-            zone_id="string",
             settings=[
                 {
                     "china_network": False,
@@ -66,6 +90,8 @@ class TestSettings:
                     "hostname": "admin.example.com",
                 },
             ],
+            account_id="string",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -77,8 +103,6 @@ class TestSettings:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.access.certificates.settings.with_streaming_response.update(
-            account_id="string",
-            zone_id="string",
             settings=[
                 {
                     "china_network": False,
@@ -96,6 +120,8 @@ class TestSettings:
                     "hostname": "admin.example.com",
                 },
             ],
+            account_id="string",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -110,8 +136,6 @@ class TestSettings:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.access.certificates.settings.with_raw_response.update(
-                account_id="",
-                zone_id="string",
                 settings=[
                     {
                         "china_network": False,
@@ -129,12 +153,12 @@ class TestSettings:
                         "hostname": "admin.example.com",
                     },
                 ],
+                account_id="",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.access.certificates.settings.with_raw_response.update(
-                account_id="string",
-                zone_id="",
                 settings=[
                     {
                         "china_network": False,
@@ -152,11 +176,22 @@ class TestSettings:
                         "hostname": "admin.example.com",
                     },
                 ],
+                account_id="string",
+                zone_id="",
             )
 
     @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
+        setting = client.access.certificates.settings.list(
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(Optional[SettingListResponse], setting, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         setting = client.access.certificates.settings.list(
             account_id="string",
             zone_id="string",
@@ -214,8 +249,6 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.access.certificates.settings.update(
-            account_id="string",
-            zone_id="string",
             settings=[
                 {
                     "china_network": False,
@@ -233,6 +266,34 @@ class TestAsyncSettings:
                     "hostname": "admin.example.com",
                 },
             ],
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(Optional[SettingUpdateResponse], setting, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        setting = await async_client.access.certificates.settings.update(
+            settings=[
+                {
+                    "china_network": False,
+                    "client_certificate_forwarding": True,
+                    "hostname": "admin.example.com",
+                },
+                {
+                    "china_network": False,
+                    "client_certificate_forwarding": True,
+                    "hostname": "admin.example.com",
+                },
+                {
+                    "china_network": False,
+                    "client_certificate_forwarding": True,
+                    "hostname": "admin.example.com",
+                },
+            ],
+            account_id="string",
+            zone_id="string",
         )
         assert_matches_type(Optional[SettingUpdateResponse], setting, path=["response"])
 
@@ -240,8 +301,6 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.access.certificates.settings.with_raw_response.update(
-            account_id="string",
-            zone_id="string",
             settings=[
                 {
                     "china_network": False,
@@ -259,6 +318,8 @@ class TestAsyncSettings:
                     "hostname": "admin.example.com",
                 },
             ],
+            account_id="string",
+            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -270,8 +331,6 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.access.certificates.settings.with_streaming_response.update(
-            account_id="string",
-            zone_id="string",
             settings=[
                 {
                     "china_network": False,
@@ -289,6 +348,8 @@ class TestAsyncSettings:
                     "hostname": "admin.example.com",
                 },
             ],
+            account_id="string",
+            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -303,8 +364,6 @@ class TestAsyncSettings:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.access.certificates.settings.with_raw_response.update(
-                account_id="",
-                zone_id="string",
                 settings=[
                     {
                         "china_network": False,
@@ -322,12 +381,12 @@ class TestAsyncSettings:
                         "hostname": "admin.example.com",
                     },
                 ],
+                account_id="",
+                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.access.certificates.settings.with_raw_response.update(
-                account_id="string",
-                zone_id="",
                 settings=[
                     {
                         "china_network": False,
@@ -345,11 +404,22 @@ class TestAsyncSettings:
                         "hostname": "admin.example.com",
                     },
                 ],
+                account_id="string",
+                zone_id="",
             )
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
+        setting = await async_client.access.certificates.settings.list(
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(Optional[SettingListResponse], setting, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.access.certificates.settings.list(
             account_id="string",
             zone_id="string",

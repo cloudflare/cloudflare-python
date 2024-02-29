@@ -272,6 +272,15 @@ class TestApplications:
 
     @pytest.mark.skip()
     @parametrize
+    def test_method_list_with_all_params(self, client: Cloudflare) -> None:
+        application = client.access.applications.list(
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(Optional[ApplicationListResponse], application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.access.applications.with_raw_response.list(
             account_id="string",
@@ -316,6 +325,16 @@ class TestApplications:
     @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
+        application = client.access.applications.delete(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(ApplicationDeleteResponse, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_delete_with_all_params(self, client: Cloudflare) -> None:
         application = client.access.applications.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="string",
@@ -382,6 +401,16 @@ class TestApplications:
 
     @pytest.mark.skip()
     @parametrize
+    def test_method_get_with_all_params(self, client: Cloudflare) -> None:
+        application = client.access.applications.get(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(ApplicationGetResponse, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.access.applications.with_raw_response.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
@@ -430,6 +459,16 @@ class TestApplications:
     @pytest.mark.skip()
     @parametrize
     def test_method_revoke_tokens(self, client: Cloudflare) -> None:
+        application = client.access.applications.revoke_tokens(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(object, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_revoke_tokens_with_all_params(self, client: Cloudflare) -> None:
         application = client.access.applications.revoke_tokens(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="string",
@@ -737,6 +776,15 @@ class TestAsyncApplications:
 
     @pytest.mark.skip()
     @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        application = await async_client.access.applications.list(
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(Optional[ApplicationListResponse], application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.access.applications.with_raw_response.list(
             account_id="string",
@@ -781,6 +829,16 @@ class TestAsyncApplications:
     @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
+        application = await async_client.access.applications.delete(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(ApplicationDeleteResponse, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_delete_with_all_params(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.access.applications.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="string",
@@ -847,6 +905,16 @@ class TestAsyncApplications:
 
     @pytest.mark.skip()
     @parametrize
+    async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        application = await async_client.access.applications.get(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(ApplicationGetResponse, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.access.applications.with_raw_response.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
@@ -895,6 +963,16 @@ class TestAsyncApplications:
     @pytest.mark.skip()
     @parametrize
     async def test_method_revoke_tokens(self, async_client: AsyncCloudflare) -> None:
+        application = await async_client.access.applications.revoke_tokens(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(object, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_revoke_tokens_with_all_params(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.access.applications.revoke_tokens(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="string",

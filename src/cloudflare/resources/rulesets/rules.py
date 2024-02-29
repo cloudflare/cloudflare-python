@@ -44,8 +44,8 @@ class Rules(SyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        account_id: str,
-        zone_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         position: rule_create_params.Position | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -60,11 +60,11 @@ class Rules(SyncAPIResource):
         of the existing list of rules in the ruleset by default.
 
         Args:
+          ruleset_id: The unique ID of the ruleset.
+
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          ruleset_id: The unique ID of the ruleset.
 
           position: An object configuring where the rule will be placed.
 
@@ -76,14 +76,25 @@ class Rules(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not ruleset_id:
+            raise ValueError(f"Expected a non-empty value for `ruleset_id` but received {ruleset_id!r}")
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not ruleset_id:
-            raise ValueError(f"Expected a non-empty value for `ruleset_id` but received {ruleset_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._post(
-            f"/{account_id}/{zone_id}/rulesets/{ruleset_id}/rules",
+            f"/{account_or_zone}/{account_or_zone_id}/rulesets/{ruleset_id}/rules",
             body=maybe_transform({"position": position}, rule_create_params.RuleCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -99,9 +110,9 @@ class Rules(SyncAPIResource):
         self,
         rule_id: str,
         *,
-        account_id: str,
-        zone_id: str,
         ruleset_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -113,13 +124,13 @@ class Rules(SyncAPIResource):
         Deletes an existing rule from an account or zone ruleset.
 
         Args:
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
           ruleset_id: The unique ID of the ruleset.
 
           rule_id: The unique ID of the rule.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           extra_headers: Send extra headers
 
@@ -129,16 +140,27 @@ class Rules(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not ruleset_id:
             raise ValueError(f"Expected a non-empty value for `ruleset_id` but received {ruleset_id!r}")
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._delete(
-            f"/{account_id}/{zone_id}/rulesets/{ruleset_id}/rules/{rule_id}",
+            f"/{account_or_zone}/{account_or_zone_id}/rulesets/{ruleset_id}/rules/{rule_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -153,9 +175,9 @@ class Rules(SyncAPIResource):
         self,
         rule_id: str,
         *,
-        account_id: str,
-        zone_id: str,
         ruleset_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         position: rule_edit_params.Position | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -168,13 +190,13 @@ class Rules(SyncAPIResource):
         Updates an existing rule in an account ruleset.
 
         Args:
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
           ruleset_id: The unique ID of the ruleset.
 
           rule_id: The unique ID of the rule.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           position: An object configuring where the rule will be placed.
 
@@ -186,16 +208,27 @@ class Rules(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not ruleset_id:
             raise ValueError(f"Expected a non-empty value for `ruleset_id` but received {ruleset_id!r}")
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._patch(
-            f"/{account_id}/{zone_id}/rulesets/{ruleset_id}/rules/{rule_id}",
+            f"/{account_or_zone}/{account_or_zone_id}/rulesets/{ruleset_id}/rules/{rule_id}",
             body=maybe_transform({"position": position}, rule_edit_params.RuleEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -221,8 +254,8 @@ class AsyncRules(AsyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        account_id: str,
-        zone_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         position: rule_create_params.Position | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -237,11 +270,11 @@ class AsyncRules(AsyncAPIResource):
         of the existing list of rules in the ruleset by default.
 
         Args:
+          ruleset_id: The unique ID of the ruleset.
+
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          ruleset_id: The unique ID of the ruleset.
 
           position: An object configuring where the rule will be placed.
 
@@ -253,14 +286,25 @@ class AsyncRules(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not ruleset_id:
+            raise ValueError(f"Expected a non-empty value for `ruleset_id` but received {ruleset_id!r}")
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not ruleset_id:
-            raise ValueError(f"Expected a non-empty value for `ruleset_id` but received {ruleset_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return await self._post(
-            f"/{account_id}/{zone_id}/rulesets/{ruleset_id}/rules",
+            f"/{account_or_zone}/{account_or_zone_id}/rulesets/{ruleset_id}/rules",
             body=maybe_transform({"position": position}, rule_create_params.RuleCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -276,9 +320,9 @@ class AsyncRules(AsyncAPIResource):
         self,
         rule_id: str,
         *,
-        account_id: str,
-        zone_id: str,
         ruleset_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -290,13 +334,13 @@ class AsyncRules(AsyncAPIResource):
         Deletes an existing rule from an account or zone ruleset.
 
         Args:
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
           ruleset_id: The unique ID of the ruleset.
 
           rule_id: The unique ID of the rule.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           extra_headers: Send extra headers
 
@@ -306,16 +350,27 @@ class AsyncRules(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not ruleset_id:
             raise ValueError(f"Expected a non-empty value for `ruleset_id` but received {ruleset_id!r}")
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return await self._delete(
-            f"/{account_id}/{zone_id}/rulesets/{ruleset_id}/rules/{rule_id}",
+            f"/{account_or_zone}/{account_or_zone_id}/rulesets/{ruleset_id}/rules/{rule_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -330,9 +385,9 @@ class AsyncRules(AsyncAPIResource):
         self,
         rule_id: str,
         *,
-        account_id: str,
-        zone_id: str,
         ruleset_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         position: rule_edit_params.Position | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -345,13 +400,13 @@ class AsyncRules(AsyncAPIResource):
         Updates an existing rule in an account ruleset.
 
         Args:
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
           ruleset_id: The unique ID of the ruleset.
 
           rule_id: The unique ID of the rule.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           position: An object configuring where the rule will be placed.
 
@@ -363,16 +418,27 @@ class AsyncRules(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not ruleset_id:
             raise ValueError(f"Expected a non-empty value for `ruleset_id` but received {ruleset_id!r}")
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return await self._patch(
-            f"/{account_id}/{zone_id}/rulesets/{ruleset_id}/rules/{rule_id}",
+            f"/{account_or_zone}/{account_or_zone_id}/rulesets/{ruleset_id}/rules/{rule_id}",
             body=maybe_transform({"position": position}, rule_edit_params.RuleEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,

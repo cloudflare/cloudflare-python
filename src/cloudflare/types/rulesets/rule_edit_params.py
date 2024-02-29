@@ -9,14 +9,14 @@ __all__ = ["RuleEditParams", "Position", "PositionPosition"]
 
 
 class RuleEditParams(TypedDict, total=False):
-    account_id: Required[str]
-    """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
-
-    zone_id: Required[str]
-    """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
-
     ruleset_id: Required[str]
     """The unique ID of the ruleset."""
+
+    account_id: str
+    """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
+
+    zone_id: str
+    """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
     position: Position
     """An object configuring where the rule will be placed."""

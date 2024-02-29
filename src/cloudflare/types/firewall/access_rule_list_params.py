@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing_extensions import Literal, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
@@ -10,10 +10,10 @@ __all__ = ["AccessRuleListParams", "EgsPagination", "EgsPaginationJson", "Filter
 
 
 class AccessRuleListParams(TypedDict, total=False):
-    account_id: Required[str]
+    account_id: str
     """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
 
-    zone_id: Required[str]
+    zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
     direction: Literal["asc", "desc"]

@@ -29,6 +29,16 @@ class TestCAs:
 
     @pytest.mark.skip()
     @parametrize
+    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
+        ca = client.access.applications.cas.create(
+            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(CACreateResponse, ca, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.access.applications.cas.with_raw_response.create(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -60,6 +70,13 @@ class TestCAs:
     @pytest.mark.skip()
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
+            client.access.applications.cas.with_raw_response.create(
+                "",
+                account_id="string",
+                zone_id="string",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.access.applications.cas.with_raw_response.create(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -74,16 +91,18 @@ class TestCAs:
                 zone_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
-            client.access.applications.cas.with_raw_response.create(
-                "",
-                account_id="string",
-                zone_id="string",
-            )
-
     @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
+        ca = client.access.applications.cas.list(
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(Optional[CAListResponse], ca, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         ca = client.access.applications.cas.list(
             account_id="string",
             zone_id="string",
@@ -145,6 +164,16 @@ class TestCAs:
 
     @pytest.mark.skip()
     @parametrize
+    def test_method_delete_with_all_params(self, client: Cloudflare) -> None:
+        ca = client.access.applications.cas.delete(
+            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(CADeleteResponse, ca, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.access.applications.cas.with_raw_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -176,6 +205,13 @@ class TestCAs:
     @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
+            client.access.applications.cas.with_raw_response.delete(
+                "",
+                account_id="string",
+                zone_id="string",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.access.applications.cas.with_raw_response.delete(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -190,16 +226,19 @@ class TestCAs:
                 zone_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
-            client.access.applications.cas.with_raw_response.delete(
-                "",
-                account_id="string",
-                zone_id="string",
-            )
-
     @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
+        ca = client.access.applications.cas.get(
+            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(CAGetResponse, ca, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         ca = client.access.applications.cas.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
@@ -240,6 +279,13 @@ class TestCAs:
     @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
+            client.access.applications.cas.with_raw_response.get(
+                "",
+                account_id="string",
+                zone_id="string",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.access.applications.cas.with_raw_response.get(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -254,13 +300,6 @@ class TestCAs:
                 zone_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
-            client.access.applications.cas.with_raw_response.get(
-                "",
-                account_id="string",
-                zone_id="string",
-            )
-
 
 class TestAsyncCAs:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
@@ -268,6 +307,16 @@ class TestAsyncCAs:
     @pytest.mark.skip()
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
+        ca = await async_client.access.applications.cas.create(
+            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(CACreateResponse, ca, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         ca = await async_client.access.applications.cas.create(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
@@ -308,6 +357,13 @@ class TestAsyncCAs:
     @pytest.mark.skip()
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
+            await async_client.access.applications.cas.with_raw_response.create(
+                "",
+                account_id="string",
+                zone_id="string",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.access.applications.cas.with_raw_response.create(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -322,16 +378,18 @@ class TestAsyncCAs:
                 zone_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
-            await async_client.access.applications.cas.with_raw_response.create(
-                "",
-                account_id="string",
-                zone_id="string",
-            )
-
     @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
+        ca = await async_client.access.applications.cas.list(
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(Optional[CAListResponse], ca, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         ca = await async_client.access.applications.cas.list(
             account_id="string",
             zone_id="string",
@@ -393,6 +451,16 @@ class TestAsyncCAs:
 
     @pytest.mark.skip()
     @parametrize
+    async def test_method_delete_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        ca = await async_client.access.applications.cas.delete(
+            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(CADeleteResponse, ca, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.access.applications.cas.with_raw_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -424,6 +492,13 @@ class TestAsyncCAs:
     @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
+            await async_client.access.applications.cas.with_raw_response.delete(
+                "",
+                account_id="string",
+                zone_id="string",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.access.applications.cas.with_raw_response.delete(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -438,16 +513,19 @@ class TestAsyncCAs:
                 zone_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
-            await async_client.access.applications.cas.with_raw_response.delete(
-                "",
-                account_id="string",
-                zone_id="string",
-            )
-
     @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
+        ca = await async_client.access.applications.cas.get(
+            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(CAGetResponse, ca, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         ca = await async_client.access.applications.cas.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
@@ -488,6 +566,13 @@ class TestAsyncCAs:
     @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
+            await async_client.access.applications.cas.with_raw_response.get(
+                "",
+                account_id="string",
+                zone_id="string",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.access.applications.cas.with_raw_response.get(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -500,11 +585,4 @@ class TestAsyncCAs:
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="string",
                 zone_id="",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
-            await async_client.access.applications.cas.with_raw_response.get(
-                "",
-                account_id="string",
-                zone_id="string",
             )

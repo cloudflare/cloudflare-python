@@ -47,11 +47,11 @@ class Policies(SyncAPIResource):
         self,
         uuid: str,
         *,
-        account_id: str,
-        zone_id: str,
         decision: Literal["allow", "deny", "non_identity", "bypass"],
         include: Iterable[policy_create_params.Include],
         name: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         approval_groups: Iterable[policy_create_params.ApprovalGroup] | NotGiven = NOT_GIVEN,
         approval_required: bool | NotGiven = NOT_GIVEN,
         exclude: Iterable[policy_create_params.Exclude] | NotGiven = NOT_GIVEN,
@@ -72,10 +72,6 @@ class Policies(SyncAPIResource):
         Create a new Access policy for an application.
 
         Args:
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
           uuid: UUID
 
           decision: The action Access will take if a user matches this policy.
@@ -84,6 +80,10 @@ class Policies(SyncAPIResource):
               the Include rules.
 
           name: The name of the Access policy.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           approval_groups: Administrators who can approve a temporary authentication request.
 
@@ -118,14 +118,25 @@ class Policies(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not uuid:
+            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._post(
-            f"/{account_id}/{zone_id}/access/apps/{uuid}/policies",
+            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{uuid}/policies",
             body=maybe_transform(
                 {
                     "decision": decision,
@@ -157,12 +168,12 @@ class Policies(SyncAPIResource):
         self,
         uuid: str,
         *,
-        account_id: str,
-        zone_id: str,
         uuid1: str,
         decision: Literal["allow", "deny", "non_identity", "bypass"],
         include: Iterable[policy_update_params.Include],
         name: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         approval_groups: Iterable[policy_update_params.ApprovalGroup] | NotGiven = NOT_GIVEN,
         approval_required: bool | NotGiven = NOT_GIVEN,
         exclude: Iterable[policy_update_params.Exclude] | NotGiven = NOT_GIVEN,
@@ -183,10 +194,6 @@ class Policies(SyncAPIResource):
         Update a configured Access policy.
 
         Args:
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
           uuid1: UUID
 
           uuid: UUID
@@ -197,6 +204,10 @@ class Policies(SyncAPIResource):
               the Include rules.
 
           name: The name of the Access policy.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           approval_groups: Administrators who can approve a temporary authentication request.
 
@@ -231,16 +242,27 @@ class Policies(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not uuid1:
             raise ValueError(f"Expected a non-empty value for `uuid1` but received {uuid1!r}")
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._put(
-            f"/{account_id}/{zone_id}/access/apps/{uuid1}/policies/{uuid}",
+            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{uuid1}/policies/{uuid}",
             body=maybe_transform(
                 {
                     "decision": decision,
@@ -272,8 +294,8 @@ class Policies(SyncAPIResource):
         self,
         uuid: str,
         *,
-        account_id: str,
-        zone_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -285,11 +307,11 @@ class Policies(SyncAPIResource):
         Lists Access policies configured for an application.
 
         Args:
+          uuid: UUID
+
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          uuid: UUID
 
           extra_headers: Send extra headers
 
@@ -299,14 +321,25 @@ class Policies(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not uuid:
+            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._get(
-            f"/{account_id}/{zone_id}/access/apps/{uuid}/policies",
+            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{uuid}/policies",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -321,9 +354,9 @@ class Policies(SyncAPIResource):
         self,
         uuid: str,
         *,
-        account_id: str,
-        zone_id: str,
         uuid1: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -335,13 +368,13 @@ class Policies(SyncAPIResource):
         Delete an Access policy.
 
         Args:
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
           uuid1: UUID
 
           uuid: UUID
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           extra_headers: Send extra headers
 
@@ -351,16 +384,27 @@ class Policies(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not uuid1:
             raise ValueError(f"Expected a non-empty value for `uuid1` but received {uuid1!r}")
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._delete(
-            f"/{account_id}/{zone_id}/access/apps/{uuid1}/policies/{uuid}",
+            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{uuid1}/policies/{uuid}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -375,9 +419,9 @@ class Policies(SyncAPIResource):
         self,
         uuid: str,
         *,
-        account_id: str,
-        zone_id: str,
         uuid1: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -389,13 +433,13 @@ class Policies(SyncAPIResource):
         Fetches a single Access policy.
 
         Args:
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
           uuid1: UUID
 
           uuid: UUID
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           extra_headers: Send extra headers
 
@@ -405,16 +449,27 @@ class Policies(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not uuid1:
             raise ValueError(f"Expected a non-empty value for `uuid1` but received {uuid1!r}")
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._get(
-            f"/{account_id}/{zone_id}/access/apps/{uuid1}/policies/{uuid}",
+            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{uuid1}/policies/{uuid}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -439,11 +494,11 @@ class AsyncPolicies(AsyncAPIResource):
         self,
         uuid: str,
         *,
-        account_id: str,
-        zone_id: str,
         decision: Literal["allow", "deny", "non_identity", "bypass"],
         include: Iterable[policy_create_params.Include],
         name: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         approval_groups: Iterable[policy_create_params.ApprovalGroup] | NotGiven = NOT_GIVEN,
         approval_required: bool | NotGiven = NOT_GIVEN,
         exclude: Iterable[policy_create_params.Exclude] | NotGiven = NOT_GIVEN,
@@ -464,10 +519,6 @@ class AsyncPolicies(AsyncAPIResource):
         Create a new Access policy for an application.
 
         Args:
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
           uuid: UUID
 
           decision: The action Access will take if a user matches this policy.
@@ -476,6 +527,10 @@ class AsyncPolicies(AsyncAPIResource):
               the Include rules.
 
           name: The name of the Access policy.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           approval_groups: Administrators who can approve a temporary authentication request.
 
@@ -510,14 +565,25 @@ class AsyncPolicies(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not uuid:
+            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return await self._post(
-            f"/{account_id}/{zone_id}/access/apps/{uuid}/policies",
+            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{uuid}/policies",
             body=maybe_transform(
                 {
                     "decision": decision,
@@ -549,12 +615,12 @@ class AsyncPolicies(AsyncAPIResource):
         self,
         uuid: str,
         *,
-        account_id: str,
-        zone_id: str,
         uuid1: str,
         decision: Literal["allow", "deny", "non_identity", "bypass"],
         include: Iterable[policy_update_params.Include],
         name: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         approval_groups: Iterable[policy_update_params.ApprovalGroup] | NotGiven = NOT_GIVEN,
         approval_required: bool | NotGiven = NOT_GIVEN,
         exclude: Iterable[policy_update_params.Exclude] | NotGiven = NOT_GIVEN,
@@ -575,10 +641,6 @@ class AsyncPolicies(AsyncAPIResource):
         Update a configured Access policy.
 
         Args:
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
           uuid1: UUID
 
           uuid: UUID
@@ -589,6 +651,10 @@ class AsyncPolicies(AsyncAPIResource):
               the Include rules.
 
           name: The name of the Access policy.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           approval_groups: Administrators who can approve a temporary authentication request.
 
@@ -623,16 +689,27 @@ class AsyncPolicies(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not uuid1:
             raise ValueError(f"Expected a non-empty value for `uuid1` but received {uuid1!r}")
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return await self._put(
-            f"/{account_id}/{zone_id}/access/apps/{uuid1}/policies/{uuid}",
+            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{uuid1}/policies/{uuid}",
             body=maybe_transform(
                 {
                     "decision": decision,
@@ -664,8 +741,8 @@ class AsyncPolicies(AsyncAPIResource):
         self,
         uuid: str,
         *,
-        account_id: str,
-        zone_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -677,11 +754,11 @@ class AsyncPolicies(AsyncAPIResource):
         Lists Access policies configured for an application.
 
         Args:
+          uuid: UUID
+
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          uuid: UUID
 
           extra_headers: Send extra headers
 
@@ -691,14 +768,25 @@ class AsyncPolicies(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not uuid:
+            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return await self._get(
-            f"/{account_id}/{zone_id}/access/apps/{uuid}/policies",
+            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{uuid}/policies",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -713,9 +801,9 @@ class AsyncPolicies(AsyncAPIResource):
         self,
         uuid: str,
         *,
-        account_id: str,
-        zone_id: str,
         uuid1: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -727,13 +815,13 @@ class AsyncPolicies(AsyncAPIResource):
         Delete an Access policy.
 
         Args:
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
           uuid1: UUID
 
           uuid: UUID
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           extra_headers: Send extra headers
 
@@ -743,16 +831,27 @@ class AsyncPolicies(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not uuid1:
             raise ValueError(f"Expected a non-empty value for `uuid1` but received {uuid1!r}")
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return await self._delete(
-            f"/{account_id}/{zone_id}/access/apps/{uuid1}/policies/{uuid}",
+            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{uuid1}/policies/{uuid}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -767,9 +866,9 @@ class AsyncPolicies(AsyncAPIResource):
         self,
         uuid: str,
         *,
-        account_id: str,
-        zone_id: str,
         uuid1: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -781,13 +880,13 @@ class AsyncPolicies(AsyncAPIResource):
         Fetches a single Access policy.
 
         Args:
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
           uuid1: UUID
 
           uuid: UUID
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           extra_headers: Send extra headers
 
@@ -797,16 +896,27 @@ class AsyncPolicies(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not uuid1:
             raise ValueError(f"Expected a non-empty value for `uuid1` but received {uuid1!r}")
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id and not zone_id:
+            raise ValueError("You must provide either account_id or zone_id")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return await self._get(
-            f"/{account_id}/{zone_id}/access/apps/{uuid1}/policies/{uuid}",
+            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{uuid1}/policies/{uuid}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
