@@ -17,7 +17,11 @@ __all__ = [
 
 
 class AccessRuleEditParams(TypedDict, total=False):
-    account_identifier: Required[object]
+    account_id: Required[str]
+    """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
+
+    zone_id: Required[str]
+    """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
     configuration: Required[Configuration]
     """The rule configuration."""
