@@ -1,5 +1,13 @@
 # File generated from our OpenAPI spec by Stainless.
 
+from .rules import (
+    Rules,
+    AsyncRules,
+    RulesWithRawResponse,
+    AsyncRulesWithRawResponse,
+    RulesWithStreamingResponse,
+    AsyncRulesWithStreamingResponse,
+)
 from .content import (
     Content,
     AsyncContent,
@@ -16,14 +24,6 @@ from .snippets import (
     SnippetsWithStreamingResponse,
     AsyncSnippetsWithStreamingResponse,
 )
-from .snippet_rules import (
-    SnippetRules,
-    AsyncSnippetRules,
-    SnippetRulesWithRawResponse,
-    AsyncSnippetRulesWithRawResponse,
-    SnippetRulesWithStreamingResponse,
-    AsyncSnippetRulesWithStreamingResponse,
-)
 
 __all__ = [
     "Content",
@@ -32,12 +32,12 @@ __all__ = [
     "AsyncContentWithRawResponse",
     "ContentWithStreamingResponse",
     "AsyncContentWithStreamingResponse",
-    "SnippetRules",
-    "AsyncSnippetRules",
-    "SnippetRulesWithRawResponse",
-    "AsyncSnippetRulesWithRawResponse",
-    "SnippetRulesWithStreamingResponse",
-    "AsyncSnippetRulesWithStreamingResponse",
+    "Rules",
+    "AsyncRules",
+    "RulesWithRawResponse",
+    "AsyncRulesWithRawResponse",
+    "RulesWithStreamingResponse",
+    "AsyncRulesWithStreamingResponse",
     "Snippets",
     "AsyncSnippets",
     "SnippetsWithRawResponse",

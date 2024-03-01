@@ -9,12 +9,12 @@ from .uuid import (
     AsyncUUIDWithStreamingResponse,
 )
 from .dcv_delegation import (
-    DcvDelegation,
-    AsyncDcvDelegation,
-    DcvDelegationWithRawResponse,
-    AsyncDcvDelegationWithRawResponse,
-    DcvDelegationWithStreamingResponse,
-    AsyncDcvDelegationWithStreamingResponse,
+    DCVDelegation,
+    AsyncDCVDelegation,
+    DCVDelegationWithRawResponse,
+    AsyncDCVDelegationWithRawResponse,
+    DCVDelegationWithStreamingResponse,
+    AsyncDCVDelegationWithStreamingResponse,
 )
 
 __all__ = [
@@ -24,10 +24,10 @@ __all__ = [
     "AsyncUUIDWithRawResponse",
     "UUIDWithStreamingResponse",
     "AsyncUUIDWithStreamingResponse",
-    "DcvDelegation",
-    "AsyncDcvDelegation",
-    "DcvDelegationWithRawResponse",
-    "AsyncDcvDelegationWithRawResponse",
-    "DcvDelegationWithStreamingResponse",
-    "AsyncDcvDelegationWithStreamingResponse",
+    "DCVDelegation",
+    "AsyncDCVDelegation",
+    "DCVDelegationWithRawResponse",
+    "AsyncDCVDelegationWithRawResponse",
+    "DCVDelegationWithStreamingResponse",
+    "AsyncDCVDelegationWithStreamingResponse",
 ]

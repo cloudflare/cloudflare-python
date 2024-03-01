@@ -9,7 +9,6 @@ from .zone_edit_params import ZoneEditParams as ZoneEditParams
 from .zone_list_params import ZoneListParams as ZoneListParams
 from .call_get_response import CallGetResponse as CallGetResponse
 from .pcap_get_response import PCAPGetResponse as PCAPGetResponse
-from .role_get_response import RoleGetResponse as RoleGetResponse
 from .zone_get_response import ZoneGetResponse as ZoneGetResponse
 from .cache_purge_params import CachePurgeParams as CachePurgeParams
 from .call_create_params import CallCreateParams as CallCreateParams
@@ -20,7 +19,6 @@ from .filter_list_params import FilterListParams as FilterListParams
 from .pcap_create_params import PCAPCreateParams as PCAPCreateParams
 from .pcap_list_response import PCAPListResponse as PCAPListResponse
 from .queue_get_response import QueueGetResponse as QueueGetResponse
-from .role_list_response import RoleListResponse as RoleListResponse
 from .stream_list_params import StreamListParams as StreamListParams
 from .user_edit_response import UserEditResponse as UserEditResponse
 from .user_list_response import UserListResponse as UserListResponse
