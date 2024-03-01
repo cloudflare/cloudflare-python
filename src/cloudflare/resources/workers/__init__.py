@@ -8,14 +8,6 @@ from .ai import (
     AIWithStreamingResponse,
     AsyncAIWithStreamingResponse,
 )
-from .queues import (
-    Queues,
-    AsyncQueues,
-    QueuesWithRawResponse,
-    AsyncQueuesWithRawResponse,
-    QueuesWithStreamingResponse,
-    AsyncQueuesWithStreamingResponse,
-)
 from .routes import (
     Routes,
     AsyncRoutes,
@@ -56,6 +48,14 @@ from .workers import (
     WorkersWithStreamingResponse,
     AsyncWorkersWithStreamingResponse,
 )
+from .dispatch import (
+    Dispatch,
+    AsyncDispatch,
+    DispatchWithRawResponse,
+    AsyncDispatchWithRawResponse,
+    DispatchWithStreamingResponse,
+    AsyncDispatchWithStreamingResponse,
+)
 from .services import (
     Services,
     AsyncServices,
@@ -80,14 +80,6 @@ from .deployments import (
     DeploymentsWithStreamingResponse,
     AsyncDeploymentsWithStreamingResponse,
 )
-from .durable_objects import (
-    DurableObjects,
-    AsyncDurableObjects,
-    DurableObjectsWithRawResponse,
-    AsyncDurableObjectsWithRawResponse,
-    DurableObjectsWithStreamingResponse,
-    AsyncDurableObjectsWithStreamingResponse,
-)
 from .account_settings import (
     AccountSettings,
     AsyncAccountSettings,
@@ -98,6 +90,12 @@ from .account_settings import (
 )
 
 __all__ = [
+    "Dispatch",
+    "AsyncDispatch",
+    "DispatchWithRawResponse",
+    "AsyncDispatchWithRawResponse",
+    "DispatchWithStreamingResponse",
+    "AsyncDispatchWithStreamingResponse",
     "AI",
     "AsyncAI",
     "AIWithRawResponse",
@@ -140,18 +138,6 @@ __all__ = [
     "AsyncDomainsWithRawResponse",
     "DomainsWithStreamingResponse",
     "AsyncDomainsWithStreamingResponse",
-    "DurableObjects",
-    "AsyncDurableObjects",
-    "DurableObjectsWithRawResponse",
-    "AsyncDurableObjectsWithRawResponse",
-    "DurableObjectsWithStreamingResponse",
-    "AsyncDurableObjectsWithStreamingResponse",
-    "Queues",
-    "AsyncQueues",
-    "QueuesWithRawResponse",
-    "AsyncQueuesWithRawResponse",
-    "QueuesWithStreamingResponse",
-    "AsyncQueuesWithStreamingResponse",
     "Subdomains",
     "AsyncSubdomains",
     "SubdomainsWithRawResponse",

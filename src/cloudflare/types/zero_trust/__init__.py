@@ -2,6 +2,17 @@
 
 from __future__ import annotations
 
+from .tunnel_edit_params import TunnelEditParams as TunnelEditParams
+from .tunnel_list_params import TunnelListParams as TunnelListParams
+from .tunnel_get_response import TunnelGetResponse as TunnelGetResponse
+from .tunnel_create_params import TunnelCreateParams as TunnelCreateParams
+from .tunnel_delete_params import TunnelDeleteParams as TunnelDeleteParams
+from .tunnel_edit_response import TunnelEditResponse as TunnelEditResponse
+from .tunnel_list_response import TunnelListResponse as TunnelListResponse
+from .gateway_list_response import GatewayListResponse as GatewayListResponse
+from .tunnel_create_response import TunnelCreateResponse as TunnelCreateResponse
+from .tunnel_delete_response import TunnelDeleteResponse as TunnelDeleteResponse
+from .gateway_create_response import GatewayCreateResponse as GatewayCreateResponse
 from .connectivity_setting_edit_params import ConnectivitySettingEditParams as ConnectivitySettingEditParams
 from .connectivity_setting_get_response import ConnectivitySettingGetResponse as ConnectivitySettingGetResponse
 from .connectivity_setting_edit_response import ConnectivitySettingEditResponse as ConnectivitySettingEditResponse

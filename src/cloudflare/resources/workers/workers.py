@@ -10,14 +10,6 @@ from .ai import (
     AIWithStreamingResponse,
     AsyncAIWithStreamingResponse,
 )
-from .queues import (
-    Queues,
-    AsyncQueues,
-    QueuesWithRawResponse,
-    AsyncQueuesWithRawResponse,
-    QueuesWithStreamingResponse,
-    AsyncQueuesWithStreamingResponse,
-)
 from .routes import (
     Routes,
     AsyncRoutes,
@@ -50,6 +42,14 @@ from .scripts import (
     ScriptsWithStreamingResponse,
     AsyncScriptsWithStreamingResponse,
 )
+from .dispatch import (
+    Dispatch,
+    AsyncDispatch,
+    DispatchWithRawResponse,
+    AsyncDispatchWithRawResponse,
+    DispatchWithStreamingResponse,
+    AsyncDispatchWithStreamingResponse,
+)
 from .services import (
     Services,
     AsyncServices,
@@ -76,15 +76,6 @@ from .deployments import (
     DeploymentsWithStreamingResponse,
     AsyncDeploymentsWithStreamingResponse,
 )
-from .queues.queues import Queues, AsyncQueues
-from .durable_objects import (
-    DurableObjects,
-    AsyncDurableObjects,
-    DurableObjectsWithRawResponse,
-    AsyncDurableObjectsWithRawResponse,
-    DurableObjectsWithStreamingResponse,
-    AsyncDurableObjectsWithStreamingResponse,
-)
 from .scripts.scripts import Scripts, AsyncScripts
 from .account_settings import (
     AccountSettings,
@@ -94,14 +85,18 @@ from .account_settings import (
     AccountSettingsWithStreamingResponse,
     AsyncAccountSettingsWithStreamingResponse,
 )
+from .dispatch.dispatch import Dispatch, AsyncDispatch
 from .services.services import Services, AsyncServices
 from .deployments.deployments import Deployments, AsyncDeployments
-from .durable_objects.durable_objects import DurableObjects, AsyncDurableObjects
 
 __all__ = ["Workers", "AsyncWorkers"]
 
 
 class Workers(SyncAPIResource):
+    @cached_property
+    def dispatch(self) -> Dispatch:
+        return Dispatch(self._client)
+
     @cached_property
     def ai(self) -> AI:
         return AI(self._client)
@@ -131,14 +126,6 @@ class Workers(SyncAPIResource):
         return Domains(self._client)
 
     @cached_property
-    def durable_objects(self) -> DurableObjects:
-        return DurableObjects(self._client)
-
-    @cached_property
-    def queues(self) -> Queues:
-        return Queues(self._client)
-
-    @cached_property
     def subdomains(self) -> Subdomains:
         return Subdomains(self._client)
 
@@ -156,6 +143,10 @@ class Workers(SyncAPIResource):
 
 
 class AsyncWorkers(AsyncAPIResource):
+    @cached_property
+    def dispatch(self) -> AsyncDispatch:
+        return AsyncDispatch(self._client)
+
     @cached_property
     def ai(self) -> AsyncAI:
         return AsyncAI(self._client)
@@ -185,14 +176,6 @@ class AsyncWorkers(AsyncAPIResource):
         return AsyncDomains(self._client)
 
     @cached_property
-    def durable_objects(self) -> AsyncDurableObjects:
-        return AsyncDurableObjects(self._client)
-
-    @cached_property
-    def queues(self) -> AsyncQueues:
-        return AsyncQueues(self._client)
-
-    @cached_property
     def subdomains(self) -> AsyncSubdomains:
         return AsyncSubdomains(self._client)
 
@@ -212,6 +195,10 @@ class AsyncWorkers(AsyncAPIResource):
 class WorkersWithRawResponse:
     def __init__(self, workers: Workers) -> None:
         self._workers = workers
+
+    @cached_property
+    def dispatch(self) -> DispatchWithRawResponse:
+        return DispatchWithRawResponse(self._workers.dispatch)
 
     @cached_property
     def ai(self) -> AIWithRawResponse:
@@ -242,14 +229,6 @@ class WorkersWithRawResponse:
         return DomainsWithRawResponse(self._workers.domains)
 
     @cached_property
-    def durable_objects(self) -> DurableObjectsWithRawResponse:
-        return DurableObjectsWithRawResponse(self._workers.durable_objects)
-
-    @cached_property
-    def queues(self) -> QueuesWithRawResponse:
-        return QueuesWithRawResponse(self._workers.queues)
-
-    @cached_property
     def subdomains(self) -> SubdomainsWithRawResponse:
         return SubdomainsWithRawResponse(self._workers.subdomains)
 
@@ -261,6 +240,10 @@ class WorkersWithRawResponse:
 class AsyncWorkersWithRawResponse:
     def __init__(self, workers: AsyncWorkers) -> None:
         self._workers = workers
+
+    @cached_property
+    def dispatch(self) -> AsyncDispatchWithRawResponse:
+        return AsyncDispatchWithRawResponse(self._workers.dispatch)
 
     @cached_property
     def ai(self) -> AsyncAIWithRawResponse:
@@ -291,14 +274,6 @@ class AsyncWorkersWithRawResponse:
         return AsyncDomainsWithRawResponse(self._workers.domains)
 
     @cached_property
-    def durable_objects(self) -> AsyncDurableObjectsWithRawResponse:
-        return AsyncDurableObjectsWithRawResponse(self._workers.durable_objects)
-
-    @cached_property
-    def queues(self) -> AsyncQueuesWithRawResponse:
-        return AsyncQueuesWithRawResponse(self._workers.queues)
-
-    @cached_property
     def subdomains(self) -> AsyncSubdomainsWithRawResponse:
         return AsyncSubdomainsWithRawResponse(self._workers.subdomains)
 
@@ -310,6 +285,10 @@ class AsyncWorkersWithRawResponse:
 class WorkersWithStreamingResponse:
     def __init__(self, workers: Workers) -> None:
         self._workers = workers
+
+    @cached_property
+    def dispatch(self) -> DispatchWithStreamingResponse:
+        return DispatchWithStreamingResponse(self._workers.dispatch)
 
     @cached_property
     def ai(self) -> AIWithStreamingResponse:
@@ -340,14 +319,6 @@ class WorkersWithStreamingResponse:
         return DomainsWithStreamingResponse(self._workers.domains)
 
     @cached_property
-    def durable_objects(self) -> DurableObjectsWithStreamingResponse:
-        return DurableObjectsWithStreamingResponse(self._workers.durable_objects)
-
-    @cached_property
-    def queues(self) -> QueuesWithStreamingResponse:
-        return QueuesWithStreamingResponse(self._workers.queues)
-
-    @cached_property
     def subdomains(self) -> SubdomainsWithStreamingResponse:
         return SubdomainsWithStreamingResponse(self._workers.subdomains)
 
@@ -359,6 +330,10 @@ class WorkersWithStreamingResponse:
 class AsyncWorkersWithStreamingResponse:
     def __init__(self, workers: AsyncWorkers) -> None:
         self._workers = workers
+
+    @cached_property
+    def dispatch(self) -> AsyncDispatchWithStreamingResponse:
+        return AsyncDispatchWithStreamingResponse(self._workers.dispatch)
 
     @cached_property
     def ai(self) -> AsyncAIWithStreamingResponse:
@@ -387,14 +362,6 @@ class AsyncWorkersWithStreamingResponse:
     @cached_property
     def domains(self) -> AsyncDomainsWithStreamingResponse:
         return AsyncDomainsWithStreamingResponse(self._workers.domains)
-
-    @cached_property
-    def durable_objects(self) -> AsyncDurableObjectsWithStreamingResponse:
-        return AsyncDurableObjectsWithStreamingResponse(self._workers.durable_objects)
-
-    @cached_property
-    def queues(self) -> AsyncQueuesWithStreamingResponse:
-        return AsyncQueuesWithStreamingResponse(self._workers.queues)
 
     @cached_property
     def subdomains(self) -> AsyncSubdomainsWithStreamingResponse:
