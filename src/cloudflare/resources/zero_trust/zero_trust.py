@@ -18,6 +18,14 @@ from .dlp import (
     DLPWithStreamingResponse,
     AsyncDLPWithStreamingResponse,
 )
+from .seats import (
+    Seats,
+    AsyncSeats,
+    SeatsWithRawResponse,
+    AsyncSeatsWithRawResponse,
+    SeatsWithStreamingResponse,
+    AsyncSeatsWithStreamingResponse,
+)
 from .access import (
     Access,
     AsyncAccess,
@@ -55,9 +63,25 @@ from .networks import (
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from .access.access import Access, AsyncAccess
+from .organizations import (
+    Organizations,
+    AsyncOrganizations,
+    OrganizationsWithRawResponse,
+    AsyncOrganizationsWithRawResponse,
+    OrganizationsWithStreamingResponse,
+    AsyncOrganizationsWithStreamingResponse,
+)
 from .gateway.gateway import Gateway, AsyncGateway
 from .tunnels.tunnels import Tunnels, AsyncTunnels
 from .networks.networks import Networks, AsyncNetworks
+from .identity_providers import (
+    IdentityProviders,
+    AsyncIdentityProviders,
+    IdentityProvidersWithRawResponse,
+    AsyncIdentityProvidersWithRawResponse,
+    IdentityProvidersWithStreamingResponse,
+    AsyncIdentityProvidersWithStreamingResponse,
+)
 from .connectivity_settings import (
     ConnectivitySettings,
     AsyncConnectivitySettings,
@@ -71,6 +95,18 @@ __all__ = ["ZeroTrust", "AsyncZeroTrust"]
 
 
 class ZeroTrust(SyncAPIResource):
+    @cached_property
+    def identity_providers(self) -> IdentityProviders:
+        return IdentityProviders(self._client)
+
+    @cached_property
+    def organizations(self) -> Organizations:
+        return Organizations(self._client)
+
+    @cached_property
+    def seats(self) -> Seats:
+        return Seats(self._client)
+
     @cached_property
     def access(self) -> Access:
         return Access(self._client)
@@ -109,6 +145,18 @@ class ZeroTrust(SyncAPIResource):
 
 
 class AsyncZeroTrust(AsyncAPIResource):
+    @cached_property
+    def identity_providers(self) -> AsyncIdentityProviders:
+        return AsyncIdentityProviders(self._client)
+
+    @cached_property
+    def organizations(self) -> AsyncOrganizations:
+        return AsyncOrganizations(self._client)
+
+    @cached_property
+    def seats(self) -> AsyncSeats:
+        return AsyncSeats(self._client)
+
     @cached_property
     def access(self) -> AsyncAccess:
         return AsyncAccess(self._client)
@@ -151,6 +199,18 @@ class ZeroTrustWithRawResponse:
         self._zero_trust = zero_trust
 
     @cached_property
+    def identity_providers(self) -> IdentityProvidersWithRawResponse:
+        return IdentityProvidersWithRawResponse(self._zero_trust.identity_providers)
+
+    @cached_property
+    def organizations(self) -> OrganizationsWithRawResponse:
+        return OrganizationsWithRawResponse(self._zero_trust.organizations)
+
+    @cached_property
+    def seats(self) -> SeatsWithRawResponse:
+        return SeatsWithRawResponse(self._zero_trust.seats)
+
+    @cached_property
     def access(self) -> AccessWithRawResponse:
         return AccessWithRawResponse(self._zero_trust.access)
 
@@ -182,6 +242,18 @@ class ZeroTrustWithRawResponse:
 class AsyncZeroTrustWithRawResponse:
     def __init__(self, zero_trust: AsyncZeroTrust) -> None:
         self._zero_trust = zero_trust
+
+    @cached_property
+    def identity_providers(self) -> AsyncIdentityProvidersWithRawResponse:
+        return AsyncIdentityProvidersWithRawResponse(self._zero_trust.identity_providers)
+
+    @cached_property
+    def organizations(self) -> AsyncOrganizationsWithRawResponse:
+        return AsyncOrganizationsWithRawResponse(self._zero_trust.organizations)
+
+    @cached_property
+    def seats(self) -> AsyncSeatsWithRawResponse:
+        return AsyncSeatsWithRawResponse(self._zero_trust.seats)
 
     @cached_property
     def access(self) -> AsyncAccessWithRawResponse:
@@ -217,6 +289,18 @@ class ZeroTrustWithStreamingResponse:
         self._zero_trust = zero_trust
 
     @cached_property
+    def identity_providers(self) -> IdentityProvidersWithStreamingResponse:
+        return IdentityProvidersWithStreamingResponse(self._zero_trust.identity_providers)
+
+    @cached_property
+    def organizations(self) -> OrganizationsWithStreamingResponse:
+        return OrganizationsWithStreamingResponse(self._zero_trust.organizations)
+
+    @cached_property
+    def seats(self) -> SeatsWithStreamingResponse:
+        return SeatsWithStreamingResponse(self._zero_trust.seats)
+
+    @cached_property
     def access(self) -> AccessWithStreamingResponse:
         return AccessWithStreamingResponse(self._zero_trust.access)
 
@@ -248,6 +332,18 @@ class ZeroTrustWithStreamingResponse:
 class AsyncZeroTrustWithStreamingResponse:
     def __init__(self, zero_trust: AsyncZeroTrust) -> None:
         self._zero_trust = zero_trust
+
+    @cached_property
+    def identity_providers(self) -> AsyncIdentityProvidersWithStreamingResponse:
+        return AsyncIdentityProvidersWithStreamingResponse(self._zero_trust.identity_providers)
+
+    @cached_property
+    def organizations(self) -> AsyncOrganizationsWithStreamingResponse:
+        return AsyncOrganizationsWithStreamingResponse(self._zero_trust.organizations)
+
+    @cached_property
+    def seats(self) -> AsyncSeatsWithStreamingResponse:
+        return AsyncSeatsWithStreamingResponse(self._zero_trust.seats)
 
     @cached_property
     def access(self) -> AsyncAccessWithStreamingResponse:

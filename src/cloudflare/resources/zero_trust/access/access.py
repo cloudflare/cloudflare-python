@@ -26,14 +26,6 @@ from .tags import (
     TagsWithStreamingResponse,
     AsyncTagsWithStreamingResponse,
 )
-from .seats import (
-    Seats,
-    AsyncSeats,
-    SeatsWithRawResponse,
-    AsyncSeatsWithRawResponse,
-    SeatsWithStreamingResponse,
-    AsyncSeatsWithStreamingResponse,
-)
 from .users import (
     Users,
     AsyncUsers,
@@ -86,14 +78,6 @@ from .custom_pages import (
     CustomPagesWithStreamingResponse,
     AsyncCustomPagesWithStreamingResponse,
 )
-from .organizations import (
-    Organizations,
-    AsyncOrganizations,
-    OrganizationsWithRawResponse,
-    AsyncOrganizationsWithRawResponse,
-    OrganizationsWithStreamingResponse,
-    AsyncOrganizationsWithStreamingResponse,
-)
 from .service_tokens import (
     ServiceTokens,
     AsyncServiceTokens,
@@ -101,14 +85,6 @@ from .service_tokens import (
     AsyncServiceTokensWithRawResponse,
     ServiceTokensWithStreamingResponse,
     AsyncServiceTokensWithStreamingResponse,
-)
-from .identity_providers import (
-    IdentityProviders,
-    AsyncIdentityProviders,
-    IdentityProvidersWithRawResponse,
-    AsyncIdentityProvidersWithRawResponse,
-    IdentityProvidersWithStreamingResponse,
-    AsyncIdentityProvidersWithStreamingResponse,
 )
 from .applications.applications import Applications, AsyncApplications
 from .certificates.certificates import Certificates, AsyncCertificates
@@ -130,14 +106,6 @@ class Access(SyncAPIResource):
         return Groups(self._client)
 
     @cached_property
-    def identity_providers(self) -> IdentityProviders:
-        return IdentityProviders(self._client)
-
-    @cached_property
-    def organizations(self) -> Organizations:
-        return Organizations(self._client)
-
-    @cached_property
     def service_tokens(self) -> ServiceTokens:
         return ServiceTokens(self._client)
 
@@ -152,10 +120,6 @@ class Access(SyncAPIResource):
     @cached_property
     def logs(self) -> Logs:
         return Logs(self._client)
-
-    @cached_property
-    def seats(self) -> Seats:
-        return Seats(self._client)
 
     @cached_property
     def users(self) -> Users:
@@ -192,14 +156,6 @@ class AsyncAccess(AsyncAPIResource):
         return AsyncGroups(self._client)
 
     @cached_property
-    def identity_providers(self) -> AsyncIdentityProviders:
-        return AsyncIdentityProviders(self._client)
-
-    @cached_property
-    def organizations(self) -> AsyncOrganizations:
-        return AsyncOrganizations(self._client)
-
-    @cached_property
     def service_tokens(self) -> AsyncServiceTokens:
         return AsyncServiceTokens(self._client)
 
@@ -214,10 +170,6 @@ class AsyncAccess(AsyncAPIResource):
     @cached_property
     def logs(self) -> AsyncLogs:
         return AsyncLogs(self._client)
-
-    @cached_property
-    def seats(self) -> AsyncSeats:
-        return AsyncSeats(self._client)
 
     @cached_property
     def users(self) -> AsyncUsers:
@@ -257,14 +209,6 @@ class AccessWithRawResponse:
         return GroupsWithRawResponse(self._access.groups)
 
     @cached_property
-    def identity_providers(self) -> IdentityProvidersWithRawResponse:
-        return IdentityProvidersWithRawResponse(self._access.identity_providers)
-
-    @cached_property
-    def organizations(self) -> OrganizationsWithRawResponse:
-        return OrganizationsWithRawResponse(self._access.organizations)
-
-    @cached_property
     def service_tokens(self) -> ServiceTokensWithRawResponse:
         return ServiceTokensWithRawResponse(self._access.service_tokens)
 
@@ -279,10 +223,6 @@ class AccessWithRawResponse:
     @cached_property
     def logs(self) -> LogsWithRawResponse:
         return LogsWithRawResponse(self._access.logs)
-
-    @cached_property
-    def seats(self) -> SeatsWithRawResponse:
-        return SeatsWithRawResponse(self._access.seats)
 
     @cached_property
     def users(self) -> UsersWithRawResponse:
@@ -314,14 +254,6 @@ class AsyncAccessWithRawResponse:
         return AsyncGroupsWithRawResponse(self._access.groups)
 
     @cached_property
-    def identity_providers(self) -> AsyncIdentityProvidersWithRawResponse:
-        return AsyncIdentityProvidersWithRawResponse(self._access.identity_providers)
-
-    @cached_property
-    def organizations(self) -> AsyncOrganizationsWithRawResponse:
-        return AsyncOrganizationsWithRawResponse(self._access.organizations)
-
-    @cached_property
     def service_tokens(self) -> AsyncServiceTokensWithRawResponse:
         return AsyncServiceTokensWithRawResponse(self._access.service_tokens)
 
@@ -336,10 +268,6 @@ class AsyncAccessWithRawResponse:
     @cached_property
     def logs(self) -> AsyncLogsWithRawResponse:
         return AsyncLogsWithRawResponse(self._access.logs)
-
-    @cached_property
-    def seats(self) -> AsyncSeatsWithRawResponse:
-        return AsyncSeatsWithRawResponse(self._access.seats)
 
     @cached_property
     def users(self) -> AsyncUsersWithRawResponse:
@@ -371,14 +299,6 @@ class AccessWithStreamingResponse:
         return GroupsWithStreamingResponse(self._access.groups)
 
     @cached_property
-    def identity_providers(self) -> IdentityProvidersWithStreamingResponse:
-        return IdentityProvidersWithStreamingResponse(self._access.identity_providers)
-
-    @cached_property
-    def organizations(self) -> OrganizationsWithStreamingResponse:
-        return OrganizationsWithStreamingResponse(self._access.organizations)
-
-    @cached_property
     def service_tokens(self) -> ServiceTokensWithStreamingResponse:
         return ServiceTokensWithStreamingResponse(self._access.service_tokens)
 
@@ -393,10 +313,6 @@ class AccessWithStreamingResponse:
     @cached_property
     def logs(self) -> LogsWithStreamingResponse:
         return LogsWithStreamingResponse(self._access.logs)
-
-    @cached_property
-    def seats(self) -> SeatsWithStreamingResponse:
-        return SeatsWithStreamingResponse(self._access.seats)
 
     @cached_property
     def users(self) -> UsersWithStreamingResponse:
@@ -428,14 +344,6 @@ class AsyncAccessWithStreamingResponse:
         return AsyncGroupsWithStreamingResponse(self._access.groups)
 
     @cached_property
-    def identity_providers(self) -> AsyncIdentityProvidersWithStreamingResponse:
-        return AsyncIdentityProvidersWithStreamingResponse(self._access.identity_providers)
-
-    @cached_property
-    def organizations(self) -> AsyncOrganizationsWithStreamingResponse:
-        return AsyncOrganizationsWithStreamingResponse(self._access.organizations)
-
-    @cached_property
     def service_tokens(self) -> AsyncServiceTokensWithStreamingResponse:
         return AsyncServiceTokensWithStreamingResponse(self._access.service_tokens)
 
@@ -450,10 +358,6 @@ class AsyncAccessWithStreamingResponse:
     @cached_property
     def logs(self) -> AsyncLogsWithStreamingResponse:
         return AsyncLogsWithStreamingResponse(self._access.logs)
-
-    @cached_property
-    def seats(self) -> AsyncSeatsWithStreamingResponse:
-        return AsyncSeatsWithStreamingResponse(self._access.seats)
 
     @cached_property
     def users(self) -> AsyncUsersWithStreamingResponse:

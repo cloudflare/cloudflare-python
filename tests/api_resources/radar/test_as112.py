@@ -10,19 +10,19 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare._utils import parse_datetime
-from cloudflare.types.radar import As112TimeseriesResponse
+from cloudflare.types.radar import AS112TimeseriesResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
-class TestAs112:
+class TestAS112:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip()
     @parametrize
     def test_method_timeseries(self, client: Cloudflare) -> None:
         as112 = client.radar.as112.timeseries()
-        assert_matches_type(As112TimeseriesResponse, as112, path=["response"])
+        assert_matches_type(AS112TimeseriesResponse, as112, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -46,7 +46,7 @@ class TestAs112:
             location=["string", "string", "string"],
             name=["string", "string", "string"],
         )
-        assert_matches_type(As112TimeseriesResponse, as112, path=["response"])
+        assert_matches_type(AS112TimeseriesResponse, as112, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -56,7 +56,7 @@ class TestAs112:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         as112 = response.parse()
-        assert_matches_type(As112TimeseriesResponse, as112, path=["response"])
+        assert_matches_type(AS112TimeseriesResponse, as112, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -66,19 +66,19 @@ class TestAs112:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             as112 = response.parse()
-            assert_matches_type(As112TimeseriesResponse, as112, path=["response"])
+            assert_matches_type(AS112TimeseriesResponse, as112, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
 
-class TestAsyncAs112:
+class TestAsyncAS112:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_timeseries(self, async_client: AsyncCloudflare) -> None:
         as112 = await async_client.radar.as112.timeseries()
-        assert_matches_type(As112TimeseriesResponse, as112, path=["response"])
+        assert_matches_type(AS112TimeseriesResponse, as112, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -102,7 +102,7 @@ class TestAsyncAs112:
             location=["string", "string", "string"],
             name=["string", "string", "string"],
         )
-        assert_matches_type(As112TimeseriesResponse, as112, path=["response"])
+        assert_matches_type(AS112TimeseriesResponse, as112, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -112,7 +112,7 @@ class TestAsyncAs112:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         as112 = await response.parse()
-        assert_matches_type(As112TimeseriesResponse, as112, path=["response"])
+        assert_matches_type(AS112TimeseriesResponse, as112, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -122,6 +122,6 @@ class TestAsyncAs112:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             as112 = await response.parse()
-            assert_matches_type(As112TimeseriesResponse, as112, path=["response"])
+            assert_matches_type(AS112TimeseriesResponse, as112, path=["response"])
 
         assert cast(Any, response.is_closed) is True
