@@ -1,5 +1,53 @@
 # File generated from our OpenAPI spec by Stainless.
 
+from .dex import (
+    DEX,
+    AsyncDEX,
+    DEXWithRawResponse,
+    AsyncDEXWithRawResponse,
+    DEXWithStreamingResponse,
+    AsyncDEXWithStreamingResponse,
+)
+from .dlp import (
+    DLP,
+    AsyncDLP,
+    DLPWithRawResponse,
+    AsyncDLPWithRawResponse,
+    DLPWithStreamingResponse,
+    AsyncDLPWithStreamingResponse,
+)
+from .access import (
+    Access,
+    AsyncAccess,
+    AccessWithRawResponse,
+    AsyncAccessWithRawResponse,
+    AccessWithStreamingResponse,
+    AsyncAccessWithStreamingResponse,
+)
+from .gateway import (
+    Gateway,
+    AsyncGateway,
+    GatewayWithRawResponse,
+    AsyncGatewayWithRawResponse,
+    GatewayWithStreamingResponse,
+    AsyncGatewayWithStreamingResponse,
+)
+from .tunnels import (
+    Tunnels,
+    AsyncTunnels,
+    TunnelsWithRawResponse,
+    AsyncTunnelsWithRawResponse,
+    TunnelsWithStreamingResponse,
+    AsyncTunnelsWithStreamingResponse,
+)
+from .networks import (
+    Networks,
+    AsyncNetworks,
+    NetworksWithRawResponse,
+    AsyncNetworksWithRawResponse,
+    NetworksWithStreamingResponse,
+    AsyncNetworksWithStreamingResponse,
+)
 from .zero_trust import (
     ZeroTrust,
     AsyncZeroTrust,
@@ -18,12 +66,48 @@ from .connectivity_settings import (
 )
 
 __all__ = [
+    "Access",
+    "AsyncAccess",
+    "AccessWithRawResponse",
+    "AsyncAccessWithRawResponse",
+    "AccessWithStreamingResponse",
+    "AsyncAccessWithStreamingResponse",
+    "DEX",
+    "AsyncDEX",
+    "DEXWithRawResponse",
+    "AsyncDEXWithRawResponse",
+    "DEXWithStreamingResponse",
+    "AsyncDEXWithStreamingResponse",
+    "Tunnels",
+    "AsyncTunnels",
+    "TunnelsWithRawResponse",
+    "AsyncTunnelsWithRawResponse",
+    "TunnelsWithStreamingResponse",
+    "AsyncTunnelsWithStreamingResponse",
     "ConnectivitySettings",
     "AsyncConnectivitySettings",
     "ConnectivitySettingsWithRawResponse",
     "AsyncConnectivitySettingsWithRawResponse",
     "ConnectivitySettingsWithStreamingResponse",
     "AsyncConnectivitySettingsWithStreamingResponse",
+    "DLP",
+    "AsyncDLP",
+    "DLPWithRawResponse",
+    "AsyncDLPWithRawResponse",
+    "DLPWithStreamingResponse",
+    "AsyncDLPWithStreamingResponse",
+    "Gateway",
+    "AsyncGateway",
+    "GatewayWithRawResponse",
+    "AsyncGatewayWithRawResponse",
+    "GatewayWithStreamingResponse",
+    "AsyncGatewayWithStreamingResponse",
+    "Networks",
+    "AsyncNetworks",
+    "NetworksWithRawResponse",
+    "AsyncNetworksWithRawResponse",
+    "NetworksWithStreamingResponse",
+    "AsyncNetworksWithStreamingResponse",
     "ZeroTrust",
     "AsyncZeroTrust",
     "ZeroTrustWithRawResponse",
