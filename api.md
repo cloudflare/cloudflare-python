@@ -34,6 +34,19 @@ Methods:
 - <code title="delete /accounts/{account_id}/members/{member_id}">client.accounts.members.<a href="./src/cloudflare/resources/accounts/members.py">delete</a>(member_id, \*, account_id) -> <a href="./src/cloudflare/types/accounts/member_delete_response.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/members/{member_id}">client.accounts.members.<a href="./src/cloudflare/resources/accounts/members.py">get</a>(member_id, \*, account_id) -> <a href="./src/cloudflare/types/accounts/member_get_response.py">MemberGetResponse</a></code>
 
+## Roles
+
+Types:
+
+```python
+from cloudflare.types.accounts import RoleListResponse, RoleGetResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/roles">client.accounts.roles.<a href="./src/cloudflare/resources/accounts/roles.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/accounts/role_list_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/roles/{role_id}">client.accounts.roles.<a href="./src/cloudflare/resources/accounts/roles.py">get</a>(role_id, \*, account_id) -> <a href="./src/cloudflare/types/accounts/role_get_response.py">RoleGetResponse</a></code>
+
 # Certificates
 
 Types:
@@ -1138,6 +1151,24 @@ Methods:
 - <code title="put /zones/{zone_id}/workers/script">client.zones.workers.script.<a href="./src/cloudflare/resources/zones/workers/script.py">update</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/workers/script_update_response.py">ScriptUpdateResponse</a></code>
 - <code title="delete /zones/{zone_id}/workers/script">client.zones.workers.script.<a href="./src/cloudflare/resources/zones/workers/script.py">delete</a>(\*, zone_id) -> None</code>
 - <code title="get /zones/{zone_id}/workers/script">client.zones.workers.script.<a href="./src/cloudflare/resources/zones/workers/script.py">get</a>(\*, zone_id) -> BinaryAPIResponse</code>
+
+## Subscriptions
+
+Types:
+
+```python
+from cloudflare.types.zones import (
+    SubscriptionCreateResponse,
+    SubscriptionListResponse,
+    SubscriptionGetResponse,
+)
+```
+
+Methods:
+
+- <code title="post /zones/{identifier}/subscription">client.zones.subscriptions.<a href="./src/cloudflare/resources/zones/subscriptions.py">create</a>(identifier, \*\*<a href="src/cloudflare/types/zones/subscription_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/subscription_create_response.py">SubscriptionCreateResponse</a></code>
+- <code title="get /accounts/{account_identifier}/subscriptions">client.zones.subscriptions.<a href="./src/cloudflare/resources/zones/subscriptions.py">list</a>(account_identifier) -> <a href="./src/cloudflare/types/zones/subscription_list_response.py">Optional</a></code>
+- <code title="get /zones/{identifier}/subscription">client.zones.subscriptions.<a href="./src/cloudflare/resources/zones/subscriptions.py">get</a>(identifier) -> <a href="./src/cloudflare/types/zones/subscription_get_response.py">SubscriptionGetResponse</a></code>
 
 # LoadBalancers
 
@@ -2783,24 +2814,6 @@ Methods:
 
 # Workers
 
-## Dispatch
-
-### Namespaces
-
-#### Scripts
-
-Types:
-
-```python
-from cloudflare.types.workers.dispatch.namespaces import ScriptUpdateResponse, ScriptGetResponse
-```
-
-Methods:
-
-- <code title="put /accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}">client.workers.dispatch.namespaces.scripts.<a href="./src/cloudflare/resources/workers/dispatch/namespaces/scripts.py">update</a>(script_name, \*, account_id, dispatch_namespace, \*\*<a href="src/cloudflare/types/workers/dispatch/namespaces/script_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/dispatch/namespaces/script_update_response.py">ScriptUpdateResponse</a></code>
-- <code title="delete /accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}">client.workers.dispatch.namespaces.scripts.<a href="./src/cloudflare/resources/workers/dispatch/namespaces/scripts.py">delete</a>(script_name, \*, account_id, dispatch_namespace, \*\*<a href="src/cloudflare/types/workers/dispatch/namespaces/script_delete_params.py">params</a>) -> None</code>
-- <code title="get /accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}">client.workers.dispatch.namespaces.scripts.<a href="./src/cloudflare/resources/workers/dispatch/namespaces/scripts.py">get</a>(script_name, \*, account_id, dispatch_namespace) -> <a href="./src/cloudflare/types/workers/dispatch/namespaces/script_get_response.py">ScriptGetResponse</a></code>
-
 ## AI
 
 Types:
@@ -3348,7 +3361,7 @@ Methods:
 
 - <code title="get /accounts/{account_id}/rulesets/{ruleset_id}/versions/{ruleset_version}/by_tag/{rule_tag}">client.rulesets.versions.by_tags.<a href="./src/cloudflare/resources/rulesets/versions/by_tags.py">get</a>(rule_tag, \*, account_id, ruleset_id, ruleset_version) -> <a href="./src/cloudflare/types/rulesets/versions/by_tag_get_response.py">ByTagGetResponse</a></code>
 
-# URLNormalizations
+# URLNormalization
 
 Types:
 
@@ -3358,8 +3371,8 @@ from cloudflare.types import URLNormalizationUpdateResponse, URLNormalizationGet
 
 Methods:
 
-- <code title="put /zones/{zone_id}/url_normalization">client.url_normalizations.<a href="./src/cloudflare/resources/url_normalizations.py">update</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/url_normalization_update_params.py">params</a>) -> <a href="./src/cloudflare/types/url_normalization_update_response.py">URLNormalizationUpdateResponse</a></code>
-- <code title="get /zones/{zone_id}/url_normalization">client.url_normalizations.<a href="./src/cloudflare/resources/url_normalizations.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/url_normalization_get_response.py">URLNormalizationGetResponse</a></code>
+- <code title="put /zones/{zone_id}/url_normalization">client.url_normalization.<a href="./src/cloudflare/resources/url_normalization.py">update</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/url_normalization_update_params.py">params</a>) -> <a href="./src/cloudflare/types/url_normalization_update_response.py">URLNormalizationUpdateResponse</a></code>
+- <code title="get /zones/{zone_id}/url_normalization">client.url_normalization.<a href="./src/cloudflare/resources/url_normalization.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/url_normalization_get_response.py">URLNormalizationGetResponse</a></code>
 
 # Spectrum
 
@@ -4305,19 +4318,6 @@ Methods:
 
 - <code title="post /accounts/{account_identifier}/request-tracer/trace">client.request_tracers.traces.<a href="./src/cloudflare/resources/request_tracers/traces.py">create</a>(account_identifier, \*\*<a href="src/cloudflare/types/request_tracers/trace_create_params.py">params</a>) -> <a href="./src/cloudflare/types/request_tracers/trace_create_response.py">TraceCreateResponse</a></code>
 
-# Roles
-
-Types:
-
-```python
-from cloudflare.types import RoleListResponse, RoleGetResponse
-```
-
-Methods:
-
-- <code title="get /accounts/{account_id}/roles">client.roles.<a href="./src/cloudflare/resources/roles.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/role_list_response.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/roles/{role_id}">client.roles.<a href="./src/cloudflare/resources/roles.py">get</a>(role_id, \*, account_id) -> <a href="./src/cloudflare/types/role_get_response.py">RoleGetResponse</a></code>
-
 # Rules
 
 ## Lists
@@ -5056,25 +5056,44 @@ Methods:
 
 #### Scripts
 
-##### Content
-
 Types:
 
 ```python
-from cloudflare.types.workers_for_platforms.dispatch.namespaces.scripts import ContentUpdateResponse
+from cloudflare.types.workers_for_platforms.dispatch.namespaces import (
+    ScriptUpdateResponse,
+    ScriptGetResponse,
+)
 ```
 
 Methods:
 
-- <code title="put /accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/content">client.workers_for_platforms.dispatch.namespaces.scripts.content.<a href="./src/cloudflare/resources/workers_for_platforms/dispatch/namespaces/scripts/content.py">update</a>(script_name, \*, account_id, dispatch_namespace, \*\*<a href="src/cloudflare/types/workers_for_platforms/dispatch/namespaces/scripts/content_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workers_for_platforms/dispatch/namespaces/scripts/content_update_response.py">ContentUpdateResponse</a></code>
-- <code title="get /accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/content">client.workers_for_platforms.dispatch.namespaces.scripts.content.<a href="./src/cloudflare/resources/workers_for_platforms/dispatch/namespaces/scripts/content.py">get</a>(script_name, \*, account_id, dispatch_namespace) -> BinaryAPIResponse</code>
+- <code title="put /accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}">client.workers_for_platforms.dispatch.namespaces.scripts.<a href="./src/cloudflare/resources/workers_for_platforms/dispatch/namespaces/scripts/scripts.py">update</a>(script_name, \*, account_id, dispatch_namespace, \*\*<a href="src/cloudflare/types/workers_for_platforms/dispatch/namespaces/script_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workers_for_platforms/dispatch/namespaces/script_update_response.py">ScriptUpdateResponse</a></code>
+- <code title="delete /accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}">client.workers_for_platforms.dispatch.namespaces.scripts.<a href="./src/cloudflare/resources/workers_for_platforms/dispatch/namespaces/scripts/scripts.py">delete</a>(script_name, \*, account_id, dispatch_namespace, \*\*<a href="src/cloudflare/types/workers_for_platforms/dispatch/namespaces/script_delete_params.py">params</a>) -> None</code>
+- <code title="get /accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}">client.workers_for_platforms.dispatch.namespaces.scripts.<a href="./src/cloudflare/resources/workers_for_platforms/dispatch/namespaces/scripts/scripts.py">get</a>(script_name, \*, account_id, dispatch_namespace) -> <a href="./src/cloudflare/types/workers_for_platforms/dispatch/namespaces/script_get_response.py">ScriptGetResponse</a></code>
 
-##### Settings
+##### Content
+
+###### Scripts
 
 Types:
 
 ```python
-from cloudflare.types.workers_for_platforms.dispatch.namespaces.scripts import (
+from cloudflare.types.workers_for_platforms.dispatch.namespaces.scripts.content import (
+    ScriptUpdateResponse,
+)
+```
+
+Methods:
+
+- <code title="put /accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/content">client.workers_for_platforms.dispatch.namespaces.scripts.content.scripts.<a href="./src/cloudflare/resources/workers_for_platforms/dispatch/namespaces/scripts/content/scripts.py">update</a>(script_name, \*, account_id, dispatch_namespace, \*\*<a href="src/cloudflare/types/workers_for_platforms/dispatch/namespaces/scripts/content/script_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workers_for_platforms/dispatch/namespaces/scripts/content/script_update_response.py">ScriptUpdateResponse</a></code>
+- <code title="get /accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/content">client.workers_for_platforms.dispatch.namespaces.scripts.content.scripts.<a href="./src/cloudflare/resources/workers_for_platforms/dispatch/namespaces/scripts/content/scripts.py">get</a>(script_name, \*, account_id, dispatch_namespace) -> BinaryAPIResponse</code>
+
+###### Settings
+
+Types:
+
+```python
+from cloudflare.types.workers_for_platforms.dispatch.namespaces.scripts.content import (
     SettingEditResponse,
     SettingGetResponse,
 )
@@ -5082,22 +5101,78 @@ from cloudflare.types.workers_for_platforms.dispatch.namespaces.scripts import (
 
 Methods:
 
-- <code title="patch /accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/settings">client.workers_for_platforms.dispatch.namespaces.scripts.settings.<a href="./src/cloudflare/resources/workers_for_platforms/dispatch/namespaces/scripts/settings.py">edit</a>(script_name, \*, account_id, dispatch_namespace, \*\*<a href="src/cloudflare/types/workers_for_platforms/dispatch/namespaces/scripts/setting_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/workers_for_platforms/dispatch/namespaces/scripts/setting_edit_response.py">SettingEditResponse</a></code>
-- <code title="get /accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/settings">client.workers_for_platforms.dispatch.namespaces.scripts.settings.<a href="./src/cloudflare/resources/workers_for_platforms/dispatch/namespaces/scripts/settings.py">get</a>(script_name, \*, account_id, dispatch_namespace) -> <a href="./src/cloudflare/types/workers_for_platforms/dispatch/namespaces/scripts/setting_get_response.py">SettingGetResponse</a></code>
+- <code title="patch /accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/settings">client.workers_for_platforms.dispatch.namespaces.scripts.content.settings.<a href="./src/cloudflare/resources/workers_for_platforms/dispatch/namespaces/scripts/content/settings.py">edit</a>(script_name, \*, account_id, dispatch_namespace, \*\*<a href="src/cloudflare/types/workers_for_platforms/dispatch/namespaces/scripts/content/setting_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/workers_for_platforms/dispatch/namespaces/scripts/content/setting_edit_response.py">SettingEditResponse</a></code>
+- <code title="get /accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/settings">client.workers_for_platforms.dispatch.namespaces.scripts.content.settings.<a href="./src/cloudflare/resources/workers_for_platforms/dispatch/namespaces/scripts/content/settings.py">get</a>(script_name, \*, account_id, dispatch_namespace) -> <a href="./src/cloudflare/types/workers_for_platforms/dispatch/namespaces/scripts/content/setting_get_response.py">SettingGetResponse</a></code>
 
-##### Bindings
+###### Bindings
 
 Types:
 
 ```python
-from cloudflare.types.workers_for_platforms.dispatch.namespaces.scripts import BindingGetResponse
+from cloudflare.types.workers_for_platforms.dispatch.namespaces.scripts.content import (
+    BindingGetResponse,
+)
 ```
 
 Methods:
 
-- <code title="get /accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/bindings">client.workers_for_platforms.dispatch.namespaces.scripts.bindings.<a href="./src/cloudflare/resources/workers_for_platforms/dispatch/namespaces/scripts/bindings.py">get</a>(script_name, \*, account_id, dispatch_namespace) -> <a href="./src/cloudflare/types/workers_for_platforms/dispatch/namespaces/scripts/binding_get_response.py">BindingGetResponse</a></code>
+- <code title="get /accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/bindings">client.workers_for_platforms.dispatch.namespaces.scripts.content.bindings.<a href="./src/cloudflare/resources/workers_for_platforms/dispatch/namespaces/scripts/content/bindings.py">get</a>(script_name, \*, account_id, dispatch_namespace) -> <a href="./src/cloudflare/types/workers_for_platforms/dispatch/namespaces/scripts/content/binding_get_response.py">BindingGetResponse</a></code>
 
 # ZeroTrust
+
+## IdentityProviders
+
+Types:
+
+```python
+from cloudflare.types.zero_trust import (
+    IdentityProviderCreateResponse,
+    IdentityProviderUpdateResponse,
+    IdentityProviderListResponse,
+    IdentityProviderDeleteResponse,
+    IdentityProviderGetResponse,
+)
+```
+
+Methods:
+
+- <code title="post /{account_or_zone}/{account_or_zone_id}/access/identity_providers">client.zero_trust.identity_providers.<a href="./src/cloudflare/resources/zero_trust/identity_providers.py">create</a>(\*, account_id, zone_id, \*\*<a href="src/cloudflare/types/zero_trust/identity_provider_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/identity_provider_create_response.py">IdentityProviderCreateResponse</a></code>
+- <code title="put /{account_or_zone}/{account_or_zone_id}/access/identity_providers/{uuid}">client.zero_trust.identity_providers.<a href="./src/cloudflare/resources/zero_trust/identity_providers.py">update</a>(uuid, \*, account_id, zone_id, \*\*<a href="src/cloudflare/types/zero_trust/identity_provider_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/identity_provider_update_response.py">IdentityProviderUpdateResponse</a></code>
+- <code title="get /{account_or_zone}/{account_or_zone_id}/access/identity_providers">client.zero_trust.identity_providers.<a href="./src/cloudflare/resources/zero_trust/identity_providers.py">list</a>(\*, account_id, zone_id) -> <a href="./src/cloudflare/types/zero_trust/identity_provider_list_response.py">Optional</a></code>
+- <code title="delete /{account_or_zone}/{account_or_zone_id}/access/identity_providers/{uuid}">client.zero_trust.identity_providers.<a href="./src/cloudflare/resources/zero_trust/identity_providers.py">delete</a>(uuid, \*, account_id, zone_id) -> <a href="./src/cloudflare/types/zero_trust/identity_provider_delete_response.py">IdentityProviderDeleteResponse</a></code>
+- <code title="get /{account_or_zone}/{account_or_zone_id}/access/identity_providers/{uuid}">client.zero_trust.identity_providers.<a href="./src/cloudflare/resources/zero_trust/identity_providers.py">get</a>(uuid, \*, account_id, zone_id) -> <a href="./src/cloudflare/types/zero_trust/identity_provider_get_response.py">IdentityProviderGetResponse</a></code>
+
+## Organizations
+
+Types:
+
+```python
+from cloudflare.types.zero_trust import (
+    OrganizationCreateResponse,
+    OrganizationUpdateResponse,
+    OrganizationListResponse,
+    OrganizationRevokeUsersResponse,
+)
+```
+
+Methods:
+
+- <code title="post /{account_or_zone}/{account_or_zone_id}/access/organizations">client.zero_trust.organizations.<a href="./src/cloudflare/resources/zero_trust/organizations.py">create</a>(\*, account_id, zone_id, \*\*<a href="src/cloudflare/types/zero_trust/organization_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/organization_create_response.py">OrganizationCreateResponse</a></code>
+- <code title="put /{account_or_zone}/{account_or_zone_id}/access/organizations">client.zero_trust.organizations.<a href="./src/cloudflare/resources/zero_trust/organizations.py">update</a>(\*, account_id, zone_id, \*\*<a href="src/cloudflare/types/zero_trust/organization_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/organization_update_response.py">OrganizationUpdateResponse</a></code>
+- <code title="get /{account_or_zone}/{account_or_zone_id}/access/organizations">client.zero_trust.organizations.<a href="./src/cloudflare/resources/zero_trust/organizations.py">list</a>(\*, account_id, zone_id) -> <a href="./src/cloudflare/types/zero_trust/organization_list_response.py">OrganizationListResponse</a></code>
+- <code title="post /{account_or_zone}/{account_or_zone_id}/access/organizations/revoke_user">client.zero_trust.organizations.<a href="./src/cloudflare/resources/zero_trust/organizations.py">revoke_users</a>(\*, account_id, zone_id, \*\*<a href="src/cloudflare/types/zero_trust/organization_revoke_users_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/organization_revoke_users_response.py">Optional</a></code>
+
+## Seats
+
+Types:
+
+```python
+from cloudflare.types.zero_trust import SeatEditResponse
+```
+
+Methods:
+
+- <code title="patch /accounts/{identifier}/access/seats">client.zero_trust.seats.<a href="./src/cloudflare/resources/zero_trust/seats.py">edit</a>(identifier, \*\*<a href="src/cloudflare/types/zero_trust/seat_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/seat_edit_response.py">Optional</a></code>
 
 ## Access
 
@@ -5239,48 +5314,6 @@ Methods:
 - <code title="delete /{account_or_zone}/{account_or_zone_id}/access/groups/{uuid}">client.zero_trust.access.groups.<a href="./src/cloudflare/resources/zero_trust/access/groups.py">delete</a>(uuid, \*, account_id, zone_id) -> <a href="./src/cloudflare/types/zero_trust/access/group_delete_response.py">GroupDeleteResponse</a></code>
 - <code title="get /{account_or_zone}/{account_or_zone_id}/access/groups/{uuid}">client.zero_trust.access.groups.<a href="./src/cloudflare/resources/zero_trust/access/groups.py">get</a>(uuid, \*, account_id, zone_id) -> <a href="./src/cloudflare/types/zero_trust/access/group_get_response.py">GroupGetResponse</a></code>
 
-### IdentityProviders
-
-Types:
-
-```python
-from cloudflare.types.zero_trust.access import (
-    IdentityProviderCreateResponse,
-    IdentityProviderUpdateResponse,
-    IdentityProviderListResponse,
-    IdentityProviderDeleteResponse,
-    IdentityProviderGetResponse,
-)
-```
-
-Methods:
-
-- <code title="post /{account_or_zone}/{account_or_zone_id}/access/identity_providers">client.zero_trust.access.identity_providers.<a href="./src/cloudflare/resources/zero_trust/access/identity_providers.py">create</a>(\*, account_id, zone_id, \*\*<a href="src/cloudflare/types/zero_trust/access/identity_provider_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/access/identity_provider_create_response.py">IdentityProviderCreateResponse</a></code>
-- <code title="put /{account_or_zone}/{account_or_zone_id}/access/identity_providers/{uuid}">client.zero_trust.access.identity_providers.<a href="./src/cloudflare/resources/zero_trust/access/identity_providers.py">update</a>(uuid, \*, account_id, zone_id, \*\*<a href="src/cloudflare/types/zero_trust/access/identity_provider_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/access/identity_provider_update_response.py">IdentityProviderUpdateResponse</a></code>
-- <code title="get /{account_or_zone}/{account_or_zone_id}/access/identity_providers">client.zero_trust.access.identity_providers.<a href="./src/cloudflare/resources/zero_trust/access/identity_providers.py">list</a>(\*, account_id, zone_id) -> <a href="./src/cloudflare/types/zero_trust/access/identity_provider_list_response.py">Optional</a></code>
-- <code title="delete /{account_or_zone}/{account_or_zone_id}/access/identity_providers/{uuid}">client.zero_trust.access.identity_providers.<a href="./src/cloudflare/resources/zero_trust/access/identity_providers.py">delete</a>(uuid, \*, account_id, zone_id) -> <a href="./src/cloudflare/types/zero_trust/access/identity_provider_delete_response.py">IdentityProviderDeleteResponse</a></code>
-- <code title="get /{account_or_zone}/{account_or_zone_id}/access/identity_providers/{uuid}">client.zero_trust.access.identity_providers.<a href="./src/cloudflare/resources/zero_trust/access/identity_providers.py">get</a>(uuid, \*, account_id, zone_id) -> <a href="./src/cloudflare/types/zero_trust/access/identity_provider_get_response.py">IdentityProviderGetResponse</a></code>
-
-### Organizations
-
-Types:
-
-```python
-from cloudflare.types.zero_trust.access import (
-    OrganizationCreateResponse,
-    OrganizationUpdateResponse,
-    OrganizationListResponse,
-    OrganizationRevokeUsersResponse,
-)
-```
-
-Methods:
-
-- <code title="post /{account_or_zone}/{account_or_zone_id}/access/organizations">client.zero_trust.access.organizations.<a href="./src/cloudflare/resources/zero_trust/access/organizations.py">create</a>(\*, account_id, zone_id, \*\*<a href="src/cloudflare/types/zero_trust/access/organization_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/access/organization_create_response.py">OrganizationCreateResponse</a></code>
-- <code title="put /{account_or_zone}/{account_or_zone_id}/access/organizations">client.zero_trust.access.organizations.<a href="./src/cloudflare/resources/zero_trust/access/organizations.py">update</a>(\*, account_id, zone_id, \*\*<a href="src/cloudflare/types/zero_trust/access/organization_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/access/organization_update_response.py">OrganizationUpdateResponse</a></code>
-- <code title="get /{account_or_zone}/{account_or_zone_id}/access/organizations">client.zero_trust.access.organizations.<a href="./src/cloudflare/resources/zero_trust/access/organizations.py">list</a>(\*, account_id, zone_id) -> <a href="./src/cloudflare/types/zero_trust/access/organization_list_response.py">OrganizationListResponse</a></code>
-- <code title="post /{account_or_zone}/{account_or_zone_id}/access/organizations/revoke_user">client.zero_trust.access.organizations.<a href="./src/cloudflare/resources/zero_trust/access/organizations.py">revoke_users</a>(\*, account_id, zone_id, \*\*<a href="src/cloudflare/types/zero_trust/access/organization_revoke_users_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/access/organization_revoke_users_response.py">Optional</a></code>
-
 ### ServiceTokens
 
 Types:
@@ -5354,18 +5387,6 @@ from cloudflare.types.zero_trust.access.logs import AccessRequestListResponse
 Methods:
 
 - <code title="get /accounts/{identifier}/access/logs/access_requests">client.zero_trust.access.logs.access_requests.<a href="./src/cloudflare/resources/zero_trust/access/logs/access_requests.py">list</a>(identifier) -> <a href="./src/cloudflare/types/zero_trust/access/logs/access_request_list_response.py">Optional</a></code>
-
-### Seats
-
-Types:
-
-```python
-from cloudflare.types.zero_trust.access import SeatEditResponse
-```
-
-Methods:
-
-- <code title="patch /accounts/{identifier}/access/seats">client.zero_trust.access.seats.<a href="./src/cloudflare/resources/zero_trust/access/seats.py">edit</a>(identifier, \*\*<a href="src/cloudflare/types/zero_trust/access/seat_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/access/seat_edit_response.py">Optional</a></code>
 
 ### Users
 
@@ -6393,17 +6414,17 @@ Methods:
 - <code title="get /radar/verified_bots/top/bots">client.radar.verified_bots.top.<a href="./src/cloudflare/resources/radar/verified_bots/top.py">bots</a>(\*\*<a href="src/cloudflare/types/radar/verified_bots/top_bots_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/verified_bots/top_bots_response.py">TopBotsResponse</a></code>
 - <code title="get /radar/verified_bots/top/categories">client.radar.verified_bots.top.<a href="./src/cloudflare/resources/radar/verified_bots/top.py">categories</a>(\*\*<a href="src/cloudflare/types/radar/verified_bots/top_categories_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/verified_bots/top_categories_response.py">TopCategoriesResponse</a></code>
 
-## As112
+## AS112
 
 Types:
 
 ```python
-from cloudflare.types.radar import As112TimeseriesResponse
+from cloudflare.types.radar import AS112TimeseriesResponse
 ```
 
 Methods:
 
-- <code title="get /radar/as112/timeseries">client.radar.as112.<a href="./src/cloudflare/resources/radar/as112/as112.py">timeseries</a>(\*\*<a href="src/cloudflare/types/radar/as112_timeseries_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/as112_timeseries_response.py">As112TimeseriesResponse</a></code>
+- <code title="get /radar/as112/timeseries">client.radar.as112.<a href="./src/cloudflare/resources/radar/as112/as112.py">timeseries</a>(\*\*<a href="src/cloudflare/types/radar/as112_timeseries_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/as112_timeseries_response.py">AS112TimeseriesResponse</a></code>
 
 ### Summary
 
@@ -7354,7 +7375,7 @@ Methods:
 
 - <code title="get /zones/{zone_id}/speed_api/pages">client.speed.pages.<a href="./src/cloudflare/resources/speed/pages.py">list</a>(\*, zone_id) -> <a href="./src/cloudflare/types/speed/page_list_response.py">Optional</a></code>
 
-# DcvDelegation
+# DCVDelegation
 
 ## UUID
 
@@ -7412,18 +7433,18 @@ Methods:
 
 - <code title="get /zones/{zone_identifier}/snippets/{snippet_name}/content">client.snippets.content.<a href="./src/cloudflare/resources/snippets/content.py">get</a>(snippet_name, \*, zone_identifier) -> BinaryAPIResponse</code>
 
-## SnippetRules
+## Rules
 
 Types:
 
 ```python
-from cloudflare.types.snippets import SnippetRuleUpdateResponse, SnippetRuleListResponse
+from cloudflare.types.snippets import RuleUpdateResponse, RuleListResponse
 ```
 
 Methods:
 
-- <code title="put /zones/{zone_identifier}/snippets/snippet_rules">client.snippets.snippet_rules.<a href="./src/cloudflare/resources/snippets/snippet_rules.py">update</a>(zone_identifier, \*\*<a href="src/cloudflare/types/snippets/snippet_rule_update_params.py">params</a>) -> <a href="./src/cloudflare/types/snippets/snippet_rule_update_response.py">SnippetRuleUpdateResponse</a></code>
-- <code title="get /zones/{zone_identifier}/snippets/snippet_rules">client.snippets.snippet_rules.<a href="./src/cloudflare/resources/snippets/snippet_rules.py">list</a>(zone_identifier) -> <a href="./src/cloudflare/types/snippets/snippet_rule_list_response.py">SnippetRuleListResponse</a></code>
+- <code title="put /zones/{zone_identifier}/snippets/snippet_rules">client.snippets.rules.<a href="./src/cloudflare/resources/snippets/rules.py">update</a>(zone_identifier, \*\*<a href="src/cloudflare/types/snippets/rule_update_params.py">params</a>) -> <a href="./src/cloudflare/types/snippets/rule_update_response.py">RuleUpdateResponse</a></code>
+- <code title="get /zones/{zone_identifier}/snippets/snippet_rules">client.snippets.rules.<a href="./src/cloudflare/resources/snippets/rules.py">list</a>(zone_identifier) -> <a href="./src/cloudflare/types/snippets/rule_list_response.py">RuleListResponse</a></code>
 
 # Calls
 

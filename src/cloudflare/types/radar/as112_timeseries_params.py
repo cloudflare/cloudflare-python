@@ -8,10 +8,10 @@ from typing_extensions import Literal, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
-__all__ = ["As112TimeseriesParams"]
+__all__ = ["AS112TimeseriesParams"]
 
 
-class As112TimeseriesParams(TypedDict, total=False):
+class AS112TimeseriesParams(TypedDict, total=False):
     agg_interval: Annotated[Literal["15m", "1h", "1d", "1w"], PropertyInfo(alias="aggInterval")]
     """
     Aggregation interval results should be returned in (for example, in 15 minutes

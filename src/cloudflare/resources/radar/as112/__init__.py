@@ -9,12 +9,12 @@ from .top import (
     AsyncTopWithStreamingResponse,
 )
 from .as112 import (
-    As112,
-    AsyncAs112,
-    As112WithRawResponse,
-    AsyncAs112WithRawResponse,
-    As112WithStreamingResponse,
-    AsyncAs112WithStreamingResponse,
+    AS112,
+    AsyncAS112,
+    AS112WithRawResponse,
+    AsyncAS112WithRawResponse,
+    AS112WithStreamingResponse,
+    AsyncAS112WithStreamingResponse,
 )
 from .summary import (
     Summary,
@@ -52,10 +52,10 @@ __all__ = [
     "AsyncTopWithRawResponse",
     "TopWithStreamingResponse",
     "AsyncTopWithStreamingResponse",
-    "As112",
-    "AsyncAs112",
-    "As112WithRawResponse",
-    "AsyncAs112WithRawResponse",
-    "As112WithStreamingResponse",
-    "AsyncAs112WithStreamingResponse",
+    "AS112",
+    "AsyncAS112",
+    "AS112WithRawResponse",
+    "AsyncAS112WithRawResponse",
+    "AS112WithStreamingResponse",
+    "AsyncAS112WithStreamingResponse",
 ]

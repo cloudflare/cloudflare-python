@@ -144,14 +144,6 @@ from .radar import (
     RadarWithStreamingResponse,
     AsyncRadarWithStreamingResponse,
 )
-from .roles import (
-    Roles,
-    AsyncRoles,
-    RolesWithRawResponse,
-    AsyncRolesWithRawResponse,
-    RolesWithStreamingResponse,
-    AsyncRolesWithStreamingResponse,
-)
 from .rules import (
     Rules,
     AsyncRules,
@@ -489,12 +481,12 @@ from .cloudforce_one import (
     AsyncCloudforceOneWithStreamingResponse,
 )
 from .dcv_delegation import (
-    DcvDelegation,
-    AsyncDcvDelegation,
-    DcvDelegationWithRawResponse,
-    AsyncDcvDelegationWithRawResponse,
-    DcvDelegationWithStreamingResponse,
-    AsyncDcvDelegationWithStreamingResponse,
+    DCVDelegation,
+    AsyncDCVDelegation,
+    DCVDelegationWithRawResponse,
+    AsyncDCVDelegationWithRawResponse,
+    DCVDelegationWithStreamingResponse,
+    AsyncDCVDelegationWithStreamingResponse,
 )
 from .load_balancers import (
     LoadBalancers,
@@ -568,6 +560,14 @@ from .mtls_certificates import (
     MTLSCertificatesWithStreamingResponse,
     AsyncMTLSCertificatesWithStreamingResponse,
 )
+from .url_normalization import (
+    URLNormalization,
+    AsyncURLNormalization,
+    URLNormalizationWithRawResponse,
+    AsyncURLNormalizationWithRawResponse,
+    URLNormalizationWithStreamingResponse,
+    AsyncURLNormalizationWithStreamingResponse,
+)
 from .custom_nameservers import (
     CustomNameservers,
     AsyncCustomNameservers,
@@ -575,14 +575,6 @@ from .custom_nameservers import (
     AsyncCustomNameserversWithRawResponse,
     CustomNameserversWithStreamingResponse,
     AsyncCustomNameserversWithStreamingResponse,
-)
-from .url_normalizations import (
-    URLNormalizations,
-    AsyncURLNormalizations,
-    URLNormalizationsWithRawResponse,
-    AsyncURLNormalizationsWithRawResponse,
-    URLNormalizationsWithStreamingResponse,
-    AsyncURLNormalizationsWithStreamingResponse,
 )
 from .client_certificates import (
     ClientCertificates,
@@ -904,12 +896,12 @@ __all__ = [
     "AsyncRulesetsWithRawResponse",
     "RulesetsWithStreamingResponse",
     "AsyncRulesetsWithStreamingResponse",
-    "URLNormalizations",
-    "AsyncURLNormalizations",
-    "URLNormalizationsWithRawResponse",
-    "AsyncURLNormalizationsWithRawResponse",
-    "URLNormalizationsWithStreamingResponse",
-    "AsyncURLNormalizationsWithStreamingResponse",
+    "URLNormalization",
+    "AsyncURLNormalization",
+    "URLNormalizationWithRawResponse",
+    "AsyncURLNormalizationWithRawResponse",
+    "URLNormalizationWithStreamingResponse",
+    "AsyncURLNormalizationWithStreamingResponse",
     "Spectrum",
     "AsyncSpectrum",
     "SpectrumWithRawResponse",
@@ -1000,12 +992,6 @@ __all__ = [
     "AsyncRequestTracersWithRawResponse",
     "RequestTracersWithStreamingResponse",
     "AsyncRequestTracersWithStreamingResponse",
-    "Roles",
-    "AsyncRoles",
-    "RolesWithRawResponse",
-    "AsyncRolesWithRawResponse",
-    "RolesWithStreamingResponse",
-    "AsyncRolesWithStreamingResponse",
     "Rules",
     "AsyncRules",
     "RulesWithRawResponse",
@@ -1120,12 +1106,12 @@ __all__ = [
     "AsyncSpeedWithRawResponse",
     "SpeedWithStreamingResponse",
     "AsyncSpeedWithStreamingResponse",
-    "DcvDelegation",
-    "AsyncDcvDelegation",
-    "DcvDelegationWithRawResponse",
-    "AsyncDcvDelegationWithRawResponse",
-    "DcvDelegationWithStreamingResponse",
-    "AsyncDcvDelegationWithStreamingResponse",
+    "DCVDelegation",
+    "AsyncDCVDelegation",
+    "DCVDelegationWithRawResponse",
+    "AsyncDCVDelegationWithRawResponse",
+    "DCVDelegationWithStreamingResponse",
+    "AsyncDCVDelegationWithStreamingResponse",
     "Hostnames",
     "AsyncHostnames",
     "HostnamesWithRawResponse",

@@ -24,14 +24,6 @@ from .tags import (
     TagsWithStreamingResponse,
     AsyncTagsWithStreamingResponse,
 )
-from .seats import (
-    Seats,
-    AsyncSeats,
-    SeatsWithRawResponse,
-    AsyncSeatsWithRawResponse,
-    SeatsWithStreamingResponse,
-    AsyncSeatsWithStreamingResponse,
-)
 from .users import (
     Users,
     AsyncUsers,
@@ -88,14 +80,6 @@ from .custom_pages import (
     CustomPagesWithStreamingResponse,
     AsyncCustomPagesWithStreamingResponse,
 )
-from .organizations import (
-    Organizations,
-    AsyncOrganizations,
-    OrganizationsWithRawResponse,
-    AsyncOrganizationsWithRawResponse,
-    OrganizationsWithStreamingResponse,
-    AsyncOrganizationsWithStreamingResponse,
-)
 from .service_tokens import (
     ServiceTokens,
     AsyncServiceTokens,
@@ -103,14 +87,6 @@ from .service_tokens import (
     AsyncServiceTokensWithRawResponse,
     ServiceTokensWithStreamingResponse,
     AsyncServiceTokensWithStreamingResponse,
-)
-from .identity_providers import (
-    IdentityProviders,
-    AsyncIdentityProviders,
-    IdentityProvidersWithRawResponse,
-    AsyncIdentityProvidersWithRawResponse,
-    IdentityProvidersWithStreamingResponse,
-    AsyncIdentityProvidersWithStreamingResponse,
 )
 
 __all__ = [
@@ -132,18 +108,6 @@ __all__ = [
     "AsyncGroupsWithRawResponse",
     "GroupsWithStreamingResponse",
     "AsyncGroupsWithStreamingResponse",
-    "IdentityProviders",
-    "AsyncIdentityProviders",
-    "IdentityProvidersWithRawResponse",
-    "AsyncIdentityProvidersWithRawResponse",
-    "IdentityProvidersWithStreamingResponse",
-    "AsyncIdentityProvidersWithStreamingResponse",
-    "Organizations",
-    "AsyncOrganizations",
-    "OrganizationsWithRawResponse",
-    "AsyncOrganizationsWithRawResponse",
-    "OrganizationsWithStreamingResponse",
-    "AsyncOrganizationsWithStreamingResponse",
     "ServiceTokens",
     "AsyncServiceTokens",
     "ServiceTokensWithRawResponse",
@@ -168,12 +132,6 @@ __all__ = [
     "AsyncLogsWithRawResponse",
     "LogsWithStreamingResponse",
     "AsyncLogsWithStreamingResponse",
-    "Seats",
-    "AsyncSeats",
-    "SeatsWithRawResponse",
-    "AsyncSeatsWithRawResponse",
-    "SeatsWithStreamingResponse",
-    "AsyncSeatsWithStreamingResponse",
     "Users",
     "AsyncUsers",
     "UsersWithRawResponse",

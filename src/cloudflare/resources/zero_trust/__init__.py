@@ -16,6 +16,14 @@ from .dlp import (
     DLPWithStreamingResponse,
     AsyncDLPWithStreamingResponse,
 )
+from .seats import (
+    Seats,
+    AsyncSeats,
+    SeatsWithRawResponse,
+    AsyncSeatsWithRawResponse,
+    SeatsWithStreamingResponse,
+    AsyncSeatsWithStreamingResponse,
+)
 from .access import (
     Access,
     AsyncAccess,
@@ -56,6 +64,22 @@ from .zero_trust import (
     ZeroTrustWithStreamingResponse,
     AsyncZeroTrustWithStreamingResponse,
 )
+from .organizations import (
+    Organizations,
+    AsyncOrganizations,
+    OrganizationsWithRawResponse,
+    AsyncOrganizationsWithRawResponse,
+    OrganizationsWithStreamingResponse,
+    AsyncOrganizationsWithStreamingResponse,
+)
+from .identity_providers import (
+    IdentityProviders,
+    AsyncIdentityProviders,
+    IdentityProvidersWithRawResponse,
+    AsyncIdentityProvidersWithRawResponse,
+    IdentityProvidersWithStreamingResponse,
+    AsyncIdentityProvidersWithStreamingResponse,
+)
 from .connectivity_settings import (
     ConnectivitySettings,
     AsyncConnectivitySettings,
@@ -66,6 +90,24 @@ from .connectivity_settings import (
 )
 
 __all__ = [
+    "IdentityProviders",
+    "AsyncIdentityProviders",
+    "IdentityProvidersWithRawResponse",
+    "AsyncIdentityProvidersWithRawResponse",
+    "IdentityProvidersWithStreamingResponse",
+    "AsyncIdentityProvidersWithStreamingResponse",
+    "Organizations",
+    "AsyncOrganizations",
+    "OrganizationsWithRawResponse",
+    "AsyncOrganizationsWithRawResponse",
+    "OrganizationsWithStreamingResponse",
+    "AsyncOrganizationsWithStreamingResponse",
+    "Seats",
+    "AsyncSeats",
+    "SeatsWithRawResponse",
+    "AsyncSeatsWithRawResponse",
+    "SeatsWithStreamingResponse",
+    "AsyncSeatsWithStreamingResponse",
     "Access",
     "AsyncAccess",
     "AccessWithRawResponse",

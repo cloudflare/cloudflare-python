@@ -27,12 +27,12 @@ from .http import (
     AsyncHTTPWithStreamingResponse,
 )
 from .as112 import (
-    As112,
-    AsyncAs112,
-    As112WithRawResponse,
-    AsyncAs112WithRawResponse,
-    As112WithStreamingResponse,
-    AsyncAs112WithStreamingResponse,
+    AS112,
+    AsyncAS112,
+    AS112WithRawResponse,
+    AsyncAS112WithRawResponse,
+    AS112WithStreamingResponse,
+    AsyncAS112WithStreamingResponse,
 )
 from .email import (
     Email,
@@ -111,7 +111,7 @@ from .annotations import (
     AnnotationsWithStreamingResponse,
     AsyncAnnotationsWithStreamingResponse,
 )
-from .as112.as112 import As112, AsyncAs112
+from .as112.as112 import AS112, AsyncAS112
 from .email.email import Email, AsyncEmail
 from .verified_bots import (
     VerifiedBots,
@@ -179,8 +179,8 @@ class Radar(SyncAPIResource):
         return VerifiedBots(self._client)
 
     @cached_property
-    def as112(self) -> As112:
-        return As112(self._client)
+    def as112(self) -> AS112:
+        return AS112(self._client)
 
     @cached_property
     def connection_tampering(self) -> ConnectionTampering:
@@ -253,8 +253,8 @@ class AsyncRadar(AsyncAPIResource):
         return AsyncVerifiedBots(self._client)
 
     @cached_property
-    def as112(self) -> AsyncAs112:
-        return AsyncAs112(self._client)
+    def as112(self) -> AsyncAS112:
+        return AsyncAS112(self._client)
 
     @cached_property
     def connection_tampering(self) -> AsyncConnectionTampering:
@@ -330,8 +330,8 @@ class RadarWithRawResponse:
         return VerifiedBotsWithRawResponse(self._radar.verified_bots)
 
     @cached_property
-    def as112(self) -> As112WithRawResponse:
-        return As112WithRawResponse(self._radar.as112)
+    def as112(self) -> AS112WithRawResponse:
+        return AS112WithRawResponse(self._radar.as112)
 
     @cached_property
     def connection_tampering(self) -> ConnectionTamperingWithRawResponse:
@@ -399,8 +399,8 @@ class AsyncRadarWithRawResponse:
         return AsyncVerifiedBotsWithRawResponse(self._radar.verified_bots)
 
     @cached_property
-    def as112(self) -> AsyncAs112WithRawResponse:
-        return AsyncAs112WithRawResponse(self._radar.as112)
+    def as112(self) -> AsyncAS112WithRawResponse:
+        return AsyncAS112WithRawResponse(self._radar.as112)
 
     @cached_property
     def connection_tampering(self) -> AsyncConnectionTamperingWithRawResponse:
@@ -468,8 +468,8 @@ class RadarWithStreamingResponse:
         return VerifiedBotsWithStreamingResponse(self._radar.verified_bots)
 
     @cached_property
-    def as112(self) -> As112WithStreamingResponse:
-        return As112WithStreamingResponse(self._radar.as112)
+    def as112(self) -> AS112WithStreamingResponse:
+        return AS112WithStreamingResponse(self._radar.as112)
 
     @cached_property
     def connection_tampering(self) -> ConnectionTamperingWithStreamingResponse:
@@ -537,8 +537,8 @@ class AsyncRadarWithStreamingResponse:
         return AsyncVerifiedBotsWithStreamingResponse(self._radar.verified_bots)
 
     @cached_property
-    def as112(self) -> AsyncAs112WithStreamingResponse:
-        return AsyncAs112WithStreamingResponse(self._radar.as112)
+    def as112(self) -> AsyncAS112WithStreamingResponse:
+        return AsyncAS112WithStreamingResponse(self._radar.as112)
 
     @cached_property
     def connection_tampering(self) -> AsyncConnectionTamperingWithStreamingResponse:

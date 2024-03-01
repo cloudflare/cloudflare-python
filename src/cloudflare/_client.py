@@ -87,7 +87,7 @@ class Cloudflare(SyncAPIClient):
     managed_headers: resources.ManagedHeaders
     page_shield: resources.PageShield
     rulesets: resources.Rulesets
-    url_normalizations: resources.URLNormalizations
+    url_normalization: resources.URLNormalization
     spectrum: resources.Spectrum
     addressing: resources.Addressing
     audit_logs: resources.AuditLogs
@@ -103,7 +103,6 @@ class Cloudflare(SyncAPIClient):
     pcaps: resources.PCAPs
     registrar: resources.Registrar
     request_tracers: resources.RequestTracers
-    roles: resources.Roles
     rules: resources.Rules
     storage: resources.Storage
     stream: resources.Stream
@@ -123,7 +122,7 @@ class Cloudflare(SyncAPIClient):
     bot_management: resources.BotManagement
     origin_post_quantum_encryption: resources.OriginPostQuantumEncryption
     speed: resources.Speed
-    dcv_delegation: resources.DcvDelegation
+    dcv_delegation: resources.DCVDelegation
     hostnames: resources.Hostnames
     snippets: resources.Snippets
     calls: resources.Calls
@@ -258,7 +257,7 @@ class Cloudflare(SyncAPIClient):
         self.managed_headers = resources.ManagedHeaders(self)
         self.page_shield = resources.PageShield(self)
         self.rulesets = resources.Rulesets(self)
-        self.url_normalizations = resources.URLNormalizations(self)
+        self.url_normalization = resources.URLNormalization(self)
         self.spectrum = resources.Spectrum(self)
         self.addressing = resources.Addressing(self)
         self.audit_logs = resources.AuditLogs(self)
@@ -274,7 +273,6 @@ class Cloudflare(SyncAPIClient):
         self.pcaps = resources.PCAPs(self)
         self.registrar = resources.Registrar(self)
         self.request_tracers = resources.RequestTracers(self)
-        self.roles = resources.Roles(self)
         self.rules = resources.Rules(self)
         self.storage = resources.Storage(self)
         self.stream = resources.Stream(self)
@@ -294,7 +292,7 @@ class Cloudflare(SyncAPIClient):
         self.bot_management = resources.BotManagement(self)
         self.origin_post_quantum_encryption = resources.OriginPostQuantumEncryption(self)
         self.speed = resources.Speed(self)
-        self.dcv_delegation = resources.DcvDelegation(self)
+        self.dcv_delegation = resources.DCVDelegation(self)
         self.hostnames = resources.Hostnames(self)
         self.snippets = resources.Snippets(self)
         self.calls = resources.Calls(self)
@@ -483,7 +481,7 @@ class AsyncCloudflare(AsyncAPIClient):
     managed_headers: resources.AsyncManagedHeaders
     page_shield: resources.AsyncPageShield
     rulesets: resources.AsyncRulesets
-    url_normalizations: resources.AsyncURLNormalizations
+    url_normalization: resources.AsyncURLNormalization
     spectrum: resources.AsyncSpectrum
     addressing: resources.AsyncAddressing
     audit_logs: resources.AsyncAuditLogs
@@ -499,7 +497,6 @@ class AsyncCloudflare(AsyncAPIClient):
     pcaps: resources.AsyncPCAPs
     registrar: resources.AsyncRegistrar
     request_tracers: resources.AsyncRequestTracers
-    roles: resources.AsyncRoles
     rules: resources.AsyncRules
     storage: resources.AsyncStorage
     stream: resources.AsyncStream
@@ -519,7 +516,7 @@ class AsyncCloudflare(AsyncAPIClient):
     bot_management: resources.AsyncBotManagement
     origin_post_quantum_encryption: resources.AsyncOriginPostQuantumEncryption
     speed: resources.AsyncSpeed
-    dcv_delegation: resources.AsyncDcvDelegation
+    dcv_delegation: resources.AsyncDCVDelegation
     hostnames: resources.AsyncHostnames
     snippets: resources.AsyncSnippets
     calls: resources.AsyncCalls
@@ -654,7 +651,7 @@ class AsyncCloudflare(AsyncAPIClient):
         self.managed_headers = resources.AsyncManagedHeaders(self)
         self.page_shield = resources.AsyncPageShield(self)
         self.rulesets = resources.AsyncRulesets(self)
-        self.url_normalizations = resources.AsyncURLNormalizations(self)
+        self.url_normalization = resources.AsyncURLNormalization(self)
         self.spectrum = resources.AsyncSpectrum(self)
         self.addressing = resources.AsyncAddressing(self)
         self.audit_logs = resources.AsyncAuditLogs(self)
@@ -670,7 +667,6 @@ class AsyncCloudflare(AsyncAPIClient):
         self.pcaps = resources.AsyncPCAPs(self)
         self.registrar = resources.AsyncRegistrar(self)
         self.request_tracers = resources.AsyncRequestTracers(self)
-        self.roles = resources.AsyncRoles(self)
         self.rules = resources.AsyncRules(self)
         self.storage = resources.AsyncStorage(self)
         self.stream = resources.AsyncStream(self)
@@ -690,7 +686,7 @@ class AsyncCloudflare(AsyncAPIClient):
         self.bot_management = resources.AsyncBotManagement(self)
         self.origin_post_quantum_encryption = resources.AsyncOriginPostQuantumEncryption(self)
         self.speed = resources.AsyncSpeed(self)
-        self.dcv_delegation = resources.AsyncDcvDelegation(self)
+        self.dcv_delegation = resources.AsyncDCVDelegation(self)
         self.hostnames = resources.AsyncHostnames(self)
         self.snippets = resources.AsyncSnippets(self)
         self.calls = resources.AsyncCalls(self)
@@ -880,7 +876,7 @@ class CloudflareWithRawResponse:
         self.managed_headers = resources.ManagedHeadersWithRawResponse(client.managed_headers)
         self.page_shield = resources.PageShieldWithRawResponse(client.page_shield)
         self.rulesets = resources.RulesetsWithRawResponse(client.rulesets)
-        self.url_normalizations = resources.URLNormalizationsWithRawResponse(client.url_normalizations)
+        self.url_normalization = resources.URLNormalizationWithRawResponse(client.url_normalization)
         self.spectrum = resources.SpectrumWithRawResponse(client.spectrum)
         self.addressing = resources.AddressingWithRawResponse(client.addressing)
         self.audit_logs = resources.AuditLogsWithRawResponse(client.audit_logs)
@@ -896,7 +892,6 @@ class CloudflareWithRawResponse:
         self.pcaps = resources.PCAPsWithRawResponse(client.pcaps)
         self.registrar = resources.RegistrarWithRawResponse(client.registrar)
         self.request_tracers = resources.RequestTracersWithRawResponse(client.request_tracers)
-        self.roles = resources.RolesWithRawResponse(client.roles)
         self.rules = resources.RulesWithRawResponse(client.rules)
         self.storage = resources.StorageWithRawResponse(client.storage)
         self.stream = resources.StreamWithRawResponse(client.stream)
@@ -918,7 +913,7 @@ class CloudflareWithRawResponse:
             client.origin_post_quantum_encryption
         )
         self.speed = resources.SpeedWithRawResponse(client.speed)
-        self.dcv_delegation = resources.DcvDelegationWithRawResponse(client.dcv_delegation)
+        self.dcv_delegation = resources.DCVDelegationWithRawResponse(client.dcv_delegation)
         self.hostnames = resources.HostnamesWithRawResponse(client.hostnames)
         self.snippets = resources.SnippetsWithRawResponse(client.snippets)
         self.calls = resources.CallsWithRawResponse(client.calls)
@@ -970,7 +965,7 @@ class AsyncCloudflareWithRawResponse:
         self.managed_headers = resources.AsyncManagedHeadersWithRawResponse(client.managed_headers)
         self.page_shield = resources.AsyncPageShieldWithRawResponse(client.page_shield)
         self.rulesets = resources.AsyncRulesetsWithRawResponse(client.rulesets)
-        self.url_normalizations = resources.AsyncURLNormalizationsWithRawResponse(client.url_normalizations)
+        self.url_normalization = resources.AsyncURLNormalizationWithRawResponse(client.url_normalization)
         self.spectrum = resources.AsyncSpectrumWithRawResponse(client.spectrum)
         self.addressing = resources.AsyncAddressingWithRawResponse(client.addressing)
         self.audit_logs = resources.AsyncAuditLogsWithRawResponse(client.audit_logs)
@@ -988,7 +983,6 @@ class AsyncCloudflareWithRawResponse:
         self.pcaps = resources.AsyncPCAPsWithRawResponse(client.pcaps)
         self.registrar = resources.AsyncRegistrarWithRawResponse(client.registrar)
         self.request_tracers = resources.AsyncRequestTracersWithRawResponse(client.request_tracers)
-        self.roles = resources.AsyncRolesWithRawResponse(client.roles)
         self.rules = resources.AsyncRulesWithRawResponse(client.rules)
         self.storage = resources.AsyncStorageWithRawResponse(client.storage)
         self.stream = resources.AsyncStreamWithRawResponse(client.stream)
@@ -1010,7 +1004,7 @@ class AsyncCloudflareWithRawResponse:
             client.origin_post_quantum_encryption
         )
         self.speed = resources.AsyncSpeedWithRawResponse(client.speed)
-        self.dcv_delegation = resources.AsyncDcvDelegationWithRawResponse(client.dcv_delegation)
+        self.dcv_delegation = resources.AsyncDCVDelegationWithRawResponse(client.dcv_delegation)
         self.hostnames = resources.AsyncHostnamesWithRawResponse(client.hostnames)
         self.snippets = resources.AsyncSnippetsWithRawResponse(client.snippets)
         self.calls = resources.AsyncCallsWithRawResponse(client.calls)
@@ -1062,7 +1056,7 @@ class CloudflareWithStreamedResponse:
         self.managed_headers = resources.ManagedHeadersWithStreamingResponse(client.managed_headers)
         self.page_shield = resources.PageShieldWithStreamingResponse(client.page_shield)
         self.rulesets = resources.RulesetsWithStreamingResponse(client.rulesets)
-        self.url_normalizations = resources.URLNormalizationsWithStreamingResponse(client.url_normalizations)
+        self.url_normalization = resources.URLNormalizationWithStreamingResponse(client.url_normalization)
         self.spectrum = resources.SpectrumWithStreamingResponse(client.spectrum)
         self.addressing = resources.AddressingWithStreamingResponse(client.addressing)
         self.audit_logs = resources.AuditLogsWithStreamingResponse(client.audit_logs)
@@ -1080,7 +1074,6 @@ class CloudflareWithStreamedResponse:
         self.pcaps = resources.PCAPsWithStreamingResponse(client.pcaps)
         self.registrar = resources.RegistrarWithStreamingResponse(client.registrar)
         self.request_tracers = resources.RequestTracersWithStreamingResponse(client.request_tracers)
-        self.roles = resources.RolesWithStreamingResponse(client.roles)
         self.rules = resources.RulesWithStreamingResponse(client.rules)
         self.storage = resources.StorageWithStreamingResponse(client.storage)
         self.stream = resources.StreamWithStreamingResponse(client.stream)
@@ -1102,7 +1095,7 @@ class CloudflareWithStreamedResponse:
             client.origin_post_quantum_encryption
         )
         self.speed = resources.SpeedWithStreamingResponse(client.speed)
-        self.dcv_delegation = resources.DcvDelegationWithStreamingResponse(client.dcv_delegation)
+        self.dcv_delegation = resources.DCVDelegationWithStreamingResponse(client.dcv_delegation)
         self.hostnames = resources.HostnamesWithStreamingResponse(client.hostnames)
         self.snippets = resources.SnippetsWithStreamingResponse(client.snippets)
         self.calls = resources.CallsWithStreamingResponse(client.calls)
@@ -1156,7 +1149,7 @@ class AsyncCloudflareWithStreamedResponse:
         self.managed_headers = resources.AsyncManagedHeadersWithStreamingResponse(client.managed_headers)
         self.page_shield = resources.AsyncPageShieldWithStreamingResponse(client.page_shield)
         self.rulesets = resources.AsyncRulesetsWithStreamingResponse(client.rulesets)
-        self.url_normalizations = resources.AsyncURLNormalizationsWithStreamingResponse(client.url_normalizations)
+        self.url_normalization = resources.AsyncURLNormalizationWithStreamingResponse(client.url_normalization)
         self.spectrum = resources.AsyncSpectrumWithStreamingResponse(client.spectrum)
         self.addressing = resources.AsyncAddressingWithStreamingResponse(client.addressing)
         self.audit_logs = resources.AsyncAuditLogsWithStreamingResponse(client.audit_logs)
@@ -1174,7 +1167,6 @@ class AsyncCloudflareWithStreamedResponse:
         self.pcaps = resources.AsyncPCAPsWithStreamingResponse(client.pcaps)
         self.registrar = resources.AsyncRegistrarWithStreamingResponse(client.registrar)
         self.request_tracers = resources.AsyncRequestTracersWithStreamingResponse(client.request_tracers)
-        self.roles = resources.AsyncRolesWithStreamingResponse(client.roles)
         self.rules = resources.AsyncRulesWithStreamingResponse(client.rules)
         self.storage = resources.AsyncStorageWithStreamingResponse(client.storage)
         self.stream = resources.AsyncStreamWithStreamingResponse(client.stream)
@@ -1198,7 +1190,7 @@ class AsyncCloudflareWithStreamedResponse:
             client.origin_post_quantum_encryption
         )
         self.speed = resources.AsyncSpeedWithStreamingResponse(client.speed)
-        self.dcv_delegation = resources.AsyncDcvDelegationWithStreamingResponse(client.dcv_delegation)
+        self.dcv_delegation = resources.AsyncDCVDelegationWithStreamingResponse(client.dcv_delegation)
         self.hostnames = resources.AsyncHostnamesWithStreamingResponse(client.hostnames)
         self.snippets = resources.AsyncSnippetsWithStreamingResponse(client.snippets)
         self.calls = resources.AsyncCallsWithStreamingResponse(client.calls)

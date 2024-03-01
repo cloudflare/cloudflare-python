@@ -8,7 +8,7 @@ from pydantic import Field as FieldInfo
 from ..._models import BaseModel
 
 __all__ = [
-    "As112TimeseriesResponse",
+    "AS112TimeseriesResponse",
     "Meta",
     "MetaDateRange",
     "MetaConfidenceInfo",
@@ -63,7 +63,7 @@ class Serie0(BaseModel):
     values: List[str]
 
 
-class As112TimeseriesResponse(BaseModel):
+class AS112TimeseriesResponse(BaseModel):
     meta: Meta
 
     serie_0: Serie0
