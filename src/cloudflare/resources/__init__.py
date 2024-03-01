@@ -32,22 +32,6 @@ from .acm import (
     ACMWithStreamingResponse,
     AsyncACMWithStreamingResponse,
 )
-from .dex import (
-    DEX,
-    AsyncDEX,
-    DEXWithRawResponse,
-    AsyncDEXWithRawResponse,
-    DEXWithStreamingResponse,
-    AsyncDEXWithStreamingResponse,
-)
-from .dlp import (
-    DLP,
-    AsyncDLP,
-    DLPWithRawResponse,
-    AsyncDLPWithRawResponse,
-    DLPWithStreamingResponse,
-    AsyncDLPWithStreamingResponse,
-)
 from .dns import (
     DNS,
     AsyncDNS,
@@ -95,14 +79,6 @@ from .logs import (
     AsyncLogsWithRawResponse,
     LogsWithStreamingResponse,
     AsyncLogsWithStreamingResponse,
-)
-from .mnms import (
-    MNMs,
-    AsyncMNMs,
-    MNMsWithRawResponse,
-    AsyncMNMsWithRawResponse,
-    MNMsWithStreamingResponse,
-    AsyncMNMsWithStreamingResponse,
 )
 from .user import (
     User,
@@ -200,14 +176,6 @@ from .zones import (
     ZonesWithStreamingResponse,
     AsyncZonesWithStreamingResponse,
 )
-from .access import (
-    Access,
-    AsyncAccess,
-    AccessWithRawResponse,
-    AsyncAccessWithRawResponse,
-    AccessWithStreamingResponse,
-    AsyncAccessWithStreamingResponse,
-)
 from .dnssec import (
     DNSSEC,
     AsyncDNSSEC,
@@ -231,6 +199,14 @@ from .images import (
     AsyncImagesWithRawResponse,
     ImagesWithStreamingResponse,
     AsyncImagesWithStreamingResponse,
+)
+from .queues import (
+    Queues,
+    AsyncQueues,
+    QueuesWithRawResponse,
+    AsyncQueuesWithRawResponse,
+    QueuesWithStreamingResponse,
+    AsyncQueuesWithStreamingResponse,
 )
 from .stream import (
     Stream,
@@ -280,22 +256,6 @@ from .storage import (
     StorageWithStreamingResponse,
     AsyncStorageWithStreamingResponse,
 )
-from .teamnet import (
-    Teamnet,
-    AsyncTeamnet,
-    TeamnetWithRawResponse,
-    AsyncTeamnetWithRawResponse,
-    TeamnetWithStreamingResponse,
-    AsyncTeamnetWithStreamingResponse,
-)
-from .tunnels import (
-    Tunnels,
-    AsyncTunnels,
-    TunnelsWithRawResponse,
-    AsyncTunnelsWithRawResponse,
-    TunnelsWithStreamingResponse,
-    AsyncTunnelsWithStreamingResponse,
-)
 from .workers import (
     Workers,
     AsyncWorkers,
@@ -328,14 +288,6 @@ from .firewall import (
     FirewallWithStreamingResponse,
     AsyncFirewallWithStreamingResponse,
 )
-from .gateways import (
-    Gateways,
-    AsyncGateways,
-    GatewaysWithRawResponse,
-    AsyncGatewaysWithRawResponse,
-    GatewaysWithStreamingResponse,
-    AsyncGatewaysWithStreamingResponse,
-)
 from .rulesets import (
     Rulesets,
     AsyncRulesets,
@@ -359,14 +311,6 @@ from .spectrum import (
     AsyncSpectrumWithRawResponse,
     SpectrumWithStreamingResponse,
     AsyncSpectrumWithStreamingResponse,
-)
-from .addresses import (
-    Addresses,
-    AsyncAddresses,
-    AddressesWithRawResponse,
-    AsyncAddressesWithRawResponse,
-    AddressesWithStreamingResponse,
-    AsyncAddressesWithStreamingResponse,
 )
 from .hostnames import (
     Hostnames,
@@ -399,6 +343,14 @@ from .vectorize import (
     AsyncVectorizeWithRawResponse,
     VectorizeWithStreamingResponse,
     AsyncVectorizeWithStreamingResponse,
+)
+from .addressing import (
+    Addressing,
+    AsyncAddressing,
+    AddressingWithRawResponse,
+    AsyncAddressingWithRawResponse,
+    AddressingWithStreamingResponse,
+    AsyncAddressingWithStreamingResponse,
 )
 from .audit_logs import (
     AuditLogs,
@@ -439,14 +391,6 @@ from .diagnostics import (
     AsyncDiagnosticsWithRawResponse,
     DiagnosticsWithStreamingResponse,
     AsyncDiagnosticsWithStreamingResponse,
-)
-from .dispatchers import (
-    Dispatchers,
-    AsyncDispatchers,
-    DispatchersWithRawResponse,
-    AsyncDispatchersWithRawResponse,
-    DispatchersWithStreamingResponse,
-    AsyncDispatchersWithStreamingResponse,
 )
 from .memberships import (
     Memberships,
@@ -576,6 +520,14 @@ from .available_plans import (
     AvailablePlansWithStreamingResponse,
     AsyncAvailablePlansWithStreamingResponse,
 )
+from .durable_objects import (
+    DurableObjects,
+    AsyncDurableObjects,
+    DurableObjectsWithRawResponse,
+    AsyncDurableObjectsWithRawResponse,
+    DurableObjectsWithStreamingResponse,
+    AsyncDurableObjectsWithStreamingResponse,
+)
 from .managed_headers import (
     ManagedHeaders,
     AsyncManagedHeaders,
@@ -688,6 +640,14 @@ from .certificate_authorities import (
     CertificateAuthoritiesWithStreamingResponse,
     AsyncCertificateAuthoritiesWithStreamingResponse,
 )
+from .magic_network_monitoring import (
+    MagicNetworkMonitoring,
+    AsyncMagicNetworkMonitoring,
+    MagicNetworkMonitoringWithRawResponse,
+    AsyncMagicNetworkMonitoringWithRawResponse,
+    MagicNetworkMonitoringWithStreamingResponse,
+    AsyncMagicNetworkMonitoringWithStreamingResponse,
+)
 from .origin_post_quantum_encryption import (
     OriginPostQuantumEncryption,
     AsyncOriginPostQuantumEncryption,
@@ -740,12 +700,6 @@ __all__ = [
     "AsyncLoadBalancersWithRawResponse",
     "LoadBalancersWithStreamingResponse",
     "AsyncLoadBalancersWithStreamingResponse",
-    "Access",
-    "AsyncAccess",
-    "AccessWithRawResponse",
-    "AsyncAccessWithRawResponse",
-    "AccessWithStreamingResponse",
-    "AsyncAccessWithStreamingResponse",
     "Cache",
     "AsyncCache",
     "CacheWithRawResponse",
@@ -920,6 +874,18 @@ __all__ = [
     "AsyncKVWithRawResponse",
     "KVWithStreamingResponse",
     "AsyncKVWithStreamingResponse",
+    "DurableObjects",
+    "AsyncDurableObjects",
+    "DurableObjectsWithRawResponse",
+    "AsyncDurableObjectsWithRawResponse",
+    "DurableObjectsWithStreamingResponse",
+    "AsyncDurableObjectsWithStreamingResponse",
+    "Queues",
+    "AsyncQueues",
+    "QueuesWithRawResponse",
+    "AsyncQueuesWithRawResponse",
+    "QueuesWithStreamingResponse",
+    "AsyncQueuesWithStreamingResponse",
     "ManagedHeaders",
     "AsyncManagedHeaders",
     "ManagedHeadersWithRawResponse",
@@ -950,12 +916,12 @@ __all__ = [
     "AsyncSpectrumWithRawResponse",
     "SpectrumWithStreamingResponse",
     "AsyncSpectrumWithStreamingResponse",
-    "Addresses",
-    "AsyncAddresses",
-    "AddressesWithRawResponse",
-    "AsyncAddressesWithRawResponse",
-    "AddressesWithStreamingResponse",
-    "AsyncAddressesWithStreamingResponse",
+    "Addressing",
+    "AsyncAddressing",
+    "AddressingWithRawResponse",
+    "AsyncAddressingWithRawResponse",
+    "AddressingWithStreamingResponse",
+    "AsyncAddressingWithStreamingResponse",
     "AuditLogs",
     "AsyncAuditLogs",
     "AuditLogsWithRawResponse",
@@ -974,24 +940,12 @@ __all__ = [
     "AsyncBrandProtectionWithRawResponse",
     "BrandProtectionWithStreamingResponse",
     "AsyncBrandProtectionWithStreamingResponse",
-    "Tunnels",
-    "AsyncTunnels",
-    "TunnelsWithRawResponse",
-    "AsyncTunnelsWithRawResponse",
-    "TunnelsWithStreamingResponse",
-    "AsyncTunnelsWithStreamingResponse",
     "Diagnostics",
     "AsyncDiagnostics",
     "DiagnosticsWithRawResponse",
     "AsyncDiagnosticsWithRawResponse",
     "DiagnosticsWithStreamingResponse",
     "AsyncDiagnosticsWithStreamingResponse",
-    "DLP",
-    "AsyncDLP",
-    "DLPWithRawResponse",
-    "AsyncDLPWithRawResponse",
-    "DLPWithStreamingResponse",
-    "AsyncDLPWithStreamingResponse",
     "Images",
     "AsyncImages",
     "ImagesWithRawResponse",
@@ -1010,12 +964,12 @@ __all__ = [
     "AsyncMagicTransitWithRawResponse",
     "MagicTransitWithStreamingResponse",
     "AsyncMagicTransitWithStreamingResponse",
-    "MNMs",
-    "AsyncMNMs",
-    "MNMsWithRawResponse",
-    "AsyncMNMsWithRawResponse",
-    "MNMsWithStreamingResponse",
-    "AsyncMNMsWithStreamingResponse",
+    "MagicNetworkMonitoring",
+    "AsyncMagicNetworkMonitoring",
+    "MagicNetworkMonitoringWithRawResponse",
+    "AsyncMagicNetworkMonitoringWithRawResponse",
+    "MagicNetworkMonitoringWithStreamingResponse",
+    "AsyncMagicNetworkMonitoringWithStreamingResponse",
     "MTLSCertificates",
     "AsyncMTLSCertificates",
     "MTLSCertificatesWithRawResponse",
@@ -1070,12 +1024,6 @@ __all__ = [
     "AsyncStreamWithRawResponse",
     "StreamWithStreamingResponse",
     "AsyncStreamWithStreamingResponse",
-    "Gateways",
-    "AsyncGateways",
-    "GatewaysWithRawResponse",
-    "AsyncGatewaysWithRawResponse",
-    "GatewaysWithStreamingResponse",
-    "AsyncGatewaysWithStreamingResponse",
     "Alerting",
     "AsyncAlerting",
     "AlertingWithRawResponse",
@@ -1094,36 +1042,18 @@ __all__ = [
     "AsyncD1WithRawResponse",
     "D1WithStreamingResponse",
     "AsyncD1WithStreamingResponse",
-    "DEX",
-    "AsyncDEX",
-    "DEXWithRawResponse",
-    "AsyncDEXWithRawResponse",
-    "DEXWithStreamingResponse",
-    "AsyncDEXWithStreamingResponse",
     "R2",
     "AsyncR2",
     "R2WithRawResponse",
     "AsyncR2WithRawResponse",
     "R2WithStreamingResponse",
     "AsyncR2WithStreamingResponse",
-    "Teamnet",
-    "AsyncTeamnet",
-    "TeamnetWithRawResponse",
-    "AsyncTeamnetWithRawResponse",
-    "TeamnetWithStreamingResponse",
-    "AsyncTeamnetWithStreamingResponse",
     "WARPConnector",
     "AsyncWARPConnector",
     "WARPConnectorWithRawResponse",
     "AsyncWARPConnectorWithRawResponse",
     "WARPConnectorWithStreamingResponse",
     "AsyncWARPConnectorWithStreamingResponse",
-    "Dispatchers",
-    "AsyncDispatchers",
-    "DispatchersWithRawResponse",
-    "AsyncDispatchersWithRawResponse",
-    "DispatchersWithStreamingResponse",
-    "AsyncDispatchersWithStreamingResponse",
     "WorkersForPlatforms",
     "AsyncWorkersForPlatforms",
     "WorkersForPlatformsWithRawResponse",
