@@ -35,7 +35,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ....types.radar import As112TimeseriesResponse, as112_timeseries_params
+from ....types.radar import AS112TimeseriesResponse, as112_timeseries_params
 from ...._base_client import (
     make_request_options,
 )
@@ -48,10 +48,10 @@ from .timeseries_groups import (
     AsyncTimeseriesGroupsWithStreamingResponse,
 )
 
-__all__ = ["As112", "AsyncAs112"]
+__all__ = ["AS112", "AsyncAS112"]
 
 
-class As112(SyncAPIResource):
+class AS112(SyncAPIResource):
     @cached_property
     def summary(self) -> Summary:
         return Summary(self._client)
@@ -65,12 +65,12 @@ class As112(SyncAPIResource):
         return Top(self._client)
 
     @cached_property
-    def with_raw_response(self) -> As112WithRawResponse:
-        return As112WithRawResponse(self)
+    def with_raw_response(self) -> AS112WithRawResponse:
+        return AS112WithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> As112WithStreamingResponse:
-        return As112WithStreamingResponse(self)
+    def with_streaming_response(self) -> AS112WithStreamingResponse:
+        return AS112WithStreamingResponse(self)
 
     def timeseries(
         self,
@@ -109,7 +109,7 @@ class As112(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> As112TimeseriesResponse:
+    ) -> AS112TimeseriesResponse:
         """
         Get AS112 queries change over time.
 
@@ -169,15 +169,15 @@ class As112(SyncAPIResource):
                         "location": location,
                         "name": name,
                     },
-                    as112_timeseries_params.As112TimeseriesParams,
+                    as112_timeseries_params.AS112TimeseriesParams,
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[As112TimeseriesResponse], ResultWrapper[As112TimeseriesResponse]),
+            cast_to=cast(Type[AS112TimeseriesResponse], ResultWrapper[AS112TimeseriesResponse]),
         )
 
 
-class AsyncAs112(AsyncAPIResource):
+class AsyncAS112(AsyncAPIResource):
     @cached_property
     def summary(self) -> AsyncSummary:
         return AsyncSummary(self._client)
@@ -191,12 +191,12 @@ class AsyncAs112(AsyncAPIResource):
         return AsyncTop(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncAs112WithRawResponse:
-        return AsyncAs112WithRawResponse(self)
+    def with_raw_response(self) -> AsyncAS112WithRawResponse:
+        return AsyncAS112WithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncAs112WithStreamingResponse:
-        return AsyncAs112WithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncAS112WithStreamingResponse:
+        return AsyncAS112WithStreamingResponse(self)
 
     async def timeseries(
         self,
@@ -235,7 +235,7 @@ class AsyncAs112(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> As112TimeseriesResponse:
+    ) -> AS112TimeseriesResponse:
         """
         Get AS112 queries change over time.
 
@@ -295,16 +295,16 @@ class AsyncAs112(AsyncAPIResource):
                         "location": location,
                         "name": name,
                     },
-                    as112_timeseries_params.As112TimeseriesParams,
+                    as112_timeseries_params.AS112TimeseriesParams,
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[As112TimeseriesResponse], ResultWrapper[As112TimeseriesResponse]),
+            cast_to=cast(Type[AS112TimeseriesResponse], ResultWrapper[AS112TimeseriesResponse]),
         )
 
 
-class As112WithRawResponse:
-    def __init__(self, as112: As112) -> None:
+class AS112WithRawResponse:
+    def __init__(self, as112: AS112) -> None:
         self._as112 = as112
 
         self.timeseries = to_raw_response_wrapper(
@@ -324,8 +324,8 @@ class As112WithRawResponse:
         return TopWithRawResponse(self._as112.top)
 
 
-class AsyncAs112WithRawResponse:
-    def __init__(self, as112: AsyncAs112) -> None:
+class AsyncAS112WithRawResponse:
+    def __init__(self, as112: AsyncAS112) -> None:
         self._as112 = as112
 
         self.timeseries = async_to_raw_response_wrapper(
@@ -345,8 +345,8 @@ class AsyncAs112WithRawResponse:
         return AsyncTopWithRawResponse(self._as112.top)
 
 
-class As112WithStreamingResponse:
-    def __init__(self, as112: As112) -> None:
+class AS112WithStreamingResponse:
+    def __init__(self, as112: AS112) -> None:
         self._as112 = as112
 
         self.timeseries = to_streamed_response_wrapper(
@@ -366,8 +366,8 @@ class As112WithStreamingResponse:
         return TopWithStreamingResponse(self._as112.top)
 
 
-class AsyncAs112WithStreamingResponse:
-    def __init__(self, as112: AsyncAs112) -> None:
+class AsyncAS112WithStreamingResponse:
+    def __init__(self, as112: AsyncAS112) -> None:
         self._as112 = as112
 
         self.timeseries = async_to_streamed_response_wrapper(

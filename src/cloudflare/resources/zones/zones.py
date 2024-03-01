@@ -53,6 +53,14 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from .subscriptions import (
+    Subscriptions,
+    AsyncSubscriptions,
+    SubscriptionsWithRawResponse,
+    AsyncSubscriptionsWithRawResponse,
+    SubscriptionsWithStreamingResponse,
+    AsyncSubscriptionsWithStreamingResponse,
+)
 from ..._base_client import (
     AsyncPaginator,
     make_request_options,
@@ -99,6 +107,10 @@ class Zones(SyncAPIResource):
     @cached_property
     def workers(self) -> Workers:
         return Workers(self._client)
+
+    @cached_property
+    def subscriptions(self) -> Subscriptions:
+        return Subscriptions(self._client)
 
     @cached_property
     def with_raw_response(self) -> ZonesWithRawResponse:
@@ -399,6 +411,10 @@ class AsyncZones(AsyncAPIResource):
     @cached_property
     def workers(self) -> AsyncWorkers:
         return AsyncWorkers(self._client)
+
+    @cached_property
+    def subscriptions(self) -> AsyncSubscriptions:
+        return AsyncSubscriptions(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncZonesWithRawResponse:
@@ -719,6 +735,10 @@ class ZonesWithRawResponse:
     def workers(self) -> WorkersWithRawResponse:
         return WorkersWithRawResponse(self._zones.workers)
 
+    @cached_property
+    def subscriptions(self) -> SubscriptionsWithRawResponse:
+        return SubscriptionsWithRawResponse(self._zones.subscriptions)
+
 
 class AsyncZonesWithRawResponse:
     def __init__(self, zones: AsyncZones) -> None:
@@ -759,6 +779,10 @@ class AsyncZonesWithRawResponse:
     @cached_property
     def workers(self) -> AsyncWorkersWithRawResponse:
         return AsyncWorkersWithRawResponse(self._zones.workers)
+
+    @cached_property
+    def subscriptions(self) -> AsyncSubscriptionsWithRawResponse:
+        return AsyncSubscriptionsWithRawResponse(self._zones.subscriptions)
 
 
 class ZonesWithStreamingResponse:
@@ -801,6 +825,10 @@ class ZonesWithStreamingResponse:
     def workers(self) -> WorkersWithStreamingResponse:
         return WorkersWithStreamingResponse(self._zones.workers)
 
+    @cached_property
+    def subscriptions(self) -> SubscriptionsWithStreamingResponse:
+        return SubscriptionsWithStreamingResponse(self._zones.subscriptions)
+
 
 class AsyncZonesWithStreamingResponse:
     def __init__(self, zones: AsyncZones) -> None:
@@ -841,3 +869,7 @@ class AsyncZonesWithStreamingResponse:
     @cached_property
     def workers(self) -> AsyncWorkersWithStreamingResponse:
         return AsyncWorkersWithStreamingResponse(self._zones.workers)
+
+    @cached_property
+    def subscriptions(self) -> AsyncSubscriptionsWithStreamingResponse:
+        return AsyncSubscriptionsWithStreamingResponse(self._zones.subscriptions)

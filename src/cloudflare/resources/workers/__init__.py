@@ -48,14 +48,6 @@ from .workers import (
     WorkersWithStreamingResponse,
     AsyncWorkersWithStreamingResponse,
 )
-from .dispatch import (
-    Dispatch,
-    AsyncDispatch,
-    DispatchWithRawResponse,
-    AsyncDispatchWithRawResponse,
-    DispatchWithStreamingResponse,
-    AsyncDispatchWithStreamingResponse,
-)
 from .services import (
     Services,
     AsyncServices,
@@ -90,12 +82,6 @@ from .account_settings import (
 )
 
 __all__ = [
-    "Dispatch",
-    "AsyncDispatch",
-    "DispatchWithRawResponse",
-    "AsyncDispatchWithRawResponse",
-    "DispatchWithStreamingResponse",
-    "AsyncDispatchWithStreamingResponse",
     "AI",
     "AsyncAI",
     "AIWithRawResponse",

@@ -7,6 +7,14 @@ from typing_extensions import Literal
 
 import httpx
 
+from .roles import (
+    Roles,
+    AsyncRoles,
+    RolesWithRawResponse,
+    AsyncRolesWithRawResponse,
+    RolesWithStreamingResponse,
+    AsyncRolesWithStreamingResponse,
+)
 from ...types import (
     AccountGetResponse,
     AccountUpdateResponse,
@@ -45,6 +53,10 @@ class Accounts(SyncAPIResource):
     @cached_property
     def members(self) -> Members:
         return Members(self._client)
+
+    @cached_property
+    def roles(self) -> Roles:
+        return Roles(self._client)
 
     @cached_property
     def with_raw_response(self) -> AccountsWithRawResponse:
@@ -203,6 +215,10 @@ class AsyncAccounts(AsyncAPIResource):
     @cached_property
     def members(self) -> AsyncMembers:
         return AsyncMembers(self._client)
+
+    @cached_property
+    def roles(self) -> AsyncRoles:
+        return AsyncRoles(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncAccountsWithRawResponse:
@@ -375,6 +391,10 @@ class AccountsWithRawResponse:
     def members(self) -> MembersWithRawResponse:
         return MembersWithRawResponse(self._accounts.members)
 
+    @cached_property
+    def roles(self) -> RolesWithRawResponse:
+        return RolesWithRawResponse(self._accounts.roles)
+
 
 class AsyncAccountsWithRawResponse:
     def __init__(self, accounts: AsyncAccounts) -> None:
@@ -393,6 +413,10 @@ class AsyncAccountsWithRawResponse:
     @cached_property
     def members(self) -> AsyncMembersWithRawResponse:
         return AsyncMembersWithRawResponse(self._accounts.members)
+
+    @cached_property
+    def roles(self) -> AsyncRolesWithRawResponse:
+        return AsyncRolesWithRawResponse(self._accounts.roles)
 
 
 class AccountsWithStreamingResponse:
@@ -413,6 +437,10 @@ class AccountsWithStreamingResponse:
     def members(self) -> MembersWithStreamingResponse:
         return MembersWithStreamingResponse(self._accounts.members)
 
+    @cached_property
+    def roles(self) -> RolesWithStreamingResponse:
+        return RolesWithStreamingResponse(self._accounts.roles)
+
 
 class AsyncAccountsWithStreamingResponse:
     def __init__(self, accounts: AsyncAccounts) -> None:
@@ -431,3 +459,7 @@ class AsyncAccountsWithStreamingResponse:
     @cached_property
     def members(self) -> AsyncMembersWithStreamingResponse:
         return AsyncMembersWithStreamingResponse(self._accounts.members)
+
+    @cached_property
+    def roles(self) -> AsyncRolesWithStreamingResponse:
+        return AsyncRolesWithStreamingResponse(self._accounts.roles)

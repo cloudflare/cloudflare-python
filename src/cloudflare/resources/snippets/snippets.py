@@ -6,6 +6,14 @@ from typing import Any, Type, cast
 
 import httpx
 
+from .rules import (
+    Rules,
+    AsyncRules,
+    RulesWithRawResponse,
+    AsyncRulesWithRawResponse,
+    RulesWithStreamingResponse,
+    AsyncRulesWithStreamingResponse,
+)
 from ...types import (
     SnippetGetResponse,
     SnippetListResponse,
@@ -32,14 +40,6 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from .snippet_rules import (
-    SnippetRules,
-    AsyncSnippetRules,
-    SnippetRulesWithRawResponse,
-    AsyncSnippetRulesWithRawResponse,
-    SnippetRulesWithStreamingResponse,
-    AsyncSnippetRulesWithStreamingResponse,
-)
 from ..._base_client import (
     make_request_options,
 )
@@ -53,8 +53,8 @@ class Snippets(SyncAPIResource):
         return Content(self._client)
 
     @cached_property
-    def snippet_rules(self) -> SnippetRules:
-        return SnippetRules(self._client)
+    def rules(self) -> Rules:
+        return Rules(self._client)
 
     @cached_property
     def with_raw_response(self) -> SnippetsWithRawResponse:
@@ -258,8 +258,8 @@ class AsyncSnippets(AsyncAPIResource):
         return AsyncContent(self._client)
 
     @cached_property
-    def snippet_rules(self) -> AsyncSnippetRules:
-        return AsyncSnippetRules(self._client)
+    def rules(self) -> AsyncRules:
+        return AsyncRules(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncSnippetsWithRawResponse:
@@ -479,8 +479,8 @@ class SnippetsWithRawResponse:
         return ContentWithRawResponse(self._snippets.content)
 
     @cached_property
-    def snippet_rules(self) -> SnippetRulesWithRawResponse:
-        return SnippetRulesWithRawResponse(self._snippets.snippet_rules)
+    def rules(self) -> RulesWithRawResponse:
+        return RulesWithRawResponse(self._snippets.rules)
 
 
 class AsyncSnippetsWithRawResponse:
@@ -505,8 +505,8 @@ class AsyncSnippetsWithRawResponse:
         return AsyncContentWithRawResponse(self._snippets.content)
 
     @cached_property
-    def snippet_rules(self) -> AsyncSnippetRulesWithRawResponse:
-        return AsyncSnippetRulesWithRawResponse(self._snippets.snippet_rules)
+    def rules(self) -> AsyncRulesWithRawResponse:
+        return AsyncRulesWithRawResponse(self._snippets.rules)
 
 
 class SnippetsWithStreamingResponse:
@@ -531,8 +531,8 @@ class SnippetsWithStreamingResponse:
         return ContentWithStreamingResponse(self._snippets.content)
 
     @cached_property
-    def snippet_rules(self) -> SnippetRulesWithStreamingResponse:
-        return SnippetRulesWithStreamingResponse(self._snippets.snippet_rules)
+    def rules(self) -> RulesWithStreamingResponse:
+        return RulesWithStreamingResponse(self._snippets.rules)
 
 
 class AsyncSnippetsWithStreamingResponse:
@@ -557,5 +557,5 @@ class AsyncSnippetsWithStreamingResponse:
         return AsyncContentWithStreamingResponse(self._snippets.content)
 
     @cached_property
-    def snippet_rules(self) -> AsyncSnippetRulesWithStreamingResponse:
-        return AsyncSnippetRulesWithStreamingResponse(self._snippets.snippet_rules)
+    def rules(self) -> AsyncRulesWithStreamingResponse:
+        return AsyncRulesWithStreamingResponse(self._snippets.rules)
