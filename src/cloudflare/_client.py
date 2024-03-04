@@ -13,6 +13,7 @@ from ._qs import Querystring
 from ._types import (
     NOT_GIVEN,
     Omit,
+    Headers,
     Timeout,
     NotGiven,
     Transport,
@@ -25,7 +26,7 @@ from ._utils import (
 )
 from ._version import __version__
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
-from ._exceptions import APIStatusError, CloudflareError
+from ._exceptions import APIStatusError
 from ._base_client import (
     DEFAULT_MAX_RETRIES,
     SyncAPIClient,
@@ -130,10 +131,10 @@ class Cloudflare(SyncAPIClient):
     with_streaming_response: CloudflareWithStreamedResponse
 
     # client options
-    api_key: str
-    api_email: str
-    api_token: str
-    user_service_key: str
+    api_key: str | None
+    api_email: str | None
+    api_token: str | None
+    user_service_key: str | None
 
     def __init__(
         self,
@@ -169,34 +170,18 @@ class Cloudflare(SyncAPIClient):
         """
         if api_key is None:
             api_key = os.environ.get("CLOUDFLARE_API_KEY")
-        if api_key is None:
-            raise CloudflareError(
-                "The api_key client option must be set either by passing api_key to the client or by setting the CLOUDFLARE_API_KEY environment variable"
-            )
         self.api_key = api_key
 
         if api_email is None:
             api_email = os.environ.get("CLOUDFLARE_EMAIL")
-        if api_email is None:
-            raise CloudflareError(
-                "The api_email client option must be set either by passing api_email to the client or by setting the CLOUDFLARE_EMAIL environment variable"
-            )
         self.api_email = api_email
 
         if api_token is None:
             api_token = os.environ.get("CLOUDFLARE_API_TOKEN")
-        if api_token is None:
-            raise CloudflareError(
-                "The api_token client option must be set either by passing api_token to the client or by setting the CLOUDFLARE_API_TOKEN environment variable"
-            )
         self.api_token = api_token
 
         if user_service_key is None:
             user_service_key = os.environ.get("CLOUDFLARE_API_USER_SERVICE_KEY")
-        if user_service_key is None:
-            raise CloudflareError(
-                "The user_service_key client option must be set either by passing user_service_key to the client or by setting the CLOUDFLARE_API_USER_SERVICE_KEY environment variable"
-            )
         self.user_service_key = user_service_key
 
         if base_url is None:
@@ -319,21 +304,29 @@ class Cloudflare(SyncAPIClient):
     @property
     def _api_email(self) -> dict[str, str]:
         api_email = self.api_email
+        if api_email is None:
+            return {}
         return {"X-Auth-Email": api_email}
 
     @property
     def _api_key(self) -> dict[str, str]:
         api_key = self.api_key
+        if api_key is None:
+            return {}
         return {"X-Auth-Key": api_key}
 
     @property
     def _api_token(self) -> dict[str, str]:
         api_token = self.api_token
+        if api_token is None:
+            return {}
         return {"Authorization": f"Bearer {api_token}"}
 
     @property
     def _user_service_key(self) -> dict[str, str]:
         user_service_key = self.user_service_key
+        if user_service_key is None:
+            return {}
         return {"X-Auth-User-Service-Key": user_service_key}
 
     @property
@@ -342,9 +335,35 @@ class Cloudflare(SyncAPIClient):
         return {
             **super().default_headers,
             "X-Stainless-Async": "false",
-            "x-auth-email": self.api_email,
+            "x-auth-email": self.api_email if self.api_email is not None else Omit(),
             **self._custom_headers,
         }
+
+    @override
+    def _validate_headers(self, headers: Headers, custom_headers: Headers) -> None:
+        if self.api_email and headers.get("X-Auth-Email"):
+            return
+        if isinstance(custom_headers.get("X-Auth-Email"), Omit):
+            return
+
+        if self.api_key and headers.get("X-Auth-Key"):
+            return
+        if isinstance(custom_headers.get("X-Auth-Key"), Omit):
+            return
+
+        if self.api_token and headers.get("Authorization"):
+            return
+        if isinstance(custom_headers.get("Authorization"), Omit):
+            return
+
+        if self.user_service_key and headers.get("X-Auth-User-Service-Key"):
+            return
+        if isinstance(custom_headers.get("X-Auth-User-Service-Key"), Omit):
+            return
+
+        raise TypeError(
+            '"Could not resolve authentication method. Expected one of api_email, api_key, api_token or user_service_key to be set. Or for one of the `X-Auth-Email`, `X-Auth-Key`, `Authorization` or `X-Auth-User-Service-Key` headers to be explicitly omitted"'
+        )
 
     def copy(
         self,
@@ -522,10 +541,10 @@ class AsyncCloudflare(AsyncAPIClient):
     with_streaming_response: AsyncCloudflareWithStreamedResponse
 
     # client options
-    api_key: str
-    api_email: str
-    api_token: str
-    user_service_key: str
+    api_key: str | None
+    api_email: str | None
+    api_token: str | None
+    user_service_key: str | None
 
     def __init__(
         self,
@@ -561,34 +580,18 @@ class AsyncCloudflare(AsyncAPIClient):
         """
         if api_key is None:
             api_key = os.environ.get("CLOUDFLARE_API_KEY")
-        if api_key is None:
-            raise CloudflareError(
-                "The api_key client option must be set either by passing api_key to the client or by setting the CLOUDFLARE_API_KEY environment variable"
-            )
         self.api_key = api_key
 
         if api_email is None:
             api_email = os.environ.get("CLOUDFLARE_EMAIL")
-        if api_email is None:
-            raise CloudflareError(
-                "The api_email client option must be set either by passing api_email to the client or by setting the CLOUDFLARE_EMAIL environment variable"
-            )
         self.api_email = api_email
 
         if api_token is None:
             api_token = os.environ.get("CLOUDFLARE_API_TOKEN")
-        if api_token is None:
-            raise CloudflareError(
-                "The api_token client option must be set either by passing api_token to the client or by setting the CLOUDFLARE_API_TOKEN environment variable"
-            )
         self.api_token = api_token
 
         if user_service_key is None:
             user_service_key = os.environ.get("CLOUDFLARE_API_USER_SERVICE_KEY")
-        if user_service_key is None:
-            raise CloudflareError(
-                "The user_service_key client option must be set either by passing user_service_key to the client or by setting the CLOUDFLARE_API_USER_SERVICE_KEY environment variable"
-            )
         self.user_service_key = user_service_key
 
         if base_url is None:
@@ -711,21 +714,29 @@ class AsyncCloudflare(AsyncAPIClient):
     @property
     def _api_email(self) -> dict[str, str]:
         api_email = self.api_email
+        if api_email is None:
+            return {}
         return {"X-Auth-Email": api_email}
 
     @property
     def _api_key(self) -> dict[str, str]:
         api_key = self.api_key
+        if api_key is None:
+            return {}
         return {"X-Auth-Key": api_key}
 
     @property
     def _api_token(self) -> dict[str, str]:
         api_token = self.api_token
+        if api_token is None:
+            return {}
         return {"Authorization": f"Bearer {api_token}"}
 
     @property
     def _user_service_key(self) -> dict[str, str]:
         user_service_key = self.user_service_key
+        if user_service_key is None:
+            return {}
         return {"X-Auth-User-Service-Key": user_service_key}
 
     @property
@@ -734,9 +745,35 @@ class AsyncCloudflare(AsyncAPIClient):
         return {
             **super().default_headers,
             "X-Stainless-Async": f"async:{get_async_library()}",
-            "x-auth-email": self.api_email,
+            "x-auth-email": self.api_email if self.api_email is not None else Omit(),
             **self._custom_headers,
         }
+
+    @override
+    def _validate_headers(self, headers: Headers, custom_headers: Headers) -> None:
+        if self.api_email and headers.get("X-Auth-Email"):
+            return
+        if isinstance(custom_headers.get("X-Auth-Email"), Omit):
+            return
+
+        if self.api_key and headers.get("X-Auth-Key"):
+            return
+        if isinstance(custom_headers.get("X-Auth-Key"), Omit):
+            return
+
+        if self.api_token and headers.get("Authorization"):
+            return
+        if isinstance(custom_headers.get("Authorization"), Omit):
+            return
+
+        if self.user_service_key and headers.get("X-Auth-User-Service-Key"):
+            return
+        if isinstance(custom_headers.get("X-Auth-User-Service-Key"), Omit):
+            return
+
+        raise TypeError(
+            '"Could not resolve authentication method. Expected one of api_email, api_key, api_token or user_service_key to be set. Or for one of the `X-Auth-Email`, `X-Auth-Key`, `Authorization` or `X-Auth-User-Service-Key` headers to be explicitly omitted"'
+        )
 
     def copy(
         self,
