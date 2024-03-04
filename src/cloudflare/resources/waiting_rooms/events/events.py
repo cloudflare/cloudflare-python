@@ -15,7 +15,10 @@ from .details import (
     AsyncDetailsWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import maybe_transform
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -642,7 +645,7 @@ class AsyncEvents(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return await self._post(
             f"/zones/{zone_identifier}/waiting_rooms/{waiting_room_id}/events",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "event_end_time": event_end_time,
                     "event_start_time": event_start_time,
@@ -759,7 +762,7 @@ class AsyncEvents(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return await self._put(
             f"/zones/{zone_identifier}/waiting_rooms/{waiting_room_id}/events/{event_id}",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "event_end_time": event_end_time,
                     "event_start_time": event_start_time,
@@ -957,7 +960,7 @@ class AsyncEvents(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return await self._patch(
             f"/zones/{zone_identifier}/waiting_rooms/{waiting_room_id}/events/{event_id}",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "event_end_time": event_end_time,
                     "event_start_time": event_start_time,

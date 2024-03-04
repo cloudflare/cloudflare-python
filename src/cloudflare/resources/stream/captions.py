@@ -7,7 +7,10 @@ from typing import Any, Type, cast
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -246,7 +249,7 @@ class AsyncCaptions(AsyncAPIResource):
             CaptionUpdateResponse,
             await self._put(
                 f"/accounts/{account_id}/stream/{identifier}/captions/{language}",
-                body=maybe_transform({"file": file}, caption_update_params.CaptionUpdateParams),
+                body=await async_maybe_transform({"file": file}, caption_update_params.CaptionUpdateParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

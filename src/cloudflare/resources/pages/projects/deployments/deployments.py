@@ -15,7 +15,10 @@ from .history import (
     AsyncHistoryWithStreamingResponse,
 )
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ....._utils import maybe_transform
+from ....._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -397,7 +400,7 @@ class AsyncDeployments(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `project_name` but received {project_name!r}")
         return await self._post(
             f"/accounts/{account_id}/pages/projects/{project_name}/deployments",
-            body=maybe_transform({"branch": branch}, deployment_create_params.DeploymentCreateParams),
+            body=await async_maybe_transform({"branch": branch}, deployment_create_params.DeploymentCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -39,7 +39,10 @@ from .settings import (
     AsyncSettingsWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven, FileTypes
-from ...._utils import maybe_transform
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from .schedules import (
     Schedules,
     AsyncSchedules,
@@ -418,7 +421,7 @@ class AsyncScripts(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         return await self._put(
             f"/accounts/{account_id}/workers/scripts/{script_name}",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "any_part_name": any_part_name,
                     "message": message,
@@ -431,7 +434,9 @@ class AsyncScripts(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"rollback_to": rollback_to}, script_update_params.ScriptUpdateParams),
+                query=await async_maybe_transform(
+                    {"rollback_to": rollback_to}, script_update_params.ScriptUpdateParams
+                ),
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(Type[ScriptUpdateResponse], ResultWrapper[ScriptUpdateResponse]),
@@ -522,7 +527,7 @@ class AsyncScripts(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"force": force}, script_delete_params.ScriptDeleteParams),
+                query=await async_maybe_transform({"force": force}, script_delete_params.ScriptDeleteParams),
             ),
             cast_to=NoneType,
         )

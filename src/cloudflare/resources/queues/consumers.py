@@ -7,7 +7,10 @@ from typing import Any, Type, Optional, cast
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -267,7 +270,7 @@ class AsyncConsumers(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return await self._post(
             f"/accounts/{account_id}/workers/queues/{name}/consumers",
-            body=maybe_transform(body, consumer_create_params.ConsumerCreateParams),
+            body=await async_maybe_transform(body, consumer_create_params.ConsumerCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -314,7 +317,7 @@ class AsyncConsumers(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `consumer_name` but received {consumer_name!r}")
         return await self._put(
             f"/accounts/{account_id}/workers/queues/{name}/consumers/{consumer_name}",
-            body=maybe_transform(body, consumer_update_params.ConsumerUpdateParams),
+            body=await async_maybe_transform(body, consumer_update_params.ConsumerUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

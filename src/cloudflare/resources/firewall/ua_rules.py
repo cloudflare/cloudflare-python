@@ -7,7 +7,10 @@ from typing import Any, Type, Optional, cast
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -344,7 +347,7 @@ class AsyncUARules(AsyncAPIResource):
             Optional[UARuleCreateResponse],
             await self._post(
                 f"/zones/{zone_identifier}/firewall/ua_rules",
-                body=maybe_transform(body, ua_rule_create_params.UARuleCreateParams),
+                body=await async_maybe_transform(body, ua_rule_create_params.UARuleCreateParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -395,7 +398,7 @@ class AsyncUARules(AsyncAPIResource):
             Optional[UARuleUpdateResponse],
             await self._put(
                 f"/zones/{zone_identifier}/firewall/ua_rules/{id}",
-                body=maybe_transform(body, ua_rule_update_params.UARuleUpdateParams),
+                body=await async_maybe_transform(body, ua_rule_update_params.UARuleUpdateParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

@@ -7,7 +7,10 @@ from typing import List, Type, cast
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -184,7 +187,7 @@ class AsyncHostnameAssociations(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._put(
             f"/zones/{zone_id}/certificate_authorities/hostname_associations",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "hostnames": hostnames,
                     "mtls_certificate_id": mtls_certificate_id,
@@ -240,7 +243,7 @@ class AsyncHostnameAssociations(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {"mtls_certificate_id": mtls_certificate_id},
                     hostname_association_list_params.HostnameAssociationListParams,
                 ),

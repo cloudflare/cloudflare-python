@@ -8,7 +8,10 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -266,7 +269,7 @@ class AsyncTieredCacheSmartTopology(AsyncAPIResource):
             TieredCacheSmartTopologyEditResponse,
             await self._patch(
                 f"/zones/{zone_id}/cache/tiered_cache_smart_topology_enable",
-                body=maybe_transform(
+                body=await async_maybe_transform(
                     {"value": value}, tiered_cache_smart_topology_edit_params.TieredCacheSmartTopologyEditParams
                 ),
                 options=make_request_options(

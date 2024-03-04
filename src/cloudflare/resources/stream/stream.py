@@ -58,7 +58,10 @@ from .videos import (
 )
 from ...types import StreamGetResponse, StreamListResponse, stream_list_params
 from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
-from ..._utils import maybe_transform
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from .captions import (
     Captions,
     AsyncCaptions,
@@ -564,7 +567,7 @@ class AsyncStream(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "asc": asc,
                         "creator": creator,

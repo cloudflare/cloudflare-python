@@ -8,7 +8,10 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
 from ...types.r2 import (
     BucketGetResponse,
@@ -296,7 +299,7 @@ class AsyncBuckets(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/r2/buckets",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "name": name,
                     "location_hint": location_hint,
@@ -367,7 +370,7 @@ class AsyncBuckets(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "cursor": cursor,
                         "direction": direction,

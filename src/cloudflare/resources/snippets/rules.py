@@ -7,7 +7,10 @@ from typing import Type, Iterable, cast
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -158,7 +161,7 @@ class AsyncRules(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return await self._put(
             f"/zones/{zone_identifier}/snippets/snippet_rules",
-            body=maybe_transform({"rules": rules}, rule_update_params.RuleUpdateParams),
+            body=await async_maybe_transform({"rules": rules}, rule_update_params.RuleUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

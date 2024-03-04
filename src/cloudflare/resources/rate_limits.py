@@ -17,7 +17,10 @@ from ..types import (
     rate_limit_create_params,
 )
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from .._utils import maybe_transform
+from .._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -334,7 +337,7 @@ class AsyncRateLimits(AsyncAPIResource):
             Optional[RateLimitCreateResponse],
             await self._post(
                 f"/zones/{zone_identifier}/rate_limits",
-                body=maybe_transform(body, rate_limit_create_params.RateLimitCreateParams),
+                body=await async_maybe_transform(body, rate_limit_create_params.RateLimitCreateParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -482,7 +485,7 @@ class AsyncRateLimits(AsyncAPIResource):
             Optional[RateLimitEditResponse],
             await self._put(
                 f"/zones/{zone_identifier}/rate_limits/{id}",
-                body=maybe_transform(body, rate_limit_edit_params.RateLimitEditParams),
+                body=await async_maybe_transform(body, rate_limit_edit_params.RateLimitEditParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

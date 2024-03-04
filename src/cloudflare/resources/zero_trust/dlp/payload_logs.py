@@ -7,7 +7,10 @@ from typing import Type, Optional, cast
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import maybe_transform
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -158,7 +161,9 @@ class AsyncPayloadLogs(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._put(
             f"/accounts/{account_id}/dlp/payload_log",
-            body=maybe_transform({"public_key": public_key}, payload_log_update_params.PayloadLogUpdateParams),
+            body=await async_maybe_transform(
+                {"public_key": public_key}, payload_log_update_params.PayloadLogUpdateParams
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

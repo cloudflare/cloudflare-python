@@ -7,7 +7,10 @@ from typing import Any, Type, Optional, cast
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import maybe_transform
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -335,7 +338,7 @@ class AsyncDomains(AsyncAPIResource):
             Optional[DomainCreateResponse],
             await self._post(
                 f"/accounts/{account_id}/pages/projects/{project_name}/domains",
-                body=maybe_transform(body, domain_create_params.DomainCreateParams),
+                body=await async_maybe_transform(body, domain_create_params.DomainCreateParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

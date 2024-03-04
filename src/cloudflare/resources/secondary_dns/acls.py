@@ -7,7 +7,10 @@ from typing import Type, Optional, cast
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -275,7 +278,7 @@ class AsyncACLs(AsyncAPIResource):
         """
         return await self._post(
             f"/accounts/{account_id}/secondary_dns/acls",
-            body=maybe_transform(body, acl_create_params.ACLCreateParams),
+            body=await async_maybe_transform(body, acl_create_params.ACLCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -322,7 +325,7 @@ class AsyncACLs(AsyncAPIResource):
         """
         return await self._put(
             f"/accounts/{account_id}/secondary_dns/acls/{acl_id}",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "ip_range": ip_range,
                     "name": name,

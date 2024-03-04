@@ -16,7 +16,10 @@ from .scripts import (
     AsyncScriptsWithStreamingResponse,
 )
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from .policies import (
     Policies,
     AsyncPolicies,
@@ -227,7 +230,7 @@ class AsyncPageShield(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._put(
             f"/zones/{zone_id}/page_shield",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "enabled": enabled,
                     "use_cloudflare_reporting_endpoint": use_cloudflare_reporting_endpoint,

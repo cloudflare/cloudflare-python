@@ -7,7 +7,10 @@ from typing import Any, List, Iterable, cast
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import maybe_transform
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -197,7 +200,7 @@ class AsyncBulk(AsyncAPIResource):
             BulkUpdateResponse,
             await self._put(
                 f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk",
-                body=maybe_transform(body, bulk_update_params.BulkUpdateParams),
+                body=await async_maybe_transform(body, bulk_update_params.BulkUpdateParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -250,7 +253,7 @@ class AsyncBulk(AsyncAPIResource):
             BulkDeleteResponse,
             await self._delete(
                 f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk",
-                body=maybe_transform(body, bulk_delete_params.BulkDeleteParams),
+                body=await async_maybe_transform(body, bulk_delete_params.BulkDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

@@ -7,7 +7,10 @@ from typing import Type, cast
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import maybe_transform
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
 from .permissions import (
     Permissions,
@@ -320,7 +323,7 @@ class AsyncIndicatorFeeds(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/intel/indicator-feeds",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "description": description,
                     "name": name,
@@ -372,7 +375,9 @@ class AsyncIndicatorFeeds(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._put(
             f"/accounts/{account_id}/intel/indicator-feeds/{feed_id}/snapshot",
-            body=maybe_transform({"source": source}, indicator_feed_update_params.IndicatorFeedUpdateParams),
+            body=await async_maybe_transform(
+                {"source": source}, indicator_feed_update_params.IndicatorFeedUpdateParams
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

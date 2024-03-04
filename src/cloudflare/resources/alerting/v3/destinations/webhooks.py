@@ -7,7 +7,10 @@ from typing import Any, Type, Optional, cast
 import httpx
 
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ....._utils import maybe_transform
+from ....._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -348,7 +351,7 @@ class AsyncWebhooks(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/alerting/v3/destinations/webhooks",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "name": name,
                     "url": url,
@@ -412,7 +415,7 @@ class AsyncWebhooks(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `webhook_id` but received {webhook_id!r}")
         return await self._put(
             f"/accounts/{account_id}/alerting/v3/destinations/webhooks/{webhook_id}",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "name": name,
                     "url": url,
