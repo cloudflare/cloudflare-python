@@ -7,7 +7,10 @@ from typing import Type, cast
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -172,7 +175,7 @@ class AsyncAnalytics(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"query": query}, analytics_list_params.AnalyticsListParams),
+                query=await async_maybe_transform({"query": query}, analytics_list_params.AnalyticsListParams),
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(Type[AnalyticsListResponse], ResultWrapper[AnalyticsListResponse]),
@@ -215,7 +218,7 @@ class AsyncAnalytics(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"query": query}, analytics_stored_params.AnalyticsStoredParams),
+                query=await async_maybe_transform({"query": query}, analytics_stored_params.AnalyticsStoredParams),
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(Type[AnalyticsStoredResponse], ResultWrapper[AnalyticsStoredResponse]),

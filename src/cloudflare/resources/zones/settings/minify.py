@@ -7,7 +7,10 @@ from typing import Type, Optional, cast
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import maybe_transform
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -167,7 +170,7 @@ class AsyncMinify(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._patch(
             f"/zones/{zone_id}/settings/minify",
-            body=maybe_transform({"value": value}, minify_edit_params.MinifyEditParams),
+            body=await async_maybe_transform({"value": value}, minify_edit_params.MinifyEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

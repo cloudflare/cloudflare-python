@@ -7,7 +7,10 @@ from typing import Type, cast
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -174,7 +177,7 @@ class AsyncConnectivitySettings(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._patch(
             f"/accounts/{account_id}/zerotrust/connectivity_settings",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "icmp_proxy_enabled": icmp_proxy_enabled,
                     "offramp_warp_enabled": offramp_warp_enabled,

@@ -16,7 +16,10 @@ from .health import (
     AsyncHealthWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import maybe_transform
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
 from .references import (
     References,
@@ -673,7 +676,7 @@ class AsyncPools(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/load_balancers/pools",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "name": name,
                     "origins": origins,
@@ -807,7 +810,7 @@ class AsyncPools(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
         return await self._put(
             f"/accounts/{account_id}/load_balancers/pools/{pool_id}",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "name": name,
                     "origins": origins,
@@ -873,7 +876,7 @@ class AsyncPools(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"monitor": monitor}, pool_list_params.PoolListParams),
+                query=await async_maybe_transform({"monitor": monitor}, pool_list_params.PoolListParams),
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(Type[Optional[PoolListResponse]], ResultWrapper[PoolListResponse]),
@@ -1028,7 +1031,7 @@ class AsyncPools(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
         return await self._patch(
             f"/accounts/{account_id}/load_balancers/pools/{pool_id}",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "check_regions": check_regions,
                     "description": description,

@@ -8,7 +8,10 @@ from typing_extensions import Literal
 import httpx
 
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ....._utils import maybe_transform
+from ....._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -257,7 +260,7 @@ class AsyncNetworks(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `ip_network_encoded` but received {ip_network_encoded!r}")
         return await self._post(
             f"/accounts/{account_id}/teamnet/routes/network/{ip_network_encoded}",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "comment": comment,
                     "virtual_network_id": virtual_network_id,
@@ -323,7 +326,7 @@ class AsyncNetworks(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"tun_type": tun_type}, network_delete_params.NetworkDeleteParams),
+                query=await async_maybe_transform({"tun_type": tun_type}, network_delete_params.NetworkDeleteParams),
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(Type[NetworkDeleteResponse], ResultWrapper[NetworkDeleteResponse]),

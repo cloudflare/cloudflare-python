@@ -7,7 +7,12 @@ from typing import List, Type, Mapping, cast
 import httpx
 
 from ......._types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes
-from ......._utils import extract_files, maybe_transform, deepcopy_minimal
+from ......._utils import (
+    extract_files,
+    maybe_transform,
+    deepcopy_minimal,
+    async_maybe_transform,
+)
 from ......._compat import cached_property
 from ......._resource import SyncAPIResource, AsyncAPIResource
 from ......._response import (
@@ -236,7 +241,7 @@ class AsyncScripts(AsyncAPIResource):
             extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._put(
             f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/content",
-            body=maybe_transform(body, script_update_params.ScriptUpdateParams),
+            body=await async_maybe_transform(body, script_update_params.ScriptUpdateParams),
             files=files,
             options=make_request_options(
                 extra_headers=extra_headers,

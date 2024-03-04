@@ -32,7 +32,10 @@ from ...types import (
     ruleset_update_params,
 )
 from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
-from ..._utils import maybe_transform
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from .versions import (
     Versions,
     AsyncVersions,
@@ -576,7 +579,7 @@ class AsyncRulesets(AsyncAPIResource):
             account_or_zone_id = zone_id
         return await self._post(
             f"/{account_or_zone}/{account_or_zone_id}/rulesets",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "kind": kind,
                     "name": name,
@@ -689,7 +692,7 @@ class AsyncRulesets(AsyncAPIResource):
             account_or_zone_id = zone_id
         return await self._put(
             f"/{account_or_zone}/{account_or_zone_id}/rulesets/{ruleset_id}",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "id": id,
                     "rules": rules,

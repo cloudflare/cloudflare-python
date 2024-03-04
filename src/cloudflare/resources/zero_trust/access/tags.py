@@ -7,7 +7,10 @@ from typing import Type, Optional, cast
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import maybe_transform
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -302,7 +305,7 @@ class AsyncTags(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return await self._post(
             f"/accounts/{identifier}/access/tags",
-            body=maybe_transform({"name": name}, tag_create_params.TagCreateParams),
+            body=await async_maybe_transform({"name": name}, tag_create_params.TagCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -350,7 +353,7 @@ class AsyncTags(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `tag_name` but received {tag_name!r}")
         return await self._put(
             f"/accounts/{identifier}/access/tags/{tag_name}",
-            body=maybe_transform({"name": name}, tag_update_params.TagUpdateParams),
+            body=await async_maybe_transform({"name": name}, tag_update_params.TagUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

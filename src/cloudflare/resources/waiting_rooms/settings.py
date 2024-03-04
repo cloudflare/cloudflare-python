@@ -7,7 +7,10 @@ from typing import Type, cast
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -218,7 +221,7 @@ class AsyncSettings(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return await self._put(
             f"/zones/{zone_identifier}/waiting_rooms/settings",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {"search_engine_crawler_bypass": search_engine_crawler_bypass},
                 setting_update_params.SettingUpdateParams,
             ),
@@ -266,7 +269,7 @@ class AsyncSettings(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return await self._patch(
             f"/zones/{zone_identifier}/waiting_rooms/settings",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {"search_engine_crawler_bypass": search_engine_crawler_bypass}, setting_edit_params.SettingEditParams
             ),
             options=make_request_options(

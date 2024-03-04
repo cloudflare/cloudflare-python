@@ -20,7 +20,10 @@ from ...types import (
     pagerule_update_params,
 )
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from .settings import (
     Settings,
     AsyncSettings,
@@ -496,7 +499,7 @@ class AsyncPagerules(AsyncAPIResource):
             PageruleCreateResponse,
             await self._post(
                 f"/zones/{zone_id}/pagerules",
-                body=maybe_transform(
+                body=await async_maybe_transform(
                     {
                         "actions": actions,
                         "targets": targets,
@@ -573,7 +576,7 @@ class AsyncPagerules(AsyncAPIResource):
             PageruleUpdateResponse,
             await self._put(
                 f"/zones/{zone_id}/pagerules/{pagerule_id}",
-                body=maybe_transform(
+                body=await async_maybe_transform(
                     {
                         "actions": actions,
                         "targets": targets,
@@ -642,7 +645,7 @@ class AsyncPagerules(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "direction": direction,
                         "match": match,
@@ -753,7 +756,7 @@ class AsyncPagerules(AsyncAPIResource):
             PageruleEditResponse,
             await self._patch(
                 f"/zones/{zone_id}/pagerules/{pagerule_id}",
-                body=maybe_transform(
+                body=await async_maybe_transform(
                     {
                         "actions": actions,
                         "priority": priority,

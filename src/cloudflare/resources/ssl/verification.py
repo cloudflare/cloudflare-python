@@ -8,7 +8,10 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -186,7 +189,7 @@ class AsyncVerification(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"retry": retry}, verification_list_params.VerificationListParams),
+                query=await async_maybe_transform({"retry": retry}, verification_list_params.VerificationListParams),
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(Type[Optional[VerificationListResponse]], ResultWrapper[VerificationListResponse]),
@@ -235,7 +238,7 @@ class AsyncVerification(AsyncAPIResource):
             )
         return await self._patch(
             f"/zones/{zone_id}/ssl/verification/{certificate_pack_id}",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {"validation_method": validation_method}, verification_edit_params.VerificationEditParams
             ),
             options=make_request_options(

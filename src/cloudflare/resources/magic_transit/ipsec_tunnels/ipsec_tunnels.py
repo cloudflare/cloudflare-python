@@ -7,7 +7,10 @@ from typing import Type, cast
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import maybe_transform
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -419,7 +422,7 @@ class AsyncIPSECTunnels(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
         return await self._post(
             f"/accounts/{account_identifier}/magic/ipsec_tunnels",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "cloudflare_endpoint": cloudflare_endpoint,
                     "interface_address": interface_address,
@@ -504,7 +507,7 @@ class AsyncIPSECTunnels(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `tunnel_identifier` but received {tunnel_identifier!r}")
         return await self._put(
             f"/accounts/{account_identifier}/magic/ipsec_tunnels/{tunnel_identifier}",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "cloudflare_endpoint": cloudflare_endpoint,
                     "interface_address": interface_address,

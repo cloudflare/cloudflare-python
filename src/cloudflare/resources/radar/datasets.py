@@ -8,7 +8,10 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -233,7 +236,7 @@ class AsyncDatasets(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "dataset_type": dataset_type,
                         "format": format,
@@ -275,13 +278,13 @@ class AsyncDatasets(AsyncAPIResource):
         """
         return await self._post(
             "/radar/datasets/download",
-            body=maybe_transform({"dataset_id": dataset_id}, dataset_download_params.DatasetDownloadParams),
+            body=await async_maybe_transform({"dataset_id": dataset_id}, dataset_download_params.DatasetDownloadParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"format": format}, dataset_download_params.DatasetDownloadParams),
+                query=await async_maybe_transform({"format": format}, dataset_download_params.DatasetDownloadParams),
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(Type[DatasetDownloadResponse], ResultWrapper[DatasetDownloadResponse]),
@@ -328,7 +331,7 @@ class AsyncDatasets(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"date": date}, dataset_get_params.DatasetGetParams),
+                query=await async_maybe_transform({"date": date}, dataset_get_params.DatasetGetParams),
             ),
             cast_to=str,
         )

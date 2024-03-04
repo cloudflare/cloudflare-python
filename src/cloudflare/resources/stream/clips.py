@@ -7,7 +7,10 @@ from typing import List, Type, cast
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -194,7 +197,7 @@ class AsyncClips(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/stream/clip",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "clipped_from_video_uid": clipped_from_video_uid,
                     "end_time_seconds": end_time_seconds,

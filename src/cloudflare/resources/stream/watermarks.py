@@ -7,7 +7,10 @@ from typing import Any, Type, cast
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -329,7 +332,7 @@ class AsyncWatermarks(AsyncAPIResource):
             WatermarkCreateResponse,
             await self._post(
                 f"/accounts/{account_id}/stream/watermarks",
-                body=maybe_transform(
+                body=await async_maybe_transform(
                     {
                         "file": file,
                         "name": name,

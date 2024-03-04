@@ -7,7 +7,10 @@ from typing import Any, List, Type, Iterable, Optional, cast
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -564,7 +567,7 @@ class AsyncIndexes(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
         return await self._post(
             f"/accounts/{account_identifier}/vectorize/indexes",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "config": config,
                     "name": name,
@@ -617,7 +620,7 @@ class AsyncIndexes(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
         return await self._put(
             f"/accounts/{account_identifier}/vectorize/indexes/{index_name}",
-            body=maybe_transform({"description": description}, index_update_params.IndexUpdateParams),
+            body=await async_maybe_transform({"description": description}, index_update_params.IndexUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -749,7 +752,7 @@ class AsyncIndexes(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
         return await self._post(
             f"/accounts/{account_identifier}/vectorize/indexes/{index_name}/delete-by-ids",
-            body=maybe_transform({"ids": ids}, index_delete_by_ids_params.IndexDeleteByIDsParams),
+            body=await async_maybe_transform({"ids": ids}, index_delete_by_ids_params.IndexDeleteByIDsParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -837,7 +840,7 @@ class AsyncIndexes(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
         return await self._post(
             f"/accounts/{account_identifier}/vectorize/indexes/{index_name}/get-by-ids",
-            body=maybe_transform({"ids": ids}, index_get_by_ids_params.IndexGetByIDsParams),
+            body=await async_maybe_transform({"ids": ids}, index_get_by_ids_params.IndexGetByIDsParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -935,7 +938,7 @@ class AsyncIndexes(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
         return await self._post(
             f"/accounts/{account_identifier}/vectorize/indexes/{index_name}/query",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "return_metadata": return_metadata,
                     "return_values": return_values,

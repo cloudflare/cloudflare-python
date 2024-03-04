@@ -8,7 +8,10 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -779,7 +782,7 @@ class AsyncRecords(AsyncAPIResource):
             RecordCreateResponse,
             await self._post(
                 f"/zones/{zone_id}/dns_records",
-                body=maybe_transform(
+                body=await async_maybe_transform(
                     {
                         "name": name,
                         "type": type,
@@ -876,7 +879,7 @@ class AsyncRecords(AsyncAPIResource):
             RecordUpdateResponse,
             await self._put(
                 f"/zones/{zone_id}/dns_records/{dns_record_id}",
-                body=maybe_transform(
+                body=await async_maybe_transform(
                     {
                         "name": name,
                         "type": type,
@@ -1142,7 +1145,7 @@ class AsyncRecords(AsyncAPIResource):
             RecordEditResponse,
             await self._patch(
                 f"/zones/{zone_id}/dns_records/{dns_record_id}",
-                body=maybe_transform(
+                body=await async_maybe_transform(
                     {
                         "name": name,
                         "type": type,
@@ -1308,7 +1311,7 @@ class AsyncRecords(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
             f"/zones/{zone_id}/dns_records/import",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "file": file,
                     "proxied": proxied,

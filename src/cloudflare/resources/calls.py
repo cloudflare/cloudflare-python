@@ -16,7 +16,10 @@ from ..types import (
     call_update_params,
 )
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from .._utils import maybe_transform
+from .._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -306,7 +309,7 @@ class AsyncCalls(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/calls/apps",
-            body=maybe_transform({"name": name}, call_create_params.CallCreateParams),
+            body=await async_maybe_transform({"name": name}, call_create_params.CallCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -354,7 +357,7 @@ class AsyncCalls(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         return await self._put(
             f"/accounts/{account_id}/calls/apps/{app_id}",
-            body=maybe_transform({"name": name}, call_update_params.CallUpdateParams),
+            body=await async_maybe_transform({"name": name}, call_update_params.CallUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

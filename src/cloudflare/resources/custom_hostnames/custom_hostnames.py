@@ -18,7 +18,10 @@ from ...types import (
     custom_hostname_create_params,
 )
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -411,7 +414,7 @@ class AsyncCustomHostnames(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
             f"/zones/{zone_id}/custom_hostnames",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "hostname": hostname,
                     "ssl": ssl,
@@ -599,7 +602,7 @@ class AsyncCustomHostnames(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `custom_hostname_id` but received {custom_hostname_id!r}")
         return await self._patch(
             f"/zones/{zone_id}/custom_hostnames/{custom_hostname_id}",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "custom_metadata": custom_metadata,
                     "custom_origin_server": custom_origin_server,

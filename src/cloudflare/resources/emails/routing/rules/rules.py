@@ -8,7 +8,10 @@ from typing_extensions import Literal
 import httpx
 
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ....._utils import maybe_transform
+from ....._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from .catch_alls import (
     CatchAlls,
     AsyncCatchAlls,
@@ -397,7 +400,7 @@ class AsyncRules(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return await self._post(
             f"/zones/{zone_identifier}/email/routing/rules",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "actions": actions,
                     "matchers": matchers,
@@ -466,7 +469,7 @@ class AsyncRules(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `rule_identifier` but received {rule_identifier!r}")
         return await self._put(
             f"/zones/{zone_identifier}/email/routing/rules/{rule_identifier}",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "actions": actions,
                     "matchers": matchers,

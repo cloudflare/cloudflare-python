@@ -7,7 +7,10 @@ from typing import List, Type, Union, Optional, cast
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import maybe_transform
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from .analytics import (
     Analytics,
     AsyncAnalytics,
@@ -457,7 +460,7 @@ class AsyncFirewall(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/dns_firewall",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "name": name,
                     "upstream_ips": upstream_ips,
@@ -647,7 +650,7 @@ class AsyncFirewall(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `dns_firewall_id` but received {dns_firewall_id!r}")
         return await self._patch(
             f"/accounts/{account_id}/dns_firewall/{dns_firewall_id}",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "deprecate_any_requests": deprecate_any_requests,
                     "dns_firewall_ips": dns_firewall_ips,

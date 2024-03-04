@@ -16,7 +16,10 @@ from .bgp import (
 )
 from .bgp.bgp import BGP, AsyncBGP
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import maybe_transform
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
 from .delegations import (
     Delegations,
@@ -359,7 +362,7 @@ class AsyncPrefixes(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/addressing/prefixes",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "asn": asn,
                     "cidr": cidr,
@@ -502,7 +505,7 @@ class AsyncPrefixes(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `prefix_id` but received {prefix_id!r}")
         return await self._patch(
             f"/accounts/{account_id}/addressing/prefixes/{prefix_id}",
-            body=maybe_transform({"description": description}, prefix_edit_params.PrefixEditParams),
+            body=await async_maybe_transform({"description": description}, prefix_edit_params.PrefixEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

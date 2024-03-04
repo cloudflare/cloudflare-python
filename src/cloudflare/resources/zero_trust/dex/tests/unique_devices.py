@@ -7,7 +7,10 @@ from typing import List, Type, cast
 import httpx
 
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ....._utils import maybe_transform
+from ....._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -136,7 +139,7 @@ class AsyncUniqueDevices(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "device_id": device_id,
                         "test_name": test_name,

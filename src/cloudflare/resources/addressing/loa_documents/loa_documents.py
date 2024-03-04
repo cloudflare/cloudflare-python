@@ -7,7 +7,10 @@ from typing import Type, cast
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import maybe_transform
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from .downloads import (
     Downloads,
     AsyncDownloads,
@@ -135,7 +138,9 @@ class AsyncLOADocuments(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/addressing/loa_documents",
-            body=maybe_transform({"loa_document": loa_document}, loa_document_create_params.LOADocumentCreateParams),
+            body=await async_maybe_transform(
+                {"loa_document": loa_document}, loa_document_create_params.LOADocumentCreateParams
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

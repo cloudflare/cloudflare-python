@@ -25,7 +25,10 @@ from .bot_class import (
     AsyncBotClassWithStreamingResponse,
 )
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ....._utils import maybe_transform
+from ....._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from .ip_version import (
     IPVersion,
     AsyncIPVersion,
@@ -400,7 +403,7 @@ class AsyncLocations(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "asn": asn,
                         "bot_class": bot_class,

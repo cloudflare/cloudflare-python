@@ -8,7 +8,10 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import maybe_transform
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -137,7 +140,9 @@ class AsyncManagement(AsyncAPIResource):
             ManagementCreateResponse,
             await self._post(
                 f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}/management",
-                body=maybe_transform({"resources": resources}, management_create_params.ManagementCreateParams),
+                body=await async_maybe_transform(
+                    {"resources": resources}, management_create_params.ManagementCreateParams
+                ),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
