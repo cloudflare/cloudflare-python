@@ -7,7 +7,10 @@ from typing import Type, cast
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import maybe_transform
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -107,7 +110,7 @@ class AsyncValue(AsyncAPIResource):
         """
         return await self._put(
             f"/user/tokens/{token_id}/value",
-            body=maybe_transform(body, value_update_params.ValueUpdateParams),
+            body=await async_maybe_transform(body, value_update_params.ValueUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

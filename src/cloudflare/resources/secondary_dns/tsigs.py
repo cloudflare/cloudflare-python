@@ -7,7 +7,10 @@ from typing import Type, Optional, cast
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -298,7 +301,7 @@ class AsyncTSIGs(AsyncAPIResource):
         """
         return await self._post(
             f"/accounts/{account_id}/secondary_dns/tsigs",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "algo": algo,
                     "name": name,
@@ -351,7 +354,7 @@ class AsyncTSIGs(AsyncAPIResource):
         """
         return await self._put(
             f"/accounts/{account_id}/secondary_dns/tsigs/{tsig_id}",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "algo": algo,
                     "name": name,

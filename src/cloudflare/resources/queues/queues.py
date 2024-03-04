@@ -16,7 +16,10 @@ from ...types import (
     queue_update_params,
 )
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
 from .consumers import (
     Consumers,
@@ -311,7 +314,7 @@ class AsyncQueues(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/workers/queues",
-            body=maybe_transform(body, queue_create_params.QueueCreateParams),
+            body=await async_maybe_transform(body, queue_create_params.QueueCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -355,7 +358,7 @@ class AsyncQueues(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return await self._put(
             f"/accounts/{account_id}/workers/queues/{name}",
-            body=maybe_transform(body, queue_update_params.QueueUpdateParams),
+            body=await async_maybe_transform(body, queue_update_params.QueueUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

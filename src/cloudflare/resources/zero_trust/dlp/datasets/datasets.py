@@ -15,7 +15,10 @@ from .upload import (
     AsyncUploadWithStreamingResponse,
 )
 from ....._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
-from ....._utils import maybe_transform
+from ....._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -320,7 +323,7 @@ class AsyncDatasets(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/dlp/datasets",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "name": name,
                     "description": description,
@@ -370,7 +373,7 @@ class AsyncDatasets(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `dataset_id` but received {dataset_id!r}")
         return await self._put(
             f"/accounts/{account_id}/dlp/datasets/{dataset_id}",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "description": description,
                     "name": name,

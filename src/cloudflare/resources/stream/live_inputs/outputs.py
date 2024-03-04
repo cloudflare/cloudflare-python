@@ -7,7 +7,10 @@ from typing import Type, cast
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
-from ...._utils import maybe_transform
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -323,7 +326,7 @@ class AsyncOutputs(AsyncAPIResource):
             )
         return await self._post(
             f"/accounts/{account_id}/stream/live_inputs/{live_input_identifier}/outputs",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "stream_key": stream_key,
                     "url": url,
@@ -389,7 +392,7 @@ class AsyncOutputs(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `output_identifier` but received {output_identifier!r}")
         return await self._put(
             f"/accounts/{account_id}/stream/live_inputs/{live_input_identifier}/outputs/{output_identifier}",
-            body=maybe_transform({"enabled": enabled}, output_update_params.OutputUpdateParams),
+            body=await async_maybe_transform({"enabled": enabled}, output_update_params.OutputUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

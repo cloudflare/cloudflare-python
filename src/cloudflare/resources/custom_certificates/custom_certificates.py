@@ -18,7 +18,10 @@ from ...types import (
     custom_certificate_create_params,
 )
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
 from .prioritize import (
     Prioritize,
@@ -482,7 +485,7 @@ class AsyncCustomCertificates(AsyncAPIResource):
             CustomCertificateCreateResponse,
             await self._post(
                 f"/zones/{zone_id}/custom_certificates",
-                body=maybe_transform(
+                body=await async_maybe_transform(
                     {
                         "certificate": certificate,
                         "private_key": private_key,
@@ -684,7 +687,7 @@ class AsyncCustomCertificates(AsyncAPIResource):
             CustomCertificateEditResponse,
             await self._patch(
                 f"/zones/{zone_id}/custom_certificates/{custom_certificate_id}",
-                body=maybe_transform(
+                body=await async_maybe_transform(
                     {
                         "bundle_method": bundle_method,
                         "certificate": certificate,

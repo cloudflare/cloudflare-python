@@ -7,7 +7,10 @@ from typing import Type, Optional, cast
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -224,7 +227,9 @@ class AsyncHolds(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"include_subdomains": include_subdomains}, hold_create_params.HoldCreateParams),
+                query=await async_maybe_transform(
+                    {"include_subdomains": include_subdomains}, hold_create_params.HoldCreateParams
+                ),
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(Type[HoldCreateResponse], ResultWrapper[HoldCreateResponse]),
@@ -270,7 +275,7 @@ class AsyncHolds(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"hold_after": hold_after}, hold_delete_params.HoldDeleteParams),
+                query=await async_maybe_transform({"hold_after": hold_after}, hold_delete_params.HoldDeleteParams),
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(Type[Optional[HoldDeleteResponse]], ResultWrapper[HoldDeleteResponse]),

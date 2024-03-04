@@ -32,7 +32,10 @@ from ...types import (
     speed_schedule_get_params,
 )
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from .schedule import (
     Schedule,
     AsyncSchedule,
@@ -410,7 +413,7 @@ class AsyncSpeed(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"region": region}, speed_delete_params.SpeedDeleteParams),
+                query=await async_maybe_transform({"region": region}, speed_delete_params.SpeedDeleteParams),
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(Type[Optional[SpeedDeleteResponse]], ResultWrapper[SpeedDeleteResponse]),
@@ -481,7 +484,7 @@ class AsyncSpeed(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"region": region}, speed_schedule_get_params.SpeedScheduleGetParams),
+                query=await async_maybe_transform({"region": region}, speed_schedule_get_params.SpeedScheduleGetParams),
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(Type[Optional[SpeedScheduleGetResponse]], ResultWrapper[SpeedScheduleGetResponse]),
@@ -560,7 +563,7 @@ class AsyncSpeed(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "device_type": device_type,
                         "metrics": metrics,

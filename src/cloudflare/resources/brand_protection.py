@@ -13,7 +13,10 @@ from ..types import (
     brand_protection_url_info_params,
 )
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from .._utils import maybe_transform
+from .._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -172,7 +175,7 @@ class AsyncBrandProtection(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/brand-protection/submit",
-            body=maybe_transform({"url": url}, brand_protection_submit_params.BrandProtectionSubmitParams),
+            body=await async_maybe_transform({"url": url}, brand_protection_submit_params.BrandProtectionSubmitParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -219,7 +222,7 @@ class AsyncBrandProtection(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "url": url,
                         "url_id_param": url_id_param,

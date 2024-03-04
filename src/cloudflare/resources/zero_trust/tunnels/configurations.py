@@ -7,7 +7,10 @@ from typing import Any, cast
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import maybe_transform
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -189,7 +192,9 @@ class AsyncConfigurations(AsyncAPIResource):
             ConfigurationUpdateResponse,
             await self._put(
                 f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}/configurations",
-                body=maybe_transform({"config": config}, configuration_update_params.ConfigurationUpdateParams),
+                body=await async_maybe_transform(
+                    {"config": config}, configuration_update_params.ConfigurationUpdateParams
+                ),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

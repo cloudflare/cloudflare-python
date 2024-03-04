@@ -7,7 +7,10 @@ from typing import Type, Optional, cast
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -230,7 +233,9 @@ class AsyncOwnership(AsyncAPIResource):
             account_or_zone_id = zone_id
         return await self._post(
             f"/{account_or_zone}/{account_or_zone_id}/logpush/ownership",
-            body=maybe_transform({"destination_conf": destination_conf}, ownership_create_params.OwnershipCreateParams),
+            body=await async_maybe_transform(
+                {"destination_conf": destination_conf}, ownership_create_params.OwnershipCreateParams
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -294,7 +299,7 @@ class AsyncOwnership(AsyncAPIResource):
             account_or_zone_id = zone_id
         return await self._post(
             f"/{account_or_zone}/{account_or_zone_id}/logpush/ownership/validate",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "destination_conf": destination_conf,
                     "ownership_challenge": ownership_challenge,

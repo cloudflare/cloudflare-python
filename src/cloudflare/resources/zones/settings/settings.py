@@ -119,7 +119,10 @@ from .zero_rtt import (
     AsyncZeroRTTWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import maybe_transform
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from .websocket import (
     Websocket,
     AsyncWebsocket,
@@ -1013,7 +1016,7 @@ class AsyncSettings(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._patch(
             f"/zones/{zone_id}/settings",
-            body=maybe_transform({"items": items}, setting_edit_params.SettingEditParams),
+            body=await async_maybe_transform({"items": items}, setting_edit_params.SettingEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

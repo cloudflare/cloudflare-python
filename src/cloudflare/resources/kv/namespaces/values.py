@@ -7,7 +7,10 @@ from typing import Any, cast
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import maybe_transform
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -280,7 +283,7 @@ class AsyncValues(AsyncAPIResource):
             ValueUpdateResponse,
             await self._put(
                 f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/values/{key_name}",
-                body=maybe_transform(
+                body=await async_maybe_transform(
                     {
                         "metadata": metadata,
                         "value": value,

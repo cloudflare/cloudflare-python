@@ -7,7 +7,10 @@ from typing import Type, cast
 import httpx
 
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ....._utils import maybe_transform
+from ....._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -173,7 +176,7 @@ class AsyncStatuses(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `prefix_id` but received {prefix_id!r}")
         return await self._patch(
             f"/accounts/{account_id}/addressing/prefixes/{prefix_id}/bgp/status",
-            body=maybe_transform({"advertised": advertised}, status_edit_params.StatusEditParams),
+            body=await async_maybe_transform({"advertised": advertised}, status_edit_params.StatusEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

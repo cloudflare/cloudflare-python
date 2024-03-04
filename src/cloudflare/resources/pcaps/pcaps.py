@@ -9,7 +9,10 @@ import httpx
 
 from ...types import PCAPGetResponse, PCAPListResponse, PCAPCreateResponse, pcap_create_params
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
 from .downloads import (
     Downloads,
@@ -305,7 +308,7 @@ class AsyncPCAPs(AsyncAPIResource):
             PCAPCreateResponse,
             await self._post(
                 f"/accounts/{account_id}/pcaps",
-                body=maybe_transform(
+                body=await async_maybe_transform(
                     {
                         "system": system,
                         "time_limit": time_limit,

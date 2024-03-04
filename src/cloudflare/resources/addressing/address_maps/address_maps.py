@@ -31,7 +31,10 @@ from .accounts import (
     AsyncAccountsWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import maybe_transform
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -392,7 +395,7 @@ class AsyncAddressMaps(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/addressing/address_maps",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "description": description,
                     "enabled": enabled,
@@ -548,7 +551,7 @@ class AsyncAddressMaps(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
         return await self._patch(
             f"/accounts/{account_id}/addressing/address_maps/{address_map_id}",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "default_sni": default_sni,
                     "description": description,

@@ -39,7 +39,10 @@ from .variants import (
     AsyncVariantsWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import maybe_transform
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -417,7 +420,7 @@ class AsyncV1(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/images/v1",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "metadata": metadata,
                     "require_signed_urls": require_signed_urls,
@@ -584,7 +587,7 @@ class AsyncV1(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `image_id` but received {image_id!r}")
         return await self._patch(
             f"/accounts/{account_id}/images/v1/{image_id}",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "metadata": metadata,
                     "require_signed_urls": require_signed_urls,

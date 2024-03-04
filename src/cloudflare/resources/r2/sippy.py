@@ -7,7 +7,10 @@ from typing import Type, cast
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
 from ...types.r2 import SippyGetResponse, SippyDeleteResponse, SippyUpdateResponse, sippy_update_params
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -221,7 +224,7 @@ class AsyncSippy(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         return await self._put(
             f"/accounts/{account_id}/r2/buckets/{bucket_name}/sippy",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "destination": destination,
                     "source": source,

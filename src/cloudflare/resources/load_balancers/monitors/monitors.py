@@ -16,7 +16,10 @@ from .previews import (
     AsyncPreviewsWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import maybe_transform
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
 from .references import (
     References,
@@ -685,7 +688,7 @@ class AsyncMonitors(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/load_balancers/monitors",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "expected_codes": expected_codes,
                     "allow_insecure": allow_insecure,
@@ -813,7 +816,7 @@ class AsyncMonitors(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `monitor_id` but received {monitor_id!r}")
         return await self._put(
             f"/accounts/{account_id}/load_balancers/monitors/{monitor_id}",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "expected_codes": expected_codes,
                     "allow_insecure": allow_insecure,
@@ -1022,7 +1025,7 @@ class AsyncMonitors(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `monitor_id` but received {monitor_id!r}")
         return await self._patch(
             f"/accounts/{account_id}/load_balancers/monitors/{monitor_id}",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "expected_codes": expected_codes,
                     "allow_insecure": allow_insecure,
