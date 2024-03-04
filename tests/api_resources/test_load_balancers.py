@@ -10,12 +10,9 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types import (
-    LoadBalancerGetResponse,
-    LoadBalancerEditResponse,
+    LoadBalancer,
     LoadBalancerListResponse,
-    LoadBalancerCreateResponse,
     LoadBalancerDeleteResponse,
-    LoadBalancerUpdateResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -37,7 +34,7 @@ class TestLoadBalancers:
             fallback_pool={},
             name="www.example.com",
         )
-        assert_matches_type(LoadBalancerCreateResponse, load_balancer, path=["response"])
+        assert_matches_type(LoadBalancer, load_balancer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -267,7 +264,7 @@ class TestLoadBalancers:
             steering_policy="dynamic_latency",
             ttl=30,
         )
-        assert_matches_type(LoadBalancerCreateResponse, load_balancer, path=["response"])
+        assert_matches_type(LoadBalancer, load_balancer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -286,7 +283,7 @@ class TestLoadBalancers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         load_balancer = response.parse()
-        assert_matches_type(LoadBalancerCreateResponse, load_balancer, path=["response"])
+        assert_matches_type(LoadBalancer, load_balancer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -305,7 +302,7 @@ class TestLoadBalancers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             load_balancer = response.parse()
-            assert_matches_type(LoadBalancerCreateResponse, load_balancer, path=["response"])
+            assert_matches_type(LoadBalancer, load_balancer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -338,7 +335,7 @@ class TestLoadBalancers:
             fallback_pool={},
             name="www.example.com",
         )
-        assert_matches_type(LoadBalancerUpdateResponse, load_balancer, path=["response"])
+        assert_matches_type(LoadBalancer, load_balancer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -570,7 +567,7 @@ class TestLoadBalancers:
             steering_policy="dynamic_latency",
             ttl=30,
         )
-        assert_matches_type(LoadBalancerUpdateResponse, load_balancer, path=["response"])
+        assert_matches_type(LoadBalancer, load_balancer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -590,7 +587,7 @@ class TestLoadBalancers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         load_balancer = response.parse()
-        assert_matches_type(LoadBalancerUpdateResponse, load_balancer, path=["response"])
+        assert_matches_type(LoadBalancer, load_balancer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -610,7 +607,7 @@ class TestLoadBalancers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             load_balancer = response.parse()
-            assert_matches_type(LoadBalancerUpdateResponse, load_balancer, path=["response"])
+            assert_matches_type(LoadBalancer, load_balancer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -744,7 +741,7 @@ class TestLoadBalancers:
             "699d98642c564d2e855e9661899b7252",
             zone_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(LoadBalancerEditResponse, load_balancer, path=["response"])
+        assert_matches_type(LoadBalancer, load_balancer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -976,7 +973,7 @@ class TestLoadBalancers:
             steering_policy="dynamic_latency",
             ttl=30,
         )
-        assert_matches_type(LoadBalancerEditResponse, load_balancer, path=["response"])
+        assert_matches_type(LoadBalancer, load_balancer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -989,7 +986,7 @@ class TestLoadBalancers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         load_balancer = response.parse()
-        assert_matches_type(LoadBalancerEditResponse, load_balancer, path=["response"])
+        assert_matches_type(LoadBalancer, load_balancer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1002,7 +999,7 @@ class TestLoadBalancers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             load_balancer = response.parse()
-            assert_matches_type(LoadBalancerEditResponse, load_balancer, path=["response"])
+            assert_matches_type(LoadBalancer, load_balancer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1028,7 +1025,7 @@ class TestLoadBalancers:
             "699d98642c564d2e855e9661899b7252",
             zone_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(LoadBalancerGetResponse, load_balancer, path=["response"])
+        assert_matches_type(LoadBalancer, load_balancer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1041,7 +1038,7 @@ class TestLoadBalancers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         load_balancer = response.parse()
-        assert_matches_type(LoadBalancerGetResponse, load_balancer, path=["response"])
+        assert_matches_type(LoadBalancer, load_balancer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1054,7 +1051,7 @@ class TestLoadBalancers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             load_balancer = response.parse()
-            assert_matches_type(LoadBalancerGetResponse, load_balancer, path=["response"])
+            assert_matches_type(LoadBalancer, load_balancer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1090,7 +1087,7 @@ class TestAsyncLoadBalancers:
             fallback_pool={},
             name="www.example.com",
         )
-        assert_matches_type(LoadBalancerCreateResponse, load_balancer, path=["response"])
+        assert_matches_type(LoadBalancer, load_balancer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1320,7 +1317,7 @@ class TestAsyncLoadBalancers:
             steering_policy="dynamic_latency",
             ttl=30,
         )
-        assert_matches_type(LoadBalancerCreateResponse, load_balancer, path=["response"])
+        assert_matches_type(LoadBalancer, load_balancer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1339,7 +1336,7 @@ class TestAsyncLoadBalancers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         load_balancer = await response.parse()
-        assert_matches_type(LoadBalancerCreateResponse, load_balancer, path=["response"])
+        assert_matches_type(LoadBalancer, load_balancer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1358,7 +1355,7 @@ class TestAsyncLoadBalancers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             load_balancer = await response.parse()
-            assert_matches_type(LoadBalancerCreateResponse, load_balancer, path=["response"])
+            assert_matches_type(LoadBalancer, load_balancer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1391,7 +1388,7 @@ class TestAsyncLoadBalancers:
             fallback_pool={},
             name="www.example.com",
         )
-        assert_matches_type(LoadBalancerUpdateResponse, load_balancer, path=["response"])
+        assert_matches_type(LoadBalancer, load_balancer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1623,7 +1620,7 @@ class TestAsyncLoadBalancers:
             steering_policy="dynamic_latency",
             ttl=30,
         )
-        assert_matches_type(LoadBalancerUpdateResponse, load_balancer, path=["response"])
+        assert_matches_type(LoadBalancer, load_balancer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1643,7 +1640,7 @@ class TestAsyncLoadBalancers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         load_balancer = await response.parse()
-        assert_matches_type(LoadBalancerUpdateResponse, load_balancer, path=["response"])
+        assert_matches_type(LoadBalancer, load_balancer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1663,7 +1660,7 @@ class TestAsyncLoadBalancers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             load_balancer = await response.parse()
-            assert_matches_type(LoadBalancerUpdateResponse, load_balancer, path=["response"])
+            assert_matches_type(LoadBalancer, load_balancer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1797,7 +1794,7 @@ class TestAsyncLoadBalancers:
             "699d98642c564d2e855e9661899b7252",
             zone_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(LoadBalancerEditResponse, load_balancer, path=["response"])
+        assert_matches_type(LoadBalancer, load_balancer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2029,7 +2026,7 @@ class TestAsyncLoadBalancers:
             steering_policy="dynamic_latency",
             ttl=30,
         )
-        assert_matches_type(LoadBalancerEditResponse, load_balancer, path=["response"])
+        assert_matches_type(LoadBalancer, load_balancer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2042,7 +2039,7 @@ class TestAsyncLoadBalancers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         load_balancer = await response.parse()
-        assert_matches_type(LoadBalancerEditResponse, load_balancer, path=["response"])
+        assert_matches_type(LoadBalancer, load_balancer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2055,7 +2052,7 @@ class TestAsyncLoadBalancers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             load_balancer = await response.parse()
-            assert_matches_type(LoadBalancerEditResponse, load_balancer, path=["response"])
+            assert_matches_type(LoadBalancer, load_balancer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2081,7 +2078,7 @@ class TestAsyncLoadBalancers:
             "699d98642c564d2e855e9661899b7252",
             zone_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(LoadBalancerGetResponse, load_balancer, path=["response"])
+        assert_matches_type(LoadBalancer, load_balancer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2094,7 +2091,7 @@ class TestAsyncLoadBalancers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         load_balancer = await response.parse()
-        assert_matches_type(LoadBalancerGetResponse, load_balancer, path=["response"])
+        assert_matches_type(LoadBalancer, load_balancer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2107,7 +2104,7 @@ class TestAsyncLoadBalancers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             load_balancer = await response.parse()
-            assert_matches_type(LoadBalancerGetResponse, load_balancer, path=["response"])
+            assert_matches_type(LoadBalancer, load_balancer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

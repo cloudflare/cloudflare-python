@@ -16,12 +16,9 @@ from .pools import (
     AsyncPoolsWithStreamingResponse,
 )
 from ...types import (
-    LoadBalancerGetResponse,
-    LoadBalancerEditResponse,
+    LoadBalancer,
     LoadBalancerListResponse,
-    LoadBalancerCreateResponse,
     LoadBalancerDeleteResponse,
-    LoadBalancerUpdateResponse,
     load_balancer_edit_params,
     load_balancer_create_params,
     load_balancer_update_params,
@@ -147,7 +144,7 @@ class LoadBalancers(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LoadBalancerCreateResponse:
+    ) -> LoadBalancer:
         """
         Create a new load balancer.
 
@@ -305,7 +302,7 @@ class LoadBalancers(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[LoadBalancerCreateResponse], ResultWrapper[LoadBalancerCreateResponse]),
+            cast_to=cast(Type[LoadBalancer], ResultWrapper[LoadBalancer]),
         )
 
     def update(
@@ -347,7 +344,7 @@ class LoadBalancers(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LoadBalancerUpdateResponse:
+    ) -> LoadBalancer:
         """
         Update a configured load balancer.
 
@@ -510,7 +507,7 @@ class LoadBalancers(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[LoadBalancerUpdateResponse], ResultWrapper[LoadBalancerUpdateResponse]),
+            cast_to=cast(Type[LoadBalancer], ResultWrapper[LoadBalancer]),
         )
 
     def list(
@@ -629,7 +626,7 @@ class LoadBalancers(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LoadBalancerEditResponse:
+    ) -> LoadBalancer:
         """
         Apply changes to an existing load balancer, overwriting the supplied properties.
 
@@ -792,7 +789,7 @@ class LoadBalancers(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[LoadBalancerEditResponse], ResultWrapper[LoadBalancerEditResponse]),
+            cast_to=cast(Type[LoadBalancer], ResultWrapper[LoadBalancer]),
         )
 
     def get(
@@ -806,7 +803,7 @@ class LoadBalancers(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LoadBalancerGetResponse:
+    ) -> LoadBalancer:
         """
         Fetch a single configured load balancer.
 
@@ -832,7 +829,7 @@ class LoadBalancers(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[LoadBalancerGetResponse], ResultWrapper[LoadBalancerGetResponse]),
+            cast_to=cast(Type[LoadBalancer], ResultWrapper[LoadBalancer]),
         )
 
 
@@ -902,7 +899,7 @@ class AsyncLoadBalancers(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LoadBalancerCreateResponse:
+    ) -> LoadBalancer:
         """
         Create a new load balancer.
 
@@ -1060,7 +1057,7 @@ class AsyncLoadBalancers(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[LoadBalancerCreateResponse], ResultWrapper[LoadBalancerCreateResponse]),
+            cast_to=cast(Type[LoadBalancer], ResultWrapper[LoadBalancer]),
         )
 
     async def update(
@@ -1102,7 +1099,7 @@ class AsyncLoadBalancers(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LoadBalancerUpdateResponse:
+    ) -> LoadBalancer:
         """
         Update a configured load balancer.
 
@@ -1265,7 +1262,7 @@ class AsyncLoadBalancers(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[LoadBalancerUpdateResponse], ResultWrapper[LoadBalancerUpdateResponse]),
+            cast_to=cast(Type[LoadBalancer], ResultWrapper[LoadBalancer]),
         )
 
     async def list(
@@ -1384,7 +1381,7 @@ class AsyncLoadBalancers(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LoadBalancerEditResponse:
+    ) -> LoadBalancer:
         """
         Apply changes to an existing load balancer, overwriting the supplied properties.
 
@@ -1547,7 +1544,7 @@ class AsyncLoadBalancers(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[LoadBalancerEditResponse], ResultWrapper[LoadBalancerEditResponse]),
+            cast_to=cast(Type[LoadBalancer], ResultWrapper[LoadBalancer]),
         )
 
     async def get(
@@ -1561,7 +1558,7 @@ class AsyncLoadBalancers(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LoadBalancerGetResponse:
+    ) -> LoadBalancer:
         """
         Fetch a single configured load balancer.
 
@@ -1587,7 +1584,7 @@ class AsyncLoadBalancers(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[LoadBalancerGetResponse], ResultWrapper[LoadBalancerGetResponse]),
+            cast_to=cast(Type[LoadBalancer], ResultWrapper[LoadBalancer]),
         )
 
 

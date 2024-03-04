@@ -32,6 +32,14 @@ from .access import (
     AccessWithStreamingResponse,
     AsyncAccessWithStreamingResponse,
 )
+from .devices import (
+    Devices,
+    AsyncDevices,
+    DevicesWithRawResponse,
+    AsyncDevicesWithRawResponse,
+    DevicesWithStreamingResponse,
+    AsyncDevicesWithStreamingResponse,
+)
 from .gateway import (
     Gateway,
     AsyncGateway,
@@ -90,6 +98,12 @@ from .connectivity_settings import (
 )
 
 __all__ = [
+    "Devices",
+    "AsyncDevices",
+    "DevicesWithRawResponse",
+    "AsyncDevicesWithRawResponse",
+    "DevicesWithStreamingResponse",
+    "AsyncDevicesWithStreamingResponse",
     "IdentityProviders",
     "AsyncIdentityProviders",
     "IdentityProvidersWithRawResponse",
