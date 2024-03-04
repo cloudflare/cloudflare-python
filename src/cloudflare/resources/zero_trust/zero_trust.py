@@ -34,6 +34,14 @@ from .access import (
     AccessWithStreamingResponse,
     AsyncAccessWithStreamingResponse,
 )
+from .devices import (
+    Devices,
+    AsyncDevices,
+    DevicesWithRawResponse,
+    AsyncDevicesWithRawResponse,
+    DevicesWithStreamingResponse,
+    AsyncDevicesWithStreamingResponse,
+)
 from .dex.dex import DEX, AsyncDEX
 from .dlp.dlp import DLP, AsyncDLP
 from .gateway import (
@@ -71,6 +79,7 @@ from .organizations import (
     OrganizationsWithStreamingResponse,
     AsyncOrganizationsWithStreamingResponse,
 )
+from .devices.devices import Devices, AsyncDevices
 from .gateway.gateway import Gateway, AsyncGateway
 from .tunnels.tunnels import Tunnels, AsyncTunnels
 from .networks.networks import Networks, AsyncNetworks
@@ -95,6 +104,10 @@ __all__ = ["ZeroTrust", "AsyncZeroTrust"]
 
 
 class ZeroTrust(SyncAPIResource):
+    @cached_property
+    def devices(self) -> Devices:
+        return Devices(self._client)
+
     @cached_property
     def identity_providers(self) -> IdentityProviders:
         return IdentityProviders(self._client)
@@ -145,6 +158,10 @@ class ZeroTrust(SyncAPIResource):
 
 
 class AsyncZeroTrust(AsyncAPIResource):
+    @cached_property
+    def devices(self) -> AsyncDevices:
+        return AsyncDevices(self._client)
+
     @cached_property
     def identity_providers(self) -> AsyncIdentityProviders:
         return AsyncIdentityProviders(self._client)
@@ -199,6 +216,10 @@ class ZeroTrustWithRawResponse:
         self._zero_trust = zero_trust
 
     @cached_property
+    def devices(self) -> DevicesWithRawResponse:
+        return DevicesWithRawResponse(self._zero_trust.devices)
+
+    @cached_property
     def identity_providers(self) -> IdentityProvidersWithRawResponse:
         return IdentityProvidersWithRawResponse(self._zero_trust.identity_providers)
 
@@ -242,6 +263,10 @@ class ZeroTrustWithRawResponse:
 class AsyncZeroTrustWithRawResponse:
     def __init__(self, zero_trust: AsyncZeroTrust) -> None:
         self._zero_trust = zero_trust
+
+    @cached_property
+    def devices(self) -> AsyncDevicesWithRawResponse:
+        return AsyncDevicesWithRawResponse(self._zero_trust.devices)
 
     @cached_property
     def identity_providers(self) -> AsyncIdentityProvidersWithRawResponse:
@@ -289,6 +314,10 @@ class ZeroTrustWithStreamingResponse:
         self._zero_trust = zero_trust
 
     @cached_property
+    def devices(self) -> DevicesWithStreamingResponse:
+        return DevicesWithStreamingResponse(self._zero_trust.devices)
+
+    @cached_property
     def identity_providers(self) -> IdentityProvidersWithStreamingResponse:
         return IdentityProvidersWithStreamingResponse(self._zero_trust.identity_providers)
 
@@ -332,6 +361,10 @@ class ZeroTrustWithStreamingResponse:
 class AsyncZeroTrustWithStreamingResponse:
     def __init__(self, zero_trust: AsyncZeroTrust) -> None:
         self._zero_trust = zero_trust
+
+    @cached_property
+    def devices(self) -> AsyncDevicesWithStreamingResponse:
+        return AsyncDevicesWithStreamingResponse(self._zero_trust.devices)
 
     @cached_property
     def identity_providers(self) -> AsyncIdentityProvidersWithStreamingResponse:

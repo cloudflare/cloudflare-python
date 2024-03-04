@@ -81,12 +81,12 @@ from .logs import (
     AsyncLogsWithStreamingResponse,
 )
 from .user import (
-    User,
-    AsyncUser,
-    UserWithRawResponse,
-    AsyncUserWithRawResponse,
-    UserWithStreamingResponse,
-    AsyncUserWithStreamingResponse,
+    UserResource,
+    AsyncUserResource,
+    UserResourceWithRawResponse,
+    AsyncUserResourceWithRawResponse,
+    UserResourceWithStreamingResponse,
+    AsyncUserResourceWithStreamingResponse,
 )
 from .web3 import (
     Web3,
@@ -176,14 +176,6 @@ from .dnssec import (
     DNSSECWithStreamingResponse,
     AsyncDNSSECWithStreamingResponse,
 )
-from .emails import (
-    Emails,
-    AsyncEmails,
-    EmailsWithRawResponse,
-    AsyncEmailsWithRawResponse,
-    EmailsWithStreamingResponse,
-    AsyncEmailsWithStreamingResponse,
-)
 from .images import (
     Images,
     AsyncImages,
@@ -215,14 +207,6 @@ from .billing import (
     AsyncBillingWithRawResponse,
     BillingWithStreamingResponse,
     AsyncBillingWithStreamingResponse,
-)
-from .devices import (
-    Devices,
-    AsyncDevices,
-    DevicesWithRawResponse,
-    AsyncDevicesWithRawResponse,
-    DevicesWithStreamingResponse,
-    AsyncDevicesWithStreamingResponse,
 )
 from .filters import (
     Filters,
@@ -431,6 +415,14 @@ from .healthchecks import (
     AsyncHealthchecksWithRawResponse,
     HealthchecksWithStreamingResponse,
     AsyncHealthchecksWithStreamingResponse,
+)
+from .email_routing import (
+    EmailRouting,
+    AsyncEmailRouting,
+    EmailRoutingWithRawResponse,
+    AsyncEmailRoutingWithRawResponse,
+    EmailRoutingWithStreamingResponse,
+    AsyncEmailRoutingWithStreamingResponse,
 )
 from .magic_transit import (
     MagicTransit,
@@ -674,12 +666,12 @@ __all__ = [
     "AsyncMembershipsWithRawResponse",
     "MembershipsWithStreamingResponse",
     "AsyncMembershipsWithStreamingResponse",
-    "User",
-    "AsyncUser",
-    "UserWithRawResponse",
-    "AsyncUserWithRawResponse",
-    "UserWithStreamingResponse",
-    "AsyncUserWithStreamingResponse",
+    "UserResource",
+    "AsyncUserResource",
+    "UserResourceWithRawResponse",
+    "AsyncUserResourceWithRawResponse",
+    "UserResourceWithStreamingResponse",
+    "AsyncUserResourceWithStreamingResponse",
     "Zones",
     "AsyncZones",
     "ZonesWithRawResponse",
@@ -776,12 +768,12 @@ __all__ = [
     "AsyncDNSSECWithRawResponse",
     "DNSSECWithStreamingResponse",
     "AsyncDNSSECWithStreamingResponse",
-    "Emails",
-    "AsyncEmails",
-    "EmailsWithRawResponse",
-    "AsyncEmailsWithRawResponse",
-    "EmailsWithStreamingResponse",
-    "AsyncEmailsWithStreamingResponse",
+    "EmailRouting",
+    "AsyncEmailRouting",
+    "EmailRoutingWithRawResponse",
+    "AsyncEmailRoutingWithRawResponse",
+    "EmailRoutingWithStreamingResponse",
+    "AsyncEmailRoutingWithStreamingResponse",
     "Filters",
     "AsyncFilters",
     "FiltersWithRawResponse",
@@ -1016,12 +1008,6 @@ __all__ = [
     "AsyncAlertingWithRawResponse",
     "AlertingWithStreamingResponse",
     "AsyncAlertingWithStreamingResponse",
-    "Devices",
-    "AsyncDevices",
-    "DevicesWithRawResponse",
-    "AsyncDevicesWithRawResponse",
-    "DevicesWithStreamingResponse",
-    "AsyncDevicesWithStreamingResponse",
     "D1",
     "AsyncD1",
     "D1WithRawResponse",

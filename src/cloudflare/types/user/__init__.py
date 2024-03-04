@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from .user import User as User
 from .token_list_params import TokenListParams as TokenListParams
 from .invite_edit_params import InviteEditParams as InviteEditParams
 from .token_get_response import TokenGetResponse as TokenGetResponse
