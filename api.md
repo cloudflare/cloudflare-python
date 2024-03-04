@@ -38,7 +38,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.accounts import Role, RoleWithID, RoleListResponse, RoleGetResponse
+from cloudflare.types.accounts import RoleListResponse, RoleGetResponse
 ```
 
 Methods:
