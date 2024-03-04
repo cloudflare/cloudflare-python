@@ -24,6 +24,14 @@ from .cache_reserve import (
     CacheReserveWithStreamingResponse,
     AsyncCacheReserveWithStreamingResponse,
 )
+from .smart_tiered_cached import (
+    SmartTieredCached,
+    AsyncSmartTieredCached,
+    SmartTieredCachedWithRawResponse,
+    AsyncSmartTieredCachedWithRawResponse,
+    SmartTieredCachedWithStreamingResponse,
+    AsyncSmartTieredCachedWithStreamingResponse,
+)
 from .regional_tiered_cache import (
     RegionalTieredCache,
     AsyncRegionalTieredCache,
@@ -31,14 +39,6 @@ from .regional_tiered_cache import (
     AsyncRegionalTieredCacheWithRawResponse,
     RegionalTieredCacheWithStreamingResponse,
     AsyncRegionalTieredCacheWithStreamingResponse,
-)
-from .tiered_cache_smart_topology import (
-    TieredCacheSmartTopology,
-    AsyncTieredCacheSmartTopology,
-    TieredCacheSmartTopologyWithRawResponse,
-    AsyncTieredCacheSmartTopologyWithRawResponse,
-    TieredCacheSmartTopologyWithStreamingResponse,
-    AsyncTieredCacheSmartTopologyWithStreamingResponse,
 )
 
 __all__ = [
@@ -48,12 +48,12 @@ __all__ = [
     "AsyncCacheReserveWithRawResponse",
     "CacheReserveWithStreamingResponse",
     "AsyncCacheReserveWithStreamingResponse",
-    "TieredCacheSmartTopology",
-    "AsyncTieredCacheSmartTopology",
-    "TieredCacheSmartTopologyWithRawResponse",
-    "AsyncTieredCacheSmartTopologyWithRawResponse",
-    "TieredCacheSmartTopologyWithStreamingResponse",
-    "AsyncTieredCacheSmartTopologyWithStreamingResponse",
+    "SmartTieredCached",
+    "AsyncSmartTieredCached",
+    "SmartTieredCachedWithRawResponse",
+    "AsyncSmartTieredCachedWithRawResponse",
+    "SmartTieredCachedWithStreamingResponse",
+    "AsyncSmartTieredCachedWithStreamingResponse",
     "Variants",
     "AsyncVariants",
     "VariantsWithRawResponse",

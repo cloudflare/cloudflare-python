@@ -40,6 +40,14 @@ from .cache_reserve import (
 from ..._base_client import (
     make_request_options,
 )
+from .smart_tiered_cached import (
+    SmartTieredCached,
+    AsyncSmartTieredCached,
+    SmartTieredCachedWithRawResponse,
+    AsyncSmartTieredCachedWithRawResponse,
+    SmartTieredCachedWithStreamingResponse,
+    AsyncSmartTieredCachedWithStreamingResponse,
+)
 from .regional_tiered_cache import (
     RegionalTieredCache,
     AsyncRegionalTieredCache,
@@ -47,14 +55,6 @@ from .regional_tiered_cache import (
     AsyncRegionalTieredCacheWithRawResponse,
     RegionalTieredCacheWithStreamingResponse,
     AsyncRegionalTieredCacheWithStreamingResponse,
-)
-from .tiered_cache_smart_topology import (
-    TieredCacheSmartTopology,
-    AsyncTieredCacheSmartTopology,
-    TieredCacheSmartTopologyWithRawResponse,
-    AsyncTieredCacheSmartTopologyWithRawResponse,
-    TieredCacheSmartTopologyWithStreamingResponse,
-    AsyncTieredCacheSmartTopologyWithStreamingResponse,
 )
 
 __all__ = ["Cache", "AsyncCache"]
@@ -66,8 +66,8 @@ class Cache(SyncAPIResource):
         return CacheReserve(self._client)
 
     @cached_property
-    def tiered_cache_smart_topology(self) -> TieredCacheSmartTopology:
-        return TieredCacheSmartTopology(self._client)
+    def smart_tiered_cached(self) -> SmartTieredCached:
+        return SmartTieredCached(self._client)
 
     @cached_property
     def variants(self) -> Variants:
@@ -172,8 +172,8 @@ class AsyncCache(AsyncAPIResource):
         return AsyncCacheReserve(self._client)
 
     @cached_property
-    def tiered_cache_smart_topology(self) -> AsyncTieredCacheSmartTopology:
-        return AsyncTieredCacheSmartTopology(self._client)
+    def smart_tiered_cached(self) -> AsyncSmartTieredCached:
+        return AsyncSmartTieredCached(self._client)
 
     @cached_property
     def variants(self) -> AsyncVariants:
@@ -285,8 +285,8 @@ class CacheWithRawResponse:
         return CacheReserveWithRawResponse(self._cache.cache_reserve)
 
     @cached_property
-    def tiered_cache_smart_topology(self) -> TieredCacheSmartTopologyWithRawResponse:
-        return TieredCacheSmartTopologyWithRawResponse(self._cache.tiered_cache_smart_topology)
+    def smart_tiered_cached(self) -> SmartTieredCachedWithRawResponse:
+        return SmartTieredCachedWithRawResponse(self._cache.smart_tiered_cached)
 
     @cached_property
     def variants(self) -> VariantsWithRawResponse:
@@ -310,8 +310,8 @@ class AsyncCacheWithRawResponse:
         return AsyncCacheReserveWithRawResponse(self._cache.cache_reserve)
 
     @cached_property
-    def tiered_cache_smart_topology(self) -> AsyncTieredCacheSmartTopologyWithRawResponse:
-        return AsyncTieredCacheSmartTopologyWithRawResponse(self._cache.tiered_cache_smart_topology)
+    def smart_tiered_cached(self) -> AsyncSmartTieredCachedWithRawResponse:
+        return AsyncSmartTieredCachedWithRawResponse(self._cache.smart_tiered_cached)
 
     @cached_property
     def variants(self) -> AsyncVariantsWithRawResponse:
@@ -335,8 +335,8 @@ class CacheWithStreamingResponse:
         return CacheReserveWithStreamingResponse(self._cache.cache_reserve)
 
     @cached_property
-    def tiered_cache_smart_topology(self) -> TieredCacheSmartTopologyWithStreamingResponse:
-        return TieredCacheSmartTopologyWithStreamingResponse(self._cache.tiered_cache_smart_topology)
+    def smart_tiered_cached(self) -> SmartTieredCachedWithStreamingResponse:
+        return SmartTieredCachedWithStreamingResponse(self._cache.smart_tiered_cached)
 
     @cached_property
     def variants(self) -> VariantsWithStreamingResponse:
@@ -360,8 +360,8 @@ class AsyncCacheWithStreamingResponse:
         return AsyncCacheReserveWithStreamingResponse(self._cache.cache_reserve)
 
     @cached_property
-    def tiered_cache_smart_topology(self) -> AsyncTieredCacheSmartTopologyWithStreamingResponse:
-        return AsyncTieredCacheSmartTopologyWithStreamingResponse(self._cache.tiered_cache_smart_topology)
+    def smart_tiered_cached(self) -> AsyncSmartTieredCachedWithStreamingResponse:
+        return AsyncSmartTieredCachedWithStreamingResponse(self._cache.smart_tiered_cached)
 
     @cached_property
     def variants(self) -> AsyncVariantsWithStreamingResponse:

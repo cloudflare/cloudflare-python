@@ -50,7 +50,7 @@ class Cloudflare(SyncAPIClient):
     certificates: resources.Certificates
     ips: resources.IPs
     memberships: resources.Memberships
-    user: resources.User
+    user: resources.UserResource
     zones: resources.Zones
     load_balancers: resources.LoadBalancers
     cache: resources.Cache
@@ -67,7 +67,7 @@ class Cloudflare(SyncAPIClient):
     custom_nameservers: resources.CustomNameservers
     dns: resources.DNS
     dnssec: resources.DNSSEC
-    emails: resources.Emails
+    email_routing: resources.EmailRouting
     filters: resources.Filters
     firewall: resources.Firewall
     healthchecks: resources.Healthchecks
@@ -107,7 +107,6 @@ class Cloudflare(SyncAPIClient):
     storage: resources.Storage
     stream: resources.Stream
     alerting: resources.Alerting
-    devices: resources.Devices
     d1: resources.D1
     r2: resources.R2
     warp_connector: resources.WARPConnector
@@ -220,7 +219,7 @@ class Cloudflare(SyncAPIClient):
         self.certificates = resources.Certificates(self)
         self.ips = resources.IPs(self)
         self.memberships = resources.Memberships(self)
-        self.user = resources.User(self)
+        self.user = resources.UserResource(self)
         self.zones = resources.Zones(self)
         self.load_balancers = resources.LoadBalancers(self)
         self.cache = resources.Cache(self)
@@ -237,7 +236,7 @@ class Cloudflare(SyncAPIClient):
         self.custom_nameservers = resources.CustomNameservers(self)
         self.dns = resources.DNS(self)
         self.dnssec = resources.DNSSEC(self)
-        self.emails = resources.Emails(self)
+        self.email_routing = resources.EmailRouting(self)
         self.filters = resources.Filters(self)
         self.firewall = resources.Firewall(self)
         self.healthchecks = resources.Healthchecks(self)
@@ -277,7 +276,6 @@ class Cloudflare(SyncAPIClient):
         self.storage = resources.Storage(self)
         self.stream = resources.Stream(self)
         self.alerting = resources.Alerting(self)
-        self.devices = resources.Devices(self)
         self.d1 = resources.D1(self)
         self.r2 = resources.R2(self)
         self.warp_connector = resources.WARPConnector(self)
@@ -444,7 +442,7 @@ class AsyncCloudflare(AsyncAPIClient):
     certificates: resources.AsyncCertificates
     ips: resources.AsyncIPs
     memberships: resources.AsyncMemberships
-    user: resources.AsyncUser
+    user: resources.AsyncUserResource
     zones: resources.AsyncZones
     load_balancers: resources.AsyncLoadBalancers
     cache: resources.AsyncCache
@@ -461,7 +459,7 @@ class AsyncCloudflare(AsyncAPIClient):
     custom_nameservers: resources.AsyncCustomNameservers
     dns: resources.AsyncDNS
     dnssec: resources.AsyncDNSSEC
-    emails: resources.AsyncEmails
+    email_routing: resources.AsyncEmailRouting
     filters: resources.AsyncFilters
     firewall: resources.AsyncFirewall
     healthchecks: resources.AsyncHealthchecks
@@ -501,7 +499,6 @@ class AsyncCloudflare(AsyncAPIClient):
     storage: resources.AsyncStorage
     stream: resources.AsyncStream
     alerting: resources.AsyncAlerting
-    devices: resources.AsyncDevices
     d1: resources.AsyncD1
     r2: resources.AsyncR2
     warp_connector: resources.AsyncWARPConnector
@@ -614,7 +611,7 @@ class AsyncCloudflare(AsyncAPIClient):
         self.certificates = resources.AsyncCertificates(self)
         self.ips = resources.AsyncIPs(self)
         self.memberships = resources.AsyncMemberships(self)
-        self.user = resources.AsyncUser(self)
+        self.user = resources.AsyncUserResource(self)
         self.zones = resources.AsyncZones(self)
         self.load_balancers = resources.AsyncLoadBalancers(self)
         self.cache = resources.AsyncCache(self)
@@ -631,7 +628,7 @@ class AsyncCloudflare(AsyncAPIClient):
         self.custom_nameservers = resources.AsyncCustomNameservers(self)
         self.dns = resources.AsyncDNS(self)
         self.dnssec = resources.AsyncDNSSEC(self)
-        self.emails = resources.AsyncEmails(self)
+        self.email_routing = resources.AsyncEmailRouting(self)
         self.filters = resources.AsyncFilters(self)
         self.firewall = resources.AsyncFirewall(self)
         self.healthchecks = resources.AsyncHealthchecks(self)
@@ -671,7 +668,6 @@ class AsyncCloudflare(AsyncAPIClient):
         self.storage = resources.AsyncStorage(self)
         self.stream = resources.AsyncStream(self)
         self.alerting = resources.AsyncAlerting(self)
-        self.devices = resources.AsyncDevices(self)
         self.d1 = resources.AsyncD1(self)
         self.r2 = resources.AsyncR2(self)
         self.warp_connector = resources.AsyncWARPConnector(self)
@@ -839,7 +835,7 @@ class CloudflareWithRawResponse:
         self.certificates = resources.CertificatesWithRawResponse(client.certificates)
         self.ips = resources.IPsWithRawResponse(client.ips)
         self.memberships = resources.MembershipsWithRawResponse(client.memberships)
-        self.user = resources.UserWithRawResponse(client.user)
+        self.user = resources.UserResourceWithRawResponse(client.user)
         self.zones = resources.ZonesWithRawResponse(client.zones)
         self.load_balancers = resources.LoadBalancersWithRawResponse(client.load_balancers)
         self.cache = resources.CacheWithRawResponse(client.cache)
@@ -856,7 +852,7 @@ class CloudflareWithRawResponse:
         self.custom_nameservers = resources.CustomNameserversWithRawResponse(client.custom_nameservers)
         self.dns = resources.DNSWithRawResponse(client.dns)
         self.dnssec = resources.DNSSECWithRawResponse(client.dnssec)
-        self.emails = resources.EmailsWithRawResponse(client.emails)
+        self.email_routing = resources.EmailRoutingWithRawResponse(client.email_routing)
         self.filters = resources.FiltersWithRawResponse(client.filters)
         self.firewall = resources.FirewallWithRawResponse(client.firewall)
         self.healthchecks = resources.HealthchecksWithRawResponse(client.healthchecks)
@@ -896,7 +892,6 @@ class CloudflareWithRawResponse:
         self.storage = resources.StorageWithRawResponse(client.storage)
         self.stream = resources.StreamWithRawResponse(client.stream)
         self.alerting = resources.AlertingWithRawResponse(client.alerting)
-        self.devices = resources.DevicesWithRawResponse(client.devices)
         self.d1 = resources.D1WithRawResponse(client.d1)
         self.r2 = resources.R2WithRawResponse(client.r2)
         self.warp_connector = resources.WARPConnectorWithRawResponse(client.warp_connector)
@@ -926,7 +921,7 @@ class AsyncCloudflareWithRawResponse:
         self.certificates = resources.AsyncCertificatesWithRawResponse(client.certificates)
         self.ips = resources.AsyncIPsWithRawResponse(client.ips)
         self.memberships = resources.AsyncMembershipsWithRawResponse(client.memberships)
-        self.user = resources.AsyncUserWithRawResponse(client.user)
+        self.user = resources.AsyncUserResourceWithRawResponse(client.user)
         self.zones = resources.AsyncZonesWithRawResponse(client.zones)
         self.load_balancers = resources.AsyncLoadBalancersWithRawResponse(client.load_balancers)
         self.cache = resources.AsyncCacheWithRawResponse(client.cache)
@@ -945,7 +940,7 @@ class AsyncCloudflareWithRawResponse:
         self.custom_nameservers = resources.AsyncCustomNameserversWithRawResponse(client.custom_nameservers)
         self.dns = resources.AsyncDNSWithRawResponse(client.dns)
         self.dnssec = resources.AsyncDNSSECWithRawResponse(client.dnssec)
-        self.emails = resources.AsyncEmailsWithRawResponse(client.emails)
+        self.email_routing = resources.AsyncEmailRoutingWithRawResponse(client.email_routing)
         self.filters = resources.AsyncFiltersWithRawResponse(client.filters)
         self.firewall = resources.AsyncFirewallWithRawResponse(client.firewall)
         self.healthchecks = resources.AsyncHealthchecksWithRawResponse(client.healthchecks)
@@ -987,7 +982,6 @@ class AsyncCloudflareWithRawResponse:
         self.storage = resources.AsyncStorageWithRawResponse(client.storage)
         self.stream = resources.AsyncStreamWithRawResponse(client.stream)
         self.alerting = resources.AsyncAlertingWithRawResponse(client.alerting)
-        self.devices = resources.AsyncDevicesWithRawResponse(client.devices)
         self.d1 = resources.AsyncD1WithRawResponse(client.d1)
         self.r2 = resources.AsyncR2WithRawResponse(client.r2)
         self.warp_connector = resources.AsyncWARPConnectorWithRawResponse(client.warp_connector)
@@ -1017,7 +1011,7 @@ class CloudflareWithStreamedResponse:
         self.certificates = resources.CertificatesWithStreamingResponse(client.certificates)
         self.ips = resources.IPsWithStreamingResponse(client.ips)
         self.memberships = resources.MembershipsWithStreamingResponse(client.memberships)
-        self.user = resources.UserWithStreamingResponse(client.user)
+        self.user = resources.UserResourceWithStreamingResponse(client.user)
         self.zones = resources.ZonesWithStreamingResponse(client.zones)
         self.load_balancers = resources.LoadBalancersWithStreamingResponse(client.load_balancers)
         self.cache = resources.CacheWithStreamingResponse(client.cache)
@@ -1036,7 +1030,7 @@ class CloudflareWithStreamedResponse:
         self.custom_nameservers = resources.CustomNameserversWithStreamingResponse(client.custom_nameservers)
         self.dns = resources.DNSWithStreamingResponse(client.dns)
         self.dnssec = resources.DNSSECWithStreamingResponse(client.dnssec)
-        self.emails = resources.EmailsWithStreamingResponse(client.emails)
+        self.email_routing = resources.EmailRoutingWithStreamingResponse(client.email_routing)
         self.filters = resources.FiltersWithStreamingResponse(client.filters)
         self.firewall = resources.FirewallWithStreamingResponse(client.firewall)
         self.healthchecks = resources.HealthchecksWithStreamingResponse(client.healthchecks)
@@ -1078,7 +1072,6 @@ class CloudflareWithStreamedResponse:
         self.storage = resources.StorageWithStreamingResponse(client.storage)
         self.stream = resources.StreamWithStreamingResponse(client.stream)
         self.alerting = resources.AlertingWithStreamingResponse(client.alerting)
-        self.devices = resources.DevicesWithStreamingResponse(client.devices)
         self.d1 = resources.D1WithStreamingResponse(client.d1)
         self.r2 = resources.R2WithStreamingResponse(client.r2)
         self.warp_connector = resources.WARPConnectorWithStreamingResponse(client.warp_connector)
@@ -1108,7 +1101,7 @@ class AsyncCloudflareWithStreamedResponse:
         self.certificates = resources.AsyncCertificatesWithStreamingResponse(client.certificates)
         self.ips = resources.AsyncIPsWithStreamingResponse(client.ips)
         self.memberships = resources.AsyncMembershipsWithStreamingResponse(client.memberships)
-        self.user = resources.AsyncUserWithStreamingResponse(client.user)
+        self.user = resources.AsyncUserResourceWithStreamingResponse(client.user)
         self.zones = resources.AsyncZonesWithStreamingResponse(client.zones)
         self.load_balancers = resources.AsyncLoadBalancersWithStreamingResponse(client.load_balancers)
         self.cache = resources.AsyncCacheWithStreamingResponse(client.cache)
@@ -1127,7 +1120,7 @@ class AsyncCloudflareWithStreamedResponse:
         self.custom_nameservers = resources.AsyncCustomNameserversWithStreamingResponse(client.custom_nameservers)
         self.dns = resources.AsyncDNSWithStreamingResponse(client.dns)
         self.dnssec = resources.AsyncDNSSECWithStreamingResponse(client.dnssec)
-        self.emails = resources.AsyncEmailsWithStreamingResponse(client.emails)
+        self.email_routing = resources.AsyncEmailRoutingWithStreamingResponse(client.email_routing)
         self.filters = resources.AsyncFiltersWithStreamingResponse(client.filters)
         self.firewall = resources.AsyncFirewallWithStreamingResponse(client.firewall)
         self.healthchecks = resources.AsyncHealthchecksWithStreamingResponse(client.healthchecks)
@@ -1171,7 +1164,6 @@ class AsyncCloudflareWithStreamedResponse:
         self.storage = resources.AsyncStorageWithStreamingResponse(client.storage)
         self.stream = resources.AsyncStreamWithStreamingResponse(client.stream)
         self.alerting = resources.AsyncAlertingWithStreamingResponse(client.alerting)
-        self.devices = resources.AsyncDevicesWithStreamingResponse(client.devices)
         self.d1 = resources.AsyncD1WithStreamingResponse(client.d1)
         self.r2 = resources.AsyncR2WithStreamingResponse(client.r2)
         self.warp_connector = resources.AsyncWARPConnectorWithStreamingResponse(client.warp_connector)

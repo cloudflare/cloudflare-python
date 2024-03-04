@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Union
 from typing_extensions import Required, TypedDict
 
-__all__ = ["RuleEditParams", "Position", "PositionPosition"]
+__all__ = ["RuleEditParams", "Position", "PositionBeforePosition", "PositionAfterPosition", "PositionIndexPosition"]
 
 
 class RuleEditParams(TypedDict, total=False):
@@ -22,7 +22,7 @@ class RuleEditParams(TypedDict, total=False):
     """An object configuring where the rule will be placed."""
 
 
-class PositionPosition(TypedDict, total=False):
+class PositionBeforePosition(TypedDict, total=False):
     before: str
     """The ID of another rule to place the rule before.
 
@@ -30,7 +30,7 @@ class PositionPosition(TypedDict, total=False):
     """
 
 
-class PositionPosition(TypedDict, total=False):
+class PositionAfterPosition(TypedDict, total=False):
     after: str
     """The ID of another rule to place the rule after.
 
@@ -38,9 +38,9 @@ class PositionPosition(TypedDict, total=False):
     """
 
 
-class PositionPosition(TypedDict, total=False):
+class PositionIndexPosition(TypedDict, total=False):
     index: float
     """An index at which to place the rule, where index 1 is the first rule."""
 
 
-Position = Union[PositionPosition, PositionPosition, PositionPosition]
+Position = Union[PositionBeforePosition, PositionAfterPosition, PositionIndexPosition]
