@@ -40,7 +40,10 @@ from .metadata import (
     AsyncMetadataWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import maybe_transform
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
 from ....types.kv import (
     NamespaceListResponse,
@@ -362,7 +365,7 @@ class AsyncNamespaces(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/storage/kv/namespaces",
-            body=maybe_transform({"title": title}, namespace_create_params.NamespaceCreateParams),
+            body=await async_maybe_transform({"title": title}, namespace_create_params.NamespaceCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -412,7 +415,7 @@ class AsyncNamespaces(AsyncAPIResource):
             NamespaceUpdateResponse,
             await self._put(
                 f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}",
-                body=maybe_transform({"title": title}, namespace_update_params.NamespaceUpdateParams),
+                body=await async_maybe_transform({"title": title}, namespace_update_params.NamespaceUpdateParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

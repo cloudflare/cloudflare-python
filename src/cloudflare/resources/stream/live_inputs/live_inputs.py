@@ -15,7 +15,10 @@ from .outputs import (
     AsyncOutputsWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
-from ...._utils import maybe_transform
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -395,7 +398,7 @@ class AsyncLiveInputs(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/stream/live_inputs",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "default_creator": default_creator,
                     "delete_recording_after_days": delete_recording_after_days,
@@ -469,7 +472,7 @@ class AsyncLiveInputs(AsyncAPIResource):
             )
         return await self._put(
             f"/accounts/{account_id}/stream/live_inputs/{live_input_identifier}",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "default_creator": default_creator,
                     "delete_recording_after_days": delete_recording_after_days,
@@ -528,7 +531,9 @@ class AsyncLiveInputs(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"include_counts": include_counts}, live_input_list_params.LiveInputListParams),
+                query=await async_maybe_transform(
+                    {"include_counts": include_counts}, live_input_list_params.LiveInputListParams
+                ),
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(Type[LiveInputListResponse], ResultWrapper[LiveInputListResponse]),

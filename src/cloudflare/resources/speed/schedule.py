@@ -8,7 +8,10 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -181,7 +184,7 @@ class AsyncSchedule(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"region": region}, schedule_create_params.ScheduleCreateParams),
+                query=await async_maybe_transform({"region": region}, schedule_create_params.ScheduleCreateParams),
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(Type[Optional[ScheduleCreateResponse]], ResultWrapper[ScheduleCreateResponse]),

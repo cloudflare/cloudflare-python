@@ -7,7 +7,10 @@ from typing import Any, Type, Optional, cast
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import maybe_transform
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -330,7 +333,7 @@ class AsyncVirtualNetworks(AsyncAPIResource):
             VirtualNetworkCreateResponse,
             await self._post(
                 f"/accounts/{account_id}/teamnet/virtual_networks",
-                body=maybe_transform(
+                body=await async_maybe_transform(
                     {
                         "name": name,
                         "comment": comment,
@@ -399,7 +402,7 @@ class AsyncVirtualNetworks(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "is_default": is_default,
                         "is_deleted": is_deleted,
@@ -507,7 +510,7 @@ class AsyncVirtualNetworks(AsyncAPIResource):
             VirtualNetworkEditResponse,
             await self._patch(
                 f"/accounts/{account_id}/teamnet/virtual_networks/{virtual_network_id}",
-                body=maybe_transform(
+                body=await async_maybe_transform(
                     {
                         "comment": comment,
                         "is_default_network": is_default_network,

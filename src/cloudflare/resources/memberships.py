@@ -16,7 +16,10 @@ from ..types import (
     membership_update_params,
 )
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from .._utils import maybe_transform
+from .._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -284,7 +287,7 @@ class AsyncMemberships(AsyncAPIResource):
             MembershipUpdateResponse,
             await self._put(
                 f"/memberships/{membership_id}",
-                body=maybe_transform({"status": status}, membership_update_params.MembershipUpdateParams),
+                body=await async_maybe_transform({"status": status}, membership_update_params.MembershipUpdateParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

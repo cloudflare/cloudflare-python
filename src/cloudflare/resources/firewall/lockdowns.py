@@ -7,7 +7,10 @@ from typing import Type, Optional, cast
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -345,7 +348,7 @@ class AsyncLockdowns(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return await self._post(
             f"/zones/{zone_identifier}/firewall/lockdowns",
-            body=maybe_transform(body, lockdown_create_params.LockdownCreateParams),
+            body=await async_maybe_transform(body, lockdown_create_params.LockdownCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -391,7 +394,7 @@ class AsyncLockdowns(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._put(
             f"/zones/{zone_identifier}/firewall/lockdowns/{id}",
-            body=maybe_transform(body, lockdown_update_params.LockdownUpdateParams),
+            body=await async_maybe_transform(body, lockdown_update_params.LockdownUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

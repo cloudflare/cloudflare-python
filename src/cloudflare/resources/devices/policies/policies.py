@@ -23,7 +23,10 @@ from .includes import (
     AsyncIncludesWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import maybe_transform
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -537,7 +540,7 @@ class AsyncPolicies(AsyncAPIResource):
         """
         return await self._post(
             f"/accounts/{account_id}/devices/policy",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "match": match,
                     "name": name,
@@ -722,7 +725,7 @@ class AsyncPolicies(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         return await self._patch(
             f"/accounts/{account_id}/devices/policy/{policy_id}",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "allow_mode_switch": allow_mode_switch,
                     "allow_updates": allow_updates,

@@ -7,7 +7,10 @@ from typing import Type, Optional, cast
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import maybe_transform
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -124,7 +127,7 @@ class AsyncBulks(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"domain": domain}, bulk_get_params.BulkGetParams),
+                query=await async_maybe_transform({"domain": domain}, bulk_get_params.BulkGetParams),
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(Type[Optional[BulkGetResponse]], ResultWrapper[BulkGetResponse]),

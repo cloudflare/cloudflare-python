@@ -37,7 +37,10 @@ from ...types import (
     waiting_room_preview_params,
 )
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from .settings import (
     Settings,
     AsyncSettings,
@@ -1729,7 +1732,7 @@ class AsyncWaitingRooms(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return await self._post(
             f"/zones/{zone_identifier}/waiting_rooms",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "host": host,
                     "name": name,
@@ -2085,7 +2088,7 @@ class AsyncWaitingRooms(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return await self._put(
             f"/zones/{zone_identifier}/waiting_rooms/{waiting_room_id}",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "host": host,
                     "name": name,
@@ -2520,7 +2523,7 @@ class AsyncWaitingRooms(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return await self._patch(
             f"/zones/{zone_identifier}/waiting_rooms/{waiting_room_id}",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "host": host,
                     "name": name,
@@ -2681,7 +2684,9 @@ class AsyncWaitingRooms(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return await self._post(
             f"/zones/{zone_identifier}/waiting_rooms/preview",
-            body=maybe_transform({"custom_html": custom_html}, waiting_room_preview_params.WaitingRoomPreviewParams),
+            body=await async_maybe_transform(
+                {"custom_html": custom_html}, waiting_room_preview_params.WaitingRoomPreviewParams
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

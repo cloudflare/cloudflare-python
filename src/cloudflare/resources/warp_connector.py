@@ -20,7 +20,10 @@ from ..types import (
     warp_connector_delete_params,
 )
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from .._utils import maybe_transform
+from .._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -429,7 +432,9 @@ class AsyncWARPConnector(AsyncAPIResource):
             WARPConnectorCreateResponse,
             await self._post(
                 f"/accounts/{account_id}/warp_connector",
-                body=maybe_transform({"name": name}, warp_connector_create_params.WARPConnectorCreateParams),
+                body=await async_maybe_transform(
+                    {"name": name}, warp_connector_create_params.WARPConnectorCreateParams
+                ),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -556,7 +561,7 @@ class AsyncWARPConnector(AsyncAPIResource):
             WARPConnectorDeleteResponse,
             await self._delete(
                 f"/accounts/{account_id}/warp_connector/{tunnel_id}",
-                body=maybe_transform(body, warp_connector_delete_params.WARPConnectorDeleteParams),
+                body=await async_maybe_transform(body, warp_connector_delete_params.WARPConnectorDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -613,7 +618,7 @@ class AsyncWARPConnector(AsyncAPIResource):
             WARPConnectorEditResponse,
             await self._patch(
                 f"/accounts/{account_id}/warp_connector/{tunnel_id}",
-                body=maybe_transform(
+                body=await async_maybe_transform(
                     {
                         "name": name,
                         "tunnel_secret": tunnel_secret,

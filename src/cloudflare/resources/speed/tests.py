@@ -8,7 +8,10 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -385,7 +388,7 @@ class AsyncTests(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `url` but received {url!r}")
         return await self._post(
             f"/zones/{zone_id}/speed_api/pages/{url}/tests",
-            body=maybe_transform({"region": region}, test_create_params.TestCreateParams),
+            body=await async_maybe_transform({"region": region}, test_create_params.TestCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -463,7 +466,7 @@ class AsyncTests(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "page": page,
                         "per_page": per_page,
@@ -542,7 +545,7 @@ class AsyncTests(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"region": region}, test_delete_params.TestDeleteParams),
+                query=await async_maybe_transform({"region": region}, test_delete_params.TestDeleteParams),
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(Type[Optional[TestDeleteResponse]], ResultWrapper[TestDeleteResponse]),

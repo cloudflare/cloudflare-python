@@ -8,7 +8,10 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import maybe_transform
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -331,7 +334,7 @@ class AsyncIntegrations(AsyncAPIResource):
         """
         return await self._post(
             f"/accounts/{account_id}/devices/posture/integration",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "config": config,
                     "interval": interval,
@@ -474,7 +477,7 @@ class AsyncIntegrations(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `integration_id` but received {integration_id!r}")
         return await self._patch(
             f"/accounts/{account_id}/devices/posture/integration/{integration_id}",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "config": config,
                     "interval": interval,

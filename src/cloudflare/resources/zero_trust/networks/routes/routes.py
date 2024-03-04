@@ -24,7 +24,10 @@ from .networks import (
     AsyncNetworksWithStreamingResponse,
 )
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ....._utils import maybe_transform
+from ....._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -390,7 +393,7 @@ class AsyncRoutes(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/teamnet/routes",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "ip_network": ip_network,
                     "comment": comment,
@@ -593,7 +596,7 @@ class AsyncRoutes(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `route_id` but received {route_id!r}")
         return await self._patch(
             f"/accounts/{account_id}/teamnet/routes/{route_id}",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "comment": comment,
                     "network": network,

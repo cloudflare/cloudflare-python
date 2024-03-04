@@ -16,7 +16,10 @@ from .token import (
     AsyncTokenWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import maybe_transform
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
 from .connectors import (
     Connectors,
@@ -457,7 +460,7 @@ class AsyncTunnels(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/tunnels",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "name": name,
                     "tunnel_secret": tunnel_secret,
@@ -587,7 +590,7 @@ class AsyncTunnels(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
         return await self._delete(
             f"/accounts/{account_id}/tunnels/{tunnel_id}",
-            body=maybe_transform(body, tunnel_delete_params.TunnelDeleteParams),
+            body=await async_maybe_transform(body, tunnel_delete_params.TunnelDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -641,7 +644,7 @@ class AsyncTunnels(AsyncAPIResource):
             TunnelEditResponse,
             await self._patch(
                 f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}",
-                body=maybe_transform(
+                body=await async_maybe_transform(
                     {
                         "name": name,
                         "tunnel_secret": tunnel_secret,

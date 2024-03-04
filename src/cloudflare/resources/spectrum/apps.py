@@ -8,7 +8,10 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -487,7 +490,7 @@ class AsyncApps(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone` but received {zone!r}")
         return await self._post(
             f"/zones/{zone}/spectrum/apps",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "dns": dns,
                     "origin_dns": origin_dns,
@@ -591,7 +594,7 @@ class AsyncApps(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         return await self._put(
             f"/zones/{zone}/spectrum/apps/{app_id}",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "dns": dns,
                     "origin_dns": origin_dns,

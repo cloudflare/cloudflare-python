@@ -34,7 +34,10 @@ from .workers import (
     AsyncWorkersWithStreamingResponse,
 )
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from .settings import (
     Settings,
     AsyncSettings,
@@ -456,7 +459,7 @@ class AsyncZones(AsyncAPIResource):
         """
         return await self._post(
             "/zones",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "account": account,
                     "name": name,
@@ -637,7 +640,7 @@ class AsyncZones(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._patch(
             f"/zones/{zone_id}",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "plan": plan,
                     "type": type,

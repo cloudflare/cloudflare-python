@@ -35,7 +35,10 @@ from .regions import (
     AsyncRegionsWithStreamingResponse,
 )
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from .monitors import (
     Monitors,
     AsyncMonitors,
@@ -1028,7 +1031,7 @@ class AsyncLoadBalancers(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
             f"/zones/{zone_id}/load_balancers",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "default_pools": default_pools,
                     "fallback_pool": fallback_pool,
@@ -1232,7 +1235,7 @@ class AsyncLoadBalancers(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}")
         return await self._put(
             f"/zones/{zone_id}/load_balancers/{load_balancer_id}",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "default_pools": default_pools,
                     "fallback_pool": fallback_pool,
@@ -1514,7 +1517,7 @@ class AsyncLoadBalancers(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}")
         return await self._patch(
             f"/zones/{zone_id}/load_balancers/{load_balancer_id}",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "adaptive_routing": adaptive_routing,
                     "country_pools": country_pools,

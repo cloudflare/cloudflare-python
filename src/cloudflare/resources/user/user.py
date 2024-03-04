@@ -32,7 +32,10 @@ from .invites import (
     AsyncInvitesWithStreamingResponse,
 )
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from .firewall import (
     Firewall,
     AsyncFirewall,
@@ -337,7 +340,7 @@ class AsyncUser(AsyncAPIResource):
             UserEditResponse,
             await self._patch(
                 "/user",
-                body=maybe_transform(
+                body=await async_maybe_transform(
                     {
                         "country": country,
                         "first_name": first_name,

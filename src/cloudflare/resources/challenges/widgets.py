@@ -8,7 +8,10 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -496,7 +499,7 @@ class AsyncWidgets(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
         return await self._post(
             f"/accounts/{account_identifier}/challenges/widgets",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "domains": domains,
                     "mode": mode,
@@ -513,7 +516,7 @@ class AsyncWidgets(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "direction": direction,
                         "order": order,
@@ -581,7 +584,7 @@ class AsyncWidgets(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `sitekey` but received {sitekey!r}")
         return await self._put(
             f"/accounts/{account_identifier}/challenges/widgets/{sitekey}",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "domains": domains,
                     "mode": mode,
@@ -793,7 +796,7 @@ class AsyncWidgets(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `sitekey` but received {sitekey!r}")
         return await self._post(
             f"/accounts/{account_identifier}/challenges/widgets/{sitekey}/rotate_secret",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {"invalidate_immediately": invalidate_immediately}, widget_rotate_secret_params.WidgetRotateSecretParams
             ),
             options=make_request_options(

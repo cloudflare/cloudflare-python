@@ -8,7 +8,10 @@ import httpx
 
 from ..types import IPListResponse, ip_list_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from .._utils import maybe_transform
+from .._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -127,7 +130,7 @@ class AsyncIPs(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    query=maybe_transform({"networks": networks}, ip_list_params.IPListParams),
+                    query=await async_maybe_transform({"networks": networks}, ip_list_params.IPListParams),
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(

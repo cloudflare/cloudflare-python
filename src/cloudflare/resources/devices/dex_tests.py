@@ -7,7 +7,10 @@ from typing import Type, Optional, cast
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -337,7 +340,7 @@ class AsyncDEXTests(AsyncAPIResource):
         """
         return await self._post(
             f"/accounts/{account_id}/devices/dex_tests",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "data": data,
                     "enabled": enabled,
@@ -403,7 +406,7 @@ class AsyncDEXTests(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `dex_test_id` but received {dex_test_id!r}")
         return await self._put(
             f"/accounts/{account_id}/devices/dex_tests/{dex_test_id}",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "data": data,
                     "enabled": enabled,

@@ -15,7 +15,10 @@ from .domains import (
     AsyncDomainsWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import maybe_transform
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
 from .deployments import (
     Deployments,
@@ -414,7 +417,7 @@ class AsyncProjects(AsyncAPIResource):
             ProjectCreateResponse,
             await self._post(
                 f"/accounts/{account_id}/pages/projects",
-                body=maybe_transform(
+                body=await async_maybe_transform(
                     {
                         "build_config": build_config,
                         "canonical_deployment": canonical_deployment,
@@ -556,7 +559,7 @@ class AsyncProjects(AsyncAPIResource):
             ProjectEditResponse,
             await self._patch(
                 f"/accounts/{account_id}/pages/projects/{project_name}",
-                body=maybe_transform(body, project_edit_params.ProjectEditParams),
+                body=await async_maybe_transform(body, project_edit_params.ProjectEditParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

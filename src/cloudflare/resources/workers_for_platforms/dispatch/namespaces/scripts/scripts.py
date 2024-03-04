@@ -15,7 +15,10 @@ from .content import (
     AsyncContentWithStreamingResponse,
 )
 from ......_types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven, FileTypes
-from ......_utils import maybe_transform
+from ......_utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ......_compat import cached_property
 from ......_resource import SyncAPIResource, AsyncAPIResource
 from ......_response import (
@@ -292,7 +295,7 @@ class AsyncScripts(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         return await self._put(
             f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "any_part_name": any_part_name,
                     "message": message,
@@ -362,7 +365,7 @@ class AsyncScripts(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"force": force}, script_delete_params.ScriptDeleteParams),
+                query=await async_maybe_transform({"force": force}, script_delete_params.ScriptDeleteParams),
             ),
             cast_to=NoneType,
         )

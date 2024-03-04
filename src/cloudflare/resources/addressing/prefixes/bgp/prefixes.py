@@ -7,7 +7,10 @@ from typing import Type, Optional, cast
 import httpx
 
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ....._utils import maybe_transform
+from ....._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -287,7 +290,7 @@ class AsyncPrefixes(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `bgp_prefix_id` but received {bgp_prefix_id!r}")
         return await self._patch(
             f"/accounts/{account_id}/addressing/prefixes/{prefix_id}/bgp/prefixes/{bgp_prefix_id}",
-            body=maybe_transform({"on_demand": on_demand}, prefix_edit_params.PrefixEditParams),
+            body=await async_maybe_transform({"on_demand": on_demand}, prefix_edit_params.PrefixEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

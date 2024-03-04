@@ -17,7 +17,10 @@ from ..types import (
     subscription_update_params,
 )
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from .._utils import maybe_transform
+from .._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -367,7 +370,7 @@ class AsyncSubscriptions(AsyncAPIResource):
             SubscriptionCreateResponse,
             await self._post(
                 f"/zones/{identifier}/subscription",
-                body=maybe_transform(
+                body=await async_maybe_transform(
                     {
                         "app": app,
                         "component_values": component_values,
@@ -441,7 +444,7 @@ class AsyncSubscriptions(AsyncAPIResource):
             SubscriptionUpdateResponse,
             await self._put(
                 f"/accounts/{account_identifier}/subscriptions/{subscription_identifier}",
-                body=maybe_transform(
+                body=await async_maybe_transform(
                     {
                         "app": app,
                         "component_values": component_values,

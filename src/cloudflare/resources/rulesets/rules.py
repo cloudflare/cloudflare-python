@@ -7,7 +7,10 @@ from typing import Type, cast
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -305,7 +308,7 @@ class AsyncRules(AsyncAPIResource):
             account_or_zone_id = zone_id
         return await self._post(
             f"/{account_or_zone}/{account_or_zone_id}/rulesets/{ruleset_id}/rules",
-            body=maybe_transform({"position": position}, rule_create_params.RuleCreateParams),
+            body=await async_maybe_transform({"position": position}, rule_create_params.RuleCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -439,7 +442,7 @@ class AsyncRules(AsyncAPIResource):
             account_or_zone_id = zone_id
         return await self._patch(
             f"/{account_or_zone}/{account_or_zone_id}/rulesets/{ruleset_id}/rules/{rule_id}",
-            body=maybe_transform({"position": position}, rule_edit_params.RuleEditParams),
+            body=await async_maybe_transform({"position": position}, rule_edit_params.RuleEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

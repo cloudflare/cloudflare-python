@@ -8,7 +8,10 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import maybe_transform
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -866,7 +869,7 @@ class AsyncPools(AsyncAPIResource):
         """
         return await self._post(
             "/user/load_balancers/pools",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "name": name,
                     "origins": origins,
@@ -997,7 +1000,7 @@ class AsyncPools(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
         return await self._put(
             f"/user/load_balancers/pools/{pool_id}",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "name": name,
                     "origins": origins,
@@ -1058,7 +1061,7 @@ class AsyncPools(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"monitor": monitor}, pool_list_params.PoolListParams),
+                query=await async_maybe_transform({"monitor": monitor}, pool_list_params.PoolListParams),
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(Type[Optional[PoolListResponse]], ResultWrapper[PoolListResponse]),
@@ -1203,7 +1206,7 @@ class AsyncPools(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
         return await self._patch(
             f"/user/load_balancers/pools/{pool_id}",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "check_regions": check_regions,
                     "description": description,
@@ -1404,7 +1407,7 @@ class AsyncPools(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
         return await self._post(
             f"/user/load_balancers/pools/{pool_id}/preview",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "expected_codes": expected_codes,
                     "allow_insecure": allow_insecure,

@@ -8,7 +8,10 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import maybe_transform
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -233,7 +236,7 @@ class AsyncTLS(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `hostname` but received {hostname!r}")
         return await self._put(
             f"/zones/{zone_id}/hostnames/settings/{setting_id}/{hostname}",
-            body=maybe_transform({"value": value}, tls_update_params.TLSUpdateParams),
+            body=await async_maybe_transform({"value": value}, tls_update_params.TLSUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

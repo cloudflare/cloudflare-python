@@ -8,7 +8,10 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -358,7 +361,7 @@ class AsyncSiteInfos(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/rum/site_info",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "auto_install": auto_install,
                     "host": host,
@@ -420,7 +423,7 @@ class AsyncSiteInfos(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
         return await self._put(
             f"/accounts/{account_id}/rum/site_info/{site_id}",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "auto_install": auto_install,
                     "host": host,

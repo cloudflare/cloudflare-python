@@ -7,7 +7,10 @@ from typing import Type, Optional, cast
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -466,7 +469,7 @@ class AsyncOrganizations(AsyncAPIResource):
             account_or_zone_id = zone_id
         return await self._post(
             f"/{account_or_zone}/{account_or_zone_id}/access/organizations",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "auth_domain": auth_domain,
                     "name": name,
@@ -574,7 +577,7 @@ class AsyncOrganizations(AsyncAPIResource):
             account_or_zone_id = zone_id
         return await self._put(
             f"/{account_or_zone}/{account_or_zone_id}/access/organizations",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "allow_authenticate_via_warp": allow_authenticate_via_warp,
                     "auth_domain": auth_domain,
@@ -703,7 +706,9 @@ class AsyncOrganizations(AsyncAPIResource):
             account_or_zone_id = zone_id
         return await self._post(
             f"/{account_or_zone}/{account_or_zone_id}/access/organizations/revoke_user",
-            body=maybe_transform({"email": email}, organization_revoke_users_params.OrganizationRevokeUsersParams),
+            body=await async_maybe_transform(
+                {"email": email}, organization_revoke_users_params.OrganizationRevokeUsersParams
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
