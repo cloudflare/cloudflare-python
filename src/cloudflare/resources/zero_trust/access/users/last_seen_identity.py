@@ -19,7 +19,7 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import (
     make_request_options,
 )
-from .....types.zero_trust.access.users import LastSeenIdentityListResponse
+from .....types.zero_trust.access.users import LastSeenIdentityGetResponse
 
 __all__ = ["LastSeenIdentity", "AsyncLastSeenIdentity"]
 
@@ -33,7 +33,7 @@ class LastSeenIdentity(SyncAPIResource):
     def with_streaming_response(self) -> LastSeenIdentityWithStreamingResponse:
         return LastSeenIdentityWithStreamingResponse(self)
 
-    def list(
+    def get(
         self,
         id: str,
         *,
@@ -44,7 +44,7 @@ class LastSeenIdentity(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LastSeenIdentityListResponse:
+    ) -> LastSeenIdentityGetResponse:
         """
         Get last seen identity for a single user.
 
@@ -74,7 +74,7 @@ class LastSeenIdentity(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[LastSeenIdentityListResponse], ResultWrapper[LastSeenIdentityListResponse]),
+            cast_to=cast(Type[LastSeenIdentityGetResponse], ResultWrapper[LastSeenIdentityGetResponse]),
         )
 
 
@@ -87,7 +87,7 @@ class AsyncLastSeenIdentity(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncLastSeenIdentityWithStreamingResponse:
         return AsyncLastSeenIdentityWithStreamingResponse(self)
 
-    async def list(
+    async def get(
         self,
         id: str,
         *,
@@ -98,7 +98,7 @@ class AsyncLastSeenIdentity(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LastSeenIdentityListResponse:
+    ) -> LastSeenIdentityGetResponse:
         """
         Get last seen identity for a single user.
 
@@ -128,7 +128,7 @@ class AsyncLastSeenIdentity(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[LastSeenIdentityListResponse], ResultWrapper[LastSeenIdentityListResponse]),
+            cast_to=cast(Type[LastSeenIdentityGetResponse], ResultWrapper[LastSeenIdentityGetResponse]),
         )
 
 
@@ -136,8 +136,8 @@ class LastSeenIdentityWithRawResponse:
     def __init__(self, last_seen_identity: LastSeenIdentity) -> None:
         self._last_seen_identity = last_seen_identity
 
-        self.list = to_raw_response_wrapper(
-            last_seen_identity.list,
+        self.get = to_raw_response_wrapper(
+            last_seen_identity.get,
         )
 
 
@@ -145,8 +145,8 @@ class AsyncLastSeenIdentityWithRawResponse:
     def __init__(self, last_seen_identity: AsyncLastSeenIdentity) -> None:
         self._last_seen_identity = last_seen_identity
 
-        self.list = async_to_raw_response_wrapper(
-            last_seen_identity.list,
+        self.get = async_to_raw_response_wrapper(
+            last_seen_identity.get,
         )
 
 
@@ -154,8 +154,8 @@ class LastSeenIdentityWithStreamingResponse:
     def __init__(self, last_seen_identity: LastSeenIdentity) -> None:
         self._last_seen_identity = last_seen_identity
 
-        self.list = to_streamed_response_wrapper(
-            last_seen_identity.list,
+        self.get = to_streamed_response_wrapper(
+            last_seen_identity.get,
         )
 
 
@@ -163,6 +163,6 @@ class AsyncLastSeenIdentityWithStreamingResponse:
     def __init__(self, last_seen_identity: AsyncLastSeenIdentity) -> None:
         self._last_seen_identity = last_seen_identity
 
-        self.list = async_to_streamed_response_wrapper(
-            last_seen_identity.list,
+        self.get = async_to_streamed_response_wrapper(
+            last_seen_identity.get,
         )

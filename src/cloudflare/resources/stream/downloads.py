@@ -19,7 +19,7 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.stream import DownloadListResponse, DownloadCreateResponse, DownloadDeleteResponse
+from ...types.stream import DownloadGetResponse, DownloadCreateResponse, DownloadDeleteResponse
 
 __all__ = ["Downloads", "AsyncDownloads"]
 
@@ -82,55 +82,6 @@ class Downloads(SyncAPIResource):
             ),
         )
 
-    def list(
-        self,
-        identifier: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DownloadListResponse:
-        """
-        Lists the downloads created for a video.
-
-        Args:
-          account_id: Identifier
-
-          identifier: A Cloudflare-generated unique identifier for a media item.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not identifier:
-            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
-        return cast(
-            DownloadListResponse,
-            self._get(
-                f"/accounts/{account_id}/stream/{identifier}/downloads",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[DownloadListResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
-
     def delete(
         self,
         identifier: str,
@@ -176,6 +127,55 @@ class Downloads(SyncAPIResource):
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[DownloadDeleteResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
+        )
+
+    def get(
+        self,
+        identifier: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> DownloadGetResponse:
+        """
+        Lists the downloads created for a video.
+
+        Args:
+          account_id: Identifier
+
+          identifier: A Cloudflare-generated unique identifier for a media item.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not identifier:
+            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+        return cast(
+            DownloadGetResponse,
+            self._get(
+                f"/accounts/{account_id}/stream/{identifier}/downloads",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[DownloadGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -239,55 +239,6 @@ class AsyncDownloads(AsyncAPIResource):
             ),
         )
 
-    async def list(
-        self,
-        identifier: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DownloadListResponse:
-        """
-        Lists the downloads created for a video.
-
-        Args:
-          account_id: Identifier
-
-          identifier: A Cloudflare-generated unique identifier for a media item.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not identifier:
-            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
-        return cast(
-            DownloadListResponse,
-            await self._get(
-                f"/accounts/{account_id}/stream/{identifier}/downloads",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[DownloadListResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
-
     async def delete(
         self,
         identifier: str,
@@ -337,6 +288,55 @@ class AsyncDownloads(AsyncAPIResource):
             ),
         )
 
+    async def get(
+        self,
+        identifier: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> DownloadGetResponse:
+        """
+        Lists the downloads created for a video.
+
+        Args:
+          account_id: Identifier
+
+          identifier: A Cloudflare-generated unique identifier for a media item.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not identifier:
+            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+        return cast(
+            DownloadGetResponse,
+            await self._get(
+                f"/accounts/{account_id}/stream/{identifier}/downloads",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[DownloadGetResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
+        )
+
 
 class DownloadsWithRawResponse:
     def __init__(self, downloads: Downloads) -> None:
@@ -345,11 +345,11 @@ class DownloadsWithRawResponse:
         self.create = to_raw_response_wrapper(
             downloads.create,
         )
-        self.list = to_raw_response_wrapper(
-            downloads.list,
-        )
         self.delete = to_raw_response_wrapper(
             downloads.delete,
+        )
+        self.get = to_raw_response_wrapper(
+            downloads.get,
         )
 
 
@@ -360,11 +360,11 @@ class AsyncDownloadsWithRawResponse:
         self.create = async_to_raw_response_wrapper(
             downloads.create,
         )
-        self.list = async_to_raw_response_wrapper(
-            downloads.list,
-        )
         self.delete = async_to_raw_response_wrapper(
             downloads.delete,
+        )
+        self.get = async_to_raw_response_wrapper(
+            downloads.get,
         )
 
 
@@ -375,11 +375,11 @@ class DownloadsWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             downloads.create,
         )
-        self.list = to_streamed_response_wrapper(
-            downloads.list,
-        )
         self.delete = to_streamed_response_wrapper(
             downloads.delete,
+        )
+        self.get = to_streamed_response_wrapper(
+            downloads.get,
         )
 
 
@@ -390,9 +390,9 @@ class AsyncDownloadsWithStreamingResponse:
         self.create = async_to_streamed_response_wrapper(
             downloads.create,
         )
-        self.list = async_to_streamed_response_wrapper(
-            downloads.list,
-        )
         self.delete = async_to_streamed_response_wrapper(
             downloads.delete,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            downloads.get,
         )

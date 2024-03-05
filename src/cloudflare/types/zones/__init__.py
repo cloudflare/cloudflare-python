@@ -8,8 +8,8 @@ from .hold_delete_params import HoldDeleteParams as HoldDeleteParams
 from .setting_edit_params import SettingEditParams as SettingEditParams
 from .hold_create_response import HoldCreateResponse as HoldCreateResponse
 from .hold_delete_response import HoldDeleteResponse as HoldDeleteResponse
+from .setting_get_response import SettingGetResponse as SettingGetResponse
 from .setting_edit_response import SettingEditResponse as SettingEditResponse
-from .setting_list_response import SettingListResponse as SettingListResponse
 from .subscription_get_response import SubscriptionGetResponse as SubscriptionGetResponse
 from .subscription_create_params import SubscriptionCreateParams as SubscriptionCreateParams
 from .subscription_list_response import SubscriptionListResponse as SubscriptionListResponse

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, cast
 from typing_extensions import Literal
 
 import httpx
@@ -21,16 +21,18 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
+from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ...._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
 from ....types.email_routing.routing import (
     AddressGetResponse,
+    AddressListResponse,
     AddressCreateResponse,
     AddressDeleteResponse,
-    AddressEmailRoutingDestinationAddressesListDestinationAddressesResponse,
+    address_list_params,
     address_create_params,
-    address_email_routing_destination_addresses_list_destination_addresses_params,
 )
 
 __all__ = ["Addresses", "AsyncAddresses"]
@@ -90,6 +92,66 @@ class Addresses(SyncAPIResource):
             cast_to=cast(Type[AddressCreateResponse], ResultWrapper[AddressCreateResponse]),
         )
 
+    def list(
+        self,
+        account_identifier: str,
+        *,
+        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        page: float | NotGiven = NOT_GIVEN,
+        per_page: float | NotGiven = NOT_GIVEN,
+        verified: Literal[True, False] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SyncV4PagePaginationArray[AddressListResponse]:
+        """
+        Lists existing destination addresses.
+
+        Args:
+          account_identifier: Identifier
+
+          direction: Sorts results in an ascending or descending order.
+
+          page: Page number of paginated results.
+
+          per_page: Maximum number of results per page.
+
+          verified: Filter by verified destination addresses.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_identifier:
+            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        return self._get_api_list(
+            f"/accounts/{account_identifier}/email/routing/addresses",
+            page=SyncV4PagePaginationArray[AddressListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "direction": direction,
+                        "page": page,
+                        "per_page": per_page,
+                        "verified": verified,
+                    },
+                    address_list_params.AddressListParams,
+                ),
+            ),
+            model=AddressListResponse,
+        )
+
     def delete(
         self,
         destination_address_identifier: str,
@@ -134,69 +196,6 @@ class Addresses(SyncAPIResource):
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(Type[AddressDeleteResponse], ResultWrapper[AddressDeleteResponse]),
-        )
-
-    def email_routing_destination_addresses_list_destination_addresses(
-        self,
-        account_identifier: str,
-        *,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        verified: Literal[True, False] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AddressEmailRoutingDestinationAddressesListDestinationAddressesResponse]:
-        """
-        Lists existing destination addresses.
-
-        Args:
-          account_identifier: Identifier
-
-          direction: Sorts results in an ascending or descending order.
-
-          page: Page number of paginated results.
-
-          per_page: Maximum number of results per page.
-
-          verified: Filter by verified destination addresses.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        return self._get(
-            f"/accounts/{account_identifier}/email/routing/addresses",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "direction": direction,
-                        "page": page,
-                        "per_page": per_page,
-                        "verified": verified,
-                    },
-                    address_email_routing_destination_addresses_list_destination_addresses_params.AddressEmailRoutingDestinationAddressesListDestinationAddressesParams,
-                ),
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[Optional[AddressEmailRoutingDestinationAddressesListDestinationAddressesResponse]],
-                ResultWrapper[AddressEmailRoutingDestinationAddressesListDestinationAddressesResponse],
-            ),
         )
 
     def get(
@@ -300,6 +299,66 @@ class AsyncAddresses(AsyncAPIResource):
             cast_to=cast(Type[AddressCreateResponse], ResultWrapper[AddressCreateResponse]),
         )
 
+    def list(
+        self,
+        account_identifier: str,
+        *,
+        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        page: float | NotGiven = NOT_GIVEN,
+        per_page: float | NotGiven = NOT_GIVEN,
+        verified: Literal[True, False] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AsyncPaginator[AddressListResponse, AsyncV4PagePaginationArray[AddressListResponse]]:
+        """
+        Lists existing destination addresses.
+
+        Args:
+          account_identifier: Identifier
+
+          direction: Sorts results in an ascending or descending order.
+
+          page: Page number of paginated results.
+
+          per_page: Maximum number of results per page.
+
+          verified: Filter by verified destination addresses.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_identifier:
+            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        return self._get_api_list(
+            f"/accounts/{account_identifier}/email/routing/addresses",
+            page=AsyncV4PagePaginationArray[AddressListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "direction": direction,
+                        "page": page,
+                        "per_page": per_page,
+                        "verified": verified,
+                    },
+                    address_list_params.AddressListParams,
+                ),
+            ),
+            model=AddressListResponse,
+        )
+
     async def delete(
         self,
         destination_address_identifier: str,
@@ -344,69 +403,6 @@ class AsyncAddresses(AsyncAPIResource):
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(Type[AddressDeleteResponse], ResultWrapper[AddressDeleteResponse]),
-        )
-
-    async def email_routing_destination_addresses_list_destination_addresses(
-        self,
-        account_identifier: str,
-        *,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        verified: Literal[True, False] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AddressEmailRoutingDestinationAddressesListDestinationAddressesResponse]:
-        """
-        Lists existing destination addresses.
-
-        Args:
-          account_identifier: Identifier
-
-          direction: Sorts results in an ascending or descending order.
-
-          page: Page number of paginated results.
-
-          per_page: Maximum number of results per page.
-
-          verified: Filter by verified destination addresses.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        return await self._get(
-            f"/accounts/{account_identifier}/email/routing/addresses",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "direction": direction,
-                        "page": page,
-                        "per_page": per_page,
-                        "verified": verified,
-                    },
-                    address_email_routing_destination_addresses_list_destination_addresses_params.AddressEmailRoutingDestinationAddressesListDestinationAddressesParams,
-                ),
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(
-                Type[Optional[AddressEmailRoutingDestinationAddressesListDestinationAddressesResponse]],
-                ResultWrapper[AddressEmailRoutingDestinationAddressesListDestinationAddressesResponse],
-            ),
         )
 
     async def get(
@@ -463,11 +459,11 @@ class AddressesWithRawResponse:
         self.create = to_raw_response_wrapper(
             addresses.create,
         )
+        self.list = to_raw_response_wrapper(
+            addresses.list,
+        )
         self.delete = to_raw_response_wrapper(
             addresses.delete,
-        )
-        self.email_routing_destination_addresses_list_destination_addresses = to_raw_response_wrapper(
-            addresses.email_routing_destination_addresses_list_destination_addresses,
         )
         self.get = to_raw_response_wrapper(
             addresses.get,
@@ -481,11 +477,11 @@ class AsyncAddressesWithRawResponse:
         self.create = async_to_raw_response_wrapper(
             addresses.create,
         )
+        self.list = async_to_raw_response_wrapper(
+            addresses.list,
+        )
         self.delete = async_to_raw_response_wrapper(
             addresses.delete,
-        )
-        self.email_routing_destination_addresses_list_destination_addresses = async_to_raw_response_wrapper(
-            addresses.email_routing_destination_addresses_list_destination_addresses,
         )
         self.get = async_to_raw_response_wrapper(
             addresses.get,
@@ -499,11 +495,11 @@ class AddressesWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             addresses.create,
         )
+        self.list = to_streamed_response_wrapper(
+            addresses.list,
+        )
         self.delete = to_streamed_response_wrapper(
             addresses.delete,
-        )
-        self.email_routing_destination_addresses_list_destination_addresses = to_streamed_response_wrapper(
-            addresses.email_routing_destination_addresses_list_destination_addresses,
         )
         self.get = to_streamed_response_wrapper(
             addresses.get,
@@ -517,11 +513,11 @@ class AsyncAddressesWithStreamingResponse:
         self.create = async_to_streamed_response_wrapper(
             addresses.create,
         )
+        self.list = async_to_streamed_response_wrapper(
+            addresses.list,
+        )
         self.delete = async_to_streamed_response_wrapper(
             addresses.delete,
-        )
-        self.email_routing_destination_addresses_list_destination_addresses = async_to_streamed_response_wrapper(
-            addresses.email_routing_destination_addresses_list_destination_addresses,
         )
         self.get = async_to_streamed_response_wrapper(
             addresses.get,

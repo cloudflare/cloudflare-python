@@ -10,8 +10,8 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types.user import (
+    SubscriptionGetResponse,
     SubscriptionEditResponse,
-    SubscriptionListResponse,
     SubscriptionDeleteResponse,
     SubscriptionUpdateResponse,
 )
@@ -103,34 +103,6 @@ class TestSubscriptions:
             client.user.subscriptions.with_raw_response.update(
                 "",
             )
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_method_list(self, client: Cloudflare) -> None:
-        subscription = client.user.subscriptions.list()
-        assert_matches_type(Optional[SubscriptionListResponse], subscription, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_raw_response_list(self, client: Cloudflare) -> None:
-        response = client.user.subscriptions.with_raw_response.list()
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        subscription = response.parse()
-        assert_matches_type(Optional[SubscriptionListResponse], subscription, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_streaming_response_list(self, client: Cloudflare) -> None:
-        with client.user.subscriptions.with_streaming_response.list() as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            subscription = response.parse()
-            assert_matches_type(Optional[SubscriptionListResponse], subscription, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
@@ -256,6 +228,34 @@ class TestSubscriptions:
                 "",
             )
 
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_get(self, client: Cloudflare) -> None:
+        subscription = client.user.subscriptions.get()
+        assert_matches_type(Optional[SubscriptionGetResponse], subscription, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_get(self, client: Cloudflare) -> None:
+        response = client.user.subscriptions.with_raw_response.get()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        subscription = response.parse()
+        assert_matches_type(Optional[SubscriptionGetResponse], subscription, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_get(self, client: Cloudflare) -> None:
+        with client.user.subscriptions.with_streaming_response.get() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            subscription = response.parse()
+            assert_matches_type(Optional[SubscriptionGetResponse], subscription, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
 
 class TestAsyncSubscriptions:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
@@ -341,34 +341,6 @@ class TestAsyncSubscriptions:
             await async_client.user.subscriptions.with_raw_response.update(
                 "",
             )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_list(self, async_client: AsyncCloudflare) -> None:
-        subscription = await async_client.user.subscriptions.list()
-        assert_matches_type(Optional[SubscriptionListResponse], subscription, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.user.subscriptions.with_raw_response.list()
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        subscription = await response.parse()
-        assert_matches_type(Optional[SubscriptionListResponse], subscription, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.user.subscriptions.with_streaming_response.list() as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            subscription = await response.parse()
-            assert_matches_type(Optional[SubscriptionListResponse], subscription, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
@@ -493,3 +465,31 @@ class TestAsyncSubscriptions:
             await async_client.user.subscriptions.with_raw_response.edit(
                 "",
             )
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_get(self, async_client: AsyncCloudflare) -> None:
+        subscription = await async_client.user.subscriptions.get()
+        assert_matches_type(Optional[SubscriptionGetResponse], subscription, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.user.subscriptions.with_raw_response.get()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        subscription = await response.parse()
+        assert_matches_type(Optional[SubscriptionGetResponse], subscription, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.user.subscriptions.with_streaming_response.get() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            subscription = await response.parse()
+            assert_matches_type(Optional[SubscriptionGetResponse], subscription, path=["response"])
+
+        assert cast(Any, response.is_closed) is True

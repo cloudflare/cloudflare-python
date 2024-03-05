@@ -2,4 +2,4 @@
 
 from __future__ import annotations
 
-from .log_list_response import LogListResponse as LogListResponse
+from .log_get_response import LogGetResponse as LogGetResponse

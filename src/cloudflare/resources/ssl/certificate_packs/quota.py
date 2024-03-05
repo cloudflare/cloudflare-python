@@ -19,7 +19,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.ssl.certificate_packs import QuotaListResponse
+from ....types.ssl.certificate_packs import QuotaGetResponse
 
 __all__ = ["Quota", "AsyncQuota"]
 
@@ -33,7 +33,7 @@ class Quota(SyncAPIResource):
     def with_streaming_response(self) -> QuotaWithStreamingResponse:
         return QuotaWithStreamingResponse(self)
 
-    def list(
+    def get(
         self,
         *,
         zone_id: str,
@@ -43,7 +43,7 @@ class Quota(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> QuotaListResponse:
+    ) -> QuotaGetResponse:
         """
         For a given zone, list certificate pack quotas.
 
@@ -69,7 +69,7 @@ class Quota(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[QuotaListResponse], ResultWrapper[QuotaListResponse]),
+            cast_to=cast(Type[QuotaGetResponse], ResultWrapper[QuotaGetResponse]),
         )
 
 
@@ -82,7 +82,7 @@ class AsyncQuota(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncQuotaWithStreamingResponse:
         return AsyncQuotaWithStreamingResponse(self)
 
-    async def list(
+    async def get(
         self,
         *,
         zone_id: str,
@@ -92,7 +92,7 @@ class AsyncQuota(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> QuotaListResponse:
+    ) -> QuotaGetResponse:
         """
         For a given zone, list certificate pack quotas.
 
@@ -118,7 +118,7 @@ class AsyncQuota(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[QuotaListResponse], ResultWrapper[QuotaListResponse]),
+            cast_to=cast(Type[QuotaGetResponse], ResultWrapper[QuotaGetResponse]),
         )
 
 
@@ -126,8 +126,8 @@ class QuotaWithRawResponse:
     def __init__(self, quota: Quota) -> None:
         self._quota = quota
 
-        self.list = to_raw_response_wrapper(
-            quota.list,
+        self.get = to_raw_response_wrapper(
+            quota.get,
         )
 
 
@@ -135,8 +135,8 @@ class AsyncQuotaWithRawResponse:
     def __init__(self, quota: AsyncQuota) -> None:
         self._quota = quota
 
-        self.list = async_to_raw_response_wrapper(
-            quota.list,
+        self.get = async_to_raw_response_wrapper(
+            quota.get,
         )
 
 
@@ -144,8 +144,8 @@ class QuotaWithStreamingResponse:
     def __init__(self, quota: Quota) -> None:
         self._quota = quota
 
-        self.list = to_streamed_response_wrapper(
-            quota.list,
+        self.get = to_streamed_response_wrapper(
+            quota.get,
         )
 
 
@@ -153,6 +153,6 @@ class AsyncQuotaWithStreamingResponse:
     def __init__(self, quota: AsyncQuota) -> None:
         self._quota = quota
 
-        self.list = async_to_streamed_response_wrapper(
-            quota.list,
+        self.get = async_to_streamed_response_wrapper(
+            quota.get,
         )

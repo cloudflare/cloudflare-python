@@ -24,7 +24,7 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.zero_trust.tunnels import (
-    ConfigurationListResponse,
+    ConfigurationGetResponse,
     ConfigurationUpdateResponse,
     configuration_update_params,
 )
@@ -94,7 +94,7 @@ class Configurations(SyncAPIResource):
             ),
         )
 
-    def list(
+    def get(
         self,
         tunnel_id: str,
         *,
@@ -105,7 +105,7 @@ class Configurations(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConfigurationListResponse:
+    ) -> ConfigurationGetResponse:
         """
         Gets the configuration for a remotely-managed tunnel
 
@@ -127,7 +127,7 @@ class Configurations(SyncAPIResource):
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
         return cast(
-            ConfigurationListResponse,
+            ConfigurationGetResponse,
             self._get(
                 f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}/configurations",
                 options=make_request_options(
@@ -138,7 +138,7 @@ class Configurations(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[ConfigurationListResponse]
+                    Any, ResultWrapper[ConfigurationGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -208,7 +208,7 @@ class AsyncConfigurations(AsyncAPIResource):
             ),
         )
 
-    async def list(
+    async def get(
         self,
         tunnel_id: str,
         *,
@@ -219,7 +219,7 @@ class AsyncConfigurations(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConfigurationListResponse:
+    ) -> ConfigurationGetResponse:
         """
         Gets the configuration for a remotely-managed tunnel
 
@@ -241,7 +241,7 @@ class AsyncConfigurations(AsyncAPIResource):
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
         return cast(
-            ConfigurationListResponse,
+            ConfigurationGetResponse,
             await self._get(
                 f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}/configurations",
                 options=make_request_options(
@@ -252,7 +252,7 @@ class AsyncConfigurations(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[ConfigurationListResponse]
+                    Any, ResultWrapper[ConfigurationGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -265,8 +265,8 @@ class ConfigurationsWithRawResponse:
         self.update = to_raw_response_wrapper(
             configurations.update,
         )
-        self.list = to_raw_response_wrapper(
-            configurations.list,
+        self.get = to_raw_response_wrapper(
+            configurations.get,
         )
 
 
@@ -277,8 +277,8 @@ class AsyncConfigurationsWithRawResponse:
         self.update = async_to_raw_response_wrapper(
             configurations.update,
         )
-        self.list = async_to_raw_response_wrapper(
-            configurations.list,
+        self.get = async_to_raw_response_wrapper(
+            configurations.get,
         )
 
 
@@ -289,8 +289,8 @@ class ConfigurationsWithStreamingResponse:
         self.update = to_streamed_response_wrapper(
             configurations.update,
         )
-        self.list = to_streamed_response_wrapper(
-            configurations.list,
+        self.get = to_streamed_response_wrapper(
+            configurations.get,
         )
 
 
@@ -301,6 +301,6 @@ class AsyncConfigurationsWithStreamingResponse:
         self.update = async_to_streamed_response_wrapper(
             configurations.update,
         )
-        self.list = async_to_streamed_response_wrapper(
-            configurations.list,
+        self.get = async_to_streamed_response_wrapper(
+            configurations.get,
         )

@@ -23,7 +23,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.workers.scripts import ScheduleListResponse, ScheduleUpdateResponse, schedule_update_params
+from ....types.workers.scripts import ScheduleGetResponse, ScheduleUpdateResponse, schedule_update_params
 
 __all__ = ["Schedules", "AsyncSchedules"]
 
@@ -83,7 +83,7 @@ class Schedules(SyncAPIResource):
             cast_to=cast(Type[ScheduleUpdateResponse], ResultWrapper[ScheduleUpdateResponse]),
         )
 
-    def list(
+    def get(
         self,
         script_name: str,
         *,
@@ -94,7 +94,7 @@ class Schedules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ScheduleListResponse:
+    ) -> ScheduleGetResponse:
         """
         Fetches Cron Triggers for a Worker.
 
@@ -124,7 +124,7 @@ class Schedules(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ScheduleListResponse], ResultWrapper[ScheduleListResponse]),
+            cast_to=cast(Type[ScheduleGetResponse], ResultWrapper[ScheduleGetResponse]),
         )
 
 
@@ -183,7 +183,7 @@ class AsyncSchedules(AsyncAPIResource):
             cast_to=cast(Type[ScheduleUpdateResponse], ResultWrapper[ScheduleUpdateResponse]),
         )
 
-    async def list(
+    async def get(
         self,
         script_name: str,
         *,
@@ -194,7 +194,7 @@ class AsyncSchedules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ScheduleListResponse:
+    ) -> ScheduleGetResponse:
         """
         Fetches Cron Triggers for a Worker.
 
@@ -224,7 +224,7 @@ class AsyncSchedules(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ScheduleListResponse], ResultWrapper[ScheduleListResponse]),
+            cast_to=cast(Type[ScheduleGetResponse], ResultWrapper[ScheduleGetResponse]),
         )
 
 
@@ -235,8 +235,8 @@ class SchedulesWithRawResponse:
         self.update = to_raw_response_wrapper(
             schedules.update,
         )
-        self.list = to_raw_response_wrapper(
-            schedules.list,
+        self.get = to_raw_response_wrapper(
+            schedules.get,
         )
 
 
@@ -247,8 +247,8 @@ class AsyncSchedulesWithRawResponse:
         self.update = async_to_raw_response_wrapper(
             schedules.update,
         )
-        self.list = async_to_raw_response_wrapper(
-            schedules.list,
+        self.get = async_to_raw_response_wrapper(
+            schedules.get,
         )
 
 
@@ -259,8 +259,8 @@ class SchedulesWithStreamingResponse:
         self.update = to_streamed_response_wrapper(
             schedules.update,
         )
-        self.list = to_streamed_response_wrapper(
-            schedules.list,
+        self.get = to_streamed_response_wrapper(
+            schedules.get,
         )
 
 
@@ -271,6 +271,6 @@ class AsyncSchedulesWithStreamingResponse:
         self.update = async_to_streamed_response_wrapper(
             schedules.update,
         )
-        self.list = async_to_streamed_response_wrapper(
-            schedules.list,
+        self.get = async_to_streamed_response_wrapper(
+            schedules.get,
         )

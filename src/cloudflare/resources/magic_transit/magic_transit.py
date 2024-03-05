@@ -36,7 +36,6 @@ from .cf_interconnects import (
     CfInterconnectsWithStreamingResponse,
     AsyncCfInterconnectsWithStreamingResponse,
 )
-from .ipsec_tunnels.ipsec_tunnels import IPSECTunnels, AsyncIPSECTunnels
 
 __all__ = ["MagicTransit", "AsyncMagicTransit"]
 

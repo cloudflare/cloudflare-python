@@ -1,12 +1,12 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from .fulls import (
-    Fulls,
-    AsyncFulls,
-    FullsWithRawResponse,
-    AsyncFullsWithRawResponse,
-    FullsWithStreamingResponse,
-    AsyncFullsWithStreamingResponse,
+from .full import (
+    Full,
+    AsyncFull,
+    FullWithRawResponse,
+    AsyncFullWithRawResponse,
+    FullWithStreamingResponse,
+    AsyncFullWithStreamingResponse,
 )
 from .configs import (
     Configs,
@@ -18,12 +18,12 @@ from .configs import (
 )
 
 __all__ = [
-    "Fulls",
-    "AsyncFulls",
-    "FullsWithRawResponse",
-    "AsyncFullsWithRawResponse",
-    "FullsWithStreamingResponse",
-    "AsyncFullsWithStreamingResponse",
+    "Full",
+    "AsyncFull",
+    "FullWithRawResponse",
+    "AsyncFullWithRawResponse",
+    "FullWithStreamingResponse",
+    "AsyncFullWithStreamingResponse",
     "Configs",
     "AsyncConfigs",
     "ConfigsWithRawResponse",

@@ -22,8 +22,8 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...types.cache import (
+    CacheReserveGetResponse,
     CacheReserveEditResponse,
-    CacheReserveListResponse,
     CacheReserveClearResponse,
     CacheReserveStatusResponse,
     cache_reserve_edit_params,
@@ -43,50 +43,6 @@ class CacheReserve(SyncAPIResource):
     @cached_property
     def with_streaming_response(self) -> CacheReserveWithStreamingResponse:
         return CacheReserveWithStreamingResponse(self)
-
-    def list(
-        self,
-        *,
-        zone_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CacheReserveListResponse:
-        """
-        Increase cache lifetimes by automatically storing all cacheable files into
-        Cloudflare's persistent object storage buckets. Requires Cache Reserve
-        subscription. Note: using Tiered Cache with Cache Reserve is highly recommended
-        to reduce Reserve operations costs. See the
-        [developer docs](https://developers.cloudflare.com/cache/about/cache-reserve)
-        for more information.
-
-        Args:
-          zone_id: Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return self._get(
-            f"/zones/{zone_id}/cache/cache_reserve",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(Type[CacheReserveListResponse], ResultWrapper[CacheReserveListResponse]),
-        )
 
     def clear(
         self,
@@ -178,6 +134,50 @@ class CacheReserve(SyncAPIResource):
             cast_to=cast(Type[CacheReserveEditResponse], ResultWrapper[CacheReserveEditResponse]),
         )
 
+    def get(
+        self,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> CacheReserveGetResponse:
+        """
+        Increase cache lifetimes by automatically storing all cacheable files into
+        Cloudflare's persistent object storage buckets. Requires Cache Reserve
+        subscription. Note: using Tiered Cache with Cache Reserve is highly recommended
+        to reduce Reserve operations costs. See the
+        [developer docs](https://developers.cloudflare.com/cache/about/cache-reserve)
+        for more information.
+
+        Args:
+          zone_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return self._get(
+            f"/zones/{zone_id}/cache/cache_reserve",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[CacheReserveGetResponse], ResultWrapper[CacheReserveGetResponse]),
+        )
+
     def status(
         self,
         *,
@@ -229,50 +229,6 @@ class AsyncCacheReserve(AsyncAPIResource):
     @cached_property
     def with_streaming_response(self) -> AsyncCacheReserveWithStreamingResponse:
         return AsyncCacheReserveWithStreamingResponse(self)
-
-    async def list(
-        self,
-        *,
-        zone_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CacheReserveListResponse:
-        """
-        Increase cache lifetimes by automatically storing all cacheable files into
-        Cloudflare's persistent object storage buckets. Requires Cache Reserve
-        subscription. Note: using Tiered Cache with Cache Reserve is highly recommended
-        to reduce Reserve operations costs. See the
-        [developer docs](https://developers.cloudflare.com/cache/about/cache-reserve)
-        for more information.
-
-        Args:
-          zone_id: Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return await self._get(
-            f"/zones/{zone_id}/cache/cache_reserve",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(Type[CacheReserveListResponse], ResultWrapper[CacheReserveListResponse]),
-        )
 
     async def clear(
         self,
@@ -364,6 +320,50 @@ class AsyncCacheReserve(AsyncAPIResource):
             cast_to=cast(Type[CacheReserveEditResponse], ResultWrapper[CacheReserveEditResponse]),
         )
 
+    async def get(
+        self,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> CacheReserveGetResponse:
+        """
+        Increase cache lifetimes by automatically storing all cacheable files into
+        Cloudflare's persistent object storage buckets. Requires Cache Reserve
+        subscription. Note: using Tiered Cache with Cache Reserve is highly recommended
+        to reduce Reserve operations costs. See the
+        [developer docs](https://developers.cloudflare.com/cache/about/cache-reserve)
+        for more information.
+
+        Args:
+          zone_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return await self._get(
+            f"/zones/{zone_id}/cache/cache_reserve",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[CacheReserveGetResponse], ResultWrapper[CacheReserveGetResponse]),
+        )
+
     async def status(
         self,
         *,
@@ -411,14 +411,14 @@ class CacheReserveWithRawResponse:
     def __init__(self, cache_reserve: CacheReserve) -> None:
         self._cache_reserve = cache_reserve
 
-        self.list = to_raw_response_wrapper(
-            cache_reserve.list,
-        )
         self.clear = to_raw_response_wrapper(
             cache_reserve.clear,
         )
         self.edit = to_raw_response_wrapper(
             cache_reserve.edit,
+        )
+        self.get = to_raw_response_wrapper(
+            cache_reserve.get,
         )
         self.status = to_raw_response_wrapper(
             cache_reserve.status,
@@ -429,14 +429,14 @@ class AsyncCacheReserveWithRawResponse:
     def __init__(self, cache_reserve: AsyncCacheReserve) -> None:
         self._cache_reserve = cache_reserve
 
-        self.list = async_to_raw_response_wrapper(
-            cache_reserve.list,
-        )
         self.clear = async_to_raw_response_wrapper(
             cache_reserve.clear,
         )
         self.edit = async_to_raw_response_wrapper(
             cache_reserve.edit,
+        )
+        self.get = async_to_raw_response_wrapper(
+            cache_reserve.get,
         )
         self.status = async_to_raw_response_wrapper(
             cache_reserve.status,
@@ -447,14 +447,14 @@ class CacheReserveWithStreamingResponse:
     def __init__(self, cache_reserve: CacheReserve) -> None:
         self._cache_reserve = cache_reserve
 
-        self.list = to_streamed_response_wrapper(
-            cache_reserve.list,
-        )
         self.clear = to_streamed_response_wrapper(
             cache_reserve.clear,
         )
         self.edit = to_streamed_response_wrapper(
             cache_reserve.edit,
+        )
+        self.get = to_streamed_response_wrapper(
+            cache_reserve.get,
         )
         self.status = to_streamed_response_wrapper(
             cache_reserve.status,
@@ -465,14 +465,14 @@ class AsyncCacheReserveWithStreamingResponse:
     def __init__(self, cache_reserve: AsyncCacheReserve) -> None:
         self._cache_reserve = cache_reserve
 
-        self.list = async_to_streamed_response_wrapper(
-            cache_reserve.list,
-        )
         self.clear = async_to_streamed_response_wrapper(
             cache_reserve.clear,
         )
         self.edit = async_to_streamed_response_wrapper(
             cache_reserve.edit,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            cache_reserve.get,
         )
         self.status = async_to_streamed_response_wrapper(
             cache_reserve.status,

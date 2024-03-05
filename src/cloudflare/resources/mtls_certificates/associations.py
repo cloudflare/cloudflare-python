@@ -19,7 +19,7 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.mtls_certificates import AssociationListResponse
+from ...types.mtls_certificates import AssociationGetResponse
 
 __all__ = ["Associations", "AsyncAssociations"]
 
@@ -33,7 +33,7 @@ class Associations(SyncAPIResource):
     def with_streaming_response(self) -> AssociationsWithStreamingResponse:
         return AssociationsWithStreamingResponse(self)
 
-    def list(
+    def get(
         self,
         mtls_certificate_id: str,
         *,
@@ -44,7 +44,7 @@ class Associations(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AssociationListResponse]:
+    ) -> Optional[AssociationGetResponse]:
         """
         Lists all active associations between the certificate and Cloudflare services.
 
@@ -76,7 +76,7 @@ class Associations(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[AssociationListResponse]], ResultWrapper[AssociationListResponse]),
+            cast_to=cast(Type[Optional[AssociationGetResponse]], ResultWrapper[AssociationGetResponse]),
         )
 
 
@@ -89,7 +89,7 @@ class AsyncAssociations(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncAssociationsWithStreamingResponse:
         return AsyncAssociationsWithStreamingResponse(self)
 
-    async def list(
+    async def get(
         self,
         mtls_certificate_id: str,
         *,
@@ -100,7 +100,7 @@ class AsyncAssociations(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AssociationListResponse]:
+    ) -> Optional[AssociationGetResponse]:
         """
         Lists all active associations between the certificate and Cloudflare services.
 
@@ -132,7 +132,7 @@ class AsyncAssociations(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[AssociationListResponse]], ResultWrapper[AssociationListResponse]),
+            cast_to=cast(Type[Optional[AssociationGetResponse]], ResultWrapper[AssociationGetResponse]),
         )
 
 
@@ -140,8 +140,8 @@ class AssociationsWithRawResponse:
     def __init__(self, associations: Associations) -> None:
         self._associations = associations
 
-        self.list = to_raw_response_wrapper(
-            associations.list,
+        self.get = to_raw_response_wrapper(
+            associations.get,
         )
 
 
@@ -149,8 +149,8 @@ class AsyncAssociationsWithRawResponse:
     def __init__(self, associations: AsyncAssociations) -> None:
         self._associations = associations
 
-        self.list = async_to_raw_response_wrapper(
-            associations.list,
+        self.get = async_to_raw_response_wrapper(
+            associations.get,
         )
 
 
@@ -158,8 +158,8 @@ class AssociationsWithStreamingResponse:
     def __init__(self, associations: Associations) -> None:
         self._associations = associations
 
-        self.list = to_streamed_response_wrapper(
-            associations.list,
+        self.get = to_streamed_response_wrapper(
+            associations.get,
         )
 
 
@@ -167,6 +167,6 @@ class AsyncAssociationsWithStreamingResponse:
     def __init__(self, associations: AsyncAssociations) -> None:
         self._associations = associations
 
-        self.list = async_to_streamed_response_wrapper(
-            associations.list,
+        self.get = async_to_streamed_response_wrapper(
+            associations.get,
         )

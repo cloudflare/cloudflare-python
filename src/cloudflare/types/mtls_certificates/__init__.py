@@ -2,4 +2,4 @@
 
 from __future__ import annotations
 
-from .association_list_response import AssociationListResponse as AssociationListResponse
+from .association_get_response import AssociationGetResponse as AssociationGetResponse

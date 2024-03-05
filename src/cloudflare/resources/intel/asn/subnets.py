@@ -16,7 +16,7 @@ from ...._response import (
 from ...._base_client import (
     make_request_options,
 )
-from ....types.intel.asn import SubnetListResponse
+from ....types.intel.asn import SubnetGetResponse
 
 __all__ = ["Subnets", "AsyncSubnets"]
 
@@ -30,7 +30,7 @@ class Subnets(SyncAPIResource):
     def with_streaming_response(self) -> SubnetsWithStreamingResponse:
         return SubnetsWithStreamingResponse(self)
 
-    def list(
+    def get(
         self,
         asn: int,
         *,
@@ -41,7 +41,7 @@ class Subnets(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SubnetListResponse:
+    ) -> SubnetGetResponse:
         """
         Get ASN Subnets
 
@@ -63,7 +63,7 @@ class Subnets(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SubnetListResponse,
+            cast_to=SubnetGetResponse,
         )
 
 
@@ -76,7 +76,7 @@ class AsyncSubnets(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncSubnetsWithStreamingResponse:
         return AsyncSubnetsWithStreamingResponse(self)
 
-    async def list(
+    async def get(
         self,
         asn: int,
         *,
@@ -87,7 +87,7 @@ class AsyncSubnets(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SubnetListResponse:
+    ) -> SubnetGetResponse:
         """
         Get ASN Subnets
 
@@ -109,7 +109,7 @@ class AsyncSubnets(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SubnetListResponse,
+            cast_to=SubnetGetResponse,
         )
 
 
@@ -117,8 +117,8 @@ class SubnetsWithRawResponse:
     def __init__(self, subnets: Subnets) -> None:
         self._subnets = subnets
 
-        self.list = to_raw_response_wrapper(
-            subnets.list,
+        self.get = to_raw_response_wrapper(
+            subnets.get,
         )
 
 
@@ -126,8 +126,8 @@ class AsyncSubnetsWithRawResponse:
     def __init__(self, subnets: AsyncSubnets) -> None:
         self._subnets = subnets
 
-        self.list = async_to_raw_response_wrapper(
-            subnets.list,
+        self.get = async_to_raw_response_wrapper(
+            subnets.get,
         )
 
 
@@ -135,8 +135,8 @@ class SubnetsWithStreamingResponse:
     def __init__(self, subnets: Subnets) -> None:
         self._subnets = subnets
 
-        self.list = to_streamed_response_wrapper(
-            subnets.list,
+        self.get = to_streamed_response_wrapper(
+            subnets.get,
         )
 
 
@@ -144,6 +144,6 @@ class AsyncSubnetsWithStreamingResponse:
     def __init__(self, subnets: AsyncSubnets) -> None:
         self._subnets = subnets
 
-        self.list = async_to_streamed_response_wrapper(
-            subnets.list,
+        self.get = async_to_streamed_response_wrapper(
+            subnets.get,
         )

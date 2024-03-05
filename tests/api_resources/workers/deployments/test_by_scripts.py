@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.workers.deployments import ByScriptGetResponse, ByScriptListResponse
+from cloudflare.types.workers.deployments import ByScriptGetResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -19,63 +19,10 @@ class TestByScripts:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list(self, client: Cloudflare) -> None:
-        by_script = client.workers.deployments.by_scripts.list(
-            "8ee82b3a2c0f42928b8f14dae4a97121",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(ByScriptListResponse, by_script, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_raw_response_list(self, client: Cloudflare) -> None:
-        response = client.workers.deployments.by_scripts.with_raw_response.list(
-            "8ee82b3a2c0f42928b8f14dae4a97121",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        by_script = response.parse()
-        assert_matches_type(ByScriptListResponse, by_script, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_streaming_response_list(self, client: Cloudflare) -> None:
-        with client.workers.deployments.by_scripts.with_streaming_response.list(
-            "8ee82b3a2c0f42928b8f14dae4a97121",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            by_script = response.parse()
-            assert_matches_type(ByScriptListResponse, by_script, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_path_params_list(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.workers.deployments.by_scripts.with_raw_response.list(
-                "8ee82b3a2c0f42928b8f14dae4a97121",
-                account_id="",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_id` but received ''"):
-            client.workers.deployments.by_scripts.with_raw_response.list(
-                "",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            )
-
-    @pytest.mark.skip()
-    @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         by_script = client.workers.deployments.by_scripts.get(
-            "bcf48806-b317-4351-9ee7-36e7d557d4de",
+            "8ee82b3a2c0f42928b8f14dae4a97121",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            script_id="8ee82b3a2c0f42928b8f14dae4a97121",
         )
         assert_matches_type(ByScriptGetResponse, by_script, path=["response"])
 
@@ -83,9 +30,8 @@ class TestByScripts:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.workers.deployments.by_scripts.with_raw_response.get(
-            "bcf48806-b317-4351-9ee7-36e7d557d4de",
+            "8ee82b3a2c0f42928b8f14dae4a97121",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            script_id="8ee82b3a2c0f42928b8f14dae4a97121",
         )
 
         assert response.is_closed is True
@@ -97,9 +43,8 @@ class TestByScripts:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.workers.deployments.by_scripts.with_streaming_response.get(
-            "bcf48806-b317-4351-9ee7-36e7d557d4de",
+            "8ee82b3a2c0f42928b8f14dae4a97121",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            script_id="8ee82b3a2c0f42928b8f14dae4a97121",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -114,23 +59,14 @@ class TestByScripts:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.workers.deployments.by_scripts.with_raw_response.get(
-                "bcf48806-b317-4351-9ee7-36e7d557d4de",
+                "8ee82b3a2c0f42928b8f14dae4a97121",
                 account_id="",
-                script_id="8ee82b3a2c0f42928b8f14dae4a97121",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_id` but received ''"):
             client.workers.deployments.by_scripts.with_raw_response.get(
-                "bcf48806-b317-4351-9ee7-36e7d557d4de",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                script_id="",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `deployment_id` but received ''"):
-            client.workers.deployments.by_scripts.with_raw_response.get(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                script_id="8ee82b3a2c0f42928b8f14dae4a97121",
             )
 
 
@@ -139,63 +75,10 @@ class TestAsyncByScripts:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list(self, async_client: AsyncCloudflare) -> None:
-        by_script = await async_client.workers.deployments.by_scripts.list(
-            "8ee82b3a2c0f42928b8f14dae4a97121",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(ByScriptListResponse, by_script, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.workers.deployments.by_scripts.with_raw_response.list(
-            "8ee82b3a2c0f42928b8f14dae4a97121",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        by_script = await response.parse()
-        assert_matches_type(ByScriptListResponse, by_script, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.workers.deployments.by_scripts.with_streaming_response.list(
-            "8ee82b3a2c0f42928b8f14dae4a97121",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            by_script = await response.parse()
-            assert_matches_type(ByScriptListResponse, by_script, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.workers.deployments.by_scripts.with_raw_response.list(
-                "8ee82b3a2c0f42928b8f14dae4a97121",
-                account_id="",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_id` but received ''"):
-            await async_client.workers.deployments.by_scripts.with_raw_response.list(
-                "",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            )
-
-    @pytest.mark.skip()
-    @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         by_script = await async_client.workers.deployments.by_scripts.get(
-            "bcf48806-b317-4351-9ee7-36e7d557d4de",
+            "8ee82b3a2c0f42928b8f14dae4a97121",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            script_id="8ee82b3a2c0f42928b8f14dae4a97121",
         )
         assert_matches_type(ByScriptGetResponse, by_script, path=["response"])
 
@@ -203,9 +86,8 @@ class TestAsyncByScripts:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers.deployments.by_scripts.with_raw_response.get(
-            "bcf48806-b317-4351-9ee7-36e7d557d4de",
+            "8ee82b3a2c0f42928b8f14dae4a97121",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            script_id="8ee82b3a2c0f42928b8f14dae4a97121",
         )
 
         assert response.is_closed is True
@@ -217,9 +99,8 @@ class TestAsyncByScripts:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers.deployments.by_scripts.with_streaming_response.get(
-            "bcf48806-b317-4351-9ee7-36e7d557d4de",
+            "8ee82b3a2c0f42928b8f14dae4a97121",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            script_id="8ee82b3a2c0f42928b8f14dae4a97121",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -234,21 +115,12 @@ class TestAsyncByScripts:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.workers.deployments.by_scripts.with_raw_response.get(
-                "bcf48806-b317-4351-9ee7-36e7d557d4de",
+                "8ee82b3a2c0f42928b8f14dae4a97121",
                 account_id="",
-                script_id="8ee82b3a2c0f42928b8f14dae4a97121",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_id` but received ''"):
             await async_client.workers.deployments.by_scripts.with_raw_response.get(
-                "bcf48806-b317-4351-9ee7-36e7d557d4de",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                script_id="",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `deployment_id` but received ''"):
-            await async_client.workers.deployments.by_scripts.with_raw_response.get(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                script_id="8ee82b3a2c0f42928b8f14dae4a97121",
             )

@@ -2,4 +2,4 @@
 
 from __future__ import annotations
 
-from .job_list_response import JobListResponse as JobListResponse
+from .job_get_response import JobGetResponse as JobGetResponse

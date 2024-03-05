@@ -25,7 +25,7 @@ from ......_wrappers import ResultWrapper
 from ......_base_client import (
     make_request_options,
 )
-from ......types.dns.firewall.analytics.reports import BytimeListResponse, bytime_list_params
+from ......types.dns.firewall.analytics.reports import BytimeGetResponse, bytime_get_params
 
 __all__ = ["Bytimes", "AsyncBytimes"]
 
@@ -39,7 +39,7 @@ class Bytimes(SyncAPIResource):
     def with_streaming_response(self) -> BytimesWithStreamingResponse:
         return BytimesWithStreamingResponse(self)
 
-    def list(
+    def get(
         self,
         identifier: str,
         *,
@@ -59,7 +59,7 @@ class Bytimes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BytimeListResponse:
+    ) -> BytimeGetResponse:
         """
         Retrieves a list of aggregate metrics grouped by time interval.
 
@@ -119,11 +119,11 @@ class Bytimes(SyncAPIResource):
                         "time_delta": time_delta,
                         "until": until,
                     },
-                    bytime_list_params.BytimeListParams,
+                    bytime_get_params.BytimeGetParams,
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[BytimeListResponse], ResultWrapper[BytimeListResponse]),
+            cast_to=cast(Type[BytimeGetResponse], ResultWrapper[BytimeGetResponse]),
         )
 
 
@@ -136,7 +136,7 @@ class AsyncBytimes(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncBytimesWithStreamingResponse:
         return AsyncBytimesWithStreamingResponse(self)
 
-    async def list(
+    async def get(
         self,
         identifier: str,
         *,
@@ -156,7 +156,7 @@ class AsyncBytimes(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BytimeListResponse:
+    ) -> BytimeGetResponse:
         """
         Retrieves a list of aggregate metrics grouped by time interval.
 
@@ -216,11 +216,11 @@ class AsyncBytimes(AsyncAPIResource):
                         "time_delta": time_delta,
                         "until": until,
                     },
-                    bytime_list_params.BytimeListParams,
+                    bytime_get_params.BytimeGetParams,
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[BytimeListResponse], ResultWrapper[BytimeListResponse]),
+            cast_to=cast(Type[BytimeGetResponse], ResultWrapper[BytimeGetResponse]),
         )
 
 
@@ -228,8 +228,8 @@ class BytimesWithRawResponse:
     def __init__(self, bytimes: Bytimes) -> None:
         self._bytimes = bytimes
 
-        self.list = to_raw_response_wrapper(
-            bytimes.list,
+        self.get = to_raw_response_wrapper(
+            bytimes.get,
         )
 
 
@@ -237,8 +237,8 @@ class AsyncBytimesWithRawResponse:
     def __init__(self, bytimes: AsyncBytimes) -> None:
         self._bytimes = bytimes
 
-        self.list = async_to_raw_response_wrapper(
-            bytimes.list,
+        self.get = async_to_raw_response_wrapper(
+            bytimes.get,
         )
 
 
@@ -246,8 +246,8 @@ class BytimesWithStreamingResponse:
     def __init__(self, bytimes: Bytimes) -> None:
         self._bytimes = bytimes
 
-        self.list = to_streamed_response_wrapper(
-            bytimes.list,
+        self.get = to_streamed_response_wrapper(
+            bytimes.get,
         )
 
 
@@ -255,6 +255,6 @@ class AsyncBytimesWithStreamingResponse:
     def __init__(self, bytimes: AsyncBytimes) -> None:
         self._bytimes = bytimes
 
-        self.list = async_to_streamed_response_wrapper(
-            bytimes.list,
+        self.get = async_to_streamed_response_wrapper(
+            bytimes.get,
         )

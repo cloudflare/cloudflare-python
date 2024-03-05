@@ -19,7 +19,7 @@ from ......_wrappers import ResultWrapper
 from ......_base_client import (
     make_request_options,
 )
-from ......types.pages.projects.deployments.history import LogListResponse
+from ......types.pages.projects.deployments.history import LogGetResponse
 
 __all__ = ["Logs", "AsyncLogs"]
 
@@ -33,7 +33,7 @@ class Logs(SyncAPIResource):
     def with_streaming_response(self) -> LogsWithStreamingResponse:
         return LogsWithStreamingResponse(self)
 
-    def list(
+    def get(
         self,
         deployment_id: str,
         *,
@@ -45,7 +45,7 @@ class Logs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LogListResponse:
+    ) -> LogGetResponse:
         """
         Fetch deployment logs for a project.
 
@@ -71,7 +71,7 @@ class Logs(SyncAPIResource):
         if not deployment_id:
             raise ValueError(f"Expected a non-empty value for `deployment_id` but received {deployment_id!r}")
         return cast(
-            LogListResponse,
+            LogGetResponse,
             self._get(
                 f"/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/history/logs",
                 options=make_request_options(
@@ -82,7 +82,7 @@ class Logs(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[LogListResponse]
+                    Any, ResultWrapper[LogGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -97,7 +97,7 @@ class AsyncLogs(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncLogsWithStreamingResponse:
         return AsyncLogsWithStreamingResponse(self)
 
-    async def list(
+    async def get(
         self,
         deployment_id: str,
         *,
@@ -109,7 +109,7 @@ class AsyncLogs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LogListResponse:
+    ) -> LogGetResponse:
         """
         Fetch deployment logs for a project.
 
@@ -135,7 +135,7 @@ class AsyncLogs(AsyncAPIResource):
         if not deployment_id:
             raise ValueError(f"Expected a non-empty value for `deployment_id` but received {deployment_id!r}")
         return cast(
-            LogListResponse,
+            LogGetResponse,
             await self._get(
                 f"/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/history/logs",
                 options=make_request_options(
@@ -146,7 +146,7 @@ class AsyncLogs(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[LogListResponse]
+                    Any, ResultWrapper[LogGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -156,8 +156,8 @@ class LogsWithRawResponse:
     def __init__(self, logs: Logs) -> None:
         self._logs = logs
 
-        self.list = to_raw_response_wrapper(
-            logs.list,
+        self.get = to_raw_response_wrapper(
+            logs.get,
         )
 
 
@@ -165,8 +165,8 @@ class AsyncLogsWithRawResponse:
     def __init__(self, logs: AsyncLogs) -> None:
         self._logs = logs
 
-        self.list = async_to_raw_response_wrapper(
-            logs.list,
+        self.get = async_to_raw_response_wrapper(
+            logs.get,
         )
 
 
@@ -174,8 +174,8 @@ class LogsWithStreamingResponse:
     def __init__(self, logs: Logs) -> None:
         self._logs = logs
 
-        self.list = to_streamed_response_wrapper(
-            logs.list,
+        self.get = to_streamed_response_wrapper(
+            logs.get,
         )
 
 
@@ -183,6 +183,6 @@ class AsyncLogsWithStreamingResponse:
     def __init__(self, logs: AsyncLogs) -> None:
         self._logs = logs
 
-        self.list = async_to_streamed_response_wrapper(
-            logs.list,
+        self.get = async_to_streamed_response_wrapper(
+            logs.get,
         )
