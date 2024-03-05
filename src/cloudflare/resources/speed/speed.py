@@ -24,9 +24,9 @@ from .tests import (
     AsyncTestsWithStreamingResponse,
 )
 from ...types import (
+    ObservatoryTrend,
+    ObservatorySchedule,
     SpeedDeleteResponse,
-    SpeedTrendsListResponse,
-    SpeedScheduleGetResponse,
     speed_delete_params,
     speed_trends_list_params,
     speed_schedule_get_params,
@@ -199,7 +199,7 @@ class Speed(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SpeedScheduleGetResponse]:
+    ) -> Optional[ObservatorySchedule]:
         """
         Retrieves the test schedule for a page in a specific region.
 
@@ -232,7 +232,7 @@ class Speed(SyncAPIResource):
                 query=maybe_transform({"region": region}, speed_schedule_get_params.SpeedScheduleGetParams),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SpeedScheduleGetResponse]], ResultWrapper[SpeedScheduleGetResponse]),
+            cast_to=cast(Type[Optional[ObservatorySchedule]], ResultWrapper[ObservatorySchedule]),
         )
 
     def trends_list(
@@ -272,7 +272,7 @@ class Speed(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SpeedTrendsListResponse]:
+    ) -> Optional[ObservatoryTrend]:
         """
         Lists the core web vital metrics trend over time for a specific page.
 
@@ -319,7 +319,7 @@ class Speed(SyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SpeedTrendsListResponse]], ResultWrapper[SpeedTrendsListResponse]),
+            cast_to=cast(Type[Optional[ObservatoryTrend]], ResultWrapper[ObservatoryTrend]),
         )
 
 
@@ -454,7 +454,7 @@ class AsyncSpeed(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SpeedScheduleGetResponse]:
+    ) -> Optional[ObservatorySchedule]:
         """
         Retrieves the test schedule for a page in a specific region.
 
@@ -487,7 +487,7 @@ class AsyncSpeed(AsyncAPIResource):
                 query=await async_maybe_transform({"region": region}, speed_schedule_get_params.SpeedScheduleGetParams),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SpeedScheduleGetResponse]], ResultWrapper[SpeedScheduleGetResponse]),
+            cast_to=cast(Type[Optional[ObservatorySchedule]], ResultWrapper[ObservatorySchedule]),
         )
 
     async def trends_list(
@@ -527,7 +527,7 @@ class AsyncSpeed(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SpeedTrendsListResponse]:
+    ) -> Optional[ObservatoryTrend]:
         """
         Lists the core web vital metrics trend over time for a specific page.
 
@@ -574,7 +574,7 @@ class AsyncSpeed(AsyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SpeedTrendsListResponse]], ResultWrapper[SpeedTrendsListResponse]),
+            cast_to=cast(Type[Optional[ObservatoryTrend]], ResultWrapper[ObservatoryTrend]),
         )
 
 

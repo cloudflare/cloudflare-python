@@ -33,12 +33,10 @@ from ....._base_client import (
     make_request_options,
 )
 from .....types.zero_trust.gateway import (
-    ListGetResponse,
-    ListEditResponse,
     ListListResponse,
     ListCreateResponse,
     ListDeleteResponse,
-    ListUpdateResponse,
+    ZeroTrustGatewayLists,
     list_edit_params,
     list_create_params,
     list_update_params,
@@ -129,7 +127,7 @@ class Lists(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ListUpdateResponse:
+    ) -> ZeroTrustGatewayLists:
         """
         Updates a configured Zero Trust list.
 
@@ -166,7 +164,7 @@ class Lists(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ListUpdateResponse], ResultWrapper[ListUpdateResponse]),
+            cast_to=cast(Type[ZeroTrustGatewayLists], ResultWrapper[ZeroTrustGatewayLists]),
         )
 
     def list(
@@ -262,7 +260,7 @@ class Lists(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ListEditResponse:
+    ) -> ZeroTrustGatewayLists:
         """
         Appends or removes an item from a configured Zero Trust list.
 
@@ -299,7 +297,7 @@ class Lists(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ListEditResponse], ResultWrapper[ListEditResponse]),
+            cast_to=cast(Type[ZeroTrustGatewayLists], ResultWrapper[ZeroTrustGatewayLists]),
         )
 
     def get(
@@ -313,7 +311,7 @@ class Lists(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ListGetResponse:
+    ) -> ZeroTrustGatewayLists:
         """
         Fetches a single Zero Trust list.
 
@@ -339,7 +337,7 @@ class Lists(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ListGetResponse], ResultWrapper[ListGetResponse]),
+            cast_to=cast(Type[ZeroTrustGatewayLists], ResultWrapper[ZeroTrustGatewayLists]),
         )
 
 
@@ -425,7 +423,7 @@ class AsyncLists(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ListUpdateResponse:
+    ) -> ZeroTrustGatewayLists:
         """
         Updates a configured Zero Trust list.
 
@@ -462,7 +460,7 @@ class AsyncLists(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ListUpdateResponse], ResultWrapper[ListUpdateResponse]),
+            cast_to=cast(Type[ZeroTrustGatewayLists], ResultWrapper[ZeroTrustGatewayLists]),
         )
 
     async def list(
@@ -558,7 +556,7 @@ class AsyncLists(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ListEditResponse:
+    ) -> ZeroTrustGatewayLists:
         """
         Appends or removes an item from a configured Zero Trust list.
 
@@ -595,7 +593,7 @@ class AsyncLists(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ListEditResponse], ResultWrapper[ListEditResponse]),
+            cast_to=cast(Type[ZeroTrustGatewayLists], ResultWrapper[ZeroTrustGatewayLists]),
         )
 
     async def get(
@@ -609,7 +607,7 @@ class AsyncLists(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ListGetResponse:
+    ) -> ZeroTrustGatewayLists:
         """
         Fetches a single Zero Trust list.
 
@@ -635,7 +633,7 @@ class AsyncLists(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ListGetResponse], ResultWrapper[ListGetResponse]),
+            cast_to=cast(Type[ZeroTrustGatewayLists], ResultWrapper[ZeroTrustGatewayLists]),
         )
 
 

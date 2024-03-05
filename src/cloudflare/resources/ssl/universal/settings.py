@@ -23,7 +23,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.ssl.universal import SettingGetResponse, SettingEditResponse, setting_edit_params
+from ....types.ssl.universal import TLSCertificatesAndHostnamesUniversal, setting_edit_params
 
 __all__ = ["Settings", "AsyncSettings"]
 
@@ -48,7 +48,7 @@ class Settings(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SettingEditResponse:
+    ) -> TLSCertificatesAndHostnamesUniversal:
         """
         Patch Universal SSL Settings for a Zone.
 
@@ -101,7 +101,9 @@ class Settings(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[SettingEditResponse], ResultWrapper[SettingEditResponse]),
+            cast_to=cast(
+                Type[TLSCertificatesAndHostnamesUniversal], ResultWrapper[TLSCertificatesAndHostnamesUniversal]
+            ),
         )
 
     def get(
@@ -114,7 +116,7 @@ class Settings(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SettingGetResponse:
+    ) -> TLSCertificatesAndHostnamesUniversal:
         """
         Get Universal SSL Settings for a Zone.
 
@@ -140,7 +142,9 @@ class Settings(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[SettingGetResponse], ResultWrapper[SettingGetResponse]),
+            cast_to=cast(
+                Type[TLSCertificatesAndHostnamesUniversal], ResultWrapper[TLSCertificatesAndHostnamesUniversal]
+            ),
         )
 
 
@@ -164,7 +168,7 @@ class AsyncSettings(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SettingEditResponse:
+    ) -> TLSCertificatesAndHostnamesUniversal:
         """
         Patch Universal SSL Settings for a Zone.
 
@@ -217,7 +221,9 @@ class AsyncSettings(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[SettingEditResponse], ResultWrapper[SettingEditResponse]),
+            cast_to=cast(
+                Type[TLSCertificatesAndHostnamesUniversal], ResultWrapper[TLSCertificatesAndHostnamesUniversal]
+            ),
         )
 
     async def get(
@@ -230,7 +236,7 @@ class AsyncSettings(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SettingGetResponse:
+    ) -> TLSCertificatesAndHostnamesUniversal:
         """
         Get Universal SSL Settings for a Zone.
 
@@ -256,7 +262,9 @@ class AsyncSettings(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[SettingGetResponse], ResultWrapper[SettingGetResponse]),
+            cast_to=cast(
+                Type[TLSCertificatesAndHostnamesUniversal], ResultWrapper[TLSCertificatesAndHostnamesUniversal]
+            ),
         )
 
 

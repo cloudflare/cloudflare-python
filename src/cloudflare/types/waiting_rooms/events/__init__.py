@@ -2,4 +2,4 @@
 
 from __future__ import annotations
 
-from .detail_get_response import DetailGetResponse as DetailGetResponse
+from .waitingroom_event_details_result import WaitingroomEventDetailsResult as WaitingroomEventDetailsResult

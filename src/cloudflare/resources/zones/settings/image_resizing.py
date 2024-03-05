@@ -23,7 +23,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ImageResizingGetResponse, ImageResizingEditResponse, image_resizing_edit_params
+from ....types.zones.settings import ZonesImageResizing, ZonesImageResizingParam, image_resizing_edit_params
 
 __all__ = ["ImageResizing", "AsyncImageResizing"]
 
@@ -41,14 +41,14 @@ class ImageResizing(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        value: image_resizing_edit_params.Value,
+        value: ZonesImageResizingParam,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ImageResizingEditResponse]:
+    ) -> Optional[ZonesImageResizing]:
         """
         Image Resizing provides on-demand resizing, conversion and optimisation for
         images served through Cloudflare's network. Refer to the
@@ -83,7 +83,7 @@ class ImageResizing(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ImageResizingEditResponse]], ResultWrapper[ImageResizingEditResponse]),
+            cast_to=cast(Type[Optional[ZonesImageResizing]], ResultWrapper[ZonesImageResizing]),
         )
 
     def get(
@@ -96,7 +96,7 @@ class ImageResizing(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ImageResizingGetResponse]:
+    ) -> Optional[ZonesImageResizing]:
         """
         Image Resizing provides on-demand resizing, conversion and optimisation for
         images served through Cloudflare's network. Refer to the
@@ -125,7 +125,7 @@ class ImageResizing(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ImageResizingGetResponse]], ResultWrapper[ImageResizingGetResponse]),
+            cast_to=cast(Type[Optional[ZonesImageResizing]], ResultWrapper[ZonesImageResizing]),
         )
 
 
@@ -142,14 +142,14 @@ class AsyncImageResizing(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        value: image_resizing_edit_params.Value,
+        value: ZonesImageResizingParam,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ImageResizingEditResponse]:
+    ) -> Optional[ZonesImageResizing]:
         """
         Image Resizing provides on-demand resizing, conversion and optimisation for
         images served through Cloudflare's network. Refer to the
@@ -184,7 +184,7 @@ class AsyncImageResizing(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ImageResizingEditResponse]], ResultWrapper[ImageResizingEditResponse]),
+            cast_to=cast(Type[Optional[ZonesImageResizing]], ResultWrapper[ZonesImageResizing]),
         )
 
     async def get(
@@ -197,7 +197,7 @@ class AsyncImageResizing(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ImageResizingGetResponse]:
+    ) -> Optional[ZonesImageResizing]:
         """
         Image Resizing provides on-demand resizing, conversion and optimisation for
         images served through Cloudflare's network. Refer to the
@@ -226,7 +226,7 @@ class AsyncImageResizing(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ImageResizingGetResponse]], ResultWrapper[ImageResizingGetResponse]),
+            cast_to=cast(Type[Optional[ZonesImageResizing]], ResultWrapper[ZonesImageResizing]),
         )
 
 

@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.zero_trust.dex.tests import UniqueDeviceListResponse
+from cloudflare.types.zero_trust.dex.tests import DigitalExperienceMonitoringUniqueDevices
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -23,7 +23,7 @@ class TestUniqueDevices:
         unique_device = client.zero_trust.dex.tests.unique_devices.list(
             account_id="01a7362d577a6c3019a474fd6f485823",
         )
-        assert_matches_type(UniqueDeviceListResponse, unique_device, path=["response"])
+        assert_matches_type(DigitalExperienceMonitoringUniqueDevices, unique_device, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -33,7 +33,7 @@ class TestUniqueDevices:
             device_id=["string", "string", "string"],
             test_name="string",
         )
-        assert_matches_type(UniqueDeviceListResponse, unique_device, path=["response"])
+        assert_matches_type(DigitalExperienceMonitoringUniqueDevices, unique_device, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -45,7 +45,7 @@ class TestUniqueDevices:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         unique_device = response.parse()
-        assert_matches_type(UniqueDeviceListResponse, unique_device, path=["response"])
+        assert_matches_type(DigitalExperienceMonitoringUniqueDevices, unique_device, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -57,7 +57,7 @@ class TestUniqueDevices:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             unique_device = response.parse()
-            assert_matches_type(UniqueDeviceListResponse, unique_device, path=["response"])
+            assert_matches_type(DigitalExperienceMonitoringUniqueDevices, unique_device, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -79,7 +79,7 @@ class TestAsyncUniqueDevices:
         unique_device = await async_client.zero_trust.dex.tests.unique_devices.list(
             account_id="01a7362d577a6c3019a474fd6f485823",
         )
-        assert_matches_type(UniqueDeviceListResponse, unique_device, path=["response"])
+        assert_matches_type(DigitalExperienceMonitoringUniqueDevices, unique_device, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -89,7 +89,7 @@ class TestAsyncUniqueDevices:
             device_id=["string", "string", "string"],
             test_name="string",
         )
-        assert_matches_type(UniqueDeviceListResponse, unique_device, path=["response"])
+        assert_matches_type(DigitalExperienceMonitoringUniqueDevices, unique_device, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -101,7 +101,7 @@ class TestAsyncUniqueDevices:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         unique_device = await response.parse()
-        assert_matches_type(UniqueDeviceListResponse, unique_device, path=["response"])
+        assert_matches_type(DigitalExperienceMonitoringUniqueDevices, unique_device, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -113,7 +113,7 @@ class TestAsyncUniqueDevices:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             unique_device = await response.parse()
-            assert_matches_type(UniqueDeviceListResponse, unique_device, path=["response"])
+            assert_matches_type(DigitalExperienceMonitoringUniqueDevices, unique_device, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

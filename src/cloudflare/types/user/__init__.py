@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from .user import User as User
+from .iam_organization import IamOrganization as IamOrganization
 from .token_list_params import TokenListParams as TokenListParams
 from .invite_edit_params import InviteEditParams as InviteEditParams
 from .token_get_response import TokenGetResponse as TokenGetResponse
@@ -21,7 +22,6 @@ from .organization_list_params import OrganizationListParams as OrganizationList
 from .subscription_edit_params import SubscriptionEditParams as SubscriptionEditParams
 from .organization_get_response import OrganizationGetResponse as OrganizationGetResponse
 from .subscription_get_response import SubscriptionGetResponse as SubscriptionGetResponse
-from .organization_list_response import OrganizationListResponse as OrganizationListResponse
 from .subscription_edit_response import SubscriptionEditResponse as SubscriptionEditResponse
 from .subscription_update_params import SubscriptionUpdateParams as SubscriptionUpdateParams
 from .organization_delete_response import OrganizationDeleteResponse as OrganizationDeleteResponse

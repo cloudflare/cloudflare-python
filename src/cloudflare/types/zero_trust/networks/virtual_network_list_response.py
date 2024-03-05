@@ -1,33 +1,9 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from typing import List, Optional
+from typing import List
 
-from ...._models import BaseModel
+from .tunnel_virtual_network import TunnelVirtualNetwork
 
-__all__ = ["VirtualNetworkListResponse", "VirtualNetworkListResponseItem"]
+__all__ = ["VirtualNetworkListResponse"]
 
-
-class VirtualNetworkListResponseItem(BaseModel):
-    id: str
-    """UUID of the virtual network."""
-
-    comment: str
-    """Optional remark describing the virtual network."""
-
-    created_at: object
-    """Timestamp of when the virtual network was created."""
-
-    is_default_network: bool
-    """If `true`, this virtual network is the default for the account."""
-
-    name: str
-    """A user-friendly name for the virtual network."""
-
-    deleted_at: Optional[object] = None
-    """Timestamp of when the virtual network was deleted.
-
-    If `null`, the virtual network has not been deleted.
-    """
-
-
-VirtualNetworkListResponse = List[VirtualNetworkListResponseItem]
+VirtualNetworkListResponse = List[TunnelVirtualNetwork]

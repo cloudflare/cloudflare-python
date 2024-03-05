@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.rulesets.versions import ByTagGetResponse
+from cloudflare.types import RulesetsRulesetResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -26,7 +26,7 @@ class TestByTags:
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             ruleset_version="1",
         )
-        assert_matches_type(ByTagGetResponse, by_tag, path=["response"])
+        assert_matches_type(RulesetsRulesetResponse, by_tag, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -41,7 +41,7 @@ class TestByTags:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         by_tag = response.parse()
-        assert_matches_type(ByTagGetResponse, by_tag, path=["response"])
+        assert_matches_type(RulesetsRulesetResponse, by_tag, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -56,7 +56,7 @@ class TestByTags:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             by_tag = response.parse()
-            assert_matches_type(ByTagGetResponse, by_tag, path=["response"])
+            assert_matches_type(RulesetsRulesetResponse, by_tag, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -108,7 +108,7 @@ class TestAsyncByTags:
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             ruleset_version="1",
         )
-        assert_matches_type(ByTagGetResponse, by_tag, path=["response"])
+        assert_matches_type(RulesetsRulesetResponse, by_tag, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -123,7 +123,7 @@ class TestAsyncByTags:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         by_tag = await response.parse()
-        assert_matches_type(ByTagGetResponse, by_tag, path=["response"])
+        assert_matches_type(RulesetsRulesetResponse, by_tag, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -138,7 +138,7 @@ class TestAsyncByTags:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             by_tag = await response.parse()
-            assert_matches_type(ByTagGetResponse, by_tag, path=["response"])
+            assert_matches_type(RulesetsRulesetResponse, by_tag, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

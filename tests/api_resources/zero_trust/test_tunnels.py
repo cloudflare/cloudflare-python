@@ -12,11 +12,9 @@ from tests.utils import assert_matches_type
 from cloudflare._utils import parse_datetime
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from cloudflare.types.zero_trust import (
-    TunnelGetResponse,
+    TunnelArgoTunnel,
     TunnelEditResponse,
     TunnelListResponse,
-    TunnelCreateResponse,
-    TunnelDeleteResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -33,7 +31,7 @@ class TestTunnels:
             name="blog",
             tunnel_secret={},
         )
-        assert_matches_type(TunnelCreateResponse, tunnel, path=["response"])
+        assert_matches_type(TunnelArgoTunnel, tunnel, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -47,7 +45,7 @@ class TestTunnels:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tunnel = response.parse()
-        assert_matches_type(TunnelCreateResponse, tunnel, path=["response"])
+        assert_matches_type(TunnelArgoTunnel, tunnel, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -61,7 +59,7 @@ class TestTunnels:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tunnel = response.parse()
-            assert_matches_type(TunnelCreateResponse, tunnel, path=["response"])
+            assert_matches_type(TunnelArgoTunnel, tunnel, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -143,7 +141,7 @@ class TestTunnels:
             account_id="699d98642c564d2e855e9661899b7252",
             body={},
         )
-        assert_matches_type(TunnelDeleteResponse, tunnel, path=["response"])
+        assert_matches_type(TunnelArgoTunnel, tunnel, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -157,7 +155,7 @@ class TestTunnels:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tunnel = response.parse()
-        assert_matches_type(TunnelDeleteResponse, tunnel, path=["response"])
+        assert_matches_type(TunnelArgoTunnel, tunnel, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -171,7 +169,7 @@ class TestTunnels:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tunnel = response.parse()
-            assert_matches_type(TunnelDeleteResponse, tunnel, path=["response"])
+            assert_matches_type(TunnelArgoTunnel, tunnel, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -262,7 +260,7 @@ class TestTunnels:
             "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(TunnelGetResponse, tunnel, path=["response"])
+        assert_matches_type(TunnelArgoTunnel, tunnel, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -275,7 +273,7 @@ class TestTunnels:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tunnel = response.parse()
-        assert_matches_type(TunnelGetResponse, tunnel, path=["response"])
+        assert_matches_type(TunnelArgoTunnel, tunnel, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -288,7 +286,7 @@ class TestTunnels:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tunnel = response.parse()
-            assert_matches_type(TunnelGetResponse, tunnel, path=["response"])
+            assert_matches_type(TunnelArgoTunnel, tunnel, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -319,7 +317,7 @@ class TestAsyncTunnels:
             name="blog",
             tunnel_secret={},
         )
-        assert_matches_type(TunnelCreateResponse, tunnel, path=["response"])
+        assert_matches_type(TunnelArgoTunnel, tunnel, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -333,7 +331,7 @@ class TestAsyncTunnels:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tunnel = await response.parse()
-        assert_matches_type(TunnelCreateResponse, tunnel, path=["response"])
+        assert_matches_type(TunnelArgoTunnel, tunnel, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -347,7 +345,7 @@ class TestAsyncTunnels:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tunnel = await response.parse()
-            assert_matches_type(TunnelCreateResponse, tunnel, path=["response"])
+            assert_matches_type(TunnelArgoTunnel, tunnel, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -429,7 +427,7 @@ class TestAsyncTunnels:
             account_id="699d98642c564d2e855e9661899b7252",
             body={},
         )
-        assert_matches_type(TunnelDeleteResponse, tunnel, path=["response"])
+        assert_matches_type(TunnelArgoTunnel, tunnel, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -443,7 +441,7 @@ class TestAsyncTunnels:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tunnel = await response.parse()
-        assert_matches_type(TunnelDeleteResponse, tunnel, path=["response"])
+        assert_matches_type(TunnelArgoTunnel, tunnel, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -457,7 +455,7 @@ class TestAsyncTunnels:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tunnel = await response.parse()
-            assert_matches_type(TunnelDeleteResponse, tunnel, path=["response"])
+            assert_matches_type(TunnelArgoTunnel, tunnel, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -548,7 +546,7 @@ class TestAsyncTunnels:
             "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(TunnelGetResponse, tunnel, path=["response"])
+        assert_matches_type(TunnelArgoTunnel, tunnel, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -561,7 +559,7 @@ class TestAsyncTunnels:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tunnel = await response.parse()
-        assert_matches_type(TunnelGetResponse, tunnel, path=["response"])
+        assert_matches_type(TunnelArgoTunnel, tunnel, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -574,7 +572,7 @@ class TestAsyncTunnels:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tunnel = await response.parse()
-            assert_matches_type(TunnelGetResponse, tunnel, path=["response"])
+            assert_matches_type(TunnelArgoTunnel, tunnel, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

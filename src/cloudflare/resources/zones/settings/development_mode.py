@@ -24,11 +24,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import (
-    DevelopmentModeGetResponse,
-    DevelopmentModeEditResponse,
-    development_mode_edit_params,
-)
+from ....types.zones.settings import ZonesDevelopmentMode, development_mode_edit_params
 
 __all__ = ["DevelopmentMode", "AsyncDevelopmentMode"]
 
@@ -53,7 +49,7 @@ class DevelopmentMode(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DevelopmentModeEditResponse]:
+    ) -> Optional[ZonesDevelopmentMode]:
         """
         Development Mode temporarily allows you to enter development mode for your
         websites if you need to make changes to your site. This will bypass Cloudflare's
@@ -87,7 +83,7 @@ class DevelopmentMode(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DevelopmentModeEditResponse]], ResultWrapper[DevelopmentModeEditResponse]),
+            cast_to=cast(Type[Optional[ZonesDevelopmentMode]], ResultWrapper[ZonesDevelopmentMode]),
         )
 
     def get(
@@ -100,7 +96,7 @@ class DevelopmentMode(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DevelopmentModeGetResponse]:
+    ) -> Optional[ZonesDevelopmentMode]:
         """
         Development Mode temporarily allows you to enter development mode for your
         websites if you need to make changes to your site. This will bypass Cloudflare's
@@ -131,7 +127,7 @@ class DevelopmentMode(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DevelopmentModeGetResponse]], ResultWrapper[DevelopmentModeGetResponse]),
+            cast_to=cast(Type[Optional[ZonesDevelopmentMode]], ResultWrapper[ZonesDevelopmentMode]),
         )
 
 
@@ -155,7 +151,7 @@ class AsyncDevelopmentMode(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DevelopmentModeEditResponse]:
+    ) -> Optional[ZonesDevelopmentMode]:
         """
         Development Mode temporarily allows you to enter development mode for your
         websites if you need to make changes to your site. This will bypass Cloudflare's
@@ -189,7 +185,7 @@ class AsyncDevelopmentMode(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DevelopmentModeEditResponse]], ResultWrapper[DevelopmentModeEditResponse]),
+            cast_to=cast(Type[Optional[ZonesDevelopmentMode]], ResultWrapper[ZonesDevelopmentMode]),
         )
 
     async def get(
@@ -202,7 +198,7 @@ class AsyncDevelopmentMode(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DevelopmentModeGetResponse]:
+    ) -> Optional[ZonesDevelopmentMode]:
         """
         Development Mode temporarily allows you to enter development mode for your
         websites if you need to make changes to your site. This will bypass Cloudflare's
@@ -233,7 +229,7 @@ class AsyncDevelopmentMode(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DevelopmentModeGetResponse]], ResultWrapper[DevelopmentModeGetResponse]),
+            cast_to=cast(Type[Optional[ZonesDevelopmentMode]], ResultWrapper[ZonesDevelopmentMode]),
         )
 
 

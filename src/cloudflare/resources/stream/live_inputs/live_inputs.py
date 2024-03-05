@@ -32,10 +32,8 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.stream import (
-    LiveInputGetResponse,
+    StreamLiveInput,
     LiveInputListResponse,
-    LiveInputCreateResponse,
-    LiveInputUpdateResponse,
     live_input_list_params,
     live_input_create_params,
     live_input_update_params,
@@ -71,7 +69,7 @@ class LiveInputs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LiveInputCreateResponse:
+    ) -> StreamLiveInput:
         """
         Creates a live input, and returns credentials that you or your users can use to
         stream live video to Cloudflare Stream.
@@ -122,7 +120,7 @@ class LiveInputs(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[LiveInputCreateResponse], ResultWrapper[LiveInputCreateResponse]),
+            cast_to=cast(Type[StreamLiveInput], ResultWrapper[StreamLiveInput]),
         )
 
     def update(
@@ -140,7 +138,7 @@ class LiveInputs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LiveInputUpdateResponse:
+    ) -> StreamLiveInput:
         """
         Updates a specified live input.
 
@@ -196,7 +194,7 @@ class LiveInputs(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[LiveInputUpdateResponse], ResultWrapper[LiveInputUpdateResponse]),
+            cast_to=cast(Type[StreamLiveInput], ResultWrapper[StreamLiveInput]),
         )
 
     def list(
@@ -300,7 +298,7 @@ class LiveInputs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LiveInputGetResponse:
+    ) -> StreamLiveInput:
         """
         Retrieves details of an existing live input.
 
@@ -332,7 +330,7 @@ class LiveInputs(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[LiveInputGetResponse], ResultWrapper[LiveInputGetResponse]),
+            cast_to=cast(Type[StreamLiveInput], ResultWrapper[StreamLiveInput]),
         )
 
 
@@ -363,7 +361,7 @@ class AsyncLiveInputs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LiveInputCreateResponse:
+    ) -> StreamLiveInput:
         """
         Creates a live input, and returns credentials that you or your users can use to
         stream live video to Cloudflare Stream.
@@ -414,7 +412,7 @@ class AsyncLiveInputs(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[LiveInputCreateResponse], ResultWrapper[LiveInputCreateResponse]),
+            cast_to=cast(Type[StreamLiveInput], ResultWrapper[StreamLiveInput]),
         )
 
     async def update(
@@ -432,7 +430,7 @@ class AsyncLiveInputs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LiveInputUpdateResponse:
+    ) -> StreamLiveInput:
         """
         Updates a specified live input.
 
@@ -488,7 +486,7 @@ class AsyncLiveInputs(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[LiveInputUpdateResponse], ResultWrapper[LiveInputUpdateResponse]),
+            cast_to=cast(Type[StreamLiveInput], ResultWrapper[StreamLiveInput]),
         )
 
     async def list(
@@ -594,7 +592,7 @@ class AsyncLiveInputs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LiveInputGetResponse:
+    ) -> StreamLiveInput:
         """
         Retrieves details of an existing live input.
 
@@ -626,7 +624,7 @@ class AsyncLiveInputs(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[LiveInputGetResponse], ResultWrapper[LiveInputGetResponse]),
+            cast_to=cast(Type[StreamLiveInput], ResultWrapper[StreamLiveInput]),
         )
 
 

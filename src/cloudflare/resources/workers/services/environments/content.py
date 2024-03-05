@@ -33,7 +33,8 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import (
     make_request_options,
 )
-from .....types.workers.services.environments import ContentUpdateResponse, content_update_params
+from .....types.workers import WorkersScript
+from .....types.workers.services.environments import content_update_params
 
 __all__ = ["Content", "AsyncContent"]
 
@@ -61,7 +62,7 @@ class Content(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ContentUpdateResponse:
+    ) -> WorkersScript:
         """
         Put script content from a worker with an environment
 
@@ -117,7 +118,7 @@ class Content(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ContentUpdateResponse], ResultWrapper[ContentUpdateResponse]),
+            cast_to=cast(Type[WorkersScript], ResultWrapper[WorkersScript]),
         )
 
     def get(
@@ -190,7 +191,7 @@ class AsyncContent(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ContentUpdateResponse:
+    ) -> WorkersScript:
         """
         Put script content from a worker with an environment
 
@@ -246,7 +247,7 @@ class AsyncContent(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ContentUpdateResponse], ResultWrapper[ContentUpdateResponse]),
+            cast_to=cast(Type[WorkersScript], ResultWrapper[WorkersScript]),
         )
 
     async def get(

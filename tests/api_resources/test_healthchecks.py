@@ -10,12 +10,9 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types import (
-    HealthcheckGetResponse,
-    HealthcheckEditResponse,
     HealthcheckListResponse,
-    HealthcheckCreateResponse,
+    HealthchecksHealthchecks,
     HealthcheckDeleteResponse,
-    HealthcheckUpdateResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -32,7 +29,7 @@ class TestHealthchecks:
             address="www.example.com",
             name="server-1",
         )
-        assert_matches_type(HealthcheckCreateResponse, healthcheck, path=["response"])
+        assert_matches_type(HealthchecksHealthchecks, healthcheck, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -68,7 +65,7 @@ class TestHealthchecks:
             healthcheck_timeout=0,
             type="HTTPS",
         )
-        assert_matches_type(HealthcheckCreateResponse, healthcheck, path=["response"])
+        assert_matches_type(HealthchecksHealthchecks, healthcheck, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -82,7 +79,7 @@ class TestHealthchecks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         healthcheck = response.parse()
-        assert_matches_type(HealthcheckCreateResponse, healthcheck, path=["response"])
+        assert_matches_type(HealthchecksHealthchecks, healthcheck, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -96,7 +93,7 @@ class TestHealthchecks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             healthcheck = response.parse()
-            assert_matches_type(HealthcheckCreateResponse, healthcheck, path=["response"])
+            assert_matches_type(HealthchecksHealthchecks, healthcheck, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -119,7 +116,7 @@ class TestHealthchecks:
             address="www.example.com",
             name="server-1",
         )
-        assert_matches_type(HealthcheckUpdateResponse, healthcheck, path=["response"])
+        assert_matches_type(HealthchecksHealthchecks, healthcheck, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -156,7 +153,7 @@ class TestHealthchecks:
             healthcheck_timeout=0,
             type="HTTPS",
         )
-        assert_matches_type(HealthcheckUpdateResponse, healthcheck, path=["response"])
+        assert_matches_type(HealthchecksHealthchecks, healthcheck, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -171,7 +168,7 @@ class TestHealthchecks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         healthcheck = response.parse()
-        assert_matches_type(HealthcheckUpdateResponse, healthcheck, path=["response"])
+        assert_matches_type(HealthchecksHealthchecks, healthcheck, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -186,7 +183,7 @@ class TestHealthchecks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             healthcheck = response.parse()
-            assert_matches_type(HealthcheckUpdateResponse, healthcheck, path=["response"])
+            assert_matches_type(HealthchecksHealthchecks, healthcheck, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -312,7 +309,7 @@ class TestHealthchecks:
             address="www.example.com",
             name="server-1",
         )
-        assert_matches_type(HealthcheckEditResponse, healthcheck, path=["response"])
+        assert_matches_type(HealthchecksHealthchecks, healthcheck, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -349,7 +346,7 @@ class TestHealthchecks:
             healthcheck_timeout=0,
             type="HTTPS",
         )
-        assert_matches_type(HealthcheckEditResponse, healthcheck, path=["response"])
+        assert_matches_type(HealthchecksHealthchecks, healthcheck, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -364,7 +361,7 @@ class TestHealthchecks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         healthcheck = response.parse()
-        assert_matches_type(HealthcheckEditResponse, healthcheck, path=["response"])
+        assert_matches_type(HealthchecksHealthchecks, healthcheck, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -379,7 +376,7 @@ class TestHealthchecks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             healthcheck = response.parse()
-            assert_matches_type(HealthcheckEditResponse, healthcheck, path=["response"])
+            assert_matches_type(HealthchecksHealthchecks, healthcheck, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -409,7 +406,7 @@ class TestHealthchecks:
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(HealthcheckGetResponse, healthcheck, path=["response"])
+        assert_matches_type(HealthchecksHealthchecks, healthcheck, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -422,7 +419,7 @@ class TestHealthchecks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         healthcheck = response.parse()
-        assert_matches_type(HealthcheckGetResponse, healthcheck, path=["response"])
+        assert_matches_type(HealthchecksHealthchecks, healthcheck, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -435,7 +432,7 @@ class TestHealthchecks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             healthcheck = response.parse()
-            assert_matches_type(HealthcheckGetResponse, healthcheck, path=["response"])
+            assert_matches_type(HealthchecksHealthchecks, healthcheck, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -466,7 +463,7 @@ class TestAsyncHealthchecks:
             address="www.example.com",
             name="server-1",
         )
-        assert_matches_type(HealthcheckCreateResponse, healthcheck, path=["response"])
+        assert_matches_type(HealthchecksHealthchecks, healthcheck, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -502,7 +499,7 @@ class TestAsyncHealthchecks:
             healthcheck_timeout=0,
             type="HTTPS",
         )
-        assert_matches_type(HealthcheckCreateResponse, healthcheck, path=["response"])
+        assert_matches_type(HealthchecksHealthchecks, healthcheck, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -516,7 +513,7 @@ class TestAsyncHealthchecks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         healthcheck = await response.parse()
-        assert_matches_type(HealthcheckCreateResponse, healthcheck, path=["response"])
+        assert_matches_type(HealthchecksHealthchecks, healthcheck, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -530,7 +527,7 @@ class TestAsyncHealthchecks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             healthcheck = await response.parse()
-            assert_matches_type(HealthcheckCreateResponse, healthcheck, path=["response"])
+            assert_matches_type(HealthchecksHealthchecks, healthcheck, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -553,7 +550,7 @@ class TestAsyncHealthchecks:
             address="www.example.com",
             name="server-1",
         )
-        assert_matches_type(HealthcheckUpdateResponse, healthcheck, path=["response"])
+        assert_matches_type(HealthchecksHealthchecks, healthcheck, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -590,7 +587,7 @@ class TestAsyncHealthchecks:
             healthcheck_timeout=0,
             type="HTTPS",
         )
-        assert_matches_type(HealthcheckUpdateResponse, healthcheck, path=["response"])
+        assert_matches_type(HealthchecksHealthchecks, healthcheck, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -605,7 +602,7 @@ class TestAsyncHealthchecks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         healthcheck = await response.parse()
-        assert_matches_type(HealthcheckUpdateResponse, healthcheck, path=["response"])
+        assert_matches_type(HealthchecksHealthchecks, healthcheck, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -620,7 +617,7 @@ class TestAsyncHealthchecks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             healthcheck = await response.parse()
-            assert_matches_type(HealthcheckUpdateResponse, healthcheck, path=["response"])
+            assert_matches_type(HealthchecksHealthchecks, healthcheck, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -746,7 +743,7 @@ class TestAsyncHealthchecks:
             address="www.example.com",
             name="server-1",
         )
-        assert_matches_type(HealthcheckEditResponse, healthcheck, path=["response"])
+        assert_matches_type(HealthchecksHealthchecks, healthcheck, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -783,7 +780,7 @@ class TestAsyncHealthchecks:
             healthcheck_timeout=0,
             type="HTTPS",
         )
-        assert_matches_type(HealthcheckEditResponse, healthcheck, path=["response"])
+        assert_matches_type(HealthchecksHealthchecks, healthcheck, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -798,7 +795,7 @@ class TestAsyncHealthchecks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         healthcheck = await response.parse()
-        assert_matches_type(HealthcheckEditResponse, healthcheck, path=["response"])
+        assert_matches_type(HealthchecksHealthchecks, healthcheck, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -813,7 +810,7 @@ class TestAsyncHealthchecks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             healthcheck = await response.parse()
-            assert_matches_type(HealthcheckEditResponse, healthcheck, path=["response"])
+            assert_matches_type(HealthchecksHealthchecks, healthcheck, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -843,7 +840,7 @@ class TestAsyncHealthchecks:
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(HealthcheckGetResponse, healthcheck, path=["response"])
+        assert_matches_type(HealthchecksHealthchecks, healthcheck, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -856,7 +853,7 @@ class TestAsyncHealthchecks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         healthcheck = await response.parse()
-        assert_matches_type(HealthcheckGetResponse, healthcheck, path=["response"])
+        assert_matches_type(HealthchecksHealthchecks, healthcheck, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -869,7 +866,7 @@ class TestAsyncHealthchecks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             healthcheck = await response.parse()
-            assert_matches_type(HealthcheckGetResponse, healthcheck, path=["response"])
+            assert_matches_type(HealthchecksHealthchecks, healthcheck, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -23,11 +23,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import (
-    ProxyReadTimeoutGetResponse,
-    ProxyReadTimeoutEditResponse,
-    proxy_read_timeout_edit_params,
-)
+from ....types.zones.settings import ZonesProxyReadTimeout, ZonesProxyReadTimeoutParam, proxy_read_timeout_edit_params
 
 __all__ = ["ProxyReadTimeout", "AsyncProxyReadTimeout"]
 
@@ -45,14 +41,14 @@ class ProxyReadTimeout(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        value: proxy_read_timeout_edit_params.Value,
+        value: ZonesProxyReadTimeoutParam,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ProxyReadTimeoutEditResponse]:
+    ) -> Optional[ZonesProxyReadTimeout]:
         """
         Maximum time between two read operations from origin.
 
@@ -81,7 +77,7 @@ class ProxyReadTimeout(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ProxyReadTimeoutEditResponse]], ResultWrapper[ProxyReadTimeoutEditResponse]),
+            cast_to=cast(Type[Optional[ZonesProxyReadTimeout]], ResultWrapper[ZonesProxyReadTimeout]),
         )
 
     def get(
@@ -94,7 +90,7 @@ class ProxyReadTimeout(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ProxyReadTimeoutGetResponse]:
+    ) -> Optional[ZonesProxyReadTimeout]:
         """
         Maximum time between two read operations from origin.
 
@@ -120,7 +116,7 @@ class ProxyReadTimeout(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ProxyReadTimeoutGetResponse]], ResultWrapper[ProxyReadTimeoutGetResponse]),
+            cast_to=cast(Type[Optional[ZonesProxyReadTimeout]], ResultWrapper[ZonesProxyReadTimeout]),
         )
 
 
@@ -137,14 +133,14 @@ class AsyncProxyReadTimeout(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        value: proxy_read_timeout_edit_params.Value,
+        value: ZonesProxyReadTimeoutParam,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ProxyReadTimeoutEditResponse]:
+    ) -> Optional[ZonesProxyReadTimeout]:
         """
         Maximum time between two read operations from origin.
 
@@ -175,7 +171,7 @@ class AsyncProxyReadTimeout(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ProxyReadTimeoutEditResponse]], ResultWrapper[ProxyReadTimeoutEditResponse]),
+            cast_to=cast(Type[Optional[ZonesProxyReadTimeout]], ResultWrapper[ZonesProxyReadTimeout]),
         )
 
     async def get(
@@ -188,7 +184,7 @@ class AsyncProxyReadTimeout(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ProxyReadTimeoutGetResponse]:
+    ) -> Optional[ZonesProxyReadTimeout]:
         """
         Maximum time between two read operations from origin.
 
@@ -214,7 +210,7 @@ class AsyncProxyReadTimeout(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ProxyReadTimeoutGetResponse]], ResultWrapper[ProxyReadTimeoutGetResponse]),
+            cast_to=cast(Type[Optional[ZonesProxyReadTimeout]], ResultWrapper[ZonesProxyReadTimeout]),
         )
 
 

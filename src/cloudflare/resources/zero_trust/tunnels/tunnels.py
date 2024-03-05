@@ -67,11 +67,9 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.zero_trust import (
-    TunnelGetResponse,
+    TunnelArgoTunnel,
     TunnelEditResponse,
     TunnelListResponse,
-    TunnelCreateResponse,
-    TunnelDeleteResponse,
     tunnel_edit_params,
     tunnel_list_params,
     tunnel_create_params,
@@ -122,7 +120,7 @@ class Tunnels(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TunnelCreateResponse:
+    ) -> TunnelArgoTunnel:
         """
         Creates a new Argo Tunnel in an account.
 
@@ -160,7 +158,7 @@ class Tunnels(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TunnelCreateResponse], ResultWrapper[TunnelCreateResponse]),
+            cast_to=cast(Type[TunnelArgoTunnel], ResultWrapper[TunnelArgoTunnel]),
         )
 
     def list(
@@ -253,7 +251,7 @@ class Tunnels(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TunnelDeleteResponse:
+    ) -> TunnelArgoTunnel:
         """
         Deletes an Argo Tunnel from an account.
 
@@ -284,7 +282,7 @@ class Tunnels(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TunnelDeleteResponse], ResultWrapper[TunnelDeleteResponse]),
+            cast_to=cast(Type[TunnelArgoTunnel], ResultWrapper[TunnelArgoTunnel]),
         )
 
     def edit(
@@ -361,7 +359,7 @@ class Tunnels(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TunnelGetResponse:
+    ) -> TunnelArgoTunnel:
         """
         Fetches a single Argo Tunnel.
 
@@ -391,7 +389,7 @@ class Tunnels(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TunnelGetResponse], ResultWrapper[TunnelGetResponse]),
+            cast_to=cast(Type[TunnelArgoTunnel], ResultWrapper[TunnelArgoTunnel]),
         )
 
 
@@ -436,7 +434,7 @@ class AsyncTunnels(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TunnelCreateResponse:
+    ) -> TunnelArgoTunnel:
         """
         Creates a new Argo Tunnel in an account.
 
@@ -474,7 +472,7 @@ class AsyncTunnels(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TunnelCreateResponse], ResultWrapper[TunnelCreateResponse]),
+            cast_to=cast(Type[TunnelArgoTunnel], ResultWrapper[TunnelArgoTunnel]),
         )
 
     def list(
@@ -567,7 +565,7 @@ class AsyncTunnels(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TunnelDeleteResponse:
+    ) -> TunnelArgoTunnel:
         """
         Deletes an Argo Tunnel from an account.
 
@@ -598,7 +596,7 @@ class AsyncTunnels(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TunnelDeleteResponse], ResultWrapper[TunnelDeleteResponse]),
+            cast_to=cast(Type[TunnelArgoTunnel], ResultWrapper[TunnelArgoTunnel]),
         )
 
     async def edit(
@@ -675,7 +673,7 @@ class AsyncTunnels(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TunnelGetResponse:
+    ) -> TunnelArgoTunnel:
         """
         Fetches a single Argo Tunnel.
 
@@ -705,7 +703,7 @@ class AsyncTunnels(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TunnelGetResponse], ResultWrapper[TunnelGetResponse]),
+            cast_to=cast(Type[TunnelArgoTunnel], ResultWrapper[TunnelArgoTunnel]),
         )
 
 

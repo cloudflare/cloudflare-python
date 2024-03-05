@@ -1,39 +1,9 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from typing import List, Union
-from typing_extensions import Literal
+from typing import List
 
-from ...._models import BaseModel
+from .workers_schemas_binding import WorkersSchemasBinding
 
-__all__ = [
-    "BindingGetResponse",
-    "BindingGetResponseItem",
-    "BindingGetResponseItemWorkersKVNamespaceBinding",
-    "BindingGetResponseItemWorkersWasmModuleBinding",
-]
+__all__ = ["BindingGetResponse"]
 
-
-class BindingGetResponseItemWorkersKVNamespaceBinding(BaseModel):
-    name: str
-    """A JavaScript variable name for the binding."""
-
-    namespace_id: str
-    """Namespace identifier tag."""
-
-    type: Literal["kv_namespace"]
-    """The class of resource that the binding provides."""
-
-
-class BindingGetResponseItemWorkersWasmModuleBinding(BaseModel):
-    name: str
-    """A JavaScript variable name for the binding."""
-
-    type: Literal["wasm_module"]
-    """The class of resource that the binding provides."""
-
-
-BindingGetResponseItem = Union[
-    BindingGetResponseItemWorkersKVNamespaceBinding, BindingGetResponseItemWorkersWasmModuleBinding
-]
-
-BindingGetResponse = List[BindingGetResponseItem]
+BindingGetResponse = List[WorkersSchemasBinding]

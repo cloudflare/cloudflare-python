@@ -1,28 +1,9 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from typing import List, Optional
-from datetime import datetime
+from typing import List
 
-from ...._models import BaseModel
+from .zero_trust_gateway_proxy_endpoints import ZeroTrustGatewayProxyEndpoints
 
-__all__ = ["ProxyEndpointListResponse", "ProxyEndpointListResponseItem"]
+__all__ = ["ProxyEndpointListResponse"]
 
-
-class ProxyEndpointListResponseItem(BaseModel):
-    id: Optional[object] = None
-
-    created_at: Optional[datetime] = None
-
-    ips: Optional[List[str]] = None
-    """A list of CIDRs to restrict ingress connections."""
-
-    name: Optional[str] = None
-    """The name of the proxy endpoint."""
-
-    subdomain: Optional[str] = None
-    """The subdomain to be used as the destination in the proxy client."""
-
-    updated_at: Optional[datetime] = None
-
-
-ProxyEndpointListResponse = List[ProxyEndpointListResponseItem]
+ProxyEndpointListResponse = List[ZeroTrustGatewayProxyEndpoints]
