@@ -19,7 +19,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.user.billing import ProfileListResponse
+from ....types.user.billing import ProfileGetResponse
 
 __all__ = ["Profiles", "AsyncProfiles"]
 
@@ -33,7 +33,7 @@ class Profiles(SyncAPIResource):
     def with_streaming_response(self) -> ProfilesWithStreamingResponse:
         return ProfilesWithStreamingResponse(self)
 
-    def list(
+    def get(
         self,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -42,10 +42,10 @@ class Profiles(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ProfileListResponse:
+    ) -> ProfileGetResponse:
         """Accesses your billing profile object."""
         return cast(
-            ProfileListResponse,
+            ProfileGetResponse,
             self._get(
                 "/user/billing/profile",
                 options=make_request_options(
@@ -56,7 +56,7 @@ class Profiles(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[ProfileListResponse]
+                    Any, ResultWrapper[ProfileGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -71,7 +71,7 @@ class AsyncProfiles(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncProfilesWithStreamingResponse:
         return AsyncProfilesWithStreamingResponse(self)
 
-    async def list(
+    async def get(
         self,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -80,10 +80,10 @@ class AsyncProfiles(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ProfileListResponse:
+    ) -> ProfileGetResponse:
         """Accesses your billing profile object."""
         return cast(
-            ProfileListResponse,
+            ProfileGetResponse,
             await self._get(
                 "/user/billing/profile",
                 options=make_request_options(
@@ -94,7 +94,7 @@ class AsyncProfiles(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[ProfileListResponse]
+                    Any, ResultWrapper[ProfileGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -104,8 +104,8 @@ class ProfilesWithRawResponse:
     def __init__(self, profiles: Profiles) -> None:
         self._profiles = profiles
 
-        self.list = to_raw_response_wrapper(
-            profiles.list,
+        self.get = to_raw_response_wrapper(
+            profiles.get,
         )
 
 
@@ -113,8 +113,8 @@ class AsyncProfilesWithRawResponse:
     def __init__(self, profiles: AsyncProfiles) -> None:
         self._profiles = profiles
 
-        self.list = async_to_raw_response_wrapper(
-            profiles.list,
+        self.get = async_to_raw_response_wrapper(
+            profiles.get,
         )
 
 
@@ -122,8 +122,8 @@ class ProfilesWithStreamingResponse:
     def __init__(self, profiles: Profiles) -> None:
         self._profiles = profiles
 
-        self.list = to_streamed_response_wrapper(
-            profiles.list,
+        self.get = to_streamed_response_wrapper(
+            profiles.get,
         )
 
 
@@ -131,6 +131,6 @@ class AsyncProfilesWithStreamingResponse:
     def __init__(self, profiles: AsyncProfiles) -> None:
         self._profiles = profiles
 
-        self.list = async_to_streamed_response_wrapper(
-            profiles.list,
+        self.get = async_to_streamed_response_wrapper(
+            profiles.get,
         )

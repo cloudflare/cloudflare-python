@@ -16,7 +16,7 @@ from ...._response import (
 from ...._base_client import (
     make_request_options,
 )
-from ....types.logs.received import FieldListResponse
+from ....types.logs.received import FieldGetResponse
 
 __all__ = ["Fields", "AsyncFields"]
 
@@ -30,7 +30,7 @@ class Fields(SyncAPIResource):
     def with_streaming_response(self) -> FieldsWithStreamingResponse:
         return FieldsWithStreamingResponse(self)
 
-    def list(
+    def get(
         self,
         zone_identifier: str,
         *,
@@ -40,7 +40,7 @@ class Fields(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> FieldListResponse:
+    ) -> FieldGetResponse:
         """Lists all fields available.
 
         The response is json object with key-value pairs,
@@ -64,7 +64,7 @@ class Fields(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FieldListResponse,
+            cast_to=FieldGetResponse,
         )
 
 
@@ -77,7 +77,7 @@ class AsyncFields(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncFieldsWithStreamingResponse:
         return AsyncFieldsWithStreamingResponse(self)
 
-    async def list(
+    async def get(
         self,
         zone_identifier: str,
         *,
@@ -87,7 +87,7 @@ class AsyncFields(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> FieldListResponse:
+    ) -> FieldGetResponse:
         """Lists all fields available.
 
         The response is json object with key-value pairs,
@@ -111,7 +111,7 @@ class AsyncFields(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FieldListResponse,
+            cast_to=FieldGetResponse,
         )
 
 
@@ -119,8 +119,8 @@ class FieldsWithRawResponse:
     def __init__(self, fields: Fields) -> None:
         self._fields = fields
 
-        self.list = to_raw_response_wrapper(
-            fields.list,
+        self.get = to_raw_response_wrapper(
+            fields.get,
         )
 
 
@@ -128,8 +128,8 @@ class AsyncFieldsWithRawResponse:
     def __init__(self, fields: AsyncFields) -> None:
         self._fields = fields
 
-        self.list = async_to_raw_response_wrapper(
-            fields.list,
+        self.get = async_to_raw_response_wrapper(
+            fields.get,
         )
 
 
@@ -137,8 +137,8 @@ class FieldsWithStreamingResponse:
     def __init__(self, fields: Fields) -> None:
         self._fields = fields
 
-        self.list = to_streamed_response_wrapper(
-            fields.list,
+        self.get = to_streamed_response_wrapper(
+            fields.get,
         )
 
 
@@ -146,6 +146,6 @@ class AsyncFieldsWithStreamingResponse:
     def __init__(self, fields: AsyncFields) -> None:
         self._fields = fields
 
-        self.list = async_to_streamed_response_wrapper(
-            fields.list,
+        self.get = async_to_streamed_response_wrapper(
+            fields.get,
         )

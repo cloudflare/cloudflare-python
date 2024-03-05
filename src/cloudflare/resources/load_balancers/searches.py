@@ -23,7 +23,7 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.load_balancers import SearchListResponse, search_list_params
+from ...types.load_balancers import SearchGetResponse, search_get_params
 
 __all__ = ["Searches", "AsyncSearches"]
 
@@ -37,20 +37,20 @@ class Searches(SyncAPIResource):
     def with_streaming_response(self) -> SearchesWithStreamingResponse:
         return SearchesWithStreamingResponse(self)
 
-    def list(
+    def get(
         self,
         *,
         account_id: str,
         page: object | NotGiven = NOT_GIVEN,
         per_page: object | NotGiven = NOT_GIVEN,
-        search_params: search_list_params.SearchParams | NotGiven = NOT_GIVEN,
+        search_params: search_get_params.SearchParams | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SearchListResponse]:
+    ) -> Optional[SearchGetResponse]:
         """
         Search for Load Balancing resources.
 
@@ -80,11 +80,11 @@ class Searches(SyncAPIResource):
                         "per_page": per_page,
                         "search_params": search_params,
                     },
-                    search_list_params.SearchListParams,
+                    search_get_params.SearchGetParams,
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SearchListResponse]], ResultWrapper[SearchListResponse]),
+            cast_to=cast(Type[Optional[SearchGetResponse]], ResultWrapper[SearchGetResponse]),
         )
 
 
@@ -97,20 +97,20 @@ class AsyncSearches(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncSearchesWithStreamingResponse:
         return AsyncSearchesWithStreamingResponse(self)
 
-    async def list(
+    async def get(
         self,
         *,
         account_id: str,
         page: object | NotGiven = NOT_GIVEN,
         per_page: object | NotGiven = NOT_GIVEN,
-        search_params: search_list_params.SearchParams | NotGiven = NOT_GIVEN,
+        search_params: search_get_params.SearchParams | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SearchListResponse]:
+    ) -> Optional[SearchGetResponse]:
         """
         Search for Load Balancing resources.
 
@@ -140,11 +140,11 @@ class AsyncSearches(AsyncAPIResource):
                         "per_page": per_page,
                         "search_params": search_params,
                     },
-                    search_list_params.SearchListParams,
+                    search_get_params.SearchGetParams,
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SearchListResponse]], ResultWrapper[SearchListResponse]),
+            cast_to=cast(Type[Optional[SearchGetResponse]], ResultWrapper[SearchGetResponse]),
         )
 
 
@@ -152,8 +152,8 @@ class SearchesWithRawResponse:
     def __init__(self, searches: Searches) -> None:
         self._searches = searches
 
-        self.list = to_raw_response_wrapper(
-            searches.list,
+        self.get = to_raw_response_wrapper(
+            searches.get,
         )
 
 
@@ -161,8 +161,8 @@ class AsyncSearchesWithRawResponse:
     def __init__(self, searches: AsyncSearches) -> None:
         self._searches = searches
 
-        self.list = async_to_raw_response_wrapper(
-            searches.list,
+        self.get = async_to_raw_response_wrapper(
+            searches.get,
         )
 
 
@@ -170,8 +170,8 @@ class SearchesWithStreamingResponse:
     def __init__(self, searches: Searches) -> None:
         self._searches = searches
 
-        self.list = to_streamed_response_wrapper(
-            searches.list,
+        self.get = to_streamed_response_wrapper(
+            searches.get,
         )
 
 
@@ -179,6 +179,6 @@ class AsyncSearchesWithStreamingResponse:
     def __init__(self, searches: AsyncSearches) -> None:
         self._searches = searches
 
-        self.list = async_to_streamed_response_wrapper(
-            searches.list,
+        self.get = async_to_streamed_response_wrapper(
+            searches.get,
         )

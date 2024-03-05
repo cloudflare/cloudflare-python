@@ -19,7 +19,7 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.stream import KeyListResponse, KeyCreateResponse, KeyDeleteResponse
+from ...types.stream import KeyGetResponse, KeyCreateResponse, KeyDeleteResponse
 
 __all__ = ["Keys", "AsyncKeys"]
 
@@ -75,45 +75,6 @@ class Keys(SyncAPIResource):
             cast_to=cast(Type[KeyCreateResponse], ResultWrapper[KeyCreateResponse]),
         )
 
-    def list(
-        self,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> KeyListResponse:
-        """
-        Lists the video ID and creation date and time when a signing key was created.
-
-        Args:
-          account_id: Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
-            f"/accounts/{account_id}/stream/keys",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(Type[KeyListResponse], ResultWrapper[KeyListResponse]),
-        )
-
     def delete(
         self,
         identifier: str,
@@ -161,6 +122,45 @@ class Keys(SyncAPIResource):
                     Any, ResultWrapper[KeyDeleteResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
+        )
+
+    def get(
+        self,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> KeyGetResponse:
+        """
+        Lists the video ID and creation date and time when a signing key was created.
+
+        Args:
+          account_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._get(
+            f"/accounts/{account_id}/stream/keys",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[KeyGetResponse], ResultWrapper[KeyGetResponse]),
         )
 
 
@@ -215,45 +215,6 @@ class AsyncKeys(AsyncAPIResource):
             cast_to=cast(Type[KeyCreateResponse], ResultWrapper[KeyCreateResponse]),
         )
 
-    async def list(
-        self,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> KeyListResponse:
-        """
-        Lists the video ID and creation date and time when a signing key was created.
-
-        Args:
-          account_id: Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
-            f"/accounts/{account_id}/stream/keys",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(Type[KeyListResponse], ResultWrapper[KeyListResponse]),
-        )
-
     async def delete(
         self,
         identifier: str,
@@ -303,6 +264,45 @@ class AsyncKeys(AsyncAPIResource):
             ),
         )
 
+    async def get(
+        self,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> KeyGetResponse:
+        """
+        Lists the video ID and creation date and time when a signing key was created.
+
+        Args:
+          account_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return await self._get(
+            f"/accounts/{account_id}/stream/keys",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[KeyGetResponse], ResultWrapper[KeyGetResponse]),
+        )
+
 
 class KeysWithRawResponse:
     def __init__(self, keys: Keys) -> None:
@@ -311,11 +311,11 @@ class KeysWithRawResponse:
         self.create = to_raw_response_wrapper(
             keys.create,
         )
-        self.list = to_raw_response_wrapper(
-            keys.list,
-        )
         self.delete = to_raw_response_wrapper(
             keys.delete,
+        )
+        self.get = to_raw_response_wrapper(
+            keys.get,
         )
 
 
@@ -326,11 +326,11 @@ class AsyncKeysWithRawResponse:
         self.create = async_to_raw_response_wrapper(
             keys.create,
         )
-        self.list = async_to_raw_response_wrapper(
-            keys.list,
-        )
         self.delete = async_to_raw_response_wrapper(
             keys.delete,
+        )
+        self.get = async_to_raw_response_wrapper(
+            keys.get,
         )
 
 
@@ -341,11 +341,11 @@ class KeysWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             keys.create,
         )
-        self.list = to_streamed_response_wrapper(
-            keys.list,
-        )
         self.delete = to_streamed_response_wrapper(
             keys.delete,
+        )
+        self.get = to_streamed_response_wrapper(
+            keys.get,
         )
 
 
@@ -356,9 +356,9 @@ class AsyncKeysWithStreamingResponse:
         self.create = async_to_streamed_response_wrapper(
             keys.create,
         )
-        self.list = async_to_streamed_response_wrapper(
-            keys.list,
-        )
         self.delete = async_to_streamed_response_wrapper(
             keys.delete,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            keys.get,
         )

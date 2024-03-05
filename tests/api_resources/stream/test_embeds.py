@@ -18,8 +18,8 @@ class TestEmbeds:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list(self, client: Cloudflare) -> None:
-        embed = client.stream.embeds.list(
+    def test_method_get(self, client: Cloudflare) -> None:
+        embed = client.stream.embeds.get(
             "ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -27,8 +27,8 @@ class TestEmbeds:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_list(self, client: Cloudflare) -> None:
-        response = client.stream.embeds.with_raw_response.list(
+    def test_raw_response_get(self, client: Cloudflare) -> None:
+        response = client.stream.embeds.with_raw_response.get(
             "ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -40,8 +40,8 @@ class TestEmbeds:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_list(self, client: Cloudflare) -> None:
-        with client.stream.embeds.with_streaming_response.list(
+    def test_streaming_response_get(self, client: Cloudflare) -> None:
+        with client.stream.embeds.with_streaming_response.get(
             "ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -55,15 +55,15 @@ class TestEmbeds:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_list(self, client: Cloudflare) -> None:
+    def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.stream.embeds.with_raw_response.list(
+            client.stream.embeds.with_raw_response.get(
                 "ea95132c15732412d22c1476fa83f27a",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
-            client.stream.embeds.with_raw_response.list(
+            client.stream.embeds.with_raw_response.get(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
@@ -74,8 +74,8 @@ class TestAsyncEmbeds:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list(self, async_client: AsyncCloudflare) -> None:
-        embed = await async_client.stream.embeds.list(
+    async def test_method_get(self, async_client: AsyncCloudflare) -> None:
+        embed = await async_client.stream.embeds.get(
             "ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -83,8 +83,8 @@ class TestAsyncEmbeds:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.stream.embeds.with_raw_response.list(
+    async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.stream.embeds.with_raw_response.get(
             "ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -96,8 +96,8 @@ class TestAsyncEmbeds:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.stream.embeds.with_streaming_response.list(
+    async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.stream.embeds.with_streaming_response.get(
             "ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -111,15 +111,15 @@ class TestAsyncEmbeds:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
+    async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.stream.embeds.with_raw_response.list(
+            await async_client.stream.embeds.with_raw_response.get(
                 "ea95132c15732412d22c1476fa83f27a",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
-            await async_client.stream.embeds.with_raw_response.list(
+            await async_client.stream.embeds.with_raw_response.get(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

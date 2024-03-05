@@ -29,7 +29,7 @@ class Embeds(SyncAPIResource):
     def with_streaming_response(self) -> EmbedsWithStreamingResponse:
         return EmbedsWithStreamingResponse(self)
 
-    def list(
+    def get(
         self,
         identifier: str,
         *,
@@ -81,7 +81,7 @@ class AsyncEmbeds(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncEmbedsWithStreamingResponse:
         return AsyncEmbedsWithStreamingResponse(self)
 
-    async def list(
+    async def get(
         self,
         identifier: str,
         *,
@@ -128,8 +128,8 @@ class EmbedsWithRawResponse:
     def __init__(self, embeds: Embeds) -> None:
         self._embeds = embeds
 
-        self.list = to_raw_response_wrapper(
-            embeds.list,
+        self.get = to_raw_response_wrapper(
+            embeds.get,
         )
 
 
@@ -137,8 +137,8 @@ class AsyncEmbedsWithRawResponse:
     def __init__(self, embeds: AsyncEmbeds) -> None:
         self._embeds = embeds
 
-        self.list = async_to_raw_response_wrapper(
-            embeds.list,
+        self.get = async_to_raw_response_wrapper(
+            embeds.get,
         )
 
 
@@ -146,8 +146,8 @@ class EmbedsWithStreamingResponse:
     def __init__(self, embeds: Embeds) -> None:
         self._embeds = embeds
 
-        self.list = to_streamed_response_wrapper(
-            embeds.list,
+        self.get = to_streamed_response_wrapper(
+            embeds.get,
         )
 
 
@@ -155,6 +155,6 @@ class AsyncEmbedsWithStreamingResponse:
     def __init__(self, embeds: AsyncEmbeds) -> None:
         self._embeds = embeds
 
-        self.list = async_to_streamed_response_wrapper(
-            embeds.list,
+        self.get = async_to_streamed_response_wrapper(
+            embeds.get,
         )

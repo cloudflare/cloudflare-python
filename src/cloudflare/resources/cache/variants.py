@@ -20,7 +20,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...types.cache import VariantEditResponse, VariantListResponse, VariantDeleteResponse, variant_edit_params
+from ...types.cache import VariantGetResponse, VariantEditResponse, VariantDeleteResponse, variant_edit_params
 from ..._base_client import (
     make_request_options,
 )
@@ -36,49 +36,6 @@ class Variants(SyncAPIResource):
     @cached_property
     def with_streaming_response(self) -> VariantsWithStreamingResponse:
         return VariantsWithStreamingResponse(self)
-
-    def list(
-        self,
-        *,
-        zone_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> VariantListResponse:
-        """
-        Variant support enables caching variants of images with certain file extensions
-        in addition to the original. This only applies when the origin server sends the
-        'Vary: Accept' response header. If the origin server sends 'Vary: Accept' but
-        does not serve the variant requested, the response will not be cached. This will
-        be indicated with BYPASS cache status in the response headers.
-
-        Args:
-          zone_id: Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return self._get(
-            f"/zones/{zone_id}/cache/variants",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(Type[VariantListResponse], ResultWrapper[VariantListResponse]),
-        )
 
     def delete(
         self,
@@ -170,17 +127,7 @@ class Variants(SyncAPIResource):
             cast_to=cast(Type[VariantEditResponse], ResultWrapper[VariantEditResponse]),
         )
 
-
-class AsyncVariants(AsyncAPIResource):
-    @cached_property
-    def with_raw_response(self) -> AsyncVariantsWithRawResponse:
-        return AsyncVariantsWithRawResponse(self)
-
-    @cached_property
-    def with_streaming_response(self) -> AsyncVariantsWithStreamingResponse:
-        return AsyncVariantsWithStreamingResponse(self)
-
-    async def list(
+    def get(
         self,
         *,
         zone_id: str,
@@ -190,7 +137,7 @@ class AsyncVariants(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> VariantListResponse:
+    ) -> VariantGetResponse:
         """
         Variant support enables caching variants of images with certain file extensions
         in addition to the original. This only applies when the origin server sends the
@@ -211,7 +158,7 @@ class AsyncVariants(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return await self._get(
+        return self._get(
             f"/zones/{zone_id}/cache/variants",
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -220,8 +167,18 @@ class AsyncVariants(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[VariantListResponse], ResultWrapper[VariantListResponse]),
+            cast_to=cast(Type[VariantGetResponse], ResultWrapper[VariantGetResponse]),
         )
+
+
+class AsyncVariants(AsyncAPIResource):
+    @cached_property
+    def with_raw_response(self) -> AsyncVariantsWithRawResponse:
+        return AsyncVariantsWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncVariantsWithStreamingResponse:
+        return AsyncVariantsWithStreamingResponse(self)
 
     async def delete(
         self,
@@ -313,19 +270,62 @@ class AsyncVariants(AsyncAPIResource):
             cast_to=cast(Type[VariantEditResponse], ResultWrapper[VariantEditResponse]),
         )
 
+    async def get(
+        self,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> VariantGetResponse:
+        """
+        Variant support enables caching variants of images with certain file extensions
+        in addition to the original. This only applies when the origin server sends the
+        'Vary: Accept' response header. If the origin server sends 'Vary: Accept' but
+        does not serve the variant requested, the response will not be cached. This will
+        be indicated with BYPASS cache status in the response headers.
+
+        Args:
+          zone_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return await self._get(
+            f"/zones/{zone_id}/cache/variants",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[VariantGetResponse], ResultWrapper[VariantGetResponse]),
+        )
+
 
 class VariantsWithRawResponse:
     def __init__(self, variants: Variants) -> None:
         self._variants = variants
 
-        self.list = to_raw_response_wrapper(
-            variants.list,
-        )
         self.delete = to_raw_response_wrapper(
             variants.delete,
         )
         self.edit = to_raw_response_wrapper(
             variants.edit,
+        )
+        self.get = to_raw_response_wrapper(
+            variants.get,
         )
 
 
@@ -333,14 +333,14 @@ class AsyncVariantsWithRawResponse:
     def __init__(self, variants: AsyncVariants) -> None:
         self._variants = variants
 
-        self.list = async_to_raw_response_wrapper(
-            variants.list,
-        )
         self.delete = async_to_raw_response_wrapper(
             variants.delete,
         )
         self.edit = async_to_raw_response_wrapper(
             variants.edit,
+        )
+        self.get = async_to_raw_response_wrapper(
+            variants.get,
         )
 
 
@@ -348,14 +348,14 @@ class VariantsWithStreamingResponse:
     def __init__(self, variants: Variants) -> None:
         self._variants = variants
 
-        self.list = to_streamed_response_wrapper(
-            variants.list,
-        )
         self.delete = to_streamed_response_wrapper(
             variants.delete,
         )
         self.edit = to_streamed_response_wrapper(
             variants.edit,
+        )
+        self.get = to_streamed_response_wrapper(
+            variants.get,
         )
 
 
@@ -363,12 +363,12 @@ class AsyncVariantsWithStreamingResponse:
     def __init__(self, variants: AsyncVariants) -> None:
         self._variants = variants
 
-        self.list = async_to_streamed_response_wrapper(
-            variants.list,
-        )
         self.delete = async_to_streamed_response_wrapper(
             variants.delete,
         )
         self.edit = async_to_streamed_response_wrapper(
             variants.edit,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            variants.get,
         )

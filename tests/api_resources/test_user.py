@@ -9,41 +9,13 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types import UserEditResponse, UserListResponse
+from cloudflare.types import UserGetResponse, UserEditResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
 class TestUser:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_method_list(self, client: Cloudflare) -> None:
-        user = client.user.list()
-        assert_matches_type(UserListResponse, user, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_raw_response_list(self, client: Cloudflare) -> None:
-        response = client.user.with_raw_response.list()
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        user = response.parse()
-        assert_matches_type(UserListResponse, user, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_streaming_response_list(self, client: Cloudflare) -> None:
-        with client.user.with_streaming_response.list() as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            user = response.parse()
-            assert_matches_type(UserListResponse, user, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
@@ -85,37 +57,37 @@ class TestUser:
 
         assert cast(Any, response.is_closed) is True
 
-
-class TestAsyncUser:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_get(self, client: Cloudflare) -> None:
+        user = client.user.get()
+        assert_matches_type(UserGetResponse, user, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list(self, async_client: AsyncCloudflare) -> None:
-        user = await async_client.user.list()
-        assert_matches_type(UserListResponse, user, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.user.with_raw_response.list()
+    def test_raw_response_get(self, client: Cloudflare) -> None:
+        response = client.user.with_raw_response.get()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        user = await response.parse()
-        assert_matches_type(UserListResponse, user, path=["response"])
+        user = response.parse()
+        assert_matches_type(UserGetResponse, user, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.user.with_streaming_response.list() as response:
+    def test_streaming_response_get(self, client: Cloudflare) -> None:
+        with client.user.with_streaming_response.get() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            user = await response.parse()
-            assert_matches_type(UserListResponse, user, path=["response"])
+            user = response.parse()
+            assert_matches_type(UserGetResponse, user, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+
+class TestAsyncUser:
+    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip()
     @parametrize
@@ -154,5 +126,33 @@ class TestAsyncUser:
 
             user = await response.parse()
             assert_matches_type(UserEditResponse, user, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_get(self, async_client: AsyncCloudflare) -> None:
+        user = await async_client.user.get()
+        assert_matches_type(UserGetResponse, user, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.user.with_raw_response.get()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        user = await response.parse()
+        assert_matches_type(UserGetResponse, user, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.user.with_streaming_response.get() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            user = await response.parse()
+            assert_matches_type(UserGetResponse, user, path=["response"])
 
         assert cast(Any, response.is_closed) is True

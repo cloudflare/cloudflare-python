@@ -7,7 +7,7 @@ from typing import Any, Type, Optional, cast
 import httpx
 
 from ..types import (
-    CustomNameserverListResponse,
+    CustomNameserverGetResponse,
     CustomNameserverCreateResponse,
     CustomNameserverDeleteResponse,
     CustomNameserverVerifyResponse,
@@ -94,45 +94,6 @@ class CustomNameservers(SyncAPIResource):
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(Type[CustomNameserverCreateResponse], ResultWrapper[CustomNameserverCreateResponse]),
-        )
-
-    def list(
-        self,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CustomNameserverListResponse]:
-        """
-        List an account's custom nameservers.
-
-        Args:
-          account_id: Account identifier tag.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
-            f"/accounts/{account_id}/custom_ns",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(Type[Optional[CustomNameserverListResponse]], ResultWrapper[CustomNameserverListResponse]),
         )
 
     def delete(
@@ -223,6 +184,45 @@ class CustomNameservers(SyncAPIResource):
             cast_to=cast(
                 Type[Optional[CustomNameserverAvailabiltyResponse]], ResultWrapper[CustomNameserverAvailabiltyResponse]
             ),
+        )
+
+    def get(
+        self,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CustomNameserverGetResponse]:
+        """
+        List an account's custom nameservers.
+
+        Args:
+          account_id: Account identifier tag.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._get(
+            f"/accounts/{account_id}/custom_ns",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[CustomNameserverGetResponse]], ResultWrapper[CustomNameserverGetResponse]),
         )
 
     def verify(
@@ -326,45 +326,6 @@ class AsyncCustomNameservers(AsyncAPIResource):
             cast_to=cast(Type[CustomNameserverCreateResponse], ResultWrapper[CustomNameserverCreateResponse]),
         )
 
-    async def list(
-        self,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CustomNameserverListResponse]:
-        """
-        List an account's custom nameservers.
-
-        Args:
-          account_id: Account identifier tag.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
-            f"/accounts/{account_id}/custom_ns",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(Type[Optional[CustomNameserverListResponse]], ResultWrapper[CustomNameserverListResponse]),
-        )
-
     async def delete(
         self,
         custom_ns_id: str,
@@ -455,6 +416,45 @@ class AsyncCustomNameservers(AsyncAPIResource):
             ),
         )
 
+    async def get(
+        self,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CustomNameserverGetResponse]:
+        """
+        List an account's custom nameservers.
+
+        Args:
+          account_id: Account identifier tag.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return await self._get(
+            f"/accounts/{account_id}/custom_ns",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[CustomNameserverGetResponse]], ResultWrapper[CustomNameserverGetResponse]),
+        )
+
     async def verify(
         self,
         *,
@@ -502,14 +502,14 @@ class CustomNameserversWithRawResponse:
         self.create = to_raw_response_wrapper(
             custom_nameservers.create,
         )
-        self.list = to_raw_response_wrapper(
-            custom_nameservers.list,
-        )
         self.delete = to_raw_response_wrapper(
             custom_nameservers.delete,
         )
         self.availabilty = to_raw_response_wrapper(
             custom_nameservers.availabilty,
+        )
+        self.get = to_raw_response_wrapper(
+            custom_nameservers.get,
         )
         self.verify = to_raw_response_wrapper(
             custom_nameservers.verify,
@@ -523,14 +523,14 @@ class AsyncCustomNameserversWithRawResponse:
         self.create = async_to_raw_response_wrapper(
             custom_nameservers.create,
         )
-        self.list = async_to_raw_response_wrapper(
-            custom_nameservers.list,
-        )
         self.delete = async_to_raw_response_wrapper(
             custom_nameservers.delete,
         )
         self.availabilty = async_to_raw_response_wrapper(
             custom_nameservers.availabilty,
+        )
+        self.get = async_to_raw_response_wrapper(
+            custom_nameservers.get,
         )
         self.verify = async_to_raw_response_wrapper(
             custom_nameservers.verify,
@@ -544,14 +544,14 @@ class CustomNameserversWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             custom_nameservers.create,
         )
-        self.list = to_streamed_response_wrapper(
-            custom_nameservers.list,
-        )
         self.delete = to_streamed_response_wrapper(
             custom_nameservers.delete,
         )
         self.availabilty = to_streamed_response_wrapper(
             custom_nameservers.availabilty,
+        )
+        self.get = to_streamed_response_wrapper(
+            custom_nameservers.get,
         )
         self.verify = to_streamed_response_wrapper(
             custom_nameservers.verify,
@@ -565,14 +565,14 @@ class AsyncCustomNameserversWithStreamingResponse:
         self.create = async_to_streamed_response_wrapper(
             custom_nameservers.create,
         )
-        self.list = async_to_streamed_response_wrapper(
-            custom_nameservers.list,
-        )
         self.delete = async_to_streamed_response_wrapper(
             custom_nameservers.delete,
         )
         self.availabilty = async_to_streamed_response_wrapper(
             custom_nameservers.availabilty,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            custom_nameservers.get,
         )
         self.verify = async_to_streamed_response_wrapper(
             custom_nameservers.verify,

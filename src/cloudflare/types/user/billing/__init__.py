@@ -2,6 +2,6 @@
 
 from __future__ import annotations
 
-from .history_list_params import HistoryListParams as HistoryListParams
-from .history_list_response import HistoryListResponse as HistoryListResponse
-from .profile_list_response import ProfileListResponse as ProfileListResponse
+from .history_get_params import HistoryGetParams as HistoryGetParams
+from .history_get_response import HistoryGetResponse as HistoryGetResponse
+from .profile_get_response import ProfileGetResponse as ProfileGetResponse

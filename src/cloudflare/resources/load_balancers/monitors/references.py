@@ -19,7 +19,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.load_balancers.monitors import ReferenceListResponse
+from ....types.load_balancers.monitors import ReferenceGetResponse
 
 __all__ = ["References", "AsyncReferences"]
 
@@ -33,7 +33,7 @@ class References(SyncAPIResource):
     def with_streaming_response(self) -> ReferencesWithStreamingResponse:
         return ReferencesWithStreamingResponse(self)
 
-    def list(
+    def get(
         self,
         monitor_id: str,
         *,
@@ -44,7 +44,7 @@ class References(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ReferenceListResponse]:
+    ) -> Optional[ReferenceGetResponse]:
         """
         Get the list of resources that reference the provided monitor.
 
@@ -72,7 +72,7 @@ class References(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ReferenceListResponse]], ResultWrapper[ReferenceListResponse]),
+            cast_to=cast(Type[Optional[ReferenceGetResponse]], ResultWrapper[ReferenceGetResponse]),
         )
 
 
@@ -85,7 +85,7 @@ class AsyncReferences(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncReferencesWithStreamingResponse:
         return AsyncReferencesWithStreamingResponse(self)
 
-    async def list(
+    async def get(
         self,
         monitor_id: str,
         *,
@@ -96,7 +96,7 @@ class AsyncReferences(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ReferenceListResponse]:
+    ) -> Optional[ReferenceGetResponse]:
         """
         Get the list of resources that reference the provided monitor.
 
@@ -124,7 +124,7 @@ class AsyncReferences(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ReferenceListResponse]], ResultWrapper[ReferenceListResponse]),
+            cast_to=cast(Type[Optional[ReferenceGetResponse]], ResultWrapper[ReferenceGetResponse]),
         )
 
 
@@ -132,8 +132,8 @@ class ReferencesWithRawResponse:
     def __init__(self, references: References) -> None:
         self._references = references
 
-        self.list = to_raw_response_wrapper(
-            references.list,
+        self.get = to_raw_response_wrapper(
+            references.get,
         )
 
 
@@ -141,8 +141,8 @@ class AsyncReferencesWithRawResponse:
     def __init__(self, references: AsyncReferences) -> None:
         self._references = references
 
-        self.list = async_to_raw_response_wrapper(
-            references.list,
+        self.get = async_to_raw_response_wrapper(
+            references.get,
         )
 
 
@@ -150,8 +150,8 @@ class ReferencesWithStreamingResponse:
     def __init__(self, references: References) -> None:
         self._references = references
 
-        self.list = to_streamed_response_wrapper(
-            references.list,
+        self.get = to_streamed_response_wrapper(
+            references.get,
         )
 
 
@@ -159,6 +159,6 @@ class AsyncReferencesWithStreamingResponse:
     def __init__(self, references: AsyncReferences) -> None:
         self._references = references
 
-        self.list = async_to_streamed_response_wrapper(
-            references.list,
+        self.get = async_to_streamed_response_wrapper(
+            references.get,
         )

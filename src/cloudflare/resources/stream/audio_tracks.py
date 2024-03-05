@@ -24,12 +24,12 @@ from ..._base_client import (
     make_request_options,
 )
 from ...types.stream import (
+    AudioTrackGetResponse,
+    AudioTrackCopyResponse,
     AudioTrackEditResponse,
-    AudioTrackListResponse,
-    AudioTrackCreateResponse,
     AudioTrackDeleteResponse,
+    audio_track_copy_params,
     audio_track_edit_params,
-    audio_track_create_params,
 )
 
 __all__ = ["AudioTracks", "AsyncAudioTracks"]
@@ -43,112 +43,6 @@ class AudioTracks(SyncAPIResource):
     @cached_property
     def with_streaming_response(self) -> AudioTracksWithStreamingResponse:
         return AudioTracksWithStreamingResponse(self)
-
-    def create(
-        self,
-        identifier: str,
-        *,
-        account_id: str,
-        label: str,
-        url: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AudioTrackCreateResponse:
-        """
-        Adds an additional audio track to a video using the provided audio track URL.
-
-        Args:
-          account_id: The account identifier tag.
-
-          identifier: A Cloudflare-generated unique identifier for a media item.
-
-          label: A string to uniquely identify the track amongst other audio track labels for the
-              specified video.
-
-          url: An audio track URL. The server must be publicly routable and support `HTTP HEAD`
-              requests and `HTTP GET` range requests. The server should respond to `HTTP HEAD`
-              requests with a `content-range` header that includes the size of the file.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not identifier:
-            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
-        return self._post(
-            f"/accounts/{account_id}/stream/{identifier}/audio/copy",
-            body=maybe_transform(
-                {
-                    "label": label,
-                    "url": url,
-                },
-                audio_track_create_params.AudioTrackCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(Type[AudioTrackCreateResponse], ResultWrapper[AudioTrackCreateResponse]),
-        )
-
-    def list(
-        self,
-        identifier: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AudioTrackListResponse:
-        """Lists additional audio tracks on a video.
-
-        Note this API will not return
-        information for audio attached to the video upload.
-
-        Args:
-          account_id: The account identifier tag.
-
-          identifier: A Cloudflare-generated unique identifier for a media item.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not identifier:
-            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
-        return self._get(
-            f"/accounts/{account_id}/stream/{identifier}/audio",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(Type[AudioTrackListResponse], ResultWrapper[AudioTrackListResponse]),
-        )
 
     def delete(
         self,
@@ -204,6 +98,66 @@ class AudioTracks(SyncAPIResource):
                     Any, ResultWrapper[AudioTrackDeleteResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
+        )
+
+    def copy(
+        self,
+        identifier: str,
+        *,
+        account_id: str,
+        label: str,
+        url: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AudioTrackCopyResponse:
+        """
+        Adds an additional audio track to a video using the provided audio track URL.
+
+        Args:
+          account_id: The account identifier tag.
+
+          identifier: A Cloudflare-generated unique identifier for a media item.
+
+          label: A string to uniquely identify the track amongst other audio track labels for the
+              specified video.
+
+          url: An audio track URL. The server must be publicly routable and support `HTTP HEAD`
+              requests and `HTTP GET` range requests. The server should respond to `HTTP HEAD`
+              requests with a `content-range` header that includes the size of the file.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not identifier:
+            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+        return self._post(
+            f"/accounts/{account_id}/stream/{identifier}/audio/copy",
+            body=maybe_transform(
+                {
+                    "label": label,
+                    "url": url,
+                },
+                audio_track_copy_params.AudioTrackCopyParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[AudioTrackCopyResponse], ResultWrapper[AudioTrackCopyResponse]),
         )
 
     def edit(
@@ -272,77 +226,7 @@ class AudioTracks(SyncAPIResource):
             cast_to=cast(Type[AudioTrackEditResponse], ResultWrapper[AudioTrackEditResponse]),
         )
 
-
-class AsyncAudioTracks(AsyncAPIResource):
-    @cached_property
-    def with_raw_response(self) -> AsyncAudioTracksWithRawResponse:
-        return AsyncAudioTracksWithRawResponse(self)
-
-    @cached_property
-    def with_streaming_response(self) -> AsyncAudioTracksWithStreamingResponse:
-        return AsyncAudioTracksWithStreamingResponse(self)
-
-    async def create(
-        self,
-        identifier: str,
-        *,
-        account_id: str,
-        label: str,
-        url: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AudioTrackCreateResponse:
-        """
-        Adds an additional audio track to a video using the provided audio track URL.
-
-        Args:
-          account_id: The account identifier tag.
-
-          identifier: A Cloudflare-generated unique identifier for a media item.
-
-          label: A string to uniquely identify the track amongst other audio track labels for the
-              specified video.
-
-          url: An audio track URL. The server must be publicly routable and support `HTTP HEAD`
-              requests and `HTTP GET` range requests. The server should respond to `HTTP HEAD`
-              requests with a `content-range` header that includes the size of the file.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not identifier:
-            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
-        return await self._post(
-            f"/accounts/{account_id}/stream/{identifier}/audio/copy",
-            body=await async_maybe_transform(
-                {
-                    "label": label,
-                    "url": url,
-                },
-                audio_track_create_params.AudioTrackCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(Type[AudioTrackCreateResponse], ResultWrapper[AudioTrackCreateResponse]),
-        )
-
-    async def list(
+    def get(
         self,
         identifier: str,
         *,
@@ -353,7 +237,7 @@ class AsyncAudioTracks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AudioTrackListResponse:
+    ) -> AudioTrackGetResponse:
         """Lists additional audio tracks on a video.
 
         Note this API will not return
@@ -376,7 +260,7 @@ class AsyncAudioTracks(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
-        return await self._get(
+        return self._get(
             f"/accounts/{account_id}/stream/{identifier}/audio",
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -385,8 +269,18 @@ class AsyncAudioTracks(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AudioTrackListResponse], ResultWrapper[AudioTrackListResponse]),
+            cast_to=cast(Type[AudioTrackGetResponse], ResultWrapper[AudioTrackGetResponse]),
         )
+
+
+class AsyncAudioTracks(AsyncAPIResource):
+    @cached_property
+    def with_raw_response(self) -> AsyncAudioTracksWithRawResponse:
+        return AsyncAudioTracksWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncAudioTracksWithStreamingResponse:
+        return AsyncAudioTracksWithStreamingResponse(self)
 
     async def delete(
         self,
@@ -442,6 +336,66 @@ class AsyncAudioTracks(AsyncAPIResource):
                     Any, ResultWrapper[AudioTrackDeleteResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
+        )
+
+    async def copy(
+        self,
+        identifier: str,
+        *,
+        account_id: str,
+        label: str,
+        url: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AudioTrackCopyResponse:
+        """
+        Adds an additional audio track to a video using the provided audio track URL.
+
+        Args:
+          account_id: The account identifier tag.
+
+          identifier: A Cloudflare-generated unique identifier for a media item.
+
+          label: A string to uniquely identify the track amongst other audio track labels for the
+              specified video.
+
+          url: An audio track URL. The server must be publicly routable and support `HTTP HEAD`
+              requests and `HTTP GET` range requests. The server should respond to `HTTP HEAD`
+              requests with a `content-range` header that includes the size of the file.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not identifier:
+            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+        return await self._post(
+            f"/accounts/{account_id}/stream/{identifier}/audio/copy",
+            body=await async_maybe_transform(
+                {
+                    "label": label,
+                    "url": url,
+                },
+                audio_track_copy_params.AudioTrackCopyParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[AudioTrackCopyResponse], ResultWrapper[AudioTrackCopyResponse]),
         )
 
     async def edit(
@@ -510,22 +464,68 @@ class AsyncAudioTracks(AsyncAPIResource):
             cast_to=cast(Type[AudioTrackEditResponse], ResultWrapper[AudioTrackEditResponse]),
         )
 
+    async def get(
+        self,
+        identifier: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AudioTrackGetResponse:
+        """Lists additional audio tracks on a video.
+
+        Note this API will not return
+        information for audio attached to the video upload.
+
+        Args:
+          account_id: The account identifier tag.
+
+          identifier: A Cloudflare-generated unique identifier for a media item.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not identifier:
+            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+        return await self._get(
+            f"/accounts/{account_id}/stream/{identifier}/audio",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[AudioTrackGetResponse], ResultWrapper[AudioTrackGetResponse]),
+        )
+
 
 class AudioTracksWithRawResponse:
     def __init__(self, audio_tracks: AudioTracks) -> None:
         self._audio_tracks = audio_tracks
 
-        self.create = to_raw_response_wrapper(
-            audio_tracks.create,
-        )
-        self.list = to_raw_response_wrapper(
-            audio_tracks.list,
-        )
         self.delete = to_raw_response_wrapper(
             audio_tracks.delete,
         )
+        self.copy = to_raw_response_wrapper(
+            audio_tracks.copy,
+        )
         self.edit = to_raw_response_wrapper(
             audio_tracks.edit,
+        )
+        self.get = to_raw_response_wrapper(
+            audio_tracks.get,
         )
 
 
@@ -533,17 +533,17 @@ class AsyncAudioTracksWithRawResponse:
     def __init__(self, audio_tracks: AsyncAudioTracks) -> None:
         self._audio_tracks = audio_tracks
 
-        self.create = async_to_raw_response_wrapper(
-            audio_tracks.create,
-        )
-        self.list = async_to_raw_response_wrapper(
-            audio_tracks.list,
-        )
         self.delete = async_to_raw_response_wrapper(
             audio_tracks.delete,
         )
+        self.copy = async_to_raw_response_wrapper(
+            audio_tracks.copy,
+        )
         self.edit = async_to_raw_response_wrapper(
             audio_tracks.edit,
+        )
+        self.get = async_to_raw_response_wrapper(
+            audio_tracks.get,
         )
 
 
@@ -551,17 +551,17 @@ class AudioTracksWithStreamingResponse:
     def __init__(self, audio_tracks: AudioTracks) -> None:
         self._audio_tracks = audio_tracks
 
-        self.create = to_streamed_response_wrapper(
-            audio_tracks.create,
-        )
-        self.list = to_streamed_response_wrapper(
-            audio_tracks.list,
-        )
         self.delete = to_streamed_response_wrapper(
             audio_tracks.delete,
         )
+        self.copy = to_streamed_response_wrapper(
+            audio_tracks.copy,
+        )
         self.edit = to_streamed_response_wrapper(
             audio_tracks.edit,
+        )
+        self.get = to_streamed_response_wrapper(
+            audio_tracks.get,
         )
 
 
@@ -569,15 +569,15 @@ class AsyncAudioTracksWithStreamingResponse:
     def __init__(self, audio_tracks: AsyncAudioTracks) -> None:
         self._audio_tracks = audio_tracks
 
-        self.create = async_to_streamed_response_wrapper(
-            audio_tracks.create,
-        )
-        self.list = async_to_streamed_response_wrapper(
-            audio_tracks.list,
-        )
         self.delete = async_to_streamed_response_wrapper(
             audio_tracks.delete,
         )
+        self.copy = async_to_streamed_response_wrapper(
+            audio_tracks.copy,
+        )
         self.edit = async_to_streamed_response_wrapper(
             audio_tracks.edit,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            audio_tracks.get,
         )
