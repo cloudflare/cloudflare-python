@@ -6,14 +6,10 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = [
-    "DeviceDevicesListDevicesResponse",
-    "DeviceDevicesListDevicesResponseItem",
-    "DeviceDevicesListDevicesResponseItemUser",
-]
+__all__ = ["DeviceListResponse", "DeviceListResponseItem", "DeviceListResponseItemUser"]
 
 
-class DeviceDevicesListDevicesResponseItemUser(BaseModel):
+class DeviceListResponseItemUser(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
@@ -24,7 +20,7 @@ class DeviceDevicesListDevicesResponseItemUser(BaseModel):
     """The enrolled device user's name."""
 
 
-class DeviceDevicesListDevicesResponseItem(BaseModel):
+class DeviceListResponseItem(BaseModel):
     id: Optional[str] = None
     """Device ID."""
 
@@ -78,10 +74,10 @@ class DeviceDevicesListDevicesResponseItem(BaseModel):
     updated: Optional[datetime] = None
     """When the device was updated."""
 
-    user: Optional[DeviceDevicesListDevicesResponseItemUser] = None
+    user: Optional[DeviceListResponseItemUser] = None
 
     version: Optional[str] = None
     """The WARP client version."""
 
 
-DeviceDevicesListDevicesResponse = List[DeviceDevicesListDevicesResponseItem]
+DeviceListResponse = List[DeviceListResponseItem]

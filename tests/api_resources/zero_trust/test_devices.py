@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.zero_trust import DeviceGetResponse, DeviceDevicesListDevicesResponse
+from cloudflare.types.zero_trust import DeviceGetResponse, DeviceListResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -19,35 +19,35 @@ class TestDevices:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_devices_list_devices(self, client: Cloudflare) -> None:
-        device = client.zero_trust.devices.devices_list_devices(
+    def test_method_list(self, client: Cloudflare) -> None:
+        device = client.zero_trust.devices.list(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[DeviceDevicesListDevicesResponse], device, path=["response"])
+        assert_matches_type(Optional[DeviceListResponse], device, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_devices_list_devices(self, client: Cloudflare) -> None:
-        response = client.zero_trust.devices.with_raw_response.devices_list_devices(
+    def test_raw_response_list(self, client: Cloudflare) -> None:
+        response = client.zero_trust.devices.with_raw_response.list(
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         device = response.parse()
-        assert_matches_type(Optional[DeviceDevicesListDevicesResponse], device, path=["response"])
+        assert_matches_type(Optional[DeviceListResponse], device, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_devices_list_devices(self, client: Cloudflare) -> None:
-        with client.zero_trust.devices.with_streaming_response.devices_list_devices(
+    def test_streaming_response_list(self, client: Cloudflare) -> None:
+        with client.zero_trust.devices.with_streaming_response.list(
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             device = response.parse()
-            assert_matches_type(Optional[DeviceDevicesListDevicesResponse], device, path=["response"])
+            assert_matches_type(Optional[DeviceListResponse], device, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -103,35 +103,35 @@ class TestAsyncDevices:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_devices_list_devices(self, async_client: AsyncCloudflare) -> None:
-        device = await async_client.zero_trust.devices.devices_list_devices(
+    async def test_method_list(self, async_client: AsyncCloudflare) -> None:
+        device = await async_client.zero_trust.devices.list(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[DeviceDevicesListDevicesResponse], device, path=["response"])
+        assert_matches_type(Optional[DeviceListResponse], device, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_devices_list_devices(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.zero_trust.devices.with_raw_response.devices_list_devices(
+    async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.zero_trust.devices.with_raw_response.list(
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         device = await response.parse()
-        assert_matches_type(Optional[DeviceDevicesListDevicesResponse], device, path=["response"])
+        assert_matches_type(Optional[DeviceListResponse], device, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_devices_list_devices(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.zero_trust.devices.with_streaming_response.devices_list_devices(
+    async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.zero_trust.devices.with_streaming_response.list(
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             device = await response.parse()
-            assert_matches_type(Optional[DeviceDevicesListDevicesResponse], device, path=["response"])
+            assert_matches_type(Optional[DeviceListResponse], device, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

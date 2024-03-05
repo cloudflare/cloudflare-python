@@ -8,6 +8,7 @@ from .tunnel_edit_params import TunnelEditParams as TunnelEditParams
 from .tunnel_list_params import TunnelListParams as TunnelListParams
 from .device_get_response import DeviceGetResponse as DeviceGetResponse
 from .tunnel_get_response import TunnelGetResponse as TunnelGetResponse
+from .device_list_response import DeviceListResponse as DeviceListResponse
 from .tunnel_create_params import TunnelCreateParams as TunnelCreateParams
 from .tunnel_delete_params import TunnelDeleteParams as TunnelDeleteParams
 from .tunnel_edit_response import TunnelEditResponse as TunnelEditResponse
@@ -33,4 +34,3 @@ from .identity_provider_delete_response import IdentityProviderDeleteResponse as
 from .identity_provider_update_response import IdentityProviderUpdateResponse as IdentityProviderUpdateResponse
 from .connectivity_setting_edit_response import ConnectivitySettingEditResponse as ConnectivitySettingEditResponse
 from .organization_revoke_users_response import OrganizationRevokeUsersResponse as OrganizationRevokeUsersResponse
-from .device_devices_list_devices_response import DeviceDevicesListDevicesResponse as DeviceDevicesListDevicesResponse

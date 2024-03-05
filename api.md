@@ -4871,12 +4871,12 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust import DeviceDevicesListDevicesResponse, DeviceGetResponse
+from cloudflare.types.zero_trust import DeviceListResponse, DeviceGetResponse
 ```
 
 Methods:
 
-- <code title="get /accounts/{account_id}/devices">client.zero_trust.devices.<a href="./src/cloudflare/resources/zero_trust/devices/devices.py">devices_list_devices</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/device_devices_list_devices_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/devices">client.zero_trust.devices.<a href="./src/cloudflare/resources/zero_trust/devices/devices.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/device_list_response.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/devices/{device_id}">client.zero_trust.devices.<a href="./src/cloudflare/resources/zero_trust/devices/devices.py">get</a>(device_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/device_get_response.py">Optional</a></code>
 
 ### DEXTests
