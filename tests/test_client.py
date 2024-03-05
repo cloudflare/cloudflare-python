@@ -17,6 +17,7 @@ from respx import MockRouter
 from pydantic import ValidationError
 
 from cloudflare import Cloudflare, AsyncCloudflare, APIResponseValidationError
+from cloudflare._types import Omit
 from cloudflare._client import Cloudflare, AsyncCloudflare
 from cloudflare._models import BaseModel, FinalRequestOptions
 from cloudflare._constants import RAW_RESPONSE_HEADER
@@ -31,6 +32,8 @@ from cloudflare._base_client import (
 from .utils import update_env
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
+api_key = "144c9defac04969c7bfad8efaa8ea194"
+api_email = "user@example.com"
 
 
 def _get_params(client: BaseClient[Any, Any]) -> dict[str, str]:
@@ -52,7 +55,7 @@ def _get_open_connections(client: Cloudflare | AsyncCloudflare) -> int:
 
 
 class TestCloudflare:
-    client = Cloudflare(base_url=base_url, _strict_response_validation=True)
+    client = Cloudflare(base_url=base_url, api_key=api_key, api_email=api_email, _strict_response_validation=True)
 
     @pytest.mark.respx(base_url=base_url)
     def test_raw_response(self, respx_mock: MockRouter) -> None:
@@ -78,6 +81,14 @@ class TestCloudflare:
         copied = self.client.copy()
         assert id(copied) != id(self.client)
 
+        copied = self.client.copy(api_key="another 144c9defac04969c7bfad8efaa8ea194")
+        assert copied.api_key == "another 144c9defac04969c7bfad8efaa8ea194"
+        assert self.client.api_key == "144c9defac04969c7bfad8efaa8ea194"
+
+        copied = self.client.copy(api_email="another user@example.com")
+        assert copied.api_email == "another user@example.com"
+        assert self.client.api_email == "user@example.com"
+
     def test_copy_default_options(self) -> None:
         # options that have a default are overridden correctly
         copied = self.client.copy(max_retries=7)
@@ -95,7 +106,13 @@ class TestCloudflare:
         assert isinstance(self.client.timeout, httpx.Timeout)
 
     def test_copy_default_headers(self) -> None:
-        client = Cloudflare(base_url=base_url, _strict_response_validation=True, default_headers={"X-Foo": "bar"})
+        client = Cloudflare(
+            base_url=base_url,
+            api_key=api_key,
+            api_email=api_email,
+            _strict_response_validation=True,
+            default_headers={"X-Foo": "bar"},
+        )
         assert client.default_headers["X-Foo"] == "bar"
 
         # does not override the already given value when not specified
@@ -127,7 +144,13 @@ class TestCloudflare:
             client.copy(set_default_headers={}, default_headers={"X-Foo": "Bar"})
 
     def test_copy_default_query(self) -> None:
-        client = Cloudflare(base_url=base_url, _strict_response_validation=True, default_query={"foo": "bar"})
+        client = Cloudflare(
+            base_url=base_url,
+            api_key=api_key,
+            api_email=api_email,
+            _strict_response_validation=True,
+            default_query={"foo": "bar"},
+        )
         assert _get_params(client)["foo"] == "bar"
 
         # does not override the already given value when not specified
@@ -250,7 +273,13 @@ class TestCloudflare:
         assert timeout == httpx.Timeout(100.0)
 
     def test_client_timeout_option(self) -> None:
-        client = Cloudflare(base_url=base_url, _strict_response_validation=True, timeout=httpx.Timeout(0))
+        client = Cloudflare(
+            base_url=base_url,
+            api_key=api_key,
+            api_email=api_email,
+            _strict_response_validation=True,
+            timeout=httpx.Timeout(0),
+        )
 
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         timeout = httpx.Timeout(**request.extensions["timeout"])  # type: ignore
@@ -259,7 +288,13 @@ class TestCloudflare:
     def test_http_client_timeout_option(self) -> None:
         # custom timeout given to the httpx client should be used
         with httpx.Client(timeout=None) as http_client:
-            client = Cloudflare(base_url=base_url, _strict_response_validation=True, http_client=http_client)
+            client = Cloudflare(
+                base_url=base_url,
+                api_key=api_key,
+                api_email=api_email,
+                _strict_response_validation=True,
+                http_client=http_client,
+            )
 
             request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
             timeout = httpx.Timeout(**request.extensions["timeout"])  # type: ignore
@@ -267,7 +302,13 @@ class TestCloudflare:
 
         # no timeout given to the httpx client should not use the httpx default
         with httpx.Client() as http_client:
-            client = Cloudflare(base_url=base_url, _strict_response_validation=True, http_client=http_client)
+            client = Cloudflare(
+                base_url=base_url,
+                api_key=api_key,
+                api_email=api_email,
+                _strict_response_validation=True,
+                http_client=http_client,
+            )
 
             request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
             timeout = httpx.Timeout(**request.extensions["timeout"])  # type: ignore
@@ -275,20 +316,34 @@ class TestCloudflare:
 
         # explicitly passing the default timeout currently results in it being ignored
         with httpx.Client(timeout=HTTPX_DEFAULT_TIMEOUT) as http_client:
-            client = Cloudflare(base_url=base_url, _strict_response_validation=True, http_client=http_client)
+            client = Cloudflare(
+                base_url=base_url,
+                api_key=api_key,
+                api_email=api_email,
+                _strict_response_validation=True,
+                http_client=http_client,
+            )
 
             request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
             timeout = httpx.Timeout(**request.extensions["timeout"])  # type: ignore
             assert timeout == DEFAULT_TIMEOUT  # our default
 
     def test_default_headers_option(self) -> None:
-        client = Cloudflare(base_url=base_url, _strict_response_validation=True, default_headers={"X-Foo": "bar"})
+        client = Cloudflare(
+            base_url=base_url,
+            api_key=api_key,
+            api_email=api_email,
+            _strict_response_validation=True,
+            default_headers={"X-Foo": "bar"},
+        )
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("x-foo") == "bar"
         assert request.headers.get("x-stainless-lang") == "python"
 
         client2 = Cloudflare(
             base_url=base_url,
+            api_key=api_key,
+            api_email=api_email,
             _strict_response_validation=True,
             default_headers={
                 "X-Foo": "stainless",
@@ -299,8 +354,35 @@ class TestCloudflare:
         assert request.headers.get("x-foo") == "stainless"
         assert request.headers.get("x-stainless-lang") == "my-overriding-header"
 
+    def test_validate_headers(self) -> None:
+        client = Cloudflare(base_url=base_url, api_key=api_key, api_email=api_email, _strict_response_validation=True)
+        request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
+        assert request.headers.get("X-Auth-Email") == api_email
+        request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
+        assert request.headers.get("X-Auth-Key") == api_key
+
+        client2 = Cloudflare(base_url=base_url, api_key=None, api_email=None, _strict_response_validation=True)
+        with pytest.raises(
+            TypeError,
+            match="Could not resolve authentication method. Expected one of api_email, api_key, api_token or user_service_key to be set. Or for one of the `X-Auth-Email`, `X-Auth-Key`, `Authorization` or `X-Auth-User-Service-Key` headers to be explicitly omitted",
+        ):
+            client2._build_request(FinalRequestOptions(method="get", url="/foo"))
+
+        request2 = client2._build_request(
+            FinalRequestOptions(method="get", url="/foo", headers={"X-Auth-Email": Omit()})
+        )
+        assert request2.headers.get("X-Auth-Email") is None
+        request2 = client2._build_request(FinalRequestOptions(method="get", url="/foo", headers={"X-Auth-Key": Omit()}))
+        assert request2.headers.get("X-Auth-Key") is None
+
     def test_default_query_option(self) -> None:
-        client = Cloudflare(base_url=base_url, _strict_response_validation=True, default_query={"query_param": "bar"})
+        client = Cloudflare(
+            base_url=base_url,
+            api_key=api_key,
+            api_email=api_email,
+            _strict_response_validation=True,
+            default_query={"query_param": "bar"},
+        )
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         url = httpx.URL(request.url)
         assert dict(url.params) == {"query_param": "bar"}
@@ -499,7 +581,12 @@ class TestCloudflare:
         assert response.foo == 2
 
     def test_base_url_setter(self) -> None:
-        client = Cloudflare(base_url="https://example.com/from_init", _strict_response_validation=True)
+        client = Cloudflare(
+            base_url="https://example.com/from_init",
+            api_key=api_key,
+            api_email=api_email,
+            _strict_response_validation=True,
+        )
         assert client.base_url == "https://example.com/from_init/"
 
         client.base_url = "https://example.com/from_setter"  # type: ignore[assignment]
@@ -508,15 +595,22 @@ class TestCloudflare:
 
     def test_base_url_env(self) -> None:
         with update_env(CLOUDFLARE_BASE_URL="http://localhost:5000/from/env"):
-            client = Cloudflare(_strict_response_validation=True)
+            client = Cloudflare(api_key=api_key, api_email=api_email, _strict_response_validation=True)
             assert client.base_url == "http://localhost:5000/from/env/"
 
     @pytest.mark.parametrize(
         "client",
         [
-            Cloudflare(base_url="http://localhost:5000/custom/path/", _strict_response_validation=True),
             Cloudflare(
                 base_url="http://localhost:5000/custom/path/",
+                api_key=api_key,
+                api_email=api_email,
+                _strict_response_validation=True,
+            ),
+            Cloudflare(
+                base_url="http://localhost:5000/custom/path/",
+                api_key=api_key,
+                api_email=api_email,
                 _strict_response_validation=True,
                 http_client=httpx.Client(),
             ),
@@ -536,9 +630,16 @@ class TestCloudflare:
     @pytest.mark.parametrize(
         "client",
         [
-            Cloudflare(base_url="http://localhost:5000/custom/path/", _strict_response_validation=True),
             Cloudflare(
                 base_url="http://localhost:5000/custom/path/",
+                api_key=api_key,
+                api_email=api_email,
+                _strict_response_validation=True,
+            ),
+            Cloudflare(
+                base_url="http://localhost:5000/custom/path/",
+                api_key=api_key,
+                api_email=api_email,
                 _strict_response_validation=True,
                 http_client=httpx.Client(),
             ),
@@ -558,9 +659,16 @@ class TestCloudflare:
     @pytest.mark.parametrize(
         "client",
         [
-            Cloudflare(base_url="http://localhost:5000/custom/path/", _strict_response_validation=True),
             Cloudflare(
                 base_url="http://localhost:5000/custom/path/",
+                api_key=api_key,
+                api_email=api_email,
+                _strict_response_validation=True,
+            ),
+            Cloudflare(
+                base_url="http://localhost:5000/custom/path/",
+                api_key=api_key,
+                api_email=api_email,
                 _strict_response_validation=True,
                 http_client=httpx.Client(),
             ),
@@ -578,7 +686,7 @@ class TestCloudflare:
         assert request.url == "https://myapi.com/foo"
 
     def test_copied_client_does_not_close_http(self) -> None:
-        client = Cloudflare(base_url=base_url, _strict_response_validation=True)
+        client = Cloudflare(base_url=base_url, api_key=api_key, api_email=api_email, _strict_response_validation=True)
         assert not client.is_closed()
 
         copied = client.copy()
@@ -589,7 +697,7 @@ class TestCloudflare:
         assert not client.is_closed()
 
     def test_client_context_manager(self) -> None:
-        client = Cloudflare(base_url=base_url, _strict_response_validation=True)
+        client = Cloudflare(base_url=base_url, api_key=api_key, api_email=api_email, _strict_response_validation=True)
         with client as c2:
             assert c2 is client
             assert not c2.is_closed()
@@ -615,12 +723,14 @@ class TestCloudflare:
 
         respx_mock.get("/foo").mock(return_value=httpx.Response(200, text="my-custom-format"))
 
-        strict_client = Cloudflare(base_url=base_url, _strict_response_validation=True)
+        strict_client = Cloudflare(
+            base_url=base_url, api_key=api_key, api_email=api_email, _strict_response_validation=True
+        )
 
         with pytest.raises(APIResponseValidationError):
             strict_client.get("/foo", cast_to=Model)
 
-        client = Cloudflare(base_url=base_url, _strict_response_validation=False)
+        client = Cloudflare(base_url=base_url, api_key=api_key, api_email=api_email, _strict_response_validation=False)
 
         response = client.get("/foo", cast_to=Model)
         assert isinstance(response, str)  # type: ignore[unreachable]
@@ -647,7 +757,7 @@ class TestCloudflare:
     )
     @mock.patch("time.time", mock.MagicMock(return_value=1696004797))
     def test_parse_retry_after_header(self, remaining_retries: int, retry_after: str, timeout: float) -> None:
-        client = Cloudflare(base_url=base_url, _strict_response_validation=True)
+        client = Cloudflare(base_url=base_url, api_key=api_key, api_email=api_email, _strict_response_validation=True)
 
         headers = httpx.Headers({"retry-after": retry_after})
         options = FinalRequestOptions(method="get", url="/foo", max_retries=3)
@@ -690,7 +800,7 @@ class TestCloudflare:
 
 
 class TestAsyncCloudflare:
-    client = AsyncCloudflare(base_url=base_url, _strict_response_validation=True)
+    client = AsyncCloudflare(base_url=base_url, api_key=api_key, api_email=api_email, _strict_response_validation=True)
 
     @pytest.mark.respx(base_url=base_url)
     @pytest.mark.asyncio
@@ -718,6 +828,14 @@ class TestAsyncCloudflare:
         copied = self.client.copy()
         assert id(copied) != id(self.client)
 
+        copied = self.client.copy(api_key="another 144c9defac04969c7bfad8efaa8ea194")
+        assert copied.api_key == "another 144c9defac04969c7bfad8efaa8ea194"
+        assert self.client.api_key == "144c9defac04969c7bfad8efaa8ea194"
+
+        copied = self.client.copy(api_email="another user@example.com")
+        assert copied.api_email == "another user@example.com"
+        assert self.client.api_email == "user@example.com"
+
     def test_copy_default_options(self) -> None:
         # options that have a default are overridden correctly
         copied = self.client.copy(max_retries=7)
@@ -735,7 +853,13 @@ class TestAsyncCloudflare:
         assert isinstance(self.client.timeout, httpx.Timeout)
 
     def test_copy_default_headers(self) -> None:
-        client = AsyncCloudflare(base_url=base_url, _strict_response_validation=True, default_headers={"X-Foo": "bar"})
+        client = AsyncCloudflare(
+            base_url=base_url,
+            api_key=api_key,
+            api_email=api_email,
+            _strict_response_validation=True,
+            default_headers={"X-Foo": "bar"},
+        )
         assert client.default_headers["X-Foo"] == "bar"
 
         # does not override the already given value when not specified
@@ -767,7 +891,13 @@ class TestAsyncCloudflare:
             client.copy(set_default_headers={}, default_headers={"X-Foo": "Bar"})
 
     def test_copy_default_query(self) -> None:
-        client = AsyncCloudflare(base_url=base_url, _strict_response_validation=True, default_query={"foo": "bar"})
+        client = AsyncCloudflare(
+            base_url=base_url,
+            api_key=api_key,
+            api_email=api_email,
+            _strict_response_validation=True,
+            default_query={"foo": "bar"},
+        )
         assert _get_params(client)["foo"] == "bar"
 
         # does not override the already given value when not specified
@@ -890,7 +1020,13 @@ class TestAsyncCloudflare:
         assert timeout == httpx.Timeout(100.0)
 
     async def test_client_timeout_option(self) -> None:
-        client = AsyncCloudflare(base_url=base_url, _strict_response_validation=True, timeout=httpx.Timeout(0))
+        client = AsyncCloudflare(
+            base_url=base_url,
+            api_key=api_key,
+            api_email=api_email,
+            _strict_response_validation=True,
+            timeout=httpx.Timeout(0),
+        )
 
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         timeout = httpx.Timeout(**request.extensions["timeout"])  # type: ignore
@@ -899,7 +1035,13 @@ class TestAsyncCloudflare:
     async def test_http_client_timeout_option(self) -> None:
         # custom timeout given to the httpx client should be used
         async with httpx.AsyncClient(timeout=None) as http_client:
-            client = AsyncCloudflare(base_url=base_url, _strict_response_validation=True, http_client=http_client)
+            client = AsyncCloudflare(
+                base_url=base_url,
+                api_key=api_key,
+                api_email=api_email,
+                _strict_response_validation=True,
+                http_client=http_client,
+            )
 
             request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
             timeout = httpx.Timeout(**request.extensions["timeout"])  # type: ignore
@@ -907,7 +1049,13 @@ class TestAsyncCloudflare:
 
         # no timeout given to the httpx client should not use the httpx default
         async with httpx.AsyncClient() as http_client:
-            client = AsyncCloudflare(base_url=base_url, _strict_response_validation=True, http_client=http_client)
+            client = AsyncCloudflare(
+                base_url=base_url,
+                api_key=api_key,
+                api_email=api_email,
+                _strict_response_validation=True,
+                http_client=http_client,
+            )
 
             request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
             timeout = httpx.Timeout(**request.extensions["timeout"])  # type: ignore
@@ -915,20 +1063,34 @@ class TestAsyncCloudflare:
 
         # explicitly passing the default timeout currently results in it being ignored
         async with httpx.AsyncClient(timeout=HTTPX_DEFAULT_TIMEOUT) as http_client:
-            client = AsyncCloudflare(base_url=base_url, _strict_response_validation=True, http_client=http_client)
+            client = AsyncCloudflare(
+                base_url=base_url,
+                api_key=api_key,
+                api_email=api_email,
+                _strict_response_validation=True,
+                http_client=http_client,
+            )
 
             request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
             timeout = httpx.Timeout(**request.extensions["timeout"])  # type: ignore
             assert timeout == DEFAULT_TIMEOUT  # our default
 
     def test_default_headers_option(self) -> None:
-        client = AsyncCloudflare(base_url=base_url, _strict_response_validation=True, default_headers={"X-Foo": "bar"})
+        client = AsyncCloudflare(
+            base_url=base_url,
+            api_key=api_key,
+            api_email=api_email,
+            _strict_response_validation=True,
+            default_headers={"X-Foo": "bar"},
+        )
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("x-foo") == "bar"
         assert request.headers.get("x-stainless-lang") == "python"
 
         client2 = AsyncCloudflare(
             base_url=base_url,
+            api_key=api_key,
+            api_email=api_email,
             _strict_response_validation=True,
             default_headers={
                 "X-Foo": "stainless",
@@ -939,9 +1101,36 @@ class TestAsyncCloudflare:
         assert request.headers.get("x-foo") == "stainless"
         assert request.headers.get("x-stainless-lang") == "my-overriding-header"
 
+    def test_validate_headers(self) -> None:
+        client = AsyncCloudflare(
+            base_url=base_url, api_key=api_key, api_email=api_email, _strict_response_validation=True
+        )
+        request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
+        assert request.headers.get("X-Auth-Email") == api_email
+        request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
+        assert request.headers.get("X-Auth-Key") == api_key
+
+        client2 = AsyncCloudflare(base_url=base_url, api_key=None, api_email=None, _strict_response_validation=True)
+        with pytest.raises(
+            TypeError,
+            match="Could not resolve authentication method. Expected one of api_email, api_key, api_token or user_service_key to be set. Or for one of the `X-Auth-Email`, `X-Auth-Key`, `Authorization` or `X-Auth-User-Service-Key` headers to be explicitly omitted",
+        ):
+            client2._build_request(FinalRequestOptions(method="get", url="/foo"))
+
+        request2 = client2._build_request(
+            FinalRequestOptions(method="get", url="/foo", headers={"X-Auth-Email": Omit()})
+        )
+        assert request2.headers.get("X-Auth-Email") is None
+        request2 = client2._build_request(FinalRequestOptions(method="get", url="/foo", headers={"X-Auth-Key": Omit()}))
+        assert request2.headers.get("X-Auth-Key") is None
+
     def test_default_query_option(self) -> None:
         client = AsyncCloudflare(
-            base_url=base_url, _strict_response_validation=True, default_query={"query_param": "bar"}
+            base_url=base_url,
+            api_key=api_key,
+            api_email=api_email,
+            _strict_response_validation=True,
+            default_query={"query_param": "bar"},
         )
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         url = httpx.URL(request.url)
@@ -1141,7 +1330,12 @@ class TestAsyncCloudflare:
         assert response.foo == 2
 
     def test_base_url_setter(self) -> None:
-        client = AsyncCloudflare(base_url="https://example.com/from_init", _strict_response_validation=True)
+        client = AsyncCloudflare(
+            base_url="https://example.com/from_init",
+            api_key=api_key,
+            api_email=api_email,
+            _strict_response_validation=True,
+        )
         assert client.base_url == "https://example.com/from_init/"
 
         client.base_url = "https://example.com/from_setter"  # type: ignore[assignment]
@@ -1150,15 +1344,22 @@ class TestAsyncCloudflare:
 
     def test_base_url_env(self) -> None:
         with update_env(CLOUDFLARE_BASE_URL="http://localhost:5000/from/env"):
-            client = AsyncCloudflare(_strict_response_validation=True)
+            client = AsyncCloudflare(api_key=api_key, api_email=api_email, _strict_response_validation=True)
             assert client.base_url == "http://localhost:5000/from/env/"
 
     @pytest.mark.parametrize(
         "client",
         [
-            AsyncCloudflare(base_url="http://localhost:5000/custom/path/", _strict_response_validation=True),
             AsyncCloudflare(
                 base_url="http://localhost:5000/custom/path/",
+                api_key=api_key,
+                api_email=api_email,
+                _strict_response_validation=True,
+            ),
+            AsyncCloudflare(
+                base_url="http://localhost:5000/custom/path/",
+                api_key=api_key,
+                api_email=api_email,
                 _strict_response_validation=True,
                 http_client=httpx.AsyncClient(),
             ),
@@ -1178,9 +1379,16 @@ class TestAsyncCloudflare:
     @pytest.mark.parametrize(
         "client",
         [
-            AsyncCloudflare(base_url="http://localhost:5000/custom/path/", _strict_response_validation=True),
             AsyncCloudflare(
                 base_url="http://localhost:5000/custom/path/",
+                api_key=api_key,
+                api_email=api_email,
+                _strict_response_validation=True,
+            ),
+            AsyncCloudflare(
+                base_url="http://localhost:5000/custom/path/",
+                api_key=api_key,
+                api_email=api_email,
                 _strict_response_validation=True,
                 http_client=httpx.AsyncClient(),
             ),
@@ -1200,9 +1408,16 @@ class TestAsyncCloudflare:
     @pytest.mark.parametrize(
         "client",
         [
-            AsyncCloudflare(base_url="http://localhost:5000/custom/path/", _strict_response_validation=True),
             AsyncCloudflare(
                 base_url="http://localhost:5000/custom/path/",
+                api_key=api_key,
+                api_email=api_email,
+                _strict_response_validation=True,
+            ),
+            AsyncCloudflare(
+                base_url="http://localhost:5000/custom/path/",
+                api_key=api_key,
+                api_email=api_email,
                 _strict_response_validation=True,
                 http_client=httpx.AsyncClient(),
             ),
@@ -1220,7 +1435,9 @@ class TestAsyncCloudflare:
         assert request.url == "https://myapi.com/foo"
 
     async def test_copied_client_does_not_close_http(self) -> None:
-        client = AsyncCloudflare(base_url=base_url, _strict_response_validation=True)
+        client = AsyncCloudflare(
+            base_url=base_url, api_key=api_key, api_email=api_email, _strict_response_validation=True
+        )
         assert not client.is_closed()
 
         copied = client.copy()
@@ -1232,7 +1449,9 @@ class TestAsyncCloudflare:
         assert not client.is_closed()
 
     async def test_client_context_manager(self) -> None:
-        client = AsyncCloudflare(base_url=base_url, _strict_response_validation=True)
+        client = AsyncCloudflare(
+            base_url=base_url, api_key=api_key, api_email=api_email, _strict_response_validation=True
+        )
         async with client as c2:
             assert c2 is client
             assert not c2.is_closed()
@@ -1260,12 +1479,16 @@ class TestAsyncCloudflare:
 
         respx_mock.get("/foo").mock(return_value=httpx.Response(200, text="my-custom-format"))
 
-        strict_client = AsyncCloudflare(base_url=base_url, _strict_response_validation=True)
+        strict_client = AsyncCloudflare(
+            base_url=base_url, api_key=api_key, api_email=api_email, _strict_response_validation=True
+        )
 
         with pytest.raises(APIResponseValidationError):
             await strict_client.get("/foo", cast_to=Model)
 
-        client = AsyncCloudflare(base_url=base_url, _strict_response_validation=False)
+        client = AsyncCloudflare(
+            base_url=base_url, api_key=api_key, api_email=api_email, _strict_response_validation=False
+        )
 
         response = await client.get("/foo", cast_to=Model)
         assert isinstance(response, str)  # type: ignore[unreachable]
@@ -1293,7 +1516,9 @@ class TestAsyncCloudflare:
     @mock.patch("time.time", mock.MagicMock(return_value=1696004797))
     @pytest.mark.asyncio
     async def test_parse_retry_after_header(self, remaining_retries: int, retry_after: str, timeout: float) -> None:
-        client = AsyncCloudflare(base_url=base_url, _strict_response_validation=True)
+        client = AsyncCloudflare(
+            base_url=base_url, api_key=api_key, api_email=api_email, _strict_response_validation=True
+        )
 
         headers = httpx.Headers({"retry-after": retry_after})
         options = FinalRequestOptions(method="get", url="/foo", max_retries=3)
