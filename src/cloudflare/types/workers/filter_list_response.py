@@ -2,18 +2,8 @@
 
 from typing import List
 
-from ..._models import BaseModel
+from .workers_filters import WorkersFilters
 
-__all__ = ["FilterListResponse", "FilterListResponseItem"]
+__all__ = ["FilterListResponse"]
 
-
-class FilterListResponseItem(BaseModel):
-    id: str
-    """Identifier"""
-
-    enabled: bool
-
-    pattern: str
-
-
-FilterListResponse = List[FilterListResponseItem]
+FilterListResponse = List[WorkersFilters]

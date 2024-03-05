@@ -23,7 +23,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zero_trust.devices import SettingListResponse, SettingUpdateResponse, setting_update_params
+from ....types.zero_trust.devices import TeamsDevicesZeroTrustAccountDeviceSettings, setting_update_params
 
 __all__ = ["Settings", "AsyncSettings"]
 
@@ -51,7 +51,7 @@ class Settings(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SettingUpdateResponse]:
+    ) -> Optional[TeamsDevicesZeroTrustAccountDeviceSettings]:
         """
         Updates the current device settings for a Zero Trust account.
 
@@ -90,7 +90,10 @@ class Settings(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SettingUpdateResponse]], ResultWrapper[SettingUpdateResponse]),
+            cast_to=cast(
+                Type[Optional[TeamsDevicesZeroTrustAccountDeviceSettings]],
+                ResultWrapper[TeamsDevicesZeroTrustAccountDeviceSettings],
+            ),
         )
 
     def list(
@@ -103,7 +106,7 @@ class Settings(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SettingListResponse]:
+    ) -> Optional[TeamsDevicesZeroTrustAccountDeviceSettings]:
         """
         Describes the current device settings for a Zero Trust account.
 
@@ -125,7 +128,10 @@ class Settings(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SettingListResponse]], ResultWrapper[SettingListResponse]),
+            cast_to=cast(
+                Type[Optional[TeamsDevicesZeroTrustAccountDeviceSettings]],
+                ResultWrapper[TeamsDevicesZeroTrustAccountDeviceSettings],
+            ),
         )
 
 
@@ -152,7 +158,7 @@ class AsyncSettings(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SettingUpdateResponse]:
+    ) -> Optional[TeamsDevicesZeroTrustAccountDeviceSettings]:
         """
         Updates the current device settings for a Zero Trust account.
 
@@ -191,7 +197,10 @@ class AsyncSettings(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SettingUpdateResponse]], ResultWrapper[SettingUpdateResponse]),
+            cast_to=cast(
+                Type[Optional[TeamsDevicesZeroTrustAccountDeviceSettings]],
+                ResultWrapper[TeamsDevicesZeroTrustAccountDeviceSettings],
+            ),
         )
 
     async def list(
@@ -204,7 +213,7 @@ class AsyncSettings(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SettingListResponse]:
+    ) -> Optional[TeamsDevicesZeroTrustAccountDeviceSettings]:
         """
         Describes the current device settings for a Zero Trust account.
 
@@ -226,7 +235,10 @@ class AsyncSettings(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SettingListResponse]], ResultWrapper[SettingListResponse]),
+            cast_to=cast(
+                Type[Optional[TeamsDevicesZeroTrustAccountDeviceSettings]],
+                ResultWrapper[TeamsDevicesZeroTrustAccountDeviceSettings],
+            ),
         )
 
 

@@ -9,12 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types import (
-    SnippetGetResponse,
-    SnippetListResponse,
-    SnippetDeleteResponse,
-    SnippetUpdateResponse,
-)
+from cloudflare.types import Snippet, SnippetListResponse, SnippetDeleteResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -29,7 +24,7 @@ class TestSnippets:
             "snippet_name_01",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SnippetUpdateResponse, snippet, path=["response"])
+        assert_matches_type(Snippet, snippet, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -40,7 +35,7 @@ class TestSnippets:
             files="export { async function fetch(request, env) {return new Response('some_response') } }",
             metadata={"main_module": "main.js"},
         )
-        assert_matches_type(SnippetUpdateResponse, snippet, path=["response"])
+        assert_matches_type(Snippet, snippet, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -53,7 +48,7 @@ class TestSnippets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         snippet = response.parse()
-        assert_matches_type(SnippetUpdateResponse, snippet, path=["response"])
+        assert_matches_type(Snippet, snippet, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -66,7 +61,7 @@ class TestSnippets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             snippet = response.parse()
-            assert_matches_type(SnippetUpdateResponse, snippet, path=["response"])
+            assert_matches_type(Snippet, snippet, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -186,7 +181,7 @@ class TestSnippets:
             "snippet_name_01",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SnippetGetResponse, snippet, path=["response"])
+        assert_matches_type(Snippet, snippet, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -199,7 +194,7 @@ class TestSnippets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         snippet = response.parse()
-        assert_matches_type(SnippetGetResponse, snippet, path=["response"])
+        assert_matches_type(Snippet, snippet, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -212,7 +207,7 @@ class TestSnippets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             snippet = response.parse()
-            assert_matches_type(SnippetGetResponse, snippet, path=["response"])
+            assert_matches_type(Snippet, snippet, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -242,7 +237,7 @@ class TestAsyncSnippets:
             "snippet_name_01",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SnippetUpdateResponse, snippet, path=["response"])
+        assert_matches_type(Snippet, snippet, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -253,7 +248,7 @@ class TestAsyncSnippets:
             files="export { async function fetch(request, env) {return new Response('some_response') } }",
             metadata={"main_module": "main.js"},
         )
-        assert_matches_type(SnippetUpdateResponse, snippet, path=["response"])
+        assert_matches_type(Snippet, snippet, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -266,7 +261,7 @@ class TestAsyncSnippets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         snippet = await response.parse()
-        assert_matches_type(SnippetUpdateResponse, snippet, path=["response"])
+        assert_matches_type(Snippet, snippet, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -279,7 +274,7 @@ class TestAsyncSnippets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             snippet = await response.parse()
-            assert_matches_type(SnippetUpdateResponse, snippet, path=["response"])
+            assert_matches_type(Snippet, snippet, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -399,7 +394,7 @@ class TestAsyncSnippets:
             "snippet_name_01",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SnippetGetResponse, snippet, path=["response"])
+        assert_matches_type(Snippet, snippet, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -412,7 +407,7 @@ class TestAsyncSnippets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         snippet = await response.parse()
-        assert_matches_type(SnippetGetResponse, snippet, path=["response"])
+        assert_matches_type(Snippet, snippet, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -425,7 +420,7 @@ class TestAsyncSnippets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             snippet = await response.parse()
-            assert_matches_type(SnippetGetResponse, snippet, path=["response"])
+            assert_matches_type(Snippet, snippet, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

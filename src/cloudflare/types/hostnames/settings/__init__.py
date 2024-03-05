@@ -4,5 +4,9 @@ from __future__ import annotations
 
 from .tls_get_response import TLSGetResponse as TLSGetResponse
 from .tls_update_params import TLSUpdateParams as TLSUpdateParams
-from .tls_delete_response import TLSDeleteResponse as TLSDeleteResponse
-from .tls_update_response import TLSUpdateResponse as TLSUpdateResponse
+from .tls_certificates_and_hostnames_setting_object import (
+    TLSCertificatesAndHostnamesSettingObject as TLSCertificatesAndHostnamesSettingObject,
+)
+from .tls_certificates_and_hostnames_setting_object_delete import (
+    TLSCertificatesAndHostnamesSettingObjectDelete as TLSCertificatesAndHostnamesSettingObjectDelete,
+)

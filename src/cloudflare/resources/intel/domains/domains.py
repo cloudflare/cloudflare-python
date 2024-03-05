@@ -28,7 +28,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ....types.intel import DomainGetResponse, domain_get_params
+from ....types.intel import IntelDomain, domain_get_params
 from ...._base_client import (
     make_request_options,
 )
@@ -60,7 +60,7 @@ class Domains(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DomainGetResponse:
+    ) -> IntelDomain:
         """
         Get Domain Details
 
@@ -87,7 +87,7 @@ class Domains(SyncAPIResource):
                 query=maybe_transform({"domain": domain}, domain_get_params.DomainGetParams),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DomainGetResponse], ResultWrapper[DomainGetResponse]),
+            cast_to=cast(Type[IntelDomain], ResultWrapper[IntelDomain]),
         )
 
 
@@ -115,7 +115,7 @@ class AsyncDomains(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DomainGetResponse:
+    ) -> IntelDomain:
         """
         Get Domain Details
 
@@ -142,7 +142,7 @@ class AsyncDomains(AsyncAPIResource):
                 query=await async_maybe_transform({"domain": domain}, domain_get_params.DomainGetParams),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DomainGetResponse], ResultWrapper[DomainGetResponse]),
+            cast_to=cast(Type[IntelDomain], ResultWrapper[IntelDomain]),
         )
 
 

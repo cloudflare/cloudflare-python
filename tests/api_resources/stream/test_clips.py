@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.stream import ClipCreateResponse
+from cloudflare.types.stream import StreamClipping
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -26,7 +26,7 @@ class TestClips:
             end_time_seconds=0,
             start_time_seconds=0,
         )
-        assert_matches_type(ClipCreateResponse, clip, path=["response"])
+        assert_matches_type(StreamClipping, clip, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -43,7 +43,7 @@ class TestClips:
             thumbnail_timestamp_pct=0.529241,
             watermark={"uid": "ea95132c15732412d22c1476fa83f27a"},
         )
-        assert_matches_type(ClipCreateResponse, clip, path=["response"])
+        assert_matches_type(StreamClipping, clip, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -58,7 +58,7 @@ class TestClips:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         clip = response.parse()
-        assert_matches_type(ClipCreateResponse, clip, path=["response"])
+        assert_matches_type(StreamClipping, clip, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -73,7 +73,7 @@ class TestClips:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             clip = response.parse()
-            assert_matches_type(ClipCreateResponse, clip, path=["response"])
+            assert_matches_type(StreamClipping, clip, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -101,7 +101,7 @@ class TestAsyncClips:
             end_time_seconds=0,
             start_time_seconds=0,
         )
-        assert_matches_type(ClipCreateResponse, clip, path=["response"])
+        assert_matches_type(StreamClipping, clip, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -118,7 +118,7 @@ class TestAsyncClips:
             thumbnail_timestamp_pct=0.529241,
             watermark={"uid": "ea95132c15732412d22c1476fa83f27a"},
         )
-        assert_matches_type(ClipCreateResponse, clip, path=["response"])
+        assert_matches_type(StreamClipping, clip, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -133,7 +133,7 @@ class TestAsyncClips:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         clip = await response.parse()
-        assert_matches_type(ClipCreateResponse, clip, path=["response"])
+        assert_matches_type(StreamClipping, clip, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -148,7 +148,7 @@ class TestAsyncClips:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             clip = await response.parse()
-            assert_matches_type(ClipCreateResponse, clip, path=["response"])
+            assert_matches_type(StreamClipping, clip, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

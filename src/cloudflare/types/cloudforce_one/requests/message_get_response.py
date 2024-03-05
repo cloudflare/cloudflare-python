@@ -1,31 +1,9 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from typing import List, Optional
-from datetime import datetime
+from typing import List
 
-from ...._models import BaseModel
+from .cloudforce_one_request_message_item import CloudforceOneRequestMessageItem
 
-__all__ = ["MessageGetResponse", "MessageGetResponseItem"]
+__all__ = ["MessageGetResponse"]
 
-
-class MessageGetResponseItem(BaseModel):
-    id: int
-    """Message ID"""
-
-    author: str
-    """Author of message"""
-
-    content: str
-    """Content of message"""
-
-    is_follow_on_request: bool
-    """Message is a follow-on request"""
-
-    updated: datetime
-    """Message last updated time"""
-
-    created: Optional[datetime] = None
-    """Message creation time"""
-
-
-MessageGetResponse = List[MessageGetResponseItem]
+MessageGetResponse = List[CloudforceOneRequestMessageItem]

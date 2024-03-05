@@ -29,7 +29,7 @@ from ....._base_client import (
 from .....types.firewall.waf.packages import (
     RuleGetResponse,
     RuleEditResponse,
-    RuleListResponse,
+    WAFManagedRulesRule,
     rule_edit_params,
     rule_list_params,
 )
@@ -63,7 +63,7 @@ class Rules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[RuleListResponse]:
+    ) -> SyncV4PagePaginationArray[WAFManagedRulesRule]:
         """
         Fetches WAF rules in a WAF package.
 
@@ -102,7 +102,7 @@ class Rules(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `package_id` but received {package_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/firewall/waf/packages/{package_id}/rules",
-            page=SyncV4PagePaginationArray[RuleListResponse],
+            page=SyncV4PagePaginationArray[WAFManagedRulesRule],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -120,7 +120,7 @@ class Rules(SyncAPIResource):
                     rule_list_params.RuleListParams,
                 ),
             ),
-            model=cast(Any, RuleListResponse),  # Union types cannot be passed in as arguments in the type system
+            model=cast(Any, WAFManagedRulesRule),  # Union types cannot be passed in as arguments in the type system
         )
 
     def edit(
@@ -270,7 +270,7 @@ class AsyncRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[RuleListResponse, AsyncV4PagePaginationArray[RuleListResponse]]:
+    ) -> AsyncPaginator[WAFManagedRulesRule, AsyncV4PagePaginationArray[WAFManagedRulesRule]]:
         """
         Fetches WAF rules in a WAF package.
 
@@ -309,7 +309,7 @@ class AsyncRules(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `package_id` but received {package_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/firewall/waf/packages/{package_id}/rules",
-            page=AsyncV4PagePaginationArray[RuleListResponse],
+            page=AsyncV4PagePaginationArray[WAFManagedRulesRule],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -327,7 +327,7 @@ class AsyncRules(AsyncAPIResource):
                     rule_list_params.RuleListParams,
                 ),
             ),
-            model=cast(Any, RuleListResponse),  # Union types cannot be passed in as arguments in the type system
+            model=cast(Any, WAFManagedRulesRule),  # Union types cannot be passed in as arguments in the type system
         )
 
     async def edit(

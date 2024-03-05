@@ -29,10 +29,10 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ....types.intel import (
-    IndicatorFeedGetResponse,
+    IntelUpdateFeed,
+    IntelIndicatorFeedItem,
     IndicatorFeedListResponse,
-    IndicatorFeedCreateResponse,
-    IndicatorFeedUpdateResponse,
+    IntelIndicatorFeedMetadata,
     indicator_feed_create_params,
     indicator_feed_update_params,
 )
@@ -68,7 +68,7 @@ class IndicatorFeeds(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IndicatorFeedCreateResponse:
+    ) -> IntelIndicatorFeedItem:
         """
         Create new indicator feed
 
@@ -105,7 +105,7 @@ class IndicatorFeeds(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[IndicatorFeedCreateResponse], ResultWrapper[IndicatorFeedCreateResponse]),
+            cast_to=cast(Type[IntelIndicatorFeedItem], ResultWrapper[IntelIndicatorFeedItem]),
         )
 
     def update(
@@ -120,7 +120,7 @@ class IndicatorFeeds(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IndicatorFeedUpdateResponse:
+    ) -> IntelUpdateFeed:
         """
         Update indicator feed data
 
@@ -151,7 +151,7 @@ class IndicatorFeeds(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[IndicatorFeedUpdateResponse], ResultWrapper[IndicatorFeedUpdateResponse]),
+            cast_to=cast(Type[IntelUpdateFeed], ResultWrapper[IntelUpdateFeed]),
         )
 
     def list(
@@ -243,7 +243,7 @@ class IndicatorFeeds(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IndicatorFeedGetResponse:
+    ) -> IntelIndicatorFeedMetadata:
         """
         Get indicator feed metadata
 
@@ -271,7 +271,7 @@ class IndicatorFeeds(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[IndicatorFeedGetResponse], ResultWrapper[IndicatorFeedGetResponse]),
+            cast_to=cast(Type[IntelIndicatorFeedMetadata], ResultWrapper[IntelIndicatorFeedMetadata]),
         )
 
 
@@ -300,7 +300,7 @@ class AsyncIndicatorFeeds(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IndicatorFeedCreateResponse:
+    ) -> IntelIndicatorFeedItem:
         """
         Create new indicator feed
 
@@ -337,7 +337,7 @@ class AsyncIndicatorFeeds(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[IndicatorFeedCreateResponse], ResultWrapper[IndicatorFeedCreateResponse]),
+            cast_to=cast(Type[IntelIndicatorFeedItem], ResultWrapper[IntelIndicatorFeedItem]),
         )
 
     async def update(
@@ -352,7 +352,7 @@ class AsyncIndicatorFeeds(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IndicatorFeedUpdateResponse:
+    ) -> IntelUpdateFeed:
         """
         Update indicator feed data
 
@@ -385,7 +385,7 @@ class AsyncIndicatorFeeds(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[IndicatorFeedUpdateResponse], ResultWrapper[IndicatorFeedUpdateResponse]),
+            cast_to=cast(Type[IntelUpdateFeed], ResultWrapper[IntelUpdateFeed]),
         )
 
     async def list(
@@ -477,7 +477,7 @@ class AsyncIndicatorFeeds(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IndicatorFeedGetResponse:
+    ) -> IntelIndicatorFeedMetadata:
         """
         Get indicator feed metadata
 
@@ -505,7 +505,7 @@ class AsyncIndicatorFeeds(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[IndicatorFeedGetResponse], ResultWrapper[IndicatorFeedGetResponse]),
+            cast_to=cast(Type[IntelIndicatorFeedMetadata], ResultWrapper[IntelIndicatorFeedMetadata]),
         )
 
 

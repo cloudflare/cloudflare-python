@@ -24,11 +24,10 @@ from ..._base_client import (
     make_request_options,
 )
 from ...types.workers import (
-    RouteGetResponse,
+    WorkersRoutes,
     RouteListResponse,
     RouteCreateResponse,
     RouteDeleteResponse,
-    RouteUpdateResponse,
     route_create_params,
     route_update_params,
 )
@@ -113,7 +112,7 @@ class Routes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RouteUpdateResponse:
+    ) -> WorkersRoutes:
         """
         Updates the URL pattern or Worker associated with a route.
 
@@ -152,7 +151,7 @@ class Routes(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[RouteUpdateResponse], ResultWrapper[RouteUpdateResponse]),
+            cast_to=cast(Type[WorkersRoutes], ResultWrapper[WorkersRoutes]),
         )
 
     def list(
@@ -254,7 +253,7 @@ class Routes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RouteGetResponse:
+    ) -> WorkersRoutes:
         """
         Returns information about a route, including URL pattern and Worker.
 
@@ -284,7 +283,7 @@ class Routes(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[RouteGetResponse], ResultWrapper[RouteGetResponse]),
+            cast_to=cast(Type[WorkersRoutes], ResultWrapper[WorkersRoutes]),
         )
 
 
@@ -365,7 +364,7 @@ class AsyncRoutes(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RouteUpdateResponse:
+    ) -> WorkersRoutes:
         """
         Updates the URL pattern or Worker associated with a route.
 
@@ -404,7 +403,7 @@ class AsyncRoutes(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[RouteUpdateResponse], ResultWrapper[RouteUpdateResponse]),
+            cast_to=cast(Type[WorkersRoutes], ResultWrapper[WorkersRoutes]),
         )
 
     async def list(
@@ -506,7 +505,7 @@ class AsyncRoutes(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RouteGetResponse:
+    ) -> WorkersRoutes:
         """
         Returns information about a route, including URL pattern and Worker.
 
@@ -536,7 +535,7 @@ class AsyncRoutes(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[RouteGetResponse], ResultWrapper[RouteGetResponse]),
+            cast_to=cast(Type[WorkersRoutes], ResultWrapper[WorkersRoutes]),
         )
 
 

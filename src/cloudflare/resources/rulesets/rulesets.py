@@ -24,10 +24,8 @@ from .phases import (
     AsyncPhasesWithStreamingResponse,
 )
 from ...types import (
-    RulesetGetResponse,
-    RulesetListResponse,
-    RulesetCreateResponse,
-    RulesetUpdateResponse,
+    RulesetsRulesetResponse,
+    RulesetsRulesetsResponse,
     ruleset_create_params,
     ruleset_update_params,
 )
@@ -123,7 +121,7 @@ class Rulesets(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RulesetCreateResponse:
+    ) -> RulesetsRulesetResponse:
         """
         Creates a ruleset.
 
@@ -184,7 +182,7 @@ class Rulesets(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[RulesetCreateResponse], ResultWrapper[RulesetCreateResponse]),
+            cast_to=cast(Type[RulesetsRulesetResponse], ResultWrapper[RulesetsRulesetResponse]),
         )
 
     def update(
@@ -230,7 +228,7 @@ class Rulesets(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RulesetUpdateResponse:
+    ) -> RulesetsRulesetResponse:
         """
         Updates an account or zone ruleset, creating a new version.
 
@@ -298,7 +296,7 @@ class Rulesets(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[RulesetUpdateResponse], ResultWrapper[RulesetUpdateResponse]),
+            cast_to=cast(Type[RulesetsRulesetResponse], ResultWrapper[RulesetsRulesetResponse]),
         )
 
     def list(
@@ -312,7 +310,7 @@ class Rulesets(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RulesetListResponse:
+    ) -> RulesetsRulesetsResponse:
         """
         Fetches all rulesets.
 
@@ -353,7 +351,7 @@ class Rulesets(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[RulesetListResponse], ResultWrapper[RulesetListResponse]),
+            cast_to=cast(Type[RulesetsRulesetsResponse], ResultWrapper[RulesetsRulesetsResponse]),
         )
 
     def delete(
@@ -425,7 +423,7 @@ class Rulesets(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RulesetGetResponse:
+    ) -> RulesetsRulesetResponse:
         """
         Fetches the latest version of an account or zone ruleset.
 
@@ -470,7 +468,7 @@ class Rulesets(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[RulesetGetResponse], ResultWrapper[RulesetGetResponse]),
+            cast_to=cast(Type[RulesetsRulesetResponse], ResultWrapper[RulesetsRulesetResponse]),
         )
 
 
@@ -535,7 +533,7 @@ class AsyncRulesets(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RulesetCreateResponse:
+    ) -> RulesetsRulesetResponse:
         """
         Creates a ruleset.
 
@@ -596,7 +594,7 @@ class AsyncRulesets(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[RulesetCreateResponse], ResultWrapper[RulesetCreateResponse]),
+            cast_to=cast(Type[RulesetsRulesetResponse], ResultWrapper[RulesetsRulesetResponse]),
         )
 
     async def update(
@@ -642,7 +640,7 @@ class AsyncRulesets(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RulesetUpdateResponse:
+    ) -> RulesetsRulesetResponse:
         """
         Updates an account or zone ruleset, creating a new version.
 
@@ -710,7 +708,7 @@ class AsyncRulesets(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[RulesetUpdateResponse], ResultWrapper[RulesetUpdateResponse]),
+            cast_to=cast(Type[RulesetsRulesetResponse], ResultWrapper[RulesetsRulesetResponse]),
         )
 
     async def list(
@@ -724,7 +722,7 @@ class AsyncRulesets(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RulesetListResponse:
+    ) -> RulesetsRulesetsResponse:
         """
         Fetches all rulesets.
 
@@ -765,7 +763,7 @@ class AsyncRulesets(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[RulesetListResponse], ResultWrapper[RulesetListResponse]),
+            cast_to=cast(Type[RulesetsRulesetsResponse], ResultWrapper[RulesetsRulesetsResponse]),
         )
 
     async def delete(
@@ -837,7 +835,7 @@ class AsyncRulesets(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RulesetGetResponse:
+    ) -> RulesetsRulesetResponse:
         """
         Fetches the latest version of an account or zone ruleset.
 
@@ -882,7 +880,7 @@ class AsyncRulesets(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[RulesetGetResponse], ResultWrapper[RulesetGetResponse]),
+            cast_to=cast(Type[RulesetsRulesetResponse], ResultWrapper[RulesetsRulesetResponse]),
         )
 
 

@@ -9,11 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.zero_trust.networks.routes import (
-    NetworkEditResponse,
-    NetworkCreateResponse,
-    NetworkDeleteResponse,
-)
+from cloudflare.types.zero_trust.networks import TunnelRoute
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -28,7 +24,7 @@ class TestNetworks:
             "172.16.0.0%2F16",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(NetworkCreateResponse, network, path=["response"])
+        assert_matches_type(TunnelRoute, network, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -39,7 +35,7 @@ class TestNetworks:
             comment="Example comment for this route.",
             virtual_network_id={},
         )
-        assert_matches_type(NetworkCreateResponse, network, path=["response"])
+        assert_matches_type(TunnelRoute, network, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -52,7 +48,7 @@ class TestNetworks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         network = response.parse()
-        assert_matches_type(NetworkCreateResponse, network, path=["response"])
+        assert_matches_type(TunnelRoute, network, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -65,7 +61,7 @@ class TestNetworks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             network = response.parse()
-            assert_matches_type(NetworkCreateResponse, network, path=["response"])
+            assert_matches_type(TunnelRoute, network, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -91,7 +87,7 @@ class TestNetworks:
             "172.16.0.0%2F16",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(NetworkDeleteResponse, network, path=["response"])
+        assert_matches_type(TunnelRoute, network, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -101,7 +97,7 @@ class TestNetworks:
             account_id="699d98642c564d2e855e9661899b7252",
             tun_type="cfd_tunnel",
         )
-        assert_matches_type(NetworkDeleteResponse, network, path=["response"])
+        assert_matches_type(TunnelRoute, network, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -114,7 +110,7 @@ class TestNetworks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         network = response.parse()
-        assert_matches_type(NetworkDeleteResponse, network, path=["response"])
+        assert_matches_type(TunnelRoute, network, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -127,7 +123,7 @@ class TestNetworks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             network = response.parse()
-            assert_matches_type(NetworkDeleteResponse, network, path=["response"])
+            assert_matches_type(TunnelRoute, network, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -153,7 +149,7 @@ class TestNetworks:
             "172.16.0.0%2F16",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(NetworkEditResponse, network, path=["response"])
+        assert_matches_type(TunnelRoute, network, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -166,7 +162,7 @@ class TestNetworks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         network = response.parse()
-        assert_matches_type(NetworkEditResponse, network, path=["response"])
+        assert_matches_type(TunnelRoute, network, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -179,7 +175,7 @@ class TestNetworks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             network = response.parse()
-            assert_matches_type(NetworkEditResponse, network, path=["response"])
+            assert_matches_type(TunnelRoute, network, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -209,7 +205,7 @@ class TestAsyncNetworks:
             "172.16.0.0%2F16",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(NetworkCreateResponse, network, path=["response"])
+        assert_matches_type(TunnelRoute, network, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -220,7 +216,7 @@ class TestAsyncNetworks:
             comment="Example comment for this route.",
             virtual_network_id={},
         )
-        assert_matches_type(NetworkCreateResponse, network, path=["response"])
+        assert_matches_type(TunnelRoute, network, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -233,7 +229,7 @@ class TestAsyncNetworks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         network = await response.parse()
-        assert_matches_type(NetworkCreateResponse, network, path=["response"])
+        assert_matches_type(TunnelRoute, network, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -246,7 +242,7 @@ class TestAsyncNetworks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             network = await response.parse()
-            assert_matches_type(NetworkCreateResponse, network, path=["response"])
+            assert_matches_type(TunnelRoute, network, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -272,7 +268,7 @@ class TestAsyncNetworks:
             "172.16.0.0%2F16",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(NetworkDeleteResponse, network, path=["response"])
+        assert_matches_type(TunnelRoute, network, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -282,7 +278,7 @@ class TestAsyncNetworks:
             account_id="699d98642c564d2e855e9661899b7252",
             tun_type="cfd_tunnel",
         )
-        assert_matches_type(NetworkDeleteResponse, network, path=["response"])
+        assert_matches_type(TunnelRoute, network, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -295,7 +291,7 @@ class TestAsyncNetworks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         network = await response.parse()
-        assert_matches_type(NetworkDeleteResponse, network, path=["response"])
+        assert_matches_type(TunnelRoute, network, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -308,7 +304,7 @@ class TestAsyncNetworks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             network = await response.parse()
-            assert_matches_type(NetworkDeleteResponse, network, path=["response"])
+            assert_matches_type(TunnelRoute, network, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -334,7 +330,7 @@ class TestAsyncNetworks:
             "172.16.0.0%2F16",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(NetworkEditResponse, network, path=["response"])
+        assert_matches_type(TunnelRoute, network, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -347,7 +343,7 @@ class TestAsyncNetworks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         network = await response.parse()
-        assert_matches_type(NetworkEditResponse, network, path=["response"])
+        assert_matches_type(TunnelRoute, network, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -360,7 +356,7 @@ class TestAsyncNetworks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             network = await response.parse()
-            assert_matches_type(NetworkEditResponse, network, path=["response"])
+            assert_matches_type(TunnelRoute, network, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

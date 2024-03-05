@@ -28,9 +28,9 @@ from ..._base_client import (
 )
 from ...types.accounts import (
     AccountMember,
-    MemberListResponse,
     AccountMemberWithID,
     MemberDeleteResponse,
+    IamComponentsSchemasMember,
     member_list_params,
     member_create_params,
     member_update_params,
@@ -157,7 +157,7 @@ class Members(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[MemberListResponse]:
+    ) -> SyncV4PagePaginationArray[IamComponentsSchemasMember]:
         """
         List all members of an account.
 
@@ -182,7 +182,7 @@ class Members(SyncAPIResource):
         """
         return self._get_api_list(
             f"/accounts/{account_id}/members",
-            page=SyncV4PagePaginationArray[MemberListResponse],
+            page=SyncV4PagePaginationArray[IamComponentsSchemasMember],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -199,7 +199,7 @@ class Members(SyncAPIResource):
                     member_list_params.MemberListParams,
                 ),
             ),
-            model=MemberListResponse,
+            model=IamComponentsSchemasMember,
         )
 
     def delete(
@@ -401,7 +401,7 @@ class AsyncMembers(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[MemberListResponse, AsyncV4PagePaginationArray[MemberListResponse]]:
+    ) -> AsyncPaginator[IamComponentsSchemasMember, AsyncV4PagePaginationArray[IamComponentsSchemasMember]]:
         """
         List all members of an account.
 
@@ -426,7 +426,7 @@ class AsyncMembers(AsyncAPIResource):
         """
         return self._get_api_list(
             f"/accounts/{account_id}/members",
-            page=AsyncV4PagePaginationArray[MemberListResponse],
+            page=AsyncV4PagePaginationArray[IamComponentsSchemasMember],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -443,7 +443,7 @@ class AsyncMembers(AsyncAPIResource):
                     member_list_params.MemberListParams,
                 ),
             ),
-            model=MemberListResponse,
+            model=IamComponentsSchemasMember,
         )
 
     async def delete(

@@ -23,13 +23,7 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.workers import (
-    DomainGetResponse,
-    DomainListResponse,
-    DomainUpdateResponse,
-    domain_list_params,
-    domain_update_params,
-)
+from ...types.workers import WorkersDomain, DomainListResponse, domain_list_params, domain_update_params
 
 __all__ = ["Domains", "AsyncDomains"]
 
@@ -57,7 +51,7 @@ class Domains(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DomainUpdateResponse:
+    ) -> WorkersDomain:
         """
         Attaches a Worker to a zone and hostname.
 
@@ -96,7 +90,7 @@ class Domains(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DomainUpdateResponse], ResultWrapper[DomainUpdateResponse]),
+            cast_to=cast(Type[WorkersDomain], ResultWrapper[WorkersDomain]),
         )
 
     def list(
@@ -205,7 +199,7 @@ class Domains(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DomainGetResponse:
+    ) -> WorkersDomain:
         """
         Gets a Worker domain.
 
@@ -229,7 +223,7 @@ class Domains(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DomainGetResponse], ResultWrapper[DomainGetResponse]),
+            cast_to=cast(Type[WorkersDomain], ResultWrapper[WorkersDomain]),
         )
 
 
@@ -256,7 +250,7 @@ class AsyncDomains(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DomainUpdateResponse:
+    ) -> WorkersDomain:
         """
         Attaches a Worker to a zone and hostname.
 
@@ -295,7 +289,7 @@ class AsyncDomains(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DomainUpdateResponse], ResultWrapper[DomainUpdateResponse]),
+            cast_to=cast(Type[WorkersDomain], ResultWrapper[WorkersDomain]),
         )
 
     async def list(
@@ -404,7 +398,7 @@ class AsyncDomains(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DomainGetResponse:
+    ) -> WorkersDomain:
         """
         Gets a Worker domain.
 
@@ -428,7 +422,7 @@ class AsyncDomains(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DomainGetResponse], ResultWrapper[DomainGetResponse]),
+            cast_to=cast(Type[WorkersDomain], ResultWrapper[WorkersDomain]),
         )
 
 
