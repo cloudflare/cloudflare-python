@@ -1,34 +1,9 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from typing import List, Optional
-from datetime import datetime
+from typing import List
 
-from ..._models import BaseModel
+from .intel_sinkholes_sinkhole_item import IntelSinkholesSinkholeItem
 
-__all__ = ["SinkholeListResponse", "SinkholeListResponseItem"]
+__all__ = ["SinkholeListResponse"]
 
-
-class SinkholeListResponseItem(BaseModel):
-    id: Optional[int] = None
-    """The unique identifier for the sinkhole"""
-
-    account_tag: Optional[str] = None
-    """The account tag that owns this sinkhole"""
-
-    created_on: Optional[datetime] = None
-    """The date and time when the sinkhole was created"""
-
-    modified_on: Optional[datetime] = None
-    """The date and time when the sinkhole was last modified"""
-
-    name: Optional[str] = None
-    """The name of the sinkhole"""
-
-    r2_bucket: Optional[str] = None
-    """The name of the R2 bucket to store results"""
-
-    r2_id: Optional[str] = None
-    """The id of the R2 instance"""
-
-
-SinkholeListResponse = List[SinkholeListResponseItem]
+SinkholeListResponse = List[IntelSinkholesSinkholeItem]

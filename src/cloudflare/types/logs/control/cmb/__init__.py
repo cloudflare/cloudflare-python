@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from .config_get_response import ConfigGetResponse as ConfigGetResponse
 from .config_create_params import ConfigCreateParams as ConfigCreateParams
-from .config_create_response import ConfigCreateResponse as ConfigCreateResponse
+from .logcontrol_cmb_config import LogcontrolCmbConfig as LogcontrolCmbConfig
 from .config_delete_response import ConfigDeleteResponse as ConfigDeleteResponse

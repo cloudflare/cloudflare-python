@@ -44,14 +44,12 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.cloudforce_one import (
-    RequestGetResponse,
-    RequestListResponse,
-    RequestQuotaResponse,
-    RequestTypesResponse,
-    RequestCreateResponse,
+    CloudforceOneQuota,
     RequestDeleteResponse,
-    RequestUpdateResponse,
-    RequestConstantsResponse,
+    CloudforceOneRequestItem,
+    CloudforceOneRequestTypes,
+    CloudforceOneRequestListItem,
+    CloudforceOneRequestConstants,
     request_list_params,
     request_create_params,
     request_update_params,
@@ -92,7 +90,7 @@ class Requests(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RequestCreateResponse:
+    ) -> CloudforceOneRequestItem:
         """
         Creating a request adds the request into the Cloudforce One queue for analysis.
         In addition to the content, a short title, type, priority, and releasability
@@ -140,7 +138,7 @@ class Requests(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[RequestCreateResponse], ResultWrapper[RequestCreateResponse]),
+            cast_to=cast(Type[CloudforceOneRequestItem], ResultWrapper[CloudforceOneRequestItem]),
         )
 
     def update(
@@ -159,7 +157,7 @@ class Requests(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RequestUpdateResponse:
+    ) -> CloudforceOneRequestItem:
         """Updating a request alters the request in the Cloudforce One queue.
 
         This API may
@@ -212,7 +210,7 @@ class Requests(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[RequestUpdateResponse], ResultWrapper[RequestUpdateResponse]),
+            cast_to=cast(Type[CloudforceOneRequestItem], ResultWrapper[CloudforceOneRequestItem]),
         )
 
     def list(
@@ -235,7 +233,7 @@ class Requests(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[RequestListResponse]:
+    ) -> SyncV4PagePaginationArray[CloudforceOneRequestListItem]:
         """
         List Requests
 
@@ -274,7 +272,7 @@ class Requests(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
         return self._get_api_list(
             f"/accounts/{account_identifier}/cloudforce-one/requests",
-            page=SyncV4PagePaginationArray[RequestListResponse],
+            page=SyncV4PagePaginationArray[CloudforceOneRequestListItem],
             body=maybe_transform(
                 {
                     "page": page,
@@ -293,7 +291,7 @@ class Requests(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=RequestListResponse,
+            model=CloudforceOneRequestListItem,
             method="post",
         )
 
@@ -356,7 +354,7 @@ class Requests(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RequestConstantsResponse:
+    ) -> CloudforceOneRequestConstants:
         """
         Get Request Priority, Status, and TLP constants
 
@@ -382,7 +380,7 @@ class Requests(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[RequestConstantsResponse], ResultWrapper[RequestConstantsResponse]),
+            cast_to=cast(Type[CloudforceOneRequestConstants], ResultWrapper[CloudforceOneRequestConstants]),
         )
 
     def get(
@@ -396,7 +394,7 @@ class Requests(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RequestGetResponse:
+    ) -> CloudforceOneRequestItem:
         """
         Get a Request
 
@@ -426,7 +424,7 @@ class Requests(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[RequestGetResponse], ResultWrapper[RequestGetResponse]),
+            cast_to=cast(Type[CloudforceOneRequestItem], ResultWrapper[CloudforceOneRequestItem]),
         )
 
     def quota(
@@ -439,7 +437,7 @@ class Requests(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RequestQuotaResponse:
+    ) -> CloudforceOneQuota:
         """
         Get Request Quota
 
@@ -465,7 +463,7 @@ class Requests(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[RequestQuotaResponse], ResultWrapper[RequestQuotaResponse]),
+            cast_to=cast(Type[CloudforceOneQuota], ResultWrapper[CloudforceOneQuota]),
         )
 
     def types(
@@ -478,7 +476,7 @@ class Requests(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RequestTypesResponse:
+    ) -> CloudforceOneRequestTypes:
         """
         Get Request Types
 
@@ -504,7 +502,7 @@ class Requests(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[RequestTypesResponse], ResultWrapper[RequestTypesResponse]),
+            cast_to=cast(Type[CloudforceOneRequestTypes], ResultWrapper[CloudforceOneRequestTypes]),
         )
 
 
@@ -540,7 +538,7 @@ class AsyncRequests(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RequestCreateResponse:
+    ) -> CloudforceOneRequestItem:
         """
         Creating a request adds the request into the Cloudforce One queue for analysis.
         In addition to the content, a short title, type, priority, and releasability
@@ -588,7 +586,7 @@ class AsyncRequests(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[RequestCreateResponse], ResultWrapper[RequestCreateResponse]),
+            cast_to=cast(Type[CloudforceOneRequestItem], ResultWrapper[CloudforceOneRequestItem]),
         )
 
     async def update(
@@ -607,7 +605,7 @@ class AsyncRequests(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RequestUpdateResponse:
+    ) -> CloudforceOneRequestItem:
         """Updating a request alters the request in the Cloudforce One queue.
 
         This API may
@@ -660,7 +658,7 @@ class AsyncRequests(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[RequestUpdateResponse], ResultWrapper[RequestUpdateResponse]),
+            cast_to=cast(Type[CloudforceOneRequestItem], ResultWrapper[CloudforceOneRequestItem]),
         )
 
     def list(
@@ -683,7 +681,7 @@ class AsyncRequests(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[RequestListResponse, AsyncV4PagePaginationArray[RequestListResponse]]:
+    ) -> AsyncPaginator[CloudforceOneRequestListItem, AsyncV4PagePaginationArray[CloudforceOneRequestListItem]]:
         """
         List Requests
 
@@ -722,7 +720,7 @@ class AsyncRequests(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
         return self._get_api_list(
             f"/accounts/{account_identifier}/cloudforce-one/requests",
-            page=AsyncV4PagePaginationArray[RequestListResponse],
+            page=AsyncV4PagePaginationArray[CloudforceOneRequestListItem],
             body=maybe_transform(
                 {
                     "page": page,
@@ -741,7 +739,7 @@ class AsyncRequests(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=RequestListResponse,
+            model=CloudforceOneRequestListItem,
             method="post",
         )
 
@@ -804,7 +802,7 @@ class AsyncRequests(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RequestConstantsResponse:
+    ) -> CloudforceOneRequestConstants:
         """
         Get Request Priority, Status, and TLP constants
 
@@ -830,7 +828,7 @@ class AsyncRequests(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[RequestConstantsResponse], ResultWrapper[RequestConstantsResponse]),
+            cast_to=cast(Type[CloudforceOneRequestConstants], ResultWrapper[CloudforceOneRequestConstants]),
         )
 
     async def get(
@@ -844,7 +842,7 @@ class AsyncRequests(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RequestGetResponse:
+    ) -> CloudforceOneRequestItem:
         """
         Get a Request
 
@@ -874,7 +872,7 @@ class AsyncRequests(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[RequestGetResponse], ResultWrapper[RequestGetResponse]),
+            cast_to=cast(Type[CloudforceOneRequestItem], ResultWrapper[CloudforceOneRequestItem]),
         )
 
     async def quota(
@@ -887,7 +885,7 @@ class AsyncRequests(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RequestQuotaResponse:
+    ) -> CloudforceOneQuota:
         """
         Get Request Quota
 
@@ -913,7 +911,7 @@ class AsyncRequests(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[RequestQuotaResponse], ResultWrapper[RequestQuotaResponse]),
+            cast_to=cast(Type[CloudforceOneQuota], ResultWrapper[CloudforceOneQuota]),
         )
 
     async def types(
@@ -926,7 +924,7 @@ class AsyncRequests(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RequestTypesResponse:
+    ) -> CloudforceOneRequestTypes:
         """
         Get Request Types
 
@@ -952,7 +950,7 @@ class AsyncRequests(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[RequestTypesResponse], ResultWrapper[RequestTypesResponse]),
+            cast_to=cast(Type[CloudforceOneRequestTypes], ResultWrapper[CloudforceOneRequestTypes]),
         )
 
 

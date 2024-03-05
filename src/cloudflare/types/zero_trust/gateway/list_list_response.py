@@ -1,33 +1,9 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from typing import List, Optional
-from datetime import datetime
-from typing_extensions import Literal
+from typing import List
 
-from ...._models import BaseModel
+from .zero_trust_gateway_lists import ZeroTrustGatewayLists
 
-__all__ = ["ListListResponse", "ListListResponseItem"]
+__all__ = ["ListListResponse"]
 
-
-class ListListResponseItem(BaseModel):
-    id: Optional[str] = None
-    """API Resource UUID tag."""
-
-    count: Optional[float] = None
-    """The number of items in the list."""
-
-    created_at: Optional[datetime] = None
-
-    description: Optional[str] = None
-    """The description of the list."""
-
-    name: Optional[str] = None
-    """The name of the list."""
-
-    type: Optional[Literal["SERIAL", "URL", "DOMAIN", "EMAIL", "IP"]] = None
-    """The type of list."""
-
-    updated_at: Optional[datetime] = None
-
-
-ListListResponse = List[ListListResponseItem]
+ListListResponse = List[ZeroTrustGatewayLists]

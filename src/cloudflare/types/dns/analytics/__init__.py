@@ -3,4 +3,4 @@
 from __future__ import annotations
 
 from .report_get_params import ReportGetParams as ReportGetParams
-from .report_get_response import ReportGetResponse as ReportGetResponse
+from .dns_dns_analytics_api_report import DNSDNSAnalyticsAPIReport as DNSDNSAnalyticsAPIReport

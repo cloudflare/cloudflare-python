@@ -24,11 +24,9 @@ from ..._base_client import (
     make_request_options,
 )
 from ...types.secondary_dns import (
-    TSIGGetResponse,
+    SecondaryDNSTSIG,
     TSIGListResponse,
-    TSIGCreateResponse,
     TSIGDeleteResponse,
-    TSIGUpdateResponse,
     tsig_create_params,
     tsig_update_params,
 )
@@ -58,7 +56,7 @@ class TSIGs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TSIGCreateResponse:
+    ) -> SecondaryDNSTSIG:
         """
         Create TSIG.
 
@@ -94,7 +92,7 @@ class TSIGs(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TSIGCreateResponse], ResultWrapper[TSIGCreateResponse]),
+            cast_to=cast(Type[SecondaryDNSTSIG], ResultWrapper[SecondaryDNSTSIG]),
         )
 
     def update(
@@ -111,7 +109,7 @@ class TSIGs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TSIGUpdateResponse:
+    ) -> SecondaryDNSTSIG:
         """
         Modify TSIG.
 
@@ -147,7 +145,7 @@ class TSIGs(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TSIGUpdateResponse], ResultWrapper[TSIGUpdateResponse]),
+            cast_to=cast(Type[SecondaryDNSTSIG], ResultWrapper[SecondaryDNSTSIG]),
         )
 
     def list(
@@ -232,7 +230,7 @@ class TSIGs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TSIGGetResponse:
+    ) -> SecondaryDNSTSIG:
         """
         Get TSIG.
 
@@ -254,7 +252,7 @@ class TSIGs(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TSIGGetResponse], ResultWrapper[TSIGGetResponse]),
+            cast_to=cast(Type[SecondaryDNSTSIG], ResultWrapper[SecondaryDNSTSIG]),
         )
 
 
@@ -280,7 +278,7 @@ class AsyncTSIGs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TSIGCreateResponse:
+    ) -> SecondaryDNSTSIG:
         """
         Create TSIG.
 
@@ -316,7 +314,7 @@ class AsyncTSIGs(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TSIGCreateResponse], ResultWrapper[TSIGCreateResponse]),
+            cast_to=cast(Type[SecondaryDNSTSIG], ResultWrapper[SecondaryDNSTSIG]),
         )
 
     async def update(
@@ -333,7 +331,7 @@ class AsyncTSIGs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TSIGUpdateResponse:
+    ) -> SecondaryDNSTSIG:
         """
         Modify TSIG.
 
@@ -369,7 +367,7 @@ class AsyncTSIGs(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TSIGUpdateResponse], ResultWrapper[TSIGUpdateResponse]),
+            cast_to=cast(Type[SecondaryDNSTSIG], ResultWrapper[SecondaryDNSTSIG]),
         )
 
     async def list(
@@ -454,7 +452,7 @@ class AsyncTSIGs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TSIGGetResponse:
+    ) -> SecondaryDNSTSIG:
         """
         Get TSIG.
 
@@ -476,7 +474,7 @@ class AsyncTSIGs(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TSIGGetResponse], ResultWrapper[TSIGGetResponse]),
+            cast_to=cast(Type[SecondaryDNSTSIG], ResultWrapper[SecondaryDNSTSIG]),
         )
 
 

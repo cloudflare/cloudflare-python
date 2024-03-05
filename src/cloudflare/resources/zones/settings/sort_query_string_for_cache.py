@@ -24,11 +24,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import (
-    SortQueryStringForCacheGetResponse,
-    SortQueryStringForCacheEditResponse,
-    sort_query_string_for_cache_edit_params,
-)
+from ....types.zones.settings import ZonesSortQueryStringForCache, sort_query_string_for_cache_edit_params
 
 __all__ = ["SortQueryStringForCache", "AsyncSortQueryStringForCache"]
 
@@ -53,7 +49,7 @@ class SortQueryStringForCache(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SortQueryStringForCacheEditResponse]:
+    ) -> Optional[ZonesSortQueryStringForCache]:
         """
         Cloudflare will treat files with the same query strings as the same file in
         cache, regardless of the order of the query strings. This is limited to
@@ -86,9 +82,7 @@ class SortQueryStringForCache(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[SortQueryStringForCacheEditResponse]], ResultWrapper[SortQueryStringForCacheEditResponse]
-            ),
+            cast_to=cast(Type[Optional[ZonesSortQueryStringForCache]], ResultWrapper[ZonesSortQueryStringForCache]),
         )
 
     def get(
@@ -101,7 +95,7 @@ class SortQueryStringForCache(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SortQueryStringForCacheGetResponse]:
+    ) -> Optional[ZonesSortQueryStringForCache]:
         """
         Cloudflare will treat files with the same query strings as the same file in
         cache, regardless of the order of the query strings. This is limited to
@@ -129,9 +123,7 @@ class SortQueryStringForCache(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[SortQueryStringForCacheGetResponse]], ResultWrapper[SortQueryStringForCacheGetResponse]
-            ),
+            cast_to=cast(Type[Optional[ZonesSortQueryStringForCache]], ResultWrapper[ZonesSortQueryStringForCache]),
         )
 
 
@@ -155,7 +147,7 @@ class AsyncSortQueryStringForCache(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SortQueryStringForCacheEditResponse]:
+    ) -> Optional[ZonesSortQueryStringForCache]:
         """
         Cloudflare will treat files with the same query strings as the same file in
         cache, regardless of the order of the query strings. This is limited to
@@ -188,9 +180,7 @@ class AsyncSortQueryStringForCache(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[SortQueryStringForCacheEditResponse]], ResultWrapper[SortQueryStringForCacheEditResponse]
-            ),
+            cast_to=cast(Type[Optional[ZonesSortQueryStringForCache]], ResultWrapper[ZonesSortQueryStringForCache]),
         )
 
     async def get(
@@ -203,7 +193,7 @@ class AsyncSortQueryStringForCache(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SortQueryStringForCacheGetResponse]:
+    ) -> Optional[ZonesSortQueryStringForCache]:
         """
         Cloudflare will treat files with the same query strings as the same file in
         cache, regardless of the order of the query strings. This is limited to
@@ -231,9 +221,7 @@ class AsyncSortQueryStringForCache(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[SortQueryStringForCacheGetResponse]], ResultWrapper[SortQueryStringForCacheGetResponse]
-            ),
+            cast_to=cast(Type[Optional[ZonesSortQueryStringForCache]], ResultWrapper[ZonesSortQueryStringForCache]),
         )
 
 

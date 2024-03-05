@@ -2,4 +2,4 @@
 
 from __future__ import annotations
 
-from .setting_list_response import SettingListResponse as SettingListResponse
+from .zones_settings import ZonesSettings as ZonesSettings

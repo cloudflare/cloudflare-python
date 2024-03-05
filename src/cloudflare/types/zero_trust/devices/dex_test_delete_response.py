@@ -1,41 +1,9 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from typing import List, Optional
+from typing import List
 
-from ...._models import BaseModel
+from .teams_devices_device_dex_test_schemas_http import TeamsDevicesDeviceDEXTestSchemasHTTP
 
-__all__ = ["DEXTestDeleteResponse", "DEXTestDeleteResponseItem", "DEXTestDeleteResponseItemData"]
+__all__ = ["DEXTestDeleteResponse"]
 
-
-class DEXTestDeleteResponseItemData(BaseModel):
-    host: Optional[str] = None
-    """The desired endpoint to test."""
-
-    kind: Optional[str] = None
-    """The type of test."""
-
-    method: Optional[str] = None
-    """The HTTP request method type."""
-
-
-class DEXTestDeleteResponseItem(BaseModel):
-    data: DEXTestDeleteResponseItemData
-    """
-    The configuration object which contains the details for the WARP client to
-    conduct the test.
-    """
-
-    enabled: bool
-    """Determines whether or not the test is active."""
-
-    interval: str
-    """How often the test will run."""
-
-    name: str
-    """The name of the DEX test. Must be unique."""
-
-    description: Optional[str] = None
-    """Additional details about the test."""
-
-
-DEXTestDeleteResponse = List[DEXTestDeleteResponseItem]
+DEXTestDeleteResponse = List[TeamsDevicesDeviceDEXTestSchemasHTTP]

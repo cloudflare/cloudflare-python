@@ -24,11 +24,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import (
-    TrueClientIPHeaderGetResponse,
-    TrueClientIPHeaderEditResponse,
-    true_client_ip_header_edit_params,
-)
+from ....types.zones.settings import ZonesTrueClientIPHeader, true_client_ip_header_edit_params
 
 __all__ = ["TrueClientIPHeader", "AsyncTrueClientIPHeader"]
 
@@ -53,7 +49,7 @@ class TrueClientIPHeader(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[TrueClientIPHeaderEditResponse]:
+    ) -> Optional[ZonesTrueClientIPHeader]:
         """
         Allows customer to continue to use True Client IP (Akamai feature) in the
         headers we send to the origin. This is limited to Enterprise Zones.
@@ -83,7 +79,7 @@ class TrueClientIPHeader(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[TrueClientIPHeaderEditResponse]], ResultWrapper[TrueClientIPHeaderEditResponse]),
+            cast_to=cast(Type[Optional[ZonesTrueClientIPHeader]], ResultWrapper[ZonesTrueClientIPHeader]),
         )
 
     def get(
@@ -96,7 +92,7 @@ class TrueClientIPHeader(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[TrueClientIPHeaderGetResponse]:
+    ) -> Optional[ZonesTrueClientIPHeader]:
         """
         Allows customer to continue to use True Client IP (Akamai feature) in the
         headers we send to the origin. This is limited to Enterprise Zones.
@@ -123,7 +119,7 @@ class TrueClientIPHeader(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[TrueClientIPHeaderGetResponse]], ResultWrapper[TrueClientIPHeaderGetResponse]),
+            cast_to=cast(Type[Optional[ZonesTrueClientIPHeader]], ResultWrapper[ZonesTrueClientIPHeader]),
         )
 
 
@@ -147,7 +143,7 @@ class AsyncTrueClientIPHeader(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[TrueClientIPHeaderEditResponse]:
+    ) -> Optional[ZonesTrueClientIPHeader]:
         """
         Allows customer to continue to use True Client IP (Akamai feature) in the
         headers we send to the origin. This is limited to Enterprise Zones.
@@ -179,7 +175,7 @@ class AsyncTrueClientIPHeader(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[TrueClientIPHeaderEditResponse]], ResultWrapper[TrueClientIPHeaderEditResponse]),
+            cast_to=cast(Type[Optional[ZonesTrueClientIPHeader]], ResultWrapper[ZonesTrueClientIPHeader]),
         )
 
     async def get(
@@ -192,7 +188,7 @@ class AsyncTrueClientIPHeader(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[TrueClientIPHeaderGetResponse]:
+    ) -> Optional[ZonesTrueClientIPHeader]:
         """
         Allows customer to continue to use True Client IP (Akamai feature) in the
         headers we send to the origin. This is limited to Enterprise Zones.
@@ -219,7 +215,7 @@ class AsyncTrueClientIPHeader(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[TrueClientIPHeaderGetResponse]], ResultWrapper[TrueClientIPHeaderGetResponse]),
+            cast_to=cast(Type[Optional[ZonesTrueClientIPHeader]], ResultWrapper[ZonesTrueClientIPHeader]),
         )
 
 

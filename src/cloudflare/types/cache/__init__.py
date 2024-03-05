@@ -2,10 +2,10 @@
 
 from __future__ import annotations
 
+from .cache_variants import CacheVariants as CacheVariants
 from .variant_edit_params import VariantEditParams as VariantEditParams
 from .variant_get_response import VariantGetResponse as VariantGetResponse
 from .variant_edit_response import VariantEditResponse as VariantEditResponse
-from .variant_delete_response import VariantDeleteResponse as VariantDeleteResponse
 from .cache_reserve_edit_params import CacheReserveEditParams as CacheReserveEditParams
 from .cache_reserve_get_response import CacheReserveGetResponse as CacheReserveGetResponse
 from .cache_reserve_edit_response import CacheReserveEditResponse as CacheReserveEditResponse

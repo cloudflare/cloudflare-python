@@ -24,10 +24,9 @@ from ....._base_client import (
     make_request_options,
 )
 from .....types.zero_trust.dlp.profiles import (
-    CustomGetResponse,
+    DLPCustomProfile,
     CustomCreateResponse,
     CustomDeleteResponse,
-    CustomUpdateResponse,
     custom_create_params,
     custom_update_params,
 )
@@ -102,7 +101,7 @@ class Customs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomUpdateResponse:
+    ) -> DLPCustomProfile:
         """
         Updates a DLP custom profile.
 
@@ -155,7 +154,7 @@ class Customs(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CustomUpdateResponse,
+            cast_to=DLPCustomProfile,
         )
 
     def delete(
@@ -218,7 +217,7 @@ class Customs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomGetResponse:
+    ) -> DLPCustomProfile:
         """
         Fetches a custom DLP profile.
 
@@ -248,7 +247,7 @@ class Customs(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CustomGetResponse], ResultWrapper[CustomGetResponse]),
+            cast_to=cast(Type[DLPCustomProfile], ResultWrapper[DLPCustomProfile]),
         )
 
 
@@ -319,7 +318,7 @@ class AsyncCustoms(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomUpdateResponse:
+    ) -> DLPCustomProfile:
         """
         Updates a DLP custom profile.
 
@@ -372,7 +371,7 @@ class AsyncCustoms(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CustomUpdateResponse,
+            cast_to=DLPCustomProfile,
         )
 
     async def delete(
@@ -435,7 +434,7 @@ class AsyncCustoms(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomGetResponse:
+    ) -> DLPCustomProfile:
         """
         Fetches a custom DLP profile.
 
@@ -465,7 +464,7 @@ class AsyncCustoms(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CustomGetResponse], ResultWrapper[CustomGetResponse]),
+            cast_to=cast(Type[DLPCustomProfile], ResultWrapper[DLPCustomProfile]),
         )
 
 

@@ -10,12 +10,10 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types.zero_trust.access import (
+    AccessServiceTokens,
     ServiceTokenListResponse,
     ServiceTokenCreateResponse,
-    ServiceTokenDeleteResponse,
     ServiceTokenRotateResponse,
-    ServiceTokenUpdateResponse,
-    ServiceTokenRefreshResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -100,7 +98,7 @@ class TestServiceTokens:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(ServiceTokenUpdateResponse, service_token, path=["response"])
+        assert_matches_type(AccessServiceTokens, service_token, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -112,7 +110,7 @@ class TestServiceTokens:
             duration="60m",
             name="CI/CD token",
         )
-        assert_matches_type(ServiceTokenUpdateResponse, service_token, path=["response"])
+        assert_matches_type(AccessServiceTokens, service_token, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -126,7 +124,7 @@ class TestServiceTokens:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         service_token = response.parse()
-        assert_matches_type(ServiceTokenUpdateResponse, service_token, path=["response"])
+        assert_matches_type(AccessServiceTokens, service_token, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -140,7 +138,7 @@ class TestServiceTokens:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             service_token = response.parse()
-            assert_matches_type(ServiceTokenUpdateResponse, service_token, path=["response"])
+            assert_matches_type(AccessServiceTokens, service_token, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -237,7 +235,7 @@ class TestServiceTokens:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(ServiceTokenDeleteResponse, service_token, path=["response"])
+        assert_matches_type(AccessServiceTokens, service_token, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -247,7 +245,7 @@ class TestServiceTokens:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(ServiceTokenDeleteResponse, service_token, path=["response"])
+        assert_matches_type(AccessServiceTokens, service_token, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -261,7 +259,7 @@ class TestServiceTokens:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         service_token = response.parse()
-        assert_matches_type(ServiceTokenDeleteResponse, service_token, path=["response"])
+        assert_matches_type(AccessServiceTokens, service_token, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -275,7 +273,7 @@ class TestServiceTokens:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             service_token = response.parse()
-            assert_matches_type(ServiceTokenDeleteResponse, service_token, path=["response"])
+            assert_matches_type(AccessServiceTokens, service_token, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -310,7 +308,7 @@ class TestServiceTokens:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ServiceTokenRefreshResponse, service_token, path=["response"])
+        assert_matches_type(AccessServiceTokens, service_token, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -323,7 +321,7 @@ class TestServiceTokens:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         service_token = response.parse()
-        assert_matches_type(ServiceTokenRefreshResponse, service_token, path=["response"])
+        assert_matches_type(AccessServiceTokens, service_token, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -336,7 +334,7 @@ class TestServiceTokens:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             service_token = response.parse()
-            assert_matches_type(ServiceTokenRefreshResponse, service_token, path=["response"])
+            assert_matches_type(AccessServiceTokens, service_token, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -487,7 +485,7 @@ class TestAsyncServiceTokens:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(ServiceTokenUpdateResponse, service_token, path=["response"])
+        assert_matches_type(AccessServiceTokens, service_token, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -499,7 +497,7 @@ class TestAsyncServiceTokens:
             duration="60m",
             name="CI/CD token",
         )
-        assert_matches_type(ServiceTokenUpdateResponse, service_token, path=["response"])
+        assert_matches_type(AccessServiceTokens, service_token, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -513,7 +511,7 @@ class TestAsyncServiceTokens:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         service_token = await response.parse()
-        assert_matches_type(ServiceTokenUpdateResponse, service_token, path=["response"])
+        assert_matches_type(AccessServiceTokens, service_token, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -527,7 +525,7 @@ class TestAsyncServiceTokens:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             service_token = await response.parse()
-            assert_matches_type(ServiceTokenUpdateResponse, service_token, path=["response"])
+            assert_matches_type(AccessServiceTokens, service_token, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -624,7 +622,7 @@ class TestAsyncServiceTokens:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(ServiceTokenDeleteResponse, service_token, path=["response"])
+        assert_matches_type(AccessServiceTokens, service_token, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -634,7 +632,7 @@ class TestAsyncServiceTokens:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(ServiceTokenDeleteResponse, service_token, path=["response"])
+        assert_matches_type(AccessServiceTokens, service_token, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -648,7 +646,7 @@ class TestAsyncServiceTokens:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         service_token = await response.parse()
-        assert_matches_type(ServiceTokenDeleteResponse, service_token, path=["response"])
+        assert_matches_type(AccessServiceTokens, service_token, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -662,7 +660,7 @@ class TestAsyncServiceTokens:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             service_token = await response.parse()
-            assert_matches_type(ServiceTokenDeleteResponse, service_token, path=["response"])
+            assert_matches_type(AccessServiceTokens, service_token, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -697,7 +695,7 @@ class TestAsyncServiceTokens:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ServiceTokenRefreshResponse, service_token, path=["response"])
+        assert_matches_type(AccessServiceTokens, service_token, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -710,7 +708,7 @@ class TestAsyncServiceTokens:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         service_token = await response.parse()
-        assert_matches_type(ServiceTokenRefreshResponse, service_token, path=["response"])
+        assert_matches_type(AccessServiceTokens, service_token, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -723,7 +721,7 @@ class TestAsyncServiceTokens:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             service_token = await response.parse()
-            assert_matches_type(ServiceTokenRefreshResponse, service_token, path=["response"])
+            assert_matches_type(AccessServiceTokens, service_token, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -87,7 +87,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.workers import ScriptListResponse, ScriptUpdateResponse, script_delete_params, script_update_params
+from ....types.workers import WorkersScript, ScriptListResponse, script_delete_params, script_update_params
 
 __all__ = ["Scripts", "AsyncScripts"]
 
@@ -144,7 +144,7 @@ class Scripts(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ScriptUpdateResponse:
+    ) -> WorkersScript:
         """
         Upload a worker module.
 
@@ -196,7 +196,7 @@ class Scripts(SyncAPIResource):
                 query=maybe_transform({"rollback_to": rollback_to}, script_update_params.ScriptUpdateParams),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ScriptUpdateResponse], ResultWrapper[ScriptUpdateResponse]),
+            cast_to=cast(Type[WorkersScript], ResultWrapper[WorkersScript]),
         )
 
     def list(
@@ -385,7 +385,7 @@ class AsyncScripts(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ScriptUpdateResponse:
+    ) -> WorkersScript:
         """
         Upload a worker module.
 
@@ -439,7 +439,7 @@ class AsyncScripts(AsyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ScriptUpdateResponse], ResultWrapper[ScriptUpdateResponse]),
+            cast_to=cast(Type[WorkersScript], ResultWrapper[WorkersScript]),
         )
 
     async def list(

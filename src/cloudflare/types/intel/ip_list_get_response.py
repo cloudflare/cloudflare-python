@@ -1,18 +1,9 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from typing import List, Optional
+from typing import List
 
-from ..._models import BaseModel
+from .intel_ip_list import IntelIPList
 
-__all__ = ["IPListGetResponse", "IPListGetResponseItem"]
+__all__ = ["IPListGetResponse"]
 
-
-class IPListGetResponseItem(BaseModel):
-    id: Optional[int] = None
-
-    description: Optional[str] = None
-
-    name: Optional[str] = None
-
-
-IPListGetResponse = List[IPListGetResponseItem]
+IPListGetResponse = List[IntelIPList]

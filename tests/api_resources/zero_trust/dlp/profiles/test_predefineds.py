@@ -9,10 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.zero_trust.dlp.profiles import (
-    PredefinedGetResponse,
-    PredefinedUpdateResponse,
-)
+from cloudflare.types.zero_trust.dlp.profiles import DLPPredefinedProfile
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -27,7 +24,7 @@ class TestPredefineds:
             "384e129d-25bd-403c-8019-bc19eb7a8a5f",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(PredefinedUpdateResponse, predefined, path=["response"])
+        assert_matches_type(DLPPredefinedProfile, predefined, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -42,7 +39,7 @@ class TestPredefineds:
             },
             entries=[{"enabled": True}, {"enabled": True}, {"enabled": True}],
         )
-        assert_matches_type(PredefinedUpdateResponse, predefined, path=["response"])
+        assert_matches_type(DLPPredefinedProfile, predefined, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -55,7 +52,7 @@ class TestPredefineds:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         predefined = response.parse()
-        assert_matches_type(PredefinedUpdateResponse, predefined, path=["response"])
+        assert_matches_type(DLPPredefinedProfile, predefined, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -68,7 +65,7 @@ class TestPredefineds:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             predefined = response.parse()
-            assert_matches_type(PredefinedUpdateResponse, predefined, path=["response"])
+            assert_matches_type(DLPPredefinedProfile, predefined, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -94,7 +91,7 @@ class TestPredefineds:
             "384e129d-25bd-403c-8019-bc19eb7a8a5f",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(PredefinedGetResponse, predefined, path=["response"])
+        assert_matches_type(DLPPredefinedProfile, predefined, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -107,7 +104,7 @@ class TestPredefineds:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         predefined = response.parse()
-        assert_matches_type(PredefinedGetResponse, predefined, path=["response"])
+        assert_matches_type(DLPPredefinedProfile, predefined, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -120,7 +117,7 @@ class TestPredefineds:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             predefined = response.parse()
-            assert_matches_type(PredefinedGetResponse, predefined, path=["response"])
+            assert_matches_type(DLPPredefinedProfile, predefined, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -150,7 +147,7 @@ class TestAsyncPredefineds:
             "384e129d-25bd-403c-8019-bc19eb7a8a5f",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(PredefinedUpdateResponse, predefined, path=["response"])
+        assert_matches_type(DLPPredefinedProfile, predefined, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -165,7 +162,7 @@ class TestAsyncPredefineds:
             },
             entries=[{"enabled": True}, {"enabled": True}, {"enabled": True}],
         )
-        assert_matches_type(PredefinedUpdateResponse, predefined, path=["response"])
+        assert_matches_type(DLPPredefinedProfile, predefined, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -178,7 +175,7 @@ class TestAsyncPredefineds:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         predefined = await response.parse()
-        assert_matches_type(PredefinedUpdateResponse, predefined, path=["response"])
+        assert_matches_type(DLPPredefinedProfile, predefined, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -191,7 +188,7 @@ class TestAsyncPredefineds:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             predefined = await response.parse()
-            assert_matches_type(PredefinedUpdateResponse, predefined, path=["response"])
+            assert_matches_type(DLPPredefinedProfile, predefined, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -217,7 +214,7 @@ class TestAsyncPredefineds:
             "384e129d-25bd-403c-8019-bc19eb7a8a5f",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(PredefinedGetResponse, predefined, path=["response"])
+        assert_matches_type(DLPPredefinedProfile, predefined, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -230,7 +227,7 @@ class TestAsyncPredefineds:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         predefined = await response.parse()
-        assert_matches_type(PredefinedGetResponse, predefined, path=["response"])
+        assert_matches_type(DLPPredefinedProfile, predefined, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -243,7 +240,7 @@ class TestAsyncPredefineds:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             predefined = await response.parse()
-            assert_matches_type(PredefinedGetResponse, predefined, path=["response"])
+            assert_matches_type(DLPPredefinedProfile, predefined, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

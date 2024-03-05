@@ -23,7 +23,8 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import (
     make_request_options,
 )
-from .....types.zero_trust.networks.routes import IPGetResponse, ip_get_params
+from .....types.zero_trust.networks import TunnelTeamnet
+from .....types.zero_trust.networks.routes import ip_get_params
 
 __all__ = ["IPs", "AsyncIPs"]
 
@@ -49,7 +50,7 @@ class IPs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IPGetResponse:
+    ) -> TunnelTeamnet:
         """
         Fetches routes that contain the given IP address.
 
@@ -82,7 +83,7 @@ class IPs(SyncAPIResource):
                 query=maybe_transform({"virtual_network_id": virtual_network_id}, ip_get_params.IPGetParams),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[IPGetResponse], ResultWrapper[IPGetResponse]),
+            cast_to=cast(Type[TunnelTeamnet], ResultWrapper[TunnelTeamnet]),
         )
 
 
@@ -107,7 +108,7 @@ class AsyncIPs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IPGetResponse:
+    ) -> TunnelTeamnet:
         """
         Fetches routes that contain the given IP address.
 
@@ -142,7 +143,7 @@ class AsyncIPs(AsyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[IPGetResponse], ResultWrapper[IPGetResponse]),
+            cast_to=cast(Type[TunnelTeamnet], ResultWrapper[TunnelTeamnet]),
         )
 
 

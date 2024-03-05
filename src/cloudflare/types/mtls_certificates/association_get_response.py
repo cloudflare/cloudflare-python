@@ -1,18 +1,9 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from typing import List, Optional
+from typing import List
 
-from ..._models import BaseModel
+from .tls_certificates_and_hostnames_association_object import TLSCertificatesAndHostnamesAssociationObject
 
-__all__ = ["AssociationGetResponse", "AssociationGetResponseItem"]
+__all__ = ["AssociationGetResponse"]
 
-
-class AssociationGetResponseItem(BaseModel):
-    service: Optional[str] = None
-    """The service using the certificate."""
-
-    status: Optional[str] = None
-    """Certificate deployment status for the given service."""
-
-
-AssociationGetResponse = List[AssociationGetResponseItem]
+AssociationGetResponse = List[TLSCertificatesAndHostnamesAssociationObject]

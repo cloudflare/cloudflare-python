@@ -23,7 +23,7 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.stream import ClipCreateResponse, clip_create_params
+from ...types.stream import StreamClipping, clip_create_params
 
 __all__ = ["Clips", "AsyncClips"]
 
@@ -56,7 +56,7 @@ class Clips(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ClipCreateResponse:
+    ) -> StreamClipping:
         """
         Clips a video based on the specified start and end times provided in seconds.
 
@@ -121,7 +121,7 @@ class Clips(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ClipCreateResponse], ResultWrapper[ClipCreateResponse]),
+            cast_to=cast(Type[StreamClipping], ResultWrapper[StreamClipping]),
         )
 
 
@@ -153,7 +153,7 @@ class AsyncClips(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ClipCreateResponse:
+    ) -> StreamClipping:
         """
         Clips a video based on the specified start and end times provided in seconds.
 
@@ -218,7 +218,7 @@ class AsyncClips(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ClipCreateResponse], ResultWrapper[ClipCreateResponse]),
+            cast_to=cast(Type[StreamClipping], ResultWrapper[StreamClipping]),
         )
 
 

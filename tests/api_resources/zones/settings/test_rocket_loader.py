@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.zones.settings import RocketLoaderGetResponse, RocketLoaderEditResponse
+from cloudflare.types.zones.settings import ZonesRocketLoader
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -27,7 +27,7 @@ class TestRocketLoader:
                 "value": "on",
             },
         )
-        assert_matches_type(Optional[RocketLoaderEditResponse], rocket_loader, path=["response"])
+        assert_matches_type(Optional[ZonesRocketLoader], rocket_loader, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -39,7 +39,7 @@ class TestRocketLoader:
                 "value": "on",
             },
         )
-        assert_matches_type(Optional[RocketLoaderEditResponse], rocket_loader, path=["response"])
+        assert_matches_type(Optional[ZonesRocketLoader], rocket_loader, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -55,7 +55,7 @@ class TestRocketLoader:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rocket_loader = response.parse()
-        assert_matches_type(Optional[RocketLoaderEditResponse], rocket_loader, path=["response"])
+        assert_matches_type(Optional[ZonesRocketLoader], rocket_loader, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -71,7 +71,7 @@ class TestRocketLoader:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rocket_loader = response.parse()
-            assert_matches_type(Optional[RocketLoaderEditResponse], rocket_loader, path=["response"])
+            assert_matches_type(Optional[ZonesRocketLoader], rocket_loader, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -93,7 +93,7 @@ class TestRocketLoader:
         rocket_loader = client.zones.settings.rocket_loader.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RocketLoaderGetResponse], rocket_loader, path=["response"])
+        assert_matches_type(Optional[ZonesRocketLoader], rocket_loader, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -105,7 +105,7 @@ class TestRocketLoader:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rocket_loader = response.parse()
-        assert_matches_type(Optional[RocketLoaderGetResponse], rocket_loader, path=["response"])
+        assert_matches_type(Optional[ZonesRocketLoader], rocket_loader, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -117,7 +117,7 @@ class TestRocketLoader:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rocket_loader = response.parse()
-            assert_matches_type(Optional[RocketLoaderGetResponse], rocket_loader, path=["response"])
+            assert_matches_type(Optional[ZonesRocketLoader], rocket_loader, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -143,7 +143,7 @@ class TestAsyncRocketLoader:
                 "value": "on",
             },
         )
-        assert_matches_type(Optional[RocketLoaderEditResponse], rocket_loader, path=["response"])
+        assert_matches_type(Optional[ZonesRocketLoader], rocket_loader, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -155,7 +155,7 @@ class TestAsyncRocketLoader:
                 "value": "on",
             },
         )
-        assert_matches_type(Optional[RocketLoaderEditResponse], rocket_loader, path=["response"])
+        assert_matches_type(Optional[ZonesRocketLoader], rocket_loader, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -171,7 +171,7 @@ class TestAsyncRocketLoader:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rocket_loader = await response.parse()
-        assert_matches_type(Optional[RocketLoaderEditResponse], rocket_loader, path=["response"])
+        assert_matches_type(Optional[ZonesRocketLoader], rocket_loader, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -187,7 +187,7 @@ class TestAsyncRocketLoader:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rocket_loader = await response.parse()
-            assert_matches_type(Optional[RocketLoaderEditResponse], rocket_loader, path=["response"])
+            assert_matches_type(Optional[ZonesRocketLoader], rocket_loader, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -209,7 +209,7 @@ class TestAsyncRocketLoader:
         rocket_loader = await async_client.zones.settings.rocket_loader.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RocketLoaderGetResponse], rocket_loader, path=["response"])
+        assert_matches_type(Optional[ZonesRocketLoader], rocket_loader, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -221,7 +221,7 @@ class TestAsyncRocketLoader:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rocket_loader = await response.parse()
-        assert_matches_type(Optional[RocketLoaderGetResponse], rocket_loader, path=["response"])
+        assert_matches_type(Optional[ZonesRocketLoader], rocket_loader, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -233,7 +233,7 @@ class TestAsyncRocketLoader:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rocket_loader = await response.parse()
-            assert_matches_type(Optional[RocketLoaderGetResponse], rocket_loader, path=["response"])
+            assert_matches_type(Optional[ZonesRocketLoader], rocket_loader, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

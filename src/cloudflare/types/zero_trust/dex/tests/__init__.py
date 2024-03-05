@@ -3,4 +3,6 @@
 from __future__ import annotations
 
 from .unique_device_list_params import UniqueDeviceListParams as UniqueDeviceListParams
-from .unique_device_list_response import UniqueDeviceListResponse as UniqueDeviceListResponse
+from .digital_experience_monitoring_unique_devices import (
+    DigitalExperienceMonitoringUniqueDevices as DigitalExperienceMonitoringUniqueDevices,
+)

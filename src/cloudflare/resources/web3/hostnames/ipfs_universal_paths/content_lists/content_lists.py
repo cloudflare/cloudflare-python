@@ -32,11 +32,8 @@ from ......_wrappers import ResultWrapper
 from ......_base_client import (
     make_request_options,
 )
-from ......types.web3.hostnames.ipfs_universal_paths import (
-    ContentListGetResponse,
-    ContentListUpdateResponse,
-    content_list_update_params,
-)
+from ......types.web3.hostnames.ipfs_universal_paths import DwebConfigContentListDetails, content_list_update_params
+from ......types.web3.hostnames.ipfs_universal_paths.content_lists import DwebConfigContentListEntryParam
 
 __all__ = ["ContentLists", "AsyncContentLists"]
 
@@ -60,14 +57,14 @@ class ContentLists(SyncAPIResource):
         *,
         zone_identifier: str,
         action: Literal["block"],
-        entries: Iterable[content_list_update_params.Entry],
+        entries: Iterable[DwebConfigContentListEntryParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ContentListUpdateResponse:
+    ) -> DwebConfigContentListDetails:
         """
         Update IPFS Universal Path Gateway Content List
 
@@ -108,7 +105,7 @@ class ContentLists(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ContentListUpdateResponse], ResultWrapper[ContentListUpdateResponse]),
+            cast_to=cast(Type[DwebConfigContentListDetails], ResultWrapper[DwebConfigContentListDetails]),
         )
 
     def get(
@@ -122,7 +119,7 @@ class ContentLists(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ContentListGetResponse:
+    ) -> DwebConfigContentListDetails:
         """
         IPFS Universal Path Gateway Content List Details
 
@@ -152,7 +149,7 @@ class ContentLists(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ContentListGetResponse], ResultWrapper[ContentListGetResponse]),
+            cast_to=cast(Type[DwebConfigContentListDetails], ResultWrapper[DwebConfigContentListDetails]),
         )
 
 
@@ -175,14 +172,14 @@ class AsyncContentLists(AsyncAPIResource):
         *,
         zone_identifier: str,
         action: Literal["block"],
-        entries: Iterable[content_list_update_params.Entry],
+        entries: Iterable[DwebConfigContentListEntryParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ContentListUpdateResponse:
+    ) -> DwebConfigContentListDetails:
         """
         Update IPFS Universal Path Gateway Content List
 
@@ -223,7 +220,7 @@ class AsyncContentLists(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ContentListUpdateResponse], ResultWrapper[ContentListUpdateResponse]),
+            cast_to=cast(Type[DwebConfigContentListDetails], ResultWrapper[DwebConfigContentListDetails]),
         )
 
     async def get(
@@ -237,7 +234,7 @@ class AsyncContentLists(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ContentListGetResponse:
+    ) -> DwebConfigContentListDetails:
         """
         IPFS Universal Path Gateway Content List Details
 
@@ -267,7 +264,7 @@ class AsyncContentLists(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ContentListGetResponse], ResultWrapper[ContentListGetResponse]),
+            cast_to=cast(Type[DwebConfigContentListDetails], ResultWrapper[DwebConfigContentListDetails]),
         )
 
 

@@ -22,11 +22,8 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...types.rum import (
-    SiteInfoGetResponse,
-    SiteInfoListResponse,
-    SiteInfoCreateResponse,
+    RUMSite,
     SiteInfoDeleteResponse,
-    SiteInfoUpdateResponse,
     site_info_list_params,
     site_info_create_params,
     site_info_update_params,
@@ -62,7 +59,7 @@ class SiteInfos(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SiteInfoCreateResponse]:
+    ) -> Optional[RUMSite]:
         """
         Creates a new Web Analytics site.
 
@@ -103,7 +100,7 @@ class SiteInfos(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SiteInfoCreateResponse]], ResultWrapper[SiteInfoCreateResponse]),
+            cast_to=cast(Type[Optional[RUMSite]], ResultWrapper[RUMSite]),
         )
 
     def update(
@@ -120,7 +117,7 @@ class SiteInfos(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SiteInfoUpdateResponse]:
+    ) -> Optional[RUMSite]:
         """
         Updates an existing Web Analytics site.
 
@@ -165,7 +162,7 @@ class SiteInfos(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SiteInfoUpdateResponse]], ResultWrapper[SiteInfoUpdateResponse]),
+            cast_to=cast(Type[Optional[RUMSite]], ResultWrapper[RUMSite]),
         )
 
     def list(
@@ -181,7 +178,7 @@ class SiteInfos(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[SiteInfoListResponse]:
+    ) -> SyncV4PagePaginationArray[RUMSite]:
         """
         Lists all Web Analytics sites of an account.
 
@@ -206,7 +203,7 @@ class SiteInfos(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/rum/site_info/list",
-            page=SyncV4PagePaginationArray[SiteInfoListResponse],
+            page=SyncV4PagePaginationArray[RUMSite],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -221,7 +218,7 @@ class SiteInfos(SyncAPIResource):
                     site_info_list_params.SiteInfoListParams,
                 ),
             ),
-            model=SiteInfoListResponse,
+            model=RUMSite,
         )
 
     def delete(
@@ -279,7 +276,7 @@ class SiteInfos(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SiteInfoGetResponse]:
+    ) -> Optional[RUMSite]:
         """
         Retrieves a Web Analytics site.
 
@@ -309,7 +306,7 @@ class SiteInfos(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SiteInfoGetResponse]], ResultWrapper[SiteInfoGetResponse]),
+            cast_to=cast(Type[Optional[RUMSite]], ResultWrapper[RUMSite]),
         )
 
 
@@ -335,7 +332,7 @@ class AsyncSiteInfos(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SiteInfoCreateResponse]:
+    ) -> Optional[RUMSite]:
         """
         Creates a new Web Analytics site.
 
@@ -376,7 +373,7 @@ class AsyncSiteInfos(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SiteInfoCreateResponse]], ResultWrapper[SiteInfoCreateResponse]),
+            cast_to=cast(Type[Optional[RUMSite]], ResultWrapper[RUMSite]),
         )
 
     async def update(
@@ -393,7 +390,7 @@ class AsyncSiteInfos(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SiteInfoUpdateResponse]:
+    ) -> Optional[RUMSite]:
         """
         Updates an existing Web Analytics site.
 
@@ -438,7 +435,7 @@ class AsyncSiteInfos(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SiteInfoUpdateResponse]], ResultWrapper[SiteInfoUpdateResponse]),
+            cast_to=cast(Type[Optional[RUMSite]], ResultWrapper[RUMSite]),
         )
 
     def list(
@@ -454,7 +451,7 @@ class AsyncSiteInfos(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[SiteInfoListResponse, AsyncV4PagePaginationArray[SiteInfoListResponse]]:
+    ) -> AsyncPaginator[RUMSite, AsyncV4PagePaginationArray[RUMSite]]:
         """
         Lists all Web Analytics sites of an account.
 
@@ -479,7 +476,7 @@ class AsyncSiteInfos(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/rum/site_info/list",
-            page=AsyncV4PagePaginationArray[SiteInfoListResponse],
+            page=AsyncV4PagePaginationArray[RUMSite],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -494,7 +491,7 @@ class AsyncSiteInfos(AsyncAPIResource):
                     site_info_list_params.SiteInfoListParams,
                 ),
             ),
-            model=SiteInfoListResponse,
+            model=RUMSite,
         )
 
     async def delete(
@@ -552,7 +549,7 @@ class AsyncSiteInfos(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SiteInfoGetResponse]:
+    ) -> Optional[RUMSite]:
         """
         Retrieves a Web Analytics site.
 
@@ -582,7 +579,7 @@ class AsyncSiteInfos(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SiteInfoGetResponse]], ResultWrapper[SiteInfoGetResponse]),
+            cast_to=cast(Type[Optional[RUMSite]], ResultWrapper[RUMSite]),
         )
 
 

@@ -23,11 +23,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import (
-    H2PrioritizationGetResponse,
-    H2PrioritizationEditResponse,
-    h2_prioritization_edit_params,
-)
+from ....types.zones.settings import ZonesH2Prioritization, ZonesH2PrioritizationParam, h2_prioritization_edit_params
 
 __all__ = ["H2Prioritization", "AsyncH2Prioritization"]
 
@@ -45,14 +41,14 @@ class H2Prioritization(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        value: h2_prioritization_edit_params.Value,
+        value: ZonesH2PrioritizationParam,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[H2PrioritizationEditResponse]:
+    ) -> Optional[ZonesH2Prioritization]:
         """
         Gets HTTP/2 Edge Prioritization setting.
 
@@ -83,7 +79,7 @@ class H2Prioritization(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[H2PrioritizationEditResponse]], ResultWrapper[H2PrioritizationEditResponse]),
+            cast_to=cast(Type[Optional[ZonesH2Prioritization]], ResultWrapper[ZonesH2Prioritization]),
         )
 
     def get(
@@ -96,7 +92,7 @@ class H2Prioritization(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[H2PrioritizationGetResponse]:
+    ) -> Optional[ZonesH2Prioritization]:
         """
         Gets HTTP/2 Edge Prioritization setting.
 
@@ -122,7 +118,7 @@ class H2Prioritization(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[H2PrioritizationGetResponse]], ResultWrapper[H2PrioritizationGetResponse]),
+            cast_to=cast(Type[Optional[ZonesH2Prioritization]], ResultWrapper[ZonesH2Prioritization]),
         )
 
 
@@ -139,14 +135,14 @@ class AsyncH2Prioritization(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        value: h2_prioritization_edit_params.Value,
+        value: ZonesH2PrioritizationParam,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[H2PrioritizationEditResponse]:
+    ) -> Optional[ZonesH2Prioritization]:
         """
         Gets HTTP/2 Edge Prioritization setting.
 
@@ -179,7 +175,7 @@ class AsyncH2Prioritization(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[H2PrioritizationEditResponse]], ResultWrapper[H2PrioritizationEditResponse]),
+            cast_to=cast(Type[Optional[ZonesH2Prioritization]], ResultWrapper[ZonesH2Prioritization]),
         )
 
     async def get(
@@ -192,7 +188,7 @@ class AsyncH2Prioritization(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[H2PrioritizationGetResponse]:
+    ) -> Optional[ZonesH2Prioritization]:
         """
         Gets HTTP/2 Edge Prioritization setting.
 
@@ -218,7 +214,7 @@ class AsyncH2Prioritization(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[H2PrioritizationGetResponse]], ResultWrapper[H2PrioritizationGetResponse]),
+            cast_to=cast(Type[Optional[ZonesH2Prioritization]], ResultWrapper[ZonesH2Prioritization]),
         )
 
 
