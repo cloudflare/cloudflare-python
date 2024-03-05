@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.workers.scripts import ScheduleListResponse, ScheduleUpdateResponse
+from cloudflare.types.workers.scripts import ScheduleGetResponse, ScheduleUpdateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -76,17 +76,17 @@ class TestSchedules:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list(self, client: Cloudflare) -> None:
-        schedule = client.workers.scripts.schedules.list(
+    def test_method_get(self, client: Cloudflare) -> None:
+        schedule = client.workers.scripts.schedules.get(
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ScheduleListResponse, schedule, path=["response"])
+        assert_matches_type(ScheduleGetResponse, schedule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_list(self, client: Cloudflare) -> None:
-        response = client.workers.scripts.schedules.with_raw_response.list(
+    def test_raw_response_get(self, client: Cloudflare) -> None:
+        response = client.workers.scripts.schedules.with_raw_response.get(
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -94,12 +94,12 @@ class TestSchedules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         schedule = response.parse()
-        assert_matches_type(ScheduleListResponse, schedule, path=["response"])
+        assert_matches_type(ScheduleGetResponse, schedule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_list(self, client: Cloudflare) -> None:
-        with client.workers.scripts.schedules.with_streaming_response.list(
+    def test_streaming_response_get(self, client: Cloudflare) -> None:
+        with client.workers.scripts.schedules.with_streaming_response.get(
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -107,21 +107,21 @@ class TestSchedules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             schedule = response.parse()
-            assert_matches_type(ScheduleListResponse, schedule, path=["response"])
+            assert_matches_type(ScheduleGetResponse, schedule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_list(self, client: Cloudflare) -> None:
+    def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.workers.scripts.schedules.with_raw_response.list(
+            client.workers.scripts.schedules.with_raw_response.get(
                 "this-is_my_script-01",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
-            client.workers.scripts.schedules.with_raw_response.list(
+            client.workers.scripts.schedules.with_raw_response.get(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
@@ -189,17 +189,17 @@ class TestAsyncSchedules:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list(self, async_client: AsyncCloudflare) -> None:
-        schedule = await async_client.workers.scripts.schedules.list(
+    async def test_method_get(self, async_client: AsyncCloudflare) -> None:
+        schedule = await async_client.workers.scripts.schedules.get(
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ScheduleListResponse, schedule, path=["response"])
+        assert_matches_type(ScheduleGetResponse, schedule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.workers.scripts.schedules.with_raw_response.list(
+    async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.workers.scripts.schedules.with_raw_response.get(
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -207,12 +207,12 @@ class TestAsyncSchedules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         schedule = await response.parse()
-        assert_matches_type(ScheduleListResponse, schedule, path=["response"])
+        assert_matches_type(ScheduleGetResponse, schedule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.workers.scripts.schedules.with_streaming_response.list(
+    async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.workers.scripts.schedules.with_streaming_response.get(
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -220,21 +220,21 @@ class TestAsyncSchedules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             schedule = await response.parse()
-            assert_matches_type(ScheduleListResponse, schedule, path=["response"])
+            assert_matches_type(ScheduleGetResponse, schedule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
+    async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.workers.scripts.schedules.with_raw_response.list(
+            await async_client.workers.scripts.schedules.with_raw_response.get(
                 "this-is_my_script-01",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
-            await async_client.workers.scripts.schedules.with_raw_response.list(
+            await async_client.workers.scripts.schedules.with_raw_response.get(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

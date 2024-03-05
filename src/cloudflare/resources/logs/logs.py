@@ -2,21 +2,21 @@
 
 from __future__ import annotations
 
-from .rayids import (
-    Rayids,
-    AsyncRayids,
-    RayidsWithRawResponse,
-    AsyncRayidsWithRawResponse,
-    RayidsWithStreamingResponse,
-    AsyncRayidsWithStreamingResponse,
+from .rayid import (
+    Rayid,
+    AsyncRayid,
+    RayidWithRawResponse,
+    AsyncRayidWithRawResponse,
+    RayidWithStreamingResponse,
+    AsyncRayidWithStreamingResponse,
 )
-from .controls import (
-    Controls,
-    AsyncControls,
-    ControlsWithRawResponse,
-    AsyncControlsWithRawResponse,
-    ControlsWithStreamingResponse,
-    AsyncControlsWithStreamingResponse,
+from .control import (
+    Control,
+    AsyncControl,
+    ControlWithRawResponse,
+    AsyncControlWithRawResponse,
+    ControlWithStreamingResponse,
+    AsyncControlWithStreamingResponse,
 )
 from .received import (
     Received,
@@ -28,7 +28,7 @@ from .received import (
 )
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from .controls.controls import Controls, AsyncControls
+from .control.control import Control, AsyncControl
 from .received.received import Received, AsyncReceived
 
 __all__ = ["Logs", "AsyncLogs"]
@@ -36,12 +36,12 @@ __all__ = ["Logs", "AsyncLogs"]
 
 class Logs(SyncAPIResource):
     @cached_property
-    def controls(self) -> Controls:
-        return Controls(self._client)
+    def control(self) -> Control:
+        return Control(self._client)
 
     @cached_property
-    def rayids(self) -> Rayids:
-        return Rayids(self._client)
+    def rayid(self) -> Rayid:
+        return Rayid(self._client)
 
     @cached_property
     def received(self) -> Received:
@@ -58,12 +58,12 @@ class Logs(SyncAPIResource):
 
 class AsyncLogs(AsyncAPIResource):
     @cached_property
-    def controls(self) -> AsyncControls:
-        return AsyncControls(self._client)
+    def control(self) -> AsyncControl:
+        return AsyncControl(self._client)
 
     @cached_property
-    def rayids(self) -> AsyncRayids:
-        return AsyncRayids(self._client)
+    def rayid(self) -> AsyncRayid:
+        return AsyncRayid(self._client)
 
     @cached_property
     def received(self) -> AsyncReceived:
@@ -83,12 +83,12 @@ class LogsWithRawResponse:
         self._logs = logs
 
     @cached_property
-    def controls(self) -> ControlsWithRawResponse:
-        return ControlsWithRawResponse(self._logs.controls)
+    def control(self) -> ControlWithRawResponse:
+        return ControlWithRawResponse(self._logs.control)
 
     @cached_property
-    def rayids(self) -> RayidsWithRawResponse:
-        return RayidsWithRawResponse(self._logs.rayids)
+    def rayid(self) -> RayidWithRawResponse:
+        return RayidWithRawResponse(self._logs.rayid)
 
     @cached_property
     def received(self) -> ReceivedWithRawResponse:
@@ -100,12 +100,12 @@ class AsyncLogsWithRawResponse:
         self._logs = logs
 
     @cached_property
-    def controls(self) -> AsyncControlsWithRawResponse:
-        return AsyncControlsWithRawResponse(self._logs.controls)
+    def control(self) -> AsyncControlWithRawResponse:
+        return AsyncControlWithRawResponse(self._logs.control)
 
     @cached_property
-    def rayids(self) -> AsyncRayidsWithRawResponse:
-        return AsyncRayidsWithRawResponse(self._logs.rayids)
+    def rayid(self) -> AsyncRayidWithRawResponse:
+        return AsyncRayidWithRawResponse(self._logs.rayid)
 
     @cached_property
     def received(self) -> AsyncReceivedWithRawResponse:
@@ -117,12 +117,12 @@ class LogsWithStreamingResponse:
         self._logs = logs
 
     @cached_property
-    def controls(self) -> ControlsWithStreamingResponse:
-        return ControlsWithStreamingResponse(self._logs.controls)
+    def control(self) -> ControlWithStreamingResponse:
+        return ControlWithStreamingResponse(self._logs.control)
 
     @cached_property
-    def rayids(self) -> RayidsWithStreamingResponse:
-        return RayidsWithStreamingResponse(self._logs.rayids)
+    def rayid(self) -> RayidWithStreamingResponse:
+        return RayidWithStreamingResponse(self._logs.rayid)
 
     @cached_property
     def received(self) -> ReceivedWithStreamingResponse:
@@ -134,12 +134,12 @@ class AsyncLogsWithStreamingResponse:
         self._logs = logs
 
     @cached_property
-    def controls(self) -> AsyncControlsWithStreamingResponse:
-        return AsyncControlsWithStreamingResponse(self._logs.controls)
+    def control(self) -> AsyncControlWithStreamingResponse:
+        return AsyncControlWithStreamingResponse(self._logs.control)
 
     @cached_property
-    def rayids(self) -> AsyncRayidsWithStreamingResponse:
-        return AsyncRayidsWithStreamingResponse(self._logs.rayids)
+    def rayid(self) -> AsyncRayidWithStreamingResponse:
+        return AsyncRayidWithStreamingResponse(self._logs.rayid)
 
     @cached_property
     def received(self) -> AsyncReceivedWithStreamingResponse:

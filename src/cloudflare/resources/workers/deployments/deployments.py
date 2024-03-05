@@ -12,6 +12,7 @@ from .by_scripts import (
     AsyncByScriptsWithStreamingResponse,
 )
 from ...._resource import SyncAPIResource, AsyncAPIResource
+from .by_scripts.by_scripts import ByScripts, AsyncByScripts
 
 __all__ = ["Deployments", "AsyncDeployments"]
 

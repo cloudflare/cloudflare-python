@@ -6,13 +6,13 @@ from typing import Type, cast
 
 import httpx
 
-from .fulls import (
-    Fulls,
-    AsyncFulls,
-    FullsWithRawResponse,
-    AsyncFullsWithRawResponse,
-    FullsWithStreamingResponse,
-    AsyncFullsWithStreamingResponse,
+from .full import (
+    Full,
+    AsyncFull,
+    FullWithRawResponse,
+    AsyncFullWithRawResponse,
+    FullWithStreamingResponse,
+    AsyncFullWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._compat import cached_property
@@ -28,8 +28,8 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.magic_network_monitoring import (
+    ConfigGetResponse,
     ConfigEditResponse,
-    ConfigListResponse,
     ConfigCreateResponse,
     ConfigDeleteResponse,
     ConfigUpdateResponse,
@@ -40,8 +40,8 @@ __all__ = ["Configs", "AsyncConfigs"]
 
 class Configs(SyncAPIResource):
     @cached_property
-    def fulls(self) -> Fulls:
-        return Fulls(self._client)
+    def full(self) -> Full:
+        return Full(self._client)
 
     @cached_property
     def with_raw_response(self) -> ConfigsWithRawResponse:
@@ -122,41 +122,6 @@ class Configs(SyncAPIResource):
             cast_to=cast(Type[ConfigUpdateResponse], ResultWrapper[ConfigUpdateResponse]),
         )
 
-    def list(
-        self,
-        account_identifier: object,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConfigListResponse:
-        """
-        Lists default sampling and router IPs for account.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._get(
-            f"/accounts/{account_identifier}/mnm/config",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(Type[ConfigListResponse], ResultWrapper[ConfigListResponse]),
-        )
-
     def delete(
         self,
         account_identifier: object,
@@ -227,11 +192,46 @@ class Configs(SyncAPIResource):
             cast_to=cast(Type[ConfigEditResponse], ResultWrapper[ConfigEditResponse]),
         )
 
+    def get(
+        self,
+        account_identifier: object,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ConfigGetResponse:
+        """
+        Lists default sampling and router IPs for account.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get(
+            f"/accounts/{account_identifier}/mnm/config",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[ConfigGetResponse], ResultWrapper[ConfigGetResponse]),
+        )
+
 
 class AsyncConfigs(AsyncAPIResource):
     @cached_property
-    def fulls(self) -> AsyncFulls:
-        return AsyncFulls(self._client)
+    def full(self) -> AsyncFull:
+        return AsyncFull(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncConfigsWithRawResponse:
@@ -312,41 +312,6 @@ class AsyncConfigs(AsyncAPIResource):
             cast_to=cast(Type[ConfigUpdateResponse], ResultWrapper[ConfigUpdateResponse]),
         )
 
-    async def list(
-        self,
-        account_identifier: object,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConfigListResponse:
-        """
-        Lists default sampling and router IPs for account.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._get(
-            f"/accounts/{account_identifier}/mnm/config",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(Type[ConfigListResponse], ResultWrapper[ConfigListResponse]),
-        )
-
     async def delete(
         self,
         account_identifier: object,
@@ -417,6 +382,41 @@ class AsyncConfigs(AsyncAPIResource):
             cast_to=cast(Type[ConfigEditResponse], ResultWrapper[ConfigEditResponse]),
         )
 
+    async def get(
+        self,
+        account_identifier: object,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ConfigGetResponse:
+        """
+        Lists default sampling and router IPs for account.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._get(
+            f"/accounts/{account_identifier}/mnm/config",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[ConfigGetResponse], ResultWrapper[ConfigGetResponse]),
+        )
+
 
 class ConfigsWithRawResponse:
     def __init__(self, configs: Configs) -> None:
@@ -428,19 +428,19 @@ class ConfigsWithRawResponse:
         self.update = to_raw_response_wrapper(
             configs.update,
         )
-        self.list = to_raw_response_wrapper(
-            configs.list,
-        )
         self.delete = to_raw_response_wrapper(
             configs.delete,
         )
         self.edit = to_raw_response_wrapper(
             configs.edit,
         )
+        self.get = to_raw_response_wrapper(
+            configs.get,
+        )
 
     @cached_property
-    def fulls(self) -> FullsWithRawResponse:
-        return FullsWithRawResponse(self._configs.fulls)
+    def full(self) -> FullWithRawResponse:
+        return FullWithRawResponse(self._configs.full)
 
 
 class AsyncConfigsWithRawResponse:
@@ -453,19 +453,19 @@ class AsyncConfigsWithRawResponse:
         self.update = async_to_raw_response_wrapper(
             configs.update,
         )
-        self.list = async_to_raw_response_wrapper(
-            configs.list,
-        )
         self.delete = async_to_raw_response_wrapper(
             configs.delete,
         )
         self.edit = async_to_raw_response_wrapper(
             configs.edit,
         )
+        self.get = async_to_raw_response_wrapper(
+            configs.get,
+        )
 
     @cached_property
-    def fulls(self) -> AsyncFullsWithRawResponse:
-        return AsyncFullsWithRawResponse(self._configs.fulls)
+    def full(self) -> AsyncFullWithRawResponse:
+        return AsyncFullWithRawResponse(self._configs.full)
 
 
 class ConfigsWithStreamingResponse:
@@ -478,19 +478,19 @@ class ConfigsWithStreamingResponse:
         self.update = to_streamed_response_wrapper(
             configs.update,
         )
-        self.list = to_streamed_response_wrapper(
-            configs.list,
-        )
         self.delete = to_streamed_response_wrapper(
             configs.delete,
         )
         self.edit = to_streamed_response_wrapper(
             configs.edit,
         )
+        self.get = to_streamed_response_wrapper(
+            configs.get,
+        )
 
     @cached_property
-    def fulls(self) -> FullsWithStreamingResponse:
-        return FullsWithStreamingResponse(self._configs.fulls)
+    def full(self) -> FullWithStreamingResponse:
+        return FullWithStreamingResponse(self._configs.full)
 
 
 class AsyncConfigsWithStreamingResponse:
@@ -503,16 +503,16 @@ class AsyncConfigsWithStreamingResponse:
         self.update = async_to_streamed_response_wrapper(
             configs.update,
         )
-        self.list = async_to_streamed_response_wrapper(
-            configs.list,
-        )
         self.delete = async_to_streamed_response_wrapper(
             configs.delete,
         )
         self.edit = async_to_streamed_response_wrapper(
             configs.edit,
         )
+        self.get = async_to_streamed_response_wrapper(
+            configs.get,
+        )
 
     @cached_property
-    def fulls(self) -> AsyncFullsWithStreamingResponse:
-        return AsyncFullsWithStreamingResponse(self._configs.fulls)
+    def full(self) -> AsyncFullWithStreamingResponse:
+        return AsyncFullWithStreamingResponse(self._configs.full)

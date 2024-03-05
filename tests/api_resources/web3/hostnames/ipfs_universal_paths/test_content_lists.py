@@ -10,7 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types.web3.hostnames.ipfs_universal_paths import (
-    ContentListListResponse,
+    ContentListGetResponse,
     ContentListUpdateResponse,
 )
 
@@ -84,17 +84,17 @@ class TestContentLists:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list(self, client: Cloudflare) -> None:
-        content_list = client.web3.hostnames.ipfs_universal_paths.content_lists.list(
+    def test_method_get(self, client: Cloudflare) -> None:
+        content_list = client.web3.hostnames.ipfs_universal_paths.content_lists.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ContentListListResponse, content_list, path=["response"])
+        assert_matches_type(ContentListGetResponse, content_list, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_list(self, client: Cloudflare) -> None:
-        response = client.web3.hostnames.ipfs_universal_paths.content_lists.with_raw_response.list(
+    def test_raw_response_get(self, client: Cloudflare) -> None:
+        response = client.web3.hostnames.ipfs_universal_paths.content_lists.with_raw_response.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -102,12 +102,12 @@ class TestContentLists:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         content_list = response.parse()
-        assert_matches_type(ContentListListResponse, content_list, path=["response"])
+        assert_matches_type(ContentListGetResponse, content_list, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_list(self, client: Cloudflare) -> None:
-        with client.web3.hostnames.ipfs_universal_paths.content_lists.with_streaming_response.list(
+    def test_streaming_response_get(self, client: Cloudflare) -> None:
+        with client.web3.hostnames.ipfs_universal_paths.content_lists.with_streaming_response.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -115,21 +115,21 @@ class TestContentLists:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             content_list = response.parse()
-            assert_matches_type(ContentListListResponse, content_list, path=["response"])
+            assert_matches_type(ContentListGetResponse, content_list, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_list(self, client: Cloudflare) -> None:
+    def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
-            client.web3.hostnames.ipfs_universal_paths.content_lists.with_raw_response.list(
+            client.web3.hostnames.ipfs_universal_paths.content_lists.with_raw_response.get(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 zone_identifier="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
-            client.web3.hostnames.ipfs_universal_paths.content_lists.with_raw_response.list(
+            client.web3.hostnames.ipfs_universal_paths.content_lists.with_raw_response.get(
                 "",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
@@ -202,17 +202,17 @@ class TestAsyncContentLists:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list(self, async_client: AsyncCloudflare) -> None:
-        content_list = await async_client.web3.hostnames.ipfs_universal_paths.content_lists.list(
+    async def test_method_get(self, async_client: AsyncCloudflare) -> None:
+        content_list = await async_client.web3.hostnames.ipfs_universal_paths.content_lists.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ContentListListResponse, content_list, path=["response"])
+        assert_matches_type(ContentListGetResponse, content_list, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.web3.hostnames.ipfs_universal_paths.content_lists.with_raw_response.list(
+    async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.web3.hostnames.ipfs_universal_paths.content_lists.with_raw_response.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -220,12 +220,12 @@ class TestAsyncContentLists:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         content_list = await response.parse()
-        assert_matches_type(ContentListListResponse, content_list, path=["response"])
+        assert_matches_type(ContentListGetResponse, content_list, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.web3.hostnames.ipfs_universal_paths.content_lists.with_streaming_response.list(
+    async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.web3.hostnames.ipfs_universal_paths.content_lists.with_streaming_response.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -233,21 +233,21 @@ class TestAsyncContentLists:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             content_list = await response.parse()
-            assert_matches_type(ContentListListResponse, content_list, path=["response"])
+            assert_matches_type(ContentListGetResponse, content_list, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
+    async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
-            await async_client.web3.hostnames.ipfs_universal_paths.content_lists.with_raw_response.list(
+            await async_client.web3.hostnames.ipfs_universal_paths.content_lists.with_raw_response.get(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 zone_identifier="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
-            await async_client.web3.hostnames.ipfs_universal_paths.content_lists.with_raw_response.list(
+            await async_client.web3.hostnames.ipfs_universal_paths.content_lists.with_raw_response.get(
                 "",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )

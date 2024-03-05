@@ -18,8 +18,8 @@ class TestDownloads:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list(self, client: Cloudflare) -> None:
-        download = client.addressing.loa_documents.downloads.list(
+    def test_method_get(self, client: Cloudflare) -> None:
+        download = client.addressing.loa_documents.downloads.get(
             "d933b1530bc56c9953cf8ce166da8004",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -27,8 +27,8 @@ class TestDownloads:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_list(self, client: Cloudflare) -> None:
-        response = client.addressing.loa_documents.downloads.with_raw_response.list(
+    def test_raw_response_get(self, client: Cloudflare) -> None:
+        response = client.addressing.loa_documents.downloads.with_raw_response.get(
             "d933b1530bc56c9953cf8ce166da8004",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -40,8 +40,8 @@ class TestDownloads:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_list(self, client: Cloudflare) -> None:
-        with client.addressing.loa_documents.downloads.with_streaming_response.list(
+    def test_streaming_response_get(self, client: Cloudflare) -> None:
+        with client.addressing.loa_documents.downloads.with_streaming_response.get(
             "d933b1530bc56c9953cf8ce166da8004",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -55,15 +55,15 @@ class TestDownloads:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_list(self, client: Cloudflare) -> None:
+    def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.addressing.loa_documents.downloads.with_raw_response.list(
+            client.addressing.loa_documents.downloads.with_raw_response.get(
                 "d933b1530bc56c9953cf8ce166da8004",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `loa_document_id` but received ''"):
-            client.addressing.loa_documents.downloads.with_raw_response.list(
+            client.addressing.loa_documents.downloads.with_raw_response.get(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
@@ -74,8 +74,8 @@ class TestAsyncDownloads:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list(self, async_client: AsyncCloudflare) -> None:
-        download = await async_client.addressing.loa_documents.downloads.list(
+    async def test_method_get(self, async_client: AsyncCloudflare) -> None:
+        download = await async_client.addressing.loa_documents.downloads.get(
             "d933b1530bc56c9953cf8ce166da8004",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -83,8 +83,8 @@ class TestAsyncDownloads:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.addressing.loa_documents.downloads.with_raw_response.list(
+    async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.addressing.loa_documents.downloads.with_raw_response.get(
             "d933b1530bc56c9953cf8ce166da8004",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -96,8 +96,8 @@ class TestAsyncDownloads:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.addressing.loa_documents.downloads.with_streaming_response.list(
+    async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.addressing.loa_documents.downloads.with_streaming_response.get(
             "d933b1530bc56c9953cf8ce166da8004",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -111,15 +111,15 @@ class TestAsyncDownloads:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
+    async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.addressing.loa_documents.downloads.with_raw_response.list(
+            await async_client.addressing.loa_documents.downloads.with_raw_response.get(
                 "d933b1530bc56c9953cf8ce166da8004",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `loa_document_id` but received ''"):
-            await async_client.addressing.loa_documents.downloads.with_raw_response.list(
+            await async_client.addressing.loa_documents.downloads.with_raw_response.get(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

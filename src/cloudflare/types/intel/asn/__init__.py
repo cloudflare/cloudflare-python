@@ -2,4 +2,4 @@
 
 from __future__ import annotations
 
-from .subnet_list_response import SubnetListResponse as SubnetListResponse
+from .subnet_get_response import SubnetGetResponse as SubnetGetResponse

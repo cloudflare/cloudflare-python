@@ -14,7 +14,7 @@ from .tokens import (
     TokensWithStreamingResponse,
     AsyncTokensWithStreamingResponse,
 )
-from ...types import UserEditResponse, UserListResponse, user_edit_params
+from ...types import UserGetResponse, UserEditResponse, user_edit_params
 from .billing import (
     Billing,
     AsyncBilling,
@@ -137,34 +137,6 @@ class UserResource(SyncAPIResource):
     def with_streaming_response(self) -> UserResourceWithStreamingResponse:
         return UserResourceWithStreamingResponse(self)
 
-    def list(
-        self,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UserListResponse:
-        """User Details"""
-        return cast(
-            UserListResponse,
-            self._get(
-                "/user",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[UserListResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
-
     def edit(
         self,
         *,
@@ -229,6 +201,34 @@ class UserResource(SyncAPIResource):
             ),
         )
 
+    def get(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> UserGetResponse:
+        """User Details"""
+        return cast(
+            UserGetResponse,
+            self._get(
+                "/user",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[UserGetResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
+        )
+
 
 class AsyncUserResource(AsyncAPIResource):
     @cached_property
@@ -270,34 +270,6 @@ class AsyncUserResource(AsyncAPIResource):
     @cached_property
     def with_streaming_response(self) -> AsyncUserResourceWithStreamingResponse:
         return AsyncUserResourceWithStreamingResponse(self)
-
-    async def list(
-        self,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UserListResponse:
-        """User Details"""
-        return cast(
-            UserListResponse,
-            await self._get(
-                "/user",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[UserListResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
 
     async def edit(
         self,
@@ -363,16 +335,44 @@ class AsyncUserResource(AsyncAPIResource):
             ),
         )
 
+    async def get(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> UserGetResponse:
+        """User Details"""
+        return cast(
+            UserGetResponse,
+            await self._get(
+                "/user",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[UserGetResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
+        )
+
 
 class UserResourceWithRawResponse:
     def __init__(self, user: UserResource) -> None:
         self._user = user
 
-        self.list = to_raw_response_wrapper(
-            user.list,
-        )
         self.edit = to_raw_response_wrapper(
             user.edit,
+        )
+        self.get = to_raw_response_wrapper(
+            user.get,
         )
 
     @cached_property
@@ -412,11 +412,11 @@ class AsyncUserResourceWithRawResponse:
     def __init__(self, user: AsyncUserResource) -> None:
         self._user = user
 
-        self.list = async_to_raw_response_wrapper(
-            user.list,
-        )
         self.edit = async_to_raw_response_wrapper(
             user.edit,
+        )
+        self.get = async_to_raw_response_wrapper(
+            user.get,
         )
 
     @cached_property
@@ -456,11 +456,11 @@ class UserResourceWithStreamingResponse:
     def __init__(self, user: UserResource) -> None:
         self._user = user
 
-        self.list = to_streamed_response_wrapper(
-            user.list,
-        )
         self.edit = to_streamed_response_wrapper(
             user.edit,
+        )
+        self.get = to_streamed_response_wrapper(
+            user.get,
         )
 
     @cached_property
@@ -500,11 +500,11 @@ class AsyncUserResourceWithStreamingResponse:
     def __init__(self, user: AsyncUserResource) -> None:
         self._user = user
 
-        self.list = async_to_streamed_response_wrapper(
-            user.list,
-        )
         self.edit = async_to_streamed_response_wrapper(
             user.edit,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            user.get,
         )
 
     @cached_property

@@ -19,7 +19,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.workers.scripts import TailListResponse, TailCreateResponse, TailDeleteResponse
+from ....types.workers.scripts import TailGetResponse, TailCreateResponse, TailDeleteResponse
 
 __all__ = ["Tail", "AsyncTail"]
 
@@ -77,50 +77,6 @@ class Tail(SyncAPIResource):
             cast_to=cast(Type[TailCreateResponse], ResultWrapper[TailCreateResponse]),
         )
 
-    def list(
-        self,
-        script_name: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TailListResponse:
-        """
-        Get list of tails currently deployed on a Worker.
-
-        Args:
-          account_id: Identifier
-
-          script_name: Name of the script, used in URLs and route configuration.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not script_name:
-            raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
-        return self._get(
-            f"/accounts/{account_id}/workers/scripts/{script_name}/tails",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(Type[TailListResponse], ResultWrapper[TailListResponse]),
-        )
-
     def delete(
         self,
         id: str,
@@ -173,6 +129,50 @@ class Tail(SyncAPIResource):
                     Any, ResultWrapper[TailDeleteResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
+        )
+
+    def get(
+        self,
+        script_name: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TailGetResponse:
+        """
+        Get list of tails currently deployed on a Worker.
+
+        Args:
+          account_id: Identifier
+
+          script_name: Name of the script, used in URLs and route configuration.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not script_name:
+            raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
+        return self._get(
+            f"/accounts/{account_id}/workers/scripts/{script_name}/tails",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[TailGetResponse], ResultWrapper[TailGetResponse]),
         )
 
 
@@ -229,50 +229,6 @@ class AsyncTail(AsyncAPIResource):
             cast_to=cast(Type[TailCreateResponse], ResultWrapper[TailCreateResponse]),
         )
 
-    async def list(
-        self,
-        script_name: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TailListResponse:
-        """
-        Get list of tails currently deployed on a Worker.
-
-        Args:
-          account_id: Identifier
-
-          script_name: Name of the script, used in URLs and route configuration.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not script_name:
-            raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
-        return await self._get(
-            f"/accounts/{account_id}/workers/scripts/{script_name}/tails",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(Type[TailListResponse], ResultWrapper[TailListResponse]),
-        )
-
     async def delete(
         self,
         id: str,
@@ -327,6 +283,50 @@ class AsyncTail(AsyncAPIResource):
             ),
         )
 
+    async def get(
+        self,
+        script_name: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TailGetResponse:
+        """
+        Get list of tails currently deployed on a Worker.
+
+        Args:
+          account_id: Identifier
+
+          script_name: Name of the script, used in URLs and route configuration.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not script_name:
+            raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
+        return await self._get(
+            f"/accounts/{account_id}/workers/scripts/{script_name}/tails",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[TailGetResponse], ResultWrapper[TailGetResponse]),
+        )
+
 
 class TailWithRawResponse:
     def __init__(self, tail: Tail) -> None:
@@ -335,11 +335,11 @@ class TailWithRawResponse:
         self.create = to_raw_response_wrapper(
             tail.create,
         )
-        self.list = to_raw_response_wrapper(
-            tail.list,
-        )
         self.delete = to_raw_response_wrapper(
             tail.delete,
+        )
+        self.get = to_raw_response_wrapper(
+            tail.get,
         )
 
 
@@ -350,11 +350,11 @@ class AsyncTailWithRawResponse:
         self.create = async_to_raw_response_wrapper(
             tail.create,
         )
-        self.list = async_to_raw_response_wrapper(
-            tail.list,
-        )
         self.delete = async_to_raw_response_wrapper(
             tail.delete,
+        )
+        self.get = async_to_raw_response_wrapper(
+            tail.get,
         )
 
 
@@ -365,11 +365,11 @@ class TailWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             tail.create,
         )
-        self.list = to_streamed_response_wrapper(
-            tail.list,
-        )
         self.delete = to_streamed_response_wrapper(
             tail.delete,
+        )
+        self.get = to_streamed_response_wrapper(
+            tail.get,
         )
 
 
@@ -380,9 +380,9 @@ class AsyncTailWithStreamingResponse:
         self.create = async_to_streamed_response_wrapper(
             tail.create,
         )
-        self.list = async_to_streamed_response_wrapper(
-            tail.list,
-        )
         self.delete = async_to_streamed_response_wrapper(
             tail.delete,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            tail.get,
         )

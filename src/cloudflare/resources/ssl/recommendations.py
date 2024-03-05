@@ -16,7 +16,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...types.ssl import RecommendationListResponse
+from ...types.ssl import RecommendationGetResponse
 from ..._base_client import (
     make_request_options,
 )
@@ -33,7 +33,7 @@ class Recommendations(SyncAPIResource):
     def with_streaming_response(self) -> RecommendationsWithStreamingResponse:
         return RecommendationsWithStreamingResponse(self)
 
-    def list(
+    def get(
         self,
         zone_identifier: str,
         *,
@@ -43,7 +43,7 @@ class Recommendations(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecommendationListResponse]:
+    ) -> Optional[RecommendationGetResponse]:
         """
         Retrieve the SSL/TLS Recommender's recommendation for a zone.
 
@@ -69,7 +69,7 @@ class Recommendations(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[RecommendationListResponse]], ResultWrapper[RecommendationListResponse]),
+            cast_to=cast(Type[Optional[RecommendationGetResponse]], ResultWrapper[RecommendationGetResponse]),
         )
 
 
@@ -82,7 +82,7 @@ class AsyncRecommendations(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncRecommendationsWithStreamingResponse:
         return AsyncRecommendationsWithStreamingResponse(self)
 
-    async def list(
+    async def get(
         self,
         zone_identifier: str,
         *,
@@ -92,7 +92,7 @@ class AsyncRecommendations(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecommendationListResponse]:
+    ) -> Optional[RecommendationGetResponse]:
         """
         Retrieve the SSL/TLS Recommender's recommendation for a zone.
 
@@ -118,7 +118,7 @@ class AsyncRecommendations(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[RecommendationListResponse]], ResultWrapper[RecommendationListResponse]),
+            cast_to=cast(Type[Optional[RecommendationGetResponse]], ResultWrapper[RecommendationGetResponse]),
         )
 
 
@@ -126,8 +126,8 @@ class RecommendationsWithRawResponse:
     def __init__(self, recommendations: Recommendations) -> None:
         self._recommendations = recommendations
 
-        self.list = to_raw_response_wrapper(
-            recommendations.list,
+        self.get = to_raw_response_wrapper(
+            recommendations.get,
         )
 
 
@@ -135,8 +135,8 @@ class AsyncRecommendationsWithRawResponse:
     def __init__(self, recommendations: AsyncRecommendations) -> None:
         self._recommendations = recommendations
 
-        self.list = async_to_raw_response_wrapper(
-            recommendations.list,
+        self.get = async_to_raw_response_wrapper(
+            recommendations.get,
         )
 
 
@@ -144,8 +144,8 @@ class RecommendationsWithStreamingResponse:
     def __init__(self, recommendations: Recommendations) -> None:
         self._recommendations = recommendations
 
-        self.list = to_streamed_response_wrapper(
-            recommendations.list,
+        self.get = to_streamed_response_wrapper(
+            recommendations.get,
         )
 
 
@@ -153,6 +153,6 @@ class AsyncRecommendationsWithStreamingResponse:
     def __init__(self, recommendations: AsyncRecommendations) -> None:
         self._recommendations = recommendations
 
-        self.list = async_to_streamed_response_wrapper(
-            recommendations.list,
+        self.get = async_to_streamed_response_wrapper(
+            recommendations.get,
         )

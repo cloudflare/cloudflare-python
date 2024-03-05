@@ -19,7 +19,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.workers.scripts import BindingListResponse
+from ....types.workers.scripts import BindingGetResponse
 
 __all__ = ["Bindings", "AsyncBindings"]
 
@@ -33,7 +33,7 @@ class Bindings(SyncAPIResource):
     def with_streaming_response(self) -> BindingsWithStreamingResponse:
         return BindingsWithStreamingResponse(self)
 
-    def list(
+    def get(
         self,
         *,
         zone_id: str,
@@ -43,7 +43,7 @@ class Bindings(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BindingListResponse:
+    ) -> BindingGetResponse:
         """
         List the bindings for a Workers script.
 
@@ -69,7 +69,7 @@ class Bindings(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[BindingListResponse], ResultWrapper[BindingListResponse]),
+            cast_to=cast(Type[BindingGetResponse], ResultWrapper[BindingGetResponse]),
         )
 
 
@@ -82,7 +82,7 @@ class AsyncBindings(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncBindingsWithStreamingResponse:
         return AsyncBindingsWithStreamingResponse(self)
 
-    async def list(
+    async def get(
         self,
         *,
         zone_id: str,
@@ -92,7 +92,7 @@ class AsyncBindings(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BindingListResponse:
+    ) -> BindingGetResponse:
         """
         List the bindings for a Workers script.
 
@@ -118,7 +118,7 @@ class AsyncBindings(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[BindingListResponse], ResultWrapper[BindingListResponse]),
+            cast_to=cast(Type[BindingGetResponse], ResultWrapper[BindingGetResponse]),
         )
 
 
@@ -126,8 +126,8 @@ class BindingsWithRawResponse:
     def __init__(self, bindings: Bindings) -> None:
         self._bindings = bindings
 
-        self.list = to_raw_response_wrapper(
-            bindings.list,
+        self.get = to_raw_response_wrapper(
+            bindings.get,
         )
 
 
@@ -135,8 +135,8 @@ class AsyncBindingsWithRawResponse:
     def __init__(self, bindings: AsyncBindings) -> None:
         self._bindings = bindings
 
-        self.list = async_to_raw_response_wrapper(
-            bindings.list,
+        self.get = async_to_raw_response_wrapper(
+            bindings.get,
         )
 
 
@@ -144,8 +144,8 @@ class BindingsWithStreamingResponse:
     def __init__(self, bindings: Bindings) -> None:
         self._bindings = bindings
 
-        self.list = to_streamed_response_wrapper(
-            bindings.list,
+        self.get = to_streamed_response_wrapper(
+            bindings.get,
         )
 
 
@@ -153,6 +153,6 @@ class AsyncBindingsWithStreamingResponse:
     def __init__(self, bindings: AsyncBindings) -> None:
         self._bindings = bindings
 
-        self.list = async_to_streamed_response_wrapper(
-            bindings.list,
+        self.get = async_to_streamed_response_wrapper(
+            bindings.get,
         )

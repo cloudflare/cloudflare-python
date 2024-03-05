@@ -22,8 +22,8 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...types.user import (
+    SubscriptionGetResponse,
     SubscriptionEditResponse,
-    SubscriptionListResponse,
     SubscriptionDeleteResponse,
     SubscriptionUpdateResponse,
     subscription_edit_params,
@@ -110,29 +110,6 @@ class Subscriptions(SyncAPIResource):
                     Any, ResultWrapper[SubscriptionUpdateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
-        )
-
-    def list(
-        self,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SubscriptionListResponse]:
-        """Lists all of a user's subscriptions."""
-        return self._get(
-            "/user/subscriptions",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(Type[Optional[SubscriptionListResponse]], ResultWrapper[SubscriptionListResponse]),
         )
 
     def delete(
@@ -237,6 +214,29 @@ class Subscriptions(SyncAPIResource):
             ),
         )
 
+    def get(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[SubscriptionGetResponse]:
+        """Lists all of a user's subscriptions."""
+        return self._get(
+            "/user/subscriptions",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[SubscriptionGetResponse]], ResultWrapper[SubscriptionGetResponse]),
+        )
+
 
 class AsyncSubscriptions(AsyncAPIResource):
     @cached_property
@@ -312,29 +312,6 @@ class AsyncSubscriptions(AsyncAPIResource):
                     Any, ResultWrapper[SubscriptionUpdateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
-        )
-
-    async def list(
-        self,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SubscriptionListResponse]:
-        """Lists all of a user's subscriptions."""
-        return await self._get(
-            "/user/subscriptions",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(Type[Optional[SubscriptionListResponse]], ResultWrapper[SubscriptionListResponse]),
         )
 
     async def delete(
@@ -439,6 +416,29 @@ class AsyncSubscriptions(AsyncAPIResource):
             ),
         )
 
+    async def get(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[SubscriptionGetResponse]:
+        """Lists all of a user's subscriptions."""
+        return await self._get(
+            "/user/subscriptions",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[SubscriptionGetResponse]], ResultWrapper[SubscriptionGetResponse]),
+        )
+
 
 class SubscriptionsWithRawResponse:
     def __init__(self, subscriptions: Subscriptions) -> None:
@@ -447,14 +447,14 @@ class SubscriptionsWithRawResponse:
         self.update = to_raw_response_wrapper(
             subscriptions.update,
         )
-        self.list = to_raw_response_wrapper(
-            subscriptions.list,
-        )
         self.delete = to_raw_response_wrapper(
             subscriptions.delete,
         )
         self.edit = to_raw_response_wrapper(
             subscriptions.edit,
+        )
+        self.get = to_raw_response_wrapper(
+            subscriptions.get,
         )
 
 
@@ -465,14 +465,14 @@ class AsyncSubscriptionsWithRawResponse:
         self.update = async_to_raw_response_wrapper(
             subscriptions.update,
         )
-        self.list = async_to_raw_response_wrapper(
-            subscriptions.list,
-        )
         self.delete = async_to_raw_response_wrapper(
             subscriptions.delete,
         )
         self.edit = async_to_raw_response_wrapper(
             subscriptions.edit,
+        )
+        self.get = async_to_raw_response_wrapper(
+            subscriptions.get,
         )
 
 
@@ -483,14 +483,14 @@ class SubscriptionsWithStreamingResponse:
         self.update = to_streamed_response_wrapper(
             subscriptions.update,
         )
-        self.list = to_streamed_response_wrapper(
-            subscriptions.list,
-        )
         self.delete = to_streamed_response_wrapper(
             subscriptions.delete,
         )
         self.edit = to_streamed_response_wrapper(
             subscriptions.edit,
+        )
+        self.get = to_streamed_response_wrapper(
+            subscriptions.get,
         )
 
 
@@ -501,12 +501,12 @@ class AsyncSubscriptionsWithStreamingResponse:
         self.update = async_to_streamed_response_wrapper(
             subscriptions.update,
         )
-        self.list = async_to_streamed_response_wrapper(
-            subscriptions.list,
-        )
         self.delete = async_to_streamed_response_wrapper(
             subscriptions.delete,
         )
         self.edit = async_to_streamed_response_wrapper(
             subscriptions.edit,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            subscriptions.get,
         )

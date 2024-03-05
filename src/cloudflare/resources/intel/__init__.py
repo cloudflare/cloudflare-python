@@ -64,6 +64,14 @@ from .sinkholes import (
     SinkholesWithStreamingResponse,
     AsyncSinkholesWithStreamingResponse,
 )
+from .domain_history import (
+    DomainHistory,
+    AsyncDomainHistory,
+    DomainHistoryWithRawResponse,
+    AsyncDomainHistoryWithRawResponse,
+    DomainHistoryWithStreamingResponse,
+    AsyncDomainHistoryWithStreamingResponse,
+)
 from .indicator_feeds import (
     IndicatorFeeds,
     AsyncIndicatorFeeds,
@@ -71,14 +79,6 @@ from .indicator_feeds import (
     AsyncIndicatorFeedsWithRawResponse,
     IndicatorFeedsWithStreamingResponse,
     AsyncIndicatorFeedsWithStreamingResponse,
-)
-from .domain_histories import (
-    DomainHistories,
-    AsyncDomainHistories,
-    DomainHistoriesWithRawResponse,
-    AsyncDomainHistoriesWithRawResponse,
-    DomainHistoriesWithStreamingResponse,
-    AsyncDomainHistoriesWithStreamingResponse,
 )
 from .miscategorizations import (
     Miscategorizations,
@@ -108,12 +108,12 @@ __all__ = [
     "AsyncDomainsWithRawResponse",
     "DomainsWithStreamingResponse",
     "AsyncDomainsWithStreamingResponse",
-    "DomainHistories",
-    "AsyncDomainHistories",
-    "DomainHistoriesWithRawResponse",
-    "AsyncDomainHistoriesWithRawResponse",
-    "DomainHistoriesWithStreamingResponse",
-    "AsyncDomainHistoriesWithStreamingResponse",
+    "DomainHistory",
+    "AsyncDomainHistory",
+    "DomainHistoryWithRawResponse",
+    "AsyncDomainHistoryWithRawResponse",
+    "DomainHistoryWithStreamingResponse",
+    "AsyncDomainHistoryWithStreamingResponse",
     "IPs",
     "AsyncIPs",
     "IPsWithRawResponse",

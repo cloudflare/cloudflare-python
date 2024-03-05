@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.stream import KeyListResponse, KeyCreateResponse, KeyDeleteResponse
+from cloudflare.types.stream import KeyGetResponse, KeyCreateResponse, KeyDeleteResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -56,48 +56,6 @@ class TestKeys:
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.stream.keys.with_raw_response.create(
-                account_id="",
-            )
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_method_list(self, client: Cloudflare) -> None:
-        key = client.stream.keys.list(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(KeyListResponse, key, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_raw_response_list(self, client: Cloudflare) -> None:
-        response = client.stream.keys.with_raw_response.list(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        key = response.parse()
-        assert_matches_type(KeyListResponse, key, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_streaming_response_list(self, client: Cloudflare) -> None:
-        with client.stream.keys.with_streaming_response.list(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            key = response.parse()
-            assert_matches_type(KeyListResponse, key, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_path_params_list(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.stream.keys.with_raw_response.list(
                 account_id="",
             )
 
@@ -153,6 +111,48 @@ class TestKeys:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_get(self, client: Cloudflare) -> None:
+        key = client.stream.keys.get(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(KeyGetResponse, key, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_get(self, client: Cloudflare) -> None:
+        response = client.stream.keys.with_raw_response.get(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        key = response.parse()
+        assert_matches_type(KeyGetResponse, key, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_get(self, client: Cloudflare) -> None:
+        with client.stream.keys.with_streaming_response.get(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            key = response.parse()
+            assert_matches_type(KeyGetResponse, key, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_get(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.stream.keys.with_raw_response.get(
+                account_id="",
+            )
+
 
 class TestAsyncKeys:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
@@ -196,48 +196,6 @@ class TestAsyncKeys:
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.stream.keys.with_raw_response.create(
-                account_id="",
-            )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_list(self, async_client: AsyncCloudflare) -> None:
-        key = await async_client.stream.keys.list(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(KeyListResponse, key, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.stream.keys.with_raw_response.list(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        key = await response.parse()
-        assert_matches_type(KeyListResponse, key, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.stream.keys.with_streaming_response.list(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            key = await response.parse()
-            assert_matches_type(KeyListResponse, key, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.stream.keys.with_raw_response.list(
                 account_id="",
             )
 
@@ -291,4 +249,46 @@ class TestAsyncKeys:
             await async_client.stream.keys.with_raw_response.delete(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_get(self, async_client: AsyncCloudflare) -> None:
+        key = await async_client.stream.keys.get(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(KeyGetResponse, key, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.stream.keys.with_raw_response.get(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        key = await response.parse()
+        assert_matches_type(KeyGetResponse, key, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.stream.keys.with_streaming_response.get(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            key = await response.parse()
+            assert_matches_type(KeyGetResponse, key, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.stream.keys.with_raw_response.get(
+                account_id="",
             )

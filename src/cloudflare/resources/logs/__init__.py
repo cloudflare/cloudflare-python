@@ -8,21 +8,21 @@ from .logs import (
     LogsWithStreamingResponse,
     AsyncLogsWithStreamingResponse,
 )
-from .rayids import (
-    Rayids,
-    AsyncRayids,
-    RayidsWithRawResponse,
-    AsyncRayidsWithRawResponse,
-    RayidsWithStreamingResponse,
-    AsyncRayidsWithStreamingResponse,
+from .rayid import (
+    Rayid,
+    AsyncRayid,
+    RayidWithRawResponse,
+    AsyncRayidWithRawResponse,
+    RayidWithStreamingResponse,
+    AsyncRayidWithStreamingResponse,
 )
-from .controls import (
-    Controls,
-    AsyncControls,
-    ControlsWithRawResponse,
-    AsyncControlsWithRawResponse,
-    ControlsWithStreamingResponse,
-    AsyncControlsWithStreamingResponse,
+from .control import (
+    Control,
+    AsyncControl,
+    ControlWithRawResponse,
+    AsyncControlWithRawResponse,
+    ControlWithStreamingResponse,
+    AsyncControlWithStreamingResponse,
 )
 from .received import (
     Received,
@@ -34,18 +34,18 @@ from .received import (
 )
 
 __all__ = [
-    "Controls",
-    "AsyncControls",
-    "ControlsWithRawResponse",
-    "AsyncControlsWithRawResponse",
-    "ControlsWithStreamingResponse",
-    "AsyncControlsWithStreamingResponse",
-    "Rayids",
-    "AsyncRayids",
-    "RayidsWithRawResponse",
-    "AsyncRayidsWithRawResponse",
-    "RayidsWithStreamingResponse",
-    "AsyncRayidsWithStreamingResponse",
+    "Control",
+    "AsyncControl",
+    "ControlWithRawResponse",
+    "AsyncControlWithRawResponse",
+    "ControlWithStreamingResponse",
+    "AsyncControlWithStreamingResponse",
+    "Rayid",
+    "AsyncRayid",
+    "RayidWithRawResponse",
+    "AsyncRayidWithRawResponse",
+    "RayidWithStreamingResponse",
+    "AsyncRayidWithStreamingResponse",
     "Received",
     "AsyncReceived",
     "ReceivedWithRawResponse",
