@@ -2,19 +2,8 @@
 
 from typing import List
 
-from ..._models import BaseModel
+from .workers_routes import WorkersRoutes
 
-__all__ = ["RouteListResponse", "RouteListResponseItem"]
+__all__ = ["RouteListResponse"]
 
-
-class RouteListResponseItem(BaseModel):
-    id: str
-    """Identifier"""
-
-    pattern: str
-
-    script: str
-    """Name of the script, used in URLs and route configuration."""
-
-
-RouteListResponse = List[RouteListResponseItem]
+RouteListResponse = List[WorkersRoutes]

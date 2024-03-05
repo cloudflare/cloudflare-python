@@ -22,10 +22,9 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...types.speed import (
-    TestGetResponse,
     TestListResponse,
-    TestCreateResponse,
     TestDeleteResponse,
+    ObservatoryPageTest,
     test_list_params,
     test_create_params,
     test_delete_params,
@@ -83,7 +82,7 @@ class Tests(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[TestCreateResponse]:
+    ) -> Optional[ObservatoryPageTest]:
         """
         Starts a test for a specific webpage, in a specific region.
 
@@ -116,7 +115,7 @@ class Tests(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[TestCreateResponse]], ResultWrapper[TestCreateResponse]),
+            cast_to=cast(Type[Optional[ObservatoryPageTest]], ResultWrapper[ObservatoryPageTest]),
         )
 
     def list(
@@ -283,7 +282,7 @@ class Tests(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[TestGetResponse]:
+    ) -> Optional[ObservatoryPageTest]:
         """
         Retrieves the result of a specific test.
 
@@ -315,7 +314,7 @@ class Tests(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[TestGetResponse]], ResultWrapper[TestGetResponse]),
+            cast_to=cast(Type[Optional[ObservatoryPageTest]], ResultWrapper[ObservatoryPageTest]),
         )
 
 
@@ -363,7 +362,7 @@ class AsyncTests(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[TestCreateResponse]:
+    ) -> Optional[ObservatoryPageTest]:
         """
         Starts a test for a specific webpage, in a specific region.
 
@@ -396,7 +395,7 @@ class AsyncTests(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[TestCreateResponse]], ResultWrapper[TestCreateResponse]),
+            cast_to=cast(Type[Optional[ObservatoryPageTest]], ResultWrapper[ObservatoryPageTest]),
         )
 
     async def list(
@@ -563,7 +562,7 @@ class AsyncTests(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[TestGetResponse]:
+    ) -> Optional[ObservatoryPageTest]:
         """
         Retrieves the result of a specific test.
 
@@ -595,7 +594,7 @@ class AsyncTests(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[TestGetResponse]], ResultWrapper[TestGetResponse]),
+            cast_to=cast(Type[Optional[ObservatoryPageTest]], ResultWrapper[ObservatoryPageTest]),
         )
 
 

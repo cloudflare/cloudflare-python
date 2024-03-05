@@ -1,27 +1,9 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from typing import List, Optional
+from typing import List
 
-from ....._models import BaseModel
+from .teams_devices_split_tunnel_include import TeamsDevicesSplitTunnelInclude
 
-__all__ = ["IncludeUpdateResponse", "IncludeUpdateResponseItem"]
+__all__ = ["IncludeUpdateResponse"]
 
-
-class IncludeUpdateResponseItem(BaseModel):
-    address: str
-    """The address in CIDR format to include in the tunnel.
-
-    If address is present, host must not be present.
-    """
-
-    description: str
-    """A description of the split tunnel item, displayed in the client UI."""
-
-    host: Optional[str] = None
-    """The domain name to include in the tunnel.
-
-    If host is present, address must not be present.
-    """
-
-
-IncludeUpdateResponse = List[IncludeUpdateResponseItem]
+IncludeUpdateResponse = List[TeamsDevicesSplitTunnelInclude]

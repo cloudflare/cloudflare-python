@@ -5,32 +5,16 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Required, TypedDict
 
-__all__ = ["SettingUpdateParams", "Setting"]
+from .access_settings_param import AccessSettingsParam
+
+__all__ = ["SettingUpdateParams"]
 
 
 class SettingUpdateParams(TypedDict, total=False):
-    settings: Required[Iterable[Setting]]
+    settings: Required[Iterable[AccessSettingsParam]]
 
     account_id: str
     """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
 
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
-
-
-class Setting(TypedDict, total=False):
-    china_network: Required[bool]
-    """Request client certificates for this hostname in China.
-
-    Can only be set to true if this zone is china network enabled.
-    """
-
-    client_certificate_forwarding: Required[bool]
-    """
-    Client Certificate Forwarding is a feature that takes the client cert provided
-    by the eyeball to the edge, and forwards it to the origin as a HTTP header to
-    allow logging on the origin.
-    """
-
-    hostname: Required[str]
-    """The hostname that these settings apply to."""

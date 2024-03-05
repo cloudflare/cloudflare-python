@@ -24,12 +24,10 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
+from ....types.cloudforce_one import CloudforceOneQuota, CloudforceOneRequestItem
 from ....types.cloudforce_one.requests import (
-    PriorityGetResponse,
-    PriorityQuotaResponse,
-    PriorityCreateResponse,
     PriorityDeleteResponse,
-    PriorityUpdateResponse,
+    CloudforceOnePriorityItem,
     priority_create_params,
     priority_update_params,
 )
@@ -60,7 +58,7 @@ class Priority(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PriorityCreateResponse:
+    ) -> CloudforceOnePriorityItem:
         """
         Create a New Priority Requirement
 
@@ -103,7 +101,7 @@ class Priority(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[PriorityCreateResponse], ResultWrapper[PriorityCreateResponse]),
+            cast_to=cast(Type[CloudforceOnePriorityItem], ResultWrapper[CloudforceOnePriorityItem]),
         )
 
     def update(
@@ -121,7 +119,7 @@ class Priority(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PriorityUpdateResponse:
+    ) -> CloudforceOneRequestItem:
         """
         Update a Priority Intelligence Requirement
 
@@ -168,7 +166,7 @@ class Priority(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[PriorityUpdateResponse], ResultWrapper[PriorityUpdateResponse]),
+            cast_to=cast(Type[CloudforceOneRequestItem], ResultWrapper[CloudforceOneRequestItem]),
         )
 
     def delete(
@@ -231,7 +229,7 @@ class Priority(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PriorityGetResponse:
+    ) -> CloudforceOneRequestItem:
         """
         Get a Priority Intelligence Requirement
 
@@ -261,7 +259,7 @@ class Priority(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[PriorityGetResponse], ResultWrapper[PriorityGetResponse]),
+            cast_to=cast(Type[CloudforceOneRequestItem], ResultWrapper[CloudforceOneRequestItem]),
         )
 
     def quota(
@@ -274,7 +272,7 @@ class Priority(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PriorityQuotaResponse:
+    ) -> CloudforceOneQuota:
         """
         Get Priority Intelligence Requirement Quota
 
@@ -300,7 +298,7 @@ class Priority(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[PriorityQuotaResponse], ResultWrapper[PriorityQuotaResponse]),
+            cast_to=cast(Type[CloudforceOneQuota], ResultWrapper[CloudforceOneQuota]),
         )
 
 
@@ -327,7 +325,7 @@ class AsyncPriority(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PriorityCreateResponse:
+    ) -> CloudforceOnePriorityItem:
         """
         Create a New Priority Requirement
 
@@ -370,7 +368,7 @@ class AsyncPriority(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[PriorityCreateResponse], ResultWrapper[PriorityCreateResponse]),
+            cast_to=cast(Type[CloudforceOnePriorityItem], ResultWrapper[CloudforceOnePriorityItem]),
         )
 
     async def update(
@@ -388,7 +386,7 @@ class AsyncPriority(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PriorityUpdateResponse:
+    ) -> CloudforceOneRequestItem:
         """
         Update a Priority Intelligence Requirement
 
@@ -435,7 +433,7 @@ class AsyncPriority(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[PriorityUpdateResponse], ResultWrapper[PriorityUpdateResponse]),
+            cast_to=cast(Type[CloudforceOneRequestItem], ResultWrapper[CloudforceOneRequestItem]),
         )
 
     async def delete(
@@ -498,7 +496,7 @@ class AsyncPriority(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PriorityGetResponse:
+    ) -> CloudforceOneRequestItem:
         """
         Get a Priority Intelligence Requirement
 
@@ -528,7 +526,7 @@ class AsyncPriority(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[PriorityGetResponse], ResultWrapper[PriorityGetResponse]),
+            cast_to=cast(Type[CloudforceOneRequestItem], ResultWrapper[CloudforceOneRequestItem]),
         )
 
     async def quota(
@@ -541,7 +539,7 @@ class AsyncPriority(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PriorityQuotaResponse:
+    ) -> CloudforceOneQuota:
         """
         Get Priority Intelligence Requirement Quota
 
@@ -567,7 +565,7 @@ class AsyncPriority(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[PriorityQuotaResponse], ResultWrapper[PriorityQuotaResponse]),
+            cast_to=cast(Type[CloudforceOneQuota], ResultWrapper[CloudforceOneQuota]),
         )
 
 

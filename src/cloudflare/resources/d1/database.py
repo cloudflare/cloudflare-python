@@ -13,10 +13,9 @@ from ..._utils import (
 )
 from ..._compat import cached_property
 from ...types.d1 import (
-    DatabaseGetResponse,
-    DatabaseListResponse,
+    D1CreateDatabase,
+    D1DatabaseDetails,
     DatabaseQueryResponse,
-    DatabaseCreateResponse,
     DatabaseDeleteResponse,
     database_list_params,
     database_query_params,
@@ -59,7 +58,7 @@ class Database(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DatabaseCreateResponse:
+    ) -> D1CreateDatabase:
         """
         Returns the created D1 database.
 
@@ -86,7 +85,7 @@ class Database(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DatabaseCreateResponse], ResultWrapper[DatabaseCreateResponse]),
+            cast_to=cast(Type[D1CreateDatabase], ResultWrapper[D1CreateDatabase]),
         )
 
     def list(
@@ -102,7 +101,7 @@ class Database(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[DatabaseListResponse]:
+    ) -> SyncV4PagePaginationArray[D1CreateDatabase]:
         """
         Returns a list of D1 databases.
 
@@ -127,7 +126,7 @@ class Database(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/d1/database",
-            page=SyncV4PagePaginationArray[DatabaseListResponse],
+            page=SyncV4PagePaginationArray[D1CreateDatabase],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -142,7 +141,7 @@ class Database(SyncAPIResource):
                     database_list_params.DatabaseListParams,
                 ),
             ),
-            model=DatabaseListResponse,
+            model=D1CreateDatabase,
         )
 
     def delete(
@@ -205,7 +204,7 @@ class Database(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DatabaseGetResponse:
+    ) -> D1DatabaseDetails:
         """
         Returns the specified D1 database.
 
@@ -235,7 +234,7 @@ class Database(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DatabaseGetResponse], ResultWrapper[DatabaseGetResponse]),
+            cast_to=cast(Type[D1DatabaseDetails], ResultWrapper[D1DatabaseDetails]),
         )
 
     def query(
@@ -312,7 +311,7 @@ class AsyncDatabase(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DatabaseCreateResponse:
+    ) -> D1CreateDatabase:
         """
         Returns the created D1 database.
 
@@ -339,7 +338,7 @@ class AsyncDatabase(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DatabaseCreateResponse], ResultWrapper[DatabaseCreateResponse]),
+            cast_to=cast(Type[D1CreateDatabase], ResultWrapper[D1CreateDatabase]),
         )
 
     def list(
@@ -355,7 +354,7 @@ class AsyncDatabase(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[DatabaseListResponse, AsyncV4PagePaginationArray[DatabaseListResponse]]:
+    ) -> AsyncPaginator[D1CreateDatabase, AsyncV4PagePaginationArray[D1CreateDatabase]]:
         """
         Returns a list of D1 databases.
 
@@ -380,7 +379,7 @@ class AsyncDatabase(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/d1/database",
-            page=AsyncV4PagePaginationArray[DatabaseListResponse],
+            page=AsyncV4PagePaginationArray[D1CreateDatabase],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -395,7 +394,7 @@ class AsyncDatabase(AsyncAPIResource):
                     database_list_params.DatabaseListParams,
                 ),
             ),
-            model=DatabaseListResponse,
+            model=D1CreateDatabase,
         )
 
     async def delete(
@@ -458,7 +457,7 @@ class AsyncDatabase(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DatabaseGetResponse:
+    ) -> D1DatabaseDetails:
         """
         Returns the specified D1 database.
 
@@ -488,7 +487,7 @@ class AsyncDatabase(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DatabaseGetResponse], ResultWrapper[DatabaseGetResponse]),
+            cast_to=cast(Type[D1DatabaseDetails], ResultWrapper[D1DatabaseDetails]),
         )
 
     async def query(

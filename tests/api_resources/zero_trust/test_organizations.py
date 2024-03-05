@@ -10,9 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types.zero_trust import (
-    OrganizationListResponse,
-    OrganizationCreateResponse,
-    OrganizationUpdateResponse,
+    AccessOrganizations,
     OrganizationRevokeUsersResponse,
 )
 
@@ -31,7 +29,7 @@ class TestOrganizations:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(OrganizationCreateResponse, organization, path=["response"])
+        assert_matches_type(AccessOrganizations, organization, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -56,7 +54,7 @@ class TestOrganizations:
             user_seat_expiration_inactive_time="720h",
             warp_auth_session_duration="24h",
         )
-        assert_matches_type(OrganizationCreateResponse, organization, path=["response"])
+        assert_matches_type(AccessOrganizations, organization, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -71,7 +69,7 @@ class TestOrganizations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         organization = response.parse()
-        assert_matches_type(OrganizationCreateResponse, organization, path=["response"])
+        assert_matches_type(AccessOrganizations, organization, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -86,7 +84,7 @@ class TestOrganizations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             organization = response.parse()
-            assert_matches_type(OrganizationCreateResponse, organization, path=["response"])
+            assert_matches_type(AccessOrganizations, organization, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -116,7 +114,7 @@ class TestOrganizations:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(OrganizationUpdateResponse, organization, path=["response"])
+        assert_matches_type(AccessOrganizations, organization, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -145,7 +143,7 @@ class TestOrganizations:
             user_seat_expiration_inactive_time="720h",
             warp_auth_session_duration="24h",
         )
-        assert_matches_type(OrganizationUpdateResponse, organization, path=["response"])
+        assert_matches_type(AccessOrganizations, organization, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -158,7 +156,7 @@ class TestOrganizations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         organization = response.parse()
-        assert_matches_type(OrganizationUpdateResponse, organization, path=["response"])
+        assert_matches_type(AccessOrganizations, organization, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -171,7 +169,7 @@ class TestOrganizations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             organization = response.parse()
-            assert_matches_type(OrganizationUpdateResponse, organization, path=["response"])
+            assert_matches_type(AccessOrganizations, organization, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -197,7 +195,7 @@ class TestOrganizations:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(OrganizationListResponse, organization, path=["response"])
+        assert_matches_type(AccessOrganizations, organization, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -206,7 +204,7 @@ class TestOrganizations:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(OrganizationListResponse, organization, path=["response"])
+        assert_matches_type(AccessOrganizations, organization, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -219,7 +217,7 @@ class TestOrganizations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         organization = response.parse()
-        assert_matches_type(OrganizationListResponse, organization, path=["response"])
+        assert_matches_type(AccessOrganizations, organization, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -232,7 +230,7 @@ class TestOrganizations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             organization = response.parse()
-            assert_matches_type(OrganizationListResponse, organization, path=["response"])
+            assert_matches_type(AccessOrganizations, organization, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -331,7 +329,7 @@ class TestAsyncOrganizations:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(OrganizationCreateResponse, organization, path=["response"])
+        assert_matches_type(AccessOrganizations, organization, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -356,7 +354,7 @@ class TestAsyncOrganizations:
             user_seat_expiration_inactive_time="720h",
             warp_auth_session_duration="24h",
         )
-        assert_matches_type(OrganizationCreateResponse, organization, path=["response"])
+        assert_matches_type(AccessOrganizations, organization, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -371,7 +369,7 @@ class TestAsyncOrganizations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         organization = await response.parse()
-        assert_matches_type(OrganizationCreateResponse, organization, path=["response"])
+        assert_matches_type(AccessOrganizations, organization, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -386,7 +384,7 @@ class TestAsyncOrganizations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             organization = await response.parse()
-            assert_matches_type(OrganizationCreateResponse, organization, path=["response"])
+            assert_matches_type(AccessOrganizations, organization, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -416,7 +414,7 @@ class TestAsyncOrganizations:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(OrganizationUpdateResponse, organization, path=["response"])
+        assert_matches_type(AccessOrganizations, organization, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -445,7 +443,7 @@ class TestAsyncOrganizations:
             user_seat_expiration_inactive_time="720h",
             warp_auth_session_duration="24h",
         )
-        assert_matches_type(OrganizationUpdateResponse, organization, path=["response"])
+        assert_matches_type(AccessOrganizations, organization, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -458,7 +456,7 @@ class TestAsyncOrganizations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         organization = await response.parse()
-        assert_matches_type(OrganizationUpdateResponse, organization, path=["response"])
+        assert_matches_type(AccessOrganizations, organization, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -471,7 +469,7 @@ class TestAsyncOrganizations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             organization = await response.parse()
-            assert_matches_type(OrganizationUpdateResponse, organization, path=["response"])
+            assert_matches_type(AccessOrganizations, organization, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -497,7 +495,7 @@ class TestAsyncOrganizations:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(OrganizationListResponse, organization, path=["response"])
+        assert_matches_type(AccessOrganizations, organization, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -506,7 +504,7 @@ class TestAsyncOrganizations:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(OrganizationListResponse, organization, path=["response"])
+        assert_matches_type(AccessOrganizations, organization, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -519,7 +517,7 @@ class TestAsyncOrganizations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         organization = await response.parse()
-        assert_matches_type(OrganizationListResponse, organization, path=["response"])
+        assert_matches_type(AccessOrganizations, organization, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -532,7 +530,7 @@ class TestAsyncOrganizations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             organization = await response.parse()
-            assert_matches_type(OrganizationListResponse, organization, path=["response"])
+            assert_matches_type(AccessOrganizations, organization, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

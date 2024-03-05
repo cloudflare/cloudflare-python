@@ -12,9 +12,9 @@ from tests.utils import assert_matches_type
 from cloudflare.types import (
     CustomCertificateGetResponse,
     CustomCertificateEditResponse,
-    CustomCertificateListResponse,
     CustomCertificateCreateResponse,
     CustomCertificateDeleteResponse,
+    TLSCertificatesAndHostnamesCustomCertificate,
 )
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 
@@ -95,7 +95,9 @@ class TestCustomCertificates:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(
-            SyncV4PagePaginationArray[CustomCertificateListResponse], custom_certificate, path=["response"]
+            SyncV4PagePaginationArray[TLSCertificatesAndHostnamesCustomCertificate],
+            custom_certificate,
+            path=["response"],
         )
 
     @pytest.mark.skip()
@@ -108,7 +110,9 @@ class TestCustomCertificates:
             per_page=5,
         )
         assert_matches_type(
-            SyncV4PagePaginationArray[CustomCertificateListResponse], custom_certificate, path=["response"]
+            SyncV4PagePaginationArray[TLSCertificatesAndHostnamesCustomCertificate],
+            custom_certificate,
+            path=["response"],
         )
 
     @pytest.mark.skip()
@@ -122,7 +126,9 @@ class TestCustomCertificates:
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_certificate = response.parse()
         assert_matches_type(
-            SyncV4PagePaginationArray[CustomCertificateListResponse], custom_certificate, path=["response"]
+            SyncV4PagePaginationArray[TLSCertificatesAndHostnamesCustomCertificate],
+            custom_certificate,
+            path=["response"],
         )
 
     @pytest.mark.skip()
@@ -136,7 +142,9 @@ class TestCustomCertificates:
 
             custom_certificate = response.parse()
             assert_matches_type(
-                SyncV4PagePaginationArray[CustomCertificateListResponse], custom_certificate, path=["response"]
+                SyncV4PagePaginationArray[TLSCertificatesAndHostnamesCustomCertificate],
+                custom_certificate,
+                path=["response"],
             )
 
         assert cast(Any, response.is_closed) is True
@@ -394,7 +402,9 @@ class TestAsyncCustomCertificates:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(
-            AsyncV4PagePaginationArray[CustomCertificateListResponse], custom_certificate, path=["response"]
+            AsyncV4PagePaginationArray[TLSCertificatesAndHostnamesCustomCertificate],
+            custom_certificate,
+            path=["response"],
         )
 
     @pytest.mark.skip()
@@ -407,7 +417,9 @@ class TestAsyncCustomCertificates:
             per_page=5,
         )
         assert_matches_type(
-            AsyncV4PagePaginationArray[CustomCertificateListResponse], custom_certificate, path=["response"]
+            AsyncV4PagePaginationArray[TLSCertificatesAndHostnamesCustomCertificate],
+            custom_certificate,
+            path=["response"],
         )
 
     @pytest.mark.skip()
@@ -421,7 +433,9 @@ class TestAsyncCustomCertificates:
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_certificate = await response.parse()
         assert_matches_type(
-            AsyncV4PagePaginationArray[CustomCertificateListResponse], custom_certificate, path=["response"]
+            AsyncV4PagePaginationArray[TLSCertificatesAndHostnamesCustomCertificate],
+            custom_certificate,
+            path=["response"],
         )
 
     @pytest.mark.skip()
@@ -435,7 +449,9 @@ class TestAsyncCustomCertificates:
 
             custom_certificate = await response.parse()
             assert_matches_type(
-                AsyncV4PagePaginationArray[CustomCertificateListResponse], custom_certificate, path=["response"]
+                AsyncV4PagePaginationArray[TLSCertificatesAndHostnamesCustomCertificate],
+                custom_certificate,
+                path=["response"],
             )
 
         assert cast(Any, response.is_closed) is True

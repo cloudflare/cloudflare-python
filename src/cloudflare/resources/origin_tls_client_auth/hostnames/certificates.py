@@ -24,10 +24,8 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.origin_tls_client_auth.hostnames import (
-    CertificateGetResponse,
     CertificateListResponse,
-    CertificateCreateResponse,
-    CertificateDeleteResponse,
+    TLSCertificatesAndHostnamesSchemasCertificateObject,
     certificate_create_params,
 )
 
@@ -55,7 +53,7 @@ class Certificates(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CertificateCreateResponse:
+    ) -> TLSCertificatesAndHostnamesSchemasCertificateObject:
         """Upload a certificate to be used for client authentication on a hostname.
 
         10
@@ -94,7 +92,10 @@ class Certificates(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CertificateCreateResponse], ResultWrapper[CertificateCreateResponse]),
+            cast_to=cast(
+                Type[TLSCertificatesAndHostnamesSchemasCertificateObject],
+                ResultWrapper[TLSCertificatesAndHostnamesSchemasCertificateObject],
+            ),
         )
 
     def list(
@@ -147,7 +148,7 @@ class Certificates(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CertificateDeleteResponse:
+    ) -> TLSCertificatesAndHostnamesSchemasCertificateObject:
         """
         Delete Hostname Client Certificate
 
@@ -177,7 +178,10 @@ class Certificates(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CertificateDeleteResponse], ResultWrapper[CertificateDeleteResponse]),
+            cast_to=cast(
+                Type[TLSCertificatesAndHostnamesSchemasCertificateObject],
+                ResultWrapper[TLSCertificatesAndHostnamesSchemasCertificateObject],
+            ),
         )
 
     def get(
@@ -191,7 +195,7 @@ class Certificates(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CertificateGetResponse:
+    ) -> TLSCertificatesAndHostnamesSchemasCertificateObject:
         """
         Get the certificate by ID to be used for client authentication on a hostname.
 
@@ -221,7 +225,10 @@ class Certificates(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CertificateGetResponse], ResultWrapper[CertificateGetResponse]),
+            cast_to=cast(
+                Type[TLSCertificatesAndHostnamesSchemasCertificateObject],
+                ResultWrapper[TLSCertificatesAndHostnamesSchemasCertificateObject],
+            ),
         )
 
 
@@ -246,7 +253,7 @@ class AsyncCertificates(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CertificateCreateResponse:
+    ) -> TLSCertificatesAndHostnamesSchemasCertificateObject:
         """Upload a certificate to be used for client authentication on a hostname.
 
         10
@@ -285,7 +292,10 @@ class AsyncCertificates(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CertificateCreateResponse], ResultWrapper[CertificateCreateResponse]),
+            cast_to=cast(
+                Type[TLSCertificatesAndHostnamesSchemasCertificateObject],
+                ResultWrapper[TLSCertificatesAndHostnamesSchemasCertificateObject],
+            ),
         )
 
     async def list(
@@ -338,7 +348,7 @@ class AsyncCertificates(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CertificateDeleteResponse:
+    ) -> TLSCertificatesAndHostnamesSchemasCertificateObject:
         """
         Delete Hostname Client Certificate
 
@@ -368,7 +378,10 @@ class AsyncCertificates(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CertificateDeleteResponse], ResultWrapper[CertificateDeleteResponse]),
+            cast_to=cast(
+                Type[TLSCertificatesAndHostnamesSchemasCertificateObject],
+                ResultWrapper[TLSCertificatesAndHostnamesSchemasCertificateObject],
+            ),
         )
 
     async def get(
@@ -382,7 +395,7 @@ class AsyncCertificates(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CertificateGetResponse:
+    ) -> TLSCertificatesAndHostnamesSchemasCertificateObject:
         """
         Get the certificate by ID to be used for client authentication on a hostname.
 
@@ -412,7 +425,10 @@ class AsyncCertificates(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CertificateGetResponse], ResultWrapper[CertificateGetResponse]),
+            cast_to=cast(
+                Type[TLSCertificatesAndHostnamesSchemasCertificateObject],
+                ResultWrapper[TLSCertificatesAndHostnamesSchemasCertificateObject],
+            ),
         )
 
 
