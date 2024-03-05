@@ -15,7 +15,6 @@ from cloudflare.types.cloudforce_one.requests import (
     PriorityCreateResponse,
     PriorityDeleteResponse,
     PriorityUpdateResponse,
-    PriorityDoSomethingUnknownResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -204,56 +203,6 @@ class TestPriority:
             client.cloudforce_one.requests.priority.with_raw_response.delete(
                 "",
                 account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            )
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_method_do_something_unknown(self, client: Cloudflare) -> None:
-        priority = client.cloudforce_one.requests.priority.do_something_unknown(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            page=0,
-            per_page=10,
-        )
-        assert_matches_type(PriorityDoSomethingUnknownResponse, priority, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_raw_response_do_something_unknown(self, client: Cloudflare) -> None:
-        response = client.cloudforce_one.requests.priority.with_raw_response.do_something_unknown(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            page=0,
-            per_page=10,
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        priority = response.parse()
-        assert_matches_type(PriorityDoSomethingUnknownResponse, priority, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_streaming_response_do_something_unknown(self, client: Cloudflare) -> None:
-        with client.cloudforce_one.requests.priority.with_streaming_response.do_something_unknown(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            page=0,
-            per_page=10,
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            priority = response.parse()
-            assert_matches_type(PriorityDoSomethingUnknownResponse, priority, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_path_params_do_something_unknown(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
-            client.cloudforce_one.requests.priority.with_raw_response.do_something_unknown(
-                "",
-                page=0,
-                per_page=10,
             )
 
     @pytest.mark.skip()
@@ -534,56 +483,6 @@ class TestAsyncPriority:
             await async_client.cloudforce_one.requests.priority.with_raw_response.delete(
                 "",
                 account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_do_something_unknown(self, async_client: AsyncCloudflare) -> None:
-        priority = await async_client.cloudforce_one.requests.priority.do_something_unknown(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            page=0,
-            per_page=10,
-        )
-        assert_matches_type(PriorityDoSomethingUnknownResponse, priority, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_raw_response_do_something_unknown(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.cloudforce_one.requests.priority.with_raw_response.do_something_unknown(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            page=0,
-            per_page=10,
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        priority = await response.parse()
-        assert_matches_type(PriorityDoSomethingUnknownResponse, priority, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_streaming_response_do_something_unknown(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.cloudforce_one.requests.priority.with_streaming_response.do_something_unknown(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            page=0,
-            per_page=10,
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            priority = await response.parse()
-            assert_matches_type(PriorityDoSomethingUnknownResponse, priority, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_path_params_do_something_unknown(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
-            await async_client.cloudforce_one.requests.priority.with_raw_response.do_something_unknown(
-                "",
-                page=0,
-                per_page=10,
             )
 
     @pytest.mark.skip()
