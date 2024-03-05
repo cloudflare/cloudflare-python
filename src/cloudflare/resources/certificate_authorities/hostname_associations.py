@@ -24,9 +24,9 @@ from ..._base_client import (
     make_request_options,
 )
 from ...types.certificate_authorities import (
-    HostnameAssociationListResponse,
+    HostnameAssociationGetResponse,
     HostnameAssociationUpdateResponse,
-    hostname_association_list_params,
+    hostname_association_get_params,
     hostname_association_update_params,
 )
 
@@ -94,7 +94,7 @@ class HostnameAssociations(SyncAPIResource):
             cast_to=cast(Type[HostnameAssociationUpdateResponse], ResultWrapper[HostnameAssociationUpdateResponse]),
         )
 
-    def list(
+    def get(
         self,
         *,
         zone_id: str,
@@ -105,7 +105,7 @@ class HostnameAssociations(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> HostnameAssociationListResponse:
+    ) -> HostnameAssociationGetResponse:
         """
         List Hostname Associations
 
@@ -135,11 +135,11 @@ class HostnameAssociations(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {"mtls_certificate_id": mtls_certificate_id},
-                    hostname_association_list_params.HostnameAssociationListParams,
+                    hostname_association_get_params.HostnameAssociationGetParams,
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[HostnameAssociationListResponse], ResultWrapper[HostnameAssociationListResponse]),
+            cast_to=cast(Type[HostnameAssociationGetResponse], ResultWrapper[HostnameAssociationGetResponse]),
         )
 
 
@@ -204,7 +204,7 @@ class AsyncHostnameAssociations(AsyncAPIResource):
             cast_to=cast(Type[HostnameAssociationUpdateResponse], ResultWrapper[HostnameAssociationUpdateResponse]),
         )
 
-    async def list(
+    async def get(
         self,
         *,
         zone_id: str,
@@ -215,7 +215,7 @@ class AsyncHostnameAssociations(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> HostnameAssociationListResponse:
+    ) -> HostnameAssociationGetResponse:
         """
         List Hostname Associations
 
@@ -245,11 +245,11 @@ class AsyncHostnameAssociations(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {"mtls_certificate_id": mtls_certificate_id},
-                    hostname_association_list_params.HostnameAssociationListParams,
+                    hostname_association_get_params.HostnameAssociationGetParams,
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[HostnameAssociationListResponse], ResultWrapper[HostnameAssociationListResponse]),
+            cast_to=cast(Type[HostnameAssociationGetResponse], ResultWrapper[HostnameAssociationGetResponse]),
         )
 
 
@@ -260,8 +260,8 @@ class HostnameAssociationsWithRawResponse:
         self.update = to_raw_response_wrapper(
             hostname_associations.update,
         )
-        self.list = to_raw_response_wrapper(
-            hostname_associations.list,
+        self.get = to_raw_response_wrapper(
+            hostname_associations.get,
         )
 
 
@@ -272,8 +272,8 @@ class AsyncHostnameAssociationsWithRawResponse:
         self.update = async_to_raw_response_wrapper(
             hostname_associations.update,
         )
-        self.list = async_to_raw_response_wrapper(
-            hostname_associations.list,
+        self.get = async_to_raw_response_wrapper(
+            hostname_associations.get,
         )
 
 
@@ -284,8 +284,8 @@ class HostnameAssociationsWithStreamingResponse:
         self.update = to_streamed_response_wrapper(
             hostname_associations.update,
         )
-        self.list = to_streamed_response_wrapper(
-            hostname_associations.list,
+        self.get = to_streamed_response_wrapper(
+            hostname_associations.get,
         )
 
 
@@ -296,6 +296,6 @@ class AsyncHostnameAssociationsWithStreamingResponse:
         self.update = async_to_streamed_response_wrapper(
             hostname_associations.update,
         )
-        self.list = async_to_streamed_response_wrapper(
-            hostname_associations.list,
+        self.get = async_to_streamed_response_wrapper(
+            hostname_associations.get,
         )

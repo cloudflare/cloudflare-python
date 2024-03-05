@@ -24,7 +24,7 @@ from ..._base_client import (
     make_request_options,
 )
 from ...types.queues import (
-    ConsumerListResponse,
+    ConsumerGetResponse,
     ConsumerCreateResponse,
     ConsumerDeleteResponse,
     ConsumerUpdateResponse,
@@ -135,48 +135,6 @@ class Consumers(SyncAPIResource):
             cast_to=cast(Type[Optional[ConsumerUpdateResponse]], ResultWrapper[ConsumerUpdateResponse]),
         )
 
-    def list(
-        self,
-        name: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ConsumerListResponse]:
-        """
-        Returns the consumers for a queue.
-
-        Args:
-          account_id: Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
-        return self._get(
-            f"/accounts/{account_id}/workers/queues/{name}/consumers",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(Type[Optional[ConsumerListResponse]], ResultWrapper[ConsumerListResponse]),
-        )
-
     def delete(
         self,
         consumer_name: str,
@@ -225,6 +183,48 @@ class Consumers(SyncAPIResource):
                     Any, ResultWrapper[ConsumerDeleteResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
+        )
+
+    def get(
+        self,
+        name: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ConsumerGetResponse]:
+        """
+        Returns the consumers for a queue.
+
+        Args:
+          account_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not name:
+            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        return self._get(
+            f"/accounts/{account_id}/workers/queues/{name}/consumers",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[ConsumerGetResponse]], ResultWrapper[ConsumerGetResponse]),
         )
 
 
@@ -328,48 +328,6 @@ class AsyncConsumers(AsyncAPIResource):
             cast_to=cast(Type[Optional[ConsumerUpdateResponse]], ResultWrapper[ConsumerUpdateResponse]),
         )
 
-    async def list(
-        self,
-        name: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ConsumerListResponse]:
-        """
-        Returns the consumers for a queue.
-
-        Args:
-          account_id: Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
-        return await self._get(
-            f"/accounts/{account_id}/workers/queues/{name}/consumers",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(Type[Optional[ConsumerListResponse]], ResultWrapper[ConsumerListResponse]),
-        )
-
     async def delete(
         self,
         consumer_name: str,
@@ -420,6 +378,48 @@ class AsyncConsumers(AsyncAPIResource):
             ),
         )
 
+    async def get(
+        self,
+        name: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ConsumerGetResponse]:
+        """
+        Returns the consumers for a queue.
+
+        Args:
+          account_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not name:
+            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        return await self._get(
+            f"/accounts/{account_id}/workers/queues/{name}/consumers",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[ConsumerGetResponse]], ResultWrapper[ConsumerGetResponse]),
+        )
+
 
 class ConsumersWithRawResponse:
     def __init__(self, consumers: Consumers) -> None:
@@ -431,11 +431,11 @@ class ConsumersWithRawResponse:
         self.update = to_raw_response_wrapper(
             consumers.update,
         )
-        self.list = to_raw_response_wrapper(
-            consumers.list,
-        )
         self.delete = to_raw_response_wrapper(
             consumers.delete,
+        )
+        self.get = to_raw_response_wrapper(
+            consumers.get,
         )
 
 
@@ -449,11 +449,11 @@ class AsyncConsumersWithRawResponse:
         self.update = async_to_raw_response_wrapper(
             consumers.update,
         )
-        self.list = async_to_raw_response_wrapper(
-            consumers.list,
-        )
         self.delete = async_to_raw_response_wrapper(
             consumers.delete,
+        )
+        self.get = async_to_raw_response_wrapper(
+            consumers.get,
         )
 
 
@@ -467,11 +467,11 @@ class ConsumersWithStreamingResponse:
         self.update = to_streamed_response_wrapper(
             consumers.update,
         )
-        self.list = to_streamed_response_wrapper(
-            consumers.list,
-        )
         self.delete = to_streamed_response_wrapper(
             consumers.delete,
+        )
+        self.get = to_streamed_response_wrapper(
+            consumers.get,
         )
 
 
@@ -485,9 +485,9 @@ class AsyncConsumersWithStreamingResponse:
         self.update = async_to_streamed_response_wrapper(
             consumers.update,
         )
-        self.list = async_to_streamed_response_wrapper(
-            consumers.list,
-        )
         self.delete = async_to_streamed_response_wrapper(
             consumers.delete,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            consumers.get,
         )

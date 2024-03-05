@@ -19,7 +19,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.logpush.datasets import JobListResponse
+from ....types.logpush.datasets import JobGetResponse
 
 __all__ = ["Jobs", "AsyncJobs"]
 
@@ -33,7 +33,7 @@ class Jobs(SyncAPIResource):
     def with_streaming_response(self) -> JobsWithStreamingResponse:
         return JobsWithStreamingResponse(self)
 
-    def list(
+    def get(
         self,
         dataset_id: Optional[str],
         *,
@@ -45,7 +45,7 @@ class Jobs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> JobListResponse:
+    ) -> JobGetResponse:
         """
         Lists Logpush jobs for an account or zone for a dataset.
 
@@ -90,7 +90,7 @@ class Jobs(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[JobListResponse], ResultWrapper[JobListResponse]),
+            cast_to=cast(Type[JobGetResponse], ResultWrapper[JobGetResponse]),
         )
 
 
@@ -103,7 +103,7 @@ class AsyncJobs(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncJobsWithStreamingResponse:
         return AsyncJobsWithStreamingResponse(self)
 
-    async def list(
+    async def get(
         self,
         dataset_id: Optional[str],
         *,
@@ -115,7 +115,7 @@ class AsyncJobs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> JobListResponse:
+    ) -> JobGetResponse:
         """
         Lists Logpush jobs for an account or zone for a dataset.
 
@@ -160,7 +160,7 @@ class AsyncJobs(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[JobListResponse], ResultWrapper[JobListResponse]),
+            cast_to=cast(Type[JobGetResponse], ResultWrapper[JobGetResponse]),
         )
 
 
@@ -168,8 +168,8 @@ class JobsWithRawResponse:
     def __init__(self, jobs: Jobs) -> None:
         self._jobs = jobs
 
-        self.list = to_raw_response_wrapper(
-            jobs.list,
+        self.get = to_raw_response_wrapper(
+            jobs.get,
         )
 
 
@@ -177,8 +177,8 @@ class AsyncJobsWithRawResponse:
     def __init__(self, jobs: AsyncJobs) -> None:
         self._jobs = jobs
 
-        self.list = async_to_raw_response_wrapper(
-            jobs.list,
+        self.get = async_to_raw_response_wrapper(
+            jobs.get,
         )
 
 
@@ -186,8 +186,8 @@ class JobsWithStreamingResponse:
     def __init__(self, jobs: Jobs) -> None:
         self._jobs = jobs
 
-        self.list = to_streamed_response_wrapper(
-            jobs.list,
+        self.get = to_streamed_response_wrapper(
+            jobs.get,
         )
 
 
@@ -195,6 +195,6 @@ class AsyncJobsWithStreamingResponse:
     def __init__(self, jobs: AsyncJobs) -> None:
         self._jobs = jobs
 
-        self.list = async_to_streamed_response_wrapper(
-            jobs.list,
+        self.get = async_to_streamed_response_wrapper(
+            jobs.get,
         )

@@ -18,8 +18,8 @@ class TestFields:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list(self, client: Cloudflare) -> None:
-        field = client.logpush.datasets.fields.list(
+    def test_method_get(self, client: Cloudflare) -> None:
+        field = client.logpush.datasets.fields.get(
             "http_requests",
             account_id="string",
             zone_id="string",
@@ -28,8 +28,8 @@ class TestFields:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list_with_all_params(self, client: Cloudflare) -> None:
-        field = client.logpush.datasets.fields.list(
+    def test_method_get_with_all_params(self, client: Cloudflare) -> None:
+        field = client.logpush.datasets.fields.get(
             "http_requests",
             account_id="string",
             zone_id="string",
@@ -38,8 +38,8 @@ class TestFields:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_list(self, client: Cloudflare) -> None:
-        response = client.logpush.datasets.fields.with_raw_response.list(
+    def test_raw_response_get(self, client: Cloudflare) -> None:
+        response = client.logpush.datasets.fields.with_raw_response.get(
             "http_requests",
             account_id="string",
             zone_id="string",
@@ -52,8 +52,8 @@ class TestFields:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_list(self, client: Cloudflare) -> None:
-        with client.logpush.datasets.fields.with_streaming_response.list(
+    def test_streaming_response_get(self, client: Cloudflare) -> None:
+        with client.logpush.datasets.fields.with_streaming_response.get(
             "http_requests",
             account_id="string",
             zone_id="string",
@@ -68,23 +68,23 @@ class TestFields:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_list(self, client: Cloudflare) -> None:
+    def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dataset_id` but received ''"):
-            client.logpush.datasets.fields.with_raw_response.list(
+            client.logpush.datasets.fields.with_raw_response.get(
                 "",
                 account_id="string",
                 zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.logpush.datasets.fields.with_raw_response.list(
+            client.logpush.datasets.fields.with_raw_response.get(
                 "http_requests",
                 account_id="",
                 zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.logpush.datasets.fields.with_raw_response.list(
+            client.logpush.datasets.fields.with_raw_response.get(
                 "http_requests",
                 account_id="string",
                 zone_id="",
@@ -96,8 +96,8 @@ class TestAsyncFields:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list(self, async_client: AsyncCloudflare) -> None:
-        field = await async_client.logpush.datasets.fields.list(
+    async def test_method_get(self, async_client: AsyncCloudflare) -> None:
+        field = await async_client.logpush.datasets.fields.get(
             "http_requests",
             account_id="string",
             zone_id="string",
@@ -106,8 +106,8 @@ class TestAsyncFields:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        field = await async_client.logpush.datasets.fields.list(
+    async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        field = await async_client.logpush.datasets.fields.get(
             "http_requests",
             account_id="string",
             zone_id="string",
@@ -116,8 +116,8 @@ class TestAsyncFields:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.logpush.datasets.fields.with_raw_response.list(
+    async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.logpush.datasets.fields.with_raw_response.get(
             "http_requests",
             account_id="string",
             zone_id="string",
@@ -130,8 +130,8 @@ class TestAsyncFields:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.logpush.datasets.fields.with_streaming_response.list(
+    async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.logpush.datasets.fields.with_streaming_response.get(
             "http_requests",
             account_id="string",
             zone_id="string",
@@ -146,23 +146,23 @@ class TestAsyncFields:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
+    async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dataset_id` but received ''"):
-            await async_client.logpush.datasets.fields.with_raw_response.list(
+            await async_client.logpush.datasets.fields.with_raw_response.get(
                 "",
                 account_id="string",
                 zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.logpush.datasets.fields.with_raw_response.list(
+            await async_client.logpush.datasets.fields.with_raw_response.get(
                 "http_requests",
                 account_id="",
                 zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.logpush.datasets.fields.with_raw_response.list(
+            await async_client.logpush.datasets.fields.with_raw_response.get(
                 "http_requests",
                 account_id="string",
                 zone_id="",

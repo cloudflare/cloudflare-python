@@ -33,7 +33,7 @@ from ......_base_client import (
     make_request_options,
 )
 from ......types.web3.hostnames.ipfs_universal_paths import (
-    ContentListListResponse,
+    ContentListGetResponse,
     ContentListUpdateResponse,
     content_list_update_params,
 )
@@ -111,7 +111,7 @@ class ContentLists(SyncAPIResource):
             cast_to=cast(Type[ContentListUpdateResponse], ResultWrapper[ContentListUpdateResponse]),
         )
 
-    def list(
+    def get(
         self,
         identifier: str,
         *,
@@ -122,7 +122,7 @@ class ContentLists(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ContentListListResponse:
+    ) -> ContentListGetResponse:
         """
         IPFS Universal Path Gateway Content List Details
 
@@ -152,7 +152,7 @@ class ContentLists(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ContentListListResponse], ResultWrapper[ContentListListResponse]),
+            cast_to=cast(Type[ContentListGetResponse], ResultWrapper[ContentListGetResponse]),
         )
 
 
@@ -226,7 +226,7 @@ class AsyncContentLists(AsyncAPIResource):
             cast_to=cast(Type[ContentListUpdateResponse], ResultWrapper[ContentListUpdateResponse]),
         )
 
-    async def list(
+    async def get(
         self,
         identifier: str,
         *,
@@ -237,7 +237,7 @@ class AsyncContentLists(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ContentListListResponse:
+    ) -> ContentListGetResponse:
         """
         IPFS Universal Path Gateway Content List Details
 
@@ -267,7 +267,7 @@ class AsyncContentLists(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ContentListListResponse], ResultWrapper[ContentListListResponse]),
+            cast_to=cast(Type[ContentListGetResponse], ResultWrapper[ContentListGetResponse]),
         )
 
 
@@ -278,8 +278,8 @@ class ContentListsWithRawResponse:
         self.update = to_raw_response_wrapper(
             content_lists.update,
         )
-        self.list = to_raw_response_wrapper(
-            content_lists.list,
+        self.get = to_raw_response_wrapper(
+            content_lists.get,
         )
 
     @cached_property
@@ -294,8 +294,8 @@ class AsyncContentListsWithRawResponse:
         self.update = async_to_raw_response_wrapper(
             content_lists.update,
         )
-        self.list = async_to_raw_response_wrapper(
-            content_lists.list,
+        self.get = async_to_raw_response_wrapper(
+            content_lists.get,
         )
 
     @cached_property
@@ -310,8 +310,8 @@ class ContentListsWithStreamingResponse:
         self.update = to_streamed_response_wrapper(
             content_lists.update,
         )
-        self.list = to_streamed_response_wrapper(
-            content_lists.list,
+        self.get = to_streamed_response_wrapper(
+            content_lists.get,
         )
 
     @cached_property
@@ -326,8 +326,8 @@ class AsyncContentListsWithStreamingResponse:
         self.update = async_to_streamed_response_wrapper(
             content_lists.update,
         )
-        self.list = async_to_streamed_response_wrapper(
-            content_lists.list,
+        self.get = async_to_streamed_response_wrapper(
+            content_lists.get,
         )
 
     @cached_property

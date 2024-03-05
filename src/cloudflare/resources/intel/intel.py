@@ -61,6 +61,14 @@ from .sinkholes import (
     AsyncSinkholesWithStreamingResponse,
 )
 from ..._resource import SyncAPIResource, AsyncAPIResource
+from .domain_history import (
+    DomainHistory,
+    AsyncDomainHistory,
+    DomainHistoryWithRawResponse,
+    AsyncDomainHistoryWithRawResponse,
+    DomainHistoryWithStreamingResponse,
+    AsyncDomainHistoryWithStreamingResponse,
+)
 from .domains.domains import Domains, AsyncDomains
 from .indicator_feeds import (
     IndicatorFeeds,
@@ -69,14 +77,6 @@ from .indicator_feeds import (
     AsyncIndicatorFeedsWithRawResponse,
     IndicatorFeedsWithStreamingResponse,
     AsyncIndicatorFeedsWithStreamingResponse,
-)
-from .domain_histories import (
-    DomainHistories,
-    AsyncDomainHistories,
-    DomainHistoriesWithRawResponse,
-    AsyncDomainHistoriesWithRawResponse,
-    DomainHistoriesWithStreamingResponse,
-    AsyncDomainHistoriesWithStreamingResponse,
 )
 from .miscategorizations import (
     Miscategorizations,
@@ -105,8 +105,8 @@ class Intel(SyncAPIResource):
         return Domains(self._client)
 
     @cached_property
-    def domain_histories(self) -> DomainHistories:
-        return DomainHistories(self._client)
+    def domain_history(self) -> DomainHistory:
+        return DomainHistory(self._client)
 
     @cached_property
     def ips(self) -> IPs:
@@ -155,8 +155,8 @@ class AsyncIntel(AsyncAPIResource):
         return AsyncDomains(self._client)
 
     @cached_property
-    def domain_histories(self) -> AsyncDomainHistories:
-        return AsyncDomainHistories(self._client)
+    def domain_history(self) -> AsyncDomainHistory:
+        return AsyncDomainHistory(self._client)
 
     @cached_property
     def ips(self) -> AsyncIPs:
@@ -208,8 +208,8 @@ class IntelWithRawResponse:
         return DomainsWithRawResponse(self._intel.domains)
 
     @cached_property
-    def domain_histories(self) -> DomainHistoriesWithRawResponse:
-        return DomainHistoriesWithRawResponse(self._intel.domain_histories)
+    def domain_history(self) -> DomainHistoryWithRawResponse:
+        return DomainHistoryWithRawResponse(self._intel.domain_history)
 
     @cached_property
     def ips(self) -> IPsWithRawResponse:
@@ -253,8 +253,8 @@ class AsyncIntelWithRawResponse:
         return AsyncDomainsWithRawResponse(self._intel.domains)
 
     @cached_property
-    def domain_histories(self) -> AsyncDomainHistoriesWithRawResponse:
-        return AsyncDomainHistoriesWithRawResponse(self._intel.domain_histories)
+    def domain_history(self) -> AsyncDomainHistoryWithRawResponse:
+        return AsyncDomainHistoryWithRawResponse(self._intel.domain_history)
 
     @cached_property
     def ips(self) -> AsyncIPsWithRawResponse:
@@ -298,8 +298,8 @@ class IntelWithStreamingResponse:
         return DomainsWithStreamingResponse(self._intel.domains)
 
     @cached_property
-    def domain_histories(self) -> DomainHistoriesWithStreamingResponse:
-        return DomainHistoriesWithStreamingResponse(self._intel.domain_histories)
+    def domain_history(self) -> DomainHistoryWithStreamingResponse:
+        return DomainHistoryWithStreamingResponse(self._intel.domain_history)
 
     @cached_property
     def ips(self) -> IPsWithStreamingResponse:
@@ -343,8 +343,8 @@ class AsyncIntelWithStreamingResponse:
         return AsyncDomainsWithStreamingResponse(self._intel.domains)
 
     @cached_property
-    def domain_histories(self) -> AsyncDomainHistoriesWithStreamingResponse:
-        return AsyncDomainHistoriesWithStreamingResponse(self._intel.domain_histories)
+    def domain_history(self) -> AsyncDomainHistoryWithStreamingResponse:
+        return AsyncDomainHistoryWithStreamingResponse(self._intel.domain_history)
 
     @cached_property
     def ips(self) -> AsyncIPsWithStreamingResponse:

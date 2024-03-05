@@ -32,7 +32,7 @@ class Fields(SyncAPIResource):
     def with_streaming_response(self) -> FieldsWithStreamingResponse:
         return FieldsWithStreamingResponse(self)
 
-    def list(
+    def get(
         self,
         dataset_id: Optional[str],
         *,
@@ -104,7 +104,7 @@ class AsyncFields(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncFieldsWithStreamingResponse:
         return AsyncFieldsWithStreamingResponse(self)
 
-    async def list(
+    async def get(
         self,
         dataset_id: Optional[str],
         *,
@@ -171,8 +171,8 @@ class FieldsWithRawResponse:
     def __init__(self, fields: Fields) -> None:
         self._fields = fields
 
-        self.list = to_raw_response_wrapper(
-            fields.list,
+        self.get = to_raw_response_wrapper(
+            fields.get,
         )
 
 
@@ -180,8 +180,8 @@ class AsyncFieldsWithRawResponse:
     def __init__(self, fields: AsyncFields) -> None:
         self._fields = fields
 
-        self.list = async_to_raw_response_wrapper(
-            fields.list,
+        self.get = async_to_raw_response_wrapper(
+            fields.get,
         )
 
 
@@ -189,8 +189,8 @@ class FieldsWithStreamingResponse:
     def __init__(self, fields: Fields) -> None:
         self._fields = fields
 
-        self.list = to_streamed_response_wrapper(
-            fields.list,
+        self.get = to_streamed_response_wrapper(
+            fields.get,
         )
 
 
@@ -198,6 +198,6 @@ class AsyncFieldsWithStreamingResponse:
     def __init__(self, fields: AsyncFields) -> None:
         self._fields = fields
 
-        self.list = async_to_streamed_response_wrapper(
-            fields.list,
+        self.get = async_to_streamed_response_wrapper(
+            fields.get,
         )

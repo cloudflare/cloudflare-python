@@ -6,7 +6,7 @@ from typing import Type, Optional, cast
 
 import httpx
 
-from ..types import AvailableRatePlanListResponse
+from ..types import AvailableRatePlanGetResponse
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -33,7 +33,7 @@ class AvailableRatePlans(SyncAPIResource):
     def with_streaming_response(self) -> AvailableRatePlansWithStreamingResponse:
         return AvailableRatePlansWithStreamingResponse(self)
 
-    def list(
+    def get(
         self,
         zone_identifier: str,
         *,
@@ -43,7 +43,7 @@ class AvailableRatePlans(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AvailableRatePlanListResponse]:
+    ) -> Optional[AvailableRatePlanGetResponse]:
         """
         Lists all rate plans the zone can subscribe to.
 
@@ -69,7 +69,7 @@ class AvailableRatePlans(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[AvailableRatePlanListResponse]], ResultWrapper[AvailableRatePlanListResponse]),
+            cast_to=cast(Type[Optional[AvailableRatePlanGetResponse]], ResultWrapper[AvailableRatePlanGetResponse]),
         )
 
 
@@ -82,7 +82,7 @@ class AsyncAvailableRatePlans(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncAvailableRatePlansWithStreamingResponse:
         return AsyncAvailableRatePlansWithStreamingResponse(self)
 
-    async def list(
+    async def get(
         self,
         zone_identifier: str,
         *,
@@ -92,7 +92,7 @@ class AsyncAvailableRatePlans(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AvailableRatePlanListResponse]:
+    ) -> Optional[AvailableRatePlanGetResponse]:
         """
         Lists all rate plans the zone can subscribe to.
 
@@ -118,7 +118,7 @@ class AsyncAvailableRatePlans(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[AvailableRatePlanListResponse]], ResultWrapper[AvailableRatePlanListResponse]),
+            cast_to=cast(Type[Optional[AvailableRatePlanGetResponse]], ResultWrapper[AvailableRatePlanGetResponse]),
         )
 
 
@@ -126,8 +126,8 @@ class AvailableRatePlansWithRawResponse:
     def __init__(self, available_rate_plans: AvailableRatePlans) -> None:
         self._available_rate_plans = available_rate_plans
 
-        self.list = to_raw_response_wrapper(
-            available_rate_plans.list,
+        self.get = to_raw_response_wrapper(
+            available_rate_plans.get,
         )
 
 
@@ -135,8 +135,8 @@ class AsyncAvailableRatePlansWithRawResponse:
     def __init__(self, available_rate_plans: AsyncAvailableRatePlans) -> None:
         self._available_rate_plans = available_rate_plans
 
-        self.list = async_to_raw_response_wrapper(
-            available_rate_plans.list,
+        self.get = async_to_raw_response_wrapper(
+            available_rate_plans.get,
         )
 
 
@@ -144,8 +144,8 @@ class AvailableRatePlansWithStreamingResponse:
     def __init__(self, available_rate_plans: AvailableRatePlans) -> None:
         self._available_rate_plans = available_rate_plans
 
-        self.list = to_streamed_response_wrapper(
-            available_rate_plans.list,
+        self.get = to_streamed_response_wrapper(
+            available_rate_plans.get,
         )
 
 
@@ -153,6 +153,6 @@ class AsyncAvailableRatePlansWithStreamingResponse:
     def __init__(self, available_rate_plans: AsyncAvailableRatePlans) -> None:
         self._available_rate_plans = available_rate_plans
 
-        self.list = async_to_streamed_response_wrapper(
-            available_rate_plans.list,
+        self.get = async_to_streamed_response_wrapper(
+            available_rate_plans.get,
         )

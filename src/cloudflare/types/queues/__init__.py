@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
+from .consumer_get_response import ConsumerGetResponse as ConsumerGetResponse
 from .consumer_create_params import ConsumerCreateParams as ConsumerCreateParams
-from .consumer_list_response import ConsumerListResponse as ConsumerListResponse
 from .consumer_update_params import ConsumerUpdateParams as ConsumerUpdateParams
 from .consumer_create_response import ConsumerCreateResponse as ConsumerCreateResponse
 from .consumer_delete_response import ConsumerDeleteResponse as ConsumerDeleteResponse

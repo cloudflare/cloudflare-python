@@ -32,7 +32,7 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import (
     make_request_options,
 )
-from .....types.dns.analytics import ReportListResponse, report_list_params
+from .....types.dns.analytics import ReportGetResponse, report_get_params
 
 __all__ = ["Reports", "AsyncReports"]
 
@@ -50,7 +50,7 @@ class Reports(SyncAPIResource):
     def with_streaming_response(self) -> ReportsWithStreamingResponse:
         return ReportsWithStreamingResponse(self)
 
-    def list(
+    def get(
         self,
         identifier: str,
         *,
@@ -67,7 +67,7 @@ class Reports(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ReportListResponse:
+    ) -> ReportGetResponse:
         """
         Retrieves a list of summarised aggregate metrics over a given time period.
 
@@ -120,11 +120,11 @@ class Reports(SyncAPIResource):
                         "sort": sort,
                         "until": until,
                     },
-                    report_list_params.ReportListParams,
+                    report_get_params.ReportGetParams,
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ReportListResponse], ResultWrapper[ReportListResponse]),
+            cast_to=cast(Type[ReportGetResponse], ResultWrapper[ReportGetResponse]),
         )
 
 
@@ -141,7 +141,7 @@ class AsyncReports(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncReportsWithStreamingResponse:
         return AsyncReportsWithStreamingResponse(self)
 
-    async def list(
+    async def get(
         self,
         identifier: str,
         *,
@@ -158,7 +158,7 @@ class AsyncReports(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ReportListResponse:
+    ) -> ReportGetResponse:
         """
         Retrieves a list of summarised aggregate metrics over a given time period.
 
@@ -211,11 +211,11 @@ class AsyncReports(AsyncAPIResource):
                         "sort": sort,
                         "until": until,
                     },
-                    report_list_params.ReportListParams,
+                    report_get_params.ReportGetParams,
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ReportListResponse], ResultWrapper[ReportListResponse]),
+            cast_to=cast(Type[ReportGetResponse], ResultWrapper[ReportGetResponse]),
         )
 
 
@@ -223,8 +223,8 @@ class ReportsWithRawResponse:
     def __init__(self, reports: Reports) -> None:
         self._reports = reports
 
-        self.list = to_raw_response_wrapper(
-            reports.list,
+        self.get = to_raw_response_wrapper(
+            reports.get,
         )
 
     @cached_property
@@ -236,8 +236,8 @@ class AsyncReportsWithRawResponse:
     def __init__(self, reports: AsyncReports) -> None:
         self._reports = reports
 
-        self.list = async_to_raw_response_wrapper(
-            reports.list,
+        self.get = async_to_raw_response_wrapper(
+            reports.get,
         )
 
     @cached_property
@@ -249,8 +249,8 @@ class ReportsWithStreamingResponse:
     def __init__(self, reports: Reports) -> None:
         self._reports = reports
 
-        self.list = to_streamed_response_wrapper(
-            reports.list,
+        self.get = to_streamed_response_wrapper(
+            reports.get,
         )
 
     @cached_property
@@ -262,8 +262,8 @@ class AsyncReportsWithStreamingResponse:
     def __init__(self, reports: AsyncReports) -> None:
         self._reports = reports
 
-        self.list = async_to_streamed_response_wrapper(
-            reports.list,
+        self.get = async_to_streamed_response_wrapper(
+            reports.get,
         )
 
     @cached_property

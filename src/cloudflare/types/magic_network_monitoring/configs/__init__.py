@@ -2,4 +2,4 @@
 
 from __future__ import annotations
 
-from .full_list_response import FullListResponse as FullListResponse
+from .full_get_response import FullGetResponse as FullGetResponse

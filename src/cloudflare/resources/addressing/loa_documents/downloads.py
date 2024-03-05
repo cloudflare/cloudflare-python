@@ -31,7 +31,7 @@ class Downloads(SyncAPIResource):
     def with_streaming_response(self) -> DownloadsWithStreamingResponse:
         return DownloadsWithStreamingResponse(self)
 
-    def list(
+    def get(
         self,
         loa_document_id: Optional[str],
         *,
@@ -81,7 +81,7 @@ class AsyncDownloads(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncDownloadsWithStreamingResponse:
         return AsyncDownloadsWithStreamingResponse(self)
 
-    async def list(
+    async def get(
         self,
         loa_document_id: Optional[str],
         *,
@@ -126,8 +126,8 @@ class DownloadsWithRawResponse:
     def __init__(self, downloads: Downloads) -> None:
         self._downloads = downloads
 
-        self.list = to_raw_response_wrapper(
-            downloads.list,
+        self.get = to_raw_response_wrapper(
+            downloads.get,
         )
 
 
@@ -135,8 +135,8 @@ class AsyncDownloadsWithRawResponse:
     def __init__(self, downloads: AsyncDownloads) -> None:
         self._downloads = downloads
 
-        self.list = async_to_raw_response_wrapper(
-            downloads.list,
+        self.get = async_to_raw_response_wrapper(
+            downloads.get,
         )
 
 
@@ -144,8 +144,8 @@ class DownloadsWithStreamingResponse:
     def __init__(self, downloads: Downloads) -> None:
         self._downloads = downloads
 
-        self.list = to_streamed_response_wrapper(
-            downloads.list,
+        self.get = to_streamed_response_wrapper(
+            downloads.get,
         )
 
 
@@ -153,6 +153,6 @@ class AsyncDownloadsWithStreamingResponse:
     def __init__(self, downloads: AsyncDownloads) -> None:
         self._downloads = downloads
 
-        self.list = async_to_streamed_response_wrapper(
-            downloads.list,
+        self.get = async_to_streamed_response_wrapper(
+            downloads.get,
         )

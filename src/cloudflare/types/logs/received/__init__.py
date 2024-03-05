@@ -2,4 +2,4 @@
 
 from __future__ import annotations
 
-from .field_list_response import FieldListResponse as FieldListResponse
+from .field_get_response import FieldGetResponse as FieldGetResponse

@@ -22,10 +22,10 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...types.ssl import (
+    VerificationGetResponse,
     VerificationEditResponse,
-    VerificationListResponse,
+    verification_get_params,
     verification_edit_params,
-    verification_list_params,
 )
 from ..._base_client import (
     make_request_options,
@@ -42,49 +42,6 @@ class Verification(SyncAPIResource):
     @cached_property
     def with_streaming_response(self) -> VerificationWithStreamingResponse:
         return VerificationWithStreamingResponse(self)
-
-    def list(
-        self,
-        *,
-        zone_id: str,
-        retry: Literal[True] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[VerificationListResponse]:
-        """
-        Get SSL Verification Info for a Zone.
-
-        Args:
-          zone_id: Identifier
-
-          retry: Immediately retry SSL Verification.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return self._get(
-            f"/zones/{zone_id}/ssl/verification",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform({"retry": retry}, verification_list_params.VerificationListParams),
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(Type[Optional[VerificationListResponse]], ResultWrapper[VerificationListResponse]),
-        )
 
     def edit(
         self,
@@ -142,17 +99,7 @@ class Verification(SyncAPIResource):
             cast_to=cast(Type[VerificationEditResponse], ResultWrapper[VerificationEditResponse]),
         )
 
-
-class AsyncVerification(AsyncAPIResource):
-    @cached_property
-    def with_raw_response(self) -> AsyncVerificationWithRawResponse:
-        return AsyncVerificationWithRawResponse(self)
-
-    @cached_property
-    def with_streaming_response(self) -> AsyncVerificationWithStreamingResponse:
-        return AsyncVerificationWithStreamingResponse(self)
-
-    async def list(
+    def get(
         self,
         *,
         zone_id: str,
@@ -163,7 +110,7 @@ class AsyncVerification(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[VerificationListResponse]:
+    ) -> Optional[VerificationGetResponse]:
         """
         Get SSL Verification Info for a Zone.
 
@@ -182,18 +129,28 @@ class AsyncVerification(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return await self._get(
+        return self._get(
             f"/zones/{zone_id}/ssl/verification",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"retry": retry}, verification_list_params.VerificationListParams),
+                query=maybe_transform({"retry": retry}, verification_get_params.VerificationGetParams),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[VerificationListResponse]], ResultWrapper[VerificationListResponse]),
+            cast_to=cast(Type[Optional[VerificationGetResponse]], ResultWrapper[VerificationGetResponse]),
         )
+
+
+class AsyncVerification(AsyncAPIResource):
+    @cached_property
+    def with_raw_response(self) -> AsyncVerificationWithRawResponse:
+        return AsyncVerificationWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncVerificationWithStreamingResponse:
+        return AsyncVerificationWithStreamingResponse(self)
 
     async def edit(
         self,
@@ -251,16 +208,59 @@ class AsyncVerification(AsyncAPIResource):
             cast_to=cast(Type[VerificationEditResponse], ResultWrapper[VerificationEditResponse]),
         )
 
+    async def get(
+        self,
+        *,
+        zone_id: str,
+        retry: Literal[True] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[VerificationGetResponse]:
+        """
+        Get SSL Verification Info for a Zone.
+
+        Args:
+          zone_id: Identifier
+
+          retry: Immediately retry SSL Verification.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return await self._get(
+            f"/zones/{zone_id}/ssl/verification",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform({"retry": retry}, verification_get_params.VerificationGetParams),
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[VerificationGetResponse]], ResultWrapper[VerificationGetResponse]),
+        )
+
 
 class VerificationWithRawResponse:
     def __init__(self, verification: Verification) -> None:
         self._verification = verification
 
-        self.list = to_raw_response_wrapper(
-            verification.list,
-        )
         self.edit = to_raw_response_wrapper(
             verification.edit,
+        )
+        self.get = to_raw_response_wrapper(
+            verification.get,
         )
 
 
@@ -268,11 +268,11 @@ class AsyncVerificationWithRawResponse:
     def __init__(self, verification: AsyncVerification) -> None:
         self._verification = verification
 
-        self.list = async_to_raw_response_wrapper(
-            verification.list,
-        )
         self.edit = async_to_raw_response_wrapper(
             verification.edit,
+        )
+        self.get = async_to_raw_response_wrapper(
+            verification.get,
         )
 
 
@@ -280,11 +280,11 @@ class VerificationWithStreamingResponse:
     def __init__(self, verification: Verification) -> None:
         self._verification = verification
 
-        self.list = to_streamed_response_wrapper(
-            verification.list,
-        )
         self.edit = to_streamed_response_wrapper(
             verification.edit,
+        )
+        self.get = to_streamed_response_wrapper(
+            verification.get,
         )
 
 
@@ -292,9 +292,9 @@ class AsyncVerificationWithStreamingResponse:
     def __init__(self, verification: AsyncVerification) -> None:
         self._verification = verification
 
-        self.list = async_to_streamed_response_wrapper(
-            verification.list,
-        )
         self.edit = async_to_streamed_response_wrapper(
             verification.edit,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            verification.get,
         )

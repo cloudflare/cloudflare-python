@@ -212,7 +212,7 @@ from .rocket_loader import (
     RocketLoaderWithStreamingResponse,
     AsyncRocketLoaderWithStreamingResponse,
 )
-from ....types.zones import SettingEditResponse, SettingListResponse, setting_edit_params
+from ....types.zones import SettingGetResponse, SettingEditResponse, setting_edit_params
 from .image_resizing import (
     ImageResizing,
     AsyncImageResizing,
@@ -649,45 +649,6 @@ class Settings(SyncAPIResource):
     def with_streaming_response(self) -> SettingsWithStreamingResponse:
         return SettingsWithStreamingResponse(self)
 
-    def list(
-        self,
-        *,
-        zone_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SettingListResponse]:
-        """
-        Available settings for your user in relation to a zone.
-
-        Args:
-          zone_id: Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return self._get(
-            f"/zones/{zone_id}/settings",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(Type[Optional[SettingListResponse]], ResultWrapper[SettingListResponse]),
-        )
-
     def edit(
         self,
         *,
@@ -729,6 +690,45 @@ class Settings(SyncAPIResource):
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(Type[Optional[SettingEditResponse]], ResultWrapper[SettingEditResponse]),
+        )
+
+    def get(
+        self,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[SettingGetResponse]:
+        """
+        Available settings for your user in relation to a zone.
+
+        Args:
+          zone_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return self._get(
+            f"/zones/{zone_id}/settings",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[SettingGetResponse]], ResultWrapper[SettingGetResponse]),
         )
 
 
@@ -945,45 +945,6 @@ class AsyncSettings(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncSettingsWithStreamingResponse:
         return AsyncSettingsWithStreamingResponse(self)
 
-    async def list(
-        self,
-        *,
-        zone_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SettingListResponse]:
-        """
-        Available settings for your user in relation to a zone.
-
-        Args:
-          zone_id: Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return await self._get(
-            f"/zones/{zone_id}/settings",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(Type[Optional[SettingListResponse]], ResultWrapper[SettingListResponse]),
-        )
-
     async def edit(
         self,
         *,
@@ -1027,16 +988,55 @@ class AsyncSettings(AsyncAPIResource):
             cast_to=cast(Type[Optional[SettingEditResponse]], ResultWrapper[SettingEditResponse]),
         )
 
+    async def get(
+        self,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[SettingGetResponse]:
+        """
+        Available settings for your user in relation to a zone.
+
+        Args:
+          zone_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return await self._get(
+            f"/zones/{zone_id}/settings",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[SettingGetResponse]], ResultWrapper[SettingGetResponse]),
+        )
+
 
 class SettingsWithRawResponse:
     def __init__(self, settings: Settings) -> None:
         self._settings = settings
 
-        self.list = to_raw_response_wrapper(
-            settings.list,
-        )
         self.edit = to_raw_response_wrapper(
             settings.edit,
+        )
+        self.get = to_raw_response_wrapper(
+            settings.get,
         )
 
     @cached_property
@@ -1248,11 +1248,11 @@ class AsyncSettingsWithRawResponse:
     def __init__(self, settings: AsyncSettings) -> None:
         self._settings = settings
 
-        self.list = async_to_raw_response_wrapper(
-            settings.list,
-        )
         self.edit = async_to_raw_response_wrapper(
             settings.edit,
+        )
+        self.get = async_to_raw_response_wrapper(
+            settings.get,
         )
 
     @cached_property
@@ -1464,11 +1464,11 @@ class SettingsWithStreamingResponse:
     def __init__(self, settings: Settings) -> None:
         self._settings = settings
 
-        self.list = to_streamed_response_wrapper(
-            settings.list,
-        )
         self.edit = to_streamed_response_wrapper(
             settings.edit,
+        )
+        self.get = to_streamed_response_wrapper(
+            settings.get,
         )
 
     @cached_property
@@ -1680,11 +1680,11 @@ class AsyncSettingsWithStreamingResponse:
     def __init__(self, settings: AsyncSettings) -> None:
         self._settings = settings
 
-        self.list = async_to_streamed_response_wrapper(
-            settings.list,
-        )
         self.edit = async_to_streamed_response_wrapper(
             settings.edit,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            settings.get,
         )
 
     @cached_property
