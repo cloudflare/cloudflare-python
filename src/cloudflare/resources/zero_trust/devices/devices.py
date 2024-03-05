@@ -85,7 +85,7 @@ from ...._base_client import (
 )
 from .policies.policies import Policies, AsyncPolicies
 from .postures.postures import Postures, AsyncPostures
-from ....types.zero_trust import DeviceGetResponse, DeviceDevicesListDevicesResponse
+from ....types.zero_trust import DeviceGetResponse, DeviceListResponse
 
 __all__ = ["Devices", "AsyncDevices"]
 
@@ -131,7 +131,7 @@ class Devices(SyncAPIResource):
     def with_streaming_response(self) -> DevicesWithStreamingResponse:
         return DevicesWithStreamingResponse(self)
 
-    def devices_list_devices(
+    def list(
         self,
         *,
         account_id: object,
@@ -141,7 +141,7 @@ class Devices(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DeviceDevicesListDevicesResponse]:
+    ) -> Optional[DeviceListResponse]:
         """
         Fetches a list of enrolled devices.
 
@@ -163,9 +163,7 @@ class Devices(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[DeviceDevicesListDevicesResponse]], ResultWrapper[DeviceDevicesListDevicesResponse]
-            ),
+            cast_to=cast(Type[Optional[DeviceListResponse]], ResultWrapper[DeviceListResponse]),
         )
 
     def get(
@@ -255,7 +253,7 @@ class AsyncDevices(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncDevicesWithStreamingResponse:
         return AsyncDevicesWithStreamingResponse(self)
 
-    async def devices_list_devices(
+    async def list(
         self,
         *,
         account_id: object,
@@ -265,7 +263,7 @@ class AsyncDevices(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DeviceDevicesListDevicesResponse]:
+    ) -> Optional[DeviceListResponse]:
         """
         Fetches a list of enrolled devices.
 
@@ -287,9 +285,7 @@ class AsyncDevices(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[DeviceDevicesListDevicesResponse]], ResultWrapper[DeviceDevicesListDevicesResponse]
-            ),
+            cast_to=cast(Type[Optional[DeviceListResponse]], ResultWrapper[DeviceListResponse]),
         )
 
     async def get(
@@ -342,8 +338,8 @@ class DevicesWithRawResponse:
     def __init__(self, devices: Devices) -> None:
         self._devices = devices
 
-        self.devices_list_devices = to_raw_response_wrapper(
-            devices.devices_list_devices,
+        self.list = to_raw_response_wrapper(
+            devices.list,
         )
         self.get = to_raw_response_wrapper(
             devices.get,
@@ -386,8 +382,8 @@ class AsyncDevicesWithRawResponse:
     def __init__(self, devices: AsyncDevices) -> None:
         self._devices = devices
 
-        self.devices_list_devices = async_to_raw_response_wrapper(
-            devices.devices_list_devices,
+        self.list = async_to_raw_response_wrapper(
+            devices.list,
         )
         self.get = async_to_raw_response_wrapper(
             devices.get,
@@ -430,8 +426,8 @@ class DevicesWithStreamingResponse:
     def __init__(self, devices: Devices) -> None:
         self._devices = devices
 
-        self.devices_list_devices = to_streamed_response_wrapper(
-            devices.devices_list_devices,
+        self.list = to_streamed_response_wrapper(
+            devices.list,
         )
         self.get = to_streamed_response_wrapper(
             devices.get,
@@ -474,8 +470,8 @@ class AsyncDevicesWithStreamingResponse:
     def __init__(self, devices: AsyncDevices) -> None:
         self._devices = devices
 
-        self.devices_list_devices = async_to_streamed_response_wrapper(
-            devices.devices_list_devices,
+        self.list = async_to_streamed_response_wrapper(
+            devices.list,
         )
         self.get = async_to_streamed_response_wrapper(
             devices.get,
