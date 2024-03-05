@@ -7511,7 +7511,6 @@ from cloudflare.types.cloudforce_one.requests import (
     PriorityCreateResponse,
     PriorityUpdateResponse,
     PriorityDeleteResponse,
-    PriorityDoSomethingUnknownResponse,
     PriorityGetResponse,
     PriorityQuotaResponse,
 )
@@ -7522,6 +7521,5 @@ Methods:
 - <code title="post /accounts/{account_identifier}/cloudforce-one/requests/priority/new">client.cloudforce_one.requests.priority.<a href="./src/cloudflare/resources/cloudforce_one/requests/priority.py">create</a>(account_identifier, \*\*<a href="src/cloudflare/types/cloudforce_one/requests/priority_create_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/requests/priority_create_response.py">PriorityCreateResponse</a></code>
 - <code title="put /accounts/{account_identifier}/cloudforce-one/requests/priority/{priority_identifer}">client.cloudforce_one.requests.priority.<a href="./src/cloudflare/resources/cloudforce_one/requests/priority.py">update</a>(priority_identifer, \*, account_identifier, \*\*<a href="src/cloudflare/types/cloudforce_one/requests/priority_update_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/requests/priority_update_response.py">PriorityUpdateResponse</a></code>
 - <code title="delete /accounts/{account_identifier}/cloudforce-one/requests/priority/{priority_identifer}">client.cloudforce_one.requests.priority.<a href="./src/cloudflare/resources/cloudforce_one/requests/priority.py">delete</a>(priority_identifer, \*, account_identifier) -> <a href="./src/cloudflare/types/cloudforce_one/requests/priority_delete_response.py">PriorityDeleteResponse</a></code>
-- <code title="post /accounts/{account_identifier}/cloudforce-one/requests/priority">client.cloudforce_one.requests.priority.<a href="./src/cloudflare/resources/cloudforce_one/requests/priority.py">do_something_unknown</a>(account_identifier, \*\*<a href="src/cloudflare/types/cloudforce_one/requests/priority_do_something_unknown_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/requests/priority_do_something_unknown_response.py">PriorityDoSomethingUnknownResponse</a></code>
 - <code title="get /accounts/{account_identifier}/cloudforce-one/requests/priority/{priority_identifer}">client.cloudforce_one.requests.priority.<a href="./src/cloudflare/resources/cloudforce_one/requests/priority.py">get</a>(priority_identifer, \*, account_identifier) -> <a href="./src/cloudflare/types/cloudforce_one/requests/priority_get_response.py">PriorityGetResponse</a></code>
 - <code title="get /accounts/{account_identifier}/cloudforce-one/requests/priority/quota">client.cloudforce_one.requests.priority.<a href="./src/cloudflare/resources/cloudforce_one/requests/priority.py">quota</a>(account_identifier) -> <a href="./src/cloudflare/types/cloudforce_one/requests/priority_quota_response.py">PriorityQuotaResponse</a></code>

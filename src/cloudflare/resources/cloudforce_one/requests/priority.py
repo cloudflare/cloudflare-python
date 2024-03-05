@@ -30,10 +30,8 @@ from ....types.cloudforce_one.requests import (
     PriorityCreateResponse,
     PriorityDeleteResponse,
     PriorityUpdateResponse,
-    PriorityDoSomethingUnknownResponse,
     priority_create_params,
     priority_update_params,
-    priority_do_something_unknown_params,
 )
 
 __all__ = ["Priority", "AsyncPriority"]
@@ -220,58 +218,6 @@ class Priority(SyncAPIResource):
                     Any, ResultWrapper[PriorityDeleteResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
-        )
-
-    def do_something_unknown(
-        self,
-        account_identifier: str,
-        *,
-        page: int,
-        per_page: int,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PriorityDoSomethingUnknownResponse:
-        """
-        List Priority Intelligence Requirements
-
-        Args:
-          account_identifier: Identifier
-
-          page: Page number of results
-
-          per_page: Number of results per page
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        return self._post(
-            f"/accounts/{account_identifier}/cloudforce-one/requests/priority",
-            body=maybe_transform(
-                {
-                    "page": page,
-                    "per_page": per_page,
-                },
-                priority_do_something_unknown_params.PriorityDoSomethingUnknownParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(Type[PriorityDoSomethingUnknownResponse], ResultWrapper[PriorityDoSomethingUnknownResponse]),
         )
 
     def get(
@@ -541,58 +487,6 @@ class AsyncPriority(AsyncAPIResource):
             ),
         )
 
-    async def do_something_unknown(
-        self,
-        account_identifier: str,
-        *,
-        page: int,
-        per_page: int,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PriorityDoSomethingUnknownResponse:
-        """
-        List Priority Intelligence Requirements
-
-        Args:
-          account_identifier: Identifier
-
-          page: Page number of results
-
-          per_page: Number of results per page
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        return await self._post(
-            f"/accounts/{account_identifier}/cloudforce-one/requests/priority",
-            body=await async_maybe_transform(
-                {
-                    "page": page,
-                    "per_page": per_page,
-                },
-                priority_do_something_unknown_params.PriorityDoSomethingUnknownParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
-            ),
-            cast_to=cast(Type[PriorityDoSomethingUnknownResponse], ResultWrapper[PriorityDoSomethingUnknownResponse]),
-        )
-
     async def get(
         self,
         priority_identifer: str,
@@ -690,9 +584,6 @@ class PriorityWithRawResponse:
         self.delete = to_raw_response_wrapper(
             priority.delete,
         )
-        self.do_something_unknown = to_raw_response_wrapper(
-            priority.do_something_unknown,
-        )
         self.get = to_raw_response_wrapper(
             priority.get,
         )
@@ -713,9 +604,6 @@ class AsyncPriorityWithRawResponse:
         )
         self.delete = async_to_raw_response_wrapper(
             priority.delete,
-        )
-        self.do_something_unknown = async_to_raw_response_wrapper(
-            priority.do_something_unknown,
         )
         self.get = async_to_raw_response_wrapper(
             priority.get,
@@ -738,9 +626,6 @@ class PriorityWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             priority.delete,
         )
-        self.do_something_unknown = to_streamed_response_wrapper(
-            priority.do_something_unknown,
-        )
         self.get = to_streamed_response_wrapper(
             priority.get,
         )
@@ -761,9 +646,6 @@ class AsyncPriorityWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             priority.delete,
-        )
-        self.do_something_unknown = async_to_streamed_response_wrapper(
-            priority.do_something_unknown,
         )
         self.get = async_to_streamed_response_wrapper(
             priority.get,
