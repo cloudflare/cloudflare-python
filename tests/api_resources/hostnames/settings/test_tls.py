@@ -9,11 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.hostnames.settings import (
-    TLSGetResponse,
-    TLSCertificatesAndHostnamesSettingObject,
-    TLSCertificatesAndHostnamesSettingObjectDelete,
-)
+from cloudflare.types.hostnames.settings import TLSGetResponse, TLSDeleteResponse, TLSUpdateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -30,7 +26,7 @@ class TestTLS:
             setting_id="ciphers",
             value=["ECDHE-RSA-AES128-GCM-SHA256", "AES128-GCM-SHA256"],
         )
-        assert_matches_type(TLSCertificatesAndHostnamesSettingObject, tls, path=["response"])
+        assert_matches_type(TLSUpdateResponse, tls, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -45,7 +41,7 @@ class TestTLS:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tls = response.parse()
-        assert_matches_type(TLSCertificatesAndHostnamesSettingObject, tls, path=["response"])
+        assert_matches_type(TLSUpdateResponse, tls, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -60,7 +56,7 @@ class TestTLS:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tls = response.parse()
-            assert_matches_type(TLSCertificatesAndHostnamesSettingObject, tls, path=["response"])
+            assert_matches_type(TLSUpdateResponse, tls, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -91,7 +87,7 @@ class TestTLS:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             setting_id="ciphers",
         )
-        assert_matches_type(TLSCertificatesAndHostnamesSettingObjectDelete, tls, path=["response"])
+        assert_matches_type(TLSDeleteResponse, tls, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -105,7 +101,7 @@ class TestTLS:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tls = response.parse()
-        assert_matches_type(TLSCertificatesAndHostnamesSettingObjectDelete, tls, path=["response"])
+        assert_matches_type(TLSDeleteResponse, tls, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -119,7 +115,7 @@ class TestTLS:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tls = response.parse()
-            assert_matches_type(TLSCertificatesAndHostnamesSettingObjectDelete, tls, path=["response"])
+            assert_matches_type(TLSDeleteResponse, tls, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -199,7 +195,7 @@ class TestAsyncTLS:
             setting_id="ciphers",
             value=["ECDHE-RSA-AES128-GCM-SHA256", "AES128-GCM-SHA256"],
         )
-        assert_matches_type(TLSCertificatesAndHostnamesSettingObject, tls, path=["response"])
+        assert_matches_type(TLSUpdateResponse, tls, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -214,7 +210,7 @@ class TestAsyncTLS:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tls = await response.parse()
-        assert_matches_type(TLSCertificatesAndHostnamesSettingObject, tls, path=["response"])
+        assert_matches_type(TLSUpdateResponse, tls, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -229,7 +225,7 @@ class TestAsyncTLS:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tls = await response.parse()
-            assert_matches_type(TLSCertificatesAndHostnamesSettingObject, tls, path=["response"])
+            assert_matches_type(TLSUpdateResponse, tls, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -260,7 +256,7 @@ class TestAsyncTLS:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             setting_id="ciphers",
         )
-        assert_matches_type(TLSCertificatesAndHostnamesSettingObjectDelete, tls, path=["response"])
+        assert_matches_type(TLSDeleteResponse, tls, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -274,7 +270,7 @@ class TestAsyncTLS:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tls = await response.parse()
-        assert_matches_type(TLSCertificatesAndHostnamesSettingObjectDelete, tls, path=["response"])
+        assert_matches_type(TLSDeleteResponse, tls, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -288,7 +284,7 @@ class TestAsyncTLS:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tls = await response.parse()
-            assert_matches_type(TLSCertificatesAndHostnamesSettingObjectDelete, tls, path=["response"])
+            assert_matches_type(TLSDeleteResponse, tls, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

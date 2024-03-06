@@ -9,7 +9,11 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.r2 import R2Bucket, BucketListResponse
+from cloudflare.types.r2 import (
+    BucketGetResponse,
+    BucketListResponse,
+    BucketCreateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -24,7 +28,7 @@ class TestBuckets:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="example-bucket",
         )
-        assert_matches_type(R2Bucket, bucket, path=["response"])
+        assert_matches_type(BucketCreateResponse, bucket, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -34,7 +38,7 @@ class TestBuckets:
             name="example-bucket",
             location_hint="apac",
         )
-        assert_matches_type(R2Bucket, bucket, path=["response"])
+        assert_matches_type(BucketCreateResponse, bucket, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -47,7 +51,7 @@ class TestBuckets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         bucket = response.parse()
-        assert_matches_type(R2Bucket, bucket, path=["response"])
+        assert_matches_type(BucketCreateResponse, bucket, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -60,7 +64,7 @@ class TestBuckets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             bucket = response.parse()
-            assert_matches_type(R2Bucket, bucket, path=["response"])
+            assert_matches_type(BucketCreateResponse, bucket, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -188,7 +192,7 @@ class TestBuckets:
             "example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(R2Bucket, bucket, path=["response"])
+        assert_matches_type(BucketGetResponse, bucket, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -201,7 +205,7 @@ class TestBuckets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         bucket = response.parse()
-        assert_matches_type(R2Bucket, bucket, path=["response"])
+        assert_matches_type(BucketGetResponse, bucket, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -214,7 +218,7 @@ class TestBuckets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             bucket = response.parse()
-            assert_matches_type(R2Bucket, bucket, path=["response"])
+            assert_matches_type(BucketGetResponse, bucket, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -244,7 +248,7 @@ class TestAsyncBuckets:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="example-bucket",
         )
-        assert_matches_type(R2Bucket, bucket, path=["response"])
+        assert_matches_type(BucketCreateResponse, bucket, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -254,7 +258,7 @@ class TestAsyncBuckets:
             name="example-bucket",
             location_hint="apac",
         )
-        assert_matches_type(R2Bucket, bucket, path=["response"])
+        assert_matches_type(BucketCreateResponse, bucket, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -267,7 +271,7 @@ class TestAsyncBuckets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         bucket = await response.parse()
-        assert_matches_type(R2Bucket, bucket, path=["response"])
+        assert_matches_type(BucketCreateResponse, bucket, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -280,7 +284,7 @@ class TestAsyncBuckets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             bucket = await response.parse()
-            assert_matches_type(R2Bucket, bucket, path=["response"])
+            assert_matches_type(BucketCreateResponse, bucket, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -408,7 +412,7 @@ class TestAsyncBuckets:
             "example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(R2Bucket, bucket, path=["response"])
+        assert_matches_type(BucketGetResponse, bucket, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -421,7 +425,7 @@ class TestAsyncBuckets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         bucket = await response.parse()
-        assert_matches_type(R2Bucket, bucket, path=["response"])
+        assert_matches_type(BucketGetResponse, bucket, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -434,7 +438,7 @@ class TestAsyncBuckets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             bucket = await response.parse()
-            assert_matches_type(R2Bucket, bucket, path=["response"])
+            assert_matches_type(BucketGetResponse, bucket, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -41,14 +41,17 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.load_balancers import (
+    PoolGetResponse,
+    PoolEditResponse,
     PoolListResponse,
+    PoolCreateResponse,
     PoolDeleteResponse,
+    PoolUpdateResponse,
     pool_edit_params,
     pool_list_params,
     pool_create_params,
     pool_update_params,
 )
-from ....types.user.load_balancers import LoadBalancingPool
 
 __all__ = ["Pools", "AsyncPools"]
 
@@ -92,7 +95,7 @@ class Pools(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LoadBalancingPool:
+    ) -> PoolCreateResponse:
         """
         Create a new pool.
 
@@ -174,7 +177,7 @@ class Pools(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[LoadBalancingPool], ResultWrapper[LoadBalancingPool]),
+            cast_to=cast(Type[PoolCreateResponse], ResultWrapper[PoolCreateResponse]),
         )
 
     def update(
@@ -221,7 +224,7 @@ class Pools(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LoadBalancingPool:
+    ) -> PoolUpdateResponse:
         """
         Modify a configured pool.
 
@@ -309,7 +312,7 @@ class Pools(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[LoadBalancingPool], ResultWrapper[LoadBalancingPool]),
+            cast_to=cast(Type[PoolUpdateResponse], ResultWrapper[PoolUpdateResponse]),
         )
 
     def list(
@@ -442,7 +445,7 @@ class Pools(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LoadBalancingPool:
+    ) -> PoolEditResponse:
         """
         Apply changes to an existing pool, overwriting the supplied properties.
 
@@ -530,7 +533,7 @@ class Pools(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[LoadBalancingPool], ResultWrapper[LoadBalancingPool]),
+            cast_to=cast(Type[PoolEditResponse], ResultWrapper[PoolEditResponse]),
         )
 
     def get(
@@ -544,7 +547,7 @@ class Pools(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LoadBalancingPool:
+    ) -> PoolGetResponse:
         """
         Fetch a single configured pool.
 
@@ -572,7 +575,7 @@ class Pools(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[LoadBalancingPool], ResultWrapper[LoadBalancingPool]),
+            cast_to=cast(Type[PoolGetResponse], ResultWrapper[PoolGetResponse]),
         )
 
 
@@ -615,7 +618,7 @@ class AsyncPools(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LoadBalancingPool:
+    ) -> PoolCreateResponse:
         """
         Create a new pool.
 
@@ -697,7 +700,7 @@ class AsyncPools(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[LoadBalancingPool], ResultWrapper[LoadBalancingPool]),
+            cast_to=cast(Type[PoolCreateResponse], ResultWrapper[PoolCreateResponse]),
         )
 
     async def update(
@@ -744,7 +747,7 @@ class AsyncPools(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LoadBalancingPool:
+    ) -> PoolUpdateResponse:
         """
         Modify a configured pool.
 
@@ -832,7 +835,7 @@ class AsyncPools(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[LoadBalancingPool], ResultWrapper[LoadBalancingPool]),
+            cast_to=cast(Type[PoolUpdateResponse], ResultWrapper[PoolUpdateResponse]),
         )
 
     async def list(
@@ -965,7 +968,7 @@ class AsyncPools(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LoadBalancingPool:
+    ) -> PoolEditResponse:
         """
         Apply changes to an existing pool, overwriting the supplied properties.
 
@@ -1053,7 +1056,7 @@ class AsyncPools(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[LoadBalancingPool], ResultWrapper[LoadBalancingPool]),
+            cast_to=cast(Type[PoolEditResponse], ResultWrapper[PoolEditResponse]),
         )
 
     async def get(
@@ -1067,7 +1070,7 @@ class AsyncPools(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LoadBalancingPool:
+    ) -> PoolGetResponse:
         """
         Fetch a single configured pool.
 
@@ -1095,7 +1098,7 @@ class AsyncPools(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[LoadBalancingPool], ResultWrapper[LoadBalancingPool]),
+            cast_to=cast(Type[PoolGetResponse], ResultWrapper[PoolGetResponse]),
         )
 
 

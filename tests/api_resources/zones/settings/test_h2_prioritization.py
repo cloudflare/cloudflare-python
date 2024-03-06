@@ -9,7 +9,10 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.zones.settings import ZonesH2Prioritization
+from cloudflare.types.zones.settings import (
+    H2PrioritizationGetResponse,
+    H2PrioritizationEditResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -27,7 +30,7 @@ class TestH2Prioritization:
                 "value": "on",
             },
         )
-        assert_matches_type(Optional[ZonesH2Prioritization], h2_prioritization, path=["response"])
+        assert_matches_type(Optional[H2PrioritizationEditResponse], h2_prioritization, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -39,7 +42,7 @@ class TestH2Prioritization:
                 "value": "on",
             },
         )
-        assert_matches_type(Optional[ZonesH2Prioritization], h2_prioritization, path=["response"])
+        assert_matches_type(Optional[H2PrioritizationEditResponse], h2_prioritization, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -55,7 +58,7 @@ class TestH2Prioritization:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         h2_prioritization = response.parse()
-        assert_matches_type(Optional[ZonesH2Prioritization], h2_prioritization, path=["response"])
+        assert_matches_type(Optional[H2PrioritizationEditResponse], h2_prioritization, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -71,7 +74,7 @@ class TestH2Prioritization:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             h2_prioritization = response.parse()
-            assert_matches_type(Optional[ZonesH2Prioritization], h2_prioritization, path=["response"])
+            assert_matches_type(Optional[H2PrioritizationEditResponse], h2_prioritization, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -93,7 +96,7 @@ class TestH2Prioritization:
         h2_prioritization = client.zones.settings.h2_prioritization.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ZonesH2Prioritization], h2_prioritization, path=["response"])
+        assert_matches_type(Optional[H2PrioritizationGetResponse], h2_prioritization, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -105,7 +108,7 @@ class TestH2Prioritization:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         h2_prioritization = response.parse()
-        assert_matches_type(Optional[ZonesH2Prioritization], h2_prioritization, path=["response"])
+        assert_matches_type(Optional[H2PrioritizationGetResponse], h2_prioritization, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -117,7 +120,7 @@ class TestH2Prioritization:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             h2_prioritization = response.parse()
-            assert_matches_type(Optional[ZonesH2Prioritization], h2_prioritization, path=["response"])
+            assert_matches_type(Optional[H2PrioritizationGetResponse], h2_prioritization, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -143,7 +146,7 @@ class TestAsyncH2Prioritization:
                 "value": "on",
             },
         )
-        assert_matches_type(Optional[ZonesH2Prioritization], h2_prioritization, path=["response"])
+        assert_matches_type(Optional[H2PrioritizationEditResponse], h2_prioritization, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -155,7 +158,7 @@ class TestAsyncH2Prioritization:
                 "value": "on",
             },
         )
-        assert_matches_type(Optional[ZonesH2Prioritization], h2_prioritization, path=["response"])
+        assert_matches_type(Optional[H2PrioritizationEditResponse], h2_prioritization, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -171,7 +174,7 @@ class TestAsyncH2Prioritization:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         h2_prioritization = await response.parse()
-        assert_matches_type(Optional[ZonesH2Prioritization], h2_prioritization, path=["response"])
+        assert_matches_type(Optional[H2PrioritizationEditResponse], h2_prioritization, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -187,7 +190,7 @@ class TestAsyncH2Prioritization:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             h2_prioritization = await response.parse()
-            assert_matches_type(Optional[ZonesH2Prioritization], h2_prioritization, path=["response"])
+            assert_matches_type(Optional[H2PrioritizationEditResponse], h2_prioritization, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -209,7 +212,7 @@ class TestAsyncH2Prioritization:
         h2_prioritization = await async_client.zones.settings.h2_prioritization.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ZonesH2Prioritization], h2_prioritization, path=["response"])
+        assert_matches_type(Optional[H2PrioritizationGetResponse], h2_prioritization, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -221,7 +224,7 @@ class TestAsyncH2Prioritization:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         h2_prioritization = await response.parse()
-        assert_matches_type(Optional[ZonesH2Prioritization], h2_prioritization, path=["response"])
+        assert_matches_type(Optional[H2PrioritizationGetResponse], h2_prioritization, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -233,7 +236,7 @@ class TestAsyncH2Prioritization:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             h2_prioritization = await response.parse()
-            assert_matches_type(Optional[ZonesH2Prioritization], h2_prioritization, path=["response"])
+            assert_matches_type(Optional[H2PrioritizationGetResponse], h2_prioritization, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

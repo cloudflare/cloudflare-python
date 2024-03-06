@@ -14,7 +14,13 @@ from .rules import (
     RulesWithStreamingResponse,
     AsyncRulesWithStreamingResponse,
 )
-from ...types import Snippet, SnippetListResponse, SnippetDeleteResponse, snippet_update_params
+from ...types import (
+    SnippetGetResponse,
+    SnippetListResponse,
+    SnippetDeleteResponse,
+    SnippetUpdateResponse,
+    snippet_update_params,
+)
 from .content import (
     Content,
     AsyncContent,
@@ -74,7 +80,7 @@ class Snippets(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Snippet:
+    ) -> SnippetUpdateResponse:
         """
         Put Snippet
 
@@ -113,7 +119,7 @@ class Snippets(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Snippet], ResultWrapper[Snippet]),
+            cast_to=cast(Type[SnippetUpdateResponse], ResultWrapper[SnippetUpdateResponse]),
         )
 
     def list(
@@ -215,7 +221,7 @@ class Snippets(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Snippet:
+    ) -> SnippetGetResponse:
         """
         Snippet
 
@@ -245,7 +251,7 @@ class Snippets(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Snippet], ResultWrapper[Snippet]),
+            cast_to=cast(Type[SnippetGetResponse], ResultWrapper[SnippetGetResponse]),
         )
 
 
@@ -279,7 +285,7 @@ class AsyncSnippets(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Snippet:
+    ) -> SnippetUpdateResponse:
         """
         Put Snippet
 
@@ -318,7 +324,7 @@ class AsyncSnippets(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Snippet], ResultWrapper[Snippet]),
+            cast_to=cast(Type[SnippetUpdateResponse], ResultWrapper[SnippetUpdateResponse]),
         )
 
     async def list(
@@ -420,7 +426,7 @@ class AsyncSnippets(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Snippet:
+    ) -> SnippetGetResponse:
         """
         Snippet
 
@@ -450,7 +456,7 @@ class AsyncSnippets(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Snippet], ResultWrapper[Snippet]),
+            cast_to=cast(Type[SnippetGetResponse], ResultWrapper[SnippetGetResponse]),
         )
 
 

@@ -9,7 +9,11 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.workers import WorkersDomain, DomainListResponse
+from cloudflare.types.workers import (
+    DomainGetResponse,
+    DomainListResponse,
+    DomainUpdateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -27,7 +31,7 @@ class TestDomains:
             service="foo",
             zone_id="593c9c94de529bbbfaac7c53ced0447d",
         )
-        assert_matches_type(WorkersDomain, domain, path=["response"])
+        assert_matches_type(DomainUpdateResponse, domain, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -43,7 +47,7 @@ class TestDomains:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         domain = response.parse()
-        assert_matches_type(WorkersDomain, domain, path=["response"])
+        assert_matches_type(DomainUpdateResponse, domain, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -59,7 +63,7 @@ class TestDomains:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             domain = response.parse()
-            assert_matches_type(WorkersDomain, domain, path=["response"])
+            assert_matches_type(DomainUpdateResponse, domain, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -154,7 +158,7 @@ class TestDomains:
             "dbe10b4bc17c295377eabd600e1787fd",
             account_id="9a7806061c88ada191ed06f989cc3dac",
         )
-        assert_matches_type(WorkersDomain, domain, path=["response"])
+        assert_matches_type(DomainGetResponse, domain, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -167,7 +171,7 @@ class TestDomains:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         domain = response.parse()
-        assert_matches_type(WorkersDomain, domain, path=["response"])
+        assert_matches_type(DomainGetResponse, domain, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -180,7 +184,7 @@ class TestDomains:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             domain = response.parse()
-            assert_matches_type(WorkersDomain, domain, path=["response"])
+            assert_matches_type(DomainGetResponse, domain, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -198,7 +202,7 @@ class TestAsyncDomains:
             service="foo",
             zone_id="593c9c94de529bbbfaac7c53ced0447d",
         )
-        assert_matches_type(WorkersDomain, domain, path=["response"])
+        assert_matches_type(DomainUpdateResponse, domain, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -214,7 +218,7 @@ class TestAsyncDomains:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         domain = await response.parse()
-        assert_matches_type(WorkersDomain, domain, path=["response"])
+        assert_matches_type(DomainUpdateResponse, domain, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -230,7 +234,7 @@ class TestAsyncDomains:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             domain = await response.parse()
-            assert_matches_type(WorkersDomain, domain, path=["response"])
+            assert_matches_type(DomainUpdateResponse, domain, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -325,7 +329,7 @@ class TestAsyncDomains:
             "dbe10b4bc17c295377eabd600e1787fd",
             account_id="9a7806061c88ada191ed06f989cc3dac",
         )
-        assert_matches_type(WorkersDomain, domain, path=["response"])
+        assert_matches_type(DomainGetResponse, domain, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -338,7 +342,7 @@ class TestAsyncDomains:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         domain = await response.parse()
-        assert_matches_type(WorkersDomain, domain, path=["response"])
+        assert_matches_type(DomainGetResponse, domain, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -351,6 +355,6 @@ class TestAsyncDomains:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             domain = await response.parse()
-            assert_matches_type(WorkersDomain, domain, path=["response"])
+            assert_matches_type(DomainGetResponse, domain, path=["response"])
 
         assert cast(Any, response.is_closed) is True

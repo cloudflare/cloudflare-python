@@ -23,7 +23,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZonesNEL, ZonesNELParam, nel_edit_params
+from ....types.zones.settings import NELGetResponse, NELEditResponse, nel_edit_params
 
 __all__ = ["NEL", "AsyncNEL"]
 
@@ -41,14 +41,14 @@ class NEL(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        value: ZonesNELParam,
+        value: nel_edit_params.Value,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesNEL]:
+    ) -> Optional[NELEditResponse]:
         """
         Automatically optimize image loading for website visitors on mobile devices.
         Refer to our [blog post](http://blog.cloudflare.com/nel-solving-mobile-speed)
@@ -79,7 +79,7 @@ class NEL(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesNEL]], ResultWrapper[ZonesNEL]),
+            cast_to=cast(Type[Optional[NELEditResponse]], ResultWrapper[NELEditResponse]),
         )
 
     def get(
@@ -92,7 +92,7 @@ class NEL(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesNEL]:
+    ) -> Optional[NELGetResponse]:
         """Enable Network Error Logging reporting on your zone.
 
         (Beta)
@@ -119,7 +119,7 @@ class NEL(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesNEL]], ResultWrapper[ZonesNEL]),
+            cast_to=cast(Type[Optional[NELGetResponse]], ResultWrapper[NELGetResponse]),
         )
 
 
@@ -136,14 +136,14 @@ class AsyncNEL(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        value: ZonesNELParam,
+        value: nel_edit_params.Value,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesNEL]:
+    ) -> Optional[NELEditResponse]:
         """
         Automatically optimize image loading for website visitors on mobile devices.
         Refer to our [blog post](http://blog.cloudflare.com/nel-solving-mobile-speed)
@@ -174,7 +174,7 @@ class AsyncNEL(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesNEL]], ResultWrapper[ZonesNEL]),
+            cast_to=cast(Type[Optional[NELEditResponse]], ResultWrapper[NELEditResponse]),
         )
 
     async def get(
@@ -187,7 +187,7 @@ class AsyncNEL(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesNEL]:
+    ) -> Optional[NELGetResponse]:
         """Enable Network Error Logging reporting on your zone.
 
         (Beta)
@@ -214,7 +214,7 @@ class AsyncNEL(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesNEL]], ResultWrapper[ZonesNEL]),
+            cast_to=cast(Type[Optional[NELGetResponse]], ResultWrapper[NELGetResponse]),
         )
 
 

@@ -26,8 +26,11 @@ from ..._base_client import (
     make_request_options,
 )
 from ...types.firewall import (
-    LegacyJhsZonelockdown,
+    LockdownGetResponse,
+    LockdownListResponse,
+    LockdownCreateResponse,
     LockdownDeleteResponse,
+    LockdownUpdateResponse,
     lockdown_list_params,
     lockdown_create_params,
     lockdown_update_params,
@@ -56,7 +59,7 @@ class Lockdowns(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[LegacyJhsZonelockdown]:
+    ) -> Optional[LockdownCreateResponse]:
         """
         Creates a new Zone Lockdown rule.
 
@@ -83,7 +86,7 @@ class Lockdowns(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[LegacyJhsZonelockdown]], ResultWrapper[LegacyJhsZonelockdown]),
+            cast_to=cast(Type[Optional[LockdownCreateResponse]], ResultWrapper[LockdownCreateResponse]),
         )
 
     def update(
@@ -98,7 +101,7 @@ class Lockdowns(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[LegacyJhsZonelockdown]:
+    ) -> Optional[LockdownUpdateResponse]:
         """
         Updates an existing Zone Lockdown rule.
 
@@ -129,7 +132,7 @@ class Lockdowns(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[LegacyJhsZonelockdown]], ResultWrapper[LegacyJhsZonelockdown]),
+            cast_to=cast(Type[Optional[LockdownUpdateResponse]], ResultWrapper[LockdownUpdateResponse]),
         )
 
     def list(
@@ -151,7 +154,7 @@ class Lockdowns(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[LegacyJhsZonelockdown]:
+    ) -> SyncV4PagePaginationArray[LockdownListResponse]:
         """Fetches Zone Lockdown rules.
 
         You can filter the results using several optional
@@ -193,7 +196,7 @@ class Lockdowns(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return self._get_api_list(
             f"/zones/{zone_identifier}/firewall/lockdowns",
-            page=SyncV4PagePaginationArray[LegacyJhsZonelockdown],
+            page=SyncV4PagePaginationArray[LockdownListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -214,7 +217,7 @@ class Lockdowns(SyncAPIResource):
                     lockdown_list_params.LockdownListParams,
                 ),
             ),
-            model=LegacyJhsZonelockdown,
+            model=LockdownListResponse,
         )
 
     def delete(
@@ -272,7 +275,7 @@ class Lockdowns(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[LegacyJhsZonelockdown]:
+    ) -> Optional[LockdownGetResponse]:
         """
         Fetches the details of a Zone Lockdown rule.
 
@@ -302,7 +305,7 @@ class Lockdowns(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[LegacyJhsZonelockdown]], ResultWrapper[LegacyJhsZonelockdown]),
+            cast_to=cast(Type[Optional[LockdownGetResponse]], ResultWrapper[LockdownGetResponse]),
         )
 
 
@@ -326,7 +329,7 @@ class AsyncLockdowns(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[LegacyJhsZonelockdown]:
+    ) -> Optional[LockdownCreateResponse]:
         """
         Creates a new Zone Lockdown rule.
 
@@ -353,7 +356,7 @@ class AsyncLockdowns(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[LegacyJhsZonelockdown]], ResultWrapper[LegacyJhsZonelockdown]),
+            cast_to=cast(Type[Optional[LockdownCreateResponse]], ResultWrapper[LockdownCreateResponse]),
         )
 
     async def update(
@@ -368,7 +371,7 @@ class AsyncLockdowns(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[LegacyJhsZonelockdown]:
+    ) -> Optional[LockdownUpdateResponse]:
         """
         Updates an existing Zone Lockdown rule.
 
@@ -399,7 +402,7 @@ class AsyncLockdowns(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[LegacyJhsZonelockdown]], ResultWrapper[LegacyJhsZonelockdown]),
+            cast_to=cast(Type[Optional[LockdownUpdateResponse]], ResultWrapper[LockdownUpdateResponse]),
         )
 
     def list(
@@ -421,7 +424,7 @@ class AsyncLockdowns(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[LegacyJhsZonelockdown, AsyncV4PagePaginationArray[LegacyJhsZonelockdown]]:
+    ) -> AsyncPaginator[LockdownListResponse, AsyncV4PagePaginationArray[LockdownListResponse]]:
         """Fetches Zone Lockdown rules.
 
         You can filter the results using several optional
@@ -463,7 +466,7 @@ class AsyncLockdowns(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return self._get_api_list(
             f"/zones/{zone_identifier}/firewall/lockdowns",
-            page=AsyncV4PagePaginationArray[LegacyJhsZonelockdown],
+            page=AsyncV4PagePaginationArray[LockdownListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -484,7 +487,7 @@ class AsyncLockdowns(AsyncAPIResource):
                     lockdown_list_params.LockdownListParams,
                 ),
             ),
-            model=LegacyJhsZonelockdown,
+            model=LockdownListResponse,
         )
 
     async def delete(
@@ -542,7 +545,7 @@ class AsyncLockdowns(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[LegacyJhsZonelockdown]:
+    ) -> Optional[LockdownGetResponse]:
         """
         Fetches the details of a Zone Lockdown rule.
 
@@ -572,7 +575,7 @@ class AsyncLockdowns(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[LegacyJhsZonelockdown]], ResultWrapper[LegacyJhsZonelockdown]),
+            cast_to=cast(Type[Optional[LockdownGetResponse]], ResultWrapper[LockdownGetResponse]),
         )
 
 

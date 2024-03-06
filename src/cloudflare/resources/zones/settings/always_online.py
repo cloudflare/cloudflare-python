@@ -24,7 +24,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZonesAlwaysOnline, always_online_edit_params
+from ....types.zones.settings import AlwaysOnlineGetResponse, AlwaysOnlineEditResponse, always_online_edit_params
 
 __all__ = ["AlwaysOnline", "AsyncAlwaysOnline"]
 
@@ -49,7 +49,7 @@ class AlwaysOnline(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesAlwaysOnline]:
+    ) -> Optional[AlwaysOnlineEditResponse]:
         """
         When enabled, Cloudflare serves limited copies of web pages available from the
         [Internet Archive's Wayback Machine](https://archive.org/web/) if your server is
@@ -82,7 +82,7 @@ class AlwaysOnline(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesAlwaysOnline]], ResultWrapper[ZonesAlwaysOnline]),
+            cast_to=cast(Type[Optional[AlwaysOnlineEditResponse]], ResultWrapper[AlwaysOnlineEditResponse]),
         )
 
     def get(
@@ -95,7 +95,7 @@ class AlwaysOnline(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesAlwaysOnline]:
+    ) -> Optional[AlwaysOnlineGetResponse]:
         """
         When enabled, Cloudflare serves limited copies of web pages available from the
         [Internet Archive's Wayback Machine](https://archive.org/web/) if your server is
@@ -125,7 +125,7 @@ class AlwaysOnline(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesAlwaysOnline]], ResultWrapper[ZonesAlwaysOnline]),
+            cast_to=cast(Type[Optional[AlwaysOnlineGetResponse]], ResultWrapper[AlwaysOnlineGetResponse]),
         )
 
 
@@ -149,7 +149,7 @@ class AsyncAlwaysOnline(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesAlwaysOnline]:
+    ) -> Optional[AlwaysOnlineEditResponse]:
         """
         When enabled, Cloudflare serves limited copies of web pages available from the
         [Internet Archive's Wayback Machine](https://archive.org/web/) if your server is
@@ -182,7 +182,7 @@ class AsyncAlwaysOnline(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesAlwaysOnline]], ResultWrapper[ZonesAlwaysOnline]),
+            cast_to=cast(Type[Optional[AlwaysOnlineEditResponse]], ResultWrapper[AlwaysOnlineEditResponse]),
         )
 
     async def get(
@@ -195,7 +195,7 @@ class AsyncAlwaysOnline(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesAlwaysOnline]:
+    ) -> Optional[AlwaysOnlineGetResponse]:
         """
         When enabled, Cloudflare serves limited copies of web pages available from the
         [Internet Archive's Wayback Machine](https://archive.org/web/) if your server is
@@ -225,7 +225,7 @@ class AsyncAlwaysOnline(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesAlwaysOnline]], ResultWrapper[ZonesAlwaysOnline]),
+            cast_to=cast(Type[Optional[AlwaysOnlineGetResponse]], ResultWrapper[AlwaysOnlineGetResponse]),
         )
 
 

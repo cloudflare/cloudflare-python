@@ -24,9 +24,10 @@ from ....._base_client import (
     make_request_options,
 )
 from .....types.addressing.prefixes.bgp import (
+    BindingGetResponse,
     BindingListResponse,
+    BindingCreateResponse,
     BindingDeleteResponse,
-    AddressingServiceBinding,
     binding_create_params,
 )
 
@@ -55,7 +56,7 @@ class Bindings(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AddressingServiceBinding:
+    ) -> BindingCreateResponse:
         """
         Creates a new Service Binding, routing traffic to IPs within the given CIDR to a
         service running on Cloudflare's network. **Note:** This API may only be used on
@@ -99,7 +100,7 @@ class Bindings(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AddressingServiceBinding], ResultWrapper[AddressingServiceBinding]),
+            cast_to=cast(Type[BindingCreateResponse], ResultWrapper[BindingCreateResponse]),
         )
 
     def list(
@@ -218,7 +219,7 @@ class Bindings(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AddressingServiceBinding:
+    ) -> BindingGetResponse:
         """
         Fetch a single Service Binding
 
@@ -252,7 +253,7 @@ class Bindings(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AddressingServiceBinding], ResultWrapper[AddressingServiceBinding]),
+            cast_to=cast(Type[BindingGetResponse], ResultWrapper[BindingGetResponse]),
         )
 
 
@@ -278,7 +279,7 @@ class AsyncBindings(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AddressingServiceBinding:
+    ) -> BindingCreateResponse:
         """
         Creates a new Service Binding, routing traffic to IPs within the given CIDR to a
         service running on Cloudflare's network. **Note:** This API may only be used on
@@ -322,7 +323,7 @@ class AsyncBindings(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AddressingServiceBinding], ResultWrapper[AddressingServiceBinding]),
+            cast_to=cast(Type[BindingCreateResponse], ResultWrapper[BindingCreateResponse]),
         )
 
     async def list(
@@ -441,7 +442,7 @@ class AsyncBindings(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AddressingServiceBinding:
+    ) -> BindingGetResponse:
         """
         Fetch a single Service Binding
 
@@ -475,7 +476,7 @@ class AsyncBindings(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AddressingServiceBinding], ResultWrapper[AddressingServiceBinding]),
+            cast_to=cast(Type[BindingGetResponse], ResultWrapper[BindingGetResponse]),
         )
 
 

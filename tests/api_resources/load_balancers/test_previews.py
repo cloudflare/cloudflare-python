@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.user.load_balancers import LoadBalancingPreviewResult
+from cloudflare.types.load_balancers import PreviewGetResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -24,7 +24,7 @@ class TestPreviews:
             "p1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(LoadBalancingPreviewResult, preview, path=["response"])
+        assert_matches_type(PreviewGetResponse, preview, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -37,7 +37,7 @@ class TestPreviews:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         preview = response.parse()
-        assert_matches_type(LoadBalancingPreviewResult, preview, path=["response"])
+        assert_matches_type(PreviewGetResponse, preview, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -50,7 +50,7 @@ class TestPreviews:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             preview = response.parse()
-            assert_matches_type(LoadBalancingPreviewResult, preview, path=["response"])
+            assert_matches_type(PreviewGetResponse, preview, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -74,7 +74,7 @@ class TestAsyncPreviews:
             "p1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(LoadBalancingPreviewResult, preview, path=["response"])
+        assert_matches_type(PreviewGetResponse, preview, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -87,7 +87,7 @@ class TestAsyncPreviews:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         preview = await response.parse()
-        assert_matches_type(LoadBalancingPreviewResult, preview, path=["response"])
+        assert_matches_type(PreviewGetResponse, preview, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -100,7 +100,7 @@ class TestAsyncPreviews:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             preview = await response.parse()
-            assert_matches_type(LoadBalancingPreviewResult, preview, path=["response"])
+            assert_matches_type(PreviewGetResponse, preview, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

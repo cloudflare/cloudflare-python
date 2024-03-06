@@ -16,7 +16,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...types.speed import ObservatoryAvailabilities
+from ...types.speed import AvailabilityListResponse
 from ..._base_client import (
     make_request_options,
 )
@@ -43,7 +43,7 @@ class Availabilities(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ObservatoryAvailabilities]:
+    ) -> Optional[AvailabilityListResponse]:
         """
         Retrieves quota for all plans, as well as the current zone quota.
 
@@ -69,7 +69,7 @@ class Availabilities(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ObservatoryAvailabilities]], ResultWrapper[ObservatoryAvailabilities]),
+            cast_to=cast(Type[Optional[AvailabilityListResponse]], ResultWrapper[AvailabilityListResponse]),
         )
 
 
@@ -92,7 +92,7 @@ class AsyncAvailabilities(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ObservatoryAvailabilities]:
+    ) -> Optional[AvailabilityListResponse]:
         """
         Retrieves quota for all plans, as well as the current zone quota.
 
@@ -118,7 +118,7 @@ class AsyncAvailabilities(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ObservatoryAvailabilities]], ResultWrapper[ObservatoryAvailabilities]),
+            cast_to=cast(Type[Optional[AvailabilityListResponse]], ResultWrapper[AvailabilityListResponse]),
         )
 
 

@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types import AvailablePlanListResponse, BillSubsAPIAvailableRatePlan
+from cloudflare.types import AvailablePlanGetResponse, AvailablePlanListResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -66,7 +66,7 @@ class TestAvailablePlans:
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(BillSubsAPIAvailableRatePlan, available_plan, path=["response"])
+        assert_matches_type(AvailablePlanGetResponse, available_plan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -79,7 +79,7 @@ class TestAvailablePlans:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         available_plan = response.parse()
-        assert_matches_type(BillSubsAPIAvailableRatePlan, available_plan, path=["response"])
+        assert_matches_type(AvailablePlanGetResponse, available_plan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -92,7 +92,7 @@ class TestAvailablePlans:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             available_plan = response.parse()
-            assert_matches_type(BillSubsAPIAvailableRatePlan, available_plan, path=["response"])
+            assert_matches_type(AvailablePlanGetResponse, available_plan, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -164,7 +164,7 @@ class TestAsyncAvailablePlans:
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(BillSubsAPIAvailableRatePlan, available_plan, path=["response"])
+        assert_matches_type(AvailablePlanGetResponse, available_plan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -177,7 +177,7 @@ class TestAsyncAvailablePlans:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         available_plan = await response.parse()
-        assert_matches_type(BillSubsAPIAvailableRatePlan, available_plan, path=["response"])
+        assert_matches_type(AvailablePlanGetResponse, available_plan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -190,7 +190,7 @@ class TestAsyncAvailablePlans:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             available_plan = await response.parse()
-            assert_matches_type(BillSubsAPIAvailableRatePlan, available_plan, path=["response"])
+            assert_matches_type(AvailablePlanGetResponse, available_plan, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

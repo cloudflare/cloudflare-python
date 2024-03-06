@@ -6,7 +6,6 @@ from typing import Type, cast
 
 import httpx
 
-from ....types import RulesetsRulesetResponse
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -20,6 +19,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
+from ....types.rulesets.versions import ByTagGetResponse
 
 __all__ = ["ByTags", "AsyncByTags"]
 
@@ -46,7 +46,7 @@ class ByTags(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RulesetsRulesetResponse:
+    ) -> ByTagGetResponse:
         """
         Fetches the rules of a managed account ruleset version for a given tag.
 
@@ -84,7 +84,7 @@ class ByTags(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[RulesetsRulesetResponse], ResultWrapper[RulesetsRulesetResponse]),
+            cast_to=cast(Type[ByTagGetResponse], ResultWrapper[ByTagGetResponse]),
         )
 
 
@@ -110,7 +110,7 @@ class AsyncByTags(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RulesetsRulesetResponse:
+    ) -> ByTagGetResponse:
         """
         Fetches the rules of a managed account ruleset version for a given tag.
 
@@ -148,7 +148,7 @@ class AsyncByTags(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[RulesetsRulesetResponse], ResultWrapper[RulesetsRulesetResponse]),
+            cast_to=cast(Type[ByTagGetResponse], ResultWrapper[ByTagGetResponse]),
         )
 
 

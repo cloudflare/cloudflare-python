@@ -2,5 +2,6 @@
 
 from __future__ import annotations
 
-from .email_catch_all_rule import EmailCatchAllRule as EmailCatchAllRule
+from .catch_all_get_response import CatchAllGetResponse as CatchAllGetResponse
 from .catch_all_update_params import CatchAllUpdateParams as CatchAllUpdateParams
+from .catch_all_update_response import CatchAllUpdateResponse as CatchAllUpdateResponse

@@ -9,7 +9,10 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.zones.settings import ZonesSecurityHeader
+from cloudflare.types.zones.settings import (
+    SecurityHeaderGetResponse,
+    SecurityHeaderEditResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -24,7 +27,7 @@ class TestSecurityHeaders:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value={},
         )
-        assert_matches_type(Optional[ZonesSecurityHeader], security_header, path=["response"])
+        assert_matches_type(Optional[SecurityHeaderEditResponse], security_header, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -40,7 +43,7 @@ class TestSecurityHeaders:
                 }
             },
         )
-        assert_matches_type(Optional[ZonesSecurityHeader], security_header, path=["response"])
+        assert_matches_type(Optional[SecurityHeaderEditResponse], security_header, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -53,7 +56,7 @@ class TestSecurityHeaders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         security_header = response.parse()
-        assert_matches_type(Optional[ZonesSecurityHeader], security_header, path=["response"])
+        assert_matches_type(Optional[SecurityHeaderEditResponse], security_header, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -66,7 +69,7 @@ class TestSecurityHeaders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             security_header = response.parse()
-            assert_matches_type(Optional[ZonesSecurityHeader], security_header, path=["response"])
+            assert_matches_type(Optional[SecurityHeaderEditResponse], security_header, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -85,7 +88,7 @@ class TestSecurityHeaders:
         security_header = client.zones.settings.security_headers.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ZonesSecurityHeader], security_header, path=["response"])
+        assert_matches_type(Optional[SecurityHeaderGetResponse], security_header, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -97,7 +100,7 @@ class TestSecurityHeaders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         security_header = response.parse()
-        assert_matches_type(Optional[ZonesSecurityHeader], security_header, path=["response"])
+        assert_matches_type(Optional[SecurityHeaderGetResponse], security_header, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -109,7 +112,7 @@ class TestSecurityHeaders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             security_header = response.parse()
-            assert_matches_type(Optional[ZonesSecurityHeader], security_header, path=["response"])
+            assert_matches_type(Optional[SecurityHeaderGetResponse], security_header, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -132,7 +135,7 @@ class TestAsyncSecurityHeaders:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value={},
         )
-        assert_matches_type(Optional[ZonesSecurityHeader], security_header, path=["response"])
+        assert_matches_type(Optional[SecurityHeaderEditResponse], security_header, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -148,7 +151,7 @@ class TestAsyncSecurityHeaders:
                 }
             },
         )
-        assert_matches_type(Optional[ZonesSecurityHeader], security_header, path=["response"])
+        assert_matches_type(Optional[SecurityHeaderEditResponse], security_header, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -161,7 +164,7 @@ class TestAsyncSecurityHeaders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         security_header = await response.parse()
-        assert_matches_type(Optional[ZonesSecurityHeader], security_header, path=["response"])
+        assert_matches_type(Optional[SecurityHeaderEditResponse], security_header, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -174,7 +177,7 @@ class TestAsyncSecurityHeaders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             security_header = await response.parse()
-            assert_matches_type(Optional[ZonesSecurityHeader], security_header, path=["response"])
+            assert_matches_type(Optional[SecurityHeaderEditResponse], security_header, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -193,7 +196,7 @@ class TestAsyncSecurityHeaders:
         security_header = await async_client.zones.settings.security_headers.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ZonesSecurityHeader], security_header, path=["response"])
+        assert_matches_type(Optional[SecurityHeaderGetResponse], security_header, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -205,7 +208,7 @@ class TestAsyncSecurityHeaders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         security_header = await response.parse()
-        assert_matches_type(Optional[ZonesSecurityHeader], security_header, path=["response"])
+        assert_matches_type(Optional[SecurityHeaderGetResponse], security_header, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -217,7 +220,7 @@ class TestAsyncSecurityHeaders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             security_header = await response.parse()
-            assert_matches_type(Optional[ZonesSecurityHeader], security_header, path=["response"])
+            assert_matches_type(Optional[SecurityHeaderGetResponse], security_header, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

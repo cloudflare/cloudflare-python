@@ -25,9 +25,11 @@ from ....._base_client import (
     make_request_options,
 )
 from .....types.zero_trust.devices.postures import (
+    IntegrationGetResponse,
+    IntegrationEditResponse,
     IntegrationListResponse,
+    IntegrationCreateResponse,
     IntegrationDeleteResponse,
-    TeamsDevicesDevicePostureIntegrations,
     integration_edit_params,
     integration_create_params,
 )
@@ -58,7 +60,7 @@ class Integrations(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[TeamsDevicesDevicePostureIntegrations]:
+    ) -> Optional[IntegrationCreateResponse]:
         """
         Create a new device posture integration.
 
@@ -98,10 +100,7 @@ class Integrations(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[TeamsDevicesDevicePostureIntegrations]],
-                ResultWrapper[TeamsDevicesDevicePostureIntegrations],
-            ),
+            cast_to=cast(Type[Optional[IntegrationCreateResponse]], ResultWrapper[IntegrationCreateResponse]),
         )
 
     def list(
@@ -200,7 +199,7 @@ class Integrations(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[TeamsDevicesDevicePostureIntegrations]:
+    ) -> Optional[IntegrationEditResponse]:
         """
         Updates a configured device posture integration.
 
@@ -244,10 +243,7 @@ class Integrations(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[TeamsDevicesDevicePostureIntegrations]],
-                ResultWrapper[TeamsDevicesDevicePostureIntegrations],
-            ),
+            cast_to=cast(Type[Optional[IntegrationEditResponse]], ResultWrapper[IntegrationEditResponse]),
         )
 
     def get(
@@ -261,7 +257,7 @@ class Integrations(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[TeamsDevicesDevicePostureIntegrations]:
+    ) -> Optional[IntegrationGetResponse]:
         """
         Fetches details for a single device posture integration.
 
@@ -287,10 +283,7 @@ class Integrations(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[TeamsDevicesDevicePostureIntegrations]],
-                ResultWrapper[TeamsDevicesDevicePostureIntegrations],
-            ),
+            cast_to=cast(Type[Optional[IntegrationGetResponse]], ResultWrapper[IntegrationGetResponse]),
         )
 
 
@@ -317,7 +310,7 @@ class AsyncIntegrations(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[TeamsDevicesDevicePostureIntegrations]:
+    ) -> Optional[IntegrationCreateResponse]:
         """
         Create a new device posture integration.
 
@@ -357,10 +350,7 @@ class AsyncIntegrations(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[TeamsDevicesDevicePostureIntegrations]],
-                ResultWrapper[TeamsDevicesDevicePostureIntegrations],
-            ),
+            cast_to=cast(Type[Optional[IntegrationCreateResponse]], ResultWrapper[IntegrationCreateResponse]),
         )
 
     async def list(
@@ -459,7 +449,7 @@ class AsyncIntegrations(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[TeamsDevicesDevicePostureIntegrations]:
+    ) -> Optional[IntegrationEditResponse]:
         """
         Updates a configured device posture integration.
 
@@ -503,10 +493,7 @@ class AsyncIntegrations(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[TeamsDevicesDevicePostureIntegrations]],
-                ResultWrapper[TeamsDevicesDevicePostureIntegrations],
-            ),
+            cast_to=cast(Type[Optional[IntegrationEditResponse]], ResultWrapper[IntegrationEditResponse]),
         )
 
     async def get(
@@ -520,7 +507,7 @@ class AsyncIntegrations(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[TeamsDevicesDevicePostureIntegrations]:
+    ) -> Optional[IntegrationGetResponse]:
         """
         Fetches details for a single device posture integration.
 
@@ -546,10 +533,7 @@ class AsyncIntegrations(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[TeamsDevicesDevicePostureIntegrations]],
-                ResultWrapper[TeamsDevicesDevicePostureIntegrations],
-            ),
+            cast_to=cast(Type[Optional[IntegrationGetResponse]], ResultWrapper[IntegrationGetResponse]),
         )
 
 

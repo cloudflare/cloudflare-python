@@ -10,13 +10,15 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types.vectorize import (
+    IndexGetResponse,
     IndexListResponse,
+    IndexQueryResponse,
+    IndexCreateResponse,
     IndexDeleteResponse,
-    VectorizeIndexQuery,
-    VectorizeCreateIndex,
-    VectorizeIndexInsert,
-    VectorizeIndexUpsert,
-    VectorizeIndexDeleteVectorsByID,
+    IndexInsertResponse,
+    IndexUpdateResponse,
+    IndexUpsertResponse,
+    IndexDeleteByIDsResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -33,7 +35,7 @@ class TestIndexes:
             config={"preset": "@cf/baai/bge-small-en-v1.5"},
             name="example-index",
         )
-        assert_matches_type(Optional[VectorizeCreateIndex], index, path=["response"])
+        assert_matches_type(Optional[IndexCreateResponse], index, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -44,7 +46,7 @@ class TestIndexes:
             name="example-index",
             description="This is my example index.",
         )
-        assert_matches_type(Optional[VectorizeCreateIndex], index, path=["response"])
+        assert_matches_type(Optional[IndexCreateResponse], index, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -58,7 +60,7 @@ class TestIndexes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         index = response.parse()
-        assert_matches_type(Optional[VectorizeCreateIndex], index, path=["response"])
+        assert_matches_type(Optional[IndexCreateResponse], index, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -72,7 +74,7 @@ class TestIndexes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             index = response.parse()
-            assert_matches_type(Optional[VectorizeCreateIndex], index, path=["response"])
+            assert_matches_type(Optional[IndexCreateResponse], index, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -94,7 +96,7 @@ class TestIndexes:
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             description="This is my example index.",
         )
-        assert_matches_type(Optional[VectorizeCreateIndex], index, path=["response"])
+        assert_matches_type(Optional[IndexUpdateResponse], index, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -108,7 +110,7 @@ class TestIndexes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         index = response.parse()
-        assert_matches_type(Optional[VectorizeCreateIndex], index, path=["response"])
+        assert_matches_type(Optional[IndexUpdateResponse], index, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -122,7 +124,7 @@ class TestIndexes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             index = response.parse()
-            assert_matches_type(Optional[VectorizeCreateIndex], index, path=["response"])
+            assert_matches_type(Optional[IndexUpdateResponse], index, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -244,7 +246,7 @@ class TestIndexes:
             "example-index",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[VectorizeIndexDeleteVectorsByID], index, path=["response"])
+        assert_matches_type(Optional[IndexDeleteByIDsResponse], index, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -254,7 +256,7 @@ class TestIndexes:
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             ids=["5121db81354a40c6aedc3fe1ace51c59", "f90eb49c2107486abdfd78c67e853430"],
         )
-        assert_matches_type(Optional[VectorizeIndexDeleteVectorsByID], index, path=["response"])
+        assert_matches_type(Optional[IndexDeleteByIDsResponse], index, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -267,7 +269,7 @@ class TestIndexes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         index = response.parse()
-        assert_matches_type(Optional[VectorizeIndexDeleteVectorsByID], index, path=["response"])
+        assert_matches_type(Optional[IndexDeleteByIDsResponse], index, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -280,7 +282,7 @@ class TestIndexes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             index = response.parse()
-            assert_matches_type(Optional[VectorizeIndexDeleteVectorsByID], index, path=["response"])
+            assert_matches_type(Optional[IndexDeleteByIDsResponse], index, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -306,7 +308,7 @@ class TestIndexes:
             "example-index",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[VectorizeCreateIndex], index, path=["response"])
+        assert_matches_type(Optional[IndexGetResponse], index, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -319,7 +321,7 @@ class TestIndexes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         index = response.parse()
-        assert_matches_type(Optional[VectorizeCreateIndex], index, path=["response"])
+        assert_matches_type(Optional[IndexGetResponse], index, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -332,7 +334,7 @@ class TestIndexes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             index = response.parse()
-            assert_matches_type(Optional[VectorizeCreateIndex], index, path=["response"])
+            assert_matches_type(Optional[IndexGetResponse], index, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -420,7 +422,7 @@ class TestIndexes:
             "example-index",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[VectorizeIndexInsert], index, path=["response"])
+        assert_matches_type(Optional[IndexInsertResponse], index, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -433,7 +435,7 @@ class TestIndexes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         index = response.parse()
-        assert_matches_type(Optional[VectorizeIndexInsert], index, path=["response"])
+        assert_matches_type(Optional[IndexInsertResponse], index, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -446,7 +448,7 @@ class TestIndexes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             index = response.parse()
-            assert_matches_type(Optional[VectorizeIndexInsert], index, path=["response"])
+            assert_matches_type(Optional[IndexInsertResponse], index, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -472,7 +474,7 @@ class TestIndexes:
             "example-index",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[VectorizeIndexQuery], index, path=["response"])
+        assert_matches_type(Optional[IndexQueryResponse], index, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -485,7 +487,7 @@ class TestIndexes:
             top_k=5,
             vector=[0.5, 0.5, 0.5],
         )
-        assert_matches_type(Optional[VectorizeIndexQuery], index, path=["response"])
+        assert_matches_type(Optional[IndexQueryResponse], index, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -498,7 +500,7 @@ class TestIndexes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         index = response.parse()
-        assert_matches_type(Optional[VectorizeIndexQuery], index, path=["response"])
+        assert_matches_type(Optional[IndexQueryResponse], index, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -511,7 +513,7 @@ class TestIndexes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             index = response.parse()
-            assert_matches_type(Optional[VectorizeIndexQuery], index, path=["response"])
+            assert_matches_type(Optional[IndexQueryResponse], index, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -537,7 +539,7 @@ class TestIndexes:
             "example-index",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[VectorizeIndexUpsert], index, path=["response"])
+        assert_matches_type(Optional[IndexUpsertResponse], index, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -550,7 +552,7 @@ class TestIndexes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         index = response.parse()
-        assert_matches_type(Optional[VectorizeIndexUpsert], index, path=["response"])
+        assert_matches_type(Optional[IndexUpsertResponse], index, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -563,7 +565,7 @@ class TestIndexes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             index = response.parse()
-            assert_matches_type(Optional[VectorizeIndexUpsert], index, path=["response"])
+            assert_matches_type(Optional[IndexUpsertResponse], index, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -594,7 +596,7 @@ class TestAsyncIndexes:
             config={"preset": "@cf/baai/bge-small-en-v1.5"},
             name="example-index",
         )
-        assert_matches_type(Optional[VectorizeCreateIndex], index, path=["response"])
+        assert_matches_type(Optional[IndexCreateResponse], index, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -605,7 +607,7 @@ class TestAsyncIndexes:
             name="example-index",
             description="This is my example index.",
         )
-        assert_matches_type(Optional[VectorizeCreateIndex], index, path=["response"])
+        assert_matches_type(Optional[IndexCreateResponse], index, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -619,7 +621,7 @@ class TestAsyncIndexes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         index = await response.parse()
-        assert_matches_type(Optional[VectorizeCreateIndex], index, path=["response"])
+        assert_matches_type(Optional[IndexCreateResponse], index, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -633,7 +635,7 @@ class TestAsyncIndexes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             index = await response.parse()
-            assert_matches_type(Optional[VectorizeCreateIndex], index, path=["response"])
+            assert_matches_type(Optional[IndexCreateResponse], index, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -655,7 +657,7 @@ class TestAsyncIndexes:
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             description="This is my example index.",
         )
-        assert_matches_type(Optional[VectorizeCreateIndex], index, path=["response"])
+        assert_matches_type(Optional[IndexUpdateResponse], index, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -669,7 +671,7 @@ class TestAsyncIndexes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         index = await response.parse()
-        assert_matches_type(Optional[VectorizeCreateIndex], index, path=["response"])
+        assert_matches_type(Optional[IndexUpdateResponse], index, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -683,7 +685,7 @@ class TestAsyncIndexes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             index = await response.parse()
-            assert_matches_type(Optional[VectorizeCreateIndex], index, path=["response"])
+            assert_matches_type(Optional[IndexUpdateResponse], index, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -805,7 +807,7 @@ class TestAsyncIndexes:
             "example-index",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[VectorizeIndexDeleteVectorsByID], index, path=["response"])
+        assert_matches_type(Optional[IndexDeleteByIDsResponse], index, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -815,7 +817,7 @@ class TestAsyncIndexes:
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             ids=["5121db81354a40c6aedc3fe1ace51c59", "f90eb49c2107486abdfd78c67e853430"],
         )
-        assert_matches_type(Optional[VectorizeIndexDeleteVectorsByID], index, path=["response"])
+        assert_matches_type(Optional[IndexDeleteByIDsResponse], index, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -828,7 +830,7 @@ class TestAsyncIndexes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         index = await response.parse()
-        assert_matches_type(Optional[VectorizeIndexDeleteVectorsByID], index, path=["response"])
+        assert_matches_type(Optional[IndexDeleteByIDsResponse], index, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -841,7 +843,7 @@ class TestAsyncIndexes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             index = await response.parse()
-            assert_matches_type(Optional[VectorizeIndexDeleteVectorsByID], index, path=["response"])
+            assert_matches_type(Optional[IndexDeleteByIDsResponse], index, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -867,7 +869,7 @@ class TestAsyncIndexes:
             "example-index",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[VectorizeCreateIndex], index, path=["response"])
+        assert_matches_type(Optional[IndexGetResponse], index, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -880,7 +882,7 @@ class TestAsyncIndexes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         index = await response.parse()
-        assert_matches_type(Optional[VectorizeCreateIndex], index, path=["response"])
+        assert_matches_type(Optional[IndexGetResponse], index, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -893,7 +895,7 @@ class TestAsyncIndexes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             index = await response.parse()
-            assert_matches_type(Optional[VectorizeCreateIndex], index, path=["response"])
+            assert_matches_type(Optional[IndexGetResponse], index, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -981,7 +983,7 @@ class TestAsyncIndexes:
             "example-index",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[VectorizeIndexInsert], index, path=["response"])
+        assert_matches_type(Optional[IndexInsertResponse], index, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -994,7 +996,7 @@ class TestAsyncIndexes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         index = await response.parse()
-        assert_matches_type(Optional[VectorizeIndexInsert], index, path=["response"])
+        assert_matches_type(Optional[IndexInsertResponse], index, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1007,7 +1009,7 @@ class TestAsyncIndexes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             index = await response.parse()
-            assert_matches_type(Optional[VectorizeIndexInsert], index, path=["response"])
+            assert_matches_type(Optional[IndexInsertResponse], index, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1033,7 +1035,7 @@ class TestAsyncIndexes:
             "example-index",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[VectorizeIndexQuery], index, path=["response"])
+        assert_matches_type(Optional[IndexQueryResponse], index, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1046,7 +1048,7 @@ class TestAsyncIndexes:
             top_k=5,
             vector=[0.5, 0.5, 0.5],
         )
-        assert_matches_type(Optional[VectorizeIndexQuery], index, path=["response"])
+        assert_matches_type(Optional[IndexQueryResponse], index, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1059,7 +1061,7 @@ class TestAsyncIndexes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         index = await response.parse()
-        assert_matches_type(Optional[VectorizeIndexQuery], index, path=["response"])
+        assert_matches_type(Optional[IndexQueryResponse], index, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1072,7 +1074,7 @@ class TestAsyncIndexes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             index = await response.parse()
-            assert_matches_type(Optional[VectorizeIndexQuery], index, path=["response"])
+            assert_matches_type(Optional[IndexQueryResponse], index, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1098,7 +1100,7 @@ class TestAsyncIndexes:
             "example-index",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[VectorizeIndexUpsert], index, path=["response"])
+        assert_matches_type(Optional[IndexUpsertResponse], index, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1111,7 +1113,7 @@ class TestAsyncIndexes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         index = await response.parse()
-        assert_matches_type(Optional[VectorizeIndexUpsert], index, path=["response"])
+        assert_matches_type(Optional[IndexUpsertResponse], index, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1124,7 +1126,7 @@ class TestAsyncIndexes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             index = await response.parse()
-            assert_matches_type(Optional[VectorizeIndexUpsert], index, path=["response"])
+            assert_matches_type(Optional[IndexUpsertResponse], index, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -9,7 +9,10 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.zones.settings import ZonesAlwaysUseHTTPS
+from cloudflare.types.zones.settings import (
+    AlwaysUseHTTPSGetResponse,
+    AlwaysUseHTTPSEditResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -24,7 +27,7 @@ class TestAlwaysUseHTTPS:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value="on",
         )
-        assert_matches_type(Optional[ZonesAlwaysUseHTTPS], always_use_https, path=["response"])
+        assert_matches_type(Optional[AlwaysUseHTTPSEditResponse], always_use_https, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -37,7 +40,7 @@ class TestAlwaysUseHTTPS:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         always_use_https = response.parse()
-        assert_matches_type(Optional[ZonesAlwaysUseHTTPS], always_use_https, path=["response"])
+        assert_matches_type(Optional[AlwaysUseHTTPSEditResponse], always_use_https, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -50,7 +53,7 @@ class TestAlwaysUseHTTPS:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             always_use_https = response.parse()
-            assert_matches_type(Optional[ZonesAlwaysUseHTTPS], always_use_https, path=["response"])
+            assert_matches_type(Optional[AlwaysUseHTTPSEditResponse], always_use_https, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -69,7 +72,7 @@ class TestAlwaysUseHTTPS:
         always_use_https = client.zones.settings.always_use_https.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ZonesAlwaysUseHTTPS], always_use_https, path=["response"])
+        assert_matches_type(Optional[AlwaysUseHTTPSGetResponse], always_use_https, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -81,7 +84,7 @@ class TestAlwaysUseHTTPS:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         always_use_https = response.parse()
-        assert_matches_type(Optional[ZonesAlwaysUseHTTPS], always_use_https, path=["response"])
+        assert_matches_type(Optional[AlwaysUseHTTPSGetResponse], always_use_https, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -93,7 +96,7 @@ class TestAlwaysUseHTTPS:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             always_use_https = response.parse()
-            assert_matches_type(Optional[ZonesAlwaysUseHTTPS], always_use_https, path=["response"])
+            assert_matches_type(Optional[AlwaysUseHTTPSGetResponse], always_use_https, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -116,7 +119,7 @@ class TestAsyncAlwaysUseHTTPS:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value="on",
         )
-        assert_matches_type(Optional[ZonesAlwaysUseHTTPS], always_use_https, path=["response"])
+        assert_matches_type(Optional[AlwaysUseHTTPSEditResponse], always_use_https, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -129,7 +132,7 @@ class TestAsyncAlwaysUseHTTPS:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         always_use_https = await response.parse()
-        assert_matches_type(Optional[ZonesAlwaysUseHTTPS], always_use_https, path=["response"])
+        assert_matches_type(Optional[AlwaysUseHTTPSEditResponse], always_use_https, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -142,7 +145,7 @@ class TestAsyncAlwaysUseHTTPS:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             always_use_https = await response.parse()
-            assert_matches_type(Optional[ZonesAlwaysUseHTTPS], always_use_https, path=["response"])
+            assert_matches_type(Optional[AlwaysUseHTTPSEditResponse], always_use_https, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -161,7 +164,7 @@ class TestAsyncAlwaysUseHTTPS:
         always_use_https = await async_client.zones.settings.always_use_https.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ZonesAlwaysUseHTTPS], always_use_https, path=["response"])
+        assert_matches_type(Optional[AlwaysUseHTTPSGetResponse], always_use_https, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -173,7 +176,7 @@ class TestAsyncAlwaysUseHTTPS:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         always_use_https = await response.parse()
-        assert_matches_type(Optional[ZonesAlwaysUseHTTPS], always_use_https, path=["response"])
+        assert_matches_type(Optional[AlwaysUseHTTPSGetResponse], always_use_https, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -185,7 +188,7 @@ class TestAsyncAlwaysUseHTTPS:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             always_use_https = await response.parse()
-            assert_matches_type(Optional[ZonesAlwaysUseHTTPS], always_use_https, path=["response"])
+            assert_matches_type(Optional[AlwaysUseHTTPSGetResponse], always_use_https, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

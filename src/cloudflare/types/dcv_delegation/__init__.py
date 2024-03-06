@@ -2,6 +2,4 @@
 
 from __future__ import annotations
 
-from .tls_certificates_and_hostnames_uuid_object import (
-    TLSCertificatesAndHostnamesUUIDObject as TLSCertificatesAndHostnamesUUIDObject,
-)
+from .uuid_get_response import UUIDGetResponse as UUIDGetResponse

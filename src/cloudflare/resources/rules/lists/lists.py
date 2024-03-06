@@ -29,7 +29,15 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ....types.rules import ListsList, ListListResponse, ListDeleteResponse, list_create_params, list_update_params
+from ....types.rules import (
+    ListGetResponse,
+    ListListResponse,
+    ListCreateResponse,
+    ListDeleteResponse,
+    ListUpdateResponse,
+    list_create_params,
+    list_update_params,
+)
 from ...._base_client import (
     make_request_options,
 )
@@ -75,7 +83,7 @@ class Lists(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ListsList]:
+    ) -> Optional[ListCreateResponse]:
         """
         Creates a new list of the specified type.
 
@@ -116,7 +124,7 @@ class Lists(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ListsList]], ResultWrapper[ListsList]),
+            cast_to=cast(Type[Optional[ListCreateResponse]], ResultWrapper[ListCreateResponse]),
         )
 
     def update(
@@ -131,7 +139,7 @@ class Lists(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ListsList]:
+    ) -> Optional[ListUpdateResponse]:
         """
         Updates the description of a list.
 
@@ -164,7 +172,7 @@ class Lists(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ListsList]], ResultWrapper[ListsList]),
+            cast_to=cast(Type[Optional[ListUpdateResponse]], ResultWrapper[ListUpdateResponse]),
         )
 
     def list(
@@ -261,7 +269,7 @@ class Lists(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ListsList]:
+    ) -> Optional[ListGetResponse]:
         """
         Fetches the details of a list.
 
@@ -291,7 +299,7 @@ class Lists(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ListsList]], ResultWrapper[ListsList]),
+            cast_to=cast(Type[Optional[ListGetResponse]], ResultWrapper[ListGetResponse]),
         )
 
 
@@ -325,7 +333,7 @@ class AsyncLists(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ListsList]:
+    ) -> Optional[ListCreateResponse]:
         """
         Creates a new list of the specified type.
 
@@ -366,7 +374,7 @@ class AsyncLists(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ListsList]], ResultWrapper[ListsList]),
+            cast_to=cast(Type[Optional[ListCreateResponse]], ResultWrapper[ListCreateResponse]),
         )
 
     async def update(
@@ -381,7 +389,7 @@ class AsyncLists(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ListsList]:
+    ) -> Optional[ListUpdateResponse]:
         """
         Updates the description of a list.
 
@@ -414,7 +422,7 @@ class AsyncLists(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ListsList]], ResultWrapper[ListsList]),
+            cast_to=cast(Type[Optional[ListUpdateResponse]], ResultWrapper[ListUpdateResponse]),
         )
 
     async def list(
@@ -511,7 +519,7 @@ class AsyncLists(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ListsList]:
+    ) -> Optional[ListGetResponse]:
         """
         Fetches the details of a list.
 
@@ -541,7 +549,7 @@ class AsyncLists(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ListsList]], ResultWrapper[ListsList]),
+            cast_to=cast(Type[Optional[ListGetResponse]], ResultWrapper[ListGetResponse]),
         )
 
 

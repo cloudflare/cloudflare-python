@@ -22,7 +22,8 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from ...types.pcaps import (
     OwnershipGetResponse,
-    MagicVisibilityPCAPsOwnership,
+    OwnershipCreateResponse,
+    OwnershipValidateResponse,
     ownership_create_params,
     ownership_validate_params,
 )
@@ -53,7 +54,7 @@ class Ownerships(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MagicVisibilityPCAPsOwnership:
+    ) -> OwnershipCreateResponse:
         """
         Adds an AWS or GCP bucket to use with full packet captures.
 
@@ -82,7 +83,7 @@ class Ownerships(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[MagicVisibilityPCAPsOwnership], ResultWrapper[MagicVisibilityPCAPsOwnership]),
+            cast_to=cast(Type[OwnershipCreateResponse], ResultWrapper[OwnershipCreateResponse]),
         )
 
     def delete(
@@ -177,7 +178,7 @@ class Ownerships(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MagicVisibilityPCAPsOwnership:
+    ) -> OwnershipValidateResponse:
         """
         Validates buckets added to the packet captures API.
 
@@ -214,7 +215,7 @@ class Ownerships(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[MagicVisibilityPCAPsOwnership], ResultWrapper[MagicVisibilityPCAPsOwnership]),
+            cast_to=cast(Type[OwnershipValidateResponse], ResultWrapper[OwnershipValidateResponse]),
         )
 
 
@@ -238,7 +239,7 @@ class AsyncOwnerships(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MagicVisibilityPCAPsOwnership:
+    ) -> OwnershipCreateResponse:
         """
         Adds an AWS or GCP bucket to use with full packet captures.
 
@@ -269,7 +270,7 @@ class AsyncOwnerships(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[MagicVisibilityPCAPsOwnership], ResultWrapper[MagicVisibilityPCAPsOwnership]),
+            cast_to=cast(Type[OwnershipCreateResponse], ResultWrapper[OwnershipCreateResponse]),
         )
 
     async def delete(
@@ -364,7 +365,7 @@ class AsyncOwnerships(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MagicVisibilityPCAPsOwnership:
+    ) -> OwnershipValidateResponse:
         """
         Validates buckets added to the packet captures API.
 
@@ -401,7 +402,7 @@ class AsyncOwnerships(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[MagicVisibilityPCAPsOwnership], ResultWrapper[MagicVisibilityPCAPsOwnership]),
+            cast_to=cast(Type[OwnershipValidateResponse], ResultWrapper[OwnershipValidateResponse]),
         )
 
 

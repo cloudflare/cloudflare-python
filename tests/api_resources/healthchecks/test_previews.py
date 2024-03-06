@@ -9,8 +9,11 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types import HealthchecksHealthchecks
-from cloudflare.types.healthchecks import PreviewDeleteResponse
+from cloudflare.types.healthchecks import (
+    PreviewGetResponse,
+    PreviewCreateResponse,
+    PreviewDeleteResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -26,7 +29,7 @@ class TestPreviews:
             address="www.example.com",
             name="server-1",
         )
-        assert_matches_type(HealthchecksHealthchecks, preview, path=["response"])
+        assert_matches_type(PreviewCreateResponse, preview, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -62,7 +65,7 @@ class TestPreviews:
             healthcheck_timeout=0,
             type="HTTPS",
         )
-        assert_matches_type(HealthchecksHealthchecks, preview, path=["response"])
+        assert_matches_type(PreviewCreateResponse, preview, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -76,7 +79,7 @@ class TestPreviews:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         preview = response.parse()
-        assert_matches_type(HealthchecksHealthchecks, preview, path=["response"])
+        assert_matches_type(PreviewCreateResponse, preview, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -90,7 +93,7 @@ class TestPreviews:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             preview = response.parse()
-            assert_matches_type(HealthchecksHealthchecks, preview, path=["response"])
+            assert_matches_type(PreviewCreateResponse, preview, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -163,7 +166,7 @@ class TestPreviews:
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(HealthchecksHealthchecks, preview, path=["response"])
+        assert_matches_type(PreviewGetResponse, preview, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -176,7 +179,7 @@ class TestPreviews:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         preview = response.parse()
-        assert_matches_type(HealthchecksHealthchecks, preview, path=["response"])
+        assert_matches_type(PreviewGetResponse, preview, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -189,7 +192,7 @@ class TestPreviews:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             preview = response.parse()
-            assert_matches_type(HealthchecksHealthchecks, preview, path=["response"])
+            assert_matches_type(PreviewGetResponse, preview, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -220,7 +223,7 @@ class TestAsyncPreviews:
             address="www.example.com",
             name="server-1",
         )
-        assert_matches_type(HealthchecksHealthchecks, preview, path=["response"])
+        assert_matches_type(PreviewCreateResponse, preview, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -256,7 +259,7 @@ class TestAsyncPreviews:
             healthcheck_timeout=0,
             type="HTTPS",
         )
-        assert_matches_type(HealthchecksHealthchecks, preview, path=["response"])
+        assert_matches_type(PreviewCreateResponse, preview, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -270,7 +273,7 @@ class TestAsyncPreviews:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         preview = await response.parse()
-        assert_matches_type(HealthchecksHealthchecks, preview, path=["response"])
+        assert_matches_type(PreviewCreateResponse, preview, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -284,7 +287,7 @@ class TestAsyncPreviews:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             preview = await response.parse()
-            assert_matches_type(HealthchecksHealthchecks, preview, path=["response"])
+            assert_matches_type(PreviewCreateResponse, preview, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -357,7 +360,7 @@ class TestAsyncPreviews:
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(HealthchecksHealthchecks, preview, path=["response"])
+        assert_matches_type(PreviewGetResponse, preview, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -370,7 +373,7 @@ class TestAsyncPreviews:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         preview = await response.parse()
-        assert_matches_type(HealthchecksHealthchecks, preview, path=["response"])
+        assert_matches_type(PreviewGetResponse, preview, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -383,7 +386,7 @@ class TestAsyncPreviews:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             preview = await response.parse()
-            assert_matches_type(HealthchecksHealthchecks, preview, path=["response"])
+            assert_matches_type(PreviewGetResponse, preview, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

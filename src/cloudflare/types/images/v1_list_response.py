@@ -1,12 +1,14 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from typing import List, Optional
+from typing import List, Union, Optional
+from datetime import datetime
 from typing_extensions import Literal
 
-from ..._models import BaseModel
-from .images_image import ImagesImage
+from pydantic import Field as FieldInfo
 
-__all__ = ["V1ListResponse", "Error", "Message", "Result"]
+from ..._models import BaseModel
+
+__all__ = ["V1ListResponse", "Error", "Message", "Result", "ResultImage"]
 
 
 class Error(BaseModel):
@@ -21,8 +23,36 @@ class Message(BaseModel):
     message: str
 
 
+class ResultImage(BaseModel):
+    id: Optional[str] = None
+    """Image unique identifier."""
+
+    filename: Optional[str] = None
+    """Image file name."""
+
+    meta: Optional[object] = None
+    """User modifiable key-value store.
+
+    Can be used for keeping references to another system of record for managing
+    images. Metadata must not exceed 1024 bytes.
+    """
+
+    require_signed_urls: Optional[bool] = FieldInfo(alias="requireSignedURLs", default=None)
+    """Indicates whether the image can be a accessed only using it's UID.
+
+    If set to true, a signed token needs to be generated with a signing key to view
+    the image.
+    """
+
+    uploaded: Optional[datetime] = None
+    """When the media item was uploaded."""
+
+    variants: Optional[List[Union[str, str, str]]] = None
+    """Object specifying available variants for an image."""
+
+
 class Result(BaseModel):
-    images: Optional[List[ImagesImage]] = None
+    images: Optional[List[ResultImage]] = None
 
 
 class V1ListResponse(BaseModel):

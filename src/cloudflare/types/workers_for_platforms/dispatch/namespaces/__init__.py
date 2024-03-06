@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from .script_get_response import ScriptGetResponse as ScriptGetResponse
 from .script_delete_params import ScriptDeleteParams as ScriptDeleteParams
 from .script_update_params import ScriptUpdateParams as ScriptUpdateParams
-from .workers_namespace_script import WorkersNamespaceScript as WorkersNamespaceScript
+from .script_update_response import ScriptUpdateResponse as ScriptUpdateResponse

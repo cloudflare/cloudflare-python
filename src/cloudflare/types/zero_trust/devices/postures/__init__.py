@@ -3,9 +3,9 @@
 from __future__ import annotations
 
 from .integration_edit_params import IntegrationEditParams as IntegrationEditParams
+from .integration_get_response import IntegrationGetResponse as IntegrationGetResponse
 from .integration_create_params import IntegrationCreateParams as IntegrationCreateParams
+from .integration_edit_response import IntegrationEditResponse as IntegrationEditResponse
 from .integration_list_response import IntegrationListResponse as IntegrationListResponse
+from .integration_create_response import IntegrationCreateResponse as IntegrationCreateResponse
 from .integration_delete_response import IntegrationDeleteResponse as IntegrationDeleteResponse
-from .teams_devices_device_posture_integrations import (
-    TeamsDevicesDevicePostureIntegrations as TeamsDevicesDevicePostureIntegrations,
-)

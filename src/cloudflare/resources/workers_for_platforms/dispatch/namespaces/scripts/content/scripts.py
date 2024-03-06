@@ -33,8 +33,10 @@ from ......._wrappers import ResultWrapper
 from ......._base_client import (
     make_request_options,
 )
-from .......types.workers import WorkersScript
-from .......types.workers_for_platforms.dispatch.namespaces.scripts.content import script_update_params
+from .......types.workers_for_platforms.dispatch.namespaces.scripts.content import (
+    ScriptUpdateResponse,
+    script_update_params,
+)
 
 __all__ = ["Scripts", "AsyncScripts"]
 
@@ -62,7 +64,7 @@ class Scripts(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WorkersScript:
+    ) -> ScriptUpdateResponse:
         """
         Put script content for a script uploaded to a Workers for Platforms namespace.
 
@@ -118,7 +120,7 @@ class Scripts(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[WorkersScript], ResultWrapper[WorkersScript]),
+            cast_to=cast(Type[ScriptUpdateResponse], ResultWrapper[ScriptUpdateResponse]),
         )
 
     def get(
@@ -192,7 +194,7 @@ class AsyncScripts(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WorkersScript:
+    ) -> ScriptUpdateResponse:
         """
         Put script content for a script uploaded to a Workers for Platforms namespace.
 
@@ -248,7 +250,7 @@ class AsyncScripts(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[WorkersScript], ResultWrapper[WorkersScript]),
+            cast_to=cast(Type[ScriptUpdateResponse], ResultWrapper[ScriptUpdateResponse]),
         )
 
     async def get(

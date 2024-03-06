@@ -11,9 +11,12 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from cloudflare.types.firewall import (
+    RuleGetResponse,
     RuleEditResponse,
+    RuleListResponse,
     RuleCreateResponse,
-    LegacyJhsFilterRule,
+    RuleDeleteResponse,
+    RuleUpdateResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -76,7 +79,7 @@ class TestRules:
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(Optional[LegacyJhsFilterRule], rule, path=["response"])
+        assert_matches_type(Optional[RuleUpdateResponse], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -90,7 +93,7 @@ class TestRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = response.parse()
-        assert_matches_type(Optional[LegacyJhsFilterRule], rule, path=["response"])
+        assert_matches_type(Optional[RuleUpdateResponse], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -104,7 +107,7 @@ class TestRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = response.parse()
-            assert_matches_type(Optional[LegacyJhsFilterRule], rule, path=["response"])
+            assert_matches_type(Optional[RuleUpdateResponse], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -131,7 +134,7 @@ class TestRules:
         rule = client.firewall.rules.list(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncV4PagePaginationArray[LegacyJhsFilterRule], rule, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[RuleListResponse], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -144,7 +147,7 @@ class TestRules:
             paused=False,
             per_page=5,
         )
-        assert_matches_type(SyncV4PagePaginationArray[LegacyJhsFilterRule], rule, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[RuleListResponse], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -156,7 +159,7 @@ class TestRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = response.parse()
-        assert_matches_type(SyncV4PagePaginationArray[LegacyJhsFilterRule], rule, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[RuleListResponse], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -168,7 +171,7 @@ class TestRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = response.parse()
-            assert_matches_type(SyncV4PagePaginationArray[LegacyJhsFilterRule], rule, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[RuleListResponse], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -187,7 +190,7 @@ class TestRules:
             "372e67954025e0ba6aaa6d586b9e0b60",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[LegacyJhsFilterRule], rule, path=["response"])
+        assert_matches_type(Optional[RuleDeleteResponse], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -197,7 +200,7 @@ class TestRules:
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             delete_filter_if_unused=True,
         )
-        assert_matches_type(Optional[LegacyJhsFilterRule], rule, path=["response"])
+        assert_matches_type(Optional[RuleDeleteResponse], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -210,7 +213,7 @@ class TestRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = response.parse()
-        assert_matches_type(Optional[LegacyJhsFilterRule], rule, path=["response"])
+        assert_matches_type(Optional[RuleDeleteResponse], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -223,7 +226,7 @@ class TestRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = response.parse()
-            assert_matches_type(Optional[LegacyJhsFilterRule], rule, path=["response"])
+            assert_matches_type(Optional[RuleDeleteResponse], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -306,7 +309,7 @@ class TestRules:
             "372e67954025e0ba6aaa6d586b9e0b60",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[LegacyJhsFilterRule], rule, path=["response"])
+        assert_matches_type(Optional[RuleGetResponse], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -319,7 +322,7 @@ class TestRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = response.parse()
-        assert_matches_type(Optional[LegacyJhsFilterRule], rule, path=["response"])
+        assert_matches_type(Optional[RuleGetResponse], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -332,7 +335,7 @@ class TestRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = response.parse()
-            assert_matches_type(Optional[LegacyJhsFilterRule], rule, path=["response"])
+            assert_matches_type(Optional[RuleGetResponse], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -409,7 +412,7 @@ class TestAsyncRules:
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(Optional[LegacyJhsFilterRule], rule, path=["response"])
+        assert_matches_type(Optional[RuleUpdateResponse], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -423,7 +426,7 @@ class TestAsyncRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = await response.parse()
-        assert_matches_type(Optional[LegacyJhsFilterRule], rule, path=["response"])
+        assert_matches_type(Optional[RuleUpdateResponse], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -437,7 +440,7 @@ class TestAsyncRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = await response.parse()
-            assert_matches_type(Optional[LegacyJhsFilterRule], rule, path=["response"])
+            assert_matches_type(Optional[RuleUpdateResponse], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -464,7 +467,7 @@ class TestAsyncRules:
         rule = await async_client.firewall.rules.list(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncV4PagePaginationArray[LegacyJhsFilterRule], rule, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[RuleListResponse], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -477,7 +480,7 @@ class TestAsyncRules:
             paused=False,
             per_page=5,
         )
-        assert_matches_type(AsyncV4PagePaginationArray[LegacyJhsFilterRule], rule, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[RuleListResponse], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -489,7 +492,7 @@ class TestAsyncRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = await response.parse()
-        assert_matches_type(AsyncV4PagePaginationArray[LegacyJhsFilterRule], rule, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[RuleListResponse], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -501,7 +504,7 @@ class TestAsyncRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = await response.parse()
-            assert_matches_type(AsyncV4PagePaginationArray[LegacyJhsFilterRule], rule, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[RuleListResponse], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -520,7 +523,7 @@ class TestAsyncRules:
             "372e67954025e0ba6aaa6d586b9e0b60",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[LegacyJhsFilterRule], rule, path=["response"])
+        assert_matches_type(Optional[RuleDeleteResponse], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -530,7 +533,7 @@ class TestAsyncRules:
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             delete_filter_if_unused=True,
         )
-        assert_matches_type(Optional[LegacyJhsFilterRule], rule, path=["response"])
+        assert_matches_type(Optional[RuleDeleteResponse], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -543,7 +546,7 @@ class TestAsyncRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = await response.parse()
-        assert_matches_type(Optional[LegacyJhsFilterRule], rule, path=["response"])
+        assert_matches_type(Optional[RuleDeleteResponse], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -556,7 +559,7 @@ class TestAsyncRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = await response.parse()
-            assert_matches_type(Optional[LegacyJhsFilterRule], rule, path=["response"])
+            assert_matches_type(Optional[RuleDeleteResponse], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -639,7 +642,7 @@ class TestAsyncRules:
             "372e67954025e0ba6aaa6d586b9e0b60",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[LegacyJhsFilterRule], rule, path=["response"])
+        assert_matches_type(Optional[RuleGetResponse], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -652,7 +655,7 @@ class TestAsyncRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = await response.parse()
-        assert_matches_type(Optional[LegacyJhsFilterRule], rule, path=["response"])
+        assert_matches_type(Optional[RuleGetResponse], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -665,7 +668,7 @@ class TestAsyncRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = await response.parse()
-            assert_matches_type(Optional[LegacyJhsFilterRule], rule, path=["response"])
+            assert_matches_type(Optional[RuleGetResponse], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

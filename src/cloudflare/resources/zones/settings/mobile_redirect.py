@@ -23,7 +23,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZonesMobileRedirect, mobile_redirect_edit_params
+from ....types.zones.settings import MobileRedirectGetResponse, MobileRedirectEditResponse, mobile_redirect_edit_params
 
 __all__ = ["MobileRedirect", "AsyncMobileRedirect"]
 
@@ -48,7 +48,7 @@ class MobileRedirect(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesMobileRedirect]:
+    ) -> Optional[MobileRedirectEditResponse]:
         """
         Automatically redirect visitors on mobile devices to a mobile-optimized
         subdomain. Refer to
@@ -80,7 +80,7 @@ class MobileRedirect(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesMobileRedirect]], ResultWrapper[ZonesMobileRedirect]),
+            cast_to=cast(Type[Optional[MobileRedirectEditResponse]], ResultWrapper[MobileRedirectEditResponse]),
         )
 
     def get(
@@ -93,7 +93,7 @@ class MobileRedirect(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesMobileRedirect]:
+    ) -> Optional[MobileRedirectGetResponse]:
         """
         Automatically redirect visitors on mobile devices to a mobile-optimized
         subdomain. Refer to
@@ -122,7 +122,7 @@ class MobileRedirect(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesMobileRedirect]], ResultWrapper[ZonesMobileRedirect]),
+            cast_to=cast(Type[Optional[MobileRedirectGetResponse]], ResultWrapper[MobileRedirectGetResponse]),
         )
 
 
@@ -146,7 +146,7 @@ class AsyncMobileRedirect(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesMobileRedirect]:
+    ) -> Optional[MobileRedirectEditResponse]:
         """
         Automatically redirect visitors on mobile devices to a mobile-optimized
         subdomain. Refer to
@@ -178,7 +178,7 @@ class AsyncMobileRedirect(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesMobileRedirect]], ResultWrapper[ZonesMobileRedirect]),
+            cast_to=cast(Type[Optional[MobileRedirectEditResponse]], ResultWrapper[MobileRedirectEditResponse]),
         )
 
     async def get(
@@ -191,7 +191,7 @@ class AsyncMobileRedirect(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesMobileRedirect]:
+    ) -> Optional[MobileRedirectGetResponse]:
         """
         Automatically redirect visitors on mobile devices to a mobile-optimized
         subdomain. Refer to
@@ -220,7 +220,7 @@ class AsyncMobileRedirect(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesMobileRedirect]], ResultWrapper[ZonesMobileRedirect]),
+            cast_to=cast(Type[Optional[MobileRedirectGetResponse]], ResultWrapper[MobileRedirectGetResponse]),
         )
 
 

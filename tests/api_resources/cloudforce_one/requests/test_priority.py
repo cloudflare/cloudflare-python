@@ -9,10 +9,12 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.cloudforce_one import CloudforceOneQuota, CloudforceOneRequestItem
 from cloudflare.types.cloudforce_one.requests import (
+    PriorityGetResponse,
+    PriorityQuotaResponse,
+    PriorityCreateResponse,
     PriorityDeleteResponse,
-    CloudforceOnePriorityItem,
+    PriorityUpdateResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -31,7 +33,7 @@ class TestPriority:
             requirement="DoS attacks carried out by CVEs",
             tlp="clear",
         )
-        assert_matches_type(CloudforceOnePriorityItem, priority, path=["response"])
+        assert_matches_type(PriorityCreateResponse, priority, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -47,7 +49,7 @@ class TestPriority:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         priority = response.parse()
-        assert_matches_type(CloudforceOnePriorityItem, priority, path=["response"])
+        assert_matches_type(PriorityCreateResponse, priority, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -63,7 +65,7 @@ class TestPriority:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             priority = response.parse()
-            assert_matches_type(CloudforceOnePriorityItem, priority, path=["response"])
+            assert_matches_type(PriorityCreateResponse, priority, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -90,7 +92,7 @@ class TestPriority:
             requirement="DoS attacks carried out by CVEs",
             tlp="clear",
         )
-        assert_matches_type(CloudforceOneRequestItem, priority, path=["response"])
+        assert_matches_type(PriorityUpdateResponse, priority, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -107,7 +109,7 @@ class TestPriority:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         priority = response.parse()
-        assert_matches_type(CloudforceOneRequestItem, priority, path=["response"])
+        assert_matches_type(PriorityUpdateResponse, priority, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -124,7 +126,7 @@ class TestPriority:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             priority = response.parse()
-            assert_matches_type(CloudforceOneRequestItem, priority, path=["response"])
+            assert_matches_type(PriorityUpdateResponse, priority, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -210,7 +212,7 @@ class TestPriority:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(CloudforceOneRequestItem, priority, path=["response"])
+        assert_matches_type(PriorityGetResponse, priority, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -223,7 +225,7 @@ class TestPriority:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         priority = response.parse()
-        assert_matches_type(CloudforceOneRequestItem, priority, path=["response"])
+        assert_matches_type(PriorityGetResponse, priority, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -236,7 +238,7 @@ class TestPriority:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             priority = response.parse()
-            assert_matches_type(CloudforceOneRequestItem, priority, path=["response"])
+            assert_matches_type(PriorityGetResponse, priority, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -261,7 +263,7 @@ class TestPriority:
         priority = client.cloudforce_one.requests.priority.quota(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(CloudforceOneQuota, priority, path=["response"])
+        assert_matches_type(PriorityQuotaResponse, priority, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -273,7 +275,7 @@ class TestPriority:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         priority = response.parse()
-        assert_matches_type(CloudforceOneQuota, priority, path=["response"])
+        assert_matches_type(PriorityQuotaResponse, priority, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -285,7 +287,7 @@ class TestPriority:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             priority = response.parse()
-            assert_matches_type(CloudforceOneQuota, priority, path=["response"])
+            assert_matches_type(PriorityQuotaResponse, priority, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -311,7 +313,7 @@ class TestAsyncPriority:
             requirement="DoS attacks carried out by CVEs",
             tlp="clear",
         )
-        assert_matches_type(CloudforceOnePriorityItem, priority, path=["response"])
+        assert_matches_type(PriorityCreateResponse, priority, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -327,7 +329,7 @@ class TestAsyncPriority:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         priority = await response.parse()
-        assert_matches_type(CloudforceOnePriorityItem, priority, path=["response"])
+        assert_matches_type(PriorityCreateResponse, priority, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -343,7 +345,7 @@ class TestAsyncPriority:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             priority = await response.parse()
-            assert_matches_type(CloudforceOnePriorityItem, priority, path=["response"])
+            assert_matches_type(PriorityCreateResponse, priority, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -370,7 +372,7 @@ class TestAsyncPriority:
             requirement="DoS attacks carried out by CVEs",
             tlp="clear",
         )
-        assert_matches_type(CloudforceOneRequestItem, priority, path=["response"])
+        assert_matches_type(PriorityUpdateResponse, priority, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -387,7 +389,7 @@ class TestAsyncPriority:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         priority = await response.parse()
-        assert_matches_type(CloudforceOneRequestItem, priority, path=["response"])
+        assert_matches_type(PriorityUpdateResponse, priority, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -404,7 +406,7 @@ class TestAsyncPriority:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             priority = await response.parse()
-            assert_matches_type(CloudforceOneRequestItem, priority, path=["response"])
+            assert_matches_type(PriorityUpdateResponse, priority, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -490,7 +492,7 @@ class TestAsyncPriority:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(CloudforceOneRequestItem, priority, path=["response"])
+        assert_matches_type(PriorityGetResponse, priority, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -503,7 +505,7 @@ class TestAsyncPriority:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         priority = await response.parse()
-        assert_matches_type(CloudforceOneRequestItem, priority, path=["response"])
+        assert_matches_type(PriorityGetResponse, priority, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -516,7 +518,7 @@ class TestAsyncPriority:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             priority = await response.parse()
-            assert_matches_type(CloudforceOneRequestItem, priority, path=["response"])
+            assert_matches_type(PriorityGetResponse, priority, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -541,7 +543,7 @@ class TestAsyncPriority:
         priority = await async_client.cloudforce_one.requests.priority.quota(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(CloudforceOneQuota, priority, path=["response"])
+        assert_matches_type(PriorityQuotaResponse, priority, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -553,7 +555,7 @@ class TestAsyncPriority:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         priority = await response.parse()
-        assert_matches_type(CloudforceOneQuota, priority, path=["response"])
+        assert_matches_type(PriorityQuotaResponse, priority, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -565,7 +567,7 @@ class TestAsyncPriority:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             priority = await response.parse()
-            assert_matches_type(CloudforceOneQuota, priority, path=["response"])
+            assert_matches_type(PriorityQuotaResponse, priority, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

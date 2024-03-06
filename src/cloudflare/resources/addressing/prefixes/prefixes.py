@@ -41,9 +41,11 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.addressing import (
+    PrefixGetResponse,
+    PrefixEditResponse,
     PrefixListResponse,
+    PrefixCreateResponse,
     PrefixDeleteResponse,
-    AddressingIpamPrefixes,
     prefix_edit_params,
     prefix_create_params,
 )
@@ -81,7 +83,7 @@ class Prefixes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AddressingIpamPrefixes:
+    ) -> PrefixCreateResponse:
         """
         Add a new prefix under the account.
 
@@ -121,7 +123,7 @@ class Prefixes(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AddressingIpamPrefixes], ResultWrapper[AddressingIpamPrefixes]),
+            cast_to=cast(Type[PrefixCreateResponse], ResultWrapper[PrefixCreateResponse]),
         )
 
     def list(
@@ -224,7 +226,7 @@ class Prefixes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AddressingIpamPrefixes:
+    ) -> PrefixEditResponse:
         """
         Modify the description for a prefix owned by the account.
 
@@ -257,7 +259,7 @@ class Prefixes(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AddressingIpamPrefixes], ResultWrapper[AddressingIpamPrefixes]),
+            cast_to=cast(Type[PrefixEditResponse], ResultWrapper[PrefixEditResponse]),
         )
 
     def get(
@@ -271,7 +273,7 @@ class Prefixes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AddressingIpamPrefixes:
+    ) -> PrefixGetResponse:
         """
         List a particular prefix owned by the account.
 
@@ -301,7 +303,7 @@ class Prefixes(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AddressingIpamPrefixes], ResultWrapper[AddressingIpamPrefixes]),
+            cast_to=cast(Type[PrefixGetResponse], ResultWrapper[PrefixGetResponse]),
         )
 
 
@@ -335,7 +337,7 @@ class AsyncPrefixes(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AddressingIpamPrefixes:
+    ) -> PrefixCreateResponse:
         """
         Add a new prefix under the account.
 
@@ -375,7 +377,7 @@ class AsyncPrefixes(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AddressingIpamPrefixes], ResultWrapper[AddressingIpamPrefixes]),
+            cast_to=cast(Type[PrefixCreateResponse], ResultWrapper[PrefixCreateResponse]),
         )
 
     async def list(
@@ -478,7 +480,7 @@ class AsyncPrefixes(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AddressingIpamPrefixes:
+    ) -> PrefixEditResponse:
         """
         Modify the description for a prefix owned by the account.
 
@@ -511,7 +513,7 @@ class AsyncPrefixes(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AddressingIpamPrefixes], ResultWrapper[AddressingIpamPrefixes]),
+            cast_to=cast(Type[PrefixEditResponse], ResultWrapper[PrefixEditResponse]),
         )
 
     async def get(
@@ -525,7 +527,7 @@ class AsyncPrefixes(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AddressingIpamPrefixes:
+    ) -> PrefixGetResponse:
         """
         List a particular prefix owned by the account.
 
@@ -555,7 +557,7 @@ class AsyncPrefixes(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AddressingIpamPrefixes], ResultWrapper[AddressingIpamPrefixes]),
+            cast_to=cast(Type[PrefixGetResponse], ResultWrapper[PrefixGetResponse]),
         )
 
 
