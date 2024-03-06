@@ -40,7 +40,13 @@ class TestScripts:
             any_part_name=[b"raw file contents", b"raw file contents", b"raw file contents"],
             message="string",
             metadata={
-                "bindings": [{}, {}, {}],
+                "bindings": [
+                    {
+                        "name": "MY_ENV_VAR",
+                        "text": "my_data",
+                        "type": "plain_text",
+                    }
+                ],
                 "body_part": "worker.js",
                 "compatibility_date": "2023-07-25",
                 "compatibility_flags": ["string", "string", "string"],
@@ -326,7 +332,13 @@ class TestAsyncScripts:
             any_part_name=[b"raw file contents", b"raw file contents", b"raw file contents"],
             message="string",
             metadata={
-                "bindings": [{}, {}, {}],
+                "bindings": [
+                    {
+                        "name": "MY_ENV_VAR",
+                        "text": "my_data",
+                        "type": "plain_text",
+                    }
+                ],
                 "body_part": "worker.js",
                 "compatibility_date": "2023-07-25",
                 "compatibility_flags": ["string", "string", "string"],
