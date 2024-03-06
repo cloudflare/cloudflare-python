@@ -82,7 +82,7 @@ class ASN(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ASNGetResponse], ResultWrapper[ASNGetResponse]),
+            cast_to=cast(Type[ASNGetResponse], ResultWrapper[int]),
         )
 
 
@@ -136,7 +136,7 @@ class AsyncASN(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ASNGetResponse], ResultWrapper[ASNGetResponse]),
+            cast_to=cast(Type[ASNGetResponse], ResultWrapper[int]),
         )
 
 
