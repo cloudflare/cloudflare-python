@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.zero_trust.dex import DigitalExperienceMonitoringHTTPDetails
+from cloudflare.types.zero_trust.dex import HTTPTestGetResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -27,7 +27,7 @@ class TestHTTPTests:
             time_end="string",
             time_start="string",
         )
-        assert_matches_type(DigitalExperienceMonitoringHTTPDetails, http_test, path=["response"])
+        assert_matches_type(HTTPTestGetResponse, http_test, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -41,7 +41,7 @@ class TestHTTPTests:
             colo="string",
             device_id=["string", "string", "string"],
         )
-        assert_matches_type(DigitalExperienceMonitoringHTTPDetails, http_test, path=["response"])
+        assert_matches_type(HTTPTestGetResponse, http_test, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -57,7 +57,7 @@ class TestHTTPTests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         http_test = response.parse()
-        assert_matches_type(DigitalExperienceMonitoringHTTPDetails, http_test, path=["response"])
+        assert_matches_type(HTTPTestGetResponse, http_test, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -73,7 +73,7 @@ class TestHTTPTests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             http_test = response.parse()
-            assert_matches_type(DigitalExperienceMonitoringHTTPDetails, http_test, path=["response"])
+            assert_matches_type(HTTPTestGetResponse, http_test, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -112,7 +112,7 @@ class TestAsyncHTTPTests:
             time_end="string",
             time_start="string",
         )
-        assert_matches_type(DigitalExperienceMonitoringHTTPDetails, http_test, path=["response"])
+        assert_matches_type(HTTPTestGetResponse, http_test, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -126,7 +126,7 @@ class TestAsyncHTTPTests:
             colo="string",
             device_id=["string", "string", "string"],
         )
-        assert_matches_type(DigitalExperienceMonitoringHTTPDetails, http_test, path=["response"])
+        assert_matches_type(HTTPTestGetResponse, http_test, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -142,7 +142,7 @@ class TestAsyncHTTPTests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         http_test = await response.parse()
-        assert_matches_type(DigitalExperienceMonitoringHTTPDetails, http_test, path=["response"])
+        assert_matches_type(HTTPTestGetResponse, http_test, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -158,7 +158,7 @@ class TestAsyncHTTPTests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             http_test = await response.parse()
-            assert_matches_type(DigitalExperienceMonitoringHTTPDetails, http_test, path=["response"])
+            assert_matches_type(HTTPTestGetResponse, http_test, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

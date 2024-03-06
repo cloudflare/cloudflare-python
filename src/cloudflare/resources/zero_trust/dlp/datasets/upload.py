@@ -19,8 +19,7 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import (
     make_request_options,
 )
-from .....types.zero_trust.dlp import DLPDataset
-from .....types.zero_trust.dlp.datasets import DLPDatasetNewVersion
+from .....types.zero_trust.dlp.datasets import UploadEditResponse, UploadCreateResponse
 
 __all__ = ["Upload", "AsyncUpload"]
 
@@ -45,7 +44,7 @@ class Upload(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DLPDatasetNewVersion]:
+    ) -> Optional[UploadCreateResponse]:
         """
         Prepare to upload a new version of a dataset.
 
@@ -71,7 +70,7 @@ class Upload(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DLPDatasetNewVersion]], ResultWrapper[DLPDatasetNewVersion]),
+            cast_to=cast(Type[Optional[UploadCreateResponse]], ResultWrapper[UploadCreateResponse]),
         )
 
     def edit(
@@ -86,7 +85,7 @@ class Upload(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DLPDataset]:
+    ) -> Optional[UploadEditResponse]:
         """
         Upload a new version of a dataset.
 
@@ -112,7 +111,7 @@ class Upload(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DLPDataset]], ResultWrapper[DLPDataset]),
+            cast_to=cast(Type[Optional[UploadEditResponse]], ResultWrapper[UploadEditResponse]),
         )
 
 
@@ -136,7 +135,7 @@ class AsyncUpload(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DLPDatasetNewVersion]:
+    ) -> Optional[UploadCreateResponse]:
         """
         Prepare to upload a new version of a dataset.
 
@@ -162,7 +161,7 @@ class AsyncUpload(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DLPDatasetNewVersion]], ResultWrapper[DLPDatasetNewVersion]),
+            cast_to=cast(Type[Optional[UploadCreateResponse]], ResultWrapper[UploadCreateResponse]),
         )
 
     async def edit(
@@ -177,7 +176,7 @@ class AsyncUpload(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DLPDataset]:
+    ) -> Optional[UploadEditResponse]:
         """
         Upload a new version of a dataset.
 
@@ -203,7 +202,7 @@ class AsyncUpload(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DLPDataset]], ResultWrapper[DLPDataset]),
+            cast_to=cast(Type[Optional[UploadEditResponse]], ResultWrapper[UploadEditResponse]),
         )
 
 

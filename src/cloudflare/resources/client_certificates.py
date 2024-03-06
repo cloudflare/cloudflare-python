@@ -8,7 +8,11 @@ from typing_extensions import Literal
 import httpx
 
 from ..types import (
-    TLSCertificatesAndHostnamesClientCertificate,
+    ClientCertificateGetResponse,
+    ClientCertificateEditResponse,
+    ClientCertificateListResponse,
+    ClientCertificateCreateResponse,
+    ClientCertificateDeleteResponse,
     client_certificate_list_params,
     client_certificate_create_params,
 )
@@ -56,7 +60,7 @@ class ClientCertificates(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TLSCertificatesAndHostnamesClientCertificate:
+    ) -> ClientCertificateCreateResponse:
         """
         Create a new API Shield mTLS Client Certificate
 
@@ -93,10 +97,7 @@ class ClientCertificates(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[TLSCertificatesAndHostnamesClientCertificate],
-                ResultWrapper[TLSCertificatesAndHostnamesClientCertificate],
-            ),
+            cast_to=cast(Type[ClientCertificateCreateResponse], ResultWrapper[ClientCertificateCreateResponse]),
         )
 
     def list(
@@ -115,7 +116,7 @@ class ClientCertificates(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[TLSCertificatesAndHostnamesClientCertificate]:
+    ) -> SyncV4PagePaginationArray[ClientCertificateListResponse]:
         """
         List all of your Zone's API Shield mTLS Client Certificates by Status and/or
         using Pagination
@@ -145,7 +146,7 @@ class ClientCertificates(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/client_certificates",
-            page=SyncV4PagePaginationArray[TLSCertificatesAndHostnamesClientCertificate],
+            page=SyncV4PagePaginationArray[ClientCertificateListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -162,7 +163,7 @@ class ClientCertificates(SyncAPIResource):
                     client_certificate_list_params.ClientCertificateListParams,
                 ),
             ),
-            model=TLSCertificatesAndHostnamesClientCertificate,
+            model=ClientCertificateListResponse,
         )
 
     def delete(
@@ -176,7 +177,7 @@ class ClientCertificates(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TLSCertificatesAndHostnamesClientCertificate:
+    ) -> ClientCertificateDeleteResponse:
         """
         Set a API Shield mTLS Client Certificate to pending_revocation status for
         processing to revoked status.
@@ -209,10 +210,7 @@ class ClientCertificates(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[TLSCertificatesAndHostnamesClientCertificate],
-                ResultWrapper[TLSCertificatesAndHostnamesClientCertificate],
-            ),
+            cast_to=cast(Type[ClientCertificateDeleteResponse], ResultWrapper[ClientCertificateDeleteResponse]),
         )
 
     def edit(
@@ -226,7 +224,7 @@ class ClientCertificates(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TLSCertificatesAndHostnamesClientCertificate:
+    ) -> ClientCertificateEditResponse:
         """
         If a API Shield mTLS Client Certificate is in a pending_revocation state, you
         may reactivate it with this endpoint.
@@ -259,10 +257,7 @@ class ClientCertificates(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[TLSCertificatesAndHostnamesClientCertificate],
-                ResultWrapper[TLSCertificatesAndHostnamesClientCertificate],
-            ),
+            cast_to=cast(Type[ClientCertificateEditResponse], ResultWrapper[ClientCertificateEditResponse]),
         )
 
     def get(
@@ -276,7 +271,7 @@ class ClientCertificates(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TLSCertificatesAndHostnamesClientCertificate:
+    ) -> ClientCertificateGetResponse:
         """
         Get Details for a single mTLS API Shield Client Certificate
 
@@ -308,10 +303,7 @@ class ClientCertificates(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[TLSCertificatesAndHostnamesClientCertificate],
-                ResultWrapper[TLSCertificatesAndHostnamesClientCertificate],
-            ),
+            cast_to=cast(Type[ClientCertificateGetResponse], ResultWrapper[ClientCertificateGetResponse]),
         )
 
 
@@ -336,7 +328,7 @@ class AsyncClientCertificates(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TLSCertificatesAndHostnamesClientCertificate:
+    ) -> ClientCertificateCreateResponse:
         """
         Create a new API Shield mTLS Client Certificate
 
@@ -373,10 +365,7 @@ class AsyncClientCertificates(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[TLSCertificatesAndHostnamesClientCertificate],
-                ResultWrapper[TLSCertificatesAndHostnamesClientCertificate],
-            ),
+            cast_to=cast(Type[ClientCertificateCreateResponse], ResultWrapper[ClientCertificateCreateResponse]),
         )
 
     def list(
@@ -395,10 +384,7 @@ class AsyncClientCertificates(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[
-        TLSCertificatesAndHostnamesClientCertificate,
-        AsyncV4PagePaginationArray[TLSCertificatesAndHostnamesClientCertificate],
-    ]:
+    ) -> AsyncPaginator[ClientCertificateListResponse, AsyncV4PagePaginationArray[ClientCertificateListResponse]]:
         """
         List all of your Zone's API Shield mTLS Client Certificates by Status and/or
         using Pagination
@@ -428,7 +414,7 @@ class AsyncClientCertificates(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/client_certificates",
-            page=AsyncV4PagePaginationArray[TLSCertificatesAndHostnamesClientCertificate],
+            page=AsyncV4PagePaginationArray[ClientCertificateListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -445,7 +431,7 @@ class AsyncClientCertificates(AsyncAPIResource):
                     client_certificate_list_params.ClientCertificateListParams,
                 ),
             ),
-            model=TLSCertificatesAndHostnamesClientCertificate,
+            model=ClientCertificateListResponse,
         )
 
     async def delete(
@@ -459,7 +445,7 @@ class AsyncClientCertificates(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TLSCertificatesAndHostnamesClientCertificate:
+    ) -> ClientCertificateDeleteResponse:
         """
         Set a API Shield mTLS Client Certificate to pending_revocation status for
         processing to revoked status.
@@ -492,10 +478,7 @@ class AsyncClientCertificates(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[TLSCertificatesAndHostnamesClientCertificate],
-                ResultWrapper[TLSCertificatesAndHostnamesClientCertificate],
-            ),
+            cast_to=cast(Type[ClientCertificateDeleteResponse], ResultWrapper[ClientCertificateDeleteResponse]),
         )
 
     async def edit(
@@ -509,7 +492,7 @@ class AsyncClientCertificates(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TLSCertificatesAndHostnamesClientCertificate:
+    ) -> ClientCertificateEditResponse:
         """
         If a API Shield mTLS Client Certificate is in a pending_revocation state, you
         may reactivate it with this endpoint.
@@ -542,10 +525,7 @@ class AsyncClientCertificates(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[TLSCertificatesAndHostnamesClientCertificate],
-                ResultWrapper[TLSCertificatesAndHostnamesClientCertificate],
-            ),
+            cast_to=cast(Type[ClientCertificateEditResponse], ResultWrapper[ClientCertificateEditResponse]),
         )
 
     async def get(
@@ -559,7 +539,7 @@ class AsyncClientCertificates(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TLSCertificatesAndHostnamesClientCertificate:
+    ) -> ClientCertificateGetResponse:
         """
         Get Details for a single mTLS API Shield Client Certificate
 
@@ -591,10 +571,7 @@ class AsyncClientCertificates(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[TLSCertificatesAndHostnamesClientCertificate],
-                ResultWrapper[TLSCertificatesAndHostnamesClientCertificate],
-            ),
+            cast_to=cast(Type[ClientCertificateGetResponse], ResultWrapper[ClientCertificateGetResponse]),
         )
 
 

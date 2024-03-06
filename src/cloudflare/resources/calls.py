@@ -7,9 +7,11 @@ from typing import Type, cast
 import httpx
 
 from ..types import (
-    CallsApp,
+    CallGetResponse,
     CallListResponse,
-    CallsAppWithSecret,
+    CallCreateResponse,
+    CallDeleteResponse,
+    CallUpdateResponse,
     call_create_params,
     call_update_params,
 )
@@ -54,7 +56,7 @@ class Calls(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CallsAppWithSecret:
+    ) -> CallCreateResponse:
         """Creates a new Cloudflare calls app.
 
         An app is an unique enviroment where each
@@ -85,7 +87,7 @@ class Calls(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CallsAppWithSecret], ResultWrapper[CallsAppWithSecret]),
+            cast_to=cast(Type[CallCreateResponse], ResultWrapper[CallCreateResponse]),
         )
 
     def update(
@@ -100,7 +102,7 @@ class Calls(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CallsApp:
+    ) -> CallUpdateResponse:
         """
         Edit details for a single app.
 
@@ -133,7 +135,7 @@ class Calls(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CallsApp], ResultWrapper[CallsApp]),
+            cast_to=cast(Type[CallUpdateResponse], ResultWrapper[CallUpdateResponse]),
         )
 
     def list(
@@ -186,7 +188,7 @@ class Calls(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CallsApp:
+    ) -> CallDeleteResponse:
         """
         Deletes an app from Cloudflare Calls
 
@@ -216,7 +218,7 @@ class Calls(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CallsApp], ResultWrapper[CallsApp]),
+            cast_to=cast(Type[CallDeleteResponse], ResultWrapper[CallDeleteResponse]),
         )
 
     def get(
@@ -230,7 +232,7 @@ class Calls(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CallsApp:
+    ) -> CallGetResponse:
         """
         Fetches details for a single Calls app.
 
@@ -260,7 +262,7 @@ class Calls(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CallsApp], ResultWrapper[CallsApp]),
+            cast_to=cast(Type[CallGetResponse], ResultWrapper[CallGetResponse]),
         )
 
 
@@ -284,7 +286,7 @@ class AsyncCalls(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CallsAppWithSecret:
+    ) -> CallCreateResponse:
         """Creates a new Cloudflare calls app.
 
         An app is an unique enviroment where each
@@ -315,7 +317,7 @@ class AsyncCalls(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CallsAppWithSecret], ResultWrapper[CallsAppWithSecret]),
+            cast_to=cast(Type[CallCreateResponse], ResultWrapper[CallCreateResponse]),
         )
 
     async def update(
@@ -330,7 +332,7 @@ class AsyncCalls(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CallsApp:
+    ) -> CallUpdateResponse:
         """
         Edit details for a single app.
 
@@ -363,7 +365,7 @@ class AsyncCalls(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CallsApp], ResultWrapper[CallsApp]),
+            cast_to=cast(Type[CallUpdateResponse], ResultWrapper[CallUpdateResponse]),
         )
 
     async def list(
@@ -416,7 +418,7 @@ class AsyncCalls(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CallsApp:
+    ) -> CallDeleteResponse:
         """
         Deletes an app from Cloudflare Calls
 
@@ -446,7 +448,7 @@ class AsyncCalls(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CallsApp], ResultWrapper[CallsApp]),
+            cast_to=cast(Type[CallDeleteResponse], ResultWrapper[CallDeleteResponse]),
         )
 
     async def get(
@@ -460,7 +462,7 @@ class AsyncCalls(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CallsApp:
+    ) -> CallGetResponse:
         """
         Fetches details for a single Calls app.
 
@@ -490,7 +492,7 @@ class AsyncCalls(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CallsApp], ResultWrapper[CallsApp]),
+            cast_to=cast(Type[CallGetResponse], ResultWrapper[CallGetResponse]),
         )
 
 

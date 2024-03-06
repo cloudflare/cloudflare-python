@@ -5,12 +5,21 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Required, TypedDict
 
-from .teams_devices_fallback_domain_param import TeamsDevicesFallbackDomainParam
-
-__all__ = ["FallbackDomainUpdateParams"]
+__all__ = ["FallbackDomainUpdateParams", "Body"]
 
 
 class FallbackDomainUpdateParams(TypedDict, total=False):
     account_id: Required[object]
 
-    body: Required[Iterable[TeamsDevicesFallbackDomainParam]]
+    body: Required[Iterable[Body]]
+
+
+class Body(TypedDict, total=False):
+    suffix: Required[str]
+    """The domain suffix to match when resolving locally."""
+
+    description: str
+    """A description of the fallback domain, displayed in the client UI."""
+
+    dns_server: Iterable[object]
+    """A list of IP addresses to handle domain resolution."""

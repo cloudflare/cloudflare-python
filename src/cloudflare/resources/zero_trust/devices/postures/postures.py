@@ -33,9 +33,11 @@ from ....._base_client import (
     make_request_options,
 )
 from .....types.zero_trust.devices import (
+    PostureGetResponse,
     PostureListResponse,
+    PostureCreateResponse,
     PostureDeleteResponse,
-    TeamsDevicesDevicePostureRules,
+    PostureUpdateResponse,
     posture_create_params,
     posture_update_params,
 )
@@ -93,7 +95,7 @@ class Postures(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[TeamsDevicesDevicePostureRules]:
+    ) -> Optional[PostureCreateResponse]:
         """
         Creates a new device posture rule.
 
@@ -143,7 +145,7 @@ class Postures(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[TeamsDevicesDevicePostureRules]], ResultWrapper[TeamsDevicesDevicePostureRules]),
+            cast_to=cast(Type[Optional[PostureCreateResponse]], ResultWrapper[PostureCreateResponse]),
         )
 
     def update(
@@ -184,7 +186,7 @@ class Postures(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[TeamsDevicesDevicePostureRules]:
+    ) -> Optional[PostureUpdateResponse]:
         """
         Updates a device posture rule.
 
@@ -238,7 +240,7 @@ class Postures(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[TeamsDevicesDevicePostureRules]], ResultWrapper[TeamsDevicesDevicePostureRules]),
+            cast_to=cast(Type[Optional[PostureUpdateResponse]], ResultWrapper[PostureUpdateResponse]),
         )
 
     def list(
@@ -327,7 +329,7 @@ class Postures(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[TeamsDevicesDevicePostureRules]:
+    ) -> Optional[PostureGetResponse]:
         """
         Fetches a single device posture rule.
 
@@ -353,7 +355,7 @@ class Postures(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[TeamsDevicesDevicePostureRules]], ResultWrapper[TeamsDevicesDevicePostureRules]),
+            cast_to=cast(Type[Optional[PostureGetResponse]], ResultWrapper[PostureGetResponse]),
         )
 
 
@@ -407,7 +409,7 @@ class AsyncPostures(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[TeamsDevicesDevicePostureRules]:
+    ) -> Optional[PostureCreateResponse]:
         """
         Creates a new device posture rule.
 
@@ -457,7 +459,7 @@ class AsyncPostures(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[TeamsDevicesDevicePostureRules]], ResultWrapper[TeamsDevicesDevicePostureRules]),
+            cast_to=cast(Type[Optional[PostureCreateResponse]], ResultWrapper[PostureCreateResponse]),
         )
 
     async def update(
@@ -498,7 +500,7 @@ class AsyncPostures(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[TeamsDevicesDevicePostureRules]:
+    ) -> Optional[PostureUpdateResponse]:
         """
         Updates a device posture rule.
 
@@ -552,7 +554,7 @@ class AsyncPostures(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[TeamsDevicesDevicePostureRules]], ResultWrapper[TeamsDevicesDevicePostureRules]),
+            cast_to=cast(Type[Optional[PostureUpdateResponse]], ResultWrapper[PostureUpdateResponse]),
         )
 
     async def list(
@@ -641,7 +643,7 @@ class AsyncPostures(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[TeamsDevicesDevicePostureRules]:
+    ) -> Optional[PostureGetResponse]:
         """
         Fetches a single device posture rule.
 
@@ -667,7 +669,7 @@ class AsyncPostures(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[TeamsDevicesDevicePostureRules]], ResultWrapper[TeamsDevicesDevicePostureRules]),
+            cast_to=cast(Type[Optional[PostureGetResponse]], ResultWrapper[PostureGetResponse]),
         )
 
 

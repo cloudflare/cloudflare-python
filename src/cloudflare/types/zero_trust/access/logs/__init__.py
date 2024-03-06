@@ -2,5 +2,4 @@
 
 from __future__ import annotations
 
-from .access_access_requests import AccessAccessRequests as AccessAccessRequests
 from .access_request_list_response import AccessRequestListResponse as AccessRequestListResponse

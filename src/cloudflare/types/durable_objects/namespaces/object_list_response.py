@@ -1,9 +1,20 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from typing import List
+from typing import List, Optional
 
-from .workers_object import WorkersObject
+from pydantic import Field as FieldInfo
 
-__all__ = ["ObjectListResponse"]
+from ...._models import BaseModel
 
-ObjectListResponse = List[WorkersObject]
+__all__ = ["ObjectListResponse", "ObjectListResponseItem"]
+
+
+class ObjectListResponseItem(BaseModel):
+    id: Optional[str] = None
+    """ID of the Durable Object."""
+
+    has_stored_data: Optional[bool] = FieldInfo(alias="hasStoredData", default=None)
+    """Whether the Durable Object has stored data."""
+
+
+ObjectListResponse = List[ObjectListResponseItem]

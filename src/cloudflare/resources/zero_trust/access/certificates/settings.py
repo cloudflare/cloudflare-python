@@ -23,12 +23,7 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import (
     make_request_options,
 )
-from .....types.zero_trust.access.certificates import (
-    AccessSettingsParam,
-    SettingListResponse,
-    SettingUpdateResponse,
-    setting_update_params,
-)
+from .....types.zero_trust.access.certificates import SettingListResponse, SettingUpdateResponse, setting_update_params
 
 __all__ = ["Settings", "AsyncSettings"]
 
@@ -45,7 +40,7 @@ class Settings(SyncAPIResource):
     def update(
         self,
         *,
-        settings: Iterable[AccessSettingsParam],
+        settings: Iterable[setting_update_params.Setting],
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -167,7 +162,7 @@ class AsyncSettings(AsyncAPIResource):
     async def update(
         self,
         *,
-        settings: Iterable[AccessSettingsParam],
+        settings: Iterable[setting_update_params.Setting],
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

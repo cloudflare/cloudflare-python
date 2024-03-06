@@ -24,8 +24,13 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import (
     make_request_options,
 )
-from .....types.zero_trust.networks import TunnelRoute
-from .....types.zero_trust.networks.routes import network_create_params, network_delete_params
+from .....types.zero_trust.networks.routes import (
+    NetworkEditResponse,
+    NetworkCreateResponse,
+    NetworkDeleteResponse,
+    network_create_params,
+    network_delete_params,
+)
 
 __all__ = ["Networks", "AsyncNetworks"]
 
@@ -52,7 +57,7 @@ class Networks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TunnelRoute:
+    ) -> NetworkCreateResponse:
         """Routes a private network through a Cloudflare Tunnel.
 
         The CIDR in
@@ -97,7 +102,7 @@ class Networks(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TunnelRoute], ResultWrapper[TunnelRoute]),
+            cast_to=cast(Type[NetworkCreateResponse], ResultWrapper[NetworkCreateResponse]),
         )
 
     def delete(
@@ -112,7 +117,7 @@ class Networks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TunnelRoute:
+    ) -> NetworkDeleteResponse:
         """Deletes a private network route from an account.
 
         The CIDR in
@@ -152,7 +157,7 @@ class Networks(SyncAPIResource):
                 query=maybe_transform({"tun_type": tun_type}, network_delete_params.NetworkDeleteParams),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TunnelRoute], ResultWrapper[TunnelRoute]),
+            cast_to=cast(Type[NetworkDeleteResponse], ResultWrapper[NetworkDeleteResponse]),
         )
 
     def edit(
@@ -166,7 +171,7 @@ class Networks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TunnelRoute:
+    ) -> NetworkEditResponse:
         """Updates an existing private network route in an account.
 
         The CIDR in
@@ -198,7 +203,7 @@ class Networks(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TunnelRoute], ResultWrapper[TunnelRoute]),
+            cast_to=cast(Type[NetworkEditResponse], ResultWrapper[NetworkEditResponse]),
         )
 
 
@@ -224,7 +229,7 @@ class AsyncNetworks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TunnelRoute:
+    ) -> NetworkCreateResponse:
         """Routes a private network through a Cloudflare Tunnel.
 
         The CIDR in
@@ -269,7 +274,7 @@ class AsyncNetworks(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TunnelRoute], ResultWrapper[TunnelRoute]),
+            cast_to=cast(Type[NetworkCreateResponse], ResultWrapper[NetworkCreateResponse]),
         )
 
     async def delete(
@@ -284,7 +289,7 @@ class AsyncNetworks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TunnelRoute:
+    ) -> NetworkDeleteResponse:
         """Deletes a private network route from an account.
 
         The CIDR in
@@ -324,7 +329,7 @@ class AsyncNetworks(AsyncAPIResource):
                 query=await async_maybe_transform({"tun_type": tun_type}, network_delete_params.NetworkDeleteParams),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TunnelRoute], ResultWrapper[TunnelRoute]),
+            cast_to=cast(Type[NetworkDeleteResponse], ResultWrapper[NetworkDeleteResponse]),
         )
 
     async def edit(
@@ -338,7 +343,7 @@ class AsyncNetworks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TunnelRoute:
+    ) -> NetworkEditResponse:
         """Updates an existing private network route in an account.
 
         The CIDR in
@@ -370,7 +375,7 @@ class AsyncNetworks(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TunnelRoute], ResultWrapper[TunnelRoute]),
+            cast_to=cast(Type[NetworkEditResponse], ResultWrapper[NetworkEditResponse]),
         )
 
 

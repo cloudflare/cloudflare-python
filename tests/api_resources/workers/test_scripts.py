@@ -17,7 +17,10 @@ from cloudflare._response import (
     StreamedBinaryAPIResponse,
     AsyncStreamedBinaryAPIResponse,
 )
-from cloudflare.types.workers import WorkersScript, ScriptListResponse
+from cloudflare.types.workers import (
+    ScriptListResponse,
+    ScriptUpdateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -32,7 +35,7 @@ class TestScripts:
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(WorkersScript, script, path=["response"])
+        assert_matches_type(ScriptUpdateResponse, script, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -111,7 +114,7 @@ class TestScripts:
                 "version_tags": {},
             },
         )
-        assert_matches_type(WorkersScript, script, path=["response"])
+        assert_matches_type(ScriptUpdateResponse, script, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -124,7 +127,7 @@ class TestScripts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         script = response.parse()
-        assert_matches_type(WorkersScript, script, path=["response"])
+        assert_matches_type(ScriptUpdateResponse, script, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -137,7 +140,7 @@ class TestScripts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             script = response.parse()
-            assert_matches_type(WorkersScript, script, path=["response"])
+            assert_matches_type(ScriptUpdateResponse, script, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -341,7 +344,7 @@ class TestAsyncScripts:
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(WorkersScript, script, path=["response"])
+        assert_matches_type(ScriptUpdateResponse, script, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -420,7 +423,7 @@ class TestAsyncScripts:
                 "version_tags": {},
             },
         )
-        assert_matches_type(WorkersScript, script, path=["response"])
+        assert_matches_type(ScriptUpdateResponse, script, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -433,7 +436,7 @@ class TestAsyncScripts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         script = await response.parse()
-        assert_matches_type(WorkersScript, script, path=["response"])
+        assert_matches_type(ScriptUpdateResponse, script, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -446,7 +449,7 @@ class TestAsyncScripts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             script = await response.parse()
-            assert_matches_type(WorkersScript, script, path=["response"])
+            assert_matches_type(ScriptUpdateResponse, script, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

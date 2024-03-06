@@ -12,7 +12,7 @@ from ..._utils import (
     async_maybe_transform,
 )
 from ..._compat import cached_property
-from ...types.r2 import R2Sippy, SippyDeleteResponse, sippy_update_params
+from ...types.r2 import SippyGetResponse, SippyDeleteResponse, SippyUpdateResponse, sippy_update_params
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
@@ -50,7 +50,7 @@ class Sippy(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> R2Sippy:
+    ) -> SippyUpdateResponse:
         """
         Sets configuration for Sippy for an existing R2 bucket.
 
@@ -87,7 +87,7 @@ class Sippy(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[R2Sippy], ResultWrapper[R2Sippy]),
+            cast_to=cast(Type[SippyUpdateResponse], ResultWrapper[SippyUpdateResponse]),
         )
 
     def delete(
@@ -145,7 +145,7 @@ class Sippy(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> R2Sippy:
+    ) -> SippyGetResponse:
         """
         Gets configuration for Sippy for an existing R2 bucket.
 
@@ -175,7 +175,7 @@ class Sippy(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[R2Sippy], ResultWrapper[R2Sippy]),
+            cast_to=cast(Type[SippyGetResponse], ResultWrapper[SippyGetResponse]),
         )
 
 
@@ -201,7 +201,7 @@ class AsyncSippy(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> R2Sippy:
+    ) -> SippyUpdateResponse:
         """
         Sets configuration for Sippy for an existing R2 bucket.
 
@@ -238,7 +238,7 @@ class AsyncSippy(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[R2Sippy], ResultWrapper[R2Sippy]),
+            cast_to=cast(Type[SippyUpdateResponse], ResultWrapper[SippyUpdateResponse]),
         )
 
     async def delete(
@@ -296,7 +296,7 @@ class AsyncSippy(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> R2Sippy:
+    ) -> SippyGetResponse:
         """
         Gets configuration for Sippy for an existing R2 bucket.
 
@@ -326,7 +326,7 @@ class AsyncSippy(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[R2Sippy], ResultWrapper[R2Sippy]),
+            cast_to=cast(Type[SippyGetResponse], ResultWrapper[SippyGetResponse]),
         )
 
 

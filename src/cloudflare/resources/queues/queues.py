@@ -7,11 +7,11 @@ from typing import Any, Type, Optional, cast
 import httpx
 
 from ...types import (
-    WorkersQueue,
+    QueueGetResponse,
     QueueListResponse,
+    QueueCreateResponse,
     QueueDeleteResponse,
-    WorkersQueueCreated,
-    WorkersQueueUpdated,
+    QueueUpdateResponse,
     queue_create_params,
     queue_update_params,
 )
@@ -68,7 +68,7 @@ class Queues(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[WorkersQueueCreated]:
+    ) -> Optional[QueueCreateResponse]:
         """
         Creates a new queue.
 
@@ -95,7 +95,7 @@ class Queues(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[WorkersQueueCreated]], ResultWrapper[WorkersQueueCreated]),
+            cast_to=cast(Type[Optional[QueueCreateResponse]], ResultWrapper[QueueCreateResponse]),
         )
 
     def update(
@@ -110,7 +110,7 @@ class Queues(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[WorkersQueueUpdated]:
+    ) -> Optional[QueueUpdateResponse]:
         """
         Updates a queue.
 
@@ -139,7 +139,7 @@ class Queues(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[WorkersQueueUpdated]], ResultWrapper[WorkersQueueUpdated]),
+            cast_to=cast(Type[Optional[QueueUpdateResponse]], ResultWrapper[QueueUpdateResponse]),
         )
 
     def list(
@@ -239,7 +239,7 @@ class Queues(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[WorkersQueue]:
+    ) -> Optional[QueueGetResponse]:
         """
         Get information about a specific queue.
 
@@ -267,7 +267,7 @@ class Queues(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[WorkersQueue]], ResultWrapper[WorkersQueue]),
+            cast_to=cast(Type[Optional[QueueGetResponse]], ResultWrapper[QueueGetResponse]),
         )
 
 
@@ -295,7 +295,7 @@ class AsyncQueues(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[WorkersQueueCreated]:
+    ) -> Optional[QueueCreateResponse]:
         """
         Creates a new queue.
 
@@ -322,7 +322,7 @@ class AsyncQueues(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[WorkersQueueCreated]], ResultWrapper[WorkersQueueCreated]),
+            cast_to=cast(Type[Optional[QueueCreateResponse]], ResultWrapper[QueueCreateResponse]),
         )
 
     async def update(
@@ -337,7 +337,7 @@ class AsyncQueues(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[WorkersQueueUpdated]:
+    ) -> Optional[QueueUpdateResponse]:
         """
         Updates a queue.
 
@@ -366,7 +366,7 @@ class AsyncQueues(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[WorkersQueueUpdated]], ResultWrapper[WorkersQueueUpdated]),
+            cast_to=cast(Type[Optional[QueueUpdateResponse]], ResultWrapper[QueueUpdateResponse]),
         )
 
     async def list(
@@ -466,7 +466,7 @@ class AsyncQueues(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[WorkersQueue]:
+    ) -> Optional[QueueGetResponse]:
         """
         Get information about a specific queue.
 
@@ -494,7 +494,7 @@ class AsyncQueues(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[WorkersQueue]], ResultWrapper[WorkersQueue]),
+            cast_to=cast(Type[Optional[QueueGetResponse]], ResultWrapper[QueueGetResponse]),
         )
 
 

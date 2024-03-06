@@ -13,7 +13,13 @@ from ..._utils import (
     async_maybe_transform,
 )
 from ..._compat import cached_property
-from ...types.r2 import R2Bucket, BucketListResponse, bucket_list_params, bucket_create_params
+from ...types.r2 import (
+    BucketGetResponse,
+    BucketListResponse,
+    BucketCreateResponse,
+    bucket_list_params,
+    bucket_create_params,
+)
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
@@ -50,7 +56,7 @@ class Buckets(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> R2Bucket:
+    ) -> BucketCreateResponse:
         """
         Creates a new R2 bucket.
 
@@ -87,7 +93,7 @@ class Buckets(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[R2Bucket], ResultWrapper[R2Bucket]),
+            cast_to=cast(Type[BucketCreateResponse], ResultWrapper[BucketCreateResponse]),
         )
 
     def list(
@@ -215,7 +221,7 @@ class Buckets(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> R2Bucket:
+    ) -> BucketGetResponse:
         """
         Gets metadata for an existing R2 bucket.
 
@@ -245,7 +251,7 @@ class Buckets(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[R2Bucket], ResultWrapper[R2Bucket]),
+            cast_to=cast(Type[BucketGetResponse], ResultWrapper[BucketGetResponse]),
         )
 
 
@@ -270,7 +276,7 @@ class AsyncBuckets(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> R2Bucket:
+    ) -> BucketCreateResponse:
         """
         Creates a new R2 bucket.
 
@@ -307,7 +313,7 @@ class AsyncBuckets(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[R2Bucket], ResultWrapper[R2Bucket]),
+            cast_to=cast(Type[BucketCreateResponse], ResultWrapper[BucketCreateResponse]),
         )
 
     async def list(
@@ -435,7 +441,7 @@ class AsyncBuckets(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> R2Bucket:
+    ) -> BucketGetResponse:
         """
         Gets metadata for an existing R2 bucket.
 
@@ -465,7 +471,7 @@ class AsyncBuckets(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[R2Bucket], ResultWrapper[R2Bucket]),
+            cast_to=cast(Type[BucketGetResponse], ResultWrapper[BucketGetResponse]),
         )
 
 

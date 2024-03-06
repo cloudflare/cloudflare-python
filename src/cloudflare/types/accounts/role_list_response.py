@@ -2,8 +2,23 @@
 
 from typing import List
 
-from .iam_schemas_role import IamSchemasRole
+from ..._models import BaseModel
 
-__all__ = ["RoleListResponse"]
+__all__ = ["RoleListResponse", "RoleListResponseItem"]
 
-RoleListResponse = List[IamSchemasRole]
+
+class RoleListResponseItem(BaseModel):
+    id: str
+    """Role identifier tag."""
+
+    description: str
+    """Description of role's permissions."""
+
+    name: str
+    """Role Name."""
+
+    permissions: List[str]
+    """Access permissions for this User."""
+
+
+RoleListResponse = List[RoleListResponseItem]

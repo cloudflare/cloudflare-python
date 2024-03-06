@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.images.v1 import ImagesImagesStats
+from cloudflare.types.images.v1 import StatGetResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -23,7 +23,7 @@ class TestStats:
         stat = client.images.v1.stats.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ImagesImagesStats, stat, path=["response"])
+        assert_matches_type(StatGetResponse, stat, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -35,7 +35,7 @@ class TestStats:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         stat = response.parse()
-        assert_matches_type(ImagesImagesStats, stat, path=["response"])
+        assert_matches_type(StatGetResponse, stat, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -47,7 +47,7 @@ class TestStats:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             stat = response.parse()
-            assert_matches_type(ImagesImagesStats, stat, path=["response"])
+            assert_matches_type(StatGetResponse, stat, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -69,7 +69,7 @@ class TestAsyncStats:
         stat = await async_client.images.v1.stats.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ImagesImagesStats, stat, path=["response"])
+        assert_matches_type(StatGetResponse, stat, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -81,7 +81,7 @@ class TestAsyncStats:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         stat = await response.parse()
-        assert_matches_type(ImagesImagesStats, stat, path=["response"])
+        assert_matches_type(StatGetResponse, stat, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -93,7 +93,7 @@ class TestAsyncStats:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             stat = await response.parse()
-            assert_matches_type(ImagesImagesStats, stat, path=["response"])
+            assert_matches_type(StatGetResponse, stat, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

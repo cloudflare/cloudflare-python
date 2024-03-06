@@ -25,9 +25,11 @@ from ..._base_client import (
     make_request_options,
 )
 from ...types.zero_trust import (
-    AccessIdentityProviders,
+    IdentityProviderGetResponse,
     IdentityProviderListResponse,
+    IdentityProviderCreateResponse,
     IdentityProviderDeleteResponse,
+    IdentityProviderUpdateResponse,
     identity_provider_create_params,
     identity_provider_update_params,
 )
@@ -74,7 +76,7 @@ class IdentityProviders(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessIdentityProviders:
+    ) -> IdentityProviderCreateResponse:
         """
         Adds a new identity provider to Access.
 
@@ -113,7 +115,7 @@ class IdentityProviders(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
-            AccessIdentityProviders,
+            IdentityProviderCreateResponse,
             self._post(
                 f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers",
                 body=maybe_transform(
@@ -133,7 +135,7 @@ class IdentityProviders(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[AccessIdentityProviders]
+                    Any, ResultWrapper[IdentityProviderCreateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -169,7 +171,7 @@ class IdentityProviders(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessIdentityProviders:
+    ) -> IdentityProviderUpdateResponse:
         """
         Updates a configured identity provider.
 
@@ -212,7 +214,7 @@ class IdentityProviders(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
-            AccessIdentityProviders,
+            IdentityProviderUpdateResponse,
             self._put(
                 f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers/{uuid}",
                 body=maybe_transform(
@@ -232,7 +234,7 @@ class IdentityProviders(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[AccessIdentityProviders]
+                    Any, ResultWrapper[IdentityProviderUpdateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -364,7 +366,7 @@ class IdentityProviders(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessIdentityProviders:
+    ) -> IdentityProviderGetResponse:
         """
         Fetches a configured identity provider.
 
@@ -401,7 +403,7 @@ class IdentityProviders(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
-            AccessIdentityProviders,
+            IdentityProviderGetResponse,
             self._get(
                 f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers/{uuid}",
                 options=make_request_options(
@@ -412,7 +414,7 @@ class IdentityProviders(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[AccessIdentityProviders]
+                    Any, ResultWrapper[IdentityProviderGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -457,7 +459,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessIdentityProviders:
+    ) -> IdentityProviderCreateResponse:
         """
         Adds a new identity provider to Access.
 
@@ -496,7 +498,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
-            AccessIdentityProviders,
+            IdentityProviderCreateResponse,
             await self._post(
                 f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers",
                 body=await async_maybe_transform(
@@ -516,7 +518,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[AccessIdentityProviders]
+                    Any, ResultWrapper[IdentityProviderCreateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -552,7 +554,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessIdentityProviders:
+    ) -> IdentityProviderUpdateResponse:
         """
         Updates a configured identity provider.
 
@@ -595,7 +597,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
-            AccessIdentityProviders,
+            IdentityProviderUpdateResponse,
             await self._put(
                 f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers/{uuid}",
                 body=await async_maybe_transform(
@@ -615,7 +617,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[AccessIdentityProviders]
+                    Any, ResultWrapper[IdentityProviderUpdateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -747,7 +749,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessIdentityProviders:
+    ) -> IdentityProviderGetResponse:
         """
         Fetches a configured identity provider.
 
@@ -784,7 +786,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
-            AccessIdentityProviders,
+            IdentityProviderGetResponse,
             await self._get(
                 f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers/{uuid}",
                 options=make_request_options(
@@ -795,7 +797,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[AccessIdentityProviders]
+                    Any, ResultWrapper[IdentityProviderGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

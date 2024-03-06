@@ -24,7 +24,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZonesBrowserCheck, browser_check_edit_params
+from ....types.zones.settings import BrowserCheckGetResponse, BrowserCheckEditResponse, browser_check_edit_params
 
 __all__ = ["BrowserCheck", "AsyncBrowserCheck"]
 
@@ -49,7 +49,7 @@ class BrowserCheck(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesBrowserCheck]:
+    ) -> Optional[BrowserCheckEditResponse]:
         """
         Browser Integrity Check is similar to Bad Behavior and looks for common HTTP
         headers abused most commonly by spammers and denies access to your page. It will
@@ -82,7 +82,7 @@ class BrowserCheck(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesBrowserCheck]], ResultWrapper[ZonesBrowserCheck]),
+            cast_to=cast(Type[Optional[BrowserCheckEditResponse]], ResultWrapper[BrowserCheckEditResponse]),
         )
 
     def get(
@@ -95,7 +95,7 @@ class BrowserCheck(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesBrowserCheck]:
+    ) -> Optional[BrowserCheckGetResponse]:
         """
         Browser Integrity Check is similar to Bad Behavior and looks for common HTTP
         headers abused most commonly by spammers and denies access to your page. It will
@@ -125,7 +125,7 @@ class BrowserCheck(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesBrowserCheck]], ResultWrapper[ZonesBrowserCheck]),
+            cast_to=cast(Type[Optional[BrowserCheckGetResponse]], ResultWrapper[BrowserCheckGetResponse]),
         )
 
 
@@ -149,7 +149,7 @@ class AsyncBrowserCheck(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesBrowserCheck]:
+    ) -> Optional[BrowserCheckEditResponse]:
         """
         Browser Integrity Check is similar to Bad Behavior and looks for common HTTP
         headers abused most commonly by spammers and denies access to your page. It will
@@ -182,7 +182,7 @@ class AsyncBrowserCheck(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesBrowserCheck]], ResultWrapper[ZonesBrowserCheck]),
+            cast_to=cast(Type[Optional[BrowserCheckEditResponse]], ResultWrapper[BrowserCheckEditResponse]),
         )
 
     async def get(
@@ -195,7 +195,7 @@ class AsyncBrowserCheck(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesBrowserCheck]:
+    ) -> Optional[BrowserCheckGetResponse]:
         """
         Browser Integrity Check is similar to Bad Behavior and looks for common HTTP
         headers abused most commonly by spammers and denies access to your page. It will
@@ -225,7 +225,7 @@ class AsyncBrowserCheck(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesBrowserCheck]], ResultWrapper[ZonesBrowserCheck]),
+            cast_to=cast(Type[Optional[BrowserCheckGetResponse]], ResultWrapper[BrowserCheckGetResponse]),
         )
 
 

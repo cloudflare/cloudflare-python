@@ -8,9 +8,12 @@ from typing_extensions import Literal
 import httpx
 
 from ...types import (
+    HealthcheckGetResponse,
+    HealthcheckEditResponse,
     HealthcheckListResponse,
-    HealthchecksHealthchecks,
+    HealthcheckCreateResponse,
     HealthcheckDeleteResponse,
+    HealthcheckUpdateResponse,
     healthcheck_edit_params,
     healthcheck_create_params,
     healthcheck_update_params,
@@ -100,7 +103,7 @@ class Healthchecks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> HealthchecksHealthchecks:
+    ) -> HealthcheckCreateResponse:
         """
         Create a new health check.
 
@@ -178,7 +181,7 @@ class Healthchecks(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[HealthchecksHealthchecks], ResultWrapper[HealthchecksHealthchecks]),
+            cast_to=cast(Type[HealthcheckCreateResponse], ResultWrapper[HealthcheckCreateResponse]),
         )
 
     def update(
@@ -225,7 +228,7 @@ class Healthchecks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> HealthchecksHealthchecks:
+    ) -> HealthcheckUpdateResponse:
         """
         Update a configured health check.
 
@@ -307,7 +310,7 @@ class Healthchecks(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[HealthchecksHealthchecks], ResultWrapper[HealthchecksHealthchecks]),
+            cast_to=cast(Type[HealthcheckUpdateResponse], ResultWrapper[HealthcheckUpdateResponse]),
         )
 
     def list(
@@ -437,7 +440,7 @@ class Healthchecks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> HealthchecksHealthchecks:
+    ) -> HealthcheckEditResponse:
         """
         Patch a configured health check.
 
@@ -519,7 +522,7 @@ class Healthchecks(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[HealthchecksHealthchecks], ResultWrapper[HealthchecksHealthchecks]),
+            cast_to=cast(Type[HealthcheckEditResponse], ResultWrapper[HealthcheckEditResponse]),
         )
 
     def get(
@@ -533,7 +536,7 @@ class Healthchecks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> HealthchecksHealthchecks:
+    ) -> HealthcheckGetResponse:
         """
         Fetch a single configured health check.
 
@@ -563,7 +566,7 @@ class Healthchecks(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[HealthchecksHealthchecks], ResultWrapper[HealthchecksHealthchecks]),
+            cast_to=cast(Type[HealthcheckGetResponse], ResultWrapper[HealthcheckGetResponse]),
         )
 
 
@@ -623,7 +626,7 @@ class AsyncHealthchecks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> HealthchecksHealthchecks:
+    ) -> HealthcheckCreateResponse:
         """
         Create a new health check.
 
@@ -701,7 +704,7 @@ class AsyncHealthchecks(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[HealthchecksHealthchecks], ResultWrapper[HealthchecksHealthchecks]),
+            cast_to=cast(Type[HealthcheckCreateResponse], ResultWrapper[HealthcheckCreateResponse]),
         )
 
     async def update(
@@ -748,7 +751,7 @@ class AsyncHealthchecks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> HealthchecksHealthchecks:
+    ) -> HealthcheckUpdateResponse:
         """
         Update a configured health check.
 
@@ -830,7 +833,7 @@ class AsyncHealthchecks(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[HealthchecksHealthchecks], ResultWrapper[HealthchecksHealthchecks]),
+            cast_to=cast(Type[HealthcheckUpdateResponse], ResultWrapper[HealthcheckUpdateResponse]),
         )
 
     async def list(
@@ -960,7 +963,7 @@ class AsyncHealthchecks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> HealthchecksHealthchecks:
+    ) -> HealthcheckEditResponse:
         """
         Patch a configured health check.
 
@@ -1042,7 +1045,7 @@ class AsyncHealthchecks(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[HealthchecksHealthchecks], ResultWrapper[HealthchecksHealthchecks]),
+            cast_to=cast(Type[HealthcheckEditResponse], ResultWrapper[HealthcheckEditResponse]),
         )
 
     async def get(
@@ -1056,7 +1059,7 @@ class AsyncHealthchecks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> HealthchecksHealthchecks:
+    ) -> HealthcheckGetResponse:
         """
         Fetch a single configured health check.
 
@@ -1086,7 +1089,7 @@ class AsyncHealthchecks(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[HealthchecksHealthchecks], ResultWrapper[HealthchecksHealthchecks]),
+            cast_to=cast(Type[HealthcheckGetResponse], ResultWrapper[HealthcheckGetResponse]),
         )
 
 

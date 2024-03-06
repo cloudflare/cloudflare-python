@@ -5,9 +5,22 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from ..._models import BaseModel
-from ..accounts import IamSchemasRole
 
-__all__ = ["InviteListResponse", "InviteListResponseItem"]
+__all__ = ["InviteListResponse", "InviteListResponseItem", "InviteListResponseItemRole"]
+
+
+class InviteListResponseItemRole(BaseModel):
+    id: str
+    """Role identifier tag."""
+
+    description: str
+    """Description of role's permissions."""
+
+    name: str
+    """Role Name."""
+
+    permissions: List[str]
+    """Access permissions for this User."""
 
 
 class InviteListResponseItem(BaseModel):
@@ -35,7 +48,7 @@ class InviteListResponseItem(BaseModel):
     organization_name: Optional[str] = None
     """Organization name."""
 
-    roles: Optional[List[IamSchemasRole]] = None
+    roles: Optional[List[InviteListResponseItemRole]] = None
     """Roles to be assigned to this user."""
 
     status: Optional[Literal["pending", "accepted", "rejected", "expired"]] = None

@@ -11,8 +11,10 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncV4PagePagination, AsyncV4PagePagination
 from cloudflare.types.images import (
-    ImagesImage,
+    V1GetResponse,
+    V1EditResponse,
     V1ListResponse,
+    V1CreateResponse,
     V1DeleteResponse,
 )
 
@@ -28,7 +30,7 @@ class TestV1:
         v1 = client.images.v1.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ImagesImage, v1, path=["response"])
+        assert_matches_type(V1CreateResponse, v1, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -38,7 +40,7 @@ class TestV1:
             metadata={},
             require_signed_urls=True,
         )
-        assert_matches_type(ImagesImage, v1, path=["response"])
+        assert_matches_type(V1CreateResponse, v1, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -50,7 +52,7 @@ class TestV1:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         v1 = response.parse()
-        assert_matches_type(ImagesImage, v1, path=["response"])
+        assert_matches_type(V1CreateResponse, v1, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -62,7 +64,7 @@ class TestV1:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             v1 = response.parse()
-            assert_matches_type(ImagesImage, v1, path=["response"])
+            assert_matches_type(V1CreateResponse, v1, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -185,7 +187,7 @@ class TestV1:
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ImagesImage, v1, path=["response"])
+        assert_matches_type(V1EditResponse, v1, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -196,7 +198,7 @@ class TestV1:
             metadata={},
             require_signed_urls=True,
         )
-        assert_matches_type(ImagesImage, v1, path=["response"])
+        assert_matches_type(V1EditResponse, v1, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -209,7 +211,7 @@ class TestV1:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         v1 = response.parse()
-        assert_matches_type(ImagesImage, v1, path=["response"])
+        assert_matches_type(V1EditResponse, v1, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -222,7 +224,7 @@ class TestV1:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             v1 = response.parse()
-            assert_matches_type(ImagesImage, v1, path=["response"])
+            assert_matches_type(V1EditResponse, v1, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -248,7 +250,7 @@ class TestV1:
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ImagesImage, v1, path=["response"])
+        assert_matches_type(V1GetResponse, v1, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -261,7 +263,7 @@ class TestV1:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         v1 = response.parse()
-        assert_matches_type(ImagesImage, v1, path=["response"])
+        assert_matches_type(V1GetResponse, v1, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -274,7 +276,7 @@ class TestV1:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             v1 = response.parse()
-            assert_matches_type(ImagesImage, v1, path=["response"])
+            assert_matches_type(V1GetResponse, v1, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -303,7 +305,7 @@ class TestAsyncV1:
         v1 = await async_client.images.v1.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ImagesImage, v1, path=["response"])
+        assert_matches_type(V1CreateResponse, v1, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -313,7 +315,7 @@ class TestAsyncV1:
             metadata={},
             require_signed_urls=True,
         )
-        assert_matches_type(ImagesImage, v1, path=["response"])
+        assert_matches_type(V1CreateResponse, v1, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -325,7 +327,7 @@ class TestAsyncV1:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         v1 = await response.parse()
-        assert_matches_type(ImagesImage, v1, path=["response"])
+        assert_matches_type(V1CreateResponse, v1, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -337,7 +339,7 @@ class TestAsyncV1:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             v1 = await response.parse()
-            assert_matches_type(ImagesImage, v1, path=["response"])
+            assert_matches_type(V1CreateResponse, v1, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -460,7 +462,7 @@ class TestAsyncV1:
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ImagesImage, v1, path=["response"])
+        assert_matches_type(V1EditResponse, v1, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -471,7 +473,7 @@ class TestAsyncV1:
             metadata={},
             require_signed_urls=True,
         )
-        assert_matches_type(ImagesImage, v1, path=["response"])
+        assert_matches_type(V1EditResponse, v1, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -484,7 +486,7 @@ class TestAsyncV1:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         v1 = await response.parse()
-        assert_matches_type(ImagesImage, v1, path=["response"])
+        assert_matches_type(V1EditResponse, v1, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -497,7 +499,7 @@ class TestAsyncV1:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             v1 = await response.parse()
-            assert_matches_type(ImagesImage, v1, path=["response"])
+            assert_matches_type(V1EditResponse, v1, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -523,7 +525,7 @@ class TestAsyncV1:
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ImagesImage, v1, path=["response"])
+        assert_matches_type(V1GetResponse, v1, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -536,7 +538,7 @@ class TestAsyncV1:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         v1 = await response.parse()
-        assert_matches_type(ImagesImage, v1, path=["response"])
+        assert_matches_type(V1GetResponse, v1, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -549,7 +551,7 @@ class TestAsyncV1:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             v1 = await response.parse()
-            assert_matches_type(ImagesImage, v1, path=["response"])
+            assert_matches_type(V1GetResponse, v1, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

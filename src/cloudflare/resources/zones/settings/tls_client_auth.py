@@ -24,7 +24,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZonesTLSClientAuth, tls_client_auth_edit_params
+from ....types.zones.settings import TLSClientAuthGetResponse, TLSClientAuthEditResponse, tls_client_auth_edit_params
 
 __all__ = ["TLSClientAuth", "AsyncTLSClientAuth"]
 
@@ -49,7 +49,7 @@ class TLSClientAuth(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesTLSClientAuth]:
+    ) -> Optional[TLSClientAuthEditResponse]:
         """
         TLS Client Auth requires Cloudflare to connect to your origin server using a
         client certificate (Enterprise Only).
@@ -79,7 +79,7 @@ class TLSClientAuth(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesTLSClientAuth]], ResultWrapper[ZonesTLSClientAuth]),
+            cast_to=cast(Type[Optional[TLSClientAuthEditResponse]], ResultWrapper[TLSClientAuthEditResponse]),
         )
 
     def get(
@@ -92,7 +92,7 @@ class TLSClientAuth(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesTLSClientAuth]:
+    ) -> Optional[TLSClientAuthGetResponse]:
         """
         TLS Client Auth requires Cloudflare to connect to your origin server using a
         client certificate (Enterprise Only).
@@ -119,7 +119,7 @@ class TLSClientAuth(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesTLSClientAuth]], ResultWrapper[ZonesTLSClientAuth]),
+            cast_to=cast(Type[Optional[TLSClientAuthGetResponse]], ResultWrapper[TLSClientAuthGetResponse]),
         )
 
 
@@ -143,7 +143,7 @@ class AsyncTLSClientAuth(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesTLSClientAuth]:
+    ) -> Optional[TLSClientAuthEditResponse]:
         """
         TLS Client Auth requires Cloudflare to connect to your origin server using a
         client certificate (Enterprise Only).
@@ -173,7 +173,7 @@ class AsyncTLSClientAuth(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesTLSClientAuth]], ResultWrapper[ZonesTLSClientAuth]),
+            cast_to=cast(Type[Optional[TLSClientAuthEditResponse]], ResultWrapper[TLSClientAuthEditResponse]),
         )
 
     async def get(
@@ -186,7 +186,7 @@ class AsyncTLSClientAuth(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesTLSClientAuth]:
+    ) -> Optional[TLSClientAuthGetResponse]:
         """
         TLS Client Auth requires Cloudflare to connect to your origin server using a
         client certificate (Enterprise Only).
@@ -213,7 +213,7 @@ class AsyncTLSClientAuth(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesTLSClientAuth]], ResultWrapper[ZonesTLSClientAuth]),
+            cast_to=cast(Type[Optional[TLSClientAuthGetResponse]], ResultWrapper[TLSClientAuthGetResponse]),
         )
 
 

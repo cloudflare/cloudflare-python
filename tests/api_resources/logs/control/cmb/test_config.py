@@ -9,7 +9,11 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.logs.control.cmb import LogcontrolCmbConfig, ConfigDeleteResponse
+from cloudflare.types.logs.control.cmb import (
+    ConfigGetResponse,
+    ConfigCreateResponse,
+    ConfigDeleteResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -23,7 +27,7 @@ class TestConfig:
         config = client.logs.control.cmb.config.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[LogcontrolCmbConfig], config, path=["response"])
+        assert_matches_type(Optional[ConfigCreateResponse], config, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -32,7 +36,7 @@ class TestConfig:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             regions="eu",
         )
-        assert_matches_type(Optional[LogcontrolCmbConfig], config, path=["response"])
+        assert_matches_type(Optional[ConfigCreateResponse], config, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -44,7 +48,7 @@ class TestConfig:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         config = response.parse()
-        assert_matches_type(Optional[LogcontrolCmbConfig], config, path=["response"])
+        assert_matches_type(Optional[ConfigCreateResponse], config, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -56,7 +60,7 @@ class TestConfig:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             config = response.parse()
-            assert_matches_type(Optional[LogcontrolCmbConfig], config, path=["response"])
+            assert_matches_type(Optional[ConfigCreateResponse], config, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -116,7 +120,7 @@ class TestConfig:
         config = client.logs.control.cmb.config.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[LogcontrolCmbConfig], config, path=["response"])
+        assert_matches_type(Optional[ConfigGetResponse], config, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -128,7 +132,7 @@ class TestConfig:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         config = response.parse()
-        assert_matches_type(Optional[LogcontrolCmbConfig], config, path=["response"])
+        assert_matches_type(Optional[ConfigGetResponse], config, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -140,7 +144,7 @@ class TestConfig:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             config = response.parse()
-            assert_matches_type(Optional[LogcontrolCmbConfig], config, path=["response"])
+            assert_matches_type(Optional[ConfigGetResponse], config, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -162,7 +166,7 @@ class TestAsyncConfig:
         config = await async_client.logs.control.cmb.config.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[LogcontrolCmbConfig], config, path=["response"])
+        assert_matches_type(Optional[ConfigCreateResponse], config, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -171,7 +175,7 @@ class TestAsyncConfig:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             regions="eu",
         )
-        assert_matches_type(Optional[LogcontrolCmbConfig], config, path=["response"])
+        assert_matches_type(Optional[ConfigCreateResponse], config, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -183,7 +187,7 @@ class TestAsyncConfig:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         config = await response.parse()
-        assert_matches_type(Optional[LogcontrolCmbConfig], config, path=["response"])
+        assert_matches_type(Optional[ConfigCreateResponse], config, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -195,7 +199,7 @@ class TestAsyncConfig:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             config = await response.parse()
-            assert_matches_type(Optional[LogcontrolCmbConfig], config, path=["response"])
+            assert_matches_type(Optional[ConfigCreateResponse], config, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -255,7 +259,7 @@ class TestAsyncConfig:
         config = await async_client.logs.control.cmb.config.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[LogcontrolCmbConfig], config, path=["response"])
+        assert_matches_type(Optional[ConfigGetResponse], config, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -267,7 +271,7 @@ class TestAsyncConfig:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         config = await response.parse()
-        assert_matches_type(Optional[LogcontrolCmbConfig], config, path=["response"])
+        assert_matches_type(Optional[ConfigGetResponse], config, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -279,7 +283,7 @@ class TestAsyncConfig:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             config = await response.parse()
-            assert_matches_type(Optional[LogcontrolCmbConfig], config, path=["response"])
+            assert_matches_type(Optional[ConfigGetResponse], config, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

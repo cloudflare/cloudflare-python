@@ -23,10 +23,7 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import (
     make_request_options,
 )
-from .....types.zero_trust.dex.http_tests import (
-    DigitalExperienceMonitoringHTTPDetailsPercentiles,
-    percentile_list_params,
-)
+from .....types.zero_trust.dex.http_tests import PercentileListResponse, percentile_list_params
 
 __all__ = ["Percentiles", "AsyncPercentiles"]
 
@@ -55,7 +52,7 @@ class Percentiles(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DigitalExperienceMonitoringHTTPDetailsPercentiles:
+    ) -> PercentileListResponse:
         """
         Get percentiles for an http test for a given time period between 1 hour and 7
         days.
@@ -103,10 +100,7 @@ class Percentiles(SyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[DigitalExperienceMonitoringHTTPDetailsPercentiles],
-                ResultWrapper[DigitalExperienceMonitoringHTTPDetailsPercentiles],
-            ),
+            cast_to=cast(Type[PercentileListResponse], ResultWrapper[PercentileListResponse]),
         )
 
 
@@ -134,7 +128,7 @@ class AsyncPercentiles(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DigitalExperienceMonitoringHTTPDetailsPercentiles:
+    ) -> PercentileListResponse:
         """
         Get percentiles for an http test for a given time period between 1 hour and 7
         days.
@@ -182,10 +176,7 @@ class AsyncPercentiles(AsyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[DigitalExperienceMonitoringHTTPDetailsPercentiles],
-                ResultWrapper[DigitalExperienceMonitoringHTTPDetailsPercentiles],
-            ),
+            cast_to=cast(Type[PercentileListResponse], ResultWrapper[PercentileListResponse]),
         )
 
 

@@ -25,8 +25,7 @@ from ......_wrappers import ResultWrapper
 from ......_base_client import (
     make_request_options,
 )
-from ......types.dns.analytics.reports import DNSDNSAnalyticsAPIReportBytime
-from ......types.dns.firewall.analytics.reports import bytime_get_params
+from ......types.dns.firewall.analytics.reports import BytimeGetResponse, bytime_get_params
 
 __all__ = ["Bytimes", "AsyncBytimes"]
 
@@ -60,7 +59,7 @@ class Bytimes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DNSDNSAnalyticsAPIReportBytime:
+    ) -> BytimeGetResponse:
         """
         Retrieves a list of aggregate metrics grouped by time interval.
 
@@ -124,7 +123,7 @@ class Bytimes(SyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DNSDNSAnalyticsAPIReportBytime], ResultWrapper[DNSDNSAnalyticsAPIReportBytime]),
+            cast_to=cast(Type[BytimeGetResponse], ResultWrapper[BytimeGetResponse]),
         )
 
 
@@ -157,7 +156,7 @@ class AsyncBytimes(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DNSDNSAnalyticsAPIReportBytime:
+    ) -> BytimeGetResponse:
         """
         Retrieves a list of aggregate metrics grouped by time interval.
 
@@ -221,7 +220,7 @@ class AsyncBytimes(AsyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DNSDNSAnalyticsAPIReportBytime], ResultWrapper[DNSDNSAnalyticsAPIReportBytime]),
+            cast_to=cast(Type[BytimeGetResponse], ResultWrapper[BytimeGetResponse]),
         )
 
 

@@ -23,7 +23,7 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.logpush import EdgeGetResponse, LogpushInstantLogsJob, edge_create_params
+from ...types.logpush import EdgeGetResponse, EdgeCreateResponse, edge_create_params
 
 __all__ = ["Edge", "AsyncEdge"]
 
@@ -50,7 +50,7 @@ class Edge(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[LogpushInstantLogsJob]:
+    ) -> Optional[EdgeCreateResponse]:
         """
         Creates a new Instant Logs job for a zone.
 
@@ -92,7 +92,7 @@ class Edge(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[LogpushInstantLogsJob]], ResultWrapper[LogpushInstantLogsJob]),
+            cast_to=cast(Type[Optional[EdgeCreateResponse]], ResultWrapper[EdgeCreateResponse]),
         )
 
     def get(
@@ -157,7 +157,7 @@ class AsyncEdge(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[LogpushInstantLogsJob]:
+    ) -> Optional[EdgeCreateResponse]:
         """
         Creates a new Instant Logs job for a zone.
 
@@ -199,7 +199,7 @@ class AsyncEdge(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[LogpushInstantLogsJob]], ResultWrapper[LogpushInstantLogsJob]),
+            cast_to=cast(Type[Optional[EdgeCreateResponse]], ResultWrapper[EdgeCreateResponse]),
         )
 
     async def get(
