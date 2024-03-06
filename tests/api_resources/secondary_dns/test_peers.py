@@ -10,9 +10,11 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types.secondary_dns import (
+    PeerGetResponse,
     PeerListResponse,
-    SecondaryDNSPeer,
+    PeerCreateResponse,
     PeerDeleteResponse,
+    PeerUpdateResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -28,7 +30,7 @@ class TestPeers:
             account_id="01a7362d577a6c3019a474fd6f485823",
             body={},
         )
-        assert_matches_type(SecondaryDNSPeer, peer, path=["response"])
+        assert_matches_type(PeerCreateResponse, peer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -41,7 +43,7 @@ class TestPeers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         peer = response.parse()
-        assert_matches_type(SecondaryDNSPeer, peer, path=["response"])
+        assert_matches_type(PeerCreateResponse, peer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -54,7 +56,7 @@ class TestPeers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             peer = response.parse()
-            assert_matches_type(SecondaryDNSPeer, peer, path=["response"])
+            assert_matches_type(PeerCreateResponse, peer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -66,7 +68,7 @@ class TestPeers:
             account_id="01a7362d577a6c3019a474fd6f485823",
             name="my-peer-1",
         )
-        assert_matches_type(SecondaryDNSPeer, peer, path=["response"])
+        assert_matches_type(PeerUpdateResponse, peer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -80,7 +82,7 @@ class TestPeers:
             port=53,
             tsig_id="69cd1e104af3e6ed3cb344f263fd0d5a",
         )
-        assert_matches_type(SecondaryDNSPeer, peer, path=["response"])
+        assert_matches_type(PeerUpdateResponse, peer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -94,7 +96,7 @@ class TestPeers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         peer = response.parse()
-        assert_matches_type(SecondaryDNSPeer, peer, path=["response"])
+        assert_matches_type(PeerUpdateResponse, peer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -108,7 +110,7 @@ class TestPeers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             peer = response.parse()
-            assert_matches_type(SecondaryDNSPeer, peer, path=["response"])
+            assert_matches_type(PeerUpdateResponse, peer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -190,7 +192,7 @@ class TestPeers:
             "23ff594956f20c2a721606e94745a8aa",
             account_id="01a7362d577a6c3019a474fd6f485823",
         )
-        assert_matches_type(SecondaryDNSPeer, peer, path=["response"])
+        assert_matches_type(PeerGetResponse, peer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -203,7 +205,7 @@ class TestPeers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         peer = response.parse()
-        assert_matches_type(SecondaryDNSPeer, peer, path=["response"])
+        assert_matches_type(PeerGetResponse, peer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -216,7 +218,7 @@ class TestPeers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             peer = response.parse()
-            assert_matches_type(SecondaryDNSPeer, peer, path=["response"])
+            assert_matches_type(PeerGetResponse, peer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -231,7 +233,7 @@ class TestAsyncPeers:
             account_id="01a7362d577a6c3019a474fd6f485823",
             body={},
         )
-        assert_matches_type(SecondaryDNSPeer, peer, path=["response"])
+        assert_matches_type(PeerCreateResponse, peer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -244,7 +246,7 @@ class TestAsyncPeers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         peer = await response.parse()
-        assert_matches_type(SecondaryDNSPeer, peer, path=["response"])
+        assert_matches_type(PeerCreateResponse, peer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -257,7 +259,7 @@ class TestAsyncPeers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             peer = await response.parse()
-            assert_matches_type(SecondaryDNSPeer, peer, path=["response"])
+            assert_matches_type(PeerCreateResponse, peer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -269,7 +271,7 @@ class TestAsyncPeers:
             account_id="01a7362d577a6c3019a474fd6f485823",
             name="my-peer-1",
         )
-        assert_matches_type(SecondaryDNSPeer, peer, path=["response"])
+        assert_matches_type(PeerUpdateResponse, peer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -283,7 +285,7 @@ class TestAsyncPeers:
             port=53,
             tsig_id="69cd1e104af3e6ed3cb344f263fd0d5a",
         )
-        assert_matches_type(SecondaryDNSPeer, peer, path=["response"])
+        assert_matches_type(PeerUpdateResponse, peer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -297,7 +299,7 @@ class TestAsyncPeers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         peer = await response.parse()
-        assert_matches_type(SecondaryDNSPeer, peer, path=["response"])
+        assert_matches_type(PeerUpdateResponse, peer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -311,7 +313,7 @@ class TestAsyncPeers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             peer = await response.parse()
-            assert_matches_type(SecondaryDNSPeer, peer, path=["response"])
+            assert_matches_type(PeerUpdateResponse, peer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -393,7 +395,7 @@ class TestAsyncPeers:
             "23ff594956f20c2a721606e94745a8aa",
             account_id="01a7362d577a6c3019a474fd6f485823",
         )
-        assert_matches_type(SecondaryDNSPeer, peer, path=["response"])
+        assert_matches_type(PeerGetResponse, peer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -406,7 +408,7 @@ class TestAsyncPeers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         peer = await response.parse()
-        assert_matches_type(SecondaryDNSPeer, peer, path=["response"])
+        assert_matches_type(PeerGetResponse, peer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -419,6 +421,6 @@ class TestAsyncPeers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             peer = await response.parse()
-            assert_matches_type(SecondaryDNSPeer, peer, path=["response"])
+            assert_matches_type(PeerGetResponse, peer, path=["response"])
 
         assert cast(Any, response.is_closed) is True

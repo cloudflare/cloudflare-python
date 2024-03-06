@@ -48,9 +48,11 @@ from .user_policy_checks import (
     AsyncUserPolicyChecksWithStreamingResponse,
 )
 from .....types.zero_trust.access import (
-    AccessApps,
+    ApplicationGetResponse,
     ApplicationListResponse,
+    ApplicationCreateResponse,
     ApplicationDeleteResponse,
+    ApplicationUpdateResponse,
     application_create_params,
     application_update_params,
 )
@@ -113,7 +115,7 @@ class Applications(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessApps:
+    ) -> ApplicationCreateResponse:
         """
         Adds a new application to Access.
 
@@ -201,7 +203,7 @@ class Applications(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
-            AccessApps,
+            ApplicationCreateResponse,
             self._post(
                 f"/{account_or_zone}/{account_or_zone_id}/access/apps",
                 body=maybe_transform(
@@ -240,7 +242,7 @@ class Applications(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[AccessApps]
+                    Any, ResultWrapper[ApplicationCreateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -280,7 +282,7 @@ class Applications(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessApps:
+    ) -> ApplicationUpdateResponse:
         """
         Updates an Access application.
 
@@ -370,7 +372,7 @@ class Applications(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
-            AccessApps,
+            ApplicationUpdateResponse,
             self._put(
                 f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}",
                 body=maybe_transform(
@@ -409,7 +411,7 @@ class Applications(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[AccessApps]
+                    Any, ResultWrapper[ApplicationUpdateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -539,7 +541,7 @@ class Applications(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessApps:
+    ) -> ApplicationGetResponse:
         """
         Fetches information about an Access application.
 
@@ -574,7 +576,7 @@ class Applications(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
-            AccessApps,
+            ApplicationGetResponse,
             self._get(
                 f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}",
                 options=make_request_options(
@@ -585,7 +587,7 @@ class Applications(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[AccessApps]
+                    Any, ResultWrapper[ApplicationGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -704,7 +706,7 @@ class AsyncApplications(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessApps:
+    ) -> ApplicationCreateResponse:
         """
         Adds a new application to Access.
 
@@ -792,7 +794,7 @@ class AsyncApplications(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
-            AccessApps,
+            ApplicationCreateResponse,
             await self._post(
                 f"/{account_or_zone}/{account_or_zone_id}/access/apps",
                 body=await async_maybe_transform(
@@ -831,7 +833,7 @@ class AsyncApplications(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[AccessApps]
+                    Any, ResultWrapper[ApplicationCreateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -871,7 +873,7 @@ class AsyncApplications(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessApps:
+    ) -> ApplicationUpdateResponse:
         """
         Updates an Access application.
 
@@ -961,7 +963,7 @@ class AsyncApplications(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
-            AccessApps,
+            ApplicationUpdateResponse,
             await self._put(
                 f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}",
                 body=await async_maybe_transform(
@@ -1000,7 +1002,7 @@ class AsyncApplications(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[AccessApps]
+                    Any, ResultWrapper[ApplicationUpdateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -1130,7 +1132,7 @@ class AsyncApplications(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessApps:
+    ) -> ApplicationGetResponse:
         """
         Fetches information about an Access application.
 
@@ -1165,7 +1167,7 @@ class AsyncApplications(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
-            AccessApps,
+            ApplicationGetResponse,
             await self._get(
                 f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}",
                 options=make_request_options(
@@ -1176,7 +1178,7 @@ class AsyncApplications(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[AccessApps]
+                    Any, ResultWrapper[ApplicationGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

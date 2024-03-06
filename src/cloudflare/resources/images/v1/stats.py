@@ -19,7 +19,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.images.v1 import ImagesImagesStats
+from ....types.images.v1 import StatGetResponse
 
 __all__ = ["Stats", "AsyncStats"]
 
@@ -43,7 +43,7 @@ class Stats(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ImagesImagesStats:
+    ) -> StatGetResponse:
         """
         Fetch usage statistics details for Cloudflare Images.
 
@@ -69,7 +69,7 @@ class Stats(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ImagesImagesStats], ResultWrapper[ImagesImagesStats]),
+            cast_to=cast(Type[StatGetResponse], ResultWrapper[StatGetResponse]),
         )
 
 
@@ -92,7 +92,7 @@ class AsyncStats(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ImagesImagesStats:
+    ) -> StatGetResponse:
         """
         Fetch usage statistics details for Cloudflare Images.
 
@@ -118,7 +118,7 @@ class AsyncStats(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ImagesImagesStats], ResultWrapper[ImagesImagesStats]),
+            cast_to=cast(Type[StatGetResponse], ResultWrapper[StatGetResponse]),
         )
 
 

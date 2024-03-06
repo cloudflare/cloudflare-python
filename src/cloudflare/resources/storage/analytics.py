@@ -24,8 +24,8 @@ from ..._base_client import (
     make_request_options,
 )
 from ...types.storage import (
-    WorkersKVSchemasResult,
-    WorkersKVComponentsSchemasResult,
+    AnalyticsListResponse,
+    AnalyticsStoredResponse,
     analytics_list_params,
     analytics_stored_params,
 )
@@ -53,7 +53,7 @@ class Analytics(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WorkersKVSchemasResult:
+    ) -> AnalyticsListResponse:
         """
         Retrieves Workers KV request metrics for the given account.
 
@@ -82,7 +82,7 @@ class Analytics(SyncAPIResource):
                 query=maybe_transform({"query": query}, analytics_list_params.AnalyticsListParams),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[WorkersKVSchemasResult], ResultWrapper[WorkersKVSchemasResult]),
+            cast_to=cast(Type[AnalyticsListResponse], ResultWrapper[AnalyticsListResponse]),
         )
 
     def stored(
@@ -96,7 +96,7 @@ class Analytics(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WorkersKVComponentsSchemasResult:
+    ) -> AnalyticsStoredResponse:
         """
         Retrieves Workers KV stored data metrics for the given account.
 
@@ -125,7 +125,7 @@ class Analytics(SyncAPIResource):
                 query=maybe_transform({"query": query}, analytics_stored_params.AnalyticsStoredParams),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[WorkersKVComponentsSchemasResult], ResultWrapper[WorkersKVComponentsSchemasResult]),
+            cast_to=cast(Type[AnalyticsStoredResponse], ResultWrapper[AnalyticsStoredResponse]),
         )
 
 
@@ -149,7 +149,7 @@ class AsyncAnalytics(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WorkersKVSchemasResult:
+    ) -> AnalyticsListResponse:
         """
         Retrieves Workers KV request metrics for the given account.
 
@@ -178,7 +178,7 @@ class AsyncAnalytics(AsyncAPIResource):
                 query=await async_maybe_transform({"query": query}, analytics_list_params.AnalyticsListParams),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[WorkersKVSchemasResult], ResultWrapper[WorkersKVSchemasResult]),
+            cast_to=cast(Type[AnalyticsListResponse], ResultWrapper[AnalyticsListResponse]),
         )
 
     async def stored(
@@ -192,7 +192,7 @@ class AsyncAnalytics(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WorkersKVComponentsSchemasResult:
+    ) -> AnalyticsStoredResponse:
         """
         Retrieves Workers KV stored data metrics for the given account.
 
@@ -221,7 +221,7 @@ class AsyncAnalytics(AsyncAPIResource):
                 query=await async_maybe_transform({"query": query}, analytics_stored_params.AnalyticsStoredParams),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[WorkersKVComponentsSchemasResult], ResultWrapper[WorkersKVComponentsSchemasResult]),
+            cast_to=cast(Type[AnalyticsStoredResponse], ResultWrapper[AnalyticsStoredResponse]),
         )
 
 

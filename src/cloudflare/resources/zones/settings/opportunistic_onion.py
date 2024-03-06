@@ -24,7 +24,11 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZonesOpportunisticOnion, opportunistic_onion_edit_params
+from ....types.zones.settings import (
+    OpportunisticOnionGetResponse,
+    OpportunisticOnionEditResponse,
+    opportunistic_onion_edit_params,
+)
 
 __all__ = ["OpportunisticOnion", "AsyncOpportunisticOnion"]
 
@@ -49,7 +53,7 @@ class OpportunisticOnion(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesOpportunisticOnion]:
+    ) -> Optional[OpportunisticOnionEditResponse]:
         """
         Add an Alt-Svc header to all legitimate requests from Tor, allowing the
         connection to use our onion services instead of exit nodes.
@@ -80,7 +84,7 @@ class OpportunisticOnion(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesOpportunisticOnion]], ResultWrapper[ZonesOpportunisticOnion]),
+            cast_to=cast(Type[Optional[OpportunisticOnionEditResponse]], ResultWrapper[OpportunisticOnionEditResponse]),
         )
 
     def get(
@@ -93,7 +97,7 @@ class OpportunisticOnion(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesOpportunisticOnion]:
+    ) -> Optional[OpportunisticOnionGetResponse]:
         """
         Add an Alt-Svc header to all legitimate requests from Tor, allowing the
         connection to use our onion services instead of exit nodes.
@@ -120,7 +124,7 @@ class OpportunisticOnion(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesOpportunisticOnion]], ResultWrapper[ZonesOpportunisticOnion]),
+            cast_to=cast(Type[Optional[OpportunisticOnionGetResponse]], ResultWrapper[OpportunisticOnionGetResponse]),
         )
 
 
@@ -144,7 +148,7 @@ class AsyncOpportunisticOnion(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesOpportunisticOnion]:
+    ) -> Optional[OpportunisticOnionEditResponse]:
         """
         Add an Alt-Svc header to all legitimate requests from Tor, allowing the
         connection to use our onion services instead of exit nodes.
@@ -177,7 +181,7 @@ class AsyncOpportunisticOnion(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesOpportunisticOnion]], ResultWrapper[ZonesOpportunisticOnion]),
+            cast_to=cast(Type[Optional[OpportunisticOnionEditResponse]], ResultWrapper[OpportunisticOnionEditResponse]),
         )
 
     async def get(
@@ -190,7 +194,7 @@ class AsyncOpportunisticOnion(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesOpportunisticOnion]:
+    ) -> Optional[OpportunisticOnionGetResponse]:
         """
         Add an Alt-Svc header to all legitimate requests from Tor, allowing the
         connection to use our onion services instead of exit nodes.
@@ -217,7 +221,7 @@ class AsyncOpportunisticOnion(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesOpportunisticOnion]], ResultWrapper[ZonesOpportunisticOnion]),
+            cast_to=cast(Type[Optional[OpportunisticOnionGetResponse]], ResultWrapper[OpportunisticOnionGetResponse]),
         )
 
 

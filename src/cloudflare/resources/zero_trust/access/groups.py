@@ -24,9 +24,11 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.zero_trust.access import (
-    AccessGroups,
+    GroupGetResponse,
     GroupListResponse,
+    GroupCreateResponse,
     GroupDeleteResponse,
+    GroupUpdateResponse,
     group_create_params,
     group_update_params,
 )
@@ -59,7 +61,7 @@ class Groups(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessGroups:
+    ) -> GroupCreateResponse:
         """
         Creates a new Access group.
 
@@ -123,7 +125,7 @@ class Groups(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessGroups], ResultWrapper[AccessGroups]),
+            cast_to=cast(Type[GroupCreateResponse], ResultWrapper[GroupCreateResponse]),
         )
 
     def update(
@@ -143,7 +145,7 @@ class Groups(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessGroups:
+    ) -> GroupUpdateResponse:
         """
         Updates a configured Access group.
 
@@ -211,7 +213,7 @@ class Groups(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessGroups], ResultWrapper[AccessGroups]),
+            cast_to=cast(Type[GroupUpdateResponse], ResultWrapper[GroupUpdateResponse]),
         )
 
     def list(
@@ -341,7 +343,7 @@ class Groups(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessGroups:
+    ) -> GroupGetResponse:
         """
         Fetches a single Access group.
 
@@ -386,7 +388,7 @@ class Groups(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessGroups], ResultWrapper[AccessGroups]),
+            cast_to=cast(Type[GroupGetResponse], ResultWrapper[GroupGetResponse]),
         )
 
 
@@ -415,7 +417,7 @@ class AsyncGroups(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessGroups:
+    ) -> GroupCreateResponse:
         """
         Creates a new Access group.
 
@@ -479,7 +481,7 @@ class AsyncGroups(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessGroups], ResultWrapper[AccessGroups]),
+            cast_to=cast(Type[GroupCreateResponse], ResultWrapper[GroupCreateResponse]),
         )
 
     async def update(
@@ -499,7 +501,7 @@ class AsyncGroups(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessGroups:
+    ) -> GroupUpdateResponse:
         """
         Updates a configured Access group.
 
@@ -567,7 +569,7 @@ class AsyncGroups(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessGroups], ResultWrapper[AccessGroups]),
+            cast_to=cast(Type[GroupUpdateResponse], ResultWrapper[GroupUpdateResponse]),
         )
 
     async def list(
@@ -697,7 +699,7 @@ class AsyncGroups(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessGroups:
+    ) -> GroupGetResponse:
         """
         Fetches a single Access group.
 
@@ -742,7 +744,7 @@ class AsyncGroups(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessGroups], ResultWrapper[AccessGroups]),
+            cast_to=cast(Type[GroupGetResponse], ResultWrapper[GroupGetResponse]),
         )
 
 

@@ -24,7 +24,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZonesWAF, waf_edit_params
+from ....types.zones.settings import WAFGetResponse, WAFEditResponse, waf_edit_params
 
 __all__ = ["WAF", "AsyncWAF"]
 
@@ -49,7 +49,7 @@ class WAF(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesWAF]:
+    ) -> Optional[WAFEditResponse]:
         """The WAF examines HTTP requests to your website.
 
         It inspects both GET and POST
@@ -88,7 +88,7 @@ class WAF(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesWAF]], ResultWrapper[ZonesWAF]),
+            cast_to=cast(Type[Optional[WAFEditResponse]], ResultWrapper[WAFEditResponse]),
         )
 
     def get(
@@ -101,7 +101,7 @@ class WAF(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesWAF]:
+    ) -> Optional[WAFGetResponse]:
         """The WAF examines HTTP requests to your website.
 
         It inspects both GET and POST
@@ -137,7 +137,7 @@ class WAF(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesWAF]], ResultWrapper[ZonesWAF]),
+            cast_to=cast(Type[Optional[WAFGetResponse]], ResultWrapper[WAFGetResponse]),
         )
 
 
@@ -161,7 +161,7 @@ class AsyncWAF(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesWAF]:
+    ) -> Optional[WAFEditResponse]:
         """The WAF examines HTTP requests to your website.
 
         It inspects both GET and POST
@@ -200,7 +200,7 @@ class AsyncWAF(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesWAF]], ResultWrapper[ZonesWAF]),
+            cast_to=cast(Type[Optional[WAFEditResponse]], ResultWrapper[WAFEditResponse]),
         )
 
     async def get(
@@ -213,7 +213,7 @@ class AsyncWAF(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesWAF]:
+    ) -> Optional[WAFGetResponse]:
         """The WAF examines HTTP requests to your website.
 
         It inspects both GET and POST
@@ -249,7 +249,7 @@ class AsyncWAF(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesWAF]], ResultWrapper[ZonesWAF]),
+            cast_to=cast(Type[Optional[WAFGetResponse]], ResultWrapper[WAFGetResponse]),
         )
 
 

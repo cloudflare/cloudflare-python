@@ -23,7 +23,11 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zero_trust.gateway import ZeroTrustGatewaySettings, audit_ssh_setting_update_params
+from ....types.zero_trust.gateway import (
+    AuditSSHSettingGetResponse,
+    AuditSSHSettingUpdateResponse,
+    audit_ssh_setting_update_params,
+)
 
 __all__ = ["AuditSSHSettings", "AsyncAuditSSHSettings"]
 
@@ -49,7 +53,7 @@ class AuditSSHSettings(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustGatewaySettings:
+    ) -> AuditSSHSettingUpdateResponse:
         """
         Updates Zero Trust Audit SSH settings.
 
@@ -82,7 +86,7 @@ class AuditSSHSettings(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustGatewaySettings], ResultWrapper[ZeroTrustGatewaySettings]),
+            cast_to=cast(Type[AuditSSHSettingUpdateResponse], ResultWrapper[AuditSSHSettingUpdateResponse]),
         )
 
     def get(
@@ -95,7 +99,7 @@ class AuditSSHSettings(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustGatewaySettings:
+    ) -> AuditSSHSettingGetResponse:
         """
         Get all Zero Trust Audit SSH settings for an account.
 
@@ -117,7 +121,7 @@ class AuditSSHSettings(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustGatewaySettings], ResultWrapper[ZeroTrustGatewaySettings]),
+            cast_to=cast(Type[AuditSSHSettingGetResponse], ResultWrapper[AuditSSHSettingGetResponse]),
         )
 
 
@@ -142,7 +146,7 @@ class AsyncAuditSSHSettings(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustGatewaySettings:
+    ) -> AuditSSHSettingUpdateResponse:
         """
         Updates Zero Trust Audit SSH settings.
 
@@ -175,7 +179,7 @@ class AsyncAuditSSHSettings(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustGatewaySettings], ResultWrapper[ZeroTrustGatewaySettings]),
+            cast_to=cast(Type[AuditSSHSettingUpdateResponse], ResultWrapper[AuditSSHSettingUpdateResponse]),
         )
 
     async def get(
@@ -188,7 +192,7 @@ class AsyncAuditSSHSettings(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustGatewaySettings:
+    ) -> AuditSSHSettingGetResponse:
         """
         Get all Zero Trust Audit SSH settings for an account.
 
@@ -210,7 +214,7 @@ class AsyncAuditSSHSettings(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustGatewaySettings], ResultWrapper[ZeroTrustGatewaySettings]),
+            cast_to=cast(Type[AuditSSHSettingGetResponse], ResultWrapper[AuditSSHSettingGetResponse]),
         )
 
 

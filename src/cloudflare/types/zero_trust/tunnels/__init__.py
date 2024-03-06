@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from .token_get_response import TokenGetResponse as TokenGetResponse
-from .tunnel_tunnel_client import TunnelTunnelClient as TunnelTunnelClient
+from .connector_get_response import ConnectorGetResponse as ConnectorGetResponse
 from .connection_get_response import ConnectionGetResponse as ConnectionGetResponse
 from .connection_delete_params import ConnectionDeleteParams as ConnectionDeleteParams
 from .management_create_params import ManagementCreateParams as ManagementCreateParams

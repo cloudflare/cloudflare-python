@@ -32,9 +32,9 @@ from .content.content import Content, AsyncContent
 from ......_base_client import (
     make_request_options,
 )
-from ......types.workers import WorkersScript
 from ......types.workers_for_platforms.dispatch.namespaces import (
-    WorkersNamespaceScript,
+    ScriptGetResponse,
+    ScriptUpdateResponse,
     script_delete_params,
     script_update_params,
 )
@@ -70,7 +70,7 @@ class Scripts(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WorkersScript:
+    ) -> ScriptUpdateResponse:
         """
         Upload a worker module to a Workers for Platforms namespace.
 
@@ -121,7 +121,7 @@ class Scripts(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[WorkersScript], ResultWrapper[WorkersScript]),
+            cast_to=cast(Type[ScriptUpdateResponse], ResultWrapper[ScriptUpdateResponse]),
         )
 
     def delete(
@@ -193,7 +193,7 @@ class Scripts(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WorkersNamespaceScript:
+    ) -> ScriptGetResponse:
         """
         Fetch information about a script uploaded to a Workers for Platforms namespace.
 
@@ -227,7 +227,7 @@ class Scripts(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[WorkersNamespaceScript], ResultWrapper[WorkersNamespaceScript]),
+            cast_to=cast(Type[ScriptGetResponse], ResultWrapper[ScriptGetResponse]),
         )
 
 
@@ -259,7 +259,7 @@ class AsyncScripts(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WorkersScript:
+    ) -> ScriptUpdateResponse:
         """
         Upload a worker module to a Workers for Platforms namespace.
 
@@ -310,7 +310,7 @@ class AsyncScripts(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[WorkersScript], ResultWrapper[WorkersScript]),
+            cast_to=cast(Type[ScriptUpdateResponse], ResultWrapper[ScriptUpdateResponse]),
         )
 
     async def delete(
@@ -382,7 +382,7 @@ class AsyncScripts(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WorkersNamespaceScript:
+    ) -> ScriptGetResponse:
         """
         Fetch information about a script uploaded to a Workers for Platforms namespace.
 
@@ -416,7 +416,7 @@ class AsyncScripts(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[WorkersNamespaceScript], ResultWrapper[WorkersNamespaceScript]),
+            cast_to=cast(Type[ScriptGetResponse], ResultWrapper[ScriptGetResponse]),
         )
 
 

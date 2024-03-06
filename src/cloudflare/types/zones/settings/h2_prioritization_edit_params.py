@@ -2,20 +2,26 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
-from .zones_h2_prioritization_param import ZonesH2PrioritizationParam
-
-__all__ = ["H2PrioritizationEditParams"]
+__all__ = ["H2PrioritizationEditParams", "Value"]
 
 
 class H2PrioritizationEditParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
-    value: Required[ZonesH2PrioritizationParam]
+    value: Required[Value]
     """
     HTTP/2 Edge Prioritization optimises the delivery of resources served through
     HTTP/2 to improve page load performance. It also supports fine control of
     content delivery when used in conjunction with Workers.
     """
+
+
+class Value(TypedDict, total=False):
+    id: Required[Literal["h2_prioritization"]]
+    """ID of the zone setting."""
+
+    value: Required[Literal["on", "off", "custom"]]
+    """Current value of the zone setting."""

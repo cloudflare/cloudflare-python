@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types import PageShieldGetZoneSettings, PageShieldUpdateZoneSettings
+from cloudflare.types import PageShieldListResponse, PageShieldUpdateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -23,7 +23,7 @@ class TestPageShield:
         page_shield = client.page_shield.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(PageShieldUpdateZoneSettings, page_shield, path=["response"])
+        assert_matches_type(PageShieldUpdateResponse, page_shield, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -34,7 +34,7 @@ class TestPageShield:
             use_cloudflare_reporting_endpoint=True,
             use_connection_url_path=True,
         )
-        assert_matches_type(PageShieldUpdateZoneSettings, page_shield, path=["response"])
+        assert_matches_type(PageShieldUpdateResponse, page_shield, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -46,7 +46,7 @@ class TestPageShield:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         page_shield = response.parse()
-        assert_matches_type(PageShieldUpdateZoneSettings, page_shield, path=["response"])
+        assert_matches_type(PageShieldUpdateResponse, page_shield, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -58,7 +58,7 @@ class TestPageShield:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             page_shield = response.parse()
-            assert_matches_type(PageShieldUpdateZoneSettings, page_shield, path=["response"])
+            assert_matches_type(PageShieldUpdateResponse, page_shield, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -76,7 +76,7 @@ class TestPageShield:
         page_shield = client.page_shield.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(PageShieldGetZoneSettings, page_shield, path=["response"])
+        assert_matches_type(PageShieldListResponse, page_shield, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -88,7 +88,7 @@ class TestPageShield:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         page_shield = response.parse()
-        assert_matches_type(PageShieldGetZoneSettings, page_shield, path=["response"])
+        assert_matches_type(PageShieldListResponse, page_shield, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -100,7 +100,7 @@ class TestPageShield:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             page_shield = response.parse()
-            assert_matches_type(PageShieldGetZoneSettings, page_shield, path=["response"])
+            assert_matches_type(PageShieldListResponse, page_shield, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -122,7 +122,7 @@ class TestAsyncPageShield:
         page_shield = await async_client.page_shield.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(PageShieldUpdateZoneSettings, page_shield, path=["response"])
+        assert_matches_type(PageShieldUpdateResponse, page_shield, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -133,7 +133,7 @@ class TestAsyncPageShield:
             use_cloudflare_reporting_endpoint=True,
             use_connection_url_path=True,
         )
-        assert_matches_type(PageShieldUpdateZoneSettings, page_shield, path=["response"])
+        assert_matches_type(PageShieldUpdateResponse, page_shield, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -145,7 +145,7 @@ class TestAsyncPageShield:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         page_shield = await response.parse()
-        assert_matches_type(PageShieldUpdateZoneSettings, page_shield, path=["response"])
+        assert_matches_type(PageShieldUpdateResponse, page_shield, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -157,7 +157,7 @@ class TestAsyncPageShield:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             page_shield = await response.parse()
-            assert_matches_type(PageShieldUpdateZoneSettings, page_shield, path=["response"])
+            assert_matches_type(PageShieldUpdateResponse, page_shield, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -175,7 +175,7 @@ class TestAsyncPageShield:
         page_shield = await async_client.page_shield.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(PageShieldGetZoneSettings, page_shield, path=["response"])
+        assert_matches_type(PageShieldListResponse, page_shield, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -187,7 +187,7 @@ class TestAsyncPageShield:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         page_shield = await response.parse()
-        assert_matches_type(PageShieldGetZoneSettings, page_shield, path=["response"])
+        assert_matches_type(PageShieldListResponse, page_shield, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -199,7 +199,7 @@ class TestAsyncPageShield:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             page_shield = await response.parse()
-            assert_matches_type(PageShieldGetZoneSettings, page_shield, path=["response"])
+            assert_matches_type(PageShieldListResponse, page_shield, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

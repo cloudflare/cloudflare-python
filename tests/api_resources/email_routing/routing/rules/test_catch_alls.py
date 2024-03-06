@@ -9,7 +9,10 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.email_routing.routing.rules import EmailCatchAllRule
+from cloudflare.types.email_routing.routing.rules import (
+    CatchAllGetResponse,
+    CatchAllUpdateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -25,7 +28,7 @@ class TestCatchAlls:
             actions=[{"type": "forward"}, {"type": "forward"}, {"type": "forward"}],
             matchers=[{"type": "all"}, {"type": "all"}, {"type": "all"}],
         )
-        assert_matches_type(EmailCatchAllRule, catch_all, path=["response"])
+        assert_matches_type(CatchAllUpdateResponse, catch_all, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -62,7 +65,7 @@ class TestCatchAlls:
             enabled=True,
             name="Send to user@example.net rule.",
         )
-        assert_matches_type(EmailCatchAllRule, catch_all, path=["response"])
+        assert_matches_type(CatchAllUpdateResponse, catch_all, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -76,7 +79,7 @@ class TestCatchAlls:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         catch_all = response.parse()
-        assert_matches_type(EmailCatchAllRule, catch_all, path=["response"])
+        assert_matches_type(CatchAllUpdateResponse, catch_all, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -90,7 +93,7 @@ class TestCatchAlls:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             catch_all = response.parse()
-            assert_matches_type(EmailCatchAllRule, catch_all, path=["response"])
+            assert_matches_type(CatchAllUpdateResponse, catch_all, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -110,7 +113,7 @@ class TestCatchAlls:
         catch_all = client.email_routing.routing.rules.catch_alls.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(EmailCatchAllRule, catch_all, path=["response"])
+        assert_matches_type(CatchAllGetResponse, catch_all, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -122,7 +125,7 @@ class TestCatchAlls:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         catch_all = response.parse()
-        assert_matches_type(EmailCatchAllRule, catch_all, path=["response"])
+        assert_matches_type(CatchAllGetResponse, catch_all, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -134,7 +137,7 @@ class TestCatchAlls:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             catch_all = response.parse()
-            assert_matches_type(EmailCatchAllRule, catch_all, path=["response"])
+            assert_matches_type(CatchAllGetResponse, catch_all, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -158,7 +161,7 @@ class TestAsyncCatchAlls:
             actions=[{"type": "forward"}, {"type": "forward"}, {"type": "forward"}],
             matchers=[{"type": "all"}, {"type": "all"}, {"type": "all"}],
         )
-        assert_matches_type(EmailCatchAllRule, catch_all, path=["response"])
+        assert_matches_type(CatchAllUpdateResponse, catch_all, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -195,7 +198,7 @@ class TestAsyncCatchAlls:
             enabled=True,
             name="Send to user@example.net rule.",
         )
-        assert_matches_type(EmailCatchAllRule, catch_all, path=["response"])
+        assert_matches_type(CatchAllUpdateResponse, catch_all, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -209,7 +212,7 @@ class TestAsyncCatchAlls:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         catch_all = await response.parse()
-        assert_matches_type(EmailCatchAllRule, catch_all, path=["response"])
+        assert_matches_type(CatchAllUpdateResponse, catch_all, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -223,7 +226,7 @@ class TestAsyncCatchAlls:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             catch_all = await response.parse()
-            assert_matches_type(EmailCatchAllRule, catch_all, path=["response"])
+            assert_matches_type(CatchAllUpdateResponse, catch_all, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -243,7 +246,7 @@ class TestAsyncCatchAlls:
         catch_all = await async_client.email_routing.routing.rules.catch_alls.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(EmailCatchAllRule, catch_all, path=["response"])
+        assert_matches_type(CatchAllGetResponse, catch_all, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -255,7 +258,7 @@ class TestAsyncCatchAlls:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         catch_all = await response.parse()
-        assert_matches_type(EmailCatchAllRule, catch_all, path=["response"])
+        assert_matches_type(CatchAllGetResponse, catch_all, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -267,7 +270,7 @@ class TestAsyncCatchAlls:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             catch_all = await response.parse()
-            assert_matches_type(EmailCatchAllRule, catch_all, path=["response"])
+            assert_matches_type(CatchAllGetResponse, catch_all, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

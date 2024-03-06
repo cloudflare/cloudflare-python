@@ -10,9 +10,11 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types.zero_trust.devices import (
+    PolicyGetResponse,
+    PolicyEditResponse,
     PolicyListResponse,
+    PolicyCreateResponse,
     PolicyDeleteResponse,
-    TeamsDevicesDeviceSettingsPolicy,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -30,7 +32,7 @@ class TestPolicies:
             name="Allow Developers",
             precedence=100,
         )
-        assert_matches_type(Optional[TeamsDevicesDeviceSettingsPolicy], policy, path=["response"])
+        assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -58,7 +60,7 @@ class TestPolicies:
             support_url="https://1.1.1.1/help",
             switch_locked=True,
         )
-        assert_matches_type(Optional[TeamsDevicesDeviceSettingsPolicy], policy, path=["response"])
+        assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -73,7 +75,7 @@ class TestPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = response.parse()
-        assert_matches_type(Optional[TeamsDevicesDeviceSettingsPolicy], policy, path=["response"])
+        assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -88,7 +90,7 @@ class TestPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = response.parse()
-            assert_matches_type(Optional[TeamsDevicesDeviceSettingsPolicy], policy, path=["response"])
+            assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -179,7 +181,7 @@ class TestPolicies:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[TeamsDevicesDeviceSettingsPolicy], policy, path=["response"])
+        assert_matches_type(Optional[PolicyEditResponse], policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -206,7 +208,7 @@ class TestPolicies:
             support_url="https://1.1.1.1/help",
             switch_locked=True,
         )
-        assert_matches_type(Optional[TeamsDevicesDeviceSettingsPolicy], policy, path=["response"])
+        assert_matches_type(Optional[PolicyEditResponse], policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -219,7 +221,7 @@ class TestPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = response.parse()
-        assert_matches_type(Optional[TeamsDevicesDeviceSettingsPolicy], policy, path=["response"])
+        assert_matches_type(Optional[PolicyEditResponse], policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -232,7 +234,7 @@ class TestPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = response.parse()
-            assert_matches_type(Optional[TeamsDevicesDeviceSettingsPolicy], policy, path=["response"])
+            assert_matches_type(Optional[PolicyEditResponse], policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -252,7 +254,7 @@ class TestPolicies:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[TeamsDevicesDeviceSettingsPolicy], policy, path=["response"])
+        assert_matches_type(Optional[PolicyGetResponse], policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -265,7 +267,7 @@ class TestPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = response.parse()
-        assert_matches_type(Optional[TeamsDevicesDeviceSettingsPolicy], policy, path=["response"])
+        assert_matches_type(Optional[PolicyGetResponse], policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -278,7 +280,7 @@ class TestPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = response.parse()
-            assert_matches_type(Optional[TeamsDevicesDeviceSettingsPolicy], policy, path=["response"])
+            assert_matches_type(Optional[PolicyGetResponse], policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -304,7 +306,7 @@ class TestAsyncPolicies:
             name="Allow Developers",
             precedence=100,
         )
-        assert_matches_type(Optional[TeamsDevicesDeviceSettingsPolicy], policy, path=["response"])
+        assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -332,7 +334,7 @@ class TestAsyncPolicies:
             support_url="https://1.1.1.1/help",
             switch_locked=True,
         )
-        assert_matches_type(Optional[TeamsDevicesDeviceSettingsPolicy], policy, path=["response"])
+        assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -347,7 +349,7 @@ class TestAsyncPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = await response.parse()
-        assert_matches_type(Optional[TeamsDevicesDeviceSettingsPolicy], policy, path=["response"])
+        assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -362,7 +364,7 @@ class TestAsyncPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = await response.parse()
-            assert_matches_type(Optional[TeamsDevicesDeviceSettingsPolicy], policy, path=["response"])
+            assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -453,7 +455,7 @@ class TestAsyncPolicies:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[TeamsDevicesDeviceSettingsPolicy], policy, path=["response"])
+        assert_matches_type(Optional[PolicyEditResponse], policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -480,7 +482,7 @@ class TestAsyncPolicies:
             support_url="https://1.1.1.1/help",
             switch_locked=True,
         )
-        assert_matches_type(Optional[TeamsDevicesDeviceSettingsPolicy], policy, path=["response"])
+        assert_matches_type(Optional[PolicyEditResponse], policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -493,7 +495,7 @@ class TestAsyncPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = await response.parse()
-        assert_matches_type(Optional[TeamsDevicesDeviceSettingsPolicy], policy, path=["response"])
+        assert_matches_type(Optional[PolicyEditResponse], policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -506,7 +508,7 @@ class TestAsyncPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = await response.parse()
-            assert_matches_type(Optional[TeamsDevicesDeviceSettingsPolicy], policy, path=["response"])
+            assert_matches_type(Optional[PolicyEditResponse], policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -526,7 +528,7 @@ class TestAsyncPolicies:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[TeamsDevicesDeviceSettingsPolicy], policy, path=["response"])
+        assert_matches_type(Optional[PolicyGetResponse], policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -539,7 +541,7 @@ class TestAsyncPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = await response.parse()
-        assert_matches_type(Optional[TeamsDevicesDeviceSettingsPolicy], policy, path=["response"])
+        assert_matches_type(Optional[PolicyGetResponse], policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -552,7 +554,7 @@ class TestAsyncPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = await response.parse()
-            assert_matches_type(Optional[TeamsDevicesDeviceSettingsPolicy], policy, path=["response"])
+            assert_matches_type(Optional[PolicyGetResponse], policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

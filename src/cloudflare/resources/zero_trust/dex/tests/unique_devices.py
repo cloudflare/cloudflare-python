@@ -23,7 +23,7 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import (
     make_request_options,
 )
-from .....types.zero_trust.dex.tests import DigitalExperienceMonitoringUniqueDevices, unique_device_list_params
+from .....types.zero_trust.dex.tests import UniqueDeviceListResponse, unique_device_list_params
 
 __all__ = ["UniqueDevices", "AsyncUniqueDevices"]
 
@@ -49,7 +49,7 @@ class UniqueDevices(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DigitalExperienceMonitoringUniqueDevices:
+    ) -> UniqueDeviceListResponse:
         """
         Returns unique count of devices that have run synthetic application monitoring
         tests in the past 7 days.
@@ -86,9 +86,7 @@ class UniqueDevices(SyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[DigitalExperienceMonitoringUniqueDevices], ResultWrapper[DigitalExperienceMonitoringUniqueDevices]
-            ),
+            cast_to=cast(Type[UniqueDeviceListResponse], ResultWrapper[UniqueDeviceListResponse]),
         )
 
 
@@ -113,7 +111,7 @@ class AsyncUniqueDevices(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DigitalExperienceMonitoringUniqueDevices:
+    ) -> UniqueDeviceListResponse:
         """
         Returns unique count of devices that have run synthetic application monitoring
         tests in the past 7 days.
@@ -150,9 +148,7 @@ class AsyncUniqueDevices(AsyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[DigitalExperienceMonitoringUniqueDevices], ResultWrapper[DigitalExperienceMonitoringUniqueDevices]
-            ),
+            cast_to=cast(Type[UniqueDeviceListResponse], ResultWrapper[UniqueDeviceListResponse]),
         )
 
 

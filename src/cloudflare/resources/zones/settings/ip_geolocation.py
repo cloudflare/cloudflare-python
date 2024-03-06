@@ -24,7 +24,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZonesIPGeolocation, ip_geolocation_edit_params
+from ....types.zones.settings import IPGeolocationGetResponse, IPGeolocationEditResponse, ip_geolocation_edit_params
 
 __all__ = ["IPGeolocation", "AsyncIPGeolocation"]
 
@@ -49,7 +49,7 @@ class IPGeolocation(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesIPGeolocation]:
+    ) -> Optional[IPGeolocationEditResponse]:
         """
         Enable IP Geolocation to have Cloudflare geolocate visitors to your website and
         pass the country code to you.
@@ -80,7 +80,7 @@ class IPGeolocation(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesIPGeolocation]], ResultWrapper[ZonesIPGeolocation]),
+            cast_to=cast(Type[Optional[IPGeolocationEditResponse]], ResultWrapper[IPGeolocationEditResponse]),
         )
 
     def get(
@@ -93,7 +93,7 @@ class IPGeolocation(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesIPGeolocation]:
+    ) -> Optional[IPGeolocationGetResponse]:
         """
         Enable IP Geolocation to have Cloudflare geolocate visitors to your website and
         pass the country code to you.
@@ -121,7 +121,7 @@ class IPGeolocation(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesIPGeolocation]], ResultWrapper[ZonesIPGeolocation]),
+            cast_to=cast(Type[Optional[IPGeolocationGetResponse]], ResultWrapper[IPGeolocationGetResponse]),
         )
 
 
@@ -145,7 +145,7 @@ class AsyncIPGeolocation(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesIPGeolocation]:
+    ) -> Optional[IPGeolocationEditResponse]:
         """
         Enable IP Geolocation to have Cloudflare geolocate visitors to your website and
         pass the country code to you.
@@ -176,7 +176,7 @@ class AsyncIPGeolocation(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesIPGeolocation]], ResultWrapper[ZonesIPGeolocation]),
+            cast_to=cast(Type[Optional[IPGeolocationEditResponse]], ResultWrapper[IPGeolocationEditResponse]),
         )
 
     async def get(
@@ -189,7 +189,7 @@ class AsyncIPGeolocation(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesIPGeolocation]:
+    ) -> Optional[IPGeolocationGetResponse]:
         """
         Enable IP Geolocation to have Cloudflare geolocate visitors to your website and
         pass the country code to you.
@@ -217,7 +217,7 @@ class AsyncIPGeolocation(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesIPGeolocation]], ResultWrapper[ZonesIPGeolocation]),
+            cast_to=cast(Type[Optional[IPGeolocationGetResponse]], ResultWrapper[IPGeolocationGetResponse]),
         )
 
 

@@ -24,7 +24,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZonesCacheLevel, cache_level_edit_params
+from ....types.zones.settings import CacheLevelGetResponse, CacheLevelEditResponse, cache_level_edit_params
 
 __all__ = ["CacheLevel", "AsyncCacheLevel"]
 
@@ -49,7 +49,7 @@ class CacheLevel(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesCacheLevel]:
+    ) -> Optional[CacheLevelEditResponse]:
         """Cache Level functions based off the setting level.
 
         The basic setting will cache
@@ -83,7 +83,7 @@ class CacheLevel(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesCacheLevel]], ResultWrapper[ZonesCacheLevel]),
+            cast_to=cast(Type[Optional[CacheLevelEditResponse]], ResultWrapper[CacheLevelEditResponse]),
         )
 
     def get(
@@ -96,7 +96,7 @@ class CacheLevel(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesCacheLevel]:
+    ) -> Optional[CacheLevelGetResponse]:
         """Cache Level functions based off the setting level.
 
         The basic setting will cache
@@ -127,7 +127,7 @@ class CacheLevel(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesCacheLevel]], ResultWrapper[ZonesCacheLevel]),
+            cast_to=cast(Type[Optional[CacheLevelGetResponse]], ResultWrapper[CacheLevelGetResponse]),
         )
 
 
@@ -151,7 +151,7 @@ class AsyncCacheLevel(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesCacheLevel]:
+    ) -> Optional[CacheLevelEditResponse]:
         """Cache Level functions based off the setting level.
 
         The basic setting will cache
@@ -185,7 +185,7 @@ class AsyncCacheLevel(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesCacheLevel]], ResultWrapper[ZonesCacheLevel]),
+            cast_to=cast(Type[Optional[CacheLevelEditResponse]], ResultWrapper[CacheLevelEditResponse]),
         )
 
     async def get(
@@ -198,7 +198,7 @@ class AsyncCacheLevel(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesCacheLevel]:
+    ) -> Optional[CacheLevelGetResponse]:
         """Cache Level functions based off the setting level.
 
         The basic setting will cache
@@ -229,7 +229,7 @@ class AsyncCacheLevel(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesCacheLevel]], ResultWrapper[ZonesCacheLevel]),
+            cast_to=cast(Type[Optional[CacheLevelGetResponse]], ResultWrapper[CacheLevelGetResponse]),
         )
 
 

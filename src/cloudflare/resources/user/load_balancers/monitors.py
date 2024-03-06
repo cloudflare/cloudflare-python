@@ -25,9 +25,12 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.user.load_balancers import (
+    MonitorGetResponse,
+    MonitorEditResponse,
     MonitorListResponse,
-    LoadBalancingMonitor,
+    MonitorCreateResponse,
     MonitorDeleteResponse,
+    MonitorUpdateResponse,
     MonitorPreviewResponse,
     MonitorReferencesResponse,
     monitor_edit_params,
@@ -73,7 +76,7 @@ class Monitors(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LoadBalancingMonitor:
+    ) -> MonitorCreateResponse:
         """
         Create a configured monitor.
 
@@ -165,7 +168,7 @@ class Monitors(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[LoadBalancingMonitor], ResultWrapper[LoadBalancingMonitor]),
+            cast_to=cast(Type[MonitorCreateResponse], ResultWrapper[MonitorCreateResponse]),
         )
 
     def update(
@@ -194,7 +197,7 @@ class Monitors(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LoadBalancingMonitor:
+    ) -> MonitorUpdateResponse:
         """
         Modify a configured monitor.
 
@@ -288,7 +291,7 @@ class Monitors(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[LoadBalancingMonitor], ResultWrapper[LoadBalancingMonitor]),
+            cast_to=cast(Type[MonitorUpdateResponse], ResultWrapper[MonitorUpdateResponse]),
         )
 
     def list(
@@ -377,7 +380,7 @@ class Monitors(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LoadBalancingMonitor:
+    ) -> MonitorEditResponse:
         """
         Apply changes to an existing monitor, overwriting the supplied properties.
 
@@ -471,7 +474,7 @@ class Monitors(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[LoadBalancingMonitor], ResultWrapper[LoadBalancingMonitor]),
+            cast_to=cast(Type[MonitorEditResponse], ResultWrapper[MonitorEditResponse]),
         )
 
     def get(
@@ -484,7 +487,7 @@ class Monitors(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LoadBalancingMonitor:
+    ) -> MonitorGetResponse:
         """
         List a single configured monitor for a user.
 
@@ -508,7 +511,7 @@ class Monitors(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[LoadBalancingMonitor], ResultWrapper[LoadBalancingMonitor]),
+            cast_to=cast(Type[MonitorGetResponse], ResultWrapper[MonitorGetResponse]),
         )
 
     def preview(
@@ -708,7 +711,7 @@ class AsyncMonitors(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LoadBalancingMonitor:
+    ) -> MonitorCreateResponse:
         """
         Create a configured monitor.
 
@@ -800,7 +803,7 @@ class AsyncMonitors(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[LoadBalancingMonitor], ResultWrapper[LoadBalancingMonitor]),
+            cast_to=cast(Type[MonitorCreateResponse], ResultWrapper[MonitorCreateResponse]),
         )
 
     async def update(
@@ -829,7 +832,7 @@ class AsyncMonitors(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LoadBalancingMonitor:
+    ) -> MonitorUpdateResponse:
         """
         Modify a configured monitor.
 
@@ -923,7 +926,7 @@ class AsyncMonitors(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[LoadBalancingMonitor], ResultWrapper[LoadBalancingMonitor]),
+            cast_to=cast(Type[MonitorUpdateResponse], ResultWrapper[MonitorUpdateResponse]),
         )
 
     async def list(
@@ -1012,7 +1015,7 @@ class AsyncMonitors(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LoadBalancingMonitor:
+    ) -> MonitorEditResponse:
         """
         Apply changes to an existing monitor, overwriting the supplied properties.
 
@@ -1106,7 +1109,7 @@ class AsyncMonitors(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[LoadBalancingMonitor], ResultWrapper[LoadBalancingMonitor]),
+            cast_to=cast(Type[MonitorEditResponse], ResultWrapper[MonitorEditResponse]),
         )
 
     async def get(
@@ -1119,7 +1122,7 @@ class AsyncMonitors(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LoadBalancingMonitor:
+    ) -> MonitorGetResponse:
         """
         List a single configured monitor for a user.
 
@@ -1143,7 +1146,7 @@ class AsyncMonitors(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[LoadBalancingMonitor], ResultWrapper[LoadBalancingMonitor]),
+            cast_to=cast(Type[MonitorGetResponse], ResultWrapper[MonitorGetResponse]),
         )
 
     async def preview(

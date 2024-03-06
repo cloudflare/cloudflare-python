@@ -25,9 +25,11 @@ from ......_base_client import (
     make_request_options,
 )
 from ......types.web3.hostnames.ipfs_universal_paths.content_lists import (
+    EntryGetResponse,
     EntryListResponse,
+    EntryCreateResponse,
     EntryDeleteResponse,
-    DwebConfigContentListEntry,
+    EntryUpdateResponse,
     entry_create_params,
     entry_update_params,
 )
@@ -58,7 +60,7 @@ class Entries(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DwebConfigContentListEntry:
+    ) -> EntryCreateResponse:
         """
         Create IPFS Universal Path Gateway Content List Entry
 
@@ -102,7 +104,7 @@ class Entries(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DwebConfigContentListEntry], ResultWrapper[DwebConfigContentListEntry]),
+            cast_to=cast(Type[EntryCreateResponse], ResultWrapper[EntryCreateResponse]),
         )
 
     def update(
@@ -120,7 +122,7 @@ class Entries(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DwebConfigContentListEntry:
+    ) -> EntryUpdateResponse:
         """
         Edit IPFS Universal Path Gateway Content List Entry
 
@@ -170,7 +172,7 @@ class Entries(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DwebConfigContentListEntry], ResultWrapper[DwebConfigContentListEntry]),
+            cast_to=cast(Type[EntryUpdateResponse], ResultWrapper[EntryUpdateResponse]),
         )
 
     def list(
@@ -280,7 +282,7 @@ class Entries(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DwebConfigContentListEntry:
+    ) -> EntryGetResponse:
         """
         IPFS Universal Path Gateway Content List Entry Details
 
@@ -316,7 +318,7 @@ class Entries(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DwebConfigContentListEntry], ResultWrapper[DwebConfigContentListEntry]),
+            cast_to=cast(Type[EntryGetResponse], ResultWrapper[EntryGetResponse]),
         )
 
 
@@ -343,7 +345,7 @@ class AsyncEntries(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DwebConfigContentListEntry:
+    ) -> EntryCreateResponse:
         """
         Create IPFS Universal Path Gateway Content List Entry
 
@@ -387,7 +389,7 @@ class AsyncEntries(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DwebConfigContentListEntry], ResultWrapper[DwebConfigContentListEntry]),
+            cast_to=cast(Type[EntryCreateResponse], ResultWrapper[EntryCreateResponse]),
         )
 
     async def update(
@@ -405,7 +407,7 @@ class AsyncEntries(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DwebConfigContentListEntry:
+    ) -> EntryUpdateResponse:
         """
         Edit IPFS Universal Path Gateway Content List Entry
 
@@ -455,7 +457,7 @@ class AsyncEntries(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DwebConfigContentListEntry], ResultWrapper[DwebConfigContentListEntry]),
+            cast_to=cast(Type[EntryUpdateResponse], ResultWrapper[EntryUpdateResponse]),
         )
 
     async def list(
@@ -565,7 +567,7 @@ class AsyncEntries(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DwebConfigContentListEntry:
+    ) -> EntryGetResponse:
         """
         IPFS Universal Path Gateway Content List Entry Details
 
@@ -601,7 +603,7 @@ class AsyncEntries(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DwebConfigContentListEntry], ResultWrapper[DwebConfigContentListEntry]),
+            cast_to=cast(Type[EntryGetResponse], ResultWrapper[EntryGetResponse]),
         )
 
 

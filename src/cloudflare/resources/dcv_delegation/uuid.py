@@ -19,7 +19,7 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.dcv_delegation import TLSCertificatesAndHostnamesUUIDObject
+from ...types.dcv_delegation import UUIDGetResponse
 
 __all__ = ["UUID", "AsyncUUID"]
 
@@ -43,7 +43,7 @@ class UUID(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TLSCertificatesAndHostnamesUUIDObject:
+    ) -> UUIDGetResponse:
         """
         Retrieve the account and zone specific unique identifier used as part of the
         CNAME target for DCV Delegation.
@@ -70,9 +70,7 @@ class UUID(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[TLSCertificatesAndHostnamesUUIDObject], ResultWrapper[TLSCertificatesAndHostnamesUUIDObject]
-            ),
+            cast_to=cast(Type[UUIDGetResponse], ResultWrapper[UUIDGetResponse]),
         )
 
 
@@ -95,7 +93,7 @@ class AsyncUUID(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TLSCertificatesAndHostnamesUUIDObject:
+    ) -> UUIDGetResponse:
         """
         Retrieve the account and zone specific unique identifier used as part of the
         CNAME target for DCV Delegation.
@@ -122,9 +120,7 @@ class AsyncUUID(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[TLSCertificatesAndHostnamesUUIDObject], ResultWrapper[TLSCertificatesAndHostnamesUUIDObject]
-            ),
+            cast_to=cast(Type[UUIDGetResponse], ResultWrapper[UUIDGetResponse]),
         )
 
 

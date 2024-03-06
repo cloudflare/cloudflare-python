@@ -25,9 +25,11 @@ from ....._base_client import (
     make_request_options,
 )
 from .....types.zero_trust.access.applications import (
-    AccessPolicies,
+    PolicyGetResponse,
     PolicyListResponse,
+    PolicyCreateResponse,
     PolicyDeleteResponse,
+    PolicyUpdateResponse,
     policy_create_params,
     policy_update_params,
 )
@@ -68,7 +70,7 @@ class Policies(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessPolicies:
+    ) -> PolicyCreateResponse:
         """
         Create a new Access policy for an application.
 
@@ -162,7 +164,7 @@ class Policies(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessPolicies], ResultWrapper[AccessPolicies]),
+            cast_to=cast(Type[PolicyCreateResponse], ResultWrapper[PolicyCreateResponse]),
         )
 
     def update(
@@ -190,7 +192,7 @@ class Policies(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessPolicies:
+    ) -> PolicyUpdateResponse:
         """
         Update a configured Access policy.
 
@@ -288,7 +290,7 @@ class Policies(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessPolicies], ResultWrapper[AccessPolicies]),
+            cast_to=cast(Type[PolicyUpdateResponse], ResultWrapper[PolicyUpdateResponse]),
         )
 
     def list(
@@ -429,7 +431,7 @@ class Policies(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessPolicies:
+    ) -> PolicyGetResponse:
         """
         Fetches a single Access policy.
 
@@ -478,7 +480,7 @@ class Policies(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessPolicies], ResultWrapper[AccessPolicies]),
+            cast_to=cast(Type[PolicyGetResponse], ResultWrapper[PolicyGetResponse]),
         )
 
 
@@ -515,7 +517,7 @@ class AsyncPolicies(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessPolicies:
+    ) -> PolicyCreateResponse:
         """
         Create a new Access policy for an application.
 
@@ -609,7 +611,7 @@ class AsyncPolicies(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessPolicies], ResultWrapper[AccessPolicies]),
+            cast_to=cast(Type[PolicyCreateResponse], ResultWrapper[PolicyCreateResponse]),
         )
 
     async def update(
@@ -637,7 +639,7 @@ class AsyncPolicies(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessPolicies:
+    ) -> PolicyUpdateResponse:
         """
         Update a configured Access policy.
 
@@ -735,7 +737,7 @@ class AsyncPolicies(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessPolicies], ResultWrapper[AccessPolicies]),
+            cast_to=cast(Type[PolicyUpdateResponse], ResultWrapper[PolicyUpdateResponse]),
         )
 
     async def list(
@@ -876,7 +878,7 @@ class AsyncPolicies(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessPolicies:
+    ) -> PolicyGetResponse:
         """
         Fetches a single Access policy.
 
@@ -925,7 +927,7 @@ class AsyncPolicies(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessPolicies], ResultWrapper[AccessPolicies]),
+            cast_to=cast(Type[PolicyGetResponse], ResultWrapper[PolicyGetResponse]),
         )
 
 

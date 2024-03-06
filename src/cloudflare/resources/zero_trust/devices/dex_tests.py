@@ -24,9 +24,11 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.zero_trust.devices import (
+    DEXTestGetResponse,
     DEXTestListResponse,
+    DEXTestCreateResponse,
     DEXTestDeleteResponse,
-    TeamsDevicesDeviceDEXTestSchemasHTTP,
+    DEXTestUpdateResponse,
     dex_test_create_params,
     dex_test_update_params,
 )
@@ -58,7 +60,7 @@ class DEXTests(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[TeamsDevicesDeviceDEXTestSchemasHTTP]:
+    ) -> Optional[DEXTestCreateResponse]:
         """
         Create a DEX test.
 
@@ -101,10 +103,7 @@ class DEXTests(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[TeamsDevicesDeviceDEXTestSchemasHTTP]],
-                ResultWrapper[TeamsDevicesDeviceDEXTestSchemasHTTP],
-            ),
+            cast_to=cast(Type[Optional[DEXTestCreateResponse]], ResultWrapper[DEXTestCreateResponse]),
         )
 
     def update(
@@ -123,7 +122,7 @@ class DEXTests(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[TeamsDevicesDeviceDEXTestSchemasHTTP]:
+    ) -> Optional[DEXTestUpdateResponse]:
         """
         Update a DEX test.
 
@@ -170,10 +169,7 @@ class DEXTests(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[TeamsDevicesDeviceDEXTestSchemasHTTP]],
-                ResultWrapper[TeamsDevicesDeviceDEXTestSchemasHTTP],
-            ),
+            cast_to=cast(Type[Optional[DEXTestUpdateResponse]], ResultWrapper[DEXTestUpdateResponse]),
         )
 
     def list(
@@ -264,7 +260,7 @@ class DEXTests(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[TeamsDevicesDeviceDEXTestSchemasHTTP]:
+    ) -> Optional[DEXTestGetResponse]:
         """
         Fetch a single DEX test.
 
@@ -290,10 +286,7 @@ class DEXTests(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[TeamsDevicesDeviceDEXTestSchemasHTTP]],
-                ResultWrapper[TeamsDevicesDeviceDEXTestSchemasHTTP],
-            ),
+            cast_to=cast(Type[Optional[DEXTestGetResponse]], ResultWrapper[DEXTestGetResponse]),
         )
 
 
@@ -321,7 +314,7 @@ class AsyncDEXTests(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[TeamsDevicesDeviceDEXTestSchemasHTTP]:
+    ) -> Optional[DEXTestCreateResponse]:
         """
         Create a DEX test.
 
@@ -364,10 +357,7 @@ class AsyncDEXTests(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[TeamsDevicesDeviceDEXTestSchemasHTTP]],
-                ResultWrapper[TeamsDevicesDeviceDEXTestSchemasHTTP],
-            ),
+            cast_to=cast(Type[Optional[DEXTestCreateResponse]], ResultWrapper[DEXTestCreateResponse]),
         )
 
     async def update(
@@ -386,7 +376,7 @@ class AsyncDEXTests(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[TeamsDevicesDeviceDEXTestSchemasHTTP]:
+    ) -> Optional[DEXTestUpdateResponse]:
         """
         Update a DEX test.
 
@@ -433,10 +423,7 @@ class AsyncDEXTests(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[TeamsDevicesDeviceDEXTestSchemasHTTP]],
-                ResultWrapper[TeamsDevicesDeviceDEXTestSchemasHTTP],
-            ),
+            cast_to=cast(Type[Optional[DEXTestUpdateResponse]], ResultWrapper[DEXTestUpdateResponse]),
         )
 
     async def list(
@@ -527,7 +514,7 @@ class AsyncDEXTests(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[TeamsDevicesDeviceDEXTestSchemasHTTP]:
+    ) -> Optional[DEXTestGetResponse]:
         """
         Fetch a single DEX test.
 
@@ -553,10 +540,7 @@ class AsyncDEXTests(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[TeamsDevicesDeviceDEXTestSchemasHTTP]],
-                ResultWrapper[TeamsDevicesDeviceDEXTestSchemasHTTP],
-            ),
+            cast_to=cast(Type[Optional[DEXTestGetResponse]], ResultWrapper[DEXTestGetResponse]),
         )
 
 

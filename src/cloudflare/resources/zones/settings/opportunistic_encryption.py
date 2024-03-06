@@ -24,7 +24,11 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZonesOpportunisticEncryption, opportunistic_encryption_edit_params
+from ....types.zones.settings import (
+    OpportunisticEncryptionGetResponse,
+    OpportunisticEncryptionEditResponse,
+    opportunistic_encryption_edit_params,
+)
 
 __all__ = ["OpportunisticEncryption", "AsyncOpportunisticEncryption"]
 
@@ -49,7 +53,7 @@ class OpportunisticEncryption(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesOpportunisticEncryption]:
+    ) -> Optional[OpportunisticEncryptionEditResponse]:
         """
         Changes Opportunistic Encryption setting.
 
@@ -81,7 +85,9 @@ class OpportunisticEncryption(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesOpportunisticEncryption]], ResultWrapper[ZonesOpportunisticEncryption]),
+            cast_to=cast(
+                Type[Optional[OpportunisticEncryptionEditResponse]], ResultWrapper[OpportunisticEncryptionEditResponse]
+            ),
         )
 
     def get(
@@ -94,7 +100,7 @@ class OpportunisticEncryption(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesOpportunisticEncryption]:
+    ) -> Optional[OpportunisticEncryptionGetResponse]:
         """
         Gets Opportunistic Encryption setting.
 
@@ -120,7 +126,9 @@ class OpportunisticEncryption(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesOpportunisticEncryption]], ResultWrapper[ZonesOpportunisticEncryption]),
+            cast_to=cast(
+                Type[Optional[OpportunisticEncryptionGetResponse]], ResultWrapper[OpportunisticEncryptionGetResponse]
+            ),
         )
 
 
@@ -144,7 +152,7 @@ class AsyncOpportunisticEncryption(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesOpportunisticEncryption]:
+    ) -> Optional[OpportunisticEncryptionEditResponse]:
         """
         Changes Opportunistic Encryption setting.
 
@@ -176,7 +184,9 @@ class AsyncOpportunisticEncryption(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesOpportunisticEncryption]], ResultWrapper[ZonesOpportunisticEncryption]),
+            cast_to=cast(
+                Type[Optional[OpportunisticEncryptionEditResponse]], ResultWrapper[OpportunisticEncryptionEditResponse]
+            ),
         )
 
     async def get(
@@ -189,7 +199,7 @@ class AsyncOpportunisticEncryption(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesOpportunisticEncryption]:
+    ) -> Optional[OpportunisticEncryptionGetResponse]:
         """
         Gets Opportunistic Encryption setting.
 
@@ -215,7 +225,9 @@ class AsyncOpportunisticEncryption(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesOpportunisticEncryption]], ResultWrapper[ZonesOpportunisticEncryption]),
+            cast_to=cast(
+                Type[Optional[OpportunisticEncryptionGetResponse]], ResultWrapper[OpportunisticEncryptionGetResponse]
+            ),
         )
 
 

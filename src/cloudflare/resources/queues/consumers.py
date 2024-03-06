@@ -25,9 +25,9 @@ from ..._base_client import (
 )
 from ...types.queues import (
     ConsumerGetResponse,
+    ConsumerCreateResponse,
     ConsumerDeleteResponse,
-    WorkersConsumerCreated,
-    WorkersConsumerUpdated,
+    ConsumerUpdateResponse,
     consumer_create_params,
     consumer_update_params,
 )
@@ -56,7 +56,7 @@ class Consumers(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[WorkersConsumerCreated]:
+    ) -> Optional[ConsumerCreateResponse]:
         """
         Creates a new consumer for a queue.
 
@@ -85,7 +85,7 @@ class Consumers(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[WorkersConsumerCreated]], ResultWrapper[WorkersConsumerCreated]),
+            cast_to=cast(Type[Optional[ConsumerCreateResponse]], ResultWrapper[ConsumerCreateResponse]),
         )
 
     def update(
@@ -101,7 +101,7 @@ class Consumers(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[WorkersConsumerUpdated]:
+    ) -> Optional[ConsumerUpdateResponse]:
         """
         Updates the consumer for a queue, or creates one if it does not exist.
 
@@ -132,7 +132,7 @@ class Consumers(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[WorkersConsumerUpdated]], ResultWrapper[WorkersConsumerUpdated]),
+            cast_to=cast(Type[Optional[ConsumerUpdateResponse]], ResultWrapper[ConsumerUpdateResponse]),
         )
 
     def delete(
@@ -249,7 +249,7 @@ class AsyncConsumers(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[WorkersConsumerCreated]:
+    ) -> Optional[ConsumerCreateResponse]:
         """
         Creates a new consumer for a queue.
 
@@ -278,7 +278,7 @@ class AsyncConsumers(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[WorkersConsumerCreated]], ResultWrapper[WorkersConsumerCreated]),
+            cast_to=cast(Type[Optional[ConsumerCreateResponse]], ResultWrapper[ConsumerCreateResponse]),
         )
 
     async def update(
@@ -294,7 +294,7 @@ class AsyncConsumers(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[WorkersConsumerUpdated]:
+    ) -> Optional[ConsumerUpdateResponse]:
         """
         Updates the consumer for a queue, or creates one if it does not exist.
 
@@ -325,7 +325,7 @@ class AsyncConsumers(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[WorkersConsumerUpdated]], ResultWrapper[WorkersConsumerUpdated]),
+            cast_to=cast(Type[Optional[ConsumerUpdateResponse]], ResultWrapper[ConsumerUpdateResponse]),
         )
 
     async def delete(

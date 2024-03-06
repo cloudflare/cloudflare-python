@@ -10,7 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare._utils import parse_datetime
-from cloudflare.types.dns.analytics.reports import DNSDNSAnalyticsAPIReportBytime
+from cloudflare.types.dns.analytics.reports import BytimeGetResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -24,7 +24,7 @@ class TestBytimes:
         bytime = client.dns.analytics.reports.bytimes.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(DNSDNSAnalyticsAPIReportBytime, bytime, path=["response"])
+        assert_matches_type(BytimeGetResponse, bytime, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -40,7 +40,7 @@ class TestBytimes:
             time_delta="hour",
             until=parse_datetime("2023-11-11T13:00:00Z"),
         )
-        assert_matches_type(DNSDNSAnalyticsAPIReportBytime, bytime, path=["response"])
+        assert_matches_type(BytimeGetResponse, bytime, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -52,7 +52,7 @@ class TestBytimes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         bytime = response.parse()
-        assert_matches_type(DNSDNSAnalyticsAPIReportBytime, bytime, path=["response"])
+        assert_matches_type(BytimeGetResponse, bytime, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -64,7 +64,7 @@ class TestBytimes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             bytime = response.parse()
-            assert_matches_type(DNSDNSAnalyticsAPIReportBytime, bytime, path=["response"])
+            assert_matches_type(BytimeGetResponse, bytime, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -86,7 +86,7 @@ class TestAsyncBytimes:
         bytime = await async_client.dns.analytics.reports.bytimes.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(DNSDNSAnalyticsAPIReportBytime, bytime, path=["response"])
+        assert_matches_type(BytimeGetResponse, bytime, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -102,7 +102,7 @@ class TestAsyncBytimes:
             time_delta="hour",
             until=parse_datetime("2023-11-11T13:00:00Z"),
         )
-        assert_matches_type(DNSDNSAnalyticsAPIReportBytime, bytime, path=["response"])
+        assert_matches_type(BytimeGetResponse, bytime, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -114,7 +114,7 @@ class TestAsyncBytimes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         bytime = await response.parse()
-        assert_matches_type(DNSDNSAnalyticsAPIReportBytime, bytime, path=["response"])
+        assert_matches_type(BytimeGetResponse, bytime, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -126,7 +126,7 @@ class TestAsyncBytimes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             bytime = await response.parse()
-            assert_matches_type(DNSDNSAnalyticsAPIReportBytime, bytime, path=["response"])
+            assert_matches_type(BytimeGetResponse, bytime, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

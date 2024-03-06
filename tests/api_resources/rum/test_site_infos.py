@@ -10,8 +10,11 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types.rum import (
-    RUMSite,
+    SiteInfoGetResponse,
+    SiteInfoListResponse,
+    SiteInfoCreateResponse,
     SiteInfoDeleteResponse,
+    SiteInfoUpdateResponse,
 )
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 
@@ -27,7 +30,7 @@ class TestSiteInfos:
         site_info = client.rum.site_infos.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RUMSite], site_info, path=["response"])
+        assert_matches_type(Optional[SiteInfoCreateResponse], site_info, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -38,7 +41,7 @@ class TestSiteInfos:
             host="example.com",
             zone_tag="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RUMSite], site_info, path=["response"])
+        assert_matches_type(Optional[SiteInfoCreateResponse], site_info, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -50,7 +53,7 @@ class TestSiteInfos:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         site_info = response.parse()
-        assert_matches_type(Optional[RUMSite], site_info, path=["response"])
+        assert_matches_type(Optional[SiteInfoCreateResponse], site_info, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -62,7 +65,7 @@ class TestSiteInfos:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             site_info = response.parse()
-            assert_matches_type(Optional[RUMSite], site_info, path=["response"])
+            assert_matches_type(Optional[SiteInfoCreateResponse], site_info, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -81,7 +84,7 @@ class TestSiteInfos:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RUMSite], site_info, path=["response"])
+        assert_matches_type(Optional[SiteInfoUpdateResponse], site_info, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -93,7 +96,7 @@ class TestSiteInfos:
             host="example.com",
             zone_tag="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RUMSite], site_info, path=["response"])
+        assert_matches_type(Optional[SiteInfoUpdateResponse], site_info, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -106,7 +109,7 @@ class TestSiteInfos:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         site_info = response.parse()
-        assert_matches_type(Optional[RUMSite], site_info, path=["response"])
+        assert_matches_type(Optional[SiteInfoUpdateResponse], site_info, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -119,7 +122,7 @@ class TestSiteInfos:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             site_info = response.parse()
-            assert_matches_type(Optional[RUMSite], site_info, path=["response"])
+            assert_matches_type(Optional[SiteInfoUpdateResponse], site_info, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -144,7 +147,7 @@ class TestSiteInfos:
         site_info = client.rum.site_infos.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncV4PagePaginationArray[RUMSite], site_info, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[SiteInfoListResponse], site_info, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -155,7 +158,7 @@ class TestSiteInfos:
             page=1,
             per_page=10,
         )
-        assert_matches_type(SyncV4PagePaginationArray[RUMSite], site_info, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[SiteInfoListResponse], site_info, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -167,7 +170,7 @@ class TestSiteInfos:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         site_info = response.parse()
-        assert_matches_type(SyncV4PagePaginationArray[RUMSite], site_info, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[SiteInfoListResponse], site_info, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -179,7 +182,7 @@ class TestSiteInfos:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             site_info = response.parse()
-            assert_matches_type(SyncV4PagePaginationArray[RUMSite], site_info, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[SiteInfoListResponse], site_info, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -250,7 +253,7 @@ class TestSiteInfos:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RUMSite], site_info, path=["response"])
+        assert_matches_type(Optional[SiteInfoGetResponse], site_info, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -263,7 +266,7 @@ class TestSiteInfos:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         site_info = response.parse()
-        assert_matches_type(Optional[RUMSite], site_info, path=["response"])
+        assert_matches_type(Optional[SiteInfoGetResponse], site_info, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -276,7 +279,7 @@ class TestSiteInfos:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             site_info = response.parse()
-            assert_matches_type(Optional[RUMSite], site_info, path=["response"])
+            assert_matches_type(Optional[SiteInfoGetResponse], site_info, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -305,7 +308,7 @@ class TestAsyncSiteInfos:
         site_info = await async_client.rum.site_infos.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RUMSite], site_info, path=["response"])
+        assert_matches_type(Optional[SiteInfoCreateResponse], site_info, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -316,7 +319,7 @@ class TestAsyncSiteInfos:
             host="example.com",
             zone_tag="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RUMSite], site_info, path=["response"])
+        assert_matches_type(Optional[SiteInfoCreateResponse], site_info, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -328,7 +331,7 @@ class TestAsyncSiteInfos:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         site_info = await response.parse()
-        assert_matches_type(Optional[RUMSite], site_info, path=["response"])
+        assert_matches_type(Optional[SiteInfoCreateResponse], site_info, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -340,7 +343,7 @@ class TestAsyncSiteInfos:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             site_info = await response.parse()
-            assert_matches_type(Optional[RUMSite], site_info, path=["response"])
+            assert_matches_type(Optional[SiteInfoCreateResponse], site_info, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -359,7 +362,7 @@ class TestAsyncSiteInfos:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RUMSite], site_info, path=["response"])
+        assert_matches_type(Optional[SiteInfoUpdateResponse], site_info, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -371,7 +374,7 @@ class TestAsyncSiteInfos:
             host="example.com",
             zone_tag="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RUMSite], site_info, path=["response"])
+        assert_matches_type(Optional[SiteInfoUpdateResponse], site_info, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -384,7 +387,7 @@ class TestAsyncSiteInfos:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         site_info = await response.parse()
-        assert_matches_type(Optional[RUMSite], site_info, path=["response"])
+        assert_matches_type(Optional[SiteInfoUpdateResponse], site_info, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -397,7 +400,7 @@ class TestAsyncSiteInfos:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             site_info = await response.parse()
-            assert_matches_type(Optional[RUMSite], site_info, path=["response"])
+            assert_matches_type(Optional[SiteInfoUpdateResponse], site_info, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -422,7 +425,7 @@ class TestAsyncSiteInfos:
         site_info = await async_client.rum.site_infos.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncV4PagePaginationArray[RUMSite], site_info, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[SiteInfoListResponse], site_info, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -433,7 +436,7 @@ class TestAsyncSiteInfos:
             page=1,
             per_page=10,
         )
-        assert_matches_type(AsyncV4PagePaginationArray[RUMSite], site_info, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[SiteInfoListResponse], site_info, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -445,7 +448,7 @@ class TestAsyncSiteInfos:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         site_info = await response.parse()
-        assert_matches_type(AsyncV4PagePaginationArray[RUMSite], site_info, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[SiteInfoListResponse], site_info, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -457,7 +460,7 @@ class TestAsyncSiteInfos:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             site_info = await response.parse()
-            assert_matches_type(AsyncV4PagePaginationArray[RUMSite], site_info, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[SiteInfoListResponse], site_info, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -528,7 +531,7 @@ class TestAsyncSiteInfos:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RUMSite], site_info, path=["response"])
+        assert_matches_type(Optional[SiteInfoGetResponse], site_info, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -541,7 +544,7 @@ class TestAsyncSiteInfos:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         site_info = await response.parse()
-        assert_matches_type(Optional[RUMSite], site_info, path=["response"])
+        assert_matches_type(Optional[SiteInfoGetResponse], site_info, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -554,7 +557,7 @@ class TestAsyncSiteInfos:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             site_info = await response.parse()
-            assert_matches_type(Optional[RUMSite], site_info, path=["response"])
+            assert_matches_type(Optional[SiteInfoGetResponse], site_info, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

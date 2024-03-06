@@ -1,9 +1,21 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from typing import List
+from typing import List, Optional
 
-from .snippet import Snippet
+from .._models import BaseModel
 
-__all__ = ["SnippetListResponse"]
+__all__ = ["SnippetListResponse", "SnippetListResponseItem"]
 
-SnippetListResponse = List[Snippet]
+
+class SnippetListResponseItem(BaseModel):
+    created_on: Optional[str] = None
+    """Creation time of the snippet"""
+
+    modified_on: Optional[str] = None
+    """Modification time of the snippet"""
+
+    snippet_name: Optional[str] = None
+    """Snippet identifying name"""
+
+
+SnippetListResponse = List[SnippetListResponseItem]

@@ -2,16 +2,26 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
-from .zones_nel_param import ZonesNELParam
-
-__all__ = ["NELEditParams"]
+__all__ = ["NELEditParams", "Value", "ValueValue"]
 
 
 class NELEditParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
-    value: Required[ZonesNELParam]
+    value: Required[Value]
     """Enable Network Error Logging reporting on your zone. (Beta)"""
+
+
+class ValueValue(TypedDict, total=False):
+    enabled: bool
+
+
+class Value(TypedDict, total=False):
+    id: Required[Literal["nel"]]
+    """Zone setting identifier."""
+
+    value: Required[ValueValue]
+    """Current value of the zone setting."""

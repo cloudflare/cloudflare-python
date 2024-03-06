@@ -19,7 +19,13 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zero_trust.access import AccessBookmarks, BookmarkListResponse, BookmarkDeleteResponse
+from ....types.zero_trust.access import (
+    BookmarkGetResponse,
+    BookmarkListResponse,
+    BookmarkCreateResponse,
+    BookmarkDeleteResponse,
+    BookmarkUpdateResponse,
+)
 
 __all__ = ["Bookmarks", "AsyncBookmarks"]
 
@@ -44,7 +50,7 @@ class Bookmarks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessBookmarks:
+    ) -> BookmarkCreateResponse:
         """
         Create a new Bookmark application.
 
@@ -70,7 +76,7 @@ class Bookmarks(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessBookmarks], ResultWrapper[AccessBookmarks]),
+            cast_to=cast(Type[BookmarkCreateResponse], ResultWrapper[BookmarkCreateResponse]),
         )
 
     def update(
@@ -84,7 +90,7 @@ class Bookmarks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessBookmarks:
+    ) -> BookmarkUpdateResponse:
         """
         Updates a configured Bookmark application.
 
@@ -110,7 +116,7 @@ class Bookmarks(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessBookmarks], ResultWrapper[AccessBookmarks]),
+            cast_to=cast(Type[BookmarkUpdateResponse], ResultWrapper[BookmarkUpdateResponse]),
         )
 
     def list(
@@ -199,7 +205,7 @@ class Bookmarks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessBookmarks:
+    ) -> BookmarkGetResponse:
         """
         Fetches a single Bookmark application.
 
@@ -225,7 +231,7 @@ class Bookmarks(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessBookmarks], ResultWrapper[AccessBookmarks]),
+            cast_to=cast(Type[BookmarkGetResponse], ResultWrapper[BookmarkGetResponse]),
         )
 
 
@@ -249,7 +255,7 @@ class AsyncBookmarks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessBookmarks:
+    ) -> BookmarkCreateResponse:
         """
         Create a new Bookmark application.
 
@@ -275,7 +281,7 @@ class AsyncBookmarks(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessBookmarks], ResultWrapper[AccessBookmarks]),
+            cast_to=cast(Type[BookmarkCreateResponse], ResultWrapper[BookmarkCreateResponse]),
         )
 
     async def update(
@@ -289,7 +295,7 @@ class AsyncBookmarks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessBookmarks:
+    ) -> BookmarkUpdateResponse:
         """
         Updates a configured Bookmark application.
 
@@ -315,7 +321,7 @@ class AsyncBookmarks(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessBookmarks], ResultWrapper[AccessBookmarks]),
+            cast_to=cast(Type[BookmarkUpdateResponse], ResultWrapper[BookmarkUpdateResponse]),
         )
 
     async def list(
@@ -404,7 +410,7 @@ class AsyncBookmarks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessBookmarks:
+    ) -> BookmarkGetResponse:
         """
         Fetches a single Bookmark application.
 
@@ -430,7 +436,7 @@ class AsyncBookmarks(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessBookmarks], ResultWrapper[AccessBookmarks]),
+            cast_to=cast(Type[BookmarkGetResponse], ResultWrapper[BookmarkGetResponse]),
         )
 
 

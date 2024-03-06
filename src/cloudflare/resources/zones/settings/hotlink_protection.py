@@ -24,7 +24,11 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZonesHotlinkProtection, hotlink_protection_edit_params
+from ....types.zones.settings import (
+    HotlinkProtectionGetResponse,
+    HotlinkProtectionEditResponse,
+    hotlink_protection_edit_params,
+)
 
 __all__ = ["HotlinkProtection", "AsyncHotlinkProtection"]
 
@@ -49,7 +53,7 @@ class HotlinkProtection(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesHotlinkProtection]:
+    ) -> Optional[HotlinkProtectionEditResponse]:
         """
         When enabled, the Hotlink Protection option ensures that other sites cannot suck
         up your bandwidth by building pages that use images hosted on your site. Anytime
@@ -84,7 +88,7 @@ class HotlinkProtection(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesHotlinkProtection]], ResultWrapper[ZonesHotlinkProtection]),
+            cast_to=cast(Type[Optional[HotlinkProtectionEditResponse]], ResultWrapper[HotlinkProtectionEditResponse]),
         )
 
     def get(
@@ -97,7 +101,7 @@ class HotlinkProtection(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesHotlinkProtection]:
+    ) -> Optional[HotlinkProtectionGetResponse]:
         """
         When enabled, the Hotlink Protection option ensures that other sites cannot suck
         up your bandwidth by building pages that use images hosted on your site. Anytime
@@ -129,7 +133,7 @@ class HotlinkProtection(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesHotlinkProtection]], ResultWrapper[ZonesHotlinkProtection]),
+            cast_to=cast(Type[Optional[HotlinkProtectionGetResponse]], ResultWrapper[HotlinkProtectionGetResponse]),
         )
 
 
@@ -153,7 +157,7 @@ class AsyncHotlinkProtection(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesHotlinkProtection]:
+    ) -> Optional[HotlinkProtectionEditResponse]:
         """
         When enabled, the Hotlink Protection option ensures that other sites cannot suck
         up your bandwidth by building pages that use images hosted on your site. Anytime
@@ -190,7 +194,7 @@ class AsyncHotlinkProtection(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesHotlinkProtection]], ResultWrapper[ZonesHotlinkProtection]),
+            cast_to=cast(Type[Optional[HotlinkProtectionEditResponse]], ResultWrapper[HotlinkProtectionEditResponse]),
         )
 
     async def get(
@@ -203,7 +207,7 @@ class AsyncHotlinkProtection(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesHotlinkProtection]:
+    ) -> Optional[HotlinkProtectionGetResponse]:
         """
         When enabled, the Hotlink Protection option ensures that other sites cannot suck
         up your bandwidth by building pages that use images hosted on your site. Anytime
@@ -235,7 +239,7 @@ class AsyncHotlinkProtection(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesHotlinkProtection]], ResultWrapper[ZonesHotlinkProtection]),
+            cast_to=cast(Type[Optional[HotlinkProtectionGetResponse]], ResultWrapper[HotlinkProtectionGetResponse]),
         )
 
 
