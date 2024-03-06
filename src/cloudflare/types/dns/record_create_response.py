@@ -8,63 +8,63 @@ from ..._models import BaseModel
 
 __all__ = [
     "RecordCreateResponse",
-    "DNSRecordsARecord",
-    "DNSRecordsARecordMeta",
-    "DNSRecordsAAAARecord",
-    "DNSRecordsAAAARecordMeta",
-    "DNSRecordsCAARecord",
-    "DNSRecordsCAARecordData",
-    "DNSRecordsCAARecordMeta",
-    "DNSRecordsCertRecord",
-    "DNSRecordsCertRecordData",
-    "DNSRecordsCertRecordMeta",
-    "DNSRecordsCNAMERecord",
-    "DNSRecordsCNAMERecordMeta",
-    "DNSRecordsDNSKEYRecord",
-    "DNSRecordsDNSKEYRecordData",
-    "DNSRecordsDNSKEYRecordMeta",
-    "DNSRecordsDSRecord",
-    "DNSRecordsDSRecordData",
-    "DNSRecordsDSRecordMeta",
-    "DNSRecordsHTTPSRecord",
-    "DNSRecordsHTTPSRecordData",
-    "DNSRecordsHTTPSRecordMeta",
-    "DNSRecordsLOCRecord",
-    "DNSRecordsLOCRecordData",
-    "DNSRecordsLOCRecordMeta",
-    "DNSRecordsMXRecord",
-    "DNSRecordsMXRecordMeta",
-    "DNSRecordsNAPTRRecord",
-    "DNSRecordsNAPTRRecordData",
-    "DNSRecordsNAPTRRecordMeta",
-    "DNSRecordsNSRecord",
-    "DNSRecordsNSRecordMeta",
-    "DNSRecordsPTRRecord",
-    "DNSRecordsPTRRecordMeta",
-    "DNSRecordsSmimeaRecord",
-    "DNSRecordsSmimeaRecordData",
-    "DNSRecordsSmimeaRecordMeta",
-    "DNSRecordsSRVRecord",
-    "DNSRecordsSRVRecordData",
-    "DNSRecordsSRVRecordMeta",
-    "DNSRecordsSSHFPRecord",
-    "DNSRecordsSSHFPRecordData",
-    "DNSRecordsSSHFPRecordMeta",
-    "DNSRecordsSVCBRecord",
-    "DNSRecordsSVCBRecordData",
-    "DNSRecordsSVCBRecordMeta",
-    "DNSRecordsTLSARecord",
-    "DNSRecordsTLSARecordData",
-    "DNSRecordsTLSARecordMeta",
-    "DNSRecordsTXTRecord",
-    "DNSRecordsTXTRecordMeta",
-    "DNSRecordsURIRecord",
-    "DNSRecordsURIRecordData",
-    "DNSRecordsURIRecordMeta",
+    "A",
+    "AMeta",
+    "AAAA",
+    "AAAAMeta",
+    "CAA",
+    "CAAData",
+    "CAAMeta",
+    "Cert",
+    "CertData",
+    "CertMeta",
+    "CNAME",
+    "CNAMEMeta",
+    "DNSKEY",
+    "DNSKEYData",
+    "DNSKEYMeta",
+    "DS",
+    "DSData",
+    "DSMeta",
+    "HTTPS",
+    "HTTPSData",
+    "HTTPSMeta",
+    "LOC",
+    "LOCData",
+    "LOCMeta",
+    "MX",
+    "MXMeta",
+    "NAPTR",
+    "NAPTRData",
+    "NAPTRMeta",
+    "NS",
+    "NSMeta",
+    "PTR",
+    "PTRMeta",
+    "Smimea",
+    "SmimeaData",
+    "SmimeaMeta",
+    "SRV",
+    "SRVData",
+    "SRVMeta",
+    "SSHFP",
+    "SSHFPData",
+    "SSHFPMeta",
+    "SVCB",
+    "SVCBData",
+    "SVCBMeta",
+    "TLSA",
+    "TLSAData",
+    "TLSAMeta",
+    "TXT",
+    "TXTMeta",
+    "URI",
+    "URIData",
+    "URIMeta",
 ]
 
 
-class DNSRecordsARecordMeta(BaseModel):
+class AMeta(BaseModel):
     auto_added: Optional[bool] = None
     """
     Will exist if Cloudflare automatically added this DNS record during initial
@@ -75,7 +75,7 @@ class DNSRecordsARecordMeta(BaseModel):
     """Where the record originated from."""
 
 
-class DNSRecordsARecord(BaseModel):
+class A(BaseModel):
     content: str
     """A valid IPv4 address."""
 
@@ -103,7 +103,7 @@ class DNSRecordsARecord(BaseModel):
     Cloudflare).
     """
 
-    meta: Optional[DNSRecordsARecordMeta] = None
+    meta: Optional[AMeta] = None
     """Extra Cloudflare-specific information about the record."""
 
     modified_on: Optional[datetime] = None
@@ -135,7 +135,7 @@ class DNSRecordsARecord(BaseModel):
     """The domain of the record."""
 
 
-class DNSRecordsAAAARecordMeta(BaseModel):
+class AAAAMeta(BaseModel):
     auto_added: Optional[bool] = None
     """
     Will exist if Cloudflare automatically added this DNS record during initial
@@ -146,7 +146,7 @@ class DNSRecordsAAAARecordMeta(BaseModel):
     """Where the record originated from."""
 
 
-class DNSRecordsAAAARecord(BaseModel):
+class AAAA(BaseModel):
     content: str
     """A valid IPv6 address."""
 
@@ -174,7 +174,7 @@ class DNSRecordsAAAARecord(BaseModel):
     Cloudflare).
     """
 
-    meta: Optional[DNSRecordsAAAARecordMeta] = None
+    meta: Optional[AAAAMeta] = None
     """Extra Cloudflare-specific information about the record."""
 
     modified_on: Optional[datetime] = None
@@ -206,7 +206,7 @@ class DNSRecordsAAAARecord(BaseModel):
     """The domain of the record."""
 
 
-class DNSRecordsCAARecordData(BaseModel):
+class CAAData(BaseModel):
     flags: Optional[float] = None
     """Flags for the CAA record."""
 
@@ -217,7 +217,7 @@ class DNSRecordsCAARecordData(BaseModel):
     """Value of the record. This field's semantics depend on the chosen tag."""
 
 
-class DNSRecordsCAARecordMeta(BaseModel):
+class CAAMeta(BaseModel):
     auto_added: Optional[bool] = None
     """
     Will exist if Cloudflare automatically added this DNS record during initial
@@ -228,8 +228,8 @@ class DNSRecordsCAARecordMeta(BaseModel):
     """Where the record originated from."""
 
 
-class DNSRecordsCAARecord(BaseModel):
-    data: DNSRecordsCAARecordData
+class CAA(BaseModel):
+    data: CAAData
     """Components of a CAA record."""
 
     name: str
@@ -259,7 +259,7 @@ class DNSRecordsCAARecord(BaseModel):
     Cloudflare).
     """
 
-    meta: Optional[DNSRecordsCAARecordMeta] = None
+    meta: Optional[CAAMeta] = None
     """Extra Cloudflare-specific information about the record."""
 
     modified_on: Optional[datetime] = None
@@ -285,7 +285,7 @@ class DNSRecordsCAARecord(BaseModel):
     """The domain of the record."""
 
 
-class DNSRecordsCertRecordData(BaseModel):
+class CertData(BaseModel):
     algorithm: Optional[float] = None
     """Algorithm."""
 
@@ -299,7 +299,7 @@ class DNSRecordsCertRecordData(BaseModel):
     """Type."""
 
 
-class DNSRecordsCertRecordMeta(BaseModel):
+class CertMeta(BaseModel):
     auto_added: Optional[bool] = None
     """
     Will exist if Cloudflare automatically added this DNS record during initial
@@ -310,8 +310,8 @@ class DNSRecordsCertRecordMeta(BaseModel):
     """Where the record originated from."""
 
 
-class DNSRecordsCertRecord(BaseModel):
-    data: DNSRecordsCertRecordData
+class Cert(BaseModel):
+    data: CertData
     """Components of a CERT record."""
 
     name: str
@@ -341,7 +341,7 @@ class DNSRecordsCertRecord(BaseModel):
     Cloudflare).
     """
 
-    meta: Optional[DNSRecordsCertRecordMeta] = None
+    meta: Optional[CertMeta] = None
     """Extra Cloudflare-specific information about the record."""
 
     modified_on: Optional[datetime] = None
@@ -367,7 +367,7 @@ class DNSRecordsCertRecord(BaseModel):
     """The domain of the record."""
 
 
-class DNSRecordsCNAMERecordMeta(BaseModel):
+class CNAMEMeta(BaseModel):
     auto_added: Optional[bool] = None
     """
     Will exist if Cloudflare automatically added this DNS record during initial
@@ -378,7 +378,7 @@ class DNSRecordsCNAMERecordMeta(BaseModel):
     """Where the record originated from."""
 
 
-class DNSRecordsCNAMERecord(BaseModel):
+class CNAME(BaseModel):
     content: object
     """A valid hostname. Must not match the record's name."""
 
@@ -406,7 +406,7 @@ class DNSRecordsCNAMERecord(BaseModel):
     Cloudflare).
     """
 
-    meta: Optional[DNSRecordsCNAMERecordMeta] = None
+    meta: Optional[CNAMEMeta] = None
     """Extra Cloudflare-specific information about the record."""
 
     modified_on: Optional[datetime] = None
@@ -438,7 +438,7 @@ class DNSRecordsCNAMERecord(BaseModel):
     """The domain of the record."""
 
 
-class DNSRecordsDNSKEYRecordData(BaseModel):
+class DNSKEYData(BaseModel):
     algorithm: Optional[float] = None
     """Algorithm."""
 
@@ -452,7 +452,7 @@ class DNSRecordsDNSKEYRecordData(BaseModel):
     """Public Key."""
 
 
-class DNSRecordsDNSKEYRecordMeta(BaseModel):
+class DNSKEYMeta(BaseModel):
     auto_added: Optional[bool] = None
     """
     Will exist if Cloudflare automatically added this DNS record during initial
@@ -463,8 +463,8 @@ class DNSRecordsDNSKEYRecordMeta(BaseModel):
     """Where the record originated from."""
 
 
-class DNSRecordsDNSKEYRecord(BaseModel):
-    data: DNSRecordsDNSKEYRecordData
+class DNSKEY(BaseModel):
+    data: DNSKEYData
     """Components of a DNSKEY record."""
 
     name: str
@@ -494,7 +494,7 @@ class DNSRecordsDNSKEYRecord(BaseModel):
     Cloudflare).
     """
 
-    meta: Optional[DNSRecordsDNSKEYRecordMeta] = None
+    meta: Optional[DNSKEYMeta] = None
     """Extra Cloudflare-specific information about the record."""
 
     modified_on: Optional[datetime] = None
@@ -520,7 +520,7 @@ class DNSRecordsDNSKEYRecord(BaseModel):
     """The domain of the record."""
 
 
-class DNSRecordsDSRecordData(BaseModel):
+class DSData(BaseModel):
     algorithm: Optional[float] = None
     """Algorithm."""
 
@@ -534,7 +534,7 @@ class DNSRecordsDSRecordData(BaseModel):
     """Key Tag."""
 
 
-class DNSRecordsDSRecordMeta(BaseModel):
+class DSMeta(BaseModel):
     auto_added: Optional[bool] = None
     """
     Will exist if Cloudflare automatically added this DNS record during initial
@@ -545,8 +545,8 @@ class DNSRecordsDSRecordMeta(BaseModel):
     """Where the record originated from."""
 
 
-class DNSRecordsDSRecord(BaseModel):
-    data: DNSRecordsDSRecordData
+class DS(BaseModel):
+    data: DSData
     """Components of a DS record."""
 
     name: str
@@ -576,7 +576,7 @@ class DNSRecordsDSRecord(BaseModel):
     Cloudflare).
     """
 
-    meta: Optional[DNSRecordsDSRecordMeta] = None
+    meta: Optional[DSMeta] = None
     """Extra Cloudflare-specific information about the record."""
 
     modified_on: Optional[datetime] = None
@@ -602,7 +602,7 @@ class DNSRecordsDSRecord(BaseModel):
     """The domain of the record."""
 
 
-class DNSRecordsHTTPSRecordData(BaseModel):
+class HTTPSData(BaseModel):
     priority: Optional[float] = None
     """priority."""
 
@@ -613,7 +613,7 @@ class DNSRecordsHTTPSRecordData(BaseModel):
     """value."""
 
 
-class DNSRecordsHTTPSRecordMeta(BaseModel):
+class HTTPSMeta(BaseModel):
     auto_added: Optional[bool] = None
     """
     Will exist if Cloudflare automatically added this DNS record during initial
@@ -624,8 +624,8 @@ class DNSRecordsHTTPSRecordMeta(BaseModel):
     """Where the record originated from."""
 
 
-class DNSRecordsHTTPSRecord(BaseModel):
-    data: DNSRecordsHTTPSRecordData
+class HTTPS(BaseModel):
+    data: HTTPSData
     """Components of a HTTPS record."""
 
     name: str
@@ -655,7 +655,7 @@ class DNSRecordsHTTPSRecord(BaseModel):
     Cloudflare).
     """
 
-    meta: Optional[DNSRecordsHTTPSRecordMeta] = None
+    meta: Optional[HTTPSMeta] = None
     """Extra Cloudflare-specific information about the record."""
 
     modified_on: Optional[datetime] = None
@@ -681,7 +681,7 @@ class DNSRecordsHTTPSRecord(BaseModel):
     """The domain of the record."""
 
 
-class DNSRecordsLOCRecordData(BaseModel):
+class LOCData(BaseModel):
     altitude: Optional[float] = None
     """Altitude of location in meters."""
 
@@ -719,7 +719,7 @@ class DNSRecordsLOCRecordData(BaseModel):
     """Size of location in meters."""
 
 
-class DNSRecordsLOCRecordMeta(BaseModel):
+class LOCMeta(BaseModel):
     auto_added: Optional[bool] = None
     """
     Will exist if Cloudflare automatically added this DNS record during initial
@@ -730,8 +730,8 @@ class DNSRecordsLOCRecordMeta(BaseModel):
     """Where the record originated from."""
 
 
-class DNSRecordsLOCRecord(BaseModel):
-    data: DNSRecordsLOCRecordData
+class LOC(BaseModel):
+    data: LOCData
     """Components of a LOC record."""
 
     name: str
@@ -761,7 +761,7 @@ class DNSRecordsLOCRecord(BaseModel):
     Cloudflare).
     """
 
-    meta: Optional[DNSRecordsLOCRecordMeta] = None
+    meta: Optional[LOCMeta] = None
     """Extra Cloudflare-specific information about the record."""
 
     modified_on: Optional[datetime] = None
@@ -787,7 +787,7 @@ class DNSRecordsLOCRecord(BaseModel):
     """The domain of the record."""
 
 
-class DNSRecordsMXRecordMeta(BaseModel):
+class MXMeta(BaseModel):
     auto_added: Optional[bool] = None
     """
     Will exist if Cloudflare automatically added this DNS record during initial
@@ -798,7 +798,7 @@ class DNSRecordsMXRecordMeta(BaseModel):
     """Where the record originated from."""
 
 
-class DNSRecordsMXRecord(BaseModel):
+class MX(BaseModel):
     content: str
     """A valid mail server hostname."""
 
@@ -832,7 +832,7 @@ class DNSRecordsMXRecord(BaseModel):
     Cloudflare).
     """
 
-    meta: Optional[DNSRecordsMXRecordMeta] = None
+    meta: Optional[MXMeta] = None
     """Extra Cloudflare-specific information about the record."""
 
     modified_on: Optional[datetime] = None
@@ -858,7 +858,7 @@ class DNSRecordsMXRecord(BaseModel):
     """The domain of the record."""
 
 
-class DNSRecordsNAPTRRecordData(BaseModel):
+class NAPTRData(BaseModel):
     flags: Optional[str] = None
     """Flags."""
 
@@ -878,7 +878,7 @@ class DNSRecordsNAPTRRecordData(BaseModel):
     """Service."""
 
 
-class DNSRecordsNAPTRRecordMeta(BaseModel):
+class NAPTRMeta(BaseModel):
     auto_added: Optional[bool] = None
     """
     Will exist if Cloudflare automatically added this DNS record during initial
@@ -889,8 +889,8 @@ class DNSRecordsNAPTRRecordMeta(BaseModel):
     """Where the record originated from."""
 
 
-class DNSRecordsNAPTRRecord(BaseModel):
-    data: DNSRecordsNAPTRRecordData
+class NAPTR(BaseModel):
+    data: NAPTRData
     """Components of a NAPTR record."""
 
     name: str
@@ -920,7 +920,7 @@ class DNSRecordsNAPTRRecord(BaseModel):
     Cloudflare).
     """
 
-    meta: Optional[DNSRecordsNAPTRRecordMeta] = None
+    meta: Optional[NAPTRMeta] = None
     """Extra Cloudflare-specific information about the record."""
 
     modified_on: Optional[datetime] = None
@@ -946,7 +946,7 @@ class DNSRecordsNAPTRRecord(BaseModel):
     """The domain of the record."""
 
 
-class DNSRecordsNSRecordMeta(BaseModel):
+class NSMeta(BaseModel):
     auto_added: Optional[bool] = None
     """
     Will exist if Cloudflare automatically added this DNS record during initial
@@ -957,7 +957,7 @@ class DNSRecordsNSRecordMeta(BaseModel):
     """Where the record originated from."""
 
 
-class DNSRecordsNSRecord(BaseModel):
+class NS(BaseModel):
     content: object
     """A valid name server host name."""
 
@@ -985,7 +985,7 @@ class DNSRecordsNSRecord(BaseModel):
     Cloudflare).
     """
 
-    meta: Optional[DNSRecordsNSRecordMeta] = None
+    meta: Optional[NSMeta] = None
     """Extra Cloudflare-specific information about the record."""
 
     modified_on: Optional[datetime] = None
@@ -1011,7 +1011,7 @@ class DNSRecordsNSRecord(BaseModel):
     """The domain of the record."""
 
 
-class DNSRecordsPTRRecordMeta(BaseModel):
+class PTRMeta(BaseModel):
     auto_added: Optional[bool] = None
     """
     Will exist if Cloudflare automatically added this DNS record during initial
@@ -1022,7 +1022,7 @@ class DNSRecordsPTRRecordMeta(BaseModel):
     """Where the record originated from."""
 
 
-class DNSRecordsPTRRecord(BaseModel):
+class PTR(BaseModel):
     content: str
     """Domain name pointing to the address."""
 
@@ -1050,7 +1050,7 @@ class DNSRecordsPTRRecord(BaseModel):
     Cloudflare).
     """
 
-    meta: Optional[DNSRecordsPTRRecordMeta] = None
+    meta: Optional[PTRMeta] = None
     """Extra Cloudflare-specific information about the record."""
 
     modified_on: Optional[datetime] = None
@@ -1076,7 +1076,7 @@ class DNSRecordsPTRRecord(BaseModel):
     """The domain of the record."""
 
 
-class DNSRecordsSmimeaRecordData(BaseModel):
+class SmimeaData(BaseModel):
     certificate: Optional[str] = None
     """Certificate."""
 
@@ -1090,7 +1090,7 @@ class DNSRecordsSmimeaRecordData(BaseModel):
     """Usage."""
 
 
-class DNSRecordsSmimeaRecordMeta(BaseModel):
+class SmimeaMeta(BaseModel):
     auto_added: Optional[bool] = None
     """
     Will exist if Cloudflare automatically added this DNS record during initial
@@ -1101,8 +1101,8 @@ class DNSRecordsSmimeaRecordMeta(BaseModel):
     """Where the record originated from."""
 
 
-class DNSRecordsSmimeaRecord(BaseModel):
-    data: DNSRecordsSmimeaRecordData
+class Smimea(BaseModel):
+    data: SmimeaData
     """Components of a SMIMEA record."""
 
     name: str
@@ -1132,7 +1132,7 @@ class DNSRecordsSmimeaRecord(BaseModel):
     Cloudflare).
     """
 
-    meta: Optional[DNSRecordsSmimeaRecordMeta] = None
+    meta: Optional[SmimeaMeta] = None
     """Extra Cloudflare-specific information about the record."""
 
     modified_on: Optional[datetime] = None
@@ -1158,7 +1158,7 @@ class DNSRecordsSmimeaRecord(BaseModel):
     """The domain of the record."""
 
 
-class DNSRecordsSRVRecordData(BaseModel):
+class SRVData(BaseModel):
     name: Optional[str] = None
     """A valid hostname.
 
@@ -1197,7 +1197,7 @@ class DNSRecordsSRVRecordData(BaseModel):
     """The record weight."""
 
 
-class DNSRecordsSRVRecordMeta(BaseModel):
+class SRVMeta(BaseModel):
     auto_added: Optional[bool] = None
     """
     Will exist if Cloudflare automatically added this DNS record during initial
@@ -1208,8 +1208,8 @@ class DNSRecordsSRVRecordMeta(BaseModel):
     """Where the record originated from."""
 
 
-class DNSRecordsSRVRecord(BaseModel):
-    data: DNSRecordsSRVRecordData
+class SRV(BaseModel):
+    data: SRVData
     """Components of a SRV record."""
 
     name: str
@@ -1246,7 +1246,7 @@ class DNSRecordsSRVRecord(BaseModel):
     Cloudflare).
     """
 
-    meta: Optional[DNSRecordsSRVRecordMeta] = None
+    meta: Optional[SRVMeta] = None
     """Extra Cloudflare-specific information about the record."""
 
     modified_on: Optional[datetime] = None
@@ -1272,7 +1272,7 @@ class DNSRecordsSRVRecord(BaseModel):
     """The domain of the record."""
 
 
-class DNSRecordsSSHFPRecordData(BaseModel):
+class SSHFPData(BaseModel):
     algorithm: Optional[float] = None
     """algorithm."""
 
@@ -1283,7 +1283,7 @@ class DNSRecordsSSHFPRecordData(BaseModel):
     """type."""
 
 
-class DNSRecordsSSHFPRecordMeta(BaseModel):
+class SSHFPMeta(BaseModel):
     auto_added: Optional[bool] = None
     """
     Will exist if Cloudflare automatically added this DNS record during initial
@@ -1294,8 +1294,8 @@ class DNSRecordsSSHFPRecordMeta(BaseModel):
     """Where the record originated from."""
 
 
-class DNSRecordsSSHFPRecord(BaseModel):
-    data: DNSRecordsSSHFPRecordData
+class SSHFP(BaseModel):
+    data: SSHFPData
     """Components of a SSHFP record."""
 
     name: str
@@ -1325,7 +1325,7 @@ class DNSRecordsSSHFPRecord(BaseModel):
     Cloudflare).
     """
 
-    meta: Optional[DNSRecordsSSHFPRecordMeta] = None
+    meta: Optional[SSHFPMeta] = None
     """Extra Cloudflare-specific information about the record."""
 
     modified_on: Optional[datetime] = None
@@ -1351,7 +1351,7 @@ class DNSRecordsSSHFPRecord(BaseModel):
     """The domain of the record."""
 
 
-class DNSRecordsSVCBRecordData(BaseModel):
+class SVCBData(BaseModel):
     priority: Optional[float] = None
     """priority."""
 
@@ -1362,7 +1362,7 @@ class DNSRecordsSVCBRecordData(BaseModel):
     """value."""
 
 
-class DNSRecordsSVCBRecordMeta(BaseModel):
+class SVCBMeta(BaseModel):
     auto_added: Optional[bool] = None
     """
     Will exist if Cloudflare automatically added this DNS record during initial
@@ -1373,8 +1373,8 @@ class DNSRecordsSVCBRecordMeta(BaseModel):
     """Where the record originated from."""
 
 
-class DNSRecordsSVCBRecord(BaseModel):
-    data: DNSRecordsSVCBRecordData
+class SVCB(BaseModel):
+    data: SVCBData
     """Components of a SVCB record."""
 
     name: str
@@ -1404,7 +1404,7 @@ class DNSRecordsSVCBRecord(BaseModel):
     Cloudflare).
     """
 
-    meta: Optional[DNSRecordsSVCBRecordMeta] = None
+    meta: Optional[SVCBMeta] = None
     """Extra Cloudflare-specific information about the record."""
 
     modified_on: Optional[datetime] = None
@@ -1430,7 +1430,7 @@ class DNSRecordsSVCBRecord(BaseModel):
     """The domain of the record."""
 
 
-class DNSRecordsTLSARecordData(BaseModel):
+class TLSAData(BaseModel):
     certificate: Optional[str] = None
     """certificate."""
 
@@ -1444,7 +1444,7 @@ class DNSRecordsTLSARecordData(BaseModel):
     """Usage."""
 
 
-class DNSRecordsTLSARecordMeta(BaseModel):
+class TLSAMeta(BaseModel):
     auto_added: Optional[bool] = None
     """
     Will exist if Cloudflare automatically added this DNS record during initial
@@ -1455,8 +1455,8 @@ class DNSRecordsTLSARecordMeta(BaseModel):
     """Where the record originated from."""
 
 
-class DNSRecordsTLSARecord(BaseModel):
-    data: DNSRecordsTLSARecordData
+class TLSA(BaseModel):
+    data: TLSAData
     """Components of a TLSA record."""
 
     name: str
@@ -1486,7 +1486,7 @@ class DNSRecordsTLSARecord(BaseModel):
     Cloudflare).
     """
 
-    meta: Optional[DNSRecordsTLSARecordMeta] = None
+    meta: Optional[TLSAMeta] = None
     """Extra Cloudflare-specific information about the record."""
 
     modified_on: Optional[datetime] = None
@@ -1512,7 +1512,7 @@ class DNSRecordsTLSARecord(BaseModel):
     """The domain of the record."""
 
 
-class DNSRecordsTXTRecordMeta(BaseModel):
+class TXTMeta(BaseModel):
     auto_added: Optional[bool] = None
     """
     Will exist if Cloudflare automatically added this DNS record during initial
@@ -1523,7 +1523,7 @@ class DNSRecordsTXTRecordMeta(BaseModel):
     """Where the record originated from."""
 
 
-class DNSRecordsTXTRecord(BaseModel):
+class TXT(BaseModel):
     content: str
     """Text content for the record."""
 
@@ -1551,7 +1551,7 @@ class DNSRecordsTXTRecord(BaseModel):
     Cloudflare).
     """
 
-    meta: Optional[DNSRecordsTXTRecordMeta] = None
+    meta: Optional[TXTMeta] = None
     """Extra Cloudflare-specific information about the record."""
 
     modified_on: Optional[datetime] = None
@@ -1577,7 +1577,7 @@ class DNSRecordsTXTRecord(BaseModel):
     """The domain of the record."""
 
 
-class DNSRecordsURIRecordData(BaseModel):
+class URIData(BaseModel):
     content: Optional[str] = None
     """The record content."""
 
@@ -1585,7 +1585,7 @@ class DNSRecordsURIRecordData(BaseModel):
     """The record weight."""
 
 
-class DNSRecordsURIRecordMeta(BaseModel):
+class URIMeta(BaseModel):
     auto_added: Optional[bool] = None
     """
     Will exist if Cloudflare automatically added this DNS record during initial
@@ -1596,8 +1596,8 @@ class DNSRecordsURIRecordMeta(BaseModel):
     """Where the record originated from."""
 
 
-class DNSRecordsURIRecord(BaseModel):
-    data: DNSRecordsURIRecordData
+class URI(BaseModel):
+    data: URIData
     """Components of a URI record."""
 
     name: str
@@ -1633,7 +1633,7 @@ class DNSRecordsURIRecord(BaseModel):
     Cloudflare).
     """
 
-    meta: Optional[DNSRecordsURIRecordMeta] = None
+    meta: Optional[URIMeta] = None
     """Extra Cloudflare-specific information about the record."""
 
     modified_on: Optional[datetime] = None
@@ -1660,24 +1660,5 @@ class DNSRecordsURIRecord(BaseModel):
 
 
 RecordCreateResponse = Union[
-    DNSRecordsARecord,
-    DNSRecordsAAAARecord,
-    DNSRecordsCAARecord,
-    DNSRecordsCertRecord,
-    DNSRecordsCNAMERecord,
-    DNSRecordsDNSKEYRecord,
-    DNSRecordsDSRecord,
-    DNSRecordsHTTPSRecord,
-    DNSRecordsLOCRecord,
-    DNSRecordsMXRecord,
-    DNSRecordsNAPTRRecord,
-    DNSRecordsNSRecord,
-    DNSRecordsPTRRecord,
-    DNSRecordsSmimeaRecord,
-    DNSRecordsSRVRecord,
-    DNSRecordsSSHFPRecord,
-    DNSRecordsSVCBRecord,
-    DNSRecordsTLSARecord,
-    DNSRecordsTXTRecord,
-    DNSRecordsURIRecord,
+    A, AAAA, CAA, Cert, CNAME, DNSKEY, DS, HTTPS, LOC, MX, NAPTR, NS, PTR, Smimea, SRV, SSHFP, SVCB, TLSA, TXT, URI
 ]
