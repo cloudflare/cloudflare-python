@@ -10,8 +10,10 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types.web3 import (
+    HostnameGetResponse,
+    HostnameEditResponse,
     HostnameListResponse,
-    DwebConfigWeb3Hostname,
+    HostnameCreateResponse,
     HostnameDeleteResponse,
 )
 
@@ -28,7 +30,7 @@ class TestHostnames:
             "023e105f4ecef8ad9ca31a8372d0c353",
             target="ipfs",
         )
-        assert_matches_type(DwebConfigWeb3Hostname, hostname, path=["response"])
+        assert_matches_type(HostnameCreateResponse, hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -39,7 +41,7 @@ class TestHostnames:
             description="This is my IPFS gateway.",
             dnslink="/ipns/onboarding.ipfs.cloudflare.com",
         )
-        assert_matches_type(DwebConfigWeb3Hostname, hostname, path=["response"])
+        assert_matches_type(HostnameCreateResponse, hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -52,7 +54,7 @@ class TestHostnames:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hostname = response.parse()
-        assert_matches_type(DwebConfigWeb3Hostname, hostname, path=["response"])
+        assert_matches_type(HostnameCreateResponse, hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -65,7 +67,7 @@ class TestHostnames:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hostname = response.parse()
-            assert_matches_type(DwebConfigWeb3Hostname, hostname, path=["response"])
+            assert_matches_type(HostnameCreateResponse, hostname, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -179,7 +181,7 @@ class TestHostnames:
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(DwebConfigWeb3Hostname, hostname, path=["response"])
+        assert_matches_type(HostnameEditResponse, hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -190,7 +192,7 @@ class TestHostnames:
             description="This is my IPFS gateway.",
             dnslink="/ipns/onboarding.ipfs.cloudflare.com",
         )
-        assert_matches_type(DwebConfigWeb3Hostname, hostname, path=["response"])
+        assert_matches_type(HostnameEditResponse, hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -203,7 +205,7 @@ class TestHostnames:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hostname = response.parse()
-        assert_matches_type(DwebConfigWeb3Hostname, hostname, path=["response"])
+        assert_matches_type(HostnameEditResponse, hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -216,7 +218,7 @@ class TestHostnames:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hostname = response.parse()
-            assert_matches_type(DwebConfigWeb3Hostname, hostname, path=["response"])
+            assert_matches_type(HostnameEditResponse, hostname, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -242,7 +244,7 @@ class TestHostnames:
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(DwebConfigWeb3Hostname, hostname, path=["response"])
+        assert_matches_type(HostnameGetResponse, hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -255,7 +257,7 @@ class TestHostnames:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hostname = response.parse()
-        assert_matches_type(DwebConfigWeb3Hostname, hostname, path=["response"])
+        assert_matches_type(HostnameGetResponse, hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -268,7 +270,7 @@ class TestHostnames:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hostname = response.parse()
-            assert_matches_type(DwebConfigWeb3Hostname, hostname, path=["response"])
+            assert_matches_type(HostnameGetResponse, hostname, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -298,7 +300,7 @@ class TestAsyncHostnames:
             "023e105f4ecef8ad9ca31a8372d0c353",
             target="ipfs",
         )
-        assert_matches_type(DwebConfigWeb3Hostname, hostname, path=["response"])
+        assert_matches_type(HostnameCreateResponse, hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -309,7 +311,7 @@ class TestAsyncHostnames:
             description="This is my IPFS gateway.",
             dnslink="/ipns/onboarding.ipfs.cloudflare.com",
         )
-        assert_matches_type(DwebConfigWeb3Hostname, hostname, path=["response"])
+        assert_matches_type(HostnameCreateResponse, hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -322,7 +324,7 @@ class TestAsyncHostnames:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hostname = await response.parse()
-        assert_matches_type(DwebConfigWeb3Hostname, hostname, path=["response"])
+        assert_matches_type(HostnameCreateResponse, hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -335,7 +337,7 @@ class TestAsyncHostnames:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hostname = await response.parse()
-            assert_matches_type(DwebConfigWeb3Hostname, hostname, path=["response"])
+            assert_matches_type(HostnameCreateResponse, hostname, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -449,7 +451,7 @@ class TestAsyncHostnames:
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(DwebConfigWeb3Hostname, hostname, path=["response"])
+        assert_matches_type(HostnameEditResponse, hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -460,7 +462,7 @@ class TestAsyncHostnames:
             description="This is my IPFS gateway.",
             dnslink="/ipns/onboarding.ipfs.cloudflare.com",
         )
-        assert_matches_type(DwebConfigWeb3Hostname, hostname, path=["response"])
+        assert_matches_type(HostnameEditResponse, hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -473,7 +475,7 @@ class TestAsyncHostnames:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hostname = await response.parse()
-        assert_matches_type(DwebConfigWeb3Hostname, hostname, path=["response"])
+        assert_matches_type(HostnameEditResponse, hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -486,7 +488,7 @@ class TestAsyncHostnames:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hostname = await response.parse()
-            assert_matches_type(DwebConfigWeb3Hostname, hostname, path=["response"])
+            assert_matches_type(HostnameEditResponse, hostname, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -512,7 +514,7 @@ class TestAsyncHostnames:
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(DwebConfigWeb3Hostname, hostname, path=["response"])
+        assert_matches_type(HostnameGetResponse, hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -525,7 +527,7 @@ class TestAsyncHostnames:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hostname = await response.parse()
-        assert_matches_type(DwebConfigWeb3Hostname, hostname, path=["response"])
+        assert_matches_type(HostnameGetResponse, hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -538,7 +540,7 @@ class TestAsyncHostnames:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hostname = await response.parse()
-            assert_matches_type(DwebConfigWeb3Hostname, hostname, path=["response"])
+            assert_matches_type(HostnameGetResponse, hostname, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

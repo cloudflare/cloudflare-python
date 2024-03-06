@@ -11,9 +11,9 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types.queues import (
     ConsumerGetResponse,
+    ConsumerCreateResponse,
     ConsumerDeleteResponse,
-    WorkersConsumerCreated,
-    WorkersConsumerUpdated,
+    ConsumerUpdateResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -39,7 +39,7 @@ class TestConsumers:
                 },
             },
         )
-        assert_matches_type(Optional[WorkersConsumerCreated], consumer, path=["response"])
+        assert_matches_type(Optional[ConsumerCreateResponse], consumer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -62,7 +62,7 @@ class TestConsumers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         consumer = response.parse()
-        assert_matches_type(Optional[WorkersConsumerCreated], consumer, path=["response"])
+        assert_matches_type(Optional[ConsumerCreateResponse], consumer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -85,7 +85,7 @@ class TestConsumers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             consumer = response.parse()
-            assert_matches_type(Optional[WorkersConsumerCreated], consumer, path=["response"])
+            assert_matches_type(Optional[ConsumerCreateResponse], consumer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -138,7 +138,7 @@ class TestConsumers:
                 "settings": {"batch_size": 100},
             },
         )
-        assert_matches_type(Optional[WorkersConsumerUpdated], consumer, path=["response"])
+        assert_matches_type(Optional[ConsumerUpdateResponse], consumer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -158,7 +158,7 @@ class TestConsumers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         consumer = response.parse()
-        assert_matches_type(Optional[WorkersConsumerUpdated], consumer, path=["response"])
+        assert_matches_type(Optional[ConsumerUpdateResponse], consumer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -178,7 +178,7 @@ class TestConsumers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             consumer = response.parse()
-            assert_matches_type(Optional[WorkersConsumerUpdated], consumer, path=["response"])
+            assert_matches_type(Optional[ConsumerUpdateResponse], consumer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -361,7 +361,7 @@ class TestAsyncConsumers:
                 },
             },
         )
-        assert_matches_type(Optional[WorkersConsumerCreated], consumer, path=["response"])
+        assert_matches_type(Optional[ConsumerCreateResponse], consumer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -384,7 +384,7 @@ class TestAsyncConsumers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         consumer = await response.parse()
-        assert_matches_type(Optional[WorkersConsumerCreated], consumer, path=["response"])
+        assert_matches_type(Optional[ConsumerCreateResponse], consumer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -407,7 +407,7 @@ class TestAsyncConsumers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             consumer = await response.parse()
-            assert_matches_type(Optional[WorkersConsumerCreated], consumer, path=["response"])
+            assert_matches_type(Optional[ConsumerCreateResponse], consumer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -460,7 +460,7 @@ class TestAsyncConsumers:
                 "settings": {"batch_size": 100},
             },
         )
-        assert_matches_type(Optional[WorkersConsumerUpdated], consumer, path=["response"])
+        assert_matches_type(Optional[ConsumerUpdateResponse], consumer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -480,7 +480,7 @@ class TestAsyncConsumers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         consumer = await response.parse()
-        assert_matches_type(Optional[WorkersConsumerUpdated], consumer, path=["response"])
+        assert_matches_type(Optional[ConsumerUpdateResponse], consumer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -500,7 +500,7 @@ class TestAsyncConsumers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             consumer = await response.parse()
-            assert_matches_type(Optional[WorkersConsumerUpdated], consumer, path=["response"])
+            assert_matches_type(Optional[ConsumerUpdateResponse], consumer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -24,7 +24,7 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.page_shield import PageShieldConnection, ConnectionListResponse, connection_list_params
+from ...types.page_shield import ConnectionGetResponse, ConnectionListResponse, connection_list_params
 
 __all__ = ["Connections", "AsyncConnections"]
 
@@ -163,7 +163,7 @@ class Connections(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PageShieldConnection:
+    ) -> ConnectionGetResponse:
         """
         Fetches a connection detected by Page Shield by connection ID.
 
@@ -189,7 +189,7 @@ class Connections(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PageShieldConnection,
+            cast_to=ConnectionGetResponse,
         )
 
 
@@ -327,7 +327,7 @@ class AsyncConnections(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PageShieldConnection:
+    ) -> ConnectionGetResponse:
         """
         Fetches a connection detected by Page Shield by connection ID.
 
@@ -353,7 +353,7 @@ class AsyncConnections(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PageShieldConnection,
+            cast_to=ConnectionGetResponse,
         )
 
 

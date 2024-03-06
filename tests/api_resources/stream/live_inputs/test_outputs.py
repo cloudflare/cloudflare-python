@@ -10,8 +10,9 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types.stream.live_inputs import (
-    StreamOutput,
     OutputListResponse,
+    OutputCreateResponse,
+    OutputUpdateResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -29,7 +30,7 @@ class TestOutputs:
             stream_key="uzya-f19y-g2g9-a2ee-51j2",
             url="rtmp://a.rtmp.youtube.com/live2",
         )
-        assert_matches_type(StreamOutput, output, path=["response"])
+        assert_matches_type(OutputCreateResponse, output, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -41,7 +42,7 @@ class TestOutputs:
             url="rtmp://a.rtmp.youtube.com/live2",
             enabled=True,
         )
-        assert_matches_type(StreamOutput, output, path=["response"])
+        assert_matches_type(OutputCreateResponse, output, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -56,7 +57,7 @@ class TestOutputs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         output = response.parse()
-        assert_matches_type(StreamOutput, output, path=["response"])
+        assert_matches_type(OutputCreateResponse, output, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -71,7 +72,7 @@ class TestOutputs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             output = response.parse()
-            assert_matches_type(StreamOutput, output, path=["response"])
+            assert_matches_type(OutputCreateResponse, output, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -103,7 +104,7 @@ class TestOutputs:
             live_input_identifier="66be4bf738797e01e1fca35a7bdecdcd",
             enabled=True,
         )
-        assert_matches_type(StreamOutput, output, path=["response"])
+        assert_matches_type(OutputUpdateResponse, output, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -118,7 +119,7 @@ class TestOutputs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         output = response.parse()
-        assert_matches_type(StreamOutput, output, path=["response"])
+        assert_matches_type(OutputUpdateResponse, output, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -133,7 +134,7 @@ class TestOutputs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             output = response.parse()
-            assert_matches_type(StreamOutput, output, path=["response"])
+            assert_matches_type(OutputUpdateResponse, output, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -293,7 +294,7 @@ class TestAsyncOutputs:
             stream_key="uzya-f19y-g2g9-a2ee-51j2",
             url="rtmp://a.rtmp.youtube.com/live2",
         )
-        assert_matches_type(StreamOutput, output, path=["response"])
+        assert_matches_type(OutputCreateResponse, output, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -305,7 +306,7 @@ class TestAsyncOutputs:
             url="rtmp://a.rtmp.youtube.com/live2",
             enabled=True,
         )
-        assert_matches_type(StreamOutput, output, path=["response"])
+        assert_matches_type(OutputCreateResponse, output, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -320,7 +321,7 @@ class TestAsyncOutputs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         output = await response.parse()
-        assert_matches_type(StreamOutput, output, path=["response"])
+        assert_matches_type(OutputCreateResponse, output, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -335,7 +336,7 @@ class TestAsyncOutputs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             output = await response.parse()
-            assert_matches_type(StreamOutput, output, path=["response"])
+            assert_matches_type(OutputCreateResponse, output, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -367,7 +368,7 @@ class TestAsyncOutputs:
             live_input_identifier="66be4bf738797e01e1fca35a7bdecdcd",
             enabled=True,
         )
-        assert_matches_type(StreamOutput, output, path=["response"])
+        assert_matches_type(OutputUpdateResponse, output, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -382,7 +383,7 @@ class TestAsyncOutputs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         output = await response.parse()
-        assert_matches_type(StreamOutput, output, path=["response"])
+        assert_matches_type(OutputUpdateResponse, output, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -397,7 +398,7 @@ class TestAsyncOutputs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             output = await response.parse()
-            assert_matches_type(StreamOutput, output, path=["response"])
+            assert_matches_type(OutputUpdateResponse, output, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

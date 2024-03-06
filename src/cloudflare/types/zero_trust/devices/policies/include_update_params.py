@@ -5,12 +5,27 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Required, TypedDict
 
-from .teams_devices_split_tunnel_include_param import TeamsDevicesSplitTunnelIncludeParam
-
-__all__ = ["IncludeUpdateParams"]
+__all__ = ["IncludeUpdateParams", "Body"]
 
 
 class IncludeUpdateParams(TypedDict, total=False):
     account_id: Required[object]
 
-    body: Required[Iterable[TeamsDevicesSplitTunnelIncludeParam]]
+    body: Required[Iterable[Body]]
+
+
+class Body(TypedDict, total=False):
+    address: Required[str]
+    """The address in CIDR format to include in the tunnel.
+
+    If address is present, host must not be present.
+    """
+
+    description: Required[str]
+    """A description of the split tunnel item, displayed in the client UI."""
+
+    host: str
+    """The domain name to include in the tunnel.
+
+    If host is present, address must not be present.
+    """

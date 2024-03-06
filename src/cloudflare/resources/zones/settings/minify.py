@@ -23,7 +23,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZonesMinify, minify_edit_params
+from ....types.zones.settings import MinifyGetResponse, MinifyEditResponse, minify_edit_params
 
 __all__ = ["Minify", "AsyncMinify"]
 
@@ -48,7 +48,7 @@ class Minify(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesMinify]:
+    ) -> Optional[MinifyEditResponse]:
         """Automatically minify certain assets for your website.
 
         Refer to
@@ -80,7 +80,7 @@ class Minify(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesMinify]], ResultWrapper[ZonesMinify]),
+            cast_to=cast(Type[Optional[MinifyEditResponse]], ResultWrapper[MinifyEditResponse]),
         )
 
     def get(
@@ -93,7 +93,7 @@ class Minify(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesMinify]:
+    ) -> Optional[MinifyGetResponse]:
         """Automatically minify certain assets for your website.
 
         Refer to
@@ -122,7 +122,7 @@ class Minify(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesMinify]], ResultWrapper[ZonesMinify]),
+            cast_to=cast(Type[Optional[MinifyGetResponse]], ResultWrapper[MinifyGetResponse]),
         )
 
 
@@ -146,7 +146,7 @@ class AsyncMinify(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesMinify]:
+    ) -> Optional[MinifyEditResponse]:
         """Automatically minify certain assets for your website.
 
         Refer to
@@ -178,7 +178,7 @@ class AsyncMinify(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesMinify]], ResultWrapper[ZonesMinify]),
+            cast_to=cast(Type[Optional[MinifyEditResponse]], ResultWrapper[MinifyEditResponse]),
         )
 
     async def get(
@@ -191,7 +191,7 @@ class AsyncMinify(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesMinify]:
+    ) -> Optional[MinifyGetResponse]:
         """Automatically minify certain assets for your website.
 
         Refer to
@@ -220,7 +220,7 @@ class AsyncMinify(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesMinify]], ResultWrapper[ZonesMinify]),
+            cast_to=cast(Type[Optional[MinifyGetResponse]], ResultWrapper[MinifyGetResponse]),
         )
 
 

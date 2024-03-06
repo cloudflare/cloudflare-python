@@ -25,9 +25,9 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.zero_trust.dex import (
-    DigitalExperienceMonitoringTracerouteDetails,
-    DigitalExperienceMonitoringTracerouteTestNetworkPath,
-    DigitalExperienceMonitoringTracerouteDetailsPercentiles,
+    TracerouteTestGetResponse,
+    TracerouteTestNetworkPathResponse,
+    TracerouteTestPercentilesResponse,
     traceroute_test_get_params,
     traceroute_test_percentiles_params,
     traceroute_test_network_path_params,
@@ -61,7 +61,7 @@ class TracerouteTests(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DigitalExperienceMonitoringTracerouteDetails:
+    ) -> TracerouteTestGetResponse:
         """
         Get test details and aggregate performance metrics for an traceroute test for a
         given time period between 1 hour and 7 days.
@@ -112,10 +112,7 @@ class TracerouteTests(SyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[DigitalExperienceMonitoringTracerouteDetails],
-                ResultWrapper[DigitalExperienceMonitoringTracerouteDetails],
-            ),
+            cast_to=cast(Type[TracerouteTestGetResponse], ResultWrapper[TracerouteTestGetResponse]),
         )
 
     def network_path(
@@ -133,7 +130,7 @@ class TracerouteTests(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DigitalExperienceMonitoringTracerouteTestNetworkPath:
+    ) -> TracerouteTestNetworkPathResponse:
         """
         Get a breakdown of metrics by hop for individual traceroute test runs
 
@@ -178,10 +175,7 @@ class TracerouteTests(SyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[DigitalExperienceMonitoringTracerouteTestNetworkPath],
-                ResultWrapper[DigitalExperienceMonitoringTracerouteTestNetworkPath],
-            ),
+            cast_to=cast(Type[TracerouteTestNetworkPathResponse], ResultWrapper[TracerouteTestNetworkPathResponse]),
         )
 
     def percentiles(
@@ -199,7 +193,7 @@ class TracerouteTests(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DigitalExperienceMonitoringTracerouteDetailsPercentiles:
+    ) -> TracerouteTestPercentilesResponse:
         """
         Get percentiles for a traceroute test for a given time period between 1 hour and
         7 days.
@@ -247,10 +241,7 @@ class TracerouteTests(SyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[DigitalExperienceMonitoringTracerouteDetailsPercentiles],
-                ResultWrapper[DigitalExperienceMonitoringTracerouteDetailsPercentiles],
-            ),
+            cast_to=cast(Type[TracerouteTestPercentilesResponse], ResultWrapper[TracerouteTestPercentilesResponse]),
         )
 
 
@@ -279,7 +270,7 @@ class AsyncTracerouteTests(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DigitalExperienceMonitoringTracerouteDetails:
+    ) -> TracerouteTestGetResponse:
         """
         Get test details and aggregate performance metrics for an traceroute test for a
         given time period between 1 hour and 7 days.
@@ -330,10 +321,7 @@ class AsyncTracerouteTests(AsyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[DigitalExperienceMonitoringTracerouteDetails],
-                ResultWrapper[DigitalExperienceMonitoringTracerouteDetails],
-            ),
+            cast_to=cast(Type[TracerouteTestGetResponse], ResultWrapper[TracerouteTestGetResponse]),
         )
 
     async def network_path(
@@ -351,7 +339,7 @@ class AsyncTracerouteTests(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DigitalExperienceMonitoringTracerouteTestNetworkPath:
+    ) -> TracerouteTestNetworkPathResponse:
         """
         Get a breakdown of metrics by hop for individual traceroute test runs
 
@@ -396,10 +384,7 @@ class AsyncTracerouteTests(AsyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[DigitalExperienceMonitoringTracerouteTestNetworkPath],
-                ResultWrapper[DigitalExperienceMonitoringTracerouteTestNetworkPath],
-            ),
+            cast_to=cast(Type[TracerouteTestNetworkPathResponse], ResultWrapper[TracerouteTestNetworkPathResponse]),
         )
 
     async def percentiles(
@@ -417,7 +402,7 @@ class AsyncTracerouteTests(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DigitalExperienceMonitoringTracerouteDetailsPercentiles:
+    ) -> TracerouteTestPercentilesResponse:
         """
         Get percentiles for a traceroute test for a given time period between 1 hour and
         7 days.
@@ -465,10 +450,7 @@ class AsyncTracerouteTests(AsyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[DigitalExperienceMonitoringTracerouteDetailsPercentiles],
-                ResultWrapper[DigitalExperienceMonitoringTracerouteDetailsPercentiles],
-            ),
+            cast_to=cast(Type[TracerouteTestPercentilesResponse], ResultWrapper[TracerouteTestPercentilesResponse]),
         )
 
 

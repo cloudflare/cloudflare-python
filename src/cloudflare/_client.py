@@ -335,8 +335,7 @@ class Cloudflare(SyncAPIClient):
         return {
             **super().default_headers,
             "X-Stainless-Async": "false",
-            "X-Auth-Key": self.api_key if self.api_key is not None else Omit(),
-            "X-Auth-Email": self.api_email if self.api_email is not None else Omit(),
+            "x-auth-email": self.api_email if self.api_email is not None else Omit(),
             **self._custom_headers,
         }
 
@@ -746,8 +745,7 @@ class AsyncCloudflare(AsyncAPIClient):
         return {
             **super().default_headers,
             "X-Stainless-Async": f"async:{get_async_library()}",
-            "X-Auth-Key": self.api_key if self.api_key is not None else Omit(),
-            "X-Auth-Email": self.api_email if self.api_email is not None else Omit(),
+            "x-auth-email": self.api_email if self.api_email is not None else Omit(),
             **self._custom_headers,
         }
 

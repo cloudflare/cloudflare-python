@@ -23,7 +23,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zero_trust.gateway import ZeroTrustGatewayGatewayAccountLoggingSettings, logging_update_params
+from ....types.zero_trust.gateway import LoggingGetResponse, LoggingUpdateResponse, logging_update_params
 
 __all__ = ["Loggings", "AsyncLoggings"]
 
@@ -49,7 +49,7 @@ class Loggings(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustGatewayGatewayAccountLoggingSettings:
+    ) -> LoggingUpdateResponse:
         """
         Updates logging settings for the current Zero Trust account.
 
@@ -83,10 +83,7 @@ class Loggings(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[ZeroTrustGatewayGatewayAccountLoggingSettings],
-                ResultWrapper[ZeroTrustGatewayGatewayAccountLoggingSettings],
-            ),
+            cast_to=cast(Type[LoggingUpdateResponse], ResultWrapper[LoggingUpdateResponse]),
         )
 
     def get(
@@ -99,7 +96,7 @@ class Loggings(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustGatewayGatewayAccountLoggingSettings:
+    ) -> LoggingGetResponse:
         """
         Fetches the current logging settings for Zero Trust account.
 
@@ -121,10 +118,7 @@ class Loggings(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[ZeroTrustGatewayGatewayAccountLoggingSettings],
-                ResultWrapper[ZeroTrustGatewayGatewayAccountLoggingSettings],
-            ),
+            cast_to=cast(Type[LoggingGetResponse], ResultWrapper[LoggingGetResponse]),
         )
 
 
@@ -149,7 +143,7 @@ class AsyncLoggings(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustGatewayGatewayAccountLoggingSettings:
+    ) -> LoggingUpdateResponse:
         """
         Updates logging settings for the current Zero Trust account.
 
@@ -183,10 +177,7 @@ class AsyncLoggings(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[ZeroTrustGatewayGatewayAccountLoggingSettings],
-                ResultWrapper[ZeroTrustGatewayGatewayAccountLoggingSettings],
-            ),
+            cast_to=cast(Type[LoggingUpdateResponse], ResultWrapper[LoggingUpdateResponse]),
         )
 
     async def get(
@@ -199,7 +190,7 @@ class AsyncLoggings(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustGatewayGatewayAccountLoggingSettings:
+    ) -> LoggingGetResponse:
         """
         Fetches the current logging settings for Zero Trust account.
 
@@ -221,10 +212,7 @@ class AsyncLoggings(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[ZeroTrustGatewayGatewayAccountLoggingSettings],
-                ResultWrapper[ZeroTrustGatewayGatewayAccountLoggingSettings],
-            ),
+            cast_to=cast(Type[LoggingGetResponse], ResultWrapper[LoggingGetResponse]),
         )
 
 

@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types import RulesetsRulesetResponse, RulesetsRulesetsResponse
+from cloudflare.types.rulesets.phases import VersionGetResponse, VersionListResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -25,7 +25,7 @@ class TestVersions:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(RulesetsRulesetsResponse, version, path=["response"])
+        assert_matches_type(VersionListResponse, version, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -35,7 +35,7 @@ class TestVersions:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(RulesetsRulesetsResponse, version, path=["response"])
+        assert_matches_type(VersionListResponse, version, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -49,7 +49,7 @@ class TestVersions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         version = response.parse()
-        assert_matches_type(RulesetsRulesetsResponse, version, path=["response"])
+        assert_matches_type(VersionListResponse, version, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -63,7 +63,7 @@ class TestVersions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             version = response.parse()
-            assert_matches_type(RulesetsRulesetsResponse, version, path=["response"])
+            assert_matches_type(VersionListResponse, version, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -93,7 +93,7 @@ class TestVersions:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(RulesetsRulesetResponse, version, path=["response"])
+        assert_matches_type(VersionGetResponse, version, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -104,7 +104,7 @@ class TestVersions:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(RulesetsRulesetResponse, version, path=["response"])
+        assert_matches_type(VersionGetResponse, version, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -119,7 +119,7 @@ class TestVersions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         version = response.parse()
-        assert_matches_type(RulesetsRulesetResponse, version, path=["response"])
+        assert_matches_type(VersionGetResponse, version, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -134,7 +134,7 @@ class TestVersions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             version = response.parse()
-            assert_matches_type(RulesetsRulesetResponse, version, path=["response"])
+            assert_matches_type(VersionGetResponse, version, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -177,7 +177,7 @@ class TestAsyncVersions:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(RulesetsRulesetsResponse, version, path=["response"])
+        assert_matches_type(VersionListResponse, version, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -187,7 +187,7 @@ class TestAsyncVersions:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(RulesetsRulesetsResponse, version, path=["response"])
+        assert_matches_type(VersionListResponse, version, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -201,7 +201,7 @@ class TestAsyncVersions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         version = await response.parse()
-        assert_matches_type(RulesetsRulesetsResponse, version, path=["response"])
+        assert_matches_type(VersionListResponse, version, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -215,7 +215,7 @@ class TestAsyncVersions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             version = await response.parse()
-            assert_matches_type(RulesetsRulesetsResponse, version, path=["response"])
+            assert_matches_type(VersionListResponse, version, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -245,7 +245,7 @@ class TestAsyncVersions:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(RulesetsRulesetResponse, version, path=["response"])
+        assert_matches_type(VersionGetResponse, version, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -256,7 +256,7 @@ class TestAsyncVersions:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(RulesetsRulesetResponse, version, path=["response"])
+        assert_matches_type(VersionGetResponse, version, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -271,7 +271,7 @@ class TestAsyncVersions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         version = await response.parse()
-        assert_matches_type(RulesetsRulesetResponse, version, path=["response"])
+        assert_matches_type(VersionGetResponse, version, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -286,7 +286,7 @@ class TestAsyncVersions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             version = await response.parse()
-            assert_matches_type(RulesetsRulesetResponse, version, path=["response"])
+            assert_matches_type(VersionGetResponse, version, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

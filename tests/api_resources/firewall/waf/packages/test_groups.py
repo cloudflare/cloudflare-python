@@ -13,7 +13,7 @@ from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginati
 from cloudflare.types.firewall.waf.packages import (
     GroupGetResponse,
     GroupEditResponse,
-    WAFManagedRulesSchemasGroup,
+    GroupListResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -29,7 +29,7 @@ class TestGroups:
             "a25a9a7e9c00afc1fb2e0245519d725b",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncV4PagePaginationArray[WAFManagedRulesSchemasGroup], group, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[GroupListResponse], group, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -44,7 +44,7 @@ class TestGroups:
             page=1,
             per_page=5,
         )
-        assert_matches_type(SyncV4PagePaginationArray[WAFManagedRulesSchemasGroup], group, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[GroupListResponse], group, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -57,7 +57,7 @@ class TestGroups:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         group = response.parse()
-        assert_matches_type(SyncV4PagePaginationArray[WAFManagedRulesSchemasGroup], group, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[GroupListResponse], group, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -70,7 +70,7 @@ class TestGroups:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             group = response.parse()
-            assert_matches_type(SyncV4PagePaginationArray[WAFManagedRulesSchemasGroup], group, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[GroupListResponse], group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -239,7 +239,7 @@ class TestAsyncGroups:
             "a25a9a7e9c00afc1fb2e0245519d725b",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncV4PagePaginationArray[WAFManagedRulesSchemasGroup], group, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[GroupListResponse], group, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -254,7 +254,7 @@ class TestAsyncGroups:
             page=1,
             per_page=5,
         )
-        assert_matches_type(AsyncV4PagePaginationArray[WAFManagedRulesSchemasGroup], group, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[GroupListResponse], group, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -267,7 +267,7 @@ class TestAsyncGroups:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         group = await response.parse()
-        assert_matches_type(AsyncV4PagePaginationArray[WAFManagedRulesSchemasGroup], group, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[GroupListResponse], group, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -280,7 +280,7 @@ class TestAsyncGroups:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             group = await response.parse()
-            assert_matches_type(AsyncV4PagePaginationArray[WAFManagedRulesSchemasGroup], group, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[GroupListResponse], group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -1,9 +1,62 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from typing import List
+from typing import List, Optional
+from datetime import datetime
+from typing_extensions import Literal
 
-from .tls_certificates_and_hostnames_base import TLSCertificatesAndHostnamesBase
+from .._models import BaseModel
 
-__all__ = ["KeylessCertificateListResponse"]
+__all__ = [
+    "KeylessCertificateListResponse",
+    "KeylessCertificateListResponseItem",
+    "KeylessCertificateListResponseItemTunnel",
+]
 
-KeylessCertificateListResponse = List[TLSCertificatesAndHostnamesBase]
+
+class KeylessCertificateListResponseItemTunnel(BaseModel):
+    private_ip: str
+    """Private IP of the Key Server Host"""
+
+    vnet_id: str
+    """Cloudflare Tunnel Virtual Network ID"""
+
+
+class KeylessCertificateListResponseItem(BaseModel):
+    id: str
+    """Keyless certificate identifier tag."""
+
+    created_on: datetime
+    """When the Keyless SSL was created."""
+
+    enabled: bool
+    """Whether or not the Keyless SSL is on or off."""
+
+    host: str
+    """The keyless SSL name."""
+
+    modified_on: datetime
+    """When the Keyless SSL was last modified."""
+
+    name: str
+    """The keyless SSL name."""
+
+    permissions: List[object]
+    """
+    Available permissions for the Keyless SSL for the current user requesting the
+    item.
+    """
+
+    port: float
+    """
+    The keyless SSL port used to communicate between Cloudflare and the client's
+    Keyless SSL server.
+    """
+
+    status: Literal["active", "deleted"]
+    """Status of the Keyless SSL."""
+
+    tunnel: Optional[KeylessCertificateListResponseItemTunnel] = None
+    """Configuration for using Keyless SSL through a Cloudflare Tunnel"""
+
+
+KeylessCertificateListResponse = List[KeylessCertificateListResponseItem]

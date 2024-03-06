@@ -32,9 +32,10 @@ from ....._base_client import (
     make_request_options,
 )
 from .....types.zero_trust.dlp import (
-    DLPDataset,
-    DLPDatasetArray,
-    DLPDatasetCreation,
+    DatasetGetResponse,
+    DatasetListResponse,
+    DatasetCreateResponse,
+    DatasetUpdateResponse,
     dataset_create_params,
     dataset_update_params,
 )
@@ -68,7 +69,7 @@ class Datasets(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DLPDatasetCreation]:
+    ) -> Optional[DatasetCreateResponse]:
         """
         Create a new dataset.
 
@@ -105,7 +106,7 @@ class Datasets(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DLPDatasetCreation]], ResultWrapper[DLPDatasetCreation]),
+            cast_to=cast(Type[Optional[DatasetCreateResponse]], ResultWrapper[DatasetCreateResponse]),
         )
 
     def update(
@@ -121,7 +122,7 @@ class Datasets(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DLPDataset]:
+    ) -> Optional[DatasetUpdateResponse]:
         """
         Update details about a dataset.
 
@@ -154,7 +155,7 @@ class Datasets(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DLPDataset]], ResultWrapper[DLPDataset]),
+            cast_to=cast(Type[Optional[DatasetUpdateResponse]], ResultWrapper[DatasetUpdateResponse]),
         )
 
     def list(
@@ -167,7 +168,7 @@ class Datasets(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DLPDatasetArray]:
+    ) -> Optional[DatasetListResponse]:
         """
         Fetch all datasets with information about available versions.
 
@@ -191,7 +192,7 @@ class Datasets(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DLPDatasetArray]], ResultWrapper[DLPDatasetArray]),
+            cast_to=cast(Type[Optional[DatasetListResponse]], ResultWrapper[DatasetListResponse]),
         )
 
     def delete(
@@ -244,7 +245,7 @@ class Datasets(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DLPDataset]:
+    ) -> Optional[DatasetGetResponse]:
         """
         Fetch a specific dataset with information about available versions.
 
@@ -270,7 +271,7 @@ class Datasets(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DLPDataset]], ResultWrapper[DLPDataset]),
+            cast_to=cast(Type[Optional[DatasetGetResponse]], ResultWrapper[DatasetGetResponse]),
         )
 
 
@@ -300,7 +301,7 @@ class AsyncDatasets(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DLPDatasetCreation]:
+    ) -> Optional[DatasetCreateResponse]:
         """
         Create a new dataset.
 
@@ -337,7 +338,7 @@ class AsyncDatasets(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DLPDatasetCreation]], ResultWrapper[DLPDatasetCreation]),
+            cast_to=cast(Type[Optional[DatasetCreateResponse]], ResultWrapper[DatasetCreateResponse]),
         )
 
     async def update(
@@ -353,7 +354,7 @@ class AsyncDatasets(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DLPDataset]:
+    ) -> Optional[DatasetUpdateResponse]:
         """
         Update details about a dataset.
 
@@ -386,7 +387,7 @@ class AsyncDatasets(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DLPDataset]], ResultWrapper[DLPDataset]),
+            cast_to=cast(Type[Optional[DatasetUpdateResponse]], ResultWrapper[DatasetUpdateResponse]),
         )
 
     async def list(
@@ -399,7 +400,7 @@ class AsyncDatasets(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DLPDatasetArray]:
+    ) -> Optional[DatasetListResponse]:
         """
         Fetch all datasets with information about available versions.
 
@@ -423,7 +424,7 @@ class AsyncDatasets(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DLPDatasetArray]], ResultWrapper[DLPDatasetArray]),
+            cast_to=cast(Type[Optional[DatasetListResponse]], ResultWrapper[DatasetListResponse]),
         )
 
     async def delete(
@@ -476,7 +477,7 @@ class AsyncDatasets(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DLPDataset]:
+    ) -> Optional[DatasetGetResponse]:
         """
         Fetch a specific dataset with information about available versions.
 
@@ -502,7 +503,7 @@ class AsyncDatasets(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DLPDataset]], ResultWrapper[DLPDataset]),
+            cast_to=cast(Type[Optional[DatasetGetResponse]], ResultWrapper[DatasetGetResponse]),
         )
 
 

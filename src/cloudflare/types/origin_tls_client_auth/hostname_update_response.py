@@ -1,9 +1,36 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from typing import List
+from typing import List, Optional
 
-from .tls_certificates_and_hostnames_hostname_certid_object import TLSCertificatesAndHostnamesHostnameCertidObject
+from ..._models import BaseModel
 
-__all__ = ["HostnameUpdateResponse"]
+__all__ = ["HostnameUpdateResponse", "HostnameUpdateResponseItem"]
 
-HostnameUpdateResponse = List[TLSCertificatesAndHostnamesHostnameCertidObject]
+
+class HostnameUpdateResponseItem(BaseModel):
+    id: Optional[str] = None
+    """Identifier"""
+
+    cert_id: Optional[str] = None
+    """Identifier"""
+
+    certificate: Optional[str] = None
+    """The hostname certificate."""
+
+    enabled: Optional[bool] = None
+    """Indicates whether hostname-level authenticated origin pulls is enabled.
+
+    A null value voids the association.
+    """
+
+    hostname: Optional[str] = None
+    """
+    The hostname on the origin for which the client certificate uploaded will be
+    used.
+    """
+
+    private_key: Optional[str] = None
+    """The hostname certificate's private key."""
+
+
+HostnameUpdateResponse = List[HostnameUpdateResponseItem]

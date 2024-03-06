@@ -24,9 +24,11 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.zero_trust.gateway import (
+    LocationGetResponse,
     LocationListResponse,
+    LocationCreateResponse,
     LocationDeleteResponse,
-    ZeroTrustGatewayLocations,
+    LocationUpdateResponse,
     location_create_params,
     location_update_params,
 )
@@ -57,7 +59,7 @@ class Locations(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustGatewayLocations:
+    ) -> LocationCreateResponse:
         """
         Creates a new Zero Trust Gateway location.
 
@@ -96,7 +98,7 @@ class Locations(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustGatewayLocations], ResultWrapper[ZeroTrustGatewayLocations]),
+            cast_to=cast(Type[LocationCreateResponse], ResultWrapper[LocationCreateResponse]),
         )
 
     def update(
@@ -114,7 +116,7 @@ class Locations(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustGatewayLocations:
+    ) -> LocationUpdateResponse:
         """
         Updates a configured Zero Trust Gateway location.
 
@@ -153,7 +155,7 @@ class Locations(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustGatewayLocations], ResultWrapper[ZeroTrustGatewayLocations]),
+            cast_to=cast(Type[LocationUpdateResponse], ResultWrapper[LocationUpdateResponse]),
         )
 
     def list(
@@ -243,7 +245,7 @@ class Locations(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustGatewayLocations:
+    ) -> LocationGetResponse:
         """
         Fetches a single Zero Trust Gateway location.
 
@@ -265,7 +267,7 @@ class Locations(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustGatewayLocations], ResultWrapper[ZeroTrustGatewayLocations]),
+            cast_to=cast(Type[LocationGetResponse], ResultWrapper[LocationGetResponse]),
         )
 
 
@@ -292,7 +294,7 @@ class AsyncLocations(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustGatewayLocations:
+    ) -> LocationCreateResponse:
         """
         Creates a new Zero Trust Gateway location.
 
@@ -331,7 +333,7 @@ class AsyncLocations(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustGatewayLocations], ResultWrapper[ZeroTrustGatewayLocations]),
+            cast_to=cast(Type[LocationCreateResponse], ResultWrapper[LocationCreateResponse]),
         )
 
     async def update(
@@ -349,7 +351,7 @@ class AsyncLocations(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustGatewayLocations:
+    ) -> LocationUpdateResponse:
         """
         Updates a configured Zero Trust Gateway location.
 
@@ -388,7 +390,7 @@ class AsyncLocations(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustGatewayLocations], ResultWrapper[ZeroTrustGatewayLocations]),
+            cast_to=cast(Type[LocationUpdateResponse], ResultWrapper[LocationUpdateResponse]),
         )
 
     async def list(
@@ -478,7 +480,7 @@ class AsyncLocations(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustGatewayLocations:
+    ) -> LocationGetResponse:
         """
         Fetches a single Zero Trust Gateway location.
 
@@ -500,7 +502,7 @@ class AsyncLocations(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustGatewayLocations], ResultWrapper[ZeroTrustGatewayLocations]),
+            cast_to=cast(Type[LocationGetResponse], ResultWrapper[LocationGetResponse]),
         )
 
 

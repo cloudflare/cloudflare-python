@@ -19,7 +19,12 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from ...types.user import IamOrganization, OrganizationGetResponse, OrganizationDeleteResponse, organization_list_params
+from ...types.user import (
+    OrganizationGetResponse,
+    OrganizationListResponse,
+    OrganizationDeleteResponse,
+    organization_list_params,
+)
 from ..._base_client import (
     AsyncPaginator,
     make_request_options,
@@ -53,7 +58,7 @@ class Organizations(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[IamOrganization]:
+    ) -> SyncV4PagePaginationArray[OrganizationListResponse]:
         """
         Lists organizations the user is associated with.
 
@@ -82,7 +87,7 @@ class Organizations(SyncAPIResource):
         """
         return self._get_api_list(
             "/user/organizations",
-            page=SyncV4PagePaginationArray[IamOrganization],
+            page=SyncV4PagePaginationArray[OrganizationListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -101,7 +106,7 @@ class Organizations(SyncAPIResource):
                     organization_list_params.OrganizationListParams,
                 ),
             ),
-            model=IamOrganization,
+            model=OrganizationListResponse,
         )
 
     def delete(
@@ -209,7 +214,7 @@ class AsyncOrganizations(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[IamOrganization, AsyncV4PagePaginationArray[IamOrganization]]:
+    ) -> AsyncPaginator[OrganizationListResponse, AsyncV4PagePaginationArray[OrganizationListResponse]]:
         """
         Lists organizations the user is associated with.
 
@@ -238,7 +243,7 @@ class AsyncOrganizations(AsyncAPIResource):
         """
         return self._get_api_list(
             "/user/organizations",
-            page=AsyncV4PagePaginationArray[IamOrganization],
+            page=AsyncV4PagePaginationArray[OrganizationListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -257,7 +262,7 @@ class AsyncOrganizations(AsyncAPIResource):
                     organization_list_params.OrganizationListParams,
                 ),
             ),
-            model=IamOrganization,
+            model=OrganizationListResponse,
         )
 
     async def delete(

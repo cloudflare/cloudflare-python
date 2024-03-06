@@ -24,9 +24,11 @@ from ..._base_client import (
     make_request_options,
 )
 from ...types.secondary_dns import (
+    PeerGetResponse,
     PeerListResponse,
-    SecondaryDNSPeer,
+    PeerCreateResponse,
     PeerDeleteResponse,
+    PeerUpdateResponse,
     peer_create_params,
     peer_update_params,
 )
@@ -54,7 +56,7 @@ class Peers(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SecondaryDNSPeer:
+    ) -> PeerCreateResponse:
         """
         Create Peer.
 
@@ -77,7 +79,7 @@ class Peers(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[SecondaryDNSPeer], ResultWrapper[SecondaryDNSPeer]),
+            cast_to=cast(Type[PeerCreateResponse], ResultWrapper[PeerCreateResponse]),
         )
 
     def update(
@@ -96,7 +98,7 @@ class Peers(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SecondaryDNSPeer:
+    ) -> PeerUpdateResponse:
         """
         Modify Peer.
 
@@ -144,7 +146,7 @@ class Peers(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[SecondaryDNSPeer], ResultWrapper[SecondaryDNSPeer]),
+            cast_to=cast(Type[PeerUpdateResponse], ResultWrapper[PeerUpdateResponse]),
         )
 
     def list(
@@ -229,7 +231,7 @@ class Peers(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SecondaryDNSPeer:
+    ) -> PeerGetResponse:
         """
         Get Peer.
 
@@ -251,7 +253,7 @@ class Peers(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[SecondaryDNSPeer], ResultWrapper[SecondaryDNSPeer]),
+            cast_to=cast(Type[PeerGetResponse], ResultWrapper[PeerGetResponse]),
         )
 
 
@@ -275,7 +277,7 @@ class AsyncPeers(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SecondaryDNSPeer:
+    ) -> PeerCreateResponse:
         """
         Create Peer.
 
@@ -298,7 +300,7 @@ class AsyncPeers(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[SecondaryDNSPeer], ResultWrapper[SecondaryDNSPeer]),
+            cast_to=cast(Type[PeerCreateResponse], ResultWrapper[PeerCreateResponse]),
         )
 
     async def update(
@@ -317,7 +319,7 @@ class AsyncPeers(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SecondaryDNSPeer:
+    ) -> PeerUpdateResponse:
         """
         Modify Peer.
 
@@ -365,7 +367,7 @@ class AsyncPeers(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[SecondaryDNSPeer], ResultWrapper[SecondaryDNSPeer]),
+            cast_to=cast(Type[PeerUpdateResponse], ResultWrapper[PeerUpdateResponse]),
         )
 
     async def list(
@@ -450,7 +452,7 @@ class AsyncPeers(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SecondaryDNSPeer:
+    ) -> PeerGetResponse:
         """
         Get Peer.
 
@@ -472,7 +474,7 @@ class AsyncPeers(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[SecondaryDNSPeer], ResultWrapper[SecondaryDNSPeer]),
+            cast_to=cast(Type[PeerGetResponse], ResultWrapper[PeerGetResponse]),
         )
 
 

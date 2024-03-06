@@ -24,7 +24,11 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZonesBuffering, response_buffering_edit_params
+from ....types.zones.settings import (
+    ResponseBufferingGetResponse,
+    ResponseBufferingEditResponse,
+    response_buffering_edit_params,
+)
 
 __all__ = ["ResponseBuffering", "AsyncResponseBuffering"]
 
@@ -49,7 +53,7 @@ class ResponseBuffering(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesBuffering]:
+    ) -> Optional[ResponseBufferingEditResponse]:
         """Enables or disables buffering of responses from the proxied server.
 
         Cloudflare
@@ -82,7 +86,7 @@ class ResponseBuffering(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesBuffering]], ResultWrapper[ZonesBuffering]),
+            cast_to=cast(Type[Optional[ResponseBufferingEditResponse]], ResultWrapper[ResponseBufferingEditResponse]),
         )
 
     def get(
@@ -95,7 +99,7 @@ class ResponseBuffering(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesBuffering]:
+    ) -> Optional[ResponseBufferingGetResponse]:
         """Enables or disables buffering of responses from the proxied server.
 
         Cloudflare
@@ -125,7 +129,7 @@ class ResponseBuffering(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesBuffering]], ResultWrapper[ZonesBuffering]),
+            cast_to=cast(Type[Optional[ResponseBufferingGetResponse]], ResultWrapper[ResponseBufferingGetResponse]),
         )
 
 
@@ -149,7 +153,7 @@ class AsyncResponseBuffering(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesBuffering]:
+    ) -> Optional[ResponseBufferingEditResponse]:
         """Enables or disables buffering of responses from the proxied server.
 
         Cloudflare
@@ -184,7 +188,7 @@ class AsyncResponseBuffering(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesBuffering]], ResultWrapper[ZonesBuffering]),
+            cast_to=cast(Type[Optional[ResponseBufferingEditResponse]], ResultWrapper[ResponseBufferingEditResponse]),
         )
 
     async def get(
@@ -197,7 +201,7 @@ class AsyncResponseBuffering(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesBuffering]:
+    ) -> Optional[ResponseBufferingGetResponse]:
         """Enables or disables buffering of responses from the proxied server.
 
         Cloudflare
@@ -227,7 +231,7 @@ class AsyncResponseBuffering(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesBuffering]], ResultWrapper[ZonesBuffering]),
+            cast_to=cast(Type[Optional[ResponseBufferingGetResponse]], ResultWrapper[ResponseBufferingGetResponse]),
         )
 
 

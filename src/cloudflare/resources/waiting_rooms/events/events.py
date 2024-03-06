@@ -32,9 +32,12 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.waiting_rooms import (
+    EventGetResponse,
+    EventEditResponse,
     EventListResponse,
+    EventCreateResponse,
     EventDeleteResponse,
-    WaitingroomEventResult,
+    EventUpdateResponse,
     event_edit_params,
     event_create_params,
     event_update_params,
@@ -80,7 +83,7 @@ class Events(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WaitingroomEventResult:
+    ) -> EventCreateResponse:
         """Only available for the Waiting Room Advanced subscription.
 
         Creates an event for
@@ -175,7 +178,7 @@ class Events(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[WaitingroomEventResult], ResultWrapper[WaitingroomEventResult]),
+            cast_to=cast(Type[EventCreateResponse], ResultWrapper[EventCreateResponse]),
         )
 
     def update(
@@ -203,7 +206,7 @@ class Events(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WaitingroomEventResult:
+    ) -> EventUpdateResponse:
         """
         Updates a configured event for a waiting room.
 
@@ -292,7 +295,7 @@ class Events(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[WaitingroomEventResult], ResultWrapper[WaitingroomEventResult]),
+            cast_to=cast(Type[EventUpdateResponse], ResultWrapper[EventUpdateResponse]),
         )
 
     def list(
@@ -401,7 +404,7 @@ class Events(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WaitingroomEventResult:
+    ) -> EventEditResponse:
         """
         Patches a configured event for a waiting room.
 
@@ -490,7 +493,7 @@ class Events(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[WaitingroomEventResult], ResultWrapper[WaitingroomEventResult]),
+            cast_to=cast(Type[EventEditResponse], ResultWrapper[EventEditResponse]),
         )
 
     def get(
@@ -505,7 +508,7 @@ class Events(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WaitingroomEventResult:
+    ) -> EventGetResponse:
         """
         Fetches a single configured event for a waiting room.
 
@@ -531,7 +534,7 @@ class Events(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[WaitingroomEventResult], ResultWrapper[WaitingroomEventResult]),
+            cast_to=cast(Type[EventGetResponse], ResultWrapper[EventGetResponse]),
         )
 
 
@@ -572,7 +575,7 @@ class AsyncEvents(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WaitingroomEventResult:
+    ) -> EventCreateResponse:
         """Only available for the Waiting Room Advanced subscription.
 
         Creates an event for
@@ -667,7 +670,7 @@ class AsyncEvents(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[WaitingroomEventResult], ResultWrapper[WaitingroomEventResult]),
+            cast_to=cast(Type[EventCreateResponse], ResultWrapper[EventCreateResponse]),
         )
 
     async def update(
@@ -695,7 +698,7 @@ class AsyncEvents(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WaitingroomEventResult:
+    ) -> EventUpdateResponse:
         """
         Updates a configured event for a waiting room.
 
@@ -784,7 +787,7 @@ class AsyncEvents(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[WaitingroomEventResult], ResultWrapper[WaitingroomEventResult]),
+            cast_to=cast(Type[EventUpdateResponse], ResultWrapper[EventUpdateResponse]),
         )
 
     async def list(
@@ -893,7 +896,7 @@ class AsyncEvents(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WaitingroomEventResult:
+    ) -> EventEditResponse:
         """
         Patches a configured event for a waiting room.
 
@@ -982,7 +985,7 @@ class AsyncEvents(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[WaitingroomEventResult], ResultWrapper[WaitingroomEventResult]),
+            cast_to=cast(Type[EventEditResponse], ResultWrapper[EventEditResponse]),
         )
 
     async def get(
@@ -997,7 +1000,7 @@ class AsyncEvents(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WaitingroomEventResult:
+    ) -> EventGetResponse:
         """
         Fetches a single configured event for a waiting room.
 
@@ -1023,7 +1026,7 @@ class AsyncEvents(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[WaitingroomEventResult], ResultWrapper[WaitingroomEventResult]),
+            cast_to=cast(Type[EventGetResponse], ResultWrapper[EventGetResponse]),
         )
 
 

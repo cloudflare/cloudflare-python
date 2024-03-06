@@ -9,7 +9,10 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.zones.settings import ZonesBuffering
+from cloudflare.types.zones.settings import (
+    ResponseBufferingGetResponse,
+    ResponseBufferingEditResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -24,7 +27,7 @@ class TestResponseBuffering:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value="on",
         )
-        assert_matches_type(Optional[ZonesBuffering], response_buffering, path=["response"])
+        assert_matches_type(Optional[ResponseBufferingEditResponse], response_buffering, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -37,7 +40,7 @@ class TestResponseBuffering:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         response_buffering = response.parse()
-        assert_matches_type(Optional[ZonesBuffering], response_buffering, path=["response"])
+        assert_matches_type(Optional[ResponseBufferingEditResponse], response_buffering, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -50,7 +53,7 @@ class TestResponseBuffering:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             response_buffering = response.parse()
-            assert_matches_type(Optional[ZonesBuffering], response_buffering, path=["response"])
+            assert_matches_type(Optional[ResponseBufferingEditResponse], response_buffering, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -69,7 +72,7 @@ class TestResponseBuffering:
         response_buffering = client.zones.settings.response_buffering.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ZonesBuffering], response_buffering, path=["response"])
+        assert_matches_type(Optional[ResponseBufferingGetResponse], response_buffering, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -81,7 +84,7 @@ class TestResponseBuffering:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         response_buffering = response.parse()
-        assert_matches_type(Optional[ZonesBuffering], response_buffering, path=["response"])
+        assert_matches_type(Optional[ResponseBufferingGetResponse], response_buffering, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -93,7 +96,7 @@ class TestResponseBuffering:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             response_buffering = response.parse()
-            assert_matches_type(Optional[ZonesBuffering], response_buffering, path=["response"])
+            assert_matches_type(Optional[ResponseBufferingGetResponse], response_buffering, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -116,7 +119,7 @@ class TestAsyncResponseBuffering:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value="on",
         )
-        assert_matches_type(Optional[ZonesBuffering], response_buffering, path=["response"])
+        assert_matches_type(Optional[ResponseBufferingEditResponse], response_buffering, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -129,7 +132,7 @@ class TestAsyncResponseBuffering:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         response_buffering = await response.parse()
-        assert_matches_type(Optional[ZonesBuffering], response_buffering, path=["response"])
+        assert_matches_type(Optional[ResponseBufferingEditResponse], response_buffering, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -142,7 +145,7 @@ class TestAsyncResponseBuffering:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             response_buffering = await response.parse()
-            assert_matches_type(Optional[ZonesBuffering], response_buffering, path=["response"])
+            assert_matches_type(Optional[ResponseBufferingEditResponse], response_buffering, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -161,7 +164,7 @@ class TestAsyncResponseBuffering:
         response_buffering = await async_client.zones.settings.response_buffering.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ZonesBuffering], response_buffering, path=["response"])
+        assert_matches_type(Optional[ResponseBufferingGetResponse], response_buffering, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -173,7 +176,7 @@ class TestAsyncResponseBuffering:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         response_buffering = await response.parse()
-        assert_matches_type(Optional[ZonesBuffering], response_buffering, path=["response"])
+        assert_matches_type(Optional[ResponseBufferingGetResponse], response_buffering, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -185,7 +188,7 @@ class TestAsyncResponseBuffering:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             response_buffering = await response.parse()
-            assert_matches_type(Optional[ZonesBuffering], response_buffering, path=["response"])
+            assert_matches_type(Optional[ResponseBufferingGetResponse], response_buffering, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

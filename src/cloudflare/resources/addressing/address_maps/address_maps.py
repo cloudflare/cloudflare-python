@@ -48,8 +48,8 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.addressing import (
-    AddressingAddressMaps,
     AddressMapGetResponse,
+    AddressMapEditResponse,
     AddressMapListResponse,
     AddressMapCreateResponse,
     AddressMapDeleteResponse,
@@ -239,7 +239,7 @@ class AddressMaps(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AddressingAddressMaps:
+    ) -> AddressMapEditResponse:
         """
         Modify properties of an address map owned by the account.
 
@@ -289,7 +289,7 @@ class AddressMaps(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AddressingAddressMaps], ResultWrapper[AddressingAddressMaps]),
+            cast_to=cast(Type[AddressMapEditResponse], ResultWrapper[AddressMapEditResponse]),
         )
 
     def get(
@@ -516,7 +516,7 @@ class AsyncAddressMaps(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AddressingAddressMaps:
+    ) -> AddressMapEditResponse:
         """
         Modify properties of an address map owned by the account.
 
@@ -566,7 +566,7 @@ class AsyncAddressMaps(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AddressingAddressMaps], ResultWrapper[AddressingAddressMaps]),
+            cast_to=cast(Type[AddressMapEditResponse], ResultWrapper[AddressMapEditResponse]),
         )
 
     async def get(

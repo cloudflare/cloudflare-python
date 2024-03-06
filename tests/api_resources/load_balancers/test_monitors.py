@@ -10,10 +10,13 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types.load_balancers import (
+    MonitorGetResponse,
+    MonitorEditResponse,
     MonitorListResponse,
+    MonitorCreateResponse,
     MonitorDeleteResponse,
+    MonitorUpdateResponse,
 )
-from cloudflare.types.user.load_balancers import LoadBalancingMonitor
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -28,7 +31,7 @@ class TestMonitors:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             expected_codes="2xx",
         )
-        assert_matches_type(LoadBalancingMonitor, monitor, path=["response"])
+        assert_matches_type(MonitorCreateResponse, monitor, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -55,7 +58,7 @@ class TestMonitors:
             load_balancer_monitor_timeout=0,
             type="https",
         )
-        assert_matches_type(LoadBalancingMonitor, monitor, path=["response"])
+        assert_matches_type(MonitorCreateResponse, monitor, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -68,7 +71,7 @@ class TestMonitors:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         monitor = response.parse()
-        assert_matches_type(LoadBalancingMonitor, monitor, path=["response"])
+        assert_matches_type(MonitorCreateResponse, monitor, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -81,7 +84,7 @@ class TestMonitors:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             monitor = response.parse()
-            assert_matches_type(LoadBalancingMonitor, monitor, path=["response"])
+            assert_matches_type(MonitorCreateResponse, monitor, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -102,7 +105,7 @@ class TestMonitors:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             expected_codes="2xx",
         )
-        assert_matches_type(LoadBalancingMonitor, monitor, path=["response"])
+        assert_matches_type(MonitorUpdateResponse, monitor, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -130,7 +133,7 @@ class TestMonitors:
             load_balancer_monitor_timeout=0,
             type="https",
         )
-        assert_matches_type(LoadBalancingMonitor, monitor, path=["response"])
+        assert_matches_type(MonitorUpdateResponse, monitor, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -144,7 +147,7 @@ class TestMonitors:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         monitor = response.parse()
-        assert_matches_type(LoadBalancingMonitor, monitor, path=["response"])
+        assert_matches_type(MonitorUpdateResponse, monitor, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -158,7 +161,7 @@ class TestMonitors:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             monitor = response.parse()
-            assert_matches_type(LoadBalancingMonitor, monitor, path=["response"])
+            assert_matches_type(MonitorUpdateResponse, monitor, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -281,7 +284,7 @@ class TestMonitors:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             expected_codes="2xx",
         )
-        assert_matches_type(LoadBalancingMonitor, monitor, path=["response"])
+        assert_matches_type(MonitorEditResponse, monitor, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -309,7 +312,7 @@ class TestMonitors:
             load_balancer_monitor_timeout=0,
             type="https",
         )
-        assert_matches_type(LoadBalancingMonitor, monitor, path=["response"])
+        assert_matches_type(MonitorEditResponse, monitor, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -323,7 +326,7 @@ class TestMonitors:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         monitor = response.parse()
-        assert_matches_type(LoadBalancingMonitor, monitor, path=["response"])
+        assert_matches_type(MonitorEditResponse, monitor, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -337,7 +340,7 @@ class TestMonitors:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             monitor = response.parse()
-            assert_matches_type(LoadBalancingMonitor, monitor, path=["response"])
+            assert_matches_type(MonitorEditResponse, monitor, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -365,7 +368,7 @@ class TestMonitors:
             "f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(LoadBalancingMonitor, monitor, path=["response"])
+        assert_matches_type(MonitorGetResponse, monitor, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -378,7 +381,7 @@ class TestMonitors:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         monitor = response.parse()
-        assert_matches_type(LoadBalancingMonitor, monitor, path=["response"])
+        assert_matches_type(MonitorGetResponse, monitor, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -391,7 +394,7 @@ class TestMonitors:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             monitor = response.parse()
-            assert_matches_type(LoadBalancingMonitor, monitor, path=["response"])
+            assert_matches_type(MonitorGetResponse, monitor, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -421,7 +424,7 @@ class TestAsyncMonitors:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             expected_codes="2xx",
         )
-        assert_matches_type(LoadBalancingMonitor, monitor, path=["response"])
+        assert_matches_type(MonitorCreateResponse, monitor, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -448,7 +451,7 @@ class TestAsyncMonitors:
             load_balancer_monitor_timeout=0,
             type="https",
         )
-        assert_matches_type(LoadBalancingMonitor, monitor, path=["response"])
+        assert_matches_type(MonitorCreateResponse, monitor, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -461,7 +464,7 @@ class TestAsyncMonitors:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         monitor = await response.parse()
-        assert_matches_type(LoadBalancingMonitor, monitor, path=["response"])
+        assert_matches_type(MonitorCreateResponse, monitor, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -474,7 +477,7 @@ class TestAsyncMonitors:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             monitor = await response.parse()
-            assert_matches_type(LoadBalancingMonitor, monitor, path=["response"])
+            assert_matches_type(MonitorCreateResponse, monitor, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -495,7 +498,7 @@ class TestAsyncMonitors:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             expected_codes="2xx",
         )
-        assert_matches_type(LoadBalancingMonitor, monitor, path=["response"])
+        assert_matches_type(MonitorUpdateResponse, monitor, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -523,7 +526,7 @@ class TestAsyncMonitors:
             load_balancer_monitor_timeout=0,
             type="https",
         )
-        assert_matches_type(LoadBalancingMonitor, monitor, path=["response"])
+        assert_matches_type(MonitorUpdateResponse, monitor, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -537,7 +540,7 @@ class TestAsyncMonitors:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         monitor = await response.parse()
-        assert_matches_type(LoadBalancingMonitor, monitor, path=["response"])
+        assert_matches_type(MonitorUpdateResponse, monitor, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -551,7 +554,7 @@ class TestAsyncMonitors:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             monitor = await response.parse()
-            assert_matches_type(LoadBalancingMonitor, monitor, path=["response"])
+            assert_matches_type(MonitorUpdateResponse, monitor, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -674,7 +677,7 @@ class TestAsyncMonitors:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             expected_codes="2xx",
         )
-        assert_matches_type(LoadBalancingMonitor, monitor, path=["response"])
+        assert_matches_type(MonitorEditResponse, monitor, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -702,7 +705,7 @@ class TestAsyncMonitors:
             load_balancer_monitor_timeout=0,
             type="https",
         )
-        assert_matches_type(LoadBalancingMonitor, monitor, path=["response"])
+        assert_matches_type(MonitorEditResponse, monitor, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -716,7 +719,7 @@ class TestAsyncMonitors:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         monitor = await response.parse()
-        assert_matches_type(LoadBalancingMonitor, monitor, path=["response"])
+        assert_matches_type(MonitorEditResponse, monitor, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -730,7 +733,7 @@ class TestAsyncMonitors:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             monitor = await response.parse()
-            assert_matches_type(LoadBalancingMonitor, monitor, path=["response"])
+            assert_matches_type(MonitorEditResponse, monitor, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -758,7 +761,7 @@ class TestAsyncMonitors:
             "f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(LoadBalancingMonitor, monitor, path=["response"])
+        assert_matches_type(MonitorGetResponse, monitor, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -771,7 +774,7 @@ class TestAsyncMonitors:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         monitor = await response.parse()
-        assert_matches_type(LoadBalancingMonitor, monitor, path=["response"])
+        assert_matches_type(MonitorGetResponse, monitor, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -784,7 +787,7 @@ class TestAsyncMonitors:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             monitor = await response.parse()
-            assert_matches_type(LoadBalancingMonitor, monitor, path=["response"])
+            assert_matches_type(MonitorGetResponse, monitor, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

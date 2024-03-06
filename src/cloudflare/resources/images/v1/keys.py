@@ -19,7 +19,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.images.v1 import ImagesImageKeys
+from ....types.images.v1 import KeyListResponse
 
 __all__ = ["Keys", "AsyncKeys"]
 
@@ -43,7 +43,7 @@ class Keys(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ImagesImageKeys:
+    ) -> KeyListResponse:
         """Lists your signing keys.
 
         These can be found on your Cloudflare Images dashboard.
@@ -70,7 +70,7 @@ class Keys(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ImagesImageKeys], ResultWrapper[ImagesImageKeys]),
+            cast_to=cast(Type[KeyListResponse], ResultWrapper[KeyListResponse]),
         )
 
 
@@ -93,7 +93,7 @@ class AsyncKeys(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ImagesImageKeys:
+    ) -> KeyListResponse:
         """Lists your signing keys.
 
         These can be found on your Cloudflare Images dashboard.
@@ -120,7 +120,7 @@ class AsyncKeys(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ImagesImageKeys], ResultWrapper[ImagesImageKeys]),
+            cast_to=cast(Type[KeyListResponse], ResultWrapper[KeyListResponse]),
         )
 
 

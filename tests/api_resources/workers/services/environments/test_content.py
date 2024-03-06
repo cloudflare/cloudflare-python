@@ -17,7 +17,7 @@ from cloudflare._response import (
     StreamedBinaryAPIResponse,
     AsyncStreamedBinaryAPIResponse,
 )
-from cloudflare.types.workers import WorkersScript
+from cloudflare.types.workers.services.environments import ContentUpdateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -33,7 +33,7 @@ class TestContent:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             service_name="my-worker",
         )
-        assert_matches_type(WorkersScript, content, path=["response"])
+        assert_matches_type(ContentUpdateResponse, content, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -48,7 +48,7 @@ class TestContent:
                 "main_module": "worker.js",
             },
         )
-        assert_matches_type(WorkersScript, content, path=["response"])
+        assert_matches_type(ContentUpdateResponse, content, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -62,7 +62,7 @@ class TestContent:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         content = response.parse()
-        assert_matches_type(WorkersScript, content, path=["response"])
+        assert_matches_type(ContentUpdateResponse, content, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -76,7 +76,7 @@ class TestContent:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             content = response.parse()
-            assert_matches_type(WorkersScript, content, path=["response"])
+            assert_matches_type(ContentUpdateResponse, content, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -198,7 +198,7 @@ class TestAsyncContent:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             service_name="my-worker",
         )
-        assert_matches_type(WorkersScript, content, path=["response"])
+        assert_matches_type(ContentUpdateResponse, content, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -213,7 +213,7 @@ class TestAsyncContent:
                 "main_module": "worker.js",
             },
         )
-        assert_matches_type(WorkersScript, content, path=["response"])
+        assert_matches_type(ContentUpdateResponse, content, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -227,7 +227,7 @@ class TestAsyncContent:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         content = await response.parse()
-        assert_matches_type(WorkersScript, content, path=["response"])
+        assert_matches_type(ContentUpdateResponse, content, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -241,7 +241,7 @@ class TestAsyncContent:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             content = await response.parse()
-            assert_matches_type(WorkersScript, content, path=["response"])
+            assert_matches_type(ContentUpdateResponse, content, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

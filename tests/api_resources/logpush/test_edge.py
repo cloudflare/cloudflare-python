@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.logpush import EdgeGetResponse, LogpushInstantLogsJob
+from cloudflare.types.logpush import EdgeGetResponse, EdgeCreateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -23,7 +23,7 @@ class TestEdge:
         edge = client.logpush.edge.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[LogpushInstantLogsJob], edge, path=["response"])
+        assert_matches_type(Optional[EdgeCreateResponse], edge, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -34,7 +34,7 @@ class TestEdge:
             filter='{"where":{"and":[{"key":"ClientCountry","operator":"neq","value":"ca"}]}}',
             sample=1,
         )
-        assert_matches_type(Optional[LogpushInstantLogsJob], edge, path=["response"])
+        assert_matches_type(Optional[EdgeCreateResponse], edge, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -46,7 +46,7 @@ class TestEdge:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         edge = response.parse()
-        assert_matches_type(Optional[LogpushInstantLogsJob], edge, path=["response"])
+        assert_matches_type(Optional[EdgeCreateResponse], edge, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -58,7 +58,7 @@ class TestEdge:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             edge = response.parse()
-            assert_matches_type(Optional[LogpushInstantLogsJob], edge, path=["response"])
+            assert_matches_type(Optional[EdgeCreateResponse], edge, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -122,7 +122,7 @@ class TestAsyncEdge:
         edge = await async_client.logpush.edge.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[LogpushInstantLogsJob], edge, path=["response"])
+        assert_matches_type(Optional[EdgeCreateResponse], edge, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -133,7 +133,7 @@ class TestAsyncEdge:
             filter='{"where":{"and":[{"key":"ClientCountry","operator":"neq","value":"ca"}]}}',
             sample=1,
         )
-        assert_matches_type(Optional[LogpushInstantLogsJob], edge, path=["response"])
+        assert_matches_type(Optional[EdgeCreateResponse], edge, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -145,7 +145,7 @@ class TestAsyncEdge:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         edge = await response.parse()
-        assert_matches_type(Optional[LogpushInstantLogsJob], edge, path=["response"])
+        assert_matches_type(Optional[EdgeCreateResponse], edge, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -157,7 +157,7 @@ class TestAsyncEdge:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             edge = await response.parse()
-            assert_matches_type(Optional[LogpushInstantLogsJob], edge, path=["response"])
+            assert_matches_type(Optional[EdgeCreateResponse], edge, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

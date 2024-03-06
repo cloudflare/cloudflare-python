@@ -14,7 +14,6 @@ from .by_tags import (
     ByTagsWithStreamingResponse,
     AsyncByTagsWithStreamingResponse,
 )
-from ....types import RulesetsRulesetResponse, RulesetsRulesetsResponse
 from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -28,6 +27,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
+from ....types.rulesets import VersionGetResponse, VersionListResponse
 
 __all__ = ["Versions", "AsyncVersions"]
 
@@ -57,7 +57,7 @@ class Versions(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RulesetsRulesetsResponse:
+    ) -> VersionListResponse:
         """
         Fetches the versions of an account or zone ruleset.
 
@@ -102,7 +102,7 @@ class Versions(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[RulesetsRulesetsResponse], ResultWrapper[RulesetsRulesetsResponse]),
+            cast_to=cast(Type[VersionListResponse], ResultWrapper[VersionListResponse]),
         )
 
     def delete(
@@ -180,7 +180,7 @@ class Versions(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RulesetsRulesetResponse:
+    ) -> VersionGetResponse:
         """
         Fetches a specific version of an account or zone ruleset.
 
@@ -229,7 +229,7 @@ class Versions(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[RulesetsRulesetResponse], ResultWrapper[RulesetsRulesetResponse]),
+            cast_to=cast(Type[VersionGetResponse], ResultWrapper[VersionGetResponse]),
         )
 
 
@@ -258,7 +258,7 @@ class AsyncVersions(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RulesetsRulesetsResponse:
+    ) -> VersionListResponse:
         """
         Fetches the versions of an account or zone ruleset.
 
@@ -303,7 +303,7 @@ class AsyncVersions(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[RulesetsRulesetsResponse], ResultWrapper[RulesetsRulesetsResponse]),
+            cast_to=cast(Type[VersionListResponse], ResultWrapper[VersionListResponse]),
         )
 
     async def delete(
@@ -381,7 +381,7 @@ class AsyncVersions(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RulesetsRulesetResponse:
+    ) -> VersionGetResponse:
         """
         Fetches a specific version of an account or zone ruleset.
 
@@ -430,7 +430,7 @@ class AsyncVersions(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[RulesetsRulesetResponse], ResultWrapper[RulesetsRulesetResponse]),
+            cast_to=cast(Type[VersionGetResponse], ResultWrapper[VersionGetResponse]),
         )
 
 

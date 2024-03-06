@@ -8,7 +8,7 @@ import httpx
 
 from ..types import (
     CustomNameserverGetResponse,
-    DNSCustomNameserversCustomNs,
+    CustomNameserverCreateResponse,
     CustomNameserverDeleteResponse,
     CustomNameserverVerifyResponse,
     CustomNameserverAvailabiltyResponse,
@@ -56,7 +56,7 @@ class CustomNameservers(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DNSCustomNameserversCustomNs:
+    ) -> CustomNameserverCreateResponse:
         """
         Add Account Custom Nameserver
 
@@ -93,7 +93,7 @@ class CustomNameservers(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DNSCustomNameserversCustomNs], ResultWrapper[DNSCustomNameserversCustomNs]),
+            cast_to=cast(Type[CustomNameserverCreateResponse], ResultWrapper[CustomNameserverCreateResponse]),
         )
 
     def delete(
@@ -286,7 +286,7 @@ class AsyncCustomNameservers(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DNSCustomNameserversCustomNs:
+    ) -> CustomNameserverCreateResponse:
         """
         Add Account Custom Nameserver
 
@@ -323,7 +323,7 @@ class AsyncCustomNameservers(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DNSCustomNameserversCustomNs], ResultWrapper[DNSCustomNameserversCustomNs]),
+            cast_to=cast(Type[CustomNameserverCreateResponse], ResultWrapper[CustomNameserverCreateResponse]),
         )
 
     async def delete(

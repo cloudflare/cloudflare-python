@@ -10,9 +10,11 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types.zero_trust.access.applications import (
-    AccessPolicies,
+    PolicyGetResponse,
     PolicyListResponse,
+    PolicyCreateResponse,
     PolicyDeleteResponse,
+    PolicyUpdateResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -36,7 +38,7 @@ class TestPolicies:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(AccessPolicies, policy, path=["response"])
+        assert_matches_type(PolicyCreateResponse, policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -81,7 +83,7 @@ class TestPolicies:
             ],
             session_duration="24h",
         )
-        assert_matches_type(AccessPolicies, policy, path=["response"])
+        assert_matches_type(PolicyCreateResponse, policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -102,7 +104,7 @@ class TestPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = response.parse()
-        assert_matches_type(AccessPolicies, policy, path=["response"])
+        assert_matches_type(PolicyCreateResponse, policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -123,7 +125,7 @@ class TestPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = response.parse()
-            assert_matches_type(AccessPolicies, policy, path=["response"])
+            assert_matches_type(PolicyCreateResponse, policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -188,7 +190,7 @@ class TestPolicies:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(AccessPolicies, policy, path=["response"])
+        assert_matches_type(PolicyUpdateResponse, policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -234,7 +236,7 @@ class TestPolicies:
             ],
             session_duration="24h",
         )
-        assert_matches_type(AccessPolicies, policy, path=["response"])
+        assert_matches_type(PolicyUpdateResponse, policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -256,7 +258,7 @@ class TestPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = response.parse()
-        assert_matches_type(AccessPolicies, policy, path=["response"])
+        assert_matches_type(PolicyUpdateResponse, policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -278,7 +280,7 @@ class TestPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = response.parse()
-            assert_matches_type(AccessPolicies, policy, path=["response"])
+            assert_matches_type(PolicyUpdateResponse, policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -517,7 +519,7 @@ class TestPolicies:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(AccessPolicies, policy, path=["response"])
+        assert_matches_type(PolicyGetResponse, policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -528,7 +530,7 @@ class TestPolicies:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(AccessPolicies, policy, path=["response"])
+        assert_matches_type(PolicyGetResponse, policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -543,7 +545,7 @@ class TestPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = response.parse()
-        assert_matches_type(AccessPolicies, policy, path=["response"])
+        assert_matches_type(PolicyGetResponse, policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -558,7 +560,7 @@ class TestPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = response.parse()
-            assert_matches_type(AccessPolicies, policy, path=["response"])
+            assert_matches_type(PolicyGetResponse, policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -616,7 +618,7 @@ class TestAsyncPolicies:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(AccessPolicies, policy, path=["response"])
+        assert_matches_type(PolicyCreateResponse, policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -661,7 +663,7 @@ class TestAsyncPolicies:
             ],
             session_duration="24h",
         )
-        assert_matches_type(AccessPolicies, policy, path=["response"])
+        assert_matches_type(PolicyCreateResponse, policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -682,7 +684,7 @@ class TestAsyncPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = await response.parse()
-        assert_matches_type(AccessPolicies, policy, path=["response"])
+        assert_matches_type(PolicyCreateResponse, policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -703,7 +705,7 @@ class TestAsyncPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = await response.parse()
-            assert_matches_type(AccessPolicies, policy, path=["response"])
+            assert_matches_type(PolicyCreateResponse, policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -768,7 +770,7 @@ class TestAsyncPolicies:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(AccessPolicies, policy, path=["response"])
+        assert_matches_type(PolicyUpdateResponse, policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -814,7 +816,7 @@ class TestAsyncPolicies:
             ],
             session_duration="24h",
         )
-        assert_matches_type(AccessPolicies, policy, path=["response"])
+        assert_matches_type(PolicyUpdateResponse, policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -836,7 +838,7 @@ class TestAsyncPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = await response.parse()
-        assert_matches_type(AccessPolicies, policy, path=["response"])
+        assert_matches_type(PolicyUpdateResponse, policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -858,7 +860,7 @@ class TestAsyncPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = await response.parse()
-            assert_matches_type(AccessPolicies, policy, path=["response"])
+            assert_matches_type(PolicyUpdateResponse, policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1097,7 +1099,7 @@ class TestAsyncPolicies:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(AccessPolicies, policy, path=["response"])
+        assert_matches_type(PolicyGetResponse, policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1108,7 +1110,7 @@ class TestAsyncPolicies:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(AccessPolicies, policy, path=["response"])
+        assert_matches_type(PolicyGetResponse, policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1123,7 +1125,7 @@ class TestAsyncPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = await response.parse()
-        assert_matches_type(AccessPolicies, policy, path=["response"])
+        assert_matches_type(PolicyGetResponse, policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1138,7 +1140,7 @@ class TestAsyncPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = await response.parse()
-            assert_matches_type(AccessPolicies, policy, path=["response"])
+            assert_matches_type(PolicyGetResponse, policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
