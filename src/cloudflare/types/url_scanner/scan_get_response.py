@@ -167,8 +167,6 @@ class ScanMetaProcessorsTech(BaseModel):
 class ScanMetaProcessors(BaseModel):
     categories: ScanMetaProcessorsCategories
 
-    google_safe_browsing: List[str]
-
     phishing: List[str]
 
     rank: ScanMetaProcessorsRank
@@ -389,9 +387,6 @@ class ScanVerdictsOverallCategory(BaseModel):
 
 class ScanVerdictsOverall(BaseModel):
     categories: List[ScanVerdictsOverallCategory]
-
-    gsb_threat_types: List[str]
-    """Please visit https://safebrowsing.google.com/ for more information."""
 
     malicious: bool
     """
