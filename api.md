@@ -364,6 +364,7 @@ Types:
 
 ```python
 from cloudflare.types import (
+    Zone,
     ZoneCreateResponse,
     ZoneListResponse,
     ZoneDeleteResponse,
