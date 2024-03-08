@@ -25,8 +25,8 @@ from ...._base_client import (
 )
 from ....types.addressing.prefixes import (
     DelegationListResponse,
-    DelegationCreateResponse,
     DelegationDeleteResponse,
+    AddressingIpamDelegations,
     delegation_create_params,
 )
 
@@ -55,7 +55,7 @@ class Delegations(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DelegationCreateResponse:
+    ) -> AddressingIpamDelegations:
         """
         Create a new account delegation for a given IP prefix.
 
@@ -96,7 +96,7 @@ class Delegations(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DelegationCreateResponse], ResultWrapper[DelegationCreateResponse]),
+            cast_to=cast(Type[AddressingIpamDelegations], ResultWrapper[AddressingIpamDelegations]),
         )
 
     def list(
@@ -215,7 +215,7 @@ class AsyncDelegations(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DelegationCreateResponse:
+    ) -> AddressingIpamDelegations:
         """
         Create a new account delegation for a given IP prefix.
 
@@ -256,7 +256,7 @@ class AsyncDelegations(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DelegationCreateResponse], ResultWrapper[DelegationCreateResponse]),
+            cast_to=cast(Type[AddressingIpamDelegations], ResultWrapper[AddressingIpamDelegations]),
         )
 
     async def list(

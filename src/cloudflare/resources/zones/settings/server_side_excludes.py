@@ -24,11 +24,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import (
-    ServerSideExcludeGetResponse,
-    ServerSideExcludeEditResponse,
-    server_side_exclude_edit_params,
-)
+from ....types.zones.settings import ZonesServerSideExclude, server_side_exclude_edit_params
 
 __all__ = ["ServerSideExcludes", "AsyncServerSideExcludes"]
 
@@ -53,7 +49,7 @@ class ServerSideExcludes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ServerSideExcludeEditResponse]:
+    ) -> Optional[ZonesServerSideExclude]:
         """
         If there is sensitive content on your website that you want visible to real
         visitors, but that you want to hide from suspicious visitors, all you have to do
@@ -92,7 +88,7 @@ class ServerSideExcludes(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ServerSideExcludeEditResponse]], ResultWrapper[ServerSideExcludeEditResponse]),
+            cast_to=cast(Type[Optional[ZonesServerSideExclude]], ResultWrapper[ZonesServerSideExclude]),
         )
 
     def get(
@@ -105,7 +101,7 @@ class ServerSideExcludes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ServerSideExcludeGetResponse]:
+    ) -> Optional[ZonesServerSideExclude]:
         """
         If there is sensitive content on your website that you want visible to real
         visitors, but that you want to hide from suspicious visitors, all you have to do
@@ -141,7 +137,7 @@ class ServerSideExcludes(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ServerSideExcludeGetResponse]], ResultWrapper[ServerSideExcludeGetResponse]),
+            cast_to=cast(Type[Optional[ZonesServerSideExclude]], ResultWrapper[ZonesServerSideExclude]),
         )
 
 
@@ -165,7 +161,7 @@ class AsyncServerSideExcludes(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ServerSideExcludeEditResponse]:
+    ) -> Optional[ZonesServerSideExclude]:
         """
         If there is sensitive content on your website that you want visible to real
         visitors, but that you want to hide from suspicious visitors, all you have to do
@@ -206,7 +202,7 @@ class AsyncServerSideExcludes(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ServerSideExcludeEditResponse]], ResultWrapper[ServerSideExcludeEditResponse]),
+            cast_to=cast(Type[Optional[ZonesServerSideExclude]], ResultWrapper[ZonesServerSideExclude]),
         )
 
     async def get(
@@ -219,7 +215,7 @@ class AsyncServerSideExcludes(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ServerSideExcludeGetResponse]:
+    ) -> Optional[ZonesServerSideExclude]:
         """
         If there is sensitive content on your website that you want visible to real
         visitors, but that you want to hide from suspicious visitors, all you have to do
@@ -255,7 +251,7 @@ class AsyncServerSideExcludes(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ServerSideExcludeGetResponse]], ResultWrapper[ServerSideExcludeGetResponse]),
+            cast_to=cast(Type[Optional[ZonesServerSideExclude]], ResultWrapper[ZonesServerSideExclude]),
         )
 
 

@@ -24,11 +24,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import (
-    OriginErrorPagePassThruGetResponse,
-    OriginErrorPagePassThruEditResponse,
-    origin_error_page_pass_thru_edit_params,
-)
+from ....types.zones.settings import ZonesOriginErrorPagePassThru, origin_error_page_pass_thru_edit_params
 
 __all__ = ["OriginErrorPagePassThru", "AsyncOriginErrorPagePassThru"]
 
@@ -53,7 +49,7 @@ class OriginErrorPagePassThru(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[OriginErrorPagePassThruEditResponse]:
+    ) -> Optional[ZonesOriginErrorPagePassThru]:
         """
         Cloudflare will proxy customer error pages on any 502,504 errors on origin
         server instead of showing a default Cloudflare error page. This does not apply
@@ -86,9 +82,7 @@ class OriginErrorPagePassThru(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[OriginErrorPagePassThruEditResponse]], ResultWrapper[OriginErrorPagePassThruEditResponse]
-            ),
+            cast_to=cast(Type[Optional[ZonesOriginErrorPagePassThru]], ResultWrapper[ZonesOriginErrorPagePassThru]),
         )
 
     def get(
@@ -101,7 +95,7 @@ class OriginErrorPagePassThru(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[OriginErrorPagePassThruGetResponse]:
+    ) -> Optional[ZonesOriginErrorPagePassThru]:
         """
         Cloudflare will proxy customer error pages on any 502,504 errors on origin
         server instead of showing a default Cloudflare error page. This does not apply
@@ -129,9 +123,7 @@ class OriginErrorPagePassThru(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[OriginErrorPagePassThruGetResponse]], ResultWrapper[OriginErrorPagePassThruGetResponse]
-            ),
+            cast_to=cast(Type[Optional[ZonesOriginErrorPagePassThru]], ResultWrapper[ZonesOriginErrorPagePassThru]),
         )
 
 
@@ -155,7 +147,7 @@ class AsyncOriginErrorPagePassThru(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[OriginErrorPagePassThruEditResponse]:
+    ) -> Optional[ZonesOriginErrorPagePassThru]:
         """
         Cloudflare will proxy customer error pages on any 502,504 errors on origin
         server instead of showing a default Cloudflare error page. This does not apply
@@ -188,9 +180,7 @@ class AsyncOriginErrorPagePassThru(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[OriginErrorPagePassThruEditResponse]], ResultWrapper[OriginErrorPagePassThruEditResponse]
-            ),
+            cast_to=cast(Type[Optional[ZonesOriginErrorPagePassThru]], ResultWrapper[ZonesOriginErrorPagePassThru]),
         )
 
     async def get(
@@ -203,7 +193,7 @@ class AsyncOriginErrorPagePassThru(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[OriginErrorPagePassThruGetResponse]:
+    ) -> Optional[ZonesOriginErrorPagePassThru]:
         """
         Cloudflare will proxy customer error pages on any 502,504 errors on origin
         server instead of showing a default Cloudflare error page. This does not apply
@@ -231,9 +221,7 @@ class AsyncOriginErrorPagePassThru(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[OriginErrorPagePassThruGetResponse]], ResultWrapper[OriginErrorPagePassThruGetResponse]
-            ),
+            cast_to=cast(Type[Optional[ZonesOriginErrorPagePassThru]], ResultWrapper[ZonesOriginErrorPagePassThru]),
         )
 
 

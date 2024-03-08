@@ -9,10 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.zones.settings import (
-    OpportunisticOnionGetResponse,
-    OpportunisticOnionEditResponse,
-)
+from cloudflare.types.zones.settings import ZonesOpportunisticOnion
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -27,7 +24,7 @@ class TestOpportunisticOnion:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value="on",
         )
-        assert_matches_type(Optional[OpportunisticOnionEditResponse], opportunistic_onion, path=["response"])
+        assert_matches_type(Optional[ZonesOpportunisticOnion], opportunistic_onion, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -40,7 +37,7 @@ class TestOpportunisticOnion:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         opportunistic_onion = response.parse()
-        assert_matches_type(Optional[OpportunisticOnionEditResponse], opportunistic_onion, path=["response"])
+        assert_matches_type(Optional[ZonesOpportunisticOnion], opportunistic_onion, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -53,7 +50,7 @@ class TestOpportunisticOnion:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             opportunistic_onion = response.parse()
-            assert_matches_type(Optional[OpportunisticOnionEditResponse], opportunistic_onion, path=["response"])
+            assert_matches_type(Optional[ZonesOpportunisticOnion], opportunistic_onion, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -72,7 +69,7 @@ class TestOpportunisticOnion:
         opportunistic_onion = client.zones.settings.opportunistic_onion.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[OpportunisticOnionGetResponse], opportunistic_onion, path=["response"])
+        assert_matches_type(Optional[ZonesOpportunisticOnion], opportunistic_onion, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -84,7 +81,7 @@ class TestOpportunisticOnion:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         opportunistic_onion = response.parse()
-        assert_matches_type(Optional[OpportunisticOnionGetResponse], opportunistic_onion, path=["response"])
+        assert_matches_type(Optional[ZonesOpportunisticOnion], opportunistic_onion, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -96,7 +93,7 @@ class TestOpportunisticOnion:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             opportunistic_onion = response.parse()
-            assert_matches_type(Optional[OpportunisticOnionGetResponse], opportunistic_onion, path=["response"])
+            assert_matches_type(Optional[ZonesOpportunisticOnion], opportunistic_onion, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -119,7 +116,7 @@ class TestAsyncOpportunisticOnion:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value="on",
         )
-        assert_matches_type(Optional[OpportunisticOnionEditResponse], opportunistic_onion, path=["response"])
+        assert_matches_type(Optional[ZonesOpportunisticOnion], opportunistic_onion, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -132,7 +129,7 @@ class TestAsyncOpportunisticOnion:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         opportunistic_onion = await response.parse()
-        assert_matches_type(Optional[OpportunisticOnionEditResponse], opportunistic_onion, path=["response"])
+        assert_matches_type(Optional[ZonesOpportunisticOnion], opportunistic_onion, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -145,7 +142,7 @@ class TestAsyncOpportunisticOnion:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             opportunistic_onion = await response.parse()
-            assert_matches_type(Optional[OpportunisticOnionEditResponse], opportunistic_onion, path=["response"])
+            assert_matches_type(Optional[ZonesOpportunisticOnion], opportunistic_onion, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -164,7 +161,7 @@ class TestAsyncOpportunisticOnion:
         opportunistic_onion = await async_client.zones.settings.opportunistic_onion.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[OpportunisticOnionGetResponse], opportunistic_onion, path=["response"])
+        assert_matches_type(Optional[ZonesOpportunisticOnion], opportunistic_onion, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -176,7 +173,7 @@ class TestAsyncOpportunisticOnion:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         opportunistic_onion = await response.parse()
-        assert_matches_type(Optional[OpportunisticOnionGetResponse], opportunistic_onion, path=["response"])
+        assert_matches_type(Optional[ZonesOpportunisticOnion], opportunistic_onion, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -188,7 +185,7 @@ class TestAsyncOpportunisticOnion:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             opportunistic_onion = await response.parse()
-            assert_matches_type(Optional[OpportunisticOnionGetResponse], opportunistic_onion, path=["response"])
+            assert_matches_type(Optional[ZonesOpportunisticOnion], opportunistic_onion, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

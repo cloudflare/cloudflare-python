@@ -9,7 +9,8 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.zero_trust.dlp.datasets import UploadEditResponse, UploadCreateResponse
+from cloudflare.types.zero_trust.dlp import DLPDataset
+from cloudflare.types.zero_trust.dlp.datasets import DLPDatasetNewVersion
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -24,7 +25,7 @@ class TestUpload:
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="string",
         )
-        assert_matches_type(Optional[UploadCreateResponse], upload, path=["response"])
+        assert_matches_type(Optional[DLPDatasetNewVersion], upload, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -37,7 +38,7 @@ class TestUpload:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         upload = response.parse()
-        assert_matches_type(Optional[UploadCreateResponse], upload, path=["response"])
+        assert_matches_type(Optional[DLPDatasetNewVersion], upload, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -50,7 +51,7 @@ class TestUpload:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             upload = response.parse()
-            assert_matches_type(Optional[UploadCreateResponse], upload, path=["response"])
+            assert_matches_type(Optional[DLPDatasetNewVersion], upload, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -77,7 +78,7 @@ class TestUpload:
             account_id="string",
             dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(Optional[UploadEditResponse], upload, path=["response"])
+        assert_matches_type(Optional[DLPDataset], upload, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -91,7 +92,7 @@ class TestUpload:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         upload = response.parse()
-        assert_matches_type(Optional[UploadEditResponse], upload, path=["response"])
+        assert_matches_type(Optional[DLPDataset], upload, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -105,7 +106,7 @@ class TestUpload:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             upload = response.parse()
-            assert_matches_type(Optional[UploadEditResponse], upload, path=["response"])
+            assert_matches_type(Optional[DLPDataset], upload, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -137,7 +138,7 @@ class TestAsyncUpload:
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="string",
         )
-        assert_matches_type(Optional[UploadCreateResponse], upload, path=["response"])
+        assert_matches_type(Optional[DLPDatasetNewVersion], upload, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -150,7 +151,7 @@ class TestAsyncUpload:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         upload = await response.parse()
-        assert_matches_type(Optional[UploadCreateResponse], upload, path=["response"])
+        assert_matches_type(Optional[DLPDatasetNewVersion], upload, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -163,7 +164,7 @@ class TestAsyncUpload:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             upload = await response.parse()
-            assert_matches_type(Optional[UploadCreateResponse], upload, path=["response"])
+            assert_matches_type(Optional[DLPDatasetNewVersion], upload, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -190,7 +191,7 @@ class TestAsyncUpload:
             account_id="string",
             dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(Optional[UploadEditResponse], upload, path=["response"])
+        assert_matches_type(Optional[DLPDataset], upload, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -204,7 +205,7 @@ class TestAsyncUpload:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         upload = await response.parse()
-        assert_matches_type(Optional[UploadEditResponse], upload, path=["response"])
+        assert_matches_type(Optional[DLPDataset], upload, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -218,7 +219,7 @@ class TestAsyncUpload:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             upload = await response.parse()
-            assert_matches_type(Optional[UploadEditResponse], upload, path=["response"])
+            assert_matches_type(Optional[DLPDataset], upload, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

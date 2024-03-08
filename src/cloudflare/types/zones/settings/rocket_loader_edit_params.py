@@ -2,16 +2,18 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Required, TypedDict
 
-__all__ = ["RocketLoaderEditParams", "Value"]
+from .zones_rocket_loader_param import ZonesRocketLoaderParam
+
+__all__ = ["RocketLoaderEditParams"]
 
 
 class RocketLoaderEditParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
-    value: Required[Value]
+    value: Required[ZonesRocketLoaderParam]
     """
     Rocket Loader is a general-purpose asynchronous JavaScript optimisation that
     prioritises rendering your content while loading your site's Javascript
@@ -24,11 +26,3 @@ class RocketLoaderEditParams(TypedDict, total=False):
     [Understanding Rocket Loader](https://support.cloudflare.com/hc/articles/200168056)
     for more information.
     """
-
-
-class Value(TypedDict, total=False):
-    id: Required[Literal["rocket_loader"]]
-    """ID of the zone setting."""
-
-    value: Required[Literal["on", "off"]]
-    """Current value of the zone setting."""

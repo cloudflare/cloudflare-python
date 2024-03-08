@@ -2,11 +2,12 @@
 
 from typing import Optional
 
+from .tokens import IamValue
 from ..._models import BaseModel
 
 __all__ = ["TokenCreateResponse"]
 
 
 class TokenCreateResponse(BaseModel):
-    value: Optional[str] = None
+    value: Optional[IamValue] = None
     """The token value."""

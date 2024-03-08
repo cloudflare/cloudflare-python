@@ -1,22 +1,9 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from typing import List, Optional
+from typing import List
 
-from pydantic import Field as FieldInfo
+from .workers_namespace import WorkersNamespace
 
-from ..._models import BaseModel
+__all__ = ["NamespaceListResponse"]
 
-__all__ = ["NamespaceListResponse", "NamespaceListResponseItem"]
-
-
-class NamespaceListResponseItem(BaseModel):
-    id: Optional[object] = None
-
-    class_: Optional[object] = FieldInfo(alias="class", default=None)
-
-    name: Optional[object] = None
-
-    script: Optional[object] = None
-
-
-NamespaceListResponse = List[NamespaceListResponseItem]
+NamespaceListResponse = List[WorkersNamespace]

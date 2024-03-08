@@ -1,30 +1,9 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from typing import List, Optional
+from typing import List
 
-from ..._models import BaseModel
+from .workers_domain import WorkersDomain
 
-__all__ = ["DomainListResponse", "DomainListResponseItem"]
+__all__ = ["DomainListResponse"]
 
-
-class DomainListResponseItem(BaseModel):
-    id: Optional[object] = None
-    """Identifer of the Worker Domain."""
-
-    environment: Optional[str] = None
-    """Worker environment associated with the zone and hostname."""
-
-    hostname: Optional[str] = None
-    """Hostname of the Worker Domain."""
-
-    service: Optional[str] = None
-    """Worker service associated with the zone and hostname."""
-
-    zone_id: Optional[object] = None
-    """Identifier of the zone."""
-
-    zone_name: Optional[str] = None
-    """Name of the zone."""
-
-
-DomainListResponse = List[DomainListResponseItem]
+DomainListResponse = List[WorkersDomain]

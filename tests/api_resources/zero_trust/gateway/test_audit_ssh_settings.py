@@ -9,10 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.zero_trust.gateway import (
-    AuditSSHSettingGetResponse,
-    AuditSSHSettingUpdateResponse,
-)
+from cloudflare.types.zero_trust.gateway import ZeroTrustGatewaySettings
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -27,7 +24,7 @@ class TestAuditSSHSettings:
             account_id="699d98642c564d2e855e9661899b7252",
             public_key="1pyl6I1tL7xfJuFYVzXlUW8uXXlpxegHXBzGCBKaSFA=",
         )
-        assert_matches_type(AuditSSHSettingUpdateResponse, audit_ssh_setting, path=["response"])
+        assert_matches_type(ZeroTrustGatewaySettings, audit_ssh_setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -37,7 +34,7 @@ class TestAuditSSHSettings:
             public_key="1pyl6I1tL7xfJuFYVzXlUW8uXXlpxegHXBzGCBKaSFA=",
             seed_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
         )
-        assert_matches_type(AuditSSHSettingUpdateResponse, audit_ssh_setting, path=["response"])
+        assert_matches_type(ZeroTrustGatewaySettings, audit_ssh_setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -50,7 +47,7 @@ class TestAuditSSHSettings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         audit_ssh_setting = response.parse()
-        assert_matches_type(AuditSSHSettingUpdateResponse, audit_ssh_setting, path=["response"])
+        assert_matches_type(ZeroTrustGatewaySettings, audit_ssh_setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -63,7 +60,7 @@ class TestAuditSSHSettings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             audit_ssh_setting = response.parse()
-            assert_matches_type(AuditSSHSettingUpdateResponse, audit_ssh_setting, path=["response"])
+            assert_matches_type(ZeroTrustGatewaySettings, audit_ssh_setting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -73,7 +70,7 @@ class TestAuditSSHSettings:
         audit_ssh_setting = client.zero_trust.gateway.audit_ssh_settings.get(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(AuditSSHSettingGetResponse, audit_ssh_setting, path=["response"])
+        assert_matches_type(ZeroTrustGatewaySettings, audit_ssh_setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -85,7 +82,7 @@ class TestAuditSSHSettings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         audit_ssh_setting = response.parse()
-        assert_matches_type(AuditSSHSettingGetResponse, audit_ssh_setting, path=["response"])
+        assert_matches_type(ZeroTrustGatewaySettings, audit_ssh_setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -97,7 +94,7 @@ class TestAuditSSHSettings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             audit_ssh_setting = response.parse()
-            assert_matches_type(AuditSSHSettingGetResponse, audit_ssh_setting, path=["response"])
+            assert_matches_type(ZeroTrustGatewaySettings, audit_ssh_setting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -112,7 +109,7 @@ class TestAsyncAuditSSHSettings:
             account_id="699d98642c564d2e855e9661899b7252",
             public_key="1pyl6I1tL7xfJuFYVzXlUW8uXXlpxegHXBzGCBKaSFA=",
         )
-        assert_matches_type(AuditSSHSettingUpdateResponse, audit_ssh_setting, path=["response"])
+        assert_matches_type(ZeroTrustGatewaySettings, audit_ssh_setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -122,7 +119,7 @@ class TestAsyncAuditSSHSettings:
             public_key="1pyl6I1tL7xfJuFYVzXlUW8uXXlpxegHXBzGCBKaSFA=",
             seed_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
         )
-        assert_matches_type(AuditSSHSettingUpdateResponse, audit_ssh_setting, path=["response"])
+        assert_matches_type(ZeroTrustGatewaySettings, audit_ssh_setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -135,7 +132,7 @@ class TestAsyncAuditSSHSettings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         audit_ssh_setting = await response.parse()
-        assert_matches_type(AuditSSHSettingUpdateResponse, audit_ssh_setting, path=["response"])
+        assert_matches_type(ZeroTrustGatewaySettings, audit_ssh_setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -148,7 +145,7 @@ class TestAsyncAuditSSHSettings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             audit_ssh_setting = await response.parse()
-            assert_matches_type(AuditSSHSettingUpdateResponse, audit_ssh_setting, path=["response"])
+            assert_matches_type(ZeroTrustGatewaySettings, audit_ssh_setting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -158,7 +155,7 @@ class TestAsyncAuditSSHSettings:
         audit_ssh_setting = await async_client.zero_trust.gateway.audit_ssh_settings.get(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(AuditSSHSettingGetResponse, audit_ssh_setting, path=["response"])
+        assert_matches_type(ZeroTrustGatewaySettings, audit_ssh_setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -170,7 +167,7 @@ class TestAsyncAuditSSHSettings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         audit_ssh_setting = await response.parse()
-        assert_matches_type(AuditSSHSettingGetResponse, audit_ssh_setting, path=["response"])
+        assert_matches_type(ZeroTrustGatewaySettings, audit_ssh_setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -182,6 +179,6 @@ class TestAsyncAuditSSHSettings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             audit_ssh_setting = await response.parse()
-            assert_matches_type(AuditSSHSettingGetResponse, audit_ssh_setting, path=["response"])
+            assert_matches_type(ZeroTrustGatewaySettings, audit_ssh_setting, path=["response"])
 
         assert cast(Any, response.is_closed) is True

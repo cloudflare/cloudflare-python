@@ -24,11 +24,9 @@ from ..._base_client import (
     make_request_options,
 )
 from ...types.secondary_dns import (
-    ACLGetResponse,
     ACLListResponse,
-    ACLCreateResponse,
+    SecondaryDNSACL,
     ACLDeleteResponse,
-    ACLUpdateResponse,
     acl_create_params,
     acl_update_params,
 )
@@ -56,7 +54,7 @@ class ACLs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ACLCreateResponse:
+    ) -> SecondaryDNSACL:
         """
         Create ACL.
 
@@ -79,7 +77,7 @@ class ACLs(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ACLCreateResponse], ResultWrapper[ACLCreateResponse]),
+            cast_to=cast(Type[SecondaryDNSACL], ResultWrapper[SecondaryDNSACL]),
         )
 
     def update(
@@ -95,7 +93,7 @@ class ACLs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ACLUpdateResponse:
+    ) -> SecondaryDNSACL:
         """
         Modify ACL.
 
@@ -132,7 +130,7 @@ class ACLs(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ACLUpdateResponse], ResultWrapper[ACLUpdateResponse]),
+            cast_to=cast(Type[SecondaryDNSACL], ResultWrapper[SecondaryDNSACL]),
         )
 
     def list(
@@ -217,7 +215,7 @@ class ACLs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ACLGetResponse:
+    ) -> SecondaryDNSACL:
         """
         Get ACL.
 
@@ -239,7 +237,7 @@ class ACLs(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ACLGetResponse], ResultWrapper[ACLGetResponse]),
+            cast_to=cast(Type[SecondaryDNSACL], ResultWrapper[SecondaryDNSACL]),
         )
 
 
@@ -263,7 +261,7 @@ class AsyncACLs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ACLCreateResponse:
+    ) -> SecondaryDNSACL:
         """
         Create ACL.
 
@@ -286,7 +284,7 @@ class AsyncACLs(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ACLCreateResponse], ResultWrapper[ACLCreateResponse]),
+            cast_to=cast(Type[SecondaryDNSACL], ResultWrapper[SecondaryDNSACL]),
         )
 
     async def update(
@@ -302,7 +300,7 @@ class AsyncACLs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ACLUpdateResponse:
+    ) -> SecondaryDNSACL:
         """
         Modify ACL.
 
@@ -339,7 +337,7 @@ class AsyncACLs(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ACLUpdateResponse], ResultWrapper[ACLUpdateResponse]),
+            cast_to=cast(Type[SecondaryDNSACL], ResultWrapper[SecondaryDNSACL]),
         )
 
     async def list(
@@ -424,7 +422,7 @@ class AsyncACLs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ACLGetResponse:
+    ) -> SecondaryDNSACL:
         """
         Get ACL.
 
@@ -446,7 +444,7 @@ class AsyncACLs(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ACLGetResponse], ResultWrapper[ACLGetResponse]),
+            cast_to=cast(Type[SecondaryDNSACL], ResultWrapper[SecondaryDNSACL]),
         )
 
 

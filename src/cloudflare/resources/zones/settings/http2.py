@@ -24,7 +24,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import HTTP2GetResponse, HTTP2EditResponse, http2_edit_params
+from ....types.zones.settings import ZonesHTTP2, http2_edit_params
 
 __all__ = ["HTTP2", "AsyncHTTP2"]
 
@@ -49,7 +49,7 @@ class HTTP2(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[HTTP2EditResponse]:
+    ) -> Optional[ZonesHTTP2]:
         """
         Value of the HTTP2 setting.
 
@@ -78,7 +78,7 @@ class HTTP2(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[HTTP2EditResponse]], ResultWrapper[HTTP2EditResponse]),
+            cast_to=cast(Type[Optional[ZonesHTTP2]], ResultWrapper[ZonesHTTP2]),
         )
 
     def get(
@@ -91,7 +91,7 @@ class HTTP2(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[HTTP2GetResponse]:
+    ) -> Optional[ZonesHTTP2]:
         """
         Value of the HTTP2 setting.
 
@@ -117,7 +117,7 @@ class HTTP2(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[HTTP2GetResponse]], ResultWrapper[HTTP2GetResponse]),
+            cast_to=cast(Type[Optional[ZonesHTTP2]], ResultWrapper[ZonesHTTP2]),
         )
 
 
@@ -141,7 +141,7 @@ class AsyncHTTP2(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[HTTP2EditResponse]:
+    ) -> Optional[ZonesHTTP2]:
         """
         Value of the HTTP2 setting.
 
@@ -170,7 +170,7 @@ class AsyncHTTP2(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[HTTP2EditResponse]], ResultWrapper[HTTP2EditResponse]),
+            cast_to=cast(Type[Optional[ZonesHTTP2]], ResultWrapper[ZonesHTTP2]),
         )
 
     async def get(
@@ -183,7 +183,7 @@ class AsyncHTTP2(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[HTTP2GetResponse]:
+    ) -> Optional[ZonesHTTP2]:
         """
         Value of the HTTP2 setting.
 
@@ -209,7 +209,7 @@ class AsyncHTTP2(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[HTTP2GetResponse]], ResultWrapper[HTTP2GetResponse]),
+            cast_to=cast(Type[Optional[ZonesHTTP2]], ResultWrapper[ZonesHTTP2]),
         )
 
 

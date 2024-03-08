@@ -25,11 +25,9 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.zero_trust.devices import (
-    NetworkGetResponse,
     NetworkListResponse,
-    NetworkCreateResponse,
     NetworkDeleteResponse,
-    NetworkUpdateResponse,
+    TeamsDevicesDeviceManagedNetworks,
     network_create_params,
     network_update_params,
 )
@@ -59,7 +57,7 @@ class Networks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[NetworkCreateResponse]:
+    ) -> Optional[TeamsDevicesDeviceManagedNetworks]:
         """
         Creates a new device managed network.
 
@@ -96,7 +94,9 @@ class Networks(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[NetworkCreateResponse]], ResultWrapper[NetworkCreateResponse]),
+            cast_to=cast(
+                Type[Optional[TeamsDevicesDeviceManagedNetworks]], ResultWrapper[TeamsDevicesDeviceManagedNetworks]
+            ),
         )
 
     def update(
@@ -113,7 +113,7 @@ class Networks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[NetworkUpdateResponse]:
+    ) -> Optional[TeamsDevicesDeviceManagedNetworks]:
         """
         Updates a configured device managed network.
 
@@ -154,7 +154,9 @@ class Networks(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[NetworkUpdateResponse]], ResultWrapper[NetworkUpdateResponse]),
+            cast_to=cast(
+                Type[Optional[TeamsDevicesDeviceManagedNetworks]], ResultWrapper[TeamsDevicesDeviceManagedNetworks]
+            ),
         )
 
     def list(
@@ -244,7 +246,7 @@ class Networks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[NetworkGetResponse]:
+    ) -> Optional[TeamsDevicesDeviceManagedNetworks]:
         """
         Fetches details for a single managed network.
 
@@ -270,7 +272,9 @@ class Networks(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[NetworkGetResponse]], ResultWrapper[NetworkGetResponse]),
+            cast_to=cast(
+                Type[Optional[TeamsDevicesDeviceManagedNetworks]], ResultWrapper[TeamsDevicesDeviceManagedNetworks]
+            ),
         )
 
 
@@ -296,7 +300,7 @@ class AsyncNetworks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[NetworkCreateResponse]:
+    ) -> Optional[TeamsDevicesDeviceManagedNetworks]:
         """
         Creates a new device managed network.
 
@@ -333,7 +337,9 @@ class AsyncNetworks(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[NetworkCreateResponse]], ResultWrapper[NetworkCreateResponse]),
+            cast_to=cast(
+                Type[Optional[TeamsDevicesDeviceManagedNetworks]], ResultWrapper[TeamsDevicesDeviceManagedNetworks]
+            ),
         )
 
     async def update(
@@ -350,7 +356,7 @@ class AsyncNetworks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[NetworkUpdateResponse]:
+    ) -> Optional[TeamsDevicesDeviceManagedNetworks]:
         """
         Updates a configured device managed network.
 
@@ -391,7 +397,9 @@ class AsyncNetworks(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[NetworkUpdateResponse]], ResultWrapper[NetworkUpdateResponse]),
+            cast_to=cast(
+                Type[Optional[TeamsDevicesDeviceManagedNetworks]], ResultWrapper[TeamsDevicesDeviceManagedNetworks]
+            ),
         )
 
     async def list(
@@ -481,7 +489,7 @@ class AsyncNetworks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[NetworkGetResponse]:
+    ) -> Optional[TeamsDevicesDeviceManagedNetworks]:
         """
         Fetches details for a single managed network.
 
@@ -507,7 +515,9 @@ class AsyncNetworks(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[NetworkGetResponse]], ResultWrapper[NetworkGetResponse]),
+            cast_to=cast(
+                Type[Optional[TeamsDevicesDeviceManagedNetworks]], ResultWrapper[TeamsDevicesDeviceManagedNetworks]
+            ),
         )
 
 

@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.intel import DomainGetResponse
+from cloudflare.types.intel import IntelDomain
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -23,7 +23,7 @@ class TestDomains:
         domain = client.intel.domains.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(DomainGetResponse, domain, path=["response"])
+        assert_matches_type(IntelDomain, domain, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -32,7 +32,7 @@ class TestDomains:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="string",
         )
-        assert_matches_type(DomainGetResponse, domain, path=["response"])
+        assert_matches_type(IntelDomain, domain, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -44,7 +44,7 @@ class TestDomains:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         domain = response.parse()
-        assert_matches_type(DomainGetResponse, domain, path=["response"])
+        assert_matches_type(IntelDomain, domain, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -56,7 +56,7 @@ class TestDomains:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             domain = response.parse()
-            assert_matches_type(DomainGetResponse, domain, path=["response"])
+            assert_matches_type(IntelDomain, domain, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -78,7 +78,7 @@ class TestAsyncDomains:
         domain = await async_client.intel.domains.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(DomainGetResponse, domain, path=["response"])
+        assert_matches_type(IntelDomain, domain, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -87,7 +87,7 @@ class TestAsyncDomains:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="string",
         )
-        assert_matches_type(DomainGetResponse, domain, path=["response"])
+        assert_matches_type(IntelDomain, domain, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -99,7 +99,7 @@ class TestAsyncDomains:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         domain = await response.parse()
-        assert_matches_type(DomainGetResponse, domain, path=["response"])
+        assert_matches_type(IntelDomain, domain, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -111,7 +111,7 @@ class TestAsyncDomains:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             domain = await response.parse()
-            assert_matches_type(DomainGetResponse, domain, path=["response"])
+            assert_matches_type(IntelDomain, domain, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

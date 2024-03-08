@@ -24,15 +24,13 @@ from ..._base_client import (
     make_request_options,
 )
 from ...types.vectorize import (
-    IndexGetResponse,
     IndexListResponse,
-    IndexQueryResponse,
-    IndexCreateResponse,
     IndexDeleteResponse,
-    IndexInsertResponse,
-    IndexUpdateResponse,
-    IndexUpsertResponse,
-    IndexDeleteByIDsResponse,
+    VectorizeIndexQuery,
+    VectorizeCreateIndex,
+    VectorizeIndexInsert,
+    VectorizeIndexUpsert,
+    VectorizeIndexDeleteVectorsByID,
     index_query_params,
     index_create_params,
     index_update_params,
@@ -65,7 +63,7 @@ class Indexes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IndexCreateResponse]:
+    ) -> Optional[VectorizeCreateIndex]:
         """
         Creates and returns a new Vectorize Index.
 
@@ -103,7 +101,7 @@ class Indexes(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[IndexCreateResponse]], ResultWrapper[IndexCreateResponse]),
+            cast_to=cast(Type[Optional[VectorizeCreateIndex]], ResultWrapper[VectorizeCreateIndex]),
         )
 
     def update(
@@ -118,7 +116,7 @@ class Indexes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IndexUpdateResponse]:
+    ) -> Optional[VectorizeCreateIndex]:
         """
         Updates and returns the specified Vectorize Index.
 
@@ -149,7 +147,7 @@ class Indexes(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[IndexUpdateResponse]], ResultWrapper[IndexUpdateResponse]),
+            cast_to=cast(Type[Optional[VectorizeCreateIndex]], ResultWrapper[VectorizeCreateIndex]),
         )
 
     def list(
@@ -250,7 +248,7 @@ class Indexes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IndexDeleteByIDsResponse]:
+    ) -> Optional[VectorizeIndexDeleteVectorsByID]:
         """
         Delete a set of vectors from an index by their vector identifiers.
 
@@ -281,7 +279,9 @@ class Indexes(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[IndexDeleteByIDsResponse]], ResultWrapper[IndexDeleteByIDsResponse]),
+            cast_to=cast(
+                Type[Optional[VectorizeIndexDeleteVectorsByID]], ResultWrapper[VectorizeIndexDeleteVectorsByID]
+            ),
         )
 
     def get(
@@ -295,7 +295,7 @@ class Indexes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IndexGetResponse]:
+    ) -> Optional[VectorizeCreateIndex]:
         """
         Returns the specified Vectorize Index.
 
@@ -323,7 +323,7 @@ class Indexes(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[IndexGetResponse]], ResultWrapper[IndexGetResponse]),
+            cast_to=cast(Type[Optional[VectorizeCreateIndex]], ResultWrapper[VectorizeCreateIndex]),
         )
 
     def get_by_ids(
@@ -383,7 +383,7 @@ class Indexes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IndexInsertResponse]:
+    ) -> Optional[VectorizeIndexInsert]:
         """
         Inserts vectors into the specified index and returns the count of the vectors
         successfully inserted.
@@ -412,7 +412,7 @@ class Indexes(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[IndexInsertResponse]], ResultWrapper[IndexInsertResponse]),
+            cast_to=cast(Type[Optional[VectorizeIndexInsert]], ResultWrapper[VectorizeIndexInsert]),
         )
 
     def query(
@@ -430,7 +430,7 @@ class Indexes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IndexQueryResponse]:
+    ) -> Optional[VectorizeIndexQuery]:
         """
         Finds vectors closest to a given vector in an index.
 
@@ -475,7 +475,7 @@ class Indexes(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[IndexQueryResponse]], ResultWrapper[IndexQueryResponse]),
+            cast_to=cast(Type[Optional[VectorizeIndexQuery]], ResultWrapper[VectorizeIndexQuery]),
         )
 
     def upsert(
@@ -489,7 +489,7 @@ class Indexes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IndexUpsertResponse]:
+    ) -> Optional[VectorizeIndexUpsert]:
         """
         Upserts vectors into the specified index, creating them if they do not exist and
         returns the count of values and ids successfully inserted.
@@ -518,7 +518,7 @@ class Indexes(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[IndexUpsertResponse]], ResultWrapper[IndexUpsertResponse]),
+            cast_to=cast(Type[Optional[VectorizeIndexUpsert]], ResultWrapper[VectorizeIndexUpsert]),
         )
 
 
@@ -544,7 +544,7 @@ class AsyncIndexes(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IndexCreateResponse]:
+    ) -> Optional[VectorizeCreateIndex]:
         """
         Creates and returns a new Vectorize Index.
 
@@ -582,7 +582,7 @@ class AsyncIndexes(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[IndexCreateResponse]], ResultWrapper[IndexCreateResponse]),
+            cast_to=cast(Type[Optional[VectorizeCreateIndex]], ResultWrapper[VectorizeCreateIndex]),
         )
 
     async def update(
@@ -597,7 +597,7 @@ class AsyncIndexes(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IndexUpdateResponse]:
+    ) -> Optional[VectorizeCreateIndex]:
         """
         Updates and returns the specified Vectorize Index.
 
@@ -628,7 +628,7 @@ class AsyncIndexes(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[IndexUpdateResponse]], ResultWrapper[IndexUpdateResponse]),
+            cast_to=cast(Type[Optional[VectorizeCreateIndex]], ResultWrapper[VectorizeCreateIndex]),
         )
 
     async def list(
@@ -729,7 +729,7 @@ class AsyncIndexes(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IndexDeleteByIDsResponse]:
+    ) -> Optional[VectorizeIndexDeleteVectorsByID]:
         """
         Delete a set of vectors from an index by their vector identifiers.
 
@@ -760,7 +760,9 @@ class AsyncIndexes(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[IndexDeleteByIDsResponse]], ResultWrapper[IndexDeleteByIDsResponse]),
+            cast_to=cast(
+                Type[Optional[VectorizeIndexDeleteVectorsByID]], ResultWrapper[VectorizeIndexDeleteVectorsByID]
+            ),
         )
 
     async def get(
@@ -774,7 +776,7 @@ class AsyncIndexes(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IndexGetResponse]:
+    ) -> Optional[VectorizeCreateIndex]:
         """
         Returns the specified Vectorize Index.
 
@@ -802,7 +804,7 @@ class AsyncIndexes(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[IndexGetResponse]], ResultWrapper[IndexGetResponse]),
+            cast_to=cast(Type[Optional[VectorizeCreateIndex]], ResultWrapper[VectorizeCreateIndex]),
         )
 
     async def get_by_ids(
@@ -862,7 +864,7 @@ class AsyncIndexes(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IndexInsertResponse]:
+    ) -> Optional[VectorizeIndexInsert]:
         """
         Inserts vectors into the specified index and returns the count of the vectors
         successfully inserted.
@@ -891,7 +893,7 @@ class AsyncIndexes(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[IndexInsertResponse]], ResultWrapper[IndexInsertResponse]),
+            cast_to=cast(Type[Optional[VectorizeIndexInsert]], ResultWrapper[VectorizeIndexInsert]),
         )
 
     async def query(
@@ -909,7 +911,7 @@ class AsyncIndexes(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IndexQueryResponse]:
+    ) -> Optional[VectorizeIndexQuery]:
         """
         Finds vectors closest to a given vector in an index.
 
@@ -954,7 +956,7 @@ class AsyncIndexes(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[IndexQueryResponse]], ResultWrapper[IndexQueryResponse]),
+            cast_to=cast(Type[Optional[VectorizeIndexQuery]], ResultWrapper[VectorizeIndexQuery]),
         )
 
     async def upsert(
@@ -968,7 +970,7 @@ class AsyncIndexes(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IndexUpsertResponse]:
+    ) -> Optional[VectorizeIndexUpsert]:
         """
         Upserts vectors into the specified index, creating them if they do not exist and
         returns the count of values and ids successfully inserted.
@@ -997,7 +999,7 @@ class AsyncIndexes(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[IndexUpsertResponse]], ResultWrapper[IndexUpsertResponse]),
+            cast_to=cast(Type[Optional[VectorizeIndexUpsert]], ResultWrapper[VectorizeIndexUpsert]),
         )
 
 

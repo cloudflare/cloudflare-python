@@ -58,10 +58,8 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.images import (
-    V1GetResponse,
-    V1EditResponse,
+    ImagesImage,
     V1ListResponse,
-    V1CreateResponse,
     V1DeleteResponse,
     v1_edit_params,
     v1_list_params,
@@ -108,7 +106,7 @@ class V1(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> V1CreateResponse:
+    ) -> ImagesImage:
         """
         Upload an image with up to 10 Megabytes using a single HTTP POST
         (multipart/form-data) request. An image can be uploaded by sending an image file
@@ -145,7 +143,7 @@ class V1(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[V1CreateResponse], ResultWrapper[V1CreateResponse]),
+            cast_to=cast(Type[ImagesImage], ResultWrapper[ImagesImage]),
         )
 
     def list(
@@ -266,7 +264,7 @@ class V1(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> V1EditResponse:
+    ) -> ImagesImage:
         """Update image access control.
 
         On access control change, all copies of the image
@@ -312,7 +310,7 @@ class V1(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[V1EditResponse], ResultWrapper[V1EditResponse]),
+            cast_to=cast(Type[ImagesImage], ResultWrapper[ImagesImage]),
         )
 
     def get(
@@ -326,7 +324,7 @@ class V1(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> V1GetResponse:
+    ) -> ImagesImage:
         """
         Fetch details for a single image.
 
@@ -356,7 +354,7 @@ class V1(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[V1GetResponse], ResultWrapper[V1GetResponse]),
+            cast_to=cast(Type[ImagesImage], ResultWrapper[ImagesImage]),
         )
 
 
@@ -397,7 +395,7 @@ class AsyncV1(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> V1CreateResponse:
+    ) -> ImagesImage:
         """
         Upload an image with up to 10 Megabytes using a single HTTP POST
         (multipart/form-data) request. An image can be uploaded by sending an image file
@@ -434,7 +432,7 @@ class AsyncV1(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[V1CreateResponse], ResultWrapper[V1CreateResponse]),
+            cast_to=cast(Type[ImagesImage], ResultWrapper[ImagesImage]),
         )
 
     def list(
@@ -555,7 +553,7 @@ class AsyncV1(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> V1EditResponse:
+    ) -> ImagesImage:
         """Update image access control.
 
         On access control change, all copies of the image
@@ -601,7 +599,7 @@ class AsyncV1(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[V1EditResponse], ResultWrapper[V1EditResponse]),
+            cast_to=cast(Type[ImagesImage], ResultWrapper[ImagesImage]),
         )
 
     async def get(
@@ -615,7 +613,7 @@ class AsyncV1(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> V1GetResponse:
+    ) -> ImagesImage:
         """
         Fetch details for a single image.
 
@@ -645,7 +643,7 @@ class AsyncV1(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[V1GetResponse], ResultWrapper[V1GetResponse]),
+            cast_to=cast(Type[ImagesImage], ResultWrapper[ImagesImage]),
         )
 
 

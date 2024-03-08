@@ -24,7 +24,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ChallengeTTLGetResponse, ChallengeTTLEditResponse, challenge_ttl_edit_params
+from ....types.zones.settings import ZonesChallengeTTL, challenge_ttl_edit_params
 
 __all__ = ["ChallengeTTL", "AsyncChallengeTTL"]
 
@@ -49,7 +49,7 @@ class ChallengeTTL(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ChallengeTTLEditResponse]:
+    ) -> Optional[ZonesChallengeTTL]:
         """
         Specify how long a visitor is allowed access to your site after successfully
         completing a challenge (such as a CAPTCHA). After the TTL has expired the
@@ -82,7 +82,7 @@ class ChallengeTTL(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ChallengeTTLEditResponse]], ResultWrapper[ChallengeTTLEditResponse]),
+            cast_to=cast(Type[Optional[ZonesChallengeTTL]], ResultWrapper[ZonesChallengeTTL]),
         )
 
     def get(
@@ -95,7 +95,7 @@ class ChallengeTTL(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ChallengeTTLGetResponse]:
+    ) -> Optional[ZonesChallengeTTL]:
         """
         Specify how long a visitor is allowed access to your site after successfully
         completing a challenge (such as a CAPTCHA). After the TTL has expired the
@@ -125,7 +125,7 @@ class ChallengeTTL(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ChallengeTTLGetResponse]], ResultWrapper[ChallengeTTLGetResponse]),
+            cast_to=cast(Type[Optional[ZonesChallengeTTL]], ResultWrapper[ZonesChallengeTTL]),
         )
 
 
@@ -149,7 +149,7 @@ class AsyncChallengeTTL(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ChallengeTTLEditResponse]:
+    ) -> Optional[ZonesChallengeTTL]:
         """
         Specify how long a visitor is allowed access to your site after successfully
         completing a challenge (such as a CAPTCHA). After the TTL has expired the
@@ -182,7 +182,7 @@ class AsyncChallengeTTL(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ChallengeTTLEditResponse]], ResultWrapper[ChallengeTTLEditResponse]),
+            cast_to=cast(Type[Optional[ZonesChallengeTTL]], ResultWrapper[ZonesChallengeTTL]),
         )
 
     async def get(
@@ -195,7 +195,7 @@ class AsyncChallengeTTL(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ChallengeTTLGetResponse]:
+    ) -> Optional[ZonesChallengeTTL]:
         """
         Specify how long a visitor is allowed access to your site after successfully
         completing a challenge (such as a CAPTCHA). After the TTL has expired the
@@ -225,7 +225,7 @@ class AsyncChallengeTTL(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ChallengeTTLGetResponse]], ResultWrapper[ChallengeTTLGetResponse]),
+            cast_to=cast(Type[Optional[ZonesChallengeTTL]], ResultWrapper[ZonesChallengeTTL]),
         )
 
 

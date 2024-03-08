@@ -23,7 +23,7 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import (
     make_request_options,
 )
-from .....types.zero_trust.dlp.profiles import PredefinedGetResponse, PredefinedUpdateResponse, predefined_update_params
+from .....types.zero_trust.dlp.profiles import DLPPredefinedProfile, predefined_update_params
 
 __all__ = ["Predefineds", "AsyncPredefineds"]
 
@@ -51,7 +51,7 @@ class Predefineds(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PredefinedUpdateResponse:
+    ) -> DLPPredefinedProfile:
         """Updates a DLP predefined profile.
 
         Only supports enabling/disabling entries.
@@ -93,7 +93,7 @@ class Predefineds(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PredefinedUpdateResponse,
+            cast_to=DLPPredefinedProfile,
         )
 
     def get(
@@ -107,7 +107,7 @@ class Predefineds(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PredefinedGetResponse:
+    ) -> DLPPredefinedProfile:
         """
         Fetches a predefined DLP profile.
 
@@ -137,7 +137,7 @@ class Predefineds(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[PredefinedGetResponse], ResultWrapper[PredefinedGetResponse]),
+            cast_to=cast(Type[DLPPredefinedProfile], ResultWrapper[DLPPredefinedProfile]),
         )
 
 
@@ -164,7 +164,7 @@ class AsyncPredefineds(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PredefinedUpdateResponse:
+    ) -> DLPPredefinedProfile:
         """Updates a DLP predefined profile.
 
         Only supports enabling/disabling entries.
@@ -206,7 +206,7 @@ class AsyncPredefineds(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PredefinedUpdateResponse,
+            cast_to=DLPPredefinedProfile,
         )
 
     async def get(
@@ -220,7 +220,7 @@ class AsyncPredefineds(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PredefinedGetResponse:
+    ) -> DLPPredefinedProfile:
         """
         Fetches a predefined DLP profile.
 
@@ -250,7 +250,7 @@ class AsyncPredefineds(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[PredefinedGetResponse], ResultWrapper[PredefinedGetResponse]),
+            cast_to=cast(Type[DLPPredefinedProfile], ResultWrapper[DLPPredefinedProfile]),
         )
 
 

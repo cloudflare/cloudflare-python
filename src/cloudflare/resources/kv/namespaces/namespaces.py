@@ -46,8 +46,7 @@ from ...._utils import (
 )
 from ...._compat import cached_property
 from ....types.kv import (
-    NamespaceListResponse,
-    NamespaceCreateResponse,
+    WorkersKVNamespace,
     NamespaceDeleteResponse,
     NamespaceUpdateResponse,
     namespace_list_params,
@@ -107,7 +106,7 @@ class Namespaces(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> NamespaceCreateResponse:
+    ) -> WorkersKVNamespace:
         """Creates a namespace under the given title.
 
         A `400` is returned if the account
@@ -139,7 +138,7 @@ class Namespaces(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[NamespaceCreateResponse], ResultWrapper[NamespaceCreateResponse]),
+            cast_to=cast(Type[WorkersKVNamespace], ResultWrapper[WorkersKVNamespace]),
         )
 
     def update(
@@ -209,7 +208,7 @@ class Namespaces(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[NamespaceListResponse]:
+    ) -> SyncV4PagePaginationArray[WorkersKVNamespace]:
         """
         Returns the namespaces owned by an account.
 
@@ -236,7 +235,7 @@ class Namespaces(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/storage/kv/namespaces",
-            page=SyncV4PagePaginationArray[NamespaceListResponse],
+            page=SyncV4PagePaginationArray[WorkersKVNamespace],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -252,7 +251,7 @@ class Namespaces(SyncAPIResource):
                     namespace_list_params.NamespaceListParams,
                 ),
             ),
-            model=NamespaceListResponse,
+            model=WorkersKVNamespace,
         )
 
     def delete(
@@ -341,7 +340,7 @@ class AsyncNamespaces(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> NamespaceCreateResponse:
+    ) -> WorkersKVNamespace:
         """Creates a namespace under the given title.
 
         A `400` is returned if the account
@@ -373,7 +372,7 @@ class AsyncNamespaces(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[NamespaceCreateResponse], ResultWrapper[NamespaceCreateResponse]),
+            cast_to=cast(Type[WorkersKVNamespace], ResultWrapper[WorkersKVNamespace]),
         )
 
     async def update(
@@ -443,7 +442,7 @@ class AsyncNamespaces(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[NamespaceListResponse, AsyncV4PagePaginationArray[NamespaceListResponse]]:
+    ) -> AsyncPaginator[WorkersKVNamespace, AsyncV4PagePaginationArray[WorkersKVNamespace]]:
         """
         Returns the namespaces owned by an account.
 
@@ -470,7 +469,7 @@ class AsyncNamespaces(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/storage/kv/namespaces",
-            page=AsyncV4PagePaginationArray[NamespaceListResponse],
+            page=AsyncV4PagePaginationArray[WorkersKVNamespace],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -486,7 +485,7 @@ class AsyncNamespaces(AsyncAPIResource):
                     namespace_list_params.NamespaceListParams,
                 ),
             ),
-            model=NamespaceListResponse,
+            model=WorkersKVNamespace,
         )
 
     async def delete(
