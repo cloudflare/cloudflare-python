@@ -1,31 +1,9 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from typing import List, Optional
-from typing_extensions import Literal
+from typing import List
 
-from ..._models import BaseModel
+from .magic_visibility_pcaps_ownership import MagicVisibilityPCAPsOwnership
 
-__all__ = ["OwnershipGetResponse", "OwnershipGetResponseItem"]
+__all__ = ["OwnershipGetResponse"]
 
-
-class OwnershipGetResponseItem(BaseModel):
-    id: str
-    """The bucket ID associated with the packet captures API."""
-
-    destination_conf: str
-    """The full URI for the bucket. This field only applies to `full` packet captures."""
-
-    filename: str
-    """The ownership challenge filename stored in the bucket."""
-
-    status: Literal["pending", "success", "failed"]
-    """The status of the ownership challenge. Can be pending, success or failed."""
-
-    submitted: str
-    """The RFC 3339 timestamp when the bucket was added to packet captures API."""
-
-    validated: Optional[str] = None
-    """The RFC 3339 timestamp when the bucket was validated."""
-
-
-OwnershipGetResponse = List[OwnershipGetResponseItem]
+OwnershipGetResponse = List[MagicVisibilityPCAPsOwnership]

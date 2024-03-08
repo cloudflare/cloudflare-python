@@ -25,10 +25,8 @@ from ..._base_client import (
     make_request_options,
 )
 from ...types.page_shield import (
-    PolicyGetResponse,
     PolicyListResponse,
-    PolicyCreateResponse,
-    PolicyUpdateResponse,
+    PageShieldPageshieldPolicy,
     policy_create_params,
     policy_update_params,
 )
@@ -60,7 +58,7 @@ class Policies(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PolicyCreateResponse:
+    ) -> PageShieldPageshieldPolicy:
         """
         Create a Page Shield policy.
 
@@ -103,7 +101,7 @@ class Policies(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PolicyCreateResponse,
+            cast_to=PageShieldPageshieldPolicy,
         )
 
     def update(
@@ -122,7 +120,7 @@ class Policies(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PolicyUpdateResponse:
+    ) -> PageShieldPageshieldPolicy:
         """
         Update a Page Shield policy by ID.
 
@@ -169,7 +167,7 @@ class Policies(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PolicyUpdateResponse,
+            cast_to=PageShieldPageshieldPolicy,
         )
 
     def list(
@@ -263,7 +261,7 @@ class Policies(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PolicyGetResponse:
+    ) -> PageShieldPageshieldPolicy:
         """
         Fetches a Page Shield policy by ID.
 
@@ -289,7 +287,7 @@ class Policies(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PolicyGetResponse,
+            cast_to=PageShieldPageshieldPolicy,
         )
 
 
@@ -317,7 +315,7 @@ class AsyncPolicies(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PolicyCreateResponse:
+    ) -> PageShieldPageshieldPolicy:
         """
         Create a Page Shield policy.
 
@@ -360,7 +358,7 @@ class AsyncPolicies(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PolicyCreateResponse,
+            cast_to=PageShieldPageshieldPolicy,
         )
 
     async def update(
@@ -379,7 +377,7 @@ class AsyncPolicies(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PolicyUpdateResponse:
+    ) -> PageShieldPageshieldPolicy:
         """
         Update a Page Shield policy by ID.
 
@@ -426,7 +424,7 @@ class AsyncPolicies(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PolicyUpdateResponse,
+            cast_to=PageShieldPageshieldPolicy,
         )
 
     async def list(
@@ -520,7 +518,7 @@ class AsyncPolicies(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PolicyGetResponse:
+    ) -> PageShieldPageshieldPolicy:
         """
         Fetches a Page Shield policy by ID.
 
@@ -546,7 +544,7 @@ class AsyncPolicies(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PolicyGetResponse,
+            cast_to=PageShieldPageshieldPolicy,
         )
 
 

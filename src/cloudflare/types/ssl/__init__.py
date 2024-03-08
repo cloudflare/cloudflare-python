@@ -14,3 +14,6 @@ from .certificate_pack_get_response import CertificatePackGetResponse as Certifi
 from .certificate_pack_edit_response import CertificatePackEditResponse as CertificatePackEditResponse
 from .certificate_pack_list_response import CertificatePackListResponse as CertificatePackListResponse
 from .certificate_pack_delete_response import CertificatePackDeleteResponse as CertificatePackDeleteResponse
+from .tls_certificates_and_hostnames_verification import (
+    TLSCertificatesAndHostnamesVerification as TLSCertificatesAndHostnamesVerification,
+)

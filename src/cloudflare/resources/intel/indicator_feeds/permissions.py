@@ -24,9 +24,8 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.intel.indicator_feeds import (
+    IntelPermissionsUpdate,
     PermissionListResponse,
-    PermissionCreateResponse,
-    PermissionDeleteResponse,
     permission_create_params,
     permission_delete_params,
 )
@@ -55,7 +54,7 @@ class Permissions(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PermissionCreateResponse:
+    ) -> IntelPermissionsUpdate:
         """
         Grant permission to indicator feed
 
@@ -92,7 +91,7 @@ class Permissions(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[PermissionCreateResponse], ResultWrapper[PermissionCreateResponse]),
+            cast_to=cast(Type[IntelPermissionsUpdate], ResultWrapper[IntelPermissionsUpdate]),
         )
 
     def list(
@@ -146,7 +145,7 @@ class Permissions(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PermissionDeleteResponse:
+    ) -> IntelPermissionsUpdate:
         """
         Revoke permission to indicator feed
 
@@ -183,7 +182,7 @@ class Permissions(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[PermissionDeleteResponse], ResultWrapper[PermissionDeleteResponse]),
+            cast_to=cast(Type[IntelPermissionsUpdate], ResultWrapper[IntelPermissionsUpdate]),
         )
 
 
@@ -208,7 +207,7 @@ class AsyncPermissions(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PermissionCreateResponse:
+    ) -> IntelPermissionsUpdate:
         """
         Grant permission to indicator feed
 
@@ -245,7 +244,7 @@ class AsyncPermissions(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[PermissionCreateResponse], ResultWrapper[PermissionCreateResponse]),
+            cast_to=cast(Type[IntelPermissionsUpdate], ResultWrapper[IntelPermissionsUpdate]),
         )
 
     async def list(
@@ -299,7 +298,7 @@ class AsyncPermissions(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PermissionDeleteResponse:
+    ) -> IntelPermissionsUpdate:
         """
         Revoke permission to indicator feed
 
@@ -336,7 +335,7 @@ class AsyncPermissions(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[PermissionDeleteResponse], ResultWrapper[PermissionDeleteResponse]),
+            cast_to=cast(Type[IntelPermissionsUpdate], ResultWrapper[IntelPermissionsUpdate]),
         )
 
 

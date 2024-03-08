@@ -32,7 +32,8 @@ from ......_wrappers import ResultWrapper
 from ......_base_client import (
     make_request_options,
 )
-from ......types.dns.firewall.analytics import ReportGetResponse, report_get_params
+from ......types.dns.analytics import DNSDNSAnalyticsAPIReport
+from ......types.dns.firewall.analytics import report_get_params
 
 __all__ = ["Reports", "AsyncReports"]
 
@@ -68,7 +69,7 @@ class Reports(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ReportGetResponse:
+    ) -> DNSDNSAnalyticsAPIReport:
         """
         Retrieves a list of summarised aggregate metrics over a given time period.
 
@@ -129,7 +130,7 @@ class Reports(SyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ReportGetResponse], ResultWrapper[ReportGetResponse]),
+            cast_to=cast(Type[DNSDNSAnalyticsAPIReport], ResultWrapper[DNSDNSAnalyticsAPIReport]),
         )
 
 
@@ -164,7 +165,7 @@ class AsyncReports(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ReportGetResponse:
+    ) -> DNSDNSAnalyticsAPIReport:
         """
         Retrieves a list of summarised aggregate metrics over a given time period.
 
@@ -225,7 +226,7 @@ class AsyncReports(AsyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ReportGetResponse], ResultWrapper[ReportGetResponse]),
+            cast_to=cast(Type[DNSDNSAnalyticsAPIReport], ResultWrapper[DNSDNSAnalyticsAPIReport]),
         )
 
 

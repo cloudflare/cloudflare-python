@@ -1,25 +1,9 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from typing import List, Optional
-from datetime import date
+from typing import List
 
-from ..._models import BaseModel
+from .intel_domain_history import IntelDomainHistory
 
-__all__ = ["DomainHistoryGetResponse", "DomainHistoryGetResponseItem", "DomainHistoryGetResponseItemCategorization"]
+__all__ = ["DomainHistoryGetResponse"]
 
-
-class DomainHistoryGetResponseItemCategorization(BaseModel):
-    categories: Optional[object] = None
-
-    end: Optional[date] = None
-
-    start: Optional[date] = None
-
-
-class DomainHistoryGetResponseItem(BaseModel):
-    categorizations: Optional[List[DomainHistoryGetResponseItemCategorization]] = None
-
-    domain: Optional[str] = None
-
-
-DomainHistoryGetResponse = List[DomainHistoryGetResponseItem]
+DomainHistoryGetResponse = List[IntelDomainHistory]

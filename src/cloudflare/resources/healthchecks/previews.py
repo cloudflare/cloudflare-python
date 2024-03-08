@@ -7,6 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
+from ...types import HealthchecksHealthchecks
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -24,12 +25,7 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.healthchecks import (
-    PreviewGetResponse,
-    PreviewCreateResponse,
-    PreviewDeleteResponse,
-    preview_create_params,
-)
+from ...types.healthchecks import PreviewDeleteResponse, preview_create_params
 
 __all__ = ["Previews", "AsyncPreviews"]
 
@@ -86,7 +82,7 @@ class Previews(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PreviewCreateResponse:
+    ) -> HealthchecksHealthchecks:
         """
         Create a new preview health check.
 
@@ -164,7 +160,7 @@ class Previews(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[PreviewCreateResponse], ResultWrapper[PreviewCreateResponse]),
+            cast_to=cast(Type[HealthchecksHealthchecks], ResultWrapper[HealthchecksHealthchecks]),
         )
 
     def delete(
@@ -222,7 +218,7 @@ class Previews(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PreviewGetResponse:
+    ) -> HealthchecksHealthchecks:
         """
         Fetch a single configured health check preview.
 
@@ -252,7 +248,7 @@ class Previews(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[PreviewGetResponse], ResultWrapper[PreviewGetResponse]),
+            cast_to=cast(Type[HealthchecksHealthchecks], ResultWrapper[HealthchecksHealthchecks]),
         )
 
 
@@ -308,7 +304,7 @@ class AsyncPreviews(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PreviewCreateResponse:
+    ) -> HealthchecksHealthchecks:
         """
         Create a new preview health check.
 
@@ -386,7 +382,7 @@ class AsyncPreviews(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[PreviewCreateResponse], ResultWrapper[PreviewCreateResponse]),
+            cast_to=cast(Type[HealthchecksHealthchecks], ResultWrapper[HealthchecksHealthchecks]),
         )
 
     async def delete(
@@ -444,7 +440,7 @@ class AsyncPreviews(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PreviewGetResponse:
+    ) -> HealthchecksHealthchecks:
         """
         Fetch a single configured health check preview.
 
@@ -474,7 +470,7 @@ class AsyncPreviews(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[PreviewGetResponse], ResultWrapper[PreviewGetResponse]),
+            cast_to=cast(Type[HealthchecksHealthchecks], ResultWrapper[HealthchecksHealthchecks]),
         )
 
 

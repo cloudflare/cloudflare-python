@@ -2,22 +2,8 @@
 
 from typing import List
 
-from ..._models import BaseModel
+from .secondary_dns_tsig import SecondaryDNSTSIG
 
-__all__ = ["TSIGListResponse", "TSIGListResponseItem"]
+__all__ = ["TSIGListResponse"]
 
-
-class TSIGListResponseItem(BaseModel):
-    id: object
-
-    algo: str
-    """TSIG algorithm."""
-
-    name: str
-    """TSIG key name."""
-
-    secret: str
-    """TSIG secret."""
-
-
-TSIGListResponse = List[TSIGListResponseItem]
+TSIGListResponse = List[SecondaryDNSTSIG]

@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..types import DNSSECGetResponse, DNSSECEditResponse, DNSSECDeleteResponse, dnssec_edit_params
+from ..types import DNSSECDNSSEC, DNSSECDeleteResponse, dnssec_edit_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import (
     maybe_transform,
@@ -95,7 +95,7 @@ class DNSSEC(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DNSSECEditResponse:
+    ) -> DNSSECDNSSEC:
         """
         Enable or disable DNSSEC.
 
@@ -148,7 +148,7 @@ class DNSSEC(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DNSSECEditResponse], ResultWrapper[DNSSECEditResponse]),
+            cast_to=cast(Type[DNSSECDNSSEC], ResultWrapper[DNSSECDNSSEC]),
         )
 
     def get(
@@ -161,7 +161,7 @@ class DNSSEC(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DNSSECGetResponse:
+    ) -> DNSSECDNSSEC:
         """
         Details about DNSSEC status and configuration.
 
@@ -187,7 +187,7 @@ class DNSSEC(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DNSSECGetResponse], ResultWrapper[DNSSECGetResponse]),
+            cast_to=cast(Type[DNSSECDNSSEC], ResultWrapper[DNSSECDNSSEC]),
         )
 
 
@@ -257,7 +257,7 @@ class AsyncDNSSEC(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DNSSECEditResponse:
+    ) -> DNSSECDNSSEC:
         """
         Enable or disable DNSSEC.
 
@@ -310,7 +310,7 @@ class AsyncDNSSEC(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DNSSECEditResponse], ResultWrapper[DNSSECEditResponse]),
+            cast_to=cast(Type[DNSSECDNSSEC], ResultWrapper[DNSSECDNSSEC]),
         )
 
     async def get(
@@ -323,7 +323,7 @@ class AsyncDNSSEC(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DNSSECGetResponse:
+    ) -> DNSSECDNSSEC:
         """
         Details about DNSSEC status and configuration.
 
@@ -349,7 +349,7 @@ class AsyncDNSSEC(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DNSSECGetResponse], ResultWrapper[DNSSECGetResponse]),
+            cast_to=cast(Type[DNSSECDNSSEC], ResultWrapper[DNSSECDNSSEC]),
         )
 
 

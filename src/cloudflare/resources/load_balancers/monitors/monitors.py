@@ -41,16 +41,13 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.load_balancers import (
-    MonitorGetResponse,
-    MonitorEditResponse,
     MonitorListResponse,
-    MonitorCreateResponse,
     MonitorDeleteResponse,
-    MonitorUpdateResponse,
     monitor_edit_params,
     monitor_create_params,
     monitor_update_params,
 )
+from ....types.user.load_balancers import LoadBalancingMonitor
 
 __all__ = ["Monitors", "AsyncMonitors"]
 
@@ -98,7 +95,7 @@ class Monitors(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MonitorCreateResponse:
+    ) -> LoadBalancingMonitor:
         """
         Create a configured monitor.
 
@@ -194,7 +191,7 @@ class Monitors(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[MonitorCreateResponse], ResultWrapper[MonitorCreateResponse]),
+            cast_to=cast(Type[LoadBalancingMonitor], ResultWrapper[LoadBalancingMonitor]),
         )
 
     def update(
@@ -224,7 +221,7 @@ class Monitors(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MonitorUpdateResponse:
+    ) -> LoadBalancingMonitor:
         """
         Modify a configured monitor.
 
@@ -322,7 +319,7 @@ class Monitors(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[MonitorUpdateResponse], ResultWrapper[MonitorUpdateResponse]),
+            cast_to=cast(Type[LoadBalancingMonitor], ResultWrapper[LoadBalancingMonitor]),
         )
 
     def list(
@@ -433,7 +430,7 @@ class Monitors(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MonitorEditResponse:
+    ) -> LoadBalancingMonitor:
         """
         Apply changes to an existing monitor, overwriting the supplied properties.
 
@@ -531,7 +528,7 @@ class Monitors(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[MonitorEditResponse], ResultWrapper[MonitorEditResponse]),
+            cast_to=cast(Type[LoadBalancingMonitor], ResultWrapper[LoadBalancingMonitor]),
         )
 
     def get(
@@ -545,7 +542,7 @@ class Monitors(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MonitorGetResponse:
+    ) -> LoadBalancingMonitor:
         """
         List a single configured monitor for an account.
 
@@ -573,7 +570,7 @@ class Monitors(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[MonitorGetResponse], ResultWrapper[MonitorGetResponse]),
+            cast_to=cast(Type[LoadBalancingMonitor], ResultWrapper[LoadBalancingMonitor]),
         )
 
 
@@ -620,7 +617,7 @@ class AsyncMonitors(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MonitorCreateResponse:
+    ) -> LoadBalancingMonitor:
         """
         Create a configured monitor.
 
@@ -716,7 +713,7 @@ class AsyncMonitors(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[MonitorCreateResponse], ResultWrapper[MonitorCreateResponse]),
+            cast_to=cast(Type[LoadBalancingMonitor], ResultWrapper[LoadBalancingMonitor]),
         )
 
     async def update(
@@ -746,7 +743,7 @@ class AsyncMonitors(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MonitorUpdateResponse:
+    ) -> LoadBalancingMonitor:
         """
         Modify a configured monitor.
 
@@ -844,7 +841,7 @@ class AsyncMonitors(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[MonitorUpdateResponse], ResultWrapper[MonitorUpdateResponse]),
+            cast_to=cast(Type[LoadBalancingMonitor], ResultWrapper[LoadBalancingMonitor]),
         )
 
     async def list(
@@ -955,7 +952,7 @@ class AsyncMonitors(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MonitorEditResponse:
+    ) -> LoadBalancingMonitor:
         """
         Apply changes to an existing monitor, overwriting the supplied properties.
 
@@ -1053,7 +1050,7 @@ class AsyncMonitors(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[MonitorEditResponse], ResultWrapper[MonitorEditResponse]),
+            cast_to=cast(Type[LoadBalancingMonitor], ResultWrapper[LoadBalancingMonitor]),
         )
 
     async def get(
@@ -1067,7 +1064,7 @@ class AsyncMonitors(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MonitorGetResponse:
+    ) -> LoadBalancingMonitor:
         """
         List a single configured monitor for an account.
 
@@ -1095,7 +1092,7 @@ class AsyncMonitors(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[MonitorGetResponse], ResultWrapper[MonitorGetResponse]),
+            cast_to=cast(Type[LoadBalancingMonitor], ResultWrapper[LoadBalancingMonitor]),
         )
 
 

@@ -24,7 +24,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import AlwaysUseHTTPSGetResponse, AlwaysUseHTTPSEditResponse, always_use_https_edit_params
+from ....types.zones.settings import ZonesAlwaysUseHTTPS, always_use_https_edit_params
 
 __all__ = ["AlwaysUseHTTPS", "AsyncAlwaysUseHTTPS"]
 
@@ -49,7 +49,7 @@ class AlwaysUseHTTPS(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AlwaysUseHTTPSEditResponse]:
+    ) -> Optional[ZonesAlwaysUseHTTPS]:
         """
         Reply to all requests for URLs that use "http" with a 301 redirect to the
         equivalent "https" URL. If you only want to redirect for a subset of requests,
@@ -80,7 +80,7 @@ class AlwaysUseHTTPS(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[AlwaysUseHTTPSEditResponse]], ResultWrapper[AlwaysUseHTTPSEditResponse]),
+            cast_to=cast(Type[Optional[ZonesAlwaysUseHTTPS]], ResultWrapper[ZonesAlwaysUseHTTPS]),
         )
 
     def get(
@@ -93,7 +93,7 @@ class AlwaysUseHTTPS(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AlwaysUseHTTPSGetResponse]:
+    ) -> Optional[ZonesAlwaysUseHTTPS]:
         """
         Reply to all requests for URLs that use "http" with a 301 redirect to the
         equivalent "https" URL. If you only want to redirect for a subset of requests,
@@ -121,7 +121,7 @@ class AlwaysUseHTTPS(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[AlwaysUseHTTPSGetResponse]], ResultWrapper[AlwaysUseHTTPSGetResponse]),
+            cast_to=cast(Type[Optional[ZonesAlwaysUseHTTPS]], ResultWrapper[ZonesAlwaysUseHTTPS]),
         )
 
 
@@ -145,7 +145,7 @@ class AsyncAlwaysUseHTTPS(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AlwaysUseHTTPSEditResponse]:
+    ) -> Optional[ZonesAlwaysUseHTTPS]:
         """
         Reply to all requests for URLs that use "http" with a 301 redirect to the
         equivalent "https" URL. If you only want to redirect for a subset of requests,
@@ -176,7 +176,7 @@ class AsyncAlwaysUseHTTPS(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[AlwaysUseHTTPSEditResponse]], ResultWrapper[AlwaysUseHTTPSEditResponse]),
+            cast_to=cast(Type[Optional[ZonesAlwaysUseHTTPS]], ResultWrapper[ZonesAlwaysUseHTTPS]),
         )
 
     async def get(
@@ -189,7 +189,7 @@ class AsyncAlwaysUseHTTPS(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AlwaysUseHTTPSGetResponse]:
+    ) -> Optional[ZonesAlwaysUseHTTPS]:
         """
         Reply to all requests for URLs that use "http" with a 301 redirect to the
         equivalent "https" URL. If you only want to redirect for a subset of requests,
@@ -217,7 +217,7 @@ class AsyncAlwaysUseHTTPS(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[AlwaysUseHTTPSGetResponse]], ResultWrapper[AlwaysUseHTTPSGetResponse]),
+            cast_to=cast(Type[Optional[ZonesAlwaysUseHTTPS]], ResultWrapper[ZonesAlwaysUseHTTPS]),
         )
 
 

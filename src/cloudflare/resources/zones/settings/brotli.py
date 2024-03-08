@@ -24,7 +24,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import BrotliGetResponse, BrotliEditResponse, brotli_edit_params
+from ....types.zones.settings import ZonesBrotli, brotli_edit_params
 
 __all__ = ["Brotli", "AsyncBrotli"]
 
@@ -49,7 +49,7 @@ class Brotli(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[BrotliEditResponse]:
+    ) -> Optional[ZonesBrotli]:
         """
         When the client requesting an asset supports the Brotli compression algorithm,
         Cloudflare will serve a Brotli compressed version of the asset.
@@ -79,7 +79,7 @@ class Brotli(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[BrotliEditResponse]], ResultWrapper[BrotliEditResponse]),
+            cast_to=cast(Type[Optional[ZonesBrotli]], ResultWrapper[ZonesBrotli]),
         )
 
     def get(
@@ -92,7 +92,7 @@ class Brotli(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[BrotliGetResponse]:
+    ) -> Optional[ZonesBrotli]:
         """
         When the client requesting an asset supports the Brotli compression algorithm,
         Cloudflare will serve a Brotli compressed version of the asset.
@@ -119,7 +119,7 @@ class Brotli(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[BrotliGetResponse]], ResultWrapper[BrotliGetResponse]),
+            cast_to=cast(Type[Optional[ZonesBrotli]], ResultWrapper[ZonesBrotli]),
         )
 
 
@@ -143,7 +143,7 @@ class AsyncBrotli(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[BrotliEditResponse]:
+    ) -> Optional[ZonesBrotli]:
         """
         When the client requesting an asset supports the Brotli compression algorithm,
         Cloudflare will serve a Brotli compressed version of the asset.
@@ -173,7 +173,7 @@ class AsyncBrotli(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[BrotliEditResponse]], ResultWrapper[BrotliEditResponse]),
+            cast_to=cast(Type[Optional[ZonesBrotli]], ResultWrapper[ZonesBrotli]),
         )
 
     async def get(
@@ -186,7 +186,7 @@ class AsyncBrotli(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[BrotliGetResponse]:
+    ) -> Optional[ZonesBrotli]:
         """
         When the client requesting an asset supports the Brotli compression algorithm,
         Cloudflare will serve a Brotli compressed version of the asset.
@@ -213,7 +213,7 @@ class AsyncBrotli(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[BrotliGetResponse]], ResultWrapper[BrotliGetResponse]),
+            cast_to=cast(Type[Optional[ZonesBrotli]], ResultWrapper[ZonesBrotli]),
         )
 
 

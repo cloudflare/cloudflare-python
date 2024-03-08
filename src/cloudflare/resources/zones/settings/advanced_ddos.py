@@ -19,7 +19,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import AdvancedDDOSGetResponse
+from ....types.zones.settings import ZonesAdvancedDDOS
 
 __all__ = ["AdvancedDDOS", "AsyncAdvancedDDOS"]
 
@@ -43,7 +43,7 @@ class AdvancedDDOS(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AdvancedDDOSGetResponse]:
+    ) -> Optional[ZonesAdvancedDDOS]:
         """
         Advanced protection from Distributed Denial of Service (DDoS) attacks on your
         website. This is an uneditable value that is 'on' in the case of Business and
@@ -71,7 +71,7 @@ class AdvancedDDOS(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[AdvancedDDOSGetResponse]], ResultWrapper[AdvancedDDOSGetResponse]),
+            cast_to=cast(Type[Optional[ZonesAdvancedDDOS]], ResultWrapper[ZonesAdvancedDDOS]),
         )
 
 
@@ -94,7 +94,7 @@ class AsyncAdvancedDDOS(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AdvancedDDOSGetResponse]:
+    ) -> Optional[ZonesAdvancedDDOS]:
         """
         Advanced protection from Distributed Denial of Service (DDoS) attacks on your
         website. This is an uneditable value that is 'on' in the case of Business and
@@ -122,7 +122,7 @@ class AsyncAdvancedDDOS(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[AdvancedDDOSGetResponse]], ResultWrapper[AdvancedDDOSGetResponse]),
+            cast_to=cast(Type[Optional[ZonesAdvancedDDOS]], ResultWrapper[ZonesAdvancedDDOS]),
         )
 
 

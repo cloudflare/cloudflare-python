@@ -24,7 +24,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import SecurityLevelGetResponse, SecurityLevelEditResponse, security_level_edit_params
+from ....types.zones.settings import ZonesSecurityLevel, security_level_edit_params
 
 __all__ = ["SecurityLevel", "AsyncSecurityLevel"]
 
@@ -49,7 +49,7 @@ class SecurityLevel(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SecurityLevelEditResponse]:
+    ) -> Optional[ZonesSecurityLevel]:
         """
         Choose the appropriate security profile for your website, which will
         automatically adjust each of the security settings. If you choose to customize
@@ -81,7 +81,7 @@ class SecurityLevel(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SecurityLevelEditResponse]], ResultWrapper[SecurityLevelEditResponse]),
+            cast_to=cast(Type[Optional[ZonesSecurityLevel]], ResultWrapper[ZonesSecurityLevel]),
         )
 
     def get(
@@ -94,7 +94,7 @@ class SecurityLevel(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SecurityLevelGetResponse]:
+    ) -> Optional[ZonesSecurityLevel]:
         """
         Choose the appropriate security profile for your website, which will
         automatically adjust each of the security settings. If you choose to customize
@@ -123,7 +123,7 @@ class SecurityLevel(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SecurityLevelGetResponse]], ResultWrapper[SecurityLevelGetResponse]),
+            cast_to=cast(Type[Optional[ZonesSecurityLevel]], ResultWrapper[ZonesSecurityLevel]),
         )
 
 
@@ -147,7 +147,7 @@ class AsyncSecurityLevel(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SecurityLevelEditResponse]:
+    ) -> Optional[ZonesSecurityLevel]:
         """
         Choose the appropriate security profile for your website, which will
         automatically adjust each of the security settings. If you choose to customize
@@ -179,7 +179,7 @@ class AsyncSecurityLevel(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SecurityLevelEditResponse]], ResultWrapper[SecurityLevelEditResponse]),
+            cast_to=cast(Type[Optional[ZonesSecurityLevel]], ResultWrapper[ZonesSecurityLevel]),
         )
 
     async def get(
@@ -192,7 +192,7 @@ class AsyncSecurityLevel(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SecurityLevelGetResponse]:
+    ) -> Optional[ZonesSecurityLevel]:
         """
         Choose the appropriate security profile for your website, which will
         automatically adjust each of the security settings. If you choose to customize
@@ -221,7 +221,7 @@ class AsyncSecurityLevel(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SecurityLevelGetResponse]], ResultWrapper[SecurityLevelGetResponse]),
+            cast_to=cast(Type[Optional[ZonesSecurityLevel]], ResultWrapper[ZonesSecurityLevel]),
         )
 
 

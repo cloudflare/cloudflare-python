@@ -2,16 +2,18 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Required, TypedDict
 
-__all__ = ["PolishEditParams", "Value"]
+from .zones_polish_param import ZonesPolishParam
+
+__all__ = ["PolishEditParams"]
 
 
 class PolishEditParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
-    value: Required[Value]
+    value: Required[ZonesPolishParam]
     """Removes metadata and compresses your images for faster page load times.
 
     Basic (Lossless): Reduce the size of PNG, JPEG, and GIF files - no impact on
@@ -20,11 +22,3 @@ class PolishEditParams(TypedDict, total=False):
     a lower-resolution image first and ending in a higher-resolution version. Not
     recommended for hi-res photography sites.
     """
-
-
-class Value(TypedDict, total=False):
-    id: Required[Literal["polish"]]
-    """ID of the zone setting."""
-
-    value: Required[Literal["off", "lossless", "lossy"]]
-    """Current value of the zone setting."""

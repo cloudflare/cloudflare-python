@@ -24,11 +24,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import (
-    EmailObfuscationGetResponse,
-    EmailObfuscationEditResponse,
-    email_obfuscation_edit_params,
-)
+from ....types.zones.settings import ZonesEmailObfuscation, email_obfuscation_edit_params
 
 __all__ = ["EmailObfuscation", "AsyncEmailObfuscation"]
 
@@ -53,7 +49,7 @@ class EmailObfuscation(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[EmailObfuscationEditResponse]:
+    ) -> Optional[ZonesEmailObfuscation]:
         """
         Encrypt email adresses on your web page from bots, while keeping them visible to
         humans. (https://support.cloudflare.com/hc/en-us/articles/200170016).
@@ -83,7 +79,7 @@ class EmailObfuscation(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[EmailObfuscationEditResponse]], ResultWrapper[EmailObfuscationEditResponse]),
+            cast_to=cast(Type[Optional[ZonesEmailObfuscation]], ResultWrapper[ZonesEmailObfuscation]),
         )
 
     def get(
@@ -96,7 +92,7 @@ class EmailObfuscation(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[EmailObfuscationGetResponse]:
+    ) -> Optional[ZonesEmailObfuscation]:
         """
         Encrypt email adresses on your web page from bots, while keeping them visible to
         humans. (https://support.cloudflare.com/hc/en-us/articles/200170016).
@@ -123,7 +119,7 @@ class EmailObfuscation(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[EmailObfuscationGetResponse]], ResultWrapper[EmailObfuscationGetResponse]),
+            cast_to=cast(Type[Optional[ZonesEmailObfuscation]], ResultWrapper[ZonesEmailObfuscation]),
         )
 
 
@@ -147,7 +143,7 @@ class AsyncEmailObfuscation(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[EmailObfuscationEditResponse]:
+    ) -> Optional[ZonesEmailObfuscation]:
         """
         Encrypt email adresses on your web page from bots, while keeping them visible to
         humans. (https://support.cloudflare.com/hc/en-us/articles/200170016).
@@ -179,7 +175,7 @@ class AsyncEmailObfuscation(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[EmailObfuscationEditResponse]], ResultWrapper[EmailObfuscationEditResponse]),
+            cast_to=cast(Type[Optional[ZonesEmailObfuscation]], ResultWrapper[ZonesEmailObfuscation]),
         )
 
     async def get(
@@ -192,7 +188,7 @@ class AsyncEmailObfuscation(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[EmailObfuscationGetResponse]:
+    ) -> Optional[ZonesEmailObfuscation]:
         """
         Encrypt email adresses on your web page from bots, while keeping them visible to
         humans. (https://support.cloudflare.com/hc/en-us/articles/200170016).
@@ -219,7 +215,7 @@ class AsyncEmailObfuscation(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[EmailObfuscationGetResponse]], ResultWrapper[EmailObfuscationGetResponse]),
+            cast_to=cast(Type[Optional[ZonesEmailObfuscation]], ResultWrapper[ZonesEmailObfuscation]),
         )
 
 

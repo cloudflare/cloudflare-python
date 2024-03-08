@@ -23,13 +23,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.stream.live_inputs import (
-    OutputListResponse,
-    OutputCreateResponse,
-    OutputUpdateResponse,
-    output_create_params,
-    output_update_params,
-)
+from ....types.stream.live_inputs import StreamOutput, OutputListResponse, output_create_params, output_update_params
 
 __all__ = ["Outputs", "AsyncOutputs"]
 
@@ -57,7 +51,7 @@ class Outputs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> OutputCreateResponse:
+    ) -> StreamOutput:
         """
         Creates a new output that can be used to simulcast or restream live video to
         other RTMP or SRT destinations. Outputs are always linked to a specific live
@@ -109,7 +103,7 @@ class Outputs(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[OutputCreateResponse], ResultWrapper[OutputCreateResponse]),
+            cast_to=cast(Type[StreamOutput], ResultWrapper[StreamOutput]),
         )
 
     def update(
@@ -125,7 +119,7 @@ class Outputs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> OutputUpdateResponse:
+    ) -> StreamOutput:
         """
         Updates the state of an output.
 
@@ -168,7 +162,7 @@ class Outputs(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[OutputUpdateResponse], ResultWrapper[OutputUpdateResponse]),
+            cast_to=cast(Type[StreamOutput], ResultWrapper[StreamOutput]),
         )
 
     def list(
@@ -289,7 +283,7 @@ class AsyncOutputs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> OutputCreateResponse:
+    ) -> StreamOutput:
         """
         Creates a new output that can be used to simulcast or restream live video to
         other RTMP or SRT destinations. Outputs are always linked to a specific live
@@ -341,7 +335,7 @@ class AsyncOutputs(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[OutputCreateResponse], ResultWrapper[OutputCreateResponse]),
+            cast_to=cast(Type[StreamOutput], ResultWrapper[StreamOutput]),
         )
 
     async def update(
@@ -357,7 +351,7 @@ class AsyncOutputs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> OutputUpdateResponse:
+    ) -> StreamOutput:
         """
         Updates the state of an output.
 
@@ -400,7 +394,7 @@ class AsyncOutputs(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[OutputUpdateResponse], ResultWrapper[OutputUpdateResponse]),
+            cast_to=cast(Type[StreamOutput], ResultWrapper[StreamOutput]),
         )
 
     async def list(

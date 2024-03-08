@@ -6,7 +6,7 @@ from typing import Type, cast
 
 import httpx
 
-from ...types import PageShieldListResponse, PageShieldUpdateResponse, page_shield_update_params
+from ...types import PageShieldGetZoneSettings, PageShieldUpdateZoneSettings, page_shield_update_params
 from .scripts import (
     Scripts,
     AsyncScripts,
@@ -86,7 +86,7 @@ class PageShield(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PageShieldUpdateResponse:
+    ) -> PageShieldUpdateZoneSettings:
         """
         Updates Page Shield settings.
 
@@ -127,7 +127,7 @@ class PageShield(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[PageShieldUpdateResponse], ResultWrapper[PageShieldUpdateResponse]),
+            cast_to=cast(Type[PageShieldUpdateZoneSettings], ResultWrapper[PageShieldUpdateZoneSettings]),
         )
 
     def list(
@@ -140,7 +140,7 @@ class PageShield(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PageShieldListResponse:
+    ) -> PageShieldGetZoneSettings:
         """
         Fetches the Page Shield settings.
 
@@ -166,7 +166,7 @@ class PageShield(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[PageShieldListResponse], ResultWrapper[PageShieldListResponse]),
+            cast_to=cast(Type[PageShieldGetZoneSettings], ResultWrapper[PageShieldGetZoneSettings]),
         )
 
 
@@ -204,7 +204,7 @@ class AsyncPageShield(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PageShieldUpdateResponse:
+    ) -> PageShieldUpdateZoneSettings:
         """
         Updates Page Shield settings.
 
@@ -245,7 +245,7 @@ class AsyncPageShield(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[PageShieldUpdateResponse], ResultWrapper[PageShieldUpdateResponse]),
+            cast_to=cast(Type[PageShieldUpdateZoneSettings], ResultWrapper[PageShieldUpdateZoneSettings]),
         )
 
     async def list(
@@ -258,7 +258,7 @@ class AsyncPageShield(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PageShieldListResponse:
+    ) -> PageShieldGetZoneSettings:
         """
         Fetches the Page Shield settings.
 
@@ -284,7 +284,7 @@ class AsyncPageShield(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[PageShieldListResponse], ResultWrapper[PageShieldListResponse]),
+            cast_to=cast(Type[PageShieldGetZoneSettings], ResultWrapper[PageShieldGetZoneSettings]),
         )
 
 
