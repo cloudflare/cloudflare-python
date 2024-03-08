@@ -9,7 +9,9 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.zero_trust.dex.traceroute_test_results import NetworkPathListResponse
+from cloudflare.types.zero_trust.dex.traceroute_test_results import (
+    DigitalExperienceMonitoringTracerouteTestResultNetworkPath,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -24,7 +26,7 @@ class TestNetworkPath:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
         )
-        assert_matches_type(NetworkPathListResponse, network_path, path=["response"])
+        assert_matches_type(DigitalExperienceMonitoringTracerouteTestResultNetworkPath, network_path, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -37,7 +39,7 @@ class TestNetworkPath:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         network_path = response.parse()
-        assert_matches_type(NetworkPathListResponse, network_path, path=["response"])
+        assert_matches_type(DigitalExperienceMonitoringTracerouteTestResultNetworkPath, network_path, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -50,7 +52,9 @@ class TestNetworkPath:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             network_path = response.parse()
-            assert_matches_type(NetworkPathListResponse, network_path, path=["response"])
+            assert_matches_type(
+                DigitalExperienceMonitoringTracerouteTestResultNetworkPath, network_path, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 
@@ -80,7 +84,7 @@ class TestAsyncNetworkPath:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
         )
-        assert_matches_type(NetworkPathListResponse, network_path, path=["response"])
+        assert_matches_type(DigitalExperienceMonitoringTracerouteTestResultNetworkPath, network_path, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -93,7 +97,7 @@ class TestAsyncNetworkPath:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         network_path = await response.parse()
-        assert_matches_type(NetworkPathListResponse, network_path, path=["response"])
+        assert_matches_type(DigitalExperienceMonitoringTracerouteTestResultNetworkPath, network_path, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -106,7 +110,9 @@ class TestAsyncNetworkPath:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             network_path = await response.parse()
-            assert_matches_type(NetworkPathListResponse, network_path, path=["response"])
+            assert_matches_type(
+                DigitalExperienceMonitoringTracerouteTestResultNetworkPath, network_path, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 

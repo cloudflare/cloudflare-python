@@ -1,21 +1,9 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from typing import List, Optional
-from datetime import datetime
+from typing import List
 
-from ....._models import BaseModel
+from .load_balancing_analytics import LoadBalancingAnalytics
 
-__all__ = ["EventListResponse", "EventListResponseItem"]
+__all__ = ["EventListResponse"]
 
-
-class EventListResponseItem(BaseModel):
-    id: Optional[int] = None
-
-    origins: Optional[List[object]] = None
-
-    pool: Optional[object] = None
-
-    timestamp: Optional[datetime] = None
-
-
-EventListResponse = List[EventListResponseItem]
+EventListResponse = List[LoadBalancingAnalytics]

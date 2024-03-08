@@ -10,8 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types.zones.settings import (
-    AutomaticPlatformOptimizationGetResponse,
-    AutomaticPlatformOptimizationEditResponse,
+    ZonesAutomaticPlatformOptimization,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -35,7 +34,7 @@ class TestAutomaticPlatformOptimization:
             },
         )
         assert_matches_type(
-            Optional[AutomaticPlatformOptimizationEditResponse], automatic_platform_optimization, path=["response"]
+            Optional[ZonesAutomaticPlatformOptimization], automatic_platform_optimization, path=["response"]
         )
 
     @pytest.mark.skip()
@@ -57,7 +56,7 @@ class TestAutomaticPlatformOptimization:
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         automatic_platform_optimization = response.parse()
         assert_matches_type(
-            Optional[AutomaticPlatformOptimizationEditResponse], automatic_platform_optimization, path=["response"]
+            Optional[ZonesAutomaticPlatformOptimization], automatic_platform_optimization, path=["response"]
         )
 
     @pytest.mark.skip()
@@ -79,7 +78,7 @@ class TestAutomaticPlatformOptimization:
 
             automatic_platform_optimization = response.parse()
             assert_matches_type(
-                Optional[AutomaticPlatformOptimizationEditResponse], automatic_platform_optimization, path=["response"]
+                Optional[ZonesAutomaticPlatformOptimization], automatic_platform_optimization, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True
@@ -107,7 +106,7 @@ class TestAutomaticPlatformOptimization:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(
-            Optional[AutomaticPlatformOptimizationGetResponse], automatic_platform_optimization, path=["response"]
+            Optional[ZonesAutomaticPlatformOptimization], automatic_platform_optimization, path=["response"]
         )
 
     @pytest.mark.skip()
@@ -121,7 +120,7 @@ class TestAutomaticPlatformOptimization:
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         automatic_platform_optimization = response.parse()
         assert_matches_type(
-            Optional[AutomaticPlatformOptimizationGetResponse], automatic_platform_optimization, path=["response"]
+            Optional[ZonesAutomaticPlatformOptimization], automatic_platform_optimization, path=["response"]
         )
 
     @pytest.mark.skip()
@@ -135,7 +134,7 @@ class TestAutomaticPlatformOptimization:
 
             automatic_platform_optimization = response.parse()
             assert_matches_type(
-                Optional[AutomaticPlatformOptimizationGetResponse], automatic_platform_optimization, path=["response"]
+                Optional[ZonesAutomaticPlatformOptimization], automatic_platform_optimization, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True
@@ -167,7 +166,7 @@ class TestAsyncAutomaticPlatformOptimization:
             },
         )
         assert_matches_type(
-            Optional[AutomaticPlatformOptimizationEditResponse], automatic_platform_optimization, path=["response"]
+            Optional[ZonesAutomaticPlatformOptimization], automatic_platform_optimization, path=["response"]
         )
 
     @pytest.mark.skip()
@@ -189,7 +188,7 @@ class TestAsyncAutomaticPlatformOptimization:
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         automatic_platform_optimization = await response.parse()
         assert_matches_type(
-            Optional[AutomaticPlatformOptimizationEditResponse], automatic_platform_optimization, path=["response"]
+            Optional[ZonesAutomaticPlatformOptimization], automatic_platform_optimization, path=["response"]
         )
 
     @pytest.mark.skip()
@@ -211,7 +210,7 @@ class TestAsyncAutomaticPlatformOptimization:
 
             automatic_platform_optimization = await response.parse()
             assert_matches_type(
-                Optional[AutomaticPlatformOptimizationEditResponse], automatic_platform_optimization, path=["response"]
+                Optional[ZonesAutomaticPlatformOptimization], automatic_platform_optimization, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True
@@ -239,7 +238,7 @@ class TestAsyncAutomaticPlatformOptimization:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(
-            Optional[AutomaticPlatformOptimizationGetResponse], automatic_platform_optimization, path=["response"]
+            Optional[ZonesAutomaticPlatformOptimization], automatic_platform_optimization, path=["response"]
         )
 
     @pytest.mark.skip()
@@ -253,7 +252,7 @@ class TestAsyncAutomaticPlatformOptimization:
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         automatic_platform_optimization = await response.parse()
         assert_matches_type(
-            Optional[AutomaticPlatformOptimizationGetResponse], automatic_platform_optimization, path=["response"]
+            Optional[ZonesAutomaticPlatformOptimization], automatic_platform_optimization, path=["response"]
         )
 
     @pytest.mark.skip()
@@ -267,7 +266,7 @@ class TestAsyncAutomaticPlatformOptimization:
 
             automatic_platform_optimization = await response.parse()
             assert_matches_type(
-                Optional[AutomaticPlatformOptimizationGetResponse], automatic_platform_optimization, path=["response"]
+                Optional[ZonesAutomaticPlatformOptimization], automatic_platform_optimization, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True

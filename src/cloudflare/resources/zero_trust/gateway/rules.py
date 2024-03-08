@@ -25,11 +25,9 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.zero_trust.gateway import (
-    RuleGetResponse,
     RuleListResponse,
-    RuleCreateResponse,
     RuleDeleteResponse,
-    RuleUpdateResponse,
+    ZeroTrustGatewayRules,
     rule_create_params,
     rule_update_params,
 )
@@ -82,7 +80,7 @@ class Rules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RuleCreateResponse:
+    ) -> ZeroTrustGatewayRules:
         """
         Creates a new Zero Trust Gateway rule.
 
@@ -147,7 +145,7 @@ class Rules(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[RuleCreateResponse], ResultWrapper[RuleCreateResponse]),
+            cast_to=cast(Type[ZeroTrustGatewayRules], ResultWrapper[ZeroTrustGatewayRules]),
         )
 
     def update(
@@ -187,7 +185,7 @@ class Rules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RuleUpdateResponse:
+    ) -> ZeroTrustGatewayRules:
         """
         Updates a configured Zero Trust Gateway rule.
 
@@ -256,7 +254,7 @@ class Rules(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[RuleUpdateResponse], ResultWrapper[RuleUpdateResponse]),
+            cast_to=cast(Type[ZeroTrustGatewayRules], ResultWrapper[ZeroTrustGatewayRules]),
         )
 
     def list(
@@ -350,7 +348,7 @@ class Rules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RuleGetResponse:
+    ) -> ZeroTrustGatewayRules:
         """
         Fetches a single Zero Trust Gateway rule.
 
@@ -376,7 +374,7 @@ class Rules(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[RuleGetResponse], ResultWrapper[RuleGetResponse]),
+            cast_to=cast(Type[ZeroTrustGatewayRules], ResultWrapper[ZeroTrustGatewayRules]),
         )
 
 
@@ -425,7 +423,7 @@ class AsyncRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RuleCreateResponse:
+    ) -> ZeroTrustGatewayRules:
         """
         Creates a new Zero Trust Gateway rule.
 
@@ -490,7 +488,7 @@ class AsyncRules(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[RuleCreateResponse], ResultWrapper[RuleCreateResponse]),
+            cast_to=cast(Type[ZeroTrustGatewayRules], ResultWrapper[ZeroTrustGatewayRules]),
         )
 
     async def update(
@@ -530,7 +528,7 @@ class AsyncRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RuleUpdateResponse:
+    ) -> ZeroTrustGatewayRules:
         """
         Updates a configured Zero Trust Gateway rule.
 
@@ -599,7 +597,7 @@ class AsyncRules(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[RuleUpdateResponse], ResultWrapper[RuleUpdateResponse]),
+            cast_to=cast(Type[ZeroTrustGatewayRules], ResultWrapper[ZeroTrustGatewayRules]),
         )
 
     async def list(
@@ -693,7 +691,7 @@ class AsyncRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RuleGetResponse:
+    ) -> ZeroTrustGatewayRules:
         """
         Fetches a single Zero Trust Gateway rule.
 
@@ -719,7 +717,7 @@ class AsyncRules(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[RuleGetResponse], ResultWrapper[RuleGetResponse]),
+            cast_to=cast(Type[ZeroTrustGatewayRules], ResultWrapper[ZeroTrustGatewayRules]),
         )
 
 

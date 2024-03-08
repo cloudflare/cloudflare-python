@@ -1,34 +1,9 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from typing import List, Optional
+from typing import List
 
-from ..._models import BaseModel
+from .d1_query_result import D1QueryResult
 
-__all__ = ["DatabaseQueryResponse", "DatabaseQueryResponseItem", "DatabaseQueryResponseItemMeta"]
+__all__ = ["DatabaseQueryResponse"]
 
-
-class DatabaseQueryResponseItemMeta(BaseModel):
-    changed_db: Optional[bool] = None
-
-    changes: Optional[float] = None
-
-    duration: Optional[float] = None
-
-    last_row_id: Optional[float] = None
-
-    rows_read: Optional[float] = None
-
-    rows_written: Optional[float] = None
-
-    size_after: Optional[float] = None
-
-
-class DatabaseQueryResponseItem(BaseModel):
-    meta: Optional[DatabaseQueryResponseItemMeta] = None
-
-    results: Optional[List[object]] = None
-
-    success: Optional[bool] = None
-
-
-DatabaseQueryResponse = List[DatabaseQueryResponseItem]
+DatabaseQueryResponse = List[D1QueryResult]

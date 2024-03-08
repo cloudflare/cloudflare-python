@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.zones.settings import EarlyHintGetResponse, EarlyHintEditResponse
+from cloudflare.types.zones.settings import ZonesEarlyHints
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -24,7 +24,7 @@ class TestEarlyHints:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value="on",
         )
-        assert_matches_type(Optional[EarlyHintEditResponse], early_hint, path=["response"])
+        assert_matches_type(Optional[ZonesEarlyHints], early_hint, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -37,7 +37,7 @@ class TestEarlyHints:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         early_hint = response.parse()
-        assert_matches_type(Optional[EarlyHintEditResponse], early_hint, path=["response"])
+        assert_matches_type(Optional[ZonesEarlyHints], early_hint, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -50,7 +50,7 @@ class TestEarlyHints:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             early_hint = response.parse()
-            assert_matches_type(Optional[EarlyHintEditResponse], early_hint, path=["response"])
+            assert_matches_type(Optional[ZonesEarlyHints], early_hint, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -69,7 +69,7 @@ class TestEarlyHints:
         early_hint = client.zones.settings.early_hints.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[EarlyHintGetResponse], early_hint, path=["response"])
+        assert_matches_type(Optional[ZonesEarlyHints], early_hint, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -81,7 +81,7 @@ class TestEarlyHints:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         early_hint = response.parse()
-        assert_matches_type(Optional[EarlyHintGetResponse], early_hint, path=["response"])
+        assert_matches_type(Optional[ZonesEarlyHints], early_hint, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -93,7 +93,7 @@ class TestEarlyHints:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             early_hint = response.parse()
-            assert_matches_type(Optional[EarlyHintGetResponse], early_hint, path=["response"])
+            assert_matches_type(Optional[ZonesEarlyHints], early_hint, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -116,7 +116,7 @@ class TestAsyncEarlyHints:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value="on",
         )
-        assert_matches_type(Optional[EarlyHintEditResponse], early_hint, path=["response"])
+        assert_matches_type(Optional[ZonesEarlyHints], early_hint, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -129,7 +129,7 @@ class TestAsyncEarlyHints:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         early_hint = await response.parse()
-        assert_matches_type(Optional[EarlyHintEditResponse], early_hint, path=["response"])
+        assert_matches_type(Optional[ZonesEarlyHints], early_hint, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -142,7 +142,7 @@ class TestAsyncEarlyHints:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             early_hint = await response.parse()
-            assert_matches_type(Optional[EarlyHintEditResponse], early_hint, path=["response"])
+            assert_matches_type(Optional[ZonesEarlyHints], early_hint, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -161,7 +161,7 @@ class TestAsyncEarlyHints:
         early_hint = await async_client.zones.settings.early_hints.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[EarlyHintGetResponse], early_hint, path=["response"])
+        assert_matches_type(Optional[ZonesEarlyHints], early_hint, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -173,7 +173,7 @@ class TestAsyncEarlyHints:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         early_hint = await response.parse()
-        assert_matches_type(Optional[EarlyHintGetResponse], early_hint, path=["response"])
+        assert_matches_type(Optional[ZonesEarlyHints], early_hint, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -185,7 +185,7 @@ class TestAsyncEarlyHints:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             early_hint = await response.parse()
-            assert_matches_type(Optional[EarlyHintGetResponse], early_hint, path=["response"])
+            assert_matches_type(Optional[ZonesEarlyHints], early_hint, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

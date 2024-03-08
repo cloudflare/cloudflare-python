@@ -10,10 +10,9 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types.zero_trust.dlp import (
-    DatasetGetResponse,
-    DatasetListResponse,
-    DatasetCreateResponse,
-    DatasetUpdateResponse,
+    DLPDataset,
+    DLPDatasetArray,
+    DLPDatasetCreation,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -29,7 +28,7 @@ class TestDatasets:
             account_id="string",
             name="string",
         )
-        assert_matches_type(Optional[DatasetCreateResponse], dataset, path=["response"])
+        assert_matches_type(Optional[DLPDatasetCreation], dataset, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -40,7 +39,7 @@ class TestDatasets:
             description="string",
             secret=True,
         )
-        assert_matches_type(Optional[DatasetCreateResponse], dataset, path=["response"])
+        assert_matches_type(Optional[DLPDatasetCreation], dataset, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -53,7 +52,7 @@ class TestDatasets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dataset = response.parse()
-        assert_matches_type(Optional[DatasetCreateResponse], dataset, path=["response"])
+        assert_matches_type(Optional[DLPDatasetCreation], dataset, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -66,7 +65,7 @@ class TestDatasets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dataset = response.parse()
-            assert_matches_type(Optional[DatasetCreateResponse], dataset, path=["response"])
+            assert_matches_type(Optional[DLPDatasetCreation], dataset, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -86,7 +85,7 @@ class TestDatasets:
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="string",
         )
-        assert_matches_type(Optional[DatasetUpdateResponse], dataset, path=["response"])
+        assert_matches_type(Optional[DLPDataset], dataset, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -97,7 +96,7 @@ class TestDatasets:
             description="string",
             name="string",
         )
-        assert_matches_type(Optional[DatasetUpdateResponse], dataset, path=["response"])
+        assert_matches_type(Optional[DLPDataset], dataset, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -110,7 +109,7 @@ class TestDatasets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dataset = response.parse()
-        assert_matches_type(Optional[DatasetUpdateResponse], dataset, path=["response"])
+        assert_matches_type(Optional[DLPDataset], dataset, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -123,7 +122,7 @@ class TestDatasets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dataset = response.parse()
-            assert_matches_type(Optional[DatasetUpdateResponse], dataset, path=["response"])
+            assert_matches_type(Optional[DLPDataset], dataset, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -148,7 +147,7 @@ class TestDatasets:
         dataset = client.zero_trust.dlp.datasets.list(
             account_id="string",
         )
-        assert_matches_type(Optional[DatasetListResponse], dataset, path=["response"])
+        assert_matches_type(Optional[DLPDatasetArray], dataset, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -160,7 +159,7 @@ class TestDatasets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dataset = response.parse()
-        assert_matches_type(Optional[DatasetListResponse], dataset, path=["response"])
+        assert_matches_type(Optional[DLPDatasetArray], dataset, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -172,7 +171,7 @@ class TestDatasets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dataset = response.parse()
-            assert_matches_type(Optional[DatasetListResponse], dataset, path=["response"])
+            assert_matches_type(Optional[DLPDatasetArray], dataset, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -243,7 +242,7 @@ class TestDatasets:
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="string",
         )
-        assert_matches_type(Optional[DatasetGetResponse], dataset, path=["response"])
+        assert_matches_type(Optional[DLPDataset], dataset, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -256,7 +255,7 @@ class TestDatasets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dataset = response.parse()
-        assert_matches_type(Optional[DatasetGetResponse], dataset, path=["response"])
+        assert_matches_type(Optional[DLPDataset], dataset, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -269,7 +268,7 @@ class TestDatasets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dataset = response.parse()
-            assert_matches_type(Optional[DatasetGetResponse], dataset, path=["response"])
+            assert_matches_type(Optional[DLPDataset], dataset, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -299,7 +298,7 @@ class TestAsyncDatasets:
             account_id="string",
             name="string",
         )
-        assert_matches_type(Optional[DatasetCreateResponse], dataset, path=["response"])
+        assert_matches_type(Optional[DLPDatasetCreation], dataset, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -310,7 +309,7 @@ class TestAsyncDatasets:
             description="string",
             secret=True,
         )
-        assert_matches_type(Optional[DatasetCreateResponse], dataset, path=["response"])
+        assert_matches_type(Optional[DLPDatasetCreation], dataset, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -323,7 +322,7 @@ class TestAsyncDatasets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dataset = await response.parse()
-        assert_matches_type(Optional[DatasetCreateResponse], dataset, path=["response"])
+        assert_matches_type(Optional[DLPDatasetCreation], dataset, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -336,7 +335,7 @@ class TestAsyncDatasets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dataset = await response.parse()
-            assert_matches_type(Optional[DatasetCreateResponse], dataset, path=["response"])
+            assert_matches_type(Optional[DLPDatasetCreation], dataset, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -356,7 +355,7 @@ class TestAsyncDatasets:
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="string",
         )
-        assert_matches_type(Optional[DatasetUpdateResponse], dataset, path=["response"])
+        assert_matches_type(Optional[DLPDataset], dataset, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -367,7 +366,7 @@ class TestAsyncDatasets:
             description="string",
             name="string",
         )
-        assert_matches_type(Optional[DatasetUpdateResponse], dataset, path=["response"])
+        assert_matches_type(Optional[DLPDataset], dataset, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -380,7 +379,7 @@ class TestAsyncDatasets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dataset = await response.parse()
-        assert_matches_type(Optional[DatasetUpdateResponse], dataset, path=["response"])
+        assert_matches_type(Optional[DLPDataset], dataset, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -393,7 +392,7 @@ class TestAsyncDatasets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dataset = await response.parse()
-            assert_matches_type(Optional[DatasetUpdateResponse], dataset, path=["response"])
+            assert_matches_type(Optional[DLPDataset], dataset, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -418,7 +417,7 @@ class TestAsyncDatasets:
         dataset = await async_client.zero_trust.dlp.datasets.list(
             account_id="string",
         )
-        assert_matches_type(Optional[DatasetListResponse], dataset, path=["response"])
+        assert_matches_type(Optional[DLPDatasetArray], dataset, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -430,7 +429,7 @@ class TestAsyncDatasets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dataset = await response.parse()
-        assert_matches_type(Optional[DatasetListResponse], dataset, path=["response"])
+        assert_matches_type(Optional[DLPDatasetArray], dataset, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -442,7 +441,7 @@ class TestAsyncDatasets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dataset = await response.parse()
-            assert_matches_type(Optional[DatasetListResponse], dataset, path=["response"])
+            assert_matches_type(Optional[DLPDatasetArray], dataset, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -513,7 +512,7 @@ class TestAsyncDatasets:
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="string",
         )
-        assert_matches_type(Optional[DatasetGetResponse], dataset, path=["response"])
+        assert_matches_type(Optional[DLPDataset], dataset, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -526,7 +525,7 @@ class TestAsyncDatasets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dataset = await response.parse()
-        assert_matches_type(Optional[DatasetGetResponse], dataset, path=["response"])
+        assert_matches_type(Optional[DLPDataset], dataset, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -539,7 +538,7 @@ class TestAsyncDatasets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dataset = await response.parse()
-            assert_matches_type(Optional[DatasetGetResponse], dataset, path=["response"])
+            assert_matches_type(Optional[DLPDataset], dataset, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

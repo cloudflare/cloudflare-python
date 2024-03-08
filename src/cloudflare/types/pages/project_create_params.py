@@ -6,11 +6,11 @@ from typing import Iterable, Optional
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
+from .pages_deployments_param import PagesDeploymentsParam
 
 __all__ = [
     "ProjectCreateParams",
     "BuildConfig",
-    "CanonicalDeployment",
     "DeploymentConfigs",
     "DeploymentConfigsPreview",
     "DeploymentConfigsPreviewAIBindings",
@@ -52,7 +52,6 @@ __all__ = [
     "DeploymentConfigsProductionR2BucketsR2Binding",
     "DeploymentConfigsProductionServiceBindings",
     "DeploymentConfigsProductionServiceBindingsServiceBinding",
-    "LatestDeployment",
 ]
 
 
@@ -63,12 +62,12 @@ class ProjectCreateParams(TypedDict, total=False):
     build_config: BuildConfig
     """Configs for the project build process."""
 
-    canonical_deployment: CanonicalDeployment
+    canonical_deployment: PagesDeploymentsParam
 
     deployment_configs: DeploymentConfigs
     """Configs for deployments in a project."""
 
-    latest_deployment: LatestDeployment
+    latest_deployment: PagesDeploymentsParam
 
     name: str
     """Name of the project."""
@@ -95,10 +94,6 @@ class BuildConfig(TypedDict, total=False):
 
     web_analytics_token: Optional[str]
     """The auth token for analytics."""
-
-
-class CanonicalDeployment(TypedDict, total=False):
-    pass
 
 
 class DeploymentConfigsPreviewAIBindingsAIBinding(TypedDict, total=False):
@@ -401,7 +396,3 @@ class DeploymentConfigs(TypedDict, total=False):
 
     production: DeploymentConfigsProduction
     """Configs for production deploys."""
-
-
-class LatestDeployment(TypedDict, total=False):
-    pass

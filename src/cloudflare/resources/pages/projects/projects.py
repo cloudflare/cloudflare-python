@@ -37,9 +37,10 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ....types.pages import (
-    ProjectGetResponse,
+    PagesProjects,
     ProjectEditResponse,
     ProjectListResponse,
+    PagesDeploymentsParam,
     ProjectCreateResponse,
     project_edit_params,
     project_create_params,
@@ -74,9 +75,9 @@ class Projects(SyncAPIResource):
         *,
         account_id: str,
         build_config: project_create_params.BuildConfig | NotGiven = NOT_GIVEN,
-        canonical_deployment: project_create_params.CanonicalDeployment | NotGiven = NOT_GIVEN,
+        canonical_deployment: PagesDeploymentsParam | NotGiven = NOT_GIVEN,
         deployment_configs: project_create_params.DeploymentConfigs | NotGiven = NOT_GIVEN,
-        latest_deployment: project_create_params.LatestDeployment | NotGiven = NOT_GIVEN,
+        latest_deployment: PagesDeploymentsParam | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         production_branch: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -281,7 +282,7 @@ class Projects(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ProjectGetResponse:
+    ) -> PagesProjects:
         """
         Fetch a project by name.
 
@@ -311,7 +312,7 @@ class Projects(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ProjectGetResponse], ResultWrapper[ProjectGetResponse]),
+            cast_to=cast(Type[PagesProjects], ResultWrapper[PagesProjects]),
         )
 
     def purge_build_cache(
@@ -377,9 +378,9 @@ class AsyncProjects(AsyncAPIResource):
         *,
         account_id: str,
         build_config: project_create_params.BuildConfig | NotGiven = NOT_GIVEN,
-        canonical_deployment: project_create_params.CanonicalDeployment | NotGiven = NOT_GIVEN,
+        canonical_deployment: PagesDeploymentsParam | NotGiven = NOT_GIVEN,
         deployment_configs: project_create_params.DeploymentConfigs | NotGiven = NOT_GIVEN,
-        latest_deployment: project_create_params.LatestDeployment | NotGiven = NOT_GIVEN,
+        latest_deployment: PagesDeploymentsParam | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         production_branch: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -584,7 +585,7 @@ class AsyncProjects(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ProjectGetResponse:
+    ) -> PagesProjects:
         """
         Fetch a project by name.
 
@@ -614,7 +615,7 @@ class AsyncProjects(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ProjectGetResponse], ResultWrapper[ProjectGetResponse]),
+            cast_to=cast(Type[PagesProjects], ResultWrapper[PagesProjects]),
         )
 
     async def purge_build_cache(

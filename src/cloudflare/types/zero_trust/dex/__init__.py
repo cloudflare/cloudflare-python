@@ -7,12 +7,19 @@ from .test_list_params import TestListParams as TestListParams
 from .colo_list_response import ColoListResponse as ColoListResponse
 from .test_list_response import TestListResponse as TestListResponse
 from .http_test_get_params import HTTPTestGetParams as HTTPTestGetParams
-from .http_test_get_response import HTTPTestGetResponse as HTTPTestGetResponse
 from .traceroute_test_get_params import TracerouteTestGetParams as TracerouteTestGetParams
-from .traceroute_test_get_response import TracerouteTestGetResponse as TracerouteTestGetResponse
 from .traceroute_test_percentiles_params import TracerouteTestPercentilesParams as TracerouteTestPercentilesParams
+from .digital_experience_monitoring_tests import DigitalExperienceMonitoringTests as DigitalExperienceMonitoringTests
 from .traceroute_test_network_path_params import TracerouteTestNetworkPathParams as TracerouteTestNetworkPathParams
-from .traceroute_test_percentiles_response import TracerouteTestPercentilesResponse as TracerouteTestPercentilesResponse
-from .traceroute_test_network_path_response import (
-    TracerouteTestNetworkPathResponse as TracerouteTestNetworkPathResponse,
+from .digital_experience_monitoring_http_details import (
+    DigitalExperienceMonitoringHTTPDetails as DigitalExperienceMonitoringHTTPDetails,
+)
+from .digital_experience_monitoring_traceroute_details import (
+    DigitalExperienceMonitoringTracerouteDetails as DigitalExperienceMonitoringTracerouteDetails,
+)
+from .digital_experience_monitoring_traceroute_test_network_path import (
+    DigitalExperienceMonitoringTracerouteTestNetworkPath as DigitalExperienceMonitoringTracerouteTestNetworkPath,
+)
+from .digital_experience_monitoring_traceroute_details_percentiles import (
+    DigitalExperienceMonitoringTracerouteDetailsPercentiles as DigitalExperienceMonitoringTracerouteDetailsPercentiles,
 )

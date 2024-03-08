@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from .dns_get_response import DNSGetResponse as DNSGetResponse
+from .email_dns_record import EmailDNSRecord as EmailDNSRecord
 from .rule_list_params import RuleListParams as RuleListParams
 from .rule_get_response import RuleGetResponse as RuleGetResponse
 from .rule_create_params import RuleCreateParams as RuleCreateParams

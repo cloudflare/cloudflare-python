@@ -4,22 +4,9 @@ from typing import List, Optional
 from typing_extensions import Literal
 
 from ..._models import BaseModel
+from .iam_schemas_role import IamSchemasRole
 
-__all__ = ["MemberListResponse", "Role"]
-
-
-class Role(BaseModel):
-    id: str
-    """Role identifier tag."""
-
-    description: str
-    """Description of role's permissions."""
-
-    name: str
-    """Role Name."""
-
-    permissions: List[str]
-    """Access permissions for this User."""
+__all__ = ["MemberListResponse"]
 
 
 class MemberListResponse(BaseModel):
@@ -32,7 +19,7 @@ class MemberListResponse(BaseModel):
     name: Optional[str] = None
     """Member Name."""
 
-    roles: List[Role]
+    roles: List[IamSchemasRole]
     """Roles assigned to this Member."""
 
     status: Literal["accepted", "invited"]

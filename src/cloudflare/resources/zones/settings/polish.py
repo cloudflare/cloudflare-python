@@ -23,7 +23,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import PolishGetResponse, PolishEditResponse, polish_edit_params
+from ....types.zones.settings import ZonesPolish, ZonesPolishParam, polish_edit_params
 
 __all__ = ["Polish", "AsyncPolish"]
 
@@ -41,14 +41,14 @@ class Polish(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        value: polish_edit_params.Value,
+        value: ZonesPolishParam,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PolishEditResponse]:
+    ) -> Optional[ZonesPolish]:
         """
         Automatically optimize image loading for website visitors on mobile devices.
         Refer to our [blog post](http://blog.cloudflare.com/polish-solving-mobile-speed)
@@ -84,7 +84,7 @@ class Polish(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[PolishEditResponse]], ResultWrapper[PolishEditResponse]),
+            cast_to=cast(Type[Optional[ZonesPolish]], ResultWrapper[ZonesPolish]),
         )
 
     def get(
@@ -97,7 +97,7 @@ class Polish(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PolishGetResponse]:
+    ) -> Optional[ZonesPolish]:
         """
         Automatically optimize image loading for website visitors on mobile devices.
         Refer to our [blog post](http://blog.cloudflare.com/polish-solving-mobile-speed)
@@ -125,7 +125,7 @@ class Polish(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[PolishGetResponse]], ResultWrapper[PolishGetResponse]),
+            cast_to=cast(Type[Optional[ZonesPolish]], ResultWrapper[ZonesPolish]),
         )
 
 
@@ -142,14 +142,14 @@ class AsyncPolish(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        value: polish_edit_params.Value,
+        value: ZonesPolishParam,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PolishEditResponse]:
+    ) -> Optional[ZonesPolish]:
         """
         Automatically optimize image loading for website visitors on mobile devices.
         Refer to our [blog post](http://blog.cloudflare.com/polish-solving-mobile-speed)
@@ -185,7 +185,7 @@ class AsyncPolish(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[PolishEditResponse]], ResultWrapper[PolishEditResponse]),
+            cast_to=cast(Type[Optional[ZonesPolish]], ResultWrapper[ZonesPolish]),
         )
 
     async def get(
@@ -198,7 +198,7 @@ class AsyncPolish(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PolishGetResponse]:
+    ) -> Optional[ZonesPolish]:
         """
         Automatically optimize image loading for website visitors on mobile devices.
         Refer to our [blog post](http://blog.cloudflare.com/polish-solving-mobile-speed)
@@ -226,7 +226,7 @@ class AsyncPolish(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[PolishGetResponse]], ResultWrapper[PolishGetResponse]),
+            cast_to=cast(Type[Optional[ZonesPolish]], ResultWrapper[ZonesPolish]),
         )
 
 

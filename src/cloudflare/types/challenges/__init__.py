@@ -3,12 +3,8 @@
 from __future__ import annotations
 
 from .widget_list_params import WidgetListParams as WidgetListParams
-from .widget_get_response import WidgetGetResponse as WidgetGetResponse
 from .widget_create_params import WidgetCreateParams as WidgetCreateParams
-from .widget_list_response import WidgetListResponse as WidgetListResponse
 from .widget_update_params import WidgetUpdateParams as WidgetUpdateParams
-from .widget_create_response import WidgetCreateResponse as WidgetCreateResponse
-from .widget_delete_response import WidgetDeleteResponse as WidgetDeleteResponse
-from .widget_update_response import WidgetUpdateResponse as WidgetUpdateResponse
 from .widget_rotate_secret_params import WidgetRotateSecretParams as WidgetRotateSecretParams
-from .widget_rotate_secret_response import WidgetRotateSecretResponse as WidgetRotateSecretResponse
+from .nc_challenges_admin_widget_list import NcChallengesAdminWidgetList as NcChallengesAdminWidgetList
+from .nc_challenges_admin_widget_detail import NcChallengesAdminWidgetDetail as NcChallengesAdminWidgetDetail

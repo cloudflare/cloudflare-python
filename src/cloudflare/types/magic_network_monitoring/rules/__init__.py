@@ -2,4 +2,6 @@
 
 from __future__ import annotations
 
-from .advertisement_edit_response import AdvertisementEditResponse as AdvertisementEditResponse
+from .magic_visibility_mnm_rule_advertisable import (
+    MagicVisibilityMNMRuleAdvertisable as MagicVisibilityMNMRuleAdvertisable,
+)

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
+from .access_identity import AccessIdentity as AccessIdentity
 from .failed_login_list_response import FailedLoginListResponse as FailedLoginListResponse
 from .active_session_get_response import ActiveSessionGetResponse as ActiveSessionGetResponse
 from .active_session_list_response import ActiveSessionListResponse as ActiveSessionListResponse
-from .last_seen_identity_get_response import LastSeenIdentityGetResponse as LastSeenIdentityGetResponse

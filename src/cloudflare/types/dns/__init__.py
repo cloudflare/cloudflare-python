@@ -13,14 +13,11 @@ from .record_import_params import RecordImportParams as RecordImportParams
 from .record_list_response import RecordListResponse as RecordListResponse
 from .record_scan_response import RecordScanResponse as RecordScanResponse
 from .record_update_params import RecordUpdateParams as RecordUpdateParams
-from .firewall_get_response import FirewallGetResponse as FirewallGetResponse
 from .firewall_create_params import FirewallCreateParams as FirewallCreateParams
-from .firewall_edit_response import FirewallEditResponse as FirewallEditResponse
-from .firewall_list_response import FirewallListResponse as FirewallListResponse
 from .record_create_response import RecordCreateResponse as RecordCreateResponse
 from .record_delete_response import RecordDeleteResponse as RecordDeleteResponse
 from .record_export_response import RecordExportResponse as RecordExportResponse
 from .record_import_response import RecordImportResponse as RecordImportResponse
 from .record_update_response import RecordUpdateResponse as RecordUpdateResponse
-from .firewall_create_response import FirewallCreateResponse as FirewallCreateResponse
 from .firewall_delete_response import FirewallDeleteResponse as FirewallDeleteResponse
+from .dns_firewall_dns_firewall import DNSFirewallDNSFirewall as DNSFirewallDNSFirewall

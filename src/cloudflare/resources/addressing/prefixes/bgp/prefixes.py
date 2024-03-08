@@ -23,12 +23,7 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import (
     make_request_options,
 )
-from .....types.addressing.prefixes.bgp import (
-    PrefixGetResponse,
-    PrefixEditResponse,
-    PrefixListResponse,
-    prefix_edit_params,
-)
+from .....types.addressing.prefixes.bgp import PrefixListResponse, AddressingIpamBGPPrefixes, prefix_edit_params
 
 __all__ = ["Prefixes", "AsyncPrefixes"]
 
@@ -103,7 +98,7 @@ class Prefixes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PrefixEditResponse:
+    ) -> AddressingIpamBGPPrefixes:
         """
         Update the properties of a BGP Prefix, such as the on demand advertisement
         status (advertised or withdrawn).
@@ -139,7 +134,7 @@ class Prefixes(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[PrefixEditResponse], ResultWrapper[PrefixEditResponse]),
+            cast_to=cast(Type[AddressingIpamBGPPrefixes], ResultWrapper[AddressingIpamBGPPrefixes]),
         )
 
     def get(
@@ -154,7 +149,7 @@ class Prefixes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PrefixGetResponse:
+    ) -> AddressingIpamBGPPrefixes:
         """
         Retrieve a single BGP Prefix according to its identifier
 
@@ -188,7 +183,7 @@ class Prefixes(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[PrefixGetResponse], ResultWrapper[PrefixGetResponse]),
+            cast_to=cast(Type[AddressingIpamBGPPrefixes], ResultWrapper[AddressingIpamBGPPrefixes]),
         )
 
 
@@ -262,7 +257,7 @@ class AsyncPrefixes(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PrefixEditResponse:
+    ) -> AddressingIpamBGPPrefixes:
         """
         Update the properties of a BGP Prefix, such as the on demand advertisement
         status (advertised or withdrawn).
@@ -298,7 +293,7 @@ class AsyncPrefixes(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[PrefixEditResponse], ResultWrapper[PrefixEditResponse]),
+            cast_to=cast(Type[AddressingIpamBGPPrefixes], ResultWrapper[AddressingIpamBGPPrefixes]),
         )
 
     async def get(
@@ -313,7 +308,7 @@ class AsyncPrefixes(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PrefixGetResponse:
+    ) -> AddressingIpamBGPPrefixes:
         """
         Retrieve a single BGP Prefix according to its identifier
 
@@ -347,7 +342,7 @@ class AsyncPrefixes(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[PrefixGetResponse], ResultWrapper[PrefixGetResponse]),
+            cast_to=cast(Type[AddressingIpamBGPPrefixes], ResultWrapper[AddressingIpamBGPPrefixes]),
         )
 
 

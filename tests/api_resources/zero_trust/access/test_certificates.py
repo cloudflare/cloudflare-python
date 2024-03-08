@@ -10,11 +10,9 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types.zero_trust.access import (
-    CertificateGetResponse,
+    AccessCertificates,
     CertificateListResponse,
-    CertificateCreateResponse,
     CertificateDeleteResponse,
-    CertificateUpdateResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -32,7 +30,7 @@ class TestCertificates:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(CertificateCreateResponse, certificate, path=["response"])
+        assert_matches_type(AccessCertificates, certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -44,7 +42,7 @@ class TestCertificates:
             zone_id="string",
             associated_hostnames=["admin.example.com", "admin.example.com", "admin.example.com"],
         )
-        assert_matches_type(CertificateCreateResponse, certificate, path=["response"])
+        assert_matches_type(AccessCertificates, certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -59,7 +57,7 @@ class TestCertificates:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         certificate = response.parse()
-        assert_matches_type(CertificateCreateResponse, certificate, path=["response"])
+        assert_matches_type(AccessCertificates, certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -74,7 +72,7 @@ class TestCertificates:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             certificate = response.parse()
-            assert_matches_type(CertificateCreateResponse, certificate, path=["response"])
+            assert_matches_type(AccessCertificates, certificate, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -106,7 +104,7 @@ class TestCertificates:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(CertificateUpdateResponse, certificate, path=["response"])
+        assert_matches_type(AccessCertificates, certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -118,7 +116,7 @@ class TestCertificates:
             zone_id="string",
             name="Allow devs",
         )
-        assert_matches_type(CertificateUpdateResponse, certificate, path=["response"])
+        assert_matches_type(AccessCertificates, certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -133,7 +131,7 @@ class TestCertificates:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         certificate = response.parse()
-        assert_matches_type(CertificateUpdateResponse, certificate, path=["response"])
+        assert_matches_type(AccessCertificates, certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -148,7 +146,7 @@ class TestCertificates:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             certificate = response.parse()
-            assert_matches_type(CertificateUpdateResponse, certificate, path=["response"])
+            assert_matches_type(AccessCertificates, certificate, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -322,7 +320,7 @@ class TestCertificates:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(CertificateGetResponse, certificate, path=["response"])
+        assert_matches_type(AccessCertificates, certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -332,7 +330,7 @@ class TestCertificates:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(CertificateGetResponse, certificate, path=["response"])
+        assert_matches_type(AccessCertificates, certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -346,7 +344,7 @@ class TestCertificates:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         certificate = response.parse()
-        assert_matches_type(CertificateGetResponse, certificate, path=["response"])
+        assert_matches_type(AccessCertificates, certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -360,7 +358,7 @@ class TestCertificates:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             certificate = response.parse()
-            assert_matches_type(CertificateGetResponse, certificate, path=["response"])
+            assert_matches_type(AccessCertificates, certificate, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -401,7 +399,7 @@ class TestAsyncCertificates:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(CertificateCreateResponse, certificate, path=["response"])
+        assert_matches_type(AccessCertificates, certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -413,7 +411,7 @@ class TestAsyncCertificates:
             zone_id="string",
             associated_hostnames=["admin.example.com", "admin.example.com", "admin.example.com"],
         )
-        assert_matches_type(CertificateCreateResponse, certificate, path=["response"])
+        assert_matches_type(AccessCertificates, certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -428,7 +426,7 @@ class TestAsyncCertificates:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         certificate = await response.parse()
-        assert_matches_type(CertificateCreateResponse, certificate, path=["response"])
+        assert_matches_type(AccessCertificates, certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -443,7 +441,7 @@ class TestAsyncCertificates:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             certificate = await response.parse()
-            assert_matches_type(CertificateCreateResponse, certificate, path=["response"])
+            assert_matches_type(AccessCertificates, certificate, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -475,7 +473,7 @@ class TestAsyncCertificates:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(CertificateUpdateResponse, certificate, path=["response"])
+        assert_matches_type(AccessCertificates, certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -487,7 +485,7 @@ class TestAsyncCertificates:
             zone_id="string",
             name="Allow devs",
         )
-        assert_matches_type(CertificateUpdateResponse, certificate, path=["response"])
+        assert_matches_type(AccessCertificates, certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -502,7 +500,7 @@ class TestAsyncCertificates:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         certificate = await response.parse()
-        assert_matches_type(CertificateUpdateResponse, certificate, path=["response"])
+        assert_matches_type(AccessCertificates, certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -517,7 +515,7 @@ class TestAsyncCertificates:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             certificate = await response.parse()
-            assert_matches_type(CertificateUpdateResponse, certificate, path=["response"])
+            assert_matches_type(AccessCertificates, certificate, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -691,7 +689,7 @@ class TestAsyncCertificates:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(CertificateGetResponse, certificate, path=["response"])
+        assert_matches_type(AccessCertificates, certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -701,7 +699,7 @@ class TestAsyncCertificates:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(CertificateGetResponse, certificate, path=["response"])
+        assert_matches_type(AccessCertificates, certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -715,7 +713,7 @@ class TestAsyncCertificates:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         certificate = await response.parse()
-        assert_matches_type(CertificateGetResponse, certificate, path=["response"])
+        assert_matches_type(AccessCertificates, certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -729,7 +727,7 @@ class TestAsyncCertificates:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             certificate = await response.parse()
-            assert_matches_type(CertificateGetResponse, certificate, path=["response"])
+            assert_matches_type(AccessCertificates, certificate, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
