@@ -11,11 +11,8 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from cloudflare.types.firewall.waf import (
-    OverrideGetResponse,
-    OverrideListResponse,
-    OverrideCreateResponse,
+    LegacyJhsOverride,
     OverrideDeleteResponse,
-    OverrideUpdateResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -31,7 +28,7 @@ class TestOverrides:
             "023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(Optional[OverrideCreateResponse], override, path=["response"])
+        assert_matches_type(Optional[LegacyJhsOverride], override, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -44,7 +41,7 @@ class TestOverrides:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         override = response.parse()
-        assert_matches_type(Optional[OverrideCreateResponse], override, path=["response"])
+        assert_matches_type(Optional[LegacyJhsOverride], override, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -57,7 +54,7 @@ class TestOverrides:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             override = response.parse()
-            assert_matches_type(Optional[OverrideCreateResponse], override, path=["response"])
+            assert_matches_type(Optional[LegacyJhsOverride], override, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -78,7 +75,7 @@ class TestOverrides:
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(Optional[OverrideUpdateResponse], override, path=["response"])
+        assert_matches_type(Optional[LegacyJhsOverride], override, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -92,7 +89,7 @@ class TestOverrides:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         override = response.parse()
-        assert_matches_type(Optional[OverrideUpdateResponse], override, path=["response"])
+        assert_matches_type(Optional[LegacyJhsOverride], override, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -106,7 +103,7 @@ class TestOverrides:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             override = response.parse()
-            assert_matches_type(Optional[OverrideUpdateResponse], override, path=["response"])
+            assert_matches_type(Optional[LegacyJhsOverride], override, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -133,7 +130,7 @@ class TestOverrides:
         override = client.firewall.waf.overrides.list(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncV4PagePaginationArray[OverrideListResponse], override, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[LegacyJhsOverride], override, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -143,7 +140,7 @@ class TestOverrides:
             page=1,
             per_page=5,
         )
-        assert_matches_type(SyncV4PagePaginationArray[OverrideListResponse], override, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[LegacyJhsOverride], override, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -155,7 +152,7 @@ class TestOverrides:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         override = response.parse()
-        assert_matches_type(SyncV4PagePaginationArray[OverrideListResponse], override, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[LegacyJhsOverride], override, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -167,7 +164,7 @@ class TestOverrides:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             override = response.parse()
-            assert_matches_type(SyncV4PagePaginationArray[OverrideListResponse], override, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[LegacyJhsOverride], override, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -238,7 +235,7 @@ class TestOverrides:
             "de677e5818985db1285d0e80225f06e5",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[OverrideGetResponse], override, path=["response"])
+        assert_matches_type(Optional[LegacyJhsOverride], override, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -251,7 +248,7 @@ class TestOverrides:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         override = response.parse()
-        assert_matches_type(Optional[OverrideGetResponse], override, path=["response"])
+        assert_matches_type(Optional[LegacyJhsOverride], override, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -264,7 +261,7 @@ class TestOverrides:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             override = response.parse()
-            assert_matches_type(Optional[OverrideGetResponse], override, path=["response"])
+            assert_matches_type(Optional[LegacyJhsOverride], override, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -294,7 +291,7 @@ class TestAsyncOverrides:
             "023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(Optional[OverrideCreateResponse], override, path=["response"])
+        assert_matches_type(Optional[LegacyJhsOverride], override, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -307,7 +304,7 @@ class TestAsyncOverrides:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         override = await response.parse()
-        assert_matches_type(Optional[OverrideCreateResponse], override, path=["response"])
+        assert_matches_type(Optional[LegacyJhsOverride], override, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -320,7 +317,7 @@ class TestAsyncOverrides:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             override = await response.parse()
-            assert_matches_type(Optional[OverrideCreateResponse], override, path=["response"])
+            assert_matches_type(Optional[LegacyJhsOverride], override, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -341,7 +338,7 @@ class TestAsyncOverrides:
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(Optional[OverrideUpdateResponse], override, path=["response"])
+        assert_matches_type(Optional[LegacyJhsOverride], override, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -355,7 +352,7 @@ class TestAsyncOverrides:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         override = await response.parse()
-        assert_matches_type(Optional[OverrideUpdateResponse], override, path=["response"])
+        assert_matches_type(Optional[LegacyJhsOverride], override, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -369,7 +366,7 @@ class TestAsyncOverrides:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             override = await response.parse()
-            assert_matches_type(Optional[OverrideUpdateResponse], override, path=["response"])
+            assert_matches_type(Optional[LegacyJhsOverride], override, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -396,7 +393,7 @@ class TestAsyncOverrides:
         override = await async_client.firewall.waf.overrides.list(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncV4PagePaginationArray[OverrideListResponse], override, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[LegacyJhsOverride], override, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -406,7 +403,7 @@ class TestAsyncOverrides:
             page=1,
             per_page=5,
         )
-        assert_matches_type(AsyncV4PagePaginationArray[OverrideListResponse], override, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[LegacyJhsOverride], override, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -418,7 +415,7 @@ class TestAsyncOverrides:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         override = await response.parse()
-        assert_matches_type(AsyncV4PagePaginationArray[OverrideListResponse], override, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[LegacyJhsOverride], override, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -430,7 +427,7 @@ class TestAsyncOverrides:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             override = await response.parse()
-            assert_matches_type(AsyncV4PagePaginationArray[OverrideListResponse], override, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[LegacyJhsOverride], override, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -501,7 +498,7 @@ class TestAsyncOverrides:
             "de677e5818985db1285d0e80225f06e5",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[OverrideGetResponse], override, path=["response"])
+        assert_matches_type(Optional[LegacyJhsOverride], override, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -514,7 +511,7 @@ class TestAsyncOverrides:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         override = await response.parse()
-        assert_matches_type(Optional[OverrideGetResponse], override, path=["response"])
+        assert_matches_type(Optional[LegacyJhsOverride], override, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -527,7 +524,7 @@ class TestAsyncOverrides:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             override = await response.parse()
-            assert_matches_type(Optional[OverrideGetResponse], override, path=["response"])
+            assert_matches_type(Optional[LegacyJhsOverride], override, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

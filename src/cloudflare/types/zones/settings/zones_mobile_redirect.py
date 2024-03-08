@@ -1,0 +1,43 @@
+# File generated from our OpenAPI spec by Stainless.
+
+from typing import Optional
+from datetime import datetime
+from typing_extensions import Literal
+
+from ...._models import BaseModel
+
+__all__ = ["ZonesMobileRedirect", "Value"]
+
+
+class Value(BaseModel):
+    mobile_subdomain: Optional[str] = None
+    """
+    Which subdomain prefix you wish to redirect visitors on mobile devices to
+    (subdomain must already exist).
+    """
+
+    status: Optional[Literal["on", "off"]] = None
+    """Whether or not mobile redirect is enabled."""
+
+    strip_uri: Optional[bool] = None
+    """
+    Whether to drop the current page path and redirect to the mobile subdomain URL
+    root, or keep the path and redirect to the same page on the mobile subdomain.
+    """
+
+
+class ZonesMobileRedirect(BaseModel):
+    id: Literal["mobile_redirect"]
+    """Identifier of the zone setting."""
+
+    value: Value
+    """Current value of the zone setting."""
+
+    editable: Optional[Literal[True, False]] = None
+    """
+    Whether or not this setting can be modified for this zone (based on your
+    Cloudflare plan level).
+    """
+
+    modified_on: Optional[datetime] = None
+    """last time this setting was modified."""

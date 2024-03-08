@@ -10,11 +10,9 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types.web3.hostnames.ipfs_universal_paths.content_lists import (
-    EntryGetResponse,
     EntryListResponse,
-    EntryCreateResponse,
     EntryDeleteResponse,
-    EntryUpdateResponse,
+    DwebConfigContentListEntry,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -32,7 +30,7 @@ class TestEntries:
             content="QmPZ9gcCEpqKTo6aq61g2nXGUhM4iCL3ewB6LDXZCtioEB",
             type="cid",
         )
-        assert_matches_type(EntryCreateResponse, entry, path=["response"])
+        assert_matches_type(DwebConfigContentListEntry, entry, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -44,7 +42,7 @@ class TestEntries:
             type="cid",
             description="this is my content list entry",
         )
-        assert_matches_type(EntryCreateResponse, entry, path=["response"])
+        assert_matches_type(DwebConfigContentListEntry, entry, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -59,7 +57,7 @@ class TestEntries:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         entry = response.parse()
-        assert_matches_type(EntryCreateResponse, entry, path=["response"])
+        assert_matches_type(DwebConfigContentListEntry, entry, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -74,7 +72,7 @@ class TestEntries:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             entry = response.parse()
-            assert_matches_type(EntryCreateResponse, entry, path=["response"])
+            assert_matches_type(DwebConfigContentListEntry, entry, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -107,7 +105,7 @@ class TestEntries:
             content="QmPZ9gcCEpqKTo6aq61g2nXGUhM4iCL3ewB6LDXZCtioEB",
             type="cid",
         )
-        assert_matches_type(EntryUpdateResponse, entry, path=["response"])
+        assert_matches_type(DwebConfigContentListEntry, entry, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -120,7 +118,7 @@ class TestEntries:
             type="cid",
             description="this is my content list entry",
         )
-        assert_matches_type(EntryUpdateResponse, entry, path=["response"])
+        assert_matches_type(DwebConfigContentListEntry, entry, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -136,7 +134,7 @@ class TestEntries:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         entry = response.parse()
-        assert_matches_type(EntryUpdateResponse, entry, path=["response"])
+        assert_matches_type(DwebConfigContentListEntry, entry, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -152,7 +150,7 @@ class TestEntries:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             entry = response.parse()
-            assert_matches_type(EntryUpdateResponse, entry, path=["response"])
+            assert_matches_type(DwebConfigContentListEntry, entry, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -314,7 +312,7 @@ class TestEntries:
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(EntryGetResponse, entry, path=["response"])
+        assert_matches_type(DwebConfigContentListEntry, entry, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -328,7 +326,7 @@ class TestEntries:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         entry = response.parse()
-        assert_matches_type(EntryGetResponse, entry, path=["response"])
+        assert_matches_type(DwebConfigContentListEntry, entry, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -342,7 +340,7 @@ class TestEntries:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             entry = response.parse()
-            assert_matches_type(EntryGetResponse, entry, path=["response"])
+            assert_matches_type(DwebConfigContentListEntry, entry, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -385,7 +383,7 @@ class TestAsyncEntries:
             content="QmPZ9gcCEpqKTo6aq61g2nXGUhM4iCL3ewB6LDXZCtioEB",
             type="cid",
         )
-        assert_matches_type(EntryCreateResponse, entry, path=["response"])
+        assert_matches_type(DwebConfigContentListEntry, entry, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -397,7 +395,7 @@ class TestAsyncEntries:
             type="cid",
             description="this is my content list entry",
         )
-        assert_matches_type(EntryCreateResponse, entry, path=["response"])
+        assert_matches_type(DwebConfigContentListEntry, entry, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -414,7 +412,7 @@ class TestAsyncEntries:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         entry = await response.parse()
-        assert_matches_type(EntryCreateResponse, entry, path=["response"])
+        assert_matches_type(DwebConfigContentListEntry, entry, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -429,7 +427,7 @@ class TestAsyncEntries:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             entry = await response.parse()
-            assert_matches_type(EntryCreateResponse, entry, path=["response"])
+            assert_matches_type(DwebConfigContentListEntry, entry, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -462,7 +460,7 @@ class TestAsyncEntries:
             content="QmPZ9gcCEpqKTo6aq61g2nXGUhM4iCL3ewB6LDXZCtioEB",
             type="cid",
         )
-        assert_matches_type(EntryUpdateResponse, entry, path=["response"])
+        assert_matches_type(DwebConfigContentListEntry, entry, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -475,7 +473,7 @@ class TestAsyncEntries:
             type="cid",
             description="this is my content list entry",
         )
-        assert_matches_type(EntryUpdateResponse, entry, path=["response"])
+        assert_matches_type(DwebConfigContentListEntry, entry, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -493,7 +491,7 @@ class TestAsyncEntries:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         entry = await response.parse()
-        assert_matches_type(EntryUpdateResponse, entry, path=["response"])
+        assert_matches_type(DwebConfigContentListEntry, entry, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -509,7 +507,7 @@ class TestAsyncEntries:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             entry = await response.parse()
-            assert_matches_type(EntryUpdateResponse, entry, path=["response"])
+            assert_matches_type(DwebConfigContentListEntry, entry, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -673,7 +671,7 @@ class TestAsyncEntries:
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(EntryGetResponse, entry, path=["response"])
+        assert_matches_type(DwebConfigContentListEntry, entry, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -687,7 +685,7 @@ class TestAsyncEntries:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         entry = await response.parse()
-        assert_matches_type(EntryGetResponse, entry, path=["response"])
+        assert_matches_type(DwebConfigContentListEntry, entry, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -701,7 +699,7 @@ class TestAsyncEntries:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             entry = await response.parse()
-            assert_matches_type(EntryGetResponse, entry, path=["response"])
+            assert_matches_type(DwebConfigContentListEntry, entry, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

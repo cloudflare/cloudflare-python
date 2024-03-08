@@ -27,9 +27,7 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.user.firewall import (
-    AccessRuleEditResponse,
-    AccessRuleListResponse,
-    AccessRuleCreateResponse,
+    LegacyJhsRule,
     AccessRuleDeleteResponse,
     access_rule_edit_params,
     access_rule_list_params,
@@ -60,7 +58,7 @@ class AccessRules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AccessRuleCreateResponse]:
+    ) -> Optional[LegacyJhsRule]:
         """
         Creates a new IP Access rule for all zones owned by the current user.
 
@@ -99,7 +97,7 @@ class AccessRules(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[AccessRuleCreateResponse]], ResultWrapper[AccessRuleCreateResponse]),
+            cast_to=cast(Type[Optional[LegacyJhsRule]], ResultWrapper[LegacyJhsRule]),
         )
 
     def list(
@@ -117,7 +115,7 @@ class AccessRules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[AccessRuleListResponse]:
+    ) -> SyncV4PagePaginationArray[LegacyJhsRule]:
         """Fetches IP Access rules of the user.
 
         You can filter the results using several
@@ -142,7 +140,7 @@ class AccessRules(SyncAPIResource):
         """
         return self._get_api_list(
             "/user/firewall/access_rules/rules",
-            page=SyncV4PagePaginationArray[AccessRuleListResponse],
+            page=SyncV4PagePaginationArray[LegacyJhsRule],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -160,7 +158,7 @@ class AccessRules(SyncAPIResource):
                     access_rule_list_params.AccessRuleListParams,
                 ),
             ),
-            model=AccessRuleListResponse,
+            model=LegacyJhsRule,
         )
 
     def delete(
@@ -216,7 +214,7 @@ class AccessRules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AccessRuleEditResponse]:
+    ) -> Optional[LegacyJhsRule]:
         """Updates an IP Access rule defined at the user level.
 
         You can only update the
@@ -255,7 +253,7 @@ class AccessRules(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[AccessRuleEditResponse]], ResultWrapper[AccessRuleEditResponse]),
+            cast_to=cast(Type[Optional[LegacyJhsRule]], ResultWrapper[LegacyJhsRule]),
         )
 
 
@@ -280,7 +278,7 @@ class AsyncAccessRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AccessRuleCreateResponse]:
+    ) -> Optional[LegacyJhsRule]:
         """
         Creates a new IP Access rule for all zones owned by the current user.
 
@@ -319,7 +317,7 @@ class AsyncAccessRules(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[AccessRuleCreateResponse]], ResultWrapper[AccessRuleCreateResponse]),
+            cast_to=cast(Type[Optional[LegacyJhsRule]], ResultWrapper[LegacyJhsRule]),
         )
 
     def list(
@@ -337,7 +335,7 @@ class AsyncAccessRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[AccessRuleListResponse, AsyncV4PagePaginationArray[AccessRuleListResponse]]:
+    ) -> AsyncPaginator[LegacyJhsRule, AsyncV4PagePaginationArray[LegacyJhsRule]]:
         """Fetches IP Access rules of the user.
 
         You can filter the results using several
@@ -362,7 +360,7 @@ class AsyncAccessRules(AsyncAPIResource):
         """
         return self._get_api_list(
             "/user/firewall/access_rules/rules",
-            page=AsyncV4PagePaginationArray[AccessRuleListResponse],
+            page=AsyncV4PagePaginationArray[LegacyJhsRule],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -380,7 +378,7 @@ class AsyncAccessRules(AsyncAPIResource):
                     access_rule_list_params.AccessRuleListParams,
                 ),
             ),
-            model=AccessRuleListResponse,
+            model=LegacyJhsRule,
         )
 
     async def delete(
@@ -436,7 +434,7 @@ class AsyncAccessRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AccessRuleEditResponse]:
+    ) -> Optional[LegacyJhsRule]:
         """Updates an IP Access rule defined at the user level.
 
         You can only update the
@@ -475,7 +473,7 @@ class AsyncAccessRules(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[AccessRuleEditResponse]], ResultWrapper[AccessRuleEditResponse]),
+            cast_to=cast(Type[Optional[LegacyJhsRule]], ResultWrapper[LegacyJhsRule]),
         )
 
 

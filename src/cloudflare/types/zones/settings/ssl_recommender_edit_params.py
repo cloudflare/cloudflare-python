@@ -2,26 +2,20 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Required, TypedDict
 
-__all__ = ["SSLRecommenderEditParams", "Value"]
+from .zones_ssl_recommender_param import ZonesSSLRecommenderParam
+
+__all__ = ["SSLRecommenderEditParams"]
 
 
 class SSLRecommenderEditParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
-    value: Required[Value]
+    value: Required[ZonesSSLRecommenderParam]
     """
     Enrollment in the SSL/TLS Recommender service which tries to detect and
     recommend (by sending periodic emails) the most secure SSL/TLS setting your
     origin servers support.
     """
-
-
-class Value(TypedDict, total=False):
-    id: Literal["ssl_recommender"]
-    """Enrollment value for SSL/TLS Recommender."""
-
-    enabled: bool
-    """ssl-recommender enrollment setting."""

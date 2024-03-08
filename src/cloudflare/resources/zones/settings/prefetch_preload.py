@@ -24,11 +24,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import (
-    PrefetchPreloadGetResponse,
-    PrefetchPreloadEditResponse,
-    prefetch_preload_edit_params,
-)
+from ....types.zones.settings import ZonesPrefetchPreload, prefetch_preload_edit_params
 
 __all__ = ["PrefetchPreload", "AsyncPrefetchPreload"]
 
@@ -53,7 +49,7 @@ class PrefetchPreload(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PrefetchPreloadEditResponse]:
+    ) -> Optional[ZonesPrefetchPreload]:
         """
         Cloudflare will prefetch any URLs that are included in the response headers.
         This is limited to Enterprise Zones.
@@ -83,7 +79,7 @@ class PrefetchPreload(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[PrefetchPreloadEditResponse]], ResultWrapper[PrefetchPreloadEditResponse]),
+            cast_to=cast(Type[Optional[ZonesPrefetchPreload]], ResultWrapper[ZonesPrefetchPreload]),
         )
 
     def get(
@@ -96,7 +92,7 @@ class PrefetchPreload(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PrefetchPreloadGetResponse]:
+    ) -> Optional[ZonesPrefetchPreload]:
         """
         Cloudflare will prefetch any URLs that are included in the response headers.
         This is limited to Enterprise Zones.
@@ -123,7 +119,7 @@ class PrefetchPreload(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[PrefetchPreloadGetResponse]], ResultWrapper[PrefetchPreloadGetResponse]),
+            cast_to=cast(Type[Optional[ZonesPrefetchPreload]], ResultWrapper[ZonesPrefetchPreload]),
         )
 
 
@@ -147,7 +143,7 @@ class AsyncPrefetchPreload(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PrefetchPreloadEditResponse]:
+    ) -> Optional[ZonesPrefetchPreload]:
         """
         Cloudflare will prefetch any URLs that are included in the response headers.
         This is limited to Enterprise Zones.
@@ -177,7 +173,7 @@ class AsyncPrefetchPreload(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[PrefetchPreloadEditResponse]], ResultWrapper[PrefetchPreloadEditResponse]),
+            cast_to=cast(Type[Optional[ZonesPrefetchPreload]], ResultWrapper[ZonesPrefetchPreload]),
         )
 
     async def get(
@@ -190,7 +186,7 @@ class AsyncPrefetchPreload(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PrefetchPreloadGetResponse]:
+    ) -> Optional[ZonesPrefetchPreload]:
         """
         Cloudflare will prefetch any URLs that are included in the response headers.
         This is limited to Enterprise Zones.
@@ -217,7 +213,7 @@ class AsyncPrefetchPreload(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[PrefetchPreloadGetResponse]], ResultWrapper[PrefetchPreloadGetResponse]),
+            cast_to=cast(Type[Optional[ZonesPrefetchPreload]], ResultWrapper[ZonesPrefetchPreload]),
         )
 
 

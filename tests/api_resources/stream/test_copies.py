@@ -9,8 +9,8 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.types import StreamVideos
 from cloudflare._utils import parse_datetime
-from cloudflare.types.stream import CopyCreateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -25,7 +25,7 @@ class TestCopies:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             url="https://example.com/myvideo.mp4",
         )
-        assert_matches_type(CopyCreateResponse, copy, path=["response"])
+        assert_matches_type(StreamVideos, copy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -41,7 +41,7 @@ class TestCopies:
             thumbnail_timestamp_pct=0.529241,
             watermark={"uid": "ea95132c15732412d22c1476fa83f27a"},
         )
-        assert_matches_type(CopyCreateResponse, copy, path=["response"])
+        assert_matches_type(StreamVideos, copy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -54,7 +54,7 @@ class TestCopies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         copy = response.parse()
-        assert_matches_type(CopyCreateResponse, copy, path=["response"])
+        assert_matches_type(StreamVideos, copy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -67,7 +67,7 @@ class TestCopies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             copy = response.parse()
-            assert_matches_type(CopyCreateResponse, copy, path=["response"])
+            assert_matches_type(StreamVideos, copy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -91,7 +91,7 @@ class TestAsyncCopies:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             url="https://example.com/myvideo.mp4",
         )
-        assert_matches_type(CopyCreateResponse, copy, path=["response"])
+        assert_matches_type(StreamVideos, copy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -107,7 +107,7 @@ class TestAsyncCopies:
             thumbnail_timestamp_pct=0.529241,
             watermark={"uid": "ea95132c15732412d22c1476fa83f27a"},
         )
-        assert_matches_type(CopyCreateResponse, copy, path=["response"])
+        assert_matches_type(StreamVideos, copy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -120,7 +120,7 @@ class TestAsyncCopies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         copy = await response.parse()
-        assert_matches_type(CopyCreateResponse, copy, path=["response"])
+        assert_matches_type(StreamVideos, copy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -133,7 +133,7 @@ class TestAsyncCopies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             copy = await response.parse()
-            assert_matches_type(CopyCreateResponse, copy, path=["response"])
+            assert_matches_type(StreamVideos, copy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -1,27 +1,9 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from typing import List, Optional
+from typing import List
 
-from ....._models import BaseModel
+from .teams_devices_split_tunnel import TeamsDevicesSplitTunnel
 
-__all__ = ["ExcludeUpdateResponse", "ExcludeUpdateResponseItem"]
+__all__ = ["ExcludeUpdateResponse"]
 
-
-class ExcludeUpdateResponseItem(BaseModel):
-    address: str
-    """The address in CIDR format to exclude from the tunnel.
-
-    If `address` is present, `host` must not be present.
-    """
-
-    description: str
-    """A description of the Split Tunnel item, displayed in the client UI."""
-
-    host: Optional[str] = None
-    """The domain name to exclude from the tunnel.
-
-    If `host` is present, `address` must not be present.
-    """
-
-
-ExcludeUpdateResponse = List[ExcludeUpdateResponseItem]
+ExcludeUpdateResponse = List[TeamsDevicesSplitTunnel]

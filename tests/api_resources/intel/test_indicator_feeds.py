@@ -10,10 +10,10 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types.intel import (
-    IndicatorFeedGetResponse,
+    IntelUpdateFeed,
+    IntelIndicatorFeedItem,
     IndicatorFeedListResponse,
-    IndicatorFeedCreateResponse,
-    IndicatorFeedUpdateResponse,
+    IntelIndicatorFeedMetadata,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -28,7 +28,7 @@ class TestIndicatorFeeds:
         indicator_feed = client.intel.indicator_feeds.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(IndicatorFeedCreateResponse, indicator_feed, path=["response"])
+        assert_matches_type(IntelIndicatorFeedItem, indicator_feed, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -38,7 +38,7 @@ class TestIndicatorFeeds:
             description="example feed description",
             name="example_feed_1",
         )
-        assert_matches_type(IndicatorFeedCreateResponse, indicator_feed, path=["response"])
+        assert_matches_type(IntelIndicatorFeedItem, indicator_feed, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -50,7 +50,7 @@ class TestIndicatorFeeds:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         indicator_feed = response.parse()
-        assert_matches_type(IndicatorFeedCreateResponse, indicator_feed, path=["response"])
+        assert_matches_type(IntelIndicatorFeedItem, indicator_feed, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -62,7 +62,7 @@ class TestIndicatorFeeds:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             indicator_feed = response.parse()
-            assert_matches_type(IndicatorFeedCreateResponse, indicator_feed, path=["response"])
+            assert_matches_type(IntelIndicatorFeedItem, indicator_feed, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -81,7 +81,7 @@ class TestIndicatorFeeds:
             12,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(IndicatorFeedUpdateResponse, indicator_feed, path=["response"])
+        assert_matches_type(IntelUpdateFeed, indicator_feed, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -91,7 +91,7 @@ class TestIndicatorFeeds:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             source="@/Users/me/test.stix2",
         )
-        assert_matches_type(IndicatorFeedUpdateResponse, indicator_feed, path=["response"])
+        assert_matches_type(IntelUpdateFeed, indicator_feed, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -104,7 +104,7 @@ class TestIndicatorFeeds:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         indicator_feed = response.parse()
-        assert_matches_type(IndicatorFeedUpdateResponse, indicator_feed, path=["response"])
+        assert_matches_type(IntelUpdateFeed, indicator_feed, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -117,7 +117,7 @@ class TestIndicatorFeeds:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             indicator_feed = response.parse()
-            assert_matches_type(IndicatorFeedUpdateResponse, indicator_feed, path=["response"])
+            assert_matches_type(IntelUpdateFeed, indicator_feed, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -225,7 +225,7 @@ class TestIndicatorFeeds:
             12,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(IndicatorFeedGetResponse, indicator_feed, path=["response"])
+        assert_matches_type(IntelIndicatorFeedMetadata, indicator_feed, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -238,7 +238,7 @@ class TestIndicatorFeeds:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         indicator_feed = response.parse()
-        assert_matches_type(IndicatorFeedGetResponse, indicator_feed, path=["response"])
+        assert_matches_type(IntelIndicatorFeedMetadata, indicator_feed, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -251,7 +251,7 @@ class TestIndicatorFeeds:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             indicator_feed = response.parse()
-            assert_matches_type(IndicatorFeedGetResponse, indicator_feed, path=["response"])
+            assert_matches_type(IntelIndicatorFeedMetadata, indicator_feed, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -274,7 +274,7 @@ class TestAsyncIndicatorFeeds:
         indicator_feed = await async_client.intel.indicator_feeds.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(IndicatorFeedCreateResponse, indicator_feed, path=["response"])
+        assert_matches_type(IntelIndicatorFeedItem, indicator_feed, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -284,7 +284,7 @@ class TestAsyncIndicatorFeeds:
             description="example feed description",
             name="example_feed_1",
         )
-        assert_matches_type(IndicatorFeedCreateResponse, indicator_feed, path=["response"])
+        assert_matches_type(IntelIndicatorFeedItem, indicator_feed, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -296,7 +296,7 @@ class TestAsyncIndicatorFeeds:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         indicator_feed = await response.parse()
-        assert_matches_type(IndicatorFeedCreateResponse, indicator_feed, path=["response"])
+        assert_matches_type(IntelIndicatorFeedItem, indicator_feed, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -308,7 +308,7 @@ class TestAsyncIndicatorFeeds:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             indicator_feed = await response.parse()
-            assert_matches_type(IndicatorFeedCreateResponse, indicator_feed, path=["response"])
+            assert_matches_type(IntelIndicatorFeedItem, indicator_feed, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -327,7 +327,7 @@ class TestAsyncIndicatorFeeds:
             12,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(IndicatorFeedUpdateResponse, indicator_feed, path=["response"])
+        assert_matches_type(IntelUpdateFeed, indicator_feed, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -337,7 +337,7 @@ class TestAsyncIndicatorFeeds:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             source="@/Users/me/test.stix2",
         )
-        assert_matches_type(IndicatorFeedUpdateResponse, indicator_feed, path=["response"])
+        assert_matches_type(IntelUpdateFeed, indicator_feed, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -350,7 +350,7 @@ class TestAsyncIndicatorFeeds:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         indicator_feed = await response.parse()
-        assert_matches_type(IndicatorFeedUpdateResponse, indicator_feed, path=["response"])
+        assert_matches_type(IntelUpdateFeed, indicator_feed, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -363,7 +363,7 @@ class TestAsyncIndicatorFeeds:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             indicator_feed = await response.parse()
-            assert_matches_type(IndicatorFeedUpdateResponse, indicator_feed, path=["response"])
+            assert_matches_type(IntelUpdateFeed, indicator_feed, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -471,7 +471,7 @@ class TestAsyncIndicatorFeeds:
             12,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(IndicatorFeedGetResponse, indicator_feed, path=["response"])
+        assert_matches_type(IntelIndicatorFeedMetadata, indicator_feed, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -484,7 +484,7 @@ class TestAsyncIndicatorFeeds:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         indicator_feed = await response.parse()
-        assert_matches_type(IndicatorFeedGetResponse, indicator_feed, path=["response"])
+        assert_matches_type(IntelIndicatorFeedMetadata, indicator_feed, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -497,7 +497,7 @@ class TestAsyncIndicatorFeeds:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             indicator_feed = await response.parse()
-            assert_matches_type(IndicatorFeedGetResponse, indicator_feed, path=["response"])
+            assert_matches_type(IntelIndicatorFeedMetadata, indicator_feed, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

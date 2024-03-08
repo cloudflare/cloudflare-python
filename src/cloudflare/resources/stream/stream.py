@@ -56,7 +56,7 @@ from .videos import (
     VideosWithStreamingResponse,
     AsyncVideosWithStreamingResponse,
 )
-from ...types import StreamGetResponse, StreamListResponse, stream_list_params
+from ...types import StreamVideos, StreamListResponse, stream_list_params
 from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -369,7 +369,7 @@ class Stream(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> StreamGetResponse:
+    ) -> StreamVideos:
         """
         Fetches details for a single video.
 
@@ -399,7 +399,7 @@ class Stream(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[StreamGetResponse], ResultWrapper[StreamGetResponse]),
+            cast_to=cast(Type[StreamVideos], ResultWrapper[StreamVideos]),
         )
 
 
@@ -637,7 +637,7 @@ class AsyncStream(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> StreamGetResponse:
+    ) -> StreamVideos:
         """
         Fetches details for a single video.
 
@@ -667,7 +667,7 @@ class AsyncStream(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[StreamGetResponse], ResultWrapper[StreamGetResponse]),
+            cast_to=cast(Type[StreamVideos], ResultWrapper[StreamVideos]),
         )
 
 

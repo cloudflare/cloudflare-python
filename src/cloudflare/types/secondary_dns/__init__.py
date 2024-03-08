@@ -2,27 +2,21 @@
 
 from __future__ import annotations
 
-from .acl_get_response import ACLGetResponse as ACLGetResponse
 from .acl_create_params import ACLCreateParams as ACLCreateParams
 from .acl_list_response import ACLListResponse as ACLListResponse
 from .acl_update_params import ACLUpdateParams as ACLUpdateParams
-from .peer_get_response import PeerGetResponse as PeerGetResponse
-from .tsig_get_response import TSIGGetResponse as TSIGGetResponse
+from .secondary_dns_acl import SecondaryDNSACL as SecondaryDNSACL
 from .peer_create_params import PeerCreateParams as PeerCreateParams
 from .peer_list_response import PeerListResponse as PeerListResponse
 from .peer_update_params import PeerUpdateParams as PeerUpdateParams
+from .secondary_dns_peer import SecondaryDNSPeer as SecondaryDNSPeer
+from .secondary_dns_tsig import SecondaryDNSTSIG as SecondaryDNSTSIG
 from .tsig_create_params import TSIGCreateParams as TSIGCreateParams
 from .tsig_list_response import TSIGListResponse as TSIGListResponse
 from .tsig_update_params import TSIGUpdateParams as TSIGUpdateParams
-from .acl_create_response import ACLCreateResponse as ACLCreateResponse
 from .acl_delete_response import ACLDeleteResponse as ACLDeleteResponse
-from .acl_update_response import ACLUpdateResponse as ACLUpdateResponse
-from .peer_create_response import PeerCreateResponse as PeerCreateResponse
 from .peer_delete_response import PeerDeleteResponse as PeerDeleteResponse
-from .peer_update_response import PeerUpdateResponse as PeerUpdateResponse
-from .tsig_create_response import TSIGCreateResponse as TSIGCreateResponse
 from .tsig_delete_response import TSIGDeleteResponse as TSIGDeleteResponse
-from .tsig_update_response import TSIGUpdateResponse as TSIGUpdateResponse
 from .incoming_get_response import IncomingGetResponse as IncomingGetResponse
 from .outgoing_get_response import OutgoingGetResponse as OutgoingGetResponse
 from .incoming_create_params import IncomingCreateParams as IncomingCreateParams
@@ -34,8 +28,10 @@ from .incoming_delete_response import IncomingDeleteResponse as IncomingDeleteRe
 from .incoming_update_response import IncomingUpdateResponse as IncomingUpdateResponse
 from .outgoing_create_response import OutgoingCreateResponse as OutgoingCreateResponse
 from .outgoing_delete_response import OutgoingDeleteResponse as OutgoingDeleteResponse
-from .outgoing_enable_response import OutgoingEnableResponse as OutgoingEnableResponse
 from .outgoing_update_response import OutgoingUpdateResponse as OutgoingUpdateResponse
-from .outgoing_disable_response import OutgoingDisableResponse as OutgoingDisableResponse
-from .force_axfr_create_response import ForceAxfrCreateResponse as ForceAxfrCreateResponse
-from .outgoing_force_notify_response import OutgoingForceNotifyResponse as OutgoingForceNotifyResponse
+from .secondary_dns_force_result import SecondaryDNSForceResult as SecondaryDNSForceResult
+from .secondary_dns_schemas_force_result import SecondaryDNSSchemasForceResult as SecondaryDNSSchemasForceResult
+from .secondary_dns_enable_transfer_result import SecondaryDNSEnableTransferResult as SecondaryDNSEnableTransferResult
+from .secondary_dns_disable_transfer_result import (
+    SecondaryDNSDisableTransferResult as SecondaryDNSDisableTransferResult,
+)

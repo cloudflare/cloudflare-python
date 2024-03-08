@@ -27,9 +27,8 @@ from ...._base_client import (
 )
 from ....types.cloudforce_one.requests import (
     MessageGetResponse,
-    MessageCreateResponse,
     MessageDeleteResponse,
-    MessageUpdateResponse,
+    CloudforceOneRequestMessageItem,
     message_get_params,
     message_create_params,
     message_update_params,
@@ -59,7 +58,7 @@ class Message(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MessageCreateResponse:
+    ) -> CloudforceOneRequestMessageItem:
         """
         Creating a request adds the request into the Cloudforce One queue for analysis.
         In addition to the content, a short title, type, priority, and releasability
@@ -94,7 +93,7 @@ class Message(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[MessageCreateResponse], ResultWrapper[MessageCreateResponse]),
+            cast_to=cast(Type[CloudforceOneRequestMessageItem], ResultWrapper[CloudforceOneRequestMessageItem]),
         )
 
     def update(
@@ -114,7 +113,7 @@ class Message(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MessageUpdateResponse:
+    ) -> CloudforceOneRequestMessageItem:
         """
         Update a Request Message
 
@@ -164,7 +163,7 @@ class Message(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[MessageUpdateResponse], ResultWrapper[MessageUpdateResponse]),
+            cast_to=cast(Type[CloudforceOneRequestMessageItem], ResultWrapper[CloudforceOneRequestMessageItem]),
         )
 
     def delete(
@@ -312,7 +311,7 @@ class AsyncMessage(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MessageCreateResponse:
+    ) -> CloudforceOneRequestMessageItem:
         """
         Creating a request adds the request into the Cloudforce One queue for analysis.
         In addition to the content, a short title, type, priority, and releasability
@@ -347,7 +346,7 @@ class AsyncMessage(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[MessageCreateResponse], ResultWrapper[MessageCreateResponse]),
+            cast_to=cast(Type[CloudforceOneRequestMessageItem], ResultWrapper[CloudforceOneRequestMessageItem]),
         )
 
     async def update(
@@ -367,7 +366,7 @@ class AsyncMessage(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MessageUpdateResponse:
+    ) -> CloudforceOneRequestMessageItem:
         """
         Update a Request Message
 
@@ -417,7 +416,7 @@ class AsyncMessage(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[MessageUpdateResponse], ResultWrapper[MessageUpdateResponse]),
+            cast_to=cast(Type[CloudforceOneRequestMessageItem], ResultWrapper[CloudforceOneRequestMessageItem]),
         )
 
     async def delete(

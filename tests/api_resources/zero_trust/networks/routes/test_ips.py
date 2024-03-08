@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.zero_trust.networks.routes import IPGetResponse
+from cloudflare.types.zero_trust.networks import TunnelTeamnet
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -24,7 +24,7 @@ class TestIPs:
             "10.1.0.137",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(IPGetResponse, ip, path=["response"])
+        assert_matches_type(TunnelTeamnet, ip, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -34,7 +34,7 @@ class TestIPs:
             account_id="699d98642c564d2e855e9661899b7252",
             virtual_network_id={},
         )
-        assert_matches_type(IPGetResponse, ip, path=["response"])
+        assert_matches_type(TunnelTeamnet, ip, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -47,7 +47,7 @@ class TestIPs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ip = response.parse()
-        assert_matches_type(IPGetResponse, ip, path=["response"])
+        assert_matches_type(TunnelTeamnet, ip, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -60,7 +60,7 @@ class TestIPs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ip = response.parse()
-            assert_matches_type(IPGetResponse, ip, path=["response"])
+            assert_matches_type(TunnelTeamnet, ip, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -90,7 +90,7 @@ class TestAsyncIPs:
             "10.1.0.137",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(IPGetResponse, ip, path=["response"])
+        assert_matches_type(TunnelTeamnet, ip, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -100,7 +100,7 @@ class TestAsyncIPs:
             account_id="699d98642c564d2e855e9661899b7252",
             virtual_network_id={},
         )
-        assert_matches_type(IPGetResponse, ip, path=["response"])
+        assert_matches_type(TunnelTeamnet, ip, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -113,7 +113,7 @@ class TestAsyncIPs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ip = await response.parse()
-        assert_matches_type(IPGetResponse, ip, path=["response"])
+        assert_matches_type(TunnelTeamnet, ip, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -126,7 +126,7 @@ class TestAsyncIPs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ip = await response.parse()
-            assert_matches_type(IPGetResponse, ip, path=["response"])
+            assert_matches_type(TunnelTeamnet, ip, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

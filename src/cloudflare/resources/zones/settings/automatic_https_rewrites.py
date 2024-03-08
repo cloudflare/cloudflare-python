@@ -24,11 +24,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import (
-    AutomaticHTTPSRewriteGetResponse,
-    AutomaticHTTPSRewriteEditResponse,
-    automatic_https_rewrite_edit_params,
-)
+from ....types.zones.settings import ZonesAutomaticHTTPSRewrites, automatic_https_rewrite_edit_params
 
 __all__ = ["AutomaticHTTPSRewrites", "AsyncAutomaticHTTPSRewrites"]
 
@@ -53,7 +49,7 @@ class AutomaticHTTPSRewrites(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AutomaticHTTPSRewriteEditResponse]:
+    ) -> Optional[ZonesAutomaticHTTPSRewrites]:
         """
         Enable the Automatic HTTPS Rewrites feature for this zone.
 
@@ -83,9 +79,7 @@ class AutomaticHTTPSRewrites(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[AutomaticHTTPSRewriteEditResponse]], ResultWrapper[AutomaticHTTPSRewriteEditResponse]
-            ),
+            cast_to=cast(Type[Optional[ZonesAutomaticHTTPSRewrites]], ResultWrapper[ZonesAutomaticHTTPSRewrites]),
         )
 
     def get(
@@ -98,7 +92,7 @@ class AutomaticHTTPSRewrites(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AutomaticHTTPSRewriteGetResponse]:
+    ) -> Optional[ZonesAutomaticHTTPSRewrites]:
         """
         Enable the Automatic HTTPS Rewrites feature for this zone.
 
@@ -124,9 +118,7 @@ class AutomaticHTTPSRewrites(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[AutomaticHTTPSRewriteGetResponse]], ResultWrapper[AutomaticHTTPSRewriteGetResponse]
-            ),
+            cast_to=cast(Type[Optional[ZonesAutomaticHTTPSRewrites]], ResultWrapper[ZonesAutomaticHTTPSRewrites]),
         )
 
 
@@ -150,7 +142,7 @@ class AsyncAutomaticHTTPSRewrites(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AutomaticHTTPSRewriteEditResponse]:
+    ) -> Optional[ZonesAutomaticHTTPSRewrites]:
         """
         Enable the Automatic HTTPS Rewrites feature for this zone.
 
@@ -182,9 +174,7 @@ class AsyncAutomaticHTTPSRewrites(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[AutomaticHTTPSRewriteEditResponse]], ResultWrapper[AutomaticHTTPSRewriteEditResponse]
-            ),
+            cast_to=cast(Type[Optional[ZonesAutomaticHTTPSRewrites]], ResultWrapper[ZonesAutomaticHTTPSRewrites]),
         )
 
     async def get(
@@ -197,7 +187,7 @@ class AsyncAutomaticHTTPSRewrites(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AutomaticHTTPSRewriteGetResponse]:
+    ) -> Optional[ZonesAutomaticHTTPSRewrites]:
         """
         Enable the Automatic HTTPS Rewrites feature for this zone.
 
@@ -223,9 +213,7 @@ class AsyncAutomaticHTTPSRewrites(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[AutomaticHTTPSRewriteGetResponse]], ResultWrapper[AutomaticHTTPSRewriteGetResponse]
-            ),
+            cast_to=cast(Type[Optional[ZonesAutomaticHTTPSRewrites]], ResultWrapper[ZonesAutomaticHTTPSRewrites]),
         )
 
 

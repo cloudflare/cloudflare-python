@@ -9,12 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.rum import (
-    RuleListResponse,
-    RuleCreateResponse,
-    RuleDeleteResponse,
-    RuleUpdateResponse,
-)
+from cloudflare.types.rum import RUMRule, RuleListResponse, RuleDeleteResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -29,7 +24,7 @@ class TestRules:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RuleCreateResponse], rule, path=["response"])
+        assert_matches_type(Optional[RUMRule], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -42,7 +37,7 @@ class TestRules:
             is_paused=False,
             paths=["*"],
         )
-        assert_matches_type(Optional[RuleCreateResponse], rule, path=["response"])
+        assert_matches_type(Optional[RUMRule], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -55,7 +50,7 @@ class TestRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = response.parse()
-        assert_matches_type(Optional[RuleCreateResponse], rule, path=["response"])
+        assert_matches_type(Optional[RUMRule], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -68,7 +63,7 @@ class TestRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = response.parse()
-            assert_matches_type(Optional[RuleCreateResponse], rule, path=["response"])
+            assert_matches_type(Optional[RUMRule], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -95,7 +90,7 @@ class TestRules:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             ruleset_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
         )
-        assert_matches_type(Optional[RuleUpdateResponse], rule, path=["response"])
+        assert_matches_type(Optional[RUMRule], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -109,7 +104,7 @@ class TestRules:
             is_paused=False,
             paths=["*"],
         )
-        assert_matches_type(Optional[RuleUpdateResponse], rule, path=["response"])
+        assert_matches_type(Optional[RUMRule], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -123,7 +118,7 @@ class TestRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = response.parse()
-        assert_matches_type(Optional[RuleUpdateResponse], rule, path=["response"])
+        assert_matches_type(Optional[RUMRule], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -137,7 +132,7 @@ class TestRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = response.parse()
-            assert_matches_type(Optional[RuleUpdateResponse], rule, path=["response"])
+            assert_matches_type(Optional[RUMRule], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -292,7 +287,7 @@ class TestAsyncRules:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RuleCreateResponse], rule, path=["response"])
+        assert_matches_type(Optional[RUMRule], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -305,7 +300,7 @@ class TestAsyncRules:
             is_paused=False,
             paths=["*"],
         )
-        assert_matches_type(Optional[RuleCreateResponse], rule, path=["response"])
+        assert_matches_type(Optional[RUMRule], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -318,7 +313,7 @@ class TestAsyncRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = await response.parse()
-        assert_matches_type(Optional[RuleCreateResponse], rule, path=["response"])
+        assert_matches_type(Optional[RUMRule], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -331,7 +326,7 @@ class TestAsyncRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = await response.parse()
-            assert_matches_type(Optional[RuleCreateResponse], rule, path=["response"])
+            assert_matches_type(Optional[RUMRule], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -358,7 +353,7 @@ class TestAsyncRules:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             ruleset_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
         )
-        assert_matches_type(Optional[RuleUpdateResponse], rule, path=["response"])
+        assert_matches_type(Optional[RUMRule], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -372,7 +367,7 @@ class TestAsyncRules:
             is_paused=False,
             paths=["*"],
         )
-        assert_matches_type(Optional[RuleUpdateResponse], rule, path=["response"])
+        assert_matches_type(Optional[RUMRule], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -386,7 +381,7 @@ class TestAsyncRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = await response.parse()
-        assert_matches_type(Optional[RuleUpdateResponse], rule, path=["response"])
+        assert_matches_type(Optional[RUMRule], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -400,7 +395,7 @@ class TestAsyncRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = await response.parse()
-            assert_matches_type(Optional[RuleUpdateResponse], rule, path=["response"])
+            assert_matches_type(Optional[RUMRule], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

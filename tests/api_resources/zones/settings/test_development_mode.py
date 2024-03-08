@@ -9,10 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.zones.settings import (
-    DevelopmentModeGetResponse,
-    DevelopmentModeEditResponse,
-)
+from cloudflare.types.zones.settings import ZonesDevelopmentMode
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -27,7 +24,7 @@ class TestDevelopmentMode:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value="on",
         )
-        assert_matches_type(Optional[DevelopmentModeEditResponse], development_mode, path=["response"])
+        assert_matches_type(Optional[ZonesDevelopmentMode], development_mode, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -40,7 +37,7 @@ class TestDevelopmentMode:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         development_mode = response.parse()
-        assert_matches_type(Optional[DevelopmentModeEditResponse], development_mode, path=["response"])
+        assert_matches_type(Optional[ZonesDevelopmentMode], development_mode, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -53,7 +50,7 @@ class TestDevelopmentMode:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             development_mode = response.parse()
-            assert_matches_type(Optional[DevelopmentModeEditResponse], development_mode, path=["response"])
+            assert_matches_type(Optional[ZonesDevelopmentMode], development_mode, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -72,7 +69,7 @@ class TestDevelopmentMode:
         development_mode = client.zones.settings.development_mode.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[DevelopmentModeGetResponse], development_mode, path=["response"])
+        assert_matches_type(Optional[ZonesDevelopmentMode], development_mode, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -84,7 +81,7 @@ class TestDevelopmentMode:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         development_mode = response.parse()
-        assert_matches_type(Optional[DevelopmentModeGetResponse], development_mode, path=["response"])
+        assert_matches_type(Optional[ZonesDevelopmentMode], development_mode, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -96,7 +93,7 @@ class TestDevelopmentMode:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             development_mode = response.parse()
-            assert_matches_type(Optional[DevelopmentModeGetResponse], development_mode, path=["response"])
+            assert_matches_type(Optional[ZonesDevelopmentMode], development_mode, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -119,7 +116,7 @@ class TestAsyncDevelopmentMode:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value="on",
         )
-        assert_matches_type(Optional[DevelopmentModeEditResponse], development_mode, path=["response"])
+        assert_matches_type(Optional[ZonesDevelopmentMode], development_mode, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -132,7 +129,7 @@ class TestAsyncDevelopmentMode:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         development_mode = await response.parse()
-        assert_matches_type(Optional[DevelopmentModeEditResponse], development_mode, path=["response"])
+        assert_matches_type(Optional[ZonesDevelopmentMode], development_mode, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -145,7 +142,7 @@ class TestAsyncDevelopmentMode:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             development_mode = await response.parse()
-            assert_matches_type(Optional[DevelopmentModeEditResponse], development_mode, path=["response"])
+            assert_matches_type(Optional[ZonesDevelopmentMode], development_mode, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -164,7 +161,7 @@ class TestAsyncDevelopmentMode:
         development_mode = await async_client.zones.settings.development_mode.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[DevelopmentModeGetResponse], development_mode, path=["response"])
+        assert_matches_type(Optional[ZonesDevelopmentMode], development_mode, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -176,7 +173,7 @@ class TestAsyncDevelopmentMode:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         development_mode = await response.parse()
-        assert_matches_type(Optional[DevelopmentModeGetResponse], development_mode, path=["response"])
+        assert_matches_type(Optional[ZonesDevelopmentMode], development_mode, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -188,7 +185,7 @@ class TestAsyncDevelopmentMode:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             development_mode = await response.parse()
-            assert_matches_type(Optional[DevelopmentModeGetResponse], development_mode, path=["response"])
+            assert_matches_type(Optional[ZonesDevelopmentMode], development_mode, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

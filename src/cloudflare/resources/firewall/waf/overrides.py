@@ -26,11 +26,8 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.firewall.waf import (
-    OverrideGetResponse,
-    OverrideListResponse,
-    OverrideCreateResponse,
+    LegacyJhsOverride,
     OverrideDeleteResponse,
-    OverrideUpdateResponse,
     override_list_params,
     override_create_params,
     override_update_params,
@@ -59,7 +56,7 @@ class Overrides(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[OverrideCreateResponse]:
+    ) -> Optional[LegacyJhsOverride]:
         """
         Creates a URI-based WAF override for a zone.
 
@@ -89,7 +86,7 @@ class Overrides(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[OverrideCreateResponse]], ResultWrapper[OverrideCreateResponse]),
+            cast_to=cast(Type[Optional[LegacyJhsOverride]], ResultWrapper[LegacyJhsOverride]),
         )
 
     def update(
@@ -104,7 +101,7 @@ class Overrides(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[OverrideUpdateResponse]:
+    ) -> Optional[LegacyJhsOverride]:
         """
         Updates an existing URI-based WAF override.
 
@@ -138,7 +135,7 @@ class Overrides(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[OverrideUpdateResponse]], ResultWrapper[OverrideUpdateResponse]),
+            cast_to=cast(Type[Optional[LegacyJhsOverride]], ResultWrapper[LegacyJhsOverride]),
         )
 
     def list(
@@ -153,7 +150,7 @@ class Overrides(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[OverrideListResponse]:
+    ) -> SyncV4PagePaginationArray[LegacyJhsOverride]:
         """
         Fetches the URI-based WAF overrides in a zone.
 
@@ -179,7 +176,7 @@ class Overrides(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return self._get_api_list(
             f"/zones/{zone_identifier}/firewall/waf/overrides",
-            page=SyncV4PagePaginationArray[OverrideListResponse],
+            page=SyncV4PagePaginationArray[LegacyJhsOverride],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -193,7 +190,7 @@ class Overrides(SyncAPIResource):
                     override_list_params.OverrideListParams,
                 ),
             ),
-            model=OverrideListResponse,
+            model=LegacyJhsOverride,
         )
 
     def delete(
@@ -254,7 +251,7 @@ class Overrides(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[OverrideGetResponse]:
+    ) -> Optional[LegacyJhsOverride]:
         """
         Fetches the details of a URI-based WAF override.
 
@@ -287,7 +284,7 @@ class Overrides(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[OverrideGetResponse]], ResultWrapper[OverrideGetResponse]),
+            cast_to=cast(Type[Optional[LegacyJhsOverride]], ResultWrapper[LegacyJhsOverride]),
         )
 
 
@@ -311,7 +308,7 @@ class AsyncOverrides(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[OverrideCreateResponse]:
+    ) -> Optional[LegacyJhsOverride]:
         """
         Creates a URI-based WAF override for a zone.
 
@@ -341,7 +338,7 @@ class AsyncOverrides(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[OverrideCreateResponse]], ResultWrapper[OverrideCreateResponse]),
+            cast_to=cast(Type[Optional[LegacyJhsOverride]], ResultWrapper[LegacyJhsOverride]),
         )
 
     async def update(
@@ -356,7 +353,7 @@ class AsyncOverrides(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[OverrideUpdateResponse]:
+    ) -> Optional[LegacyJhsOverride]:
         """
         Updates an existing URI-based WAF override.
 
@@ -390,7 +387,7 @@ class AsyncOverrides(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[OverrideUpdateResponse]], ResultWrapper[OverrideUpdateResponse]),
+            cast_to=cast(Type[Optional[LegacyJhsOverride]], ResultWrapper[LegacyJhsOverride]),
         )
 
     def list(
@@ -405,7 +402,7 @@ class AsyncOverrides(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[OverrideListResponse, AsyncV4PagePaginationArray[OverrideListResponse]]:
+    ) -> AsyncPaginator[LegacyJhsOverride, AsyncV4PagePaginationArray[LegacyJhsOverride]]:
         """
         Fetches the URI-based WAF overrides in a zone.
 
@@ -431,7 +428,7 @@ class AsyncOverrides(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return self._get_api_list(
             f"/zones/{zone_identifier}/firewall/waf/overrides",
-            page=AsyncV4PagePaginationArray[OverrideListResponse],
+            page=AsyncV4PagePaginationArray[LegacyJhsOverride],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -445,7 +442,7 @@ class AsyncOverrides(AsyncAPIResource):
                     override_list_params.OverrideListParams,
                 ),
             ),
-            model=OverrideListResponse,
+            model=LegacyJhsOverride,
         )
 
     async def delete(
@@ -506,7 +503,7 @@ class AsyncOverrides(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[OverrideGetResponse]:
+    ) -> Optional[LegacyJhsOverride]:
         """
         Fetches the details of a URI-based WAF override.
 
@@ -539,7 +536,7 @@ class AsyncOverrides(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[OverrideGetResponse]], ResultWrapper[OverrideGetResponse]),
+            cast_to=cast(Type[Optional[LegacyJhsOverride]], ResultWrapper[LegacyJhsOverride]),
         )
 
 
