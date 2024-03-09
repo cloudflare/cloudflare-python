@@ -1,18 +1,9 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from typing import List, Optional
+from typing import List
 
-from ....._models import BaseModel
+from .aaa_pagerduty import AaaPagerduty
 
-__all__ = ["PagerdutyGetResponse", "PagerdutyGetResponseItem"]
+__all__ = ["PagerdutyGetResponse"]
 
-
-class PagerdutyGetResponseItem(BaseModel):
-    id: Optional[str] = None
-    """UUID"""
-
-    name: Optional[str] = None
-    """The name of the pagerduty service."""
-
-
-PagerdutyGetResponse = List[PagerdutyGetResponseItem]
+PagerdutyGetResponse = List[AaaPagerduty]

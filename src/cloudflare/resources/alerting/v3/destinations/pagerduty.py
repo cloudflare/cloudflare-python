@@ -178,7 +178,7 @@ class Pagerduty(SyncAPIResource):
         Args:
           account_id: The account id
 
-          token_id: The token integration key
+          token_id: The token id
 
           extra_headers: Send extra headers
 
@@ -354,7 +354,7 @@ class AsyncPagerduty(AsyncAPIResource):
         Args:
           account_id: The account id
 
-          token_id: The token integration key
+          token_id: The token id
 
           extra_headers: Send extra headers
 

@@ -24,7 +24,7 @@ from ....._base_client import (
     make_request_options,
 )
 from .....types.alerting.v3.destinations import (
-    WebhookGetResponse,
+    AaaWebhooks,
     WebhookListResponse,
     WebhookCreateResponse,
     WebhookDeleteResponse,
@@ -267,7 +267,7 @@ class Webhooks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WebhookGetResponse:
+    ) -> AaaWebhooks:
         """
         Get details for a single webhooks destination.
 
@@ -297,7 +297,7 @@ class Webhooks(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[WebhookGetResponse], ResultWrapper[WebhookGetResponse]),
+            cast_to=cast(Type[AaaWebhooks], ResultWrapper[AaaWebhooks]),
         )
 
 
@@ -532,7 +532,7 @@ class AsyncWebhooks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WebhookGetResponse:
+    ) -> AaaWebhooks:
         """
         Get details for a single webhooks destination.
 
@@ -562,7 +562,7 @@ class AsyncWebhooks(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[WebhookGetResponse], ResultWrapper[WebhookGetResponse]),
+            cast_to=cast(Type[AaaWebhooks], ResultWrapper[AaaWebhooks]),
         )
 
 
