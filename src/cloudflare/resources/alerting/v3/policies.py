@@ -25,7 +25,7 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.alerting.v3 import (
-    AaaPolicies,
+    PolicyGetResponse,
     PolicyListResponse,
     PolicyCreateResponse,
     PolicyDeleteResponse,
@@ -100,6 +100,7 @@ class Policies(SyncAPIResource):
             "secondary_dns_zone_validation_warning",
             "sentinel_alert",
             "stream_live_notifications",
+            "traffic_anomalies_alert",
             "tunnel_health_event",
             "tunnel_update_event",
             "universal_ssl_event_type",
@@ -229,6 +230,7 @@ class Policies(SyncAPIResource):
             "secondary_dns_zone_validation_warning",
             "sentinel_alert",
             "stream_live_notifications",
+            "traffic_anomalies_alert",
             "tunnel_health_event",
             "tunnel_update_event",
             "universal_ssl_event_type",
@@ -407,7 +409,7 @@ class Policies(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AaaPolicies:
+    ) -> PolicyGetResponse:
         """
         Get details for a single policy.
 
@@ -437,7 +439,7 @@ class Policies(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AaaPolicies], ResultWrapper[AaaPolicies]),
+            cast_to=cast(Type[PolicyGetResponse], ResultWrapper[PolicyGetResponse]),
         )
 
 
@@ -504,6 +506,7 @@ class AsyncPolicies(AsyncAPIResource):
             "secondary_dns_zone_validation_warning",
             "sentinel_alert",
             "stream_live_notifications",
+            "traffic_anomalies_alert",
             "tunnel_health_event",
             "tunnel_update_event",
             "universal_ssl_event_type",
@@ -633,6 +636,7 @@ class AsyncPolicies(AsyncAPIResource):
             "secondary_dns_zone_validation_warning",
             "sentinel_alert",
             "stream_live_notifications",
+            "traffic_anomalies_alert",
             "tunnel_health_event",
             "tunnel_update_event",
             "universal_ssl_event_type",
@@ -811,7 +815,7 @@ class AsyncPolicies(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AaaPolicies:
+    ) -> PolicyGetResponse:
         """
         Get details for a single policy.
 
@@ -841,7 +845,7 @@ class AsyncPolicies(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AaaPolicies], ResultWrapper[AaaPolicies]),
+            cast_to=cast(Type[PolicyGetResponse], ResultWrapper[PolicyGetResponse]),
         )
 
 
