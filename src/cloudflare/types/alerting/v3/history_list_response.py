@@ -6,10 +6,10 @@ from typing_extensions import Literal
 
 from ...._models import BaseModel
 
-__all__ = ["AaaHistory"]
+__all__ = ["HistoryListResponse"]
 
 
-class AaaHistory(BaseModel):
+class HistoryListResponse(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
