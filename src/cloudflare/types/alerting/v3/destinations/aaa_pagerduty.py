@@ -4,9 +4,12 @@ from typing import Optional
 
 from ....._models import BaseModel
 
-__all__ = ["PagerdutyCreateResponse"]
+__all__ = ["AaaPagerduty"]
 
 
-class PagerdutyCreateResponse(BaseModel):
+class AaaPagerduty(BaseModel):
     id: Optional[str] = None
     """UUID"""
+
+    name: Optional[str] = None
+    """The name of the pagerduty service."""

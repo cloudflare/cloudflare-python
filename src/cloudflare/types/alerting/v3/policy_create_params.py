@@ -63,7 +63,6 @@ class PolicyCreateParams(TypedDict, total=False):
             "secondary_dns_zone_validation_warning",
             "sentinel_alert",
             "stream_live_notifications",
-            "traffic_anomalies_alert",
             "tunnel_health_event",
             "tunnel_update_event",
             "universal_ssl_event_type",
@@ -113,10 +112,7 @@ class Filters(TypedDict, total=False):
     """Used for configuring radar_notification"""
 
     affected_components: List[str]
-    """Used for configuring incident_alert.
-
-    A list of identifiers for each component to monitor.
-    """
+    """Used for configuring incident_alert"""
 
     affected_locations: List[str]
     """Used for configuring radar_notification"""
