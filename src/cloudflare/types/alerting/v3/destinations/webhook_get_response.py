@@ -6,10 +6,10 @@ from typing_extensions import Literal
 
 from ....._models import BaseModel
 
-__all__ = ["AaaWebhooks"]
+__all__ = ["WebhookGetResponse"]
 
 
-class AaaWebhooks(BaseModel):
+class WebhookGetResponse(BaseModel):
     id: Optional[str] = None
     """The unique identifier of a webhook"""
 

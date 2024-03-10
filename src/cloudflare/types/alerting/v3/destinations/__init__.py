@@ -2,8 +2,7 @@
 
 from __future__ import annotations
 
-from .aaa_webhooks import AaaWebhooks as AaaWebhooks
-from .aaa_pagerduty import AaaPagerduty as AaaPagerduty
+from .webhook_get_response import WebhookGetResponse as WebhookGetResponse
 from .eligible_get_response import EligibleGetResponse as EligibleGetResponse
 from .webhook_create_params import WebhookCreateParams as WebhookCreateParams
 from .webhook_list_response import WebhookListResponse as WebhookListResponse
