@@ -14,7 +14,7 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....pagination import SyncCursorPagination, AsyncCursorPagination
+from ....pagination import SyncCursorLimitPagination, AsyncCursorLimitPagination
 from ...._base_client import (
     AsyncPaginator,
     make_request_options,
@@ -47,7 +47,7 @@ class Keys(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncCursorPagination[WorkersKVKey]:
+    ) -> SyncCursorLimitPagination[WorkersKVKey]:
         """
         Lists a namespace's keys.
 
@@ -81,7 +81,7 @@ class Keys(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/keys",
-            page=SyncCursorPagination[WorkersKVKey],
+            page=SyncCursorLimitPagination[WorkersKVKey],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -123,7 +123,7 @@ class AsyncKeys(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[WorkersKVKey, AsyncCursorPagination[WorkersKVKey]]:
+    ) -> AsyncPaginator[WorkersKVKey, AsyncCursorLimitPagination[WorkersKVKey]]:
         """
         Lists a namespace's keys.
 
@@ -157,7 +157,7 @@ class AsyncKeys(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/keys",
-            page=AsyncCursorPagination[WorkersKVKey],
+            page=AsyncCursorLimitPagination[WorkersKVKey],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
