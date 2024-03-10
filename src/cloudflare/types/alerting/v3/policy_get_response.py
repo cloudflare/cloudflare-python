@@ -6,7 +6,7 @@ from typing_extensions import Literal
 
 from ...._models import BaseModel
 
-__all__ = ["AaaPolicies", "Filters", "Mechanisms"]
+__all__ = ["PolicyGetResponse", "Filters", "Mechanisms"]
 
 
 class Filters(BaseModel):
@@ -17,7 +17,10 @@ class Filters(BaseModel):
     """Used for configuring radar_notification"""
 
     affected_components: Optional[List[str]] = None
-    """Used for configuring incident_alert"""
+    """Used for configuring incident_alert.
+
+    A list of identifiers for each component to monitor.
+    """
 
     affected_locations: Optional[List[str]] = None
     """Used for configuring radar_notification"""
@@ -142,7 +145,7 @@ class Mechanisms(BaseModel):
     """UUID"""
 
 
-class AaaPolicies(BaseModel):
+class PolicyGetResponse(BaseModel):
     id: Optional[str] = None
     """The unique identifier of a notification policy"""
 
@@ -197,6 +200,7 @@ class AaaPolicies(BaseModel):
             "secondary_dns_zone_validation_warning",
             "sentinel_alert",
             "stream_live_notifications",
+            "traffic_anomalies_alert",
             "tunnel_health_event",
             "tunnel_update_event",
             "universal_ssl_event_type",

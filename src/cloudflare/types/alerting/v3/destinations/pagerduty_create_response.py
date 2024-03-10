@@ -9,4 +9,4 @@ __all__ = ["PagerdutyCreateResponse"]
 
 class PagerdutyCreateResponse(BaseModel):
     id: Optional[str] = None
-    """UUID"""
+    """token in form of UUID"""
