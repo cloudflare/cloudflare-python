@@ -3,13 +3,14 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.durable_objects.namespaces import ObjectListResponse
+from cloudflare.pagination import SyncCursorPagination, AsyncCursorPagination
+from cloudflare.types.durable_objects.namespaces import WorkersObject
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -24,7 +25,7 @@ class TestObjects:
             "5fd1cafff895419c8bcc647fc64ab8f0",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ObjectListResponse], object, path=["response"])
+        assert_matches_type(SyncCursorPagination[WorkersObject], object, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -35,7 +36,7 @@ class TestObjects:
             cursor="AAAAANuhDN7SjacTnSVsDu3WW1Lvst6dxJGTjRY5BhxPXdf6L6uTcpd_NVtjhn11OUYRsVEykxoUwF-JQU4dn6QylZSKTOJuG0indrdn_MlHpMRtsxgXjs-RPdHYIVm3odE_uvEQ_dTQGFm8oikZMohns34DLBgrQpc",
             limit=10,
         )
-        assert_matches_type(Optional[ObjectListResponse], object, path=["response"])
+        assert_matches_type(SyncCursorPagination[WorkersObject], object, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -48,7 +49,7 @@ class TestObjects:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         object = response.parse()
-        assert_matches_type(Optional[ObjectListResponse], object, path=["response"])
+        assert_matches_type(SyncCursorPagination[WorkersObject], object, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -61,7 +62,7 @@ class TestObjects:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             object = response.parse()
-            assert_matches_type(Optional[ObjectListResponse], object, path=["response"])
+            assert_matches_type(SyncCursorPagination[WorkersObject], object, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -91,7 +92,7 @@ class TestAsyncObjects:
             "5fd1cafff895419c8bcc647fc64ab8f0",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ObjectListResponse], object, path=["response"])
+        assert_matches_type(AsyncCursorPagination[WorkersObject], object, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -102,7 +103,7 @@ class TestAsyncObjects:
             cursor="AAAAANuhDN7SjacTnSVsDu3WW1Lvst6dxJGTjRY5BhxPXdf6L6uTcpd_NVtjhn11OUYRsVEykxoUwF-JQU4dn6QylZSKTOJuG0indrdn_MlHpMRtsxgXjs-RPdHYIVm3odE_uvEQ_dTQGFm8oikZMohns34DLBgrQpc",
             limit=10,
         )
-        assert_matches_type(Optional[ObjectListResponse], object, path=["response"])
+        assert_matches_type(AsyncCursorPagination[WorkersObject], object, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -115,7 +116,7 @@ class TestAsyncObjects:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         object = await response.parse()
-        assert_matches_type(Optional[ObjectListResponse], object, path=["response"])
+        assert_matches_type(AsyncCursorPagination[WorkersObject], object, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -128,7 +129,7 @@ class TestAsyncObjects:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             object = await response.parse()
-            assert_matches_type(Optional[ObjectListResponse], object, path=["response"])
+            assert_matches_type(AsyncCursorPagination[WorkersObject], object, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

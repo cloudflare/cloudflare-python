@@ -4,4 +4,3 @@ from __future__ import annotations
 
 from .workers_object import WorkersObject as WorkersObject
 from .object_list_params import ObjectListParams as ObjectListParams
-from .object_list_response import ObjectListResponse as ObjectListResponse
