@@ -3410,18 +3410,6 @@ Methods:
 - <code title="get /accounts/{account_id}/addressing/prefixes/{prefix_id}/delegations">client.addressing.prefixes.delegations.<a href="./src/cloudflare/resources/addressing/prefixes/delegations.py">list</a>(prefix_id, \*, account_id) -> <a href="./src/cloudflare/types/addressing/prefixes/delegation_list_response.py">Optional</a></code>
 - <code title="delete /accounts/{account_id}/addressing/prefixes/{prefix_id}/delegations/{delegation_id}">client.addressing.prefixes.delegations.<a href="./src/cloudflare/resources/addressing/prefixes/delegations.py">delete</a>(delegation_id, \*, account_id, prefix_id) -> <a href="./src/cloudflare/types/addressing/prefixes/delegation_delete_response.py">DelegationDeleteResponse</a></code>
 
-# AuditLogs
-
-Types:
-
-```python
-from cloudflare.types import AuditLogListResponse
-```
-
-Methods:
-
-- <code title="get /accounts/{account_identifier}/audit_logs">client.audit_logs.<a href="./src/cloudflare/resources/audit_logs.py">list</a>(account_identifier, \*\*<a href="src/cloudflare/types/audit_log_list_params.py">params</a>) -> <a href="./src/cloudflare/types/audit_log_list_response.py">SyncV4PagePaginationArray[AuditLogListResponse]</a></code>
-
 # Billing
 
 ## Profiles
@@ -4370,7 +4358,6 @@ Types:
 
 ```python
 from cloudflare.types.alerting.v3.destinations import (
-    AaaPagerduty,
     PagerdutyCreateResponse,
     PagerdutyDeleteResponse,
     PagerdutyGetResponse,
@@ -4391,11 +4378,11 @@ Types:
 
 ```python
 from cloudflare.types.alerting.v3.destinations import (
-    AaaWebhooks,
     WebhookCreateResponse,
     WebhookUpdateResponse,
     WebhookListResponse,
     WebhookDeleteResponse,
+    WebhookGetResponse,
 )
 ```
 
@@ -4405,19 +4392,19 @@ Methods:
 - <code title="put /accounts/{account_id}/alerting/v3/destinations/webhooks/{webhook_id}">client.alerting.v3.destinations.webhooks.<a href="./src/cloudflare/resources/alerting/v3/destinations/webhooks.py">update</a>(webhook_id, \*, account_id, \*\*<a href="src/cloudflare/types/alerting/v3/destinations/webhook_update_params.py">params</a>) -> <a href="./src/cloudflare/types/alerting/v3/destinations/webhook_update_response.py">WebhookUpdateResponse</a></code>
 - <code title="get /accounts/{account_id}/alerting/v3/destinations/webhooks">client.alerting.v3.destinations.webhooks.<a href="./src/cloudflare/resources/alerting/v3/destinations/webhooks.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/alerting/v3/destinations/webhook_list_response.py">Optional</a></code>
 - <code title="delete /accounts/{account_id}/alerting/v3/destinations/webhooks/{webhook_id}">client.alerting.v3.destinations.webhooks.<a href="./src/cloudflare/resources/alerting/v3/destinations/webhooks.py">delete</a>(webhook_id, \*, account_id) -> <a href="./src/cloudflare/types/alerting/v3/destinations/webhook_delete_response.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/alerting/v3/destinations/webhooks/{webhook_id}">client.alerting.v3.destinations.webhooks.<a href="./src/cloudflare/resources/alerting/v3/destinations/webhooks.py">get</a>(webhook_id, \*, account_id) -> <a href="./src/cloudflare/types/alerting/v3/destinations/aaa_webhooks.py">AaaWebhooks</a></code>
+- <code title="get /accounts/{account_id}/alerting/v3/destinations/webhooks/{webhook_id}">client.alerting.v3.destinations.webhooks.<a href="./src/cloudflare/resources/alerting/v3/destinations/webhooks.py">get</a>(webhook_id, \*, account_id) -> <a href="./src/cloudflare/types/alerting/v3/destinations/webhook_get_response.py">WebhookGetResponse</a></code>
 
 ### Histories
 
 Types:
 
 ```python
-from cloudflare.types.alerting.v3 import AaaHistory
+from cloudflare.types.alerting.v3 import HistoryListResponse
 ```
 
 Methods:
 
-- <code title="get /accounts/{account_id}/alerting/v3/history">client.alerting.v3.histories.<a href="./src/cloudflare/resources/alerting/v3/histories.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/alerting/v3/history_list_params.py">params</a>) -> <a href="./src/cloudflare/types/alerting/v3/aaa_history.py">SyncV4PagePaginationArray[AaaHistory]</a></code>
+- <code title="get /accounts/{account_id}/alerting/v3/history">client.alerting.v3.histories.<a href="./src/cloudflare/resources/alerting/v3/histories.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/alerting/v3/history_list_params.py">params</a>) -> <a href="./src/cloudflare/types/alerting/v3/history_list_response.py">SyncV4PagePaginationArray[HistoryListResponse]</a></code>
 
 ### Policies
 
@@ -4425,11 +4412,11 @@ Types:
 
 ```python
 from cloudflare.types.alerting.v3 import (
-    AaaPolicies,
     PolicyCreateResponse,
     PolicyUpdateResponse,
     PolicyListResponse,
     PolicyDeleteResponse,
+    PolicyGetResponse,
 )
 ```
 
@@ -4439,7 +4426,7 @@ Methods:
 - <code title="put /accounts/{account_id}/alerting/v3/policies/{policy_id}">client.alerting.v3.policies.<a href="./src/cloudflare/resources/alerting/v3/policies.py">update</a>(policy_id, \*, account_id, \*\*<a href="src/cloudflare/types/alerting/v3/policy_update_params.py">params</a>) -> <a href="./src/cloudflare/types/alerting/v3/policy_update_response.py">PolicyUpdateResponse</a></code>
 - <code title="get /accounts/{account_id}/alerting/v3/policies">client.alerting.v3.policies.<a href="./src/cloudflare/resources/alerting/v3/policies.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/alerting/v3/policy_list_response.py">Optional</a></code>
 - <code title="delete /accounts/{account_id}/alerting/v3/policies/{policy_id}">client.alerting.v3.policies.<a href="./src/cloudflare/resources/alerting/v3/policies.py">delete</a>(policy_id, \*, account_id) -> <a href="./src/cloudflare/types/alerting/v3/policy_delete_response.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/alerting/v3/policies/{policy_id}">client.alerting.v3.policies.<a href="./src/cloudflare/resources/alerting/v3/policies.py">get</a>(policy_id, \*, account_id) -> <a href="./src/cloudflare/types/alerting/v3/aaa_policies.py">AaaPolicies</a></code>
+- <code title="get /accounts/{account_id}/alerting/v3/policies/{policy_id}">client.alerting.v3.policies.<a href="./src/cloudflare/resources/alerting/v3/policies.py">get</a>(policy_id, \*, account_id) -> <a href="./src/cloudflare/types/alerting/v3/policy_get_response.py">PolicyGetResponse</a></code>
 
 # D1
 
