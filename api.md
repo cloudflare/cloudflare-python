@@ -2920,12 +2920,12 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.kv.namespaces import WorkersKVKey, KeyListResponse
+from cloudflare.types.kv.namespaces import WorkersKVKey
 ```
 
 Methods:
 
-- <code title="get /accounts/{account_id}/storage/kv/namespaces/{namespace_id}/keys">client.kv.namespaces.keys.<a href="./src/cloudflare/resources/kv/namespaces/keys.py">list</a>(namespace_id, \*, account_id, \*\*<a href="src/cloudflare/types/kv/namespaces/key_list_params.py">params</a>) -> <a href="./src/cloudflare/types/kv/namespaces/key_list_response.py">KeyListResponse</a></code>
+- <code title="get /accounts/{account_id}/storage/kv/namespaces/{namespace_id}/keys">client.kv.namespaces.keys.<a href="./src/cloudflare/resources/kv/namespaces/keys.py">list</a>(namespace_id, \*, account_id, \*\*<a href="src/cloudflare/types/kv/namespaces/key_list_params.py">params</a>) -> <a href="./src/cloudflare/types/kv/namespaces/workers_kv_key.py">SyncCursorPagination[WorkersKVKey]</a></code>
 
 ### Metadata
 
@@ -2976,12 +2976,12 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.durable_objects.namespaces import WorkersObject, ObjectListResponse
+from cloudflare.types.durable_objects.namespaces import WorkersObject
 ```
 
 Methods:
 
-- <code title="get /accounts/{account_id}/workers/durable_objects/namespaces/{id}/objects">client.durable_objects.namespaces.objects.<a href="./src/cloudflare/resources/durable_objects/namespaces/objects.py">list</a>(id, \*, account_id, \*\*<a href="src/cloudflare/types/durable_objects/namespaces/object_list_params.py">params</a>) -> <a href="./src/cloudflare/types/durable_objects/namespaces/object_list_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/workers/durable_objects/namespaces/{id}/objects">client.durable_objects.namespaces.objects.<a href="./src/cloudflare/resources/durable_objects/namespaces/objects.py">list</a>(id, \*, account_id, \*\*<a href="src/cloudflare/types/durable_objects/namespaces/object_list_params.py">params</a>) -> <a href="./src/cloudflare/types/durable_objects/namespaces/workers_object.py">SyncCursorPagination[WorkersObject]</a></code>
 
 # Queues
 

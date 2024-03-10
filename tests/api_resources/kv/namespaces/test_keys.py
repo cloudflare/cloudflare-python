@@ -9,7 +9,8 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.kv.namespaces import KeyListResponse
+from cloudflare.pagination import SyncCursorPagination, AsyncCursorPagination
+from cloudflare.types.kv.namespaces import WorkersKVKey
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -24,7 +25,7 @@ class TestKeys:
             "0f2ac74b498b48028cb68387c421e279",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(KeyListResponse, key, path=["response"])
+        assert_matches_type(SyncCursorPagination[WorkersKVKey], key, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -36,7 +37,7 @@ class TestKeys:
             limit=10,
             prefix="My-Prefix",
         )
-        assert_matches_type(KeyListResponse, key, path=["response"])
+        assert_matches_type(SyncCursorPagination[WorkersKVKey], key, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -49,7 +50,7 @@ class TestKeys:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         key = response.parse()
-        assert_matches_type(KeyListResponse, key, path=["response"])
+        assert_matches_type(SyncCursorPagination[WorkersKVKey], key, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -62,7 +63,7 @@ class TestKeys:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             key = response.parse()
-            assert_matches_type(KeyListResponse, key, path=["response"])
+            assert_matches_type(SyncCursorPagination[WorkersKVKey], key, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -92,7 +93,7 @@ class TestAsyncKeys:
             "0f2ac74b498b48028cb68387c421e279",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(KeyListResponse, key, path=["response"])
+        assert_matches_type(AsyncCursorPagination[WorkersKVKey], key, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -104,7 +105,7 @@ class TestAsyncKeys:
             limit=10,
             prefix="My-Prefix",
         )
-        assert_matches_type(KeyListResponse, key, path=["response"])
+        assert_matches_type(AsyncCursorPagination[WorkersKVKey], key, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -117,7 +118,7 @@ class TestAsyncKeys:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         key = await response.parse()
-        assert_matches_type(KeyListResponse, key, path=["response"])
+        assert_matches_type(AsyncCursorPagination[WorkersKVKey], key, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -130,7 +131,7 @@ class TestAsyncKeys:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             key = await response.parse()
-            assert_matches_type(KeyListResponse, key, path=["response"])
+            assert_matches_type(AsyncCursorPagination[WorkersKVKey], key, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

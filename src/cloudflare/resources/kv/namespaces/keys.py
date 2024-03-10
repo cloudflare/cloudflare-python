@@ -2,15 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
-
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -19,11 +14,12 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._wrappers import ResultWrapper
+from ....pagination import SyncCursorPagination, AsyncCursorPagination
 from ...._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
-from ....types.kv.namespaces import KeyListResponse, key_list_params
+from ....types.kv.namespaces import WorkersKVKey, key_list_params
 
 __all__ = ["Keys", "AsyncKeys"]
 
@@ -51,7 +47,7 @@ class Keys(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> KeyListResponse:
+    ) -> SyncCursorPagination[WorkersKVKey]:
         """
         Lists a namespace's keys.
 
@@ -83,8 +79,9 @@ class Keys(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not namespace_id:
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/keys",
+            page=SyncCursorPagination[WorkersKVKey],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -98,9 +95,8 @@ class Keys(SyncAPIResource):
                     },
                     key_list_params.KeyListParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[KeyListResponse], ResultWrapper[KeyListResponse]),
+            model=WorkersKVKey,
         )
 
 
@@ -113,7 +109,7 @@ class AsyncKeys(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncKeysWithStreamingResponse:
         return AsyncKeysWithStreamingResponse(self)
 
-    async def list(
+    def list(
         self,
         namespace_id: str,
         *,
@@ -127,7 +123,7 @@ class AsyncKeys(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> KeyListResponse:
+    ) -> AsyncPaginator[WorkersKVKey, AsyncCursorPagination[WorkersKVKey]]:
         """
         Lists a namespace's keys.
 
@@ -159,14 +155,15 @@ class AsyncKeys(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not namespace_id:
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/keys",
+            page=AsyncCursorPagination[WorkersKVKey],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "cursor": cursor,
                         "limit": limit,
@@ -174,9 +171,8 @@ class AsyncKeys(AsyncAPIResource):
                     },
                     key_list_params.KeyListParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[KeyListResponse], ResultWrapper[KeyListResponse]),
+            model=WorkersKVKey,
         )
 
 
