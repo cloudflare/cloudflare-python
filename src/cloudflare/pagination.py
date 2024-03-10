@@ -17,6 +17,9 @@ __all__ = [
     "CursorPaginationResultInfo",
     "SyncCursorPagination",
     "AsyncCursorPagination",
+    "CursorLimitPaginationResultInfo",
+    "SyncCursorLimitPagination",
+    "AsyncCursorLimitPagination",
 ]
 
 _T = TypeVar("_T")
@@ -175,6 +178,58 @@ class SyncCursorPagination(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
 class AsyncCursorPagination(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
     result: List[_T]
     result_info: Optional[CursorPaginationResultInfo] = None
+
+    @override
+    def _get_page_items(self) -> List[_T]:
+        result = self.result
+        if not result:
+            return []
+        return result
+
+    @override
+    def next_page_info(self) -> Optional[PageInfo]:
+        cursor = None
+        if self.result_info is not None:
+            cursor = self.result_info.cursor
+        if not cursor:
+            return None
+
+        return PageInfo(params={"cursor": cursor})
+
+
+class CursorLimitPaginationResultInfo(BaseModel):
+    count: Optional[int] = None
+
+    cursor: Optional[str] = None
+
+    per_page: Optional[int] = None
+
+
+class SyncCursorLimitPagination(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
+    result: List[_T]
+    result_info: Optional[CursorLimitPaginationResultInfo] = None
+
+    @override
+    def _get_page_items(self) -> List[_T]:
+        result = self.result
+        if not result:
+            return []
+        return result
+
+    @override
+    def next_page_info(self) -> Optional[PageInfo]:
+        cursor = None
+        if self.result_info is not None:
+            cursor = self.result_info.cursor
+        if not cursor:
+            return None
+
+        return PageInfo(params={"cursor": cursor})
+
+
+class AsyncCursorLimitPagination(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
+    result: List[_T]
+    result_info: Optional[CursorLimitPaginationResultInfo] = None
 
     @override
     def _get_page_items(self) -> List[_T]:

@@ -20,12 +20,13 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
+from ....pagination import SyncCursorPagination, AsyncCursorPagination
 from ...._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
 from ....types.rules.lists import (
     ItemGetResponse,
-    ItemListResponse,
     ItemCreateResponse,
     ItemDeleteResponse,
     ItemUpdateResponse,
@@ -163,7 +164,7 @@ class Items(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ItemListResponse]:
+    ) -> SyncCursorPagination[object]:
         """
         Fetches all the items in the list.
 
@@ -197,8 +198,9 @@ class Items(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not list_id:
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/rules/lists/{list_id}/items",
+            page=SyncCursorPagination[object],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -212,9 +214,8 @@ class Items(SyncAPIResource):
                     },
                     item_list_params.ItemListParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ItemListResponse]], ResultWrapper[ItemListResponse]),
+            model=object,
         )
 
     def delete(
@@ -434,7 +435,7 @@ class AsyncItems(AsyncAPIResource):
             cast_to=cast(Type[Optional[ItemUpdateResponse]], ResultWrapper[ItemUpdateResponse]),
         )
 
-    async def list(
+    def list(
         self,
         list_id: str,
         *,
@@ -448,7 +449,7 @@ class AsyncItems(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ItemListResponse]:
+    ) -> AsyncPaginator[object, AsyncCursorPagination[object]]:
         """
         Fetches all the items in the list.
 
@@ -482,14 +483,15 @@ class AsyncItems(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not list_id:
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/rules/lists/{list_id}/items",
+            page=AsyncCursorPagination[object],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "cursor": cursor,
                         "per_page": per_page,
@@ -497,9 +499,8 @@ class AsyncItems(AsyncAPIResource):
                     },
                     item_list_params.ItemListParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ItemListResponse]], ResultWrapper[ItemListResponse]),
+            model=object,
         )
 
     async def delete(
