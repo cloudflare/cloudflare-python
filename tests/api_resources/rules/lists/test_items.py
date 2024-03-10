@@ -9,9 +9,9 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.pagination import SyncCursorPagination, AsyncCursorPagination
 from cloudflare.types.rules.lists import (
     ItemGetResponse,
-    ItemListResponse,
     ItemCreateResponse,
     ItemDeleteResponse,
     ItemUpdateResponse,
@@ -144,7 +144,7 @@ class TestItems:
             "2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ItemListResponse], item, path=["response"])
+        assert_matches_type(SyncCursorPagination[object], item, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -156,7 +156,7 @@ class TestItems:
             per_page=1,
             search="1.1.1.",
         )
-        assert_matches_type(Optional[ItemListResponse], item, path=["response"])
+        assert_matches_type(SyncCursorPagination[object], item, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -169,7 +169,7 @@ class TestItems:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         item = response.parse()
-        assert_matches_type(Optional[ItemListResponse], item, path=["response"])
+        assert_matches_type(SyncCursorPagination[object], item, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -182,7 +182,7 @@ class TestItems:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             item = response.parse()
-            assert_matches_type(Optional[ItemListResponse], item, path=["response"])
+            assert_matches_type(SyncCursorPagination[object], item, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -452,7 +452,7 @@ class TestAsyncItems:
             "2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ItemListResponse], item, path=["response"])
+        assert_matches_type(AsyncCursorPagination[object], item, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -464,7 +464,7 @@ class TestAsyncItems:
             per_page=1,
             search="1.1.1.",
         )
-        assert_matches_type(Optional[ItemListResponse], item, path=["response"])
+        assert_matches_type(AsyncCursorPagination[object], item, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -477,7 +477,7 @@ class TestAsyncItems:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         item = await response.parse()
-        assert_matches_type(Optional[ItemListResponse], item, path=["response"])
+        assert_matches_type(AsyncCursorPagination[object], item, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -490,7 +490,7 @@ class TestAsyncItems:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             item = await response.parse()
-            assert_matches_type(Optional[ItemListResponse], item, path=["response"])
+            assert_matches_type(AsyncCursorPagination[object], item, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
