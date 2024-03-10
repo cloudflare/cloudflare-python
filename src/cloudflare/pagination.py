@@ -14,6 +14,9 @@ __all__ = [
     "V4PagePaginationArrayResultInfo",
     "SyncV4PagePaginationArray",
     "AsyncV4PagePaginationArray",
+    "CursorPaginationResultInfo",
+    "SyncCursorPagination",
+    "AsyncCursorPagination",
 ]
 
 _T = TypeVar("_T")
@@ -137,3 +140,55 @@ class AsyncV4PagePaginationArray(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
             return None
 
         return PageInfo(params={"page": current_page + 1})
+
+
+class CursorPaginationResultInfo(BaseModel):
+    count: Optional[int] = None
+
+    cursor: Optional[str] = None
+
+    per_page: Optional[int] = None
+
+
+class SyncCursorPagination(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
+    result: Optional[object] = None
+    result_info: Optional[CursorPaginationResultInfo] = None
+
+    @override
+    def _get_page_items(self) -> List[_T]:
+        data = self.data
+        if not data:
+            return []
+        return data
+
+    @override
+    def next_page_info(self) -> Optional[PageInfo]:
+        cursor = None
+        if self.result_info is not None:
+            cursor = self.result_info.cursor
+        if not cursor:
+            return None
+
+        return PageInfo(params={"cursor": cursor})
+
+
+class AsyncCursorPagination(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
+    result: Optional[object] = None
+    result_info: Optional[CursorPaginationResultInfo] = None
+
+    @override
+    def _get_page_items(self) -> List[_T]:
+        data = self.data
+        if not data:
+            return []
+        return data
+
+    @override
+    def next_page_info(self) -> Optional[PageInfo]:
+        cursor = None
+        if self.result_info is not None:
+            cursor = self.result_info.cursor
+        if not cursor:
+            return None
+
+        return PageInfo(params={"cursor": cursor})
