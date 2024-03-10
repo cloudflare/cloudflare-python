@@ -91,6 +91,7 @@ class Cloudflare(SyncAPIClient):
     url_normalization: resources.URLNormalization
     spectrum: resources.Spectrum
     addressing: resources.Addressing
+    audit_logs: resources.AuditLogs
     billing: resources.Billing
     brand_protection: resources.BrandProtection
     diagnostics: resources.Diagnostics
@@ -243,6 +244,7 @@ class Cloudflare(SyncAPIClient):
         self.url_normalization = resources.URLNormalization(self)
         self.spectrum = resources.Spectrum(self)
         self.addressing = resources.Addressing(self)
+        self.audit_logs = resources.AuditLogs(self)
         self.billing = resources.Billing(self)
         self.brand_protection = resources.BrandProtection(self)
         self.diagnostics = resources.Diagnostics(self)
@@ -500,6 +502,7 @@ class AsyncCloudflare(AsyncAPIClient):
     url_normalization: resources.AsyncURLNormalization
     spectrum: resources.AsyncSpectrum
     addressing: resources.AsyncAddressing
+    audit_logs: resources.AsyncAuditLogs
     billing: resources.AsyncBilling
     brand_protection: resources.AsyncBrandProtection
     diagnostics: resources.AsyncDiagnostics
@@ -652,6 +655,7 @@ class AsyncCloudflare(AsyncAPIClient):
         self.url_normalization = resources.AsyncURLNormalization(self)
         self.spectrum = resources.AsyncSpectrum(self)
         self.addressing = resources.AsyncAddressing(self)
+        self.audit_logs = resources.AsyncAuditLogs(self)
         self.billing = resources.AsyncBilling(self)
         self.brand_protection = resources.AsyncBrandProtection(self)
         self.diagnostics = resources.AsyncDiagnostics(self)
@@ -910,6 +914,7 @@ class CloudflareWithRawResponse:
         self.url_normalization = resources.URLNormalizationWithRawResponse(client.url_normalization)
         self.spectrum = resources.SpectrumWithRawResponse(client.spectrum)
         self.addressing = resources.AddressingWithRawResponse(client.addressing)
+        self.audit_logs = resources.AuditLogsWithRawResponse(client.audit_logs)
         self.billing = resources.BillingWithRawResponse(client.billing)
         self.brand_protection = resources.BrandProtectionWithRawResponse(client.brand_protection)
         self.diagnostics = resources.DiagnosticsWithRawResponse(client.diagnostics)
@@ -997,6 +1002,7 @@ class AsyncCloudflareWithRawResponse:
         self.url_normalization = resources.AsyncURLNormalizationWithRawResponse(client.url_normalization)
         self.spectrum = resources.AsyncSpectrumWithRawResponse(client.spectrum)
         self.addressing = resources.AsyncAddressingWithRawResponse(client.addressing)
+        self.audit_logs = resources.AsyncAuditLogsWithRawResponse(client.audit_logs)
         self.billing = resources.AsyncBillingWithRawResponse(client.billing)
         self.brand_protection = resources.AsyncBrandProtectionWithRawResponse(client.brand_protection)
         self.diagnostics = resources.AsyncDiagnosticsWithRawResponse(client.diagnostics)
@@ -1086,6 +1092,7 @@ class CloudflareWithStreamedResponse:
         self.url_normalization = resources.URLNormalizationWithStreamingResponse(client.url_normalization)
         self.spectrum = resources.SpectrumWithStreamingResponse(client.spectrum)
         self.addressing = resources.AddressingWithStreamingResponse(client.addressing)
+        self.audit_logs = resources.AuditLogsWithStreamingResponse(client.audit_logs)
         self.billing = resources.BillingWithStreamingResponse(client.billing)
         self.brand_protection = resources.BrandProtectionWithStreamingResponse(client.brand_protection)
         self.diagnostics = resources.DiagnosticsWithStreamingResponse(client.diagnostics)
@@ -1177,6 +1184,7 @@ class AsyncCloudflareWithStreamedResponse:
         self.url_normalization = resources.AsyncURLNormalizationWithStreamingResponse(client.url_normalization)
         self.spectrum = resources.AsyncSpectrumWithStreamingResponse(client.spectrum)
         self.addressing = resources.AsyncAddressingWithStreamingResponse(client.addressing)
+        self.audit_logs = resources.AsyncAuditLogsWithStreamingResponse(client.audit_logs)
         self.billing = resources.AsyncBillingWithStreamingResponse(client.billing)
         self.brand_protection = resources.AsyncBrandProtectionWithStreamingResponse(client.brand_protection)
         self.diagnostics = resources.AsyncDiagnosticsWithStreamingResponse(client.diagnostics)

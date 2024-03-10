@@ -33,6 +33,47 @@ class Keys(SyncAPIResource):
     def with_streaming_response(self) -> KeysWithStreamingResponse:
         return KeysWithStreamingResponse(self)
 
+    def update(
+        self,
+        signing_key_name: object,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ImagesImageKeys:
+        """Create a new signing key with specified name.
+
+        Returns all keys available.
+
+        Args:
+          account_id: Account identifier tag.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._put(
+            f"/accounts/{account_id}/images/v1/keys/{signing_key_name}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[ImagesImageKeys], ResultWrapper[ImagesImageKeys]),
+        )
+
     def list(
         self,
         *,
@@ -73,6 +114,48 @@ class Keys(SyncAPIResource):
             cast_to=cast(Type[ImagesImageKeys], ResultWrapper[ImagesImageKeys]),
         )
 
+    def delete(
+        self,
+        signing_key_name: object,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ImagesImageKeys:
+        """Delete signing key with specified name.
+
+        Returns all keys available. When last
+        key is removed, a new default signing key will be generated.
+
+        Args:
+          account_id: Account identifier tag.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._delete(
+            f"/accounts/{account_id}/images/v1/keys/{signing_key_name}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[ImagesImageKeys], ResultWrapper[ImagesImageKeys]),
+        )
+
 
 class AsyncKeys(AsyncAPIResource):
     @cached_property
@@ -82,6 +165,47 @@ class AsyncKeys(AsyncAPIResource):
     @cached_property
     def with_streaming_response(self) -> AsyncKeysWithStreamingResponse:
         return AsyncKeysWithStreamingResponse(self)
+
+    async def update(
+        self,
+        signing_key_name: object,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ImagesImageKeys:
+        """Create a new signing key with specified name.
+
+        Returns all keys available.
+
+        Args:
+          account_id: Account identifier tag.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return await self._put(
+            f"/accounts/{account_id}/images/v1/keys/{signing_key_name}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[ImagesImageKeys], ResultWrapper[ImagesImageKeys]),
+        )
 
     async def list(
         self,
@@ -123,13 +247,61 @@ class AsyncKeys(AsyncAPIResource):
             cast_to=cast(Type[ImagesImageKeys], ResultWrapper[ImagesImageKeys]),
         )
 
+    async def delete(
+        self,
+        signing_key_name: object,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ImagesImageKeys:
+        """Delete signing key with specified name.
+
+        Returns all keys available. When last
+        key is removed, a new default signing key will be generated.
+
+        Args:
+          account_id: Account identifier tag.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return await self._delete(
+            f"/accounts/{account_id}/images/v1/keys/{signing_key_name}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
+            ),
+            cast_to=cast(Type[ImagesImageKeys], ResultWrapper[ImagesImageKeys]),
+        )
+
 
 class KeysWithRawResponse:
     def __init__(self, keys: Keys) -> None:
         self._keys = keys
 
+        self.update = to_raw_response_wrapper(
+            keys.update,
+        )
         self.list = to_raw_response_wrapper(
             keys.list,
+        )
+        self.delete = to_raw_response_wrapper(
+            keys.delete,
         )
 
 
@@ -137,8 +309,14 @@ class AsyncKeysWithRawResponse:
     def __init__(self, keys: AsyncKeys) -> None:
         self._keys = keys
 
+        self.update = async_to_raw_response_wrapper(
+            keys.update,
+        )
         self.list = async_to_raw_response_wrapper(
             keys.list,
+        )
+        self.delete = async_to_raw_response_wrapper(
+            keys.delete,
         )
 
 
@@ -146,8 +324,14 @@ class KeysWithStreamingResponse:
     def __init__(self, keys: Keys) -> None:
         self._keys = keys
 
+        self.update = to_streamed_response_wrapper(
+            keys.update,
+        )
         self.list = to_streamed_response_wrapper(
             keys.list,
+        )
+        self.delete = to_streamed_response_wrapper(
+            keys.delete,
         )
 
 
@@ -155,6 +339,12 @@ class AsyncKeysWithStreamingResponse:
     def __init__(self, keys: AsyncKeys) -> None:
         self._keys = keys
 
+        self.update = async_to_streamed_response_wrapper(
+            keys.update,
+        )
         self.list = async_to_streamed_response_wrapper(
             keys.list,
+        )
+        self.delete = async_to_streamed_response_wrapper(
+            keys.delete,
         )

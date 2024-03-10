@@ -86,7 +86,16 @@ from .miscategorizations import (
     MiscategorizationsWithStreamingResponse,
     AsyncMiscategorizationsWithStreamingResponse,
 )
+from .attack_surface_report import (
+    AttackSurfaceReport,
+    AsyncAttackSurfaceReport,
+    AttackSurfaceReportWithRawResponse,
+    AsyncAttackSurfaceReportWithRawResponse,
+    AttackSurfaceReportWithStreamingResponse,
+    AsyncAttackSurfaceReportWithStreamingResponse,
+)
 from .indicator_feeds.indicator_feeds import IndicatorFeeds, AsyncIndicatorFeeds
+from .attack_surface_report.attack_surface_report import AttackSurfaceReport, AsyncAttackSurfaceReport
 
 __all__ = ["Intel", "AsyncIntel"]
 
@@ -131,6 +140,10 @@ class Intel(SyncAPIResource):
     @cached_property
     def sinkholes(self) -> Sinkholes:
         return Sinkholes(self._client)
+
+    @cached_property
+    def attack_surface_report(self) -> AttackSurfaceReport:
+        return AttackSurfaceReport(self._client)
 
     @cached_property
     def with_raw_response(self) -> IntelWithRawResponse:
@@ -181,6 +194,10 @@ class AsyncIntel(AsyncAPIResource):
     @cached_property
     def sinkholes(self) -> AsyncSinkholes:
         return AsyncSinkholes(self._client)
+
+    @cached_property
+    def attack_surface_report(self) -> AsyncAttackSurfaceReport:
+        return AsyncAttackSurfaceReport(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncIntelWithRawResponse:
@@ -235,6 +252,10 @@ class IntelWithRawResponse:
     def sinkholes(self) -> SinkholesWithRawResponse:
         return SinkholesWithRawResponse(self._intel.sinkholes)
 
+    @cached_property
+    def attack_surface_report(self) -> AttackSurfaceReportWithRawResponse:
+        return AttackSurfaceReportWithRawResponse(self._intel.attack_surface_report)
+
 
 class AsyncIntelWithRawResponse:
     def __init__(self, intel: AsyncIntel) -> None:
@@ -279,6 +300,10 @@ class AsyncIntelWithRawResponse:
     @cached_property
     def sinkholes(self) -> AsyncSinkholesWithRawResponse:
         return AsyncSinkholesWithRawResponse(self._intel.sinkholes)
+
+    @cached_property
+    def attack_surface_report(self) -> AsyncAttackSurfaceReportWithRawResponse:
+        return AsyncAttackSurfaceReportWithRawResponse(self._intel.attack_surface_report)
 
 
 class IntelWithStreamingResponse:
@@ -325,6 +350,10 @@ class IntelWithStreamingResponse:
     def sinkholes(self) -> SinkholesWithStreamingResponse:
         return SinkholesWithStreamingResponse(self._intel.sinkholes)
 
+    @cached_property
+    def attack_surface_report(self) -> AttackSurfaceReportWithStreamingResponse:
+        return AttackSurfaceReportWithStreamingResponse(self._intel.attack_surface_report)
+
 
 class AsyncIntelWithStreamingResponse:
     def __init__(self, intel: AsyncIntel) -> None:
@@ -369,3 +398,7 @@ class AsyncIntelWithStreamingResponse:
     @cached_property
     def sinkholes(self) -> AsyncSinkholesWithStreamingResponse:
         return AsyncSinkholesWithStreamingResponse(self._intel.sinkholes)
+
+    @cached_property
+    def attack_surface_report(self) -> AsyncAttackSurfaceReportWithStreamingResponse:
+        return AsyncAttackSurfaceReportWithStreamingResponse(self._intel.attack_surface_report)
