@@ -151,15 +151,15 @@ class CursorPaginationResultInfo(BaseModel):
 
 
 class SyncCursorPagination(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
-    result: Optional[object] = None
+    result: List[_T]
     result_info: Optional[CursorPaginationResultInfo] = None
 
     @override
     def _get_page_items(self) -> List[_T]:
-        data = self.data
-        if not data:
+        result = self.result
+        if not result:
             return []
-        return data
+        return result
 
     @override
     def next_page_info(self) -> Optional[PageInfo]:
@@ -173,15 +173,15 @@ class SyncCursorPagination(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
 
 
 class AsyncCursorPagination(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
-    result: Optional[object] = None
+    result: List[_T]
     result_info: Optional[CursorPaginationResultInfo] = None
 
     @override
     def _get_page_items(self) -> List[_T]:
-        data = self.data
-        if not data:
+        result = self.result
+        if not result:
             return []
-        return data
+        return result
 
     @override
     def next_page_info(self) -> Optional[PageInfo]:
