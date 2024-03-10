@@ -88,6 +88,14 @@ from .miscategorizations import (
     MiscategorizationsWithStreamingResponse,
     AsyncMiscategorizationsWithStreamingResponse,
 )
+from .attack_surface_report import (
+    AttackSurfaceReport,
+    AsyncAttackSurfaceReport,
+    AttackSurfaceReportWithRawResponse,
+    AsyncAttackSurfaceReportWithRawResponse,
+    AttackSurfaceReportWithStreamingResponse,
+    AsyncAttackSurfaceReportWithStreamingResponse,
+)
 
 __all__ = [
     "ASN",
@@ -150,6 +158,12 @@ __all__ = [
     "AsyncSinkholesWithRawResponse",
     "SinkholesWithStreamingResponse",
     "AsyncSinkholesWithStreamingResponse",
+    "AttackSurfaceReport",
+    "AsyncAttackSurfaceReport",
+    "AttackSurfaceReportWithRawResponse",
+    "AsyncAttackSurfaceReportWithRawResponse",
+    "AttackSurfaceReportWithStreamingResponse",
+    "AsyncAttackSurfaceReportWithStreamingResponse",
     "Intel",
     "AsyncIntel",
     "IntelWithRawResponse",
