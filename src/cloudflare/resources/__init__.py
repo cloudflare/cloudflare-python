@@ -328,6 +328,14 @@ from .addressing import (
     AddressingWithStreamingResponse,
     AsyncAddressingWithStreamingResponse,
 )
+from .audit_logs import (
+    AuditLogs,
+    AsyncAuditLogs,
+    AuditLogsWithRawResponse,
+    AsyncAuditLogsWithRawResponse,
+    AuditLogsWithStreamingResponse,
+    AsyncAuditLogsWithStreamingResponse,
+)
 from .challenges import (
     Challenges,
     AsyncChallenges,
@@ -898,6 +906,12 @@ __all__ = [
     "AsyncAddressingWithRawResponse",
     "AddressingWithStreamingResponse",
     "AsyncAddressingWithStreamingResponse",
+    "AuditLogs",
+    "AsyncAuditLogs",
+    "AuditLogsWithRawResponse",
+    "AsyncAuditLogsWithRawResponse",
+    "AuditLogsWithStreamingResponse",
+    "AsyncAuditLogsWithStreamingResponse",
     "Billing",
     "AsyncBilling",
     "BillingWithRawResponse",
