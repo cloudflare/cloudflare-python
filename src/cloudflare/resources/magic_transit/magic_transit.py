@@ -2,6 +2,14 @@
 
 from __future__ import annotations
 
+from .sites import (
+    Sites,
+    AsyncSites,
+    SitesWithRawResponse,
+    AsyncSitesWithRawResponse,
+    SitesWithStreamingResponse,
+    AsyncSitesWithStreamingResponse,
+)
 from .routes import (
     Routes,
     AsyncRoutes,
@@ -20,6 +28,7 @@ from .gre_tunnels import (
     GRETunnelsWithStreamingResponse,
     AsyncGRETunnelsWithStreamingResponse,
 )
+from .sites.sites import Sites, AsyncSites
 from .ipsec_tunnels import (
     IPSECTunnels,
     AsyncIPSECTunnels,
@@ -58,6 +67,10 @@ class MagicTransit(SyncAPIResource):
         return Routes(self._client)
 
     @cached_property
+    def sites(self) -> Sites:
+        return Sites(self._client)
+
+    @cached_property
     def with_raw_response(self) -> MagicTransitWithRawResponse:
         return MagicTransitWithRawResponse(self)
 
@@ -82,6 +95,10 @@ class AsyncMagicTransit(AsyncAPIResource):
     @cached_property
     def routes(self) -> AsyncRoutes:
         return AsyncRoutes(self._client)
+
+    @cached_property
+    def sites(self) -> AsyncSites:
+        return AsyncSites(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncMagicTransitWithRawResponse:
@@ -112,6 +129,10 @@ class MagicTransitWithRawResponse:
     def routes(self) -> RoutesWithRawResponse:
         return RoutesWithRawResponse(self._magic_transit.routes)
 
+    @cached_property
+    def sites(self) -> SitesWithRawResponse:
+        return SitesWithRawResponse(self._magic_transit.sites)
+
 
 class AsyncMagicTransitWithRawResponse:
     def __init__(self, magic_transit: AsyncMagicTransit) -> None:
@@ -132,6 +153,10 @@ class AsyncMagicTransitWithRawResponse:
     @cached_property
     def routes(self) -> AsyncRoutesWithRawResponse:
         return AsyncRoutesWithRawResponse(self._magic_transit.routes)
+
+    @cached_property
+    def sites(self) -> AsyncSitesWithRawResponse:
+        return AsyncSitesWithRawResponse(self._magic_transit.sites)
 
 
 class MagicTransitWithStreamingResponse:
@@ -154,6 +179,10 @@ class MagicTransitWithStreamingResponse:
     def routes(self) -> RoutesWithStreamingResponse:
         return RoutesWithStreamingResponse(self._magic_transit.routes)
 
+    @cached_property
+    def sites(self) -> SitesWithStreamingResponse:
+        return SitesWithStreamingResponse(self._magic_transit.sites)
+
 
 class AsyncMagicTransitWithStreamingResponse:
     def __init__(self, magic_transit: AsyncMagicTransit) -> None:
@@ -174,3 +203,7 @@ class AsyncMagicTransitWithStreamingResponse:
     @cached_property
     def routes(self) -> AsyncRoutesWithStreamingResponse:
         return AsyncRoutesWithStreamingResponse(self._magic_transit.routes)
+
+    @cached_property
+    def sites(self) -> AsyncSitesWithStreamingResponse:
+        return AsyncSitesWithStreamingResponse(self._magic_transit.sites)
