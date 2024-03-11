@@ -18,41 +18,55 @@ __all__ = [
     "DeploymentConfigsPreviewAIBindingsAIBinding",
     "DeploymentConfigsPreviewAnalyticsEngineDatasets",
     "DeploymentConfigsPreviewAnalyticsEngineDatasetsAnalyticsEngineBinding",
+    "DeploymentConfigsPreviewBrowsers",
     "DeploymentConfigsPreviewD1Databases",
     "DeploymentConfigsPreviewD1DatabasesD1Binding",
     "DeploymentConfigsPreviewDurableObjectNamespaces",
     "DeploymentConfigsPreviewDurableObjectNamespacesDoBinding",
     "DeploymentConfigsPreviewEnvVars",
     "DeploymentConfigsPreviewEnvVarsEnvironmentVariable",
+    "DeploymentConfigsPreviewHyperdriveBindings",
+    "DeploymentConfigsPreviewHyperdriveBindingsHyperdrive",
     "DeploymentConfigsPreviewKVNamespaces",
     "DeploymentConfigsPreviewKVNamespacesKVBinding",
+    "DeploymentConfigsPreviewMTLSCertificates",
+    "DeploymentConfigsPreviewMTLSCertificatesMTLS",
     "DeploymentConfigsPreviewPlacement",
     "DeploymentConfigsPreviewQueueProducers",
     "DeploymentConfigsPreviewQueueProducersQueueProducerBinding",
     "DeploymentConfigsPreviewR2Buckets",
     "DeploymentConfigsPreviewR2BucketsR2Binding",
-    "DeploymentConfigsPreviewServiceBindings",
-    "DeploymentConfigsPreviewServiceBindingsServiceBinding",
+    "DeploymentConfigsPreviewServices",
+    "DeploymentConfigsPreviewServicesServiceBinding",
+    "DeploymentConfigsPreviewVectorizeBindings",
+    "DeploymentConfigsPreviewVectorizeBindingsVectorize",
     "DeploymentConfigsProduction",
     "DeploymentConfigsProductionAIBindings",
     "DeploymentConfigsProductionAIBindingsAIBinding",
     "DeploymentConfigsProductionAnalyticsEngineDatasets",
     "DeploymentConfigsProductionAnalyticsEngineDatasetsAnalyticsEngineBinding",
+    "DeploymentConfigsProductionBrowsers",
     "DeploymentConfigsProductionD1Databases",
     "DeploymentConfigsProductionD1DatabasesD1Binding",
     "DeploymentConfigsProductionDurableObjectNamespaces",
     "DeploymentConfigsProductionDurableObjectNamespacesDoBinding",
     "DeploymentConfigsProductionEnvVars",
     "DeploymentConfigsProductionEnvVarsEnvironmentVariable",
+    "DeploymentConfigsProductionHyperdriveBindings",
+    "DeploymentConfigsProductionHyperdriveBindingsHyperdrive",
     "DeploymentConfigsProductionKVNamespaces",
     "DeploymentConfigsProductionKVNamespacesKVBinding",
+    "DeploymentConfigsProductionMTLSCertificates",
+    "DeploymentConfigsProductionMTLSCertificatesMTLS",
     "DeploymentConfigsProductionPlacement",
     "DeploymentConfigsProductionQueueProducers",
     "DeploymentConfigsProductionQueueProducersQueueProducerBinding",
     "DeploymentConfigsProductionR2Buckets",
     "DeploymentConfigsProductionR2BucketsR2Binding",
-    "DeploymentConfigsProductionServiceBindings",
-    "DeploymentConfigsProductionServiceBindingsServiceBinding",
+    "DeploymentConfigsProductionServices",
+    "DeploymentConfigsProductionServicesServiceBinding",
+    "DeploymentConfigsProductionVectorizeBindings",
+    "DeploymentConfigsProductionVectorizeBindingsVectorize",
 ]
 
 
@@ -97,6 +111,11 @@ class DeploymentConfigsPreviewAnalyticsEngineDatasets(BaseModel):
     """Analytics Engine binding."""
 
 
+class DeploymentConfigsPreviewBrowsers(BaseModel):
+    browser: Optional[object] = FieldInfo(alias="BROWSER", default=None)
+    """Browser binding."""
+
+
 class DeploymentConfigsPreviewD1DatabasesD1Binding(BaseModel):
     id: Optional[str] = None
     """UUID of the D1 database."""
@@ -134,6 +153,17 @@ class DeploymentConfigsPreviewEnvVars(BaseModel):
     """Environment variable."""
 
 
+class DeploymentConfigsPreviewHyperdriveBindingsHyperdrive(BaseModel):
+    id: Optional[str] = None
+
+
+class DeploymentConfigsPreviewHyperdriveBindings(BaseModel):
+    hyperdrive: Optional[DeploymentConfigsPreviewHyperdriveBindingsHyperdrive] = FieldInfo(
+        alias="HYPERDRIVE", default=None
+    )
+    """Hyperdrive binding."""
+
+
 class DeploymentConfigsPreviewKVNamespacesKVBinding(BaseModel):
     namespace_id: Optional[str] = None
     """ID of the KV namespace."""
@@ -142,6 +172,15 @@ class DeploymentConfigsPreviewKVNamespacesKVBinding(BaseModel):
 class DeploymentConfigsPreviewKVNamespaces(BaseModel):
     kv_binding: Optional[DeploymentConfigsPreviewKVNamespacesKVBinding] = FieldInfo(alias="KV_BINDING", default=None)
     """KV binding."""
+
+
+class DeploymentConfigsPreviewMTLSCertificatesMTLS(BaseModel):
+    certificate_id: Optional[str] = None
+
+
+class DeploymentConfigsPreviewMTLSCertificates(BaseModel):
+    mtls: Optional[DeploymentConfigsPreviewMTLSCertificatesMTLS] = FieldInfo(alias="MTLS", default=None)
+    """mTLS binding."""
 
 
 class DeploymentConfigsPreviewPlacement(BaseModel):
@@ -171,7 +210,7 @@ class DeploymentConfigsPreviewR2Buckets(BaseModel):
     """R2 binding."""
 
 
-class DeploymentConfigsPreviewServiceBindingsServiceBinding(BaseModel):
+class DeploymentConfigsPreviewServicesServiceBinding(BaseModel):
     environment: Optional[str] = None
     """The Service environment."""
 
@@ -179,11 +218,20 @@ class DeploymentConfigsPreviewServiceBindingsServiceBinding(BaseModel):
     """The Service name."""
 
 
-class DeploymentConfigsPreviewServiceBindings(BaseModel):
-    service_binding: Optional[DeploymentConfigsPreviewServiceBindingsServiceBinding] = FieldInfo(
+class DeploymentConfigsPreviewServices(BaseModel):
+    service_binding: Optional[DeploymentConfigsPreviewServicesServiceBinding] = FieldInfo(
         alias="SERVICE_BINDING", default=None
     )
     """Service binding."""
+
+
+class DeploymentConfigsPreviewVectorizeBindingsVectorize(BaseModel):
+    index_name: Optional[str] = None
+
+
+class DeploymentConfigsPreviewVectorizeBindings(BaseModel):
+    vectorize: Optional[DeploymentConfigsPreviewVectorizeBindingsVectorize] = FieldInfo(alias="VECTORIZE", default=None)
+    """Vectorize binding."""
 
 
 class DeploymentConfigsPreview(BaseModel):
@@ -192,6 +240,9 @@ class DeploymentConfigsPreview(BaseModel):
 
     analytics_engine_datasets: Optional[DeploymentConfigsPreviewAnalyticsEngineDatasets] = None
     """Analytics Engine bindings used for Pages Functions."""
+
+    browsers: Optional[DeploymentConfigsPreviewBrowsers] = None
+    """Browser bindings used for Pages Functions."""
 
     compatibility_date: Optional[str] = None
     """Compatibility date used for Pages Functions."""
@@ -208,8 +259,14 @@ class DeploymentConfigsPreview(BaseModel):
     env_vars: Optional[DeploymentConfigsPreviewEnvVars] = None
     """Environment variables for build configs."""
 
+    hyperdrive_bindings: Optional[DeploymentConfigsPreviewHyperdriveBindings] = None
+    """Hyperdrive bindings used for Pages Functions."""
+
     kv_namespaces: Optional[DeploymentConfigsPreviewKVNamespaces] = None
     """KV namespaces used for Pages Functions."""
+
+    mtls_certificates: Optional[DeploymentConfigsPreviewMTLSCertificates] = None
+    """mTLS bindings used for Pages Functions."""
 
     placement: Optional[DeploymentConfigsPreviewPlacement] = None
     """Placement setting used for Pages Functions."""
@@ -220,8 +277,11 @@ class DeploymentConfigsPreview(BaseModel):
     r2_buckets: Optional[DeploymentConfigsPreviewR2Buckets] = None
     """R2 buckets used for Pages Functions."""
 
-    service_bindings: Optional[DeploymentConfigsPreviewServiceBindings] = None
+    services: Optional[DeploymentConfigsPreviewServices] = None
     """Services used for Pages Functions."""
+
+    vectorize_bindings: Optional[DeploymentConfigsPreviewVectorizeBindings] = None
+    """Vectorize bindings used for Pages Functions."""
 
 
 class DeploymentConfigsProductionAIBindingsAIBinding(BaseModel):
@@ -243,6 +303,11 @@ class DeploymentConfigsProductionAnalyticsEngineDatasets(BaseModel):
         DeploymentConfigsProductionAnalyticsEngineDatasetsAnalyticsEngineBinding
     ] = FieldInfo(alias="ANALYTICS_ENGINE_BINDING", default=None)
     """Analytics Engine binding."""
+
+
+class DeploymentConfigsProductionBrowsers(BaseModel):
+    browser: Optional[object] = FieldInfo(alias="BROWSER", default=None)
+    """Browser binding."""
 
 
 class DeploymentConfigsProductionD1DatabasesD1Binding(BaseModel):
@@ -282,6 +347,17 @@ class DeploymentConfigsProductionEnvVars(BaseModel):
     """Environment variable."""
 
 
+class DeploymentConfigsProductionHyperdriveBindingsHyperdrive(BaseModel):
+    id: Optional[str] = None
+
+
+class DeploymentConfigsProductionHyperdriveBindings(BaseModel):
+    hyperdrive: Optional[DeploymentConfigsProductionHyperdriveBindingsHyperdrive] = FieldInfo(
+        alias="HYPERDRIVE", default=None
+    )
+    """Hyperdrive binding."""
+
+
 class DeploymentConfigsProductionKVNamespacesKVBinding(BaseModel):
     namespace_id: Optional[str] = None
     """ID of the KV namespace."""
@@ -290,6 +366,15 @@ class DeploymentConfigsProductionKVNamespacesKVBinding(BaseModel):
 class DeploymentConfigsProductionKVNamespaces(BaseModel):
     kv_binding: Optional[DeploymentConfigsProductionKVNamespacesKVBinding] = FieldInfo(alias="KV_BINDING", default=None)
     """KV binding."""
+
+
+class DeploymentConfigsProductionMTLSCertificatesMTLS(BaseModel):
+    certificate_id: Optional[str] = None
+
+
+class DeploymentConfigsProductionMTLSCertificates(BaseModel):
+    mtls: Optional[DeploymentConfigsProductionMTLSCertificatesMTLS] = FieldInfo(alias="MTLS", default=None)
+    """mTLS binding."""
 
 
 class DeploymentConfigsProductionPlacement(BaseModel):
@@ -319,7 +404,7 @@ class DeploymentConfigsProductionR2Buckets(BaseModel):
     """R2 binding."""
 
 
-class DeploymentConfigsProductionServiceBindingsServiceBinding(BaseModel):
+class DeploymentConfigsProductionServicesServiceBinding(BaseModel):
     environment: Optional[str] = None
     """The Service environment."""
 
@@ -327,11 +412,22 @@ class DeploymentConfigsProductionServiceBindingsServiceBinding(BaseModel):
     """The Service name."""
 
 
-class DeploymentConfigsProductionServiceBindings(BaseModel):
-    service_binding: Optional[DeploymentConfigsProductionServiceBindingsServiceBinding] = FieldInfo(
+class DeploymentConfigsProductionServices(BaseModel):
+    service_binding: Optional[DeploymentConfigsProductionServicesServiceBinding] = FieldInfo(
         alias="SERVICE_BINDING", default=None
     )
     """Service binding."""
+
+
+class DeploymentConfigsProductionVectorizeBindingsVectorize(BaseModel):
+    index_name: Optional[str] = None
+
+
+class DeploymentConfigsProductionVectorizeBindings(BaseModel):
+    vectorize: Optional[DeploymentConfigsProductionVectorizeBindingsVectorize] = FieldInfo(
+        alias="VECTORIZE", default=None
+    )
+    """Vectorize binding."""
 
 
 class DeploymentConfigsProduction(BaseModel):
@@ -340,6 +436,9 @@ class DeploymentConfigsProduction(BaseModel):
 
     analytics_engine_datasets: Optional[DeploymentConfigsProductionAnalyticsEngineDatasets] = None
     """Analytics Engine bindings used for Pages Functions."""
+
+    browsers: Optional[DeploymentConfigsProductionBrowsers] = None
+    """Browser bindings used for Pages Functions."""
 
     compatibility_date: Optional[str] = None
     """Compatibility date used for Pages Functions."""
@@ -356,8 +455,14 @@ class DeploymentConfigsProduction(BaseModel):
     env_vars: Optional[DeploymentConfigsProductionEnvVars] = None
     """Environment variables for build configs."""
 
+    hyperdrive_bindings: Optional[DeploymentConfigsProductionHyperdriveBindings] = None
+    """Hyperdrive bindings used for Pages Functions."""
+
     kv_namespaces: Optional[DeploymentConfigsProductionKVNamespaces] = None
     """KV namespaces used for Pages Functions."""
+
+    mtls_certificates: Optional[DeploymentConfigsProductionMTLSCertificates] = None
+    """mTLS bindings used for Pages Functions."""
 
     placement: Optional[DeploymentConfigsProductionPlacement] = None
     """Placement setting used for Pages Functions."""
@@ -368,8 +473,11 @@ class DeploymentConfigsProduction(BaseModel):
     r2_buckets: Optional[DeploymentConfigsProductionR2Buckets] = None
     """R2 buckets used for Pages Functions."""
 
-    service_bindings: Optional[DeploymentConfigsProductionServiceBindings] = None
+    services: Optional[DeploymentConfigsProductionServices] = None
     """Services used for Pages Functions."""
+
+    vectorize_bindings: Optional[DeploymentConfigsProductionVectorizeBindings] = None
+    """Vectorize bindings used for Pages Functions."""
 
 
 class DeploymentConfigs(BaseModel):
