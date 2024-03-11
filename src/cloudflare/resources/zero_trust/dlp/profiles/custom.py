@@ -31,17 +31,17 @@ from .....types.zero_trust.dlp.profiles import (
     custom_update_params,
 )
 
-__all__ = ["Customs", "AsyncCustoms"]
+__all__ = ["Custom", "AsyncCustom"]
 
 
-class Customs(SyncAPIResource):
+class Custom(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> CustomsWithRawResponse:
-        return CustomsWithRawResponse(self)
+    def with_raw_response(self) -> CustomWithRawResponse:
+        return CustomWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> CustomsWithStreamingResponse:
-        return CustomsWithStreamingResponse(self)
+    def with_streaming_response(self) -> CustomWithStreamingResponse:
+        return CustomWithStreamingResponse(self)
 
     def create(
         self,
@@ -251,14 +251,14 @@ class Customs(SyncAPIResource):
         )
 
 
-class AsyncCustoms(AsyncAPIResource):
+class AsyncCustom(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncCustomsWithRawResponse:
-        return AsyncCustomsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncCustomWithRawResponse:
+        return AsyncCustomWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncCustomsWithStreamingResponse:
-        return AsyncCustomsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncCustomWithStreamingResponse:
+        return AsyncCustomWithStreamingResponse(self)
 
     async def create(
         self,
@@ -468,73 +468,73 @@ class AsyncCustoms(AsyncAPIResource):
         )
 
 
-class CustomsWithRawResponse:
-    def __init__(self, customs: Customs) -> None:
-        self._customs = customs
+class CustomWithRawResponse:
+    def __init__(self, custom: Custom) -> None:
+        self._custom = custom
 
         self.create = to_raw_response_wrapper(
-            customs.create,
+            custom.create,
         )
         self.update = to_raw_response_wrapper(
-            customs.update,
+            custom.update,
         )
         self.delete = to_raw_response_wrapper(
-            customs.delete,
+            custom.delete,
         )
         self.get = to_raw_response_wrapper(
-            customs.get,
+            custom.get,
         )
 
 
-class AsyncCustomsWithRawResponse:
-    def __init__(self, customs: AsyncCustoms) -> None:
-        self._customs = customs
+class AsyncCustomWithRawResponse:
+    def __init__(self, custom: AsyncCustom) -> None:
+        self._custom = custom
 
         self.create = async_to_raw_response_wrapper(
-            customs.create,
+            custom.create,
         )
         self.update = async_to_raw_response_wrapper(
-            customs.update,
+            custom.update,
         )
         self.delete = async_to_raw_response_wrapper(
-            customs.delete,
+            custom.delete,
         )
         self.get = async_to_raw_response_wrapper(
-            customs.get,
+            custom.get,
         )
 
 
-class CustomsWithStreamingResponse:
-    def __init__(self, customs: Customs) -> None:
-        self._customs = customs
+class CustomWithStreamingResponse:
+    def __init__(self, custom: Custom) -> None:
+        self._custom = custom
 
         self.create = to_streamed_response_wrapper(
-            customs.create,
+            custom.create,
         )
         self.update = to_streamed_response_wrapper(
-            customs.update,
+            custom.update,
         )
         self.delete = to_streamed_response_wrapper(
-            customs.delete,
+            custom.delete,
         )
         self.get = to_streamed_response_wrapper(
-            customs.get,
+            custom.get,
         )
 
 
-class AsyncCustomsWithStreamingResponse:
-    def __init__(self, customs: AsyncCustoms) -> None:
-        self._customs = customs
+class AsyncCustomWithStreamingResponse:
+    def __init__(self, custom: AsyncCustom) -> None:
+        self._custom = custom
 
         self.create = async_to_streamed_response_wrapper(
-            customs.create,
+            custom.create,
         )
         self.update = async_to_streamed_response_wrapper(
-            customs.update,
+            custom.update,
         )
         self.delete = async_to_streamed_response_wrapper(
-            customs.delete,
+            custom.delete,
         )
         self.get = async_to_streamed_response_wrapper(
-            customs.get,
+            custom.get,
         )

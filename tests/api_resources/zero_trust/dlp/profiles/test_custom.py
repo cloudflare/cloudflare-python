@@ -18,13 +18,13 @@ from cloudflare.types.zero_trust.dlp.profiles import (
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
-class TestCustoms:
+class TestCustom:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip()
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
-        custom = client.zero_trust.dlp.profiles.customs.create(
+        custom = client.zero_trust.dlp.profiles.custom.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             profiles=[{}, {}, {}],
         )
@@ -33,7 +33,7 @@ class TestCustoms:
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
-        response = client.zero_trust.dlp.profiles.customs.with_raw_response.create(
+        response = client.zero_trust.dlp.profiles.custom.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             profiles=[{}, {}, {}],
         )
@@ -46,7 +46,7 @@ class TestCustoms:
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
-        with client.zero_trust.dlp.profiles.customs.with_streaming_response.create(
+        with client.zero_trust.dlp.profiles.custom.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             profiles=[{}, {}, {}],
         ) as response:
@@ -62,7 +62,7 @@ class TestCustoms:
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.zero_trust.dlp.profiles.customs.with_raw_response.create(
+            client.zero_trust.dlp.profiles.custom.with_raw_response.create(
                 account_id="",
                 profiles=[{}, {}, {}],
             )
@@ -70,7 +70,7 @@ class TestCustoms:
     @pytest.mark.skip()
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
-        custom = client.zero_trust.dlp.profiles.customs.update(
+        custom = client.zero_trust.dlp.profiles.custom.update(
             "384e129d-25bd-403c-8019-bc19eb7a8a5f",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -79,7 +79,7 @@ class TestCustoms:
     @pytest.mark.skip()
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
-        custom = client.zero_trust.dlp.profiles.customs.update(
+        custom = client.zero_trust.dlp.profiles.custom.update(
             "384e129d-25bd-403c-8019-bc19eb7a8a5f",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             allowed_match_count=5,
@@ -125,7 +125,7 @@ class TestCustoms:
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
-        response = client.zero_trust.dlp.profiles.customs.with_raw_response.update(
+        response = client.zero_trust.dlp.profiles.custom.with_raw_response.update(
             "384e129d-25bd-403c-8019-bc19eb7a8a5f",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -138,7 +138,7 @@ class TestCustoms:
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
-        with client.zero_trust.dlp.profiles.customs.with_streaming_response.update(
+        with client.zero_trust.dlp.profiles.custom.with_streaming_response.update(
             "384e129d-25bd-403c-8019-bc19eb7a8a5f",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -154,13 +154,13 @@ class TestCustoms:
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.zero_trust.dlp.profiles.customs.with_raw_response.update(
+            client.zero_trust.dlp.profiles.custom.with_raw_response.update(
                 "384e129d-25bd-403c-8019-bc19eb7a8a5f",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `profile_id` but received ''"):
-            client.zero_trust.dlp.profiles.customs.with_raw_response.update(
+            client.zero_trust.dlp.profiles.custom.with_raw_response.update(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
@@ -168,7 +168,7 @@ class TestCustoms:
     @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
-        custom = client.zero_trust.dlp.profiles.customs.delete(
+        custom = client.zero_trust.dlp.profiles.custom.delete(
             "384e129d-25bd-403c-8019-bc19eb7a8a5f",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -177,7 +177,7 @@ class TestCustoms:
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
-        response = client.zero_trust.dlp.profiles.customs.with_raw_response.delete(
+        response = client.zero_trust.dlp.profiles.custom.with_raw_response.delete(
             "384e129d-25bd-403c-8019-bc19eb7a8a5f",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -190,7 +190,7 @@ class TestCustoms:
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
-        with client.zero_trust.dlp.profiles.customs.with_streaming_response.delete(
+        with client.zero_trust.dlp.profiles.custom.with_streaming_response.delete(
             "384e129d-25bd-403c-8019-bc19eb7a8a5f",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -206,13 +206,13 @@ class TestCustoms:
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.zero_trust.dlp.profiles.customs.with_raw_response.delete(
+            client.zero_trust.dlp.profiles.custom.with_raw_response.delete(
                 "384e129d-25bd-403c-8019-bc19eb7a8a5f",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `profile_id` but received ''"):
-            client.zero_trust.dlp.profiles.customs.with_raw_response.delete(
+            client.zero_trust.dlp.profiles.custom.with_raw_response.delete(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
@@ -220,7 +220,7 @@ class TestCustoms:
     @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
-        custom = client.zero_trust.dlp.profiles.customs.get(
+        custom = client.zero_trust.dlp.profiles.custom.get(
             "384e129d-25bd-403c-8019-bc19eb7a8a5f",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -229,7 +229,7 @@ class TestCustoms:
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
-        response = client.zero_trust.dlp.profiles.customs.with_raw_response.get(
+        response = client.zero_trust.dlp.profiles.custom.with_raw_response.get(
             "384e129d-25bd-403c-8019-bc19eb7a8a5f",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -242,7 +242,7 @@ class TestCustoms:
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
-        with client.zero_trust.dlp.profiles.customs.with_streaming_response.get(
+        with client.zero_trust.dlp.profiles.custom.with_streaming_response.get(
             "384e129d-25bd-403c-8019-bc19eb7a8a5f",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -258,25 +258,25 @@ class TestCustoms:
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.zero_trust.dlp.profiles.customs.with_raw_response.get(
+            client.zero_trust.dlp.profiles.custom.with_raw_response.get(
                 "384e129d-25bd-403c-8019-bc19eb7a8a5f",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `profile_id` but received ''"):
-            client.zero_trust.dlp.profiles.customs.with_raw_response.get(
+            client.zero_trust.dlp.profiles.custom.with_raw_response.get(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
 
-class TestAsyncCustoms:
+class TestAsyncCustom:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
-        custom = await async_client.zero_trust.dlp.profiles.customs.create(
+        custom = await async_client.zero_trust.dlp.profiles.custom.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             profiles=[{}, {}, {}],
         )
@@ -285,7 +285,7 @@ class TestAsyncCustoms:
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.zero_trust.dlp.profiles.customs.with_raw_response.create(
+        response = await async_client.zero_trust.dlp.profiles.custom.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             profiles=[{}, {}, {}],
         )
@@ -298,7 +298,7 @@ class TestAsyncCustoms:
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.zero_trust.dlp.profiles.customs.with_streaming_response.create(
+        async with async_client.zero_trust.dlp.profiles.custom.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             profiles=[{}, {}, {}],
         ) as response:
@@ -314,7 +314,7 @@ class TestAsyncCustoms:
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.zero_trust.dlp.profiles.customs.with_raw_response.create(
+            await async_client.zero_trust.dlp.profiles.custom.with_raw_response.create(
                 account_id="",
                 profiles=[{}, {}, {}],
             )
@@ -322,7 +322,7 @@ class TestAsyncCustoms:
     @pytest.mark.skip()
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
-        custom = await async_client.zero_trust.dlp.profiles.customs.update(
+        custom = await async_client.zero_trust.dlp.profiles.custom.update(
             "384e129d-25bd-403c-8019-bc19eb7a8a5f",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -331,7 +331,7 @@ class TestAsyncCustoms:
     @pytest.mark.skip()
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        custom = await async_client.zero_trust.dlp.profiles.customs.update(
+        custom = await async_client.zero_trust.dlp.profiles.custom.update(
             "384e129d-25bd-403c-8019-bc19eb7a8a5f",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             allowed_match_count=5,
@@ -377,7 +377,7 @@ class TestAsyncCustoms:
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.zero_trust.dlp.profiles.customs.with_raw_response.update(
+        response = await async_client.zero_trust.dlp.profiles.custom.with_raw_response.update(
             "384e129d-25bd-403c-8019-bc19eb7a8a5f",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -390,7 +390,7 @@ class TestAsyncCustoms:
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.zero_trust.dlp.profiles.customs.with_streaming_response.update(
+        async with async_client.zero_trust.dlp.profiles.custom.with_streaming_response.update(
             "384e129d-25bd-403c-8019-bc19eb7a8a5f",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -406,13 +406,13 @@ class TestAsyncCustoms:
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.zero_trust.dlp.profiles.customs.with_raw_response.update(
+            await async_client.zero_trust.dlp.profiles.custom.with_raw_response.update(
                 "384e129d-25bd-403c-8019-bc19eb7a8a5f",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `profile_id` but received ''"):
-            await async_client.zero_trust.dlp.profiles.customs.with_raw_response.update(
+            await async_client.zero_trust.dlp.profiles.custom.with_raw_response.update(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
@@ -420,7 +420,7 @@ class TestAsyncCustoms:
     @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
-        custom = await async_client.zero_trust.dlp.profiles.customs.delete(
+        custom = await async_client.zero_trust.dlp.profiles.custom.delete(
             "384e129d-25bd-403c-8019-bc19eb7a8a5f",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -429,7 +429,7 @@ class TestAsyncCustoms:
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.zero_trust.dlp.profiles.customs.with_raw_response.delete(
+        response = await async_client.zero_trust.dlp.profiles.custom.with_raw_response.delete(
             "384e129d-25bd-403c-8019-bc19eb7a8a5f",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -442,7 +442,7 @@ class TestAsyncCustoms:
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.zero_trust.dlp.profiles.customs.with_streaming_response.delete(
+        async with async_client.zero_trust.dlp.profiles.custom.with_streaming_response.delete(
             "384e129d-25bd-403c-8019-bc19eb7a8a5f",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -458,13 +458,13 @@ class TestAsyncCustoms:
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.zero_trust.dlp.profiles.customs.with_raw_response.delete(
+            await async_client.zero_trust.dlp.profiles.custom.with_raw_response.delete(
                 "384e129d-25bd-403c-8019-bc19eb7a8a5f",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `profile_id` but received ''"):
-            await async_client.zero_trust.dlp.profiles.customs.with_raw_response.delete(
+            await async_client.zero_trust.dlp.profiles.custom.with_raw_response.delete(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
@@ -472,7 +472,7 @@ class TestAsyncCustoms:
     @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
-        custom = await async_client.zero_trust.dlp.profiles.customs.get(
+        custom = await async_client.zero_trust.dlp.profiles.custom.get(
             "384e129d-25bd-403c-8019-bc19eb7a8a5f",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -481,7 +481,7 @@ class TestAsyncCustoms:
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.zero_trust.dlp.profiles.customs.with_raw_response.get(
+        response = await async_client.zero_trust.dlp.profiles.custom.with_raw_response.get(
             "384e129d-25bd-403c-8019-bc19eb7a8a5f",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -494,7 +494,7 @@ class TestAsyncCustoms:
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.zero_trust.dlp.profiles.customs.with_streaming_response.get(
+        async with async_client.zero_trust.dlp.profiles.custom.with_streaming_response.get(
             "384e129d-25bd-403c-8019-bc19eb7a8a5f",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -510,13 +510,13 @@ class TestAsyncCustoms:
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.zero_trust.dlp.profiles.customs.with_raw_response.get(
+            await async_client.zero_trust.dlp.profiles.custom.with_raw_response.get(
                 "384e129d-25bd-403c-8019-bc19eb7a8a5f",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `profile_id` but received ''"):
-            await async_client.zero_trust.dlp.profiles.customs.with_raw_response.get(
+            await async_client.zero_trust.dlp.profiles.custom.with_raw_response.get(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
