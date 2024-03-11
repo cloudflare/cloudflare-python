@@ -40,13 +40,13 @@ from .outgoing import (
     OutgoingWithStreamingResponse,
     AsyncOutgoingWithStreamingResponse,
 )
-from .force_axfrs import (
-    ForceAxfrs,
-    AsyncForceAxfrs,
-    ForceAxfrsWithRawResponse,
-    AsyncForceAxfrsWithRawResponse,
-    ForceAxfrsWithStreamingResponse,
-    AsyncForceAxfrsWithStreamingResponse,
+from .force_axfr import (
+    ForceAXFR,
+    AsyncForceAXFR,
+    ForceAXFRWithRawResponse,
+    AsyncForceAXFRWithRawResponse,
+    ForceAXFRWithStreamingResponse,
+    AsyncForceAXFRWithStreamingResponse,
 )
 from .secondary_dns import (
     SecondaryDNS,
@@ -58,12 +58,12 @@ from .secondary_dns import (
 )
 
 __all__ = [
-    "ForceAxfrs",
-    "AsyncForceAxfrs",
-    "ForceAxfrsWithRawResponse",
-    "AsyncForceAxfrsWithRawResponse",
-    "ForceAxfrsWithStreamingResponse",
-    "AsyncForceAxfrsWithStreamingResponse",
+    "ForceAXFR",
+    "AsyncForceAXFR",
+    "ForceAXFRWithRawResponse",
+    "AsyncForceAXFRWithRawResponse",
+    "ForceAXFRWithStreamingResponse",
+    "AsyncForceAXFRWithStreamingResponse",
     "Incoming",
     "AsyncIncoming",
     "IncomingWithRawResponse",
