@@ -13,7 +13,6 @@ from cloudflare.types import (
     WaitingroomWaitingroom,
     WaitingRoomListResponse,
     WaitingRoomDeleteResponse,
-    WaitingRoomPreviewResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -466,52 +465,6 @@ class TestWaitingRooms:
                 zone_identifier="",
             )
 
-    @pytest.mark.skip()
-    @parametrize
-    def test_method_preview(self, client: Cloudflare) -> None:
-        waiting_room = client.waiting_rooms.preview(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            custom_html="{{#waitTimeKnown}} {{waitTime}} mins {{/waitTimeKnown}} {{^waitTimeKnown}} Queue all enabled {{/waitTimeKnown}}",
-        )
-        assert_matches_type(WaitingRoomPreviewResponse, waiting_room, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_raw_response_preview(self, client: Cloudflare) -> None:
-        response = client.waiting_rooms.with_raw_response.preview(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            custom_html="{{#waitTimeKnown}} {{waitTime}} mins {{/waitTimeKnown}} {{^waitTimeKnown}} Queue all enabled {{/waitTimeKnown}}",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        waiting_room = response.parse()
-        assert_matches_type(WaitingRoomPreviewResponse, waiting_room, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_streaming_response_preview(self, client: Cloudflare) -> None:
-        with client.waiting_rooms.with_streaming_response.preview(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            custom_html="{{#waitTimeKnown}} {{waitTime}} mins {{/waitTimeKnown}} {{^waitTimeKnown}} Queue all enabled {{/waitTimeKnown}}",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            waiting_room = response.parse()
-            assert_matches_type(WaitingRoomPreviewResponse, waiting_room, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_path_params_preview(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
-            client.waiting_rooms.with_raw_response.preview(
-                "",
-                custom_html="{{#waitTimeKnown}} {{waitTime}} mins {{/waitTimeKnown}} {{^waitTimeKnown}} Queue all enabled {{/waitTimeKnown}}",
-            )
-
 
 class TestAsyncWaitingRooms:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
@@ -958,50 +911,4 @@ class TestAsyncWaitingRooms:
             await async_client.waiting_rooms.with_raw_response.get(
                 "699d98642c564d2e855e9661899b7252",
                 zone_identifier="",
-            )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_preview(self, async_client: AsyncCloudflare) -> None:
-        waiting_room = await async_client.waiting_rooms.preview(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            custom_html="{{#waitTimeKnown}} {{waitTime}} mins {{/waitTimeKnown}} {{^waitTimeKnown}} Queue all enabled {{/waitTimeKnown}}",
-        )
-        assert_matches_type(WaitingRoomPreviewResponse, waiting_room, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_raw_response_preview(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.waiting_rooms.with_raw_response.preview(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            custom_html="{{#waitTimeKnown}} {{waitTime}} mins {{/waitTimeKnown}} {{^waitTimeKnown}} Queue all enabled {{/waitTimeKnown}}",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        waiting_room = await response.parse()
-        assert_matches_type(WaitingRoomPreviewResponse, waiting_room, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_streaming_response_preview(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.waiting_rooms.with_streaming_response.preview(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            custom_html="{{#waitTimeKnown}} {{waitTime}} mins {{/waitTimeKnown}} {{^waitTimeKnown}} Queue all enabled {{/waitTimeKnown}}",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            waiting_room = await response.parse()
-            assert_matches_type(WaitingRoomPreviewResponse, waiting_room, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_path_params_preview(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
-            await async_client.waiting_rooms.with_raw_response.preview(
-                "",
-                custom_html="{{#waitTimeKnown}} {{waitTime}} mins {{/waitTimeKnown}} {{^waitTimeKnown}} Queue all enabled {{/waitTimeKnown}}",
             )

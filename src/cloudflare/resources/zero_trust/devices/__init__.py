@@ -8,6 +8,14 @@ from .devices import (
     DevicesWithStreamingResponse,
     AsyncDevicesWithStreamingResponse,
 )
+from .posture import (
+    Posture,
+    AsyncPosture,
+    PostureWithRawResponse,
+    AsyncPostureWithRawResponse,
+    PostureWithStreamingResponse,
+    AsyncPostureWithStreamingResponse,
+)
 from .revokes import (
     Revokes,
     AsyncRevokes,
@@ -31,14 +39,6 @@ from .policies import (
     AsyncPoliciesWithRawResponse,
     PoliciesWithStreamingResponse,
     AsyncPoliciesWithStreamingResponse,
-)
-from .postures import (
-    Postures,
-    AsyncPostures,
-    PosturesWithRawResponse,
-    AsyncPosturesWithRawResponse,
-    PosturesWithStreamingResponse,
-    AsyncPosturesWithStreamingResponse,
 )
 from .settings import (
     Settings,
@@ -92,12 +92,12 @@ __all__ = [
     "AsyncPoliciesWithRawResponse",
     "PoliciesWithStreamingResponse",
     "AsyncPoliciesWithStreamingResponse",
-    "Postures",
-    "AsyncPostures",
-    "PosturesWithRawResponse",
-    "AsyncPosturesWithRawResponse",
-    "PosturesWithStreamingResponse",
-    "AsyncPosturesWithStreamingResponse",
+    "Posture",
+    "AsyncPosture",
+    "PostureWithRawResponse",
+    "AsyncPostureWithRawResponse",
+    "PostureWithStreamingResponse",
+    "AsyncPostureWithStreamingResponse",
     "Revokes",
     "AsyncRevokes",
     "RevokesWithRawResponse",
