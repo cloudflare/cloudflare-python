@@ -2352,7 +2352,7 @@ Methods:
 
 # SecondaryDNS
 
-## ForceAxfrs
+## ForceAXFR
 
 Types:
 
@@ -2362,7 +2362,7 @@ from cloudflare.types.secondary_dns import SecondaryDNSForceResult
 
 Methods:
 
-- <code title="post /zones/{zone_id}/secondary_dns/force_axfr">client.secondary_dns.force_axfrs.<a href="./src/cloudflare/resources/secondary_dns/force_axfrs.py">create</a>(\*, zone_id) -> <a href="./src/cloudflare/types/secondary_dns/secondary_dns_force_result.py">str</a></code>
+- <code title="post /zones/{zone_id}/secondary_dns/force_axfr">client.secondary_dns.force_axfr.<a href="./src/cloudflare/resources/secondary_dns/force_axfr.py">create</a>(\*, zone_id) -> <a href="./src/cloudflare/types/secondary_dns/secondary_dns_force_result.py">str</a></code>
 
 ## Incoming
 

@@ -20,17 +20,17 @@ from ..._base_client import (
     make_request_options,
 )
 
-__all__ = ["ForceAxfrs", "AsyncForceAxfrs"]
+__all__ = ["ForceAXFR", "AsyncForceAXFR"]
 
 
-class ForceAxfrs(SyncAPIResource):
+class ForceAXFR(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> ForceAxfrsWithRawResponse:
-        return ForceAxfrsWithRawResponse(self)
+    def with_raw_response(self) -> ForceAXFRWithRawResponse:
+        return ForceAXFRWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ForceAxfrsWithStreamingResponse:
-        return ForceAxfrsWithStreamingResponse(self)
+    def with_streaming_response(self) -> ForceAXFRWithStreamingResponse:
+        return ForceAXFRWithStreamingResponse(self)
 
     def create(
         self,
@@ -68,14 +68,14 @@ class ForceAxfrs(SyncAPIResource):
         )
 
 
-class AsyncForceAxfrs(AsyncAPIResource):
+class AsyncForceAXFR(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncForceAxfrsWithRawResponse:
-        return AsyncForceAxfrsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncForceAXFRWithRawResponse:
+        return AsyncForceAXFRWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncForceAxfrsWithStreamingResponse:
-        return AsyncForceAxfrsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncForceAXFRWithStreamingResponse:
+        return AsyncForceAXFRWithStreamingResponse(self)
 
     async def create(
         self,
@@ -113,37 +113,37 @@ class AsyncForceAxfrs(AsyncAPIResource):
         )
 
 
-class ForceAxfrsWithRawResponse:
-    def __init__(self, force_axfrs: ForceAxfrs) -> None:
-        self._force_axfrs = force_axfrs
+class ForceAXFRWithRawResponse:
+    def __init__(self, force_axfr: ForceAXFR) -> None:
+        self._force_axfr = force_axfr
 
         self.create = to_raw_response_wrapper(
-            force_axfrs.create,
+            force_axfr.create,
         )
 
 
-class AsyncForceAxfrsWithRawResponse:
-    def __init__(self, force_axfrs: AsyncForceAxfrs) -> None:
-        self._force_axfrs = force_axfrs
+class AsyncForceAXFRWithRawResponse:
+    def __init__(self, force_axfr: AsyncForceAXFR) -> None:
+        self._force_axfr = force_axfr
 
         self.create = async_to_raw_response_wrapper(
-            force_axfrs.create,
+            force_axfr.create,
         )
 
 
-class ForceAxfrsWithStreamingResponse:
-    def __init__(self, force_axfrs: ForceAxfrs) -> None:
-        self._force_axfrs = force_axfrs
+class ForceAXFRWithStreamingResponse:
+    def __init__(self, force_axfr: ForceAXFR) -> None:
+        self._force_axfr = force_axfr
 
         self.create = to_streamed_response_wrapper(
-            force_axfrs.create,
+            force_axfr.create,
         )
 
 
-class AsyncForceAxfrsWithStreamingResponse:
-    def __init__(self, force_axfrs: AsyncForceAxfrs) -> None:
-        self._force_axfrs = force_axfrs
+class AsyncForceAXFRWithStreamingResponse:
+    def __init__(self, force_axfr: AsyncForceAXFR) -> None:
+        self._force_axfr = force_axfr
 
         self.create = async_to_streamed_response_wrapper(
-            force_axfrs.create,
+            force_axfr.create,
         )
