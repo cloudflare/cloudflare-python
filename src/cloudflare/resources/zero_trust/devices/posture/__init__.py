@@ -1,12 +1,12 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from .postures import (
-    Postures,
-    AsyncPostures,
-    PosturesWithRawResponse,
-    AsyncPosturesWithRawResponse,
-    PosturesWithStreamingResponse,
-    AsyncPosturesWithStreamingResponse,
+from .posture import (
+    Posture,
+    AsyncPosture,
+    PostureWithRawResponse,
+    AsyncPostureWithRawResponse,
+    PostureWithStreamingResponse,
+    AsyncPostureWithStreamingResponse,
 )
 from .integrations import (
     Integrations,
@@ -24,10 +24,10 @@ __all__ = [
     "AsyncIntegrationsWithRawResponse",
     "IntegrationsWithStreamingResponse",
     "AsyncIntegrationsWithStreamingResponse",
-    "Postures",
-    "AsyncPostures",
-    "PosturesWithRawResponse",
-    "AsyncPosturesWithRawResponse",
-    "PosturesWithStreamingResponse",
-    "AsyncPosturesWithStreamingResponse",
+    "Posture",
+    "AsyncPosture",
+    "PostureWithRawResponse",
+    "AsyncPostureWithRawResponse",
+    "PostureWithStreamingResponse",
+    "AsyncPostureWithStreamingResponse",
 ]

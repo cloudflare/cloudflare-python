@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.zero_trust.devices.postures import (
+from cloudflare.types.zero_trust.devices.posture import (
     IntegrationListResponse,
     IntegrationDeleteResponse,
     TeamsDevicesDevicePostureIntegrations,
@@ -24,7 +24,7 @@ class TestIntegrations:
     @pytest.mark.skip()
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
-        integration = client.zero_trust.devices.postures.integrations.create(
+        integration = client.zero_trust.devices.posture.integrations.create(
             account_id="699d98642c564d2e855e9661899b7252",
             config={
                 "api_url": "https://as123.awmdm.com/API",
@@ -41,7 +41,7 @@ class TestIntegrations:
     @pytest.mark.skip()
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
-        integration = client.zero_trust.devices.postures.integrations.create(
+        integration = client.zero_trust.devices.posture.integrations.create(
             account_id="699d98642c564d2e855e9661899b7252",
             config={
                 "api_url": "https://as123.awmdm.com/API",
@@ -58,7 +58,7 @@ class TestIntegrations:
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
-        response = client.zero_trust.devices.postures.integrations.with_raw_response.create(
+        response = client.zero_trust.devices.posture.integrations.with_raw_response.create(
             account_id="699d98642c564d2e855e9661899b7252",
             config={
                 "api_url": "https://as123.awmdm.com/API",
@@ -79,7 +79,7 @@ class TestIntegrations:
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
-        with client.zero_trust.devices.postures.integrations.with_streaming_response.create(
+        with client.zero_trust.devices.posture.integrations.with_streaming_response.create(
             account_id="699d98642c564d2e855e9661899b7252",
             config={
                 "api_url": "https://as123.awmdm.com/API",
@@ -102,7 +102,7 @@ class TestIntegrations:
     @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
-        integration = client.zero_trust.devices.postures.integrations.list(
+        integration = client.zero_trust.devices.posture.integrations.list(
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[IntegrationListResponse], integration, path=["response"])
@@ -110,7 +110,7 @@ class TestIntegrations:
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
-        response = client.zero_trust.devices.postures.integrations.with_raw_response.list(
+        response = client.zero_trust.devices.posture.integrations.with_raw_response.list(
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -122,7 +122,7 @@ class TestIntegrations:
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
-        with client.zero_trust.devices.postures.integrations.with_streaming_response.list(
+        with client.zero_trust.devices.posture.integrations.with_streaming_response.list(
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -136,7 +136,7 @@ class TestIntegrations:
     @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
-        integration = client.zero_trust.devices.postures.integrations.delete(
+        integration = client.zero_trust.devices.posture.integrations.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
@@ -145,7 +145,7 @@ class TestIntegrations:
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
-        response = client.zero_trust.devices.postures.integrations.with_raw_response.delete(
+        response = client.zero_trust.devices.posture.integrations.with_raw_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
@@ -158,7 +158,7 @@ class TestIntegrations:
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
-        with client.zero_trust.devices.postures.integrations.with_streaming_response.delete(
+        with client.zero_trust.devices.posture.integrations.with_streaming_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
@@ -174,7 +174,7 @@ class TestIntegrations:
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `integration_id` but received ''"):
-            client.zero_trust.devices.postures.integrations.with_raw_response.delete(
+            client.zero_trust.devices.posture.integrations.with_raw_response.delete(
                 "",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
@@ -182,7 +182,7 @@ class TestIntegrations:
     @pytest.mark.skip()
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
-        integration = client.zero_trust.devices.postures.integrations.edit(
+        integration = client.zero_trust.devices.posture.integrations.edit(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
@@ -191,7 +191,7 @@ class TestIntegrations:
     @pytest.mark.skip()
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
-        integration = client.zero_trust.devices.postures.integrations.edit(
+        integration = client.zero_trust.devices.posture.integrations.edit(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             config={
@@ -209,7 +209,7 @@ class TestIntegrations:
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
-        response = client.zero_trust.devices.postures.integrations.with_raw_response.edit(
+        response = client.zero_trust.devices.posture.integrations.with_raw_response.edit(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
@@ -222,7 +222,7 @@ class TestIntegrations:
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
-        with client.zero_trust.devices.postures.integrations.with_streaming_response.edit(
+        with client.zero_trust.devices.posture.integrations.with_streaming_response.edit(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
@@ -238,7 +238,7 @@ class TestIntegrations:
     @parametrize
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `integration_id` but received ''"):
-            client.zero_trust.devices.postures.integrations.with_raw_response.edit(
+            client.zero_trust.devices.posture.integrations.with_raw_response.edit(
                 "",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
@@ -246,7 +246,7 @@ class TestIntegrations:
     @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
-        integration = client.zero_trust.devices.postures.integrations.get(
+        integration = client.zero_trust.devices.posture.integrations.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
@@ -255,7 +255,7 @@ class TestIntegrations:
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
-        response = client.zero_trust.devices.postures.integrations.with_raw_response.get(
+        response = client.zero_trust.devices.posture.integrations.with_raw_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
@@ -268,7 +268,7 @@ class TestIntegrations:
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
-        with client.zero_trust.devices.postures.integrations.with_streaming_response.get(
+        with client.zero_trust.devices.posture.integrations.with_streaming_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
@@ -284,7 +284,7 @@ class TestIntegrations:
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `integration_id` but received ''"):
-            client.zero_trust.devices.postures.integrations.with_raw_response.get(
+            client.zero_trust.devices.posture.integrations.with_raw_response.get(
                 "",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
@@ -296,7 +296,7 @@ class TestAsyncIntegrations:
     @pytest.mark.skip()
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
-        integration = await async_client.zero_trust.devices.postures.integrations.create(
+        integration = await async_client.zero_trust.devices.posture.integrations.create(
             account_id="699d98642c564d2e855e9661899b7252",
             config={
                 "api_url": "https://as123.awmdm.com/API",
@@ -313,7 +313,7 @@ class TestAsyncIntegrations:
     @pytest.mark.skip()
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        integration = await async_client.zero_trust.devices.postures.integrations.create(
+        integration = await async_client.zero_trust.devices.posture.integrations.create(
             account_id="699d98642c564d2e855e9661899b7252",
             config={
                 "api_url": "https://as123.awmdm.com/API",
@@ -330,7 +330,7 @@ class TestAsyncIntegrations:
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.zero_trust.devices.postures.integrations.with_raw_response.create(
+        response = await async_client.zero_trust.devices.posture.integrations.with_raw_response.create(
             account_id="699d98642c564d2e855e9661899b7252",
             config={
                 "api_url": "https://as123.awmdm.com/API",
@@ -351,7 +351,7 @@ class TestAsyncIntegrations:
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.zero_trust.devices.postures.integrations.with_streaming_response.create(
+        async with async_client.zero_trust.devices.posture.integrations.with_streaming_response.create(
             account_id="699d98642c564d2e855e9661899b7252",
             config={
                 "api_url": "https://as123.awmdm.com/API",
@@ -374,7 +374,7 @@ class TestAsyncIntegrations:
     @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
-        integration = await async_client.zero_trust.devices.postures.integrations.list(
+        integration = await async_client.zero_trust.devices.posture.integrations.list(
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[IntegrationListResponse], integration, path=["response"])
@@ -382,7 +382,7 @@ class TestAsyncIntegrations:
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.zero_trust.devices.postures.integrations.with_raw_response.list(
+        response = await async_client.zero_trust.devices.posture.integrations.with_raw_response.list(
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -394,7 +394,7 @@ class TestAsyncIntegrations:
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.zero_trust.devices.postures.integrations.with_streaming_response.list(
+        async with async_client.zero_trust.devices.posture.integrations.with_streaming_response.list(
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -408,7 +408,7 @@ class TestAsyncIntegrations:
     @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
-        integration = await async_client.zero_trust.devices.postures.integrations.delete(
+        integration = await async_client.zero_trust.devices.posture.integrations.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
@@ -417,7 +417,7 @@ class TestAsyncIntegrations:
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.zero_trust.devices.postures.integrations.with_raw_response.delete(
+        response = await async_client.zero_trust.devices.posture.integrations.with_raw_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
@@ -430,7 +430,7 @@ class TestAsyncIntegrations:
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.zero_trust.devices.postures.integrations.with_streaming_response.delete(
+        async with async_client.zero_trust.devices.posture.integrations.with_streaming_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
@@ -446,7 +446,7 @@ class TestAsyncIntegrations:
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `integration_id` but received ''"):
-            await async_client.zero_trust.devices.postures.integrations.with_raw_response.delete(
+            await async_client.zero_trust.devices.posture.integrations.with_raw_response.delete(
                 "",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
@@ -454,7 +454,7 @@ class TestAsyncIntegrations:
     @pytest.mark.skip()
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
-        integration = await async_client.zero_trust.devices.postures.integrations.edit(
+        integration = await async_client.zero_trust.devices.posture.integrations.edit(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
@@ -463,7 +463,7 @@ class TestAsyncIntegrations:
     @pytest.mark.skip()
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        integration = await async_client.zero_trust.devices.postures.integrations.edit(
+        integration = await async_client.zero_trust.devices.posture.integrations.edit(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             config={
@@ -481,7 +481,7 @@ class TestAsyncIntegrations:
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.zero_trust.devices.postures.integrations.with_raw_response.edit(
+        response = await async_client.zero_trust.devices.posture.integrations.with_raw_response.edit(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
@@ -494,7 +494,7 @@ class TestAsyncIntegrations:
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.zero_trust.devices.postures.integrations.with_streaming_response.edit(
+        async with async_client.zero_trust.devices.posture.integrations.with_streaming_response.edit(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
@@ -510,7 +510,7 @@ class TestAsyncIntegrations:
     @parametrize
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `integration_id` but received ''"):
-            await async_client.zero_trust.devices.postures.integrations.with_raw_response.edit(
+            await async_client.zero_trust.devices.posture.integrations.with_raw_response.edit(
                 "",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
@@ -518,7 +518,7 @@ class TestAsyncIntegrations:
     @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
-        integration = await async_client.zero_trust.devices.postures.integrations.get(
+        integration = await async_client.zero_trust.devices.posture.integrations.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
@@ -527,7 +527,7 @@ class TestAsyncIntegrations:
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.zero_trust.devices.postures.integrations.with_raw_response.get(
+        response = await async_client.zero_trust.devices.posture.integrations.with_raw_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
@@ -540,7 +540,7 @@ class TestAsyncIntegrations:
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.zero_trust.devices.postures.integrations.with_streaming_response.get(
+        async with async_client.zero_trust.devices.posture.integrations.with_streaming_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
@@ -556,7 +556,7 @@ class TestAsyncIntegrations:
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `integration_id` but received ''"):
-            await async_client.zero_trust.devices.postures.integrations.with_raw_response.get(
+            await async_client.zero_trust.devices.posture.integrations.with_raw_response.get(
                 "",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
