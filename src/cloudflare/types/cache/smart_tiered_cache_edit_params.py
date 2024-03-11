@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["SmartTieredCachedEditParams"]
+__all__ = ["SmartTieredCacheEditParams"]
 
 
-class SmartTieredCachedEditParams(TypedDict, total=False):
+class SmartTieredCacheEditParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
