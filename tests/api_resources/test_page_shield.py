@@ -72,16 +72,16 @@ class TestPageShield:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list(self, client: Cloudflare) -> None:
-        page_shield = client.page_shield.list(
+    def test_method_get(self, client: Cloudflare) -> None:
+        page_shield = client.page_shield.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(PageShieldGetZoneSettings, page_shield, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_list(self, client: Cloudflare) -> None:
-        response = client.page_shield.with_raw_response.list(
+    def test_raw_response_get(self, client: Cloudflare) -> None:
+        response = client.page_shield.with_raw_response.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -92,8 +92,8 @@ class TestPageShield:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_list(self, client: Cloudflare) -> None:
-        with client.page_shield.with_streaming_response.list(
+    def test_streaming_response_get(self, client: Cloudflare) -> None:
+        with client.page_shield.with_streaming_response.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -106,9 +106,9 @@ class TestPageShield:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_list(self, client: Cloudflare) -> None:
+    def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.page_shield.with_raw_response.list(
+            client.page_shield.with_raw_response.get(
                 zone_id="",
             )
 
@@ -171,16 +171,16 @@ class TestAsyncPageShield:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list(self, async_client: AsyncCloudflare) -> None:
-        page_shield = await async_client.page_shield.list(
+    async def test_method_get(self, async_client: AsyncCloudflare) -> None:
+        page_shield = await async_client.page_shield.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(PageShieldGetZoneSettings, page_shield, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.page_shield.with_raw_response.list(
+    async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.page_shield.with_raw_response.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -191,8 +191,8 @@ class TestAsyncPageShield:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.page_shield.with_streaming_response.list(
+    async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.page_shield.with_streaming_response.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -205,8 +205,8 @@ class TestAsyncPageShield:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
+    async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.page_shield.with_raw_response.list(
+            await async_client.page_shield.with_raw_response.get(
                 zone_id="",
             )
