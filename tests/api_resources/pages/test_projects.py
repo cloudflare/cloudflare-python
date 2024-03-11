@@ -48,6 +48,7 @@ class TestProjects:
                 "preview": {
                     "ai_bindings": {"ai_binding": {"project_id": {}}},
                     "analytics_engine_datasets": {"analytics_engine_binding": {"dataset": "api_analytics"}},
+                    "browsers": {"browser": {}},
                     "compatibility_date": "2022-01-01",
                     "compatibility_flags": ["url_standard"],
                     "d1_databases": {"d1_binding": {"id": "445e2955-951a-43f8-a35b-a4d0c8138f63"}},
@@ -58,20 +59,24 @@ class TestProjects:
                             "value": "hello world",
                         }
                     },
+                    "hyperdrive_bindings": {"hyperdrive": {"id": "a76a99bc342644deb02c38d66082262a"}},
                     "kv_namespaces": {"kv_binding": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
+                    "mtls_certificates": {"mtls": {"certificate_id": "d7cdd17c-916f-4cb7-aabe-585eb382ec4e"}},
                     "placement": {"mode": "smart"},
                     "queue_producers": {"queue_producer_binding": {"name": "some-queue"}},
                     "r2_buckets": {"r2_binding": {"name": "some-bucket"}},
-                    "service_bindings": {
+                    "services": {
                         "service_binding": {
                             "environment": "production",
                             "service": "example-worker",
                         }
                     },
+                    "vectorize_bindings": {"vectorize": {"index_name": "my_index"}},
                 },
                 "production": {
                     "ai_bindings": {"ai_binding": {"project_id": {}}},
                     "analytics_engine_datasets": {"analytics_engine_binding": {"dataset": "api_analytics"}},
+                    "browsers": {"browser": {}},
                     "compatibility_date": "2022-01-01",
                     "compatibility_flags": ["url_standard"],
                     "d1_databases": {"d1_binding": {"id": "445e2955-951a-43f8-a35b-a4d0c8138f63"}},
@@ -82,16 +87,19 @@ class TestProjects:
                             "value": "hello world",
                         }
                     },
+                    "hyperdrive_bindings": {"hyperdrive": {"id": "a76a99bc342644deb02c38d66082262a"}},
                     "kv_namespaces": {"kv_binding": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
+                    "mtls_certificates": {"mtls": {"certificate_id": "d7cdd17c-916f-4cb7-aabe-585eb382ec4e"}},
                     "placement": {"mode": "smart"},
                     "queue_producers": {"queue_producer_binding": {"name": "some-queue"}},
                     "r2_buckets": {"r2_binding": {"name": "some-bucket"}},
-                    "service_bindings": {
+                    "services": {
                         "service_binding": {
                             "environment": "production",
                             "service": "example-worker",
                         }
                     },
+                    "vectorize_bindings": {"vectorize": {"index_name": "my_index"}},
                 },
             },
             latest_deployment={},
@@ -494,6 +502,7 @@ class TestAsyncProjects:
                 "preview": {
                     "ai_bindings": {"ai_binding": {"project_id": {}}},
                     "analytics_engine_datasets": {"analytics_engine_binding": {"dataset": "api_analytics"}},
+                    "browsers": {"browser": {}},
                     "compatibility_date": "2022-01-01",
                     "compatibility_flags": ["url_standard"],
                     "d1_databases": {"d1_binding": {"id": "445e2955-951a-43f8-a35b-a4d0c8138f63"}},
@@ -504,20 +513,24 @@ class TestAsyncProjects:
                             "value": "hello world",
                         }
                     },
+                    "hyperdrive_bindings": {"hyperdrive": {"id": "a76a99bc342644deb02c38d66082262a"}},
                     "kv_namespaces": {"kv_binding": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
+                    "mtls_certificates": {"mtls": {"certificate_id": "d7cdd17c-916f-4cb7-aabe-585eb382ec4e"}},
                     "placement": {"mode": "smart"},
                     "queue_producers": {"queue_producer_binding": {"name": "some-queue"}},
                     "r2_buckets": {"r2_binding": {"name": "some-bucket"}},
-                    "service_bindings": {
+                    "services": {
                         "service_binding": {
                             "environment": "production",
                             "service": "example-worker",
                         }
                     },
+                    "vectorize_bindings": {"vectorize": {"index_name": "my_index"}},
                 },
                 "production": {
                     "ai_bindings": {"ai_binding": {"project_id": {}}},
                     "analytics_engine_datasets": {"analytics_engine_binding": {"dataset": "api_analytics"}},
+                    "browsers": {"browser": {}},
                     "compatibility_date": "2022-01-01",
                     "compatibility_flags": ["url_standard"],
                     "d1_databases": {"d1_binding": {"id": "445e2955-951a-43f8-a35b-a4d0c8138f63"}},
@@ -528,16 +541,19 @@ class TestAsyncProjects:
                             "value": "hello world",
                         }
                     },
+                    "hyperdrive_bindings": {"hyperdrive": {"id": "a76a99bc342644deb02c38d66082262a"}},
                     "kv_namespaces": {"kv_binding": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
+                    "mtls_certificates": {"mtls": {"certificate_id": "d7cdd17c-916f-4cb7-aabe-585eb382ec4e"}},
                     "placement": {"mode": "smart"},
                     "queue_producers": {"queue_producer_binding": {"name": "some-queue"}},
                     "r2_buckets": {"r2_binding": {"name": "some-bucket"}},
-                    "service_bindings": {
+                    "services": {
                         "service_binding": {
                             "environment": "production",
                             "service": "example-worker",
                         }
                     },
+                    "vectorize_bindings": {"vectorize": {"index_name": "my_index"}},
                 },
             },
             latest_deployment={},
