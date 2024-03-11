@@ -2490,7 +2490,6 @@ from cloudflare.types import (
     WaitingroomWaitingroom,
     WaitingRoomListResponse,
     WaitingRoomDeleteResponse,
-    WaitingRoomPreviewResponse,
 )
 ```
 
@@ -2502,7 +2501,18 @@ Methods:
 - <code title="delete /zones/{zone_identifier}/waiting_rooms/{waiting_room_id}">client.waiting_rooms.<a href="./src/cloudflare/resources/waiting_rooms/waiting_rooms.py">delete</a>(waiting_room_id, \*, zone_identifier) -> <a href="./src/cloudflare/types/waiting_room_delete_response.py">WaitingRoomDeleteResponse</a></code>
 - <code title="patch /zones/{zone_identifier}/waiting_rooms/{waiting_room_id}">client.waiting_rooms.<a href="./src/cloudflare/resources/waiting_rooms/waiting_rooms.py">edit</a>(waiting_room_id, \*, zone_identifier, \*\*<a href="src/cloudflare/types/waiting_room_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/waitingroom_waitingroom.py">WaitingroomWaitingroom</a></code>
 - <code title="get /zones/{zone_identifier}/waiting_rooms/{waiting_room_id}">client.waiting_rooms.<a href="./src/cloudflare/resources/waiting_rooms/waiting_rooms.py">get</a>(waiting_room_id, \*, zone_identifier) -> <a href="./src/cloudflare/types/waitingroom_waitingroom.py">WaitingroomWaitingroom</a></code>
-- <code title="post /zones/{zone_identifier}/waiting_rooms/preview">client.waiting_rooms.<a href="./src/cloudflare/resources/waiting_rooms/waiting_rooms.py">preview</a>(zone_identifier, \*\*<a href="src/cloudflare/types/waiting_room_preview_params.py">params</a>) -> <a href="./src/cloudflare/types/waiting_room_preview_response.py">WaitingRoomPreviewResponse</a></code>
+
+## Page
+
+Types:
+
+```python
+from cloudflare.types.waiting_rooms import PagePreviewResponse
+```
+
+Methods:
+
+- <code title="post /zones/{zone_identifier}/waiting_rooms/preview">client.waiting_rooms.page.<a href="./src/cloudflare/resources/waiting_rooms/page.py">preview</a>(zone_identifier, \*\*<a href="src/cloudflare/types/waiting_rooms/page_preview_params.py">params</a>) -> <a href="./src/cloudflare/types/waiting_rooms/page_preview_response.py">PagePreviewResponse</a></code>
 
 ## Events
 
@@ -4866,7 +4876,7 @@ Methods:
 - <code title="get /accounts/{account_id}/devices/policy/include">client.zero_trust.devices.policies.includes.<a href="./src/cloudflare/resources/zero_trust/devices/policies/includes.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/policies/include_list_response.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/devices/policy/{policy_id}/include">client.zero_trust.devices.policies.includes.<a href="./src/cloudflare/resources/zero_trust/devices/policies/includes.py">get</a>(policy_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/policies/include_get_response.py">Optional</a></code>
 
-### Postures
+### Posture
 
 Types:
 
@@ -4880,18 +4890,18 @@ from cloudflare.types.zero_trust.devices import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/devices/posture">client.zero_trust.devices.postures.<a href="./src/cloudflare/resources/zero_trust/devices/postures/postures.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/posture_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/teams_devices_device_posture_rules.py">Optional</a></code>
-- <code title="put /accounts/{account_id}/devices/posture/{rule_id}">client.zero_trust.devices.postures.<a href="./src/cloudflare/resources/zero_trust/devices/postures/postures.py">update</a>(rule_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/posture_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/teams_devices_device_posture_rules.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/devices/posture">client.zero_trust.devices.postures.<a href="./src/cloudflare/resources/zero_trust/devices/postures/postures.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/posture_list_response.py">Optional</a></code>
-- <code title="delete /accounts/{account_id}/devices/posture/{rule_id}">client.zero_trust.devices.postures.<a href="./src/cloudflare/resources/zero_trust/devices/postures/postures.py">delete</a>(rule_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/posture_delete_response.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/devices/posture/{rule_id}">client.zero_trust.devices.postures.<a href="./src/cloudflare/resources/zero_trust/devices/postures/postures.py">get</a>(rule_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/teams_devices_device_posture_rules.py">Optional</a></code>
+- <code title="post /accounts/{account_id}/devices/posture">client.zero_trust.devices.posture.<a href="./src/cloudflare/resources/zero_trust/devices/posture/posture.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/posture_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/teams_devices_device_posture_rules.py">Optional</a></code>
+- <code title="put /accounts/{account_id}/devices/posture/{rule_id}">client.zero_trust.devices.posture.<a href="./src/cloudflare/resources/zero_trust/devices/posture/posture.py">update</a>(rule_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/posture_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/teams_devices_device_posture_rules.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/devices/posture">client.zero_trust.devices.posture.<a href="./src/cloudflare/resources/zero_trust/devices/posture/posture.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/posture_list_response.py">Optional</a></code>
+- <code title="delete /accounts/{account_id}/devices/posture/{rule_id}">client.zero_trust.devices.posture.<a href="./src/cloudflare/resources/zero_trust/devices/posture/posture.py">delete</a>(rule_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/posture_delete_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/devices/posture/{rule_id}">client.zero_trust.devices.posture.<a href="./src/cloudflare/resources/zero_trust/devices/posture/posture.py">get</a>(rule_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/teams_devices_device_posture_rules.py">Optional</a></code>
 
 #### Integrations
 
 Types:
 
 ```python
-from cloudflare.types.zero_trust.devices.postures import (
+from cloudflare.types.zero_trust.devices.posture import (
     TeamsDevicesDevicePostureIntegrations,
     IntegrationListResponse,
     IntegrationDeleteResponse,
@@ -4900,11 +4910,11 @@ from cloudflare.types.zero_trust.devices.postures import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/devices/posture/integration">client.zero_trust.devices.postures.integrations.<a href="./src/cloudflare/resources/zero_trust/devices/postures/integrations.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/postures/integration_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/postures/teams_devices_device_posture_integrations.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/devices/posture/integration">client.zero_trust.devices.postures.integrations.<a href="./src/cloudflare/resources/zero_trust/devices/postures/integrations.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/postures/integration_list_response.py">Optional</a></code>
-- <code title="delete /accounts/{account_id}/devices/posture/integration/{integration_id}">client.zero_trust.devices.postures.integrations.<a href="./src/cloudflare/resources/zero_trust/devices/postures/integrations.py">delete</a>(integration_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/postures/integration_delete_response.py">Optional</a></code>
-- <code title="patch /accounts/{account_id}/devices/posture/integration/{integration_id}">client.zero_trust.devices.postures.integrations.<a href="./src/cloudflare/resources/zero_trust/devices/postures/integrations.py">edit</a>(integration_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/postures/integration_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/postures/teams_devices_device_posture_integrations.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/devices/posture/integration/{integration_id}">client.zero_trust.devices.postures.integrations.<a href="./src/cloudflare/resources/zero_trust/devices/postures/integrations.py">get</a>(integration_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/postures/teams_devices_device_posture_integrations.py">Optional</a></code>
+- <code title="post /accounts/{account_id}/devices/posture/integration">client.zero_trust.devices.posture.integrations.<a href="./src/cloudflare/resources/zero_trust/devices/posture/integrations.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/posture/integration_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/posture/teams_devices_device_posture_integrations.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/devices/posture/integration">client.zero_trust.devices.posture.integrations.<a href="./src/cloudflare/resources/zero_trust/devices/posture/integrations.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/posture/integration_list_response.py">Optional</a></code>
+- <code title="delete /accounts/{account_id}/devices/posture/integration/{integration_id}">client.zero_trust.devices.posture.integrations.<a href="./src/cloudflare/resources/zero_trust/devices/posture/integrations.py">delete</a>(integration_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/posture/integration_delete_response.py">Optional</a></code>
+- <code title="patch /accounts/{account_id}/devices/posture/integration/{integration_id}">client.zero_trust.devices.posture.integrations.<a href="./src/cloudflare/resources/zero_trust/devices/posture/integrations.py">edit</a>(integration_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/posture/integration_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/posture/teams_devices_device_posture_integrations.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/devices/posture/integration/{integration_id}">client.zero_trust.devices.posture.integrations.<a href="./src/cloudflare/resources/zero_trust/devices/posture/integrations.py">get</a>(integration_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/posture/teams_devices_device_posture_integrations.py">Optional</a></code>
 
 ### Revokes
 
