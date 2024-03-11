@@ -10,7 +10,7 @@ __all__ = [
     "LegacyJhsZonelockdown",
     "Configurations",
     "ConfigurationsLegacyJhsSchemasIPConfiguration",
-    "ConfigurationsLegacyJhsSchemasCidrConfiguration",
+    "ConfigurationsLegacyJhsSchemasCIDRConfiguration",
 ]
 
 
@@ -29,7 +29,7 @@ class ConfigurationsLegacyJhsSchemasIPConfiguration(BaseModel):
     """
 
 
-class ConfigurationsLegacyJhsSchemasCidrConfiguration(BaseModel):
+class ConfigurationsLegacyJhsSchemasCIDRConfiguration(BaseModel):
     target: Optional[Literal["ip_range"]] = None
     """The configuration target.
 
@@ -41,7 +41,7 @@ class ConfigurationsLegacyJhsSchemasCidrConfiguration(BaseModel):
     """The IP address range to match. You can only use prefix lengths `/16` and `/24`."""
 
 
-Configurations = Union[ConfigurationsLegacyJhsSchemasIPConfiguration, ConfigurationsLegacyJhsSchemasCidrConfiguration]
+Configurations = Union[ConfigurationsLegacyJhsSchemasIPConfiguration, ConfigurationsLegacyJhsSchemasCIDRConfiguration]
 
 
 class LegacyJhsZonelockdown(BaseModel):
