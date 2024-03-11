@@ -22,26 +22,26 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...types.cache import (
-    SmartTieredCachedGetResponse,
-    SmartTieredCachedEditResponse,
-    SmartTieredCachedDeleteResponse,
-    smart_tiered_cached_edit_params,
+    SmartTieredCacheGetResponse,
+    SmartTieredCacheEditResponse,
+    SmartTieredCacheDeleteResponse,
+    smart_tiered_cache_edit_params,
 )
 from ..._base_client import (
     make_request_options,
 )
 
-__all__ = ["SmartTieredCached", "AsyncSmartTieredCached"]
+__all__ = ["SmartTieredCache", "AsyncSmartTieredCache"]
 
 
-class SmartTieredCached(SyncAPIResource):
+class SmartTieredCache(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> SmartTieredCachedWithRawResponse:
-        return SmartTieredCachedWithRawResponse(self)
+    def with_raw_response(self) -> SmartTieredCacheWithRawResponse:
+        return SmartTieredCacheWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> SmartTieredCachedWithStreamingResponse:
-        return SmartTieredCachedWithStreamingResponse(self)
+    def with_streaming_response(self) -> SmartTieredCacheWithStreamingResponse:
+        return SmartTieredCacheWithStreamingResponse(self)
 
     def delete(
         self,
@@ -53,7 +53,7 @@ class SmartTieredCached(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SmartTieredCachedDeleteResponse:
+    ) -> SmartTieredCacheDeleteResponse:
         """
         Remvoves enablement of Smart Tiered Cache
 
@@ -71,7 +71,7 @@ class SmartTieredCached(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            SmartTieredCachedDeleteResponse,
+            SmartTieredCacheDeleteResponse,
             self._delete(
                 f"/zones/{zone_id}/cache/tiered_cache_smart_topology_enable",
                 options=make_request_options(
@@ -82,7 +82,7 @@ class SmartTieredCached(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[SmartTieredCachedDeleteResponse]
+                    Any, ResultWrapper[SmartTieredCacheDeleteResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -98,7 +98,7 @@ class SmartTieredCached(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SmartTieredCachedEditResponse:
+    ) -> SmartTieredCacheEditResponse:
         """
         Updates enablement of Tiered Cache
 
@@ -118,10 +118,10 @@ class SmartTieredCached(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            SmartTieredCachedEditResponse,
+            SmartTieredCacheEditResponse,
             self._patch(
                 f"/zones/{zone_id}/cache/tiered_cache_smart_topology_enable",
-                body=maybe_transform({"value": value}, smart_tiered_cached_edit_params.SmartTieredCachedEditParams),
+                body=maybe_transform({"value": value}, smart_tiered_cache_edit_params.SmartTieredCacheEditParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -130,7 +130,7 @@ class SmartTieredCached(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[SmartTieredCachedEditResponse]
+                    Any, ResultWrapper[SmartTieredCacheEditResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -145,7 +145,7 @@ class SmartTieredCached(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SmartTieredCachedGetResponse:
+    ) -> SmartTieredCacheGetResponse:
         """
         Get Smart Tiered Cache setting
 
@@ -163,7 +163,7 @@ class SmartTieredCached(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            SmartTieredCachedGetResponse,
+            SmartTieredCacheGetResponse,
             self._get(
                 f"/zones/{zone_id}/cache/tiered_cache_smart_topology_enable",
                 options=make_request_options(
@@ -174,20 +174,20 @@ class SmartTieredCached(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[SmartTieredCachedGetResponse]
+                    Any, ResultWrapper[SmartTieredCacheGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
 
 
-class AsyncSmartTieredCached(AsyncAPIResource):
+class AsyncSmartTieredCache(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncSmartTieredCachedWithRawResponse:
-        return AsyncSmartTieredCachedWithRawResponse(self)
+    def with_raw_response(self) -> AsyncSmartTieredCacheWithRawResponse:
+        return AsyncSmartTieredCacheWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncSmartTieredCachedWithStreamingResponse:
-        return AsyncSmartTieredCachedWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncSmartTieredCacheWithStreamingResponse:
+        return AsyncSmartTieredCacheWithStreamingResponse(self)
 
     async def delete(
         self,
@@ -199,7 +199,7 @@ class AsyncSmartTieredCached(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SmartTieredCachedDeleteResponse:
+    ) -> SmartTieredCacheDeleteResponse:
         """
         Remvoves enablement of Smart Tiered Cache
 
@@ -217,7 +217,7 @@ class AsyncSmartTieredCached(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            SmartTieredCachedDeleteResponse,
+            SmartTieredCacheDeleteResponse,
             await self._delete(
                 f"/zones/{zone_id}/cache/tiered_cache_smart_topology_enable",
                 options=make_request_options(
@@ -228,7 +228,7 @@ class AsyncSmartTieredCached(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[SmartTieredCachedDeleteResponse]
+                    Any, ResultWrapper[SmartTieredCacheDeleteResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -244,7 +244,7 @@ class AsyncSmartTieredCached(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SmartTieredCachedEditResponse:
+    ) -> SmartTieredCacheEditResponse:
         """
         Updates enablement of Tiered Cache
 
@@ -264,11 +264,11 @@ class AsyncSmartTieredCached(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            SmartTieredCachedEditResponse,
+            SmartTieredCacheEditResponse,
             await self._patch(
                 f"/zones/{zone_id}/cache/tiered_cache_smart_topology_enable",
                 body=await async_maybe_transform(
-                    {"value": value}, smart_tiered_cached_edit_params.SmartTieredCachedEditParams
+                    {"value": value}, smart_tiered_cache_edit_params.SmartTieredCacheEditParams
                 ),
                 options=make_request_options(
                     extra_headers=extra_headers,
@@ -278,7 +278,7 @@ class AsyncSmartTieredCached(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[SmartTieredCachedEditResponse]
+                    Any, ResultWrapper[SmartTieredCacheEditResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -293,7 +293,7 @@ class AsyncSmartTieredCached(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SmartTieredCachedGetResponse:
+    ) -> SmartTieredCacheGetResponse:
         """
         Get Smart Tiered Cache setting
 
@@ -311,7 +311,7 @@ class AsyncSmartTieredCached(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            SmartTieredCachedGetResponse,
+            SmartTieredCacheGetResponse,
             await self._get(
                 f"/zones/{zone_id}/cache/tiered_cache_smart_topology_enable",
                 options=make_request_options(
@@ -322,67 +322,67 @@ class AsyncSmartTieredCached(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[SmartTieredCachedGetResponse]
+                    Any, ResultWrapper[SmartTieredCacheGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
 
 
-class SmartTieredCachedWithRawResponse:
-    def __init__(self, smart_tiered_cached: SmartTieredCached) -> None:
-        self._smart_tiered_cached = smart_tiered_cached
+class SmartTieredCacheWithRawResponse:
+    def __init__(self, smart_tiered_cache: SmartTieredCache) -> None:
+        self._smart_tiered_cache = smart_tiered_cache
 
         self.delete = to_raw_response_wrapper(
-            smart_tiered_cached.delete,
+            smart_tiered_cache.delete,
         )
         self.edit = to_raw_response_wrapper(
-            smart_tiered_cached.edit,
+            smart_tiered_cache.edit,
         )
         self.get = to_raw_response_wrapper(
-            smart_tiered_cached.get,
+            smart_tiered_cache.get,
         )
 
 
-class AsyncSmartTieredCachedWithRawResponse:
-    def __init__(self, smart_tiered_cached: AsyncSmartTieredCached) -> None:
-        self._smart_tiered_cached = smart_tiered_cached
+class AsyncSmartTieredCacheWithRawResponse:
+    def __init__(self, smart_tiered_cache: AsyncSmartTieredCache) -> None:
+        self._smart_tiered_cache = smart_tiered_cache
 
         self.delete = async_to_raw_response_wrapper(
-            smart_tiered_cached.delete,
+            smart_tiered_cache.delete,
         )
         self.edit = async_to_raw_response_wrapper(
-            smart_tiered_cached.edit,
+            smart_tiered_cache.edit,
         )
         self.get = async_to_raw_response_wrapper(
-            smart_tiered_cached.get,
+            smart_tiered_cache.get,
         )
 
 
-class SmartTieredCachedWithStreamingResponse:
-    def __init__(self, smart_tiered_cached: SmartTieredCached) -> None:
-        self._smart_tiered_cached = smart_tiered_cached
+class SmartTieredCacheWithStreamingResponse:
+    def __init__(self, smart_tiered_cache: SmartTieredCache) -> None:
+        self._smart_tiered_cache = smart_tiered_cache
 
         self.delete = to_streamed_response_wrapper(
-            smart_tiered_cached.delete,
+            smart_tiered_cache.delete,
         )
         self.edit = to_streamed_response_wrapper(
-            smart_tiered_cached.edit,
+            smart_tiered_cache.edit,
         )
         self.get = to_streamed_response_wrapper(
-            smart_tiered_cached.get,
+            smart_tiered_cache.get,
         )
 
 
-class AsyncSmartTieredCachedWithStreamingResponse:
-    def __init__(self, smart_tiered_cached: AsyncSmartTieredCached) -> None:
-        self._smart_tiered_cached = smart_tiered_cached
+class AsyncSmartTieredCacheWithStreamingResponse:
+    def __init__(self, smart_tiered_cache: AsyncSmartTieredCache) -> None:
+        self._smart_tiered_cache = smart_tiered_cache
 
         self.delete = async_to_streamed_response_wrapper(
-            smart_tiered_cached.delete,
+            smart_tiered_cache.delete,
         )
         self.edit = async_to_streamed_response_wrapper(
-            smart_tiered_cached.edit,
+            smart_tiered_cache.edit,
         )
         self.get = async_to_streamed_response_wrapper(
-            smart_tiered_cached.get,
+            smart_tiered_cache.get,
         )
