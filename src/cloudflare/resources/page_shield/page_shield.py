@@ -130,7 +130,7 @@ class PageShield(SyncAPIResource):
             cast_to=cast(Type[PageShieldUpdateZoneSettings], ResultWrapper[PageShieldUpdateZoneSettings]),
         )
 
-    def list(
+    def get(
         self,
         *,
         zone_id: str,
@@ -248,7 +248,7 @@ class AsyncPageShield(AsyncAPIResource):
             cast_to=cast(Type[PageShieldUpdateZoneSettings], ResultWrapper[PageShieldUpdateZoneSettings]),
         )
 
-    async def list(
+    async def get(
         self,
         *,
         zone_id: str,
@@ -295,8 +295,8 @@ class PageShieldWithRawResponse:
         self.update = to_raw_response_wrapper(
             page_shield.update,
         )
-        self.list = to_raw_response_wrapper(
-            page_shield.list,
+        self.get = to_raw_response_wrapper(
+            page_shield.get,
         )
 
     @cached_property
@@ -319,8 +319,8 @@ class AsyncPageShieldWithRawResponse:
         self.update = async_to_raw_response_wrapper(
             page_shield.update,
         )
-        self.list = async_to_raw_response_wrapper(
-            page_shield.list,
+        self.get = async_to_raw_response_wrapper(
+            page_shield.get,
         )
 
     @cached_property
@@ -343,8 +343,8 @@ class PageShieldWithStreamingResponse:
         self.update = to_streamed_response_wrapper(
             page_shield.update,
         )
-        self.list = to_streamed_response_wrapper(
-            page_shield.list,
+        self.get = to_streamed_response_wrapper(
+            page_shield.get,
         )
 
     @cached_property
@@ -367,8 +367,8 @@ class AsyncPageShieldWithStreamingResponse:
         self.update = async_to_streamed_response_wrapper(
             page_shield.update,
         )
-        self.list = async_to_streamed_response_wrapper(
-            page_shield.list,
+        self.get = async_to_streamed_response_wrapper(
+            page_shield.get,
         )
 
     @cached_property

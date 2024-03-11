@@ -4,12 +4,12 @@ from typing import Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from ...._models import BaseModel
+from ..._models import BaseModel
 
-__all__ = ["DisableCreateResponse"]
+__all__ = ["RoutingEnableResponse"]
 
 
-class DisableCreateResponse(BaseModel):
+class RoutingEnableResponse(BaseModel):
     id: Optional[str] = None
     """Email Routing settings identifier."""
 

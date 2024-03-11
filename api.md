@@ -1765,24 +1765,19 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.email_routing import EmailSettings, RoutingGetResponse
+from cloudflare.types.email_routing import (
+    EmailSettings,
+    RoutingDisableResponse,
+    RoutingEnableResponse,
+    RoutingGetResponse,
+)
 ```
 
 Methods:
 
+- <code title="post /zones/{zone_identifier}/email/routing/disable">client.email_routing.routing.<a href="./src/cloudflare/resources/email_routing/routing/routing.py">disable</a>(zone_identifier) -> <a href="./src/cloudflare/types/email_routing/routing_disable_response.py">RoutingDisableResponse</a></code>
+- <code title="post /zones/{zone_identifier}/email/routing/enable">client.email_routing.routing.<a href="./src/cloudflare/resources/email_routing/routing/routing.py">enable</a>(zone_identifier) -> <a href="./src/cloudflare/types/email_routing/routing_enable_response.py">RoutingEnableResponse</a></code>
 - <code title="get /zones/{zone_identifier}/email/routing">client.email_routing.routing.<a href="./src/cloudflare/resources/email_routing/routing/routing.py">get</a>(zone_identifier) -> <a href="./src/cloudflare/types/email_routing/routing_get_response.py">RoutingGetResponse</a></code>
-
-### Disables
-
-Types:
-
-```python
-from cloudflare.types.email_routing.routing import DisableCreateResponse
-```
-
-Methods:
-
-- <code title="post /zones/{zone_identifier}/email/routing/disable">client.email_routing.routing.disables.<a href="./src/cloudflare/resources/email_routing/routing/disables.py">create</a>(zone_identifier) -> <a href="./src/cloudflare/types/email_routing/routing/disable_create_response.py">DisableCreateResponse</a></code>
 
 ### DNS
 
@@ -1795,18 +1790,6 @@ from cloudflare.types.email_routing.routing import EmailDNSRecord, DNSGetRespons
 Methods:
 
 - <code title="get /zones/{zone_identifier}/email/routing/dns">client.email_routing.routing.dns.<a href="./src/cloudflare/resources/email_routing/routing/dns.py">get</a>(zone_identifier) -> <a href="./src/cloudflare/types/email_routing/routing/dns_get_response.py">Optional</a></code>
-
-### Enables
-
-Types:
-
-```python
-from cloudflare.types.email_routing.routing import EnableCreateResponse
-```
-
-Methods:
-
-- <code title="post /zones/{zone_identifier}/email/routing/enable">client.email_routing.routing.enables.<a href="./src/cloudflare/resources/email_routing/routing/enables.py">create</a>(zone_identifier) -> <a href="./src/cloudflare/types/email_routing/routing/enable_create_response.py">EnableCreateResponse</a></code>
 
 ### Rules
 
@@ -3060,7 +3043,7 @@ from cloudflare.types import PageShieldGetZoneSettings, PageShieldUpdateZoneSett
 Methods:
 
 - <code title="put /zones/{zone_id}/page_shield">client.page_shield.<a href="./src/cloudflare/resources/page_shield/page_shield.py">update</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/page_shield_update_params.py">params</a>) -> <a href="./src/cloudflare/types/page_shield_update_zone_settings.py">PageShieldUpdateZoneSettings</a></code>
-- <code title="get /zones/{zone_id}/page_shield">client.page_shield.<a href="./src/cloudflare/resources/page_shield/page_shield.py">list</a>(\*, zone_id) -> <a href="./src/cloudflare/types/page_shield_get_zone_settings.py">PageShieldGetZoneSettings</a></code>
+- <code title="get /zones/{zone_id}/page_shield">client.page_shield.<a href="./src/cloudflare/resources/page_shield/page_shield.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/page_shield_get_zone_settings.py">PageShieldGetZoneSettings</a></code>
 
 ## Policies
 
