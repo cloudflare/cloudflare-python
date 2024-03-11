@@ -14,13 +14,13 @@ from cloudflare.types.zero_trust.gateway import ZeroTrustGatewayGatewayAccountLo
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
-class TestLoggings:
+class TestLogging:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip()
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
-        logging = client.zero_trust.gateway.loggings.update(
+        logging = client.zero_trust.gateway.logging.update(
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(ZeroTrustGatewayGatewayAccountLoggingSettings, logging, path=["response"])
@@ -28,7 +28,7 @@ class TestLoggings:
     @pytest.mark.skip()
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
-        logging = client.zero_trust.gateway.loggings.update(
+        logging = client.zero_trust.gateway.logging.update(
             account_id="699d98642c564d2e855e9661899b7252",
             redact_pii=True,
             settings_by_rule_type={
@@ -42,7 +42,7 @@ class TestLoggings:
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
-        response = client.zero_trust.gateway.loggings.with_raw_response.update(
+        response = client.zero_trust.gateway.logging.with_raw_response.update(
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -54,7 +54,7 @@ class TestLoggings:
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
-        with client.zero_trust.gateway.loggings.with_streaming_response.update(
+        with client.zero_trust.gateway.logging.with_streaming_response.update(
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -68,7 +68,7 @@ class TestLoggings:
     @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
-        logging = client.zero_trust.gateway.loggings.get(
+        logging = client.zero_trust.gateway.logging.get(
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(ZeroTrustGatewayGatewayAccountLoggingSettings, logging, path=["response"])
@@ -76,7 +76,7 @@ class TestLoggings:
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
-        response = client.zero_trust.gateway.loggings.with_raw_response.get(
+        response = client.zero_trust.gateway.logging.with_raw_response.get(
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -88,7 +88,7 @@ class TestLoggings:
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
-        with client.zero_trust.gateway.loggings.with_streaming_response.get(
+        with client.zero_trust.gateway.logging.with_streaming_response.get(
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -100,13 +100,13 @@ class TestLoggings:
         assert cast(Any, response.is_closed) is True
 
 
-class TestAsyncLoggings:
+class TestAsyncLogging:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
-        logging = await async_client.zero_trust.gateway.loggings.update(
+        logging = await async_client.zero_trust.gateway.logging.update(
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(ZeroTrustGatewayGatewayAccountLoggingSettings, logging, path=["response"])
@@ -114,7 +114,7 @@ class TestAsyncLoggings:
     @pytest.mark.skip()
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        logging = await async_client.zero_trust.gateway.loggings.update(
+        logging = await async_client.zero_trust.gateway.logging.update(
             account_id="699d98642c564d2e855e9661899b7252",
             redact_pii=True,
             settings_by_rule_type={
@@ -128,7 +128,7 @@ class TestAsyncLoggings:
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.zero_trust.gateway.loggings.with_raw_response.update(
+        response = await async_client.zero_trust.gateway.logging.with_raw_response.update(
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -140,7 +140,7 @@ class TestAsyncLoggings:
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.zero_trust.gateway.loggings.with_streaming_response.update(
+        async with async_client.zero_trust.gateway.logging.with_streaming_response.update(
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -154,7 +154,7 @@ class TestAsyncLoggings:
     @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
-        logging = await async_client.zero_trust.gateway.loggings.get(
+        logging = await async_client.zero_trust.gateway.logging.get(
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(ZeroTrustGatewayGatewayAccountLoggingSettings, logging, path=["response"])
@@ -162,7 +162,7 @@ class TestAsyncLoggings:
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.zero_trust.gateway.loggings.with_raw_response.get(
+        response = await async_client.zero_trust.gateway.logging.with_raw_response.get(
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -174,7 +174,7 @@ class TestAsyncLoggings:
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.zero_trust.gateway.loggings.with_streaming_response.get(
+        async with async_client.zero_trust.gateway.logging.with_streaming_response.get(
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed

@@ -400,14 +400,6 @@ from .url_scanner import (
     URLScannerWithStreamingResponse,
     AsyncURLScannerWithStreamingResponse,
 )
-from .certificates import (
-    Certificates,
-    AsyncCertificates,
-    CertificatesWithRawResponse,
-    AsyncCertificatesWithRawResponse,
-    CertificatesWithStreamingResponse,
-    AsyncCertificatesWithStreamingResponse,
-)
 from .healthchecks import (
     Healthchecks,
     AsyncHealthchecks,
@@ -608,6 +600,14 @@ from .workers_for_platforms import (
     WorkersForPlatformsWithStreamingResponse,
     AsyncWorkersForPlatformsWithStreamingResponse,
 )
+from .origin_ca_certificates import (
+    OriginCACertificates,
+    AsyncOriginCACertificates,
+    OriginCACertificatesWithRawResponse,
+    AsyncOriginCACertificatesWithRawResponse,
+    OriginCACertificatesWithStreamingResponse,
+    AsyncOriginCACertificatesWithStreamingResponse,
+)
 from .origin_tls_client_auth import (
     OriginTLSClientAuth,
     AsyncOriginTLSClientAuth,
@@ -648,12 +648,12 @@ __all__ = [
     "AsyncAccountsWithRawResponse",
     "AccountsWithStreamingResponse",
     "AsyncAccountsWithStreamingResponse",
-    "Certificates",
-    "AsyncCertificates",
-    "CertificatesWithRawResponse",
-    "AsyncCertificatesWithRawResponse",
-    "CertificatesWithStreamingResponse",
-    "AsyncCertificatesWithStreamingResponse",
+    "OriginCACertificates",
+    "AsyncOriginCACertificates",
+    "OriginCACertificatesWithRawResponse",
+    "AsyncOriginCACertificatesWithRawResponse",
+    "OriginCACertificatesWithStreamingResponse",
+    "AsyncOriginCACertificatesWithStreamingResponse",
     "IPs",
     "AsyncIPs",
     "IPsWithRawResponse",
