@@ -4,9 +4,9 @@ from typing import Optional
 
 from .._models import BaseModel
 
-__all__ = ["CertificateDeleteResponse"]
+__all__ = ["OriginCACertificateDeleteResponse"]
 
 
-class CertificateDeleteResponse(BaseModel):
+class OriginCACertificateDeleteResponse(BaseModel):
     id: Optional[str] = None
     """Identifier"""

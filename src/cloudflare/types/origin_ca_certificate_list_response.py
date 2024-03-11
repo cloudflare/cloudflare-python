@@ -4,6 +4,6 @@ from typing import List
 
 from .origin_ca_certificate import OriginCACertificate
 
-__all__ = ["CertificateListResponse"]
+__all__ = ["OriginCACertificateListResponse"]
 
-CertificateListResponse = List[OriginCACertificate]
+OriginCACertificateListResponse = List[OriginCACertificate]
