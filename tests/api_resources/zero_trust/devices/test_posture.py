@@ -18,13 +18,13 @@ from cloudflare.types.zero_trust.devices import (
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
-class TestPostures:
+class TestPosture:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip()
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
-        posture = client.zero_trust.devices.postures.create(
+        posture = client.zero_trust.devices.posture.create(
             account_id="699d98642c564d2e855e9661899b7252",
             name="Admin Serial Numbers",
             type="file",
@@ -34,7 +34,7 @@ class TestPostures:
     @pytest.mark.skip()
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
-        posture = client.zero_trust.devices.postures.create(
+        posture = client.zero_trust.devices.posture.create(
             account_id="699d98642c564d2e855e9661899b7252",
             name="Admin Serial Numbers",
             type="file",
@@ -55,7 +55,7 @@ class TestPostures:
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
-        response = client.zero_trust.devices.postures.with_raw_response.create(
+        response = client.zero_trust.devices.posture.with_raw_response.create(
             account_id="699d98642c564d2e855e9661899b7252",
             name="Admin Serial Numbers",
             type="file",
@@ -69,7 +69,7 @@ class TestPostures:
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
-        with client.zero_trust.devices.postures.with_streaming_response.create(
+        with client.zero_trust.devices.posture.with_streaming_response.create(
             account_id="699d98642c564d2e855e9661899b7252",
             name="Admin Serial Numbers",
             type="file",
@@ -85,7 +85,7 @@ class TestPostures:
     @pytest.mark.skip()
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
-        posture = client.zero_trust.devices.postures.update(
+        posture = client.zero_trust.devices.posture.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             name="Admin Serial Numbers",
@@ -96,7 +96,7 @@ class TestPostures:
     @pytest.mark.skip()
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
-        posture = client.zero_trust.devices.postures.update(
+        posture = client.zero_trust.devices.posture.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             name="Admin Serial Numbers",
@@ -118,7 +118,7 @@ class TestPostures:
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
-        response = client.zero_trust.devices.postures.with_raw_response.update(
+        response = client.zero_trust.devices.posture.with_raw_response.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             name="Admin Serial Numbers",
@@ -133,7 +133,7 @@ class TestPostures:
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
-        with client.zero_trust.devices.postures.with_streaming_response.update(
+        with client.zero_trust.devices.posture.with_streaming_response.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             name="Admin Serial Numbers",
@@ -151,7 +151,7 @@ class TestPostures:
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
-            client.zero_trust.devices.postures.with_raw_response.update(
+            client.zero_trust.devices.posture.with_raw_response.update(
                 "",
                 account_id="699d98642c564d2e855e9661899b7252",
                 name="Admin Serial Numbers",
@@ -161,7 +161,7 @@ class TestPostures:
     @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
-        posture = client.zero_trust.devices.postures.list(
+        posture = client.zero_trust.devices.posture.list(
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[PostureListResponse], posture, path=["response"])
@@ -169,7 +169,7 @@ class TestPostures:
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
-        response = client.zero_trust.devices.postures.with_raw_response.list(
+        response = client.zero_trust.devices.posture.with_raw_response.list(
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -181,7 +181,7 @@ class TestPostures:
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
-        with client.zero_trust.devices.postures.with_streaming_response.list(
+        with client.zero_trust.devices.posture.with_streaming_response.list(
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -195,7 +195,7 @@ class TestPostures:
     @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
-        posture = client.zero_trust.devices.postures.delete(
+        posture = client.zero_trust.devices.posture.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
@@ -204,7 +204,7 @@ class TestPostures:
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
-        response = client.zero_trust.devices.postures.with_raw_response.delete(
+        response = client.zero_trust.devices.posture.with_raw_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
@@ -217,7 +217,7 @@ class TestPostures:
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
-        with client.zero_trust.devices.postures.with_streaming_response.delete(
+        with client.zero_trust.devices.posture.with_streaming_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
@@ -233,7 +233,7 @@ class TestPostures:
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
-            client.zero_trust.devices.postures.with_raw_response.delete(
+            client.zero_trust.devices.posture.with_raw_response.delete(
                 "",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
@@ -241,7 +241,7 @@ class TestPostures:
     @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
-        posture = client.zero_trust.devices.postures.get(
+        posture = client.zero_trust.devices.posture.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
@@ -250,7 +250,7 @@ class TestPostures:
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
-        response = client.zero_trust.devices.postures.with_raw_response.get(
+        response = client.zero_trust.devices.posture.with_raw_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
@@ -263,7 +263,7 @@ class TestPostures:
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
-        with client.zero_trust.devices.postures.with_streaming_response.get(
+        with client.zero_trust.devices.posture.with_streaming_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
@@ -279,19 +279,19 @@ class TestPostures:
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
-            client.zero_trust.devices.postures.with_raw_response.get(
+            client.zero_trust.devices.posture.with_raw_response.get(
                 "",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
 
-class TestAsyncPostures:
+class TestAsyncPosture:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
-        posture = await async_client.zero_trust.devices.postures.create(
+        posture = await async_client.zero_trust.devices.posture.create(
             account_id="699d98642c564d2e855e9661899b7252",
             name="Admin Serial Numbers",
             type="file",
@@ -301,7 +301,7 @@ class TestAsyncPostures:
     @pytest.mark.skip()
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        posture = await async_client.zero_trust.devices.postures.create(
+        posture = await async_client.zero_trust.devices.posture.create(
             account_id="699d98642c564d2e855e9661899b7252",
             name="Admin Serial Numbers",
             type="file",
@@ -322,7 +322,7 @@ class TestAsyncPostures:
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.zero_trust.devices.postures.with_raw_response.create(
+        response = await async_client.zero_trust.devices.posture.with_raw_response.create(
             account_id="699d98642c564d2e855e9661899b7252",
             name="Admin Serial Numbers",
             type="file",
@@ -336,7 +336,7 @@ class TestAsyncPostures:
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.zero_trust.devices.postures.with_streaming_response.create(
+        async with async_client.zero_trust.devices.posture.with_streaming_response.create(
             account_id="699d98642c564d2e855e9661899b7252",
             name="Admin Serial Numbers",
             type="file",
@@ -352,7 +352,7 @@ class TestAsyncPostures:
     @pytest.mark.skip()
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
-        posture = await async_client.zero_trust.devices.postures.update(
+        posture = await async_client.zero_trust.devices.posture.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             name="Admin Serial Numbers",
@@ -363,7 +363,7 @@ class TestAsyncPostures:
     @pytest.mark.skip()
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        posture = await async_client.zero_trust.devices.postures.update(
+        posture = await async_client.zero_trust.devices.posture.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             name="Admin Serial Numbers",
@@ -385,7 +385,7 @@ class TestAsyncPostures:
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.zero_trust.devices.postures.with_raw_response.update(
+        response = await async_client.zero_trust.devices.posture.with_raw_response.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             name="Admin Serial Numbers",
@@ -400,7 +400,7 @@ class TestAsyncPostures:
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.zero_trust.devices.postures.with_streaming_response.update(
+        async with async_client.zero_trust.devices.posture.with_streaming_response.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             name="Admin Serial Numbers",
@@ -418,7 +418,7 @@ class TestAsyncPostures:
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
-            await async_client.zero_trust.devices.postures.with_raw_response.update(
+            await async_client.zero_trust.devices.posture.with_raw_response.update(
                 "",
                 account_id="699d98642c564d2e855e9661899b7252",
                 name="Admin Serial Numbers",
@@ -428,7 +428,7 @@ class TestAsyncPostures:
     @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
-        posture = await async_client.zero_trust.devices.postures.list(
+        posture = await async_client.zero_trust.devices.posture.list(
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[PostureListResponse], posture, path=["response"])
@@ -436,7 +436,7 @@ class TestAsyncPostures:
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.zero_trust.devices.postures.with_raw_response.list(
+        response = await async_client.zero_trust.devices.posture.with_raw_response.list(
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -448,7 +448,7 @@ class TestAsyncPostures:
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.zero_trust.devices.postures.with_streaming_response.list(
+        async with async_client.zero_trust.devices.posture.with_streaming_response.list(
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -462,7 +462,7 @@ class TestAsyncPostures:
     @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
-        posture = await async_client.zero_trust.devices.postures.delete(
+        posture = await async_client.zero_trust.devices.posture.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
@@ -471,7 +471,7 @@ class TestAsyncPostures:
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.zero_trust.devices.postures.with_raw_response.delete(
+        response = await async_client.zero_trust.devices.posture.with_raw_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
@@ -484,7 +484,7 @@ class TestAsyncPostures:
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.zero_trust.devices.postures.with_streaming_response.delete(
+        async with async_client.zero_trust.devices.posture.with_streaming_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
@@ -500,7 +500,7 @@ class TestAsyncPostures:
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
-            await async_client.zero_trust.devices.postures.with_raw_response.delete(
+            await async_client.zero_trust.devices.posture.with_raw_response.delete(
                 "",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
@@ -508,7 +508,7 @@ class TestAsyncPostures:
     @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
-        posture = await async_client.zero_trust.devices.postures.get(
+        posture = await async_client.zero_trust.devices.posture.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
@@ -517,7 +517,7 @@ class TestAsyncPostures:
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.zero_trust.devices.postures.with_raw_response.get(
+        response = await async_client.zero_trust.devices.posture.with_raw_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
@@ -530,7 +530,7 @@ class TestAsyncPostures:
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.zero_trust.devices.postures.with_streaming_response.get(
+        async with async_client.zero_trust.devices.posture.with_streaming_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
@@ -546,7 +546,7 @@ class TestAsyncPostures:
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
-            await async_client.zero_trust.devices.postures.with_raw_response.get(
+            await async_client.zero_trust.devices.posture.with_raw_response.get(
                 "",
                 account_id="699d98642c564d2e855e9661899b7252",
             )

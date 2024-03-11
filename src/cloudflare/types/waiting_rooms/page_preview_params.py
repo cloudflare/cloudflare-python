@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["WaitingRoomPreviewParams"]
+__all__ = ["PagePreviewParams"]
 
 
-class WaitingRoomPreviewParams(TypedDict, total=False):
+class PagePreviewParams(TypedDict, total=False):
     custom_html: Required[str]
     """Only available for the Waiting Room Advanced subscription.
 

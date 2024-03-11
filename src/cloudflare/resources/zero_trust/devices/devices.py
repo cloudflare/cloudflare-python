@@ -6,6 +6,14 @@ from typing import Any, Type, Optional, cast
 
 import httpx
 
+from .posture import (
+    Posture,
+    AsyncPosture,
+    PostureWithRawResponse,
+    AsyncPostureWithRawResponse,
+    PostureWithStreamingResponse,
+    AsyncPostureWithStreamingResponse,
+)
 from .revokes import (
     Revokes,
     AsyncRevokes,
@@ -29,14 +37,6 @@ from .policies import (
     AsyncPoliciesWithRawResponse,
     PoliciesWithStreamingResponse,
     AsyncPoliciesWithStreamingResponse,
-)
-from .postures import (
-    Postures,
-    AsyncPostures,
-    PosturesWithRawResponse,
-    AsyncPosturesWithRawResponse,
-    PosturesWithStreamingResponse,
-    AsyncPosturesWithStreamingResponse,
 )
 from .settings import (
     Settings,
@@ -83,8 +83,8 @@ from .override_codes import (
 from ...._base_client import (
     make_request_options,
 )
+from .posture.posture import Posture, AsyncPosture
 from .policies.policies import Policies, AsyncPolicies
-from .postures.postures import Postures, AsyncPostures
 from ....types.zero_trust import DeviceGetResponse, DeviceListResponse
 
 __all__ = ["Devices", "AsyncDevices"]
@@ -104,8 +104,8 @@ class Devices(SyncAPIResource):
         return Policies(self._client)
 
     @cached_property
-    def postures(self) -> Postures:
-        return Postures(self._client)
+    def posture(self) -> Posture:
+        return Posture(self._client)
 
     @cached_property
     def revokes(self) -> Revokes:
@@ -226,8 +226,8 @@ class AsyncDevices(AsyncAPIResource):
         return AsyncPolicies(self._client)
 
     @cached_property
-    def postures(self) -> AsyncPostures:
-        return AsyncPostures(self._client)
+    def posture(self) -> AsyncPosture:
+        return AsyncPosture(self._client)
 
     @cached_property
     def revokes(self) -> AsyncRevokes:
@@ -358,8 +358,8 @@ class DevicesWithRawResponse:
         return PoliciesWithRawResponse(self._devices.policies)
 
     @cached_property
-    def postures(self) -> PosturesWithRawResponse:
-        return PosturesWithRawResponse(self._devices.postures)
+    def posture(self) -> PostureWithRawResponse:
+        return PostureWithRawResponse(self._devices.posture)
 
     @cached_property
     def revokes(self) -> RevokesWithRawResponse:
@@ -402,8 +402,8 @@ class AsyncDevicesWithRawResponse:
         return AsyncPoliciesWithRawResponse(self._devices.policies)
 
     @cached_property
-    def postures(self) -> AsyncPosturesWithRawResponse:
-        return AsyncPosturesWithRawResponse(self._devices.postures)
+    def posture(self) -> AsyncPostureWithRawResponse:
+        return AsyncPostureWithRawResponse(self._devices.posture)
 
     @cached_property
     def revokes(self) -> AsyncRevokesWithRawResponse:
@@ -446,8 +446,8 @@ class DevicesWithStreamingResponse:
         return PoliciesWithStreamingResponse(self._devices.policies)
 
     @cached_property
-    def postures(self) -> PosturesWithStreamingResponse:
-        return PosturesWithStreamingResponse(self._devices.postures)
+    def posture(self) -> PostureWithStreamingResponse:
+        return PostureWithStreamingResponse(self._devices.posture)
 
     @cached_property
     def revokes(self) -> RevokesWithStreamingResponse:
@@ -490,8 +490,8 @@ class AsyncDevicesWithStreamingResponse:
         return AsyncPoliciesWithStreamingResponse(self._devices.policies)
 
     @cached_property
-    def postures(self) -> AsyncPosturesWithStreamingResponse:
-        return AsyncPosturesWithStreamingResponse(self._devices.postures)
+    def posture(self) -> AsyncPostureWithStreamingResponse:
+        return AsyncPostureWithStreamingResponse(self._devices.posture)
 
     @cached_property
     def revokes(self) -> AsyncRevokesWithStreamingResponse:
