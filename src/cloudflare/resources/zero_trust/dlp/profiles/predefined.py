@@ -25,17 +25,17 @@ from ....._base_client import (
 )
 from .....types.zero_trust.dlp.profiles import DLPPredefinedProfile, predefined_update_params
 
-__all__ = ["Predefineds", "AsyncPredefineds"]
+__all__ = ["Predefined", "AsyncPredefined"]
 
 
-class Predefineds(SyncAPIResource):
+class Predefined(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> PredefinedsWithRawResponse:
-        return PredefinedsWithRawResponse(self)
+    def with_raw_response(self) -> PredefinedWithRawResponse:
+        return PredefinedWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> PredefinedsWithStreamingResponse:
-        return PredefinedsWithStreamingResponse(self)
+    def with_streaming_response(self) -> PredefinedWithStreamingResponse:
+        return PredefinedWithStreamingResponse(self)
 
     def update(
         self,
@@ -141,14 +141,14 @@ class Predefineds(SyncAPIResource):
         )
 
 
-class AsyncPredefineds(AsyncAPIResource):
+class AsyncPredefined(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncPredefinedsWithRawResponse:
-        return AsyncPredefinedsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncPredefinedWithRawResponse:
+        return AsyncPredefinedWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncPredefinedsWithStreamingResponse:
-        return AsyncPredefinedsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncPredefinedWithStreamingResponse:
+        return AsyncPredefinedWithStreamingResponse(self)
 
     async def update(
         self,
@@ -254,49 +254,49 @@ class AsyncPredefineds(AsyncAPIResource):
         )
 
 
-class PredefinedsWithRawResponse:
-    def __init__(self, predefineds: Predefineds) -> None:
-        self._predefineds = predefineds
+class PredefinedWithRawResponse:
+    def __init__(self, predefined: Predefined) -> None:
+        self._predefined = predefined
 
         self.update = to_raw_response_wrapper(
-            predefineds.update,
+            predefined.update,
         )
         self.get = to_raw_response_wrapper(
-            predefineds.get,
+            predefined.get,
         )
 
 
-class AsyncPredefinedsWithRawResponse:
-    def __init__(self, predefineds: AsyncPredefineds) -> None:
-        self._predefineds = predefineds
+class AsyncPredefinedWithRawResponse:
+    def __init__(self, predefined: AsyncPredefined) -> None:
+        self._predefined = predefined
 
         self.update = async_to_raw_response_wrapper(
-            predefineds.update,
+            predefined.update,
         )
         self.get = async_to_raw_response_wrapper(
-            predefineds.get,
+            predefined.get,
         )
 
 
-class PredefinedsWithStreamingResponse:
-    def __init__(self, predefineds: Predefineds) -> None:
-        self._predefineds = predefineds
+class PredefinedWithStreamingResponse:
+    def __init__(self, predefined: Predefined) -> None:
+        self._predefined = predefined
 
         self.update = to_streamed_response_wrapper(
-            predefineds.update,
+            predefined.update,
         )
         self.get = to_streamed_response_wrapper(
-            predefineds.get,
+            predefined.get,
         )
 
 
-class AsyncPredefinedsWithStreamingResponse:
-    def __init__(self, predefineds: AsyncPredefineds) -> None:
-        self._predefineds = predefineds
+class AsyncPredefinedWithStreamingResponse:
+    def __init__(self, predefined: AsyncPredefined) -> None:
+        self._predefined = predefined
 
         self.update = async_to_streamed_response_wrapper(
-            predefineds.update,
+            predefined.update,
         )
         self.get = async_to_streamed_response_wrapper(
-            predefineds.get,
+            predefined.get,
         )

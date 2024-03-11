@@ -6,24 +6,24 @@ from typing import Any, Type, Optional, cast
 
 import httpx
 
-from .customs import (
-    Customs,
-    AsyncCustoms,
-    CustomsWithRawResponse,
-    AsyncCustomsWithRawResponse,
-    CustomsWithStreamingResponse,
-    AsyncCustomsWithStreamingResponse,
+from .custom import (
+    Custom,
+    AsyncCustom,
+    CustomWithRawResponse,
+    AsyncCustomWithRawResponse,
+    CustomWithStreamingResponse,
+    AsyncCustomWithStreamingResponse,
 )
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ....._compat import cached_property
-from .predefineds import (
-    Predefineds,
-    AsyncPredefineds,
-    PredefinedsWithRawResponse,
-    AsyncPredefinedsWithRawResponse,
-    PredefinedsWithStreamingResponse,
-    AsyncPredefinedsWithStreamingResponse,
+from .predefined import (
+    Predefined,
+    AsyncPredefined,
+    PredefinedWithRawResponse,
+    AsyncPredefinedWithRawResponse,
+    PredefinedWithStreamingResponse,
+    AsyncPredefinedWithStreamingResponse,
 )
+from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
     to_raw_response_wrapper,
@@ -42,12 +42,12 @@ __all__ = ["Profiles", "AsyncProfiles"]
 
 class Profiles(SyncAPIResource):
     @cached_property
-    def customs(self) -> Customs:
-        return Customs(self._client)
+    def custom(self) -> Custom:
+        return Custom(self._client)
 
     @cached_property
-    def predefineds(self) -> Predefineds:
-        return Predefineds(self._client)
+    def predefined(self) -> Predefined:
+        return Predefined(self._client)
 
     @cached_property
     def with_raw_response(self) -> ProfilesWithRawResponse:
@@ -149,12 +149,12 @@ class Profiles(SyncAPIResource):
 
 class AsyncProfiles(AsyncAPIResource):
     @cached_property
-    def customs(self) -> AsyncCustoms:
-        return AsyncCustoms(self._client)
+    def custom(self) -> AsyncCustom:
+        return AsyncCustom(self._client)
 
     @cached_property
-    def predefineds(self) -> AsyncPredefineds:
-        return AsyncPredefineds(self._client)
+    def predefined(self) -> AsyncPredefined:
+        return AsyncPredefined(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncProfilesWithRawResponse:
@@ -266,12 +266,12 @@ class ProfilesWithRawResponse:
         )
 
     @cached_property
-    def customs(self) -> CustomsWithRawResponse:
-        return CustomsWithRawResponse(self._profiles.customs)
+    def custom(self) -> CustomWithRawResponse:
+        return CustomWithRawResponse(self._profiles.custom)
 
     @cached_property
-    def predefineds(self) -> PredefinedsWithRawResponse:
-        return PredefinedsWithRawResponse(self._profiles.predefineds)
+    def predefined(self) -> PredefinedWithRawResponse:
+        return PredefinedWithRawResponse(self._profiles.predefined)
 
 
 class AsyncProfilesWithRawResponse:
@@ -286,12 +286,12 @@ class AsyncProfilesWithRawResponse:
         )
 
     @cached_property
-    def customs(self) -> AsyncCustomsWithRawResponse:
-        return AsyncCustomsWithRawResponse(self._profiles.customs)
+    def custom(self) -> AsyncCustomWithRawResponse:
+        return AsyncCustomWithRawResponse(self._profiles.custom)
 
     @cached_property
-    def predefineds(self) -> AsyncPredefinedsWithRawResponse:
-        return AsyncPredefinedsWithRawResponse(self._profiles.predefineds)
+    def predefined(self) -> AsyncPredefinedWithRawResponse:
+        return AsyncPredefinedWithRawResponse(self._profiles.predefined)
 
 
 class ProfilesWithStreamingResponse:
@@ -306,12 +306,12 @@ class ProfilesWithStreamingResponse:
         )
 
     @cached_property
-    def customs(self) -> CustomsWithStreamingResponse:
-        return CustomsWithStreamingResponse(self._profiles.customs)
+    def custom(self) -> CustomWithStreamingResponse:
+        return CustomWithStreamingResponse(self._profiles.custom)
 
     @cached_property
-    def predefineds(self) -> PredefinedsWithStreamingResponse:
-        return PredefinedsWithStreamingResponse(self._profiles.predefineds)
+    def predefined(self) -> PredefinedWithStreamingResponse:
+        return PredefinedWithStreamingResponse(self._profiles.predefined)
 
 
 class AsyncProfilesWithStreamingResponse:
@@ -326,9 +326,9 @@ class AsyncProfilesWithStreamingResponse:
         )
 
     @cached_property
-    def customs(self) -> AsyncCustomsWithStreamingResponse:
-        return AsyncCustomsWithStreamingResponse(self._profiles.customs)
+    def custom(self) -> AsyncCustomWithStreamingResponse:
+        return AsyncCustomWithStreamingResponse(self._profiles.custom)
 
     @cached_property
-    def predefineds(self) -> AsyncPredefinedsWithStreamingResponse:
-        return AsyncPredefinedsWithStreamingResponse(self._profiles.predefineds)
+    def predefined(self) -> AsyncPredefinedWithStreamingResponse:
+        return AsyncPredefinedWithStreamingResponse(self._profiles.predefined)
