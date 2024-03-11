@@ -11,7 +11,7 @@ __all__ = [
     "Configuration",
     "ConfigurationLegacyJhsIPConfiguration",
     "ConfigurationLegacyJhsIPV6Configuration",
-    "ConfigurationLegacyJhsCidrConfiguration",
+    "ConfigurationLegacyJhsCIDRConfiguration",
     "ConfigurationLegacyJhsASNConfiguration",
     "ConfigurationLegacyJhsCountryConfiguration",
 ]
@@ -42,7 +42,7 @@ class ConfigurationLegacyJhsIPV6Configuration(BaseModel):
     """The IPv6 address to match."""
 
 
-class ConfigurationLegacyJhsCidrConfiguration(BaseModel):
+class ConfigurationLegacyJhsCIDRConfiguration(BaseModel):
     target: Optional[Literal["ip_range"]] = None
     """The configuration target.
 
@@ -88,7 +88,7 @@ class ConfigurationLegacyJhsCountryConfiguration(BaseModel):
 Configuration = Union[
     ConfigurationLegacyJhsIPConfiguration,
     ConfigurationLegacyJhsIPV6Configuration,
-    ConfigurationLegacyJhsCidrConfiguration,
+    ConfigurationLegacyJhsCIDRConfiguration,
     ConfigurationLegacyJhsASNConfiguration,
     ConfigurationLegacyJhsCountryConfiguration,
 ]

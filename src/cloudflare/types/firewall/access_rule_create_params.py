@@ -10,7 +10,7 @@ __all__ = [
     "Configuration",
     "ConfigurationLegacyJhsIPConfiguration",
     "ConfigurationLegacyJhsIPV6Configuration",
-    "ConfigurationLegacyJhsCidrConfiguration",
+    "ConfigurationLegacyJhsCIDRConfiguration",
     "ConfigurationLegacyJhsASNConfiguration",
     "ConfigurationLegacyJhsCountryConfiguration",
 ]
@@ -60,7 +60,7 @@ class ConfigurationLegacyJhsIPV6Configuration(TypedDict, total=False):
     """The IPv6 address to match."""
 
 
-class ConfigurationLegacyJhsCidrConfiguration(TypedDict, total=False):
+class ConfigurationLegacyJhsCIDRConfiguration(TypedDict, total=False):
     target: Literal["ip_range"]
     """The configuration target.
 
@@ -106,7 +106,7 @@ class ConfigurationLegacyJhsCountryConfiguration(TypedDict, total=False):
 Configuration = Union[
     ConfigurationLegacyJhsIPConfiguration,
     ConfigurationLegacyJhsIPV6Configuration,
-    ConfigurationLegacyJhsCidrConfiguration,
+    ConfigurationLegacyJhsCIDRConfiguration,
     ConfigurationLegacyJhsASNConfiguration,
     ConfigurationLegacyJhsCountryConfiguration,
 ]
