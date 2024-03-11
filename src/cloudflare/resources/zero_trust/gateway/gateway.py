@@ -22,13 +22,13 @@ from .rules import (
     RulesWithStreamingResponse,
     AsyncRulesWithStreamingResponse,
 )
-from .loggings import (
-    Loggings,
-    AsyncLoggings,
-    LoggingsWithRawResponse,
-    AsyncLoggingsWithRawResponse,
-    LoggingsWithStreamingResponse,
-    AsyncLoggingsWithStreamingResponse,
+from .logging import (
+    Logging,
+    AsyncLogging,
+    LoggingWithRawResponse,
+    AsyncLoggingWithRawResponse,
+    LoggingWithStreamingResponse,
+    AsyncLoggingWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .app_types import (
@@ -123,8 +123,8 @@ class Gateway(SyncAPIResource):
         return Locations(self._client)
 
     @cached_property
-    def loggings(self) -> Loggings:
-        return Loggings(self._client)
+    def logging(self) -> Logging:
+        return Logging(self._client)
 
     @cached_property
     def proxy_endpoints(self) -> ProxyEndpoints:
@@ -239,8 +239,8 @@ class AsyncGateway(AsyncAPIResource):
         return AsyncLocations(self._client)
 
     @cached_property
-    def loggings(self) -> AsyncLoggings:
-        return AsyncLoggings(self._client)
+    def logging(self) -> AsyncLogging:
+        return AsyncLogging(self._client)
 
     @cached_property
     def proxy_endpoints(self) -> AsyncProxyEndpoints:
@@ -365,8 +365,8 @@ class GatewayWithRawResponse:
         return LocationsWithRawResponse(self._gateway.locations)
 
     @cached_property
-    def loggings(self) -> LoggingsWithRawResponse:
-        return LoggingsWithRawResponse(self._gateway.loggings)
+    def logging(self) -> LoggingWithRawResponse:
+        return LoggingWithRawResponse(self._gateway.logging)
 
     @cached_property
     def proxy_endpoints(self) -> ProxyEndpointsWithRawResponse:
@@ -413,8 +413,8 @@ class AsyncGatewayWithRawResponse:
         return AsyncLocationsWithRawResponse(self._gateway.locations)
 
     @cached_property
-    def loggings(self) -> AsyncLoggingsWithRawResponse:
-        return AsyncLoggingsWithRawResponse(self._gateway.loggings)
+    def logging(self) -> AsyncLoggingWithRawResponse:
+        return AsyncLoggingWithRawResponse(self._gateway.logging)
 
     @cached_property
     def proxy_endpoints(self) -> AsyncProxyEndpointsWithRawResponse:
@@ -461,8 +461,8 @@ class GatewayWithStreamingResponse:
         return LocationsWithStreamingResponse(self._gateway.locations)
 
     @cached_property
-    def loggings(self) -> LoggingsWithStreamingResponse:
-        return LoggingsWithStreamingResponse(self._gateway.loggings)
+    def logging(self) -> LoggingWithStreamingResponse:
+        return LoggingWithStreamingResponse(self._gateway.logging)
 
     @cached_property
     def proxy_endpoints(self) -> ProxyEndpointsWithStreamingResponse:
@@ -509,8 +509,8 @@ class AsyncGatewayWithStreamingResponse:
         return AsyncLocationsWithStreamingResponse(self._gateway.locations)
 
     @cached_property
-    def loggings(self) -> AsyncLoggingsWithStreamingResponse:
-        return AsyncLoggingsWithStreamingResponse(self._gateway.loggings)
+    def logging(self) -> AsyncLoggingWithStreamingResponse:
+        return AsyncLoggingWithStreamingResponse(self._gateway.logging)
 
     @cached_property
     def proxy_endpoints(self) -> AsyncProxyEndpointsWithStreamingResponse:

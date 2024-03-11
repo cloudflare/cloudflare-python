@@ -16,13 +16,13 @@ from .history import (
     HistoryWithStreamingResponse,
     AsyncHistoryWithStreamingResponse,
 )
-from .profiles import (
-    Profiles,
-    AsyncProfiles,
-    ProfilesWithRawResponse,
-    AsyncProfilesWithRawResponse,
-    ProfilesWithStreamingResponse,
-    AsyncProfilesWithStreamingResponse,
+from .profile import (
+    Profile,
+    AsyncProfile,
+    ProfileWithRawResponse,
+    AsyncProfileWithRawResponse,
+    ProfileWithStreamingResponse,
+    AsyncProfileWithStreamingResponse,
 )
 
 __all__ = [
@@ -32,12 +32,12 @@ __all__ = [
     "AsyncHistoryWithRawResponse",
     "HistoryWithStreamingResponse",
     "AsyncHistoryWithStreamingResponse",
-    "Profiles",
-    "AsyncProfiles",
-    "ProfilesWithRawResponse",
-    "AsyncProfilesWithRawResponse",
-    "ProfilesWithStreamingResponse",
-    "AsyncProfilesWithStreamingResponse",
+    "Profile",
+    "AsyncProfile",
+    "ProfileWithRawResponse",
+    "AsyncProfileWithRawResponse",
+    "ProfileWithStreamingResponse",
+    "AsyncProfileWithStreamingResponse",
     "Billing",
     "AsyncBilling",
     "BillingWithRawResponse",

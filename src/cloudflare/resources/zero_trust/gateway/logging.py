@@ -25,17 +25,17 @@ from ...._base_client import (
 )
 from ....types.zero_trust.gateway import ZeroTrustGatewayGatewayAccountLoggingSettings, logging_update_params
 
-__all__ = ["Loggings", "AsyncLoggings"]
+__all__ = ["Logging", "AsyncLogging"]
 
 
-class Loggings(SyncAPIResource):
+class Logging(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> LoggingsWithRawResponse:
-        return LoggingsWithRawResponse(self)
+    def with_raw_response(self) -> LoggingWithRawResponse:
+        return LoggingWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> LoggingsWithStreamingResponse:
-        return LoggingsWithStreamingResponse(self)
+    def with_streaming_response(self) -> LoggingWithStreamingResponse:
+        return LoggingWithStreamingResponse(self)
 
     def update(
         self,
@@ -128,14 +128,14 @@ class Loggings(SyncAPIResource):
         )
 
 
-class AsyncLoggings(AsyncAPIResource):
+class AsyncLogging(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncLoggingsWithRawResponse:
-        return AsyncLoggingsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncLoggingWithRawResponse:
+        return AsyncLoggingWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncLoggingsWithStreamingResponse:
-        return AsyncLoggingsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncLoggingWithStreamingResponse:
+        return AsyncLoggingWithStreamingResponse(self)
 
     async def update(
         self,
@@ -228,49 +228,49 @@ class AsyncLoggings(AsyncAPIResource):
         )
 
 
-class LoggingsWithRawResponse:
-    def __init__(self, loggings: Loggings) -> None:
-        self._loggings = loggings
+class LoggingWithRawResponse:
+    def __init__(self, logging: Logging) -> None:
+        self._logging = logging
 
         self.update = to_raw_response_wrapper(
-            loggings.update,
+            logging.update,
         )
         self.get = to_raw_response_wrapper(
-            loggings.get,
+            logging.get,
         )
 
 
-class AsyncLoggingsWithRawResponse:
-    def __init__(self, loggings: AsyncLoggings) -> None:
-        self._loggings = loggings
+class AsyncLoggingWithRawResponse:
+    def __init__(self, logging: AsyncLogging) -> None:
+        self._logging = logging
 
         self.update = async_to_raw_response_wrapper(
-            loggings.update,
+            logging.update,
         )
         self.get = async_to_raw_response_wrapper(
-            loggings.get,
+            logging.get,
         )
 
 
-class LoggingsWithStreamingResponse:
-    def __init__(self, loggings: Loggings) -> None:
-        self._loggings = loggings
+class LoggingWithStreamingResponse:
+    def __init__(self, logging: Logging) -> None:
+        self._logging = logging
 
         self.update = to_streamed_response_wrapper(
-            loggings.update,
+            logging.update,
         )
         self.get = to_streamed_response_wrapper(
-            loggings.get,
+            logging.get,
         )
 
 
-class AsyncLoggingsWithStreamingResponse:
-    def __init__(self, loggings: AsyncLoggings) -> None:
-        self._loggings = loggings
+class AsyncLoggingWithStreamingResponse:
+    def __init__(self, logging: AsyncLogging) -> None:
+        self._logging = logging
 
         self.update = async_to_streamed_response_wrapper(
-            loggings.update,
+            logging.update,
         )
         self.get = async_to_streamed_response_wrapper(
-            loggings.get,
+            logging.get,
         )
