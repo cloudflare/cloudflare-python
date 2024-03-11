@@ -1,12 +1,12 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from .customs import (
-    Customs,
-    AsyncCustoms,
-    CustomsWithRawResponse,
-    AsyncCustomsWithRawResponse,
-    CustomsWithStreamingResponse,
-    AsyncCustomsWithStreamingResponse,
+from .custom import (
+    Custom,
+    AsyncCustom,
+    CustomWithRawResponse,
+    AsyncCustomWithRawResponse,
+    CustomWithStreamingResponse,
+    AsyncCustomWithStreamingResponse,
 )
 from .profiles import (
     Profiles,
@@ -16,28 +16,28 @@ from .profiles import (
     ProfilesWithStreamingResponse,
     AsyncProfilesWithStreamingResponse,
 )
-from .predefineds import (
-    Predefineds,
-    AsyncPredefineds,
-    PredefinedsWithRawResponse,
-    AsyncPredefinedsWithRawResponse,
-    PredefinedsWithStreamingResponse,
-    AsyncPredefinedsWithStreamingResponse,
+from .predefined import (
+    Predefined,
+    AsyncPredefined,
+    PredefinedWithRawResponse,
+    AsyncPredefinedWithRawResponse,
+    PredefinedWithStreamingResponse,
+    AsyncPredefinedWithStreamingResponse,
 )
 
 __all__ = [
-    "Customs",
-    "AsyncCustoms",
-    "CustomsWithRawResponse",
-    "AsyncCustomsWithRawResponse",
-    "CustomsWithStreamingResponse",
-    "AsyncCustomsWithStreamingResponse",
-    "Predefineds",
-    "AsyncPredefineds",
-    "PredefinedsWithRawResponse",
-    "AsyncPredefinedsWithRawResponse",
-    "PredefinedsWithStreamingResponse",
-    "AsyncPredefinedsWithStreamingResponse",
+    "Custom",
+    "AsyncCustom",
+    "CustomWithRawResponse",
+    "AsyncCustomWithRawResponse",
+    "CustomWithStreamingResponse",
+    "AsyncCustomWithStreamingResponse",
+    "Predefined",
+    "AsyncPredefined",
+    "PredefinedWithRawResponse",
+    "AsyncPredefinedWithRawResponse",
+    "PredefinedWithStreamingResponse",
+    "AsyncPredefinedWithStreamingResponse",
     "Profiles",
     "AsyncProfiles",
     "ProfilesWithRawResponse",
