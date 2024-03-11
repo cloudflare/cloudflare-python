@@ -8,11 +8,11 @@ from typing_extensions import Literal
 import httpx
 
 from ..types import (
-    CertificateGetResponse,
-    CertificateListResponse,
-    CertificateCreateResponse,
-    CertificateDeleteResponse,
-    certificate_create_params,
+    OriginCACertificateGetResponse,
+    OriginCACertificateListResponse,
+    OriginCACertificateCreateResponse,
+    OriginCACertificateDeleteResponse,
+    origin_ca_certificate_create_params,
 )
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import (
@@ -32,17 +32,17 @@ from .._base_client import (
     make_request_options,
 )
 
-__all__ = ["Certificates", "AsyncCertificates"]
+__all__ = ["OriginCACertificates", "AsyncOriginCACertificates"]
 
 
-class Certificates(SyncAPIResource):
+class OriginCACertificates(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> CertificatesWithRawResponse:
-        return CertificatesWithRawResponse(self)
+    def with_raw_response(self) -> OriginCACertificatesWithRawResponse:
+        return OriginCACertificatesWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> CertificatesWithStreamingResponse:
-        return CertificatesWithStreamingResponse(self)
+    def with_streaming_response(self) -> OriginCACertificatesWithStreamingResponse:
+        return OriginCACertificatesWithStreamingResponse(self)
 
     def create(
         self,
@@ -57,7 +57,7 @@ class Certificates(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CertificateCreateResponse:
+    ) -> OriginCACertificateCreateResponse:
         """Create an Origin CA certificate.
 
         Use your Origin CA Key as your User Service Key
@@ -83,7 +83,7 @@ class Certificates(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return cast(
-            CertificateCreateResponse,
+            OriginCACertificateCreateResponse,
             self._post(
                 "/certificates",
                 body=maybe_transform(
@@ -93,7 +93,7 @@ class Certificates(SyncAPIResource):
                         "request_type": request_type,
                         "requested_validity": requested_validity,
                     },
-                    certificate_create_params.CertificateCreateParams,
+                    origin_ca_certificate_create_params.OriginCACertificateCreateParams,
                 ),
                 options=make_request_options(
                     extra_headers=extra_headers,
@@ -103,7 +103,7 @@ class Certificates(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[CertificateCreateResponse]
+                    Any, ResultWrapper[OriginCACertificateCreateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -117,7 +117,7 @@ class Certificates(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CertificateListResponse]:
+    ) -> Optional[OriginCACertificateListResponse]:
         """List all existing Origin CA certificates for a given zone.
 
         Use your Origin CA
@@ -133,7 +133,9 @@ class Certificates(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[CertificateListResponse]], ResultWrapper[CertificateListResponse]),
+            cast_to=cast(
+                Type[Optional[OriginCACertificateListResponse]], ResultWrapper[OriginCACertificateListResponse]
+            ),
         )
 
     def delete(
@@ -146,7 +148,7 @@ class Certificates(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CertificateDeleteResponse:
+    ) -> OriginCACertificateDeleteResponse:
         """Revoke an existing Origin CA certificate by its serial number.
 
         Use your Origin
@@ -175,7 +177,7 @@ class Certificates(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CertificateDeleteResponse], ResultWrapper[CertificateDeleteResponse]),
+            cast_to=cast(Type[OriginCACertificateDeleteResponse], ResultWrapper[OriginCACertificateDeleteResponse]),
         )
 
     def get(
@@ -188,7 +190,7 @@ class Certificates(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CertificateGetResponse:
+    ) -> OriginCACertificateGetResponse:
         """Get an existing Origin CA certificate by its serial number.
 
         Use your Origin CA
@@ -209,7 +211,7 @@ class Certificates(SyncAPIResource):
         if not certificate_id:
             raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
         return cast(
-            CertificateGetResponse,
+            OriginCACertificateGetResponse,
             self._get(
                 f"/certificates/{certificate_id}",
                 options=make_request_options(
@@ -220,20 +222,20 @@ class Certificates(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[CertificateGetResponse]
+                    Any, ResultWrapper[OriginCACertificateGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
 
 
-class AsyncCertificates(AsyncAPIResource):
+class AsyncOriginCACertificates(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncCertificatesWithRawResponse:
-        return AsyncCertificatesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncOriginCACertificatesWithRawResponse:
+        return AsyncOriginCACertificatesWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncCertificatesWithStreamingResponse:
-        return AsyncCertificatesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncOriginCACertificatesWithStreamingResponse:
+        return AsyncOriginCACertificatesWithStreamingResponse(self)
 
     async def create(
         self,
@@ -248,7 +250,7 @@ class AsyncCertificates(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CertificateCreateResponse:
+    ) -> OriginCACertificateCreateResponse:
         """Create an Origin CA certificate.
 
         Use your Origin CA Key as your User Service Key
@@ -274,7 +276,7 @@ class AsyncCertificates(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return cast(
-            CertificateCreateResponse,
+            OriginCACertificateCreateResponse,
             await self._post(
                 "/certificates",
                 body=await async_maybe_transform(
@@ -284,7 +286,7 @@ class AsyncCertificates(AsyncAPIResource):
                         "request_type": request_type,
                         "requested_validity": requested_validity,
                     },
-                    certificate_create_params.CertificateCreateParams,
+                    origin_ca_certificate_create_params.OriginCACertificateCreateParams,
                 ),
                 options=make_request_options(
                     extra_headers=extra_headers,
@@ -294,7 +296,7 @@ class AsyncCertificates(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[CertificateCreateResponse]
+                    Any, ResultWrapper[OriginCACertificateCreateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -308,7 +310,7 @@ class AsyncCertificates(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CertificateListResponse]:
+    ) -> Optional[OriginCACertificateListResponse]:
         """List all existing Origin CA certificates for a given zone.
 
         Use your Origin CA
@@ -324,7 +326,9 @@ class AsyncCertificates(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[CertificateListResponse]], ResultWrapper[CertificateListResponse]),
+            cast_to=cast(
+                Type[Optional[OriginCACertificateListResponse]], ResultWrapper[OriginCACertificateListResponse]
+            ),
         )
 
     async def delete(
@@ -337,7 +341,7 @@ class AsyncCertificates(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CertificateDeleteResponse:
+    ) -> OriginCACertificateDeleteResponse:
         """Revoke an existing Origin CA certificate by its serial number.
 
         Use your Origin
@@ -366,7 +370,7 @@ class AsyncCertificates(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CertificateDeleteResponse], ResultWrapper[CertificateDeleteResponse]),
+            cast_to=cast(Type[OriginCACertificateDeleteResponse], ResultWrapper[OriginCACertificateDeleteResponse]),
         )
 
     async def get(
@@ -379,7 +383,7 @@ class AsyncCertificates(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CertificateGetResponse:
+    ) -> OriginCACertificateGetResponse:
         """Get an existing Origin CA certificate by its serial number.
 
         Use your Origin CA
@@ -400,7 +404,7 @@ class AsyncCertificates(AsyncAPIResource):
         if not certificate_id:
             raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
         return cast(
-            CertificateGetResponse,
+            OriginCACertificateGetResponse,
             await self._get(
                 f"/certificates/{certificate_id}",
                 options=make_request_options(
@@ -411,79 +415,79 @@ class AsyncCertificates(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[CertificateGetResponse]
+                    Any, ResultWrapper[OriginCACertificateGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
 
 
-class CertificatesWithRawResponse:
-    def __init__(self, certificates: Certificates) -> None:
-        self._certificates = certificates
+class OriginCACertificatesWithRawResponse:
+    def __init__(self, origin_ca_certificates: OriginCACertificates) -> None:
+        self._origin_ca_certificates = origin_ca_certificates
 
         self.create = to_raw_response_wrapper(
-            certificates.create,
+            origin_ca_certificates.create,
         )
         self.list = to_raw_response_wrapper(
-            certificates.list,
+            origin_ca_certificates.list,
         )
         self.delete = to_raw_response_wrapper(
-            certificates.delete,
+            origin_ca_certificates.delete,
         )
         self.get = to_raw_response_wrapper(
-            certificates.get,
+            origin_ca_certificates.get,
         )
 
 
-class AsyncCertificatesWithRawResponse:
-    def __init__(self, certificates: AsyncCertificates) -> None:
-        self._certificates = certificates
+class AsyncOriginCACertificatesWithRawResponse:
+    def __init__(self, origin_ca_certificates: AsyncOriginCACertificates) -> None:
+        self._origin_ca_certificates = origin_ca_certificates
 
         self.create = async_to_raw_response_wrapper(
-            certificates.create,
+            origin_ca_certificates.create,
         )
         self.list = async_to_raw_response_wrapper(
-            certificates.list,
+            origin_ca_certificates.list,
         )
         self.delete = async_to_raw_response_wrapper(
-            certificates.delete,
+            origin_ca_certificates.delete,
         )
         self.get = async_to_raw_response_wrapper(
-            certificates.get,
+            origin_ca_certificates.get,
         )
 
 
-class CertificatesWithStreamingResponse:
-    def __init__(self, certificates: Certificates) -> None:
-        self._certificates = certificates
+class OriginCACertificatesWithStreamingResponse:
+    def __init__(self, origin_ca_certificates: OriginCACertificates) -> None:
+        self._origin_ca_certificates = origin_ca_certificates
 
         self.create = to_streamed_response_wrapper(
-            certificates.create,
+            origin_ca_certificates.create,
         )
         self.list = to_streamed_response_wrapper(
-            certificates.list,
+            origin_ca_certificates.list,
         )
         self.delete = to_streamed_response_wrapper(
-            certificates.delete,
+            origin_ca_certificates.delete,
         )
         self.get = to_streamed_response_wrapper(
-            certificates.get,
+            origin_ca_certificates.get,
         )
 
 
-class AsyncCertificatesWithStreamingResponse:
-    def __init__(self, certificates: AsyncCertificates) -> None:
-        self._certificates = certificates
+class AsyncOriginCACertificatesWithStreamingResponse:
+    def __init__(self, origin_ca_certificates: AsyncOriginCACertificates) -> None:
+        self._origin_ca_certificates = origin_ca_certificates
 
         self.create = async_to_streamed_response_wrapper(
-            certificates.create,
+            origin_ca_certificates.create,
         )
         self.list = async_to_streamed_response_wrapper(
-            certificates.list,
+            origin_ca_certificates.list,
         )
         self.delete = async_to_streamed_response_wrapper(
-            certificates.delete,
+            origin_ca_certificates.delete,
         )
         self.get = async_to_streamed_response_wrapper(
-            certificates.get,
+            origin_ca_certificates.get,
         )

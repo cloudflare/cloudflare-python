@@ -48,7 +48,7 @@ __all__ = [
 
 class Cloudflare(SyncAPIClient):
     accounts: resources.Accounts
-    certificates: resources.Certificates
+    origin_ca_certificates: resources.OriginCACertificates
     ips: resources.IPs
     memberships: resources.Memberships
     user: resources.UserResource
@@ -201,7 +201,7 @@ class Cloudflare(SyncAPIClient):
         )
 
         self.accounts = resources.Accounts(self)
-        self.certificates = resources.Certificates(self)
+        self.origin_ca_certificates = resources.OriginCACertificates(self)
         self.ips = resources.IPs(self)
         self.memberships = resources.Memberships(self)
         self.user = resources.UserResource(self)
@@ -459,7 +459,7 @@ class Cloudflare(SyncAPIClient):
 
 class AsyncCloudflare(AsyncAPIClient):
     accounts: resources.AsyncAccounts
-    certificates: resources.AsyncCertificates
+    origin_ca_certificates: resources.AsyncOriginCACertificates
     ips: resources.AsyncIPs
     memberships: resources.AsyncMemberships
     user: resources.AsyncUserResource
@@ -612,7 +612,7 @@ class AsyncCloudflare(AsyncAPIClient):
         )
 
         self.accounts = resources.AsyncAccounts(self)
-        self.certificates = resources.AsyncCertificates(self)
+        self.origin_ca_certificates = resources.AsyncOriginCACertificates(self)
         self.ips = resources.AsyncIPs(self)
         self.memberships = resources.AsyncMemberships(self)
         self.user = resources.AsyncUserResource(self)
@@ -871,7 +871,7 @@ class AsyncCloudflare(AsyncAPIClient):
 class CloudflareWithRawResponse:
     def __init__(self, client: Cloudflare) -> None:
         self.accounts = resources.AccountsWithRawResponse(client.accounts)
-        self.certificates = resources.CertificatesWithRawResponse(client.certificates)
+        self.origin_ca_certificates = resources.OriginCACertificatesWithRawResponse(client.origin_ca_certificates)
         self.ips = resources.IPsWithRawResponse(client.ips)
         self.memberships = resources.MembershipsWithRawResponse(client.memberships)
         self.user = resources.UserResourceWithRawResponse(client.user)
@@ -957,7 +957,7 @@ class CloudflareWithRawResponse:
 class AsyncCloudflareWithRawResponse:
     def __init__(self, client: AsyncCloudflare) -> None:
         self.accounts = resources.AsyncAccountsWithRawResponse(client.accounts)
-        self.certificates = resources.AsyncCertificatesWithRawResponse(client.certificates)
+        self.origin_ca_certificates = resources.AsyncOriginCACertificatesWithRawResponse(client.origin_ca_certificates)
         self.ips = resources.AsyncIPsWithRawResponse(client.ips)
         self.memberships = resources.AsyncMembershipsWithRawResponse(client.memberships)
         self.user = resources.AsyncUserResourceWithRawResponse(client.user)
@@ -1047,7 +1047,7 @@ class AsyncCloudflareWithRawResponse:
 class CloudflareWithStreamedResponse:
     def __init__(self, client: Cloudflare) -> None:
         self.accounts = resources.AccountsWithStreamingResponse(client.accounts)
-        self.certificates = resources.CertificatesWithStreamingResponse(client.certificates)
+        self.origin_ca_certificates = resources.OriginCACertificatesWithStreamingResponse(client.origin_ca_certificates)
         self.ips = resources.IPsWithStreamingResponse(client.ips)
         self.memberships = resources.MembershipsWithStreamingResponse(client.memberships)
         self.user = resources.UserResourceWithStreamingResponse(client.user)
@@ -1137,7 +1137,9 @@ class CloudflareWithStreamedResponse:
 class AsyncCloudflareWithStreamedResponse:
     def __init__(self, client: AsyncCloudflare) -> None:
         self.accounts = resources.AsyncAccountsWithStreamingResponse(client.accounts)
-        self.certificates = resources.AsyncCertificatesWithStreamingResponse(client.certificates)
+        self.origin_ca_certificates = resources.AsyncOriginCACertificatesWithStreamingResponse(
+            client.origin_ca_certificates
+        )
         self.ips = resources.AsyncIPsWithStreamingResponse(client.ips)
         self.memberships = resources.AsyncMembershipsWithStreamingResponse(client.memberships)
         self.user = resources.AsyncUserResourceWithStreamingResponse(client.user)

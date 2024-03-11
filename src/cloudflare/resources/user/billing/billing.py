@@ -10,13 +10,13 @@ from .history import (
     HistoryWithStreamingResponse,
     AsyncHistoryWithStreamingResponse,
 )
-from .profiles import (
-    Profiles,
-    AsyncProfiles,
-    ProfilesWithRawResponse,
-    AsyncProfilesWithRawResponse,
-    ProfilesWithStreamingResponse,
-    AsyncProfilesWithStreamingResponse,
+from .profile import (
+    Profile,
+    AsyncProfile,
+    ProfileWithRawResponse,
+    AsyncProfileWithRawResponse,
+    ProfileWithStreamingResponse,
+    AsyncProfileWithStreamingResponse,
 )
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -30,8 +30,8 @@ class Billing(SyncAPIResource):
         return History(self._client)
 
     @cached_property
-    def profiles(self) -> Profiles:
-        return Profiles(self._client)
+    def profile(self) -> Profile:
+        return Profile(self._client)
 
     @cached_property
     def with_raw_response(self) -> BillingWithRawResponse:
@@ -48,8 +48,8 @@ class AsyncBilling(AsyncAPIResource):
         return AsyncHistory(self._client)
 
     @cached_property
-    def profiles(self) -> AsyncProfiles:
-        return AsyncProfiles(self._client)
+    def profile(self) -> AsyncProfile:
+        return AsyncProfile(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncBillingWithRawResponse:
@@ -69,8 +69,8 @@ class BillingWithRawResponse:
         return HistoryWithRawResponse(self._billing.history)
 
     @cached_property
-    def profiles(self) -> ProfilesWithRawResponse:
-        return ProfilesWithRawResponse(self._billing.profiles)
+    def profile(self) -> ProfileWithRawResponse:
+        return ProfileWithRawResponse(self._billing.profile)
 
 
 class AsyncBillingWithRawResponse:
@@ -82,8 +82,8 @@ class AsyncBillingWithRawResponse:
         return AsyncHistoryWithRawResponse(self._billing.history)
 
     @cached_property
-    def profiles(self) -> AsyncProfilesWithRawResponse:
-        return AsyncProfilesWithRawResponse(self._billing.profiles)
+    def profile(self) -> AsyncProfileWithRawResponse:
+        return AsyncProfileWithRawResponse(self._billing.profile)
 
 
 class BillingWithStreamingResponse:
@@ -95,8 +95,8 @@ class BillingWithStreamingResponse:
         return HistoryWithStreamingResponse(self._billing.history)
 
     @cached_property
-    def profiles(self) -> ProfilesWithStreamingResponse:
-        return ProfilesWithStreamingResponse(self._billing.profiles)
+    def profile(self) -> ProfileWithStreamingResponse:
+        return ProfileWithStreamingResponse(self._billing.profile)
 
 
 class AsyncBillingWithStreamingResponse:
@@ -108,5 +108,5 @@ class AsyncBillingWithStreamingResponse:
         return AsyncHistoryWithStreamingResponse(self._billing.history)
 
     @cached_property
-    def profiles(self) -> AsyncProfilesWithStreamingResponse:
-        return AsyncProfilesWithStreamingResponse(self._billing.profiles)
+    def profile(self) -> AsyncProfileWithStreamingResponse:
+        return AsyncProfileWithStreamingResponse(self._billing.profile)

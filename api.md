@@ -46,26 +46,26 @@ Methods:
 - <code title="get /accounts/{account_id}/roles">client.accounts.roles.<a href="./src/cloudflare/resources/accounts/roles.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/accounts/role_list_response.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/roles/{role_id}">client.accounts.roles.<a href="./src/cloudflare/resources/accounts/roles.py">get</a>(role_id, \*, account_id) -> <a href="./src/cloudflare/types/accounts/role_get_response.py">RoleGetResponse</a></code>
 
-# Certificates
+# OriginCACertificates
 
 Types:
 
 ```python
 from cloudflare.types import (
     OriginCACertificate,
-    CertificateCreateResponse,
-    CertificateListResponse,
-    CertificateDeleteResponse,
-    CertificateGetResponse,
+    OriginCACertificateCreateResponse,
+    OriginCACertificateListResponse,
+    OriginCACertificateDeleteResponse,
+    OriginCACertificateGetResponse,
 )
 ```
 
 Methods:
 
-- <code title="post /certificates">client.certificates.<a href="./src/cloudflare/resources/certificates.py">create</a>(\*\*<a href="src/cloudflare/types/certificate_create_params.py">params</a>) -> <a href="./src/cloudflare/types/certificate_create_response.py">CertificateCreateResponse</a></code>
-- <code title="get /certificates">client.certificates.<a href="./src/cloudflare/resources/certificates.py">list</a>() -> <a href="./src/cloudflare/types/certificate_list_response.py">Optional</a></code>
-- <code title="delete /certificates/{certificate_id}">client.certificates.<a href="./src/cloudflare/resources/certificates.py">delete</a>(certificate_id) -> <a href="./src/cloudflare/types/certificate_delete_response.py">CertificateDeleteResponse</a></code>
-- <code title="get /certificates/{certificate_id}">client.certificates.<a href="./src/cloudflare/resources/certificates.py">get</a>(certificate_id) -> <a href="./src/cloudflare/types/certificate_get_response.py">CertificateGetResponse</a></code>
+- <code title="post /certificates">client.origin_ca_certificates.<a href="./src/cloudflare/resources/origin_ca_certificates.py">create</a>(\*\*<a href="src/cloudflare/types/origin_ca_certificate_create_params.py">params</a>) -> <a href="./src/cloudflare/types/origin_ca_certificate_create_response.py">OriginCACertificateCreateResponse</a></code>
+- <code title="get /certificates">client.origin_ca_certificates.<a href="./src/cloudflare/resources/origin_ca_certificates.py">list</a>() -> <a href="./src/cloudflare/types/origin_ca_certificate_list_response.py">Optional</a></code>
+- <code title="delete /certificates/{certificate_id}">client.origin_ca_certificates.<a href="./src/cloudflare/resources/origin_ca_certificates.py">delete</a>(certificate_id) -> <a href="./src/cloudflare/types/origin_ca_certificate_delete_response.py">OriginCACertificateDeleteResponse</a></code>
+- <code title="get /certificates/{certificate_id}">client.origin_ca_certificates.<a href="./src/cloudflare/resources/origin_ca_certificates.py">get</a>(certificate_id) -> <a href="./src/cloudflare/types/origin_ca_certificate_get_response.py">OriginCACertificateGetResponse</a></code>
 
 # IPs
 
@@ -138,7 +138,7 @@ Methods:
 
 - <code title="get /user/billing/history">client.user.billing.history.<a href="./src/cloudflare/resources/user/billing/history.py">get</a>(\*\*<a href="src/cloudflare/types/user/billing/history_get_params.py">params</a>) -> <a href="./src/cloudflare/types/user/billing/history_get_response.py">Optional</a></code>
 
-### Profiles
+### Profile
 
 Types:
 
@@ -148,7 +148,7 @@ from cloudflare.types.user.billing import ProfileGetResponse
 
 Methods:
 
-- <code title="get /user/billing/profile">client.user.billing.profiles.<a href="./src/cloudflare/resources/user/billing/profiles.py">get</a>() -> <a href="./src/cloudflare/types/user/billing/profile_get_response.py">ProfileGetResponse</a></code>
+- <code title="get /user/billing/profile">client.user.billing.profile.<a href="./src/cloudflare/resources/user/billing/profile.py">get</a>() -> <a href="./src/cloudflare/types/user/billing/profile_get_response.py">ProfileGetResponse</a></code>
 
 ## Firewall
 
@@ -5732,7 +5732,7 @@ Methods:
 - <code title="delete /accounts/{account_id}/gateway/locations/{location_id}">client.zero_trust.gateway.locations.<a href="./src/cloudflare/resources/zero_trust/gateway/locations.py">delete</a>(location_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/gateway/location_delete_response.py">LocationDeleteResponse</a></code>
 - <code title="get /accounts/{account_id}/gateway/locations/{location_id}">client.zero_trust.gateway.locations.<a href="./src/cloudflare/resources/zero_trust/gateway/locations.py">get</a>(location_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/gateway/zero_trust_gateway_locations.py">ZeroTrustGatewayLocations</a></code>
 
-### Loggings
+### Logging
 
 Types:
 
@@ -5742,8 +5742,8 @@ from cloudflare.types.zero_trust.gateway import ZeroTrustGatewayGatewayAccountLo
 
 Methods:
 
-- <code title="put /accounts/{account_id}/gateway/logging">client.zero_trust.gateway.loggings.<a href="./src/cloudflare/resources/zero_trust/gateway/loggings.py">update</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/gateway/logging_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/gateway/zero_trust_gateway_gateway_account_logging_settings.py">ZeroTrustGatewayGatewayAccountLoggingSettings</a></code>
-- <code title="get /accounts/{account_id}/gateway/logging">client.zero_trust.gateway.loggings.<a href="./src/cloudflare/resources/zero_trust/gateway/loggings.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/gateway/zero_trust_gateway_gateway_account_logging_settings.py">ZeroTrustGatewayGatewayAccountLoggingSettings</a></code>
+- <code title="put /accounts/{account_id}/gateway/logging">client.zero_trust.gateway.logging.<a href="./src/cloudflare/resources/zero_trust/gateway/logging.py">update</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/gateway/logging_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/gateway/zero_trust_gateway_gateway_account_logging_settings.py">ZeroTrustGatewayGatewayAccountLoggingSettings</a></code>
+- <code title="get /accounts/{account_id}/gateway/logging">client.zero_trust.gateway.logging.<a href="./src/cloudflare/resources/zero_trust/gateway/logging.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/gateway/zero_trust_gateway_gateway_account_logging_settings.py">ZeroTrustGatewayGatewayAccountLoggingSettings</a></code>
 
 ### ProxyEndpoints
 
