@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["LiveListParams"]
+__all__ = ["FleetStatusLiveParams"]
 
 
-class LiveListParams(TypedDict, total=False):
+class FleetStatusLiveParams(TypedDict, total=False):
     account_id: Required[str]
 
     since_minutes: Required[float]

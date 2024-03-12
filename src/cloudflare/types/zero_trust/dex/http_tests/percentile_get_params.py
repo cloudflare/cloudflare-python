@@ -7,10 +7,10 @@ from typing_extensions import Required, Annotated, TypedDict
 
 from ....._utils import PropertyInfo
 
-__all__ = ["PercentileListParams"]
+__all__ = ["PercentileGetParams"]
 
 
-class PercentileListParams(TypedDict, total=False):
+class PercentileGetParams(TypedDict, total=False):
     account_id: Required[str]
 
     time_end: Required[Annotated[str, PropertyInfo(alias="timeEnd")]]
