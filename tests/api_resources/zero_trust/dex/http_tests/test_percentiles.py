@@ -21,8 +21,8 @@ class TestPercentiles:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list(self, client: Cloudflare) -> None:
-        percentile = client.zero_trust.dex.http_tests.percentiles.list(
+    def test_method_get(self, client: Cloudflare) -> None:
+        percentile = client.zero_trust.dex.http_tests.percentiles.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
             time_end="2023-09-20T17:00:00Z",
@@ -32,8 +32,8 @@ class TestPercentiles:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list_with_all_params(self, client: Cloudflare) -> None:
-        percentile = client.zero_trust.dex.http_tests.percentiles.list(
+    def test_method_get_with_all_params(self, client: Cloudflare) -> None:
+        percentile = client.zero_trust.dex.http_tests.percentiles.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
             time_end="2023-09-20T17:00:00Z",
@@ -45,8 +45,8 @@ class TestPercentiles:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_list(self, client: Cloudflare) -> None:
-        response = client.zero_trust.dex.http_tests.percentiles.with_raw_response.list(
+    def test_raw_response_get(self, client: Cloudflare) -> None:
+        response = client.zero_trust.dex.http_tests.percentiles.with_raw_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
             time_end="2023-09-20T17:00:00Z",
@@ -60,8 +60,8 @@ class TestPercentiles:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_list(self, client: Cloudflare) -> None:
-        with client.zero_trust.dex.http_tests.percentiles.with_streaming_response.list(
+    def test_streaming_response_get(self, client: Cloudflare) -> None:
+        with client.zero_trust.dex.http_tests.percentiles.with_streaming_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
             time_end="2023-09-20T17:00:00Z",
@@ -77,9 +77,9 @@ class TestPercentiles:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_list(self, client: Cloudflare) -> None:
+    def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.zero_trust.dex.http_tests.percentiles.with_raw_response.list(
+            client.zero_trust.dex.http_tests.percentiles.with_raw_response.get(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
                 time_end="2023-09-20T17:00:00Z",
@@ -87,7 +87,7 @@ class TestPercentiles:
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `test_id` but received ''"):
-            client.zero_trust.dex.http_tests.percentiles.with_raw_response.list(
+            client.zero_trust.dex.http_tests.percentiles.with_raw_response.get(
                 "",
                 account_id="01a7362d577a6c3019a474fd6f485823",
                 time_end="2023-09-20T17:00:00Z",
@@ -100,8 +100,8 @@ class TestAsyncPercentiles:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list(self, async_client: AsyncCloudflare) -> None:
-        percentile = await async_client.zero_trust.dex.http_tests.percentiles.list(
+    async def test_method_get(self, async_client: AsyncCloudflare) -> None:
+        percentile = await async_client.zero_trust.dex.http_tests.percentiles.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
             time_end="2023-09-20T17:00:00Z",
@@ -111,8 +111,8 @@ class TestAsyncPercentiles:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        percentile = await async_client.zero_trust.dex.http_tests.percentiles.list(
+    async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        percentile = await async_client.zero_trust.dex.http_tests.percentiles.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
             time_end="2023-09-20T17:00:00Z",
@@ -124,8 +124,8 @@ class TestAsyncPercentiles:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.zero_trust.dex.http_tests.percentiles.with_raw_response.list(
+    async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.zero_trust.dex.http_tests.percentiles.with_raw_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
             time_end="2023-09-20T17:00:00Z",
@@ -139,8 +139,8 @@ class TestAsyncPercentiles:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.zero_trust.dex.http_tests.percentiles.with_streaming_response.list(
+    async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.zero_trust.dex.http_tests.percentiles.with_streaming_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
             time_end="2023-09-20T17:00:00Z",
@@ -156,9 +156,9 @@ class TestAsyncPercentiles:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
+    async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.zero_trust.dex.http_tests.percentiles.with_raw_response.list(
+            await async_client.zero_trust.dex.http_tests.percentiles.with_raw_response.get(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
                 time_end="2023-09-20T17:00:00Z",
@@ -166,7 +166,7 @@ class TestAsyncPercentiles:
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `test_id` but received ''"):
-            await async_client.zero_trust.dex.http_tests.percentiles.with_raw_response.list(
+            await async_client.zero_trust.dex.http_tests.percentiles.with_raw_response.get(
                 "",
                 account_id="01a7362d577a6c3019a474fd6f485823",
                 time_end="2023-09-20T17:00:00Z",

@@ -25,7 +25,7 @@ from ....._base_client import (
 )
 from .....types.zero_trust.dex.http_tests import (
     DigitalExperienceMonitoringHTTPDetailsPercentiles,
-    percentile_list_params,
+    percentile_get_params,
 )
 
 __all__ = ["Percentiles", "AsyncPercentiles"]
@@ -40,7 +40,7 @@ class Percentiles(SyncAPIResource):
     def with_streaming_response(self) -> PercentilesWithStreamingResponse:
         return PercentilesWithStreamingResponse(self)
 
-    def list(
+    def get(
         self,
         test_id: str,
         *,
@@ -99,7 +99,7 @@ class Percentiles(SyncAPIResource):
                         "colo": colo,
                         "device_id": device_id,
                     },
-                    percentile_list_params.PercentileListParams,
+                    percentile_get_params.PercentileGetParams,
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
@@ -119,7 +119,7 @@ class AsyncPercentiles(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncPercentilesWithStreamingResponse:
         return AsyncPercentilesWithStreamingResponse(self)
 
-    async def list(
+    async def get(
         self,
         test_id: str,
         *,
@@ -178,7 +178,7 @@ class AsyncPercentiles(AsyncAPIResource):
                         "colo": colo,
                         "device_id": device_id,
                     },
-                    percentile_list_params.PercentileListParams,
+                    percentile_get_params.PercentileGetParams,
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
@@ -193,8 +193,8 @@ class PercentilesWithRawResponse:
     def __init__(self, percentiles: Percentiles) -> None:
         self._percentiles = percentiles
 
-        self.list = to_raw_response_wrapper(
-            percentiles.list,
+        self.get = to_raw_response_wrapper(
+            percentiles.get,
         )
 
 
@@ -202,8 +202,8 @@ class AsyncPercentilesWithRawResponse:
     def __init__(self, percentiles: AsyncPercentiles) -> None:
         self._percentiles = percentiles
 
-        self.list = async_to_raw_response_wrapper(
-            percentiles.list,
+        self.get = async_to_raw_response_wrapper(
+            percentiles.get,
         )
 
 
@@ -211,8 +211,8 @@ class PercentilesWithStreamingResponse:
     def __init__(self, percentiles: Percentiles) -> None:
         self._percentiles = percentiles
 
-        self.list = to_streamed_response_wrapper(
-            percentiles.list,
+        self.get = to_streamed_response_wrapper(
+            percentiles.get,
         )
 
 
@@ -220,6 +220,6 @@ class AsyncPercentilesWithStreamingResponse:
     def __init__(self, percentiles: AsyncPercentiles) -> None:
         self._percentiles = percentiles
 
-        self.list = async_to_streamed_response_wrapper(
-            percentiles.list,
+        self.get = async_to_streamed_response_wrapper(
+            percentiles.get,
         )
