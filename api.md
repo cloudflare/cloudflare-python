@@ -5830,25 +5830,6 @@ Methods:
 - <code title="delete /accounts/{account_id}/teamnet/virtual_networks/{virtual_network_id}">client.zero_trust.networks.virtual_networks.<a href="./src/cloudflare/resources/zero_trust/networks/virtual_networks.py">delete</a>(virtual_network_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/networks/virtual_network_delete_response.py">VirtualNetworkDeleteResponse</a></code>
 - <code title="patch /accounts/{account_id}/teamnet/virtual_networks/{virtual_network_id}">client.zero_trust.networks.virtual_networks.<a href="./src/cloudflare/resources/zero_trust/networks/virtual_networks.py">edit</a>(virtual_network_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/networks/virtual_network_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/networks/virtual_network_edit_response.py">VirtualNetworkEditResponse</a></code>
 
-# Challenges
-
-## Widgets
-
-Types:
-
-```python
-from cloudflare.types.challenges import NcChallengesAdminWidgetDetail, NcChallengesAdminWidgetList
-```
-
-Methods:
-
-- <code title="post /accounts/{account_identifier}/challenges/widgets">client.challenges.widgets.<a href="./src/cloudflare/resources/challenges/widgets.py">create</a>(account_identifier, \*\*<a href="src/cloudflare/types/challenges/widget_create_params.py">params</a>) -> <a href="./src/cloudflare/types/challenges/nc_challenges_admin_widget_detail.py">Optional</a></code>
-- <code title="put /accounts/{account_identifier}/challenges/widgets/{sitekey}">client.challenges.widgets.<a href="./src/cloudflare/resources/challenges/widgets.py">update</a>(sitekey, \*, account_identifier, \*\*<a href="src/cloudflare/types/challenges/widget_update_params.py">params</a>) -> <a href="./src/cloudflare/types/challenges/nc_challenges_admin_widget_detail.py">Optional</a></code>
-- <code title="get /accounts/{account_identifier}/challenges/widgets">client.challenges.widgets.<a href="./src/cloudflare/resources/challenges/widgets.py">list</a>(account_identifier, \*\*<a href="src/cloudflare/types/challenges/widget_list_params.py">params</a>) -> <a href="./src/cloudflare/types/challenges/nc_challenges_admin_widget_list.py">SyncV4PagePaginationArray[NcChallengesAdminWidgetList]</a></code>
-- <code title="delete /accounts/{account_identifier}/challenges/widgets/{sitekey}">client.challenges.widgets.<a href="./src/cloudflare/resources/challenges/widgets.py">delete</a>(sitekey, \*, account_identifier) -> <a href="./src/cloudflare/types/challenges/nc_challenges_admin_widget_detail.py">Optional</a></code>
-- <code title="get /accounts/{account_identifier}/challenges/widgets/{sitekey}">client.challenges.widgets.<a href="./src/cloudflare/resources/challenges/widgets.py">get</a>(sitekey, \*, account_identifier) -> <a href="./src/cloudflare/types/challenges/nc_challenges_admin_widget_detail.py">Optional</a></code>
-- <code title="post /accounts/{account_identifier}/challenges/widgets/{sitekey}/rotate_secret">client.challenges.widgets.<a href="./src/cloudflare/resources/challenges/widgets.py">rotate_secret</a>(sitekey, \*, account_identifier, \*\*<a href="src/cloudflare/types/challenges/widget_rotate_secret_params.py">params</a>) -> <a href="./src/cloudflare/types/challenges/nc_challenges_admin_widget_detail.py">Optional</a></code>
-
 # Hyperdrive
 
 ## Configs

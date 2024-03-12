@@ -336,14 +336,6 @@ from .audit_logs import (
     AuditLogsWithStreamingResponse,
     AsyncAuditLogsWithStreamingResponse,
 )
-from .challenges import (
-    Challenges,
-    AsyncChallenges,
-    ChallengesWithRawResponse,
-    AsyncChallengesWithRawResponse,
-    ChallengesWithStreamingResponse,
-    AsyncChallengesWithStreamingResponse,
-)
 from .hyperdrive import (
     Hyperdrive,
     AsyncHyperdrive,
@@ -1038,12 +1030,6 @@ __all__ = [
     "AsyncZeroTrustWithRawResponse",
     "ZeroTrustWithStreamingResponse",
     "AsyncZeroTrustWithStreamingResponse",
-    "Challenges",
-    "AsyncChallenges",
-    "ChallengesWithRawResponse",
-    "AsyncChallengesWithRawResponse",
-    "ChallengesWithStreamingResponse",
-    "AsyncChallengesWithStreamingResponse",
     "Hyperdrive",
     "AsyncHyperdrive",
     "HyperdriveWithRawResponse",
