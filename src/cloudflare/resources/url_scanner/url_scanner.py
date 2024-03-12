@@ -55,12 +55,15 @@ class URLScanner(SyncAPIResource):
         account_id: str,
         *,
         account_scans: bool | NotGiven = NOT_GIVEN,
+        asn: str | NotGiven = NOT_GIVEN,
         date_end: Union[str, datetime] | NotGiven = NOT_GIVEN,
         date_start: Union[str, datetime] | NotGiven = NOT_GIVEN,
         hostname: str | NotGiven = NOT_GIVEN,
         ip: str | NotGiven = NOT_GIVEN,
+        is_malicious: bool | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         next_cursor: str | NotGiven = NOT_GIVEN,
+        page_asn: str | NotGiven = NOT_GIVEN,
         page_hostname: str | NotGiven = NOT_GIVEN,
         page_ip: str | NotGiven = NOT_GIVEN,
         page_path: str | NotGiven = NOT_GIVEN,
@@ -88,6 +91,9 @@ class URLScanner(SyncAPIResource):
 
           account_scans: Return only scans created by account.
 
+          asn: Filter scans by Autonomous System Number (ASN) of _any_ request made by the
+              webpage.
+
           date_end: Filter scans requested before date (inclusive).
 
           date_start: Filter scans requested after date (inclusive).
@@ -96,9 +102,13 @@ class URLScanner(SyncAPIResource):
 
           ip: Filter scans by IP address (IPv4 or IPv6) of _any_ request made by the webpage.
 
+          is_malicious: Filter scans by malicious verdict.
+
           limit: Limit the number of objects in the response.
 
           next_cursor: Pagination cursor to get the next set of results.
+
+          page_asn: Filter scans by main page Autonomous System Number (ASN).
 
           page_hostname: Filter scans by main page hostname .
 
@@ -134,12 +144,15 @@ class URLScanner(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "account_scans": account_scans,
+                        "asn": asn,
                         "date_end": date_end,
                         "date_start": date_start,
                         "hostname": hostname,
                         "ip": ip,
+                        "is_malicious": is_malicious,
                         "limit": limit,
                         "next_cursor": next_cursor,
+                        "page_asn": page_asn,
                         "page_hostname": page_hostname,
                         "page_ip": page_ip,
                         "page_path": page_path,
@@ -174,12 +187,15 @@ class AsyncURLScanner(AsyncAPIResource):
         account_id: str,
         *,
         account_scans: bool | NotGiven = NOT_GIVEN,
+        asn: str | NotGiven = NOT_GIVEN,
         date_end: Union[str, datetime] | NotGiven = NOT_GIVEN,
         date_start: Union[str, datetime] | NotGiven = NOT_GIVEN,
         hostname: str | NotGiven = NOT_GIVEN,
         ip: str | NotGiven = NOT_GIVEN,
+        is_malicious: bool | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         next_cursor: str | NotGiven = NOT_GIVEN,
+        page_asn: str | NotGiven = NOT_GIVEN,
         page_hostname: str | NotGiven = NOT_GIVEN,
         page_ip: str | NotGiven = NOT_GIVEN,
         page_path: str | NotGiven = NOT_GIVEN,
@@ -207,6 +223,9 @@ class AsyncURLScanner(AsyncAPIResource):
 
           account_scans: Return only scans created by account.
 
+          asn: Filter scans by Autonomous System Number (ASN) of _any_ request made by the
+              webpage.
+
           date_end: Filter scans requested before date (inclusive).
 
           date_start: Filter scans requested after date (inclusive).
@@ -215,9 +234,13 @@ class AsyncURLScanner(AsyncAPIResource):
 
           ip: Filter scans by IP address (IPv4 or IPv6) of _any_ request made by the webpage.
 
+          is_malicious: Filter scans by malicious verdict.
+
           limit: Limit the number of objects in the response.
 
           next_cursor: Pagination cursor to get the next set of results.
+
+          page_asn: Filter scans by main page Autonomous System Number (ASN).
 
           page_hostname: Filter scans by main page hostname .
 
@@ -253,12 +276,15 @@ class AsyncURLScanner(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "account_scans": account_scans,
+                        "asn": asn,
                         "date_end": date_end,
                         "date_start": date_start,
                         "hostname": hostname,
                         "ip": ip,
+                        "is_malicious": is_malicious,
                         "limit": limit,
                         "next_cursor": next_cursor,
+                        "page_asn": page_asn,
                         "page_hostname": page_hostname,
                         "page_ip": page_ip,
                         "page_path": page_path,
