@@ -33,7 +33,7 @@ class NetworkPath(SyncAPIResource):
     def with_streaming_response(self) -> NetworkPathWithStreamingResponse:
         return NetworkPathWithStreamingResponse(self)
 
-    def list(
+    def get(
         self,
         test_result_id: str,
         *,
@@ -89,7 +89,7 @@ class AsyncNetworkPath(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncNetworkPathWithStreamingResponse:
         return AsyncNetworkPathWithStreamingResponse(self)
 
-    async def list(
+    async def get(
         self,
         test_result_id: str,
         *,
@@ -140,8 +140,8 @@ class NetworkPathWithRawResponse:
     def __init__(self, network_path: NetworkPath) -> None:
         self._network_path = network_path
 
-        self.list = to_raw_response_wrapper(
-            network_path.list,
+        self.get = to_raw_response_wrapper(
+            network_path.get,
         )
 
 
@@ -149,8 +149,8 @@ class AsyncNetworkPathWithRawResponse:
     def __init__(self, network_path: AsyncNetworkPath) -> None:
         self._network_path = network_path
 
-        self.list = async_to_raw_response_wrapper(
-            network_path.list,
+        self.get = async_to_raw_response_wrapper(
+            network_path.get,
         )
 
 
@@ -158,8 +158,8 @@ class NetworkPathWithStreamingResponse:
     def __init__(self, network_path: NetworkPath) -> None:
         self._network_path = network_path
 
-        self.list = to_streamed_response_wrapper(
-            network_path.list,
+        self.get = to_streamed_response_wrapper(
+            network_path.get,
         )
 
 
@@ -167,6 +167,6 @@ class AsyncNetworkPathWithStreamingResponse:
     def __init__(self, network_path: AsyncNetworkPath) -> None:
         self._network_path = network_path
 
-        self.list = async_to_streamed_response_wrapper(
-            network_path.list,
+        self.get = async_to_streamed_response_wrapper(
+            network_path.get,
         )

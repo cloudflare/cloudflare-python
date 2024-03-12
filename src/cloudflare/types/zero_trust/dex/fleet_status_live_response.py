@@ -4,10 +4,10 @@ from typing import List, Optional
 
 from pydantic import Field as FieldInfo
 
-from ....._models import BaseModel
+from ...._models import BaseModel
 
 __all__ = [
-    "LiveListResponse",
+    "FleetStatusLiveResponse",
     "DeviceStats",
     "DeviceStatsByColo",
     "DeviceStatsByMode",
@@ -67,5 +67,5 @@ class DeviceStats(BaseModel):
     """Number of unique devices"""
 
 
-class LiveListResponse(BaseModel):
+class FleetStatusLiveResponse(BaseModel):
     device_stats: Optional[DeviceStats] = FieldInfo(alias="deviceStats", default=None)
