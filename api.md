@@ -5300,6 +5300,17 @@ Methods:
 
 ### FleetStatus
 
+Types:
+
+```python
+from cloudflare.types.zero_trust.dex import FleetStatusLiveResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/dex/fleet-status/live">client.zero_trust.dex.fleet_status.<a href="./src/cloudflare/resources/zero_trust/dex/fleet_status/fleet_status.py">live</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dex/fleet_status_live_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dex/fleet_status_live_response.py">FleetStatusLiveResponse</a></code>
+- <code title="get /accounts/{account_id}/dex/fleet-status/over-time">client.zero_trust.dex.fleet_status.<a href="./src/cloudflare/resources/zero_trust/dex/fleet_status/fleet_status.py">over_time</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dex/fleet_status_over_time_params.py">params</a>) -> None</code>
+
 #### Devices
 
 Types:
@@ -5311,24 +5322,6 @@ from cloudflare.types.zero_trust.dex.fleet_status import DigitalExperienceMonito
 Methods:
 
 - <code title="get /accounts/{account_id}/dex/fleet-status/devices">client.zero_trust.dex.fleet_status.devices.<a href="./src/cloudflare/resources/zero_trust/dex/fleet_status/devices.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dex/fleet_status/device_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dex/fleet_status/digital_experience_monitoring_device.py">SyncV4PagePaginationArray[DigitalExperienceMonitoringDevice]</a></code>
-
-#### Live
-
-Types:
-
-```python
-from cloudflare.types.zero_trust.dex.fleet_status import LiveListResponse
-```
-
-Methods:
-
-- <code title="get /accounts/{account_id}/dex/fleet-status/live">client.zero_trust.dex.fleet_status.live.<a href="./src/cloudflare/resources/zero_trust/dex/fleet_status/live.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dex/fleet_status/live_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dex/fleet_status/live_list_response.py">LiveListResponse</a></code>
-
-#### OverTime
-
-Methods:
-
-- <code title="get /accounts/{account_id}/dex/fleet-status/over-time">client.zero_trust.dex.fleet_status.over_time.<a href="./src/cloudflare/resources/zero_trust/dex/fleet_status/over_time.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dex/fleet_status/over_time_list_params.py">params</a>) -> None</code>
 
 ### HTTPTests
 
@@ -5354,7 +5347,7 @@ from cloudflare.types.zero_trust.dex.http_tests import (
 
 Methods:
 
-- <code title="get /accounts/{account_id}/dex/http-tests/{test_id}/percentiles">client.zero_trust.dex.http_tests.percentiles.<a href="./src/cloudflare/resources/zero_trust/dex/http_tests/percentiles.py">list</a>(test_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dex/http_tests/percentile_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dex/http_tests/digital_experience_monitoring_http_details_percentiles.py">DigitalExperienceMonitoringHTTPDetailsPercentiles</a></code>
+- <code title="get /accounts/{account_id}/dex/http-tests/{test_id}/percentiles">client.zero_trust.dex.http_tests.percentiles.<a href="./src/cloudflare/resources/zero_trust/dex/http_tests/percentiles.py">get</a>(test_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dex/http_tests/percentile_get_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dex/http_tests/digital_experience_monitoring_http_details_percentiles.py">DigitalExperienceMonitoringHTTPDetailsPercentiles</a></code>
 
 ### Tests
 
@@ -5394,7 +5387,7 @@ from cloudflare.types.zero_trust.dex.traceroute_test_results import (
 
 Methods:
 
-- <code title="get /accounts/{account_id}/dex/traceroute-test-results/{test_result_id}/network-path">client.zero_trust.dex.traceroute_test_results.network_path.<a href="./src/cloudflare/resources/zero_trust/dex/traceroute_test_results/network_path.py">list</a>(test_result_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/dex/traceroute_test_results/digital_experience_monitoring_traceroute_test_result_network_path.py">DigitalExperienceMonitoringTracerouteTestResultNetworkPath</a></code>
+- <code title="get /accounts/{account_id}/dex/traceroute-test-results/{test_result_id}/network-path">client.zero_trust.dex.traceroute_test_results.network_path.<a href="./src/cloudflare/resources/zero_trust/dex/traceroute_test_results/network_path.py">get</a>(test_result_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/dex/traceroute_test_results/digital_experience_monitoring_traceroute_test_result_network_path.py">DigitalExperienceMonitoringTracerouteTestResultNetworkPath</a></code>
 
 ### TracerouteTests
 

@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["OverTimeListParams"]
+__all__ = ["FleetStatusOverTimeParams"]
 
 
-class OverTimeListParams(TypedDict, total=False):
+class FleetStatusOverTimeParams(TypedDict, total=False):
     account_id: Required[str]
 
     time_end: Required[str]
