@@ -122,6 +122,19 @@ class Config(TypedDict, total=False):
     ping_env_id: str
     """Your PingOne environment identifier"""
 
+    prompt: Literal["login", "select_account", "none"]
+    """Indicates the type of user interaction that is required.
+
+    prompt=login forces the user to enter their credentials on that request,
+    negating single-sign on. prompt=none is the opposite. It ensures that the user
+    isn't presented with any interactive prompt. If the request can't be completed
+    silently by using single-sign on, the Microsoft identity platform returns an
+    interaction_required error. prompt=select_account interrupts single sign-on
+    providing account selection experience listing all the accounts either in
+    session or any remembered account or an option to choose to use a different
+    account altogether.
+    """
+
     scopes: List[str]
     """OAuth scopes"""
 
