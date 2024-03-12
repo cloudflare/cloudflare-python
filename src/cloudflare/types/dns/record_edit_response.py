@@ -2,8 +2,9 @@
 
 from typing import List, Union, Optional
 from datetime import datetime
-from typing_extensions import Literal
+from typing_extensions import Literal, Annotated
 
+from ..._utils import PropertyInfo
 from ..._models import BaseModel
 
 __all__ = [
@@ -1659,6 +1660,9 @@ class URI(BaseModel):
     """The domain of the record."""
 
 
-RecordEditResponse = Union[
-    A, AAAA, CAA, Cert, CNAME, DNSKEY, DS, HTTPS, LOC, MX, NAPTR, NS, PTR, Smimea, SRV, SSHFP, SVCB, TLSA, TXT, URI
+RecordEditResponse = Annotated[
+    Union[
+        A, AAAA, CAA, Cert, CNAME, DNSKEY, DS, HTTPS, LOC, MX, NAPTR, NS, PTR, Smimea, SRV, SSHFP, SVCB, TLSA, TXT, URI
+    ],
+    PropertyInfo(discriminator="type"),
 ]
