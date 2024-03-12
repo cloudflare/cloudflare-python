@@ -113,7 +113,6 @@ class Cloudflare(SyncAPIClient):
     warp_connector: resources.WARPConnector
     workers_for_platforms: resources.WorkersForPlatforms
     zero_trust: resources.ZeroTrust
-    challenges: resources.Challenges
     hyperdrive: resources.Hyperdrive
     rum: resources.RUM
     vectorize: resources.Vectorize
@@ -266,7 +265,6 @@ class Cloudflare(SyncAPIClient):
         self.warp_connector = resources.WARPConnector(self)
         self.workers_for_platforms = resources.WorkersForPlatforms(self)
         self.zero_trust = resources.ZeroTrust(self)
-        self.challenges = resources.Challenges(self)
         self.hyperdrive = resources.Hyperdrive(self)
         self.rum = resources.RUM(self)
         self.vectorize = resources.Vectorize(self)
@@ -524,7 +522,6 @@ class AsyncCloudflare(AsyncAPIClient):
     warp_connector: resources.AsyncWARPConnector
     workers_for_platforms: resources.AsyncWorkersForPlatforms
     zero_trust: resources.AsyncZeroTrust
-    challenges: resources.AsyncChallenges
     hyperdrive: resources.AsyncHyperdrive
     rum: resources.AsyncRUM
     vectorize: resources.AsyncVectorize
@@ -677,7 +674,6 @@ class AsyncCloudflare(AsyncAPIClient):
         self.warp_connector = resources.AsyncWARPConnector(self)
         self.workers_for_platforms = resources.AsyncWorkersForPlatforms(self)
         self.zero_trust = resources.AsyncZeroTrust(self)
-        self.challenges = resources.AsyncChallenges(self)
         self.hyperdrive = resources.AsyncHyperdrive(self)
         self.rum = resources.AsyncRUM(self)
         self.vectorize = resources.AsyncVectorize(self)
@@ -936,7 +932,6 @@ class CloudflareWithRawResponse:
         self.warp_connector = resources.WARPConnectorWithRawResponse(client.warp_connector)
         self.workers_for_platforms = resources.WorkersForPlatformsWithRawResponse(client.workers_for_platforms)
         self.zero_trust = resources.ZeroTrustWithRawResponse(client.zero_trust)
-        self.challenges = resources.ChallengesWithRawResponse(client.challenges)
         self.hyperdrive = resources.HyperdriveWithRawResponse(client.hyperdrive)
         self.rum = resources.RUMWithRawResponse(client.rum)
         self.vectorize = resources.VectorizeWithRawResponse(client.vectorize)
@@ -1026,7 +1021,6 @@ class AsyncCloudflareWithRawResponse:
         self.warp_connector = resources.AsyncWARPConnectorWithRawResponse(client.warp_connector)
         self.workers_for_platforms = resources.AsyncWorkersForPlatformsWithRawResponse(client.workers_for_platforms)
         self.zero_trust = resources.AsyncZeroTrustWithRawResponse(client.zero_trust)
-        self.challenges = resources.AsyncChallengesWithRawResponse(client.challenges)
         self.hyperdrive = resources.AsyncHyperdriveWithRawResponse(client.hyperdrive)
         self.rum = resources.AsyncRUMWithRawResponse(client.rum)
         self.vectorize = resources.AsyncVectorizeWithRawResponse(client.vectorize)
@@ -1116,7 +1110,6 @@ class CloudflareWithStreamedResponse:
         self.warp_connector = resources.WARPConnectorWithStreamingResponse(client.warp_connector)
         self.workers_for_platforms = resources.WorkersForPlatformsWithStreamingResponse(client.workers_for_platforms)
         self.zero_trust = resources.ZeroTrustWithStreamingResponse(client.zero_trust)
-        self.challenges = resources.ChallengesWithStreamingResponse(client.challenges)
         self.hyperdrive = resources.HyperdriveWithStreamingResponse(client.hyperdrive)
         self.rum = resources.RUMWithStreamingResponse(client.rum)
         self.vectorize = resources.VectorizeWithStreamingResponse(client.vectorize)
@@ -1212,7 +1205,6 @@ class AsyncCloudflareWithStreamedResponse:
             client.workers_for_platforms
         )
         self.zero_trust = resources.AsyncZeroTrustWithStreamingResponse(client.zero_trust)
-        self.challenges = resources.AsyncChallengesWithStreamingResponse(client.challenges)
         self.hyperdrive = resources.AsyncHyperdriveWithStreamingResponse(client.hyperdrive)
         self.rum = resources.AsyncRUMWithStreamingResponse(client.rum)
         self.vectorize = resources.AsyncVectorizeWithStreamingResponse(client.vectorize)
