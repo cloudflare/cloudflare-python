@@ -8,6 +8,9 @@ __all__ = ["ScriptGetResponse", "Version"]
 
 
 class Version(BaseModel):
+    dataflow_score: Optional[int] = None
+    """The dataflow score of the JavaScript content."""
+
     fetched_at: Optional[str] = None
     """The timestamp of when the script was last fetched."""
 
@@ -17,11 +20,16 @@ class Version(BaseModel):
     js_integrity_score: Optional[int] = None
     """The integrity score of the JavaScript content."""
 
+    obfuscation_score: Optional[int] = None
+    """The obfuscation score of the JavaScript content."""
+
 
 class ScriptGetResponse(BaseModel):
     id: Optional[object] = None
 
     added_at: Optional[object] = None
+
+    dataflow_score: Optional[object] = None
 
     domain_reported_malicious: Optional[object] = None
 
@@ -38,6 +46,8 @@ class ScriptGetResponse(BaseModel):
     js_integrity_score: Optional[object] = None
 
     last_seen_at: Optional[object] = None
+
+    obfuscation_score: Optional[object] = None
 
     page_urls: Optional[object] = None
 
