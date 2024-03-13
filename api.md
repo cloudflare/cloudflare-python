@@ -4489,6 +4489,7 @@ Types:
 
 ```python
 from cloudflare.types.alerting.v3.destinations import (
+    AaaPagerduty,
     PagerdutyCreateResponse,
     PagerdutyDeleteResponse,
     PagerdutyGetResponse,
@@ -4509,11 +4510,11 @@ Types:
 
 ```python
 from cloudflare.types.alerting.v3.destinations import (
+    AaaWebhooks,
     WebhookCreateResponse,
     WebhookUpdateResponse,
     WebhookListResponse,
     WebhookDeleteResponse,
-    WebhookGetResponse,
 )
 ```
 
@@ -4523,19 +4524,19 @@ Methods:
 - <code title="put /accounts/{account_id}/alerting/v3/destinations/webhooks/{webhook_id}">client.alerting.v3.destinations.webhooks.<a href="./src/cloudflare/resources/alerting/v3/destinations/webhooks.py">update</a>(webhook_id, \*, account_id, \*\*<a href="src/cloudflare/types/alerting/v3/destinations/webhook_update_params.py">params</a>) -> <a href="./src/cloudflare/types/alerting/v3/destinations/webhook_update_response.py">WebhookUpdateResponse</a></code>
 - <code title="get /accounts/{account_id}/alerting/v3/destinations/webhooks">client.alerting.v3.destinations.webhooks.<a href="./src/cloudflare/resources/alerting/v3/destinations/webhooks.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/alerting/v3/destinations/webhook_list_response.py">Optional</a></code>
 - <code title="delete /accounts/{account_id}/alerting/v3/destinations/webhooks/{webhook_id}">client.alerting.v3.destinations.webhooks.<a href="./src/cloudflare/resources/alerting/v3/destinations/webhooks.py">delete</a>(webhook_id, \*, account_id) -> <a href="./src/cloudflare/types/alerting/v3/destinations/webhook_delete_response.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/alerting/v3/destinations/webhooks/{webhook_id}">client.alerting.v3.destinations.webhooks.<a href="./src/cloudflare/resources/alerting/v3/destinations/webhooks.py">get</a>(webhook_id, \*, account_id) -> <a href="./src/cloudflare/types/alerting/v3/destinations/webhook_get_response.py">WebhookGetResponse</a></code>
+- <code title="get /accounts/{account_id}/alerting/v3/destinations/webhooks/{webhook_id}">client.alerting.v3.destinations.webhooks.<a href="./src/cloudflare/resources/alerting/v3/destinations/webhooks.py">get</a>(webhook_id, \*, account_id) -> <a href="./src/cloudflare/types/alerting/v3/destinations/aaa_webhooks.py">AaaWebhooks</a></code>
 
 ### Histories
 
 Types:
 
 ```python
-from cloudflare.types.alerting.v3 import HistoryListResponse
+from cloudflare.types.alerting.v3 import AaaHistory
 ```
 
 Methods:
 
-- <code title="get /accounts/{account_id}/alerting/v3/history">client.alerting.v3.histories.<a href="./src/cloudflare/resources/alerting/v3/histories.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/alerting/v3/history_list_params.py">params</a>) -> <a href="./src/cloudflare/types/alerting/v3/history_list_response.py">SyncV4PagePaginationArray[HistoryListResponse]</a></code>
+- <code title="get /accounts/{account_id}/alerting/v3/history">client.alerting.v3.histories.<a href="./src/cloudflare/resources/alerting/v3/histories.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/alerting/v3/history_list_params.py">params</a>) -> <a href="./src/cloudflare/types/alerting/v3/aaa_history.py">SyncV4PagePaginationArray[AaaHistory]</a></code>
 
 ### Policies
 
@@ -4543,11 +4544,11 @@ Types:
 
 ```python
 from cloudflare.types.alerting.v3 import (
+    AaaPolicies,
     PolicyCreateResponse,
     PolicyUpdateResponse,
     PolicyListResponse,
     PolicyDeleteResponse,
-    PolicyGetResponse,
 )
 ```
 
@@ -4557,7 +4558,7 @@ Methods:
 - <code title="put /accounts/{account_id}/alerting/v3/policies/{policy_id}">client.alerting.v3.policies.<a href="./src/cloudflare/resources/alerting/v3/policies.py">update</a>(policy_id, \*, account_id, \*\*<a href="src/cloudflare/types/alerting/v3/policy_update_params.py">params</a>) -> <a href="./src/cloudflare/types/alerting/v3/policy_update_response.py">PolicyUpdateResponse</a></code>
 - <code title="get /accounts/{account_id}/alerting/v3/policies">client.alerting.v3.policies.<a href="./src/cloudflare/resources/alerting/v3/policies.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/alerting/v3/policy_list_response.py">Optional</a></code>
 - <code title="delete /accounts/{account_id}/alerting/v3/policies/{policy_id}">client.alerting.v3.policies.<a href="./src/cloudflare/resources/alerting/v3/policies.py">delete</a>(policy_id, \*, account_id) -> <a href="./src/cloudflare/types/alerting/v3/policy_delete_response.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/alerting/v3/policies/{policy_id}">client.alerting.v3.policies.<a href="./src/cloudflare/resources/alerting/v3/policies.py">get</a>(policy_id, \*, account_id) -> <a href="./src/cloudflare/types/alerting/v3/policy_get_response.py">PolicyGetResponse</a></code>
+- <code title="get /accounts/{account_id}/alerting/v3/policies/{policy_id}">client.alerting.v3.policies.<a href="./src/cloudflare/resources/alerting/v3/policies.py">get</a>(policy_id, \*, account_id) -> <a href="./src/cloudflare/types/alerting/v3/aaa_policies.py">AaaPolicies</a></code>
 
 # D1
 
@@ -5829,6 +5830,25 @@ Methods:
 - <code title="get /accounts/{account_id}/teamnet/virtual_networks">client.zero_trust.networks.virtual_networks.<a href="./src/cloudflare/resources/zero_trust/networks/virtual_networks.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/networks/virtual_network_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/networks/virtual_network_list_response.py">Optional</a></code>
 - <code title="delete /accounts/{account_id}/teamnet/virtual_networks/{virtual_network_id}">client.zero_trust.networks.virtual_networks.<a href="./src/cloudflare/resources/zero_trust/networks/virtual_networks.py">delete</a>(virtual_network_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/networks/virtual_network_delete_response.py">VirtualNetworkDeleteResponse</a></code>
 - <code title="patch /accounts/{account_id}/teamnet/virtual_networks/{virtual_network_id}">client.zero_trust.networks.virtual_networks.<a href="./src/cloudflare/resources/zero_trust/networks/virtual_networks.py">edit</a>(virtual_network_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/networks/virtual_network_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/networks/virtual_network_edit_response.py">VirtualNetworkEditResponse</a></code>
+
+# Challenges
+
+## Widgets
+
+Types:
+
+```python
+from cloudflare.types.challenges import NcChallengesAdminWidgetDetail, NcChallengesAdminWidgetList
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/challenges/widgets">client.challenges.widgets.<a href="./src/cloudflare/resources/challenges/widgets.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/challenges/widget_create_params.py">params</a>) -> <a href="./src/cloudflare/types/challenges/nc_challenges_admin_widget_detail.py">Optional</a></code>
+- <code title="put /accounts/{account_id}/challenges/widgets/{sitekey}">client.challenges.widgets.<a href="./src/cloudflare/resources/challenges/widgets.py">update</a>(sitekey, \*, account_id, \*\*<a href="src/cloudflare/types/challenges/widget_update_params.py">params</a>) -> <a href="./src/cloudflare/types/challenges/nc_challenges_admin_widget_detail.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/challenges/widgets">client.challenges.widgets.<a href="./src/cloudflare/resources/challenges/widgets.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/challenges/widget_list_params.py">params</a>) -> <a href="./src/cloudflare/types/challenges/nc_challenges_admin_widget_list.py">SyncV4PagePaginationArray[NcChallengesAdminWidgetList]</a></code>
+- <code title="delete /accounts/{account_id}/challenges/widgets/{sitekey}">client.challenges.widgets.<a href="./src/cloudflare/resources/challenges/widgets.py">delete</a>(sitekey, \*, account_id) -> <a href="./src/cloudflare/types/challenges/nc_challenges_admin_widget_detail.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/challenges/widgets/{sitekey}">client.challenges.widgets.<a href="./src/cloudflare/resources/challenges/widgets.py">get</a>(sitekey, \*, account_id) -> <a href="./src/cloudflare/types/challenges/nc_challenges_admin_widget_detail.py">Optional</a></code>
+- <code title="post /accounts/{account_id}/challenges/widgets/{sitekey}/rotate_secret">client.challenges.widgets.<a href="./src/cloudflare/resources/challenges/widgets.py">rotate_secret</a>(sitekey, \*, account_id, \*\*<a href="src/cloudflare/types/challenges/widget_rotate_secret_params.py">params</a>) -> <a href="./src/cloudflare/types/challenges/nc_challenges_admin_widget_detail.py">Optional</a></code>
 
 # Hyperdrive
 
