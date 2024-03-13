@@ -6,7 +6,7 @@ from typing_extensions import Literal
 
 from ...._models import BaseModel
 
-__all__ = ["PolicyGetResponse", "Filters", "Mechanisms"]
+__all__ = ["AaaPolicies", "Filters", "Mechanisms"]
 
 
 class Filters(BaseModel):
@@ -145,7 +145,7 @@ class Mechanisms(BaseModel):
     """UUID"""
 
 
-class PolicyGetResponse(BaseModel):
+class AaaPolicies(BaseModel):
     id: Optional[str] = None
     """The unique identifier of a notification policy"""
 
