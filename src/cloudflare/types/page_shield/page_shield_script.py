@@ -12,8 +12,6 @@ class PageShieldScript(BaseModel):
 
     added_at: Optional[object] = None
 
-    dataflow_score: Optional[object] = None
-
     domain_reported_malicious: Optional[object] = None
 
     fetched_at: Optional[object] = None
@@ -29,8 +27,6 @@ class PageShieldScript(BaseModel):
     js_integrity_score: Optional[object] = None
 
     last_seen_at: Optional[object] = None
-
-    obfuscation_score: Optional[object] = None
 
     page_urls: Optional[object] = None
 
