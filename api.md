@@ -72,7 +72,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types import IPs, JdcloudIPs, IPListResponse
+from cloudflare.types import IPs, JDCloudIPs, IPListResponse
 ```
 
 Methods:

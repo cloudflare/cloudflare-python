@@ -7,7 +7,7 @@ from .account import Account as Account
 from .snippet import Snippet as Snippet
 from .calls_app import CallsApp as CallsApp
 from .membership import Membership as Membership
-from .jdcloud_ips import JdcloudIPs as JdcloudIPs
+from .jdcloud_ips import JDCloudIPs as JDCloudIPs
 from .dnssec_dnssec import DNSSECDNSSEC as DNSSECDNSSEC
 from .load_balancer import LoadBalancer as LoadBalancer
 from .stream_videos import StreamVideos as StreamVideos
