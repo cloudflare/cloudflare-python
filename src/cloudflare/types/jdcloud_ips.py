@@ -4,10 +4,10 @@ from typing import List, Optional
 
 from .._models import BaseModel
 
-__all__ = ["JdcloudIPs"]
+__all__ = ["JDCloudIPs"]
 
 
-class JdcloudIPs(BaseModel):
+class JDCloudIPs(BaseModel):
     etag: Optional[str] = None
     """A digest of the IP data. Useful for determining if the data has changed."""
 
