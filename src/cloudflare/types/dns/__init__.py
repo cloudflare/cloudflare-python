@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from .dns_record import DNSRecord as DNSRecord
 from .record_edit_params import RecordEditParams as RecordEditParams
 from .record_list_params import RecordListParams as RecordListParams
 from .record_get_response import RecordGetResponse as RecordGetResponse
