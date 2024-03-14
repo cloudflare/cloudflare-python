@@ -3,8 +3,8 @@
 from typing import Union
 
 from .ips import IPs
-from .jdcloud_ips import JdcloudIPs
+from .jdcloud_ips import JDCloudIPs
 
 __all__ = ["IPListResponse"]
 
-IPListResponse = Union[IPs, JdcloudIPs]
+IPListResponse = Union[IPs, JDCloudIPs]
