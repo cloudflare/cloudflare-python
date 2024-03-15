@@ -4,6 +4,6 @@ from typing import List
 
 from .access_settings import AccessSettings
 
-__all__ = ["SettingListResponse"]
+__all__ = ["SettingGetResponse"]
 
-SettingListResponse = List[AccessSettings]
+SettingGetResponse = List[AccessSettings]

@@ -24,8 +24,8 @@ from ....._base_client import (
     make_request_options,
 )
 from .....types.zero_trust.access.certificates import (
+    SettingGetResponse,
     AccessSettingsParam,
-    SettingListResponse,
     SettingUpdateResponse,
     setting_update_params,
 )
@@ -99,7 +99,7 @@ class Settings(SyncAPIResource):
             cast_to=cast(Type[Optional[SettingUpdateResponse]], ResultWrapper[SettingUpdateResponse]),
         )
 
-    def list(
+    def get(
         self,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
@@ -110,7 +110,7 @@ class Settings(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SettingListResponse]:
+    ) -> Optional[SettingGetResponse]:
         """
         List all mTLS hostname settings for this account or zone.
 
@@ -151,7 +151,7 @@ class Settings(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SettingListResponse]], ResultWrapper[SettingListResponse]),
+            cast_to=cast(Type[Optional[SettingGetResponse]], ResultWrapper[SettingGetResponse]),
         )
 
 
@@ -221,7 +221,7 @@ class AsyncSettings(AsyncAPIResource):
             cast_to=cast(Type[Optional[SettingUpdateResponse]], ResultWrapper[SettingUpdateResponse]),
         )
 
-    async def list(
+    async def get(
         self,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
@@ -232,7 +232,7 @@ class AsyncSettings(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SettingListResponse]:
+    ) -> Optional[SettingGetResponse]:
         """
         List all mTLS hostname settings for this account or zone.
 
@@ -273,7 +273,7 @@ class AsyncSettings(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SettingListResponse]], ResultWrapper[SettingListResponse]),
+            cast_to=cast(Type[Optional[SettingGetResponse]], ResultWrapper[SettingGetResponse]),
         )
 
 
@@ -284,8 +284,8 @@ class SettingsWithRawResponse:
         self.update = to_raw_response_wrapper(
             settings.update,
         )
-        self.list = to_raw_response_wrapper(
-            settings.list,
+        self.get = to_raw_response_wrapper(
+            settings.get,
         )
 
 
@@ -296,8 +296,8 @@ class AsyncSettingsWithRawResponse:
         self.update = async_to_raw_response_wrapper(
             settings.update,
         )
-        self.list = async_to_raw_response_wrapper(
-            settings.list,
+        self.get = async_to_raw_response_wrapper(
+            settings.get,
         )
 
 
@@ -308,8 +308,8 @@ class SettingsWithStreamingResponse:
         self.update = to_streamed_response_wrapper(
             settings.update,
         )
-        self.list = to_streamed_response_wrapper(
-            settings.list,
+        self.get = to_streamed_response_wrapper(
+            settings.get,
         )
 
 
@@ -320,6 +320,6 @@ class AsyncSettingsWithStreamingResponse:
         self.update = async_to_streamed_response_wrapper(
             settings.update,
         )
-        self.list = async_to_streamed_response_wrapper(
-            settings.list,
+        self.get = async_to_streamed_response_wrapper(
+            settings.get,
         )
