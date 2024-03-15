@@ -3,12 +3,13 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.types.workers import AIRunResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -22,9 +23,19 @@ class TestAI:
         ai = client.workers.ai.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
+            body={"text": "string"},
         )
-        assert_matches_type(object, ai, path=["response"])
+        assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_run_with_all_params(self, client: Cloudflare) -> None:
+        ai = client.workers.ai.run(
+            "string",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={"text": "string"},
+        )
+        assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -32,13 +43,13 @@ class TestAI:
         response = client.workers.ai.with_raw_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
+            body={"text": "string"},
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ai = response.parse()
-        assert_matches_type(object, ai, path=["response"])
+        assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -46,13 +57,13 @@ class TestAI:
         with client.workers.ai.with_streaming_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
+            body={"text": "string"},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ai = response.parse()
-            assert_matches_type(object, ai, path=["response"])
+            assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -63,14 +74,14 @@ class TestAI:
             client.workers.ai.with_raw_response.run(
                 "string",
                 account_id="",
-                body={},
+                body={"text": "string"},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `model_name` but received ''"):
             client.workers.ai.with_raw_response.run(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
+                body={"text": "string"},
             )
 
 
@@ -83,9 +94,19 @@ class TestAsyncAI:
         ai = await async_client.workers.ai.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
+            body={"text": "string"},
         )
-        assert_matches_type(object, ai, path=["response"])
+        assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_run_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        ai = await async_client.workers.ai.run(
+            "string",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={"text": "string"},
+        )
+        assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -93,13 +114,13 @@ class TestAsyncAI:
         response = await async_client.workers.ai.with_raw_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
+            body={"text": "string"},
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ai = await response.parse()
-        assert_matches_type(object, ai, path=["response"])
+        assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -107,13 +128,13 @@ class TestAsyncAI:
         async with async_client.workers.ai.with_streaming_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
+            body={"text": "string"},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ai = await response.parse()
-            assert_matches_type(object, ai, path=["response"])
+            assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -124,12 +145,12 @@ class TestAsyncAI:
             await async_client.workers.ai.with_raw_response.run(
                 "string",
                 account_id="",
-                body={},
+                body={"text": "string"},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `model_name` but received ''"):
             await async_client.workers.ai.with_raw_response.run(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
+                body={"text": "string"},
             )

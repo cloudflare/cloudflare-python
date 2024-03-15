@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Any, Optional, cast
 
 import httpx
 
@@ -23,7 +23,7 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.workers import ai_run_params
+from ...types.workers import AIRunResponse, ai_run_params
 
 __all__ = ["AI", "AsyncAI"]
 
@@ -42,14 +42,14 @@ class AI(SyncAPIResource):
         model_name: str,
         *,
         account_id: str,
-        body: object,
+        body: ai_run_params.Body,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> Optional[AIRunResponse]:
         """
         This endpoint provides users with the capability to run specific AI models
         on-demand.
@@ -74,17 +74,22 @@ class AI(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not model_name:
             raise ValueError(f"Expected a non-empty value for `model_name` but received {model_name!r}")
-        return self._post(
-            f"/accounts/{account_id}/ai/run/{model_name}",
-            body=maybe_transform(body, ai_run_params.AIRunParams),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+        return cast(
+            Optional[AIRunResponse],
+            self._post(
+                f"/accounts/{account_id}/ai/run/{model_name}",
+                body=maybe_transform(body, ai_run_params.AIRunParams),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[AIRunResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
 
@@ -102,14 +107,14 @@ class AsyncAI(AsyncAPIResource):
         model_name: str,
         *,
         account_id: str,
-        body: object,
+        body: ai_run_params.Body,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> Optional[AIRunResponse]:
         """
         This endpoint provides users with the capability to run specific AI models
         on-demand.
@@ -134,17 +139,22 @@ class AsyncAI(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not model_name:
             raise ValueError(f"Expected a non-empty value for `model_name` but received {model_name!r}")
-        return await self._post(
-            f"/accounts/{account_id}/ai/run/{model_name}",
-            body=await async_maybe_transform(body, ai_run_params.AIRunParams),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+        return cast(
+            Optional[AIRunResponse],
+            await self._post(
+                f"/accounts/{account_id}/ai/run/{model_name}",
+                body=await async_maybe_transform(body, ai_run_params.AIRunParams),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[AIRunResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
 
