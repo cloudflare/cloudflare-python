@@ -23,7 +23,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zero_trust.access import KeyListResponse, KeyRotateResponse, KeyUpdateResponse, key_update_params
+from ....types.zero_trust.access import KeyGetResponse, KeyRotateResponse, KeyUpdateResponse, key_update_params
 
 __all__ = ["Keys", "AsyncKeys"]
 
@@ -87,7 +87,7 @@ class Keys(SyncAPIResource):
             ),
         )
 
-    def list(
+    def get(
         self,
         identifier: str,
         *,
@@ -97,7 +97,7 @@ class Keys(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> KeyListResponse:
+    ) -> KeyGetResponse:
         """
         Gets the Access key rotation settings for an account.
 
@@ -115,7 +115,7 @@ class Keys(SyncAPIResource):
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return cast(
-            KeyListResponse,
+            KeyGetResponse,
             self._get(
                 f"/accounts/{identifier}/access/keys",
                 options=make_request_options(
@@ -126,7 +126,7 @@ class Keys(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[KeyListResponse]
+                    Any, ResultWrapper[KeyGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -235,7 +235,7 @@ class AsyncKeys(AsyncAPIResource):
             ),
         )
 
-    async def list(
+    async def get(
         self,
         identifier: str,
         *,
@@ -245,7 +245,7 @@ class AsyncKeys(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> KeyListResponse:
+    ) -> KeyGetResponse:
         """
         Gets the Access key rotation settings for an account.
 
@@ -263,7 +263,7 @@ class AsyncKeys(AsyncAPIResource):
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return cast(
-            KeyListResponse,
+            KeyGetResponse,
             await self._get(
                 f"/accounts/{identifier}/access/keys",
                 options=make_request_options(
@@ -274,7 +274,7 @@ class AsyncKeys(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[KeyListResponse]
+                    Any, ResultWrapper[KeyGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -331,8 +331,8 @@ class KeysWithRawResponse:
         self.update = to_raw_response_wrapper(
             keys.update,
         )
-        self.list = to_raw_response_wrapper(
-            keys.list,
+        self.get = to_raw_response_wrapper(
+            keys.get,
         )
         self.rotate = to_raw_response_wrapper(
             keys.rotate,
@@ -346,8 +346,8 @@ class AsyncKeysWithRawResponse:
         self.update = async_to_raw_response_wrapper(
             keys.update,
         )
-        self.list = async_to_raw_response_wrapper(
-            keys.list,
+        self.get = async_to_raw_response_wrapper(
+            keys.get,
         )
         self.rotate = async_to_raw_response_wrapper(
             keys.rotate,
@@ -361,8 +361,8 @@ class KeysWithStreamingResponse:
         self.update = to_streamed_response_wrapper(
             keys.update,
         )
-        self.list = to_streamed_response_wrapper(
-            keys.list,
+        self.get = to_streamed_response_wrapper(
+            keys.get,
         )
         self.rotate = to_streamed_response_wrapper(
             keys.rotate,
@@ -376,8 +376,8 @@ class AsyncKeysWithStreamingResponse:
         self.update = async_to_streamed_response_wrapper(
             keys.update,
         )
-        self.list = async_to_streamed_response_wrapper(
-            keys.list,
+        self.get = async_to_streamed_response_wrapper(
+            keys.get,
         )
         self.rotate = async_to_streamed_response_wrapper(
             keys.rotate,

@@ -7,7 +7,7 @@ from .access_apps import AccessApps as AccessApps
 from .access_users import AccessUsers as AccessUsers
 from .access_groups import AccessGroups as AccessGroups
 from .access_bookmarks import AccessBookmarks as AccessBookmarks
-from .key_list_response import KeyListResponse as KeyListResponse
+from .key_get_response import KeyGetResponse as KeyGetResponse
 from .key_update_params import KeyUpdateParams as KeyUpdateParams
 from .tag_create_params import TagCreateParams as TagCreateParams
 from .tag_list_response import TagListResponse as TagListResponse
