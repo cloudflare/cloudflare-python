@@ -2,6 +2,6 @@
 
 from typing import Union
 
-__all__ = ["KeyListResponse"]
+__all__ = ["KeyGetResponse"]
 
-KeyListResponse = Union[object, str]
+KeyGetResponse = Union[object, str]
