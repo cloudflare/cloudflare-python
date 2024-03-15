@@ -13,11 +13,17 @@ class RoutePfx2asParams(TypedDict, total=False):
     format: Literal["JSON", "CSV"]
     """Format results are returned in."""
 
+    longest_prefix_match: Annotated[bool, PropertyInfo(alias="longestPrefixMatch")]
+    """Return only results with the longest prefix match for the given prefix.
+
+    For example, specify a /32 prefix to lookup the origin ASN for an IPv4 address.
+    """
+
     origin: int
     """Lookup prefixes originated by the given ASN"""
 
     prefix: str
-    """Lookup origins of the given prefix"""
+    """Lookup origin ASNs of the given prefix"""
 
     rpki_status: Annotated[Literal["VALID", "INVALID", "UNKNOWN"], PropertyInfo(alias="rpkiStatus")]
     """Return only results with matching rpki status: valid, invalid or unknown"""
