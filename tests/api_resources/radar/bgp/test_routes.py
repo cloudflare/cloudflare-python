@@ -73,6 +73,7 @@ class TestRoutes:
     def test_method_pfx2as_with_all_params(self, client: Cloudflare) -> None:
         route = client.radar.bgp.routes.pfx2as(
             format="JSON",
+            longest_prefix_match=True,
             origin=0,
             prefix="1.1.1.0/24",
             rpki_status="INVALID",
@@ -233,6 +234,7 @@ class TestAsyncRoutes:
     async def test_method_pfx2as_with_all_params(self, async_client: AsyncCloudflare) -> None:
         route = await async_client.radar.bgp.routes.pfx2as(
             format="JSON",
+            longest_prefix_match=True,
             origin=0,
             prefix="1.1.1.0/24",
             rpki_status="INVALID",

@@ -107,6 +107,7 @@ class Routes(SyncAPIResource):
         self,
         *,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        longest_prefix_match: bool | NotGiven = NOT_GIVEN,
         origin: int | NotGiven = NOT_GIVEN,
         prefix: str | NotGiven = NOT_GIVEN,
         rpki_status: Literal["VALID", "INVALID", "UNKNOWN"] | NotGiven = NOT_GIVEN,
@@ -118,14 +119,17 @@ class Routes(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RoutePfx2asResponse:
         """
-        Lookup prefix-to-origin mapping on global routing tables.
+        Lookup prefix-to-ASN mapping on global routing tables.
 
         Args:
           format: Format results are returned in.
 
+          longest_prefix_match: Return only results with the longest prefix match for the given prefix. For
+              example, specify a /32 prefix to lookup the origin ASN for an IPv4 address.
+
           origin: Lookup prefixes originated by the given ASN
 
-          prefix: Lookup origins of the given prefix
+          prefix: Lookup origin ASNs of the given prefix
 
           rpki_status: Return only results with matching rpki status: valid, invalid or unknown
 
@@ -147,6 +151,7 @@ class Routes(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "format": format,
+                        "longest_prefix_match": longest_prefix_match,
                         "origin": origin,
                         "prefix": prefix,
                         "rpki_status": rpki_status,
@@ -356,6 +361,7 @@ class AsyncRoutes(AsyncAPIResource):
         self,
         *,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        longest_prefix_match: bool | NotGiven = NOT_GIVEN,
         origin: int | NotGiven = NOT_GIVEN,
         prefix: str | NotGiven = NOT_GIVEN,
         rpki_status: Literal["VALID", "INVALID", "UNKNOWN"] | NotGiven = NOT_GIVEN,
@@ -367,14 +373,17 @@ class AsyncRoutes(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RoutePfx2asResponse:
         """
-        Lookup prefix-to-origin mapping on global routing tables.
+        Lookup prefix-to-ASN mapping on global routing tables.
 
         Args:
           format: Format results are returned in.
 
+          longest_prefix_match: Return only results with the longest prefix match for the given prefix. For
+              example, specify a /32 prefix to lookup the origin ASN for an IPv4 address.
+
           origin: Lookup prefixes originated by the given ASN
 
-          prefix: Lookup origins of the given prefix
+          prefix: Lookup origin ASNs of the given prefix
 
           rpki_status: Return only results with matching rpki status: valid, invalid or unknown
 
@@ -396,6 +405,7 @@ class AsyncRoutes(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "format": format,
+                        "longest_prefix_match": longest_prefix_match,
                         "origin": origin,
                         "prefix": prefix,
                         "rpki_status": rpki_status,
