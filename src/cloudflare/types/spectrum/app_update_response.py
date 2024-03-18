@@ -10,8 +10,8 @@ __all__ = [
     "AppUpdateResponse",
     "DNS",
     "EdgeIPs",
-    "EdgeIPsSpectrumEdgeIPEyeballIPsVariable",
-    "EdgeIPsSpectrumEdgeIPCustomerOwnedIPsVariable",
+    "EdgeIPsSpectrumEdgeIPEyeballIPs",
+    "EdgeIPsSpectrumEdgeIPCustomerOwnedIPs",
     "OriginDNS",
 ]
 
@@ -24,7 +24,7 @@ class DNS(BaseModel):
     """The type of DNS record associated with the application."""
 
 
-class EdgeIPsSpectrumEdgeIPEyeballIPsVariable(BaseModel):
+class EdgeIPsSpectrumEdgeIPEyeballIPs(BaseModel):
     connectivity: Optional[Literal["all", "ipv4", "ipv6"]] = None
     """The IP versions supported for inbound connections on Spectrum anycast IPs."""
 
@@ -36,7 +36,7 @@ class EdgeIPsSpectrumEdgeIPEyeballIPsVariable(BaseModel):
     """
 
 
-class EdgeIPsSpectrumEdgeIPCustomerOwnedIPsVariable(BaseModel):
+class EdgeIPsSpectrumEdgeIPCustomerOwnedIPs(BaseModel):
     ips: Optional[List[str]] = None
     """
     The array of customer owned IPs we broadcast via anycast for this hostname and
@@ -51,7 +51,7 @@ class EdgeIPsSpectrumEdgeIPCustomerOwnedIPsVariable(BaseModel):
     """
 
 
-EdgeIPs = Union[EdgeIPsSpectrumEdgeIPEyeballIPsVariable, EdgeIPsSpectrumEdgeIPCustomerOwnedIPsVariable]
+EdgeIPs = Union[EdgeIPsSpectrumEdgeIPEyeballIPs, EdgeIPsSpectrumEdgeIPCustomerOwnedIPs]
 
 
 class OriginDNS(BaseModel):
