@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import List, Union, Iterable
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, TypedDict
 
 __all__ = [
     "ApplicationUpdateParams",
@@ -17,12 +17,6 @@ __all__ = [
 
 
 class ApplicationUpdateParams(TypedDict, total=False):
-    domain: Required[object]
-    """The URL or domain of the bookmark."""
-
-    type: Required[Literal["self_hosted", "saas", "ssh", "vnc", "app_launcher", "warp", "biso", "bookmark", "dash_sso"]]
-    """The application type."""
-
     account_id: str
     """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
 
@@ -75,6 +69,9 @@ class ApplicationUpdateParams(TypedDict, total=False):
 
     custom_pages: List[str]
     """The custom pages that will be displayed when applicable for this application"""
+
+    domain: object
+    """The URL or domain of the bookmark."""
 
     enable_binding_cookie: bool
     """
@@ -129,6 +126,9 @@ class ApplicationUpdateParams(TypedDict, total=False):
 
     Tags are used to filter applications in the App Launcher dashboard.
     """
+
+    type: Literal["self_hosted", "saas", "ssh", "vnc", "app_launcher", "warp", "biso", "bookmark", "dash_sso"]
+    """The application type."""
 
 
 class CorsHeaders(TypedDict, total=False):

@@ -11,19 +11,6 @@ class PCAPCreateParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier"""
 
-    colo_name: Required[str]
-    """The name of the data center used for the packet capture.
-
-    This can be a specific colo (ord02) or a multi-colo name (ORD). This field only
-    applies to `full` packet captures.
-    """
-
-    destination_conf: Required[str]
-    """The full URI for the bucket. This field only applies to `full` packet captures."""
-
-    packet_limit: Required[float]
-    """The limit of packets contained in a packet capture."""
-
     system: Required[Literal["magic-transit"]]
     """The system used to collect packet captures."""
 
@@ -43,7 +30,20 @@ class PCAPCreateParams(TypedDict, total=False):
     This field only applies to `full` packet captures.
     """
 
+    colo_name: str
+    """The name of the data center used for the packet capture.
+
+    This can be a specific colo (ord02) or a multi-colo name (ORD). This field only
+    applies to `full` packet captures.
+    """
+
+    destination_conf: str
+    """The full URI for the bucket. This field only applies to `full` packet captures."""
+
     filter_v1: FilterV1
+
+    packet_limit: float
+    """The limit of packets contained in a packet capture."""
 
 
 class FilterV1(TypedDict, total=False):
