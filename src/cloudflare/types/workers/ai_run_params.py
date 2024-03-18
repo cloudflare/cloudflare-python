@@ -15,8 +15,8 @@ __all__ = [
     "BodySentenceSimilarity",
     "BodyTextEmbeddings",
     "BodyAudio",
-    "BodyWorkersAIImageClassification",
-    "BodyWorkersAIBodyDetection",
+    "BodyImageClassification",
+    "BodyObjectDetection",
     "BodyUnionMember10",
     "BodyUnionMember11",
     "BodyUnionMember11Message",
@@ -64,11 +64,11 @@ class BodyAudio(TypedDict, total=False):
     audio: Iterable[float]
 
 
-class BodyWorkersAIImageClassification(TypedDict, total=False):
+class BodyImageClassification(TypedDict, total=False):
     image: Iterable[float]
 
 
-class BodyWorkersAIBodyDetection(TypedDict, total=False):
+class BodyObjectDetection(TypedDict, total=False):
     image: Iterable[float]
 
 
@@ -126,9 +126,9 @@ Body = Union[
     FileTypes,
     BodyAudio,
     FileTypes,
-    BodyWorkersAIImageClassification,
+    BodyImageClassification,
     FileTypes,
-    BodyWorkersAIBodyDetection,
+    BodyObjectDetection,
     BodyUnionMember10,
     BodyUnionMember11,
     BodyTranslation,

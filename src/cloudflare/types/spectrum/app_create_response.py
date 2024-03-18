@@ -6,14 +6,7 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = [
-    "AppCreateResponse",
-    "DNS",
-    "EdgeIPs",
-    "EdgeIPsSpectrumEdgeIPEyeballIPs",
-    "EdgeIPsSpectrumEdgeIPCustomerOwnedIPs",
-    "OriginDNS",
-]
+__all__ = ["AppCreateResponse", "DNS", "EdgeIPs", "EdgeIPsEyeballIPs", "EdgeIPsCustomerOwnedIPs", "OriginDNS"]
 
 
 class DNS(BaseModel):
@@ -24,7 +17,7 @@ class DNS(BaseModel):
     """The type of DNS record associated with the application."""
 
 
-class EdgeIPsSpectrumEdgeIPEyeballIPs(BaseModel):
+class EdgeIPsEyeballIPs(BaseModel):
     connectivity: Optional[Literal["all", "ipv4", "ipv6"]] = None
     """The IP versions supported for inbound connections on Spectrum anycast IPs."""
 
@@ -36,7 +29,7 @@ class EdgeIPsSpectrumEdgeIPEyeballIPs(BaseModel):
     """
 
 
-class EdgeIPsSpectrumEdgeIPCustomerOwnedIPs(BaseModel):
+class EdgeIPsCustomerOwnedIPs(BaseModel):
     ips: Optional[List[str]] = None
     """
     The array of customer owned IPs we broadcast via anycast for this hostname and
@@ -51,7 +44,7 @@ class EdgeIPsSpectrumEdgeIPCustomerOwnedIPs(BaseModel):
     """
 
 
-EdgeIPs = Union[EdgeIPsSpectrumEdgeIPEyeballIPs, EdgeIPsSpectrumEdgeIPCustomerOwnedIPs]
+EdgeIPs = Union[EdgeIPsEyeballIPs, EdgeIPsCustomerOwnedIPs]
 
 
 class OriginDNS(BaseModel):
