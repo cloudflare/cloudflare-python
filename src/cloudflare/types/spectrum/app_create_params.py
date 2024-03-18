@@ -5,14 +5,7 @@ from __future__ import annotations
 from typing import List, Union
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = [
-    "AppCreateParams",
-    "DNS",
-    "OriginDNS",
-    "EdgeIPs",
-    "EdgeIPsSpectrumEdgeIPEyeballIPs",
-    "EdgeIPsSpectrumEdgeIPCustomerOwnedIPs",
-]
+__all__ = ["AppCreateParams", "DNS", "OriginDNS", "EdgeIPs", "EdgeIPsEyeballIPs", "EdgeIPsCustomerOwnedIPs"]
 
 
 class AppCreateParams(TypedDict, total=False):
@@ -98,7 +91,7 @@ class OriginDNS(TypedDict, total=False):
     """
 
 
-class EdgeIPsSpectrumEdgeIPEyeballIPs(TypedDict, total=False):
+class EdgeIPsEyeballIPs(TypedDict, total=False):
     connectivity: Literal["all", "ipv4", "ipv6"]
     """The IP versions supported for inbound connections on Spectrum anycast IPs."""
 
@@ -110,7 +103,7 @@ class EdgeIPsSpectrumEdgeIPEyeballIPs(TypedDict, total=False):
     """
 
 
-class EdgeIPsSpectrumEdgeIPCustomerOwnedIPs(TypedDict, total=False):
+class EdgeIPsCustomerOwnedIPs(TypedDict, total=False):
     ips: List[str]
     """
     The array of customer owned IPs we broadcast via anycast for this hostname and
@@ -125,4 +118,4 @@ class EdgeIPsSpectrumEdgeIPCustomerOwnedIPs(TypedDict, total=False):
     """
 
 
-EdgeIPs = Union[EdgeIPsSpectrumEdgeIPEyeballIPs, EdgeIPsSpectrumEdgeIPCustomerOwnedIPs]
+EdgeIPs = Union[EdgeIPsEyeballIPs, EdgeIPsCustomerOwnedIPs]
