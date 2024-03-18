@@ -32,7 +32,9 @@ class TestRecords:
     def test_method_create(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            data={},
             name="example.com",
+            priority=10,
             type="URI",
         )
         assert_matches_type(RecordCreateResponse, record, path=["response"])
@@ -42,11 +44,8 @@ class TestRecords:
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name="example.com",
-            type="URI",
-            comment="Domain verification record",
             data={
-                "flags": "string",
+                "flags": {},
                 "tag": "issue",
                 "value": 'alpn="h3,h2" ipv4hint="127.0.0.1" ipv6hint="::1"',
                 "algorithm": 2,
@@ -86,11 +85,14 @@ class TestRecords:
                 "fingerprint": "string",
                 "content": "http://example.com/example.html",
             },
+            name="example.com",
+            priority=10,
+            type="URI",
+            comment="Domain verification record",
             meta={
                 "auto_added": True,
                 "source": "primary",
             },
-            priority=10,
             proxied=False,
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
@@ -102,7 +104,9 @@ class TestRecords:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            data={},
             name="example.com",
+            priority=10,
             type="URI",
         )
 
@@ -116,7 +120,9 @@ class TestRecords:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            data={},
             name="example.com",
+            priority=10,
             type="URI",
         ) as response:
             assert not response.is_closed
@@ -133,7 +139,9 @@ class TestRecords:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.create(
                 zone_id="",
+                data={},
                 name="example.com",
+                priority=10,
                 type="URI",
             )
 
@@ -143,7 +151,9 @@ class TestRecords:
         record = client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            data={},
             name="example.com",
+            priority=10,
             type="URI",
         )
         assert_matches_type(RecordUpdateResponse, record, path=["response"])
@@ -154,11 +164,8 @@ class TestRecords:
         record = client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name="example.com",
-            type="URI",
-            comment="Domain verification record",
             data={
-                "flags": "string",
+                "flags": {},
                 "tag": "issue",
                 "value": 'alpn="h3,h2" ipv4hint="127.0.0.1" ipv6hint="::1"',
                 "algorithm": 2,
@@ -198,11 +205,14 @@ class TestRecords:
                 "fingerprint": "string",
                 "content": "http://example.com/example.html",
             },
+            name="example.com",
+            priority=10,
+            type="URI",
+            comment="Domain verification record",
             meta={
                 "auto_added": True,
                 "source": "primary",
             },
-            priority=10,
             proxied=False,
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
@@ -215,7 +225,9 @@ class TestRecords:
         response = client.dns.records.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            data={},
             name="example.com",
+            priority=10,
             type="URI",
         )
 
@@ -230,7 +242,9 @@ class TestRecords:
         with client.dns.records.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            data={},
             name="example.com",
+            priority=10,
             type="URI",
         ) as response:
             assert not response.is_closed
@@ -248,7 +262,9 @@ class TestRecords:
             client.dns.records.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                data={},
                 name="example.com",
+                priority=10,
                 type="URI",
             )
 
@@ -256,7 +272,9 @@ class TestRecords:
             client.dns.records.with_raw_response.update(
                 "",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
                 name="example.com",
+                priority=10,
                 type="URI",
             )
 
@@ -395,7 +413,9 @@ class TestRecords:
         record = client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            data={},
             name="example.com",
+            priority=10,
             type="URI",
         )
         assert_matches_type(RecordEditResponse, record, path=["response"])
@@ -406,11 +426,8 @@ class TestRecords:
         record = client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name="example.com",
-            type="URI",
-            comment="Domain verification record",
             data={
-                "flags": "string",
+                "flags": {},
                 "tag": "issue",
                 "value": 'alpn="h3,h2" ipv4hint="127.0.0.1" ipv6hint="::1"',
                 "algorithm": 2,
@@ -450,11 +467,14 @@ class TestRecords:
                 "fingerprint": "string",
                 "content": "http://example.com/example.html",
             },
+            name="example.com",
+            priority=10,
+            type="URI",
+            comment="Domain verification record",
             meta={
                 "auto_added": True,
                 "source": "primary",
             },
-            priority=10,
             proxied=False,
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
@@ -467,7 +487,9 @@ class TestRecords:
         response = client.dns.records.with_raw_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            data={},
             name="example.com",
+            priority=10,
             type="URI",
         )
 
@@ -482,7 +504,9 @@ class TestRecords:
         with client.dns.records.with_streaming_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            data={},
             name="example.com",
+            priority=10,
             type="URI",
         ) as response:
             assert not response.is_closed
@@ -500,7 +524,9 @@ class TestRecords:
             client.dns.records.with_raw_response.edit(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                data={},
                 name="example.com",
+                priority=10,
                 type="URI",
             )
 
@@ -508,7 +534,9 @@ class TestRecords:
             client.dns.records.with_raw_response.edit(
                 "",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
                 name="example.com",
+                priority=10,
                 type="URI",
             )
 
@@ -713,7 +741,9 @@ class TestAsyncRecords:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            data={},
             name="example.com",
+            priority=10,
             type="URI",
         )
         assert_matches_type(RecordCreateResponse, record, path=["response"])
@@ -723,11 +753,8 @@ class TestAsyncRecords:
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name="example.com",
-            type="URI",
-            comment="Domain verification record",
             data={
-                "flags": "string",
+                "flags": {},
                 "tag": "issue",
                 "value": 'alpn="h3,h2" ipv4hint="127.0.0.1" ipv6hint="::1"',
                 "algorithm": 2,
@@ -767,11 +794,14 @@ class TestAsyncRecords:
                 "fingerprint": "string",
                 "content": "http://example.com/example.html",
             },
+            name="example.com",
+            priority=10,
+            type="URI",
+            comment="Domain verification record",
             meta={
                 "auto_added": True,
                 "source": "primary",
             },
-            priority=10,
             proxied=False,
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
@@ -783,7 +813,9 @@ class TestAsyncRecords:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            data={},
             name="example.com",
+            priority=10,
             type="URI",
         )
 
@@ -797,7 +829,9 @@ class TestAsyncRecords:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            data={},
             name="example.com",
+            priority=10,
             type="URI",
         ) as response:
             assert not response.is_closed
@@ -814,7 +848,9 @@ class TestAsyncRecords:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.create(
                 zone_id="",
+                data={},
                 name="example.com",
+                priority=10,
                 type="URI",
             )
 
@@ -824,7 +860,9 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            data={},
             name="example.com",
+            priority=10,
             type="URI",
         )
         assert_matches_type(RecordUpdateResponse, record, path=["response"])
@@ -835,11 +873,8 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name="example.com",
-            type="URI",
-            comment="Domain verification record",
             data={
-                "flags": "string",
+                "flags": {},
                 "tag": "issue",
                 "value": 'alpn="h3,h2" ipv4hint="127.0.0.1" ipv6hint="::1"',
                 "algorithm": 2,
@@ -879,11 +914,14 @@ class TestAsyncRecords:
                 "fingerprint": "string",
                 "content": "http://example.com/example.html",
             },
+            name="example.com",
+            priority=10,
+            type="URI",
+            comment="Domain verification record",
             meta={
                 "auto_added": True,
                 "source": "primary",
             },
-            priority=10,
             proxied=False,
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
@@ -896,7 +934,9 @@ class TestAsyncRecords:
         response = await async_client.dns.records.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            data={},
             name="example.com",
+            priority=10,
             type="URI",
         )
 
@@ -911,7 +951,9 @@ class TestAsyncRecords:
         async with async_client.dns.records.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            data={},
             name="example.com",
+            priority=10,
             type="URI",
         ) as response:
             assert not response.is_closed
@@ -929,7 +971,9 @@ class TestAsyncRecords:
             await async_client.dns.records.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                data={},
                 name="example.com",
+                priority=10,
                 type="URI",
             )
 
@@ -937,7 +981,9 @@ class TestAsyncRecords:
             await async_client.dns.records.with_raw_response.update(
                 "",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
                 name="example.com",
+                priority=10,
                 type="URI",
             )
 
@@ -1076,7 +1122,9 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            data={},
             name="example.com",
+            priority=10,
             type="URI",
         )
         assert_matches_type(RecordEditResponse, record, path=["response"])
@@ -1087,11 +1135,8 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name="example.com",
-            type="URI",
-            comment="Domain verification record",
             data={
-                "flags": "string",
+                "flags": {},
                 "tag": "issue",
                 "value": 'alpn="h3,h2" ipv4hint="127.0.0.1" ipv6hint="::1"',
                 "algorithm": 2,
@@ -1131,11 +1176,14 @@ class TestAsyncRecords:
                 "fingerprint": "string",
                 "content": "http://example.com/example.html",
             },
+            name="example.com",
+            priority=10,
+            type="URI",
+            comment="Domain verification record",
             meta={
                 "auto_added": True,
                 "source": "primary",
             },
-            priority=10,
             proxied=False,
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
@@ -1148,7 +1196,9 @@ class TestAsyncRecords:
         response = await async_client.dns.records.with_raw_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            data={},
             name="example.com",
+            priority=10,
             type="URI",
         )
 
@@ -1163,7 +1213,9 @@ class TestAsyncRecords:
         async with async_client.dns.records.with_streaming_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            data={},
             name="example.com",
+            priority=10,
             type="URI",
         ) as response:
             assert not response.is_closed
@@ -1181,7 +1233,9 @@ class TestAsyncRecords:
             await async_client.dns.records.with_raw_response.edit(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                data={},
                 name="example.com",
+                priority=10,
                 type="URI",
             )
 
@@ -1189,7 +1243,9 @@ class TestAsyncRecords:
             await async_client.dns.records.with_raw_response.edit(
                 "",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
                 name="example.com",
+                priority=10,
                 type="URI",
             )
 
