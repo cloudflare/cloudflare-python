@@ -55,7 +55,7 @@ class Source(TypedDict, total=False):
     private_key: Annotated[str, PropertyInfo(alias="privateKey")]
     """Private Key of an IAM credential (ideally scoped to a single GCS bucket)"""
 
-    provider: Literal["gcs"]
+    provider: Literal["gcs", "aws"]
 
     region: str
     """Name of the AWS availability zone"""

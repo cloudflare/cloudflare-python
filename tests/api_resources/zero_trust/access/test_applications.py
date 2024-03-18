@@ -25,6 +25,8 @@ class TestApplications:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.create(
+            domain="https://mybookmark.com",
+            type="bookmark",
             account_id="string",
             zone_id="string",
         )
@@ -34,6 +36,8 @@ class TestApplications:
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.create(
+            domain="https://mybookmark.com",
+            type="bookmark",
             account_id="string",
             zone_id="string",
             allow_authenticate_via_warp=True,
@@ -62,7 +66,6 @@ class TestApplications:
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
             ],
-            domain="https://mybookmark.com",
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
@@ -90,7 +93,6 @@ class TestApplications:
             session_duration="24h",
             skip_interstitial=True,
             tags=["engineers", "engineers", "engineers"],
-            type="bookmark",
         )
         assert_matches_type(AccessApps, application, path=["response"])
 
@@ -98,6 +100,8 @@ class TestApplications:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.applications.with_raw_response.create(
+            domain="https://mybookmark.com",
+            type="bookmark",
             account_id="string",
             zone_id="string",
         )
@@ -111,6 +115,8 @@ class TestApplications:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.zero_trust.access.applications.with_streaming_response.create(
+            domain="https://mybookmark.com",
+            type="bookmark",
             account_id="string",
             zone_id="string",
         ) as response:
@@ -127,12 +133,16 @@ class TestApplications:
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.create(
+                domain="https://mybookmark.com",
+                type="bookmark",
                 account_id="",
                 zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.create(
+                domain="https://mybookmark.com",
+                type="bookmark",
                 account_id="string",
                 zone_id="",
             )
@@ -142,6 +152,8 @@ class TestApplications:
     def test_method_update(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
+            domain="https://mybookmark.com",
+            type="bookmark",
             account_id="string",
             zone_id="string",
         )
@@ -152,6 +164,8 @@ class TestApplications:
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
+            domain="https://mybookmark.com",
+            type="bookmark",
             account_id="string",
             zone_id="string",
             allow_authenticate_via_warp=True,
@@ -180,7 +194,6 @@ class TestApplications:
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
             ],
-            domain="https://mybookmark.com",
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
@@ -208,7 +221,6 @@ class TestApplications:
             session_duration="24h",
             skip_interstitial=True,
             tags=["engineers", "engineers", "engineers"],
-            type="bookmark",
         )
         assert_matches_type(AccessApps, application, path=["response"])
 
@@ -217,6 +229,8 @@ class TestApplications:
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.applications.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
+            domain="https://mybookmark.com",
+            type="bookmark",
             account_id="string",
             zone_id="string",
         )
@@ -231,6 +245,8 @@ class TestApplications:
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.zero_trust.access.applications.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
+            domain="https://mybookmark.com",
+            type="bookmark",
             account_id="string",
             zone_id="string",
         ) as response:
@@ -248,6 +264,8 @@ class TestApplications:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
+                domain="https://mybookmark.com",
+                type="bookmark",
                 account_id="",
                 zone_id="string",
             )
@@ -255,6 +273,8 @@ class TestApplications:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
+                domain="https://mybookmark.com",
+                type="bookmark",
                 account_id="string",
                 zone_id="",
             )
@@ -529,6 +549,8 @@ class TestAsyncApplications:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.create(
+            domain="https://mybookmark.com",
+            type="bookmark",
             account_id="string",
             zone_id="string",
         )
@@ -538,6 +560,8 @@ class TestAsyncApplications:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.create(
+            domain="https://mybookmark.com",
+            type="bookmark",
             account_id="string",
             zone_id="string",
             allow_authenticate_via_warp=True,
@@ -566,7 +590,6 @@ class TestAsyncApplications:
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
             ],
-            domain="https://mybookmark.com",
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
@@ -594,7 +617,6 @@ class TestAsyncApplications:
             session_duration="24h",
             skip_interstitial=True,
             tags=["engineers", "engineers", "engineers"],
-            type="bookmark",
         )
         assert_matches_type(AccessApps, application, path=["response"])
 
@@ -602,6 +624,8 @@ class TestAsyncApplications:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.applications.with_raw_response.create(
+            domain="https://mybookmark.com",
+            type="bookmark",
             account_id="string",
             zone_id="string",
         )
@@ -615,6 +639,8 @@ class TestAsyncApplications:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.applications.with_streaming_response.create(
+            domain="https://mybookmark.com",
+            type="bookmark",
             account_id="string",
             zone_id="string",
         ) as response:
@@ -631,12 +657,16 @@ class TestAsyncApplications:
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.create(
+                domain="https://mybookmark.com",
+                type="bookmark",
                 account_id="",
                 zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.create(
+                domain="https://mybookmark.com",
+                type="bookmark",
                 account_id="string",
                 zone_id="",
             )
@@ -646,6 +676,8 @@ class TestAsyncApplications:
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
+            domain="https://mybookmark.com",
+            type="bookmark",
             account_id="string",
             zone_id="string",
         )
@@ -656,6 +688,8 @@ class TestAsyncApplications:
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
+            domain="https://mybookmark.com",
+            type="bookmark",
             account_id="string",
             zone_id="string",
             allow_authenticate_via_warp=True,
@@ -684,7 +718,6 @@ class TestAsyncApplications:
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
             ],
-            domain="https://mybookmark.com",
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
@@ -712,7 +745,6 @@ class TestAsyncApplications:
             session_duration="24h",
             skip_interstitial=True,
             tags=["engineers", "engineers", "engineers"],
-            type="bookmark",
         )
         assert_matches_type(AccessApps, application, path=["response"])
 
@@ -721,6 +753,8 @@ class TestAsyncApplications:
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.applications.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
+            domain="https://mybookmark.com",
+            type="bookmark",
             account_id="string",
             zone_id="string",
         )
@@ -735,6 +769,8 @@ class TestAsyncApplications:
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.applications.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
+            domain="https://mybookmark.com",
+            type="bookmark",
             account_id="string",
             zone_id="string",
         ) as response:
@@ -752,6 +788,8 @@ class TestAsyncApplications:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
+                domain="https://mybookmark.com",
+                type="bookmark",
                 account_id="",
                 zone_id="string",
             )
@@ -759,6 +797,8 @@ class TestAsyncApplications:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
+                domain="https://mybookmark.com",
+                type="bookmark",
                 account_id="string",
                 zone_id="",
             )

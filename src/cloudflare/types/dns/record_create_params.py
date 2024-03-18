@@ -12,10 +12,41 @@ class RecordCreateParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
+    data: Required[Data]
+
     name: Required[str]
     """DNS record name (or @ for the zone apex) in Punycode."""
 
-    type: Required[Literal["URI"]]
+    priority: Required[float]
+    """Required for MX, SRV and URI records; unused by other record types.
+
+    Records with lower priorities are preferred.
+    """
+
+    type: Required[
+        Literal[
+            "URI",
+            "TXT",
+            "TLSA",
+            "SVCB",
+            "SSHFP",
+            "SRV",
+            "SMIMEA",
+            "PTR",
+            "NS",
+            "NAPTR",
+            "MX",
+            "LOC",
+            "HTTPS",
+            "DS",
+            "DNSKEY",
+            "CNAME",
+            "CERT",
+            "CAA",
+            "AAAA",
+            "A",
+        ]
+    ]
     """Record type."""
 
     comment: str
@@ -24,15 +55,7 @@ class RecordCreateParams(TypedDict, total=False):
     This field has no effect on DNS responses.
     """
 
-    data: Data
-
     meta: Meta
-
-    priority: float
-    """Required for MX, SRV and URI records; unused by other record types.
-
-    Records with lower priorities are preferred.
-    """
 
     proxied: bool
     """
@@ -73,7 +96,7 @@ class Data(TypedDict, total=False):
     fingerprint: str
     """fingerprint."""
 
-    flags: str
+    flags: object
     """Flags."""
 
     key_tag: float
