@@ -66,14 +66,14 @@ class PCAPs(SyncAPIResource):
         self,
         *,
         account_id: str,
-        colo_name: str,
-        destination_conf: str,
-        packet_limit: float,
         system: Literal["magic-transit"],
         time_limit: float,
         type: Literal["simple", "full"],
         byte_limit: float | NotGiven = NOT_GIVEN,
+        colo_name: str | NotGiven = NOT_GIVEN,
+        destination_conf: str | NotGiven = NOT_GIVEN,
         filter_v1: pcap_create_params.FilterV1 | NotGiven = NOT_GIVEN,
+        packet_limit: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -87,14 +87,6 @@ class PCAPs(SyncAPIResource):
         Args:
           account_id: Identifier
 
-          colo_name: The name of the data center used for the packet capture. This can be a specific
-              colo (ord02) or a multi-colo name (ORD). This field only applies to `full`
-              packet captures.
-
-          destination_conf: The full URI for the bucket. This field only applies to `full` packet captures.
-
-          packet_limit: The limit of packets contained in a packet capture.
-
           system: The system used to collect packet captures.
 
           time_limit: The packet capture duration in seconds.
@@ -104,6 +96,14 @@ class PCAPs(SyncAPIResource):
 
           byte_limit: The maximum number of bytes to capture. This field only applies to `full` packet
               captures.
+
+          colo_name: The name of the data center used for the packet capture. This can be a specific
+              colo (ord02) or a multi-colo name (ORD). This field only applies to `full`
+              packet captures.
+
+          destination_conf: The full URI for the bucket. This field only applies to `full` packet captures.
+
+          packet_limit: The limit of packets contained in a packet capture.
 
           extra_headers: Send extra headers
 
@@ -121,14 +121,14 @@ class PCAPs(SyncAPIResource):
                 f"/accounts/{account_id}/pcaps",
                 body=maybe_transform(
                     {
-                        "colo_name": colo_name,
-                        "destination_conf": destination_conf,
-                        "packet_limit": packet_limit,
                         "system": system,
                         "time_limit": time_limit,
                         "type": type,
                         "byte_limit": byte_limit,
+                        "colo_name": colo_name,
+                        "destination_conf": destination_conf,
                         "filter_v1": filter_v1,
+                        "packet_limit": packet_limit,
                     },
                     pcap_create_params.PCAPCreateParams,
                 ),
@@ -255,14 +255,14 @@ class AsyncPCAPs(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        colo_name: str,
-        destination_conf: str,
-        packet_limit: float,
         system: Literal["magic-transit"],
         time_limit: float,
         type: Literal["simple", "full"],
         byte_limit: float | NotGiven = NOT_GIVEN,
+        colo_name: str | NotGiven = NOT_GIVEN,
+        destination_conf: str | NotGiven = NOT_GIVEN,
         filter_v1: pcap_create_params.FilterV1 | NotGiven = NOT_GIVEN,
+        packet_limit: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -276,14 +276,6 @@ class AsyncPCAPs(AsyncAPIResource):
         Args:
           account_id: Identifier
 
-          colo_name: The name of the data center used for the packet capture. This can be a specific
-              colo (ord02) or a multi-colo name (ORD). This field only applies to `full`
-              packet captures.
-
-          destination_conf: The full URI for the bucket. This field only applies to `full` packet captures.
-
-          packet_limit: The limit of packets contained in a packet capture.
-
           system: The system used to collect packet captures.
 
           time_limit: The packet capture duration in seconds.
@@ -293,6 +285,14 @@ class AsyncPCAPs(AsyncAPIResource):
 
           byte_limit: The maximum number of bytes to capture. This field only applies to `full` packet
               captures.
+
+          colo_name: The name of the data center used for the packet capture. This can be a specific
+              colo (ord02) or a multi-colo name (ORD). This field only applies to `full`
+              packet captures.
+
+          destination_conf: The full URI for the bucket. This field only applies to `full` packet captures.
+
+          packet_limit: The limit of packets contained in a packet capture.
 
           extra_headers: Send extra headers
 
@@ -310,14 +310,14 @@ class AsyncPCAPs(AsyncAPIResource):
                 f"/accounts/{account_id}/pcaps",
                 body=await async_maybe_transform(
                     {
-                        "colo_name": colo_name,
-                        "destination_conf": destination_conf,
-                        "packet_limit": packet_limit,
                         "system": system,
                         "time_limit": time_limit,
                         "type": type,
                         "byte_limit": byte_limit,
+                        "colo_name": colo_name,
+                        "destination_conf": destination_conf,
                         "filter_v1": filter_v1,
+                        "packet_limit": packet_limit,
                     },
                     pcap_create_params.PCAPCreateParams,
                 ),

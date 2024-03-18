@@ -58,9 +58,7 @@ class Records(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        data: record_create_params.Data,
         name: str,
-        priority: float,
         type: Literal[
             "URI",
             "TXT",
@@ -84,7 +82,10 @@ class Records(SyncAPIResource):
             "A",
         ],
         comment: str | NotGiven = NOT_GIVEN,
+        content: object | NotGiven = NOT_GIVEN,
+        data: record_create_params.Data | NotGiven = NOT_GIVEN,
         meta: record_create_params.Meta | NotGiven = NOT_GIVEN,
+        priority: float | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
         ttl: Union[float, Literal[1]] | NotGiven = NOT_GIVEN,
@@ -110,13 +111,15 @@ class Records(SyncAPIResource):
 
           name: DNS record name (or @ for the zone apex) in Punycode.
 
-          priority: Required for MX, SRV and URI records; unused by other record types. Records with
-              lower priorities are preferred.
-
           type: Record type.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
+
+          content: Formatted URI content. See 'data' to set URI properties.
+
+          priority: Required for MX, SRV and URI records; unused by other record types. Records with
+              lower priorities are preferred.
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
@@ -143,12 +146,13 @@ class Records(SyncAPIResource):
                 f"/zones/{zone_id}/dns_records",
                 body=maybe_transform(
                     {
-                        "data": data,
                         "name": name,
-                        "priority": priority,
                         "type": type,
                         "comment": comment,
+                        "content": content,
+                        "data": data,
                         "meta": meta,
+                        "priority": priority,
                         "proxied": proxied,
                         "tags": tags,
                         "ttl": ttl,
@@ -173,9 +177,7 @@ class Records(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_update_params.Data,
         name: str,
-        priority: float,
         type: Literal[
             "URI",
             "TXT",
@@ -199,7 +201,10 @@ class Records(SyncAPIResource):
             "A",
         ],
         comment: str | NotGiven = NOT_GIVEN,
+        content: object | NotGiven = NOT_GIVEN,
+        data: record_update_params.Data | NotGiven = NOT_GIVEN,
         meta: record_update_params.Meta | NotGiven = NOT_GIVEN,
+        priority: float | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
         ttl: Union[float, Literal[1]] | NotGiven = NOT_GIVEN,
@@ -226,13 +231,15 @@ class Records(SyncAPIResource):
 
           name: DNS record name (or @ for the zone apex) in Punycode.
 
-          priority: Required for MX, SRV and URI records; unused by other record types. Records with
-              lower priorities are preferred.
-
           type: Record type.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
+
+          content: Formatted URI content. See 'data' to set URI properties.
+
+          priority: Required for MX, SRV and URI records; unused by other record types. Records with
+              lower priorities are preferred.
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
@@ -261,12 +268,13 @@ class Records(SyncAPIResource):
                 f"/zones/{zone_id}/dns_records/{dns_record_id}",
                 body=maybe_transform(
                     {
-                        "data": data,
                         "name": name,
-                        "priority": priority,
                         "type": type,
                         "comment": comment,
+                        "content": content,
+                        "data": data,
                         "meta": meta,
+                        "priority": priority,
                         "proxied": proxied,
                         "tags": tags,
                         "ttl": ttl,
@@ -460,9 +468,7 @@ class Records(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_edit_params.Data,
         name: str,
-        priority: float,
         type: Literal[
             "URI",
             "TXT",
@@ -486,7 +492,10 @@ class Records(SyncAPIResource):
             "A",
         ],
         comment: str | NotGiven = NOT_GIVEN,
+        content: object | NotGiven = NOT_GIVEN,
+        data: record_edit_params.Data | NotGiven = NOT_GIVEN,
         meta: record_edit_params.Meta | NotGiven = NOT_GIVEN,
+        priority: float | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
         ttl: Union[float, Literal[1]] | NotGiven = NOT_GIVEN,
@@ -513,13 +522,15 @@ class Records(SyncAPIResource):
 
           name: DNS record name (or @ for the zone apex) in Punycode.
 
-          priority: Required for MX, SRV and URI records; unused by other record types. Records with
-              lower priorities are preferred.
-
           type: Record type.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
+
+          content: Formatted URI content. See 'data' to set URI properties.
+
+          priority: Required for MX, SRV and URI records; unused by other record types. Records with
+              lower priorities are preferred.
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
@@ -548,12 +559,13 @@ class Records(SyncAPIResource):
                 f"/zones/{zone_id}/dns_records/{dns_record_id}",
                 body=maybe_transform(
                     {
-                        "data": data,
                         "name": name,
-                        "priority": priority,
                         "type": type,
                         "comment": comment,
+                        "content": content,
+                        "data": data,
                         "meta": meta,
+                        "priority": priority,
                         "proxied": proxied,
                         "tags": tags,
                         "ttl": ttl,
@@ -783,9 +795,7 @@ class AsyncRecords(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        data: record_create_params.Data,
         name: str,
-        priority: float,
         type: Literal[
             "URI",
             "TXT",
@@ -809,7 +819,10 @@ class AsyncRecords(AsyncAPIResource):
             "A",
         ],
         comment: str | NotGiven = NOT_GIVEN,
+        content: object | NotGiven = NOT_GIVEN,
+        data: record_create_params.Data | NotGiven = NOT_GIVEN,
         meta: record_create_params.Meta | NotGiven = NOT_GIVEN,
+        priority: float | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
         ttl: Union[float, Literal[1]] | NotGiven = NOT_GIVEN,
@@ -835,13 +848,15 @@ class AsyncRecords(AsyncAPIResource):
 
           name: DNS record name (or @ for the zone apex) in Punycode.
 
-          priority: Required for MX, SRV and URI records; unused by other record types. Records with
-              lower priorities are preferred.
-
           type: Record type.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
+
+          content: Formatted URI content. See 'data' to set URI properties.
+
+          priority: Required for MX, SRV and URI records; unused by other record types. Records with
+              lower priorities are preferred.
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
@@ -868,12 +883,13 @@ class AsyncRecords(AsyncAPIResource):
                 f"/zones/{zone_id}/dns_records",
                 body=await async_maybe_transform(
                     {
-                        "data": data,
                         "name": name,
-                        "priority": priority,
                         "type": type,
                         "comment": comment,
+                        "content": content,
+                        "data": data,
                         "meta": meta,
+                        "priority": priority,
                         "proxied": proxied,
                         "tags": tags,
                         "ttl": ttl,
@@ -898,9 +914,7 @@ class AsyncRecords(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_update_params.Data,
         name: str,
-        priority: float,
         type: Literal[
             "URI",
             "TXT",
@@ -924,7 +938,10 @@ class AsyncRecords(AsyncAPIResource):
             "A",
         ],
         comment: str | NotGiven = NOT_GIVEN,
+        content: object | NotGiven = NOT_GIVEN,
+        data: record_update_params.Data | NotGiven = NOT_GIVEN,
         meta: record_update_params.Meta | NotGiven = NOT_GIVEN,
+        priority: float | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
         ttl: Union[float, Literal[1]] | NotGiven = NOT_GIVEN,
@@ -951,13 +968,15 @@ class AsyncRecords(AsyncAPIResource):
 
           name: DNS record name (or @ for the zone apex) in Punycode.
 
-          priority: Required for MX, SRV and URI records; unused by other record types. Records with
-              lower priorities are preferred.
-
           type: Record type.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
+
+          content: Formatted URI content. See 'data' to set URI properties.
+
+          priority: Required for MX, SRV and URI records; unused by other record types. Records with
+              lower priorities are preferred.
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
@@ -986,12 +1005,13 @@ class AsyncRecords(AsyncAPIResource):
                 f"/zones/{zone_id}/dns_records/{dns_record_id}",
                 body=await async_maybe_transform(
                     {
-                        "data": data,
                         "name": name,
-                        "priority": priority,
                         "type": type,
                         "comment": comment,
+                        "content": content,
+                        "data": data,
                         "meta": meta,
+                        "priority": priority,
                         "proxied": proxied,
                         "tags": tags,
                         "ttl": ttl,
@@ -1185,9 +1205,7 @@ class AsyncRecords(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_edit_params.Data,
         name: str,
-        priority: float,
         type: Literal[
             "URI",
             "TXT",
@@ -1211,7 +1229,10 @@ class AsyncRecords(AsyncAPIResource):
             "A",
         ],
         comment: str | NotGiven = NOT_GIVEN,
+        content: object | NotGiven = NOT_GIVEN,
+        data: record_edit_params.Data | NotGiven = NOT_GIVEN,
         meta: record_edit_params.Meta | NotGiven = NOT_GIVEN,
+        priority: float | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
         ttl: Union[float, Literal[1]] | NotGiven = NOT_GIVEN,
@@ -1238,13 +1259,15 @@ class AsyncRecords(AsyncAPIResource):
 
           name: DNS record name (or @ for the zone apex) in Punycode.
 
-          priority: Required for MX, SRV and URI records; unused by other record types. Records with
-              lower priorities are preferred.
-
           type: Record type.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
+
+          content: Formatted URI content. See 'data' to set URI properties.
+
+          priority: Required for MX, SRV and URI records; unused by other record types. Records with
+              lower priorities are preferred.
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
@@ -1273,12 +1296,13 @@ class AsyncRecords(AsyncAPIResource):
                 f"/zones/{zone_id}/dns_records/{dns_record_id}",
                 body=await async_maybe_transform(
                     {
-                        "data": data,
                         "name": name,
-                        "priority": priority,
                         "type": type,
                         "comment": comment,
+                        "content": content,
+                        "data": data,
                         "meta": meta,
+                        "priority": priority,
                         "proxied": proxied,
                         "tags": tags,
                         "ttl": ttl,

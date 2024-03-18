@@ -12,16 +12,8 @@ class RecordEditParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
-    data: Required[Data]
-
     name: Required[str]
     """DNS record name (or @ for the zone apex) in Punycode."""
-
-    priority: Required[float]
-    """Required for MX, SRV and URI records; unused by other record types.
-
-    Records with lower priorities are preferred.
-    """
 
     type: Required[
         Literal[
@@ -55,7 +47,18 @@ class RecordEditParams(TypedDict, total=False):
     This field has no effect on DNS responses.
     """
 
+    content: object
+    """Formatted URI content. See 'data' to set URI properties."""
+
+    data: Data
+
     meta: Meta
+
+    priority: float
+    """Required for MX, SRV and URI records; unused by other record types.
+
+    Records with lower priorities are preferred.
+    """
 
     proxied: bool
     """
