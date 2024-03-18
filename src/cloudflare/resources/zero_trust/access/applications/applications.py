@@ -83,8 +83,6 @@ class Applications(SyncAPIResource):
     def create(
         self,
         *,
-        domain: object,
-        type: Literal["self_hosted", "saas", "ssh", "vnc", "app_launcher", "warp", "biso", "bookmark", "dash_sso"],
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
@@ -96,6 +94,7 @@ class Applications(SyncAPIResource):
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
         custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        domain: object | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
@@ -108,6 +107,8 @@ class Applications(SyncAPIResource):
         session_duration: str | NotGiven = NOT_GIVEN,
         skip_interstitial: bool | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
+        type: Literal["self_hosted", "saas", "ssh", "vnc", "app_launcher", "warp", "biso", "bookmark", "dash_sso"]
+        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -119,10 +120,6 @@ class Applications(SyncAPIResource):
         Adds a new application to Access.
 
         Args:
-          domain: The URL or domain of the bookmark.
-
-          type: The application type.
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
@@ -148,6 +145,8 @@ class Applications(SyncAPIResource):
               application when failing non-identity rules.
 
           custom_pages: The custom pages that will be displayed when applicable for this application
+
+          domain: The URL or domain of the bookmark.
 
           enable_binding_cookie: Enables the binding cookie, which increases security against compromised
               authorization tokens and CSRF attacks.
@@ -177,6 +176,8 @@ class Applications(SyncAPIResource):
 
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
+
+          type: The application type.
 
           extra_headers: Send extra headers
 
@@ -207,8 +208,6 @@ class Applications(SyncAPIResource):
                 f"/{account_or_zone}/{account_or_zone_id}/access/apps",
                 body=maybe_transform(
                     {
-                        "domain": domain,
-                        "type": type,
                         "allow_authenticate_via_warp": allow_authenticate_via_warp,
                         "allowed_idps": allowed_idps,
                         "app_launcher_visible": app_launcher_visible,
@@ -218,6 +217,7 @@ class Applications(SyncAPIResource):
                         "custom_deny_url": custom_deny_url,
                         "custom_non_identity_deny_url": custom_non_identity_deny_url,
                         "custom_pages": custom_pages,
+                        "domain": domain,
                         "enable_binding_cookie": enable_binding_cookie,
                         "http_only_cookie_attribute": http_only_cookie_attribute,
                         "logo_url": logo_url,
@@ -230,6 +230,7 @@ class Applications(SyncAPIResource):
                         "session_duration": session_duration,
                         "skip_interstitial": skip_interstitial,
                         "tags": tags,
+                        "type": type,
                     },
                     application_create_params.ApplicationCreateParams,
                 ),
@@ -250,8 +251,6 @@ class Applications(SyncAPIResource):
         self,
         app_id: Union[str, str],
         *,
-        domain: object,
-        type: Literal["self_hosted", "saas", "ssh", "vnc", "app_launcher", "warp", "biso", "bookmark", "dash_sso"],
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
@@ -263,6 +262,7 @@ class Applications(SyncAPIResource):
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
         custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        domain: object | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
@@ -275,6 +275,8 @@ class Applications(SyncAPIResource):
         session_duration: str | NotGiven = NOT_GIVEN,
         skip_interstitial: bool | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
+        type: Literal["self_hosted", "saas", "ssh", "vnc", "app_launcher", "warp", "biso", "bookmark", "dash_sso"]
+        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -287,10 +289,6 @@ class Applications(SyncAPIResource):
 
         Args:
           app_id: Identifier
-
-          domain: The URL or domain of the bookmark.
-
-          type: The application type.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -317,6 +315,8 @@ class Applications(SyncAPIResource):
               application when failing non-identity rules.
 
           custom_pages: The custom pages that will be displayed when applicable for this application
+
+          domain: The URL or domain of the bookmark.
 
           enable_binding_cookie: Enables the binding cookie, which increases security against compromised
               authorization tokens and CSRF attacks.
@@ -347,6 +347,8 @@ class Applications(SyncAPIResource):
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
 
+          type: The application type.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -376,8 +378,6 @@ class Applications(SyncAPIResource):
                 f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}",
                 body=maybe_transform(
                     {
-                        "domain": domain,
-                        "type": type,
                         "allow_authenticate_via_warp": allow_authenticate_via_warp,
                         "allowed_idps": allowed_idps,
                         "app_launcher_visible": app_launcher_visible,
@@ -387,6 +387,7 @@ class Applications(SyncAPIResource):
                         "custom_deny_url": custom_deny_url,
                         "custom_non_identity_deny_url": custom_non_identity_deny_url,
                         "custom_pages": custom_pages,
+                        "domain": domain,
                         "enable_binding_cookie": enable_binding_cookie,
                         "http_only_cookie_attribute": http_only_cookie_attribute,
                         "logo_url": logo_url,
@@ -399,6 +400,7 @@ class Applications(SyncAPIResource):
                         "session_duration": session_duration,
                         "skip_interstitial": skip_interstitial,
                         "tags": tags,
+                        "type": type,
                     },
                     application_update_params.ApplicationUpdateParams,
                 ),
@@ -674,8 +676,6 @@ class AsyncApplications(AsyncAPIResource):
     async def create(
         self,
         *,
-        domain: object,
-        type: Literal["self_hosted", "saas", "ssh", "vnc", "app_launcher", "warp", "biso", "bookmark", "dash_sso"],
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
@@ -687,6 +687,7 @@ class AsyncApplications(AsyncAPIResource):
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
         custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        domain: object | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
@@ -699,6 +700,8 @@ class AsyncApplications(AsyncAPIResource):
         session_duration: str | NotGiven = NOT_GIVEN,
         skip_interstitial: bool | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
+        type: Literal["self_hosted", "saas", "ssh", "vnc", "app_launcher", "warp", "biso", "bookmark", "dash_sso"]
+        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -710,10 +713,6 @@ class AsyncApplications(AsyncAPIResource):
         Adds a new application to Access.
 
         Args:
-          domain: The URL or domain of the bookmark.
-
-          type: The application type.
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
@@ -739,6 +738,8 @@ class AsyncApplications(AsyncAPIResource):
               application when failing non-identity rules.
 
           custom_pages: The custom pages that will be displayed when applicable for this application
+
+          domain: The URL or domain of the bookmark.
 
           enable_binding_cookie: Enables the binding cookie, which increases security against compromised
               authorization tokens and CSRF attacks.
@@ -768,6 +769,8 @@ class AsyncApplications(AsyncAPIResource):
 
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
+
+          type: The application type.
 
           extra_headers: Send extra headers
 
@@ -798,8 +801,6 @@ class AsyncApplications(AsyncAPIResource):
                 f"/{account_or_zone}/{account_or_zone_id}/access/apps",
                 body=await async_maybe_transform(
                     {
-                        "domain": domain,
-                        "type": type,
                         "allow_authenticate_via_warp": allow_authenticate_via_warp,
                         "allowed_idps": allowed_idps,
                         "app_launcher_visible": app_launcher_visible,
@@ -809,6 +810,7 @@ class AsyncApplications(AsyncAPIResource):
                         "custom_deny_url": custom_deny_url,
                         "custom_non_identity_deny_url": custom_non_identity_deny_url,
                         "custom_pages": custom_pages,
+                        "domain": domain,
                         "enable_binding_cookie": enable_binding_cookie,
                         "http_only_cookie_attribute": http_only_cookie_attribute,
                         "logo_url": logo_url,
@@ -821,6 +823,7 @@ class AsyncApplications(AsyncAPIResource):
                         "session_duration": session_duration,
                         "skip_interstitial": skip_interstitial,
                         "tags": tags,
+                        "type": type,
                     },
                     application_create_params.ApplicationCreateParams,
                 ),
@@ -841,8 +844,6 @@ class AsyncApplications(AsyncAPIResource):
         self,
         app_id: Union[str, str],
         *,
-        domain: object,
-        type: Literal["self_hosted", "saas", "ssh", "vnc", "app_launcher", "warp", "biso", "bookmark", "dash_sso"],
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
@@ -854,6 +855,7 @@ class AsyncApplications(AsyncAPIResource):
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
         custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        domain: object | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
@@ -866,6 +868,8 @@ class AsyncApplications(AsyncAPIResource):
         session_duration: str | NotGiven = NOT_GIVEN,
         skip_interstitial: bool | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
+        type: Literal["self_hosted", "saas", "ssh", "vnc", "app_launcher", "warp", "biso", "bookmark", "dash_sso"]
+        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -878,10 +882,6 @@ class AsyncApplications(AsyncAPIResource):
 
         Args:
           app_id: Identifier
-
-          domain: The URL or domain of the bookmark.
-
-          type: The application type.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -908,6 +908,8 @@ class AsyncApplications(AsyncAPIResource):
               application when failing non-identity rules.
 
           custom_pages: The custom pages that will be displayed when applicable for this application
+
+          domain: The URL or domain of the bookmark.
 
           enable_binding_cookie: Enables the binding cookie, which increases security against compromised
               authorization tokens and CSRF attacks.
@@ -938,6 +940,8 @@ class AsyncApplications(AsyncAPIResource):
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
 
+          type: The application type.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -967,8 +971,6 @@ class AsyncApplications(AsyncAPIResource):
                 f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}",
                 body=await async_maybe_transform(
                     {
-                        "domain": domain,
-                        "type": type,
                         "allow_authenticate_via_warp": allow_authenticate_via_warp,
                         "allowed_idps": allowed_idps,
                         "app_launcher_visible": app_launcher_visible,
@@ -978,6 +980,7 @@ class AsyncApplications(AsyncAPIResource):
                         "custom_deny_url": custom_deny_url,
                         "custom_non_identity_deny_url": custom_non_identity_deny_url,
                         "custom_pages": custom_pages,
+                        "domain": domain,
                         "enable_binding_cookie": enable_binding_cookie,
                         "http_only_cookie_attribute": http_only_cookie_attribute,
                         "logo_url": logo_url,
@@ -990,6 +993,7 @@ class AsyncApplications(AsyncAPIResource):
                         "session_duration": session_duration,
                         "skip_interstitial": skip_interstitial,
                         "tags": tags,
+                        "type": type,
                     },
                     application_update_params.ApplicationUpdateParams,
                 ),
