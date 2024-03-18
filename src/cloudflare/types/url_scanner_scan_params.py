@@ -27,6 +27,9 @@ class URLScannerScanParams(TypedDict, total=False):
     date_start: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """Filter scans requested after date (inclusive)."""
 
+    hash: str
+    """Filter scans by hash of any html/js/css request made by the webpage."""
+
     hostname: str
     """Filter scans by hostname of _any_ request made by the webpage."""
 
