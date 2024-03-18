@@ -10,8 +10,8 @@ __all__ = [
     "DNS",
     "OriginDNS",
     "EdgeIPs",
-    "EdgeIPsSpectrumEdgeIPEyeballIPsVariable",
-    "EdgeIPsSpectrumEdgeIPCustomerOwnedIPsVariable",
+    "EdgeIPsSpectrumEdgeIPEyeballIPs",
+    "EdgeIPsSpectrumEdgeIPCustomerOwnedIPs",
 ]
 
 
@@ -98,7 +98,7 @@ class OriginDNS(TypedDict, total=False):
     """
 
 
-class EdgeIPsSpectrumEdgeIPEyeballIPsVariable(TypedDict, total=False):
+class EdgeIPsSpectrumEdgeIPEyeballIPs(TypedDict, total=False):
     connectivity: Literal["all", "ipv4", "ipv6"]
     """The IP versions supported for inbound connections on Spectrum anycast IPs."""
 
@@ -110,7 +110,7 @@ class EdgeIPsSpectrumEdgeIPEyeballIPsVariable(TypedDict, total=False):
     """
 
 
-class EdgeIPsSpectrumEdgeIPCustomerOwnedIPsVariable(TypedDict, total=False):
+class EdgeIPsSpectrumEdgeIPCustomerOwnedIPs(TypedDict, total=False):
     ips: List[str]
     """
     The array of customer owned IPs we broadcast via anycast for this hostname and
@@ -125,4 +125,4 @@ class EdgeIPsSpectrumEdgeIPCustomerOwnedIPsVariable(TypedDict, total=False):
     """
 
 
-EdgeIPs = Union[EdgeIPsSpectrumEdgeIPEyeballIPsVariable, EdgeIPsSpectrumEdgeIPCustomerOwnedIPsVariable]
+EdgeIPs = Union[EdgeIPsSpectrumEdgeIPEyeballIPs, EdgeIPsSpectrumEdgeIPCustomerOwnedIPs]
