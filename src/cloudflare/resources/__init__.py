@@ -400,6 +400,14 @@ from .url_scanner import (
     URLScannerWithStreamingResponse,
     AsyncURLScannerWithStreamingResponse,
 )
+from .healthchecks import (
+    Healthchecks,
+    AsyncHealthchecks,
+    HealthchecksWithRawResponse,
+    AsyncHealthchecksWithRawResponse,
+    HealthchecksWithStreamingResponse,
+    AsyncHealthchecksWithStreamingResponse,
+)
 from .email_routing import (
     EmailRouting,
     AsyncEmailRouting,
@@ -407,6 +415,14 @@ from .email_routing import (
     AsyncEmailRoutingWithRawResponse,
     EmailRoutingWithStreamingResponse,
     AsyncEmailRoutingWithStreamingResponse,
+)
+from .magic_transit import (
+    MagicTransit,
+    AsyncMagicTransit,
+    MagicTransitWithRawResponse,
+    AsyncMagicTransitWithRawResponse,
+    MagicTransitWithStreamingResponse,
+    AsyncMagicTransitWithStreamingResponse,
 )
 from .secondary_dns import (
     SecondaryDNS,
@@ -770,6 +786,12 @@ __all__ = [
     "AsyncFirewallWithRawResponse",
     "FirewallWithStreamingResponse",
     "AsyncFirewallWithStreamingResponse",
+    "Healthchecks",
+    "AsyncHealthchecks",
+    "HealthchecksWithRawResponse",
+    "AsyncHealthchecksWithRawResponse",
+    "HealthchecksWithStreamingResponse",
+    "AsyncHealthchecksWithStreamingResponse",
     "KeylessCertificates",
     "AsyncKeylessCertificates",
     "KeylessCertificatesWithRawResponse",
@@ -920,6 +942,12 @@ __all__ = [
     "AsyncIntelWithRawResponse",
     "IntelWithStreamingResponse",
     "AsyncIntelWithStreamingResponse",
+    "MagicTransit",
+    "AsyncMagicTransit",
+    "MagicTransitWithRawResponse",
+    "AsyncMagicTransitWithRawResponse",
+    "MagicTransitWithStreamingResponse",
+    "AsyncMagicTransitWithStreamingResponse",
     "MagicNetworkMonitoring",
     "AsyncMagicNetworkMonitoring",
     "MagicNetworkMonitoringWithRawResponse",

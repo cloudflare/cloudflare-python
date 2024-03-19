@@ -24,6 +24,14 @@ from .firewall import (
     FirewallWithStreamingResponse,
     AsyncFirewallWithStreamingResponse,
 )
+from .analytics import (
+    Analytics,
+    AsyncAnalytics,
+    AnalyticsWithRawResponse,
+    AsyncAnalyticsWithRawResponse,
+    AnalyticsWithStreamingResponse,
+    AsyncAnalyticsWithStreamingResponse,
+)
 
 __all__ = [
     "Records",
@@ -32,6 +40,12 @@ __all__ = [
     "AsyncRecordsWithRawResponse",
     "RecordsWithStreamingResponse",
     "AsyncRecordsWithStreamingResponse",
+    "Analytics",
+    "AsyncAnalytics",
+    "AnalyticsWithRawResponse",
+    "AsyncAnalyticsWithRawResponse",
+    "AnalyticsWithStreamingResponse",
+    "AsyncAnalyticsWithStreamingResponse",
     "Firewall",
     "AsyncFirewall",
     "FirewallWithRawResponse",

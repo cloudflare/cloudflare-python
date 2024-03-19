@@ -142,23 +142,6 @@ for account in first_page.result:
 # Remove `await` for non-async usage.
 ```
 
-## File Uploads
-
-Request parameters that correspond to file uploads can be passed as `bytes`, a [`PathLike`](https://docs.python.org/3/library/os.html#os.PathLike) instance or a tuple of `(filename, contents, media type)`.
-
-```python
-from pathlib import Path
-from cloudflare import Cloudflare
-
-client = Cloudflare()
-
-client.images.v1.create(
-    account_id="023e105f4ecef8ad9ca31a8372d0c353",
-)
-```
-
-The async client uses the exact same interface. If you pass a [`PathLike`](https://docs.python.org/3/library/os.html#os.PathLike) instance, the file contents will be read asynchronously automatically.
-
 ## Handling errors
 
 When the library is unable to connect to the API (for example, due to network connection problems or a timeout), a subclass of `cloudflare.APIConnectionError` is raised.
