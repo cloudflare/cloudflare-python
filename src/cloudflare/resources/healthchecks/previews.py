@@ -1,4 +1,4 @@
-# File generated from our OpenAPI spec by Stainless.
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from __future__ import annotations
 
@@ -41,8 +41,8 @@ class Previews(SyncAPIResource):
 
     def create(
         self,
-        zone_identifier: str,
         *,
+        zone_id: str,
         address: str,
         name: str,
         check_regions: Optional[
@@ -87,7 +87,7 @@ class Previews(SyncAPIResource):
         Create a new preview health check.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           address: The hostname or IP address of the origin server to run health checks on.
 
@@ -131,10 +131,10 @@ class Previews(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
-            f"/zones/{zone_identifier}/healthchecks/preview",
+            f"/zones/{zone_id}/healthchecks/preview",
             body=maybe_transform(
                 {
                     "address": address,
@@ -165,9 +165,9 @@ class Previews(SyncAPIResource):
 
     def delete(
         self,
-        identifier: str,
+        healthcheck_id: str,
         *,
-        zone_identifier: str,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -179,9 +179,9 @@ class Previews(SyncAPIResource):
         Delete a health check.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
-          identifier: Identifier
+          healthcheck_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -191,12 +191,12 @@ class Previews(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        if not identifier:
-            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not healthcheck_id:
+            raise ValueError(f"Expected a non-empty value for `healthcheck_id` but received {healthcheck_id!r}")
         return self._delete(
-            f"/zones/{zone_identifier}/healthchecks/preview/{identifier}",
+            f"/zones/{zone_id}/healthchecks/preview/{healthcheck_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -209,9 +209,9 @@ class Previews(SyncAPIResource):
 
     def get(
         self,
-        identifier: str,
+        healthcheck_id: str,
         *,
-        zone_identifier: str,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -223,9 +223,9 @@ class Previews(SyncAPIResource):
         Fetch a single configured health check preview.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
-          identifier: Identifier
+          healthcheck_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -235,12 +235,12 @@ class Previews(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        if not identifier:
-            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not healthcheck_id:
+            raise ValueError(f"Expected a non-empty value for `healthcheck_id` but received {healthcheck_id!r}")
         return self._get(
-            f"/zones/{zone_identifier}/healthchecks/preview/{identifier}",
+            f"/zones/{zone_id}/healthchecks/preview/{healthcheck_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -263,8 +263,8 @@ class AsyncPreviews(AsyncAPIResource):
 
     async def create(
         self,
-        zone_identifier: str,
         *,
+        zone_id: str,
         address: str,
         name: str,
         check_regions: Optional[
@@ -309,7 +309,7 @@ class AsyncPreviews(AsyncAPIResource):
         Create a new preview health check.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           address: The hostname or IP address of the origin server to run health checks on.
 
@@ -353,10 +353,10 @@ class AsyncPreviews(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
-            f"/zones/{zone_identifier}/healthchecks/preview",
+            f"/zones/{zone_id}/healthchecks/preview",
             body=await async_maybe_transform(
                 {
                     "address": address,
@@ -387,9 +387,9 @@ class AsyncPreviews(AsyncAPIResource):
 
     async def delete(
         self,
-        identifier: str,
+        healthcheck_id: str,
         *,
-        zone_identifier: str,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -401,9 +401,9 @@ class AsyncPreviews(AsyncAPIResource):
         Delete a health check.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
-          identifier: Identifier
+          healthcheck_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -413,12 +413,12 @@ class AsyncPreviews(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        if not identifier:
-            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not healthcheck_id:
+            raise ValueError(f"Expected a non-empty value for `healthcheck_id` but received {healthcheck_id!r}")
         return await self._delete(
-            f"/zones/{zone_identifier}/healthchecks/preview/{identifier}",
+            f"/zones/{zone_id}/healthchecks/preview/{healthcheck_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -431,9 +431,9 @@ class AsyncPreviews(AsyncAPIResource):
 
     async def get(
         self,
-        identifier: str,
+        healthcheck_id: str,
         *,
-        zone_identifier: str,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -445,9 +445,9 @@ class AsyncPreviews(AsyncAPIResource):
         Fetch a single configured health check preview.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
-          identifier: Identifier
+          healthcheck_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -457,12 +457,12 @@ class AsyncPreviews(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        if not identifier:
-            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not healthcheck_id:
+            raise ValueError(f"Expected a non-empty value for `healthcheck_id` but received {healthcheck_id!r}")
         return await self._get(
-            f"/zones/{zone_identifier}/healthchecks/preview/{identifier}",
+            f"/zones/{zone_id}/healthchecks/preview/{healthcheck_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

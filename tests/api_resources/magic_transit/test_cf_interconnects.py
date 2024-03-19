@@ -1,4 +1,4 @@
-# File generated from our OpenAPI spec by Stainless.
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from __future__ import annotations
 
@@ -26,7 +26,7 @@ class TestCfInterconnects:
     def test_method_update(self, client: Cloudflare) -> None:
         cf_interconnect = client.magic_transit.cf_interconnects.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(CfInterconnectUpdateResponse, cf_interconnect, path=["response"])
 
@@ -35,7 +35,7 @@ class TestCfInterconnects:
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         cf_interconnect = client.magic_transit.cf_interconnects.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             description="Tunnel for Interconnect to ORD",
             gre={"cloudflare_endpoint": "203.0.113.1"},
             health_check={
@@ -54,7 +54,7 @@ class TestCfInterconnects:
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.magic_transit.cf_interconnects.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -67,7 +67,7 @@ class TestCfInterconnects:
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.magic_transit.cf_interconnects.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -80,23 +80,23 @@ class TestCfInterconnects:
     @pytest.mark.skip()
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.magic_transit.cf_interconnects.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                account_identifier="",
+                account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_identifier` but received ''"):
             client.magic_transit.cf_interconnects.with_raw_response.update(
                 "",
-                account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         cf_interconnect = client.magic_transit.cf_interconnects.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(CfInterconnectListResponse, cf_interconnect, path=["response"])
 
@@ -104,7 +104,7 @@ class TestCfInterconnects:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.magic_transit.cf_interconnects.with_raw_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -116,7 +116,7 @@ class TestCfInterconnects:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.magic_transit.cf_interconnects.with_streaming_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -129,9 +129,9 @@ class TestCfInterconnects:
     @pytest.mark.skip()
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.magic_transit.cf_interconnects.with_raw_response.list(
-                "",
+                account_id="",
             )
 
     @pytest.mark.skip()
@@ -139,7 +139,7 @@ class TestCfInterconnects:
     def test_method_get(self, client: Cloudflare) -> None:
         cf_interconnect = client.magic_transit.cf_interconnects.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(CfInterconnectGetResponse, cf_interconnect, path=["response"])
 
@@ -148,7 +148,7 @@ class TestCfInterconnects:
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.magic_transit.cf_interconnects.with_raw_response.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -161,7 +161,7 @@ class TestCfInterconnects:
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.magic_transit.cf_interconnects.with_streaming_response.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -174,16 +174,16 @@ class TestCfInterconnects:
     @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.magic_transit.cf_interconnects.with_raw_response.get(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                account_identifier="",
+                account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_identifier` but received ''"):
             client.magic_transit.cf_interconnects.with_raw_response.get(
                 "",
-                account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
 
@@ -195,7 +195,7 @@ class TestAsyncCfInterconnects:
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         cf_interconnect = await async_client.magic_transit.cf_interconnects.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(CfInterconnectUpdateResponse, cf_interconnect, path=["response"])
 
@@ -204,7 +204,7 @@ class TestAsyncCfInterconnects:
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         cf_interconnect = await async_client.magic_transit.cf_interconnects.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             description="Tunnel for Interconnect to ORD",
             gre={"cloudflare_endpoint": "203.0.113.1"},
             health_check={
@@ -223,7 +223,7 @@ class TestAsyncCfInterconnects:
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.cf_interconnects.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -236,7 +236,7 @@ class TestAsyncCfInterconnects:
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.cf_interconnects.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -249,23 +249,23 @@ class TestAsyncCfInterconnects:
     @pytest.mark.skip()
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.magic_transit.cf_interconnects.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                account_identifier="",
+                account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_identifier` but received ''"):
             await async_client.magic_transit.cf_interconnects.with_raw_response.update(
                 "",
-                account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         cf_interconnect = await async_client.magic_transit.cf_interconnects.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(CfInterconnectListResponse, cf_interconnect, path=["response"])
 
@@ -273,7 +273,7 @@ class TestAsyncCfInterconnects:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.cf_interconnects.with_raw_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -285,7 +285,7 @@ class TestAsyncCfInterconnects:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.cf_interconnects.with_streaming_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -298,9 +298,9 @@ class TestAsyncCfInterconnects:
     @pytest.mark.skip()
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.magic_transit.cf_interconnects.with_raw_response.list(
-                "",
+                account_id="",
             )
 
     @pytest.mark.skip()
@@ -308,7 +308,7 @@ class TestAsyncCfInterconnects:
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         cf_interconnect = await async_client.magic_transit.cf_interconnects.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(CfInterconnectGetResponse, cf_interconnect, path=["response"])
 
@@ -317,7 +317,7 @@ class TestAsyncCfInterconnects:
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.cf_interconnects.with_raw_response.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -330,7 +330,7 @@ class TestAsyncCfInterconnects:
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.cf_interconnects.with_streaming_response.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -343,14 +343,14 @@ class TestAsyncCfInterconnects:
     @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.magic_transit.cf_interconnects.with_raw_response.get(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                account_identifier="",
+                account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_identifier` but received ''"):
             await async_client.magic_transit.cf_interconnects.with_raw_response.get(
                 "",
-                account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

@@ -1,4 +1,4 @@
-# File generated from our OpenAPI spec by Stainless.
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Any, List, Type, Generic, Mapping, TypeVar, Optional, cast
 from typing_extensions import override

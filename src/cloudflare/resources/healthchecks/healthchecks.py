@@ -1,4 +1,4 @@
-# File generated from our OpenAPI spec by Stainless.
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from __future__ import annotations
 
@@ -59,8 +59,8 @@ class Healthchecks(SyncAPIResource):
 
     def create(
         self,
-        zone_identifier: str,
         *,
+        zone_id: str,
         address: str,
         name: str,
         check_regions: Optional[
@@ -105,7 +105,7 @@ class Healthchecks(SyncAPIResource):
         Create a new health check.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           address: The hostname or IP address of the origin server to run health checks on.
 
@@ -149,10 +149,10 @@ class Healthchecks(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
-            f"/zones/{zone_identifier}/healthchecks",
+            f"/zones/{zone_id}/healthchecks",
             body=maybe_transform(
                 {
                     "address": address,
@@ -183,9 +183,9 @@ class Healthchecks(SyncAPIResource):
 
     def update(
         self,
-        identifier: str,
+        healthcheck_id: str,
         *,
-        zone_identifier: str,
+        zone_id: str,
         address: str,
         name: str,
         check_regions: Optional[
@@ -230,9 +230,9 @@ class Healthchecks(SyncAPIResource):
         Update a configured health check.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
-          identifier: Identifier
+          healthcheck_id: Identifier
 
           address: The hostname or IP address of the origin server to run health checks on.
 
@@ -276,12 +276,12 @@ class Healthchecks(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        if not identifier:
-            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not healthcheck_id:
+            raise ValueError(f"Expected a non-empty value for `healthcheck_id` but received {healthcheck_id!r}")
         return self._put(
-            f"/zones/{zone_identifier}/healthchecks/{identifier}",
+            f"/zones/{zone_id}/healthchecks/{healthcheck_id}",
             body=maybe_transform(
                 {
                     "address": address,
@@ -312,8 +312,8 @@ class Healthchecks(SyncAPIResource):
 
     def list(
         self,
-        zone_identifier: str,
         *,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -325,7 +325,7 @@ class Healthchecks(SyncAPIResource):
         List configured health checks.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -335,10 +335,10 @@ class Healthchecks(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get(
-            f"/zones/{zone_identifier}/healthchecks",
+            f"/zones/{zone_id}/healthchecks",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -351,9 +351,9 @@ class Healthchecks(SyncAPIResource):
 
     def delete(
         self,
-        identifier: str,
+        healthcheck_id: str,
         *,
-        zone_identifier: str,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -365,9 +365,9 @@ class Healthchecks(SyncAPIResource):
         Delete a health check.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
-          identifier: Identifier
+          healthcheck_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -377,12 +377,12 @@ class Healthchecks(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        if not identifier:
-            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not healthcheck_id:
+            raise ValueError(f"Expected a non-empty value for `healthcheck_id` but received {healthcheck_id!r}")
         return self._delete(
-            f"/zones/{zone_identifier}/healthchecks/{identifier}",
+            f"/zones/{zone_id}/healthchecks/{healthcheck_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -395,9 +395,9 @@ class Healthchecks(SyncAPIResource):
 
     def edit(
         self,
-        identifier: str,
+        healthcheck_id: str,
         *,
-        zone_identifier: str,
+        zone_id: str,
         address: str,
         name: str,
         check_regions: Optional[
@@ -442,9 +442,9 @@ class Healthchecks(SyncAPIResource):
         Patch a configured health check.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
-          identifier: Identifier
+          healthcheck_id: Identifier
 
           address: The hostname or IP address of the origin server to run health checks on.
 
@@ -488,12 +488,12 @@ class Healthchecks(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        if not identifier:
-            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not healthcheck_id:
+            raise ValueError(f"Expected a non-empty value for `healthcheck_id` but received {healthcheck_id!r}")
         return self._patch(
-            f"/zones/{zone_identifier}/healthchecks/{identifier}",
+            f"/zones/{zone_id}/healthchecks/{healthcheck_id}",
             body=maybe_transform(
                 {
                     "address": address,
@@ -524,9 +524,9 @@ class Healthchecks(SyncAPIResource):
 
     def get(
         self,
-        identifier: str,
+        healthcheck_id: str,
         *,
-        zone_identifier: str,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -538,9 +538,9 @@ class Healthchecks(SyncAPIResource):
         Fetch a single configured health check.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
-          identifier: Identifier
+          healthcheck_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -550,12 +550,12 @@ class Healthchecks(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        if not identifier:
-            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not healthcheck_id:
+            raise ValueError(f"Expected a non-empty value for `healthcheck_id` but received {healthcheck_id!r}")
         return self._get(
-            f"/zones/{zone_identifier}/healthchecks/{identifier}",
+            f"/zones/{zone_id}/healthchecks/{healthcheck_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -582,8 +582,8 @@ class AsyncHealthchecks(AsyncAPIResource):
 
     async def create(
         self,
-        zone_identifier: str,
         *,
+        zone_id: str,
         address: str,
         name: str,
         check_regions: Optional[
@@ -628,7 +628,7 @@ class AsyncHealthchecks(AsyncAPIResource):
         Create a new health check.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           address: The hostname or IP address of the origin server to run health checks on.
 
@@ -672,10 +672,10 @@ class AsyncHealthchecks(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
-            f"/zones/{zone_identifier}/healthchecks",
+            f"/zones/{zone_id}/healthchecks",
             body=await async_maybe_transform(
                 {
                     "address": address,
@@ -706,9 +706,9 @@ class AsyncHealthchecks(AsyncAPIResource):
 
     async def update(
         self,
-        identifier: str,
+        healthcheck_id: str,
         *,
-        zone_identifier: str,
+        zone_id: str,
         address: str,
         name: str,
         check_regions: Optional[
@@ -753,9 +753,9 @@ class AsyncHealthchecks(AsyncAPIResource):
         Update a configured health check.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
-          identifier: Identifier
+          healthcheck_id: Identifier
 
           address: The hostname or IP address of the origin server to run health checks on.
 
@@ -799,12 +799,12 @@ class AsyncHealthchecks(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        if not identifier:
-            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not healthcheck_id:
+            raise ValueError(f"Expected a non-empty value for `healthcheck_id` but received {healthcheck_id!r}")
         return await self._put(
-            f"/zones/{zone_identifier}/healthchecks/{identifier}",
+            f"/zones/{zone_id}/healthchecks/{healthcheck_id}",
             body=await async_maybe_transform(
                 {
                     "address": address,
@@ -835,8 +835,8 @@ class AsyncHealthchecks(AsyncAPIResource):
 
     async def list(
         self,
-        zone_identifier: str,
         *,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -848,7 +848,7 @@ class AsyncHealthchecks(AsyncAPIResource):
         List configured health checks.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -858,10 +858,10 @@ class AsyncHealthchecks(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._get(
-            f"/zones/{zone_identifier}/healthchecks",
+            f"/zones/{zone_id}/healthchecks",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -874,9 +874,9 @@ class AsyncHealthchecks(AsyncAPIResource):
 
     async def delete(
         self,
-        identifier: str,
+        healthcheck_id: str,
         *,
-        zone_identifier: str,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -888,9 +888,9 @@ class AsyncHealthchecks(AsyncAPIResource):
         Delete a health check.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
-          identifier: Identifier
+          healthcheck_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -900,12 +900,12 @@ class AsyncHealthchecks(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        if not identifier:
-            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not healthcheck_id:
+            raise ValueError(f"Expected a non-empty value for `healthcheck_id` but received {healthcheck_id!r}")
         return await self._delete(
-            f"/zones/{zone_identifier}/healthchecks/{identifier}",
+            f"/zones/{zone_id}/healthchecks/{healthcheck_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -918,9 +918,9 @@ class AsyncHealthchecks(AsyncAPIResource):
 
     async def edit(
         self,
-        identifier: str,
+        healthcheck_id: str,
         *,
-        zone_identifier: str,
+        zone_id: str,
         address: str,
         name: str,
         check_regions: Optional[
@@ -965,9 +965,9 @@ class AsyncHealthchecks(AsyncAPIResource):
         Patch a configured health check.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
-          identifier: Identifier
+          healthcheck_id: Identifier
 
           address: The hostname or IP address of the origin server to run health checks on.
 
@@ -1011,12 +1011,12 @@ class AsyncHealthchecks(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        if not identifier:
-            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not healthcheck_id:
+            raise ValueError(f"Expected a non-empty value for `healthcheck_id` but received {healthcheck_id!r}")
         return await self._patch(
-            f"/zones/{zone_identifier}/healthchecks/{identifier}",
+            f"/zones/{zone_id}/healthchecks/{healthcheck_id}",
             body=await async_maybe_transform(
                 {
                     "address": address,
@@ -1047,9 +1047,9 @@ class AsyncHealthchecks(AsyncAPIResource):
 
     async def get(
         self,
-        identifier: str,
+        healthcheck_id: str,
         *,
-        zone_identifier: str,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1061,9 +1061,9 @@ class AsyncHealthchecks(AsyncAPIResource):
         Fetch a single configured health check.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
-          identifier: Identifier
+          healthcheck_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -1073,12 +1073,12 @@ class AsyncHealthchecks(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        if not identifier:
-            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not healthcheck_id:
+            raise ValueError(f"Expected a non-empty value for `healthcheck_id` but received {healthcheck_id!r}")
         return await self._get(
-            f"/zones/{zone_identifier}/healthchecks/{identifier}",
+            f"/zones/{zone_id}/healthchecks/{healthcheck_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

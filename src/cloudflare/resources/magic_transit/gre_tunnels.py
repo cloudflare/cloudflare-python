@@ -1,4 +1,4 @@
-# File generated from our OpenAPI spec by Stainless.
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from __future__ import annotations
 
@@ -47,8 +47,8 @@ class GRETunnels(SyncAPIResource):
 
     def create(
         self,
-        account_identifier: str,
         *,
+        account_id: str,
         body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -63,7 +63,7 @@ class GRETunnels(SyncAPIResource):
         parameter to only run validation without persisting changes.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -73,10 +73,10 @@ class GRETunnels(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_identifier}/magic/gre_tunnels",
+            f"/accounts/{account_id}/magic/gre_tunnels",
             body=maybe_transform(body, gre_tunnel_create_params.GRETunnelCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -92,7 +92,7 @@ class GRETunnels(SyncAPIResource):
         self,
         tunnel_identifier: str,
         *,
-        account_identifier: str,
+        account_id: str,
         cloudflare_gre_endpoint: str,
         customer_gre_endpoint: str,
         interface_address: str,
@@ -114,7 +114,7 @@ class GRETunnels(SyncAPIResource):
         parameter to only run validation without persisting changes.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
           tunnel_identifier: Identifier
 
@@ -144,12 +144,12 @@ class GRETunnels(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_identifier:
             raise ValueError(f"Expected a non-empty value for `tunnel_identifier` but received {tunnel_identifier!r}")
         return self._put(
-            f"/accounts/{account_identifier}/magic/gre_tunnels/{tunnel_identifier}",
+            f"/accounts/{account_id}/magic/gre_tunnels/{tunnel_identifier}",
             body=maybe_transform(
                 {
                     "cloudflare_gre_endpoint": cloudflare_gre_endpoint,
@@ -175,8 +175,8 @@ class GRETunnels(SyncAPIResource):
 
     def list(
         self,
-        account_identifier: str,
         *,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -188,7 +188,7 @@ class GRETunnels(SyncAPIResource):
         Lists GRE tunnels associated with an account.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -198,10 +198,10 @@ class GRETunnels(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
-            f"/accounts/{account_identifier}/magic/gre_tunnels",
+            f"/accounts/{account_id}/magic/gre_tunnels",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -216,7 +216,7 @@ class GRETunnels(SyncAPIResource):
         self,
         tunnel_identifier: str,
         *,
-        account_identifier: str,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -230,7 +230,7 @@ class GRETunnels(SyncAPIResource):
         an optional query parameter to only run validation without persisting changes.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
           tunnel_identifier: Identifier
 
@@ -242,12 +242,12 @@ class GRETunnels(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_identifier:
             raise ValueError(f"Expected a non-empty value for `tunnel_identifier` but received {tunnel_identifier!r}")
         return self._delete(
-            f"/accounts/{account_identifier}/magic/gre_tunnels/{tunnel_identifier}",
+            f"/accounts/{account_id}/magic/gre_tunnels/{tunnel_identifier}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -262,7 +262,7 @@ class GRETunnels(SyncAPIResource):
         self,
         tunnel_identifier: str,
         *,
-        account_identifier: str,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -274,7 +274,7 @@ class GRETunnels(SyncAPIResource):
         Lists informtion for a specific GRE tunnel.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
           tunnel_identifier: Identifier
 
@@ -286,12 +286,12 @@ class GRETunnels(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_identifier:
             raise ValueError(f"Expected a non-empty value for `tunnel_identifier` but received {tunnel_identifier!r}")
         return self._get(
-            f"/accounts/{account_identifier}/magic/gre_tunnels/{tunnel_identifier}",
+            f"/accounts/{account_id}/magic/gre_tunnels/{tunnel_identifier}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -314,8 +314,8 @@ class AsyncGRETunnels(AsyncAPIResource):
 
     async def create(
         self,
-        account_identifier: str,
         *,
+        account_id: str,
         body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -330,7 +330,7 @@ class AsyncGRETunnels(AsyncAPIResource):
         parameter to only run validation without persisting changes.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -340,10 +340,10 @@ class AsyncGRETunnels(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_identifier}/magic/gre_tunnels",
+            f"/accounts/{account_id}/magic/gre_tunnels",
             body=await async_maybe_transform(body, gre_tunnel_create_params.GRETunnelCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -359,7 +359,7 @@ class AsyncGRETunnels(AsyncAPIResource):
         self,
         tunnel_identifier: str,
         *,
-        account_identifier: str,
+        account_id: str,
         cloudflare_gre_endpoint: str,
         customer_gre_endpoint: str,
         interface_address: str,
@@ -381,7 +381,7 @@ class AsyncGRETunnels(AsyncAPIResource):
         parameter to only run validation without persisting changes.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
           tunnel_identifier: Identifier
 
@@ -411,12 +411,12 @@ class AsyncGRETunnels(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_identifier:
             raise ValueError(f"Expected a non-empty value for `tunnel_identifier` but received {tunnel_identifier!r}")
         return await self._put(
-            f"/accounts/{account_identifier}/magic/gre_tunnels/{tunnel_identifier}",
+            f"/accounts/{account_id}/magic/gre_tunnels/{tunnel_identifier}",
             body=await async_maybe_transform(
                 {
                     "cloudflare_gre_endpoint": cloudflare_gre_endpoint,
@@ -442,8 +442,8 @@ class AsyncGRETunnels(AsyncAPIResource):
 
     async def list(
         self,
-        account_identifier: str,
         *,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -455,7 +455,7 @@ class AsyncGRETunnels(AsyncAPIResource):
         Lists GRE tunnels associated with an account.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -465,10 +465,10 @@ class AsyncGRETunnels(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
-            f"/accounts/{account_identifier}/magic/gre_tunnels",
+            f"/accounts/{account_id}/magic/gre_tunnels",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -483,7 +483,7 @@ class AsyncGRETunnels(AsyncAPIResource):
         self,
         tunnel_identifier: str,
         *,
-        account_identifier: str,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -497,7 +497,7 @@ class AsyncGRETunnels(AsyncAPIResource):
         an optional query parameter to only run validation without persisting changes.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
           tunnel_identifier: Identifier
 
@@ -509,12 +509,12 @@ class AsyncGRETunnels(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_identifier:
             raise ValueError(f"Expected a non-empty value for `tunnel_identifier` but received {tunnel_identifier!r}")
         return await self._delete(
-            f"/accounts/{account_identifier}/magic/gre_tunnels/{tunnel_identifier}",
+            f"/accounts/{account_id}/magic/gre_tunnels/{tunnel_identifier}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -529,7 +529,7 @@ class AsyncGRETunnels(AsyncAPIResource):
         self,
         tunnel_identifier: str,
         *,
-        account_identifier: str,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -541,7 +541,7 @@ class AsyncGRETunnels(AsyncAPIResource):
         Lists informtion for a specific GRE tunnel.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
           tunnel_identifier: Identifier
 
@@ -553,12 +553,12 @@ class AsyncGRETunnels(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_identifier:
             raise ValueError(f"Expected a non-empty value for `tunnel_identifier` but received {tunnel_identifier!r}")
         return await self._get(
-            f"/accounts/{account_identifier}/magic/gre_tunnels/{tunnel_identifier}",
+            f"/accounts/{account_id}/magic/gre_tunnels/{tunnel_identifier}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

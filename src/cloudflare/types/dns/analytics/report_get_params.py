@@ -1,10 +1,10 @@
-# File generated from our OpenAPI spec by Stainless.
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from __future__ import annotations
 
 from typing import Union
 from datetime import datetime
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Required, Annotated, TypedDict
 
 from ...._utils import PropertyInfo
 
@@ -12,6 +12,9 @@ __all__ = ["ReportGetParams"]
 
 
 class ReportGetParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     dimensions: str
     """A comma-separated list of dimensions to group results by."""
 

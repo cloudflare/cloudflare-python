@@ -1,4 +1,4 @@
-# File generated from our OpenAPI spec by Stainless.
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from __future__ import annotations
 
@@ -48,8 +48,8 @@ class IPSECTunnels(SyncAPIResource):
 
     def create(
         self,
-        account_identifier: str,
         *,
+        account_id: str,
         cloudflare_endpoint: str,
         interface_address: str,
         name: str,
@@ -72,7 +72,7 @@ class IPSECTunnels(SyncAPIResource):
         changes.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
           cloudflare_endpoint: The IP address assigned to the Cloudflare side of the IPsec tunnel.
 
@@ -99,10 +99,10 @@ class IPSECTunnels(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_identifier}/magic/ipsec_tunnels",
+            f"/accounts/{account_id}/magic/ipsec_tunnels",
             body=maybe_transform(
                 {
                     "cloudflare_endpoint": cloudflare_endpoint,
@@ -130,7 +130,7 @@ class IPSECTunnels(SyncAPIResource):
         self,
         tunnel_identifier: str,
         *,
-        account_identifier: str,
+        account_id: str,
         cloudflare_endpoint: str,
         interface_address: str,
         name: str,
@@ -153,7 +153,7 @@ class IPSECTunnels(SyncAPIResource):
         without persisting changes.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
           tunnel_identifier: Identifier
 
@@ -182,12 +182,12 @@ class IPSECTunnels(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_identifier:
             raise ValueError(f"Expected a non-empty value for `tunnel_identifier` but received {tunnel_identifier!r}")
         return self._put(
-            f"/accounts/{account_identifier}/magic/ipsec_tunnels/{tunnel_identifier}",
+            f"/accounts/{account_id}/magic/ipsec_tunnels/{tunnel_identifier}",
             body=maybe_transform(
                 {
                     "cloudflare_endpoint": cloudflare_endpoint,
@@ -213,8 +213,8 @@ class IPSECTunnels(SyncAPIResource):
 
     def list(
         self,
-        account_identifier: str,
         *,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -226,7 +226,7 @@ class IPSECTunnels(SyncAPIResource):
         Lists IPsec tunnels associated with an account.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -236,10 +236,10 @@ class IPSECTunnels(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
-            f"/accounts/{account_identifier}/magic/ipsec_tunnels",
+            f"/accounts/{account_id}/magic/ipsec_tunnels",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -254,7 +254,7 @@ class IPSECTunnels(SyncAPIResource):
         self,
         tunnel_identifier: str,
         *,
-        account_identifier: str,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -268,7 +268,7 @@ class IPSECTunnels(SyncAPIResource):
         without persisting changes.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
           tunnel_identifier: Identifier
 
@@ -280,12 +280,12 @@ class IPSECTunnels(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_identifier:
             raise ValueError(f"Expected a non-empty value for `tunnel_identifier` but received {tunnel_identifier!r}")
         return self._delete(
-            f"/accounts/{account_identifier}/magic/ipsec_tunnels/{tunnel_identifier}",
+            f"/accounts/{account_id}/magic/ipsec_tunnels/{tunnel_identifier}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -300,7 +300,7 @@ class IPSECTunnels(SyncAPIResource):
         self,
         tunnel_identifier: str,
         *,
-        account_identifier: str,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -312,7 +312,7 @@ class IPSECTunnels(SyncAPIResource):
         Lists details for a specific IPsec tunnel.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
           tunnel_identifier: Identifier
 
@@ -324,12 +324,12 @@ class IPSECTunnels(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_identifier:
             raise ValueError(f"Expected a non-empty value for `tunnel_identifier` but received {tunnel_identifier!r}")
         return self._get(
-            f"/accounts/{account_identifier}/magic/ipsec_tunnels/{tunnel_identifier}",
+            f"/accounts/{account_id}/magic/ipsec_tunnels/{tunnel_identifier}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -344,7 +344,7 @@ class IPSECTunnels(SyncAPIResource):
         self,
         tunnel_identifier: str,
         *,
-        account_identifier: str,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -360,7 +360,7 @@ class IPSECTunnels(SyncAPIResource):
         safe place.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
           tunnel_identifier: Identifier
 
@@ -372,12 +372,12 @@ class IPSECTunnels(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_identifier:
             raise ValueError(f"Expected a non-empty value for `tunnel_identifier` but received {tunnel_identifier!r}")
         return self._post(
-            f"/accounts/{account_identifier}/magic/ipsec_tunnels/{tunnel_identifier}/psk_generate",
+            f"/accounts/{account_id}/magic/ipsec_tunnels/{tunnel_identifier}/psk_generate",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -400,8 +400,8 @@ class AsyncIPSECTunnels(AsyncAPIResource):
 
     async def create(
         self,
-        account_identifier: str,
         *,
+        account_id: str,
         cloudflare_endpoint: str,
         interface_address: str,
         name: str,
@@ -424,7 +424,7 @@ class AsyncIPSECTunnels(AsyncAPIResource):
         changes.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
           cloudflare_endpoint: The IP address assigned to the Cloudflare side of the IPsec tunnel.
 
@@ -451,10 +451,10 @@ class AsyncIPSECTunnels(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_identifier}/magic/ipsec_tunnels",
+            f"/accounts/{account_id}/magic/ipsec_tunnels",
             body=await async_maybe_transform(
                 {
                     "cloudflare_endpoint": cloudflare_endpoint,
@@ -482,7 +482,7 @@ class AsyncIPSECTunnels(AsyncAPIResource):
         self,
         tunnel_identifier: str,
         *,
-        account_identifier: str,
+        account_id: str,
         cloudflare_endpoint: str,
         interface_address: str,
         name: str,
@@ -505,7 +505,7 @@ class AsyncIPSECTunnels(AsyncAPIResource):
         without persisting changes.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
           tunnel_identifier: Identifier
 
@@ -534,12 +534,12 @@ class AsyncIPSECTunnels(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_identifier:
             raise ValueError(f"Expected a non-empty value for `tunnel_identifier` but received {tunnel_identifier!r}")
         return await self._put(
-            f"/accounts/{account_identifier}/magic/ipsec_tunnels/{tunnel_identifier}",
+            f"/accounts/{account_id}/magic/ipsec_tunnels/{tunnel_identifier}",
             body=await async_maybe_transform(
                 {
                     "cloudflare_endpoint": cloudflare_endpoint,
@@ -565,8 +565,8 @@ class AsyncIPSECTunnels(AsyncAPIResource):
 
     async def list(
         self,
-        account_identifier: str,
         *,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -578,7 +578,7 @@ class AsyncIPSECTunnels(AsyncAPIResource):
         Lists IPsec tunnels associated with an account.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -588,10 +588,10 @@ class AsyncIPSECTunnels(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
-            f"/accounts/{account_identifier}/magic/ipsec_tunnels",
+            f"/accounts/{account_id}/magic/ipsec_tunnels",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -606,7 +606,7 @@ class AsyncIPSECTunnels(AsyncAPIResource):
         self,
         tunnel_identifier: str,
         *,
-        account_identifier: str,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -620,7 +620,7 @@ class AsyncIPSECTunnels(AsyncAPIResource):
         without persisting changes.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
           tunnel_identifier: Identifier
 
@@ -632,12 +632,12 @@ class AsyncIPSECTunnels(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_identifier:
             raise ValueError(f"Expected a non-empty value for `tunnel_identifier` but received {tunnel_identifier!r}")
         return await self._delete(
-            f"/accounts/{account_identifier}/magic/ipsec_tunnels/{tunnel_identifier}",
+            f"/accounts/{account_id}/magic/ipsec_tunnels/{tunnel_identifier}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -652,7 +652,7 @@ class AsyncIPSECTunnels(AsyncAPIResource):
         self,
         tunnel_identifier: str,
         *,
-        account_identifier: str,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -664,7 +664,7 @@ class AsyncIPSECTunnels(AsyncAPIResource):
         Lists details for a specific IPsec tunnel.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
           tunnel_identifier: Identifier
 
@@ -676,12 +676,12 @@ class AsyncIPSECTunnels(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_identifier:
             raise ValueError(f"Expected a non-empty value for `tunnel_identifier` but received {tunnel_identifier!r}")
         return await self._get(
-            f"/accounts/{account_identifier}/magic/ipsec_tunnels/{tunnel_identifier}",
+            f"/accounts/{account_id}/magic/ipsec_tunnels/{tunnel_identifier}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -696,7 +696,7 @@ class AsyncIPSECTunnels(AsyncAPIResource):
         self,
         tunnel_identifier: str,
         *,
-        account_identifier: str,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -712,7 +712,7 @@ class AsyncIPSECTunnels(AsyncAPIResource):
         safe place.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
           tunnel_identifier: Identifier
 
@@ -724,12 +724,12 @@ class AsyncIPSECTunnels(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_identifier:
             raise ValueError(f"Expected a non-empty value for `tunnel_identifier` but received {tunnel_identifier!r}")
         return await self._post(
-            f"/accounts/{account_identifier}/magic/ipsec_tunnels/{tunnel_identifier}/psk_generate",
+            f"/accounts/{account_id}/magic/ipsec_tunnels/{tunnel_identifier}/psk_generate",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

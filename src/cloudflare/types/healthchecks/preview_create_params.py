@@ -1,4 +1,4 @@
-# File generated from our OpenAPI spec by Stainless.
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from __future__ import annotations
 
@@ -11,6 +11,9 @@ __all__ = ["PreviewCreateParams", "HTTPConfig", "TcpConfig"]
 
 
 class PreviewCreateParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     address: Required[str]
     """The hostname or IP address of the origin server to run health checks on."""
 

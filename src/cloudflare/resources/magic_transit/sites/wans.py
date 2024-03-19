@@ -1,4 +1,4 @@
-# File generated from our OpenAPI spec by Stainless.
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from __future__ import annotations
 
@@ -47,9 +47,9 @@ class Wans(SyncAPIResource):
 
     def create(
         self,
-        site_identifier: str,
+        site_id: str,
         *,
-        account_identifier: str,
+        account_id: str,
         wan: wan_create_params.Wan | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -62,9 +62,9 @@ class Wans(SyncAPIResource):
         Creates a new WAN.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
-          site_identifier: Identifier
+          site_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -74,12 +74,12 @@ class Wans(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not site_identifier:
-            raise ValueError(f"Expected a non-empty value for `site_identifier` but received {site_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not site_id:
+            raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
         return self._post(
-            f"/accounts/{account_identifier}/magic/sites/{site_identifier}/wans",
+            f"/accounts/{account_id}/magic/sites/{site_id}/wans",
             body=maybe_transform({"wan": wan}, wan_create_params.WanCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -93,10 +93,10 @@ class Wans(SyncAPIResource):
 
     def update(
         self,
-        wan_identifier: str,
+        wan_id: str,
         *,
-        account_identifier: str,
-        site_identifier: str,
+        account_id: str,
+        site_id: str,
         wan: wan_update_params.Wan | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -109,11 +109,11 @@ class Wans(SyncAPIResource):
         Update a specific WAN.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
-          site_identifier: Identifier
+          site_id: Identifier
 
-          wan_identifier: Identifier
+          wan_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -123,14 +123,14 @@ class Wans(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not site_identifier:
-            raise ValueError(f"Expected a non-empty value for `site_identifier` but received {site_identifier!r}")
-        if not wan_identifier:
-            raise ValueError(f"Expected a non-empty value for `wan_identifier` but received {wan_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not site_id:
+            raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
+        if not wan_id:
+            raise ValueError(f"Expected a non-empty value for `wan_id` but received {wan_id!r}")
         return self._put(
-            f"/accounts/{account_identifier}/magic/sites/{site_identifier}/wans/{wan_identifier}",
+            f"/accounts/{account_id}/magic/sites/{site_id}/wans/{wan_id}",
             body=maybe_transform({"wan": wan}, wan_update_params.WanUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -144,9 +144,9 @@ class Wans(SyncAPIResource):
 
     def list(
         self,
-        site_identifier: str,
+        site_id: str,
         *,
-        account_identifier: str,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -158,9 +158,9 @@ class Wans(SyncAPIResource):
         Lists WANs associated with an account and site.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
-          site_identifier: Identifier
+          site_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -170,12 +170,12 @@ class Wans(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not site_identifier:
-            raise ValueError(f"Expected a non-empty value for `site_identifier` but received {site_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not site_id:
+            raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
         return self._get(
-            f"/accounts/{account_identifier}/magic/sites/{site_identifier}/wans",
+            f"/accounts/{account_id}/magic/sites/{site_id}/wans",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -188,10 +188,10 @@ class Wans(SyncAPIResource):
 
     def delete(
         self,
-        wan_identifier: str,
+        wan_id: str,
         *,
-        account_identifier: str,
-        site_identifier: str,
+        account_id: str,
+        site_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -203,11 +203,11 @@ class Wans(SyncAPIResource):
         Remove a specific WAN.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
-          site_identifier: Identifier
+          site_id: Identifier
 
-          wan_identifier: Identifier
+          wan_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -217,14 +217,14 @@ class Wans(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not site_identifier:
-            raise ValueError(f"Expected a non-empty value for `site_identifier` but received {site_identifier!r}")
-        if not wan_identifier:
-            raise ValueError(f"Expected a non-empty value for `wan_identifier` but received {wan_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not site_id:
+            raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
+        if not wan_id:
+            raise ValueError(f"Expected a non-empty value for `wan_id` but received {wan_id!r}")
         return self._delete(
-            f"/accounts/{account_identifier}/magic/sites/{site_identifier}/wans/{wan_identifier}",
+            f"/accounts/{account_id}/magic/sites/{site_id}/wans/{wan_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -237,10 +237,10 @@ class Wans(SyncAPIResource):
 
     def get(
         self,
-        wan_identifier: str,
+        wan_id: str,
         *,
-        account_identifier: str,
-        site_identifier: str,
+        account_id: str,
+        site_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -252,11 +252,11 @@ class Wans(SyncAPIResource):
         Get a specific WAN.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
-          site_identifier: Identifier
+          site_id: Identifier
 
-          wan_identifier: Identifier
+          wan_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -266,14 +266,14 @@ class Wans(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not site_identifier:
-            raise ValueError(f"Expected a non-empty value for `site_identifier` but received {site_identifier!r}")
-        if not wan_identifier:
-            raise ValueError(f"Expected a non-empty value for `wan_identifier` but received {wan_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not site_id:
+            raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
+        if not wan_id:
+            raise ValueError(f"Expected a non-empty value for `wan_id` but received {wan_id!r}")
         return self._get(
-            f"/accounts/{account_identifier}/magic/sites/{site_identifier}/wans/{wan_identifier}",
+            f"/accounts/{account_id}/magic/sites/{site_id}/wans/{wan_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -296,9 +296,9 @@ class AsyncWans(AsyncAPIResource):
 
     async def create(
         self,
-        site_identifier: str,
+        site_id: str,
         *,
-        account_identifier: str,
+        account_id: str,
         wan: wan_create_params.Wan | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -311,9 +311,9 @@ class AsyncWans(AsyncAPIResource):
         Creates a new WAN.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
-          site_identifier: Identifier
+          site_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -323,12 +323,12 @@ class AsyncWans(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not site_identifier:
-            raise ValueError(f"Expected a non-empty value for `site_identifier` but received {site_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not site_id:
+            raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
         return await self._post(
-            f"/accounts/{account_identifier}/magic/sites/{site_identifier}/wans",
+            f"/accounts/{account_id}/magic/sites/{site_id}/wans",
             body=await async_maybe_transform({"wan": wan}, wan_create_params.WanCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -342,10 +342,10 @@ class AsyncWans(AsyncAPIResource):
 
     async def update(
         self,
-        wan_identifier: str,
+        wan_id: str,
         *,
-        account_identifier: str,
-        site_identifier: str,
+        account_id: str,
+        site_id: str,
         wan: wan_update_params.Wan | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -358,11 +358,11 @@ class AsyncWans(AsyncAPIResource):
         Update a specific WAN.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
-          site_identifier: Identifier
+          site_id: Identifier
 
-          wan_identifier: Identifier
+          wan_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -372,14 +372,14 @@ class AsyncWans(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not site_identifier:
-            raise ValueError(f"Expected a non-empty value for `site_identifier` but received {site_identifier!r}")
-        if not wan_identifier:
-            raise ValueError(f"Expected a non-empty value for `wan_identifier` but received {wan_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not site_id:
+            raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
+        if not wan_id:
+            raise ValueError(f"Expected a non-empty value for `wan_id` but received {wan_id!r}")
         return await self._put(
-            f"/accounts/{account_identifier}/magic/sites/{site_identifier}/wans/{wan_identifier}",
+            f"/accounts/{account_id}/magic/sites/{site_id}/wans/{wan_id}",
             body=await async_maybe_transform({"wan": wan}, wan_update_params.WanUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -393,9 +393,9 @@ class AsyncWans(AsyncAPIResource):
 
     async def list(
         self,
-        site_identifier: str,
+        site_id: str,
         *,
-        account_identifier: str,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -407,9 +407,9 @@ class AsyncWans(AsyncAPIResource):
         Lists WANs associated with an account and site.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
-          site_identifier: Identifier
+          site_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -419,12 +419,12 @@ class AsyncWans(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not site_identifier:
-            raise ValueError(f"Expected a non-empty value for `site_identifier` but received {site_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not site_id:
+            raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
         return await self._get(
-            f"/accounts/{account_identifier}/magic/sites/{site_identifier}/wans",
+            f"/accounts/{account_id}/magic/sites/{site_id}/wans",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -437,10 +437,10 @@ class AsyncWans(AsyncAPIResource):
 
     async def delete(
         self,
-        wan_identifier: str,
+        wan_id: str,
         *,
-        account_identifier: str,
-        site_identifier: str,
+        account_id: str,
+        site_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -452,11 +452,11 @@ class AsyncWans(AsyncAPIResource):
         Remove a specific WAN.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
-          site_identifier: Identifier
+          site_id: Identifier
 
-          wan_identifier: Identifier
+          wan_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -466,14 +466,14 @@ class AsyncWans(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not site_identifier:
-            raise ValueError(f"Expected a non-empty value for `site_identifier` but received {site_identifier!r}")
-        if not wan_identifier:
-            raise ValueError(f"Expected a non-empty value for `wan_identifier` but received {wan_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not site_id:
+            raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
+        if not wan_id:
+            raise ValueError(f"Expected a non-empty value for `wan_id` but received {wan_id!r}")
         return await self._delete(
-            f"/accounts/{account_identifier}/magic/sites/{site_identifier}/wans/{wan_identifier}",
+            f"/accounts/{account_id}/magic/sites/{site_id}/wans/{wan_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -486,10 +486,10 @@ class AsyncWans(AsyncAPIResource):
 
     async def get(
         self,
-        wan_identifier: str,
+        wan_id: str,
         *,
-        account_identifier: str,
-        site_identifier: str,
+        account_id: str,
+        site_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -501,11 +501,11 @@ class AsyncWans(AsyncAPIResource):
         Get a specific WAN.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
-          site_identifier: Identifier
+          site_id: Identifier
 
-          wan_identifier: Identifier
+          wan_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -515,14 +515,14 @@ class AsyncWans(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not site_identifier:
-            raise ValueError(f"Expected a non-empty value for `site_identifier` but received {site_identifier!r}")
-        if not wan_identifier:
-            raise ValueError(f"Expected a non-empty value for `wan_identifier` but received {wan_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not site_id:
+            raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
+        if not wan_id:
+            raise ValueError(f"Expected a non-empty value for `wan_id` but received {wan_id!r}")
         return await self._get(
-            f"/accounts/{account_identifier}/magic/sites/{site_identifier}/wans/{wan_identifier}",
+            f"/accounts/{account_id}/magic/sites/{site_id}/wans/{wan_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -1,4 +1,4 @@
-# File generated from our OpenAPI spec by Stainless.
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from __future__ import annotations
 
@@ -9,6 +9,9 @@ __all__ = ["RouteEmptyParams", "Route"]
 
 
 class RouteEmptyParams(TypedDict, total=False):
+    account_id: Required[str]
+    """Identifier"""
+
     routes: Required[Iterable[Route]]
 
 

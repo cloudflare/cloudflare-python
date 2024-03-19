@@ -1,4 +1,4 @@
-# File generated from our OpenAPI spec by Stainless.
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from __future__ import annotations
 
@@ -11,7 +11,7 @@ __all__ = ["HealthcheckEditParams", "HTTPConfig", "TcpConfig"]
 
 
 class HealthcheckEditParams(TypedDict, total=False):
-    zone_identifier: Required[str]
+    zone_id: Required[str]
     """Identifier"""
 
     address: Required[str]

@@ -1,4 +1,4 @@
-# File generated from our OpenAPI spec by Stainless.
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from __future__ import annotations
 
@@ -47,9 +47,9 @@ class ACLs(SyncAPIResource):
 
     def create(
         self,
-        site_identifier: str,
+        site_id: str,
         *,
-        account_identifier: str,
+        account_id: str,
         acl: acl_create_params.ACL | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -62,9 +62,9 @@ class ACLs(SyncAPIResource):
         Creates a new Site ACL.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
-          site_identifier: Identifier
+          site_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -74,12 +74,12 @@ class ACLs(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not site_identifier:
-            raise ValueError(f"Expected a non-empty value for `site_identifier` but received {site_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not site_id:
+            raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
         return self._post(
-            f"/accounts/{account_identifier}/magic/sites/{site_identifier}/acls",
+            f"/accounts/{account_id}/magic/sites/{site_id}/acls",
             body=maybe_transform({"acl": acl}, acl_create_params.ACLCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -95,8 +95,8 @@ class ACLs(SyncAPIResource):
         self,
         acl_identifier: str,
         *,
-        account_identifier: str,
-        site_identifier: str,
+        account_id: str,
+        site_id: str,
         acl: acl_update_params.ACL | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -109,9 +109,9 @@ class ACLs(SyncAPIResource):
         Update a specific Site ACL.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
-          site_identifier: Identifier
+          site_id: Identifier
 
           acl_identifier: Identifier
 
@@ -123,14 +123,14 @@ class ACLs(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not site_identifier:
-            raise ValueError(f"Expected a non-empty value for `site_identifier` but received {site_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not site_id:
+            raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
         if not acl_identifier:
             raise ValueError(f"Expected a non-empty value for `acl_identifier` but received {acl_identifier!r}")
         return self._put(
-            f"/accounts/{account_identifier}/magic/sites/{site_identifier}/acls/{acl_identifier}",
+            f"/accounts/{account_id}/magic/sites/{site_id}/acls/{acl_identifier}",
             body=maybe_transform({"acl": acl}, acl_update_params.ACLUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -144,9 +144,9 @@ class ACLs(SyncAPIResource):
 
     def list(
         self,
-        site_identifier: str,
+        site_id: str,
         *,
-        account_identifier: str,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -158,9 +158,9 @@ class ACLs(SyncAPIResource):
         Lists Site ACLs associated with an account.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
-          site_identifier: Identifier
+          site_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -170,12 +170,12 @@ class ACLs(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not site_identifier:
-            raise ValueError(f"Expected a non-empty value for `site_identifier` but received {site_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not site_id:
+            raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
         return self._get(
-            f"/accounts/{account_identifier}/magic/sites/{site_identifier}/acls",
+            f"/accounts/{account_id}/magic/sites/{site_id}/acls",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -190,8 +190,8 @@ class ACLs(SyncAPIResource):
         self,
         acl_identifier: str,
         *,
-        account_identifier: str,
-        site_identifier: str,
+        account_id: str,
+        site_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -203,9 +203,9 @@ class ACLs(SyncAPIResource):
         Remove a specific Site ACL.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
-          site_identifier: Identifier
+          site_id: Identifier
 
           acl_identifier: Identifier
 
@@ -217,14 +217,14 @@ class ACLs(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not site_identifier:
-            raise ValueError(f"Expected a non-empty value for `site_identifier` but received {site_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not site_id:
+            raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
         if not acl_identifier:
             raise ValueError(f"Expected a non-empty value for `acl_identifier` but received {acl_identifier!r}")
         return self._delete(
-            f"/accounts/{account_identifier}/magic/sites/{site_identifier}/acls/{acl_identifier}",
+            f"/accounts/{account_id}/magic/sites/{site_id}/acls/{acl_identifier}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -239,8 +239,8 @@ class ACLs(SyncAPIResource):
         self,
         acl_identifier: str,
         *,
-        account_identifier: str,
-        site_identifier: str,
+        account_id: str,
+        site_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -252,9 +252,9 @@ class ACLs(SyncAPIResource):
         Get a specific Site ACL.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
-          site_identifier: Identifier
+          site_id: Identifier
 
           acl_identifier: Identifier
 
@@ -266,14 +266,14 @@ class ACLs(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not site_identifier:
-            raise ValueError(f"Expected a non-empty value for `site_identifier` but received {site_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not site_id:
+            raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
         if not acl_identifier:
             raise ValueError(f"Expected a non-empty value for `acl_identifier` but received {acl_identifier!r}")
         return self._get(
-            f"/accounts/{account_identifier}/magic/sites/{site_identifier}/acls/{acl_identifier}",
+            f"/accounts/{account_id}/magic/sites/{site_id}/acls/{acl_identifier}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -296,9 +296,9 @@ class AsyncACLs(AsyncAPIResource):
 
     async def create(
         self,
-        site_identifier: str,
+        site_id: str,
         *,
-        account_identifier: str,
+        account_id: str,
         acl: acl_create_params.ACL | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -311,9 +311,9 @@ class AsyncACLs(AsyncAPIResource):
         Creates a new Site ACL.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
-          site_identifier: Identifier
+          site_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -323,12 +323,12 @@ class AsyncACLs(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not site_identifier:
-            raise ValueError(f"Expected a non-empty value for `site_identifier` but received {site_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not site_id:
+            raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
         return await self._post(
-            f"/accounts/{account_identifier}/magic/sites/{site_identifier}/acls",
+            f"/accounts/{account_id}/magic/sites/{site_id}/acls",
             body=await async_maybe_transform({"acl": acl}, acl_create_params.ACLCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -344,8 +344,8 @@ class AsyncACLs(AsyncAPIResource):
         self,
         acl_identifier: str,
         *,
-        account_identifier: str,
-        site_identifier: str,
+        account_id: str,
+        site_id: str,
         acl: acl_update_params.ACL | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -358,9 +358,9 @@ class AsyncACLs(AsyncAPIResource):
         Update a specific Site ACL.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
-          site_identifier: Identifier
+          site_id: Identifier
 
           acl_identifier: Identifier
 
@@ -372,14 +372,14 @@ class AsyncACLs(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not site_identifier:
-            raise ValueError(f"Expected a non-empty value for `site_identifier` but received {site_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not site_id:
+            raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
         if not acl_identifier:
             raise ValueError(f"Expected a non-empty value for `acl_identifier` but received {acl_identifier!r}")
         return await self._put(
-            f"/accounts/{account_identifier}/magic/sites/{site_identifier}/acls/{acl_identifier}",
+            f"/accounts/{account_id}/magic/sites/{site_id}/acls/{acl_identifier}",
             body=await async_maybe_transform({"acl": acl}, acl_update_params.ACLUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -393,9 +393,9 @@ class AsyncACLs(AsyncAPIResource):
 
     async def list(
         self,
-        site_identifier: str,
+        site_id: str,
         *,
-        account_identifier: str,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -407,9 +407,9 @@ class AsyncACLs(AsyncAPIResource):
         Lists Site ACLs associated with an account.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
-          site_identifier: Identifier
+          site_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -419,12 +419,12 @@ class AsyncACLs(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not site_identifier:
-            raise ValueError(f"Expected a non-empty value for `site_identifier` but received {site_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not site_id:
+            raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
         return await self._get(
-            f"/accounts/{account_identifier}/magic/sites/{site_identifier}/acls",
+            f"/accounts/{account_id}/magic/sites/{site_id}/acls",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -439,8 +439,8 @@ class AsyncACLs(AsyncAPIResource):
         self,
         acl_identifier: str,
         *,
-        account_identifier: str,
-        site_identifier: str,
+        account_id: str,
+        site_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -452,9 +452,9 @@ class AsyncACLs(AsyncAPIResource):
         Remove a specific Site ACL.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
-          site_identifier: Identifier
+          site_id: Identifier
 
           acl_identifier: Identifier
 
@@ -466,14 +466,14 @@ class AsyncACLs(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not site_identifier:
-            raise ValueError(f"Expected a non-empty value for `site_identifier` but received {site_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not site_id:
+            raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
         if not acl_identifier:
             raise ValueError(f"Expected a non-empty value for `acl_identifier` but received {acl_identifier!r}")
         return await self._delete(
-            f"/accounts/{account_identifier}/magic/sites/{site_identifier}/acls/{acl_identifier}",
+            f"/accounts/{account_id}/magic/sites/{site_id}/acls/{acl_identifier}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -488,8 +488,8 @@ class AsyncACLs(AsyncAPIResource):
         self,
         acl_identifier: str,
         *,
-        account_identifier: str,
-        site_identifier: str,
+        account_id: str,
+        site_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -501,9 +501,9 @@ class AsyncACLs(AsyncAPIResource):
         Get a specific Site ACL.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
-          site_identifier: Identifier
+          site_id: Identifier
 
           acl_identifier: Identifier
 
@@ -515,14 +515,14 @@ class AsyncACLs(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not site_identifier:
-            raise ValueError(f"Expected a non-empty value for `site_identifier` but received {site_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not site_id:
+            raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
         if not acl_identifier:
             raise ValueError(f"Expected a non-empty value for `acl_identifier` but received {acl_identifier!r}")
         return await self._get(
-            f"/accounts/{account_identifier}/magic/sites/{site_identifier}/acls/{acl_identifier}",
+            f"/accounts/{account_id}/magic/sites/{site_id}/acls/{acl_identifier}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

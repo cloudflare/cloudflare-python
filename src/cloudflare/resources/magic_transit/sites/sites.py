@@ -1,4 +1,4 @@
-# File generated from our OpenAPI spec by Stainless.
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from __future__ import annotations
 
@@ -83,8 +83,8 @@ class Sites(SyncAPIResource):
 
     def create(
         self,
-        account_identifier: str,
         *,
+        account_id: str,
         site: site_create_params.Site | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -97,7 +97,7 @@ class Sites(SyncAPIResource):
         Creates a new Site
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -107,10 +107,10 @@ class Sites(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_identifier}/magic/sites",
+            f"/accounts/{account_id}/magic/sites",
             body=maybe_transform({"site": site}, site_create_params.SiteCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -124,9 +124,9 @@ class Sites(SyncAPIResource):
 
     def update(
         self,
-        site_identifier: str,
+        site_id: str,
         *,
-        account_identifier: str,
+        account_id: str,
         site: site_update_params.Site | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -139,9 +139,9 @@ class Sites(SyncAPIResource):
         Update a specific Site.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
-          site_identifier: Identifier
+          site_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -151,12 +151,12 @@ class Sites(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not site_identifier:
-            raise ValueError(f"Expected a non-empty value for `site_identifier` but received {site_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not site_id:
+            raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
         return self._put(
-            f"/accounts/{account_identifier}/magic/sites/{site_identifier}",
+            f"/accounts/{account_id}/magic/sites/{site_id}",
             body=maybe_transform({"site": site}, site_update_params.SiteUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -170,8 +170,8 @@ class Sites(SyncAPIResource):
 
     def list(
         self,
-        account_identifier: str,
         *,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -186,7 +186,7 @@ class Sites(SyncAPIResource):
         site.SecondaryConnectorID.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -196,10 +196,10 @@ class Sites(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
-            f"/accounts/{account_identifier}/magic/sites",
+            f"/accounts/{account_id}/magic/sites",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -212,9 +212,9 @@ class Sites(SyncAPIResource):
 
     def delete(
         self,
-        site_identifier: str,
+        site_id: str,
         *,
-        account_identifier: str,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -226,9 +226,9 @@ class Sites(SyncAPIResource):
         Remove a specific Site.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
-          site_identifier: Identifier
+          site_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -238,12 +238,12 @@ class Sites(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not site_identifier:
-            raise ValueError(f"Expected a non-empty value for `site_identifier` but received {site_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not site_id:
+            raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
         return self._delete(
-            f"/accounts/{account_identifier}/magic/sites/{site_identifier}",
+            f"/accounts/{account_id}/magic/sites/{site_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -256,9 +256,9 @@ class Sites(SyncAPIResource):
 
     def get(
         self,
-        site_identifier: str,
+        site_id: str,
         *,
-        account_identifier: str,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -270,9 +270,9 @@ class Sites(SyncAPIResource):
         Get a specific Site.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
-          site_identifier: Identifier
+          site_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -282,12 +282,12 @@ class Sites(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not site_identifier:
-            raise ValueError(f"Expected a non-empty value for `site_identifier` but received {site_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not site_id:
+            raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
         return self._get(
-            f"/accounts/{account_identifier}/magic/sites/{site_identifier}",
+            f"/accounts/{account_id}/magic/sites/{site_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -322,8 +322,8 @@ class AsyncSites(AsyncAPIResource):
 
     async def create(
         self,
-        account_identifier: str,
         *,
+        account_id: str,
         site: site_create_params.Site | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -336,7 +336,7 @@ class AsyncSites(AsyncAPIResource):
         Creates a new Site
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -346,10 +346,10 @@ class AsyncSites(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_identifier}/magic/sites",
+            f"/accounts/{account_id}/magic/sites",
             body=await async_maybe_transform({"site": site}, site_create_params.SiteCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -363,9 +363,9 @@ class AsyncSites(AsyncAPIResource):
 
     async def update(
         self,
-        site_identifier: str,
+        site_id: str,
         *,
-        account_identifier: str,
+        account_id: str,
         site: site_update_params.Site | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -378,9 +378,9 @@ class AsyncSites(AsyncAPIResource):
         Update a specific Site.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
-          site_identifier: Identifier
+          site_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -390,12 +390,12 @@ class AsyncSites(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not site_identifier:
-            raise ValueError(f"Expected a non-empty value for `site_identifier` but received {site_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not site_id:
+            raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
         return await self._put(
-            f"/accounts/{account_identifier}/magic/sites/{site_identifier}",
+            f"/accounts/{account_id}/magic/sites/{site_id}",
             body=await async_maybe_transform({"site": site}, site_update_params.SiteUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -409,8 +409,8 @@ class AsyncSites(AsyncAPIResource):
 
     async def list(
         self,
-        account_identifier: str,
         *,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -425,7 +425,7 @@ class AsyncSites(AsyncAPIResource):
         site.SecondaryConnectorID.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -435,10 +435,10 @@ class AsyncSites(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
-            f"/accounts/{account_identifier}/magic/sites",
+            f"/accounts/{account_id}/magic/sites",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -451,9 +451,9 @@ class AsyncSites(AsyncAPIResource):
 
     async def delete(
         self,
-        site_identifier: str,
+        site_id: str,
         *,
-        account_identifier: str,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -465,9 +465,9 @@ class AsyncSites(AsyncAPIResource):
         Remove a specific Site.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
-          site_identifier: Identifier
+          site_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -477,12 +477,12 @@ class AsyncSites(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not site_identifier:
-            raise ValueError(f"Expected a non-empty value for `site_identifier` but received {site_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not site_id:
+            raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
         return await self._delete(
-            f"/accounts/{account_identifier}/magic/sites/{site_identifier}",
+            f"/accounts/{account_id}/magic/sites/{site_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -495,9 +495,9 @@ class AsyncSites(AsyncAPIResource):
 
     async def get(
         self,
-        site_identifier: str,
+        site_id: str,
         *,
-        account_identifier: str,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -509,9 +509,9 @@ class AsyncSites(AsyncAPIResource):
         Get a specific Site.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
-          site_identifier: Identifier
+          site_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -521,12 +521,12 @@ class AsyncSites(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not site_identifier:
-            raise ValueError(f"Expected a non-empty value for `site_identifier` but received {site_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not site_id:
+            raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
         return await self._get(
-            f"/accounts/{account_identifier}/magic/sites/{site_identifier}",
+            f"/accounts/{account_id}/magic/sites/{site_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -1,4 +1,4 @@
-# File generated from our OpenAPI spec by Stainless.
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from __future__ import annotations
 
@@ -8,6 +8,9 @@ __all__ = ["SiteCreateParams", "Site", "SiteLocation"]
 
 
 class SiteCreateParams(TypedDict, total=False):
+    account_id: Required[str]
+    """Identifier"""
+
     site: Site
 
 

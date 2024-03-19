@@ -1,4 +1,4 @@
-# File generated from our OpenAPI spec by Stainless.
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from __future__ import annotations
 
@@ -41,8 +41,8 @@ class Bytimes(SyncAPIResource):
 
     def get(
         self,
-        identifier: str,
         *,
+        zone_id: str,
         dimensions: str | NotGiven = NOT_GIVEN,
         filters: str | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
@@ -67,7 +67,7 @@ class Bytimes(SyncAPIResource):
         for detailed information about the available query parameters.
 
         Args:
-          identifier: Identifier
+          zone_id: Identifier
 
           dimensions: A comma-separated list of dimensions to group results by.
 
@@ -94,10 +94,10 @@ class Bytimes(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not identifier:
-            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get(
-            f"/zones/{identifier}/dns_analytics/report/bytime",
+            f"/zones/{zone_id}/dns_analytics/report/bytime",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -133,8 +133,8 @@ class AsyncBytimes(AsyncAPIResource):
 
     async def get(
         self,
-        identifier: str,
         *,
+        zone_id: str,
         dimensions: str | NotGiven = NOT_GIVEN,
         filters: str | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
@@ -159,7 +159,7 @@ class AsyncBytimes(AsyncAPIResource):
         for detailed information about the available query parameters.
 
         Args:
-          identifier: Identifier
+          zone_id: Identifier
 
           dimensions: A comma-separated list of dimensions to group results by.
 
@@ -186,10 +186,10 @@ class AsyncBytimes(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not identifier:
-            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._get(
-            f"/zones/{identifier}/dns_analytics/report/bytime",
+            f"/zones/{zone_id}/dns_analytics/report/bytime",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

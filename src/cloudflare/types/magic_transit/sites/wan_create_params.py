@@ -1,4 +1,4 @@
-# File generated from our OpenAPI spec by Stainless.
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from __future__ import annotations
 
@@ -8,7 +8,7 @@ __all__ = ["WanCreateParams", "Wan", "WanStaticAddressing"]
 
 
 class WanCreateParams(TypedDict, total=False):
-    account_identifier: Required[str]
+    account_id: Required[str]
     """Identifier"""
 
     wan: Wan

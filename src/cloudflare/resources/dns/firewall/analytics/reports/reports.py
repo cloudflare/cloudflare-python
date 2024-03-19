@@ -1,4 +1,4 @@
-# File generated from our OpenAPI spec by Stainless.
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from __future__ import annotations
 
@@ -53,9 +53,9 @@ class Reports(SyncAPIResource):
 
     def get(
         self,
-        identifier: str,
+        dns_firewall_id: str,
         *,
-        account_identifier: str,
+        account_id: str,
         dimensions: str | NotGiven = NOT_GIVEN,
         filters: str | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
@@ -78,9 +78,9 @@ class Reports(SyncAPIResource):
         for detailed information about the available query parameters.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
-          identifier: Identifier
+          dns_firewall_id: Identifier
 
           dimensions: A comma-separated list of dimensions to group results by.
 
@@ -105,12 +105,12 @@ class Reports(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not identifier:
-            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not dns_firewall_id:
+            raise ValueError(f"Expected a non-empty value for `dns_firewall_id` but received {dns_firewall_id!r}")
         return self._get(
-            f"/accounts/{account_identifier}/dns_firewall/{identifier}/dns_analytics/report",
+            f"/accounts/{account_id}/dns_firewall/{dns_firewall_id}/dns_analytics/report",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -149,9 +149,9 @@ class AsyncReports(AsyncAPIResource):
 
     async def get(
         self,
-        identifier: str,
+        dns_firewall_id: str,
         *,
-        account_identifier: str,
+        account_id: str,
         dimensions: str | NotGiven = NOT_GIVEN,
         filters: str | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
@@ -174,9 +174,9 @@ class AsyncReports(AsyncAPIResource):
         for detailed information about the available query parameters.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
-          identifier: Identifier
+          dns_firewall_id: Identifier
 
           dimensions: A comma-separated list of dimensions to group results by.
 
@@ -201,12 +201,12 @@ class AsyncReports(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not identifier:
-            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not dns_firewall_id:
+            raise ValueError(f"Expected a non-empty value for `dns_firewall_id` but received {dns_firewall_id!r}")
         return await self._get(
-            f"/accounts/{account_identifier}/dns_firewall/{identifier}/dns_analytics/report",
+            f"/accounts/{account_id}/dns_firewall/{dns_firewall_id}/dns_analytics/report",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

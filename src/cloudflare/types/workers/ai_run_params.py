@@ -1,4 +1,4 @@
-# File generated from our OpenAPI spec by Stainless.
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from __future__ import annotations
 
@@ -74,6 +74,8 @@ class BodyObjectDetection(TypedDict, total=False):
 
 class BodyUnionMember10(TypedDict, total=False):
     prompt: Required[str]
+
+    lora: str
 
     max_tokens: int
 
