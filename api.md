@@ -1688,32 +1688,6 @@ Methods:
 - <code title="post /zones/{zone_id}/dns_records/import">client.dns.records.<a href="./src/cloudflare/resources/dns/records.py">import\_</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/dns/record_import_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/record_import_response.py">RecordImportResponse</a></code>
 - <code title="post /zones/{zone_id}/dns_records/scan">client.dns.records.<a href="./src/cloudflare/resources/dns/records.py">scan</a>(\*, zone_id) -> <a href="./src/cloudflare/types/dns/record_scan_response.py">RecordScanResponse</a></code>
 
-## Analytics
-
-### Reports
-
-Types:
-
-```python
-from cloudflare.types.dns.analytics import DNSDNSAnalyticsAPIReport
-```
-
-Methods:
-
-- <code title="get /zones/{identifier}/dns_analytics/report">client.dns.analytics.reports.<a href="./src/cloudflare/resources/dns/analytics/reports/reports.py">get</a>(identifier, \*\*<a href="src/cloudflare/types/dns/analytics/report_get_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/analytics/dns_dns_analytics_api_report.py">DNSDNSAnalyticsAPIReport</a></code>
-
-#### Bytimes
-
-Types:
-
-```python
-from cloudflare.types.dns.analytics.reports import DNSDNSAnalyticsAPIReportBytime
-```
-
-Methods:
-
-- <code title="get /zones/{identifier}/dns_analytics/report/bytime">client.dns.analytics.reports.bytimes.<a href="./src/cloudflare/resources/dns/analytics/reports/bytimes.py">get</a>(identifier, \*\*<a href="src/cloudflare/types/dns/analytics/reports/bytime_get_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/analytics/reports/dns_dns_analytics_api_report_bytime.py">DNSDNSAnalyticsAPIReportBytime</a></code>
-
 ## Firewall
 
 Types:
@@ -1729,20 +1703,6 @@ Methods:
 - <code title="delete /accounts/{account_id}/dns_firewall/{dns_firewall_id}">client.dns.firewall.<a href="./src/cloudflare/resources/dns/firewall/firewall.py">delete</a>(dns_firewall_id, \*, account_id) -> <a href="./src/cloudflare/types/dns/firewall_delete_response.py">FirewallDeleteResponse</a></code>
 - <code title="patch /accounts/{account_id}/dns_firewall/{dns_firewall_id}">client.dns.firewall.<a href="./src/cloudflare/resources/dns/firewall/firewall.py">edit</a>(dns_firewall_id, \*, account_id, \*\*<a href="src/cloudflare/types/dns/firewall_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/dns_firewall_dns_firewall.py">DNSFirewallDNSFirewall</a></code>
 - <code title="get /accounts/{account_id}/dns_firewall/{dns_firewall_id}">client.dns.firewall.<a href="./src/cloudflare/resources/dns/firewall/firewall.py">get</a>(dns_firewall_id, \*, account_id) -> <a href="./src/cloudflare/types/dns/dns_firewall_dns_firewall.py">DNSFirewallDNSFirewall</a></code>
-
-### Analytics
-
-#### Reports
-
-Methods:
-
-- <code title="get /accounts/{account_identifier}/dns_firewall/{identifier}/dns_analytics/report">client.dns.firewall.analytics.reports.<a href="./src/cloudflare/resources/dns/firewall/analytics/reports/reports.py">get</a>(identifier, \*, account_identifier, \*\*<a href="src/cloudflare/types/dns/firewall/analytics/report_get_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/analytics/dns_dns_analytics_api_report.py">DNSDNSAnalyticsAPIReport</a></code>
-
-##### Bytimes
-
-Methods:
-
-- <code title="get /accounts/{account_identifier}/dns_firewall/{identifier}/dns_analytics/report/bytime">client.dns.firewall.analytics.reports.bytimes.<a href="./src/cloudflare/resources/dns/firewall/analytics/reports/bytimes.py">get</a>(identifier, \*, account_identifier, \*\*<a href="src/cloudflare/types/dns/firewall/analytics/reports/bytime_get_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/analytics/reports/dns_dns_analytics_api_report_bytime.py">DNSDNSAnalyticsAPIReportBytime</a></code>
 
 # DNSSEC
 
