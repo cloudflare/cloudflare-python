@@ -71,7 +71,6 @@ class Cloudflare(SyncAPIClient):
     email_routing: resources.EmailRouting
     filters: resources.Filters
     firewall: resources.Firewall
-    healthchecks: resources.Healthchecks
     keyless_certificates: resources.KeylessCertificates
     logpush: resources.Logpush
     logs: resources.Logs
@@ -223,7 +222,6 @@ class Cloudflare(SyncAPIClient):
         self.email_routing = resources.EmailRouting(self)
         self.filters = resources.Filters(self)
         self.firewall = resources.Firewall(self)
-        self.healthchecks = resources.Healthchecks(self)
         self.keyless_certificates = resources.KeylessCertificates(self)
         self.logpush = resources.Logpush(self)
         self.logs = resources.Logs(self)
@@ -480,7 +478,6 @@ class AsyncCloudflare(AsyncAPIClient):
     email_routing: resources.AsyncEmailRouting
     filters: resources.AsyncFilters
     firewall: resources.AsyncFirewall
-    healthchecks: resources.AsyncHealthchecks
     keyless_certificates: resources.AsyncKeylessCertificates
     logpush: resources.AsyncLogpush
     logs: resources.AsyncLogs
@@ -632,7 +629,6 @@ class AsyncCloudflare(AsyncAPIClient):
         self.email_routing = resources.AsyncEmailRouting(self)
         self.filters = resources.AsyncFilters(self)
         self.firewall = resources.AsyncFirewall(self)
-        self.healthchecks = resources.AsyncHealthchecks(self)
         self.keyless_certificates = resources.AsyncKeylessCertificates(self)
         self.logpush = resources.AsyncLogpush(self)
         self.logs = resources.AsyncLogs(self)
@@ -890,7 +886,6 @@ class CloudflareWithRawResponse:
         self.email_routing = resources.EmailRoutingWithRawResponse(client.email_routing)
         self.filters = resources.FiltersWithRawResponse(client.filters)
         self.firewall = resources.FirewallWithRawResponse(client.firewall)
-        self.healthchecks = resources.HealthchecksWithRawResponse(client.healthchecks)
         self.keyless_certificates = resources.KeylessCertificatesWithRawResponse(client.keyless_certificates)
         self.logpush = resources.LogpushWithRawResponse(client.logpush)
         self.logs = resources.LogsWithRawResponse(client.logs)
@@ -977,7 +972,6 @@ class AsyncCloudflareWithRawResponse:
         self.email_routing = resources.AsyncEmailRoutingWithRawResponse(client.email_routing)
         self.filters = resources.AsyncFiltersWithRawResponse(client.filters)
         self.firewall = resources.AsyncFirewallWithRawResponse(client.firewall)
-        self.healthchecks = resources.AsyncHealthchecksWithRawResponse(client.healthchecks)
         self.keyless_certificates = resources.AsyncKeylessCertificatesWithRawResponse(client.keyless_certificates)
         self.logpush = resources.AsyncLogpushWithRawResponse(client.logpush)
         self.logs = resources.AsyncLogsWithRawResponse(client.logs)
@@ -1066,7 +1060,6 @@ class CloudflareWithStreamedResponse:
         self.email_routing = resources.EmailRoutingWithStreamingResponse(client.email_routing)
         self.filters = resources.FiltersWithStreamingResponse(client.filters)
         self.firewall = resources.FirewallWithStreamingResponse(client.firewall)
-        self.healthchecks = resources.HealthchecksWithStreamingResponse(client.healthchecks)
         self.keyless_certificates = resources.KeylessCertificatesWithStreamingResponse(client.keyless_certificates)
         self.logpush = resources.LogpushWithStreamingResponse(client.logpush)
         self.logs = resources.LogsWithStreamingResponse(client.logs)
@@ -1157,7 +1150,6 @@ class AsyncCloudflareWithStreamedResponse:
         self.email_routing = resources.AsyncEmailRoutingWithStreamingResponse(client.email_routing)
         self.filters = resources.AsyncFiltersWithStreamingResponse(client.filters)
         self.firewall = resources.AsyncFirewallWithStreamingResponse(client.firewall)
-        self.healthchecks = resources.AsyncHealthchecksWithStreamingResponse(client.healthchecks)
         self.keyless_certificates = resources.AsyncKeylessCertificatesWithStreamingResponse(client.keyless_certificates)
         self.logpush = resources.AsyncLogpushWithStreamingResponse(client.logpush)
         self.logs = resources.AsyncLogsWithStreamingResponse(client.logs)
