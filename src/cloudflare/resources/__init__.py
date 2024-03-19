@@ -400,14 +400,6 @@ from .url_scanner import (
     URLScannerWithStreamingResponse,
     AsyncURLScannerWithStreamingResponse,
 )
-from .healthchecks import (
-    Healthchecks,
-    AsyncHealthchecks,
-    HealthchecksWithRawResponse,
-    AsyncHealthchecksWithRawResponse,
-    HealthchecksWithStreamingResponse,
-    AsyncHealthchecksWithStreamingResponse,
-)
 from .email_routing import (
     EmailRouting,
     AsyncEmailRouting,
@@ -778,12 +770,6 @@ __all__ = [
     "AsyncFirewallWithRawResponse",
     "FirewallWithStreamingResponse",
     "AsyncFirewallWithStreamingResponse",
-    "Healthchecks",
-    "AsyncHealthchecks",
-    "HealthchecksWithRawResponse",
-    "AsyncHealthchecksWithRawResponse",
-    "HealthchecksWithStreamingResponse",
-    "AsyncHealthchecksWithStreamingResponse",
     "KeylessCertificates",
     "AsyncKeylessCertificates",
     "KeylessCertificatesWithRawResponse",
