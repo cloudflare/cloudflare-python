@@ -416,14 +416,6 @@ from .email_routing import (
     EmailRoutingWithStreamingResponse,
     AsyncEmailRoutingWithStreamingResponse,
 )
-from .magic_transit import (
-    MagicTransit,
-    AsyncMagicTransit,
-    MagicTransitWithRawResponse,
-    AsyncMagicTransitWithRawResponse,
-    MagicTransitWithStreamingResponse,
-    AsyncMagicTransitWithStreamingResponse,
-)
 from .secondary_dns import (
     SecondaryDNS,
     AsyncSecondaryDNS,
@@ -942,12 +934,6 @@ __all__ = [
     "AsyncIntelWithRawResponse",
     "IntelWithStreamingResponse",
     "AsyncIntelWithStreamingResponse",
-    "MagicTransit",
-    "AsyncMagicTransit",
-    "MagicTransitWithRawResponse",
-    "AsyncMagicTransitWithRawResponse",
-    "MagicTransitWithStreamingResponse",
-    "AsyncMagicTransitWithStreamingResponse",
     "MagicNetworkMonitoring",
     "AsyncMagicNetworkMonitoring",
     "MagicNetworkMonitoringWithRawResponse",
