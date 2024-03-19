@@ -75,6 +75,8 @@ class BodyObjectDetection(TypedDict, total=False):
 class BodyUnionMember10(TypedDict, total=False):
     prompt: Required[str]
 
+    lora: str
+
     max_tokens: int
 
     raw: bool
