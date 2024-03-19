@@ -1688,6 +1688,32 @@ Methods:
 - <code title="post /zones/{zone_id}/dns_records/import">client.dns.records.<a href="./src/cloudflare/resources/dns/records.py">import\_</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/dns/record_import_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/record_import_response.py">RecordImportResponse</a></code>
 - <code title="post /zones/{zone_id}/dns_records/scan">client.dns.records.<a href="./src/cloudflare/resources/dns/records.py">scan</a>(\*, zone_id) -> <a href="./src/cloudflare/types/dns/record_scan_response.py">RecordScanResponse</a></code>
 
+## Analytics
+
+### Reports
+
+Types:
+
+```python
+from cloudflare.types.dns.analytics import DNSDNSAnalyticsAPIReport
+```
+
+Methods:
+
+- <code title="get /zones/{zone_id}/dns_analytics/report">client.dns.analytics.reports.<a href="./src/cloudflare/resources/dns/analytics/reports/reports.py">get</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/dns/analytics/report_get_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/analytics/dns_dns_analytics_api_report.py">DNSDNSAnalyticsAPIReport</a></code>
+
+#### Bytimes
+
+Types:
+
+```python
+from cloudflare.types.dns.analytics.reports import DNSDNSAnalyticsAPIReportBytime
+```
+
+Methods:
+
+- <code title="get /zones/{zone_id}/dns_analytics/report/bytime">client.dns.analytics.reports.bytimes.<a href="./src/cloudflare/resources/dns/analytics/reports/bytimes.py">get</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/dns/analytics/reports/bytime_get_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/analytics/reports/dns_dns_analytics_api_report_bytime.py">DNSDNSAnalyticsAPIReportBytime</a></code>
+
 ## Firewall
 
 Types:
@@ -1703,6 +1729,20 @@ Methods:
 - <code title="delete /accounts/{account_id}/dns_firewall/{dns_firewall_id}">client.dns.firewall.<a href="./src/cloudflare/resources/dns/firewall/firewall.py">delete</a>(dns_firewall_id, \*, account_id) -> <a href="./src/cloudflare/types/dns/firewall_delete_response.py">FirewallDeleteResponse</a></code>
 - <code title="patch /accounts/{account_id}/dns_firewall/{dns_firewall_id}">client.dns.firewall.<a href="./src/cloudflare/resources/dns/firewall/firewall.py">edit</a>(dns_firewall_id, \*, account_id, \*\*<a href="src/cloudflare/types/dns/firewall_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/dns_firewall_dns_firewall.py">DNSFirewallDNSFirewall</a></code>
 - <code title="get /accounts/{account_id}/dns_firewall/{dns_firewall_id}">client.dns.firewall.<a href="./src/cloudflare/resources/dns/firewall/firewall.py">get</a>(dns_firewall_id, \*, account_id) -> <a href="./src/cloudflare/types/dns/dns_firewall_dns_firewall.py">DNSFirewallDNSFirewall</a></code>
+
+### Analytics
+
+#### Reports
+
+Methods:
+
+- <code title="get /accounts/{account_id}/dns_firewall/{dns_firewall_id}/dns_analytics/report">client.dns.firewall.analytics.reports.<a href="./src/cloudflare/resources/dns/firewall/analytics/reports/reports.py">get</a>(dns_firewall_id, \*, account_id, \*\*<a href="src/cloudflare/types/dns/firewall/analytics/report_get_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/analytics/dns_dns_analytics_api_report.py">DNSDNSAnalyticsAPIReport</a></code>
+
+##### Bytimes
+
+Methods:
+
+- <code title="get /accounts/{account_id}/dns_firewall/{dns_firewall_id}/dns_analytics/report/bytime">client.dns.firewall.analytics.reports.bytimes.<a href="./src/cloudflare/resources/dns/firewall/analytics/reports/bytimes.py">get</a>(dns_firewall_id, \*, account_id, \*\*<a href="src/cloudflare/types/dns/firewall/analytics/reports/bytime_get_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/analytics/reports/dns_dns_analytics_api_report_bytime.py">DNSDNSAnalyticsAPIReportBytime</a></code>
 
 # DNSSEC
 
@@ -1976,8 +2016,35 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types import HealthchecksHealthchecks
+from cloudflare.types import (
+    HealthchecksHealthchecks,
+    HealthcheckListResponse,
+    HealthcheckDeleteResponse,
+)
 ```
+
+Methods:
+
+- <code title="post /zones/{zone_id}/healthchecks">client.healthchecks.<a href="./src/cloudflare/resources/healthchecks/healthchecks.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/healthcheck_create_params.py">params</a>) -> <a href="./src/cloudflare/types/healthchecks_healthchecks.py">HealthchecksHealthchecks</a></code>
+- <code title="put /zones/{zone_id}/healthchecks/{healthcheck_id}">client.healthchecks.<a href="./src/cloudflare/resources/healthchecks/healthchecks.py">update</a>(healthcheck_id, \*, zone_id, \*\*<a href="src/cloudflare/types/healthcheck_update_params.py">params</a>) -> <a href="./src/cloudflare/types/healthchecks_healthchecks.py">HealthchecksHealthchecks</a></code>
+- <code title="get /zones/{zone_id}/healthchecks">client.healthchecks.<a href="./src/cloudflare/resources/healthchecks/healthchecks.py">list</a>(\*, zone_id) -> <a href="./src/cloudflare/types/healthcheck_list_response.py">Optional</a></code>
+- <code title="delete /zones/{zone_id}/healthchecks/{healthcheck_id}">client.healthchecks.<a href="./src/cloudflare/resources/healthchecks/healthchecks.py">delete</a>(healthcheck_id, \*, zone_id) -> <a href="./src/cloudflare/types/healthcheck_delete_response.py">HealthcheckDeleteResponse</a></code>
+- <code title="patch /zones/{zone_id}/healthchecks/{healthcheck_id}">client.healthchecks.<a href="./src/cloudflare/resources/healthchecks/healthchecks.py">edit</a>(healthcheck_id, \*, zone_id, \*\*<a href="src/cloudflare/types/healthcheck_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/healthchecks_healthchecks.py">HealthchecksHealthchecks</a></code>
+- <code title="get /zones/{zone_id}/healthchecks/{healthcheck_id}">client.healthchecks.<a href="./src/cloudflare/resources/healthchecks/healthchecks.py">get</a>(healthcheck_id, \*, zone_id) -> <a href="./src/cloudflare/types/healthchecks_healthchecks.py">HealthchecksHealthchecks</a></code>
+
+## Previews
+
+Types:
+
+```python
+from cloudflare.types.healthchecks import PreviewDeleteResponse
+```
+
+Methods:
+
+- <code title="post /zones/{zone_id}/healthchecks/preview">client.healthchecks.previews.<a href="./src/cloudflare/resources/healthchecks/previews.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/healthchecks/preview_create_params.py">params</a>) -> <a href="./src/cloudflare/types/healthchecks_healthchecks.py">HealthchecksHealthchecks</a></code>
+- <code title="delete /zones/{zone_id}/healthchecks/preview/{healthcheck_id}">client.healthchecks.previews.<a href="./src/cloudflare/resources/healthchecks/previews.py">delete</a>(healthcheck_id, \*, zone_id) -> <a href="./src/cloudflare/types/healthchecks/preview_delete_response.py">PreviewDeleteResponse</a></code>
+- <code title="get /zones/{zone_id}/healthchecks/preview/{healthcheck_id}">client.healthchecks.previews.<a href="./src/cloudflare/resources/healthchecks/previews.py">get</a>(healthcheck_id, \*, zone_id) -> <a href="./src/cloudflare/types/healthchecks_healthchecks.py">HealthchecksHealthchecks</a></code>
 
 # KeylessCertificates
 
@@ -3688,6 +3755,184 @@ Methods:
 - <code title="put /accounts/{account_id}/intel/attack-surface-report/{issue_id}/dismiss">client.intel.attack_surface_report.issues.<a href="./src/cloudflare/resources/intel/attack_surface_report/issues.py">dismiss</a>(issue_id, \*, account_id, \*\*<a href="src/cloudflare/types/intel/attack_surface_report/issue_dismiss_params.py">params</a>) -> <a href="./src/cloudflare/types/intel/attack_surface_report/issue_dismiss_response.py">IssueDismissResponse</a></code>
 - <code title="get /accounts/{account_id}/intel/attack-surface-report/issues/severity">client.intel.attack_surface_report.issues.<a href="./src/cloudflare/resources/intel/attack_surface_report/issues.py">severity</a>(\*, account_id, \*\*<a href="src/cloudflare/types/intel/attack_surface_report/issue_severity_params.py">params</a>) -> <a href="./src/cloudflare/types/intel/attack_surface_report/issue_severity_response.py">IssueSeverityResponse</a></code>
 - <code title="get /accounts/{account_id}/intel/attack-surface-report/issues/type">client.intel.attack_surface_report.issues.<a href="./src/cloudflare/resources/intel/attack_surface_report/issues.py">type</a>(\*, account_id, \*\*<a href="src/cloudflare/types/intel/attack_surface_report/issue_type_params.py">params</a>) -> <a href="./src/cloudflare/types/intel/attack_surface_report/issue_type_response.py">IssueTypeResponse</a></code>
+
+# MagicTransit
+
+## CfInterconnects
+
+Types:
+
+```python
+from cloudflare.types.magic_transit import (
+    CfInterconnectUpdateResponse,
+    CfInterconnectListResponse,
+    CfInterconnectGetResponse,
+)
+```
+
+Methods:
+
+- <code title="put /accounts/{account_id}/magic/cf_interconnects/{tunnel_identifier}">client.magic_transit.cf_interconnects.<a href="./src/cloudflare/resources/magic_transit/cf_interconnects.py">update</a>(tunnel_identifier, \*, account_id, \*\*<a href="src/cloudflare/types/magic_transit/cf_interconnect_update_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/cf_interconnect_update_response.py">CfInterconnectUpdateResponse</a></code>
+- <code title="get /accounts/{account_id}/magic/cf_interconnects">client.magic_transit.cf_interconnects.<a href="./src/cloudflare/resources/magic_transit/cf_interconnects.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/magic_transit/cf_interconnect_list_response.py">CfInterconnectListResponse</a></code>
+- <code title="get /accounts/{account_id}/magic/cf_interconnects/{tunnel_identifier}">client.magic_transit.cf_interconnects.<a href="./src/cloudflare/resources/magic_transit/cf_interconnects.py">get</a>(tunnel_identifier, \*, account_id) -> <a href="./src/cloudflare/types/magic_transit/cf_interconnect_get_response.py">CfInterconnectGetResponse</a></code>
+
+## GRETunnels
+
+Types:
+
+```python
+from cloudflare.types.magic_transit import (
+    GRETunnelCreateResponse,
+    GRETunnelUpdateResponse,
+    GRETunnelListResponse,
+    GRETunnelDeleteResponse,
+    GRETunnelGetResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/magic/gre_tunnels">client.magic_transit.gre_tunnels.<a href="./src/cloudflare/resources/magic_transit/gre_tunnels.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/magic_transit/gre_tunnel_create_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/gre_tunnel_create_response.py">GRETunnelCreateResponse</a></code>
+- <code title="put /accounts/{account_id}/magic/gre_tunnels/{tunnel_identifier}">client.magic_transit.gre_tunnels.<a href="./src/cloudflare/resources/magic_transit/gre_tunnels.py">update</a>(tunnel_identifier, \*, account_id, \*\*<a href="src/cloudflare/types/magic_transit/gre_tunnel_update_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/gre_tunnel_update_response.py">GRETunnelUpdateResponse</a></code>
+- <code title="get /accounts/{account_id}/magic/gre_tunnels">client.magic_transit.gre_tunnels.<a href="./src/cloudflare/resources/magic_transit/gre_tunnels.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/magic_transit/gre_tunnel_list_response.py">GRETunnelListResponse</a></code>
+- <code title="delete /accounts/{account_id}/magic/gre_tunnels/{tunnel_identifier}">client.magic_transit.gre_tunnels.<a href="./src/cloudflare/resources/magic_transit/gre_tunnels.py">delete</a>(tunnel_identifier, \*, account_id) -> <a href="./src/cloudflare/types/magic_transit/gre_tunnel_delete_response.py">GRETunnelDeleteResponse</a></code>
+- <code title="get /accounts/{account_id}/magic/gre_tunnels/{tunnel_identifier}">client.magic_transit.gre_tunnels.<a href="./src/cloudflare/resources/magic_transit/gre_tunnels.py">get</a>(tunnel_identifier, \*, account_id) -> <a href="./src/cloudflare/types/magic_transit/gre_tunnel_get_response.py">GRETunnelGetResponse</a></code>
+
+## IPSECTunnels
+
+Types:
+
+```python
+from cloudflare.types.magic_transit import (
+    IPSECTunnelCreateResponse,
+    IPSECTunnelUpdateResponse,
+    IPSECTunnelListResponse,
+    IPSECTunnelDeleteResponse,
+    IPSECTunnelGetResponse,
+    IPSECTunnelPSKGenerateResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/magic/ipsec_tunnels">client.magic_transit.ipsec_tunnels.<a href="./src/cloudflare/resources/magic_transit/ipsec_tunnels.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/magic_transit/ipsec_tunnel_create_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/ipsec_tunnel_create_response.py">IPSECTunnelCreateResponse</a></code>
+- <code title="put /accounts/{account_id}/magic/ipsec_tunnels/{tunnel_identifier}">client.magic_transit.ipsec_tunnels.<a href="./src/cloudflare/resources/magic_transit/ipsec_tunnels.py">update</a>(tunnel_identifier, \*, account_id, \*\*<a href="src/cloudflare/types/magic_transit/ipsec_tunnel_update_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/ipsec_tunnel_update_response.py">IPSECTunnelUpdateResponse</a></code>
+- <code title="get /accounts/{account_id}/magic/ipsec_tunnels">client.magic_transit.ipsec_tunnels.<a href="./src/cloudflare/resources/magic_transit/ipsec_tunnels.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/magic_transit/ipsec_tunnel_list_response.py">IPSECTunnelListResponse</a></code>
+- <code title="delete /accounts/{account_id}/magic/ipsec_tunnels/{tunnel_identifier}">client.magic_transit.ipsec_tunnels.<a href="./src/cloudflare/resources/magic_transit/ipsec_tunnels.py">delete</a>(tunnel_identifier, \*, account_id) -> <a href="./src/cloudflare/types/magic_transit/ipsec_tunnel_delete_response.py">IPSECTunnelDeleteResponse</a></code>
+- <code title="get /accounts/{account_id}/magic/ipsec_tunnels/{tunnel_identifier}">client.magic_transit.ipsec_tunnels.<a href="./src/cloudflare/resources/magic_transit/ipsec_tunnels.py">get</a>(tunnel_identifier, \*, account_id) -> <a href="./src/cloudflare/types/magic_transit/ipsec_tunnel_get_response.py">IPSECTunnelGetResponse</a></code>
+- <code title="post /accounts/{account_id}/magic/ipsec_tunnels/{tunnel_identifier}/psk_generate">client.magic_transit.ipsec_tunnels.<a href="./src/cloudflare/resources/magic_transit/ipsec_tunnels.py">psk_generate</a>(tunnel_identifier, \*, account_id) -> <a href="./src/cloudflare/types/magic_transit/ipsec_tunnel_psk_generate_response.py">IPSECTunnelPSKGenerateResponse</a></code>
+
+## Routes
+
+Types:
+
+```python
+from cloudflare.types.magic_transit import (
+    RouteCreateResponse,
+    RouteUpdateResponse,
+    RouteListResponse,
+    RouteDeleteResponse,
+    RouteEmptyResponse,
+    RouteGetResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/magic/routes">client.magic_transit.routes.<a href="./src/cloudflare/resources/magic_transit/routes.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/magic_transit/route_create_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/route_create_response.py">RouteCreateResponse</a></code>
+- <code title="put /accounts/{account_id}/magic/routes/{route_identifier}">client.magic_transit.routes.<a href="./src/cloudflare/resources/magic_transit/routes.py">update</a>(route_identifier, \*, account_id, \*\*<a href="src/cloudflare/types/magic_transit/route_update_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/route_update_response.py">RouteUpdateResponse</a></code>
+- <code title="get /accounts/{account_id}/magic/routes">client.magic_transit.routes.<a href="./src/cloudflare/resources/magic_transit/routes.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/magic_transit/route_list_response.py">RouteListResponse</a></code>
+- <code title="delete /accounts/{account_id}/magic/routes/{route_identifier}">client.magic_transit.routes.<a href="./src/cloudflare/resources/magic_transit/routes.py">delete</a>(route_identifier, \*, account_id) -> <a href="./src/cloudflare/types/magic_transit/route_delete_response.py">RouteDeleteResponse</a></code>
+- <code title="delete /accounts/{account_id}/magic/routes">client.magic_transit.routes.<a href="./src/cloudflare/resources/magic_transit/routes.py">empty</a>(\*, account_id, \*\*<a href="src/cloudflare/types/magic_transit/route_empty_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/route_empty_response.py">RouteEmptyResponse</a></code>
+- <code title="get /accounts/{account_id}/magic/routes/{route_identifier}">client.magic_transit.routes.<a href="./src/cloudflare/resources/magic_transit/routes.py">get</a>(route_identifier, \*, account_id) -> <a href="./src/cloudflare/types/magic_transit/route_get_response.py">RouteGetResponse</a></code>
+
+## Sites
+
+Types:
+
+```python
+from cloudflare.types.magic_transit import (
+    SiteCreateResponse,
+    SiteUpdateResponse,
+    SiteListResponse,
+    SiteDeleteResponse,
+    SiteGetResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/magic/sites">client.magic_transit.sites.<a href="./src/cloudflare/resources/magic_transit/sites/sites.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/magic_transit/site_create_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/site_create_response.py">SiteCreateResponse</a></code>
+- <code title="put /accounts/{account_id}/magic/sites/{site_id}">client.magic_transit.sites.<a href="./src/cloudflare/resources/magic_transit/sites/sites.py">update</a>(site_id, \*, account_id, \*\*<a href="src/cloudflare/types/magic_transit/site_update_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/site_update_response.py">SiteUpdateResponse</a></code>
+- <code title="get /accounts/{account_id}/magic/sites">client.magic_transit.sites.<a href="./src/cloudflare/resources/magic_transit/sites/sites.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/magic_transit/site_list_response.py">SiteListResponse</a></code>
+- <code title="delete /accounts/{account_id}/magic/sites/{site_id}">client.magic_transit.sites.<a href="./src/cloudflare/resources/magic_transit/sites/sites.py">delete</a>(site_id, \*, account_id) -> <a href="./src/cloudflare/types/magic_transit/site_delete_response.py">SiteDeleteResponse</a></code>
+- <code title="get /accounts/{account_id}/magic/sites/{site_id}">client.magic_transit.sites.<a href="./src/cloudflare/resources/magic_transit/sites/sites.py">get</a>(site_id, \*, account_id) -> <a href="./src/cloudflare/types/magic_transit/site_get_response.py">SiteGetResponse</a></code>
+
+### ACLs
+
+Types:
+
+```python
+from cloudflare.types.magic_transit.sites import (
+    ACLCreateResponse,
+    ACLUpdateResponse,
+    ACLListResponse,
+    ACLDeleteResponse,
+    ACLGetResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/magic/sites/{site_id}/acls">client.magic_transit.sites.acls.<a href="./src/cloudflare/resources/magic_transit/sites/acls.py">create</a>(site_id, \*, account_id, \*\*<a href="src/cloudflare/types/magic_transit/sites/acl_create_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/sites/acl_create_response.py">ACLCreateResponse</a></code>
+- <code title="put /accounts/{account_id}/magic/sites/{site_id}/acls/{acl_identifier}">client.magic_transit.sites.acls.<a href="./src/cloudflare/resources/magic_transit/sites/acls.py">update</a>(acl_identifier, \*, account_id, site_id, \*\*<a href="src/cloudflare/types/magic_transit/sites/acl_update_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/sites/acl_update_response.py">ACLUpdateResponse</a></code>
+- <code title="get /accounts/{account_id}/magic/sites/{site_id}/acls">client.magic_transit.sites.acls.<a href="./src/cloudflare/resources/magic_transit/sites/acls.py">list</a>(site_id, \*, account_id) -> <a href="./src/cloudflare/types/magic_transit/sites/acl_list_response.py">ACLListResponse</a></code>
+- <code title="delete /accounts/{account_id}/magic/sites/{site_id}/acls/{acl_identifier}">client.magic_transit.sites.acls.<a href="./src/cloudflare/resources/magic_transit/sites/acls.py">delete</a>(acl_identifier, \*, account_id, site_id) -> <a href="./src/cloudflare/types/magic_transit/sites/acl_delete_response.py">ACLDeleteResponse</a></code>
+- <code title="get /accounts/{account_id}/magic/sites/{site_id}/acls/{acl_identifier}">client.magic_transit.sites.acls.<a href="./src/cloudflare/resources/magic_transit/sites/acls.py">get</a>(acl_identifier, \*, account_id, site_id) -> <a href="./src/cloudflare/types/magic_transit/sites/acl_get_response.py">ACLGetResponse</a></code>
+
+### Lans
+
+Types:
+
+```python
+from cloudflare.types.magic_transit.sites import (
+    LanCreateResponse,
+    LanUpdateResponse,
+    LanListResponse,
+    LanDeleteResponse,
+    LanGetResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/magic/sites/{site_id}/lans">client.magic_transit.sites.lans.<a href="./src/cloudflare/resources/magic_transit/sites/lans.py">create</a>(site_id, \*, account_id, \*\*<a href="src/cloudflare/types/magic_transit/sites/lan_create_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/sites/lan_create_response.py">LanCreateResponse</a></code>
+- <code title="put /accounts/{account_id}/magic/sites/{site_id}/lans/{lan_id}">client.magic_transit.sites.lans.<a href="./src/cloudflare/resources/magic_transit/sites/lans.py">update</a>(lan_id, \*, account_id, site_id, \*\*<a href="src/cloudflare/types/magic_transit/sites/lan_update_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/sites/lan_update_response.py">LanUpdateResponse</a></code>
+- <code title="get /accounts/{account_id}/magic/sites/{site_id}/lans">client.magic_transit.sites.lans.<a href="./src/cloudflare/resources/magic_transit/sites/lans.py">list</a>(site_id, \*, account_id) -> <a href="./src/cloudflare/types/magic_transit/sites/lan_list_response.py">LanListResponse</a></code>
+- <code title="delete /accounts/{account_id}/magic/sites/{site_id}/lans/{lan_id}">client.magic_transit.sites.lans.<a href="./src/cloudflare/resources/magic_transit/sites/lans.py">delete</a>(lan_id, \*, account_id, site_id) -> <a href="./src/cloudflare/types/magic_transit/sites/lan_delete_response.py">LanDeleteResponse</a></code>
+- <code title="get /accounts/{account_id}/magic/sites/{site_id}/lans/{lan_id}">client.magic_transit.sites.lans.<a href="./src/cloudflare/resources/magic_transit/sites/lans.py">get</a>(lan_id, \*, account_id, site_id) -> <a href="./src/cloudflare/types/magic_transit/sites/lan_get_response.py">LanGetResponse</a></code>
+
+### Wans
+
+Types:
+
+```python
+from cloudflare.types.magic_transit.sites import (
+    WanCreateResponse,
+    WanUpdateResponse,
+    WanListResponse,
+    WanDeleteResponse,
+    WanGetResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/magic/sites/{site_id}/wans">client.magic_transit.sites.wans.<a href="./src/cloudflare/resources/magic_transit/sites/wans.py">create</a>(site_id, \*, account_id, \*\*<a href="src/cloudflare/types/magic_transit/sites/wan_create_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/sites/wan_create_response.py">WanCreateResponse</a></code>
+- <code title="put /accounts/{account_id}/magic/sites/{site_id}/wans/{wan_id}">client.magic_transit.sites.wans.<a href="./src/cloudflare/resources/magic_transit/sites/wans.py">update</a>(wan_id, \*, account_id, site_id, \*\*<a href="src/cloudflare/types/magic_transit/sites/wan_update_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/sites/wan_update_response.py">WanUpdateResponse</a></code>
+- <code title="get /accounts/{account_id}/magic/sites/{site_id}/wans">client.magic_transit.sites.wans.<a href="./src/cloudflare/resources/magic_transit/sites/wans.py">list</a>(site_id, \*, account_id) -> <a href="./src/cloudflare/types/magic_transit/sites/wan_list_response.py">WanListResponse</a></code>
+- <code title="delete /accounts/{account_id}/magic/sites/{site_id}/wans/{wan_id}">client.magic_transit.sites.wans.<a href="./src/cloudflare/resources/magic_transit/sites/wans.py">delete</a>(wan_id, \*, account_id, site_id) -> <a href="./src/cloudflare/types/magic_transit/sites/wan_delete_response.py">WanDeleteResponse</a></code>
+- <code title="get /accounts/{account_id}/magic/sites/{site_id}/wans/{wan_id}">client.magic_transit.sites.wans.<a href="./src/cloudflare/resources/magic_transit/sites/wans.py">get</a>(wan_id, \*, account_id, site_id) -> <a href="./src/cloudflare/types/magic_transit/sites/wan_get_response.py">WanGetResponse</a></code>
 
 # MagicNetworkMonitoring
 

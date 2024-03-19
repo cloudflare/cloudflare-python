@@ -76,6 +76,7 @@ from .rate_limit_edit_params import RateLimitEditParams as RateLimitEditParams
 from .rate_limit_list_params import RateLimitListParams as RateLimitListParams
 from .account_update_response import AccountUpdateResponse as AccountUpdateResponse
 from .audit_log_list_response import AuditLogListResponse as AuditLogListResponse
+from .healthcheck_edit_params import HealthcheckEditParams as HealthcheckEditParams
 from .intel_phishing_url_info import IntelPhishingURLInfo as IntelPhishingURLInfo
 from .membership_get_response import MembershipGetResponse as MembershipGetResponse
 from .rate_limit_get_response import RateLimitGetResponse as RateLimitGetResponse
@@ -91,6 +92,10 @@ from .rate_limit_edit_response import RateLimitEditResponse as RateLimitEditResp
 from .rate_limit_list_response import RateLimitListResponse as RateLimitListResponse
 from .speed_trends_list_params import SpeedTrendsListParams as SpeedTrendsListParams
 from .waiting_room_edit_params import WaitingRoomEditParams as WaitingRoomEditParams
+from .healthcheck_create_params import HealthcheckCreateParams as HealthcheckCreateParams
+from .healthcheck_list_response import HealthcheckListResponse as HealthcheckListResponse
+from .healthcheck_update_params import HealthcheckUpdateParams as HealthcheckUpdateParams
+from .healthchecks_healthchecks import HealthchecksHealthchecks as HealthchecksHealthchecks
 from .intel_phishing_url_submit import IntelPhishingURLSubmit as IntelPhishingURLSubmit
 from .load_balancer_edit_params import LoadBalancerEditParams as LoadBalancerEditParams
 from .page_shield_update_params import PageShieldUpdateParams as PageShieldUpdateParams
@@ -115,6 +120,7 @@ from .warp_connector_list_params import WARPConnectorListParams as WARPConnector
 from .bot_management_get_response import BotManagementGetResponse as BotManagementGetResponse
 from .custom_hostname_edit_params import CustomHostnameEditParams as CustomHostnameEditParams
 from .custom_hostname_list_params import CustomHostnameListParams as CustomHostnameListParams
+from .healthcheck_delete_response import HealthcheckDeleteResponse as HealthcheckDeleteResponse
 from .load_balancer_create_params import LoadBalancerCreateParams as LoadBalancerCreateParams
 from .load_balancer_list_response import LoadBalancerListResponse as LoadBalancerListResponse
 from .load_balancer_update_params import LoadBalancerUpdateParams as LoadBalancerUpdateParams

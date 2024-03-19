@@ -71,6 +71,7 @@ class Cloudflare(SyncAPIClient):
     email_routing: resources.EmailRouting
     filters: resources.Filters
     firewall: resources.Firewall
+    healthchecks: resources.Healthchecks
     keyless_certificates: resources.KeylessCertificates
     logpush: resources.Logpush
     logs: resources.Logs
@@ -96,6 +97,7 @@ class Cloudflare(SyncAPIClient):
     diagnostics: resources.Diagnostics
     images: resources.Images
     intel: resources.Intel
+    magic_transit: resources.MagicTransit
     magic_network_monitoring: resources.MagicNetworkMonitoring
     mtls_certificates: resources.MTLSCertificates
     pages: resources.Pages
@@ -222,6 +224,7 @@ class Cloudflare(SyncAPIClient):
         self.email_routing = resources.EmailRouting(self)
         self.filters = resources.Filters(self)
         self.firewall = resources.Firewall(self)
+        self.healthchecks = resources.Healthchecks(self)
         self.keyless_certificates = resources.KeylessCertificates(self)
         self.logpush = resources.Logpush(self)
         self.logs = resources.Logs(self)
@@ -247,6 +250,7 @@ class Cloudflare(SyncAPIClient):
         self.diagnostics = resources.Diagnostics(self)
         self.images = resources.Images(self)
         self.intel = resources.Intel(self)
+        self.magic_transit = resources.MagicTransit(self)
         self.magic_network_monitoring = resources.MagicNetworkMonitoring(self)
         self.mtls_certificates = resources.MTLSCertificates(self)
         self.pages = resources.Pages(self)
@@ -478,6 +482,7 @@ class AsyncCloudflare(AsyncAPIClient):
     email_routing: resources.AsyncEmailRouting
     filters: resources.AsyncFilters
     firewall: resources.AsyncFirewall
+    healthchecks: resources.AsyncHealthchecks
     keyless_certificates: resources.AsyncKeylessCertificates
     logpush: resources.AsyncLogpush
     logs: resources.AsyncLogs
@@ -503,6 +508,7 @@ class AsyncCloudflare(AsyncAPIClient):
     diagnostics: resources.AsyncDiagnostics
     images: resources.AsyncImages
     intel: resources.AsyncIntel
+    magic_transit: resources.AsyncMagicTransit
     magic_network_monitoring: resources.AsyncMagicNetworkMonitoring
     mtls_certificates: resources.AsyncMTLSCertificates
     pages: resources.AsyncPages
@@ -629,6 +635,7 @@ class AsyncCloudflare(AsyncAPIClient):
         self.email_routing = resources.AsyncEmailRouting(self)
         self.filters = resources.AsyncFilters(self)
         self.firewall = resources.AsyncFirewall(self)
+        self.healthchecks = resources.AsyncHealthchecks(self)
         self.keyless_certificates = resources.AsyncKeylessCertificates(self)
         self.logpush = resources.AsyncLogpush(self)
         self.logs = resources.AsyncLogs(self)
@@ -654,6 +661,7 @@ class AsyncCloudflare(AsyncAPIClient):
         self.diagnostics = resources.AsyncDiagnostics(self)
         self.images = resources.AsyncImages(self)
         self.intel = resources.AsyncIntel(self)
+        self.magic_transit = resources.AsyncMagicTransit(self)
         self.magic_network_monitoring = resources.AsyncMagicNetworkMonitoring(self)
         self.mtls_certificates = resources.AsyncMTLSCertificates(self)
         self.pages = resources.AsyncPages(self)
@@ -886,6 +894,7 @@ class CloudflareWithRawResponse:
         self.email_routing = resources.EmailRoutingWithRawResponse(client.email_routing)
         self.filters = resources.FiltersWithRawResponse(client.filters)
         self.firewall = resources.FirewallWithRawResponse(client.firewall)
+        self.healthchecks = resources.HealthchecksWithRawResponse(client.healthchecks)
         self.keyless_certificates = resources.KeylessCertificatesWithRawResponse(client.keyless_certificates)
         self.logpush = resources.LogpushWithRawResponse(client.logpush)
         self.logs = resources.LogsWithRawResponse(client.logs)
@@ -911,6 +920,7 @@ class CloudflareWithRawResponse:
         self.diagnostics = resources.DiagnosticsWithRawResponse(client.diagnostics)
         self.images = resources.ImagesWithRawResponse(client.images)
         self.intel = resources.IntelWithRawResponse(client.intel)
+        self.magic_transit = resources.MagicTransitWithRawResponse(client.magic_transit)
         self.magic_network_monitoring = resources.MagicNetworkMonitoringWithRawResponse(client.magic_network_monitoring)
         self.mtls_certificates = resources.MTLSCertificatesWithRawResponse(client.mtls_certificates)
         self.pages = resources.PagesWithRawResponse(client.pages)
@@ -972,6 +982,7 @@ class AsyncCloudflareWithRawResponse:
         self.email_routing = resources.AsyncEmailRoutingWithRawResponse(client.email_routing)
         self.filters = resources.AsyncFiltersWithRawResponse(client.filters)
         self.firewall = resources.AsyncFirewallWithRawResponse(client.firewall)
+        self.healthchecks = resources.AsyncHealthchecksWithRawResponse(client.healthchecks)
         self.keyless_certificates = resources.AsyncKeylessCertificatesWithRawResponse(client.keyless_certificates)
         self.logpush = resources.AsyncLogpushWithRawResponse(client.logpush)
         self.logs = resources.AsyncLogsWithRawResponse(client.logs)
@@ -997,6 +1008,7 @@ class AsyncCloudflareWithRawResponse:
         self.diagnostics = resources.AsyncDiagnosticsWithRawResponse(client.diagnostics)
         self.images = resources.AsyncImagesWithRawResponse(client.images)
         self.intel = resources.AsyncIntelWithRawResponse(client.intel)
+        self.magic_transit = resources.AsyncMagicTransitWithRawResponse(client.magic_transit)
         self.magic_network_monitoring = resources.AsyncMagicNetworkMonitoringWithRawResponse(
             client.magic_network_monitoring
         )
@@ -1060,6 +1072,7 @@ class CloudflareWithStreamedResponse:
         self.email_routing = resources.EmailRoutingWithStreamingResponse(client.email_routing)
         self.filters = resources.FiltersWithStreamingResponse(client.filters)
         self.firewall = resources.FirewallWithStreamingResponse(client.firewall)
+        self.healthchecks = resources.HealthchecksWithStreamingResponse(client.healthchecks)
         self.keyless_certificates = resources.KeylessCertificatesWithStreamingResponse(client.keyless_certificates)
         self.logpush = resources.LogpushWithStreamingResponse(client.logpush)
         self.logs = resources.LogsWithStreamingResponse(client.logs)
@@ -1085,6 +1098,7 @@ class CloudflareWithStreamedResponse:
         self.diagnostics = resources.DiagnosticsWithStreamingResponse(client.diagnostics)
         self.images = resources.ImagesWithStreamingResponse(client.images)
         self.intel = resources.IntelWithStreamingResponse(client.intel)
+        self.magic_transit = resources.MagicTransitWithStreamingResponse(client.magic_transit)
         self.magic_network_monitoring = resources.MagicNetworkMonitoringWithStreamingResponse(
             client.magic_network_monitoring
         )
@@ -1150,6 +1164,7 @@ class AsyncCloudflareWithStreamedResponse:
         self.email_routing = resources.AsyncEmailRoutingWithStreamingResponse(client.email_routing)
         self.filters = resources.AsyncFiltersWithStreamingResponse(client.filters)
         self.firewall = resources.AsyncFirewallWithStreamingResponse(client.firewall)
+        self.healthchecks = resources.AsyncHealthchecksWithStreamingResponse(client.healthchecks)
         self.keyless_certificates = resources.AsyncKeylessCertificatesWithStreamingResponse(client.keyless_certificates)
         self.logpush = resources.AsyncLogpushWithStreamingResponse(client.logpush)
         self.logs = resources.AsyncLogsWithStreamingResponse(client.logs)
@@ -1177,6 +1192,7 @@ class AsyncCloudflareWithStreamedResponse:
         self.diagnostics = resources.AsyncDiagnosticsWithStreamingResponse(client.diagnostics)
         self.images = resources.AsyncImagesWithStreamingResponse(client.images)
         self.intel = resources.AsyncIntelWithStreamingResponse(client.intel)
+        self.magic_transit = resources.AsyncMagicTransitWithStreamingResponse(client.magic_transit)
         self.magic_network_monitoring = resources.AsyncMagicNetworkMonitoringWithStreamingResponse(
             client.magic_network_monitoring
         )
