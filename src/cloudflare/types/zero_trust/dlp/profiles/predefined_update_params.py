@@ -24,6 +24,9 @@ class PredefinedUpdateParams(TypedDict, total=False):
     entries: Iterable[Entry]
     """The entries for this profile."""
 
+    ocr_enabled: bool
+    """If true, scan images via OCR to determine if any text present matches filters."""
+
 
 class ContextAwarenessSkip(TypedDict, total=False):
     files: Required[bool]

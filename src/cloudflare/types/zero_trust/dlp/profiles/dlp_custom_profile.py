@@ -82,6 +82,9 @@ class DLPCustomProfile(BaseModel):
     name: Optional[str] = None
     """The name of the profile."""
 
+    ocr_enabled: Optional[bool] = None
+    """If true, scan images via OCR to determine if any text present matches filters."""
+
     type: Optional[Literal["custom"]] = None
     """The type of the profile."""
 

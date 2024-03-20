@@ -15,16 +15,7 @@ from .holds import (
     HoldsWithStreamingResponse,
     AsyncHoldsWithStreamingResponse,
 )
-from ...types import (
-    ZoneGetResponse,
-    ZoneEditResponse,
-    ZoneListResponse,
-    ZoneCreateResponse,
-    ZoneDeleteResponse,
-    zone_edit_params,
-    zone_list_params,
-    zone_create_params,
-)
+from ...types import Zone, ZoneDeleteResponse, zone_edit_params, zone_list_params, zone_create_params
 from .workers import (
     Workers,
     AsyncWorkers,
@@ -135,7 +126,7 @@ class Zones(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneCreateResponse]:
+    ) -> Optional[Zone]:
         """
         Create Zone
 
@@ -170,7 +161,7 @@ class Zones(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneCreateResponse]], ResultWrapper[ZoneCreateResponse]),
+            cast_to=cast(Type[Optional[Zone]], ResultWrapper[Zone]),
         )
 
     def list(
@@ -190,7 +181,7 @@ class Zones(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[ZoneListResponse]:
+    ) -> SyncV4PagePaginationArray[Zone]:
         """
         Lists, searches, sorts, and filters your zones.
 
@@ -229,7 +220,7 @@ class Zones(SyncAPIResource):
         """
         return self._get_api_list(
             "/zones",
-            page=SyncV4PagePaginationArray[ZoneListResponse],
+            page=SyncV4PagePaginationArray[Zone],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -249,7 +240,7 @@ class Zones(SyncAPIResource):
                     zone_list_params.ZoneListParams,
                 ),
             ),
-            model=ZoneListResponse,
+            model=Zone,
         )
 
     def delete(
@@ -304,7 +295,7 @@ class Zones(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneEditResponse]:
+    ) -> Optional[Zone]:
         """Edits a zone.
 
         Only one zone property can be changed at a time.
@@ -351,7 +342,7 @@ class Zones(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneEditResponse]], ResultWrapper[ZoneEditResponse]),
+            cast_to=cast(Type[Optional[Zone]], ResultWrapper[Zone]),
         )
 
     def get(
@@ -364,7 +355,7 @@ class Zones(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneGetResponse]:
+    ) -> Optional[Zone]:
         """
         Zone Details
 
@@ -390,7 +381,7 @@ class Zones(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneGetResponse]], ResultWrapper[ZoneGetResponse]),
+            cast_to=cast(Type[Optional[Zone]], ResultWrapper[Zone]),
         )
 
 
@@ -439,7 +430,7 @@ class AsyncZones(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneCreateResponse]:
+    ) -> Optional[Zone]:
         """
         Create Zone
 
@@ -474,7 +465,7 @@ class AsyncZones(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneCreateResponse]], ResultWrapper[ZoneCreateResponse]),
+            cast_to=cast(Type[Optional[Zone]], ResultWrapper[Zone]),
         )
 
     def list(
@@ -494,7 +485,7 @@ class AsyncZones(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[ZoneListResponse, AsyncV4PagePaginationArray[ZoneListResponse]]:
+    ) -> AsyncPaginator[Zone, AsyncV4PagePaginationArray[Zone]]:
         """
         Lists, searches, sorts, and filters your zones.
 
@@ -533,7 +524,7 @@ class AsyncZones(AsyncAPIResource):
         """
         return self._get_api_list(
             "/zones",
-            page=AsyncV4PagePaginationArray[ZoneListResponse],
+            page=AsyncV4PagePaginationArray[Zone],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -553,7 +544,7 @@ class AsyncZones(AsyncAPIResource):
                     zone_list_params.ZoneListParams,
                 ),
             ),
-            model=ZoneListResponse,
+            model=Zone,
         )
 
     async def delete(
@@ -608,7 +599,7 @@ class AsyncZones(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneEditResponse]:
+    ) -> Optional[Zone]:
         """Edits a zone.
 
         Only one zone property can be changed at a time.
@@ -655,7 +646,7 @@ class AsyncZones(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneEditResponse]], ResultWrapper[ZoneEditResponse]),
+            cast_to=cast(Type[Optional[Zone]], ResultWrapper[Zone]),
         )
 
     async def get(
@@ -668,7 +659,7 @@ class AsyncZones(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneGetResponse]:
+    ) -> Optional[Zone]:
         """
         Zone Details
 
@@ -694,7 +685,7 @@ class AsyncZones(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneGetResponse]], ResultWrapper[ZoneGetResponse]),
+            cast_to=cast(Type[Optional[Zone]], ResultWrapper[Zone]),
         )
 
 
