@@ -9,13 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types import (
-    ZoneGetResponse,
-    ZoneEditResponse,
-    ZoneListResponse,
-    ZoneCreateResponse,
-    ZoneDeleteResponse,
-)
+from cloudflare.types import Zone, ZoneDeleteResponse
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -31,7 +25,7 @@ class TestZones:
             account={},
             name="example.com",
         )
-        assert_matches_type(Optional[ZoneCreateResponse], zone, path=["response"])
+        assert_matches_type(Optional[Zone], zone, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -41,7 +35,7 @@ class TestZones:
             name="example.com",
             type="full",
         )
-        assert_matches_type(Optional[ZoneCreateResponse], zone, path=["response"])
+        assert_matches_type(Optional[Zone], zone, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -54,7 +48,7 @@ class TestZones:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         zone = response.parse()
-        assert_matches_type(Optional[ZoneCreateResponse], zone, path=["response"])
+        assert_matches_type(Optional[Zone], zone, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -67,7 +61,7 @@ class TestZones:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             zone = response.parse()
-            assert_matches_type(Optional[ZoneCreateResponse], zone, path=["response"])
+            assert_matches_type(Optional[Zone], zone, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -75,7 +69,7 @@ class TestZones:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         zone = client.zones.list()
-        assert_matches_type(SyncV4PagePaginationArray[ZoneListResponse], zone, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[Zone], zone, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -93,7 +87,7 @@ class TestZones:
             per_page=5,
             status="initializing",
         )
-        assert_matches_type(SyncV4PagePaginationArray[ZoneListResponse], zone, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[Zone], zone, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -103,7 +97,7 @@ class TestZones:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         zone = response.parse()
-        assert_matches_type(SyncV4PagePaginationArray[ZoneListResponse], zone, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[Zone], zone, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -113,7 +107,7 @@ class TestZones:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             zone = response.parse()
-            assert_matches_type(SyncV4PagePaginationArray[ZoneListResponse], zone, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[Zone], zone, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -165,7 +159,7 @@ class TestZones:
         zone = client.zones.edit(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ZoneEditResponse], zone, path=["response"])
+        assert_matches_type(Optional[Zone], zone, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -176,7 +170,7 @@ class TestZones:
             type="full",
             vanity_name_servers=["ns1.example.com", "ns2.example.com"],
         )
-        assert_matches_type(Optional[ZoneEditResponse], zone, path=["response"])
+        assert_matches_type(Optional[Zone], zone, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -188,7 +182,7 @@ class TestZones:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         zone = response.parse()
-        assert_matches_type(Optional[ZoneEditResponse], zone, path=["response"])
+        assert_matches_type(Optional[Zone], zone, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -200,7 +194,7 @@ class TestZones:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             zone = response.parse()
-            assert_matches_type(Optional[ZoneEditResponse], zone, path=["response"])
+            assert_matches_type(Optional[Zone], zone, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -218,7 +212,7 @@ class TestZones:
         zone = client.zones.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ZoneGetResponse], zone, path=["response"])
+        assert_matches_type(Optional[Zone], zone, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -230,7 +224,7 @@ class TestZones:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         zone = response.parse()
-        assert_matches_type(Optional[ZoneGetResponse], zone, path=["response"])
+        assert_matches_type(Optional[Zone], zone, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -242,7 +236,7 @@ class TestZones:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             zone = response.parse()
-            assert_matches_type(Optional[ZoneGetResponse], zone, path=["response"])
+            assert_matches_type(Optional[Zone], zone, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -265,7 +259,7 @@ class TestAsyncZones:
             account={},
             name="example.com",
         )
-        assert_matches_type(Optional[ZoneCreateResponse], zone, path=["response"])
+        assert_matches_type(Optional[Zone], zone, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -275,7 +269,7 @@ class TestAsyncZones:
             name="example.com",
             type="full",
         )
-        assert_matches_type(Optional[ZoneCreateResponse], zone, path=["response"])
+        assert_matches_type(Optional[Zone], zone, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -288,7 +282,7 @@ class TestAsyncZones:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         zone = await response.parse()
-        assert_matches_type(Optional[ZoneCreateResponse], zone, path=["response"])
+        assert_matches_type(Optional[Zone], zone, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -301,7 +295,7 @@ class TestAsyncZones:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             zone = await response.parse()
-            assert_matches_type(Optional[ZoneCreateResponse], zone, path=["response"])
+            assert_matches_type(Optional[Zone], zone, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -309,7 +303,7 @@ class TestAsyncZones:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         zone = await async_client.zones.list()
-        assert_matches_type(AsyncV4PagePaginationArray[ZoneListResponse], zone, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[Zone], zone, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -327,7 +321,7 @@ class TestAsyncZones:
             per_page=5,
             status="initializing",
         )
-        assert_matches_type(AsyncV4PagePaginationArray[ZoneListResponse], zone, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[Zone], zone, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -337,7 +331,7 @@ class TestAsyncZones:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         zone = await response.parse()
-        assert_matches_type(AsyncV4PagePaginationArray[ZoneListResponse], zone, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[Zone], zone, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -347,7 +341,7 @@ class TestAsyncZones:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             zone = await response.parse()
-            assert_matches_type(AsyncV4PagePaginationArray[ZoneListResponse], zone, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[Zone], zone, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -399,7 +393,7 @@ class TestAsyncZones:
         zone = await async_client.zones.edit(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ZoneEditResponse], zone, path=["response"])
+        assert_matches_type(Optional[Zone], zone, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -410,7 +404,7 @@ class TestAsyncZones:
             type="full",
             vanity_name_servers=["ns1.example.com", "ns2.example.com"],
         )
-        assert_matches_type(Optional[ZoneEditResponse], zone, path=["response"])
+        assert_matches_type(Optional[Zone], zone, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -422,7 +416,7 @@ class TestAsyncZones:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         zone = await response.parse()
-        assert_matches_type(Optional[ZoneEditResponse], zone, path=["response"])
+        assert_matches_type(Optional[Zone], zone, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -434,7 +428,7 @@ class TestAsyncZones:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             zone = await response.parse()
-            assert_matches_type(Optional[ZoneEditResponse], zone, path=["response"])
+            assert_matches_type(Optional[Zone], zone, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -452,7 +446,7 @@ class TestAsyncZones:
         zone = await async_client.zones.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ZoneGetResponse], zone, path=["response"])
+        assert_matches_type(Optional[Zone], zone, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -464,7 +458,7 @@ class TestAsyncZones:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         zone = await response.parse()
-        assert_matches_type(Optional[ZoneGetResponse], zone, path=["response"])
+        assert_matches_type(Optional[Zone], zone, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -476,7 +470,7 @@ class TestAsyncZones:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             zone = await response.parse()
-            assert_matches_type(Optional[ZoneGetResponse], zone, path=["response"])
+            assert_matches_type(Optional[Zone], zone, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

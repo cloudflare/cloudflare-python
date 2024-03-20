@@ -43,6 +43,9 @@ class CustomUpdateParams(TypedDict, total=False):
     name: str
     """The name of the profile."""
 
+    ocr_enabled: bool
+    """If true, scan images via OCR to determine if any text present matches filters."""
+
     shared_entries: Iterable[SharedEntry]
     """Entries from other profiles (e.g.
 

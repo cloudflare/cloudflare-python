@@ -8,7 +8,7 @@ from ..._utils import PropertyInfo
 from ..._models import BaseModel
 
 __all__ = [
-    "RecordEditResponse",
+    "DNSRecord",
     "A",
     "AMeta",
     "AAAA",
@@ -1660,7 +1660,7 @@ class URI(BaseModel):
     """The domain of the record."""
 
 
-RecordEditResponse = Annotated[
+DNSRecord = Annotated[
     Union[
         A, AAAA, CAA, Cert, CNAME, DNSKEY, DS, HTTPS, LOC, MX, NAPTR, NS, PTR, Smimea, SRV, SSHFP, SVCB, TLSA, TXT, URI
     ],

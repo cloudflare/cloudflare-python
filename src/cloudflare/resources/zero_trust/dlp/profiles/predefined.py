@@ -45,6 +45,7 @@ class Predefined(SyncAPIResource):
         allowed_match_count: float | NotGiven = NOT_GIVEN,
         context_awareness: predefined_update_params.ContextAwareness | NotGiven = NOT_GIVEN,
         entries: Iterable[predefined_update_params.Entry] | NotGiven = NOT_GIVEN,
+        ocr_enabled: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -68,6 +69,8 @@ class Predefined(SyncAPIResource):
 
           entries: The entries for this profile.
 
+          ocr_enabled: If true, scan images via OCR to determine if any text present matches filters.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -87,6 +90,7 @@ class Predefined(SyncAPIResource):
                     "allowed_match_count": allowed_match_count,
                     "context_awareness": context_awareness,
                     "entries": entries,
+                    "ocr_enabled": ocr_enabled,
                 },
                 predefined_update_params.PredefinedUpdateParams,
             ),
@@ -158,6 +162,7 @@ class AsyncPredefined(AsyncAPIResource):
         allowed_match_count: float | NotGiven = NOT_GIVEN,
         context_awareness: predefined_update_params.ContextAwareness | NotGiven = NOT_GIVEN,
         entries: Iterable[predefined_update_params.Entry] | NotGiven = NOT_GIVEN,
+        ocr_enabled: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -181,6 +186,8 @@ class AsyncPredefined(AsyncAPIResource):
 
           entries: The entries for this profile.
 
+          ocr_enabled: If true, scan images via OCR to determine if any text present matches filters.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -200,6 +207,7 @@ class AsyncPredefined(AsyncAPIResource):
                     "allowed_match_count": allowed_match_count,
                     "context_awareness": context_awareness,
                     "entries": entries,
+                    "ocr_enabled": ocr_enabled,
                 },
                 predefined_update_params.PredefinedUpdateParams,
             ),
