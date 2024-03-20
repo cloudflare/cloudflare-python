@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.0.0-beta.4 (2024-03-20)
+
+Full Changelog: [v3.0.0-beta.3...v3.0.0-beta.4](https://github.com/cloudflare/cloudflare-python/compare/v3.0.0-beta.3...v3.0.0-beta.4)
+
+### Features
+
+* **api:** OpenAPI spec update via Stainless API ([#153](https://github.com/cloudflare/cloudflare-python/issues/153)) ([a953222](https://github.com/cloudflare/cloudflare-python/commit/a953222e49491b1940c19003bf712f1e6fdc6b0a))
+* **api:** OpenAPI spec update via Stainless API ([#155](https://github.com/cloudflare/cloudflare-python/issues/155)) ([0d24683](https://github.com/cloudflare/cloudflare-python/commit/0d246838daf95d8803c4b0385efd21037cb9ee2e))
+
 ## 3.0.0-beta.3 (2024-03-19)
 
 Full Changelog: [v3.0.0-beta.2...v3.0.0-beta.3](https://github.com/cloudflare/cloudflare-python/compare/v3.0.0-beta.2...v3.0.0-beta.3)
