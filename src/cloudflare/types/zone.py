@@ -5,7 +5,7 @@ from datetime import datetime
 
 from .._models import BaseModel
 
-__all__ = ["ZoneCreateResponse", "Account", "Meta", "Owner"]
+__all__ = ["Zone", "Account", "Meta", "Owner"]
 
 
 class Account(BaseModel):
@@ -49,7 +49,7 @@ class Owner(BaseModel):
     """The type of owner"""
 
 
-class ZoneCreateResponse(BaseModel):
+class Zone(BaseModel):
     id: str
     """Identifier"""
 

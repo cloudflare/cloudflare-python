@@ -30,12 +30,12 @@ client = Cloudflare(
     api_email=os.environ.get("CLOUDFLARE_EMAIL"),
 )
 
-zone_create_response = client.zones.create(
+zone = client.zones.create(
     account={"id": "023e105f4ecef8ad9ca31a8372d0c353"},
     name="example.com",
     type="full",
 )
-print(zone_create_response.id)
+print(zone.id)
 ```
 
 While you can provide a `api_email` keyword argument,
@@ -59,12 +59,12 @@ client = AsyncCloudflare(
 
 
 async def main() -> None:
-    zone_create_response = await client.zones.create(
+    zone = await client.zones.create(
         account={"id": "023e105f4ecef8ad9ca31a8372d0c353"},
         name="example.com",
         type="full",
     )
-    print(zone_create_response.id)
+    print(zone.id)
 
 
 asyncio.run(main())

@@ -38,6 +38,7 @@ class TestPredefined:
                 "skip": {"files": True},
             },
             entries=[{"enabled": True}, {"enabled": True}, {"enabled": True}],
+            ocr_enabled=True,
         )
         assert_matches_type(DLPPredefinedProfile, predefined, path=["response"])
 
@@ -161,6 +162,7 @@ class TestAsyncPredefined:
                 "skip": {"files": True},
             },
             entries=[{"enabled": True}, {"enabled": True}, {"enabled": True}],
+            ocr_enabled=True,
         )
         assert_matches_type(DLPPredefinedProfile, predefined, path=["response"])
 

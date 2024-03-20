@@ -118,6 +118,7 @@ class TestCustom:
                 },
             ],
             name="Generic CVV Card Number",
+            ocr_enabled=True,
             shared_entries=[{"enabled": True}, {"enabled": True}, {"enabled": True}],
         )
         assert_matches_type(DLPCustomProfile, custom, path=["response"])
@@ -370,6 +371,7 @@ class TestAsyncCustom:
                 },
             ],
             name="Generic CVV Card Number",
+            ocr_enabled=True,
             shared_entries=[{"enabled": True}, {"enabled": True}, {"enabled": True}],
         )
         assert_matches_type(DLPCustomProfile, custom, path=["response"])
