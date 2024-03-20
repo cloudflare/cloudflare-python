@@ -94,6 +94,7 @@ class Custom(SyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         entries: Iterable[custom_update_params.Entry] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
+        ocr_enabled: bool | NotGiven = NOT_GIVEN,
         shared_entries: Iterable[custom_update_params.SharedEntry] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -123,6 +124,8 @@ class Custom(SyncAPIResource):
 
           name: The name of the profile.
 
+          ocr_enabled: If true, scan images via OCR to determine if any text present matches filters.
+
           shared_entries: Entries from other profiles (e.g. pre-defined Cloudflare profiles, or your
               Microsoft Information Protection profiles).
 
@@ -147,6 +150,7 @@ class Custom(SyncAPIResource):
                     "description": description,
                     "entries": entries,
                     "name": name,
+                    "ocr_enabled": ocr_enabled,
                     "shared_entries": shared_entries,
                 },
                 custom_update_params.CustomUpdateParams,
@@ -311,6 +315,7 @@ class AsyncCustom(AsyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         entries: Iterable[custom_update_params.Entry] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
+        ocr_enabled: bool | NotGiven = NOT_GIVEN,
         shared_entries: Iterable[custom_update_params.SharedEntry] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -340,6 +345,8 @@ class AsyncCustom(AsyncAPIResource):
 
           name: The name of the profile.
 
+          ocr_enabled: If true, scan images via OCR to determine if any text present matches filters.
+
           shared_entries: Entries from other profiles (e.g. pre-defined Cloudflare profiles, or your
               Microsoft Information Protection profiles).
 
@@ -364,6 +371,7 @@ class AsyncCustom(AsyncAPIResource):
                     "description": description,
                     "entries": entries,
                     "name": name,
+                    "ocr_enabled": ocr_enabled,
                     "shared_entries": shared_entries,
                 },
                 custom_update_params.CustomUpdateParams,

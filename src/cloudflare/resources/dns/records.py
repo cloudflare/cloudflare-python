@@ -22,14 +22,10 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...types.dns import (
-    RecordGetResponse,
-    RecordEditResponse,
-    RecordListResponse,
+    DNSRecord,
     RecordScanResponse,
-    RecordCreateResponse,
     RecordDeleteResponse,
     RecordImportResponse,
-    RecordUpdateResponse,
     record_edit_params,
     record_list_params,
     record_create_params,
@@ -95,7 +91,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RecordCreateResponse:
+    ) -> DNSRecord:
         """
         Create a new DNS record for a zone.
 
@@ -141,7 +137,7 @@ class Records(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            RecordCreateResponse,
+            DNSRecord,
             self._post(
                 f"/zones/{zone_id}/dns_records",
                 body=maybe_transform(
@@ -167,7 +163,7 @@ class Records(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[RecordCreateResponse]
+                    Any, ResultWrapper[DNSRecord]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -214,7 +210,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RecordUpdateResponse:
+    ) -> DNSRecord:
         """Overwrite an existing DNS record.
 
         Notes:
@@ -263,7 +259,7 @@ class Records(SyncAPIResource):
         if not dns_record_id:
             raise ValueError(f"Expected a non-empty value for `dns_record_id` but received {dns_record_id!r}")
         return cast(
-            RecordUpdateResponse,
+            DNSRecord,
             self._put(
                 f"/zones/{zone_id}/dns_records/{dns_record_id}",
                 body=maybe_transform(
@@ -289,7 +285,7 @@ class Records(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[RecordUpdateResponse]
+                    Any, ResultWrapper[DNSRecord]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -339,7 +335,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[RecordListResponse]:
+    ) -> SyncV4PagePaginationArray[DNSRecord]:
         """
         List, search, sort, and filter a zones' DNS records.
 
@@ -391,7 +387,7 @@ class Records(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/dns_records",
-            page=SyncV4PagePaginationArray[RecordListResponse],
+            page=SyncV4PagePaginationArray[DNSRecord],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -416,7 +412,7 @@ class Records(SyncAPIResource):
                     record_list_params.RecordListParams,
                 ),
             ),
-            model=cast(Any, RecordListResponse),  # Union types cannot be passed in as arguments in the type system
+            model=cast(Any, DNSRecord),  # Union types cannot be passed in as arguments in the type system
         )
 
     def delete(
@@ -505,7 +501,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RecordEditResponse:
+    ) -> DNSRecord:
         """Update an existing DNS record.
 
         Notes:
@@ -554,7 +550,7 @@ class Records(SyncAPIResource):
         if not dns_record_id:
             raise ValueError(f"Expected a non-empty value for `dns_record_id` but received {dns_record_id!r}")
         return cast(
-            RecordEditResponse,
+            DNSRecord,
             self._patch(
                 f"/zones/{zone_id}/dns_records/{dns_record_id}",
                 body=maybe_transform(
@@ -580,7 +576,7 @@ class Records(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[RecordEditResponse]
+                    Any, ResultWrapper[DNSRecord]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -638,7 +634,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RecordGetResponse:
+    ) -> DNSRecord:
         """
         DNS Record Details
 
@@ -660,7 +656,7 @@ class Records(SyncAPIResource):
         if not dns_record_id:
             raise ValueError(f"Expected a non-empty value for `dns_record_id` but received {dns_record_id!r}")
         return cast(
-            RecordGetResponse,
+            DNSRecord,
             self._get(
                 f"/zones/{zone_id}/dns_records/{dns_record_id}",
                 options=make_request_options(
@@ -671,7 +667,7 @@ class Records(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[RecordGetResponse]
+                    Any, ResultWrapper[DNSRecord]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -832,7 +828,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RecordCreateResponse:
+    ) -> DNSRecord:
         """
         Create a new DNS record for a zone.
 
@@ -878,7 +874,7 @@ class AsyncRecords(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            RecordCreateResponse,
+            DNSRecord,
             await self._post(
                 f"/zones/{zone_id}/dns_records",
                 body=await async_maybe_transform(
@@ -904,7 +900,7 @@ class AsyncRecords(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[RecordCreateResponse]
+                    Any, ResultWrapper[DNSRecord]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -951,7 +947,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RecordUpdateResponse:
+    ) -> DNSRecord:
         """Overwrite an existing DNS record.
 
         Notes:
@@ -1000,7 +996,7 @@ class AsyncRecords(AsyncAPIResource):
         if not dns_record_id:
             raise ValueError(f"Expected a non-empty value for `dns_record_id` but received {dns_record_id!r}")
         return cast(
-            RecordUpdateResponse,
+            DNSRecord,
             await self._put(
                 f"/zones/{zone_id}/dns_records/{dns_record_id}",
                 body=await async_maybe_transform(
@@ -1026,7 +1022,7 @@ class AsyncRecords(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[RecordUpdateResponse]
+                    Any, ResultWrapper[DNSRecord]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -1076,7 +1072,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[RecordListResponse, AsyncV4PagePaginationArray[RecordListResponse]]:
+    ) -> AsyncPaginator[DNSRecord, AsyncV4PagePaginationArray[DNSRecord]]:
         """
         List, search, sort, and filter a zones' DNS records.
 
@@ -1128,7 +1124,7 @@ class AsyncRecords(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/dns_records",
-            page=AsyncV4PagePaginationArray[RecordListResponse],
+            page=AsyncV4PagePaginationArray[DNSRecord],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1153,7 +1149,7 @@ class AsyncRecords(AsyncAPIResource):
                     record_list_params.RecordListParams,
                 ),
             ),
-            model=cast(Any, RecordListResponse),  # Union types cannot be passed in as arguments in the type system
+            model=cast(Any, DNSRecord),  # Union types cannot be passed in as arguments in the type system
         )
 
     async def delete(
@@ -1242,7 +1238,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RecordEditResponse:
+    ) -> DNSRecord:
         """Update an existing DNS record.
 
         Notes:
@@ -1291,7 +1287,7 @@ class AsyncRecords(AsyncAPIResource):
         if not dns_record_id:
             raise ValueError(f"Expected a non-empty value for `dns_record_id` but received {dns_record_id!r}")
         return cast(
-            RecordEditResponse,
+            DNSRecord,
             await self._patch(
                 f"/zones/{zone_id}/dns_records/{dns_record_id}",
                 body=await async_maybe_transform(
@@ -1317,7 +1313,7 @@ class AsyncRecords(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[RecordEditResponse]
+                    Any, ResultWrapper[DNSRecord]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -1375,7 +1371,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RecordGetResponse:
+    ) -> DNSRecord:
         """
         DNS Record Details
 
@@ -1397,7 +1393,7 @@ class AsyncRecords(AsyncAPIResource):
         if not dns_record_id:
             raise ValueError(f"Expected a non-empty value for `dns_record_id` but received {dns_record_id!r}")
         return cast(
-            RecordGetResponse,
+            DNSRecord,
             await self._get(
                 f"/zones/{zone_id}/dns_records/{dns_record_id}",
                 options=make_request_options(
@@ -1408,7 +1404,7 @@ class AsyncRecords(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[RecordGetResponse]
+                    Any, ResultWrapper[DNSRecord]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
