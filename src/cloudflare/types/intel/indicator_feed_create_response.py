@@ -5,10 +5,10 @@ from datetime import datetime
 
 from ..._models import BaseModel
 
-__all__ = ["IntelIndicatorFeedItem"]
+__all__ = ["IndicatorFeedCreateResponse"]
 
 
-class IntelIndicatorFeedItem(BaseModel):
+class IndicatorFeedCreateResponse(BaseModel):
     id: Optional[int] = None
     """The unique identifier for the indicator feed"""
 

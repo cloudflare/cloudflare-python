@@ -4,9 +4,9 @@ from typing import Optional
 
 from ...._models import BaseModel
 
-__all__ = ["IntelPermissionsUpdate"]
+__all__ = ["PermissionCreateResponse"]
 
 
-class IntelPermissionsUpdate(BaseModel):
+class PermissionCreateResponse(BaseModel):
     success: Optional[bool] = None
     """Whether the update succeeded or not"""
