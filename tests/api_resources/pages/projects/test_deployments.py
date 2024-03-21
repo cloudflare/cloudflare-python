@@ -91,16 +91,6 @@ class TestDeployments:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list_with_all_params(self, client: Cloudflare) -> None:
-        deployment = client.pages.projects.deployments.list(
-            "this-is-my-project-01",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            env="preview",
-        )
-        assert_matches_type(DeploymentListResponse, deployment, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.pages.projects.deployments.with_raw_response.list(
             "this-is-my-project-01",
@@ -470,16 +460,6 @@ class TestAsyncDeployments:
         deployment = await async_client.pages.projects.deployments.list(
             "this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(DeploymentListResponse, deployment, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        deployment = await async_client.pages.projects.deployments.list(
-            "this-is-my-project-01",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            env="preview",
         )
         assert_matches_type(DeploymentListResponse, deployment, path=["response"])
 

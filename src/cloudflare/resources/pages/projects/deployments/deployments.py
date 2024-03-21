@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from typing import Type, cast
-from typing_extensions import Literal
 
 import httpx
 
@@ -34,7 +33,7 @@ from .history.history import History, AsyncHistory
 from ....._base_client import (
     make_request_options,
 )
-from .....types.pages.projects import DeploymentListResponse, deployment_list_params, deployment_create_params
+from .....types.pages.projects import DeploymentListResponse, deployment_create_params
 
 __all__ = ["Deployments", "AsyncDeployments"]
 
@@ -108,7 +107,6 @@ class Deployments(SyncAPIResource):
         project_name: str,
         *,
         account_id: str,
-        env: Literal["production", "preview"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -123,8 +121,6 @@ class Deployments(SyncAPIResource):
           account_id: Identifier
 
           project_name: Name of the project.
-
-          env: What type of deployments to fetch.
 
           extra_headers: Send extra headers
 
@@ -145,7 +141,6 @@ class Deployments(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"env": env}, deployment_list_params.DeploymentListParams),
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(Type[DeploymentListResponse], ResultWrapper[DeploymentListResponse]),
@@ -415,7 +410,6 @@ class AsyncDeployments(AsyncAPIResource):
         project_name: str,
         *,
         account_id: str,
-        env: Literal["production", "preview"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -430,8 +424,6 @@ class AsyncDeployments(AsyncAPIResource):
           account_id: Identifier
 
           project_name: Name of the project.
-
-          env: What type of deployments to fetch.
 
           extra_headers: Send extra headers
 
@@ -452,7 +444,6 @@ class AsyncDeployments(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"env": env}, deployment_list_params.DeploymentListParams),
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(Type[DeploymentListResponse], ResultWrapper[DeploymentListResponse]),
