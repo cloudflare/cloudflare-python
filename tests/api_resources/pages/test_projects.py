@@ -67,7 +67,6 @@ class TestProjects:
                     "r2_buckets": {"r2_binding": {"name": "some-bucket"}},
                     "services": {
                         "service_binding": {
-                            "entrypoint": "MyHandler",
                             "environment": "production",
                             "service": "example-worker",
                         }
@@ -96,7 +95,6 @@ class TestProjects:
                     "r2_buckets": {"r2_binding": {"name": "some-bucket"}},
                     "services": {
                         "service_binding": {
-                            "entrypoint": "MyHandler",
                             "environment": "production",
                             "service": "example-worker",
                         }
@@ -523,7 +521,6 @@ class TestAsyncProjects:
                     "r2_buckets": {"r2_binding": {"name": "some-bucket"}},
                     "services": {
                         "service_binding": {
-                            "entrypoint": "MyHandler",
                             "environment": "production",
                             "service": "example-worker",
                         }
@@ -552,7 +549,6 @@ class TestAsyncProjects:
                     "r2_buckets": {"r2_binding": {"name": "some-bucket"}},
                     "services": {
                         "service_binding": {
-                            "entrypoint": "MyHandler",
                             "environment": "production",
                             "service": "example-worker",
                         }
