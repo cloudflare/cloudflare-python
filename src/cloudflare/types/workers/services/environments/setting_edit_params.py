@@ -20,7 +20,7 @@ __all__ = [
     "ResultBindingWorkersDispatchNamespaceBinding",
     "ResultBindingWorkersDispatchNamespaceBindingOutbound",
     "ResultBindingWorkersDispatchNamespaceBindingOutboundWorker",
-    "ResultBindingWorkersMTLSCertBinding",
+    "ResultBindingWorkersMTLSCERTBinding",
     "ResultMigrations",
     "ResultMigrationsWorkersSingleStepMigrations",
     "ResultMigrationsWorkersSingleStepMigrationsRenamedClass",
@@ -152,7 +152,7 @@ class ResultBindingWorkersDispatchNamespaceBinding(TypedDict, total=False):
     """Outbound worker"""
 
 
-class ResultBindingWorkersMTLSCertBinding(TypedDict, total=False):
+class ResultBindingWorkersMTLSCERTBinding(TypedDict, total=False):
     type: Required[Literal["mtls_certificate"]]
     """The class of resource that the binding provides."""
 
@@ -168,7 +168,7 @@ ResultBinding = Union[
     ResultBindingWorkersQueueBinding,
     ResultBindingWorkersD1Binding,
     ResultBindingWorkersDispatchNamespaceBinding,
-    ResultBindingWorkersMTLSCertBinding,
+    ResultBindingWorkersMTLSCERTBinding,
 ]
 
 _ResultMigrationsWorkersSingleStepMigrationsRenamedClassReservedKeywords = TypedDict(

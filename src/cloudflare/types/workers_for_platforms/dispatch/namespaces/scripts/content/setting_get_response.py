@@ -19,7 +19,7 @@ __all__ = [
     "BindingWorkersDispatchNamespaceBinding",
     "BindingWorkersDispatchNamespaceBindingOutbound",
     "BindingWorkersDispatchNamespaceBindingOutboundWorker",
-    "BindingWorkersMTLSCertBinding",
+    "BindingWorkersMTLSCERTBinding",
     "Migrations",
     "MigrationsWorkersSingleStepMigrations",
     "MigrationsWorkersSingleStepMigrationsRenamedClass",
@@ -149,7 +149,7 @@ class BindingWorkersDispatchNamespaceBinding(BaseModel):
     """Outbound worker"""
 
 
-class BindingWorkersMTLSCertBinding(BaseModel):
+class BindingWorkersMTLSCERTBinding(BaseModel):
     name: str
     """A JavaScript variable name for the binding."""
 
@@ -168,7 +168,7 @@ Binding = Union[
     BindingWorkersQueueBinding,
     BindingWorkersD1Binding,
     BindingWorkersDispatchNamespaceBinding,
-    BindingWorkersMTLSCertBinding,
+    BindingWorkersMTLSCERTBinding,
 ]
 
 

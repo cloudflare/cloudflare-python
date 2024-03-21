@@ -19,7 +19,7 @@ __all__ = [
     "RuleSettingsL4override",
     "RuleSettingsNotificationSettings",
     "RuleSettingsPayloadLog",
-    "RuleSettingsUntrustedCert",
+    "RuleSettingsUntrustedCERT",
     "Schedule",
 ]
 
@@ -142,7 +142,7 @@ class RuleSettingsPayloadLog(BaseModel):
     """Set to true to enable DLP payload logging for this rule."""
 
 
-class RuleSettingsUntrustedCert(BaseModel):
+class RuleSettingsUntrustedCERT(BaseModel):
     action: Optional[Literal["pass_through", "block", "error"]] = None
     """The action performed when an untrusted certificate is seen.
 
@@ -234,7 +234,7 @@ class RuleSettings(BaseModel):
     resolver. Cannot be set when dns_resolvers are specified.
     """
 
-    untrusted_cert: Optional[RuleSettingsUntrustedCert] = None
+    untrusted_cert: Optional[RuleSettingsUntrustedCERT] = None
     """Configure behavior when an upstream cert is invalid or an SSL error occurs."""
 
 
