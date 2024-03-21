@@ -4,10 +4,10 @@ from typing import Optional
 
 from ..._models import BaseModel
 
-__all__ = ["IntelUpdateFeed"]
+__all__ = ["IndicatorFeedUpdateResponse"]
 
 
-class IntelUpdateFeed(BaseModel):
+class IndicatorFeedUpdateResponse(BaseModel):
     file_id: Optional[int] = None
     """Feed id"""
 
