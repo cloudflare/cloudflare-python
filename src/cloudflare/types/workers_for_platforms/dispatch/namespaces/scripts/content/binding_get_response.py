@@ -16,7 +16,7 @@ __all__ = [
     "WorkersDispatchNamespaceBinding",
     "WorkersDispatchNamespaceBindingOutbound",
     "WorkersDispatchNamespaceBindingOutboundWorker",
-    "WorkersMTLSCertBinding",
+    "WorkersMTLSCERTBinding",
 ]
 
 
@@ -136,7 +136,7 @@ class WorkersDispatchNamespaceBinding(BaseModel):
     """Outbound worker"""
 
 
-class WorkersMTLSCertBinding(BaseModel):
+class WorkersMTLSCERTBinding(BaseModel):
     name: str
     """A JavaScript variable name for the binding."""
 
@@ -155,5 +155,5 @@ BindingGetResponse = Union[
     WorkersQueueBinding,
     WorkersD1Binding,
     WorkersDispatchNamespaceBinding,
-    WorkersMTLSCertBinding,
+    WorkersMTLSCERTBinding,
 ]
