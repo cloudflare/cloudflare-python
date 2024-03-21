@@ -26,3 +26,6 @@ class NamespaceGetResponse(BaseModel):
 
     namespace_name: Optional[str] = None
     """Name of the Workers for Platforms dispatch namespace."""
+
+    script_count: Optional[int] = None
+    """The current number of scripts in this Dispatch Namespace"""
