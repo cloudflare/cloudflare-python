@@ -10,21 +10,23 @@ from ....._utils import PropertyInfo
 
 __all__ = [
     "ScriptUpdateParams",
-    "Metadata",
-    "MetadataMigrations",
-    "MetadataMigrationsWorkersSingleStepMigrations",
-    "MetadataMigrationsWorkersSingleStepMigrationsRenamedClass",
-    "MetadataMigrationsWorkersSingleStepMigrationsTransferredClass",
-    "MetadataMigrationsWorkersSteppedMigrations",
-    "MetadataMigrationsWorkersSteppedMigrationsStep",
-    "MetadataMigrationsWorkersSteppedMigrationsStepRenamedClass",
-    "MetadataMigrationsWorkersSteppedMigrationsStepTransferredClass",
-    "MetadataPlacement",
-    "MetadataTailConsumer",
+    "Variant0",
+    "Variant0Metadata",
+    "Variant0MetadataMigrations",
+    "Variant0MetadataMigrationsWorkersSingleStepMigrations",
+    "Variant0MetadataMigrationsWorkersSingleStepMigrationsRenamedClass",
+    "Variant0MetadataMigrationsWorkersSingleStepMigrationsTransferredClass",
+    "Variant0MetadataMigrationsWorkersSteppedMigrations",
+    "Variant0MetadataMigrationsWorkersSteppedMigrationsStep",
+    "Variant0MetadataMigrationsWorkersSteppedMigrationsStepRenamedClass",
+    "Variant0MetadataMigrationsWorkersSteppedMigrationsStepTransferredClass",
+    "Variant0MetadataPlacement",
+    "Variant0MetadataTailConsumer",
+    "Variant1",
 ]
 
 
-class ScriptUpdateParams(TypedDict, total=False):
+class Variant0(TypedDict, total=False):
     account_id: Required[str]
     """Identifier"""
 
@@ -39,18 +41,12 @@ class ScriptUpdateParams(TypedDict, total=False):
     `body_part` by part name.
     """
 
-    message: str
-    """Rollback message to be associated with this deployment.
-
-    Only parsed when query param `"rollback_to"` is present.
-    """
-
-    metadata: Metadata
+    metadata: Variant0Metadata
     """JSON encoded metadata about the uploaded parts and Worker configuration."""
 
 
-_MetadataMigrationsWorkersSingleStepMigrationsRenamedClassReservedKeywords = TypedDict(
-    "_MetadataMigrationsWorkersSingleStepMigrationsRenamedClassReservedKeywords",
+_Variant0MetadataMigrationsWorkersSingleStepMigrationsRenamedClassReservedKeywords = TypedDict(
+    "_Variant0MetadataMigrationsWorkersSingleStepMigrationsRenamedClassReservedKeywords",
     {
         "from": str,
     },
@@ -58,14 +54,14 @@ _MetadataMigrationsWorkersSingleStepMigrationsRenamedClassReservedKeywords = Typ
 )
 
 
-class MetadataMigrationsWorkersSingleStepMigrationsRenamedClass(
-    _MetadataMigrationsWorkersSingleStepMigrationsRenamedClassReservedKeywords, total=False
+class Variant0MetadataMigrationsWorkersSingleStepMigrationsRenamedClass(
+    _Variant0MetadataMigrationsWorkersSingleStepMigrationsRenamedClassReservedKeywords, total=False
 ):
     to: str
 
 
-_MetadataMigrationsWorkersSingleStepMigrationsTransferredClassReservedKeywords = TypedDict(
-    "_MetadataMigrationsWorkersSingleStepMigrationsTransferredClassReservedKeywords",
+_Variant0MetadataMigrationsWorkersSingleStepMigrationsTransferredClassReservedKeywords = TypedDict(
+    "_Variant0MetadataMigrationsWorkersSingleStepMigrationsTransferredClassReservedKeywords",
     {
         "from": str,
     },
@@ -73,15 +69,15 @@ _MetadataMigrationsWorkersSingleStepMigrationsTransferredClassReservedKeywords =
 )
 
 
-class MetadataMigrationsWorkersSingleStepMigrationsTransferredClass(
-    _MetadataMigrationsWorkersSingleStepMigrationsTransferredClassReservedKeywords, total=False
+class Variant0MetadataMigrationsWorkersSingleStepMigrationsTransferredClass(
+    _Variant0MetadataMigrationsWorkersSingleStepMigrationsTransferredClassReservedKeywords, total=False
 ):
     from_script: str
 
     to: str
 
 
-class MetadataMigrationsWorkersSingleStepMigrations(TypedDict, total=False):
+class Variant0MetadataMigrationsWorkersSingleStepMigrations(TypedDict, total=False):
     deleted_classes: List[str]
     """A list of classes to delete Durable Object namespaces from."""
 
@@ -97,18 +93,18 @@ class MetadataMigrationsWorkersSingleStepMigrations(TypedDict, total=False):
     If they don't match, the upload is rejected.
     """
 
-    renamed_classes: Iterable[MetadataMigrationsWorkersSingleStepMigrationsRenamedClass]
+    renamed_classes: Iterable[Variant0MetadataMigrationsWorkersSingleStepMigrationsRenamedClass]
     """A list of classes with Durable Object namespaces that were renamed."""
 
-    transferred_classes: Iterable[MetadataMigrationsWorkersSingleStepMigrationsTransferredClass]
+    transferred_classes: Iterable[Variant0MetadataMigrationsWorkersSingleStepMigrationsTransferredClass]
     """
     A list of transfers for Durable Object namespaces from a different Worker and
     class to a class defined in this Worker.
     """
 
 
-_MetadataMigrationsWorkersSteppedMigrationsStepRenamedClassReservedKeywords = TypedDict(
-    "_MetadataMigrationsWorkersSteppedMigrationsStepRenamedClassReservedKeywords",
+_Variant0MetadataMigrationsWorkersSteppedMigrationsStepRenamedClassReservedKeywords = TypedDict(
+    "_Variant0MetadataMigrationsWorkersSteppedMigrationsStepRenamedClassReservedKeywords",
     {
         "from": str,
     },
@@ -116,14 +112,14 @@ _MetadataMigrationsWorkersSteppedMigrationsStepRenamedClassReservedKeywords = Ty
 )
 
 
-class MetadataMigrationsWorkersSteppedMigrationsStepRenamedClass(
-    _MetadataMigrationsWorkersSteppedMigrationsStepRenamedClassReservedKeywords, total=False
+class Variant0MetadataMigrationsWorkersSteppedMigrationsStepRenamedClass(
+    _Variant0MetadataMigrationsWorkersSteppedMigrationsStepRenamedClassReservedKeywords, total=False
 ):
     to: str
 
 
-_MetadataMigrationsWorkersSteppedMigrationsStepTransferredClassReservedKeywords = TypedDict(
-    "_MetadataMigrationsWorkersSteppedMigrationsStepTransferredClassReservedKeywords",
+_Variant0MetadataMigrationsWorkersSteppedMigrationsStepTransferredClassReservedKeywords = TypedDict(
+    "_Variant0MetadataMigrationsWorkersSteppedMigrationsStepTransferredClassReservedKeywords",
     {
         "from": str,
     },
@@ -131,32 +127,32 @@ _MetadataMigrationsWorkersSteppedMigrationsStepTransferredClassReservedKeywords 
 )
 
 
-class MetadataMigrationsWorkersSteppedMigrationsStepTransferredClass(
-    _MetadataMigrationsWorkersSteppedMigrationsStepTransferredClassReservedKeywords, total=False
+class Variant0MetadataMigrationsWorkersSteppedMigrationsStepTransferredClass(
+    _Variant0MetadataMigrationsWorkersSteppedMigrationsStepTransferredClassReservedKeywords, total=False
 ):
     from_script: str
 
     to: str
 
 
-class MetadataMigrationsWorkersSteppedMigrationsStep(TypedDict, total=False):
+class Variant0MetadataMigrationsWorkersSteppedMigrationsStep(TypedDict, total=False):
     deleted_classes: List[str]
     """A list of classes to delete Durable Object namespaces from."""
 
     new_classes: List[str]
     """A list of classes to create Durable Object namespaces from."""
 
-    renamed_classes: Iterable[MetadataMigrationsWorkersSteppedMigrationsStepRenamedClass]
+    renamed_classes: Iterable[Variant0MetadataMigrationsWorkersSteppedMigrationsStepRenamedClass]
     """A list of classes with Durable Object namespaces that were renamed."""
 
-    transferred_classes: Iterable[MetadataMigrationsWorkersSteppedMigrationsStepTransferredClass]
+    transferred_classes: Iterable[Variant0MetadataMigrationsWorkersSteppedMigrationsStepTransferredClass]
     """
     A list of transfers for Durable Object namespaces from a different Worker and
     class to a class defined in this Worker.
     """
 
 
-class MetadataMigrationsWorkersSteppedMigrations(TypedDict, total=False):
+class Variant0MetadataMigrationsWorkersSteppedMigrations(TypedDict, total=False):
     new_tag: str
     """Tag to set as the latest migration tag."""
 
@@ -166,14 +162,16 @@ class MetadataMigrationsWorkersSteppedMigrations(TypedDict, total=False):
     If they don't match, the upload is rejected.
     """
 
-    steps: Iterable[MetadataMigrationsWorkersSteppedMigrationsStep]
+    steps: Iterable[Variant0MetadataMigrationsWorkersSteppedMigrationsStep]
     """Migrations to apply in order."""
 
 
-MetadataMigrations = Union[MetadataMigrationsWorkersSingleStepMigrations, MetadataMigrationsWorkersSteppedMigrations]
+Variant0MetadataMigrations = Union[
+    Variant0MetadataMigrationsWorkersSingleStepMigrations, Variant0MetadataMigrationsWorkersSteppedMigrations
+]
 
 
-class MetadataPlacement(TypedDict, total=False):
+class Variant0MetadataPlacement(TypedDict, total=False):
     mode: Literal["smart"]
     """
     Enables
@@ -182,7 +180,7 @@ class MetadataPlacement(TypedDict, total=False):
     """
 
 
-class MetadataTailConsumer(TypedDict, total=False):
+class Variant0MetadataTailConsumer(TypedDict, total=False):
     service: Required[str]
     """Name of Worker that is to be the consumer."""
 
@@ -193,7 +191,7 @@ class MetadataTailConsumer(TypedDict, total=False):
     """Optional dispatch namespace the script belongs to."""
 
 
-class Metadata(TypedDict, total=False):
+class Variant0Metadata(TypedDict, total=False):
     bindings: Iterable[object]
     """List of bindings available to the worker."""
 
@@ -230,15 +228,15 @@ class Metadata(TypedDict, total=False):
     the file exporting a `fetch` handler). Indicates a `module syntax` Worker.
     """
 
-    migrations: MetadataMigrations
+    migrations: Variant0MetadataMigrations
     """Migrations to apply for Durable Objects associated with this Worker."""
 
-    placement: MetadataPlacement
+    placement: Variant0MetadataPlacement
 
     tags: List[str]
     """List of strings to use as tags for this Worker"""
 
-    tail_consumers: Iterable[MetadataTailConsumer]
+    tail_consumers: Iterable[Variant0MetadataTailConsumer]
     """List of Workers that will consume logs from the attached Worker."""
 
     usage_model: Literal["bundled", "unbound"]
@@ -246,3 +244,20 @@ class Metadata(TypedDict, total=False):
 
     version_tags: object
     """Key-value pairs to use as tags for this version of this Worker"""
+
+
+class Variant1(TypedDict, total=False):
+    account_id: Required[str]
+    """Identifier"""
+
+    dispatch_namespace: Required[str]
+    """Name of the Workers for Platforms dispatch namespace."""
+
+    message: str
+    """Rollback message to be associated with this deployment.
+
+    Only parsed when query param `"rollback_to"` is present.
+    """
+
+
+ScriptUpdateParams = Union[Variant0, Variant1]

@@ -2,12 +2,13 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, cast, overload
 
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
+    required_args,
     maybe_transform,
     async_maybe_transform,
 )
@@ -37,13 +38,14 @@ class Sippy(SyncAPIResource):
     def with_streaming_response(self) -> SippyWithStreamingResponse:
         return SippyWithStreamingResponse(self)
 
+    @overload
     def update(
         self,
         bucket_name: str,
         *,
         account_id: str,
-        destination: sippy_update_params.Destination | NotGiven = NOT_GIVEN,
-        source: sippy_update_params.Source | NotGiven = NOT_GIVEN,
+        destination: sippy_update_params.R2EnableSippyAwsDestination | NotGiven = NOT_GIVEN,
+        source: sippy_update_params.R2EnableSippyAwsSource | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -59,6 +61,10 @@ class Sippy(SyncAPIResource):
 
           bucket_name: Name of the bucket
 
+          destination: R2 bucket to copy objects to
+
+          source: AWS S3 bucket to copy objects from
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -67,6 +73,62 @@ class Sippy(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    def update(
+        self,
+        bucket_name: str,
+        *,
+        account_id: str,
+        destination: sippy_update_params.R2EnableSippyGcsDestination | NotGiven = NOT_GIVEN,
+        source: sippy_update_params.R2EnableSippyGcsSource | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> R2Sippy:
+        """
+        Sets configuration for Sippy for an existing R2 bucket.
+
+        Args:
+          account_id: Account ID
+
+          bucket_name: Name of the bucket
+
+          destination: R2 bucket to copy objects to
+
+          source: GCS bucket to copy objects from
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["account_id"], ["account_id"])
+    def update(
+        self,
+        bucket_name: str,
+        *,
+        account_id: str,
+        destination: sippy_update_params.R2EnableSippyAwsDestination | NotGiven = NOT_GIVEN,
+        source: sippy_update_params.R2EnableSippyAwsSource
+        | sippy_update_params.R2EnableSippyGcsSource
+        | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> R2Sippy:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
@@ -188,13 +250,14 @@ class AsyncSippy(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncSippyWithStreamingResponse:
         return AsyncSippyWithStreamingResponse(self)
 
+    @overload
     async def update(
         self,
         bucket_name: str,
         *,
         account_id: str,
-        destination: sippy_update_params.Destination | NotGiven = NOT_GIVEN,
-        source: sippy_update_params.Source | NotGiven = NOT_GIVEN,
+        destination: sippy_update_params.R2EnableSippyAwsDestination | NotGiven = NOT_GIVEN,
+        source: sippy_update_params.R2EnableSippyAwsSource | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -210,6 +273,10 @@ class AsyncSippy(AsyncAPIResource):
 
           bucket_name: Name of the bucket
 
+          destination: R2 bucket to copy objects to
+
+          source: AWS S3 bucket to copy objects from
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -218,6 +285,62 @@ class AsyncSippy(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    async def update(
+        self,
+        bucket_name: str,
+        *,
+        account_id: str,
+        destination: sippy_update_params.R2EnableSippyGcsDestination | NotGiven = NOT_GIVEN,
+        source: sippy_update_params.R2EnableSippyGcsSource | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> R2Sippy:
+        """
+        Sets configuration for Sippy for an existing R2 bucket.
+
+        Args:
+          account_id: Account ID
+
+          bucket_name: Name of the bucket
+
+          destination: R2 bucket to copy objects to
+
+          source: GCS bucket to copy objects from
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["account_id"], ["account_id"])
+    async def update(
+        self,
+        bucket_name: str,
+        *,
+        account_id: str,
+        destination: sippy_update_params.R2EnableSippyAwsDestination | NotGiven = NOT_GIVEN,
+        source: sippy_update_params.R2EnableSippyAwsSource
+        | sippy_update_params.R2EnableSippyGcsSource
+        | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> R2Sippy:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:

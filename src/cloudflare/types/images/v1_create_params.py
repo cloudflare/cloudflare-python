@@ -2,18 +2,26 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, Annotated, TypedDict
+from typing import Union
+from typing_extensions import Required, TypedDict
 
-from ..._utils import PropertyInfo
-
-__all__ = ["V1CreateParams"]
+__all__ = ["V1CreateParams", "ImagesImageUploadViaFile", "ImagesImageUploadViaURL"]
 
 
-class V1CreateParams(TypedDict, total=False):
+class ImagesImageUploadViaFile(TypedDict, total=False):
     account_id: Required[str]
     """Account identifier tag."""
 
-    metadata: object
+    file: Required[object]
+    """An image binary data."""
 
-    require_signed_urls: Annotated[bool, PropertyInfo(alias="requireSignedURLs")]
-    """Indicates whether the image requires a signature token for the access."""
+
+class ImagesImageUploadViaURL(TypedDict, total=False):
+    account_id: Required[str]
+    """Account identifier tag."""
+
+    url: Required[str]
+    """A URL to fetch an image from origin."""
+
+
+V1CreateParams = Union[ImagesImageUploadViaFile, ImagesImageUploadViaURL]

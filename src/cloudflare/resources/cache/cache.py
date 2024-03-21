@@ -2,13 +2,14 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Optional, cast
+from typing import List, Type, Optional, cast, overload
 
 import httpx
 
 from ...types import CachePurgeResponse, cache_purge_params
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
+    required_args,
     maybe_transform,
     async_maybe_transform,
 )
@@ -85,14 +86,11 @@ class Cache(SyncAPIResource):
     def with_streaming_response(self) -> CacheWithStreamingResponse:
         return CacheWithStreamingResponse(self)
 
+    @overload
     def purge(
         self,
         *,
         zone_id: str,
-        files: List[cache_purge_params.File] | NotGiven = NOT_GIVEN,
-        hosts: List[str] | NotGiven = NOT_GIVEN,
-        prefixes: List[str] | NotGiven = NOT_GIVEN,
-        purge_everything: bool | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -141,17 +139,256 @@ class Cache(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    def purge(
+        self,
+        *,
+        zone_id: str,
+        hosts: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CachePurgeResponse]:
+        """### Purge All Cached Content
+
+        Removes ALL files from Cloudflare's cache.
+
+        All tiers can purge everything.
+
+        ### Purge Cached Content by URL
+
+        Granularly removes one or more files from Cloudflare's cache by specifying URLs.
+        All tiers can purge by URL.
+
+        To purge files with custom cache keys, include the headers used to compute the
+        cache key as in the example. If you have a device type or geo in your cache key,
+        you will need to include the CF-Device-Type or CF-IPCountry headers. If you have
+        lang in your cache key, you will need to include the Accept-Language header.
+
+        **NB:** When including the Origin header, be sure to include the **scheme** and
+        **hostname**. The port number can be omitted if it is the default port (80 for
+        http, 443 for https), but must be included otherwise.
+
+        ### Purge Cached Content by Tag, Host or Prefix
+
+        Granularly removes one or more files from Cloudflare's cache either by
+        specifying the host, the associated Cache-Tag, or a Prefix. Only Enterprise
+        customers are permitted to purge by Tag, Host or Prefix.
+
+        **NB:** Cache-Tag, host, and prefix purging each have a rate limit of 30,000
+        purge API calls in every 24 hour period. You may purge up to 30 tags, hosts, or
+        prefixes in one API call. This rate limit can be raised for customers who need
+        to purge at higher volume.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def purge(
+        self,
+        *,
+        zone_id: str,
+        prefixes: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CachePurgeResponse]:
+        """### Purge All Cached Content
+
+        Removes ALL files from Cloudflare's cache.
+
+        All tiers can purge everything.
+
+        ### Purge Cached Content by URL
+
+        Granularly removes one or more files from Cloudflare's cache by specifying URLs.
+        All tiers can purge by URL.
+
+        To purge files with custom cache keys, include the headers used to compute the
+        cache key as in the example. If you have a device type or geo in your cache key,
+        you will need to include the CF-Device-Type or CF-IPCountry headers. If you have
+        lang in your cache key, you will need to include the Accept-Language header.
+
+        **NB:** When including the Origin header, be sure to include the **scheme** and
+        **hostname**. The port number can be omitted if it is the default port (80 for
+        http, 443 for https), but must be included otherwise.
+
+        ### Purge Cached Content by Tag, Host or Prefix
+
+        Granularly removes one or more files from Cloudflare's cache either by
+        specifying the host, the associated Cache-Tag, or a Prefix. Only Enterprise
+        customers are permitted to purge by Tag, Host or Prefix.
+
+        **NB:** Cache-Tag, host, and prefix purging each have a rate limit of 30,000
+        purge API calls in every 24 hour period. You may purge up to 30 tags, hosts, or
+        prefixes in one API call. This rate limit can be raised for customers who need
+        to purge at higher volume.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def purge(
+        self,
+        *,
+        zone_id: str,
+        purge_everything: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CachePurgeResponse]:
+        """### Purge All Cached Content
+
+        Removes ALL files from Cloudflare's cache.
+
+        All tiers can purge everything.
+
+        ### Purge Cached Content by URL
+
+        Granularly removes one or more files from Cloudflare's cache by specifying URLs.
+        All tiers can purge by URL.
+
+        To purge files with custom cache keys, include the headers used to compute the
+        cache key as in the example. If you have a device type or geo in your cache key,
+        you will need to include the CF-Device-Type or CF-IPCountry headers. If you have
+        lang in your cache key, you will need to include the Accept-Language header.
+
+        **NB:** When including the Origin header, be sure to include the **scheme** and
+        **hostname**. The port number can be omitted if it is the default port (80 for
+        http, 443 for https), but must be included otherwise.
+
+        ### Purge Cached Content by Tag, Host or Prefix
+
+        Granularly removes one or more files from Cloudflare's cache either by
+        specifying the host, the associated Cache-Tag, or a Prefix. Only Enterprise
+        customers are permitted to purge by Tag, Host or Prefix.
+
+        **NB:** Cache-Tag, host, and prefix purging each have a rate limit of 30,000
+        purge API calls in every 24 hour period. You may purge up to 30 tags, hosts, or
+        prefixes in one API call. This rate limit can be raised for customers who need
+        to purge at higher volume.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def purge(
+        self,
+        *,
+        zone_id: str,
+        files: List[cache_purge_params.CachePurgeFilesFile] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CachePurgeResponse]:
+        """### Purge All Cached Content
+
+        Removes ALL files from Cloudflare's cache.
+
+        All tiers can purge everything.
+
+        ### Purge Cached Content by URL
+
+        Granularly removes one or more files from Cloudflare's cache by specifying URLs.
+        All tiers can purge by URL.
+
+        To purge files with custom cache keys, include the headers used to compute the
+        cache key as in the example. If you have a device type or geo in your cache key,
+        you will need to include the CF-Device-Type or CF-IPCountry headers. If you have
+        lang in your cache key, you will need to include the Accept-Language header.
+
+        **NB:** When including the Origin header, be sure to include the **scheme** and
+        **hostname**. The port number can be omitted if it is the default port (80 for
+        http, 443 for https), but must be included otherwise.
+
+        ### Purge Cached Content by Tag, Host or Prefix
+
+        Granularly removes one or more files from Cloudflare's cache either by
+        specifying the host, the associated Cache-Tag, or a Prefix. Only Enterprise
+        customers are permitted to purge by Tag, Host or Prefix.
+
+        **NB:** Cache-Tag, host, and prefix purging each have a rate limit of 30,000
+        purge API calls in every 24 hour period. You may purge up to 30 tags, hosts, or
+        prefixes in one API call. This rate limit can be raised for customers who need
+        to purge at higher volume.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["zone_id"], ["zone_id"], ["zone_id"], ["zone_id"], ["zone_id"])
+    def purge(
+        self,
+        *,
+        zone_id: str,
+        tags: List[str] | NotGiven = NOT_GIVEN,
+        hosts: List[str] | NotGiven = NOT_GIVEN,
+        prefixes: List[str] | NotGiven = NOT_GIVEN,
+        purge_everything: bool | NotGiven = NOT_GIVEN,
+        files: List[cache_purge_params.CachePurgeFilesFile] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CachePurgeResponse]:
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
             f"/zones/{zone_id}/purge_cache",
             body=maybe_transform(
                 {
-                    "files": files,
+                    "tags": tags,
                     "hosts": hosts,
                     "prefixes": prefixes,
                     "purge_everything": purge_everything,
-                    "tags": tags,
+                    "files": files,
                 },
                 cache_purge_params.CachePurgeParams,
             ),
@@ -191,14 +428,11 @@ class AsyncCache(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncCacheWithStreamingResponse:
         return AsyncCacheWithStreamingResponse(self)
 
+    @overload
     async def purge(
         self,
         *,
         zone_id: str,
-        files: List[cache_purge_params.File] | NotGiven = NOT_GIVEN,
-        hosts: List[str] | NotGiven = NOT_GIVEN,
-        prefixes: List[str] | NotGiven = NOT_GIVEN,
-        purge_everything: bool | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -247,17 +481,256 @@ class AsyncCache(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    async def purge(
+        self,
+        *,
+        zone_id: str,
+        hosts: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CachePurgeResponse]:
+        """### Purge All Cached Content
+
+        Removes ALL files from Cloudflare's cache.
+
+        All tiers can purge everything.
+
+        ### Purge Cached Content by URL
+
+        Granularly removes one or more files from Cloudflare's cache by specifying URLs.
+        All tiers can purge by URL.
+
+        To purge files with custom cache keys, include the headers used to compute the
+        cache key as in the example. If you have a device type or geo in your cache key,
+        you will need to include the CF-Device-Type or CF-IPCountry headers. If you have
+        lang in your cache key, you will need to include the Accept-Language header.
+
+        **NB:** When including the Origin header, be sure to include the **scheme** and
+        **hostname**. The port number can be omitted if it is the default port (80 for
+        http, 443 for https), but must be included otherwise.
+
+        ### Purge Cached Content by Tag, Host or Prefix
+
+        Granularly removes one or more files from Cloudflare's cache either by
+        specifying the host, the associated Cache-Tag, or a Prefix. Only Enterprise
+        customers are permitted to purge by Tag, Host or Prefix.
+
+        **NB:** Cache-Tag, host, and prefix purging each have a rate limit of 30,000
+        purge API calls in every 24 hour period. You may purge up to 30 tags, hosts, or
+        prefixes in one API call. This rate limit can be raised for customers who need
+        to purge at higher volume.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def purge(
+        self,
+        *,
+        zone_id: str,
+        prefixes: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CachePurgeResponse]:
+        """### Purge All Cached Content
+
+        Removes ALL files from Cloudflare's cache.
+
+        All tiers can purge everything.
+
+        ### Purge Cached Content by URL
+
+        Granularly removes one or more files from Cloudflare's cache by specifying URLs.
+        All tiers can purge by URL.
+
+        To purge files with custom cache keys, include the headers used to compute the
+        cache key as in the example. If you have a device type or geo in your cache key,
+        you will need to include the CF-Device-Type or CF-IPCountry headers. If you have
+        lang in your cache key, you will need to include the Accept-Language header.
+
+        **NB:** When including the Origin header, be sure to include the **scheme** and
+        **hostname**. The port number can be omitted if it is the default port (80 for
+        http, 443 for https), but must be included otherwise.
+
+        ### Purge Cached Content by Tag, Host or Prefix
+
+        Granularly removes one or more files from Cloudflare's cache either by
+        specifying the host, the associated Cache-Tag, or a Prefix. Only Enterprise
+        customers are permitted to purge by Tag, Host or Prefix.
+
+        **NB:** Cache-Tag, host, and prefix purging each have a rate limit of 30,000
+        purge API calls in every 24 hour period. You may purge up to 30 tags, hosts, or
+        prefixes in one API call. This rate limit can be raised for customers who need
+        to purge at higher volume.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def purge(
+        self,
+        *,
+        zone_id: str,
+        purge_everything: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CachePurgeResponse]:
+        """### Purge All Cached Content
+
+        Removes ALL files from Cloudflare's cache.
+
+        All tiers can purge everything.
+
+        ### Purge Cached Content by URL
+
+        Granularly removes one or more files from Cloudflare's cache by specifying URLs.
+        All tiers can purge by URL.
+
+        To purge files with custom cache keys, include the headers used to compute the
+        cache key as in the example. If you have a device type or geo in your cache key,
+        you will need to include the CF-Device-Type or CF-IPCountry headers. If you have
+        lang in your cache key, you will need to include the Accept-Language header.
+
+        **NB:** When including the Origin header, be sure to include the **scheme** and
+        **hostname**. The port number can be omitted if it is the default port (80 for
+        http, 443 for https), but must be included otherwise.
+
+        ### Purge Cached Content by Tag, Host or Prefix
+
+        Granularly removes one or more files from Cloudflare's cache either by
+        specifying the host, the associated Cache-Tag, or a Prefix. Only Enterprise
+        customers are permitted to purge by Tag, Host or Prefix.
+
+        **NB:** Cache-Tag, host, and prefix purging each have a rate limit of 30,000
+        purge API calls in every 24 hour period. You may purge up to 30 tags, hosts, or
+        prefixes in one API call. This rate limit can be raised for customers who need
+        to purge at higher volume.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def purge(
+        self,
+        *,
+        zone_id: str,
+        files: List[cache_purge_params.CachePurgeFilesFile] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CachePurgeResponse]:
+        """### Purge All Cached Content
+
+        Removes ALL files from Cloudflare's cache.
+
+        All tiers can purge everything.
+
+        ### Purge Cached Content by URL
+
+        Granularly removes one or more files from Cloudflare's cache by specifying URLs.
+        All tiers can purge by URL.
+
+        To purge files with custom cache keys, include the headers used to compute the
+        cache key as in the example. If you have a device type or geo in your cache key,
+        you will need to include the CF-Device-Type or CF-IPCountry headers. If you have
+        lang in your cache key, you will need to include the Accept-Language header.
+
+        **NB:** When including the Origin header, be sure to include the **scheme** and
+        **hostname**. The port number can be omitted if it is the default port (80 for
+        http, 443 for https), but must be included otherwise.
+
+        ### Purge Cached Content by Tag, Host or Prefix
+
+        Granularly removes one or more files from Cloudflare's cache either by
+        specifying the host, the associated Cache-Tag, or a Prefix. Only Enterprise
+        customers are permitted to purge by Tag, Host or Prefix.
+
+        **NB:** Cache-Tag, host, and prefix purging each have a rate limit of 30,000
+        purge API calls in every 24 hour period. You may purge up to 30 tags, hosts, or
+        prefixes in one API call. This rate limit can be raised for customers who need
+        to purge at higher volume.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["zone_id"], ["zone_id"], ["zone_id"], ["zone_id"], ["zone_id"])
+    async def purge(
+        self,
+        *,
+        zone_id: str,
+        tags: List[str] | NotGiven = NOT_GIVEN,
+        hosts: List[str] | NotGiven = NOT_GIVEN,
+        prefixes: List[str] | NotGiven = NOT_GIVEN,
+        purge_everything: bool | NotGiven = NOT_GIVEN,
+        files: List[cache_purge_params.CachePurgeFilesFile] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CachePurgeResponse]:
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
             f"/zones/{zone_id}/purge_cache",
             body=await async_maybe_transform(
                 {
-                    "files": files,
+                    "tags": tags,
                     "hosts": hosts,
                     "prefixes": prefixes,
                     "purge_everything": purge_everything,
-                    "tags": tags,
+                    "files": files,
                 },
                 cache_purge_params.CachePurgeParams,
             ),
