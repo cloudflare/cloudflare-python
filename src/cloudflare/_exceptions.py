@@ -2,9 +2,14 @@
 
 from __future__ import annotations
 
+from typing import Any, List, cast
 from typing_extensions import Literal
 
 import httpx
+
+from ._utils import is_dict
+from ._models import construct_type
+from .types.shared import ErrorData
 
 __all__ = [
     "BadRequestError",
@@ -37,11 +42,18 @@ class APIError(CloudflareError):
     If there was no response associated with this error then it will be `None`.
     """
 
-    def __init__(self, message: str, request: httpx.Request, *, body: object | None) -> None:  # noqa: ARG002
+    errors: List[ErrorData]
+
+    def __init__(self, message: str, request: httpx.Request, *, body: object | None) -> None:
         super().__init__(message)
         self.request = request
         self.message = message
         self.body = body
+
+        if is_dict(body):
+            self.errors = cast(Any, construct_type(type_=List[ErrorData], value=body.get("errors")))
+        else:
+            self.errors = []
 
 
 class APIResponseValidationError(APIError):

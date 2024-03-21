@@ -1,3 +1,9 @@
+# Shared Types
+
+```python
+from cloudflare.types import ErrorData
+```
+
 # Accounts
 
 Types:
