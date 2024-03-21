@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, cast
+from typing import Any, cast, overload
 from typing_extensions import Literal
 
 import httpx
@@ -10,6 +10,7 @@ import httpx
 from ..types import BotManagementGetResponse, BotManagementUpdateResponse, bot_management_update_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import (
+    required_args,
     maybe_transform,
     async_maybe_transform,
 )
@@ -38,18 +39,170 @@ class BotManagement(SyncAPIResource):
     def with_streaming_response(self) -> BotManagementWithStreamingResponse:
         return BotManagementWithStreamingResponse(self)
 
+    @overload
+    def update(
+        self,
+        *,
+        zone_id: str,
+        enable_js: bool | NotGiven = NOT_GIVEN,
+        fight_mode: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> BotManagementUpdateResponse:
+        """
+        Updates the Bot Management configuration for a zone.
+
+        This API is used to update:
+
+        - **Bot Fight Mode**
+        - **Super Bot Fight Mode**
+        - **Bot Management for Enterprise**
+
+        See [Bot Plans](https://developers.cloudflare.com/bots/plans/) for more
+        information on the different plans
+
+        Args:
+          zone_id: Identifier
+
+          enable_js: Use lightweight, invisible JavaScript detections to improve Bot Management.
+              [Learn more about JavaScript Detections](https://developers.cloudflare.com/bots/reference/javascript-detections/).
+
+          fight_mode: Whether to enable Bot Fight Mode.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def update(
+        self,
+        *,
+        zone_id: str,
+        enable_js: bool | NotGiven = NOT_GIVEN,
+        optimize_wordpress: bool | NotGiven = NOT_GIVEN,
+        sbfm_definitely_automated: Literal["allow", "block", "managed_challenge"] | NotGiven = NOT_GIVEN,
+        sbfm_static_resource_protection: bool | NotGiven = NOT_GIVEN,
+        sbfm_verified_bots: Literal["allow", "block"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> BotManagementUpdateResponse:
+        """
+        Updates the Bot Management configuration for a zone.
+
+        This API is used to update:
+
+        - **Bot Fight Mode**
+        - **Super Bot Fight Mode**
+        - **Bot Management for Enterprise**
+
+        See [Bot Plans](https://developers.cloudflare.com/bots/plans/) for more
+        information on the different plans
+
+        Args:
+          zone_id: Identifier
+
+          enable_js: Use lightweight, invisible JavaScript detections to improve Bot Management.
+              [Learn more about JavaScript Detections](https://developers.cloudflare.com/bots/reference/javascript-detections/).
+
+          optimize_wordpress: Whether to optimize Super Bot Fight Mode protections for Wordpress.
+
+          sbfm_definitely_automated: Super Bot Fight Mode (SBFM) action to take on definitely automated requests.
+
+          sbfm_static_resource_protection: Super Bot Fight Mode (SBFM) to enable static resource protection. Enable if
+              static resources on your application need bot protection. Note: Static resource
+              protection can also result in legitimate traffic being blocked.
+
+          sbfm_verified_bots: Super Bot Fight Mode (SBFM) action to take on verified bots requests.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def update(
+        self,
+        *,
+        zone_id: str,
+        enable_js: bool | NotGiven = NOT_GIVEN,
+        optimize_wordpress: bool | NotGiven = NOT_GIVEN,
+        sbfm_definitely_automated: Literal["allow", "block", "managed_challenge"] | NotGiven = NOT_GIVEN,
+        sbfm_likely_automated: Literal["allow", "block", "managed_challenge"] | NotGiven = NOT_GIVEN,
+        sbfm_static_resource_protection: bool | NotGiven = NOT_GIVEN,
+        sbfm_verified_bots: Literal["allow", "block"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> BotManagementUpdateResponse:
+        """
+        Updates the Bot Management configuration for a zone.
+
+        This API is used to update:
+
+        - **Bot Fight Mode**
+        - **Super Bot Fight Mode**
+        - **Bot Management for Enterprise**
+
+        See [Bot Plans](https://developers.cloudflare.com/bots/plans/) for more
+        information on the different plans
+
+        Args:
+          zone_id: Identifier
+
+          enable_js: Use lightweight, invisible JavaScript detections to improve Bot Management.
+              [Learn more about JavaScript Detections](https://developers.cloudflare.com/bots/reference/javascript-detections/).
+
+          optimize_wordpress: Whether to optimize Super Bot Fight Mode protections for Wordpress.
+
+          sbfm_definitely_automated: Super Bot Fight Mode (SBFM) action to take on definitely automated requests.
+
+          sbfm_likely_automated: Super Bot Fight Mode (SBFM) action to take on likely automated requests.
+
+          sbfm_static_resource_protection: Super Bot Fight Mode (SBFM) to enable static resource protection. Enable if
+              static resources on your application need bot protection. Note: Static resource
+              protection can also result in legitimate traffic being blocked.
+
+          sbfm_verified_bots: Super Bot Fight Mode (SBFM) action to take on verified bots requests.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
     def update(
         self,
         *,
         zone_id: str,
         auto_update_model: bool | NotGiven = NOT_GIVEN,
         enable_js: bool | NotGiven = NOT_GIVEN,
-        fight_mode: bool | NotGiven = NOT_GIVEN,
-        optimize_wordpress: bool | NotGiven = NOT_GIVEN,
-        sbfm_definitely_automated: Literal["allow", "block", "managed_challenge"] | NotGiven = NOT_GIVEN,
-        sbfm_likely_automated: Literal["allow", "block", "managed_challenge"] | NotGiven = NOT_GIVEN,
-        sbfm_static_resource_protection: bool | NotGiven = NOT_GIVEN,
-        sbfm_verified_bots: Literal["allow", "block"] | NotGiven = NOT_GIVEN,
         suppress_session_score: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -80,20 +233,6 @@ class BotManagement(SyncAPIResource):
           enable_js: Use lightweight, invisible JavaScript detections to improve Bot Management.
               [Learn more about JavaScript Detections](https://developers.cloudflare.com/bots/reference/javascript-detections/).
 
-          fight_mode: Whether to enable Bot Fight Mode.
-
-          optimize_wordpress: Whether to optimize Super Bot Fight Mode protections for Wordpress.
-
-          sbfm_definitely_automated: Super Bot Fight Mode (SBFM) action to take on definitely automated requests.
-
-          sbfm_likely_automated: Super Bot Fight Mode (SBFM) action to take on likely automated requests.
-
-          sbfm_static_resource_protection: Super Bot Fight Mode (SBFM) to enable static resource protection. Enable if
-              static resources on your application need bot protection. Note: Static resource
-              protection can also result in legitimate traffic being blocked.
-
-          sbfm_verified_bots: Super Bot Fight Mode (SBFM) action to take on verified bots requests.
-
           suppress_session_score: Whether to disable tracking the highest bot score for a session in the Bot
               Management cookie.
 
@@ -105,6 +244,29 @@ class BotManagement(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @required_args(["zone_id"], ["zone_id"], ["zone_id"], ["zone_id"])
+    def update(
+        self,
+        *,
+        zone_id: str,
+        enable_js: bool | NotGiven = NOT_GIVEN,
+        fight_mode: bool | NotGiven = NOT_GIVEN,
+        optimize_wordpress: bool | NotGiven = NOT_GIVEN,
+        sbfm_definitely_automated: Literal["allow", "block", "managed_challenge"] | NotGiven = NOT_GIVEN,
+        sbfm_static_resource_protection: bool | NotGiven = NOT_GIVEN,
+        sbfm_verified_bots: Literal["allow", "block"] | NotGiven = NOT_GIVEN,
+        sbfm_likely_automated: Literal["allow", "block", "managed_challenge"] | NotGiven = NOT_GIVEN,
+        auto_update_model: bool | NotGiven = NOT_GIVEN,
+        suppress_session_score: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> BotManagementUpdateResponse:
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
@@ -113,14 +275,14 @@ class BotManagement(SyncAPIResource):
                 f"/zones/{zone_id}/bot_management",
                 body=maybe_transform(
                     {
-                        "auto_update_model": auto_update_model,
                         "enable_js": enable_js,
                         "fight_mode": fight_mode,
                         "optimize_wordpress": optimize_wordpress,
                         "sbfm_definitely_automated": sbfm_definitely_automated,
-                        "sbfm_likely_automated": sbfm_likely_automated,
                         "sbfm_static_resource_protection": sbfm_static_resource_protection,
                         "sbfm_verified_bots": sbfm_verified_bots,
+                        "sbfm_likely_automated": sbfm_likely_automated,
+                        "auto_update_model": auto_update_model,
                         "suppress_session_score": suppress_session_score,
                     },
                     bot_management_update_params.BotManagementUpdateParams,
@@ -192,18 +354,170 @@ class AsyncBotManagement(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncBotManagementWithStreamingResponse:
         return AsyncBotManagementWithStreamingResponse(self)
 
+    @overload
+    async def update(
+        self,
+        *,
+        zone_id: str,
+        enable_js: bool | NotGiven = NOT_GIVEN,
+        fight_mode: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> BotManagementUpdateResponse:
+        """
+        Updates the Bot Management configuration for a zone.
+
+        This API is used to update:
+
+        - **Bot Fight Mode**
+        - **Super Bot Fight Mode**
+        - **Bot Management for Enterprise**
+
+        See [Bot Plans](https://developers.cloudflare.com/bots/plans/) for more
+        information on the different plans
+
+        Args:
+          zone_id: Identifier
+
+          enable_js: Use lightweight, invisible JavaScript detections to improve Bot Management.
+              [Learn more about JavaScript Detections](https://developers.cloudflare.com/bots/reference/javascript-detections/).
+
+          fight_mode: Whether to enable Bot Fight Mode.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def update(
+        self,
+        *,
+        zone_id: str,
+        enable_js: bool | NotGiven = NOT_GIVEN,
+        optimize_wordpress: bool | NotGiven = NOT_GIVEN,
+        sbfm_definitely_automated: Literal["allow", "block", "managed_challenge"] | NotGiven = NOT_GIVEN,
+        sbfm_static_resource_protection: bool | NotGiven = NOT_GIVEN,
+        sbfm_verified_bots: Literal["allow", "block"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> BotManagementUpdateResponse:
+        """
+        Updates the Bot Management configuration for a zone.
+
+        This API is used to update:
+
+        - **Bot Fight Mode**
+        - **Super Bot Fight Mode**
+        - **Bot Management for Enterprise**
+
+        See [Bot Plans](https://developers.cloudflare.com/bots/plans/) for more
+        information on the different plans
+
+        Args:
+          zone_id: Identifier
+
+          enable_js: Use lightweight, invisible JavaScript detections to improve Bot Management.
+              [Learn more about JavaScript Detections](https://developers.cloudflare.com/bots/reference/javascript-detections/).
+
+          optimize_wordpress: Whether to optimize Super Bot Fight Mode protections for Wordpress.
+
+          sbfm_definitely_automated: Super Bot Fight Mode (SBFM) action to take on definitely automated requests.
+
+          sbfm_static_resource_protection: Super Bot Fight Mode (SBFM) to enable static resource protection. Enable if
+              static resources on your application need bot protection. Note: Static resource
+              protection can also result in legitimate traffic being blocked.
+
+          sbfm_verified_bots: Super Bot Fight Mode (SBFM) action to take on verified bots requests.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def update(
+        self,
+        *,
+        zone_id: str,
+        enable_js: bool | NotGiven = NOT_GIVEN,
+        optimize_wordpress: bool | NotGiven = NOT_GIVEN,
+        sbfm_definitely_automated: Literal["allow", "block", "managed_challenge"] | NotGiven = NOT_GIVEN,
+        sbfm_likely_automated: Literal["allow", "block", "managed_challenge"] | NotGiven = NOT_GIVEN,
+        sbfm_static_resource_protection: bool | NotGiven = NOT_GIVEN,
+        sbfm_verified_bots: Literal["allow", "block"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> BotManagementUpdateResponse:
+        """
+        Updates the Bot Management configuration for a zone.
+
+        This API is used to update:
+
+        - **Bot Fight Mode**
+        - **Super Bot Fight Mode**
+        - **Bot Management for Enterprise**
+
+        See [Bot Plans](https://developers.cloudflare.com/bots/plans/) for more
+        information on the different plans
+
+        Args:
+          zone_id: Identifier
+
+          enable_js: Use lightweight, invisible JavaScript detections to improve Bot Management.
+              [Learn more about JavaScript Detections](https://developers.cloudflare.com/bots/reference/javascript-detections/).
+
+          optimize_wordpress: Whether to optimize Super Bot Fight Mode protections for Wordpress.
+
+          sbfm_definitely_automated: Super Bot Fight Mode (SBFM) action to take on definitely automated requests.
+
+          sbfm_likely_automated: Super Bot Fight Mode (SBFM) action to take on likely automated requests.
+
+          sbfm_static_resource_protection: Super Bot Fight Mode (SBFM) to enable static resource protection. Enable if
+              static resources on your application need bot protection. Note: Static resource
+              protection can also result in legitimate traffic being blocked.
+
+          sbfm_verified_bots: Super Bot Fight Mode (SBFM) action to take on verified bots requests.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
     async def update(
         self,
         *,
         zone_id: str,
         auto_update_model: bool | NotGiven = NOT_GIVEN,
         enable_js: bool | NotGiven = NOT_GIVEN,
-        fight_mode: bool | NotGiven = NOT_GIVEN,
-        optimize_wordpress: bool | NotGiven = NOT_GIVEN,
-        sbfm_definitely_automated: Literal["allow", "block", "managed_challenge"] | NotGiven = NOT_GIVEN,
-        sbfm_likely_automated: Literal["allow", "block", "managed_challenge"] | NotGiven = NOT_GIVEN,
-        sbfm_static_resource_protection: bool | NotGiven = NOT_GIVEN,
-        sbfm_verified_bots: Literal["allow", "block"] | NotGiven = NOT_GIVEN,
         suppress_session_score: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -234,20 +548,6 @@ class AsyncBotManagement(AsyncAPIResource):
           enable_js: Use lightweight, invisible JavaScript detections to improve Bot Management.
               [Learn more about JavaScript Detections](https://developers.cloudflare.com/bots/reference/javascript-detections/).
 
-          fight_mode: Whether to enable Bot Fight Mode.
-
-          optimize_wordpress: Whether to optimize Super Bot Fight Mode protections for Wordpress.
-
-          sbfm_definitely_automated: Super Bot Fight Mode (SBFM) action to take on definitely automated requests.
-
-          sbfm_likely_automated: Super Bot Fight Mode (SBFM) action to take on likely automated requests.
-
-          sbfm_static_resource_protection: Super Bot Fight Mode (SBFM) to enable static resource protection. Enable if
-              static resources on your application need bot protection. Note: Static resource
-              protection can also result in legitimate traffic being blocked.
-
-          sbfm_verified_bots: Super Bot Fight Mode (SBFM) action to take on verified bots requests.
-
           suppress_session_score: Whether to disable tracking the highest bot score for a session in the Bot
               Management cookie.
 
@@ -259,6 +559,29 @@ class AsyncBotManagement(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @required_args(["zone_id"], ["zone_id"], ["zone_id"], ["zone_id"])
+    async def update(
+        self,
+        *,
+        zone_id: str,
+        enable_js: bool | NotGiven = NOT_GIVEN,
+        fight_mode: bool | NotGiven = NOT_GIVEN,
+        optimize_wordpress: bool | NotGiven = NOT_GIVEN,
+        sbfm_definitely_automated: Literal["allow", "block", "managed_challenge"] | NotGiven = NOT_GIVEN,
+        sbfm_static_resource_protection: bool | NotGiven = NOT_GIVEN,
+        sbfm_verified_bots: Literal["allow", "block"] | NotGiven = NOT_GIVEN,
+        sbfm_likely_automated: Literal["allow", "block", "managed_challenge"] | NotGiven = NOT_GIVEN,
+        auto_update_model: bool | NotGiven = NOT_GIVEN,
+        suppress_session_score: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> BotManagementUpdateResponse:
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
@@ -267,14 +590,14 @@ class AsyncBotManagement(AsyncAPIResource):
                 f"/zones/{zone_id}/bot_management",
                 body=await async_maybe_transform(
                     {
-                        "auto_update_model": auto_update_model,
                         "enable_js": enable_js,
                         "fight_mode": fight_mode,
                         "optimize_wordpress": optimize_wordpress,
                         "sbfm_definitely_automated": sbfm_definitely_automated,
-                        "sbfm_likely_automated": sbfm_likely_automated,
                         "sbfm_static_resource_protection": sbfm_static_resource_protection,
                         "sbfm_verified_bots": sbfm_verified_bots,
+                        "sbfm_likely_automated": sbfm_likely_automated,
+                        "auto_update_model": auto_update_model,
                         "suppress_session_score": suppress_session_score,
                     },
                     bot_management_update_params.BotManagementUpdateParams,

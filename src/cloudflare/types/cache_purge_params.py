@@ -5,27 +5,54 @@ from __future__ import annotations
 from typing import List, Union
 from typing_extensions import Required, TypedDict
 
-__all__ = ["CachePurgeParams", "File", "FileCachePurgeURLAndHeaders"]
+__all__ = [
+    "CachePurgeParams",
+    "CachePurgeTags",
+    "CachePurgeHosts",
+    "CachePurgePrefixes",
+    "CachePurgeEverything",
+    "CachePurgeFiles",
+    "CachePurgeFilesFile",
+    "CachePurgeFilesFileCachePurgeURLAndHeaders",
+]
 
 
-class CachePurgeParams(TypedDict, total=False):
+class CachePurgeTags(TypedDict, total=False):
     zone_id: Required[str]
-
-    files: List[File]
-
-    hosts: List[str]
-
-    prefixes: List[str]
-
-    purge_everything: bool
 
     tags: List[str]
 
 
-class FileCachePurgeURLAndHeaders(TypedDict, total=False):
+class CachePurgeHosts(TypedDict, total=False):
+    zone_id: Required[str]
+
+    hosts: List[str]
+
+
+class CachePurgePrefixes(TypedDict, total=False):
+    zone_id: Required[str]
+
+    prefixes: List[str]
+
+
+class CachePurgeEverything(TypedDict, total=False):
+    zone_id: Required[str]
+
+    purge_everything: bool
+
+
+class CachePurgeFiles(TypedDict, total=False):
+    zone_id: Required[str]
+
+    files: List[CachePurgeFilesFile]
+
+
+class CachePurgeFilesFileCachePurgeURLAndHeaders(TypedDict, total=False):
     headers: object
 
     url: str
 
 
-File = Union[str, FileCachePurgeURLAndHeaders]
+CachePurgeFilesFile = Union[str, CachePurgeFilesFileCachePurgeURLAndHeaders]
+
+CachePurgeParams = Union[CachePurgeTags, CachePurgeHosts, CachePurgePrefixes, CachePurgeEverything, CachePurgeFiles]

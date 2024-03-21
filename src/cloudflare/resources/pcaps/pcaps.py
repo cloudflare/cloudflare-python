@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Optional, cast
+from typing import Any, Type, Optional, cast, overload
 from typing_extensions import Literal
 
 import httpx
@@ -10,6 +10,7 @@ import httpx
 from ...types import PCAPGetResponse, PCAPListResponse, PCAPCreateResponse, pcap_create_params
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
+    required_args,
     maybe_transform,
     async_maybe_transform,
 )
@@ -62,17 +63,62 @@ class PCAPs(SyncAPIResource):
     def with_streaming_response(self) -> PCAPsWithStreamingResponse:
         return PCAPsWithStreamingResponse(self)
 
+    @overload
     def create(
         self,
         *,
         account_id: str,
+        packet_limit: float,
+        system: Literal["magic-transit"],
+        time_limit: float,
+        type: Literal["simple", "full"],
+        filter_v1: pcap_create_params.MagicVisibilityPCAPsRequestSimpleFilterV1 | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> PCAPCreateResponse:
+        """
+        Create new PCAP request for account.
+
+        Args:
+          account_id: Identifier
+
+          packet_limit: The limit of packets contained in a packet capture.
+
+          system: The system used to collect packet captures.
+
+          time_limit: The packet capture duration in seconds.
+
+          type: The type of packet capture. `Simple` captures sampled packets, and `full`
+              captures entire payloads and non-sampled packets.
+
+          filter_v1: The packet capture filter. When this field is empty, all packets are captured.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        account_id: str,
+        colo_name: str,
+        destination_conf: str,
         system: Literal["magic-transit"],
         time_limit: float,
         type: Literal["simple", "full"],
         byte_limit: float | NotGiven = NOT_GIVEN,
-        colo_name: str | NotGiven = NOT_GIVEN,
-        destination_conf: str | NotGiven = NOT_GIVEN,
-        filter_v1: pcap_create_params.FilterV1 | NotGiven = NOT_GIVEN,
+        filter_v1: pcap_create_params.MagicVisibilityPCAPsRequestFullFilterV1 | NotGiven = NOT_GIVEN,
         packet_limit: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -87,6 +133,12 @@ class PCAPs(SyncAPIResource):
         Args:
           account_id: Identifier
 
+          colo_name: The name of the data center used for the packet capture. This can be a specific
+              colo (ord02) or a multi-colo name (ORD). This field only applies to `full`
+              packet captures.
+
+          destination_conf: The full URI for the bucket. This field only applies to `full` packet captures.
+
           system: The system used to collect packet captures.
 
           time_limit: The packet capture duration in seconds.
@@ -97,11 +149,7 @@ class PCAPs(SyncAPIResource):
           byte_limit: The maximum number of bytes to capture. This field only applies to `full` packet
               captures.
 
-          colo_name: The name of the data center used for the packet capture. This can be a specific
-              colo (ord02) or a multi-colo name (ORD). This field only applies to `full`
-              packet captures.
-
-          destination_conf: The full URI for the bucket. This field only applies to `full` packet captures.
+          filter_v1: The packet capture filter. When this field is empty, all packets are captured.
 
           packet_limit: The limit of packets contained in a packet capture.
 
@@ -113,6 +161,31 @@ class PCAPs(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @required_args(
+        ["account_id", "packet_limit", "system", "time_limit", "type"],
+        ["account_id", "colo_name", "destination_conf", "system", "time_limit", "type"],
+    )
+    def create(
+        self,
+        *,
+        account_id: str,
+        packet_limit: float | NotGiven = NOT_GIVEN,
+        system: Literal["magic-transit"],
+        time_limit: float,
+        type: Literal["simple", "full"],
+        filter_v1: pcap_create_params.MagicVisibilityPCAPsRequestSimpleFilterV1 | NotGiven = NOT_GIVEN,
+        colo_name: str | NotGiven = NOT_GIVEN,
+        destination_conf: str | NotGiven = NOT_GIVEN,
+        byte_limit: float | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> PCAPCreateResponse:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
@@ -121,14 +194,14 @@ class PCAPs(SyncAPIResource):
                 f"/accounts/{account_id}/pcaps",
                 body=maybe_transform(
                     {
+                        "packet_limit": packet_limit,
                         "system": system,
                         "time_limit": time_limit,
                         "type": type,
-                        "byte_limit": byte_limit,
+                        "filter_v1": filter_v1,
                         "colo_name": colo_name,
                         "destination_conf": destination_conf,
-                        "filter_v1": filter_v1,
-                        "packet_limit": packet_limit,
+                        "byte_limit": byte_limit,
                     },
                     pcap_create_params.PCAPCreateParams,
                 ),
@@ -251,17 +324,62 @@ class AsyncPCAPs(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncPCAPsWithStreamingResponse:
         return AsyncPCAPsWithStreamingResponse(self)
 
+    @overload
     async def create(
         self,
         *,
         account_id: str,
+        packet_limit: float,
+        system: Literal["magic-transit"],
+        time_limit: float,
+        type: Literal["simple", "full"],
+        filter_v1: pcap_create_params.MagicVisibilityPCAPsRequestSimpleFilterV1 | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> PCAPCreateResponse:
+        """
+        Create new PCAP request for account.
+
+        Args:
+          account_id: Identifier
+
+          packet_limit: The limit of packets contained in a packet capture.
+
+          system: The system used to collect packet captures.
+
+          time_limit: The packet capture duration in seconds.
+
+          type: The type of packet capture. `Simple` captures sampled packets, and `full`
+              captures entire payloads and non-sampled packets.
+
+          filter_v1: The packet capture filter. When this field is empty, all packets are captured.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        account_id: str,
+        colo_name: str,
+        destination_conf: str,
         system: Literal["magic-transit"],
         time_limit: float,
         type: Literal["simple", "full"],
         byte_limit: float | NotGiven = NOT_GIVEN,
-        colo_name: str | NotGiven = NOT_GIVEN,
-        destination_conf: str | NotGiven = NOT_GIVEN,
-        filter_v1: pcap_create_params.FilterV1 | NotGiven = NOT_GIVEN,
+        filter_v1: pcap_create_params.MagicVisibilityPCAPsRequestFullFilterV1 | NotGiven = NOT_GIVEN,
         packet_limit: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -276,6 +394,12 @@ class AsyncPCAPs(AsyncAPIResource):
         Args:
           account_id: Identifier
 
+          colo_name: The name of the data center used for the packet capture. This can be a specific
+              colo (ord02) or a multi-colo name (ORD). This field only applies to `full`
+              packet captures.
+
+          destination_conf: The full URI for the bucket. This field only applies to `full` packet captures.
+
           system: The system used to collect packet captures.
 
           time_limit: The packet capture duration in seconds.
@@ -286,11 +410,7 @@ class AsyncPCAPs(AsyncAPIResource):
           byte_limit: The maximum number of bytes to capture. This field only applies to `full` packet
               captures.
 
-          colo_name: The name of the data center used for the packet capture. This can be a specific
-              colo (ord02) or a multi-colo name (ORD). This field only applies to `full`
-              packet captures.
-
-          destination_conf: The full URI for the bucket. This field only applies to `full` packet captures.
+          filter_v1: The packet capture filter. When this field is empty, all packets are captured.
 
           packet_limit: The limit of packets contained in a packet capture.
 
@@ -302,6 +422,31 @@ class AsyncPCAPs(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @required_args(
+        ["account_id", "packet_limit", "system", "time_limit", "type"],
+        ["account_id", "colo_name", "destination_conf", "system", "time_limit", "type"],
+    )
+    async def create(
+        self,
+        *,
+        account_id: str,
+        packet_limit: float | NotGiven = NOT_GIVEN,
+        system: Literal["magic-transit"],
+        time_limit: float,
+        type: Literal["simple", "full"],
+        filter_v1: pcap_create_params.MagicVisibilityPCAPsRequestSimpleFilterV1 | NotGiven = NOT_GIVEN,
+        colo_name: str | NotGiven = NOT_GIVEN,
+        destination_conf: str | NotGiven = NOT_GIVEN,
+        byte_limit: float | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> PCAPCreateResponse:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
@@ -310,14 +455,14 @@ class AsyncPCAPs(AsyncAPIResource):
                 f"/accounts/{account_id}/pcaps",
                 body=await async_maybe_transform(
                     {
+                        "packet_limit": packet_limit,
                         "system": system,
                         "time_limit": time_limit,
                         "type": type,
-                        "byte_limit": byte_limit,
+                        "filter_v1": filter_v1,
                         "colo_name": colo_name,
                         "destination_conf": destination_conf,
-                        "filter_v1": filter_v1,
-                        "packet_limit": packet_limit,
+                        "byte_limit": byte_limit,
                     },
                     pcap_create_params.PCAPCreateParams,
                 ),
