@@ -23,8 +23,10 @@ class TestApplications:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create(self, client: Cloudflare) -> None:
+    def test_method_create_overload_1(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.create(
+            domain="test.example.com/admin",
+            type="self_hosted",
             account_id="string",
             zone_id="string",
         )
@@ -32,8 +34,10 @@ class TestApplications:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
+    def test_method_create_with_all_params_overload_1(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.create(
+            domain="test.example.com/admin",
+            type="self_hosted",
             account_id="string",
             zone_id="string",
             allow_authenticate_via_warp=True,
@@ -42,7 +46,7 @@ class TestApplications:
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
             ],
-            app_launcher_visible={},
+            app_launcher_visible=True,
             auto_redirect_to_identity=True,
             cors_headers={
                 "allow_all_headers": True,
@@ -62,12 +66,100 @@ class TestApplications:
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
             ],
-            domain="https://mybookmark.com",
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
             path_cookie_attribute=True,
+            same_site_cookie_attribute="strict",
+            self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
+            service_auth_401_redirect=True,
+            session_duration="24h",
+            skip_interstitial=True,
+            tags=["engineers", "engineers", "engineers"],
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_create_overload_1(self, client: Cloudflare) -> None:
+        response = client.zero_trust.access.applications.with_raw_response.create(
+            domain="test.example.com/admin",
+            type="self_hosted",
+            account_id="string",
+            zone_id="string",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        application = response.parse()
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_create_overload_1(self, client: Cloudflare) -> None:
+        with client.zero_trust.access.applications.with_streaming_response.create(
+            domain="test.example.com/admin",
+            type="self_hosted",
+            account_id="string",
+            zone_id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            application = response.parse()
+            assert_matches_type(AccessApps, application, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_create_overload_1(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.zero_trust.access.applications.with_raw_response.create(
+                domain="test.example.com/admin",
+                type="self_hosted",
+                account_id="",
+                zone_id="string",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            client.zero_trust.access.applications.with_raw_response.create(
+                domain="test.example.com/admin",
+                type="self_hosted",
+                account_id="string",
+                zone_id="",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_create_overload_2(self, client: Cloudflare) -> None:
+        application = client.zero_trust.access.applications.create(
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_create_with_all_params_overload_2(self, client: Cloudflare) -> None:
+        application = client.zero_trust.access.applications.create(
+            account_id="string",
+            zone_id="string",
+            allowed_idps=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
+            app_launcher_visible=True,
+            auto_redirect_to_identity=True,
+            custom_pages=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
+            logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+            name="Admin Site",
             saas_app={
                 "auth_type": "saml",
                 "consumer_service_url": "https://example.com",
@@ -84,19 +176,14 @@ class TestApplications:
                 "sp_entity_id": "example unique name",
                 "sso_endpoint": "https://example.cloudflareaccess.com/cdn-cgi/access/sso/saml/b3f58a2b414e0b51d45c8c2af26fccca0e27c63763c426fa52f98dcf0b3b3bfd",
             },
-            same_site_cookie_attribute="strict",
-            self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
-            service_auth_401_redirect=True,
-            session_duration="24h",
-            skip_interstitial=True,
             tags=["engineers", "engineers", "engineers"],
-            type="bookmark",
+            type="saas",
         )
         assert_matches_type(AccessApps, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_create(self, client: Cloudflare) -> None:
+    def test_raw_response_create_overload_2(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.applications.with_raw_response.create(
             account_id="string",
             zone_id="string",
@@ -109,7 +196,7 @@ class TestApplications:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_create(self, client: Cloudflare) -> None:
+    def test_streaming_response_create_overload_2(self, client: Cloudflare) -> None:
         with client.zero_trust.access.applications.with_streaming_response.create(
             account_id="string",
             zone_id="string",
@@ -124,7 +211,7 @@ class TestApplications:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_create(self, client: Cloudflare) -> None:
+    def test_path_params_create_overload_2(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.create(
                 account_id="",
@@ -139,9 +226,10 @@ class TestApplications:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_update(self, client: Cloudflare) -> None:
-        application = client.zero_trust.access.applications.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+    def test_method_create_overload_3(self, client: Cloudflare) -> None:
+        application = client.zero_trust.access.applications.create(
+            domain="test.example.com/admin",
+            type="ssh",
             account_id="string",
             zone_id="string",
         )
@@ -149,9 +237,10 @@ class TestApplications:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_update_with_all_params(self, client: Cloudflare) -> None:
-        application = client.zero_trust.access.applications.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+    def test_method_create_with_all_params_overload_3(self, client: Cloudflare) -> None:
+        application = client.zero_trust.access.applications.create(
+            domain="test.example.com/admin",
+            type="ssh",
             account_id="string",
             zone_id="string",
             allow_authenticate_via_warp=True,
@@ -160,7 +249,7 @@ class TestApplications:
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
             ],
-            app_launcher_visible={},
+            app_launcher_visible=True,
             auto_redirect_to_identity=True,
             cors_headers={
                 "allow_all_headers": True,
@@ -180,12 +269,617 @@ class TestApplications:
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
             ],
-            domain="https://mybookmark.com",
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
             path_cookie_attribute=True,
+            same_site_cookie_attribute="strict",
+            self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
+            service_auth_401_redirect=True,
+            session_duration="24h",
+            skip_interstitial=True,
+            tags=["engineers", "engineers", "engineers"],
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_create_overload_3(self, client: Cloudflare) -> None:
+        response = client.zero_trust.access.applications.with_raw_response.create(
+            domain="test.example.com/admin",
+            type="ssh",
+            account_id="string",
+            zone_id="string",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        application = response.parse()
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_create_overload_3(self, client: Cloudflare) -> None:
+        with client.zero_trust.access.applications.with_streaming_response.create(
+            domain="test.example.com/admin",
+            type="ssh",
+            account_id="string",
+            zone_id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            application = response.parse()
+            assert_matches_type(AccessApps, application, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_create_overload_3(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.zero_trust.access.applications.with_raw_response.create(
+                domain="test.example.com/admin",
+                type="ssh",
+                account_id="",
+                zone_id="string",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            client.zero_trust.access.applications.with_raw_response.create(
+                domain="test.example.com/admin",
+                type="ssh",
+                account_id="string",
+                zone_id="",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_create_overload_4(self, client: Cloudflare) -> None:
+        application = client.zero_trust.access.applications.create(
+            domain="test.example.com/admin",
+            type="vnc",
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_create_with_all_params_overload_4(self, client: Cloudflare) -> None:
+        application = client.zero_trust.access.applications.create(
+            domain="test.example.com/admin",
+            type="vnc",
+            account_id="string",
+            zone_id="string",
+            allow_authenticate_via_warp=True,
+            allowed_idps=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
+            app_launcher_visible=True,
+            auto_redirect_to_identity=True,
+            cors_headers={
+                "allow_all_headers": True,
+                "allow_all_methods": True,
+                "allow_all_origins": True,
+                "allow_credentials": True,
+                "allowed_headers": [{}, {}, {}],
+                "allowed_methods": ["GET"],
+                "allowed_origins": ["https://example.com"],
+                "max_age": -1,
+            },
+            custom_deny_message="string",
+            custom_deny_url="string",
+            custom_non_identity_deny_url="string",
+            custom_pages=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
+            enable_binding_cookie=True,
+            http_only_cookie_attribute=True,
+            logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+            name="Admin Site",
+            path_cookie_attribute=True,
+            same_site_cookie_attribute="strict",
+            self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
+            service_auth_401_redirect=True,
+            session_duration="24h",
+            skip_interstitial=True,
+            tags=["engineers", "engineers", "engineers"],
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_create_overload_4(self, client: Cloudflare) -> None:
+        response = client.zero_trust.access.applications.with_raw_response.create(
+            domain="test.example.com/admin",
+            type="vnc",
+            account_id="string",
+            zone_id="string",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        application = response.parse()
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_create_overload_4(self, client: Cloudflare) -> None:
+        with client.zero_trust.access.applications.with_streaming_response.create(
+            domain="test.example.com/admin",
+            type="vnc",
+            account_id="string",
+            zone_id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            application = response.parse()
+            assert_matches_type(AccessApps, application, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_create_overload_4(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.zero_trust.access.applications.with_raw_response.create(
+                domain="test.example.com/admin",
+                type="vnc",
+                account_id="",
+                zone_id="string",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            client.zero_trust.access.applications.with_raw_response.create(
+                domain="test.example.com/admin",
+                type="vnc",
+                account_id="string",
+                zone_id="",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_create_overload_5(self, client: Cloudflare) -> None:
+        application = client.zero_trust.access.applications.create(
+            type="app_launcher",
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_create_with_all_params_overload_5(self, client: Cloudflare) -> None:
+        application = client.zero_trust.access.applications.create(
+            type="app_launcher",
+            account_id="string",
+            zone_id="string",
+            allowed_idps=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
+            auto_redirect_to_identity=True,
+            session_duration="24h",
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_create_overload_5(self, client: Cloudflare) -> None:
+        response = client.zero_trust.access.applications.with_raw_response.create(
+            type="app_launcher",
+            account_id="string",
+            zone_id="string",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        application = response.parse()
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_create_overload_5(self, client: Cloudflare) -> None:
+        with client.zero_trust.access.applications.with_streaming_response.create(
+            type="app_launcher",
+            account_id="string",
+            zone_id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            application = response.parse()
+            assert_matches_type(AccessApps, application, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_create_overload_5(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.zero_trust.access.applications.with_raw_response.create(
+                type="app_launcher",
+                account_id="",
+                zone_id="string",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            client.zero_trust.access.applications.with_raw_response.create(
+                type="app_launcher",
+                account_id="string",
+                zone_id="",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_create_overload_6(self, client: Cloudflare) -> None:
+        application = client.zero_trust.access.applications.create(
+            type="warp",
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_create_with_all_params_overload_6(self, client: Cloudflare) -> None:
+        application = client.zero_trust.access.applications.create(
+            type="warp",
+            account_id="string",
+            zone_id="string",
+            allowed_idps=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
+            auto_redirect_to_identity=True,
+            session_duration="24h",
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_create_overload_6(self, client: Cloudflare) -> None:
+        response = client.zero_trust.access.applications.with_raw_response.create(
+            type="warp",
+            account_id="string",
+            zone_id="string",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        application = response.parse()
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_create_overload_6(self, client: Cloudflare) -> None:
+        with client.zero_trust.access.applications.with_streaming_response.create(
+            type="warp",
+            account_id="string",
+            zone_id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            application = response.parse()
+            assert_matches_type(AccessApps, application, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_create_overload_6(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.zero_trust.access.applications.with_raw_response.create(
+                type="warp",
+                account_id="",
+                zone_id="string",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            client.zero_trust.access.applications.with_raw_response.create(
+                type="warp",
+                account_id="string",
+                zone_id="",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_create_overload_7(self, client: Cloudflare) -> None:
+        application = client.zero_trust.access.applications.create(
+            type="biso",
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_create_with_all_params_overload_7(self, client: Cloudflare) -> None:
+        application = client.zero_trust.access.applications.create(
+            type="biso",
+            account_id="string",
+            zone_id="string",
+            allowed_idps=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
+            auto_redirect_to_identity=True,
+            session_duration="24h",
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_create_overload_7(self, client: Cloudflare) -> None:
+        response = client.zero_trust.access.applications.with_raw_response.create(
+            type="biso",
+            account_id="string",
+            zone_id="string",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        application = response.parse()
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_create_overload_7(self, client: Cloudflare) -> None:
+        with client.zero_trust.access.applications.with_streaming_response.create(
+            type="biso",
+            account_id="string",
+            zone_id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            application = response.parse()
+            assert_matches_type(AccessApps, application, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_create_overload_7(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.zero_trust.access.applications.with_raw_response.create(
+                type="biso",
+                account_id="",
+                zone_id="string",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            client.zero_trust.access.applications.with_raw_response.create(
+                type="biso",
+                account_id="string",
+                zone_id="",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_create_overload_8(self, client: Cloudflare) -> None:
+        application = client.zero_trust.access.applications.create(
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_create_with_all_params_overload_8(self, client: Cloudflare) -> None:
+        application = client.zero_trust.access.applications.create(
+            account_id="string",
+            zone_id="string",
+            app_launcher_visible={},
+            domain="https://mybookmark.com",
+            logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+            name="Admin Site",
+            tags=["engineers", "engineers", "engineers"],
+            type="bookmark",
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_create_overload_8(self, client: Cloudflare) -> None:
+        response = client.zero_trust.access.applications.with_raw_response.create(
+            account_id="string",
+            zone_id="string",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        application = response.parse()
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_create_overload_8(self, client: Cloudflare) -> None:
+        with client.zero_trust.access.applications.with_streaming_response.create(
+            account_id="string",
+            zone_id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            application = response.parse()
+            assert_matches_type(AccessApps, application, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_create_overload_8(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.zero_trust.access.applications.with_raw_response.create(
+                account_id="",
+                zone_id="string",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            client.zero_trust.access.applications.with_raw_response.create(
+                account_id="string",
+                zone_id="",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_update_overload_1(self, client: Cloudflare) -> None:
+        application = client.zero_trust.access.applications.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            domain="test.example.com/admin",
+            type="self_hosted",
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_update_with_all_params_overload_1(self, client: Cloudflare) -> None:
+        application = client.zero_trust.access.applications.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            domain="test.example.com/admin",
+            type="self_hosted",
+            account_id="string",
+            zone_id="string",
+            allow_authenticate_via_warp=True,
+            allowed_idps=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
+            app_launcher_visible=True,
+            auto_redirect_to_identity=True,
+            cors_headers={
+                "allow_all_headers": True,
+                "allow_all_methods": True,
+                "allow_all_origins": True,
+                "allow_credentials": True,
+                "allowed_headers": [{}, {}, {}],
+                "allowed_methods": ["GET"],
+                "allowed_origins": ["https://example.com"],
+                "max_age": -1,
+            },
+            custom_deny_message="string",
+            custom_deny_url="string",
+            custom_non_identity_deny_url="string",
+            custom_pages=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
+            enable_binding_cookie=True,
+            http_only_cookie_attribute=True,
+            logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+            name="Admin Site",
+            path_cookie_attribute=True,
+            same_site_cookie_attribute="strict",
+            self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
+            service_auth_401_redirect=True,
+            session_duration="24h",
+            skip_interstitial=True,
+            tags=["engineers", "engineers", "engineers"],
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_update_overload_1(self, client: Cloudflare) -> None:
+        response = client.zero_trust.access.applications.with_raw_response.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            domain="test.example.com/admin",
+            type="self_hosted",
+            account_id="string",
+            zone_id="string",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        application = response.parse()
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_update_overload_1(self, client: Cloudflare) -> None:
+        with client.zero_trust.access.applications.with_streaming_response.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            domain="test.example.com/admin",
+            type="self_hosted",
+            account_id="string",
+            zone_id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            application = response.parse()
+            assert_matches_type(AccessApps, application, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_update_overload_1(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.zero_trust.access.applications.with_raw_response.update(
+                "023e105f4ecef8ad9ca31a8372d0c353",
+                domain="test.example.com/admin",
+                type="self_hosted",
+                account_id="",
+                zone_id="string",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            client.zero_trust.access.applications.with_raw_response.update(
+                "023e105f4ecef8ad9ca31a8372d0c353",
+                domain="test.example.com/admin",
+                type="self_hosted",
+                account_id="string",
+                zone_id="",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_update_overload_2(self, client: Cloudflare) -> None:
+        application = client.zero_trust.access.applications.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_update_with_all_params_overload_2(self, client: Cloudflare) -> None:
+        application = client.zero_trust.access.applications.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="string",
+            zone_id="string",
+            allowed_idps=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
+            app_launcher_visible=True,
+            auto_redirect_to_identity=True,
+            custom_pages=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
+            logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+            name="Admin Site",
             saas_app={
                 "auth_type": "saml",
                 "consumer_service_url": "https://example.com",
@@ -202,19 +896,14 @@ class TestApplications:
                 "sp_entity_id": "example unique name",
                 "sso_endpoint": "https://example.cloudflareaccess.com/cdn-cgi/access/sso/saml/b3f58a2b414e0b51d45c8c2af26fccca0e27c63763c426fa52f98dcf0b3b3bfd",
             },
-            same_site_cookie_attribute="strict",
-            self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
-            service_auth_401_redirect=True,
-            session_duration="24h",
-            skip_interstitial=True,
             tags=["engineers", "engineers", "engineers"],
-            type="bookmark",
+            type="saas",
         )
         assert_matches_type(AccessApps, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_update(self, client: Cloudflare) -> None:
+    def test_raw_response_update_overload_2(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.applications.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="string",
@@ -228,7 +917,7 @@ class TestApplications:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_update(self, client: Cloudflare) -> None:
+    def test_streaming_response_update_overload_2(self, client: Cloudflare) -> None:
         with client.zero_trust.access.applications.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="string",
@@ -244,7 +933,552 @@ class TestApplications:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_update(self, client: Cloudflare) -> None:
+    def test_path_params_update_overload_2(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.zero_trust.access.applications.with_raw_response.update(
+                "023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="",
+                zone_id="string",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            client.zero_trust.access.applications.with_raw_response.update(
+                "023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="string",
+                zone_id="",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_update_overload_3(self, client: Cloudflare) -> None:
+        application = client.zero_trust.access.applications.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            domain="test.example.com/admin",
+            type="ssh",
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_update_with_all_params_overload_3(self, client: Cloudflare) -> None:
+        application = client.zero_trust.access.applications.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            domain="test.example.com/admin",
+            type="ssh",
+            account_id="string",
+            zone_id="string",
+            allow_authenticate_via_warp=True,
+            allowed_idps=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
+            app_launcher_visible=True,
+            auto_redirect_to_identity=True,
+            cors_headers={
+                "allow_all_headers": True,
+                "allow_all_methods": True,
+                "allow_all_origins": True,
+                "allow_credentials": True,
+                "allowed_headers": [{}, {}, {}],
+                "allowed_methods": ["GET"],
+                "allowed_origins": ["https://example.com"],
+                "max_age": -1,
+            },
+            custom_deny_message="string",
+            custom_deny_url="string",
+            custom_non_identity_deny_url="string",
+            custom_pages=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
+            enable_binding_cookie=True,
+            http_only_cookie_attribute=True,
+            logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+            name="Admin Site",
+            path_cookie_attribute=True,
+            same_site_cookie_attribute="strict",
+            self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
+            service_auth_401_redirect=True,
+            session_duration="24h",
+            skip_interstitial=True,
+            tags=["engineers", "engineers", "engineers"],
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_update_overload_3(self, client: Cloudflare) -> None:
+        response = client.zero_trust.access.applications.with_raw_response.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            domain="test.example.com/admin",
+            type="ssh",
+            account_id="string",
+            zone_id="string",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        application = response.parse()
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_update_overload_3(self, client: Cloudflare) -> None:
+        with client.zero_trust.access.applications.with_streaming_response.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            domain="test.example.com/admin",
+            type="ssh",
+            account_id="string",
+            zone_id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            application = response.parse()
+            assert_matches_type(AccessApps, application, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_update_overload_3(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.zero_trust.access.applications.with_raw_response.update(
+                "023e105f4ecef8ad9ca31a8372d0c353",
+                domain="test.example.com/admin",
+                type="ssh",
+                account_id="",
+                zone_id="string",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            client.zero_trust.access.applications.with_raw_response.update(
+                "023e105f4ecef8ad9ca31a8372d0c353",
+                domain="test.example.com/admin",
+                type="ssh",
+                account_id="string",
+                zone_id="",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_update_overload_4(self, client: Cloudflare) -> None:
+        application = client.zero_trust.access.applications.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            domain="test.example.com/admin",
+            type="vnc",
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_update_with_all_params_overload_4(self, client: Cloudflare) -> None:
+        application = client.zero_trust.access.applications.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            domain="test.example.com/admin",
+            type="vnc",
+            account_id="string",
+            zone_id="string",
+            allow_authenticate_via_warp=True,
+            allowed_idps=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
+            app_launcher_visible=True,
+            auto_redirect_to_identity=True,
+            cors_headers={
+                "allow_all_headers": True,
+                "allow_all_methods": True,
+                "allow_all_origins": True,
+                "allow_credentials": True,
+                "allowed_headers": [{}, {}, {}],
+                "allowed_methods": ["GET"],
+                "allowed_origins": ["https://example.com"],
+                "max_age": -1,
+            },
+            custom_deny_message="string",
+            custom_deny_url="string",
+            custom_non_identity_deny_url="string",
+            custom_pages=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
+            enable_binding_cookie=True,
+            http_only_cookie_attribute=True,
+            logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+            name="Admin Site",
+            path_cookie_attribute=True,
+            same_site_cookie_attribute="strict",
+            self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
+            service_auth_401_redirect=True,
+            session_duration="24h",
+            skip_interstitial=True,
+            tags=["engineers", "engineers", "engineers"],
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_update_overload_4(self, client: Cloudflare) -> None:
+        response = client.zero_trust.access.applications.with_raw_response.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            domain="test.example.com/admin",
+            type="vnc",
+            account_id="string",
+            zone_id="string",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        application = response.parse()
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_update_overload_4(self, client: Cloudflare) -> None:
+        with client.zero_trust.access.applications.with_streaming_response.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            domain="test.example.com/admin",
+            type="vnc",
+            account_id="string",
+            zone_id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            application = response.parse()
+            assert_matches_type(AccessApps, application, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_update_overload_4(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.zero_trust.access.applications.with_raw_response.update(
+                "023e105f4ecef8ad9ca31a8372d0c353",
+                domain="test.example.com/admin",
+                type="vnc",
+                account_id="",
+                zone_id="string",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            client.zero_trust.access.applications.with_raw_response.update(
+                "023e105f4ecef8ad9ca31a8372d0c353",
+                domain="test.example.com/admin",
+                type="vnc",
+                account_id="string",
+                zone_id="",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_update_overload_5(self, client: Cloudflare) -> None:
+        application = client.zero_trust.access.applications.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            type="app_launcher",
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_update_with_all_params_overload_5(self, client: Cloudflare) -> None:
+        application = client.zero_trust.access.applications.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            type="app_launcher",
+            account_id="string",
+            zone_id="string",
+            allowed_idps=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
+            auto_redirect_to_identity=True,
+            session_duration="24h",
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_update_overload_5(self, client: Cloudflare) -> None:
+        response = client.zero_trust.access.applications.with_raw_response.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            type="app_launcher",
+            account_id="string",
+            zone_id="string",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        application = response.parse()
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_update_overload_5(self, client: Cloudflare) -> None:
+        with client.zero_trust.access.applications.with_streaming_response.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            type="app_launcher",
+            account_id="string",
+            zone_id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            application = response.parse()
+            assert_matches_type(AccessApps, application, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_update_overload_5(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.zero_trust.access.applications.with_raw_response.update(
+                "023e105f4ecef8ad9ca31a8372d0c353",
+                type="app_launcher",
+                account_id="",
+                zone_id="string",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            client.zero_trust.access.applications.with_raw_response.update(
+                "023e105f4ecef8ad9ca31a8372d0c353",
+                type="app_launcher",
+                account_id="string",
+                zone_id="",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_update_overload_6(self, client: Cloudflare) -> None:
+        application = client.zero_trust.access.applications.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            type="warp",
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_update_with_all_params_overload_6(self, client: Cloudflare) -> None:
+        application = client.zero_trust.access.applications.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            type="warp",
+            account_id="string",
+            zone_id="string",
+            allowed_idps=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
+            auto_redirect_to_identity=True,
+            session_duration="24h",
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_update_overload_6(self, client: Cloudflare) -> None:
+        response = client.zero_trust.access.applications.with_raw_response.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            type="warp",
+            account_id="string",
+            zone_id="string",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        application = response.parse()
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_update_overload_6(self, client: Cloudflare) -> None:
+        with client.zero_trust.access.applications.with_streaming_response.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            type="warp",
+            account_id="string",
+            zone_id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            application = response.parse()
+            assert_matches_type(AccessApps, application, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_update_overload_6(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.zero_trust.access.applications.with_raw_response.update(
+                "023e105f4ecef8ad9ca31a8372d0c353",
+                type="warp",
+                account_id="",
+                zone_id="string",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            client.zero_trust.access.applications.with_raw_response.update(
+                "023e105f4ecef8ad9ca31a8372d0c353",
+                type="warp",
+                account_id="string",
+                zone_id="",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_update_overload_7(self, client: Cloudflare) -> None:
+        application = client.zero_trust.access.applications.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            type="biso",
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_update_with_all_params_overload_7(self, client: Cloudflare) -> None:
+        application = client.zero_trust.access.applications.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            type="biso",
+            account_id="string",
+            zone_id="string",
+            allowed_idps=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
+            auto_redirect_to_identity=True,
+            session_duration="24h",
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_update_overload_7(self, client: Cloudflare) -> None:
+        response = client.zero_trust.access.applications.with_raw_response.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            type="biso",
+            account_id="string",
+            zone_id="string",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        application = response.parse()
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_update_overload_7(self, client: Cloudflare) -> None:
+        with client.zero_trust.access.applications.with_streaming_response.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            type="biso",
+            account_id="string",
+            zone_id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            application = response.parse()
+            assert_matches_type(AccessApps, application, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_update_overload_7(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.zero_trust.access.applications.with_raw_response.update(
+                "023e105f4ecef8ad9ca31a8372d0c353",
+                type="biso",
+                account_id="",
+                zone_id="string",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            client.zero_trust.access.applications.with_raw_response.update(
+                "023e105f4ecef8ad9ca31a8372d0c353",
+                type="biso",
+                account_id="string",
+                zone_id="",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_update_overload_8(self, client: Cloudflare) -> None:
+        application = client.zero_trust.access.applications.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_update_with_all_params_overload_8(self, client: Cloudflare) -> None:
+        application = client.zero_trust.access.applications.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="string",
+            zone_id="string",
+            app_launcher_visible={},
+            domain="https://mybookmark.com",
+            logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+            name="Admin Site",
+            tags=["engineers", "engineers", "engineers"],
+            type="bookmark",
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_update_overload_8(self, client: Cloudflare) -> None:
+        response = client.zero_trust.access.applications.with_raw_response.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="string",
+            zone_id="string",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        application = response.parse()
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_update_overload_8(self, client: Cloudflare) -> None:
+        with client.zero_trust.access.applications.with_streaming_response.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="string",
+            zone_id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            application = response.parse()
+            assert_matches_type(AccessApps, application, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_update_overload_8(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
@@ -527,8 +1761,10 @@ class TestAsyncApplications:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create(self, async_client: AsyncCloudflare) -> None:
+    async def test_method_create_overload_1(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.create(
+            domain="test.example.com/admin",
+            type="self_hosted",
             account_id="string",
             zone_id="string",
         )
@@ -536,8 +1772,10 @@ class TestAsyncApplications:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
+    async def test_method_create_with_all_params_overload_1(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.create(
+            domain="test.example.com/admin",
+            type="self_hosted",
             account_id="string",
             zone_id="string",
             allow_authenticate_via_warp=True,
@@ -546,7 +1784,7 @@ class TestAsyncApplications:
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
             ],
-            app_launcher_visible={},
+            app_launcher_visible=True,
             auto_redirect_to_identity=True,
             cors_headers={
                 "allow_all_headers": True,
@@ -566,12 +1804,100 @@ class TestAsyncApplications:
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
             ],
-            domain="https://mybookmark.com",
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
             path_cookie_attribute=True,
+            same_site_cookie_attribute="strict",
+            self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
+            service_auth_401_redirect=True,
+            session_duration="24h",
+            skip_interstitial=True,
+            tags=["engineers", "engineers", "engineers"],
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_create_overload_1(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.zero_trust.access.applications.with_raw_response.create(
+            domain="test.example.com/admin",
+            type="self_hosted",
+            account_id="string",
+            zone_id="string",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        application = await response.parse()
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_create_overload_1(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.zero_trust.access.applications.with_streaming_response.create(
+            domain="test.example.com/admin",
+            type="self_hosted",
+            account_id="string",
+            zone_id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            application = await response.parse()
+            assert_matches_type(AccessApps, application, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_create_overload_1(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.zero_trust.access.applications.with_raw_response.create(
+                domain="test.example.com/admin",
+                type="self_hosted",
+                account_id="",
+                zone_id="string",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            await async_client.zero_trust.access.applications.with_raw_response.create(
+                domain="test.example.com/admin",
+                type="self_hosted",
+                account_id="string",
+                zone_id="",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_create_overload_2(self, async_client: AsyncCloudflare) -> None:
+        application = await async_client.zero_trust.access.applications.create(
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_create_with_all_params_overload_2(self, async_client: AsyncCloudflare) -> None:
+        application = await async_client.zero_trust.access.applications.create(
+            account_id="string",
+            zone_id="string",
+            allowed_idps=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
+            app_launcher_visible=True,
+            auto_redirect_to_identity=True,
+            custom_pages=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
+            logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+            name="Admin Site",
             saas_app={
                 "auth_type": "saml",
                 "consumer_service_url": "https://example.com",
@@ -588,19 +1914,14 @@ class TestAsyncApplications:
                 "sp_entity_id": "example unique name",
                 "sso_endpoint": "https://example.cloudflareaccess.com/cdn-cgi/access/sso/saml/b3f58a2b414e0b51d45c8c2af26fccca0e27c63763c426fa52f98dcf0b3b3bfd",
             },
-            same_site_cookie_attribute="strict",
-            self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
-            service_auth_401_redirect=True,
-            session_duration="24h",
-            skip_interstitial=True,
             tags=["engineers", "engineers", "engineers"],
-            type="bookmark",
+            type="saas",
         )
         assert_matches_type(AccessApps, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
+    async def test_raw_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.applications.with_raw_response.create(
             account_id="string",
             zone_id="string",
@@ -613,7 +1934,7 @@ class TestAsyncApplications:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
+    async def test_streaming_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.applications.with_streaming_response.create(
             account_id="string",
             zone_id="string",
@@ -628,7 +1949,7 @@ class TestAsyncApplications:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
+    async def test_path_params_create_overload_2(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.create(
                 account_id="",
@@ -643,9 +1964,10 @@ class TestAsyncApplications:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_update(self, async_client: AsyncCloudflare) -> None:
-        application = await async_client.zero_trust.access.applications.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+    async def test_method_create_overload_3(self, async_client: AsyncCloudflare) -> None:
+        application = await async_client.zero_trust.access.applications.create(
+            domain="test.example.com/admin",
+            type="ssh",
             account_id="string",
             zone_id="string",
         )
@@ -653,9 +1975,10 @@ class TestAsyncApplications:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        application = await async_client.zero_trust.access.applications.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+    async def test_method_create_with_all_params_overload_3(self, async_client: AsyncCloudflare) -> None:
+        application = await async_client.zero_trust.access.applications.create(
+            domain="test.example.com/admin",
+            type="ssh",
             account_id="string",
             zone_id="string",
             allow_authenticate_via_warp=True,
@@ -664,7 +1987,7 @@ class TestAsyncApplications:
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
             ],
-            app_launcher_visible={},
+            app_launcher_visible=True,
             auto_redirect_to_identity=True,
             cors_headers={
                 "allow_all_headers": True,
@@ -684,12 +2007,617 @@ class TestAsyncApplications:
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
             ],
-            domain="https://mybookmark.com",
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
             path_cookie_attribute=True,
+            same_site_cookie_attribute="strict",
+            self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
+            service_auth_401_redirect=True,
+            session_duration="24h",
+            skip_interstitial=True,
+            tags=["engineers", "engineers", "engineers"],
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_create_overload_3(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.zero_trust.access.applications.with_raw_response.create(
+            domain="test.example.com/admin",
+            type="ssh",
+            account_id="string",
+            zone_id="string",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        application = await response.parse()
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_create_overload_3(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.zero_trust.access.applications.with_streaming_response.create(
+            domain="test.example.com/admin",
+            type="ssh",
+            account_id="string",
+            zone_id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            application = await response.parse()
+            assert_matches_type(AccessApps, application, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_create_overload_3(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.zero_trust.access.applications.with_raw_response.create(
+                domain="test.example.com/admin",
+                type="ssh",
+                account_id="",
+                zone_id="string",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            await async_client.zero_trust.access.applications.with_raw_response.create(
+                domain="test.example.com/admin",
+                type="ssh",
+                account_id="string",
+                zone_id="",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_create_overload_4(self, async_client: AsyncCloudflare) -> None:
+        application = await async_client.zero_trust.access.applications.create(
+            domain="test.example.com/admin",
+            type="vnc",
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_create_with_all_params_overload_4(self, async_client: AsyncCloudflare) -> None:
+        application = await async_client.zero_trust.access.applications.create(
+            domain="test.example.com/admin",
+            type="vnc",
+            account_id="string",
+            zone_id="string",
+            allow_authenticate_via_warp=True,
+            allowed_idps=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
+            app_launcher_visible=True,
+            auto_redirect_to_identity=True,
+            cors_headers={
+                "allow_all_headers": True,
+                "allow_all_methods": True,
+                "allow_all_origins": True,
+                "allow_credentials": True,
+                "allowed_headers": [{}, {}, {}],
+                "allowed_methods": ["GET"],
+                "allowed_origins": ["https://example.com"],
+                "max_age": -1,
+            },
+            custom_deny_message="string",
+            custom_deny_url="string",
+            custom_non_identity_deny_url="string",
+            custom_pages=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
+            enable_binding_cookie=True,
+            http_only_cookie_attribute=True,
+            logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+            name="Admin Site",
+            path_cookie_attribute=True,
+            same_site_cookie_attribute="strict",
+            self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
+            service_auth_401_redirect=True,
+            session_duration="24h",
+            skip_interstitial=True,
+            tags=["engineers", "engineers", "engineers"],
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_create_overload_4(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.zero_trust.access.applications.with_raw_response.create(
+            domain="test.example.com/admin",
+            type="vnc",
+            account_id="string",
+            zone_id="string",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        application = await response.parse()
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_create_overload_4(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.zero_trust.access.applications.with_streaming_response.create(
+            domain="test.example.com/admin",
+            type="vnc",
+            account_id="string",
+            zone_id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            application = await response.parse()
+            assert_matches_type(AccessApps, application, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_create_overload_4(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.zero_trust.access.applications.with_raw_response.create(
+                domain="test.example.com/admin",
+                type="vnc",
+                account_id="",
+                zone_id="string",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            await async_client.zero_trust.access.applications.with_raw_response.create(
+                domain="test.example.com/admin",
+                type="vnc",
+                account_id="string",
+                zone_id="",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_create_overload_5(self, async_client: AsyncCloudflare) -> None:
+        application = await async_client.zero_trust.access.applications.create(
+            type="app_launcher",
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_create_with_all_params_overload_5(self, async_client: AsyncCloudflare) -> None:
+        application = await async_client.zero_trust.access.applications.create(
+            type="app_launcher",
+            account_id="string",
+            zone_id="string",
+            allowed_idps=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
+            auto_redirect_to_identity=True,
+            session_duration="24h",
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_create_overload_5(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.zero_trust.access.applications.with_raw_response.create(
+            type="app_launcher",
+            account_id="string",
+            zone_id="string",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        application = await response.parse()
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_create_overload_5(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.zero_trust.access.applications.with_streaming_response.create(
+            type="app_launcher",
+            account_id="string",
+            zone_id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            application = await response.parse()
+            assert_matches_type(AccessApps, application, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_create_overload_5(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.zero_trust.access.applications.with_raw_response.create(
+                type="app_launcher",
+                account_id="",
+                zone_id="string",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            await async_client.zero_trust.access.applications.with_raw_response.create(
+                type="app_launcher",
+                account_id="string",
+                zone_id="",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_create_overload_6(self, async_client: AsyncCloudflare) -> None:
+        application = await async_client.zero_trust.access.applications.create(
+            type="warp",
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_create_with_all_params_overload_6(self, async_client: AsyncCloudflare) -> None:
+        application = await async_client.zero_trust.access.applications.create(
+            type="warp",
+            account_id="string",
+            zone_id="string",
+            allowed_idps=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
+            auto_redirect_to_identity=True,
+            session_duration="24h",
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_create_overload_6(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.zero_trust.access.applications.with_raw_response.create(
+            type="warp",
+            account_id="string",
+            zone_id="string",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        application = await response.parse()
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_create_overload_6(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.zero_trust.access.applications.with_streaming_response.create(
+            type="warp",
+            account_id="string",
+            zone_id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            application = await response.parse()
+            assert_matches_type(AccessApps, application, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_create_overload_6(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.zero_trust.access.applications.with_raw_response.create(
+                type="warp",
+                account_id="",
+                zone_id="string",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            await async_client.zero_trust.access.applications.with_raw_response.create(
+                type="warp",
+                account_id="string",
+                zone_id="",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_create_overload_7(self, async_client: AsyncCloudflare) -> None:
+        application = await async_client.zero_trust.access.applications.create(
+            type="biso",
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_create_with_all_params_overload_7(self, async_client: AsyncCloudflare) -> None:
+        application = await async_client.zero_trust.access.applications.create(
+            type="biso",
+            account_id="string",
+            zone_id="string",
+            allowed_idps=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
+            auto_redirect_to_identity=True,
+            session_duration="24h",
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_create_overload_7(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.zero_trust.access.applications.with_raw_response.create(
+            type="biso",
+            account_id="string",
+            zone_id="string",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        application = await response.parse()
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_create_overload_7(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.zero_trust.access.applications.with_streaming_response.create(
+            type="biso",
+            account_id="string",
+            zone_id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            application = await response.parse()
+            assert_matches_type(AccessApps, application, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_create_overload_7(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.zero_trust.access.applications.with_raw_response.create(
+                type="biso",
+                account_id="",
+                zone_id="string",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            await async_client.zero_trust.access.applications.with_raw_response.create(
+                type="biso",
+                account_id="string",
+                zone_id="",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_create_overload_8(self, async_client: AsyncCloudflare) -> None:
+        application = await async_client.zero_trust.access.applications.create(
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_create_with_all_params_overload_8(self, async_client: AsyncCloudflare) -> None:
+        application = await async_client.zero_trust.access.applications.create(
+            account_id="string",
+            zone_id="string",
+            app_launcher_visible={},
+            domain="https://mybookmark.com",
+            logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+            name="Admin Site",
+            tags=["engineers", "engineers", "engineers"],
+            type="bookmark",
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_create_overload_8(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.zero_trust.access.applications.with_raw_response.create(
+            account_id="string",
+            zone_id="string",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        application = await response.parse()
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_create_overload_8(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.zero_trust.access.applications.with_streaming_response.create(
+            account_id="string",
+            zone_id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            application = await response.parse()
+            assert_matches_type(AccessApps, application, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_create_overload_8(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.zero_trust.access.applications.with_raw_response.create(
+                account_id="",
+                zone_id="string",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            await async_client.zero_trust.access.applications.with_raw_response.create(
+                account_id="string",
+                zone_id="",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_update_overload_1(self, async_client: AsyncCloudflare) -> None:
+        application = await async_client.zero_trust.access.applications.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            domain="test.example.com/admin",
+            type="self_hosted",
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_update_with_all_params_overload_1(self, async_client: AsyncCloudflare) -> None:
+        application = await async_client.zero_trust.access.applications.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            domain="test.example.com/admin",
+            type="self_hosted",
+            account_id="string",
+            zone_id="string",
+            allow_authenticate_via_warp=True,
+            allowed_idps=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
+            app_launcher_visible=True,
+            auto_redirect_to_identity=True,
+            cors_headers={
+                "allow_all_headers": True,
+                "allow_all_methods": True,
+                "allow_all_origins": True,
+                "allow_credentials": True,
+                "allowed_headers": [{}, {}, {}],
+                "allowed_methods": ["GET"],
+                "allowed_origins": ["https://example.com"],
+                "max_age": -1,
+            },
+            custom_deny_message="string",
+            custom_deny_url="string",
+            custom_non_identity_deny_url="string",
+            custom_pages=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
+            enable_binding_cookie=True,
+            http_only_cookie_attribute=True,
+            logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+            name="Admin Site",
+            path_cookie_attribute=True,
+            same_site_cookie_attribute="strict",
+            self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
+            service_auth_401_redirect=True,
+            session_duration="24h",
+            skip_interstitial=True,
+            tags=["engineers", "engineers", "engineers"],
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_update_overload_1(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.zero_trust.access.applications.with_raw_response.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            domain="test.example.com/admin",
+            type="self_hosted",
+            account_id="string",
+            zone_id="string",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        application = await response.parse()
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_update_overload_1(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.zero_trust.access.applications.with_streaming_response.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            domain="test.example.com/admin",
+            type="self_hosted",
+            account_id="string",
+            zone_id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            application = await response.parse()
+            assert_matches_type(AccessApps, application, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_update_overload_1(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                "023e105f4ecef8ad9ca31a8372d0c353",
+                domain="test.example.com/admin",
+                type="self_hosted",
+                account_id="",
+                zone_id="string",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                "023e105f4ecef8ad9ca31a8372d0c353",
+                domain="test.example.com/admin",
+                type="self_hosted",
+                account_id="string",
+                zone_id="",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_update_overload_2(self, async_client: AsyncCloudflare) -> None:
+        application = await async_client.zero_trust.access.applications.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_update_with_all_params_overload_2(self, async_client: AsyncCloudflare) -> None:
+        application = await async_client.zero_trust.access.applications.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="string",
+            zone_id="string",
+            allowed_idps=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
+            app_launcher_visible=True,
+            auto_redirect_to_identity=True,
+            custom_pages=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
+            logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+            name="Admin Site",
             saas_app={
                 "auth_type": "saml",
                 "consumer_service_url": "https://example.com",
@@ -706,19 +2634,14 @@ class TestAsyncApplications:
                 "sp_entity_id": "example unique name",
                 "sso_endpoint": "https://example.cloudflareaccess.com/cdn-cgi/access/sso/saml/b3f58a2b414e0b51d45c8c2af26fccca0e27c63763c426fa52f98dcf0b3b3bfd",
             },
-            same_site_cookie_attribute="strict",
-            self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
-            service_auth_401_redirect=True,
-            session_duration="24h",
-            skip_interstitial=True,
             tags=["engineers", "engineers", "engineers"],
-            type="bookmark",
+            type="saas",
         )
         assert_matches_type(AccessApps, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
+    async def test_raw_response_update_overload_2(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.applications.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="string",
@@ -732,7 +2655,7 @@ class TestAsyncApplications:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
+    async def test_streaming_response_update_overload_2(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.applications.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="string",
@@ -748,7 +2671,552 @@ class TestAsyncApplications:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
+    async def test_path_params_update_overload_2(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                "023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="",
+                zone_id="string",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                "023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="string",
+                zone_id="",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_update_overload_3(self, async_client: AsyncCloudflare) -> None:
+        application = await async_client.zero_trust.access.applications.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            domain="test.example.com/admin",
+            type="ssh",
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_update_with_all_params_overload_3(self, async_client: AsyncCloudflare) -> None:
+        application = await async_client.zero_trust.access.applications.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            domain="test.example.com/admin",
+            type="ssh",
+            account_id="string",
+            zone_id="string",
+            allow_authenticate_via_warp=True,
+            allowed_idps=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
+            app_launcher_visible=True,
+            auto_redirect_to_identity=True,
+            cors_headers={
+                "allow_all_headers": True,
+                "allow_all_methods": True,
+                "allow_all_origins": True,
+                "allow_credentials": True,
+                "allowed_headers": [{}, {}, {}],
+                "allowed_methods": ["GET"],
+                "allowed_origins": ["https://example.com"],
+                "max_age": -1,
+            },
+            custom_deny_message="string",
+            custom_deny_url="string",
+            custom_non_identity_deny_url="string",
+            custom_pages=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
+            enable_binding_cookie=True,
+            http_only_cookie_attribute=True,
+            logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+            name="Admin Site",
+            path_cookie_attribute=True,
+            same_site_cookie_attribute="strict",
+            self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
+            service_auth_401_redirect=True,
+            session_duration="24h",
+            skip_interstitial=True,
+            tags=["engineers", "engineers", "engineers"],
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_update_overload_3(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.zero_trust.access.applications.with_raw_response.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            domain="test.example.com/admin",
+            type="ssh",
+            account_id="string",
+            zone_id="string",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        application = await response.parse()
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_update_overload_3(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.zero_trust.access.applications.with_streaming_response.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            domain="test.example.com/admin",
+            type="ssh",
+            account_id="string",
+            zone_id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            application = await response.parse()
+            assert_matches_type(AccessApps, application, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_update_overload_3(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                "023e105f4ecef8ad9ca31a8372d0c353",
+                domain="test.example.com/admin",
+                type="ssh",
+                account_id="",
+                zone_id="string",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                "023e105f4ecef8ad9ca31a8372d0c353",
+                domain="test.example.com/admin",
+                type="ssh",
+                account_id="string",
+                zone_id="",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_update_overload_4(self, async_client: AsyncCloudflare) -> None:
+        application = await async_client.zero_trust.access.applications.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            domain="test.example.com/admin",
+            type="vnc",
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_update_with_all_params_overload_4(self, async_client: AsyncCloudflare) -> None:
+        application = await async_client.zero_trust.access.applications.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            domain="test.example.com/admin",
+            type="vnc",
+            account_id="string",
+            zone_id="string",
+            allow_authenticate_via_warp=True,
+            allowed_idps=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
+            app_launcher_visible=True,
+            auto_redirect_to_identity=True,
+            cors_headers={
+                "allow_all_headers": True,
+                "allow_all_methods": True,
+                "allow_all_origins": True,
+                "allow_credentials": True,
+                "allowed_headers": [{}, {}, {}],
+                "allowed_methods": ["GET"],
+                "allowed_origins": ["https://example.com"],
+                "max_age": -1,
+            },
+            custom_deny_message="string",
+            custom_deny_url="string",
+            custom_non_identity_deny_url="string",
+            custom_pages=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
+            enable_binding_cookie=True,
+            http_only_cookie_attribute=True,
+            logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+            name="Admin Site",
+            path_cookie_attribute=True,
+            same_site_cookie_attribute="strict",
+            self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
+            service_auth_401_redirect=True,
+            session_duration="24h",
+            skip_interstitial=True,
+            tags=["engineers", "engineers", "engineers"],
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_update_overload_4(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.zero_trust.access.applications.with_raw_response.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            domain="test.example.com/admin",
+            type="vnc",
+            account_id="string",
+            zone_id="string",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        application = await response.parse()
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_update_overload_4(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.zero_trust.access.applications.with_streaming_response.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            domain="test.example.com/admin",
+            type="vnc",
+            account_id="string",
+            zone_id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            application = await response.parse()
+            assert_matches_type(AccessApps, application, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_update_overload_4(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                "023e105f4ecef8ad9ca31a8372d0c353",
+                domain="test.example.com/admin",
+                type="vnc",
+                account_id="",
+                zone_id="string",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                "023e105f4ecef8ad9ca31a8372d0c353",
+                domain="test.example.com/admin",
+                type="vnc",
+                account_id="string",
+                zone_id="",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_update_overload_5(self, async_client: AsyncCloudflare) -> None:
+        application = await async_client.zero_trust.access.applications.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            type="app_launcher",
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_update_with_all_params_overload_5(self, async_client: AsyncCloudflare) -> None:
+        application = await async_client.zero_trust.access.applications.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            type="app_launcher",
+            account_id="string",
+            zone_id="string",
+            allowed_idps=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
+            auto_redirect_to_identity=True,
+            session_duration="24h",
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_update_overload_5(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.zero_trust.access.applications.with_raw_response.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            type="app_launcher",
+            account_id="string",
+            zone_id="string",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        application = await response.parse()
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_update_overload_5(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.zero_trust.access.applications.with_streaming_response.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            type="app_launcher",
+            account_id="string",
+            zone_id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            application = await response.parse()
+            assert_matches_type(AccessApps, application, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_update_overload_5(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                "023e105f4ecef8ad9ca31a8372d0c353",
+                type="app_launcher",
+                account_id="",
+                zone_id="string",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                "023e105f4ecef8ad9ca31a8372d0c353",
+                type="app_launcher",
+                account_id="string",
+                zone_id="",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_update_overload_6(self, async_client: AsyncCloudflare) -> None:
+        application = await async_client.zero_trust.access.applications.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            type="warp",
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_update_with_all_params_overload_6(self, async_client: AsyncCloudflare) -> None:
+        application = await async_client.zero_trust.access.applications.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            type="warp",
+            account_id="string",
+            zone_id="string",
+            allowed_idps=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
+            auto_redirect_to_identity=True,
+            session_duration="24h",
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_update_overload_6(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.zero_trust.access.applications.with_raw_response.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            type="warp",
+            account_id="string",
+            zone_id="string",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        application = await response.parse()
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_update_overload_6(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.zero_trust.access.applications.with_streaming_response.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            type="warp",
+            account_id="string",
+            zone_id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            application = await response.parse()
+            assert_matches_type(AccessApps, application, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_update_overload_6(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                "023e105f4ecef8ad9ca31a8372d0c353",
+                type="warp",
+                account_id="",
+                zone_id="string",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                "023e105f4ecef8ad9ca31a8372d0c353",
+                type="warp",
+                account_id="string",
+                zone_id="",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_update_overload_7(self, async_client: AsyncCloudflare) -> None:
+        application = await async_client.zero_trust.access.applications.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            type="biso",
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_update_with_all_params_overload_7(self, async_client: AsyncCloudflare) -> None:
+        application = await async_client.zero_trust.access.applications.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            type="biso",
+            account_id="string",
+            zone_id="string",
+            allowed_idps=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
+            auto_redirect_to_identity=True,
+            session_duration="24h",
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_update_overload_7(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.zero_trust.access.applications.with_raw_response.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            type="biso",
+            account_id="string",
+            zone_id="string",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        application = await response.parse()
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_update_overload_7(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.zero_trust.access.applications.with_streaming_response.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            type="biso",
+            account_id="string",
+            zone_id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            application = await response.parse()
+            assert_matches_type(AccessApps, application, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_update_overload_7(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                "023e105f4ecef8ad9ca31a8372d0c353",
+                type="biso",
+                account_id="",
+                zone_id="string",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                "023e105f4ecef8ad9ca31a8372d0c353",
+                type="biso",
+                account_id="string",
+                zone_id="",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_update_overload_8(self, async_client: AsyncCloudflare) -> None:
+        application = await async_client.zero_trust.access.applications.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="string",
+            zone_id="string",
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_update_with_all_params_overload_8(self, async_client: AsyncCloudflare) -> None:
+        application = await async_client.zero_trust.access.applications.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="string",
+            zone_id="string",
+            app_launcher_visible={},
+            domain="https://mybookmark.com",
+            logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+            name="Admin Site",
+            tags=["engineers", "engineers", "engineers"],
+            type="bookmark",
+        )
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_update_overload_8(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.zero_trust.access.applications.with_raw_response.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="string",
+            zone_id="string",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        application = await response.parse()
+        assert_matches_type(AccessApps, application, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_update_overload_8(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.zero_trust.access.applications.with_streaming_response.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="string",
+            zone_id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            application = await response.parse()
+            assert_matches_type(AccessApps, application, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_update_overload_8(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",

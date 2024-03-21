@@ -2,13 +2,14 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Optional, cast
+from typing import Any, Type, Optional, cast, overload
 from typing_extensions import Literal
 
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
+    required_args,
     maybe_transform,
     async_maybe_transform,
 )
@@ -44,10 +45,11 @@ class IdentityProviders(SyncAPIResource):
     def with_streaming_response(self) -> IdentityProvidersWithStreamingResponse:
         return IdentityProvidersWithStreamingResponse(self)
 
+    @overload
     def create(
         self,
         *,
-        config: identity_provider_create_params.Config,
+        config: identity_provider_create_params.AccessAzureAdConfig,
         name: str,
         type: Literal[
             "onetimepin",
@@ -67,7 +69,7 @@ class IdentityProviders(SyncAPIResource):
         ],
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: identity_provider_create_params.ScimConfig | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_create_params.AccessAzureAdScimConfig | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -79,6 +81,10 @@ class IdentityProviders(SyncAPIResource):
         Adds a new identity provider to Access.
 
         Args:
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
           name: The name of the identity provider, shown to users on the login page.
 
           type: The type of identity provider. To determine the value for a specific provider,
@@ -89,6 +95,9 @@ class IdentityProviders(SyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -97,6 +106,884 @@ class IdentityProviders(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        config: identity_provider_create_params.AccessCentrifyConfig,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_create_params.AccessCentrifyScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
+        """
+        Adds a new identity provider to Access.
+
+        Args:
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        config: identity_provider_create_params.AccessFacebookConfig,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_create_params.AccessFacebookScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
+        """
+        Adds a new identity provider to Access.
+
+        Args:
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        config: identity_provider_create_params.AccessGitHubConfig,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_create_params.AccessGitHubScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
+        """
+        Adds a new identity provider to Access.
+
+        Args:
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        config: identity_provider_create_params.AccessGoogleConfig,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_create_params.AccessGoogleScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
+        """
+        Adds a new identity provider to Access.
+
+        Args:
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        config: identity_provider_create_params.AccessGoogleAppsConfig,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_create_params.AccessGoogleAppsScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
+        """
+        Adds a new identity provider to Access.
+
+        Args:
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        config: identity_provider_create_params.AccessLinkedinConfig,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_create_params.AccessLinkedinScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
+        """
+        Adds a new identity provider to Access.
+
+        Args:
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        config: identity_provider_create_params.AccessOidcConfig,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_create_params.AccessOidcScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
+        """
+        Adds a new identity provider to Access.
+
+        Args:
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        config: identity_provider_create_params.AccessOktaConfig,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_create_params.AccessOktaScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
+        """
+        Adds a new identity provider to Access.
+
+        Args:
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        config: identity_provider_create_params.AccessOneloginConfig,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_create_params.AccessOneloginScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
+        """
+        Adds a new identity provider to Access.
+
+        Args:
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        config: identity_provider_create_params.AccessPingoneConfig,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_create_params.AccessPingoneScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
+        """
+        Adds a new identity provider to Access.
+
+        Args:
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        config: identity_provider_create_params.AccessSamlConfig,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_create_params.AccessSamlScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
+        """
+        Adds a new identity provider to Access.
+
+        Args:
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        config: identity_provider_create_params.AccessYandexConfig,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_create_params.AccessYandexScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
+        """
+        Adds a new identity provider to Access.
+
+        Args:
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        config: object,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_create_params.AccessOnetimepinScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
+        """
+        Adds a new identity provider to Access.
+
+        Args:
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(
+        ["config", "name", "type"],
+        ["config", "name", "type"],
+        ["config", "name", "type"],
+        ["config", "name", "type"],
+        ["config", "name", "type"],
+        ["config", "name", "type"],
+        ["config", "name", "type"],
+        ["config", "name", "type"],
+        ["config", "name", "type"],
+        ["config", "name", "type"],
+        ["config", "name", "type"],
+        ["config", "name", "type"],
+        ["config", "name", "type"],
+        ["config", "name", "type"],
+    )
+    def create(
+        self,
+        *,
+        config: identity_provider_create_params.AccessAzureAdConfig
+        | identity_provider_create_params.AccessCentrifyConfig
+        | identity_provider_create_params.AccessFacebookConfig
+        | identity_provider_create_params.AccessGoogleConfig
+        | identity_provider_create_params.AccessGoogleAppsConfig
+        | identity_provider_create_params.AccessOidcConfig
+        | identity_provider_create_params.AccessOktaConfig
+        | identity_provider_create_params.AccessOneloginConfig
+        | identity_provider_create_params.AccessPingoneConfig
+        | identity_provider_create_params.AccessSamlConfig
+        | object,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_create_params.AccessAzureAdScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
@@ -138,11 +1025,12 @@ class IdentityProviders(SyncAPIResource):
             ),
         )
 
+    @overload
     def update(
         self,
         uuid: str,
         *,
-        config: identity_provider_update_params.Config,
+        config: identity_provider_update_params.AccessAzureAdConfig,
         name: str,
         type: Literal[
             "onetimepin",
@@ -162,7 +1050,7 @@ class IdentityProviders(SyncAPIResource):
         ],
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: identity_provider_update_params.ScimConfig | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_update_params.AccessAzureAdScimConfig | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -176,6 +1064,10 @@ class IdentityProviders(SyncAPIResource):
         Args:
           uuid: UUID
 
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
           name: The name of the identity provider, shown to users on the login page.
 
           type: The type of identity provider. To determine the value for a specific provider,
@@ -186,6 +1078,9 @@ class IdentityProviders(SyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -194,6 +1089,924 @@ class IdentityProviders(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    def update(
+        self,
+        uuid: str,
+        *,
+        config: identity_provider_update_params.AccessCentrifyConfig,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_update_params.AccessCentrifyScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
+        """
+        Updates a configured identity provider.
+
+        Args:
+          uuid: UUID
+
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def update(
+        self,
+        uuid: str,
+        *,
+        config: identity_provider_update_params.AccessFacebookConfig,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_update_params.AccessFacebookScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
+        """
+        Updates a configured identity provider.
+
+        Args:
+          uuid: UUID
+
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def update(
+        self,
+        uuid: str,
+        *,
+        config: identity_provider_update_params.AccessGitHubConfig,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_update_params.AccessGitHubScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
+        """
+        Updates a configured identity provider.
+
+        Args:
+          uuid: UUID
+
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def update(
+        self,
+        uuid: str,
+        *,
+        config: identity_provider_update_params.AccessGoogleConfig,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_update_params.AccessGoogleScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
+        """
+        Updates a configured identity provider.
+
+        Args:
+          uuid: UUID
+
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def update(
+        self,
+        uuid: str,
+        *,
+        config: identity_provider_update_params.AccessGoogleAppsConfig,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_update_params.AccessGoogleAppsScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
+        """
+        Updates a configured identity provider.
+
+        Args:
+          uuid: UUID
+
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def update(
+        self,
+        uuid: str,
+        *,
+        config: identity_provider_update_params.AccessLinkedinConfig,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_update_params.AccessLinkedinScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
+        """
+        Updates a configured identity provider.
+
+        Args:
+          uuid: UUID
+
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def update(
+        self,
+        uuid: str,
+        *,
+        config: identity_provider_update_params.AccessOidcConfig,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_update_params.AccessOidcScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
+        """
+        Updates a configured identity provider.
+
+        Args:
+          uuid: UUID
+
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def update(
+        self,
+        uuid: str,
+        *,
+        config: identity_provider_update_params.AccessOktaConfig,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_update_params.AccessOktaScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
+        """
+        Updates a configured identity provider.
+
+        Args:
+          uuid: UUID
+
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def update(
+        self,
+        uuid: str,
+        *,
+        config: identity_provider_update_params.AccessOneloginConfig,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_update_params.AccessOneloginScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
+        """
+        Updates a configured identity provider.
+
+        Args:
+          uuid: UUID
+
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def update(
+        self,
+        uuid: str,
+        *,
+        config: identity_provider_update_params.AccessPingoneConfig,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_update_params.AccessPingoneScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
+        """
+        Updates a configured identity provider.
+
+        Args:
+          uuid: UUID
+
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def update(
+        self,
+        uuid: str,
+        *,
+        config: identity_provider_update_params.AccessSamlConfig,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_update_params.AccessSamlScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
+        """
+        Updates a configured identity provider.
+
+        Args:
+          uuid: UUID
+
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def update(
+        self,
+        uuid: str,
+        *,
+        config: identity_provider_update_params.AccessYandexConfig,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_update_params.AccessYandexScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
+        """
+        Updates a configured identity provider.
+
+        Args:
+          uuid: UUID
+
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def update(
+        self,
+        uuid: str,
+        *,
+        config: object,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_update_params.AccessOnetimepinScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
+        """
+        Updates a configured identity provider.
+
+        Args:
+          uuid: UUID
+
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(
+        ["config", "name", "type"],
+        ["config", "name", "type"],
+        ["config", "name", "type"],
+        ["config", "name", "type"],
+        ["config", "name", "type"],
+        ["config", "name", "type"],
+        ["config", "name", "type"],
+        ["config", "name", "type"],
+        ["config", "name", "type"],
+        ["config", "name", "type"],
+        ["config", "name", "type"],
+        ["config", "name", "type"],
+        ["config", "name", "type"],
+        ["config", "name", "type"],
+    )
+    def update(
+        self,
+        uuid: str,
+        *,
+        config: identity_provider_update_params.AccessAzureAdConfig
+        | identity_provider_update_params.AccessCentrifyConfig
+        | identity_provider_update_params.AccessFacebookConfig
+        | identity_provider_update_params.AccessGoogleConfig
+        | identity_provider_update_params.AccessGoogleAppsConfig
+        | identity_provider_update_params.AccessOidcConfig
+        | identity_provider_update_params.AccessOktaConfig
+        | identity_provider_update_params.AccessOneloginConfig
+        | identity_provider_update_params.AccessPingoneConfig
+        | identity_provider_update_params.AccessSamlConfig
+        | object,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_update_params.AccessAzureAdScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         if not account_id:
@@ -427,10 +2240,11 @@ class AsyncIdentityProviders(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncIdentityProvidersWithStreamingResponse:
         return AsyncIdentityProvidersWithStreamingResponse(self)
 
+    @overload
     async def create(
         self,
         *,
-        config: identity_provider_create_params.Config,
+        config: identity_provider_create_params.AccessAzureAdConfig,
         name: str,
         type: Literal[
             "onetimepin",
@@ -450,7 +2264,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
         ],
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: identity_provider_create_params.ScimConfig | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_create_params.AccessAzureAdScimConfig | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -462,6 +2276,10 @@ class AsyncIdentityProviders(AsyncAPIResource):
         Adds a new identity provider to Access.
 
         Args:
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
           name: The name of the identity provider, shown to users on the login page.
 
           type: The type of identity provider. To determine the value for a specific provider,
@@ -472,6 +2290,9 @@ class AsyncIdentityProviders(AsyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -480,6 +2301,884 @@ class AsyncIdentityProviders(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        config: identity_provider_create_params.AccessCentrifyConfig,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_create_params.AccessCentrifyScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
+        """
+        Adds a new identity provider to Access.
+
+        Args:
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        config: identity_provider_create_params.AccessFacebookConfig,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_create_params.AccessFacebookScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
+        """
+        Adds a new identity provider to Access.
+
+        Args:
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        config: identity_provider_create_params.AccessGitHubConfig,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_create_params.AccessGitHubScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
+        """
+        Adds a new identity provider to Access.
+
+        Args:
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        config: identity_provider_create_params.AccessGoogleConfig,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_create_params.AccessGoogleScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
+        """
+        Adds a new identity provider to Access.
+
+        Args:
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        config: identity_provider_create_params.AccessGoogleAppsConfig,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_create_params.AccessGoogleAppsScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
+        """
+        Adds a new identity provider to Access.
+
+        Args:
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        config: identity_provider_create_params.AccessLinkedinConfig,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_create_params.AccessLinkedinScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
+        """
+        Adds a new identity provider to Access.
+
+        Args:
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        config: identity_provider_create_params.AccessOidcConfig,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_create_params.AccessOidcScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
+        """
+        Adds a new identity provider to Access.
+
+        Args:
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        config: identity_provider_create_params.AccessOktaConfig,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_create_params.AccessOktaScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
+        """
+        Adds a new identity provider to Access.
+
+        Args:
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        config: identity_provider_create_params.AccessOneloginConfig,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_create_params.AccessOneloginScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
+        """
+        Adds a new identity provider to Access.
+
+        Args:
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        config: identity_provider_create_params.AccessPingoneConfig,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_create_params.AccessPingoneScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
+        """
+        Adds a new identity provider to Access.
+
+        Args:
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        config: identity_provider_create_params.AccessSamlConfig,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_create_params.AccessSamlScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
+        """
+        Adds a new identity provider to Access.
+
+        Args:
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        config: identity_provider_create_params.AccessYandexConfig,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_create_params.AccessYandexScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
+        """
+        Adds a new identity provider to Access.
+
+        Args:
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        config: object,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_create_params.AccessOnetimepinScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
+        """
+        Adds a new identity provider to Access.
+
+        Args:
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(
+        ["config", "name", "type"],
+        ["config", "name", "type"],
+        ["config", "name", "type"],
+        ["config", "name", "type"],
+        ["config", "name", "type"],
+        ["config", "name", "type"],
+        ["config", "name", "type"],
+        ["config", "name", "type"],
+        ["config", "name", "type"],
+        ["config", "name", "type"],
+        ["config", "name", "type"],
+        ["config", "name", "type"],
+        ["config", "name", "type"],
+        ["config", "name", "type"],
+    )
+    async def create(
+        self,
+        *,
+        config: identity_provider_create_params.AccessAzureAdConfig
+        | identity_provider_create_params.AccessCentrifyConfig
+        | identity_provider_create_params.AccessFacebookConfig
+        | identity_provider_create_params.AccessGoogleConfig
+        | identity_provider_create_params.AccessGoogleAppsConfig
+        | identity_provider_create_params.AccessOidcConfig
+        | identity_provider_create_params.AccessOktaConfig
+        | identity_provider_create_params.AccessOneloginConfig
+        | identity_provider_create_params.AccessPingoneConfig
+        | identity_provider_create_params.AccessSamlConfig
+        | object,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_create_params.AccessAzureAdScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
@@ -521,11 +3220,12 @@ class AsyncIdentityProviders(AsyncAPIResource):
             ),
         )
 
+    @overload
     async def update(
         self,
         uuid: str,
         *,
-        config: identity_provider_update_params.Config,
+        config: identity_provider_update_params.AccessAzureAdConfig,
         name: str,
         type: Literal[
             "onetimepin",
@@ -545,7 +3245,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
         ],
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: identity_provider_update_params.ScimConfig | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_update_params.AccessAzureAdScimConfig | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -559,6 +3259,10 @@ class AsyncIdentityProviders(AsyncAPIResource):
         Args:
           uuid: UUID
 
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
           name: The name of the identity provider, shown to users on the login page.
 
           type: The type of identity provider. To determine the value for a specific provider,
@@ -569,6 +3273,9 @@ class AsyncIdentityProviders(AsyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -577,6 +3284,924 @@ class AsyncIdentityProviders(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    async def update(
+        self,
+        uuid: str,
+        *,
+        config: identity_provider_update_params.AccessCentrifyConfig,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_update_params.AccessCentrifyScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
+        """
+        Updates a configured identity provider.
+
+        Args:
+          uuid: UUID
+
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def update(
+        self,
+        uuid: str,
+        *,
+        config: identity_provider_update_params.AccessFacebookConfig,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_update_params.AccessFacebookScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
+        """
+        Updates a configured identity provider.
+
+        Args:
+          uuid: UUID
+
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def update(
+        self,
+        uuid: str,
+        *,
+        config: identity_provider_update_params.AccessGitHubConfig,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_update_params.AccessGitHubScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
+        """
+        Updates a configured identity provider.
+
+        Args:
+          uuid: UUID
+
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def update(
+        self,
+        uuid: str,
+        *,
+        config: identity_provider_update_params.AccessGoogleConfig,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_update_params.AccessGoogleScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
+        """
+        Updates a configured identity provider.
+
+        Args:
+          uuid: UUID
+
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def update(
+        self,
+        uuid: str,
+        *,
+        config: identity_provider_update_params.AccessGoogleAppsConfig,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_update_params.AccessGoogleAppsScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
+        """
+        Updates a configured identity provider.
+
+        Args:
+          uuid: UUID
+
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def update(
+        self,
+        uuid: str,
+        *,
+        config: identity_provider_update_params.AccessLinkedinConfig,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_update_params.AccessLinkedinScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
+        """
+        Updates a configured identity provider.
+
+        Args:
+          uuid: UUID
+
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def update(
+        self,
+        uuid: str,
+        *,
+        config: identity_provider_update_params.AccessOidcConfig,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_update_params.AccessOidcScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
+        """
+        Updates a configured identity provider.
+
+        Args:
+          uuid: UUID
+
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def update(
+        self,
+        uuid: str,
+        *,
+        config: identity_provider_update_params.AccessOktaConfig,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_update_params.AccessOktaScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
+        """
+        Updates a configured identity provider.
+
+        Args:
+          uuid: UUID
+
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def update(
+        self,
+        uuid: str,
+        *,
+        config: identity_provider_update_params.AccessOneloginConfig,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_update_params.AccessOneloginScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
+        """
+        Updates a configured identity provider.
+
+        Args:
+          uuid: UUID
+
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def update(
+        self,
+        uuid: str,
+        *,
+        config: identity_provider_update_params.AccessPingoneConfig,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_update_params.AccessPingoneScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
+        """
+        Updates a configured identity provider.
+
+        Args:
+          uuid: UUID
+
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def update(
+        self,
+        uuid: str,
+        *,
+        config: identity_provider_update_params.AccessSamlConfig,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_update_params.AccessSamlScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
+        """
+        Updates a configured identity provider.
+
+        Args:
+          uuid: UUID
+
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def update(
+        self,
+        uuid: str,
+        *,
+        config: identity_provider_update_params.AccessYandexConfig,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_update_params.AccessYandexScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
+        """
+        Updates a configured identity provider.
+
+        Args:
+          uuid: UUID
+
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def update(
+        self,
+        uuid: str,
+        *,
+        config: object,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_update_params.AccessOnetimepinScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
+        """
+        Updates a configured identity provider.
+
+        Args:
+          uuid: UUID
+
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(
+        ["config", "name", "type"],
+        ["config", "name", "type"],
+        ["config", "name", "type"],
+        ["config", "name", "type"],
+        ["config", "name", "type"],
+        ["config", "name", "type"],
+        ["config", "name", "type"],
+        ["config", "name", "type"],
+        ["config", "name", "type"],
+        ["config", "name", "type"],
+        ["config", "name", "type"],
+        ["config", "name", "type"],
+        ["config", "name", "type"],
+        ["config", "name", "type"],
+    )
+    async def update(
+        self,
+        uuid: str,
+        *,
+        config: identity_provider_update_params.AccessAzureAdConfig
+        | identity_provider_update_params.AccessCentrifyConfig
+        | identity_provider_update_params.AccessFacebookConfig
+        | identity_provider_update_params.AccessGoogleConfig
+        | identity_provider_update_params.AccessGoogleAppsConfig
+        | identity_provider_update_params.AccessOidcConfig
+        | identity_provider_update_params.AccessOktaConfig
+        | identity_provider_update_params.AccessOneloginConfig
+        | identity_provider_update_params.AccessPingoneConfig
+        | identity_provider_update_params.AccessSamlConfig
+        | object,
+        name: str,
+        type: Literal[
+            "onetimepin",
+            "azureAD",
+            "saml",
+            "centrify",
+            "facebook",
+            "github",
+            "google-apps",
+            "google",
+            "linkedin",
+            "oidc",
+            "okta",
+            "onelogin",
+            "pingone",
+            "yandex",
+        ],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        scim_config: identity_provider_update_params.AccessAzureAdScimConfig | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccessIdentityProviders:
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         if not account_id:

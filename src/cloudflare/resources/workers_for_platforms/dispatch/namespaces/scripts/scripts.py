@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Type, cast
+from typing import List, Type, cast, overload
 
 import httpx
 
@@ -16,6 +16,7 @@ from .content import (
 )
 from ......_types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven, FileTypes
 from ......_utils import (
+    required_args,
     maybe_transform,
     async_maybe_transform,
 )
@@ -55,6 +56,7 @@ class Scripts(SyncAPIResource):
     def with_streaming_response(self) -> ScriptsWithStreamingResponse:
         return ScriptsWithStreamingResponse(self)
 
+    @overload
     def update(
         self,
         script_name: str,
@@ -62,8 +64,7 @@ class Scripts(SyncAPIResource):
         account_id: str,
         dispatch_namespace: str,
         any_part_name: List[FileTypes] | NotGiven = NOT_GIVEN,
-        message: str | NotGiven = NOT_GIVEN,
-        metadata: script_update_params.Metadata | NotGiven = NOT_GIVEN,
+        metadata: script_update_params.Variant0Metadata | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -85,9 +86,6 @@ class Scripts(SyncAPIResource):
               may be provided as separate named parts, but at least one module must be present
               and referenced in the metadata as `main_module` or `body_part` by part name.
 
-          message: Rollback message to be associated with this deployment. Only parsed when query
-              param `"rollback_to"` is present.
-
           metadata: JSON encoded metadata about the uploaded parts and Worker configuration.
 
           extra_headers: Send extra headers
@@ -98,6 +96,63 @@ class Scripts(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    def update(
+        self,
+        script_name: str,
+        *,
+        account_id: str,
+        dispatch_namespace: str,
+        message: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> WorkersScript:
+        """
+        Upload a worker module to a Workers for Platforms namespace.
+
+        Args:
+          account_id: Identifier
+
+          dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
+
+          script_name: Name of the script, used in URLs and route configuration.
+
+          message: Rollback message to be associated with this deployment. Only parsed when query
+              param `"rollback_to"` is present.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["account_id", "dispatch_namespace"], ["account_id", "dispatch_namespace"])
+    def update(
+        self,
+        script_name: str,
+        *,
+        account_id: str,
+        dispatch_namespace: str,
+        any_part_name: List[FileTypes] | NotGiven = NOT_GIVEN,
+        metadata: script_update_params.Variant0Metadata | NotGiven = NOT_GIVEN,
+        message: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> WorkersScript:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dispatch_namespace:
@@ -109,8 +164,8 @@ class Scripts(SyncAPIResource):
             body=maybe_transform(
                 {
                     "any_part_name": any_part_name,
-                    "message": message,
                     "metadata": metadata,
+                    "message": message,
                 },
                 script_update_params.ScriptUpdateParams,
             ),
@@ -244,6 +299,7 @@ class AsyncScripts(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncScriptsWithStreamingResponse:
         return AsyncScriptsWithStreamingResponse(self)
 
+    @overload
     async def update(
         self,
         script_name: str,
@@ -251,8 +307,7 @@ class AsyncScripts(AsyncAPIResource):
         account_id: str,
         dispatch_namespace: str,
         any_part_name: List[FileTypes] | NotGiven = NOT_GIVEN,
-        message: str | NotGiven = NOT_GIVEN,
-        metadata: script_update_params.Metadata | NotGiven = NOT_GIVEN,
+        metadata: script_update_params.Variant0Metadata | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -274,9 +329,6 @@ class AsyncScripts(AsyncAPIResource):
               may be provided as separate named parts, but at least one module must be present
               and referenced in the metadata as `main_module` or `body_part` by part name.
 
-          message: Rollback message to be associated with this deployment. Only parsed when query
-              param `"rollback_to"` is present.
-
           metadata: JSON encoded metadata about the uploaded parts and Worker configuration.
 
           extra_headers: Send extra headers
@@ -287,6 +339,63 @@ class AsyncScripts(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    async def update(
+        self,
+        script_name: str,
+        *,
+        account_id: str,
+        dispatch_namespace: str,
+        message: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> WorkersScript:
+        """
+        Upload a worker module to a Workers for Platforms namespace.
+
+        Args:
+          account_id: Identifier
+
+          dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
+
+          script_name: Name of the script, used in URLs and route configuration.
+
+          message: Rollback message to be associated with this deployment. Only parsed when query
+              param `"rollback_to"` is present.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["account_id", "dispatch_namespace"], ["account_id", "dispatch_namespace"])
+    async def update(
+        self,
+        script_name: str,
+        *,
+        account_id: str,
+        dispatch_namespace: str,
+        any_part_name: List[FileTypes] | NotGiven = NOT_GIVEN,
+        metadata: script_update_params.Variant0Metadata | NotGiven = NOT_GIVEN,
+        message: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> WorkersScript:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dispatch_namespace:
@@ -298,8 +407,8 @@ class AsyncScripts(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "any_part_name": any_part_name,
-                    "message": message,
                     "metadata": metadata,
+                    "message": message,
                 },
                 script_update_params.ScriptUpdateParams,
             ),
