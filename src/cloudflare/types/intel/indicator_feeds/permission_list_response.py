@@ -1,9 +1,21 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List
+from typing import List, Optional
 
-from .intel_permission_list_item import IntelPermissionListItem
+from ...._models import BaseModel
 
-__all__ = ["PermissionListResponse"]
+__all__ = ["PermissionListResponse", "PermissionListResponseItem"]
 
-PermissionListResponse = List[IntelPermissionListItem]
+
+class PermissionListResponseItem(BaseModel):
+    id: Optional[int] = None
+    """The unique identifier for the indicator feed"""
+
+    description: Optional[str] = None
+    """The description of the example test"""
+
+    name: Optional[str] = None
+    """The name of the indicator feed"""
+
+
+PermissionListResponse = List[PermissionListResponseItem]
