@@ -624,14 +624,6 @@ from .certificate_authorities import (
     CertificateAuthoritiesWithStreamingResponse,
     AsyncCertificateAuthoritiesWithStreamingResponse,
 )
-from .magic_network_monitoring import (
-    MagicNetworkMonitoring,
-    AsyncMagicNetworkMonitoring,
-    MagicNetworkMonitoringWithRawResponse,
-    AsyncMagicNetworkMonitoringWithRawResponse,
-    MagicNetworkMonitoringWithStreamingResponse,
-    AsyncMagicNetworkMonitoringWithStreamingResponse,
-)
 from .origin_post_quantum_encryption import (
     OriginPostQuantumEncryption,
     AsyncOriginPostQuantumEncryption,
@@ -948,12 +940,6 @@ __all__ = [
     "AsyncMagicTransitWithRawResponse",
     "MagicTransitWithStreamingResponse",
     "AsyncMagicTransitWithStreamingResponse",
-    "MagicNetworkMonitoring",
-    "AsyncMagicNetworkMonitoring",
-    "MagicNetworkMonitoringWithRawResponse",
-    "AsyncMagicNetworkMonitoringWithRawResponse",
-    "MagicNetworkMonitoringWithStreamingResponse",
-    "AsyncMagicNetworkMonitoringWithStreamingResponse",
     "MTLSCertificates",
     "AsyncMTLSCertificates",
     "MTLSCertificatesWithRawResponse",
