@@ -228,6 +228,9 @@ class DeploymentConfigsPreviewR2Buckets(TypedDict, total=False):
 
 
 class DeploymentConfigsPreviewServicesServiceBinding(TypedDict, total=False):
+    entrypoint: Optional[str]
+    """The entrypoint to bind to."""
+
     environment: str
     """The Service environment."""
 
@@ -417,6 +420,9 @@ class DeploymentConfigsProductionR2Buckets(TypedDict, total=False):
 
 
 class DeploymentConfigsProductionServicesServiceBinding(TypedDict, total=False):
+    entrypoint: Optional[str]
+    """The entrypoint to bind to."""
+
     environment: str
     """The Service environment."""
 
