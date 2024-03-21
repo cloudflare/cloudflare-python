@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from .ips import IPs as IPs
 from .zone import Zone as Zone
+from .shared import ErrorData as ErrorData
 from .account import Account as Account
 from .snippet import Snippet as Snippet
 from .calls_app import CallsApp as CallsApp
