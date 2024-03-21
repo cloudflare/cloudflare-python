@@ -16,9 +16,9 @@ __all__ = [
     "CAA",
     "CAAData",
     "CAAMeta",
-    "Cert",
-    "CertData",
-    "CertMeta",
+    "CERT",
+    "CERTData",
+    "CERTMeta",
     "CNAME",
     "CNAMEMeta",
     "DNSKEY",
@@ -42,9 +42,9 @@ __all__ = [
     "NSMeta",
     "PTR",
     "PTRMeta",
-    "Smimea",
-    "SmimeaData",
-    "SmimeaMeta",
+    "SMIMEA",
+    "SMIMEAData",
+    "SMIMEAMeta",
     "SRV",
     "SRVData",
     "SRVMeta",
@@ -286,7 +286,7 @@ class CAA(BaseModel):
     """The domain of the record."""
 
 
-class CertData(BaseModel):
+class CERTData(BaseModel):
     algorithm: Optional[float] = None
     """Algorithm."""
 
@@ -300,7 +300,7 @@ class CertData(BaseModel):
     """Type."""
 
 
-class CertMeta(BaseModel):
+class CERTMeta(BaseModel):
     auto_added: Optional[bool] = None
     """
     Will exist if Cloudflare automatically added this DNS record during initial
@@ -311,8 +311,8 @@ class CertMeta(BaseModel):
     """Where the record originated from."""
 
 
-class Cert(BaseModel):
-    data: CertData
+class CERT(BaseModel):
+    data: CERTData
     """Components of a CERT record."""
 
     name: str
@@ -342,7 +342,7 @@ class Cert(BaseModel):
     Cloudflare).
     """
 
-    meta: Optional[CertMeta] = None
+    meta: Optional[CERTMeta] = None
     """Extra Cloudflare-specific information about the record."""
 
     modified_on: Optional[datetime] = None
@@ -1077,7 +1077,7 @@ class PTR(BaseModel):
     """The domain of the record."""
 
 
-class SmimeaData(BaseModel):
+class SMIMEAData(BaseModel):
     certificate: Optional[str] = None
     """Certificate."""
 
@@ -1091,7 +1091,7 @@ class SmimeaData(BaseModel):
     """Usage."""
 
 
-class SmimeaMeta(BaseModel):
+class SMIMEAMeta(BaseModel):
     auto_added: Optional[bool] = None
     """
     Will exist if Cloudflare automatically added this DNS record during initial
@@ -1102,8 +1102,8 @@ class SmimeaMeta(BaseModel):
     """Where the record originated from."""
 
 
-class Smimea(BaseModel):
-    data: SmimeaData
+class SMIMEA(BaseModel):
+    data: SMIMEAData
     """Components of a SMIMEA record."""
 
     name: str
@@ -1133,7 +1133,7 @@ class Smimea(BaseModel):
     Cloudflare).
     """
 
-    meta: Optional[SmimeaMeta] = None
+    meta: Optional[SMIMEAMeta] = None
     """Extra Cloudflare-specific information about the record."""
 
     modified_on: Optional[datetime] = None
@@ -1662,7 +1662,7 @@ class URI(BaseModel):
 
 DNSRecord = Annotated[
     Union[
-        A, AAAA, CAA, Cert, CNAME, DNSKEY, DS, HTTPS, LOC, MX, NAPTR, NS, PTR, Smimea, SRV, SSHFP, SVCB, TLSA, TXT, URI
+        A, AAAA, CAA, CERT, CNAME, DNSKEY, DS, HTTPS, LOC, MX, NAPTR, NS, PTR, SMIMEA, SRV, SSHFP, SVCB, TLSA, TXT, URI
     ],
     PropertyInfo(discriminator="type"),
 ]
