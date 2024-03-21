@@ -211,9 +211,6 @@ class DeploymentConfigsPreviewR2Buckets(BaseModel):
 
 
 class DeploymentConfigsPreviewServicesServiceBinding(BaseModel):
-    entrypoint: Optional[str] = None
-    """The entrypoint to bind to."""
-
     environment: Optional[str] = None
     """The Service environment."""
 
@@ -408,9 +405,6 @@ class DeploymentConfigsProductionR2Buckets(BaseModel):
 
 
 class DeploymentConfigsProductionServicesServiceBinding(BaseModel):
-    entrypoint: Optional[str] = None
-    """The entrypoint to bind to."""
-
     environment: Optional[str] = None
     """The Service environment."""
 
