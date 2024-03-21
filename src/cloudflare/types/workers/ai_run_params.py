@@ -9,34 +9,35 @@ from ..._types import FileTypes
 
 __all__ = [
     "AIRunParams",
-    "Body",
-    "BodyTextClassification",
-    "BodyTextToImage",
-    "BodySentenceSimilarity",
-    "BodyTextEmbeddings",
-    "BodyAudio",
-    "BodyImageClassification",
-    "BodyObjectDetection",
-    "BodyUnionMember10",
-    "BodyUnionMember11",
-    "BodyUnionMember11Message",
-    "BodyTranslation",
-    "BodySummarization",
-    "BodyUnionMember15",
+    "TextClassification",
+    "TextToImage",
+    "SentenceSimilarity",
+    "TextEmbeddings",
+    "Variant4",
+    "Variant5",
+    "Variant6",
+    "Variant7",
+    "Variant8",
+    "Variant9",
+    "Variant10",
+    "Variant11",
+    "Variant11Message",
+    "Translation",
+    "Summarization",
+    "Variant14",
+    "Variant15",
 ]
 
 
-class AIRunParams(TypedDict, total=False):
+class TextClassification(TypedDict, total=False):
     account_id: Required[str]
 
-    body: Required[Body]
-
-
-class BodyTextClassification(TypedDict, total=False):
     text: Required[str]
 
 
-class BodyTextToImage(TypedDict, total=False):
+class TextToImage(TypedDict, total=False):
+    account_id: Required[str]
+
     prompt: Required[str]
 
     guidance: float
@@ -50,29 +51,59 @@ class BodyTextToImage(TypedDict, total=False):
     strength: float
 
 
-class BodySentenceSimilarity(TypedDict, total=False):
+class SentenceSimilarity(TypedDict, total=False):
+    account_id: Required[str]
+
     sentences: Required[List[str]]
 
     source: Required[str]
 
 
-class BodyTextEmbeddings(TypedDict, total=False):
+class TextEmbeddings(TypedDict, total=False):
+    account_id: Required[str]
+
     text: Required[Union[str, List[str]]]
 
 
-class BodyAudio(TypedDict, total=False):
+class Variant4(TypedDict, total=False):
+    account_id: Required[str]
+
+    body: Required[FileTypes]
+
+
+class Variant5(TypedDict, total=False):
+    account_id: Required[str]
+
     audio: Iterable[float]
 
 
-class BodyImageClassification(TypedDict, total=False):
+class Variant6(TypedDict, total=False):
+    account_id: Required[str]
+
+    body: Required[FileTypes]
+
+
+class Variant7(TypedDict, total=False):
+    account_id: Required[str]
+
     image: Iterable[float]
 
 
-class BodyObjectDetection(TypedDict, total=False):
+class Variant8(TypedDict, total=False):
+    account_id: Required[str]
+
+    body: Required[FileTypes]
+
+
+class Variant9(TypedDict, total=False):
+    account_id: Required[str]
+
     image: Iterable[float]
 
 
-class BodyUnionMember10(TypedDict, total=False):
+class Variant10(TypedDict, total=False):
+    account_id: Required[str]
+
     prompt: Required[str]
 
     lora: str
@@ -84,21 +115,25 @@ class BodyUnionMember10(TypedDict, total=False):
     stream: bool
 
 
-class BodyUnionMember11Message(TypedDict, total=False):
-    content: Required[str]
+class Variant11(TypedDict, total=False):
+    account_id: Required[str]
 
-    role: Required[str]
-
-
-class BodyUnionMember11(TypedDict, total=False):
-    messages: Required[Iterable[BodyUnionMember11Message]]
+    messages: Required[Iterable[Variant11Message]]
 
     max_tokens: int
 
     stream: bool
 
 
-class BodyTranslation(TypedDict, total=False):
+class Variant11Message(TypedDict, total=False):
+    content: Required[str]
+
+    role: Required[str]
+
+
+class Translation(TypedDict, total=False):
+    account_id: Required[str]
+
     target_lang: Required[str]
 
     text: Required[str]
@@ -106,13 +141,23 @@ class BodyTranslation(TypedDict, total=False):
     source_lang: str
 
 
-class BodySummarization(TypedDict, total=False):
+class Summarization(TypedDict, total=False):
+    account_id: Required[str]
+
     input_text: Required[str]
 
     max_length: int
 
 
-class BodyUnionMember15(TypedDict, total=False):
+class Variant14(TypedDict, total=False):
+    account_id: Required[str]
+
+    body: Required[FileTypes]
+
+
+class Variant15(TypedDict, total=False):
+    account_id: Required[str]
+
     image: Iterable[float]
 
     max_tokens: int
@@ -120,21 +165,21 @@ class BodyUnionMember15(TypedDict, total=False):
     prompt: str
 
 
-Body = Union[
-    BodyTextClassification,
-    BodyTextToImage,
-    BodySentenceSimilarity,
-    BodyTextEmbeddings,
-    FileTypes,
-    BodyAudio,
-    FileTypes,
-    BodyImageClassification,
-    FileTypes,
-    BodyObjectDetection,
-    BodyUnionMember10,
-    BodyUnionMember11,
-    BodyTranslation,
-    BodySummarization,
-    FileTypes,
-    BodyUnionMember15,
+AIRunParams = Union[
+    TextClassification,
+    TextToImage,
+    SentenceSimilarity,
+    TextEmbeddings,
+    Variant4,
+    Variant5,
+    Variant6,
+    Variant7,
+    Variant8,
+    Variant9,
+    Variant10,
+    Variant11,
+    Translation,
+    Summarization,
+    Variant14,
+    Variant15,
 ]

@@ -19,9 +19,10 @@ class TestPCAPs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create(self, client: Cloudflare) -> None:
+    def test_method_create_overload_1(self, client: Cloudflare) -> None:
         pcap = client.pcaps.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            packet_limit=10000,
             system="magic-transit",
             time_limit=300,
             type="simple",
@@ -30,15 +31,13 @@ class TestPCAPs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
+    def test_method_create_with_all_params_overload_1(self, client: Cloudflare) -> None:
         pcap = client.pcaps.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            packet_limit=10000,
             system="magic-transit",
             time_limit=300,
             type="simple",
-            byte_limit=500000,
-            colo_name="ord02",
-            destination_conf="s3://pcaps-bucket?region=us-east-1",
             filter_v1={
                 "destination_address": "1.2.3.4",
                 "destination_port": 80,
@@ -46,15 +45,15 @@ class TestPCAPs:
                 "source_address": "1.2.3.4",
                 "source_port": 123,
             },
-            packet_limit=10000,
         )
         assert_matches_type(PCAPCreateResponse, pcap, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_create(self, client: Cloudflare) -> None:
+    def test_raw_response_create_overload_1(self, client: Cloudflare) -> None:
         response = client.pcaps.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            packet_limit=10000,
             system="magic-transit",
             time_limit=300,
             type="simple",
@@ -67,9 +66,10 @@ class TestPCAPs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_create(self, client: Cloudflare) -> None:
+    def test_streaming_response_create_overload_1(self, client: Cloudflare) -> None:
         with client.pcaps.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            packet_limit=10000,
             system="magic-transit",
             time_limit=300,
             type="simple",
@@ -84,10 +84,95 @@ class TestPCAPs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_create(self, client: Cloudflare) -> None:
+    def test_path_params_create_overload_1(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.pcaps.with_raw_response.create(
                 account_id="",
+                packet_limit=10000,
+                system="magic-transit",
+                time_limit=300,
+                type="simple",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_create_overload_2(self, client: Cloudflare) -> None:
+        pcap = client.pcaps.create(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            colo_name="ord02",
+            destination_conf="s3://pcaps-bucket?region=us-east-1",
+            system="magic-transit",
+            time_limit=300,
+            type="simple",
+        )
+        assert_matches_type(PCAPCreateResponse, pcap, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_create_with_all_params_overload_2(self, client: Cloudflare) -> None:
+        pcap = client.pcaps.create(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            colo_name="ord02",
+            destination_conf="s3://pcaps-bucket?region=us-east-1",
+            system="magic-transit",
+            time_limit=300,
+            type="simple",
+            byte_limit=500000,
+            filter_v1={
+                "destination_address": "1.2.3.4",
+                "destination_port": 80,
+                "protocol": 6,
+                "source_address": "1.2.3.4",
+                "source_port": 123,
+            },
+            packet_limit=10000,
+        )
+        assert_matches_type(PCAPCreateResponse, pcap, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_create_overload_2(self, client: Cloudflare) -> None:
+        response = client.pcaps.with_raw_response.create(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            colo_name="ord02",
+            destination_conf="s3://pcaps-bucket?region=us-east-1",
+            system="magic-transit",
+            time_limit=300,
+            type="simple",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        pcap = response.parse()
+        assert_matches_type(PCAPCreateResponse, pcap, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_create_overload_2(self, client: Cloudflare) -> None:
+        with client.pcaps.with_streaming_response.create(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            colo_name="ord02",
+            destination_conf="s3://pcaps-bucket?region=us-east-1",
+            system="magic-transit",
+            time_limit=300,
+            type="simple",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            pcap = response.parse()
+            assert_matches_type(PCAPCreateResponse, pcap, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_create_overload_2(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.pcaps.with_raw_response.create(
+                account_id="",
+                colo_name="ord02",
+                destination_conf="s3://pcaps-bucket?region=us-east-1",
                 system="magic-transit",
                 time_limit=300,
                 type="simple",
@@ -193,9 +278,10 @@ class TestAsyncPCAPs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create(self, async_client: AsyncCloudflare) -> None:
+    async def test_method_create_overload_1(self, async_client: AsyncCloudflare) -> None:
         pcap = await async_client.pcaps.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            packet_limit=10000,
             system="magic-transit",
             time_limit=300,
             type="simple",
@@ -204,15 +290,13 @@ class TestAsyncPCAPs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
+    async def test_method_create_with_all_params_overload_1(self, async_client: AsyncCloudflare) -> None:
         pcap = await async_client.pcaps.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            packet_limit=10000,
             system="magic-transit",
             time_limit=300,
             type="simple",
-            byte_limit=500000,
-            colo_name="ord02",
-            destination_conf="s3://pcaps-bucket?region=us-east-1",
             filter_v1={
                 "destination_address": "1.2.3.4",
                 "destination_port": 80,
@@ -220,15 +304,15 @@ class TestAsyncPCAPs:
                 "source_address": "1.2.3.4",
                 "source_port": 123,
             },
-            packet_limit=10000,
         )
         assert_matches_type(PCAPCreateResponse, pcap, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
+    async def test_raw_response_create_overload_1(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.pcaps.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            packet_limit=10000,
             system="magic-transit",
             time_limit=300,
             type="simple",
@@ -241,9 +325,10 @@ class TestAsyncPCAPs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
+    async def test_streaming_response_create_overload_1(self, async_client: AsyncCloudflare) -> None:
         async with async_client.pcaps.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            packet_limit=10000,
             system="magic-transit",
             time_limit=300,
             type="simple",
@@ -258,10 +343,95 @@ class TestAsyncPCAPs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
+    async def test_path_params_create_overload_1(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.pcaps.with_raw_response.create(
                 account_id="",
+                packet_limit=10000,
+                system="magic-transit",
+                time_limit=300,
+                type="simple",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_create_overload_2(self, async_client: AsyncCloudflare) -> None:
+        pcap = await async_client.pcaps.create(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            colo_name="ord02",
+            destination_conf="s3://pcaps-bucket?region=us-east-1",
+            system="magic-transit",
+            time_limit=300,
+            type="simple",
+        )
+        assert_matches_type(PCAPCreateResponse, pcap, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_create_with_all_params_overload_2(self, async_client: AsyncCloudflare) -> None:
+        pcap = await async_client.pcaps.create(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            colo_name="ord02",
+            destination_conf="s3://pcaps-bucket?region=us-east-1",
+            system="magic-transit",
+            time_limit=300,
+            type="simple",
+            byte_limit=500000,
+            filter_v1={
+                "destination_address": "1.2.3.4",
+                "destination_port": 80,
+                "protocol": 6,
+                "source_address": "1.2.3.4",
+                "source_port": 123,
+            },
+            packet_limit=10000,
+        )
+        assert_matches_type(PCAPCreateResponse, pcap, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.pcaps.with_raw_response.create(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            colo_name="ord02",
+            destination_conf="s3://pcaps-bucket?region=us-east-1",
+            system="magic-transit",
+            time_limit=300,
+            type="simple",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        pcap = await response.parse()
+        assert_matches_type(PCAPCreateResponse, pcap, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.pcaps.with_streaming_response.create(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            colo_name="ord02",
+            destination_conf="s3://pcaps-bucket?region=us-east-1",
+            system="magic-transit",
+            time_limit=300,
+            type="simple",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            pcap = await response.parse()
+            assert_matches_type(PCAPCreateResponse, pcap, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_create_overload_2(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.pcaps.with_raw_response.create(
+                account_id="",
+                colo_name="ord02",
+                destination_conf="s3://pcaps-bucket?region=us-east-1",
                 system="magic-transit",
                 time_limit=300,
                 type="simple",
