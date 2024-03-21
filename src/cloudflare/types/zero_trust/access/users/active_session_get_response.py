@@ -12,7 +12,7 @@ __all__ = [
     "DevicePosture",
     "DevicePostureCheck",
     "Geo",
-    "Idp",
+    "IDP",
     "MTLSAuth",
 ]
 
@@ -51,7 +51,7 @@ class Geo(BaseModel):
     country: Optional[str] = None
 
 
-class Idp(BaseModel):
+class IDP(BaseModel):
     id: Optional[str] = None
 
     type: Optional[str] = None
@@ -88,7 +88,7 @@ class ActiveSessionGetResponse(BaseModel):
 
     iat: Optional[float] = None
 
-    idp: Optional[Idp] = None
+    idp: Optional[IDP] = None
 
     ip: Optional[str] = None
 
