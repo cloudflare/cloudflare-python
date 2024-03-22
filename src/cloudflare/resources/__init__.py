@@ -136,6 +136,14 @@ from .pcaps import (
     PCAPsWithStreamingResponse,
     AsyncPCAPsWithStreamingResponse,
 )
+from .plans import (
+    Plans,
+    AsyncPlans,
+    PlansWithRawResponse,
+    AsyncPlansWithRawResponse,
+    PlansWithStreamingResponse,
+    AsyncPlansWithStreamingResponse,
+)
 from .radar import (
     Radar,
     AsyncRadar,
@@ -352,6 +360,14 @@ from .hyperdrive import (
     HyperdriveWithStreamingResponse,
     AsyncHyperdriveWithStreamingResponse,
 )
+from .rate_plans import (
+    RatePlans,
+    AsyncRatePlans,
+    RatePlansWithRawResponse,
+    AsyncRatePlansWithRawResponse,
+    RatePlansWithStreamingResponse,
+    AsyncRatePlansWithStreamingResponse,
+)
 from .zero_trust import (
     ZeroTrust,
     AsyncZeroTrust,
@@ -488,14 +504,6 @@ from .warp_connector import (
     WARPConnectorWithStreamingResponse,
     AsyncWARPConnectorWithStreamingResponse,
 )
-from .available_plans import (
-    AvailablePlans,
-    AsyncAvailablePlans,
-    AvailablePlansWithRawResponse,
-    AsyncAvailablePlansWithRawResponse,
-    AvailablePlansWithStreamingResponse,
-    AsyncAvailablePlansWithStreamingResponse,
-)
 from .durable_objects import (
     DurableObjects,
     AsyncDurableObjects,
@@ -575,14 +583,6 @@ from .custom_certificates import (
     AsyncCustomCertificatesWithRawResponse,
     CustomCertificatesWithStreamingResponse,
     AsyncCustomCertificatesWithStreamingResponse,
-)
-from .available_rate_plans import (
-    AvailableRatePlans,
-    AsyncAvailableRatePlans,
-    AvailableRatePlansWithRawResponse,
-    AsyncAvailableRatePlansWithRawResponse,
-    AvailableRatePlansWithStreamingResponse,
-    AsyncAvailableRatePlansWithStreamingResponse,
 )
 from .keyless_certificates import (
     KeylessCertificates,
@@ -714,18 +714,18 @@ __all__ = [
     "AsyncArgoWithRawResponse",
     "ArgoWithStreamingResponse",
     "AsyncArgoWithStreamingResponse",
-    "AvailablePlans",
-    "AsyncAvailablePlans",
-    "AvailablePlansWithRawResponse",
-    "AsyncAvailablePlansWithRawResponse",
-    "AvailablePlansWithStreamingResponse",
-    "AsyncAvailablePlansWithStreamingResponse",
-    "AvailableRatePlans",
-    "AsyncAvailableRatePlans",
-    "AvailableRatePlansWithRawResponse",
-    "AsyncAvailableRatePlansWithRawResponse",
-    "AvailableRatePlansWithStreamingResponse",
-    "AsyncAvailableRatePlansWithStreamingResponse",
+    "Plans",
+    "AsyncPlans",
+    "PlansWithRawResponse",
+    "AsyncPlansWithRawResponse",
+    "PlansWithStreamingResponse",
+    "AsyncPlansWithStreamingResponse",
+    "RatePlans",
+    "AsyncRatePlans",
+    "RatePlansWithRawResponse",
+    "AsyncRatePlansWithRawResponse",
+    "RatePlansWithStreamingResponse",
+    "AsyncRatePlansWithStreamingResponse",
     "CertificateAuthorities",
     "AsyncCertificateAuthorities",
     "CertificateAuthoritiesWithRawResponse",

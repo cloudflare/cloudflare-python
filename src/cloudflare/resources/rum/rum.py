@@ -11,13 +11,13 @@ from .rules import (
     AsyncRulesWithStreamingResponse,
 )
 from ..._compat import cached_property
-from .site_infos import (
-    SiteInfos,
-    AsyncSiteInfos,
-    SiteInfosWithRawResponse,
-    AsyncSiteInfosWithRawResponse,
-    SiteInfosWithStreamingResponse,
-    AsyncSiteInfosWithStreamingResponse,
+from .site_info import (
+    SiteInfo,
+    AsyncSiteInfo,
+    SiteInfoWithRawResponse,
+    AsyncSiteInfoWithRawResponse,
+    SiteInfoWithStreamingResponse,
+    AsyncSiteInfoWithStreamingResponse,
 )
 from ..._resource import SyncAPIResource, AsyncAPIResource
 
@@ -26,8 +26,8 @@ __all__ = ["RUM", "AsyncRUM"]
 
 class RUM(SyncAPIResource):
     @cached_property
-    def site_infos(self) -> SiteInfos:
-        return SiteInfos(self._client)
+    def site_info(self) -> SiteInfo:
+        return SiteInfo(self._client)
 
     @cached_property
     def rules(self) -> Rules:
@@ -44,8 +44,8 @@ class RUM(SyncAPIResource):
 
 class AsyncRUM(AsyncAPIResource):
     @cached_property
-    def site_infos(self) -> AsyncSiteInfos:
-        return AsyncSiteInfos(self._client)
+    def site_info(self) -> AsyncSiteInfo:
+        return AsyncSiteInfo(self._client)
 
     @cached_property
     def rules(self) -> AsyncRules:
@@ -65,8 +65,8 @@ class RUMWithRawResponse:
         self._rum = rum
 
     @cached_property
-    def site_infos(self) -> SiteInfosWithRawResponse:
-        return SiteInfosWithRawResponse(self._rum.site_infos)
+    def site_info(self) -> SiteInfoWithRawResponse:
+        return SiteInfoWithRawResponse(self._rum.site_info)
 
     @cached_property
     def rules(self) -> RulesWithRawResponse:
@@ -78,8 +78,8 @@ class AsyncRUMWithRawResponse:
         self._rum = rum
 
     @cached_property
-    def site_infos(self) -> AsyncSiteInfosWithRawResponse:
-        return AsyncSiteInfosWithRawResponse(self._rum.site_infos)
+    def site_info(self) -> AsyncSiteInfoWithRawResponse:
+        return AsyncSiteInfoWithRawResponse(self._rum.site_info)
 
     @cached_property
     def rules(self) -> AsyncRulesWithRawResponse:
@@ -91,8 +91,8 @@ class RUMWithStreamingResponse:
         self._rum = rum
 
     @cached_property
-    def site_infos(self) -> SiteInfosWithStreamingResponse:
-        return SiteInfosWithStreamingResponse(self._rum.site_infos)
+    def site_info(self) -> SiteInfoWithStreamingResponse:
+        return SiteInfoWithStreamingResponse(self._rum.site_info)
 
     @cached_property
     def rules(self) -> RulesWithStreamingResponse:
@@ -104,8 +104,8 @@ class AsyncRUMWithStreamingResponse:
         self._rum = rum
 
     @cached_property
-    def site_infos(self) -> AsyncSiteInfosWithStreamingResponse:
-        return AsyncSiteInfosWithStreamingResponse(self._rum.site_infos)
+    def site_info(self) -> AsyncSiteInfoWithStreamingResponse:
+        return AsyncSiteInfoWithStreamingResponse(self._rum.site_info)
 
     @cached_property
     def rules(self) -> AsyncRulesWithStreamingResponse:

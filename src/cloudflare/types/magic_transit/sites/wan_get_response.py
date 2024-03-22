@@ -4,10 +4,10 @@ from typing import Optional
 
 from ...._models import BaseModel
 
-__all__ = ["WanGetResponse", "Wan", "WanStaticAddressing"]
+__all__ = ["WANGetResponse", "WAN", "WANStaticAddressing"]
 
 
-class WanStaticAddressing(BaseModel):
+class WANStaticAddressing(BaseModel):
     address: str
     """A valid CIDR notation representing an IP range."""
 
@@ -18,7 +18,7 @@ class WanStaticAddressing(BaseModel):
     """A valid CIDR notation representing an IP range."""
 
 
-class Wan(BaseModel):
+class WAN(BaseModel):
     id: Optional[str] = None
     """Identifier"""
 
@@ -32,7 +32,7 @@ class Wan(BaseModel):
     site_id: Optional[str] = None
     """Identifier"""
 
-    static_addressing: Optional[WanStaticAddressing] = None
+    static_addressing: Optional[WANStaticAddressing] = None
     """(optional) if omitted, use DHCP.
 
     Submit secondary_address when site is in high availability mode.
@@ -42,5 +42,5 @@ class Wan(BaseModel):
     """VLAN port number."""
 
 
-class WanGetResponse(BaseModel):
-    wan: Optional[Wan] = None
+class WANGetResponse(BaseModel):
+    wan: Optional[WAN] = None

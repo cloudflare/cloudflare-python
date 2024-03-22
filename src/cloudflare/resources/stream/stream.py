@@ -8,6 +8,22 @@ from typing_extensions import Literal
 
 import httpx
 
+from .clip import (
+    Clip,
+    AsyncClip,
+    ClipWithRawResponse,
+    AsyncClipWithRawResponse,
+    ClipWithStreamingResponse,
+    AsyncClipWithStreamingResponse,
+)
+from .copy import (
+    Copy,
+    AsyncCopy,
+    CopyWithRawResponse,
+    AsyncCopyWithRawResponse,
+    CopyWithStreamingResponse,
+    AsyncCopyWithStreamingResponse,
+)
 from .keys import (
     Keys,
     AsyncKeys,
@@ -16,37 +32,21 @@ from .keys import (
     KeysWithStreamingResponse,
     AsyncKeysWithStreamingResponse,
 )
-from .clips import (
-    Clips,
-    AsyncClips,
-    ClipsWithRawResponse,
-    AsyncClipsWithRawResponse,
-    ClipsWithStreamingResponse,
-    AsyncClipsWithStreamingResponse,
+from .embed import (
+    Embed,
+    AsyncEmbed,
+    EmbedWithRawResponse,
+    AsyncEmbedWithRawResponse,
+    EmbedWithStreamingResponse,
+    AsyncEmbedWithStreamingResponse,
 )
-from .copies import (
-    Copies,
-    AsyncCopies,
-    CopiesWithRawResponse,
-    AsyncCopiesWithRawResponse,
-    CopiesWithStreamingResponse,
-    AsyncCopiesWithStreamingResponse,
-)
-from .embeds import (
-    Embeds,
-    AsyncEmbeds,
-    EmbedsWithRawResponse,
-    AsyncEmbedsWithRawResponse,
-    EmbedsWithStreamingResponse,
-    AsyncEmbedsWithStreamingResponse,
-)
-from .tokens import (
-    Tokens,
-    AsyncTokens,
-    TokensWithRawResponse,
-    AsyncTokensWithRawResponse,
-    TokensWithStreamingResponse,
-    AsyncTokensWithStreamingResponse,
+from .token import (
+    Token,
+    AsyncToken,
+    TokenWithRawResponse,
+    AsyncTokenWithRawResponse,
+    TokenWithStreamingResponse,
+    AsyncTokenWithStreamingResponse,
 )
 from .videos import (
     Videos,
@@ -119,16 +119,16 @@ from .audio_tracks import (
     AudioTracksWithStreamingResponse,
     AsyncAudioTracksWithStreamingResponse,
 )
+from .direct_upload import (
+    DirectUpload,
+    AsyncDirectUpload,
+    DirectUploadWithRawResponse,
+    AsyncDirectUploadWithRawResponse,
+    DirectUploadWithStreamingResponse,
+    AsyncDirectUploadWithStreamingResponse,
+)
 from ..._base_client import (
     make_request_options,
-)
-from .direct_uploads import (
-    DirectUploads,
-    AsyncDirectUploads,
-    DirectUploadsWithRawResponse,
-    AsyncDirectUploadsWithRawResponse,
-    DirectUploadsWithStreamingResponse,
-    AsyncDirectUploadsWithStreamingResponse,
 )
 from .live_inputs.live_inputs import LiveInputs, AsyncLiveInputs
 
@@ -145,16 +145,16 @@ class Stream(SyncAPIResource):
         return Videos(self._client)
 
     @cached_property
-    def clips(self) -> Clips:
-        return Clips(self._client)
+    def clip(self) -> Clip:
+        return Clip(self._client)
 
     @cached_property
-    def copies(self) -> Copies:
-        return Copies(self._client)
+    def copy(self) -> Copy:
+        return Copy(self._client)
 
     @cached_property
-    def direct_uploads(self) -> DirectUploads:
-        return DirectUploads(self._client)
+    def direct_upload(self) -> DirectUpload:
+        return DirectUpload(self._client)
 
     @cached_property
     def keys(self) -> Keys:
@@ -181,12 +181,12 @@ class Stream(SyncAPIResource):
         return Downloads(self._client)
 
     @cached_property
-    def embeds(self) -> Embeds:
-        return Embeds(self._client)
+    def embed(self) -> Embed:
+        return Embed(self._client)
 
     @cached_property
-    def tokens(self) -> Tokens:
-        return Tokens(self._client)
+    def token(self) -> Token:
+        return Token(self._client)
 
     @cached_property
     def with_raw_response(self) -> StreamWithRawResponse:
@@ -413,16 +413,16 @@ class AsyncStream(AsyncAPIResource):
         return AsyncVideos(self._client)
 
     @cached_property
-    def clips(self) -> AsyncClips:
-        return AsyncClips(self._client)
+    def clip(self) -> AsyncClip:
+        return AsyncClip(self._client)
 
     @cached_property
-    def copies(self) -> AsyncCopies:
-        return AsyncCopies(self._client)
+    def copy(self) -> AsyncCopy:
+        return AsyncCopy(self._client)
 
     @cached_property
-    def direct_uploads(self) -> AsyncDirectUploads:
-        return AsyncDirectUploads(self._client)
+    def direct_upload(self) -> AsyncDirectUpload:
+        return AsyncDirectUpload(self._client)
 
     @cached_property
     def keys(self) -> AsyncKeys:
@@ -449,12 +449,12 @@ class AsyncStream(AsyncAPIResource):
         return AsyncDownloads(self._client)
 
     @cached_property
-    def embeds(self) -> AsyncEmbeds:
-        return AsyncEmbeds(self._client)
+    def embed(self) -> AsyncEmbed:
+        return AsyncEmbed(self._client)
 
     @cached_property
-    def tokens(self) -> AsyncTokens:
-        return AsyncTokens(self._client)
+    def token(self) -> AsyncToken:
+        return AsyncToken(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncStreamWithRawResponse:
@@ -697,16 +697,16 @@ class StreamWithRawResponse:
         return VideosWithRawResponse(self._stream.videos)
 
     @cached_property
-    def clips(self) -> ClipsWithRawResponse:
-        return ClipsWithRawResponse(self._stream.clips)
+    def clip(self) -> ClipWithRawResponse:
+        return ClipWithRawResponse(self._stream.clip)
 
     @cached_property
-    def copies(self) -> CopiesWithRawResponse:
-        return CopiesWithRawResponse(self._stream.copies)
+    def copy(self) -> CopyWithRawResponse:
+        return CopyWithRawResponse(self._stream.copy)
 
     @cached_property
-    def direct_uploads(self) -> DirectUploadsWithRawResponse:
-        return DirectUploadsWithRawResponse(self._stream.direct_uploads)
+    def direct_upload(self) -> DirectUploadWithRawResponse:
+        return DirectUploadWithRawResponse(self._stream.direct_upload)
 
     @cached_property
     def keys(self) -> KeysWithRawResponse:
@@ -733,12 +733,12 @@ class StreamWithRawResponse:
         return DownloadsWithRawResponse(self._stream.downloads)
 
     @cached_property
-    def embeds(self) -> EmbedsWithRawResponse:
-        return EmbedsWithRawResponse(self._stream.embeds)
+    def embed(self) -> EmbedWithRawResponse:
+        return EmbedWithRawResponse(self._stream.embed)
 
     @cached_property
-    def tokens(self) -> TokensWithRawResponse:
-        return TokensWithRawResponse(self._stream.tokens)
+    def token(self) -> TokenWithRawResponse:
+        return TokenWithRawResponse(self._stream.token)
 
 
 class AsyncStreamWithRawResponse:
@@ -767,16 +767,16 @@ class AsyncStreamWithRawResponse:
         return AsyncVideosWithRawResponse(self._stream.videos)
 
     @cached_property
-    def clips(self) -> AsyncClipsWithRawResponse:
-        return AsyncClipsWithRawResponse(self._stream.clips)
+    def clip(self) -> AsyncClipWithRawResponse:
+        return AsyncClipWithRawResponse(self._stream.clip)
 
     @cached_property
-    def copies(self) -> AsyncCopiesWithRawResponse:
-        return AsyncCopiesWithRawResponse(self._stream.copies)
+    def copy(self) -> AsyncCopyWithRawResponse:
+        return AsyncCopyWithRawResponse(self._stream.copy)
 
     @cached_property
-    def direct_uploads(self) -> AsyncDirectUploadsWithRawResponse:
-        return AsyncDirectUploadsWithRawResponse(self._stream.direct_uploads)
+    def direct_upload(self) -> AsyncDirectUploadWithRawResponse:
+        return AsyncDirectUploadWithRawResponse(self._stream.direct_upload)
 
     @cached_property
     def keys(self) -> AsyncKeysWithRawResponse:
@@ -803,12 +803,12 @@ class AsyncStreamWithRawResponse:
         return AsyncDownloadsWithRawResponse(self._stream.downloads)
 
     @cached_property
-    def embeds(self) -> AsyncEmbedsWithRawResponse:
-        return AsyncEmbedsWithRawResponse(self._stream.embeds)
+    def embed(self) -> AsyncEmbedWithRawResponse:
+        return AsyncEmbedWithRawResponse(self._stream.embed)
 
     @cached_property
-    def tokens(self) -> AsyncTokensWithRawResponse:
-        return AsyncTokensWithRawResponse(self._stream.tokens)
+    def token(self) -> AsyncTokenWithRawResponse:
+        return AsyncTokenWithRawResponse(self._stream.token)
 
 
 class StreamWithStreamingResponse:
@@ -837,16 +837,16 @@ class StreamWithStreamingResponse:
         return VideosWithStreamingResponse(self._stream.videos)
 
     @cached_property
-    def clips(self) -> ClipsWithStreamingResponse:
-        return ClipsWithStreamingResponse(self._stream.clips)
+    def clip(self) -> ClipWithStreamingResponse:
+        return ClipWithStreamingResponse(self._stream.clip)
 
     @cached_property
-    def copies(self) -> CopiesWithStreamingResponse:
-        return CopiesWithStreamingResponse(self._stream.copies)
+    def copy(self) -> CopyWithStreamingResponse:
+        return CopyWithStreamingResponse(self._stream.copy)
 
     @cached_property
-    def direct_uploads(self) -> DirectUploadsWithStreamingResponse:
-        return DirectUploadsWithStreamingResponse(self._stream.direct_uploads)
+    def direct_upload(self) -> DirectUploadWithStreamingResponse:
+        return DirectUploadWithStreamingResponse(self._stream.direct_upload)
 
     @cached_property
     def keys(self) -> KeysWithStreamingResponse:
@@ -873,12 +873,12 @@ class StreamWithStreamingResponse:
         return DownloadsWithStreamingResponse(self._stream.downloads)
 
     @cached_property
-    def embeds(self) -> EmbedsWithStreamingResponse:
-        return EmbedsWithStreamingResponse(self._stream.embeds)
+    def embed(self) -> EmbedWithStreamingResponse:
+        return EmbedWithStreamingResponse(self._stream.embed)
 
     @cached_property
-    def tokens(self) -> TokensWithStreamingResponse:
-        return TokensWithStreamingResponse(self._stream.tokens)
+    def token(self) -> TokenWithStreamingResponse:
+        return TokenWithStreamingResponse(self._stream.token)
 
 
 class AsyncStreamWithStreamingResponse:
@@ -907,16 +907,16 @@ class AsyncStreamWithStreamingResponse:
         return AsyncVideosWithStreamingResponse(self._stream.videos)
 
     @cached_property
-    def clips(self) -> AsyncClipsWithStreamingResponse:
-        return AsyncClipsWithStreamingResponse(self._stream.clips)
+    def clip(self) -> AsyncClipWithStreamingResponse:
+        return AsyncClipWithStreamingResponse(self._stream.clip)
 
     @cached_property
-    def copies(self) -> AsyncCopiesWithStreamingResponse:
-        return AsyncCopiesWithStreamingResponse(self._stream.copies)
+    def copy(self) -> AsyncCopyWithStreamingResponse:
+        return AsyncCopyWithStreamingResponse(self._stream.copy)
 
     @cached_property
-    def direct_uploads(self) -> AsyncDirectUploadsWithStreamingResponse:
-        return AsyncDirectUploadsWithStreamingResponse(self._stream.direct_uploads)
+    def direct_upload(self) -> AsyncDirectUploadWithStreamingResponse:
+        return AsyncDirectUploadWithStreamingResponse(self._stream.direct_upload)
 
     @cached_property
     def keys(self) -> AsyncKeysWithStreamingResponse:
@@ -943,9 +943,9 @@ class AsyncStreamWithStreamingResponse:
         return AsyncDownloadsWithStreamingResponse(self._stream.downloads)
 
     @cached_property
-    def embeds(self) -> AsyncEmbedsWithStreamingResponse:
-        return AsyncEmbedsWithStreamingResponse(self._stream.embeds)
+    def embed(self) -> AsyncEmbedWithStreamingResponse:
+        return AsyncEmbedWithStreamingResponse(self._stream.embed)
 
     @cached_property
-    def tokens(self) -> AsyncTokensWithStreamingResponse:
-        return AsyncTokensWithStreamingResponse(self._stream.tokens)
+    def token(self) -> AsyncTokenWithStreamingResponse:
+        return AsyncTokenWithStreamingResponse(self._stream.token)

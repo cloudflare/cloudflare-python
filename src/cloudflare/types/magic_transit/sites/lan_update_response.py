@@ -5,43 +5,43 @@ from typing import Dict, List, Optional
 from ...._models import BaseModel
 
 __all__ = [
-    "LanUpdateResponse",
-    "Lan",
-    "LanNat",
-    "LanRoutedSubnet",
-    "LanRoutedSubnetNat",
-    "LanStaticAddressing",
-    "LanStaticAddressingDhcpRelay",
-    "LanStaticAddressingDhcpServer",
+    "LANUpdateResponse",
+    "LAN",
+    "LANNat",
+    "LANRoutedSubnet",
+    "LANRoutedSubnetNat",
+    "LANStaticAddressing",
+    "LANStaticAddressingDhcpRelay",
+    "LANStaticAddressingDhcpServer",
 ]
 
 
-class LanNat(BaseModel):
+class LANNat(BaseModel):
     static_prefix: Optional[str] = None
     """A valid CIDR notation representing an IP range."""
 
 
-class LanRoutedSubnetNat(BaseModel):
+class LANRoutedSubnetNat(BaseModel):
     static_prefix: Optional[str] = None
     """A valid CIDR notation representing an IP range."""
 
 
-class LanRoutedSubnet(BaseModel):
+class LANRoutedSubnet(BaseModel):
     next_hop: str
     """A valid IPv4 address."""
 
     prefix: str
     """A valid CIDR notation representing an IP range."""
 
-    nat: Optional[LanRoutedSubnetNat] = None
+    nat: Optional[LANRoutedSubnetNat] = None
 
 
-class LanStaticAddressingDhcpRelay(BaseModel):
+class LANStaticAddressingDhcpRelay(BaseModel):
     server_addresses: Optional[List[str]] = None
     """List of DHCP server IPs."""
 
 
-class LanStaticAddressingDhcpServer(BaseModel):
+class LANStaticAddressingDhcpServer(BaseModel):
     dhcp_pool_end: Optional[str] = None
     """A valid IPv4 address."""
 
@@ -55,13 +55,13 @@ class LanStaticAddressingDhcpServer(BaseModel):
     """Mapping of MAC addresses to IP addresses"""
 
 
-class LanStaticAddressing(BaseModel):
+class LANStaticAddressing(BaseModel):
     address: str
     """A valid CIDR notation representing an IP range."""
 
-    dhcp_relay: Optional[LanStaticAddressingDhcpRelay] = None
+    dhcp_relay: Optional[LANStaticAddressingDhcpRelay] = None
 
-    dhcp_server: Optional[LanStaticAddressingDhcpServer] = None
+    dhcp_server: Optional[LANStaticAddressingDhcpServer] = None
 
     secondary_address: Optional[str] = None
     """A valid CIDR notation representing an IP range."""
@@ -70,7 +70,7 @@ class LanStaticAddressing(BaseModel):
     """A valid CIDR notation representing an IP range."""
 
 
-class Lan(BaseModel):
+class LAN(BaseModel):
     id: Optional[str] = None
     """Identifier"""
 
@@ -82,16 +82,16 @@ class Lan(BaseModel):
     only works for site with HA turned on. only one LAN can be set as the ha_link.
     """
 
-    nat: Optional[LanNat] = None
+    nat: Optional[LANNat] = None
 
     physport: Optional[int] = None
 
-    routed_subnets: Optional[List[LanRoutedSubnet]] = None
+    routed_subnets: Optional[List[LANRoutedSubnet]] = None
 
     site_id: Optional[str] = None
     """Identifier"""
 
-    static_addressing: Optional[LanStaticAddressing] = None
+    static_addressing: Optional[LANStaticAddressing] = None
     """
     If the site is not configured in high availability mode, this configuration is
     optional (if omitted, use DHCP). However, if in high availability mode,
@@ -102,5 +102,5 @@ class Lan(BaseModel):
     """VLAN port number."""
 
 
-class LanUpdateResponse(BaseModel):
-    lan: Optional[Lan] = None
+class LANUpdateResponse(BaseModel):
+    lan: Optional[LAN] = None

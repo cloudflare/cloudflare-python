@@ -59,8 +59,8 @@ class Cloudflare(SyncAPIClient):
     subscriptions: resources.Subscriptions
     acm: resources.ACM
     argo: resources.Argo
-    available_plans: resources.AvailablePlans
-    available_rate_plans: resources.AvailableRatePlans
+    plans: resources.Plans
+    rate_plans: resources.RatePlans
     certificate_authorities: resources.CertificateAuthorities
     client_certificates: resources.ClientCertificates
     custom_certificates: resources.CustomCertificates
@@ -212,8 +212,8 @@ class Cloudflare(SyncAPIClient):
         self.subscriptions = resources.Subscriptions(self)
         self.acm = resources.ACM(self)
         self.argo = resources.Argo(self)
-        self.available_plans = resources.AvailablePlans(self)
-        self.available_rate_plans = resources.AvailableRatePlans(self)
+        self.plans = resources.Plans(self)
+        self.rate_plans = resources.RatePlans(self)
         self.certificate_authorities = resources.CertificateAuthorities(self)
         self.client_certificates = resources.ClientCertificates(self)
         self.custom_certificates = resources.CustomCertificates(self)
@@ -470,8 +470,8 @@ class AsyncCloudflare(AsyncAPIClient):
     subscriptions: resources.AsyncSubscriptions
     acm: resources.AsyncACM
     argo: resources.AsyncArgo
-    available_plans: resources.AsyncAvailablePlans
-    available_rate_plans: resources.AsyncAvailableRatePlans
+    plans: resources.AsyncPlans
+    rate_plans: resources.AsyncRatePlans
     certificate_authorities: resources.AsyncCertificateAuthorities
     client_certificates: resources.AsyncClientCertificates
     custom_certificates: resources.AsyncCustomCertificates
@@ -623,8 +623,8 @@ class AsyncCloudflare(AsyncAPIClient):
         self.subscriptions = resources.AsyncSubscriptions(self)
         self.acm = resources.AsyncACM(self)
         self.argo = resources.AsyncArgo(self)
-        self.available_plans = resources.AsyncAvailablePlans(self)
-        self.available_rate_plans = resources.AsyncAvailableRatePlans(self)
+        self.plans = resources.AsyncPlans(self)
+        self.rate_plans = resources.AsyncRatePlans(self)
         self.certificate_authorities = resources.AsyncCertificateAuthorities(self)
         self.client_certificates = resources.AsyncClientCertificates(self)
         self.custom_certificates = resources.AsyncCustomCertificates(self)
@@ -882,8 +882,8 @@ class CloudflareWithRawResponse:
         self.subscriptions = resources.SubscriptionsWithRawResponse(client.subscriptions)
         self.acm = resources.ACMWithRawResponse(client.acm)
         self.argo = resources.ArgoWithRawResponse(client.argo)
-        self.available_plans = resources.AvailablePlansWithRawResponse(client.available_plans)
-        self.available_rate_plans = resources.AvailableRatePlansWithRawResponse(client.available_rate_plans)
+        self.plans = resources.PlansWithRawResponse(client.plans)
+        self.rate_plans = resources.RatePlansWithRawResponse(client.rate_plans)
         self.certificate_authorities = resources.CertificateAuthoritiesWithRawResponse(client.certificate_authorities)
         self.client_certificates = resources.ClientCertificatesWithRawResponse(client.client_certificates)
         self.custom_certificates = resources.CustomCertificatesWithRawResponse(client.custom_certificates)
@@ -968,8 +968,8 @@ class AsyncCloudflareWithRawResponse:
         self.subscriptions = resources.AsyncSubscriptionsWithRawResponse(client.subscriptions)
         self.acm = resources.AsyncACMWithRawResponse(client.acm)
         self.argo = resources.AsyncArgoWithRawResponse(client.argo)
-        self.available_plans = resources.AsyncAvailablePlansWithRawResponse(client.available_plans)
-        self.available_rate_plans = resources.AsyncAvailableRatePlansWithRawResponse(client.available_rate_plans)
+        self.plans = resources.AsyncPlansWithRawResponse(client.plans)
+        self.rate_plans = resources.AsyncRatePlansWithRawResponse(client.rate_plans)
         self.certificate_authorities = resources.AsyncCertificateAuthoritiesWithRawResponse(
             client.certificate_authorities
         )
@@ -1058,8 +1058,8 @@ class CloudflareWithStreamedResponse:
         self.subscriptions = resources.SubscriptionsWithStreamingResponse(client.subscriptions)
         self.acm = resources.ACMWithStreamingResponse(client.acm)
         self.argo = resources.ArgoWithStreamingResponse(client.argo)
-        self.available_plans = resources.AvailablePlansWithStreamingResponse(client.available_plans)
-        self.available_rate_plans = resources.AvailableRatePlansWithStreamingResponse(client.available_rate_plans)
+        self.plans = resources.PlansWithStreamingResponse(client.plans)
+        self.rate_plans = resources.RatePlansWithStreamingResponse(client.rate_plans)
         self.certificate_authorities = resources.CertificateAuthoritiesWithStreamingResponse(
             client.certificate_authorities
         )
@@ -1150,8 +1150,8 @@ class AsyncCloudflareWithStreamedResponse:
         self.subscriptions = resources.AsyncSubscriptionsWithStreamingResponse(client.subscriptions)
         self.acm = resources.AsyncACMWithStreamingResponse(client.acm)
         self.argo = resources.AsyncArgoWithStreamingResponse(client.argo)
-        self.available_plans = resources.AsyncAvailablePlansWithStreamingResponse(client.available_plans)
-        self.available_rate_plans = resources.AsyncAvailableRatePlansWithStreamingResponse(client.available_rate_plans)
+        self.plans = resources.AsyncPlansWithStreamingResponse(client.plans)
+        self.rate_plans = resources.AsyncRatePlansWithStreamingResponse(client.rate_plans)
         self.certificate_authorities = resources.AsyncCertificateAuthoritiesWithStreamingResponse(
             client.certificate_authorities
         )

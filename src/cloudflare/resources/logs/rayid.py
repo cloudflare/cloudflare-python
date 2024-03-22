@@ -20,22 +20,22 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...types.logs import RayidGetResponse, rayid_get_params
+from ...types.logs import RayIDGetResponse, rayid_get_params
 from ..._base_client import (
     make_request_options,
 )
 
-__all__ = ["Rayid", "AsyncRayid"]
+__all__ = ["RayID", "AsyncRayID"]
 
 
-class Rayid(SyncAPIResource):
+class RayID(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> RayidWithRawResponse:
-        return RayidWithRawResponse(self)
+    def with_raw_response(self) -> RayIDWithRawResponse:
+        return RayIDWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> RayidWithStreamingResponse:
-        return RayidWithStreamingResponse(self)
+    def with_streaming_response(self) -> RayIDWithStreamingResponse:
+        return RayIDWithStreamingResponse(self)
 
     def get(
         self,
@@ -50,7 +50,7 @@ class Rayid(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RayidGetResponse:
+    ) -> RayIDGetResponse:
         """The `/rayids` api route allows lookups by specific rayid.
 
         The rayids route will
@@ -92,7 +92,7 @@ class Rayid(SyncAPIResource):
         if not ray_identifier:
             raise ValueError(f"Expected a non-empty value for `ray_identifier` but received {ray_identifier!r}")
         return cast(
-            RayidGetResponse,
+            RayIDGetResponse,
             self._get(
                 f"/zones/{zone_identifier}/logs/rayids/{ray_identifier}",
                 options=make_request_options(
@@ -105,22 +105,22 @@ class Rayid(SyncAPIResource):
                             "fields": fields,
                             "timestamps": timestamps,
                         },
-                        rayid_get_params.RayidGetParams,
+                        rayid_get_params.RayIDGetParams,
                     ),
                 ),
-                cast_to=cast(Any, RayidGetResponse),  # Union types cannot be passed in as arguments in the type system
+                cast_to=cast(Any, RayIDGetResponse),  # Union types cannot be passed in as arguments in the type system
             ),
         )
 
 
-class AsyncRayid(AsyncAPIResource):
+class AsyncRayID(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncRayidWithRawResponse:
-        return AsyncRayidWithRawResponse(self)
+    def with_raw_response(self) -> AsyncRayIDWithRawResponse:
+        return AsyncRayIDWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncRayidWithStreamingResponse:
-        return AsyncRayidWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncRayIDWithStreamingResponse:
+        return AsyncRayIDWithStreamingResponse(self)
 
     async def get(
         self,
@@ -135,7 +135,7 @@ class AsyncRayid(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RayidGetResponse:
+    ) -> RayIDGetResponse:
         """The `/rayids` api route allows lookups by specific rayid.
 
         The rayids route will
@@ -177,7 +177,7 @@ class AsyncRayid(AsyncAPIResource):
         if not ray_identifier:
             raise ValueError(f"Expected a non-empty value for `ray_identifier` but received {ray_identifier!r}")
         return cast(
-            RayidGetResponse,
+            RayIDGetResponse,
             await self._get(
                 f"/zones/{zone_identifier}/logs/rayids/{ray_identifier}",
                 options=make_request_options(
@@ -190,16 +190,16 @@ class AsyncRayid(AsyncAPIResource):
                             "fields": fields,
                             "timestamps": timestamps,
                         },
-                        rayid_get_params.RayidGetParams,
+                        rayid_get_params.RayIDGetParams,
                     ),
                 ),
-                cast_to=cast(Any, RayidGetResponse),  # Union types cannot be passed in as arguments in the type system
+                cast_to=cast(Any, RayIDGetResponse),  # Union types cannot be passed in as arguments in the type system
             ),
         )
 
 
-class RayidWithRawResponse:
-    def __init__(self, rayid: Rayid) -> None:
+class RayIDWithRawResponse:
+    def __init__(self, rayid: RayID) -> None:
         self._rayid = rayid
 
         self.get = to_raw_response_wrapper(
@@ -207,8 +207,8 @@ class RayidWithRawResponse:
         )
 
 
-class AsyncRayidWithRawResponse:
-    def __init__(self, rayid: AsyncRayid) -> None:
+class AsyncRayIDWithRawResponse:
+    def __init__(self, rayid: AsyncRayID) -> None:
         self._rayid = rayid
 
         self.get = async_to_raw_response_wrapper(
@@ -216,8 +216,8 @@ class AsyncRayidWithRawResponse:
         )
 
 
-class RayidWithStreamingResponse:
-    def __init__(self, rayid: Rayid) -> None:
+class RayIDWithStreamingResponse:
+    def __init__(self, rayid: RayID) -> None:
         self._rayid = rayid
 
         self.get = to_streamed_response_wrapper(
@@ -225,8 +225,8 @@ class RayidWithStreamingResponse:
         )
 
 
-class AsyncRayidWithStreamingResponse:
-    def __init__(self, rayid: AsyncRayid) -> None:
+class AsyncRayIDWithStreamingResponse:
+    def __init__(self, rayid: AsyncRayID) -> None:
         self._rayid = rayid
 
         self.get = async_to_streamed_response_wrapper(

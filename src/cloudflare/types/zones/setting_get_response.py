@@ -10,7 +10,7 @@ from .settings import (
     ZonesWAF,
     Zones0rtt,
     ZonesIPV6,
-    ZonesWebp,
+    ZonesWebP,
     ZonesHTTP2,
     ZonesHTTP3,
     ZonesBrotli,
@@ -246,7 +246,7 @@ SettingGetResponseItem = Union[
     ZonesTLSClientAuth,
     ZonesTrueClientIPHeader,
     ZonesWAF,
-    ZonesWebp,
+    ZonesWebP,
     ZonesWebsockets,
 ]
 
