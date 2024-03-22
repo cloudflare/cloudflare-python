@@ -5,10 +5,10 @@ from typing_extensions import Literal
 
 from ...._models import BaseModel
 
-__all__ = ["ACLDeleteResponse", "DeletedACL", "DeletedACLLan1", "DeletedACLLan2"]
+__all__ = ["ACLDeleteResponse", "DeletedACL", "DeletedACLLAN1", "DeletedACLLAN2"]
 
 
-class DeletedACLLan1(BaseModel):
+class DeletedACLLAN1(BaseModel):
     lan_id: str
     """The identifier for the LAN you want to create an ACL policy with."""
 
@@ -29,7 +29,7 @@ class DeletedACLLan1(BaseModel):
     """
 
 
-class DeletedACLLan2(BaseModel):
+class DeletedACLLAN2(BaseModel):
     lan_id: str
     """The identifier for the LAN you want to create an ACL policy with."""
 
@@ -57,9 +57,9 @@ class DeletedACL(BaseModel):
     description: Optional[str] = None
     """Description for the ACL."""
 
-    lan_1: Optional[DeletedACLLan1] = None
+    lan_1: Optional[DeletedACLLAN1] = None
 
-    lan_2: Optional[DeletedACLLan2] = None
+    lan_2: Optional[DeletedACLLAN2] = None
 
     name: Optional[str] = None
     """The name of the ACL."""

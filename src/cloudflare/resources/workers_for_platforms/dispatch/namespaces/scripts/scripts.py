@@ -14,6 +14,22 @@ from .content import (
     ContentWithStreamingResponse,
     AsyncContentWithStreamingResponse,
 )
+from .bindings import (
+    Bindings,
+    AsyncBindings,
+    BindingsWithRawResponse,
+    AsyncBindingsWithRawResponse,
+    BindingsWithStreamingResponse,
+    AsyncBindingsWithStreamingResponse,
+)
+from .settings import (
+    Settings,
+    AsyncSettings,
+    SettingsWithRawResponse,
+    AsyncSettingsWithRawResponse,
+    SettingsWithStreamingResponse,
+    AsyncSettingsWithStreamingResponse,
+)
 from ......_types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven, FileTypes
 from ......_utils import (
     required_args,
@@ -29,7 +45,6 @@ from ......_response import (
     async_to_streamed_response_wrapper,
 )
 from ......_wrappers import ResultWrapper
-from .content.content import Content, AsyncContent
 from ......_base_client import (
     make_request_options,
 )
@@ -47,6 +62,14 @@ class Scripts(SyncAPIResource):
     @cached_property
     def content(self) -> Content:
         return Content(self._client)
+
+    @cached_property
+    def settings(self) -> Settings:
+        return Settings(self._client)
+
+    @cached_property
+    def bindings(self) -> Bindings:
+        return Bindings(self._client)
 
     @cached_property
     def with_raw_response(self) -> ScriptsWithRawResponse:
@@ -290,6 +313,14 @@ class AsyncScripts(AsyncAPIResource):
     @cached_property
     def content(self) -> AsyncContent:
         return AsyncContent(self._client)
+
+    @cached_property
+    def settings(self) -> AsyncSettings:
+        return AsyncSettings(self._client)
+
+    @cached_property
+    def bindings(self) -> AsyncBindings:
+        return AsyncBindings(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncScriptsWithRawResponse:
@@ -547,6 +578,14 @@ class ScriptsWithRawResponse:
     def content(self) -> ContentWithRawResponse:
         return ContentWithRawResponse(self._scripts.content)
 
+    @cached_property
+    def settings(self) -> SettingsWithRawResponse:
+        return SettingsWithRawResponse(self._scripts.settings)
+
+    @cached_property
+    def bindings(self) -> BindingsWithRawResponse:
+        return BindingsWithRawResponse(self._scripts.bindings)
+
 
 class AsyncScriptsWithRawResponse:
     def __init__(self, scripts: AsyncScripts) -> None:
@@ -565,6 +604,14 @@ class AsyncScriptsWithRawResponse:
     @cached_property
     def content(self) -> AsyncContentWithRawResponse:
         return AsyncContentWithRawResponse(self._scripts.content)
+
+    @cached_property
+    def settings(self) -> AsyncSettingsWithRawResponse:
+        return AsyncSettingsWithRawResponse(self._scripts.settings)
+
+    @cached_property
+    def bindings(self) -> AsyncBindingsWithRawResponse:
+        return AsyncBindingsWithRawResponse(self._scripts.bindings)
 
 
 class ScriptsWithStreamingResponse:
@@ -585,6 +632,14 @@ class ScriptsWithStreamingResponse:
     def content(self) -> ContentWithStreamingResponse:
         return ContentWithStreamingResponse(self._scripts.content)
 
+    @cached_property
+    def settings(self) -> SettingsWithStreamingResponse:
+        return SettingsWithStreamingResponse(self._scripts.settings)
+
+    @cached_property
+    def bindings(self) -> BindingsWithStreamingResponse:
+        return BindingsWithStreamingResponse(self._scripts.bindings)
+
 
 class AsyncScriptsWithStreamingResponse:
     def __init__(self, scripts: AsyncScripts) -> None:
@@ -603,3 +658,11 @@ class AsyncScriptsWithStreamingResponse:
     @cached_property
     def content(self) -> AsyncContentWithStreamingResponse:
         return AsyncContentWithStreamingResponse(self._scripts.content)
+
+    @cached_property
+    def settings(self) -> AsyncSettingsWithStreamingResponse:
+        return AsyncSettingsWithStreamingResponse(self._scripts.settings)
+
+    @cached_property
+    def bindings(self) -> AsyncBindingsWithStreamingResponse:
+        return AsyncBindingsWithStreamingResponse(self._scripts.bindings)

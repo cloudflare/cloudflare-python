@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["RayidGetParams"]
+__all__ = ["RayIDGetParams"]
 
 
-class RayidGetParams(TypedDict, total=False):
+class RayIDGetParams(TypedDict, total=False):
     zone_identifier: Required[str]
     """Identifier"""
 

@@ -4,10 +4,10 @@ from typing import Optional
 
 from ...._models import BaseModel
 
-__all__ = ["WanDeleteResponse", "DeletedWan", "DeletedWanStaticAddressing"]
+__all__ = ["WANDeleteResponse", "DeletedWAN", "DeletedWANStaticAddressing"]
 
 
-class DeletedWanStaticAddressing(BaseModel):
+class DeletedWANStaticAddressing(BaseModel):
     address: str
     """A valid CIDR notation representing an IP range."""
 
@@ -18,7 +18,7 @@ class DeletedWanStaticAddressing(BaseModel):
     """A valid CIDR notation representing an IP range."""
 
 
-class DeletedWan(BaseModel):
+class DeletedWAN(BaseModel):
     id: Optional[str] = None
     """Identifier"""
 
@@ -32,7 +32,7 @@ class DeletedWan(BaseModel):
     site_id: Optional[str] = None
     """Identifier"""
 
-    static_addressing: Optional[DeletedWanStaticAddressing] = None
+    static_addressing: Optional[DeletedWANStaticAddressing] = None
     """(optional) if omitted, use DHCP.
 
     Submit secondary_address when site is in high availability mode.
@@ -42,7 +42,7 @@ class DeletedWan(BaseModel):
     """VLAN port number."""
 
 
-class WanDeleteResponse(BaseModel):
+class WANDeleteResponse(BaseModel):
     deleted: Optional[bool] = None
 
-    deleted_wan: Optional[DeletedWan] = None
+    deleted_wan: Optional[DeletedWAN] = None

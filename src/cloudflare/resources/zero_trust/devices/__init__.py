@@ -1,5 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from .revoke import (
+    Revoke,
+    AsyncRevoke,
+    RevokeWithRawResponse,
+    AsyncRevokeWithRawResponse,
+    RevokeWithStreamingResponse,
+    AsyncRevokeWithStreamingResponse,
+)
 from .devices import (
     Devices,
     AsyncDevices,
@@ -15,14 +23,6 @@ from .posture import (
     AsyncPostureWithRawResponse,
     PostureWithStreamingResponse,
     AsyncPostureWithStreamingResponse,
-)
-from .revokes import (
-    Revokes,
-    AsyncRevokes,
-    RevokesWithRawResponse,
-    AsyncRevokesWithRawResponse,
-    RevokesWithStreamingResponse,
-    AsyncRevokesWithStreamingResponse,
 )
 from .networks import (
     Networks,
@@ -48,6 +48,14 @@ from .settings import (
     SettingsWithStreamingResponse,
     AsyncSettingsWithStreamingResponse,
 )
+from .unrevoke import (
+    Unrevoke,
+    AsyncUnrevoke,
+    UnrevokeWithRawResponse,
+    AsyncUnrevokeWithRawResponse,
+    UnrevokeWithStreamingResponse,
+    AsyncUnrevokeWithStreamingResponse,
+)
 from .dex_tests import (
     DEXTests,
     AsyncDEXTests,
@@ -55,14 +63,6 @@ from .dex_tests import (
     AsyncDEXTestsWithRawResponse,
     DEXTestsWithStreamingResponse,
     AsyncDEXTestsWithStreamingResponse,
-)
-from .unrevokes import (
-    Unrevokes,
-    AsyncUnrevokes,
-    UnrevokesWithRawResponse,
-    AsyncUnrevokesWithRawResponse,
-    UnrevokesWithStreamingResponse,
-    AsyncUnrevokesWithStreamingResponse,
 )
 from .override_codes import (
     OverrideCodes,
@@ -98,24 +98,24 @@ __all__ = [
     "AsyncPostureWithRawResponse",
     "PostureWithStreamingResponse",
     "AsyncPostureWithStreamingResponse",
-    "Revokes",
-    "AsyncRevokes",
-    "RevokesWithRawResponse",
-    "AsyncRevokesWithRawResponse",
-    "RevokesWithStreamingResponse",
-    "AsyncRevokesWithStreamingResponse",
+    "Revoke",
+    "AsyncRevoke",
+    "RevokeWithRawResponse",
+    "AsyncRevokeWithRawResponse",
+    "RevokeWithStreamingResponse",
+    "AsyncRevokeWithStreamingResponse",
     "Settings",
     "AsyncSettings",
     "SettingsWithRawResponse",
     "AsyncSettingsWithRawResponse",
     "SettingsWithStreamingResponse",
     "AsyncSettingsWithStreamingResponse",
-    "Unrevokes",
-    "AsyncUnrevokes",
-    "UnrevokesWithRawResponse",
-    "AsyncUnrevokesWithRawResponse",
-    "UnrevokesWithStreamingResponse",
-    "AsyncUnrevokesWithStreamingResponse",
+    "Unrevoke",
+    "AsyncUnrevoke",
+    "UnrevokeWithRawResponse",
+    "AsyncUnrevokeWithRawResponse",
+    "UnrevokeWithStreamingResponse",
+    "AsyncUnrevokeWithStreamingResponse",
     "OverrideCodes",
     "AsyncOverrideCodes",
     "OverrideCodesWithRawResponse",

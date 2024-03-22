@@ -6,13 +6,13 @@ from typing import Type, cast
 
 import httpx
 
-from .by_tags import (
-    ByTags,
-    AsyncByTags,
-    ByTagsWithRawResponse,
-    AsyncByTagsWithRawResponse,
-    ByTagsWithStreamingResponse,
-    AsyncByTagsWithStreamingResponse,
+from .by_tag import (
+    ByTag,
+    AsyncByTag,
+    ByTagWithRawResponse,
+    AsyncByTagWithRawResponse,
+    ByTagWithStreamingResponse,
+    AsyncByTagWithStreamingResponse,
 )
 from ....types import RulesetsRulesetResponse, RulesetsRulesetsResponse
 from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
@@ -34,8 +34,8 @@ __all__ = ["Versions", "AsyncVersions"]
 
 class Versions(SyncAPIResource):
     @cached_property
-    def by_tags(self) -> ByTags:
-        return ByTags(self._client)
+    def by_tag(self) -> ByTag:
+        return ByTag(self._client)
 
     @cached_property
     def with_raw_response(self) -> VersionsWithRawResponse:
@@ -235,8 +235,8 @@ class Versions(SyncAPIResource):
 
 class AsyncVersions(AsyncAPIResource):
     @cached_property
-    def by_tags(self) -> AsyncByTags:
-        return AsyncByTags(self._client)
+    def by_tag(self) -> AsyncByTag:
+        return AsyncByTag(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncVersionsWithRawResponse:
@@ -449,8 +449,8 @@ class VersionsWithRawResponse:
         )
 
     @cached_property
-    def by_tags(self) -> ByTagsWithRawResponse:
-        return ByTagsWithRawResponse(self._versions.by_tags)
+    def by_tag(self) -> ByTagWithRawResponse:
+        return ByTagWithRawResponse(self._versions.by_tag)
 
 
 class AsyncVersionsWithRawResponse:
@@ -468,8 +468,8 @@ class AsyncVersionsWithRawResponse:
         )
 
     @cached_property
-    def by_tags(self) -> AsyncByTagsWithRawResponse:
-        return AsyncByTagsWithRawResponse(self._versions.by_tags)
+    def by_tag(self) -> AsyncByTagWithRawResponse:
+        return AsyncByTagWithRawResponse(self._versions.by_tag)
 
 
 class VersionsWithStreamingResponse:
@@ -487,8 +487,8 @@ class VersionsWithStreamingResponse:
         )
 
     @cached_property
-    def by_tags(self) -> ByTagsWithStreamingResponse:
-        return ByTagsWithStreamingResponse(self._versions.by_tags)
+    def by_tag(self) -> ByTagWithStreamingResponse:
+        return ByTagWithStreamingResponse(self._versions.by_tag)
 
 
 class AsyncVersionsWithStreamingResponse:
@@ -506,5 +506,5 @@ class AsyncVersionsWithStreamingResponse:
         )
 
     @cached_property
-    def by_tags(self) -> AsyncByTagsWithStreamingResponse:
-        return AsyncByTagsWithStreamingResponse(self._versions.by_tags)
+    def by_tag(self) -> AsyncByTagWithStreamingResponse:
+        return AsyncByTagWithStreamingResponse(self._versions.by_tag)

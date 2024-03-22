@@ -10,17 +10,17 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types.magic_transit.sites import (
-    WanGetResponse,
-    WanListResponse,
-    WanCreateResponse,
-    WanDeleteResponse,
-    WanUpdateResponse,
+    WANGetResponse,
+    WANListResponse,
+    WANCreateResponse,
+    WANDeleteResponse,
+    WANUpdateResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
-class TestWans:
+class TestWANs:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip()
@@ -30,7 +30,7 @@ class TestWans:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(WanCreateResponse, wan, path=["response"])
+        assert_matches_type(WANCreateResponse, wan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -50,7 +50,7 @@ class TestWans:
                 "vlan_tag": 0,
             },
         )
-        assert_matches_type(WanCreateResponse, wan, path=["response"])
+        assert_matches_type(WANCreateResponse, wan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -63,7 +63,7 @@ class TestWans:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         wan = response.parse()
-        assert_matches_type(WanCreateResponse, wan, path=["response"])
+        assert_matches_type(WANCreateResponse, wan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -76,7 +76,7 @@ class TestWans:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             wan = response.parse()
-            assert_matches_type(WanCreateResponse, wan, path=["response"])
+            assert_matches_type(WANCreateResponse, wan, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -103,7 +103,7 @@ class TestWans:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(WanUpdateResponse, wan, path=["response"])
+        assert_matches_type(WANUpdateResponse, wan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -124,7 +124,7 @@ class TestWans:
                 "vlan_tag": 0,
             },
         )
-        assert_matches_type(WanUpdateResponse, wan, path=["response"])
+        assert_matches_type(WANUpdateResponse, wan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -138,7 +138,7 @@ class TestWans:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         wan = response.parse()
-        assert_matches_type(WanUpdateResponse, wan, path=["response"])
+        assert_matches_type(WANUpdateResponse, wan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -152,7 +152,7 @@ class TestWans:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             wan = response.parse()
-            assert_matches_type(WanUpdateResponse, wan, path=["response"])
+            assert_matches_type(WANUpdateResponse, wan, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -187,7 +187,7 @@ class TestWans:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(WanListResponse, wan, path=["response"])
+        assert_matches_type(WANListResponse, wan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -200,7 +200,7 @@ class TestWans:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         wan = response.parse()
-        assert_matches_type(WanListResponse, wan, path=["response"])
+        assert_matches_type(WANListResponse, wan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -213,7 +213,7 @@ class TestWans:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             wan = response.parse()
-            assert_matches_type(WanListResponse, wan, path=["response"])
+            assert_matches_type(WANListResponse, wan, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -240,7 +240,7 @@ class TestWans:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(WanDeleteResponse, wan, path=["response"])
+        assert_matches_type(WANDeleteResponse, wan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -254,7 +254,7 @@ class TestWans:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         wan = response.parse()
-        assert_matches_type(WanDeleteResponse, wan, path=["response"])
+        assert_matches_type(WANDeleteResponse, wan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -268,7 +268,7 @@ class TestWans:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             wan = response.parse()
-            assert_matches_type(WanDeleteResponse, wan, path=["response"])
+            assert_matches_type(WANDeleteResponse, wan, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -304,7 +304,7 @@ class TestWans:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(WanGetResponse, wan, path=["response"])
+        assert_matches_type(WANGetResponse, wan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -318,7 +318,7 @@ class TestWans:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         wan = response.parse()
-        assert_matches_type(WanGetResponse, wan, path=["response"])
+        assert_matches_type(WANGetResponse, wan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -332,7 +332,7 @@ class TestWans:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             wan = response.parse()
-            assert_matches_type(WanGetResponse, wan, path=["response"])
+            assert_matches_type(WANGetResponse, wan, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -361,7 +361,7 @@ class TestWans:
             )
 
 
-class TestAsyncWans:
+class TestAsyncWANs:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip()
@@ -371,7 +371,7 @@ class TestAsyncWans:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(WanCreateResponse, wan, path=["response"])
+        assert_matches_type(WANCreateResponse, wan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -391,7 +391,7 @@ class TestAsyncWans:
                 "vlan_tag": 0,
             },
         )
-        assert_matches_type(WanCreateResponse, wan, path=["response"])
+        assert_matches_type(WANCreateResponse, wan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -404,7 +404,7 @@ class TestAsyncWans:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         wan = await response.parse()
-        assert_matches_type(WanCreateResponse, wan, path=["response"])
+        assert_matches_type(WANCreateResponse, wan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -417,7 +417,7 @@ class TestAsyncWans:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             wan = await response.parse()
-            assert_matches_type(WanCreateResponse, wan, path=["response"])
+            assert_matches_type(WANCreateResponse, wan, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -444,7 +444,7 @@ class TestAsyncWans:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(WanUpdateResponse, wan, path=["response"])
+        assert_matches_type(WANUpdateResponse, wan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -465,7 +465,7 @@ class TestAsyncWans:
                 "vlan_tag": 0,
             },
         )
-        assert_matches_type(WanUpdateResponse, wan, path=["response"])
+        assert_matches_type(WANUpdateResponse, wan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -479,7 +479,7 @@ class TestAsyncWans:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         wan = await response.parse()
-        assert_matches_type(WanUpdateResponse, wan, path=["response"])
+        assert_matches_type(WANUpdateResponse, wan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -493,7 +493,7 @@ class TestAsyncWans:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             wan = await response.parse()
-            assert_matches_type(WanUpdateResponse, wan, path=["response"])
+            assert_matches_type(WANUpdateResponse, wan, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -528,7 +528,7 @@ class TestAsyncWans:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(WanListResponse, wan, path=["response"])
+        assert_matches_type(WANListResponse, wan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -541,7 +541,7 @@ class TestAsyncWans:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         wan = await response.parse()
-        assert_matches_type(WanListResponse, wan, path=["response"])
+        assert_matches_type(WANListResponse, wan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -554,7 +554,7 @@ class TestAsyncWans:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             wan = await response.parse()
-            assert_matches_type(WanListResponse, wan, path=["response"])
+            assert_matches_type(WANListResponse, wan, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -581,7 +581,7 @@ class TestAsyncWans:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(WanDeleteResponse, wan, path=["response"])
+        assert_matches_type(WANDeleteResponse, wan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -595,7 +595,7 @@ class TestAsyncWans:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         wan = await response.parse()
-        assert_matches_type(WanDeleteResponse, wan, path=["response"])
+        assert_matches_type(WANDeleteResponse, wan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -609,7 +609,7 @@ class TestAsyncWans:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             wan = await response.parse()
-            assert_matches_type(WanDeleteResponse, wan, path=["response"])
+            assert_matches_type(WANDeleteResponse, wan, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -645,7 +645,7 @@ class TestAsyncWans:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(WanGetResponse, wan, path=["response"])
+        assert_matches_type(WANGetResponse, wan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -659,7 +659,7 @@ class TestAsyncWans:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         wan = await response.parse()
-        assert_matches_type(WanGetResponse, wan, path=["response"])
+        assert_matches_type(WANGetResponse, wan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -673,7 +673,7 @@ class TestAsyncWans:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             wan = await response.parse()
-            assert_matches_type(WanGetResponse, wan, path=["response"])
+            assert_matches_type(WANGetResponse, wan, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

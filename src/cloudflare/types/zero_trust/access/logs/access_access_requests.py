@@ -3,6 +3,8 @@
 from typing import Optional
 from datetime import datetime
 
+from pydantic import Field as FieldInfo
+
 from ....._models import BaseModel
 
 __all__ = ["AccessAccessRequests"]
@@ -29,7 +31,7 @@ class AccessAccessRequests(BaseModel):
     ip_address: Optional[str] = None
     """The IP address of the authenticating user."""
 
-    ray_id: Optional[str] = None
+    rayid: Optional[str] = FieldInfo(alias="ray_id", default=None)
     """The unique identifier for the request to Cloudflare."""
 
     user_email: Optional[str] = None
