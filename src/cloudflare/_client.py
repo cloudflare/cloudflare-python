@@ -98,6 +98,7 @@ class Cloudflare(SyncAPIClient):
     images: resources.Images
     intel: resources.Intel
     magic_transit: resources.MagicTransit
+    magic_network_monitoring: resources.MagicNetworkMonitoring
     mtls_certificates: resources.MTLSCertificates
     pages: resources.Pages
     pcaps: resources.PCAPs
@@ -250,6 +251,7 @@ class Cloudflare(SyncAPIClient):
         self.images = resources.Images(self)
         self.intel = resources.Intel(self)
         self.magic_transit = resources.MagicTransit(self)
+        self.magic_network_monitoring = resources.MagicNetworkMonitoring(self)
         self.mtls_certificates = resources.MTLSCertificates(self)
         self.pages = resources.Pages(self)
         self.pcaps = resources.PCAPs(self)
@@ -507,6 +509,7 @@ class AsyncCloudflare(AsyncAPIClient):
     images: resources.AsyncImages
     intel: resources.AsyncIntel
     magic_transit: resources.AsyncMagicTransit
+    magic_network_monitoring: resources.AsyncMagicNetworkMonitoring
     mtls_certificates: resources.AsyncMTLSCertificates
     pages: resources.AsyncPages
     pcaps: resources.AsyncPCAPs
@@ -659,6 +662,7 @@ class AsyncCloudflare(AsyncAPIClient):
         self.images = resources.AsyncImages(self)
         self.intel = resources.AsyncIntel(self)
         self.magic_transit = resources.AsyncMagicTransit(self)
+        self.magic_network_monitoring = resources.AsyncMagicNetworkMonitoring(self)
         self.mtls_certificates = resources.AsyncMTLSCertificates(self)
         self.pages = resources.AsyncPages(self)
         self.pcaps = resources.AsyncPCAPs(self)
@@ -917,6 +921,7 @@ class CloudflareWithRawResponse:
         self.images = resources.ImagesWithRawResponse(client.images)
         self.intel = resources.IntelWithRawResponse(client.intel)
         self.magic_transit = resources.MagicTransitWithRawResponse(client.magic_transit)
+        self.magic_network_monitoring = resources.MagicNetworkMonitoringWithRawResponse(client.magic_network_monitoring)
         self.mtls_certificates = resources.MTLSCertificatesWithRawResponse(client.mtls_certificates)
         self.pages = resources.PagesWithRawResponse(client.pages)
         self.pcaps = resources.PCAPsWithRawResponse(client.pcaps)
@@ -1004,6 +1009,9 @@ class AsyncCloudflareWithRawResponse:
         self.images = resources.AsyncImagesWithRawResponse(client.images)
         self.intel = resources.AsyncIntelWithRawResponse(client.intel)
         self.magic_transit = resources.AsyncMagicTransitWithRawResponse(client.magic_transit)
+        self.magic_network_monitoring = resources.AsyncMagicNetworkMonitoringWithRawResponse(
+            client.magic_network_monitoring
+        )
         self.mtls_certificates = resources.AsyncMTLSCertificatesWithRawResponse(client.mtls_certificates)
         self.pages = resources.AsyncPagesWithRawResponse(client.pages)
         self.pcaps = resources.AsyncPCAPsWithRawResponse(client.pcaps)
@@ -1091,6 +1099,9 @@ class CloudflareWithStreamedResponse:
         self.images = resources.ImagesWithStreamingResponse(client.images)
         self.intel = resources.IntelWithStreamingResponse(client.intel)
         self.magic_transit = resources.MagicTransitWithStreamingResponse(client.magic_transit)
+        self.magic_network_monitoring = resources.MagicNetworkMonitoringWithStreamingResponse(
+            client.magic_network_monitoring
+        )
         self.mtls_certificates = resources.MTLSCertificatesWithStreamingResponse(client.mtls_certificates)
         self.pages = resources.PagesWithStreamingResponse(client.pages)
         self.pcaps = resources.PCAPsWithStreamingResponse(client.pcaps)
@@ -1182,6 +1193,9 @@ class AsyncCloudflareWithStreamedResponse:
         self.images = resources.AsyncImagesWithStreamingResponse(client.images)
         self.intel = resources.AsyncIntelWithStreamingResponse(client.intel)
         self.magic_transit = resources.AsyncMagicTransitWithStreamingResponse(client.magic_transit)
+        self.magic_network_monitoring = resources.AsyncMagicNetworkMonitoringWithStreamingResponse(
+            client.magic_network_monitoring
+        )
         self.mtls_certificates = resources.AsyncMTLSCertificatesWithStreamingResponse(client.mtls_certificates)
         self.pages = resources.AsyncPagesWithStreamingResponse(client.pages)
         self.pcaps = resources.AsyncPCAPsWithStreamingResponse(client.pcaps)
