@@ -10,17 +10,17 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types.magic_transit.sites import (
-    LanGetResponse,
-    LanListResponse,
-    LanCreateResponse,
-    LanDeleteResponse,
-    LanUpdateResponse,
+    LANGetResponse,
+    LANListResponse,
+    LANCreateResponse,
+    LANDeleteResponse,
+    LANUpdateResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
-class TestLans:
+class TestLANs:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip()
@@ -30,7 +30,7 @@ class TestLans:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(LanCreateResponse, lan, path=["response"])
+        assert_matches_type(LANCreateResponse, lan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -78,7 +78,7 @@ class TestLans:
                 "vlan_tag": 0,
             },
         )
-        assert_matches_type(LanCreateResponse, lan, path=["response"])
+        assert_matches_type(LANCreateResponse, lan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -91,7 +91,7 @@ class TestLans:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         lan = response.parse()
-        assert_matches_type(LanCreateResponse, lan, path=["response"])
+        assert_matches_type(LANCreateResponse, lan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -104,7 +104,7 @@ class TestLans:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             lan = response.parse()
-            assert_matches_type(LanCreateResponse, lan, path=["response"])
+            assert_matches_type(LANCreateResponse, lan, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -131,7 +131,7 @@ class TestLans:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(LanUpdateResponse, lan, path=["response"])
+        assert_matches_type(LANUpdateResponse, lan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -179,7 +179,7 @@ class TestLans:
                 "vlan_tag": 0,
             },
         )
-        assert_matches_type(LanUpdateResponse, lan, path=["response"])
+        assert_matches_type(LANUpdateResponse, lan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -193,7 +193,7 @@ class TestLans:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         lan = response.parse()
-        assert_matches_type(LanUpdateResponse, lan, path=["response"])
+        assert_matches_type(LANUpdateResponse, lan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -207,7 +207,7 @@ class TestLans:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             lan = response.parse()
-            assert_matches_type(LanUpdateResponse, lan, path=["response"])
+            assert_matches_type(LANUpdateResponse, lan, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -242,7 +242,7 @@ class TestLans:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(LanListResponse, lan, path=["response"])
+        assert_matches_type(LANListResponse, lan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -255,7 +255,7 @@ class TestLans:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         lan = response.parse()
-        assert_matches_type(LanListResponse, lan, path=["response"])
+        assert_matches_type(LANListResponse, lan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -268,7 +268,7 @@ class TestLans:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             lan = response.parse()
-            assert_matches_type(LanListResponse, lan, path=["response"])
+            assert_matches_type(LANListResponse, lan, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -295,7 +295,7 @@ class TestLans:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(LanDeleteResponse, lan, path=["response"])
+        assert_matches_type(LANDeleteResponse, lan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -309,7 +309,7 @@ class TestLans:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         lan = response.parse()
-        assert_matches_type(LanDeleteResponse, lan, path=["response"])
+        assert_matches_type(LANDeleteResponse, lan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -323,7 +323,7 @@ class TestLans:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             lan = response.parse()
-            assert_matches_type(LanDeleteResponse, lan, path=["response"])
+            assert_matches_type(LANDeleteResponse, lan, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -359,7 +359,7 @@ class TestLans:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(LanGetResponse, lan, path=["response"])
+        assert_matches_type(LANGetResponse, lan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -373,7 +373,7 @@ class TestLans:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         lan = response.parse()
-        assert_matches_type(LanGetResponse, lan, path=["response"])
+        assert_matches_type(LANGetResponse, lan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -387,7 +387,7 @@ class TestLans:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             lan = response.parse()
-            assert_matches_type(LanGetResponse, lan, path=["response"])
+            assert_matches_type(LANGetResponse, lan, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -416,7 +416,7 @@ class TestLans:
             )
 
 
-class TestAsyncLans:
+class TestAsyncLANs:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip()
@@ -426,7 +426,7 @@ class TestAsyncLans:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(LanCreateResponse, lan, path=["response"])
+        assert_matches_type(LANCreateResponse, lan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -474,7 +474,7 @@ class TestAsyncLans:
                 "vlan_tag": 0,
             },
         )
-        assert_matches_type(LanCreateResponse, lan, path=["response"])
+        assert_matches_type(LANCreateResponse, lan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -487,7 +487,7 @@ class TestAsyncLans:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         lan = await response.parse()
-        assert_matches_type(LanCreateResponse, lan, path=["response"])
+        assert_matches_type(LANCreateResponse, lan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -500,7 +500,7 @@ class TestAsyncLans:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             lan = await response.parse()
-            assert_matches_type(LanCreateResponse, lan, path=["response"])
+            assert_matches_type(LANCreateResponse, lan, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -527,7 +527,7 @@ class TestAsyncLans:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(LanUpdateResponse, lan, path=["response"])
+        assert_matches_type(LANUpdateResponse, lan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -575,7 +575,7 @@ class TestAsyncLans:
                 "vlan_tag": 0,
             },
         )
-        assert_matches_type(LanUpdateResponse, lan, path=["response"])
+        assert_matches_type(LANUpdateResponse, lan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -589,7 +589,7 @@ class TestAsyncLans:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         lan = await response.parse()
-        assert_matches_type(LanUpdateResponse, lan, path=["response"])
+        assert_matches_type(LANUpdateResponse, lan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -603,7 +603,7 @@ class TestAsyncLans:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             lan = await response.parse()
-            assert_matches_type(LanUpdateResponse, lan, path=["response"])
+            assert_matches_type(LANUpdateResponse, lan, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -638,7 +638,7 @@ class TestAsyncLans:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(LanListResponse, lan, path=["response"])
+        assert_matches_type(LANListResponse, lan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -651,7 +651,7 @@ class TestAsyncLans:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         lan = await response.parse()
-        assert_matches_type(LanListResponse, lan, path=["response"])
+        assert_matches_type(LANListResponse, lan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -664,7 +664,7 @@ class TestAsyncLans:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             lan = await response.parse()
-            assert_matches_type(LanListResponse, lan, path=["response"])
+            assert_matches_type(LANListResponse, lan, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -691,7 +691,7 @@ class TestAsyncLans:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(LanDeleteResponse, lan, path=["response"])
+        assert_matches_type(LANDeleteResponse, lan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -705,7 +705,7 @@ class TestAsyncLans:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         lan = await response.parse()
-        assert_matches_type(LanDeleteResponse, lan, path=["response"])
+        assert_matches_type(LANDeleteResponse, lan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -719,7 +719,7 @@ class TestAsyncLans:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             lan = await response.parse()
-            assert_matches_type(LanDeleteResponse, lan, path=["response"])
+            assert_matches_type(LANDeleteResponse, lan, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -755,7 +755,7 @@ class TestAsyncLans:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(LanGetResponse, lan, path=["response"])
+        assert_matches_type(LANGetResponse, lan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -769,7 +769,7 @@ class TestAsyncLans:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         lan = await response.parse()
-        assert_matches_type(LanGetResponse, lan, path=["response"])
+        assert_matches_type(LANGetResponse, lan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -783,7 +783,7 @@ class TestAsyncLans:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             lan = await response.parse()
-            assert_matches_type(LanGetResponse, lan, path=["response"])
+            assert_matches_type(LANGetResponse, lan, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -2,6 +2,6 @@
 
 from typing import Union
 
-__all__ = ["RayidGetResponse"]
+__all__ = ["RayIDGetResponse"]
 
-RayidGetResponse = Union[str, object]
+RayIDGetResponse = Union[str, object]

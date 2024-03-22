@@ -1,12 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .by_tags import (
-    ByTags,
-    AsyncByTags,
-    ByTagsWithRawResponse,
-    AsyncByTagsWithRawResponse,
-    ByTagsWithStreamingResponse,
-    AsyncByTagsWithStreamingResponse,
+from .by_tag import (
+    ByTag,
+    AsyncByTag,
+    ByTagWithRawResponse,
+    AsyncByTagWithRawResponse,
+    ByTagWithStreamingResponse,
+    AsyncByTagWithStreamingResponse,
 )
 from .versions import (
     Versions,
@@ -18,12 +18,12 @@ from .versions import (
 )
 
 __all__ = [
-    "ByTags",
-    "AsyncByTags",
-    "ByTagsWithRawResponse",
-    "AsyncByTagsWithRawResponse",
-    "ByTagsWithStreamingResponse",
-    "AsyncByTagsWithStreamingResponse",
+    "ByTag",
+    "AsyncByTag",
+    "ByTagWithRawResponse",
+    "AsyncByTagWithRawResponse",
+    "ByTagWithStreamingResponse",
+    "AsyncByTagWithStreamingResponse",
     "Versions",
     "AsyncVersions",
     "VersionsWithRawResponse",

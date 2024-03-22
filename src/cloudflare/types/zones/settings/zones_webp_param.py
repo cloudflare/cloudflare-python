@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["ZonesWebpParam"]
+__all__ = ["ZonesWebPParam"]
 
 
-class ZonesWebpParam(TypedDict, total=False):
+class ZonesWebPParam(TypedDict, total=False):
     id: Required[Literal["webp"]]
     """ID of the zone setting."""
 

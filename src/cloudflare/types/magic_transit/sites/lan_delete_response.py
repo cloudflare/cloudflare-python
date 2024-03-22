@@ -5,43 +5,43 @@ from typing import Dict, List, Optional
 from ...._models import BaseModel
 
 __all__ = [
-    "LanDeleteResponse",
-    "DeletedLan",
-    "DeletedLanNat",
-    "DeletedLanRoutedSubnet",
-    "DeletedLanRoutedSubnetNat",
-    "DeletedLanStaticAddressing",
-    "DeletedLanStaticAddressingDhcpRelay",
-    "DeletedLanStaticAddressingDhcpServer",
+    "LANDeleteResponse",
+    "DeletedLAN",
+    "DeletedLANNat",
+    "DeletedLANRoutedSubnet",
+    "DeletedLANRoutedSubnetNat",
+    "DeletedLANStaticAddressing",
+    "DeletedLANStaticAddressingDhcpRelay",
+    "DeletedLANStaticAddressingDhcpServer",
 ]
 
 
-class DeletedLanNat(BaseModel):
+class DeletedLANNat(BaseModel):
     static_prefix: Optional[str] = None
     """A valid CIDR notation representing an IP range."""
 
 
-class DeletedLanRoutedSubnetNat(BaseModel):
+class DeletedLANRoutedSubnetNat(BaseModel):
     static_prefix: Optional[str] = None
     """A valid CIDR notation representing an IP range."""
 
 
-class DeletedLanRoutedSubnet(BaseModel):
+class DeletedLANRoutedSubnet(BaseModel):
     next_hop: str
     """A valid IPv4 address."""
 
     prefix: str
     """A valid CIDR notation representing an IP range."""
 
-    nat: Optional[DeletedLanRoutedSubnetNat] = None
+    nat: Optional[DeletedLANRoutedSubnetNat] = None
 
 
-class DeletedLanStaticAddressingDhcpRelay(BaseModel):
+class DeletedLANStaticAddressingDhcpRelay(BaseModel):
     server_addresses: Optional[List[str]] = None
     """List of DHCP server IPs."""
 
 
-class DeletedLanStaticAddressingDhcpServer(BaseModel):
+class DeletedLANStaticAddressingDhcpServer(BaseModel):
     dhcp_pool_end: Optional[str] = None
     """A valid IPv4 address."""
 
@@ -55,13 +55,13 @@ class DeletedLanStaticAddressingDhcpServer(BaseModel):
     """Mapping of MAC addresses to IP addresses"""
 
 
-class DeletedLanStaticAddressing(BaseModel):
+class DeletedLANStaticAddressing(BaseModel):
     address: str
     """A valid CIDR notation representing an IP range."""
 
-    dhcp_relay: Optional[DeletedLanStaticAddressingDhcpRelay] = None
+    dhcp_relay: Optional[DeletedLANStaticAddressingDhcpRelay] = None
 
-    dhcp_server: Optional[DeletedLanStaticAddressingDhcpServer] = None
+    dhcp_server: Optional[DeletedLANStaticAddressingDhcpServer] = None
 
     secondary_address: Optional[str] = None
     """A valid CIDR notation representing an IP range."""
@@ -70,7 +70,7 @@ class DeletedLanStaticAddressing(BaseModel):
     """A valid CIDR notation representing an IP range."""
 
 
-class DeletedLan(BaseModel):
+class DeletedLAN(BaseModel):
     id: Optional[str] = None
     """Identifier"""
 
@@ -82,16 +82,16 @@ class DeletedLan(BaseModel):
     only works for site with HA turned on. only one LAN can be set as the ha_link.
     """
 
-    nat: Optional[DeletedLanNat] = None
+    nat: Optional[DeletedLANNat] = None
 
     physport: Optional[int] = None
 
-    routed_subnets: Optional[List[DeletedLanRoutedSubnet]] = None
+    routed_subnets: Optional[List[DeletedLANRoutedSubnet]] = None
 
     site_id: Optional[str] = None
     """Identifier"""
 
-    static_addressing: Optional[DeletedLanStaticAddressing] = None
+    static_addressing: Optional[DeletedLANStaticAddressing] = None
     """
     If the site is not configured in high availability mode, this configuration is
     optional (if omitted, use DHCP). However, if in high availability mode,
@@ -102,7 +102,7 @@ class DeletedLan(BaseModel):
     """VLAN port number."""
 
 
-class LanDeleteResponse(BaseModel):
+class LANDeleteResponse(BaseModel):
     deleted: Optional[bool] = None
 
-    deleted_lan: Optional[DeletedLan] = None
+    deleted_lan: Optional[DeletedLAN] = None

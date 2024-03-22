@@ -4,20 +4,20 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["WanUpdateParams", "Wan", "WanStaticAddressing"]
+__all__ = ["WANUpdateParams", "WAN", "WANStaticAddressing"]
 
 
-class WanUpdateParams(TypedDict, total=False):
+class WANUpdateParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier"""
 
     site_id: Required[str]
     """Identifier"""
 
-    wan: Wan
+    wan: WAN
 
 
-class WanStaticAddressing(TypedDict, total=False):
+class WANStaticAddressing(TypedDict, total=False):
     address: Required[str]
     """A valid CIDR notation representing an IP range."""
 
@@ -28,14 +28,14 @@ class WanStaticAddressing(TypedDict, total=False):
     """A valid CIDR notation representing an IP range."""
 
 
-class Wan(TypedDict, total=False):
+class WAN(TypedDict, total=False):
     description: str
 
     physport: int
 
     priority: int
 
-    static_addressing: WanStaticAddressing
+    static_addressing: WANStaticAddressing
     """(optional) if omitted, use DHCP.
 
     Submit secondary_address when site is in high availability mode.

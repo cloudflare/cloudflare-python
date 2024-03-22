@@ -15,20 +15,20 @@ from .acls import (
     AsyncACLsWithStreamingResponse,
 )
 from .lans import (
-    Lans,
-    AsyncLans,
-    LansWithRawResponse,
-    AsyncLansWithRawResponse,
-    LansWithStreamingResponse,
-    AsyncLansWithStreamingResponse,
+    LANs,
+    AsyncLANs,
+    LANsWithRawResponse,
+    AsyncLANsWithRawResponse,
+    LANsWithStreamingResponse,
+    AsyncLANsWithStreamingResponse,
 )
 from .wans import (
-    Wans,
-    AsyncWans,
-    WansWithRawResponse,
-    AsyncWansWithRawResponse,
-    WansWithStreamingResponse,
-    AsyncWansWithStreamingResponse,
+    WANs,
+    AsyncWANs,
+    WANsWithRawResponse,
+    AsyncWANsWithRawResponse,
+    WANsWithStreamingResponse,
+    AsyncWANsWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._utils import (
@@ -66,12 +66,12 @@ class Sites(SyncAPIResource):
         return ACLs(self._client)
 
     @cached_property
-    def lans(self) -> Lans:
-        return Lans(self._client)
+    def lans(self) -> LANs:
+        return LANs(self._client)
 
     @cached_property
-    def wans(self) -> Wans:
-        return Wans(self._client)
+    def wans(self) -> WANs:
+        return WANs(self._client)
 
     @cached_property
     def with_raw_response(self) -> SitesWithRawResponse:
@@ -305,12 +305,12 @@ class AsyncSites(AsyncAPIResource):
         return AsyncACLs(self._client)
 
     @cached_property
-    def lans(self) -> AsyncLans:
-        return AsyncLans(self._client)
+    def lans(self) -> AsyncLANs:
+        return AsyncLANs(self._client)
 
     @cached_property
-    def wans(self) -> AsyncWans:
-        return AsyncWans(self._client)
+    def wans(self) -> AsyncWANs:
+        return AsyncWANs(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncSitesWithRawResponse:
@@ -563,12 +563,12 @@ class SitesWithRawResponse:
         return ACLsWithRawResponse(self._sites.acls)
 
     @cached_property
-    def lans(self) -> LansWithRawResponse:
-        return LansWithRawResponse(self._sites.lans)
+    def lans(self) -> LANsWithRawResponse:
+        return LANsWithRawResponse(self._sites.lans)
 
     @cached_property
-    def wans(self) -> WansWithRawResponse:
-        return WansWithRawResponse(self._sites.wans)
+    def wans(self) -> WANsWithRawResponse:
+        return WANsWithRawResponse(self._sites.wans)
 
 
 class AsyncSitesWithRawResponse:
@@ -596,12 +596,12 @@ class AsyncSitesWithRawResponse:
         return AsyncACLsWithRawResponse(self._sites.acls)
 
     @cached_property
-    def lans(self) -> AsyncLansWithRawResponse:
-        return AsyncLansWithRawResponse(self._sites.lans)
+    def lans(self) -> AsyncLANsWithRawResponse:
+        return AsyncLANsWithRawResponse(self._sites.lans)
 
     @cached_property
-    def wans(self) -> AsyncWansWithRawResponse:
-        return AsyncWansWithRawResponse(self._sites.wans)
+    def wans(self) -> AsyncWANsWithRawResponse:
+        return AsyncWANsWithRawResponse(self._sites.wans)
 
 
 class SitesWithStreamingResponse:
@@ -629,12 +629,12 @@ class SitesWithStreamingResponse:
         return ACLsWithStreamingResponse(self._sites.acls)
 
     @cached_property
-    def lans(self) -> LansWithStreamingResponse:
-        return LansWithStreamingResponse(self._sites.lans)
+    def lans(self) -> LANsWithStreamingResponse:
+        return LANsWithStreamingResponse(self._sites.lans)
 
     @cached_property
-    def wans(self) -> WansWithStreamingResponse:
-        return WansWithStreamingResponse(self._sites.wans)
+    def wans(self) -> WANsWithStreamingResponse:
+        return WANsWithStreamingResponse(self._sites.wans)
 
 
 class AsyncSitesWithStreamingResponse:
@@ -662,9 +662,9 @@ class AsyncSitesWithStreamingResponse:
         return AsyncACLsWithStreamingResponse(self._sites.acls)
 
     @cached_property
-    def lans(self) -> AsyncLansWithStreamingResponse:
-        return AsyncLansWithStreamingResponse(self._sites.lans)
+    def lans(self) -> AsyncLANsWithStreamingResponse:
+        return AsyncLANsWithStreamingResponse(self._sites.lans)
 
     @cached_property
-    def wans(self) -> AsyncWansWithStreamingResponse:
-        return AsyncWansWithStreamingResponse(self._sites.wans)
+    def wans(self) -> AsyncWANsWithStreamingResponse:
+        return AsyncWANsWithStreamingResponse(self._sites.wans)

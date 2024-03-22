@@ -24,40 +24,40 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.magic_transit.sites import (
-    LanGetResponse,
-    LanListResponse,
-    LanCreateResponse,
-    LanDeleteResponse,
-    LanUpdateResponse,
+    LANGetResponse,
+    LANListResponse,
+    LANCreateResponse,
+    LANDeleteResponse,
+    LANUpdateResponse,
     lan_create_params,
     lan_update_params,
 )
 
-__all__ = ["Lans", "AsyncLans"]
+__all__ = ["LANs", "AsyncLANs"]
 
 
-class Lans(SyncAPIResource):
+class LANs(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> LansWithRawResponse:
-        return LansWithRawResponse(self)
+    def with_raw_response(self) -> LANsWithRawResponse:
+        return LANsWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> LansWithStreamingResponse:
-        return LansWithStreamingResponse(self)
+    def with_streaming_response(self) -> LANsWithStreamingResponse:
+        return LANsWithStreamingResponse(self)
 
     def create(
         self,
         site_id: str,
         *,
         account_id: str,
-        lan: lan_create_params.Lan | NotGiven = NOT_GIVEN,
+        lan: lan_create_params.LAN | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LanCreateResponse:
+    ) -> LANCreateResponse:
         """Creates a new LAN.
 
         If the site is in high availability mode, static_addressing
@@ -82,7 +82,7 @@ class Lans(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
         return self._post(
             f"/accounts/{account_id}/magic/sites/{site_id}/lans",
-            body=maybe_transform({"lan": lan}, lan_create_params.LanCreateParams),
+            body=maybe_transform({"lan": lan}, lan_create_params.LANCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -90,7 +90,7 @@ class Lans(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[LanCreateResponse], ResultWrapper[LanCreateResponse]),
+            cast_to=cast(Type[LANCreateResponse], ResultWrapper[LANCreateResponse]),
         )
 
     def update(
@@ -99,14 +99,14 @@ class Lans(SyncAPIResource):
         *,
         account_id: str,
         site_id: str,
-        lan: lan_update_params.Lan | NotGiven = NOT_GIVEN,
+        lan: lan_update_params.LAN | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LanUpdateResponse:
+    ) -> LANUpdateResponse:
         """
         Update a specific LAN.
 
@@ -133,7 +133,7 @@ class Lans(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `lan_id` but received {lan_id!r}")
         return self._put(
             f"/accounts/{account_id}/magic/sites/{site_id}/lans/{lan_id}",
-            body=maybe_transform({"lan": lan}, lan_update_params.LanUpdateParams),
+            body=maybe_transform({"lan": lan}, lan_update_params.LANUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -141,7 +141,7 @@ class Lans(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[LanUpdateResponse], ResultWrapper[LanUpdateResponse]),
+            cast_to=cast(Type[LANUpdateResponse], ResultWrapper[LANUpdateResponse]),
         )
 
     def list(
@@ -155,7 +155,7 @@ class Lans(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LanListResponse:
+    ) -> LANListResponse:
         """
         Lists LANs associated with an account and site.
 
@@ -185,7 +185,7 @@ class Lans(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[LanListResponse], ResultWrapper[LanListResponse]),
+            cast_to=cast(Type[LANListResponse], ResultWrapper[LANListResponse]),
         )
 
     def delete(
@@ -200,7 +200,7 @@ class Lans(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LanDeleteResponse:
+    ) -> LANDeleteResponse:
         """
         Remove a specific LAN.
 
@@ -234,7 +234,7 @@ class Lans(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[LanDeleteResponse], ResultWrapper[LanDeleteResponse]),
+            cast_to=cast(Type[LANDeleteResponse], ResultWrapper[LANDeleteResponse]),
         )
 
     def get(
@@ -249,7 +249,7 @@ class Lans(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LanGetResponse:
+    ) -> LANGetResponse:
         """
         Get a specific LAN.
 
@@ -283,32 +283,32 @@ class Lans(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[LanGetResponse], ResultWrapper[LanGetResponse]),
+            cast_to=cast(Type[LANGetResponse], ResultWrapper[LANGetResponse]),
         )
 
 
-class AsyncLans(AsyncAPIResource):
+class AsyncLANs(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncLansWithRawResponse:
-        return AsyncLansWithRawResponse(self)
+    def with_raw_response(self) -> AsyncLANsWithRawResponse:
+        return AsyncLANsWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncLansWithStreamingResponse:
-        return AsyncLansWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncLANsWithStreamingResponse:
+        return AsyncLANsWithStreamingResponse(self)
 
     async def create(
         self,
         site_id: str,
         *,
         account_id: str,
-        lan: lan_create_params.Lan | NotGiven = NOT_GIVEN,
+        lan: lan_create_params.LAN | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LanCreateResponse:
+    ) -> LANCreateResponse:
         """Creates a new LAN.
 
         If the site is in high availability mode, static_addressing
@@ -333,7 +333,7 @@ class AsyncLans(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
         return await self._post(
             f"/accounts/{account_id}/magic/sites/{site_id}/lans",
-            body=await async_maybe_transform({"lan": lan}, lan_create_params.LanCreateParams),
+            body=await async_maybe_transform({"lan": lan}, lan_create_params.LANCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -341,7 +341,7 @@ class AsyncLans(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[LanCreateResponse], ResultWrapper[LanCreateResponse]),
+            cast_to=cast(Type[LANCreateResponse], ResultWrapper[LANCreateResponse]),
         )
 
     async def update(
@@ -350,14 +350,14 @@ class AsyncLans(AsyncAPIResource):
         *,
         account_id: str,
         site_id: str,
-        lan: lan_update_params.Lan | NotGiven = NOT_GIVEN,
+        lan: lan_update_params.LAN | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LanUpdateResponse:
+    ) -> LANUpdateResponse:
         """
         Update a specific LAN.
 
@@ -384,7 +384,7 @@ class AsyncLans(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `lan_id` but received {lan_id!r}")
         return await self._put(
             f"/accounts/{account_id}/magic/sites/{site_id}/lans/{lan_id}",
-            body=await async_maybe_transform({"lan": lan}, lan_update_params.LanUpdateParams),
+            body=await async_maybe_transform({"lan": lan}, lan_update_params.LANUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -392,7 +392,7 @@ class AsyncLans(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[LanUpdateResponse], ResultWrapper[LanUpdateResponse]),
+            cast_to=cast(Type[LANUpdateResponse], ResultWrapper[LANUpdateResponse]),
         )
 
     async def list(
@@ -406,7 +406,7 @@ class AsyncLans(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LanListResponse:
+    ) -> LANListResponse:
         """
         Lists LANs associated with an account and site.
 
@@ -436,7 +436,7 @@ class AsyncLans(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[LanListResponse], ResultWrapper[LanListResponse]),
+            cast_to=cast(Type[LANListResponse], ResultWrapper[LANListResponse]),
         )
 
     async def delete(
@@ -451,7 +451,7 @@ class AsyncLans(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LanDeleteResponse:
+    ) -> LANDeleteResponse:
         """
         Remove a specific LAN.
 
@@ -485,7 +485,7 @@ class AsyncLans(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[LanDeleteResponse], ResultWrapper[LanDeleteResponse]),
+            cast_to=cast(Type[LANDeleteResponse], ResultWrapper[LANDeleteResponse]),
         )
 
     async def get(
@@ -500,7 +500,7 @@ class AsyncLans(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LanGetResponse:
+    ) -> LANGetResponse:
         """
         Get a specific LAN.
 
@@ -534,12 +534,12 @@ class AsyncLans(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[LanGetResponse], ResultWrapper[LanGetResponse]),
+            cast_to=cast(Type[LANGetResponse], ResultWrapper[LANGetResponse]),
         )
 
 
-class LansWithRawResponse:
-    def __init__(self, lans: Lans) -> None:
+class LANsWithRawResponse:
+    def __init__(self, lans: LANs) -> None:
         self._lans = lans
 
         self.create = to_raw_response_wrapper(
@@ -559,8 +559,8 @@ class LansWithRawResponse:
         )
 
 
-class AsyncLansWithRawResponse:
-    def __init__(self, lans: AsyncLans) -> None:
+class AsyncLANsWithRawResponse:
+    def __init__(self, lans: AsyncLANs) -> None:
         self._lans = lans
 
         self.create = async_to_raw_response_wrapper(
@@ -580,8 +580,8 @@ class AsyncLansWithRawResponse:
         )
 
 
-class LansWithStreamingResponse:
-    def __init__(self, lans: Lans) -> None:
+class LANsWithStreamingResponse:
+    def __init__(self, lans: LANs) -> None:
         self._lans = lans
 
         self.create = to_streamed_response_wrapper(
@@ -601,8 +601,8 @@ class LansWithStreamingResponse:
         )
 
 
-class AsyncLansWithStreamingResponse:
-    def __init__(self, lans: AsyncLans) -> None:
+class AsyncLANsWithStreamingResponse:
+    def __init__(self, lans: AsyncLANs) -> None:
         self._lans = lans
 
         self.create = async_to_streamed_response_wrapper(

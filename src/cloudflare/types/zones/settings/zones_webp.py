@@ -6,10 +6,10 @@ from typing_extensions import Literal
 
 from ...._models import BaseModel
 
-__all__ = ["ZonesWebp"]
+__all__ = ["ZonesWebP"]
 
 
-class ZonesWebp(BaseModel):
+class ZonesWebP(BaseModel):
     id: Literal["webp"]
     """ID of the zone setting."""
 

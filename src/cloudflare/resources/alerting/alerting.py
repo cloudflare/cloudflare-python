@@ -2,25 +2,61 @@
 
 from __future__ import annotations
 
-from .v3 import (
-    V3,
-    AsyncV3,
-    V3WithRawResponse,
-    AsyncV3WithRawResponse,
-    V3WithStreamingResponse,
-    AsyncV3WithStreamingResponse,
+from .history import (
+    History,
+    AsyncHistory,
+    HistoryWithRawResponse,
+    AsyncHistoryWithRawResponse,
+    HistoryWithStreamingResponse,
+    AsyncHistoryWithStreamingResponse,
 )
-from .v3.v3 import V3, AsyncV3
+from .policies import (
+    Policies,
+    AsyncPolicies,
+    PoliciesWithRawResponse,
+    AsyncPoliciesWithRawResponse,
+    PoliciesWithStreamingResponse,
+    AsyncPoliciesWithStreamingResponse,
+)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
+from .destinations import (
+    Destinations,
+    AsyncDestinations,
+    DestinationsWithRawResponse,
+    AsyncDestinationsWithRawResponse,
+    DestinationsWithStreamingResponse,
+    AsyncDestinationsWithStreamingResponse,
+)
+from .available_alerts import (
+    AvailableAlerts,
+    AsyncAvailableAlerts,
+    AvailableAlertsWithRawResponse,
+    AsyncAvailableAlertsWithRawResponse,
+    AvailableAlertsWithStreamingResponse,
+    AsyncAvailableAlertsWithStreamingResponse,
+)
+from .destinations.destinations import Destinations, AsyncDestinations
 
 __all__ = ["Alerting", "AsyncAlerting"]
 
 
 class Alerting(SyncAPIResource):
     @cached_property
-    def v3(self) -> V3:
-        return V3(self._client)
+    def available_alerts(self) -> AvailableAlerts:
+        return AvailableAlerts(self._client)
+
+    @cached_property
+    def destinations(self) -> Destinations:
+        return Destinations(self._client)
+
+    @cached_property
+    def history(self) -> History:
+        return History(self._client)
+
+    @cached_property
+    def policies(self) -> Policies:
+        return Policies(self._client)
 
     @cached_property
     def with_raw_response(self) -> AlertingWithRawResponse:
@@ -33,8 +69,20 @@ class Alerting(SyncAPIResource):
 
 class AsyncAlerting(AsyncAPIResource):
     @cached_property
-    def v3(self) -> AsyncV3:
-        return AsyncV3(self._client)
+    def available_alerts(self) -> AsyncAvailableAlerts:
+        return AsyncAvailableAlerts(self._client)
+
+    @cached_property
+    def destinations(self) -> AsyncDestinations:
+        return AsyncDestinations(self._client)
+
+    @cached_property
+    def history(self) -> AsyncHistory:
+        return AsyncHistory(self._client)
+
+    @cached_property
+    def policies(self) -> AsyncPolicies:
+        return AsyncPolicies(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncAlertingWithRawResponse:
@@ -50,8 +98,20 @@ class AlertingWithRawResponse:
         self._alerting = alerting
 
     @cached_property
-    def v3(self) -> V3WithRawResponse:
-        return V3WithRawResponse(self._alerting.v3)
+    def available_alerts(self) -> AvailableAlertsWithRawResponse:
+        return AvailableAlertsWithRawResponse(self._alerting.available_alerts)
+
+    @cached_property
+    def destinations(self) -> DestinationsWithRawResponse:
+        return DestinationsWithRawResponse(self._alerting.destinations)
+
+    @cached_property
+    def history(self) -> HistoryWithRawResponse:
+        return HistoryWithRawResponse(self._alerting.history)
+
+    @cached_property
+    def policies(self) -> PoliciesWithRawResponse:
+        return PoliciesWithRawResponse(self._alerting.policies)
 
 
 class AsyncAlertingWithRawResponse:
@@ -59,8 +119,20 @@ class AsyncAlertingWithRawResponse:
         self._alerting = alerting
 
     @cached_property
-    def v3(self) -> AsyncV3WithRawResponse:
-        return AsyncV3WithRawResponse(self._alerting.v3)
+    def available_alerts(self) -> AsyncAvailableAlertsWithRawResponse:
+        return AsyncAvailableAlertsWithRawResponse(self._alerting.available_alerts)
+
+    @cached_property
+    def destinations(self) -> AsyncDestinationsWithRawResponse:
+        return AsyncDestinationsWithRawResponse(self._alerting.destinations)
+
+    @cached_property
+    def history(self) -> AsyncHistoryWithRawResponse:
+        return AsyncHistoryWithRawResponse(self._alerting.history)
+
+    @cached_property
+    def policies(self) -> AsyncPoliciesWithRawResponse:
+        return AsyncPoliciesWithRawResponse(self._alerting.policies)
 
 
 class AlertingWithStreamingResponse:
@@ -68,8 +140,20 @@ class AlertingWithStreamingResponse:
         self._alerting = alerting
 
     @cached_property
-    def v3(self) -> V3WithStreamingResponse:
-        return V3WithStreamingResponse(self._alerting.v3)
+    def available_alerts(self) -> AvailableAlertsWithStreamingResponse:
+        return AvailableAlertsWithStreamingResponse(self._alerting.available_alerts)
+
+    @cached_property
+    def destinations(self) -> DestinationsWithStreamingResponse:
+        return DestinationsWithStreamingResponse(self._alerting.destinations)
+
+    @cached_property
+    def history(self) -> HistoryWithStreamingResponse:
+        return HistoryWithStreamingResponse(self._alerting.history)
+
+    @cached_property
+    def policies(self) -> PoliciesWithStreamingResponse:
+        return PoliciesWithStreamingResponse(self._alerting.policies)
 
 
 class AsyncAlertingWithStreamingResponse:
@@ -77,5 +161,17 @@ class AsyncAlertingWithStreamingResponse:
         self._alerting = alerting
 
     @cached_property
-    def v3(self) -> AsyncV3WithStreamingResponse:
-        return AsyncV3WithStreamingResponse(self._alerting.v3)
+    def available_alerts(self) -> AsyncAvailableAlertsWithStreamingResponse:
+        return AsyncAvailableAlertsWithStreamingResponse(self._alerting.available_alerts)
+
+    @cached_property
+    def destinations(self) -> AsyncDestinationsWithStreamingResponse:
+        return AsyncDestinationsWithStreamingResponse(self._alerting.destinations)
+
+    @cached_property
+    def history(self) -> AsyncHistoryWithStreamingResponse:
+        return AsyncHistoryWithStreamingResponse(self._alerting.history)
+
+    @cached_property
+    def policies(self) -> AsyncPoliciesWithStreamingResponse:
+        return AsyncPoliciesWithStreamingResponse(self._alerting.policies)
