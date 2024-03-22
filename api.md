@@ -387,6 +387,19 @@ Methods:
 
 - <code title="put /zones/{zone_id}/activation_check">client.zones.activation_check.<a href="./src/cloudflare/resources/zones/activation_check.py">trigger</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/activation_check_trigger_response.py">ActivationCheckTriggerResponse</a></code>
 
+## DNSSettings
+
+Types:
+
+```python
+from cloudflare.types.zones import DNSSettingEditResponse, DNSSettingGetResponse
+```
+
+Methods:
+
+- <code title="patch /zones/{zone_id}/dns_settings">client.zones.dns_settings.<a href="./src/cloudflare/resources/zones/dns_settings.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/dns_setting_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/dns_setting_edit_response.py">DNSSettingEditResponse</a></code>
+- <code title="get /zones/{zone_id}/dns_settings">client.zones.dns_settings.<a href="./src/cloudflare/resources/zones/dns_settings.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/dns_setting_get_response.py">DNSSettingGetResponse</a></code>
+
 ## Settings
 
 Types:
@@ -3938,13 +3951,36 @@ Types:
 from cloudflare.types.magic_network_monitoring import MagicVisibilityMNMConfig
 ```
 
+Methods:
+
+- <code title="post /accounts/{account_id}/mnm/config">client.magic_network_monitoring.configs.<a href="./src/cloudflare/resources/magic_network_monitoring/configs/configs.py">create</a>(\*, account_id) -> <a href="./src/cloudflare/types/magic_network_monitoring/magic_visibility_mnm_config.py">MagicVisibilityMNMConfig</a></code>
+- <code title="put /accounts/{account_id}/mnm/config">client.magic_network_monitoring.configs.<a href="./src/cloudflare/resources/magic_network_monitoring/configs/configs.py">update</a>(\*, account_id) -> <a href="./src/cloudflare/types/magic_network_monitoring/magic_visibility_mnm_config.py">MagicVisibilityMNMConfig</a></code>
+- <code title="delete /accounts/{account_id}/mnm/config">client.magic_network_monitoring.configs.<a href="./src/cloudflare/resources/magic_network_monitoring/configs/configs.py">delete</a>(\*, account_id) -> <a href="./src/cloudflare/types/magic_network_monitoring/magic_visibility_mnm_config.py">MagicVisibilityMNMConfig</a></code>
+- <code title="patch /accounts/{account_id}/mnm/config">client.magic_network_monitoring.configs.<a href="./src/cloudflare/resources/magic_network_monitoring/configs/configs.py">edit</a>(\*, account_id) -> <a href="./src/cloudflare/types/magic_network_monitoring/magic_visibility_mnm_config.py">MagicVisibilityMNMConfig</a></code>
+- <code title="get /accounts/{account_id}/mnm/config">client.magic_network_monitoring.configs.<a href="./src/cloudflare/resources/magic_network_monitoring/configs/configs.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/magic_network_monitoring/magic_visibility_mnm_config.py">MagicVisibilityMNMConfig</a></code>
+
+### Full
+
+Methods:
+
+- <code title="get /accounts/{account_id}/mnm/config/full">client.magic_network_monitoring.configs.full.<a href="./src/cloudflare/resources/magic_network_monitoring/configs/full.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/magic_network_monitoring/magic_visibility_mnm_config.py">MagicVisibilityMNMConfig</a></code>
+
 ## Rules
 
 Types:
 
 ```python
-from cloudflare.types.magic_network_monitoring import MagicVisibilityMNMRule
+from cloudflare.types.magic_network_monitoring import MagicVisibilityMNMRule, RuleListResponse
 ```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/mnm/rules">client.magic_network_monitoring.rules.<a href="./src/cloudflare/resources/magic_network_monitoring/rules/rules.py">create</a>(\*, account_id) -> <a href="./src/cloudflare/types/magic_network_monitoring/magic_visibility_mnm_rule.py">Optional</a></code>
+- <code title="put /accounts/{account_id}/mnm/rules">client.magic_network_monitoring.rules.<a href="./src/cloudflare/resources/magic_network_monitoring/rules/rules.py">update</a>(\*, account_id) -> <a href="./src/cloudflare/types/magic_network_monitoring/magic_visibility_mnm_rule.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/mnm/rules">client.magic_network_monitoring.rules.<a href="./src/cloudflare/resources/magic_network_monitoring/rules/rules.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/magic_network_monitoring/rule_list_response.py">Optional</a></code>
+- <code title="delete /accounts/{account_id}/mnm/rules/{rule_id}">client.magic_network_monitoring.rules.<a href="./src/cloudflare/resources/magic_network_monitoring/rules/rules.py">delete</a>(rule_id, \*, account_id) -> <a href="./src/cloudflare/types/magic_network_monitoring/magic_visibility_mnm_rule.py">Optional</a></code>
+- <code title="patch /accounts/{account_id}/mnm/rules/{rule_id}">client.magic_network_monitoring.rules.<a href="./src/cloudflare/resources/magic_network_monitoring/rules/rules.py">edit</a>(rule_id, \*, account_id) -> <a href="./src/cloudflare/types/magic_network_monitoring/magic_visibility_mnm_rule.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/mnm/rules/{rule_id}">client.magic_network_monitoring.rules.<a href="./src/cloudflare/resources/magic_network_monitoring/rules/rules.py">get</a>(rule_id, \*, account_id) -> <a href="./src/cloudflare/types/magic_network_monitoring/magic_visibility_mnm_rule.py">Optional</a></code>
 
 ### Advertisements
 
@@ -3953,6 +3989,10 @@ Types:
 ```python
 from cloudflare.types.magic_network_monitoring.rules import MagicVisibilityMNMRuleAdvertisable
 ```
+
+Methods:
+
+- <code title="patch /accounts/{account_id}/mnm/rules/{rule_id}/advertisement">client.magic_network_monitoring.rules.advertisements.<a href="./src/cloudflare/resources/magic_network_monitoring/rules/advertisements.py">edit</a>(rule_id, \*, account_id) -> <a href="./src/cloudflare/types/magic_network_monitoring/rules/magic_visibility_mnm_rule_advertisable.py">Optional</a></code>
 
 # MTLSCertificates
 
