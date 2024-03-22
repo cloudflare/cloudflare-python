@@ -4,4 +4,4 @@ from typing import List, Union
 
 __all__ = ["BindingDeleteResponse"]
 
-BindingDeleteResponse = Union[object, List[object], str]
+BindingDeleteResponse = Union[List[object], str, object]

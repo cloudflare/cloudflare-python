@@ -49,7 +49,7 @@ class LegacyJhsAPIResponseCollection(BaseModel):
 
     messages: List[LegacyJhsAPIResponseCollectionMessage]
 
-    result: Union[object, List[object], str, None] = None
+    result: Union[List[object], str, object, None] = None
 
     success: Literal[True]
     """Whether the API call was successful"""

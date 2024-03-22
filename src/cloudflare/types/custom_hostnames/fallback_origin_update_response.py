@@ -4,4 +4,4 @@ from typing import Union
 
 __all__ = ["FallbackOriginUpdateResponse"]
 
-FallbackOriginUpdateResponse = Union[object, str]
+FallbackOriginUpdateResponse = Union[str, object]

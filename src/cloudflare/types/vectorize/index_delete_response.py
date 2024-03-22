@@ -4,4 +4,4 @@ from typing import Union
 
 __all__ = ["IndexDeleteResponse"]
 
-IndexDeleteResponse = Union[object, str, None]
+IndexDeleteResponse = Union[str, object, None]

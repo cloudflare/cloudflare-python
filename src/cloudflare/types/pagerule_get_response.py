@@ -4,4 +4,4 @@ from typing import Union
 
 __all__ = ["PageruleGetResponse"]
 
-PageruleGetResponse = Union[object, str]
+PageruleGetResponse = Union[str, object]

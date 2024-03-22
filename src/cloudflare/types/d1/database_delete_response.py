@@ -4,4 +4,4 @@ from typing import Union
 
 __all__ = ["DatabaseDeleteResponse"]
 
-DatabaseDeleteResponse = Union[object, str, None]
+DatabaseDeleteResponse = Union[str, object, None]

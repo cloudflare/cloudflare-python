@@ -4,4 +4,4 @@ from typing import List, Union
 
 __all__ = ["LogGetResponse"]
 
-LogGetResponse = Union[object, List[object], str]
+LogGetResponse = Union[List[object], str, object]

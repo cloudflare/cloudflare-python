@@ -4,4 +4,4 @@ from typing import List, Union
 
 __all__ = ["VirtualNetworkEditResponse"]
 
-VirtualNetworkEditResponse = Union[object, List[object], str]
+VirtualNetworkEditResponse = Union[List[object], str, object]

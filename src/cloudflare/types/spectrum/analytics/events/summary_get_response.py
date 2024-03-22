@@ -4,4 +4,4 @@ from typing import Union
 
 __all__ = ["SummaryGetResponse"]
 
-SummaryGetResponse = Union[object, str, None]
+SummaryGetResponse = Union[str, object, None]

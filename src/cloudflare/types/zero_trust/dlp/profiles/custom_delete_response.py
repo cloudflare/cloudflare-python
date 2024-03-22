@@ -4,4 +4,4 @@ from typing import Union, Optional
 
 __all__ = ["CustomDeleteResponse"]
 
-CustomDeleteResponse = Union[Optional[object], Optional[str]]
+CustomDeleteResponse = Union[Optional[str], Optional[object]]

@@ -4,4 +4,4 @@ from typing import List, Union
 
 __all__ = ["ConfigurationGetResponse"]
 
-ConfigurationGetResponse = Union[object, List[object], str]
+ConfigurationGetResponse = Union[List[object], str, object]

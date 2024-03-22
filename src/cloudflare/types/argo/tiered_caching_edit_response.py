@@ -4,4 +4,4 @@ from typing import Union, Optional
 
 __all__ = ["TieredCachingEditResponse"]
 
-TieredCachingEditResponse = Union[Optional[object], Optional[str]]
+TieredCachingEditResponse = Union[Optional[str], Optional[object]]

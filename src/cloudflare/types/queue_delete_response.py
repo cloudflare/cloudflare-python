@@ -4,4 +4,4 @@ from typing import List, Union
 
 __all__ = ["QueueDeleteResponse"]
 
-QueueDeleteResponse = Union[object, List[object], str, None]
+QueueDeleteResponse = Union[List[object], str, object, None]

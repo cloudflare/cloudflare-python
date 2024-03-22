@@ -4,4 +4,4 @@ from typing import List, Union
 
 __all__ = ["IPDeleteResponse"]
 
-IPDeleteResponse = Union[object, List[object], str, None]
+IPDeleteResponse = Union[List[object], str, object, None]

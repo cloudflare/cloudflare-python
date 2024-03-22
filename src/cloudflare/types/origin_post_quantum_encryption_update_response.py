@@ -4,4 +4,4 @@ from typing import Union, Optional
 
 __all__ = ["OriginPostQuantumEncryptionUpdateResponse"]
 
-OriginPostQuantumEncryptionUpdateResponse = Union[Optional[object], Optional[str]]
+OriginPostQuantumEncryptionUpdateResponse = Union[Optional[str], Optional[object]]

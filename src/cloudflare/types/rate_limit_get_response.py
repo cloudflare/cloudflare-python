@@ -4,4 +4,4 @@ from typing import Union
 
 __all__ = ["RateLimitGetResponse"]
 
-RateLimitGetResponse = Union[object, str, None]
+RateLimitGetResponse = Union[str, object, None]

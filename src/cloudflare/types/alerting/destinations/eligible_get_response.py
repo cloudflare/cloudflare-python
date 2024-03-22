@@ -4,4 +4,4 @@ from typing import List, Union
 
 __all__ = ["EligibleGetResponse"]
 
-EligibleGetResponse = Union[object, List[object], str, None]
+EligibleGetResponse = Union[List[object], str, object, None]
