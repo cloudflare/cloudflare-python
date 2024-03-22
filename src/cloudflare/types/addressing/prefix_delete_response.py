@@ -4,4 +4,4 @@ from typing import List, Union
 
 __all__ = ["PrefixDeleteResponse"]
 
-PrefixDeleteResponse = Union[object, List[object], str, None]
+PrefixDeleteResponse = Union[List[object], str, object, None]

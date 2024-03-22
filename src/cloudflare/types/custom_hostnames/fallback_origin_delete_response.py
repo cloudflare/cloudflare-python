@@ -4,4 +4,4 @@ from typing import Union
 
 __all__ = ["FallbackOriginDeleteResponse"]
 
-FallbackOriginDeleteResponse = Union[object, str]
+FallbackOriginDeleteResponse = Union[str, object]

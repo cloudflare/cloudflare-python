@@ -4,4 +4,4 @@ from typing import Union
 
 __all__ = ["WebhookGetResponse"]
 
-WebhookGetResponse = Union[object, str]
+WebhookGetResponse = Union[str, object]

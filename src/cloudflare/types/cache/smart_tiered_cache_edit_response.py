@@ -4,4 +4,4 @@ from typing import Union, Optional
 
 __all__ = ["SmartTieredCacheEditResponse"]
 
-SmartTieredCacheEditResponse = Union[Optional[object], Optional[str]]
+SmartTieredCacheEditResponse = Union[Optional[str], Optional[object]]

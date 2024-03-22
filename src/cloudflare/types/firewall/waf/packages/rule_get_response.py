@@ -4,4 +4,4 @@ from typing import List, Union
 
 __all__ = ["RuleGetResponse"]
 
-RuleGetResponse = Union[object, List[object], str]
+RuleGetResponse = Union[List[object], str, object]

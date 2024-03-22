@@ -4,4 +4,4 @@ from typing import Union
 
 __all__ = ["AudioTrackDeleteResponse"]
 
-AudioTrackDeleteResponse = Union[object, str]
+AudioTrackDeleteResponse = Union[str, object]

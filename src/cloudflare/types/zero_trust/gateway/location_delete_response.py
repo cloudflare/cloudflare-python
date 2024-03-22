@@ -4,4 +4,4 @@ from typing import Union
 
 __all__ = ["LocationDeleteResponse"]
 
-LocationDeleteResponse = Union[object, str]
+LocationDeleteResponse = Union[str, object]

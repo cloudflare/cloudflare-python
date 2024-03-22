@@ -4,4 +4,4 @@ from typing import List, Union
 
 __all__ = ["AddressMapDeleteResponse"]
 
-AddressMapDeleteResponse = Union[object, List[object], str, None]
+AddressMapDeleteResponse = Union[List[object], str, object, None]

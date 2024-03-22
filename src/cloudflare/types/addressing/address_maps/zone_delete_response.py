@@ -4,4 +4,4 @@ from typing import List, Union
 
 __all__ = ["ZoneDeleteResponse"]
 
-ZoneDeleteResponse = Union[object, List[object], str, None]
+ZoneDeleteResponse = Union[List[object], str, object, None]

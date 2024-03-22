@@ -4,4 +4,4 @@ from typing import Union
 
 __all__ = ["CustomCertificateEditResponse"]
 
-CustomCertificateEditResponse = Union[object, str]
+CustomCertificateEditResponse = Union[str, object]

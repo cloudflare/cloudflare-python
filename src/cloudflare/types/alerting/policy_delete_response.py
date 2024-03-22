@@ -4,4 +4,4 @@ from typing import List, Union
 
 __all__ = ["PolicyDeleteResponse"]
 
-PolicyDeleteResponse = Union[object, List[object], str, None]
+PolicyDeleteResponse = Union[List[object], str, object, None]

@@ -4,4 +4,4 @@ from typing import Union
 
 __all__ = ["BytimeGetResponse"]
 
-BytimeGetResponse = Union[object, str, None]
+BytimeGetResponse = Union[str, object, None]

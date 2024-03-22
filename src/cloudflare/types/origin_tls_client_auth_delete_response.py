@@ -4,4 +4,4 @@ from typing import Union
 
 __all__ = ["OriginTLSClientAuthDeleteResponse"]
 
-OriginTLSClientAuthDeleteResponse = Union[object, str]
+OriginTLSClientAuthDeleteResponse = Union[str, object]

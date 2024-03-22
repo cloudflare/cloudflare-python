@@ -4,4 +4,4 @@ from typing import Union
 
 __all__ = ["RuleDeleteResponse"]
 
-RuleDeleteResponse = Union[object, str]
+RuleDeleteResponse = Union[str, object]

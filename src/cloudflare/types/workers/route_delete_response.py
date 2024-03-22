@@ -4,4 +4,4 @@ from typing import Union
 
 __all__ = ["RouteDeleteResponse"]
 
-RouteDeleteResponse = Union[object, str]
+RouteDeleteResponse = Union[str, object]

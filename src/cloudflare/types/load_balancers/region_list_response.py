@@ -4,4 +4,4 @@ from typing import Union, Optional
 
 __all__ = ["RegionListResponse"]
 
-RegionListResponse = Union[Optional[object], Optional[str]]
+RegionListResponse = Union[Optional[str], Optional[object]]

@@ -4,4 +4,4 @@ from typing import Union
 
 __all__ = ["ProxyEndpointDeleteResponse"]
 
-ProxyEndpointDeleteResponse = Union[object, str]
+ProxyEndpointDeleteResponse = Union[str, object]
