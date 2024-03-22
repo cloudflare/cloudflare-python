@@ -4,4 +4,4 @@ from typing import List, Union
 
 __all__ = ["ConfigDeleteResponse"]
 
-ConfigDeleteResponse = Union[object, List[object], str, None]
+ConfigDeleteResponse = Union[List[object], str, object, None]

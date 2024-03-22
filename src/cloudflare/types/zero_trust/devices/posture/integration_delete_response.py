@@ -4,4 +4,4 @@ from typing import Union
 
 __all__ = ["IntegrationDeleteResponse"]
 
-IntegrationDeleteResponse = Union[object, str, None]
+IntegrationDeleteResponse = Union[str, object, None]

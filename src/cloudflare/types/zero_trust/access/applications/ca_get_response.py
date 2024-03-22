@@ -4,4 +4,4 @@ from typing import Union
 
 __all__ = ["CAGetResponse"]
 
-CAGetResponse = Union[object, str]
+CAGetResponse = Union[str, object]

@@ -4,4 +4,4 @@ from typing import Union
 
 __all__ = ["WatermarkCreateResponse"]
 
-WatermarkCreateResponse = Union[object, str]
+WatermarkCreateResponse = Union[str, object]

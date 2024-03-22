@@ -4,4 +4,4 @@ from typing import List, Union
 
 __all__ = ["GroupEditResponse"]
 
-GroupEditResponse = Union[object, List[object], str]
+GroupEditResponse = Union[List[object], str, object]

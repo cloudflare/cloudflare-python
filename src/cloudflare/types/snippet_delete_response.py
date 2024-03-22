@@ -4,4 +4,4 @@ from typing import List, Union
 
 __all__ = ["SnippetDeleteResponse"]
 
-SnippetDeleteResponse = Union[object, List[object], str]
+SnippetDeleteResponse = Union[List[object], str, object]

@@ -4,4 +4,4 @@ from typing import Union
 
 __all__ = ["KeyGetResponse"]
 
-KeyGetResponse = Union[object, str]
+KeyGetResponse = Union[str, object]

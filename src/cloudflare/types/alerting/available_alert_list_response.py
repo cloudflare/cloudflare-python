@@ -4,4 +4,4 @@ from typing import List, Union
 
 __all__ = ["AvailableAlertListResponse"]
 
-AvailableAlertListResponse = Union[object, List[object], str, None]
+AvailableAlertListResponse = Union[List[object], str, object, None]

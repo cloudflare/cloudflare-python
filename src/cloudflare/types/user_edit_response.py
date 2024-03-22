@@ -4,4 +4,4 @@ from typing import Union, Optional
 
 __all__ = ["UserEditResponse"]
 
-UserEditResponse = Union[Optional[object], Optional[str]]
+UserEditResponse = Union[Optional[str], Optional[object]]

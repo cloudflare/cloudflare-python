@@ -4,4 +4,4 @@ from typing import List, Union
 
 __all__ = ["DomainCreateResponse"]
 
-DomainCreateResponse = Union[object, List[object], str, None]
+DomainCreateResponse = Union[List[object], str, object, None]

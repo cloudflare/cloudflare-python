@@ -4,4 +4,4 @@ from typing import Union, Optional
 
 __all__ = ["OrganizationGetResponse"]
 
-OrganizationGetResponse = Union[Optional[object], Optional[str]]
+OrganizationGetResponse = Union[Optional[str], Optional[object]]

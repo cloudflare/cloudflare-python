@@ -4,4 +4,4 @@ from typing import Union
 
 __all__ = ["AppGetResponse"]
 
-AppGetResponse = Union[object, str, None]
+AppGetResponse = Union[str, object, None]

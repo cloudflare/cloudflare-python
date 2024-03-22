@@ -4,4 +4,4 @@ from typing import Union
 
 __all__ = ["IssueDismissResponse"]
 
-IssueDismissResponse = Union[object, str]
+IssueDismissResponse = Union[str, object]

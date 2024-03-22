@@ -4,4 +4,4 @@ from typing import Union
 
 __all__ = ["RevokeCreateResponse"]
 
-RevokeCreateResponse = Union[object, str, None]
+RevokeCreateResponse = Union[str, object, None]

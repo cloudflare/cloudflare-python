@@ -4,4 +4,4 @@ from typing import List, Union
 
 __all__ = ["ProjectCreateResponse"]
 
-ProjectCreateResponse = Union[object, List[object], str]
+ProjectCreateResponse = Union[List[object], str, object]

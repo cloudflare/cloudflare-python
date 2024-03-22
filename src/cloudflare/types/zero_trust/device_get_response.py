@@ -4,4 +4,4 @@ from typing import Union
 
 __all__ = ["DeviceGetResponse"]
 
-DeviceGetResponse = Union[object, str, None]
+DeviceGetResponse = Union[str, object, None]

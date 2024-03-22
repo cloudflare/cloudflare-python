@@ -4,4 +4,4 @@ from typing import Union
 
 __all__ = ["NamespaceDeleteResponse"]
 
-NamespaceDeleteResponse = Union[object, str]
+NamespaceDeleteResponse = Union[str, object]
