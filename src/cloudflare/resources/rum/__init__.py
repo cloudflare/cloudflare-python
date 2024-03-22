@@ -16,22 +16,22 @@ from .rules import (
     RulesWithStreamingResponse,
     AsyncRulesWithStreamingResponse,
 )
-from .site_infos import (
-    SiteInfos,
-    AsyncSiteInfos,
-    SiteInfosWithRawResponse,
-    AsyncSiteInfosWithRawResponse,
-    SiteInfosWithStreamingResponse,
-    AsyncSiteInfosWithStreamingResponse,
+from .site_info import (
+    SiteInfo,
+    AsyncSiteInfo,
+    SiteInfoWithRawResponse,
+    AsyncSiteInfoWithRawResponse,
+    SiteInfoWithStreamingResponse,
+    AsyncSiteInfoWithStreamingResponse,
 )
 
 __all__ = [
-    "SiteInfos",
-    "AsyncSiteInfos",
-    "SiteInfosWithRawResponse",
-    "AsyncSiteInfosWithRawResponse",
-    "SiteInfosWithStreamingResponse",
-    "AsyncSiteInfosWithStreamingResponse",
+    "SiteInfo",
+    "AsyncSiteInfo",
+    "SiteInfoWithRawResponse",
+    "AsyncSiteInfoWithRawResponse",
+    "SiteInfoWithStreamingResponse",
+    "AsyncSiteInfoWithStreamingResponse",
     "Rules",
     "AsyncRules",
     "RulesWithRawResponse",

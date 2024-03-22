@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import List, Union, Iterable
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["ACLCreateParams", "ACL", "ACLLan1", "ACLLan2"]
+__all__ = ["ACLCreateParams", "ACL", "ACLLAN1", "ACLLAN2"]
 
 
 class ACLCreateParams(TypedDict, total=False):
@@ -15,7 +15,7 @@ class ACLCreateParams(TypedDict, total=False):
     acl: ACL
 
 
-class ACLLan1(TypedDict, total=False):
+class ACLLAN1(TypedDict, total=False):
     lan_id: Required[str]
     """The identifier for the LAN you want to create an ACL policy with."""
 
@@ -36,7 +36,7 @@ class ACLLan1(TypedDict, total=False):
     """
 
 
-class ACLLan2(TypedDict, total=False):
+class ACLLAN2(TypedDict, total=False):
     lan_id: Required[str]
     """The identifier for the LAN you want to create an ACL policy with."""
 
@@ -58,9 +58,9 @@ class ACLLan2(TypedDict, total=False):
 
 
 class ACL(TypedDict, total=False):
-    lan_1: Required[ACLLan1]
+    lan_1: Required[ACLLAN1]
 
-    lan_2: Required[ACLLan2]
+    lan_2: Required[ACLLAN2]
 
     name: Required[str]
     """The name of the ACL."""

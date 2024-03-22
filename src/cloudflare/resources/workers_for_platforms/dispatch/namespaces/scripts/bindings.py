@@ -1,0 +1,181 @@
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+from __future__ import annotations
+
+from typing import Any, cast
+
+import httpx
+
+from ......_types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ......_compat import cached_property
+from ......_resource import SyncAPIResource, AsyncAPIResource
+from ......_response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ......_base_client import (
+    make_request_options,
+)
+from ......types.workers_for_platforms.dispatch.namespaces.scripts import BindingGetResponse
+
+__all__ = ["Bindings", "AsyncBindings"]
+
+
+class Bindings(SyncAPIResource):
+    @cached_property
+    def with_raw_response(self) -> BindingsWithRawResponse:
+        return BindingsWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> BindingsWithStreamingResponse:
+        return BindingsWithStreamingResponse(self)
+
+    def get(
+        self,
+        script_name: str,
+        *,
+        account_id: str,
+        dispatch_namespace: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> BindingGetResponse:
+        """
+        Fetch script bindings from a script uploaded to a Workers for Platforms
+        namespace.
+
+        Args:
+          account_id: Identifier
+
+          dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
+
+          script_name: Name of the script, used in URLs and route configuration.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not dispatch_namespace:
+            raise ValueError(f"Expected a non-empty value for `dispatch_namespace` but received {dispatch_namespace!r}")
+        if not script_name:
+            raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
+        return cast(
+            BindingGetResponse,
+            self._get(
+                f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/bindings",
+                options=make_request_options(
+                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                ),
+                cast_to=cast(
+                    Any, BindingGetResponse
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
+        )
+
+
+class AsyncBindings(AsyncAPIResource):
+    @cached_property
+    def with_raw_response(self) -> AsyncBindingsWithRawResponse:
+        return AsyncBindingsWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncBindingsWithStreamingResponse:
+        return AsyncBindingsWithStreamingResponse(self)
+
+    async def get(
+        self,
+        script_name: str,
+        *,
+        account_id: str,
+        dispatch_namespace: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> BindingGetResponse:
+        """
+        Fetch script bindings from a script uploaded to a Workers for Platforms
+        namespace.
+
+        Args:
+          account_id: Identifier
+
+          dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
+
+          script_name: Name of the script, used in URLs and route configuration.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not dispatch_namespace:
+            raise ValueError(f"Expected a non-empty value for `dispatch_namespace` but received {dispatch_namespace!r}")
+        if not script_name:
+            raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
+        return cast(
+            BindingGetResponse,
+            await self._get(
+                f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/bindings",
+                options=make_request_options(
+                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                ),
+                cast_to=cast(
+                    Any, BindingGetResponse
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
+        )
+
+
+class BindingsWithRawResponse:
+    def __init__(self, bindings: Bindings) -> None:
+        self._bindings = bindings
+
+        self.get = to_raw_response_wrapper(
+            bindings.get,
+        )
+
+
+class AsyncBindingsWithRawResponse:
+    def __init__(self, bindings: AsyncBindings) -> None:
+        self._bindings = bindings
+
+        self.get = async_to_raw_response_wrapper(
+            bindings.get,
+        )
+
+
+class BindingsWithStreamingResponse:
+    def __init__(self, bindings: Bindings) -> None:
+        self._bindings = bindings
+
+        self.get = to_streamed_response_wrapper(
+            bindings.get,
+        )
+
+
+class AsyncBindingsWithStreamingResponse:
+    def __init__(self, bindings: AsyncBindings) -> None:
+        self._bindings = bindings
+
+        self.get = async_to_streamed_response_wrapper(
+            bindings.get,
+        )

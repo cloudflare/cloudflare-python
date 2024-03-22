@@ -39,12 +39,12 @@ from .ipv6 import (
     AsyncIPV6WithStreamingResponse,
 )
 from .webp import (
-    Webp,
-    AsyncWebp,
-    WebpWithRawResponse,
-    AsyncWebpWithRawResponse,
-    WebpWithStreamingResponse,
-    AsyncWebpWithStreamingResponse,
+    WebP,
+    AsyncWebP,
+    WebPWithRawResponse,
+    AsyncWebPWithRawResponse,
+    WebPWithStreamingResponse,
+    AsyncWebPWithStreamingResponse,
 )
 from .http2 import (
     HTTP2,
@@ -630,8 +630,8 @@ class Settings(SyncAPIResource):
         return WAF(self._client)
 
     @cached_property
-    def webp(self) -> Webp:
-        return Webp(self._client)
+    def webp(self) -> WebP:
+        return WebP(self._client)
 
     @cached_property
     def websocket(self) -> Websocket:
@@ -926,8 +926,8 @@ class AsyncSettings(AsyncAPIResource):
         return AsyncWAF(self._client)
 
     @cached_property
-    def webp(self) -> AsyncWebp:
-        return AsyncWebp(self._client)
+    def webp(self) -> AsyncWebP:
+        return AsyncWebP(self._client)
 
     @cached_property
     def websocket(self) -> AsyncWebsocket:
@@ -1232,8 +1232,8 @@ class SettingsWithRawResponse:
         return WAFWithRawResponse(self._settings.waf)
 
     @cached_property
-    def webp(self) -> WebpWithRawResponse:
-        return WebpWithRawResponse(self._settings.webp)
+    def webp(self) -> WebPWithRawResponse:
+        return WebPWithRawResponse(self._settings.webp)
 
     @cached_property
     def websocket(self) -> WebsocketWithRawResponse:
@@ -1448,8 +1448,8 @@ class AsyncSettingsWithRawResponse:
         return AsyncWAFWithRawResponse(self._settings.waf)
 
     @cached_property
-    def webp(self) -> AsyncWebpWithRawResponse:
-        return AsyncWebpWithRawResponse(self._settings.webp)
+    def webp(self) -> AsyncWebPWithRawResponse:
+        return AsyncWebPWithRawResponse(self._settings.webp)
 
     @cached_property
     def websocket(self) -> AsyncWebsocketWithRawResponse:
@@ -1664,8 +1664,8 @@ class SettingsWithStreamingResponse:
         return WAFWithStreamingResponse(self._settings.waf)
 
     @cached_property
-    def webp(self) -> WebpWithStreamingResponse:
-        return WebpWithStreamingResponse(self._settings.webp)
+    def webp(self) -> WebPWithStreamingResponse:
+        return WebPWithStreamingResponse(self._settings.webp)
 
     @cached_property
     def websocket(self) -> WebsocketWithStreamingResponse:
@@ -1880,8 +1880,8 @@ class AsyncSettingsWithStreamingResponse:
         return AsyncWAFWithStreamingResponse(self._settings.waf)
 
     @cached_property
-    def webp(self) -> AsyncWebpWithStreamingResponse:
-        return AsyncWebpWithStreamingResponse(self._settings.webp)
+    def webp(self) -> AsyncWebPWithStreamingResponse:
+        return AsyncWebPWithStreamingResponse(self._settings.webp)
 
     @cached_property
     def websocket(self) -> AsyncWebsocketWithStreamingResponse:

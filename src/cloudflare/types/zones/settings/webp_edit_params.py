@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["WebpEditParams"]
+__all__ = ["WebPEditParams"]
 
 
-class WebpEditParams(TypedDict, total=False):
+class WebPEditParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 

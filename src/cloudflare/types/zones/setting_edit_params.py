@@ -11,7 +11,7 @@ from .settings import (
     ZonesWAFParam,
     Zones0rttParam,
     ZonesIPV6Param,
-    ZonesWebpParam,
+    ZonesWebPParam,
     ZonesHTTP2Param,
     ZonesHTTP3Param,
     ZonesBrotliParam,
@@ -202,6 +202,6 @@ Item = Union[
     ZonesTLSClientAuthParam,
     ZonesTrueClientIPHeaderParam,
     ZonesWAFParam,
-    ZonesWebpParam,
+    ZonesWebPParam,
     ZonesWebsocketsParam,
 ]

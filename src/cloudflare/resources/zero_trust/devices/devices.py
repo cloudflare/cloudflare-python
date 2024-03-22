@@ -6,6 +6,14 @@ from typing import Any, Type, Optional, cast
 
 import httpx
 
+from .revoke import (
+    Revoke,
+    AsyncRevoke,
+    RevokeWithRawResponse,
+    AsyncRevokeWithRawResponse,
+    RevokeWithStreamingResponse,
+    AsyncRevokeWithStreamingResponse,
+)
 from .posture import (
     Posture,
     AsyncPosture,
@@ -13,14 +21,6 @@ from .posture import (
     AsyncPostureWithRawResponse,
     PostureWithStreamingResponse,
     AsyncPostureWithStreamingResponse,
-)
-from .revokes import (
-    Revokes,
-    AsyncRevokes,
-    RevokesWithRawResponse,
-    AsyncRevokesWithRawResponse,
-    RevokesWithStreamingResponse,
-    AsyncRevokesWithStreamingResponse,
 )
 from .networks import (
     Networks,
@@ -46,6 +46,14 @@ from .settings import (
     SettingsWithStreamingResponse,
     AsyncSettingsWithStreamingResponse,
 )
+from .unrevoke import (
+    Unrevoke,
+    AsyncUnrevoke,
+    UnrevokeWithRawResponse,
+    AsyncUnrevokeWithRawResponse,
+    UnrevokeWithStreamingResponse,
+    AsyncUnrevokeWithStreamingResponse,
+)
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .dex_tests import (
     DEXTests,
@@ -54,14 +62,6 @@ from .dex_tests import (
     AsyncDEXTestsWithRawResponse,
     DEXTestsWithStreamingResponse,
     AsyncDEXTestsWithStreamingResponse,
-)
-from .unrevokes import (
-    Unrevokes,
-    AsyncUnrevokes,
-    UnrevokesWithRawResponse,
-    AsyncUnrevokesWithRawResponse,
-    UnrevokesWithStreamingResponse,
-    AsyncUnrevokesWithStreamingResponse,
 )
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -108,16 +108,16 @@ class Devices(SyncAPIResource):
         return Posture(self._client)
 
     @cached_property
-    def revokes(self) -> Revokes:
-        return Revokes(self._client)
+    def revoke(self) -> Revoke:
+        return Revoke(self._client)
 
     @cached_property
     def settings(self) -> Settings:
         return Settings(self._client)
 
     @cached_property
-    def unrevokes(self) -> Unrevokes:
-        return Unrevokes(self._client)
+    def unrevoke(self) -> Unrevoke:
+        return Unrevoke(self._client)
 
     @cached_property
     def override_codes(self) -> OverrideCodes:
@@ -230,16 +230,16 @@ class AsyncDevices(AsyncAPIResource):
         return AsyncPosture(self._client)
 
     @cached_property
-    def revokes(self) -> AsyncRevokes:
-        return AsyncRevokes(self._client)
+    def revoke(self) -> AsyncRevoke:
+        return AsyncRevoke(self._client)
 
     @cached_property
     def settings(self) -> AsyncSettings:
         return AsyncSettings(self._client)
 
     @cached_property
-    def unrevokes(self) -> AsyncUnrevokes:
-        return AsyncUnrevokes(self._client)
+    def unrevoke(self) -> AsyncUnrevoke:
+        return AsyncUnrevoke(self._client)
 
     @cached_property
     def override_codes(self) -> AsyncOverrideCodes:
@@ -362,16 +362,16 @@ class DevicesWithRawResponse:
         return PostureWithRawResponse(self._devices.posture)
 
     @cached_property
-    def revokes(self) -> RevokesWithRawResponse:
-        return RevokesWithRawResponse(self._devices.revokes)
+    def revoke(self) -> RevokeWithRawResponse:
+        return RevokeWithRawResponse(self._devices.revoke)
 
     @cached_property
     def settings(self) -> SettingsWithRawResponse:
         return SettingsWithRawResponse(self._devices.settings)
 
     @cached_property
-    def unrevokes(self) -> UnrevokesWithRawResponse:
-        return UnrevokesWithRawResponse(self._devices.unrevokes)
+    def unrevoke(self) -> UnrevokeWithRawResponse:
+        return UnrevokeWithRawResponse(self._devices.unrevoke)
 
     @cached_property
     def override_codes(self) -> OverrideCodesWithRawResponse:
@@ -406,16 +406,16 @@ class AsyncDevicesWithRawResponse:
         return AsyncPostureWithRawResponse(self._devices.posture)
 
     @cached_property
-    def revokes(self) -> AsyncRevokesWithRawResponse:
-        return AsyncRevokesWithRawResponse(self._devices.revokes)
+    def revoke(self) -> AsyncRevokeWithRawResponse:
+        return AsyncRevokeWithRawResponse(self._devices.revoke)
 
     @cached_property
     def settings(self) -> AsyncSettingsWithRawResponse:
         return AsyncSettingsWithRawResponse(self._devices.settings)
 
     @cached_property
-    def unrevokes(self) -> AsyncUnrevokesWithRawResponse:
-        return AsyncUnrevokesWithRawResponse(self._devices.unrevokes)
+    def unrevoke(self) -> AsyncUnrevokeWithRawResponse:
+        return AsyncUnrevokeWithRawResponse(self._devices.unrevoke)
 
     @cached_property
     def override_codes(self) -> AsyncOverrideCodesWithRawResponse:
@@ -450,16 +450,16 @@ class DevicesWithStreamingResponse:
         return PostureWithStreamingResponse(self._devices.posture)
 
     @cached_property
-    def revokes(self) -> RevokesWithStreamingResponse:
-        return RevokesWithStreamingResponse(self._devices.revokes)
+    def revoke(self) -> RevokeWithStreamingResponse:
+        return RevokeWithStreamingResponse(self._devices.revoke)
 
     @cached_property
     def settings(self) -> SettingsWithStreamingResponse:
         return SettingsWithStreamingResponse(self._devices.settings)
 
     @cached_property
-    def unrevokes(self) -> UnrevokesWithStreamingResponse:
-        return UnrevokesWithStreamingResponse(self._devices.unrevokes)
+    def unrevoke(self) -> UnrevokeWithStreamingResponse:
+        return UnrevokeWithStreamingResponse(self._devices.unrevoke)
 
     @cached_property
     def override_codes(self) -> OverrideCodesWithStreamingResponse:
@@ -494,16 +494,16 @@ class AsyncDevicesWithStreamingResponse:
         return AsyncPostureWithStreamingResponse(self._devices.posture)
 
     @cached_property
-    def revokes(self) -> AsyncRevokesWithStreamingResponse:
-        return AsyncRevokesWithStreamingResponse(self._devices.revokes)
+    def revoke(self) -> AsyncRevokeWithStreamingResponse:
+        return AsyncRevokeWithStreamingResponse(self._devices.revoke)
 
     @cached_property
     def settings(self) -> AsyncSettingsWithStreamingResponse:
         return AsyncSettingsWithStreamingResponse(self._devices.settings)
 
     @cached_property
-    def unrevokes(self) -> AsyncUnrevokesWithStreamingResponse:
-        return AsyncUnrevokesWithStreamingResponse(self._devices.unrevokes)
+    def unrevoke(self) -> AsyncUnrevokeWithStreamingResponse:
+        return AsyncUnrevokeWithStreamingResponse(self._devices.unrevoke)
 
     @cached_property
     def override_codes(self) -> AsyncOverrideCodesWithStreamingResponse:

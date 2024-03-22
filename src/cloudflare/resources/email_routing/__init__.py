@@ -1,12 +1,28 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .routing import (
-    Routing,
-    AsyncRouting,
-    RoutingWithRawResponse,
-    AsyncRoutingWithRawResponse,
-    RoutingWithStreamingResponse,
-    AsyncRoutingWithStreamingResponse,
+from .dns import (
+    DNS,
+    AsyncDNS,
+    DNSWithRawResponse,
+    AsyncDNSWithRawResponse,
+    DNSWithStreamingResponse,
+    AsyncDNSWithStreamingResponse,
+)
+from .rules import (
+    Rules,
+    AsyncRules,
+    RulesWithRawResponse,
+    AsyncRulesWithRawResponse,
+    RulesWithStreamingResponse,
+    AsyncRulesWithStreamingResponse,
+)
+from .addresses import (
+    Addresses,
+    AsyncAddresses,
+    AddressesWithRawResponse,
+    AsyncAddressesWithRawResponse,
+    AddressesWithStreamingResponse,
+    AsyncAddressesWithStreamingResponse,
 )
 from .email_routing import (
     EmailRouting,
@@ -18,12 +34,24 @@ from .email_routing import (
 )
 
 __all__ = [
-    "Routing",
-    "AsyncRouting",
-    "RoutingWithRawResponse",
-    "AsyncRoutingWithRawResponse",
-    "RoutingWithStreamingResponse",
-    "AsyncRoutingWithStreamingResponse",
+    "DNS",
+    "AsyncDNS",
+    "DNSWithRawResponse",
+    "AsyncDNSWithRawResponse",
+    "DNSWithStreamingResponse",
+    "AsyncDNSWithStreamingResponse",
+    "Rules",
+    "AsyncRules",
+    "RulesWithRawResponse",
+    "AsyncRulesWithRawResponse",
+    "RulesWithStreamingResponse",
+    "AsyncRulesWithStreamingResponse",
+    "Addresses",
+    "AsyncAddresses",
+    "AddressesWithRawResponse",
+    "AsyncAddressesWithRawResponse",
+    "AddressesWithStreamingResponse",
+    "AsyncAddressesWithStreamingResponse",
     "EmailRouting",
     "AsyncEmailRouting",
     "EmailRoutingWithRawResponse",

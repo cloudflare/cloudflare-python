@@ -7,7 +7,7 @@ from .zones_ssl import ZonesSSL as ZonesSSL
 from .zones_waf import ZonesWAF as ZonesWAF
 from .zones_0rtt import Zones0rtt as Zones0rtt
 from .zones_ipv6 import ZonesIPV6 as ZonesIPV6
-from .zones_webp import ZonesWebp as ZonesWebp
+from .zones_webp import ZonesWebP as ZonesWebP
 from .zones_http2 import ZonesHTTP2 as ZonesHTTP2
 from .zones_http3 import ZonesHTTP3 as ZonesHTTP3
 from .zones_brotli import ZonesBrotli as ZonesBrotli
@@ -24,10 +24,10 @@ from .zones_nel_param import ZonesNELParam as ZonesNELParam
 from .zones_ssl_param import ZonesSSLParam as ZonesSSLParam
 from .zones_waf_param import ZonesWAFParam as ZonesWAFParam
 from .ipv6_edit_params import IPV6EditParams as IPV6EditParams
-from .webp_edit_params import WebpEditParams as WebpEditParams
+from .webp_edit_params import WebPEditParams as WebPEditParams
 from .zones_0rtt_param import Zones0rttParam as Zones0rttParam
 from .zones_ipv6_param import ZonesIPV6Param as ZonesIPV6Param
-from .zones_webp_param import ZonesWebpParam as ZonesWebpParam
+from .zones_webp_param import ZonesWebPParam as ZonesWebPParam
 from .zones_websockets import ZonesWebsockets as ZonesWebsockets
 from .http2_edit_params import HTTP2EditParams as HTTP2EditParams
 from .http3_edit_params import HTTP3EditParams as HTTP3EditParams
