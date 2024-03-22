@@ -4,4 +4,4 @@ from typing import Union
 
 __all__ = ["BulkDeleteResponse"]
 
-BulkDeleteResponse = Union[object, str]
+BulkDeleteResponse = Union[str, object]

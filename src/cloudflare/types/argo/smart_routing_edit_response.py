@@ -4,4 +4,4 @@ from typing import Union, Optional
 
 __all__ = ["SmartRoutingEditResponse"]
 
-SmartRoutingEditResponse = Union[Optional[object], Optional[str]]
+SmartRoutingEditResponse = Union[Optional[str], Optional[object]]

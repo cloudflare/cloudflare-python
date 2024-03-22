@@ -4,4 +4,4 @@ from typing import Union
 
 __all__ = ["UARuleCreateResponse"]
 
-UARuleCreateResponse = Union[object, str, None]
+UARuleCreateResponse = Union[str, object, None]

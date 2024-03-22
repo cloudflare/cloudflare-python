@@ -4,4 +4,4 @@ from typing import Union
 
 __all__ = ["CertificatePackGetResponse"]
 
-CertificatePackGetResponse = Union[object, str]
+CertificatePackGetResponse = Union[str, object]

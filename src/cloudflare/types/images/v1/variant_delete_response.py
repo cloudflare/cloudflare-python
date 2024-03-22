@@ -4,4 +4,4 @@ from typing import Union
 
 __all__ = ["VariantDeleteResponse"]
 
-VariantDeleteResponse = Union[object, str]
+VariantDeleteResponse = Union[str, object]

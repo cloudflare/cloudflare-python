@@ -4,4 +4,4 @@ from typing import List, Union
 
 __all__ = ["PriorityDeleteResponse"]
 
-PriorityDeleteResponse = Union[object, List[object], str]
+PriorityDeleteResponse = Union[List[object], str, object]

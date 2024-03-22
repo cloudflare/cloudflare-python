@@ -4,4 +4,4 @@ from typing import Union
 
 __all__ = ["MiscategorizationCreateResponse"]
 
-MiscategorizationCreateResponse = Union[object, str]
+MiscategorizationCreateResponse = Union[str, object]

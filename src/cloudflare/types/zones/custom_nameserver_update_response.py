@@ -4,4 +4,4 @@ from typing import List, Union
 
 __all__ = ["CustomNameserverUpdateResponse"]
 
-CustomNameserverUpdateResponse = Union[object, List[object], str, None]
+CustomNameserverUpdateResponse = Union[List[object], str, object, None]

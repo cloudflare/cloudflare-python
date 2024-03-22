@@ -4,4 +4,4 @@ from typing import List, Union
 
 __all__ = ["WARPConnectorTokenResponse"]
 
-WARPConnectorTokenResponse = Union[object, List[object], str]
+WARPConnectorTokenResponse = Union[List[object], str, object]

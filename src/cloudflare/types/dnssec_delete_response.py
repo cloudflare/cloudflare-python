@@ -4,4 +4,4 @@ from typing import Union
 
 __all__ = ["DNSSECDeleteResponse"]
 
-DNSSECDeleteResponse = Union[object, str]
+DNSSECDeleteResponse = Union[str, object]

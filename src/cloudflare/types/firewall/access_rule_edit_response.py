@@ -4,4 +4,4 @@ from typing import Union
 
 __all__ = ["AccessRuleEditResponse"]
 
-AccessRuleEditResponse = Union[object, str, None]
+AccessRuleEditResponse = Union[str, object, None]
