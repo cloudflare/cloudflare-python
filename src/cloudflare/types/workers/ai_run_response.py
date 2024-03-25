@@ -43,6 +43,8 @@ class SpeechRecognitionWord(BaseModel):
 class SpeechRecognition(BaseModel):
     text: str
 
+    vtt: Optional[str] = None
+
     word_count: Optional[float] = None
 
     words: Optional[List[SpeechRecognitionWord]] = None
