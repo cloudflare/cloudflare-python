@@ -23,7 +23,7 @@ class TestAI:
         ai = client.workers.ai.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            text="string",
+            text="x",
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
@@ -33,7 +33,7 @@ class TestAI:
         response = client.workers.ai.with_raw_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            text="string",
+            text="x",
         )
 
         assert response.is_closed is True
@@ -47,7 +47,7 @@ class TestAI:
         with client.workers.ai.with_streaming_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            text="string",
+            text="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -64,14 +64,14 @@ class TestAI:
             client.workers.ai.with_raw_response.run(
                 "string",
                 account_id="",
-                text="string",
+                text="x",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `model_name` but received ''"):
             client.workers.ai.with_raw_response.run(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                text="string",
+                text="x",
             )
 
     @pytest.mark.skip()
@@ -80,7 +80,7 @@ class TestAI:
         ai = client.workers.ai.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            prompt="string",
+            prompt="x",
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
@@ -90,7 +90,7 @@ class TestAI:
         ai = client.workers.ai.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            prompt="string",
+            prompt="x",
             guidance=0,
             image=[0, 0, 0],
             mask=[0, 0, 0],
@@ -105,7 +105,7 @@ class TestAI:
         response = client.workers.ai.with_raw_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            prompt="string",
+            prompt="x",
         )
 
         assert response.is_closed is True
@@ -119,7 +119,7 @@ class TestAI:
         with client.workers.ai.with_streaming_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            prompt="string",
+            prompt="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -136,14 +136,14 @@ class TestAI:
             client.workers.ai.with_raw_response.run(
                 "string",
                 account_id="",
-                prompt="string",
+                prompt="x",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `model_name` but received ''"):
             client.workers.ai.with_raw_response.run(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                prompt="string",
+                prompt="x",
             )
 
     @pytest.mark.skip()
@@ -152,8 +152,8 @@ class TestAI:
         ai = client.workers.ai.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            sentences=["string", "string", "string"],
-            source="string",
+            sentences=["x", "x", "x"],
+            source="x",
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
@@ -163,8 +163,8 @@ class TestAI:
         response = client.workers.ai.with_raw_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            sentences=["string", "string", "string"],
-            source="string",
+            sentences=["x", "x", "x"],
+            source="x",
         )
 
         assert response.is_closed is True
@@ -178,8 +178,8 @@ class TestAI:
         with client.workers.ai.with_streaming_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            sentences=["string", "string", "string"],
-            source="string",
+            sentences=["x", "x", "x"],
+            source="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -196,16 +196,16 @@ class TestAI:
             client.workers.ai.with_raw_response.run(
                 "string",
                 account_id="",
-                sentences=["string", "string", "string"],
-                source="string",
+                sentences=["x", "x", "x"],
+                source="x",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `model_name` but received ''"):
             client.workers.ai.with_raw_response.run(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                sentences=["string", "string", "string"],
-                source="string",
+                sentences=["x", "x", "x"],
+                source="x",
             )
 
     @pytest.mark.skip()
@@ -214,7 +214,7 @@ class TestAI:
         ai = client.workers.ai.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            text="string",
+            text="x",
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
@@ -224,7 +224,7 @@ class TestAI:
         response = client.workers.ai.with_raw_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            text="string",
+            text="x",
         )
 
         assert response.is_closed is True
@@ -238,7 +238,7 @@ class TestAI:
         with client.workers.ai.with_streaming_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            text="string",
+            text="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -255,14 +255,14 @@ class TestAI:
             client.workers.ai.with_raw_response.run(
                 "string",
                 account_id="",
-                text="string",
+                text="x",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `model_name` but received ''"):
             client.workers.ai.with_raw_response.run(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                text="string",
+                text="x",
             )
 
     @pytest.mark.skip()
@@ -628,7 +628,7 @@ class TestAI:
         ai = client.workers.ai.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            prompt="string",
+            prompt="x",
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
@@ -638,7 +638,7 @@ class TestAI:
         ai = client.workers.ai.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            prompt="string",
+            prompt="x",
             lora="string",
             max_tokens=0,
             raw=True,
@@ -652,7 +652,7 @@ class TestAI:
         response = client.workers.ai.with_raw_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            prompt="string",
+            prompt="x",
         )
 
         assert response.is_closed is True
@@ -666,7 +666,7 @@ class TestAI:
         with client.workers.ai.with_streaming_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            prompt="string",
+            prompt="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -683,14 +683,14 @@ class TestAI:
             client.workers.ai.with_raw_response.run(
                 "string",
                 account_id="",
-                prompt="string",
+                prompt="x",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `model_name` but received ''"):
             client.workers.ai.with_raw_response.run(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                prompt="string",
+                prompt="x",
             )
 
     @pytest.mark.skip()
@@ -847,7 +847,7 @@ class TestAI:
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             target_lang="string",
-            text="string",
+            text="x",
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
@@ -858,7 +858,7 @@ class TestAI:
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             target_lang="string",
-            text="string",
+            text="x",
             source_lang="string",
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
@@ -870,7 +870,7 @@ class TestAI:
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             target_lang="string",
-            text="string",
+            text="x",
         )
 
         assert response.is_closed is True
@@ -885,7 +885,7 @@ class TestAI:
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             target_lang="string",
-            text="string",
+            text="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -903,7 +903,7 @@ class TestAI:
                 "string",
                 account_id="",
                 target_lang="string",
-                text="string",
+                text="x",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `model_name` but received ''"):
@@ -911,7 +911,7 @@ class TestAI:
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 target_lang="string",
-                text="string",
+                text="x",
             )
 
     @pytest.mark.skip()
@@ -920,7 +920,7 @@ class TestAI:
         ai = client.workers.ai.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            input_text="string",
+            input_text="x",
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
@@ -930,7 +930,7 @@ class TestAI:
         ai = client.workers.ai.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            input_text="string",
+            input_text="x",
             max_length=0,
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
@@ -941,7 +941,7 @@ class TestAI:
         response = client.workers.ai.with_raw_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            input_text="string",
+            input_text="x",
         )
 
         assert response.is_closed is True
@@ -955,7 +955,7 @@ class TestAI:
         with client.workers.ai.with_streaming_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            input_text="string",
+            input_text="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -972,14 +972,14 @@ class TestAI:
             client.workers.ai.with_raw_response.run(
                 "string",
                 account_id="",
-                input_text="string",
+                input_text="x",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `model_name` but received ''"):
             client.workers.ai.with_raw_response.run(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                input_text="string",
+                input_text="x",
             )
 
     @pytest.mark.skip()
@@ -1113,7 +1113,7 @@ class TestAsyncAI:
         ai = await async_client.workers.ai.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            text="string",
+            text="x",
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
@@ -1123,7 +1123,7 @@ class TestAsyncAI:
         response = await async_client.workers.ai.with_raw_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            text="string",
+            text="x",
         )
 
         assert response.is_closed is True
@@ -1137,7 +1137,7 @@ class TestAsyncAI:
         async with async_client.workers.ai.with_streaming_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            text="string",
+            text="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1154,14 +1154,14 @@ class TestAsyncAI:
             await async_client.workers.ai.with_raw_response.run(
                 "string",
                 account_id="",
-                text="string",
+                text="x",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `model_name` but received ''"):
             await async_client.workers.ai.with_raw_response.run(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                text="string",
+                text="x",
             )
 
     @pytest.mark.skip()
@@ -1170,7 +1170,7 @@ class TestAsyncAI:
         ai = await async_client.workers.ai.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            prompt="string",
+            prompt="x",
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
@@ -1180,7 +1180,7 @@ class TestAsyncAI:
         ai = await async_client.workers.ai.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            prompt="string",
+            prompt="x",
             guidance=0,
             image=[0, 0, 0],
             mask=[0, 0, 0],
@@ -1195,7 +1195,7 @@ class TestAsyncAI:
         response = await async_client.workers.ai.with_raw_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            prompt="string",
+            prompt="x",
         )
 
         assert response.is_closed is True
@@ -1209,7 +1209,7 @@ class TestAsyncAI:
         async with async_client.workers.ai.with_streaming_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            prompt="string",
+            prompt="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1226,14 +1226,14 @@ class TestAsyncAI:
             await async_client.workers.ai.with_raw_response.run(
                 "string",
                 account_id="",
-                prompt="string",
+                prompt="x",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `model_name` but received ''"):
             await async_client.workers.ai.with_raw_response.run(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                prompt="string",
+                prompt="x",
             )
 
     @pytest.mark.skip()
@@ -1242,8 +1242,8 @@ class TestAsyncAI:
         ai = await async_client.workers.ai.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            sentences=["string", "string", "string"],
-            source="string",
+            sentences=["x", "x", "x"],
+            source="x",
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
@@ -1253,8 +1253,8 @@ class TestAsyncAI:
         response = await async_client.workers.ai.with_raw_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            sentences=["string", "string", "string"],
-            source="string",
+            sentences=["x", "x", "x"],
+            source="x",
         )
 
         assert response.is_closed is True
@@ -1268,8 +1268,8 @@ class TestAsyncAI:
         async with async_client.workers.ai.with_streaming_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            sentences=["string", "string", "string"],
-            source="string",
+            sentences=["x", "x", "x"],
+            source="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1286,16 +1286,16 @@ class TestAsyncAI:
             await async_client.workers.ai.with_raw_response.run(
                 "string",
                 account_id="",
-                sentences=["string", "string", "string"],
-                source="string",
+                sentences=["x", "x", "x"],
+                source="x",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `model_name` but received ''"):
             await async_client.workers.ai.with_raw_response.run(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                sentences=["string", "string", "string"],
-                source="string",
+                sentences=["x", "x", "x"],
+                source="x",
             )
 
     @pytest.mark.skip()
@@ -1304,7 +1304,7 @@ class TestAsyncAI:
         ai = await async_client.workers.ai.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            text="string",
+            text="x",
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
@@ -1314,7 +1314,7 @@ class TestAsyncAI:
         response = await async_client.workers.ai.with_raw_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            text="string",
+            text="x",
         )
 
         assert response.is_closed is True
@@ -1328,7 +1328,7 @@ class TestAsyncAI:
         async with async_client.workers.ai.with_streaming_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            text="string",
+            text="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1345,14 +1345,14 @@ class TestAsyncAI:
             await async_client.workers.ai.with_raw_response.run(
                 "string",
                 account_id="",
-                text="string",
+                text="x",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `model_name` but received ''"):
             await async_client.workers.ai.with_raw_response.run(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                text="string",
+                text="x",
             )
 
     @pytest.mark.skip()
@@ -1718,7 +1718,7 @@ class TestAsyncAI:
         ai = await async_client.workers.ai.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            prompt="string",
+            prompt="x",
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
@@ -1728,7 +1728,7 @@ class TestAsyncAI:
         ai = await async_client.workers.ai.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            prompt="string",
+            prompt="x",
             lora="string",
             max_tokens=0,
             raw=True,
@@ -1742,7 +1742,7 @@ class TestAsyncAI:
         response = await async_client.workers.ai.with_raw_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            prompt="string",
+            prompt="x",
         )
 
         assert response.is_closed is True
@@ -1756,7 +1756,7 @@ class TestAsyncAI:
         async with async_client.workers.ai.with_streaming_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            prompt="string",
+            prompt="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1773,14 +1773,14 @@ class TestAsyncAI:
             await async_client.workers.ai.with_raw_response.run(
                 "string",
                 account_id="",
-                prompt="string",
+                prompt="x",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `model_name` but received ''"):
             await async_client.workers.ai.with_raw_response.run(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                prompt="string",
+                prompt="x",
             )
 
     @pytest.mark.skip()
@@ -1937,7 +1937,7 @@ class TestAsyncAI:
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             target_lang="string",
-            text="string",
+            text="x",
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
@@ -1948,7 +1948,7 @@ class TestAsyncAI:
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             target_lang="string",
-            text="string",
+            text="x",
             source_lang="string",
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
@@ -1960,7 +1960,7 @@ class TestAsyncAI:
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             target_lang="string",
-            text="string",
+            text="x",
         )
 
         assert response.is_closed is True
@@ -1975,7 +1975,7 @@ class TestAsyncAI:
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             target_lang="string",
-            text="string",
+            text="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1993,7 +1993,7 @@ class TestAsyncAI:
                 "string",
                 account_id="",
                 target_lang="string",
-                text="string",
+                text="x",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `model_name` but received ''"):
@@ -2001,7 +2001,7 @@ class TestAsyncAI:
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 target_lang="string",
-                text="string",
+                text="x",
             )
 
     @pytest.mark.skip()
@@ -2010,7 +2010,7 @@ class TestAsyncAI:
         ai = await async_client.workers.ai.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            input_text="string",
+            input_text="x",
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
@@ -2020,7 +2020,7 @@ class TestAsyncAI:
         ai = await async_client.workers.ai.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            input_text="string",
+            input_text="x",
             max_length=0,
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
@@ -2031,7 +2031,7 @@ class TestAsyncAI:
         response = await async_client.workers.ai.with_raw_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            input_text="string",
+            input_text="x",
         )
 
         assert response.is_closed is True
@@ -2045,7 +2045,7 @@ class TestAsyncAI:
         async with async_client.workers.ai.with_streaming_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            input_text="string",
+            input_text="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2062,14 +2062,14 @@ class TestAsyncAI:
             await async_client.workers.ai.with_raw_response.run(
                 "string",
                 account_id="",
-                input_text="string",
+                input_text="x",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `model_name` but received ''"):
             await async_client.workers.ai.with_raw_response.run(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                input_text="string",
+                input_text="x",
             )
 
     @pytest.mark.skip()
