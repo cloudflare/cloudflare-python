@@ -8,7 +8,7 @@ __all__ = ["WorkersDomain"]
 
 
 class WorkersDomain(BaseModel):
-    id: Optional[object] = None
+    id: Optional[str] = None
     """Identifer of the Worker Domain."""
 
     environment: Optional[str] = None
@@ -20,7 +20,7 @@ class WorkersDomain(BaseModel):
     service: Optional[str] = None
     """Worker service associated with the zone and hostname."""
 
-    zone_id: Optional[object] = None
+    zone_id: Optional[str] = None
     """Identifier of the zone."""
 
     zone_name: Optional[str] = None

@@ -9,7 +9,7 @@ __all__ = ["ListEditParams", "Append"]
 
 
 class ListEditParams(TypedDict, total=False):
-    account_id: Required[object]
+    account_id: Required[str]
 
     append: Iterable[Append]
     """The items in the list."""

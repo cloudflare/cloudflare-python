@@ -36,7 +36,7 @@ class SubscriptionGetResponseItemComponentValue(BaseModel):
 
 
 class SubscriptionGetResponseItemRatePlan(BaseModel):
-    id: Optional[object] = None
+    id: Optional[str] = None
     """The ID of the rate plan."""
 
     currency: Optional[str] = None

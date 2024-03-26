@@ -46,7 +46,7 @@ class Locations(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: object,
+        account_id: str,
         name: str,
         client_default: bool | NotGiven = NOT_GIVEN,
         ecs_support: bool | NotGiven = NOT_GIVEN,
@@ -78,6 +78,8 @@ class Locations(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
             f"/accounts/{account_id}/gateway/locations",
             body=maybe_transform(
@@ -101,9 +103,9 @@ class Locations(SyncAPIResource):
 
     def update(
         self,
-        location_id: object,
+        location_id: str,
         *,
-        account_id: object,
+        account_id: str,
         name: str,
         client_default: bool | NotGiven = NOT_GIVEN,
         ecs_support: bool | NotGiven = NOT_GIVEN,
@@ -135,6 +137,10 @@ class Locations(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not location_id:
+            raise ValueError(f"Expected a non-empty value for `location_id` but received {location_id!r}")
         return self._put(
             f"/accounts/{account_id}/gateway/locations/{location_id}",
             body=maybe_transform(
@@ -159,7 +165,7 @@ class Locations(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: object,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -179,6 +185,8 @@ class Locations(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
             f"/accounts/{account_id}/gateway/locations",
             options=make_request_options(
@@ -193,9 +201,9 @@ class Locations(SyncAPIResource):
 
     def delete(
         self,
-        location_id: object,
+        location_id: str,
         *,
-        account_id: object,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -215,6 +223,10 @@ class Locations(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not location_id:
+            raise ValueError(f"Expected a non-empty value for `location_id` but received {location_id!r}")
         return cast(
             LocationDeleteResponse,
             self._delete(
@@ -234,9 +246,9 @@ class Locations(SyncAPIResource):
 
     def get(
         self,
-        location_id: object,
+        location_id: str,
         *,
-        account_id: object,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -256,6 +268,10 @@ class Locations(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not location_id:
+            raise ValueError(f"Expected a non-empty value for `location_id` but received {location_id!r}")
         return self._get(
             f"/accounts/{account_id}/gateway/locations/{location_id}",
             options=make_request_options(
@@ -281,7 +297,7 @@ class AsyncLocations(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: object,
+        account_id: str,
         name: str,
         client_default: bool | NotGiven = NOT_GIVEN,
         ecs_support: bool | NotGiven = NOT_GIVEN,
@@ -313,6 +329,8 @@ class AsyncLocations(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/gateway/locations",
             body=await async_maybe_transform(
@@ -336,9 +354,9 @@ class AsyncLocations(AsyncAPIResource):
 
     async def update(
         self,
-        location_id: object,
+        location_id: str,
         *,
-        account_id: object,
+        account_id: str,
         name: str,
         client_default: bool | NotGiven = NOT_GIVEN,
         ecs_support: bool | NotGiven = NOT_GIVEN,
@@ -370,6 +388,10 @@ class AsyncLocations(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not location_id:
+            raise ValueError(f"Expected a non-empty value for `location_id` but received {location_id!r}")
         return await self._put(
             f"/accounts/{account_id}/gateway/locations/{location_id}",
             body=await async_maybe_transform(
@@ -394,7 +416,7 @@ class AsyncLocations(AsyncAPIResource):
     async def list(
         self,
         *,
-        account_id: object,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -414,6 +436,8 @@ class AsyncLocations(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
             f"/accounts/{account_id}/gateway/locations",
             options=make_request_options(
@@ -428,9 +452,9 @@ class AsyncLocations(AsyncAPIResource):
 
     async def delete(
         self,
-        location_id: object,
+        location_id: str,
         *,
-        account_id: object,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -450,6 +474,10 @@ class AsyncLocations(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not location_id:
+            raise ValueError(f"Expected a non-empty value for `location_id` but received {location_id!r}")
         return cast(
             LocationDeleteResponse,
             await self._delete(
@@ -469,9 +497,9 @@ class AsyncLocations(AsyncAPIResource):
 
     async def get(
         self,
-        location_id: object,
+        location_id: str,
         *,
-        account_id: object,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -491,6 +519,10 @@ class AsyncLocations(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not location_id:
+            raise ValueError(f"Expected a non-empty value for `location_id` but received {location_id!r}")
         return await self._get(
             f"/accounts/{account_id}/gateway/locations/{location_id}",
             options=make_request_options(

@@ -35,7 +35,7 @@ class Status(SyncAPIResource):
     def get(
         self,
         *,
-        zone_id: object,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -55,6 +55,8 @@ class Status(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get(
             f"/zones/{zone_id}/secondary_dns/outgoing/status",
             options=make_request_options(
@@ -80,7 +82,7 @@ class AsyncStatus(AsyncAPIResource):
     async def get(
         self,
         *,
-        zone_id: object,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -100,6 +102,8 @@ class AsyncStatus(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._get(
             f"/zones/{zone_id}/secondary_dns/outgoing/status",
             options=make_request_options(

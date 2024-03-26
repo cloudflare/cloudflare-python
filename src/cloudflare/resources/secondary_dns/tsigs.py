@@ -46,7 +46,7 @@ class TSIGs(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: object,
+        account_id: str,
         algo: str,
         name: str,
         secret: str,
@@ -75,6 +75,8 @@ class TSIGs(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
             f"/accounts/{account_id}/secondary_dns/tsigs",
             body=maybe_transform(
@@ -97,9 +99,9 @@ class TSIGs(SyncAPIResource):
 
     def update(
         self,
-        tsig_id: object,
+        tsig_id: str,
         *,
-        account_id: object,
+        account_id: str,
         algo: str,
         name: str,
         secret: str,
@@ -128,6 +130,10 @@ class TSIGs(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not tsig_id:
+            raise ValueError(f"Expected a non-empty value for `tsig_id` but received {tsig_id!r}")
         return self._put(
             f"/accounts/{account_id}/secondary_dns/tsigs/{tsig_id}",
             body=maybe_transform(
@@ -151,7 +157,7 @@ class TSIGs(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: object,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -171,6 +177,8 @@ class TSIGs(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
             f"/accounts/{account_id}/secondary_dns/tsigs",
             options=make_request_options(
@@ -185,9 +193,9 @@ class TSIGs(SyncAPIResource):
 
     def delete(
         self,
-        tsig_id: object,
+        tsig_id: str,
         *,
-        account_id: object,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -207,6 +215,10 @@ class TSIGs(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not tsig_id:
+            raise ValueError(f"Expected a non-empty value for `tsig_id` but received {tsig_id!r}")
         return self._delete(
             f"/accounts/{account_id}/secondary_dns/tsigs/{tsig_id}",
             options=make_request_options(
@@ -221,9 +233,9 @@ class TSIGs(SyncAPIResource):
 
     def get(
         self,
-        tsig_id: object,
+        tsig_id: str,
         *,
-        account_id: object,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -243,6 +255,10 @@ class TSIGs(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not tsig_id:
+            raise ValueError(f"Expected a non-empty value for `tsig_id` but received {tsig_id!r}")
         return self._get(
             f"/accounts/{account_id}/secondary_dns/tsigs/{tsig_id}",
             options=make_request_options(
@@ -268,7 +284,7 @@ class AsyncTSIGs(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: object,
+        account_id: str,
         algo: str,
         name: str,
         secret: str,
@@ -297,6 +313,8 @@ class AsyncTSIGs(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/secondary_dns/tsigs",
             body=await async_maybe_transform(
@@ -319,9 +337,9 @@ class AsyncTSIGs(AsyncAPIResource):
 
     async def update(
         self,
-        tsig_id: object,
+        tsig_id: str,
         *,
-        account_id: object,
+        account_id: str,
         algo: str,
         name: str,
         secret: str,
@@ -350,6 +368,10 @@ class AsyncTSIGs(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not tsig_id:
+            raise ValueError(f"Expected a non-empty value for `tsig_id` but received {tsig_id!r}")
         return await self._put(
             f"/accounts/{account_id}/secondary_dns/tsigs/{tsig_id}",
             body=await async_maybe_transform(
@@ -373,7 +395,7 @@ class AsyncTSIGs(AsyncAPIResource):
     async def list(
         self,
         *,
-        account_id: object,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -393,6 +415,8 @@ class AsyncTSIGs(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
             f"/accounts/{account_id}/secondary_dns/tsigs",
             options=make_request_options(
@@ -407,9 +431,9 @@ class AsyncTSIGs(AsyncAPIResource):
 
     async def delete(
         self,
-        tsig_id: object,
+        tsig_id: str,
         *,
-        account_id: object,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -429,6 +453,10 @@ class AsyncTSIGs(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not tsig_id:
+            raise ValueError(f"Expected a non-empty value for `tsig_id` but received {tsig_id!r}")
         return await self._delete(
             f"/accounts/{account_id}/secondary_dns/tsigs/{tsig_id}",
             options=make_request_options(
@@ -443,9 +471,9 @@ class AsyncTSIGs(AsyncAPIResource):
 
     async def get(
         self,
-        tsig_id: object,
+        tsig_id: str,
         *,
-        account_id: object,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -465,6 +493,10 @@ class AsyncTSIGs(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not tsig_id:
+            raise ValueError(f"Expected a non-empty value for `tsig_id` but received {tsig_id!r}")
         return await self._get(
             f"/accounts/{account_id}/secondary_dns/tsigs/{tsig_id}",
             options=make_request_options(

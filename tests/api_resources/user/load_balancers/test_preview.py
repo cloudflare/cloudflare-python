@@ -51,6 +51,14 @@ class TestPreview:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_get(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `preview_id` but received ''"):
+            client.user.load_balancers.preview.with_raw_response.get(
+                "",
+            )
+
 
 class TestAsyncPreview:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
@@ -88,3 +96,11 @@ class TestAsyncPreview:
             assert_matches_type(LoadBalancingPreviewResult, preview, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `preview_id` but received ''"):
+            await async_client.user.load_balancers.preview.with_raw_response.get(
+                "",
+            )

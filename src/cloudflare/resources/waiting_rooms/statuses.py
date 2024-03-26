@@ -35,7 +35,7 @@ class Statuses(SyncAPIResource):
 
     def get(
         self,
-        waiting_room_id: object,
+        waiting_room_id: str,
         *,
         zone_identifier: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -79,6 +79,8 @@ class Statuses(SyncAPIResource):
         """
         if not zone_identifier:
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not waiting_room_id:
+            raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return self._get(
             f"/zones/{zone_identifier}/waiting_rooms/{waiting_room_id}/status",
             options=make_request_options(
@@ -103,7 +105,7 @@ class AsyncStatuses(AsyncAPIResource):
 
     async def get(
         self,
-        waiting_room_id: object,
+        waiting_room_id: str,
         *,
         zone_identifier: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -147,6 +149,8 @@ class AsyncStatuses(AsyncAPIResource):
         """
         if not zone_identifier:
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not waiting_room_id:
+            raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return await self._get(
             f"/zones/{zone_identifier}/waiting_rooms/{waiting_room_id}/status",
             options=make_request_options(

@@ -9,7 +9,7 @@ __all__ = ["ProxyEndpointEditParams"]
 
 
 class ProxyEndpointEditParams(TypedDict, total=False):
-    account_id: Required[object]
+    account_id: Required[str]
 
     ips: List[str]
     """A list of CIDRs to restrict ingress connections."""

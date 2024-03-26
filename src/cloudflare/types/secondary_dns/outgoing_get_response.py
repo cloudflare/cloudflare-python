@@ -8,7 +8,7 @@ __all__ = ["OutgoingGetResponse"]
 
 
 class OutgoingGetResponse(BaseModel):
-    id: Optional[object] = None
+    id: Optional[str] = None
 
     checked_time: Optional[str] = None
     """The time for a specific event."""

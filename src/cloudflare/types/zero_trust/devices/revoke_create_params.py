@@ -9,7 +9,7 @@ __all__ = ["RevokeCreateParams"]
 
 
 class RevokeCreateParams(TypedDict, total=False):
-    account_id: Required[object]
+    account_id: Required[str]
 
     body: Required[List[str]]
     """A list of device ids to revoke."""

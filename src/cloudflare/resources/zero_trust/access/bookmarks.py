@@ -37,7 +37,7 @@ class Bookmarks(SyncAPIResource):
         self,
         uuid: str,
         *,
-        identifier: object,
+        identifier: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -59,6 +59,8 @@ class Bookmarks(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not identifier:
+            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         return self._post(
@@ -77,7 +79,7 @@ class Bookmarks(SyncAPIResource):
         self,
         uuid: str,
         *,
-        identifier: object,
+        identifier: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -99,6 +101,8 @@ class Bookmarks(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not identifier:
+            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         return self._put(
@@ -115,7 +119,7 @@ class Bookmarks(SyncAPIResource):
 
     def list(
         self,
-        identifier: object,
+        identifier: str,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -136,6 +140,8 @@ class Bookmarks(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not identifier:
+            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return self._get(
             f"/accounts/{identifier}/access/bookmarks",
             options=make_request_options(
@@ -152,7 +158,7 @@ class Bookmarks(SyncAPIResource):
         self,
         uuid: str,
         *,
-        identifier: object,
+        identifier: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -174,6 +180,8 @@ class Bookmarks(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not identifier:
+            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         return self._delete(
@@ -192,7 +200,7 @@ class Bookmarks(SyncAPIResource):
         self,
         uuid: str,
         *,
-        identifier: object,
+        identifier: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -214,6 +222,8 @@ class Bookmarks(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not identifier:
+            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         return self._get(
@@ -242,7 +252,7 @@ class AsyncBookmarks(AsyncAPIResource):
         self,
         uuid: str,
         *,
-        identifier: object,
+        identifier: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -264,6 +274,8 @@ class AsyncBookmarks(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not identifier:
+            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         return await self._post(
@@ -282,7 +294,7 @@ class AsyncBookmarks(AsyncAPIResource):
         self,
         uuid: str,
         *,
-        identifier: object,
+        identifier: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -304,6 +316,8 @@ class AsyncBookmarks(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not identifier:
+            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         return await self._put(
@@ -320,7 +334,7 @@ class AsyncBookmarks(AsyncAPIResource):
 
     async def list(
         self,
-        identifier: object,
+        identifier: str,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -341,6 +355,8 @@ class AsyncBookmarks(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not identifier:
+            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return await self._get(
             f"/accounts/{identifier}/access/bookmarks",
             options=make_request_options(
@@ -357,7 +373,7 @@ class AsyncBookmarks(AsyncAPIResource):
         self,
         uuid: str,
         *,
-        identifier: object,
+        identifier: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -379,6 +395,8 @@ class AsyncBookmarks(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not identifier:
+            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         return await self._delete(
@@ -397,7 +415,7 @@ class AsyncBookmarks(AsyncAPIResource):
         self,
         uuid: str,
         *,
-        identifier: object,
+        identifier: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -419,6 +437,8 @@ class AsyncBookmarks(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not identifier:
+            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         return await self._get(

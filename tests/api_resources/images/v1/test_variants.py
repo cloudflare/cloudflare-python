@@ -26,7 +26,7 @@ class TestVariants:
     def test_method_create(self, client: Cloudflare) -> None:
         variant = client.images.v1.variants.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            id="hero",
+            id="string",
             options={
                 "fit": "scale-down",
                 "height": 768,
@@ -41,7 +41,7 @@ class TestVariants:
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         variant = client.images.v1.variants.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            id="hero",
+            id="string",
             options={
                 "fit": "scale-down",
                 "height": 768,
@@ -57,7 +57,7 @@ class TestVariants:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.images.v1.variants.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            id="hero",
+            id="string",
             options={
                 "fit": "scale-down",
                 "height": 768,
@@ -76,7 +76,7 @@ class TestVariants:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.images.v1.variants.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            id="hero",
+            id="string",
             options={
                 "fit": "scale-down",
                 "height": 768,
@@ -98,7 +98,7 @@ class TestVariants:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.images.v1.variants.with_raw_response.create(
                 account_id="",
-                id="hero",
+                id="string",
                 options={
                     "fit": "scale-down",
                     "height": 768,
@@ -153,7 +153,7 @@ class TestVariants:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         variant = client.images.v1.variants.delete(
-            "hero",
+            "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(VariantDeleteResponse, variant, path=["response"])
@@ -162,7 +162,7 @@ class TestVariants:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.images.v1.variants.with_raw_response.delete(
-            "hero",
+            "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -175,7 +175,7 @@ class TestVariants:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.images.v1.variants.with_streaming_response.delete(
-            "hero",
+            "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -191,15 +191,21 @@ class TestVariants:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.images.v1.variants.with_raw_response.delete(
-                "hero",
+                "string",
                 account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `variant_id` but received ''"):
+            client.images.v1.variants.with_raw_response.delete(
+                "",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @pytest.mark.skip()
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         variant = client.images.v1.variants.edit(
-            "hero",
+            "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             options={
                 "fit": "scale-down",
@@ -214,7 +220,7 @@ class TestVariants:
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         variant = client.images.v1.variants.edit(
-            "hero",
+            "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             options={
                 "fit": "scale-down",
@@ -230,7 +236,7 @@ class TestVariants:
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.images.v1.variants.with_raw_response.edit(
-            "hero",
+            "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             options={
                 "fit": "scale-down",
@@ -249,7 +255,7 @@ class TestVariants:
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.images.v1.variants.with_streaming_response.edit(
-            "hero",
+            "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             options={
                 "fit": "scale-down",
@@ -271,8 +277,20 @@ class TestVariants:
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.images.v1.variants.with_raw_response.edit(
-                "hero",
+                "string",
                 account_id="",
+                options={
+                    "fit": "scale-down",
+                    "height": 768,
+                    "metadata": "none",
+                    "width": 1366,
+                },
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `variant_id` but received ''"):
+            client.images.v1.variants.with_raw_response.edit(
+                "",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 options={
                     "fit": "scale-down",
                     "height": 768,
@@ -285,7 +303,7 @@ class TestVariants:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         variant = client.images.v1.variants.get(
-            "hero",
+            "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(ImageVariant, variant, path=["response"])
@@ -294,7 +312,7 @@ class TestVariants:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.images.v1.variants.with_raw_response.get(
-            "hero",
+            "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -307,7 +325,7 @@ class TestVariants:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.images.v1.variants.with_streaming_response.get(
-            "hero",
+            "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -323,8 +341,14 @@ class TestVariants:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.images.v1.variants.with_raw_response.get(
-                "hero",
+                "string",
                 account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `variant_id` but received ''"):
+            client.images.v1.variants.with_raw_response.get(
+                "",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
 
@@ -336,7 +360,7 @@ class TestAsyncVariants:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         variant = await async_client.images.v1.variants.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            id="hero",
+            id="string",
             options={
                 "fit": "scale-down",
                 "height": 768,
@@ -351,7 +375,7 @@ class TestAsyncVariants:
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         variant = await async_client.images.v1.variants.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            id="hero",
+            id="string",
             options={
                 "fit": "scale-down",
                 "height": 768,
@@ -367,7 +391,7 @@ class TestAsyncVariants:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.images.v1.variants.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            id="hero",
+            id="string",
             options={
                 "fit": "scale-down",
                 "height": 768,
@@ -386,7 +410,7 @@ class TestAsyncVariants:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.images.v1.variants.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            id="hero",
+            id="string",
             options={
                 "fit": "scale-down",
                 "height": 768,
@@ -408,7 +432,7 @@ class TestAsyncVariants:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.images.v1.variants.with_raw_response.create(
                 account_id="",
-                id="hero",
+                id="string",
                 options={
                     "fit": "scale-down",
                     "height": 768,
@@ -463,7 +487,7 @@ class TestAsyncVariants:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         variant = await async_client.images.v1.variants.delete(
-            "hero",
+            "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(VariantDeleteResponse, variant, path=["response"])
@@ -472,7 +496,7 @@ class TestAsyncVariants:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.images.v1.variants.with_raw_response.delete(
-            "hero",
+            "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -485,7 +509,7 @@ class TestAsyncVariants:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.images.v1.variants.with_streaming_response.delete(
-            "hero",
+            "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -501,15 +525,21 @@ class TestAsyncVariants:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.images.v1.variants.with_raw_response.delete(
-                "hero",
+                "string",
                 account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `variant_id` but received ''"):
+            await async_client.images.v1.variants.with_raw_response.delete(
+                "",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         variant = await async_client.images.v1.variants.edit(
-            "hero",
+            "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             options={
                 "fit": "scale-down",
@@ -524,7 +554,7 @@ class TestAsyncVariants:
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         variant = await async_client.images.v1.variants.edit(
-            "hero",
+            "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             options={
                 "fit": "scale-down",
@@ -540,7 +570,7 @@ class TestAsyncVariants:
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.images.v1.variants.with_raw_response.edit(
-            "hero",
+            "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             options={
                 "fit": "scale-down",
@@ -559,7 +589,7 @@ class TestAsyncVariants:
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.images.v1.variants.with_streaming_response.edit(
-            "hero",
+            "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             options={
                 "fit": "scale-down",
@@ -581,8 +611,20 @@ class TestAsyncVariants:
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.images.v1.variants.with_raw_response.edit(
-                "hero",
+                "string",
                 account_id="",
+                options={
+                    "fit": "scale-down",
+                    "height": 768,
+                    "metadata": "none",
+                    "width": 1366,
+                },
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `variant_id` but received ''"):
+            await async_client.images.v1.variants.with_raw_response.edit(
+                "",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 options={
                     "fit": "scale-down",
                     "height": 768,
@@ -595,7 +637,7 @@ class TestAsyncVariants:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         variant = await async_client.images.v1.variants.get(
-            "hero",
+            "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(ImageVariant, variant, path=["response"])
@@ -604,7 +646,7 @@ class TestAsyncVariants:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.images.v1.variants.with_raw_response.get(
-            "hero",
+            "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -617,7 +659,7 @@ class TestAsyncVariants:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.images.v1.variants.with_streaming_response.get(
-            "hero",
+            "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -633,6 +675,12 @@ class TestAsyncVariants:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.images.v1.variants.with_raw_response.get(
-                "hero",
+                "string",
                 account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `variant_id` but received ''"):
+            await async_client.images.v1.variants.with_raw_response.get(
+                "",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

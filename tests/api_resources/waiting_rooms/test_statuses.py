@@ -63,6 +63,12 @@ class TestStatuses:
                 zone_identifier="",
             )
 
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `waiting_room_id` but received ''"):
+            client.waiting_rooms.statuses.with_raw_response.get(
+                "",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
 
 class TestAsyncStatuses:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
@@ -111,4 +117,10 @@ class TestAsyncStatuses:
             await async_client.waiting_rooms.statuses.with_raw_response.get(
                 "699d98642c564d2e855e9661899b7252",
                 zone_identifier="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `waiting_room_id` but received ''"):
+            await async_client.waiting_rooms.statuses.with_raw_response.get(
+                "",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )

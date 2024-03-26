@@ -8,7 +8,7 @@ __all__ = ["IncomingCreateResponse"]
 
 
 class IncomingCreateResponse(BaseModel):
-    id: Optional[object] = None
+    id: Optional[str] = None
 
     auto_refresh_seconds: Optional[float] = None
     """

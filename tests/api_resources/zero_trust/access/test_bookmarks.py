@@ -57,6 +57,12 @@ class TestBookmarks:
     @pytest.mark.skip()
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
+            client.zero_trust.access.bookmarks.with_raw_response.create(
+                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identifier="",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
             client.zero_trust.access.bookmarks.with_raw_response.create(
                 "",
@@ -103,6 +109,12 @@ class TestBookmarks:
     @pytest.mark.skip()
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
+            client.zero_trust.access.bookmarks.with_raw_response.update(
+                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identifier="",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
             client.zero_trust.access.bookmarks.with_raw_response.update(
                 "",
@@ -145,6 +157,14 @@ class TestBookmarks:
 
     @pytest.mark.skip()
     @parametrize
+    def test_path_params_list(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
+            client.zero_trust.access.bookmarks.with_raw_response.list(
+                "",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         bookmark = client.zero_trust.access.bookmarks.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -183,6 +203,12 @@ class TestBookmarks:
     @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
+            client.zero_trust.access.bookmarks.with_raw_response.delete(
+                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identifier="",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
             client.zero_trust.access.bookmarks.with_raw_response.delete(
                 "",
@@ -229,6 +255,12 @@ class TestBookmarks:
     @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
+            client.zero_trust.access.bookmarks.with_raw_response.get(
+                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identifier="",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
             client.zero_trust.access.bookmarks.with_raw_response.get(
                 "",
@@ -279,6 +311,12 @@ class TestAsyncBookmarks:
     @pytest.mark.skip()
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
+            await async_client.zero_trust.access.bookmarks.with_raw_response.create(
+                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identifier="",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
             await async_client.zero_trust.access.bookmarks.with_raw_response.create(
                 "",
@@ -325,6 +363,12 @@ class TestAsyncBookmarks:
     @pytest.mark.skip()
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
+            await async_client.zero_trust.access.bookmarks.with_raw_response.update(
+                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identifier="",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
             await async_client.zero_trust.access.bookmarks.with_raw_response.update(
                 "",
@@ -367,6 +411,14 @@ class TestAsyncBookmarks:
 
     @pytest.mark.skip()
     @parametrize
+    async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
+            await async_client.zero_trust.access.bookmarks.with_raw_response.list(
+                "",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         bookmark = await async_client.zero_trust.access.bookmarks.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -405,6 +457,12 @@ class TestAsyncBookmarks:
     @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
+            await async_client.zero_trust.access.bookmarks.with_raw_response.delete(
+                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identifier="",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
             await async_client.zero_trust.access.bookmarks.with_raw_response.delete(
                 "",
@@ -451,6 +509,12 @@ class TestAsyncBookmarks:
     @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
+            await async_client.zero_trust.access.bookmarks.with_raw_response.get(
+                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identifier="",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
             await async_client.zero_trust.access.bookmarks.with_raw_response.get(
                 "",

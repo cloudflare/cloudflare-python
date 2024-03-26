@@ -6,7 +6,7 @@ __all__ = ["SecondaryDNSTSIG"]
 
 
 class SecondaryDNSTSIG(BaseModel):
-    id: object
+    id: str
 
     algo: str
     """TSIG algorithm."""

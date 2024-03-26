@@ -8,4 +8,4 @@ __all__ = ["ACLDeleteResponse"]
 
 
 class ACLDeleteResponse(BaseModel):
-    id: Optional[object] = None
+    id: Optional[str] = None

@@ -58,7 +58,7 @@ class Events(SyncAPIResource):
 
     def create(
         self,
-        waiting_room_id: object,
+        waiting_room_id: str,
         *,
         zone_identifier: str,
         event_end_time: str,
@@ -148,6 +148,8 @@ class Events(SyncAPIResource):
         """
         if not zone_identifier:
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not waiting_room_id:
+            raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return self._post(
             f"/zones/{zone_identifier}/waiting_rooms/{waiting_room_id}/events",
             body=maybe_transform(
@@ -180,10 +182,10 @@ class Events(SyncAPIResource):
 
     def update(
         self,
-        event_id: object,
+        event_id: str,
         *,
         zone_identifier: str,
-        waiting_room_id: object,
+        waiting_room_id: str,
         event_end_time: str,
         event_start_time: str,
         name: str,
@@ -265,6 +267,10 @@ class Events(SyncAPIResource):
         """
         if not zone_identifier:
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not waiting_room_id:
+            raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
+        if not event_id:
+            raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
         return self._put(
             f"/zones/{zone_identifier}/waiting_rooms/{waiting_room_id}/events/{event_id}",
             body=maybe_transform(
@@ -297,7 +303,7 @@ class Events(SyncAPIResource):
 
     def list(
         self,
-        waiting_room_id: object,
+        waiting_room_id: str,
         *,
         zone_identifier: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -323,6 +329,8 @@ class Events(SyncAPIResource):
         """
         if not zone_identifier:
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not waiting_room_id:
+            raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return self._get(
             f"/zones/{zone_identifier}/waiting_rooms/{waiting_room_id}/events",
             options=make_request_options(
@@ -337,10 +345,10 @@ class Events(SyncAPIResource):
 
     def delete(
         self,
-        event_id: object,
+        event_id: str,
         *,
         zone_identifier: str,
-        waiting_room_id: object,
+        waiting_room_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -364,6 +372,10 @@ class Events(SyncAPIResource):
         """
         if not zone_identifier:
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not waiting_room_id:
+            raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
+        if not event_id:
+            raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
         return self._delete(
             f"/zones/{zone_identifier}/waiting_rooms/{waiting_room_id}/events/{event_id}",
             options=make_request_options(
@@ -378,10 +390,10 @@ class Events(SyncAPIResource):
 
     def edit(
         self,
-        event_id: object,
+        event_id: str,
         *,
         zone_identifier: str,
-        waiting_room_id: object,
+        waiting_room_id: str,
         event_end_time: str,
         event_start_time: str,
         name: str,
@@ -463,6 +475,10 @@ class Events(SyncAPIResource):
         """
         if not zone_identifier:
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not waiting_room_id:
+            raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
+        if not event_id:
+            raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
         return self._patch(
             f"/zones/{zone_identifier}/waiting_rooms/{waiting_room_id}/events/{event_id}",
             body=maybe_transform(
@@ -495,10 +511,10 @@ class Events(SyncAPIResource):
 
     def get(
         self,
-        event_id: object,
+        event_id: str,
         *,
         zone_identifier: str,
-        waiting_room_id: object,
+        waiting_room_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -522,6 +538,10 @@ class Events(SyncAPIResource):
         """
         if not zone_identifier:
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not waiting_room_id:
+            raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
+        if not event_id:
+            raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
         return self._get(
             f"/zones/{zone_identifier}/waiting_rooms/{waiting_room_id}/events/{event_id}",
             options=make_request_options(
@@ -550,7 +570,7 @@ class AsyncEvents(AsyncAPIResource):
 
     async def create(
         self,
-        waiting_room_id: object,
+        waiting_room_id: str,
         *,
         zone_identifier: str,
         event_end_time: str,
@@ -640,6 +660,8 @@ class AsyncEvents(AsyncAPIResource):
         """
         if not zone_identifier:
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not waiting_room_id:
+            raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return await self._post(
             f"/zones/{zone_identifier}/waiting_rooms/{waiting_room_id}/events",
             body=await async_maybe_transform(
@@ -672,10 +694,10 @@ class AsyncEvents(AsyncAPIResource):
 
     async def update(
         self,
-        event_id: object,
+        event_id: str,
         *,
         zone_identifier: str,
-        waiting_room_id: object,
+        waiting_room_id: str,
         event_end_time: str,
         event_start_time: str,
         name: str,
@@ -757,6 +779,10 @@ class AsyncEvents(AsyncAPIResource):
         """
         if not zone_identifier:
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not waiting_room_id:
+            raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
+        if not event_id:
+            raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
         return await self._put(
             f"/zones/{zone_identifier}/waiting_rooms/{waiting_room_id}/events/{event_id}",
             body=await async_maybe_transform(
@@ -789,7 +815,7 @@ class AsyncEvents(AsyncAPIResource):
 
     async def list(
         self,
-        waiting_room_id: object,
+        waiting_room_id: str,
         *,
         zone_identifier: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -815,6 +841,8 @@ class AsyncEvents(AsyncAPIResource):
         """
         if not zone_identifier:
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not waiting_room_id:
+            raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return await self._get(
             f"/zones/{zone_identifier}/waiting_rooms/{waiting_room_id}/events",
             options=make_request_options(
@@ -829,10 +857,10 @@ class AsyncEvents(AsyncAPIResource):
 
     async def delete(
         self,
-        event_id: object,
+        event_id: str,
         *,
         zone_identifier: str,
-        waiting_room_id: object,
+        waiting_room_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -856,6 +884,10 @@ class AsyncEvents(AsyncAPIResource):
         """
         if not zone_identifier:
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not waiting_room_id:
+            raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
+        if not event_id:
+            raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
         return await self._delete(
             f"/zones/{zone_identifier}/waiting_rooms/{waiting_room_id}/events/{event_id}",
             options=make_request_options(
@@ -870,10 +902,10 @@ class AsyncEvents(AsyncAPIResource):
 
     async def edit(
         self,
-        event_id: object,
+        event_id: str,
         *,
         zone_identifier: str,
-        waiting_room_id: object,
+        waiting_room_id: str,
         event_end_time: str,
         event_start_time: str,
         name: str,
@@ -955,6 +987,10 @@ class AsyncEvents(AsyncAPIResource):
         """
         if not zone_identifier:
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not waiting_room_id:
+            raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
+        if not event_id:
+            raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
         return await self._patch(
             f"/zones/{zone_identifier}/waiting_rooms/{waiting_room_id}/events/{event_id}",
             body=await async_maybe_transform(
@@ -987,10 +1023,10 @@ class AsyncEvents(AsyncAPIResource):
 
     async def get(
         self,
-        event_id: object,
+        event_id: str,
         *,
         zone_identifier: str,
-        waiting_room_id: object,
+        waiting_room_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1014,6 +1050,10 @@ class AsyncEvents(AsyncAPIResource):
         """
         if not zone_identifier:
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not waiting_room_id:
+            raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
+        if not event_id:
+            raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
         return await self._get(
             f"/zones/{zone_identifier}/waiting_rooms/{waiting_room_id}/events/{event_id}",
             options=make_request_options(

@@ -66,6 +66,15 @@ class TestAuditSSHSettings:
 
     @pytest.mark.skip()
     @parametrize
+    def test_path_params_update(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.zero_trust.gateway.audit_ssh_settings.with_raw_response.update(
+                account_id="",
+                public_key="1pyl6I1tL7xfJuFYVzXlUW8uXXlpxegHXBzGCBKaSFA=",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         audit_ssh_setting = client.zero_trust.gateway.audit_ssh_settings.get(
             account_id="699d98642c564d2e855e9661899b7252",
@@ -97,6 +106,14 @@ class TestAuditSSHSettings:
             assert_matches_type(ZeroTrustGatewaySettings, audit_ssh_setting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_get(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.zero_trust.gateway.audit_ssh_settings.with_raw_response.get(
+                account_id="",
+            )
 
 
 class TestAsyncAuditSSHSettings:
@@ -151,6 +168,15 @@ class TestAsyncAuditSSHSettings:
 
     @pytest.mark.skip()
     @parametrize
+    async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.zero_trust.gateway.audit_ssh_settings.with_raw_response.update(
+                account_id="",
+                public_key="1pyl6I1tL7xfJuFYVzXlUW8uXXlpxegHXBzGCBKaSFA=",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         audit_ssh_setting = await async_client.zero_trust.gateway.audit_ssh_settings.get(
             account_id="699d98642c564d2e855e9661899b7252",
@@ -182,3 +208,11 @@ class TestAsyncAuditSSHSettings:
             assert_matches_type(ZeroTrustGatewaySettings, audit_ssh_setting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.zero_trust.gateway.audit_ssh_settings.with_raw_response.get(
+                account_id="",
+            )

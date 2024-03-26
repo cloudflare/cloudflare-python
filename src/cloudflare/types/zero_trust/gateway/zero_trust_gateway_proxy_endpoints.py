@@ -9,7 +9,7 @@ __all__ = ["ZeroTrustGatewayProxyEndpoints"]
 
 
 class ZeroTrustGatewayProxyEndpoints(BaseModel):
-    id: Optional[object] = None
+    id: Optional[str] = None
 
     created_at: Optional[datetime] = None
 

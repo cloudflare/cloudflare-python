@@ -9,7 +9,7 @@ __all__ = ["WaitingroomEventResult"]
 
 
 class WaitingroomEventResult(BaseModel):
-    id: Optional[object] = None
+    id: Optional[str] = None
 
     created_on: Optional[datetime] = None
 
