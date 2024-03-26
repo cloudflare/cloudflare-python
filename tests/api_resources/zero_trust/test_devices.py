@@ -53,6 +53,14 @@ class TestDevices:
 
     @pytest.mark.skip()
     @parametrize
+    def test_path_params_list(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.zero_trust.devices.with_raw_response.list(
+                account_id="",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         device = client.zero_trust.devices.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -91,6 +99,12 @@ class TestDevices:
     @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.zero_trust.devices.with_raw_response.get(
+                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                account_id="",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `device_id` but received ''"):
             client.zero_trust.devices.with_raw_response.get(
                 "",
@@ -137,6 +151,14 @@ class TestAsyncDevices:
 
     @pytest.mark.skip()
     @parametrize
+    async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.zero_trust.devices.with_raw_response.list(
+                account_id="",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         device = await async_client.zero_trust.devices.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -175,6 +197,12 @@ class TestAsyncDevices:
     @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.zero_trust.devices.with_raw_response.get(
+                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                account_id="",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `device_id` but received ''"):
             await async_client.zero_trust.devices.with_raw_response.get(
                 "",

@@ -8,7 +8,7 @@ __all__ = ["PolicyEditParams", "ServiceModeV2"]
 
 
 class PolicyEditParams(TypedDict, total=False):
-    account_id: Required[object]
+    account_id: Required[str]
 
     allow_mode_switch: bool
     """Whether to allow the user to switch WARP between modes."""

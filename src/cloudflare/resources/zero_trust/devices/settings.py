@@ -40,7 +40,7 @@ class Settings(SyncAPIResource):
     def update(
         self,
         *,
-        account_id: object,
+        account_id: str,
         gateway_proxy_enabled: bool | NotGiven = NOT_GIVEN,
         gateway_udp_proxy_enabled: bool | NotGiven = NOT_GIVEN,
         root_certificate_installation_enabled: bool | NotGiven = NOT_GIVEN,
@@ -72,6 +72,8 @@ class Settings(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._put(
             f"/accounts/{account_id}/devices/settings",
             body=maybe_transform(
@@ -99,7 +101,7 @@ class Settings(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: object,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -119,6 +121,8 @@ class Settings(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
             f"/accounts/{account_id}/devices/settings",
             options=make_request_options(
@@ -147,7 +151,7 @@ class AsyncSettings(AsyncAPIResource):
     async def update(
         self,
         *,
-        account_id: object,
+        account_id: str,
         gateway_proxy_enabled: bool | NotGiven = NOT_GIVEN,
         gateway_udp_proxy_enabled: bool | NotGiven = NOT_GIVEN,
         root_certificate_installation_enabled: bool | NotGiven = NOT_GIVEN,
@@ -179,6 +183,8 @@ class AsyncSettings(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._put(
             f"/accounts/{account_id}/devices/settings",
             body=await async_maybe_transform(
@@ -206,7 +212,7 @@ class AsyncSettings(AsyncAPIResource):
     async def list(
         self,
         *,
-        account_id: object,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -226,6 +232,8 @@ class AsyncSettings(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
             f"/accounts/{account_id}/devices/settings",
             options=make_request_options(

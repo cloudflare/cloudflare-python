@@ -14,7 +14,7 @@ class Network(BaseModel):
 
 
 class ZeroTrustGatewayLocations(BaseModel):
-    id: Optional[object] = None
+    id: Optional[str] = None
 
     client_default: Optional[bool] = None
     """True if the location is the default location."""

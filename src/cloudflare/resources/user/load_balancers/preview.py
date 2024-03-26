@@ -35,7 +35,7 @@ class Preview(SyncAPIResource):
 
     def get(
         self,
-        preview_id: object,
+        preview_id: str,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -56,6 +56,8 @@ class Preview(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not preview_id:
+            raise ValueError(f"Expected a non-empty value for `preview_id` but received {preview_id!r}")
         return self._get(
             f"/user/load_balancers/preview/{preview_id}",
             options=make_request_options(
@@ -80,7 +82,7 @@ class AsyncPreview(AsyncAPIResource):
 
     async def get(
         self,
-        preview_id: object,
+        preview_id: str,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -101,6 +103,8 @@ class AsyncPreview(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not preview_id:
+            raise ValueError(f"Expected a non-empty value for `preview_id` but received {preview_id!r}")
         return await self._get(
             f"/user/load_balancers/preview/{preview_id}",
             options=make_request_options(

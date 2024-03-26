@@ -8,7 +8,7 @@ __all__ = ["DEXTestUpdateParams", "Data"]
 
 
 class DEXTestUpdateParams(TypedDict, total=False):
-    account_id: Required[object]
+    account_id: Required[str]
 
     data: Required[Data]
     """

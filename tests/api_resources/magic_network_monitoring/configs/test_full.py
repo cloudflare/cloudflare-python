@@ -51,6 +51,14 @@ class TestFull:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_get(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.magic_network_monitoring.configs.full.with_raw_response.get(
+                account_id="",
+            )
+
 
 class TestAsyncFull:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
@@ -88,3 +96,11 @@ class TestAsyncFull:
             assert_matches_type(MagicVisibilityMNMConfig, full, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.magic_network_monitoring.configs.full.with_raw_response.get(
+                account_id="",
+            )

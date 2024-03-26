@@ -12,7 +12,7 @@ class EventUpdateParams(TypedDict, total=False):
     zone_identifier: Required[str]
     """Identifier"""
 
-    waiting_room_id: Required[object]
+    waiting_room_id: Required[str]
 
     event_end_time: Required[str]
     """An ISO 8601 timestamp that marks the end of the event."""

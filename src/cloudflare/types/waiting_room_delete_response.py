@@ -8,4 +8,4 @@ __all__ = ["WaitingRoomDeleteResponse"]
 
 
 class WaitingRoomDeleteResponse(BaseModel):
-    id: Optional[object] = None
+    id: Optional[str] = None

@@ -28,7 +28,7 @@ class VariantsHeroOptions(BaseModel):
 
 
 class VariantsHero(BaseModel):
-    id: object
+    id: str
 
     options: VariantsHeroOptions
     """Allows you to define image resizing sizes for different use cases."""

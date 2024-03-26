@@ -8,7 +8,7 @@ __all__ = ["SecondaryDNSPeer"]
 
 
 class SecondaryDNSPeer(BaseModel):
-    id: object
+    id: str
 
     name: str
     """The name of the peer."""

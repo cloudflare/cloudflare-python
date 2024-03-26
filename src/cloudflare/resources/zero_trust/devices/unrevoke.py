@@ -40,7 +40,7 @@ class Unrevoke(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: object,
+        account_id: str,
         body: List[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -63,6 +63,8 @@ class Unrevoke(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
             Optional[UnrevokeCreateResponse],
             self._post(
@@ -94,7 +96,7 @@ class AsyncUnrevoke(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: object,
+        account_id: str,
         body: List[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -117,6 +119,8 @@ class AsyncUnrevoke(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
             Optional[UnrevokeCreateResponse],
             await self._post(

@@ -8,7 +8,7 @@ __all__ = ["D1CreateDatabase"]
 
 
 class D1CreateDatabase(BaseModel):
-    created_at: Optional[object] = None
+    created_at: Optional[str] = None
     """Specifies the timestamp the resource was created as an ISO8601 string."""
 
     name: Optional[str] = None

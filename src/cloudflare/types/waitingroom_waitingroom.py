@@ -46,7 +46,7 @@ class CookieAttributes(BaseModel):
 
 
 class WaitingroomWaitingroom(BaseModel):
-    id: Optional[object] = None
+    id: Optional[str] = None
 
     additional_routes: Optional[List[AdditionalRoute]] = None
     """Only available for the Waiting Room Advanced subscription.

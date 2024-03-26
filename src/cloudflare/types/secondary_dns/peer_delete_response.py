@@ -8,4 +8,4 @@ __all__ = ["PeerDeleteResponse"]
 
 
 class PeerDeleteResponse(BaseModel):
-    id: Optional[object] = None
+    id: Optional[str] = None

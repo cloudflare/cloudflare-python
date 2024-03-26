@@ -94,7 +94,7 @@ class Policies(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: object,
+        account_id: str,
         match: str,
         name: str,
         precedence: float,
@@ -172,6 +172,8 @@ class Policies(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
             f"/accounts/{account_id}/devices/policy",
             body=maybe_transform(
@@ -211,7 +213,7 @@ class Policies(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: object,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -231,6 +233,8 @@ class Policies(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
             f"/accounts/{account_id}/devices/policies",
             options=make_request_options(
@@ -247,7 +251,7 @@ class Policies(SyncAPIResource):
         self,
         policy_id: str,
         *,
-        account_id: object,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -270,6 +274,8 @@ class Policies(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not policy_id:
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         return self._delete(
@@ -288,7 +294,7 @@ class Policies(SyncAPIResource):
         self,
         policy_id: str,
         *,
-        account_id: object,
+        account_id: str,
         allow_mode_switch: bool | NotGiven = NOT_GIVEN,
         allow_updates: bool | NotGiven = NOT_GIVEN,
         allowed_to_leave: bool | NotGiven = NOT_GIVEN,
@@ -357,6 +363,8 @@ class Policies(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not policy_id:
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         return self._patch(
@@ -397,7 +405,7 @@ class Policies(SyncAPIResource):
         self,
         policy_id: str,
         *,
-        account_id: object,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -419,6 +427,8 @@ class Policies(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not policy_id:
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         return self._get(
@@ -464,7 +474,7 @@ class AsyncPolicies(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: object,
+        account_id: str,
         match: str,
         name: str,
         precedence: float,
@@ -542,6 +552,8 @@ class AsyncPolicies(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/devices/policy",
             body=await async_maybe_transform(
@@ -581,7 +593,7 @@ class AsyncPolicies(AsyncAPIResource):
     async def list(
         self,
         *,
-        account_id: object,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -601,6 +613,8 @@ class AsyncPolicies(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
             f"/accounts/{account_id}/devices/policies",
             options=make_request_options(
@@ -617,7 +631,7 @@ class AsyncPolicies(AsyncAPIResource):
         self,
         policy_id: str,
         *,
-        account_id: object,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -640,6 +654,8 @@ class AsyncPolicies(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not policy_id:
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         return await self._delete(
@@ -658,7 +674,7 @@ class AsyncPolicies(AsyncAPIResource):
         self,
         policy_id: str,
         *,
-        account_id: object,
+        account_id: str,
         allow_mode_switch: bool | NotGiven = NOT_GIVEN,
         allow_updates: bool | NotGiven = NOT_GIVEN,
         allowed_to_leave: bool | NotGiven = NOT_GIVEN,
@@ -727,6 +743,8 @@ class AsyncPolicies(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not policy_id:
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         return await self._patch(
@@ -767,7 +785,7 @@ class AsyncPolicies(AsyncAPIResource):
         self,
         policy_id: str,
         *,
-        account_id: object,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -789,6 +807,8 @@ class AsyncPolicies(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not policy_id:
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         return await self._get(

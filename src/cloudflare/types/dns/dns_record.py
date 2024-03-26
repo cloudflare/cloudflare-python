@@ -959,7 +959,7 @@ class NSMeta(BaseModel):
 
 
 class NS(BaseModel):
-    content: object
+    content: str
     """A valid name server host name."""
 
     name: str

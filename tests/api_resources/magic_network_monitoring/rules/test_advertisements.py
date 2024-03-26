@@ -54,6 +54,21 @@ class TestAdvertisements:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_edit(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.magic_network_monitoring.rules.advertisements.with_raw_response.edit(
+                "2890e6fa406311ed9b5a23f70f6fb8cf",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
+            client.magic_network_monitoring.rules.advertisements.with_raw_response.edit(
+                "",
+                account_id="6f91088a406011ed95aed352566e8d4c",
+            )
+
 
 class TestAsyncAdvertisements:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
@@ -94,3 +109,18 @@ class TestAsyncAdvertisements:
             assert_matches_type(Optional[MagicVisibilityMNMRuleAdvertisable], advertisement, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.magic_network_monitoring.rules.advertisements.with_raw_response.edit(
+                "2890e6fa406311ed9b5a23f70f6fb8cf",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
+            await async_client.magic_network_monitoring.rules.advertisements.with_raw_response.edit(
+                "",
+                account_id="6f91088a406011ed95aed352566e8d4c",
+            )

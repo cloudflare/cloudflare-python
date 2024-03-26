@@ -11,4 +11,4 @@ class DomainHistoryGetParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier"""
 
-    domain: object
+    domain: str

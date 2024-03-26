@@ -35,7 +35,7 @@ class Previews(SyncAPIResource):
 
     def get(
         self,
-        preview_id: object,
+        preview_id: str,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -61,6 +61,8 @@ class Previews(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not preview_id:
+            raise ValueError(f"Expected a non-empty value for `preview_id` but received {preview_id!r}")
         return self._get(
             f"/accounts/{account_id}/load_balancers/preview/{preview_id}",
             options=make_request_options(
@@ -85,7 +87,7 @@ class AsyncPreviews(AsyncAPIResource):
 
     async def get(
         self,
-        preview_id: object,
+        preview_id: str,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -111,6 +113,8 @@ class AsyncPreviews(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not preview_id:
+            raise ValueError(f"Expected a non-empty value for `preview_id` but received {preview_id!r}")
         return await self._get(
             f"/accounts/{account_id}/load_balancers/preview/{preview_id}",
             options=make_request_options(

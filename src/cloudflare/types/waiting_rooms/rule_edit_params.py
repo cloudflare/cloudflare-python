@@ -12,7 +12,7 @@ class RuleEditParams(TypedDict, total=False):
     zone_identifier: Required[str]
     """Identifier"""
 
-    waiting_room_id: Required[object]
+    waiting_room_id: Required[str]
 
     action: Required[Literal["bypass_waiting_room"]]
     """The action to take when the expression matches."""

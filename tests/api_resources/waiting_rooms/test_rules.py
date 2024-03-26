@@ -90,6 +90,14 @@ class TestRules:
                 expression="ip.src in {10.20.30.40}",
             )
 
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `waiting_room_id` but received ''"):
+            client.waiting_rooms.rules.with_raw_response.create(
+                "",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                action="bypass_waiting_room",
+                expression="ip.src in {10.20.30.40}",
+            )
+
     @pytest.mark.skip()
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
@@ -192,6 +200,26 @@ class TestRules:
                 ],
             )
 
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `waiting_room_id` but received ''"):
+            client.waiting_rooms.rules.with_raw_response.update(
+                "",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                body=[
+                    {
+                        "action": "bypass_waiting_room",
+                        "expression": "ip.src in {10.20.30.40}",
+                    },
+                    {
+                        "action": "bypass_waiting_room",
+                        "expression": "ip.src in {10.20.30.40}",
+                    },
+                    {
+                        "action": "bypass_waiting_room",
+                        "expression": "ip.src in {10.20.30.40}",
+                    },
+                ],
+            )
+
     @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
@@ -236,6 +264,12 @@ class TestRules:
             client.waiting_rooms.rules.with_raw_response.list(
                 "699d98642c564d2e855e9661899b7252",
                 zone_identifier="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `waiting_room_id` but received ''"):
+            client.waiting_rooms.rules.with_raw_response.list(
+                "",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @pytest.mark.skip()
@@ -286,6 +320,13 @@ class TestRules:
                 "25756b2dfe6e378a06b033b670413757",
                 zone_identifier="",
                 waiting_room_id="699d98642c564d2e855e9661899b7252",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `waiting_room_id` but received ''"):
+            client.waiting_rooms.rules.with_raw_response.delete(
+                "25756b2dfe6e378a06b033b670413757",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                waiting_room_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
@@ -368,6 +409,15 @@ class TestRules:
                 expression="ip.src in {10.20.30.40}",
             )
 
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `waiting_room_id` but received ''"):
+            client.waiting_rooms.rules.with_raw_response.edit(
+                "25756b2dfe6e378a06b033b670413757",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                waiting_room_id="",
+                action="bypass_waiting_room",
+                expression="ip.src in {10.20.30.40}",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
             client.waiting_rooms.rules.with_raw_response.edit(
                 "",
@@ -444,6 +494,14 @@ class TestAsyncRules:
             await async_client.waiting_rooms.rules.with_raw_response.create(
                 "699d98642c564d2e855e9661899b7252",
                 zone_identifier="",
+                action="bypass_waiting_room",
+                expression="ip.src in {10.20.30.40}",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `waiting_room_id` but received ''"):
+            await async_client.waiting_rooms.rules.with_raw_response.create(
+                "",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 action="bypass_waiting_room",
                 expression="ip.src in {10.20.30.40}",
             )
@@ -550,6 +608,26 @@ class TestAsyncRules:
                 ],
             )
 
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `waiting_room_id` but received ''"):
+            await async_client.waiting_rooms.rules.with_raw_response.update(
+                "",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                body=[
+                    {
+                        "action": "bypass_waiting_room",
+                        "expression": "ip.src in {10.20.30.40}",
+                    },
+                    {
+                        "action": "bypass_waiting_room",
+                        "expression": "ip.src in {10.20.30.40}",
+                    },
+                    {
+                        "action": "bypass_waiting_room",
+                        "expression": "ip.src in {10.20.30.40}",
+                    },
+                ],
+            )
+
     @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
@@ -594,6 +672,12 @@ class TestAsyncRules:
             await async_client.waiting_rooms.rules.with_raw_response.list(
                 "699d98642c564d2e855e9661899b7252",
                 zone_identifier="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `waiting_room_id` but received ''"):
+            await async_client.waiting_rooms.rules.with_raw_response.list(
+                "",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @pytest.mark.skip()
@@ -644,6 +728,13 @@ class TestAsyncRules:
                 "25756b2dfe6e378a06b033b670413757",
                 zone_identifier="",
                 waiting_room_id="699d98642c564d2e855e9661899b7252",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `waiting_room_id` but received ''"):
+            await async_client.waiting_rooms.rules.with_raw_response.delete(
+                "25756b2dfe6e378a06b033b670413757",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                waiting_room_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
@@ -722,6 +813,15 @@ class TestAsyncRules:
                 "25756b2dfe6e378a06b033b670413757",
                 zone_identifier="",
                 waiting_room_id="699d98642c564d2e855e9661899b7252",
+                action="bypass_waiting_room",
+                expression="ip.src in {10.20.30.40}",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `waiting_room_id` but received ''"):
+            await async_client.waiting_rooms.rules.with_raw_response.edit(
+                "25756b2dfe6e378a06b033b670413757",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                waiting_room_id="",
                 action="bypass_waiting_room",
                 expression="ip.src in {10.20.30.40}",
             )

@@ -18,7 +18,7 @@ class Settings(BaseModel):
 class WorkersConsumerUpdated(BaseModel):
     created_on: Optional[object] = None
 
-    dead_letter_queue: Optional[object] = None
+    dead_letter_queue: Optional[str] = None
 
     environment: Optional[object] = None
 

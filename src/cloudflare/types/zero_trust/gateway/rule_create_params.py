@@ -24,7 +24,7 @@ __all__ = [
 
 
 class RuleCreateParams(TypedDict, total=False):
-    account_id: Required[object]
+    account_id: Required[str]
 
     action: Required[
         Literal[

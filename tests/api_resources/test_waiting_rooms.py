@@ -226,6 +226,16 @@ class TestWaitingRooms:
                 total_active_users=200,
             )
 
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `waiting_room_id` but received ''"):
+            client.waiting_rooms.with_raw_response.update(
+                "",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                host="shop.example.com",
+                name="production_webinar",
+                new_users_per_minute=200,
+                total_active_users=200,
+            )
+
     @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
@@ -312,6 +322,12 @@ class TestWaitingRooms:
             client.waiting_rooms.with_raw_response.delete(
                 "699d98642c564d2e855e9661899b7252",
                 zone_identifier="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `waiting_room_id` but received ''"):
+            client.waiting_rooms.with_raw_response.delete(
+                "",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @pytest.mark.skip()
@@ -419,6 +435,16 @@ class TestWaitingRooms:
                 total_active_users=200,
             )
 
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `waiting_room_id` but received ''"):
+            client.waiting_rooms.with_raw_response.edit(
+                "",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                host="shop.example.com",
+                name="production_webinar",
+                new_users_per_minute=200,
+                total_active_users=200,
+            )
+
     @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
@@ -463,6 +489,12 @@ class TestWaitingRooms:
             client.waiting_rooms.with_raw_response.get(
                 "699d98642c564d2e855e9661899b7252",
                 zone_identifier="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `waiting_room_id` but received ''"):
+            client.waiting_rooms.with_raw_response.get(
+                "",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
 
@@ -674,6 +706,16 @@ class TestAsyncWaitingRooms:
                 total_active_users=200,
             )
 
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `waiting_room_id` but received ''"):
+            await async_client.waiting_rooms.with_raw_response.update(
+                "",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                host="shop.example.com",
+                name="production_webinar",
+                new_users_per_minute=200,
+                total_active_users=200,
+            )
+
     @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
@@ -760,6 +802,12 @@ class TestAsyncWaitingRooms:
             await async_client.waiting_rooms.with_raw_response.delete(
                 "699d98642c564d2e855e9661899b7252",
                 zone_identifier="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `waiting_room_id` but received ''"):
+            await async_client.waiting_rooms.with_raw_response.delete(
+                "",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @pytest.mark.skip()
@@ -867,6 +915,16 @@ class TestAsyncWaitingRooms:
                 total_active_users=200,
             )
 
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `waiting_room_id` but received ''"):
+            await async_client.waiting_rooms.with_raw_response.edit(
+                "",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                host="shop.example.com",
+                name="production_webinar",
+                new_users_per_minute=200,
+                total_active_users=200,
+            )
+
     @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
@@ -911,4 +969,10 @@ class TestAsyncWaitingRooms:
             await async_client.waiting_rooms.with_raw_response.get(
                 "699d98642c564d2e855e9661899b7252",
                 zone_identifier="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `waiting_room_id` but received ''"):
+            await async_client.waiting_rooms.with_raw_response.get(
+                "",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )

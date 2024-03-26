@@ -9,7 +9,7 @@ __all__ = ["IntelDomainHistory", "Categorization"]
 
 
 class Categorization(BaseModel):
-    categories: Optional[object] = None
+    categories: Optional[List[object]] = None
 
     end: Optional[date] = None
 

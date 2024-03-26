@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import List, Optional
 
 from ..._models import BaseModel
 
@@ -8,32 +8,32 @@ __all__ = ["PageShieldScript"]
 
 
 class PageShieldScript(BaseModel):
-    id: Optional[object] = None
+    id: Optional[str] = None
 
-    added_at: Optional[object] = None
+    added_at: Optional[str] = None
 
-    dataflow_score: Optional[object] = None
+    dataflow_score: Optional[float] = None
 
-    domain_reported_malicious: Optional[object] = None
+    domain_reported_malicious: Optional[bool] = None
 
-    fetched_at: Optional[object] = None
+    fetched_at: Optional[str] = None
 
-    first_page_url: Optional[object] = None
+    first_page_url: Optional[str] = None
 
-    first_seen_at: Optional[object] = None
+    first_seen_at: Optional[str] = None
 
-    hash: Optional[object] = None
+    hash: Optional[str] = None
 
-    host: Optional[object] = None
+    host: Optional[str] = None
 
-    js_integrity_score: Optional[object] = None
+    js_integrity_score: Optional[float] = None
 
-    last_seen_at: Optional[object] = None
+    last_seen_at: Optional[str] = None
 
-    obfuscation_score: Optional[object] = None
+    obfuscation_score: Optional[float] = None
 
-    page_urls: Optional[object] = None
+    page_urls: Optional[List[str]] = None
 
-    url: Optional[object] = None
+    url: Optional[str] = None
 
-    url_contains_cdn_cgi_path: Optional[object] = None
+    url_contains_cdn_cgi_path: Optional[bool] = None
