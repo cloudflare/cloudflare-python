@@ -34,7 +34,7 @@ class MagicVisibilityMNMRule(BaseModel):
 
     prefixes: List[str]
 
-    id: Optional[object] = None
+    id: Optional[str] = None
 
     bandwidth_threshold: Optional[float] = None
     """The number of bits per second for the rule.

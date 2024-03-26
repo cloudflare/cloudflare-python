@@ -59,7 +59,7 @@ class Outgoing(SyncAPIResource):
     def create(
         self,
         *,
-        zone_id: object,
+        zone_id: str,
         name: str,
         peers: Iterable[object],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -85,6 +85,8 @@ class Outgoing(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
             f"/zones/{zone_id}/secondary_dns/outgoing",
             body=maybe_transform(
@@ -107,7 +109,7 @@ class Outgoing(SyncAPIResource):
     def update(
         self,
         *,
-        zone_id: object,
+        zone_id: str,
         name: str,
         peers: Iterable[object],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -133,6 +135,8 @@ class Outgoing(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._put(
             f"/zones/{zone_id}/secondary_dns/outgoing",
             body=maybe_transform(
@@ -155,7 +159,7 @@ class Outgoing(SyncAPIResource):
     def delete(
         self,
         *,
-        zone_id: object,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -175,6 +179,8 @@ class Outgoing(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._delete(
             f"/zones/{zone_id}/secondary_dns/outgoing",
             options=make_request_options(
@@ -190,7 +196,7 @@ class Outgoing(SyncAPIResource):
     def disable(
         self,
         *,
-        zone_id: object,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -211,6 +217,8 @@ class Outgoing(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
             f"/zones/{zone_id}/secondary_dns/outgoing/disable",
             options=make_request_options(
@@ -226,7 +234,7 @@ class Outgoing(SyncAPIResource):
     def enable(
         self,
         *,
-        zone_id: object,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -246,6 +254,8 @@ class Outgoing(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
             f"/zones/{zone_id}/secondary_dns/outgoing/enable",
             options=make_request_options(
@@ -261,7 +271,7 @@ class Outgoing(SyncAPIResource):
     def force_notify(
         self,
         *,
-        zone_id: object,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -281,6 +291,8 @@ class Outgoing(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
             f"/zones/{zone_id}/secondary_dns/outgoing/force_notify",
             options=make_request_options(
@@ -296,7 +308,7 @@ class Outgoing(SyncAPIResource):
     def get(
         self,
         *,
-        zone_id: object,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -316,6 +328,8 @@ class Outgoing(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get(
             f"/zones/{zone_id}/secondary_dns/outgoing",
             options=make_request_options(
@@ -345,7 +359,7 @@ class AsyncOutgoing(AsyncAPIResource):
     async def create(
         self,
         *,
-        zone_id: object,
+        zone_id: str,
         name: str,
         peers: Iterable[object],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -371,6 +385,8 @@ class AsyncOutgoing(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
             f"/zones/{zone_id}/secondary_dns/outgoing",
             body=await async_maybe_transform(
@@ -393,7 +409,7 @@ class AsyncOutgoing(AsyncAPIResource):
     async def update(
         self,
         *,
-        zone_id: object,
+        zone_id: str,
         name: str,
         peers: Iterable[object],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -419,6 +435,8 @@ class AsyncOutgoing(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._put(
             f"/zones/{zone_id}/secondary_dns/outgoing",
             body=await async_maybe_transform(
@@ -441,7 +459,7 @@ class AsyncOutgoing(AsyncAPIResource):
     async def delete(
         self,
         *,
-        zone_id: object,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -461,6 +479,8 @@ class AsyncOutgoing(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._delete(
             f"/zones/{zone_id}/secondary_dns/outgoing",
             options=make_request_options(
@@ -476,7 +496,7 @@ class AsyncOutgoing(AsyncAPIResource):
     async def disable(
         self,
         *,
-        zone_id: object,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -497,6 +517,8 @@ class AsyncOutgoing(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
             f"/zones/{zone_id}/secondary_dns/outgoing/disable",
             options=make_request_options(
@@ -512,7 +534,7 @@ class AsyncOutgoing(AsyncAPIResource):
     async def enable(
         self,
         *,
-        zone_id: object,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -532,6 +554,8 @@ class AsyncOutgoing(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
             f"/zones/{zone_id}/secondary_dns/outgoing/enable",
             options=make_request_options(
@@ -547,7 +571,7 @@ class AsyncOutgoing(AsyncAPIResource):
     async def force_notify(
         self,
         *,
-        zone_id: object,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -567,6 +591,8 @@ class AsyncOutgoing(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
             f"/zones/{zone_id}/secondary_dns/outgoing/force_notify",
             options=make_request_options(
@@ -582,7 +608,7 @@ class AsyncOutgoing(AsyncAPIResource):
     async def get(
         self,
         *,
-        zone_id: object,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -602,6 +628,8 @@ class AsyncOutgoing(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._get(
             f"/zones/{zone_id}/secondary_dns/outgoing",
             options=make_request_options(

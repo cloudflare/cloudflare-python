@@ -80,6 +80,17 @@ class TestNetworks:
 
     @pytest.mark.skip()
     @parametrize
+    def test_path_params_create(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.zero_trust.devices.networks.with_raw_response.create(
+                account_id="",
+                config={"tls_sockaddr": "foo.bar:1234"},
+                name="managed-network-1",
+                type="tls",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         network = client.zero_trust.devices.networks.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -133,6 +144,12 @@ class TestNetworks:
     @pytest.mark.skip()
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.zero_trust.devices.networks.with_raw_response.update(
+                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                account_id="",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `network_id` but received ''"):
             client.zero_trust.devices.networks.with_raw_response.update(
                 "",
@@ -175,6 +192,14 @@ class TestNetworks:
 
     @pytest.mark.skip()
     @parametrize
+    def test_path_params_list(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.zero_trust.devices.networks.with_raw_response.list(
+                account_id="",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         network = client.zero_trust.devices.networks.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -213,6 +238,12 @@ class TestNetworks:
     @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.zero_trust.devices.networks.with_raw_response.delete(
+                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                account_id="",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `network_id` but received ''"):
             client.zero_trust.devices.networks.with_raw_response.delete(
                 "",
@@ -259,6 +290,12 @@ class TestNetworks:
     @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.zero_trust.devices.networks.with_raw_response.get(
+                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                account_id="",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `network_id` but received ''"):
             client.zero_trust.devices.networks.with_raw_response.get(
                 "",
@@ -328,6 +365,17 @@ class TestAsyncNetworks:
 
     @pytest.mark.skip()
     @parametrize
+    async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.zero_trust.devices.networks.with_raw_response.create(
+                account_id="",
+                config={"tls_sockaddr": "foo.bar:1234"},
+                name="managed-network-1",
+                type="tls",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         network = await async_client.zero_trust.devices.networks.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -381,6 +429,12 @@ class TestAsyncNetworks:
     @pytest.mark.skip()
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.zero_trust.devices.networks.with_raw_response.update(
+                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                account_id="",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `network_id` but received ''"):
             await async_client.zero_trust.devices.networks.with_raw_response.update(
                 "",
@@ -423,6 +477,14 @@ class TestAsyncNetworks:
 
     @pytest.mark.skip()
     @parametrize
+    async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.zero_trust.devices.networks.with_raw_response.list(
+                account_id="",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         network = await async_client.zero_trust.devices.networks.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -461,6 +523,12 @@ class TestAsyncNetworks:
     @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.zero_trust.devices.networks.with_raw_response.delete(
+                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                account_id="",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `network_id` but received ''"):
             await async_client.zero_trust.devices.networks.with_raw_response.delete(
                 "",
@@ -507,6 +575,12 @@ class TestAsyncNetworks:
     @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.zero_trust.devices.networks.with_raw_response.get(
+                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                account_id="",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `network_id` but received ''"):
             await async_client.zero_trust.devices.networks.with_raw_response.get(
                 "",

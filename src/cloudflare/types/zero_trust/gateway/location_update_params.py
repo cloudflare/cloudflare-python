@@ -9,7 +9,7 @@ __all__ = ["LocationUpdateParams", "Network"]
 
 
 class LocationUpdateParams(TypedDict, total=False):
-    account_id: Required[object]
+    account_id: Required[str]
 
     name: Required[str]
     """The name of the location."""

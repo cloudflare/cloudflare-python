@@ -10,6 +10,7 @@ from .stream_live_input import StreamLiveInput as StreamLiveInput
 from .stream_watermarks import StreamWatermarks as StreamWatermarks
 from .clip_create_params import ClipCreateParams as ClipCreateParams
 from .copy_create_params import CopyCreateParams as CopyCreateParams
+from .embed_get_response import EmbedGetResponse as EmbedGetResponse
 from .key_delete_response import KeyDeleteResponse as KeyDeleteResponse
 from .token_create_params import TokenCreateParams as TokenCreateParams
 from .caption_get_response import CaptionGetResponse as CaptionGetResponse

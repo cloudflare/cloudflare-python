@@ -729,7 +729,7 @@ class BookmarkApplication(TypedDict, total=False):
 
     app_launcher_visible: object
 
-    domain: object
+    domain: str
     """The URL or domain of the bookmark."""
 
     logo_url: str

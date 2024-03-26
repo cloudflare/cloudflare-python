@@ -8,4 +8,4 @@ __all__ = ["OutgoingDeleteResponse"]
 
 
 class OutgoingDeleteResponse(BaseModel):
-    id: Optional[object] = None
+    id: Optional[str] = None

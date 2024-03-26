@@ -8,7 +8,7 @@ __all__ = ["LoggingUpdateParams", "SettingsByRuleType"]
 
 
 class LoggingUpdateParams(TypedDict, total=False):
-    account_id: Required[object]
+    account_id: Required[str]
 
     redact_pii: bool
     """

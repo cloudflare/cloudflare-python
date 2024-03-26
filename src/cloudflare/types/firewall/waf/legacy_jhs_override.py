@@ -12,14 +12,14 @@ class RewriteAction(BaseModel):
     block: Optional[Literal["challenge", "block", "simulate", "disable", "default"]] = None
     """The WAF rule action to apply."""
 
-    challenge: Optional[object] = None
+    challenge: Optional[str] = None
 
-    default: Optional[object] = None
+    default: Optional[str] = None
 
     disable: Optional[Literal["challenge", "block", "simulate", "disable", "default"]] = None
     """The WAF rule action to apply."""
 
-    simulate: Optional[object] = None
+    simulate: Optional[str] = None
 
 
 class LegacyJhsOverride(BaseModel):

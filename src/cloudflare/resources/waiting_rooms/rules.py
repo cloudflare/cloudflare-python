@@ -49,7 +49,7 @@ class Rules(SyncAPIResource):
 
     def create(
         self,
-        waiting_room_id: object,
+        waiting_room_id: str,
         *,
         zone_identifier: str,
         action: Literal["bypass_waiting_room"],
@@ -89,6 +89,8 @@ class Rules(SyncAPIResource):
         """
         if not zone_identifier:
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not waiting_room_id:
+            raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return self._post(
             f"/zones/{zone_identifier}/waiting_rooms/{waiting_room_id}/rules",
             body=maybe_transform(
@@ -112,7 +114,7 @@ class Rules(SyncAPIResource):
 
     def update(
         self,
-        waiting_room_id: object,
+        waiting_room_id: str,
         *,
         zone_identifier: str,
         body: Iterable[rule_update_params.Body],
@@ -141,6 +143,8 @@ class Rules(SyncAPIResource):
         """
         if not zone_identifier:
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not waiting_room_id:
+            raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return self._put(
             f"/zones/{zone_identifier}/waiting_rooms/{waiting_room_id}/rules",
             body=maybe_transform(body, rule_update_params.RuleUpdateParams),
@@ -156,7 +160,7 @@ class Rules(SyncAPIResource):
 
     def list(
         self,
-        waiting_room_id: object,
+        waiting_room_id: str,
         *,
         zone_identifier: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -182,6 +186,8 @@ class Rules(SyncAPIResource):
         """
         if not zone_identifier:
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not waiting_room_id:
+            raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return self._get(
             f"/zones/{zone_identifier}/waiting_rooms/{waiting_room_id}/rules",
             options=make_request_options(
@@ -199,7 +205,7 @@ class Rules(SyncAPIResource):
         rule_id: str,
         *,
         zone_identifier: str,
-        waiting_room_id: object,
+        waiting_room_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -225,6 +231,8 @@ class Rules(SyncAPIResource):
         """
         if not zone_identifier:
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not waiting_room_id:
+            raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return self._delete(
@@ -244,7 +252,7 @@ class Rules(SyncAPIResource):
         rule_id: str,
         *,
         zone_identifier: str,
-        waiting_room_id: object,
+        waiting_room_id: str,
         action: Literal["bypass_waiting_room"],
         expression: str,
         description: str | NotGiven = NOT_GIVEN,
@@ -285,6 +293,8 @@ class Rules(SyncAPIResource):
         """
         if not zone_identifier:
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not waiting_room_id:
+            raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return self._patch(
@@ -321,7 +331,7 @@ class AsyncRules(AsyncAPIResource):
 
     async def create(
         self,
-        waiting_room_id: object,
+        waiting_room_id: str,
         *,
         zone_identifier: str,
         action: Literal["bypass_waiting_room"],
@@ -361,6 +371,8 @@ class AsyncRules(AsyncAPIResource):
         """
         if not zone_identifier:
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not waiting_room_id:
+            raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return await self._post(
             f"/zones/{zone_identifier}/waiting_rooms/{waiting_room_id}/rules",
             body=await async_maybe_transform(
@@ -384,7 +396,7 @@ class AsyncRules(AsyncAPIResource):
 
     async def update(
         self,
-        waiting_room_id: object,
+        waiting_room_id: str,
         *,
         zone_identifier: str,
         body: Iterable[rule_update_params.Body],
@@ -413,6 +425,8 @@ class AsyncRules(AsyncAPIResource):
         """
         if not zone_identifier:
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not waiting_room_id:
+            raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return await self._put(
             f"/zones/{zone_identifier}/waiting_rooms/{waiting_room_id}/rules",
             body=await async_maybe_transform(body, rule_update_params.RuleUpdateParams),
@@ -428,7 +442,7 @@ class AsyncRules(AsyncAPIResource):
 
     async def list(
         self,
-        waiting_room_id: object,
+        waiting_room_id: str,
         *,
         zone_identifier: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -454,6 +468,8 @@ class AsyncRules(AsyncAPIResource):
         """
         if not zone_identifier:
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not waiting_room_id:
+            raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return await self._get(
             f"/zones/{zone_identifier}/waiting_rooms/{waiting_room_id}/rules",
             options=make_request_options(
@@ -471,7 +487,7 @@ class AsyncRules(AsyncAPIResource):
         rule_id: str,
         *,
         zone_identifier: str,
-        waiting_room_id: object,
+        waiting_room_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -497,6 +513,8 @@ class AsyncRules(AsyncAPIResource):
         """
         if not zone_identifier:
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not waiting_room_id:
+            raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return await self._delete(
@@ -516,7 +534,7 @@ class AsyncRules(AsyncAPIResource):
         rule_id: str,
         *,
         zone_identifier: str,
-        waiting_room_id: object,
+        waiting_room_id: str,
         action: Literal["bypass_waiting_room"],
         expression: str,
         description: str | NotGiven = NOT_GIVEN,
@@ -557,6 +575,8 @@ class AsyncRules(AsyncAPIResource):
         """
         if not zone_identifier:
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not waiting_room_id:
+            raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return await self._patch(

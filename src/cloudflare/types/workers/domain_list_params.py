@@ -8,7 +8,7 @@ __all__ = ["DomainListParams"]
 
 
 class DomainListParams(TypedDict, total=False):
-    account_id: Required[object]
+    account_id: Required[str]
 
     environment: str
     """Worker environment associated with the zone and hostname."""
@@ -19,7 +19,7 @@ class DomainListParams(TypedDict, total=False):
     service: str
     """Worker service associated with the zone and hostname."""
 
-    zone_id: object
+    zone_id: str
     """Identifier of the zone."""
 
     zone_name: str

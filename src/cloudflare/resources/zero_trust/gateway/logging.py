@@ -40,7 +40,7 @@ class Logging(SyncAPIResource):
     def update(
         self,
         *,
-        account_id: object,
+        account_id: str,
         redact_pii: bool | NotGiven = NOT_GIVEN,
         settings_by_rule_type: logging_update_params.SettingsByRuleType | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -67,6 +67,8 @@ class Logging(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._put(
             f"/accounts/{account_id}/gateway/logging",
             body=maybe_transform(
@@ -92,7 +94,7 @@ class Logging(SyncAPIResource):
     def get(
         self,
         *,
-        account_id: object,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -112,6 +114,8 @@ class Logging(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
             f"/accounts/{account_id}/gateway/logging",
             options=make_request_options(
@@ -140,7 +144,7 @@ class AsyncLogging(AsyncAPIResource):
     async def update(
         self,
         *,
-        account_id: object,
+        account_id: str,
         redact_pii: bool | NotGiven = NOT_GIVEN,
         settings_by_rule_type: logging_update_params.SettingsByRuleType | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -167,6 +171,8 @@ class AsyncLogging(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._put(
             f"/accounts/{account_id}/gateway/logging",
             body=await async_maybe_transform(
@@ -192,7 +198,7 @@ class AsyncLogging(AsyncAPIResource):
     async def get(
         self,
         *,
-        account_id: object,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -212,6 +218,8 @@ class AsyncLogging(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
             f"/accounts/{account_id}/gateway/logging",
             options=make_request_options(

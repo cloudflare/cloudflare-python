@@ -76,6 +76,16 @@ class TestLists:
 
     @pytest.mark.skip()
     @parametrize
+    def test_path_params_create(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.zero_trust.gateway.lists.with_raw_response.create(
+                account_id="",
+                name="Admin Serial Numbers",
+                type="SERIAL",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         list = client.zero_trust.gateway.lists.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -128,6 +138,13 @@ class TestLists:
     @pytest.mark.skip()
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.zero_trust.gateway.lists.with_raw_response.update(
+                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                account_id="",
+                name="Admin Serial Numbers",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `list_id` but received ''"):
             client.zero_trust.gateway.lists.with_raw_response.update(
                 "",
@@ -171,6 +188,14 @@ class TestLists:
 
     @pytest.mark.skip()
     @parametrize
+    def test_path_params_list(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.zero_trust.gateway.lists.with_raw_response.list(
+                account_id="",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         list = client.zero_trust.gateway.lists.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -209,6 +234,12 @@ class TestLists:
     @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.zero_trust.gateway.lists.with_raw_response.delete(
+                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                account_id="",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `list_id` but received ''"):
             client.zero_trust.gateway.lists.with_raw_response.delete(
                 "",
@@ -266,6 +297,12 @@ class TestLists:
     @pytest.mark.skip()
     @parametrize
     def test_path_params_edit(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.zero_trust.gateway.lists.with_raw_response.edit(
+                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                account_id="",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `list_id` but received ''"):
             client.zero_trust.gateway.lists.with_raw_response.edit(
                 "",
@@ -312,6 +349,12 @@ class TestLists:
     @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.zero_trust.gateway.lists.with_raw_response.get(
+                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                account_id="",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `list_id` but received ''"):
             client.zero_trust.gateway.lists.with_raw_response.get(
                 "",
@@ -376,6 +419,16 @@ class TestAsyncLists:
 
     @pytest.mark.skip()
     @parametrize
+    async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.zero_trust.gateway.lists.with_raw_response.create(
+                account_id="",
+                name="Admin Serial Numbers",
+                type="SERIAL",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         list = await async_client.zero_trust.gateway.lists.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -428,6 +481,13 @@ class TestAsyncLists:
     @pytest.mark.skip()
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.zero_trust.gateway.lists.with_raw_response.update(
+                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                account_id="",
+                name="Admin Serial Numbers",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `list_id` but received ''"):
             await async_client.zero_trust.gateway.lists.with_raw_response.update(
                 "",
@@ -471,6 +531,14 @@ class TestAsyncLists:
 
     @pytest.mark.skip()
     @parametrize
+    async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.zero_trust.gateway.lists.with_raw_response.list(
+                account_id="",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         list = await async_client.zero_trust.gateway.lists.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -509,6 +577,12 @@ class TestAsyncLists:
     @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.zero_trust.gateway.lists.with_raw_response.delete(
+                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                account_id="",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `list_id` but received ''"):
             await async_client.zero_trust.gateway.lists.with_raw_response.delete(
                 "",
@@ -566,6 +640,12 @@ class TestAsyncLists:
     @pytest.mark.skip()
     @parametrize
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.zero_trust.gateway.lists.with_raw_response.edit(
+                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                account_id="",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `list_id` but received ''"):
             await async_client.zero_trust.gateway.lists.with_raw_response.edit(
                 "",
@@ -612,6 +692,12 @@ class TestAsyncLists:
     @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.zero_trust.gateway.lists.with_raw_response.get(
+                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                account_id="",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `list_id` but received ''"):
             await async_client.zero_trust.gateway.lists.with_raw_response.get(
                 "",

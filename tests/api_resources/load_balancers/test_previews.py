@@ -63,6 +63,12 @@ class TestPreviews:
                 account_id="",
             )
 
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `preview_id` but received ''"):
+            client.load_balancers.previews.with_raw_response.get(
+                "",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
 
 class TestAsyncPreviews:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
@@ -111,4 +117,10 @@ class TestAsyncPreviews:
             await async_client.load_balancers.previews.with_raw_response.get(
                 "p1aba936b94213e5b8dca0c0dbf1f9cc",
                 account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `preview_id` but received ''"):
+            await async_client.load_balancers.previews.with_raw_response.get(
+                "",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

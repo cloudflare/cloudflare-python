@@ -11,4 +11,4 @@ class ScheduleUpdateParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier"""
 
-    body: Required[object]
+    body: Required[str]

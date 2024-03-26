@@ -9,7 +9,7 @@ __all__ = ["IncomingUpdateParams"]
 
 
 class IncomingUpdateParams(TypedDict, total=False):
-    zone_id: Required[object]
+    zone_id: Required[str]
 
     auto_refresh_seconds: Required[float]
     """

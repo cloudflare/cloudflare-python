@@ -28,7 +28,7 @@ class VariantOptions(BaseModel):
 
 
 class Variant(BaseModel):
-    id: object
+    id: str
 
     options: VariantOptions
     """Allows you to define image resizing sizes for different use cases."""

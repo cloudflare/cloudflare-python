@@ -22,7 +22,7 @@ __all__ = [
 
 
 class ConfigurationUpdateParams(TypedDict, total=False):
-    account_id: Required[object]
+    account_id: Required[str]
 
     settings: Settings
     """account settings."""

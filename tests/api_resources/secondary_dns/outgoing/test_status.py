@@ -50,6 +50,14 @@ class TestStatus:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_get(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            client.secondary_dns.outgoing.status.with_raw_response.get(
+                zone_id="",
+            )
+
 
 class TestAsyncStatus:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
@@ -87,3 +95,11 @@ class TestAsyncStatus:
             assert_matches_type(str, status, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            await async_client.secondary_dns.outgoing.status.with_raw_response.get(
+                zone_id="",
+            )

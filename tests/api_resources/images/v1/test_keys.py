@@ -21,7 +21,7 @@ class TestKeys:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         key = client.images.v1.keys.update(
-            "someKey",
+            "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(ImagesImageKeys, key, path=["response"])
@@ -30,7 +30,7 @@ class TestKeys:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.images.v1.keys.with_raw_response.update(
-            "someKey",
+            "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -43,7 +43,7 @@ class TestKeys:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.images.v1.keys.with_streaming_response.update(
-            "someKey",
+            "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -59,8 +59,14 @@ class TestKeys:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.images.v1.keys.with_raw_response.update(
-                "someKey",
+                "string",
                 account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `signing_key_name` but received ''"):
+            client.images.v1.keys.with_raw_response.update(
+                "",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @pytest.mark.skip()
@@ -109,7 +115,7 @@ class TestKeys:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         key = client.images.v1.keys.delete(
-            "someKey",
+            "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(ImagesImageKeys, key, path=["response"])
@@ -118,7 +124,7 @@ class TestKeys:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.images.v1.keys.with_raw_response.delete(
-            "someKey",
+            "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -131,7 +137,7 @@ class TestKeys:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.images.v1.keys.with_streaming_response.delete(
-            "someKey",
+            "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -147,8 +153,14 @@ class TestKeys:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.images.v1.keys.with_raw_response.delete(
-                "someKey",
+                "string",
                 account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `signing_key_name` but received ''"):
+            client.images.v1.keys.with_raw_response.delete(
+                "",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
 
@@ -159,7 +171,7 @@ class TestAsyncKeys:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         key = await async_client.images.v1.keys.update(
-            "someKey",
+            "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(ImagesImageKeys, key, path=["response"])
@@ -168,7 +180,7 @@ class TestAsyncKeys:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.images.v1.keys.with_raw_response.update(
-            "someKey",
+            "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -181,7 +193,7 @@ class TestAsyncKeys:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.images.v1.keys.with_streaming_response.update(
-            "someKey",
+            "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -197,8 +209,14 @@ class TestAsyncKeys:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.images.v1.keys.with_raw_response.update(
-                "someKey",
+                "string",
                 account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `signing_key_name` but received ''"):
+            await async_client.images.v1.keys.with_raw_response.update(
+                "",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @pytest.mark.skip()
@@ -247,7 +265,7 @@ class TestAsyncKeys:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         key = await async_client.images.v1.keys.delete(
-            "someKey",
+            "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(ImagesImageKeys, key, path=["response"])
@@ -256,7 +274,7 @@ class TestAsyncKeys:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.images.v1.keys.with_raw_response.delete(
-            "someKey",
+            "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -269,7 +287,7 @@ class TestAsyncKeys:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.images.v1.keys.with_streaming_response.delete(
-            "someKey",
+            "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -285,6 +303,12 @@ class TestAsyncKeys:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.images.v1.keys.with_raw_response.delete(
-                "someKey",
+                "string",
                 account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `signing_key_name` but received ''"):
+            await async_client.images.v1.keys.with_raw_response.delete(
+                "",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

@@ -53,6 +53,14 @@ class TestRules:
 
     @pytest.mark.skip()
     @parametrize
+    def test_path_params_create(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.magic_network_monitoring.rules.with_raw_response.create(
+                account_id="",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         rule = client.magic_network_monitoring.rules.update(
             account_id="6f91088a406011ed95aed352566e8d4c",
@@ -87,6 +95,14 @@ class TestRules:
 
     @pytest.mark.skip()
     @parametrize
+    def test_path_params_update(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.magic_network_monitoring.rules.with_raw_response.update(
+                account_id="",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         rule = client.magic_network_monitoring.rules.list(
             account_id="6f91088a406011ed95aed352566e8d4c",
@@ -118,6 +134,14 @@ class TestRules:
             assert_matches_type(Optional[RuleListResponse], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_list(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.magic_network_monitoring.rules.with_raw_response.list(
+                account_id="",
+            )
 
     @pytest.mark.skip()
     @parametrize
@@ -158,6 +182,21 @@ class TestRules:
 
     @pytest.mark.skip()
     @parametrize
+    def test_path_params_delete(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.magic_network_monitoring.rules.with_raw_response.delete(
+                "2890e6fa406311ed9b5a23f70f6fb8cf",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
+            client.magic_network_monitoring.rules.with_raw_response.delete(
+                "",
+                account_id="6f91088a406011ed95aed352566e8d4c",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         rule = client.magic_network_monitoring.rules.edit(
             "2890e6fa406311ed9b5a23f70f6fb8cf",
@@ -195,6 +234,21 @@ class TestRules:
 
     @pytest.mark.skip()
     @parametrize
+    def test_path_params_edit(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.magic_network_monitoring.rules.with_raw_response.edit(
+                "2890e6fa406311ed9b5a23f70f6fb8cf",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
+            client.magic_network_monitoring.rules.with_raw_response.edit(
+                "",
+                account_id="6f91088a406011ed95aed352566e8d4c",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         rule = client.magic_network_monitoring.rules.get(
             "2890e6fa406311ed9b5a23f70f6fb8cf",
@@ -229,6 +283,21 @@ class TestRules:
             assert_matches_type(Optional[MagicVisibilityMNMRule], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_get(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.magic_network_monitoring.rules.with_raw_response.get(
+                "2890e6fa406311ed9b5a23f70f6fb8cf",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
+            client.magic_network_monitoring.rules.with_raw_response.get(
+                "",
+                account_id="6f91088a406011ed95aed352566e8d4c",
+            )
 
 
 class TestAsyncRules:
@@ -270,6 +339,14 @@ class TestAsyncRules:
 
     @pytest.mark.skip()
     @parametrize
+    async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.magic_network_monitoring.rules.with_raw_response.create(
+                account_id="",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         rule = await async_client.magic_network_monitoring.rules.update(
             account_id="6f91088a406011ed95aed352566e8d4c",
@@ -304,6 +381,14 @@ class TestAsyncRules:
 
     @pytest.mark.skip()
     @parametrize
+    async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.magic_network_monitoring.rules.with_raw_response.update(
+                account_id="",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         rule = await async_client.magic_network_monitoring.rules.list(
             account_id="6f91088a406011ed95aed352566e8d4c",
@@ -335,6 +420,14 @@ class TestAsyncRules:
             assert_matches_type(Optional[RuleListResponse], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.magic_network_monitoring.rules.with_raw_response.list(
+                account_id="",
+            )
 
     @pytest.mark.skip()
     @parametrize
@@ -375,6 +468,21 @@ class TestAsyncRules:
 
     @pytest.mark.skip()
     @parametrize
+    async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.magic_network_monitoring.rules.with_raw_response.delete(
+                "2890e6fa406311ed9b5a23f70f6fb8cf",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
+            await async_client.magic_network_monitoring.rules.with_raw_response.delete(
+                "",
+                account_id="6f91088a406011ed95aed352566e8d4c",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         rule = await async_client.magic_network_monitoring.rules.edit(
             "2890e6fa406311ed9b5a23f70f6fb8cf",
@@ -412,6 +520,21 @@ class TestAsyncRules:
 
     @pytest.mark.skip()
     @parametrize
+    async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.magic_network_monitoring.rules.with_raw_response.edit(
+                "2890e6fa406311ed9b5a23f70f6fb8cf",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
+            await async_client.magic_network_monitoring.rules.with_raw_response.edit(
+                "",
+                account_id="6f91088a406011ed95aed352566e8d4c",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         rule = await async_client.magic_network_monitoring.rules.get(
             "2890e6fa406311ed9b5a23f70f6fb8cf",
@@ -446,3 +569,18 @@ class TestAsyncRules:
             assert_matches_type(Optional[MagicVisibilityMNMRule], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.magic_network_monitoring.rules.with_raw_response.get(
+                "2890e6fa406311ed9b5a23f70f6fb8cf",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
+            await async_client.magic_network_monitoring.rules.with_raw_response.get(
+                "",
+                account_id="6f91088a406011ed95aed352566e8d4c",
+            )

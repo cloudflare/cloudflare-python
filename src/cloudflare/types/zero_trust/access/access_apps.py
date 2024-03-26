@@ -806,7 +806,7 @@ class BookmarkApplication(BaseModel):
 
     created_at: Optional[datetime] = None
 
-    domain: Optional[object] = None
+    domain: Optional[str] = None
     """The URL or domain of the bookmark."""
 
     logo_url: Optional[str] = None

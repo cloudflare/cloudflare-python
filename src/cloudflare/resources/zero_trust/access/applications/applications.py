@@ -620,7 +620,7 @@ class Applications(SyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         app_launcher_visible: object | NotGiven = NOT_GIVEN,
-        domain: object | NotGiven = NOT_GIVEN,
+        domain: str | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
@@ -664,7 +664,7 @@ class Applications(SyncAPIResource):
     def create(
         self,
         *,
-        domain: str | object | NotGiven = NOT_GIVEN,
+        domain: str | NotGiven = NOT_GIVEN,
         type: str
         | Literal["self_hosted", "saas", "ssh", "vnc", "app_launcher", "warp", "biso", "bookmark", "dash_sso"]
         | NotGiven = NOT_GIVEN,
@@ -1320,7 +1320,7 @@ class Applications(SyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         app_launcher_visible: object | NotGiven = NOT_GIVEN,
-        domain: object | NotGiven = NOT_GIVEN,
+        domain: str | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
@@ -1367,7 +1367,7 @@ class Applications(SyncAPIResource):
         self,
         app_id: Union[str, str],
         *,
-        domain: str | object | NotGiven = NOT_GIVEN,
+        domain: str | NotGiven = NOT_GIVEN,
         type: str
         | Literal["self_hosted", "saas", "ssh", "vnc", "app_launcher", "warp", "biso", "bookmark", "dash_sso"]
         | NotGiven = NOT_GIVEN,
@@ -2257,7 +2257,7 @@ class AsyncApplications(AsyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         app_launcher_visible: object | NotGiven = NOT_GIVEN,
-        domain: object | NotGiven = NOT_GIVEN,
+        domain: str | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
@@ -2301,7 +2301,7 @@ class AsyncApplications(AsyncAPIResource):
     async def create(
         self,
         *,
-        domain: str | object | NotGiven = NOT_GIVEN,
+        domain: str | NotGiven = NOT_GIVEN,
         type: str
         | Literal["self_hosted", "saas", "ssh", "vnc", "app_launcher", "warp", "biso", "bookmark", "dash_sso"]
         | NotGiven = NOT_GIVEN,
@@ -2957,7 +2957,7 @@ class AsyncApplications(AsyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         app_launcher_visible: object | NotGiven = NOT_GIVEN,
-        domain: object | NotGiven = NOT_GIVEN,
+        domain: str | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
@@ -3004,7 +3004,7 @@ class AsyncApplications(AsyncAPIResource):
         self,
         app_id: Union[str, str],
         *,
-        domain: str | object | NotGiven = NOT_GIVEN,
+        domain: str | NotGiven = NOT_GIVEN,
         type: str
         | Literal["self_hosted", "saas", "ssh", "vnc", "app_launcher", "warp", "biso", "bookmark", "dash_sso"]
         | NotGiven = NOT_GIVEN,

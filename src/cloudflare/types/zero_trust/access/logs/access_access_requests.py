@@ -20,7 +20,7 @@ class AccessAccessRequests(BaseModel):
     app_domain: Optional[str] = None
     """The URL of the Access application."""
 
-    app_uid: Optional[object] = None
+    app_uid: Optional[str] = None
     """The unique identifier for the Access application."""
 
     connection: Optional[str] = None
