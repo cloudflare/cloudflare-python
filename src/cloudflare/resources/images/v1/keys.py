@@ -35,7 +35,7 @@ class Keys(SyncAPIResource):
 
     def update(
         self,
-        signing_key_name: object,
+        signing_key_name: str,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -62,6 +62,8 @@ class Keys(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not signing_key_name:
+            raise ValueError(f"Expected a non-empty value for `signing_key_name` but received {signing_key_name!r}")
         return self._put(
             f"/accounts/{account_id}/images/v1/keys/{signing_key_name}",
             options=make_request_options(
@@ -116,7 +118,7 @@ class Keys(SyncAPIResource):
 
     def delete(
         self,
-        signing_key_name: object,
+        signing_key_name: str,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -144,6 +146,8 @@ class Keys(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not signing_key_name:
+            raise ValueError(f"Expected a non-empty value for `signing_key_name` but received {signing_key_name!r}")
         return self._delete(
             f"/accounts/{account_id}/images/v1/keys/{signing_key_name}",
             options=make_request_options(
@@ -168,7 +172,7 @@ class AsyncKeys(AsyncAPIResource):
 
     async def update(
         self,
-        signing_key_name: object,
+        signing_key_name: str,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -195,6 +199,8 @@ class AsyncKeys(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not signing_key_name:
+            raise ValueError(f"Expected a non-empty value for `signing_key_name` but received {signing_key_name!r}")
         return await self._put(
             f"/accounts/{account_id}/images/v1/keys/{signing_key_name}",
             options=make_request_options(
@@ -249,7 +255,7 @@ class AsyncKeys(AsyncAPIResource):
 
     async def delete(
         self,
-        signing_key_name: object,
+        signing_key_name: str,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -277,6 +283,8 @@ class AsyncKeys(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not signing_key_name:
+            raise ValueError(f"Expected a non-empty value for `signing_key_name` but received {signing_key_name!r}")
         return await self._delete(
             f"/accounts/{account_id}/images/v1/keys/{signing_key_name}",
             options=make_request_options(

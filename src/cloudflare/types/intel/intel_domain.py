@@ -59,7 +59,7 @@ class IntelDomain(BaseModel):
     application: Optional[Application] = None
     """Application that the hostname belongs to."""
 
-    content_categories: Optional[object] = None
+    content_categories: Optional[List[object]] = None
     """Current content categories."""
 
     domain: Optional[str] = None
@@ -92,4 +92,4 @@ class IntelDomain(BaseModel):
     risk).
     """
 
-    risk_types: Optional[object] = None
+    risk_types: Optional[List[object]] = None

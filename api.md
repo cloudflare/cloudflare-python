@@ -4446,7 +4446,7 @@ from cloudflare.types.stream import EmbedGetResponse
 
 Methods:
 
-- <code title="get /accounts/{account_id}/stream/{identifier}/embed">client.stream.embed.<a href="./src/cloudflare/resources/stream/embed.py">get</a>(identifier, \*, account_id) -> <a href="./src/cloudflare/types/stream/embed_get_response.py">object</a></code>
+- <code title="get /accounts/{account_id}/stream/{identifier}/embed">client.stream.embed.<a href="./src/cloudflare/resources/stream/embed.py">get</a>(identifier, \*, account_id) -> str</code>
 
 ## Token
 

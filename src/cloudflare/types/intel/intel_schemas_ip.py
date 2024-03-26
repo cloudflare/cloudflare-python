@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Union, Optional
+from typing import List, Union, Optional
 from typing_extensions import Literal
 
 from ..._models import BaseModel
@@ -9,7 +9,7 @@ __all__ = ["IntelSchemasIP", "BelongsToRef"]
 
 
 class BelongsToRef(BaseModel):
-    id: Optional[object] = None
+    id: Optional[str] = None
 
     country: Optional[str] = None
 
@@ -30,4 +30,4 @@ class IntelSchemasIP(BaseModel):
 
     ip: Union[str, str, None] = None
 
-    risk_types: Optional[object] = None
+    risk_types: Optional[List[object]] = None

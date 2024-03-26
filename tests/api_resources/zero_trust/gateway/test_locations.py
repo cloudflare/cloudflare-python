@@ -72,6 +72,15 @@ class TestLocations:
 
     @pytest.mark.skip()
     @parametrize
+    def test_path_params_create(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.zero_trust.gateway.locations.with_raw_response.create(
+                account_id="",
+                name="Austin Office Location",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         location = client.zero_trust.gateway.locations.update(
             "ed35569b41ce4d1facfe683550f54086",
@@ -125,6 +134,23 @@ class TestLocations:
 
     @pytest.mark.skip()
     @parametrize
+    def test_path_params_update(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.zero_trust.gateway.locations.with_raw_response.update(
+                "ed35569b41ce4d1facfe683550f54086",
+                account_id="",
+                name="Austin Office Location",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `location_id` but received ''"):
+            client.zero_trust.gateway.locations.with_raw_response.update(
+                "",
+                account_id="699d98642c564d2e855e9661899b7252",
+                name="Austin Office Location",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         location = client.zero_trust.gateway.locations.list(
             account_id="699d98642c564d2e855e9661899b7252",
@@ -156,6 +182,14 @@ class TestLocations:
             assert_matches_type(Optional[LocationListResponse], location, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_list(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.zero_trust.gateway.locations.with_raw_response.list(
+                account_id="",
+            )
 
     @pytest.mark.skip()
     @parametrize
@@ -196,6 +230,21 @@ class TestLocations:
 
     @pytest.mark.skip()
     @parametrize
+    def test_path_params_delete(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.zero_trust.gateway.locations.with_raw_response.delete(
+                "ed35569b41ce4d1facfe683550f54086",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `location_id` but received ''"):
+            client.zero_trust.gateway.locations.with_raw_response.delete(
+                "",
+                account_id="699d98642c564d2e855e9661899b7252",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         location = client.zero_trust.gateway.locations.get(
             "ed35569b41ce4d1facfe683550f54086",
@@ -230,6 +279,21 @@ class TestLocations:
             assert_matches_type(ZeroTrustGatewayLocations, location, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_get(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.zero_trust.gateway.locations.with_raw_response.get(
+                "ed35569b41ce4d1facfe683550f54086",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `location_id` but received ''"):
+            client.zero_trust.gateway.locations.with_raw_response.get(
+                "",
+                account_id="699d98642c564d2e855e9661899b7252",
+            )
 
 
 class TestAsyncLocations:
@@ -286,6 +350,15 @@ class TestAsyncLocations:
 
     @pytest.mark.skip()
     @parametrize
+    async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.zero_trust.gateway.locations.with_raw_response.create(
+                account_id="",
+                name="Austin Office Location",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         location = await async_client.zero_trust.gateway.locations.update(
             "ed35569b41ce4d1facfe683550f54086",
@@ -339,6 +412,23 @@ class TestAsyncLocations:
 
     @pytest.mark.skip()
     @parametrize
+    async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.zero_trust.gateway.locations.with_raw_response.update(
+                "ed35569b41ce4d1facfe683550f54086",
+                account_id="",
+                name="Austin Office Location",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `location_id` but received ''"):
+            await async_client.zero_trust.gateway.locations.with_raw_response.update(
+                "",
+                account_id="699d98642c564d2e855e9661899b7252",
+                name="Austin Office Location",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         location = await async_client.zero_trust.gateway.locations.list(
             account_id="699d98642c564d2e855e9661899b7252",
@@ -370,6 +460,14 @@ class TestAsyncLocations:
             assert_matches_type(Optional[LocationListResponse], location, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.zero_trust.gateway.locations.with_raw_response.list(
+                account_id="",
+            )
 
     @pytest.mark.skip()
     @parametrize
@@ -410,6 +508,21 @@ class TestAsyncLocations:
 
     @pytest.mark.skip()
     @parametrize
+    async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.zero_trust.gateway.locations.with_raw_response.delete(
+                "ed35569b41ce4d1facfe683550f54086",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `location_id` but received ''"):
+            await async_client.zero_trust.gateway.locations.with_raw_response.delete(
+                "",
+                account_id="699d98642c564d2e855e9661899b7252",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         location = await async_client.zero_trust.gateway.locations.get(
             "ed35569b41ce4d1facfe683550f54086",
@@ -444,3 +557,18 @@ class TestAsyncLocations:
             assert_matches_type(ZeroTrustGatewayLocations, location, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.zero_trust.gateway.locations.with_raw_response.get(
+                "ed35569b41ce4d1facfe683550f54086",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `location_id` but received ''"):
+            await async_client.zero_trust.gateway.locations.with_raw_response.get(
+                "",
+                account_id="699d98642c564d2e855e9661899b7252",
+            )

@@ -67,6 +67,20 @@ class TestDetails:
                 waiting_room_id="699d98642c564d2e855e9661899b7252",
             )
 
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `waiting_room_id` but received ''"):
+            client.waiting_rooms.events.details.with_raw_response.get(
+                "25756b2dfe6e378a06b033b670413757",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                waiting_room_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `event_id` but received ''"):
+            client.waiting_rooms.events.details.with_raw_response.get(
+                "",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                waiting_room_id="699d98642c564d2e855e9661899b7252",
+            )
+
 
 class TestAsyncDetails:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
@@ -118,5 +132,19 @@ class TestAsyncDetails:
             await async_client.waiting_rooms.events.details.with_raw_response.get(
                 "25756b2dfe6e378a06b033b670413757",
                 zone_identifier="",
+                waiting_room_id="699d98642c564d2e855e9661899b7252",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `waiting_room_id` but received ''"):
+            await async_client.waiting_rooms.events.details.with_raw_response.get(
+                "25756b2dfe6e378a06b033b670413757",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                waiting_room_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `event_id` but received ''"):
+            await async_client.waiting_rooms.events.details.with_raw_response.get(
+                "",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 waiting_room_id="699d98642c564d2e855e9661899b7252",
             )

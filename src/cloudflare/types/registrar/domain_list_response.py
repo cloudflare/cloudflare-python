@@ -55,10 +55,10 @@ class DomainListResponseItemRegistrantContact(BaseModel):
 
 
 class DomainListResponseItemTransferIn(BaseModel):
-    accept_foa: Optional[object] = None
+    accept_foa: Optional[str] = None
     """Form of authorization has been accepted by the registrant."""
 
-    approve_transfer: Optional[object] = None
+    approve_transfer: Optional[str] = None
     """Shows transfer status with the registry."""
 
     can_cancel_transfer: Optional[bool] = None
@@ -67,7 +67,7 @@ class DomainListResponseItemTransferIn(BaseModel):
     disable_privacy: Optional[object] = None
     """Privacy guards are disabled at the foreign registrar."""
 
-    enter_auth_code: Optional[object] = None
+    enter_auth_code: Optional[str] = None
     """Auth code has been entered and verified."""
 
     unlock_domain: Optional[object] = None

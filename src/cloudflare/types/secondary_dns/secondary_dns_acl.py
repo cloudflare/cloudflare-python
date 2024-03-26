@@ -6,7 +6,7 @@ __all__ = ["SecondaryDNSACL"]
 
 
 class SecondaryDNSACL(BaseModel):
-    id: object
+    id: str
 
     ip_range: str
     """Allowed IPv4/IPv6 address range of primary or secondary nameservers.

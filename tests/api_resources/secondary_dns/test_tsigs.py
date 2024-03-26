@@ -66,6 +66,17 @@ class TestTSIGs:
 
     @pytest.mark.skip()
     @parametrize
+    def test_path_params_create(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.secondary_dns.tsigs.with_raw_response.create(
+                account_id="",
+                algo="hmac-sha512.",
+                name="tsig.customer.cf.",
+                secret="caf79a7804b04337c9c66ccd7bef9190a1e1679b5dd03d8aa10f7ad45e1a9dab92b417896c15d4d007c7c14194538d2a5d0feffdecc5a7f0e1c570cfa700837c",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         tsig = client.secondary_dns.tsigs.update(
             "69cd1e104af3e6ed3cb344f263fd0d5a",
@@ -112,6 +123,27 @@ class TestTSIGs:
 
     @pytest.mark.skip()
     @parametrize
+    def test_path_params_update(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.secondary_dns.tsigs.with_raw_response.update(
+                "69cd1e104af3e6ed3cb344f263fd0d5a",
+                account_id="",
+                algo="hmac-sha512.",
+                name="tsig.customer.cf.",
+                secret="caf79a7804b04337c9c66ccd7bef9190a1e1679b5dd03d8aa10f7ad45e1a9dab92b417896c15d4d007c7c14194538d2a5d0feffdecc5a7f0e1c570cfa700837c",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `tsig_id` but received ''"):
+            client.secondary_dns.tsigs.with_raw_response.update(
+                "",
+                account_id="01a7362d577a6c3019a474fd6f485823",
+                algo="hmac-sha512.",
+                name="tsig.customer.cf.",
+                secret="caf79a7804b04337c9c66ccd7bef9190a1e1679b5dd03d8aa10f7ad45e1a9dab92b417896c15d4d007c7c14194538d2a5d0feffdecc5a7f0e1c570cfa700837c",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         tsig = client.secondary_dns.tsigs.list(
             account_id="01a7362d577a6c3019a474fd6f485823",
@@ -143,6 +175,14 @@ class TestTSIGs:
             assert_matches_type(Optional[TSIGListResponse], tsig, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_list(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.secondary_dns.tsigs.with_raw_response.list(
+                account_id="",
+            )
 
     @pytest.mark.skip()
     @parametrize
@@ -183,6 +223,21 @@ class TestTSIGs:
 
     @pytest.mark.skip()
     @parametrize
+    def test_path_params_delete(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.secondary_dns.tsigs.with_raw_response.delete(
+                "69cd1e104af3e6ed3cb344f263fd0d5a",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `tsig_id` but received ''"):
+            client.secondary_dns.tsigs.with_raw_response.delete(
+                "",
+                account_id="01a7362d577a6c3019a474fd6f485823",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         tsig = client.secondary_dns.tsigs.get(
             "69cd1e104af3e6ed3cb344f263fd0d5a",
@@ -217,6 +272,21 @@ class TestTSIGs:
             assert_matches_type(SecondaryDNSTSIG, tsig, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_get(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.secondary_dns.tsigs.with_raw_response.get(
+                "69cd1e104af3e6ed3cb344f263fd0d5a",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `tsig_id` but received ''"):
+            client.secondary_dns.tsigs.with_raw_response.get(
+                "",
+                account_id="01a7362d577a6c3019a474fd6f485823",
+            )
 
 
 class TestAsyncTSIGs:
@@ -267,6 +337,17 @@ class TestAsyncTSIGs:
 
     @pytest.mark.skip()
     @parametrize
+    async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.secondary_dns.tsigs.with_raw_response.create(
+                account_id="",
+                algo="hmac-sha512.",
+                name="tsig.customer.cf.",
+                secret="caf79a7804b04337c9c66ccd7bef9190a1e1679b5dd03d8aa10f7ad45e1a9dab92b417896c15d4d007c7c14194538d2a5d0feffdecc5a7f0e1c570cfa700837c",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         tsig = await async_client.secondary_dns.tsigs.update(
             "69cd1e104af3e6ed3cb344f263fd0d5a",
@@ -313,6 +394,27 @@ class TestAsyncTSIGs:
 
     @pytest.mark.skip()
     @parametrize
+    async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.secondary_dns.tsigs.with_raw_response.update(
+                "69cd1e104af3e6ed3cb344f263fd0d5a",
+                account_id="",
+                algo="hmac-sha512.",
+                name="tsig.customer.cf.",
+                secret="caf79a7804b04337c9c66ccd7bef9190a1e1679b5dd03d8aa10f7ad45e1a9dab92b417896c15d4d007c7c14194538d2a5d0feffdecc5a7f0e1c570cfa700837c",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `tsig_id` but received ''"):
+            await async_client.secondary_dns.tsigs.with_raw_response.update(
+                "",
+                account_id="01a7362d577a6c3019a474fd6f485823",
+                algo="hmac-sha512.",
+                name="tsig.customer.cf.",
+                secret="caf79a7804b04337c9c66ccd7bef9190a1e1679b5dd03d8aa10f7ad45e1a9dab92b417896c15d4d007c7c14194538d2a5d0feffdecc5a7f0e1c570cfa700837c",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         tsig = await async_client.secondary_dns.tsigs.list(
             account_id="01a7362d577a6c3019a474fd6f485823",
@@ -344,6 +446,14 @@ class TestAsyncTSIGs:
             assert_matches_type(Optional[TSIGListResponse], tsig, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.secondary_dns.tsigs.with_raw_response.list(
+                account_id="",
+            )
 
     @pytest.mark.skip()
     @parametrize
@@ -384,6 +494,21 @@ class TestAsyncTSIGs:
 
     @pytest.mark.skip()
     @parametrize
+    async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.secondary_dns.tsigs.with_raw_response.delete(
+                "69cd1e104af3e6ed3cb344f263fd0d5a",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `tsig_id` but received ''"):
+            await async_client.secondary_dns.tsigs.with_raw_response.delete(
+                "",
+                account_id="01a7362d577a6c3019a474fd6f485823",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         tsig = await async_client.secondary_dns.tsigs.get(
             "69cd1e104af3e6ed3cb344f263fd0d5a",
@@ -418,3 +543,18 @@ class TestAsyncTSIGs:
             assert_matches_type(SecondaryDNSTSIG, tsig, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.secondary_dns.tsigs.with_raw_response.get(
+                "69cd1e104af3e6ed3cb344f263fd0d5a",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `tsig_id` but received ''"):
+            await async_client.secondary_dns.tsigs.with_raw_response.get(
+                "",
+                account_id="01a7362d577a6c3019a474fd6f485823",
+            )

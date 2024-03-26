@@ -19,13 +19,13 @@ class Config(BaseModel):
 class VectorizeCreateIndex(BaseModel):
     config: Optional[Config] = None
 
-    created_on: Optional[object] = None
+    created_on: Optional[str] = None
     """Specifies the timestamp the resource was created as an ISO8601 string."""
 
     description: Optional[str] = None
     """Specifies the description of the index."""
 
-    modified_on: Optional[object] = None
+    modified_on: Optional[str] = None
     """Specifies the timestamp the resource was modified as an ISO8601 string."""
 
     name: Optional[str] = None

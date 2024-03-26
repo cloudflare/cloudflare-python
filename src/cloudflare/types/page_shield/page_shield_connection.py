@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import List, Optional
 
 from ..._models import BaseModel
 
@@ -8,22 +8,22 @@ __all__ = ["PageShieldConnection"]
 
 
 class PageShieldConnection(BaseModel):
-    id: Optional[object] = None
+    id: Optional[str] = None
 
-    added_at: Optional[object] = None
+    added_at: Optional[str] = None
 
-    domain_reported_malicious: Optional[object] = None
+    domain_reported_malicious: Optional[bool] = None
 
-    first_page_url: Optional[object] = None
+    first_page_url: Optional[str] = None
 
-    first_seen_at: Optional[object] = None
+    first_seen_at: Optional[str] = None
 
-    host: Optional[object] = None
+    host: Optional[str] = None
 
-    last_seen_at: Optional[object] = None
+    last_seen_at: Optional[str] = None
 
-    page_urls: Optional[object] = None
+    page_urls: Optional[List[str]] = None
 
-    url: Optional[object] = None
+    url: Optional[str] = None
 
-    url_contains_cdn_cgi_path: Optional[object] = None
+    url_contains_cdn_cgi_path: Optional[bool] = None

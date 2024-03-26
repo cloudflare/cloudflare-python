@@ -8,4 +8,4 @@ __all__ = ["EventDeleteResponse"]
 
 
 class EventDeleteResponse(BaseModel):
-    id: Optional[object] = None
+    id: Optional[str] = None

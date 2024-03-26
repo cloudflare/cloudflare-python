@@ -101,6 +101,23 @@ class TestIntegrations:
 
     @pytest.mark.skip()
     @parametrize
+    def test_path_params_create(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.zero_trust.devices.posture.integrations.with_raw_response.create(
+                account_id="",
+                config={
+                    "api_url": "https://as123.awmdm.com/API",
+                    "auth_url": "https://na.uemauth.vmwservices.com/connect/token",
+                    "client_id": "example client id",
+                    "client_secret": "example client secret",
+                },
+                interval="10m",
+                name="My Workspace One Integration",
+                type="workspace_one",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         integration = client.zero_trust.devices.posture.integrations.list(
             account_id="699d98642c564d2e855e9661899b7252",
@@ -132,6 +149,14 @@ class TestIntegrations:
             assert_matches_type(Optional[IntegrationListResponse], integration, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_list(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.zero_trust.devices.posture.integrations.with_raw_response.list(
+                account_id="",
+            )
 
     @pytest.mark.skip()
     @parametrize
@@ -173,6 +198,12 @@ class TestIntegrations:
     @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.zero_trust.devices.posture.integrations.with_raw_response.delete(
+                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                account_id="",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `integration_id` but received ''"):
             client.zero_trust.devices.posture.integrations.with_raw_response.delete(
                 "",
@@ -237,6 +268,12 @@ class TestIntegrations:
     @pytest.mark.skip()
     @parametrize
     def test_path_params_edit(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.zero_trust.devices.posture.integrations.with_raw_response.edit(
+                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                account_id="",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `integration_id` but received ''"):
             client.zero_trust.devices.posture.integrations.with_raw_response.edit(
                 "",
@@ -283,6 +320,12 @@ class TestIntegrations:
     @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.zero_trust.devices.posture.integrations.with_raw_response.get(
+                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                account_id="",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `integration_id` but received ''"):
             client.zero_trust.devices.posture.integrations.with_raw_response.get(
                 "",
@@ -373,6 +416,23 @@ class TestAsyncIntegrations:
 
     @pytest.mark.skip()
     @parametrize
+    async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.zero_trust.devices.posture.integrations.with_raw_response.create(
+                account_id="",
+                config={
+                    "api_url": "https://as123.awmdm.com/API",
+                    "auth_url": "https://na.uemauth.vmwservices.com/connect/token",
+                    "client_id": "example client id",
+                    "client_secret": "example client secret",
+                },
+                interval="10m",
+                name="My Workspace One Integration",
+                type="workspace_one",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         integration = await async_client.zero_trust.devices.posture.integrations.list(
             account_id="699d98642c564d2e855e9661899b7252",
@@ -404,6 +464,14 @@ class TestAsyncIntegrations:
             assert_matches_type(Optional[IntegrationListResponse], integration, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.zero_trust.devices.posture.integrations.with_raw_response.list(
+                account_id="",
+            )
 
     @pytest.mark.skip()
     @parametrize
@@ -445,6 +513,12 @@ class TestAsyncIntegrations:
     @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.zero_trust.devices.posture.integrations.with_raw_response.delete(
+                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                account_id="",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `integration_id` but received ''"):
             await async_client.zero_trust.devices.posture.integrations.with_raw_response.delete(
                 "",
@@ -509,6 +583,12 @@ class TestAsyncIntegrations:
     @pytest.mark.skip()
     @parametrize
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.zero_trust.devices.posture.integrations.with_raw_response.edit(
+                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                account_id="",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `integration_id` but received ''"):
             await async_client.zero_trust.devices.posture.integrations.with_raw_response.edit(
                 "",
@@ -555,6 +635,12 @@ class TestAsyncIntegrations:
     @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.zero_trust.devices.posture.integrations.with_raw_response.get(
+                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                account_id="",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `integration_id` but received ''"):
             await async_client.zero_trust.devices.posture.integrations.with_raw_response.get(
                 "",

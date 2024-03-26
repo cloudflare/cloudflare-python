@@ -8,7 +8,7 @@ __all__ = ["SettingUpdateParams"]
 
 
 class SettingUpdateParams(TypedDict, total=False):
-    account_id: Required[object]
+    account_id: Required[str]
 
     gateway_proxy_enabled: bool
     """Enable gateway proxy filtering on TCP."""

@@ -51,6 +51,14 @@ class TestDefaultPolicy:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_get(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.zero_trust.devices.policies.default_policy.with_raw_response.get(
+                account_id="",
+            )
+
 
 class TestAsyncDefaultPolicy:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
@@ -88,3 +96,11 @@ class TestAsyncDefaultPolicy:
             assert_matches_type(Optional[DefaultPolicyGetResponse], default_policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.zero_trust.devices.policies.default_policy.with_raw_response.get(
+                account_id="",
+            )

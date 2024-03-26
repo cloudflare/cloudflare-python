@@ -15,9 +15,9 @@ class TLSCertificatesAndHostnamesSettingObjectDelete(BaseModel):
     hostname: Optional[str] = None
     """The hostname for which the tls settings are set."""
 
-    status: Optional[object] = None
+    status: Optional[str] = None
 
     updated_at: Optional[datetime] = None
     """This is the time the tls setting was updated."""
 
-    value: Optional[object] = None
+    value: Optional[str] = None

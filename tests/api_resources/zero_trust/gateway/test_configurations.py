@@ -102,6 +102,14 @@ class TestConfigurations:
 
     @pytest.mark.skip()
     @parametrize
+    def test_path_params_update(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.zero_trust.gateway.configurations.with_raw_response.update(
+                account_id="",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         configuration = client.zero_trust.gateway.configurations.edit(
             account_id="699d98642c564d2e855e9661899b7252",
@@ -181,6 +189,14 @@ class TestConfigurations:
 
     @pytest.mark.skip()
     @parametrize
+    def test_path_params_edit(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.zero_trust.gateway.configurations.with_raw_response.edit(
+                account_id="",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         configuration = client.zero_trust.gateway.configurations.get(
             account_id="699d98642c564d2e855e9661899b7252",
@@ -212,6 +228,14 @@ class TestConfigurations:
             assert_matches_type(ConfigurationGetResponse, configuration, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_get(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.zero_trust.gateway.configurations.with_raw_response.get(
+                account_id="",
+            )
 
 
 class TestAsyncConfigurations:
@@ -298,6 +322,14 @@ class TestAsyncConfigurations:
 
     @pytest.mark.skip()
     @parametrize
+    async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.zero_trust.gateway.configurations.with_raw_response.update(
+                account_id="",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         configuration = await async_client.zero_trust.gateway.configurations.edit(
             account_id="699d98642c564d2e855e9661899b7252",
@@ -377,6 +409,14 @@ class TestAsyncConfigurations:
 
     @pytest.mark.skip()
     @parametrize
+    async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.zero_trust.gateway.configurations.with_raw_response.edit(
+                account_id="",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         configuration = await async_client.zero_trust.gateway.configurations.get(
             account_id="699d98642c564d2e855e9661899b7252",
@@ -408,3 +448,11 @@ class TestAsyncConfigurations:
             assert_matches_type(ConfigurationGetResponse, configuration, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.zero_trust.gateway.configurations.with_raw_response.get(
+                account_id="",
+            )

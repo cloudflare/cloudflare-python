@@ -40,7 +40,7 @@ class Embed(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> str:
         """
         Fetches an HTML code snippet to embed a video in a web page delivered through
         Cloudflare. On success, returns an HTML fragment for use on web pages to display
@@ -68,7 +68,7 @@ class Embed(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=object,
+            cast_to=str,
         )
 
 
@@ -92,7 +92,7 @@ class AsyncEmbed(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> str:
         """
         Fetches an HTML code snippet to embed a video in a web page delivered through
         Cloudflare. On success, returns an HTML fragment for use on web pages to display
@@ -120,7 +120,7 @@ class AsyncEmbed(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=object,
+            cast_to=str,
         )
 
 

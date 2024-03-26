@@ -13,7 +13,7 @@ class VariantCreateParams(TypedDict, total=False):
     account_id: Required[str]
     """Account identifier tag."""
 
-    id: Required[object]
+    id: Required[str]
 
     options: Required[Options]
     """Allows you to define image resizing sizes for different use cases."""

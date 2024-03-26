@@ -47,7 +47,7 @@ class ComponentValue(TypedDict, total=False):
 
 
 class RatePlan(TypedDict, total=False):
-    id: object
+    id: str
     """The ID of the rate plan."""
 
     currency: str

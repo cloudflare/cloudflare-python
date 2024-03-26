@@ -101,6 +101,15 @@ class TestEvents:
                 name="production_webinar_event",
             )
 
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `waiting_room_id` but received ''"):
+            client.waiting_rooms.events.with_raw_response.create(
+                "",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                event_end_time="2021-09-28T17:00:00.000Z",
+                event_start_time="2021-09-28T15:30:00.000Z",
+                name="production_webinar_event",
+            )
+
     @pytest.mark.skip()
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
@@ -186,6 +195,26 @@ class TestEvents:
                 name="production_webinar_event",
             )
 
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `waiting_room_id` but received ''"):
+            client.waiting_rooms.events.with_raw_response.update(
+                "25756b2dfe6e378a06b033b670413757",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                waiting_room_id="",
+                event_end_time="2021-09-28T17:00:00.000Z",
+                event_start_time="2021-09-28T15:30:00.000Z",
+                name="production_webinar_event",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `event_id` but received ''"):
+            client.waiting_rooms.events.with_raw_response.update(
+                "",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                waiting_room_id="699d98642c564d2e855e9661899b7252",
+                event_end_time="2021-09-28T17:00:00.000Z",
+                event_start_time="2021-09-28T15:30:00.000Z",
+                name="production_webinar_event",
+            )
+
     @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
@@ -230,6 +259,12 @@ class TestEvents:
             client.waiting_rooms.events.with_raw_response.list(
                 "699d98642c564d2e855e9661899b7252",
                 zone_identifier="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `waiting_room_id` but received ''"):
+            client.waiting_rooms.events.with_raw_response.list(
+                "",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @pytest.mark.skip()
@@ -279,6 +314,20 @@ class TestEvents:
             client.waiting_rooms.events.with_raw_response.delete(
                 "25756b2dfe6e378a06b033b670413757",
                 zone_identifier="",
+                waiting_room_id="699d98642c564d2e855e9661899b7252",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `waiting_room_id` but received ''"):
+            client.waiting_rooms.events.with_raw_response.delete(
+                "25756b2dfe6e378a06b033b670413757",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                waiting_room_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `event_id` but received ''"):
+            client.waiting_rooms.events.with_raw_response.delete(
+                "",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 waiting_room_id="699d98642c564d2e855e9661899b7252",
             )
 
@@ -367,6 +416,26 @@ class TestEvents:
                 name="production_webinar_event",
             )
 
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `waiting_room_id` but received ''"):
+            client.waiting_rooms.events.with_raw_response.edit(
+                "25756b2dfe6e378a06b033b670413757",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                waiting_room_id="",
+                event_end_time="2021-09-28T17:00:00.000Z",
+                event_start_time="2021-09-28T15:30:00.000Z",
+                name="production_webinar_event",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `event_id` but received ''"):
+            client.waiting_rooms.events.with_raw_response.edit(
+                "",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                waiting_room_id="699d98642c564d2e855e9661899b7252",
+                event_end_time="2021-09-28T17:00:00.000Z",
+                event_start_time="2021-09-28T15:30:00.000Z",
+                name="production_webinar_event",
+            )
+
     @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
@@ -414,6 +483,20 @@ class TestEvents:
             client.waiting_rooms.events.with_raw_response.get(
                 "25756b2dfe6e378a06b033b670413757",
                 zone_identifier="",
+                waiting_room_id="699d98642c564d2e855e9661899b7252",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `waiting_room_id` but received ''"):
+            client.waiting_rooms.events.with_raw_response.get(
+                "25756b2dfe6e378a06b033b670413757",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                waiting_room_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `event_id` but received ''"):
+            client.waiting_rooms.events.with_raw_response.get(
+                "",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 waiting_room_id="699d98642c564d2e855e9661899b7252",
             )
 
@@ -496,6 +579,15 @@ class TestAsyncEvents:
             await async_client.waiting_rooms.events.with_raw_response.create(
                 "699d98642c564d2e855e9661899b7252",
                 zone_identifier="",
+                event_end_time="2021-09-28T17:00:00.000Z",
+                event_start_time="2021-09-28T15:30:00.000Z",
+                name="production_webinar_event",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `waiting_room_id` but received ''"):
+            await async_client.waiting_rooms.events.with_raw_response.create(
+                "",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 event_end_time="2021-09-28T17:00:00.000Z",
                 event_start_time="2021-09-28T15:30:00.000Z",
                 name="production_webinar_event",
@@ -586,6 +678,26 @@ class TestAsyncEvents:
                 name="production_webinar_event",
             )
 
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `waiting_room_id` but received ''"):
+            await async_client.waiting_rooms.events.with_raw_response.update(
+                "25756b2dfe6e378a06b033b670413757",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                waiting_room_id="",
+                event_end_time="2021-09-28T17:00:00.000Z",
+                event_start_time="2021-09-28T15:30:00.000Z",
+                name="production_webinar_event",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `event_id` but received ''"):
+            await async_client.waiting_rooms.events.with_raw_response.update(
+                "",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                waiting_room_id="699d98642c564d2e855e9661899b7252",
+                event_end_time="2021-09-28T17:00:00.000Z",
+                event_start_time="2021-09-28T15:30:00.000Z",
+                name="production_webinar_event",
+            )
+
     @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
@@ -630,6 +742,12 @@ class TestAsyncEvents:
             await async_client.waiting_rooms.events.with_raw_response.list(
                 "699d98642c564d2e855e9661899b7252",
                 zone_identifier="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `waiting_room_id` but received ''"):
+            await async_client.waiting_rooms.events.with_raw_response.list(
+                "",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @pytest.mark.skip()
@@ -679,6 +797,20 @@ class TestAsyncEvents:
             await async_client.waiting_rooms.events.with_raw_response.delete(
                 "25756b2dfe6e378a06b033b670413757",
                 zone_identifier="",
+                waiting_room_id="699d98642c564d2e855e9661899b7252",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `waiting_room_id` but received ''"):
+            await async_client.waiting_rooms.events.with_raw_response.delete(
+                "25756b2dfe6e378a06b033b670413757",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                waiting_room_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `event_id` but received ''"):
+            await async_client.waiting_rooms.events.with_raw_response.delete(
+                "",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 waiting_room_id="699d98642c564d2e855e9661899b7252",
             )
 
@@ -767,6 +899,26 @@ class TestAsyncEvents:
                 name="production_webinar_event",
             )
 
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `waiting_room_id` but received ''"):
+            await async_client.waiting_rooms.events.with_raw_response.edit(
+                "25756b2dfe6e378a06b033b670413757",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                waiting_room_id="",
+                event_end_time="2021-09-28T17:00:00.000Z",
+                event_start_time="2021-09-28T15:30:00.000Z",
+                name="production_webinar_event",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `event_id` but received ''"):
+            await async_client.waiting_rooms.events.with_raw_response.edit(
+                "",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                waiting_room_id="699d98642c564d2e855e9661899b7252",
+                event_end_time="2021-09-28T17:00:00.000Z",
+                event_start_time="2021-09-28T15:30:00.000Z",
+                name="production_webinar_event",
+            )
+
     @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
@@ -814,5 +966,19 @@ class TestAsyncEvents:
             await async_client.waiting_rooms.events.with_raw_response.get(
                 "25756b2dfe6e378a06b033b670413757",
                 zone_identifier="",
+                waiting_room_id="699d98642c564d2e855e9661899b7252",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `waiting_room_id` but received ''"):
+            await async_client.waiting_rooms.events.with_raw_response.get(
+                "25756b2dfe6e378a06b033b670413757",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                waiting_room_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `event_id` but received ''"):
+            await async_client.waiting_rooms.events.with_raw_response.get(
+                "",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 waiting_room_id="699d98642c564d2e855e9661899b7252",
             )

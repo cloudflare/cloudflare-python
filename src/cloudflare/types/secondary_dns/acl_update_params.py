@@ -8,7 +8,7 @@ __all__ = ["ACLUpdateParams"]
 
 
 class ACLUpdateParams(TypedDict, total=False):
-    account_id: Required[object]
+    account_id: Required[str]
 
     ip_range: Required[str]
     """Allowed IPv4/IPv6 address range of primary or secondary nameservers.

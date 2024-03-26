@@ -523,7 +523,7 @@ class DNSRecordsNSRecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
-    content: Required[object]
+    content: Required[str]
     """A valid name server host name."""
 
     name: Required[str]

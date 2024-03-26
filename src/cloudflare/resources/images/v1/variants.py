@@ -47,7 +47,7 @@ class Variants(SyncAPIResource):
         self,
         *,
         account_id: str,
-        id: object,
+        id: str,
         options: variant_create_params.Options,
         never_require_signed_urls: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -139,7 +139,7 @@ class Variants(SyncAPIResource):
 
     def delete(
         self,
-        variant_id: object,
+        variant_id: str,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -165,6 +165,8 @@ class Variants(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not variant_id:
+            raise ValueError(f"Expected a non-empty value for `variant_id` but received {variant_id!r}")
         return cast(
             VariantDeleteResponse,
             self._delete(
@@ -184,7 +186,7 @@ class Variants(SyncAPIResource):
 
     def edit(
         self,
-        variant_id: object,
+        variant_id: str,
         *,
         account_id: str,
         options: variant_edit_params.Options,
@@ -217,6 +219,8 @@ class Variants(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not variant_id:
+            raise ValueError(f"Expected a non-empty value for `variant_id` but received {variant_id!r}")
         return self._patch(
             f"/accounts/{account_id}/images/v1/variants/{variant_id}",
             body=maybe_transform(
@@ -238,7 +242,7 @@ class Variants(SyncAPIResource):
 
     def get(
         self,
-        variant_id: object,
+        variant_id: str,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -264,6 +268,8 @@ class Variants(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not variant_id:
+            raise ValueError(f"Expected a non-empty value for `variant_id` but received {variant_id!r}")
         return self._get(
             f"/accounts/{account_id}/images/v1/variants/{variant_id}",
             options=make_request_options(
@@ -290,7 +296,7 @@ class AsyncVariants(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        id: object,
+        id: str,
         options: variant_create_params.Options,
         never_require_signed_urls: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -382,7 +388,7 @@ class AsyncVariants(AsyncAPIResource):
 
     async def delete(
         self,
-        variant_id: object,
+        variant_id: str,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -408,6 +414,8 @@ class AsyncVariants(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not variant_id:
+            raise ValueError(f"Expected a non-empty value for `variant_id` but received {variant_id!r}")
         return cast(
             VariantDeleteResponse,
             await self._delete(
@@ -427,7 +435,7 @@ class AsyncVariants(AsyncAPIResource):
 
     async def edit(
         self,
-        variant_id: object,
+        variant_id: str,
         *,
         account_id: str,
         options: variant_edit_params.Options,
@@ -460,6 +468,8 @@ class AsyncVariants(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not variant_id:
+            raise ValueError(f"Expected a non-empty value for `variant_id` but received {variant_id!r}")
         return await self._patch(
             f"/accounts/{account_id}/images/v1/variants/{variant_id}",
             body=await async_maybe_transform(
@@ -481,7 +491,7 @@ class AsyncVariants(AsyncAPIResource):
 
     async def get(
         self,
-        variant_id: object,
+        variant_id: str,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -507,6 +517,8 @@ class AsyncVariants(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not variant_id:
+            raise ValueError(f"Expected a non-empty value for `variant_id` but received {variant_id!r}")
         return await self._get(
             f"/accounts/{account_id}/images/v1/variants/{variant_id}",
             options=make_request_options(

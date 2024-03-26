@@ -46,7 +46,7 @@ class DEXTests(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: object,
+        account_id: str,
         data: dex_test_create_params.Data,
         enabled: bool,
         interval: str,
@@ -82,6 +82,8 @@ class DEXTests(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
             f"/accounts/{account_id}/devices/dex_tests",
             body=maybe_transform(
@@ -111,7 +113,7 @@ class DEXTests(SyncAPIResource):
         self,
         dex_test_id: str,
         *,
-        account_id: object,
+        account_id: str,
         data: dex_test_update_params.Data,
         enabled: bool,
         interval: str,
@@ -149,6 +151,8 @@ class DEXTests(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dex_test_id:
             raise ValueError(f"Expected a non-empty value for `dex_test_id` but received {dex_test_id!r}")
         return self._put(
@@ -179,7 +183,7 @@ class DEXTests(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: object,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -199,6 +203,8 @@ class DEXTests(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
             f"/accounts/{account_id}/devices/dex_tests",
             options=make_request_options(
@@ -215,7 +221,7 @@ class DEXTests(SyncAPIResource):
         self,
         dex_test_id: str,
         *,
-        account_id: object,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -239,6 +245,8 @@ class DEXTests(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dex_test_id:
             raise ValueError(f"Expected a non-empty value for `dex_test_id` but received {dex_test_id!r}")
         return self._delete(
@@ -257,7 +265,7 @@ class DEXTests(SyncAPIResource):
         self,
         dex_test_id: str,
         *,
-        account_id: object,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -279,6 +287,8 @@ class DEXTests(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dex_test_id:
             raise ValueError(f"Expected a non-empty value for `dex_test_id` but received {dex_test_id!r}")
         return self._get(
@@ -309,7 +319,7 @@ class AsyncDEXTests(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: object,
+        account_id: str,
         data: dex_test_create_params.Data,
         enabled: bool,
         interval: str,
@@ -345,6 +355,8 @@ class AsyncDEXTests(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/devices/dex_tests",
             body=await async_maybe_transform(
@@ -374,7 +386,7 @@ class AsyncDEXTests(AsyncAPIResource):
         self,
         dex_test_id: str,
         *,
-        account_id: object,
+        account_id: str,
         data: dex_test_update_params.Data,
         enabled: bool,
         interval: str,
@@ -412,6 +424,8 @@ class AsyncDEXTests(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dex_test_id:
             raise ValueError(f"Expected a non-empty value for `dex_test_id` but received {dex_test_id!r}")
         return await self._put(
@@ -442,7 +456,7 @@ class AsyncDEXTests(AsyncAPIResource):
     async def list(
         self,
         *,
-        account_id: object,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -462,6 +476,8 @@ class AsyncDEXTests(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
             f"/accounts/{account_id}/devices/dex_tests",
             options=make_request_options(
@@ -478,7 +494,7 @@ class AsyncDEXTests(AsyncAPIResource):
         self,
         dex_test_id: str,
         *,
-        account_id: object,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -502,6 +518,8 @@ class AsyncDEXTests(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dex_test_id:
             raise ValueError(f"Expected a non-empty value for `dex_test_id` but received {dex_test_id!r}")
         return await self._delete(
@@ -520,7 +538,7 @@ class AsyncDEXTests(AsyncAPIResource):
         self,
         dex_test_id: str,
         *,
-        account_id: object,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -542,6 +560,8 @@ class AsyncDEXTests(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dex_test_id:
             raise ValueError(f"Expected a non-empty value for `dex_test_id` but received {dex_test_id!r}")
         return await self._get(

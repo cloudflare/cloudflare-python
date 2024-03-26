@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, cast
+from typing import Any, Iterable, cast
 from typing_extensions import Literal
 
 import httpx
@@ -42,12 +42,12 @@ class Miscategorizations(SyncAPIResource):
         self,
         *,
         account_id: str,
-        content_adds: object | NotGiven = NOT_GIVEN,
-        content_removes: object | NotGiven = NOT_GIVEN,
+        content_adds: Iterable[float] | NotGiven = NOT_GIVEN,
+        content_removes: Iterable[float] | NotGiven = NOT_GIVEN,
         indicator_type: Literal["domain", "ipv4", "ipv6", "url"] | NotGiven = NOT_GIVEN,
         ip: object | NotGiven = NOT_GIVEN,
-        security_adds: object | NotGiven = NOT_GIVEN,
-        security_removes: object | NotGiven = NOT_GIVEN,
+        security_adds: Iterable[float] | NotGiven = NOT_GIVEN,
+        security_removes: Iterable[float] | NotGiven = NOT_GIVEN,
         url: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -129,12 +129,12 @@ class AsyncMiscategorizations(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        content_adds: object | NotGiven = NOT_GIVEN,
-        content_removes: object | NotGiven = NOT_GIVEN,
+        content_adds: Iterable[float] | NotGiven = NOT_GIVEN,
+        content_removes: Iterable[float] | NotGiven = NOT_GIVEN,
         indicator_type: Literal["domain", "ipv4", "ipv6", "url"] | NotGiven = NOT_GIVEN,
         ip: object | NotGiven = NOT_GIVEN,
-        security_adds: object | NotGiven = NOT_GIVEN,
-        security_removes: object | NotGiven = NOT_GIVEN,
+        security_adds: Iterable[float] | NotGiven = NOT_GIVEN,
+        security_removes: Iterable[float] | NotGiven = NOT_GIVEN,
         url: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

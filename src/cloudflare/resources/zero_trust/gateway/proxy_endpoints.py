@@ -46,7 +46,7 @@ class ProxyEndpoints(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: object,
+        account_id: str,
         ips: List[str],
         name: str,
         subdomain: str | NotGiven = NOT_GIVEN,
@@ -75,6 +75,8 @@ class ProxyEndpoints(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
             f"/accounts/{account_id}/gateway/proxy_endpoints",
             body=maybe_transform(
@@ -98,7 +100,7 @@ class ProxyEndpoints(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: object,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -118,6 +120,8 @@ class ProxyEndpoints(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
             f"/accounts/{account_id}/gateway/proxy_endpoints",
             options=make_request_options(
@@ -132,9 +136,9 @@ class ProxyEndpoints(SyncAPIResource):
 
     def delete(
         self,
-        proxy_endpoint_id: object,
+        proxy_endpoint_id: str,
         *,
-        account_id: object,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -154,6 +158,10 @@ class ProxyEndpoints(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not proxy_endpoint_id:
+            raise ValueError(f"Expected a non-empty value for `proxy_endpoint_id` but received {proxy_endpoint_id!r}")
         return cast(
             ProxyEndpointDeleteResponse,
             self._delete(
@@ -173,9 +181,9 @@ class ProxyEndpoints(SyncAPIResource):
 
     def edit(
         self,
-        proxy_endpoint_id: object,
+        proxy_endpoint_id: str,
         *,
-        account_id: object,
+        account_id: str,
         ips: List[str] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         subdomain: str | NotGiven = NOT_GIVEN,
@@ -204,6 +212,10 @@ class ProxyEndpoints(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not proxy_endpoint_id:
+            raise ValueError(f"Expected a non-empty value for `proxy_endpoint_id` but received {proxy_endpoint_id!r}")
         return self._patch(
             f"/accounts/{account_id}/gateway/proxy_endpoints/{proxy_endpoint_id}",
             body=maybe_transform(
@@ -226,9 +238,9 @@ class ProxyEndpoints(SyncAPIResource):
 
     def get(
         self,
-        proxy_endpoint_id: object,
+        proxy_endpoint_id: str,
         *,
-        account_id: object,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -248,6 +260,10 @@ class ProxyEndpoints(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not proxy_endpoint_id:
+            raise ValueError(f"Expected a non-empty value for `proxy_endpoint_id` but received {proxy_endpoint_id!r}")
         return self._get(
             f"/accounts/{account_id}/gateway/proxy_endpoints/{proxy_endpoint_id}",
             options=make_request_options(
@@ -273,7 +289,7 @@ class AsyncProxyEndpoints(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: object,
+        account_id: str,
         ips: List[str],
         name: str,
         subdomain: str | NotGiven = NOT_GIVEN,
@@ -302,6 +318,8 @@ class AsyncProxyEndpoints(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/gateway/proxy_endpoints",
             body=await async_maybe_transform(
@@ -325,7 +343,7 @@ class AsyncProxyEndpoints(AsyncAPIResource):
     async def list(
         self,
         *,
-        account_id: object,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -345,6 +363,8 @@ class AsyncProxyEndpoints(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
             f"/accounts/{account_id}/gateway/proxy_endpoints",
             options=make_request_options(
@@ -359,9 +379,9 @@ class AsyncProxyEndpoints(AsyncAPIResource):
 
     async def delete(
         self,
-        proxy_endpoint_id: object,
+        proxy_endpoint_id: str,
         *,
-        account_id: object,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -381,6 +401,10 @@ class AsyncProxyEndpoints(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not proxy_endpoint_id:
+            raise ValueError(f"Expected a non-empty value for `proxy_endpoint_id` but received {proxy_endpoint_id!r}")
         return cast(
             ProxyEndpointDeleteResponse,
             await self._delete(
@@ -400,9 +424,9 @@ class AsyncProxyEndpoints(AsyncAPIResource):
 
     async def edit(
         self,
-        proxy_endpoint_id: object,
+        proxy_endpoint_id: str,
         *,
-        account_id: object,
+        account_id: str,
         ips: List[str] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         subdomain: str | NotGiven = NOT_GIVEN,
@@ -431,6 +455,10 @@ class AsyncProxyEndpoints(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not proxy_endpoint_id:
+            raise ValueError(f"Expected a non-empty value for `proxy_endpoint_id` but received {proxy_endpoint_id!r}")
         return await self._patch(
             f"/accounts/{account_id}/gateway/proxy_endpoints/{proxy_endpoint_id}",
             body=await async_maybe_transform(
@@ -453,9 +481,9 @@ class AsyncProxyEndpoints(AsyncAPIResource):
 
     async def get(
         self,
-        proxy_endpoint_id: object,
+        proxy_endpoint_id: str,
         *,
-        account_id: object,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -475,6 +503,10 @@ class AsyncProxyEndpoints(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not proxy_endpoint_id:
+            raise ValueError(f"Expected a non-empty value for `proxy_endpoint_id` but received {proxy_endpoint_id!r}")
         return await self._get(
             f"/accounts/{account_id}/gateway/proxy_endpoints/{proxy_endpoint_id}",
             options=make_request_options(
