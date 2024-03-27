@@ -4,21 +4,13 @@ from typing import Optional
 
 from .._models import BaseModel
 
-__all__ = ["WorkersQueue"]
+__all__ = ["QueueUpdateResponse"]
 
 
-class WorkersQueue(BaseModel):
-    consumers: Optional[object] = None
-
-    consumers_total_count: Optional[object] = None
-
+class QueueUpdateResponse(BaseModel):
     created_on: Optional[object] = None
 
     modified_on: Optional[object] = None
-
-    producers: Optional[object] = None
-
-    producers_total_count: Optional[object] = None
 
     queue_id: Optional[object] = None
 

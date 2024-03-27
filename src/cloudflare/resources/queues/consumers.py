@@ -25,9 +25,9 @@ from ..._base_client import (
 )
 from ...types.queues import (
     ConsumerGetResponse,
+    ConsumerCreateResponse,
     ConsumerDeleteResponse,
-    WorkersConsumerCreated,
-    WorkersConsumerUpdated,
+    ConsumerUpdateResponse,
     consumer_create_params,
     consumer_update_params,
 )
@@ -46,7 +46,7 @@ class Consumers(SyncAPIResource):
 
     def create(
         self,
-        name: str,
+        queue_id: str,
         *,
         account_id: str,
         body: object,
@@ -56,12 +56,14 @@ class Consumers(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[WorkersConsumerCreated]:
+    ) -> Optional[ConsumerCreateResponse]:
         """
         Creates a new consumer for a queue.
 
         Args:
           account_id: Identifier
+
+          queue_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -73,10 +75,10 @@ class Consumers(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        if not queue_id:
+            raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         return self._post(
-            f"/accounts/{account_id}/workers/queues/{name}/consumers",
+            f"/accounts/{account_id}/queues/{queue_id}/consumers",
             body=maybe_transform(body, consumer_create_params.ConsumerCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -85,15 +87,15 @@ class Consumers(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[WorkersConsumerCreated]], ResultWrapper[WorkersConsumerCreated]),
+            cast_to=cast(Type[Optional[ConsumerCreateResponse]], ResultWrapper[ConsumerCreateResponse]),
         )
 
     def update(
         self,
-        consumer_name: str,
+        consumer_id: str,
         *,
         account_id: str,
-        name: str,
+        queue_id: str,
         body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -101,12 +103,16 @@ class Consumers(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[WorkersConsumerUpdated]:
+    ) -> Optional[ConsumerUpdateResponse]:
         """
         Updates the consumer for a queue, or creates one if it does not exist.
 
         Args:
           account_id: Identifier
+
+          queue_id: Identifier
+
+          consumer_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -118,12 +124,12 @@ class Consumers(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
-        if not consumer_name:
-            raise ValueError(f"Expected a non-empty value for `consumer_name` but received {consumer_name!r}")
+        if not queue_id:
+            raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
+        if not consumer_id:
+            raise ValueError(f"Expected a non-empty value for `consumer_id` but received {consumer_id!r}")
         return self._put(
-            f"/accounts/{account_id}/workers/queues/{name}/consumers/{consumer_name}",
+            f"/accounts/{account_id}/queues/{queue_id}/consumers/{consumer_id}",
             body=maybe_transform(body, consumer_update_params.ConsumerUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -132,15 +138,15 @@ class Consumers(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[WorkersConsumerUpdated]], ResultWrapper[WorkersConsumerUpdated]),
+            cast_to=cast(Type[Optional[ConsumerUpdateResponse]], ResultWrapper[ConsumerUpdateResponse]),
         )
 
     def delete(
         self,
-        consumer_name: str,
+        consumer_id: str,
         *,
         account_id: str,
-        name: str,
+        queue_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -154,6 +160,10 @@ class Consumers(SyncAPIResource):
         Args:
           account_id: Identifier
 
+          queue_id: Identifier
+
+          consumer_id: Identifier
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -164,14 +174,14 @@ class Consumers(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
-        if not consumer_name:
-            raise ValueError(f"Expected a non-empty value for `consumer_name` but received {consumer_name!r}")
+        if not queue_id:
+            raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
+        if not consumer_id:
+            raise ValueError(f"Expected a non-empty value for `consumer_id` but received {consumer_id!r}")
         return cast(
             Optional[ConsumerDeleteResponse],
             self._delete(
-                f"/accounts/{account_id}/workers/queues/{name}/consumers/{consumer_name}",
+                f"/accounts/{account_id}/queues/{queue_id}/consumers/{consumer_id}",
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -187,7 +197,7 @@ class Consumers(SyncAPIResource):
 
     def get(
         self,
-        name: str,
+        queue_id: str,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -203,6 +213,8 @@ class Consumers(SyncAPIResource):
         Args:
           account_id: Identifier
 
+          queue_id: Identifier
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -213,10 +225,10 @@ class Consumers(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        if not queue_id:
+            raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         return self._get(
-            f"/accounts/{account_id}/workers/queues/{name}/consumers",
+            f"/accounts/{account_id}/queues/{queue_id}/consumers",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -239,7 +251,7 @@ class AsyncConsumers(AsyncAPIResource):
 
     async def create(
         self,
-        name: str,
+        queue_id: str,
         *,
         account_id: str,
         body: object,
@@ -249,12 +261,14 @@ class AsyncConsumers(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[WorkersConsumerCreated]:
+    ) -> Optional[ConsumerCreateResponse]:
         """
         Creates a new consumer for a queue.
 
         Args:
           account_id: Identifier
+
+          queue_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -266,10 +280,10 @@ class AsyncConsumers(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        if not queue_id:
+            raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/workers/queues/{name}/consumers",
+            f"/accounts/{account_id}/queues/{queue_id}/consumers",
             body=await async_maybe_transform(body, consumer_create_params.ConsumerCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -278,15 +292,15 @@ class AsyncConsumers(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[WorkersConsumerCreated]], ResultWrapper[WorkersConsumerCreated]),
+            cast_to=cast(Type[Optional[ConsumerCreateResponse]], ResultWrapper[ConsumerCreateResponse]),
         )
 
     async def update(
         self,
-        consumer_name: str,
+        consumer_id: str,
         *,
         account_id: str,
-        name: str,
+        queue_id: str,
         body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -294,12 +308,16 @@ class AsyncConsumers(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[WorkersConsumerUpdated]:
+    ) -> Optional[ConsumerUpdateResponse]:
         """
         Updates the consumer for a queue, or creates one if it does not exist.
 
         Args:
           account_id: Identifier
+
+          queue_id: Identifier
+
+          consumer_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -311,12 +329,12 @@ class AsyncConsumers(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
-        if not consumer_name:
-            raise ValueError(f"Expected a non-empty value for `consumer_name` but received {consumer_name!r}")
+        if not queue_id:
+            raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
+        if not consumer_id:
+            raise ValueError(f"Expected a non-empty value for `consumer_id` but received {consumer_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/workers/queues/{name}/consumers/{consumer_name}",
+            f"/accounts/{account_id}/queues/{queue_id}/consumers/{consumer_id}",
             body=await async_maybe_transform(body, consumer_update_params.ConsumerUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -325,15 +343,15 @@ class AsyncConsumers(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[WorkersConsumerUpdated]], ResultWrapper[WorkersConsumerUpdated]),
+            cast_to=cast(Type[Optional[ConsumerUpdateResponse]], ResultWrapper[ConsumerUpdateResponse]),
         )
 
     async def delete(
         self,
-        consumer_name: str,
+        consumer_id: str,
         *,
         account_id: str,
-        name: str,
+        queue_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -347,6 +365,10 @@ class AsyncConsumers(AsyncAPIResource):
         Args:
           account_id: Identifier
 
+          queue_id: Identifier
+
+          consumer_id: Identifier
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -357,14 +379,14 @@ class AsyncConsumers(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
-        if not consumer_name:
-            raise ValueError(f"Expected a non-empty value for `consumer_name` but received {consumer_name!r}")
+        if not queue_id:
+            raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
+        if not consumer_id:
+            raise ValueError(f"Expected a non-empty value for `consumer_id` but received {consumer_id!r}")
         return cast(
             Optional[ConsumerDeleteResponse],
             await self._delete(
-                f"/accounts/{account_id}/workers/queues/{name}/consumers/{consumer_name}",
+                f"/accounts/{account_id}/queues/{queue_id}/consumers/{consumer_id}",
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -380,7 +402,7 @@ class AsyncConsumers(AsyncAPIResource):
 
     async def get(
         self,
-        name: str,
+        queue_id: str,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -396,6 +418,8 @@ class AsyncConsumers(AsyncAPIResource):
         Args:
           account_id: Identifier
 
+          queue_id: Identifier
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -406,10 +430,10 @@ class AsyncConsumers(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        if not queue_id:
+            raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/workers/queues/{name}/consumers",
+            f"/accounts/{account_id}/queues/{queue_id}/consumers",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
