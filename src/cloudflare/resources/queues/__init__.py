@@ -8,6 +8,14 @@ from .queues import (
     QueuesWithStreamingResponse,
     AsyncQueuesWithStreamingResponse,
 )
+from .messages import (
+    Messages,
+    AsyncMessages,
+    MessagesWithRawResponse,
+    AsyncMessagesWithRawResponse,
+    MessagesWithStreamingResponse,
+    AsyncMessagesWithStreamingResponse,
+)
 from .consumers import (
     Consumers,
     AsyncConsumers,
@@ -24,6 +32,12 @@ __all__ = [
     "AsyncConsumersWithRawResponse",
     "ConsumersWithStreamingResponse",
     "AsyncConsumersWithStreamingResponse",
+    "Messages",
+    "AsyncMessages",
+    "MessagesWithRawResponse",
+    "AsyncMessagesWithRawResponse",
+    "MessagesWithStreamingResponse",
+    "AsyncMessagesWithStreamingResponse",
     "Queues",
     "AsyncQueues",
     "QueuesWithRawResponse",

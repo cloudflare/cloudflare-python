@@ -4,7 +4,7 @@ from typing import Optional
 
 from ..._models import BaseModel
 
-__all__ = ["WorkersConsumerCreated", "Settings"]
+__all__ = ["ConsumerUpdateResponse", "Settings"]
 
 
 class Settings(BaseModel):
@@ -15,7 +15,7 @@ class Settings(BaseModel):
     max_wait_time_ms: Optional[float] = None
 
 
-class WorkersConsumerCreated(BaseModel):
+class ConsumerUpdateResponse(BaseModel):
     created_on: Optional[object] = None
 
     dead_letter_queue: Optional[str] = None

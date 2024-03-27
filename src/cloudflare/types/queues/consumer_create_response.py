@@ -4,18 +4,19 @@ from typing import Optional
 
 from ..._models import BaseModel
 
-__all__ = ["WorkersConsumerUpdated", "Settings"]
+__all__ = ["ConsumerCreateResponse", "Settings"]
 
 
 class Settings(BaseModel):
     batch_size: Optional[float] = None
+    """The maximum number of messages to include in a batch"""
 
     max_retries: Optional[float] = None
 
     max_wait_time_ms: Optional[float] = None
 
 
-class WorkersConsumerUpdated(BaseModel):
+class ConsumerCreateResponse(BaseModel):
     created_on: Optional[object] = None
 
     dead_letter_queue: Optional[str] = None
