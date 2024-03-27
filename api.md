@@ -2990,20 +2990,43 @@ from cloudflare.types import (
     WorkersQueue,
     WorkersQueueCreated,
     WorkersQueueUpdated,
+    QueueCreateResponse,
+    QueueUpdateResponse,
     QueueListResponse,
     QueueDeleteResponse,
+    QueueGetResponse,
 )
 ```
 
 Methods:
 
-- <code title="post /accounts/{account_id}/workers/queues">client.queues.<a href="./src/cloudflare/resources/queues/queues.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/queue_create_params.py">params</a>) -> <a href="./src/cloudflare/types/workers_queue_created.py">Optional</a></code>
-- <code title="put /accounts/{account_id}/workers/queues/{name}">client.queues.<a href="./src/cloudflare/resources/queues/queues.py">update</a>(name, \*, account_id, \*\*<a href="src/cloudflare/types/queue_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workers_queue_updated.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/workers/queues">client.queues.<a href="./src/cloudflare/resources/queues/queues.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/queue_list_response.py">Optional</a></code>
-- <code title="delete /accounts/{account_id}/workers/queues/{name}">client.queues.<a href="./src/cloudflare/resources/queues/queues.py">delete</a>(name, \*, account_id) -> <a href="./src/cloudflare/types/queue_delete_response.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/workers/queues/{name}">client.queues.<a href="./src/cloudflare/resources/queues/queues.py">get</a>(name, \*, account_id) -> <a href="./src/cloudflare/types/workers_queue.py">Optional</a></code>
+- <code title="post /accounts/{account_id}/queues">client.queues.<a href="./src/cloudflare/resources/queues/queues.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/queue_create_params.py">params</a>) -> <a href="./src/cloudflare/types/queue_create_response.py">Optional</a></code>
+- <code title="put /accounts/{account_id}/queues/{queue_id}">client.queues.<a href="./src/cloudflare/resources/queues/queues.py">update</a>(queue_id, \*, account_id, \*\*<a href="src/cloudflare/types/queue_update_params.py">params</a>) -> <a href="./src/cloudflare/types/queue_update_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/queues">client.queues.<a href="./src/cloudflare/resources/queues/queues.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/queue_list_response.py">Optional</a></code>
+- <code title="delete /accounts/{account_id}/queues/{queue_id}">client.queues.<a href="./src/cloudflare/resources/queues/queues.py">delete</a>(queue_id, \*, account_id) -> <a href="./src/cloudflare/types/queue_delete_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/queues/{queue_id}">client.queues.<a href="./src/cloudflare/resources/queues/queues.py">get</a>(queue_id, \*, account_id) -> <a href="./src/cloudflare/types/queue_get_response.py">Optional</a></code>
 
 ## Consumers
+
+Types:
+
+```python
+from cloudflare.types.queues import (
+    ConsumerCreateResponse,
+    ConsumerUpdateResponse,
+    ConsumerDeleteResponse,
+    ConsumerGetResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/queues/{queue_id}/consumers">client.queues.consumers.<a href="./src/cloudflare/resources/queues/consumers.py">create</a>(queue_id, \*, account_id, \*\*<a href="src/cloudflare/types/queues/consumer_create_params.py">params</a>) -> <a href="./src/cloudflare/types/queues/consumer_create_response.py">Optional</a></code>
+- <code title="put /accounts/{account_id}/queues/{queue_id}/consumers/{consumer_id}">client.queues.consumers.<a href="./src/cloudflare/resources/queues/consumers.py">update</a>(consumer_id, \*, account_id, queue_id, \*\*<a href="src/cloudflare/types/queues/consumer_update_params.py">params</a>) -> <a href="./src/cloudflare/types/queues/consumer_update_response.py">Optional</a></code>
+- <code title="delete /accounts/{account_id}/queues/{queue_id}/consumers/{consumer_id}">client.queues.consumers.<a href="./src/cloudflare/resources/queues/consumers.py">delete</a>(consumer_id, \*, account_id, queue_id) -> <a href="./src/cloudflare/types/queues/consumer_delete_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/queues/{queue_id}/consumers">client.queues.consumers.<a href="./src/cloudflare/resources/queues/consumers.py">get</a>(queue_id, \*, account_id) -> <a href="./src/cloudflare/types/queues/consumer_get_response.py">Optional</a></code>
+
+## Messages
 
 Types:
 
@@ -3012,17 +3035,15 @@ from cloudflare.types.queues import (
     WorkersConsumer,
     WorkersConsumerCreated,
     WorkersConsumerUpdated,
-    ConsumerDeleteResponse,
-    ConsumerGetResponse,
+    MessageAckResponse,
+    MessagePullResponse,
 )
 ```
 
 Methods:
 
-- <code title="post /accounts/{account_id}/workers/queues/{name}/consumers">client.queues.consumers.<a href="./src/cloudflare/resources/queues/consumers.py">create</a>(name, \*, account_id, \*\*<a href="src/cloudflare/types/queues/consumer_create_params.py">params</a>) -> <a href="./src/cloudflare/types/queues/workers_consumer_created.py">Optional</a></code>
-- <code title="put /accounts/{account_id}/workers/queues/{name}/consumers/{consumer_name}">client.queues.consumers.<a href="./src/cloudflare/resources/queues/consumers.py">update</a>(consumer_name, \*, account_id, name, \*\*<a href="src/cloudflare/types/queues/consumer_update_params.py">params</a>) -> <a href="./src/cloudflare/types/queues/workers_consumer_updated.py">Optional</a></code>
-- <code title="delete /accounts/{account_id}/workers/queues/{name}/consumers/{consumer_name}">client.queues.consumers.<a href="./src/cloudflare/resources/queues/consumers.py">delete</a>(consumer_name, \*, account_id, name) -> <a href="./src/cloudflare/types/queues/consumer_delete_response.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/workers/queues/{name}/consumers">client.queues.consumers.<a href="./src/cloudflare/resources/queues/consumers.py">get</a>(name, \*, account_id) -> <a href="./src/cloudflare/types/queues/consumer_get_response.py">Optional</a></code>
+- <code title="post /accounts/{account_id}/queues/{queue_id}/messages/ack">client.queues.messages.<a href="./src/cloudflare/resources/queues/messages.py">ack</a>(queue_id, \*, account_id, \*\*<a href="src/cloudflare/types/queues/message_ack_params.py">params</a>) -> <a href="./src/cloudflare/types/queues/message_ack_response.py">Optional</a></code>
+- <code title="post /accounts/{account_id}/queues/{queue_id}/messages/pull">client.queues.messages.<a href="./src/cloudflare/resources/queues/messages.py">pull</a>(queue_id, \*, account_id, \*\*<a href="src/cloudflare/types/queues/message_pull_params.py">params</a>) -> <a href="./src/cloudflare/types/queues/message_pull_response.py">Optional</a></code>
 
 # ManagedHeaders
 

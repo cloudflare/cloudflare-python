@@ -13,7 +13,6 @@ from .jdcloud_ips import JDCloudIPs as JDCloudIPs
 from .dnssec_dnssec import DNSSECDNSSEC as DNSSECDNSSEC
 from .load_balancer import LoadBalancer as LoadBalancer
 from .stream_videos import StreamVideos as StreamVideos
-from .workers_queue import WorkersQueue as WorkersQueue
 from .ip_list_params import IPListParams as IPListParams
 from .zones_page_rule import ZonesPageRule as ZonesPageRule
 from .ip_list_response import IPListResponse as IPListResponse
@@ -33,6 +32,7 @@ from .filter_list_params import FilterListParams as FilterListParams
 from .pcap_create_params import PCAPCreateParams as PCAPCreateParams
 from .pcap_list_response import PCAPListResponse as PCAPListResponse
 from .plan_list_response import PlanListResponse as PlanListResponse
+from .queue_get_response import QueueGetResponse as QueueGetResponse
 from .stream_list_params import StreamListParams as StreamListParams
 from .user_edit_response import UserEditResponse as UserEditResponse
 from .zone_create_params import ZoneCreateParams as ZoneCreateParams
@@ -56,14 +56,14 @@ from .audit_log_list_params import AuditLogListParams as AuditLogListParams
 from .calls_app_with_secret import CallsAppWithSecret as CallsAppWithSecret
 from .origin_ca_certificate import OriginCACertificate as OriginCACertificate
 from .pagerule_get_response import PageruleGetResponse as PageruleGetResponse
+from .queue_create_response import QueueCreateResponse as QueueCreateResponse
 from .queue_delete_response import QueueDeleteResponse as QueueDeleteResponse
+from .queue_update_response import QueueUpdateResponse as QueueUpdateResponse
 from .ruleset_create_params import RulesetCreateParams as RulesetCreateParams
 from .ruleset_update_params import RulesetUpdateParams as RulesetUpdateParams
 from .snippet_list_response import SnippetListResponse as SnippetListResponse
 from .snippet_update_params import SnippetUpdateParams as SnippetUpdateParams
 from .speed_delete_response import SpeedDeleteResponse as SpeedDeleteResponse
-from .workers_queue_created import WorkersQueueCreated as WorkersQueueCreated
-from .workers_queue_updated import WorkersQueueUpdated as WorkersQueueUpdated
 from .dnssec_delete_response import DNSSECDeleteResponse as DNSSECDeleteResponse
 from .filter_create_response import FilterCreateResponse as FilterCreateResponse
 from .membership_list_params import MembershipListParams as MembershipListParams
