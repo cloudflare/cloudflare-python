@@ -288,9 +288,9 @@ class AccessRules(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[AccessRuleEditResponse]:
         """
-        Updates an IP Access rule defined at the account level.
+        Updates an IP Access rule defined.
 
-        Note: This operation will affect all zones in the account.
+        Note: This operation will affect all zones in the account or zone.
 
         Args:
           configuration: The rule configuration.
@@ -662,9 +662,9 @@ class AsyncAccessRules(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[AccessRuleEditResponse]:
         """
-        Updates an IP Access rule defined at the account level.
+        Updates an IP Access rule defined.
 
-        Note: This operation will affect all zones in the account.
+        Note: This operation will affect all zones in the account or zone.
 
         Args:
           configuration: The rule configuration.
