@@ -11,6 +11,7 @@ class ConsumerUpdateParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier"""
 
-    name: Required[str]
+    queue_id: Required[str]
+    """Identifier"""
 
     body: Required[object]

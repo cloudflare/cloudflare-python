@@ -7,11 +7,11 @@ from typing import Any, Type, Optional, cast
 import httpx
 
 from ...types import (
-    WorkersQueue,
+    QueueGetResponse,
     QueueListResponse,
+    QueueCreateResponse,
     QueueDeleteResponse,
-    WorkersQueueCreated,
-    WorkersQueueUpdated,
+    QueueUpdateResponse,
     queue_create_params,
     queue_update_params,
 )
@@ -19,6 +19,14 @@ from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
     async_maybe_transform,
+)
+from .messages import (
+    Messages,
+    AsyncMessages,
+    MessagesWithRawResponse,
+    AsyncMessagesWithRawResponse,
+    MessagesWithStreamingResponse,
+    AsyncMessagesWithStreamingResponse,
 )
 from ..._compat import cached_property
 from .consumers import (
@@ -50,6 +58,10 @@ class Queues(SyncAPIResource):
         return Consumers(self._client)
 
     @cached_property
+    def messages(self) -> Messages:
+        return Messages(self._client)
+
+    @cached_property
     def with_raw_response(self) -> QueuesWithRawResponse:
         return QueuesWithRawResponse(self)
 
@@ -68,7 +80,7 @@ class Queues(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[WorkersQueueCreated]:
+    ) -> Optional[QueueCreateResponse]:
         """
         Creates a new queue.
 
@@ -86,7 +98,7 @@ class Queues(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/workers/queues",
+            f"/accounts/{account_id}/queues",
             body=maybe_transform(body, queue_create_params.QueueCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -95,12 +107,12 @@ class Queues(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[WorkersQueueCreated]], ResultWrapper[WorkersQueueCreated]),
+            cast_to=cast(Type[Optional[QueueCreateResponse]], ResultWrapper[QueueCreateResponse]),
         )
 
     def update(
         self,
-        name: str,
+        queue_id: str,
         *,
         account_id: str,
         body: object,
@@ -110,12 +122,14 @@ class Queues(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[WorkersQueueUpdated]:
+    ) -> Optional[QueueUpdateResponse]:
         """
         Updates a queue.
 
         Args:
           account_id: Identifier
+
+          queue_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -127,10 +141,10 @@ class Queues(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        if not queue_id:
+            raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         return self._put(
-            f"/accounts/{account_id}/workers/queues/{name}",
+            f"/accounts/{account_id}/queues/{queue_id}",
             body=maybe_transform(body, queue_update_params.QueueUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -139,7 +153,7 @@ class Queues(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[WorkersQueueUpdated]], ResultWrapper[WorkersQueueUpdated]),
+            cast_to=cast(Type[Optional[QueueUpdateResponse]], ResultWrapper[QueueUpdateResponse]),
         )
 
     def list(
@@ -170,7 +184,7 @@ class Queues(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
-            f"/accounts/{account_id}/workers/queues",
+            f"/accounts/{account_id}/queues",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -183,7 +197,7 @@ class Queues(SyncAPIResource):
 
     def delete(
         self,
-        name: str,
+        queue_id: str,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -199,6 +213,8 @@ class Queues(SyncAPIResource):
         Args:
           account_id: Identifier
 
+          queue_id: Identifier
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -209,12 +225,12 @@ class Queues(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        if not queue_id:
+            raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         return cast(
             Optional[QueueDeleteResponse],
             self._delete(
-                f"/accounts/{account_id}/workers/queues/{name}",
+                f"/accounts/{account_id}/queues/{queue_id}",
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -230,7 +246,7 @@ class Queues(SyncAPIResource):
 
     def get(
         self,
-        name: str,
+        queue_id: str,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -239,12 +255,14 @@ class Queues(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[WorkersQueue]:
+    ) -> Optional[QueueGetResponse]:
         """
         Get information about a specific queue.
 
         Args:
           account_id: Identifier
+
+          queue_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -256,10 +274,10 @@ class Queues(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        if not queue_id:
+            raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         return self._get(
-            f"/accounts/{account_id}/workers/queues/{name}",
+            f"/accounts/{account_id}/queues/{queue_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -267,7 +285,7 @@ class Queues(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[WorkersQueue]], ResultWrapper[WorkersQueue]),
+            cast_to=cast(Type[Optional[QueueGetResponse]], ResultWrapper[QueueGetResponse]),
         )
 
 
@@ -275,6 +293,10 @@ class AsyncQueues(AsyncAPIResource):
     @cached_property
     def consumers(self) -> AsyncConsumers:
         return AsyncConsumers(self._client)
+
+    @cached_property
+    def messages(self) -> AsyncMessages:
+        return AsyncMessages(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncQueuesWithRawResponse:
@@ -295,7 +317,7 @@ class AsyncQueues(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[WorkersQueueCreated]:
+    ) -> Optional[QueueCreateResponse]:
         """
         Creates a new queue.
 
@@ -313,7 +335,7 @@ class AsyncQueues(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/workers/queues",
+            f"/accounts/{account_id}/queues",
             body=await async_maybe_transform(body, queue_create_params.QueueCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -322,12 +344,12 @@ class AsyncQueues(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[WorkersQueueCreated]], ResultWrapper[WorkersQueueCreated]),
+            cast_to=cast(Type[Optional[QueueCreateResponse]], ResultWrapper[QueueCreateResponse]),
         )
 
     async def update(
         self,
-        name: str,
+        queue_id: str,
         *,
         account_id: str,
         body: object,
@@ -337,12 +359,14 @@ class AsyncQueues(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[WorkersQueueUpdated]:
+    ) -> Optional[QueueUpdateResponse]:
         """
         Updates a queue.
 
         Args:
           account_id: Identifier
+
+          queue_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -354,10 +378,10 @@ class AsyncQueues(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        if not queue_id:
+            raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/workers/queues/{name}",
+            f"/accounts/{account_id}/queues/{queue_id}",
             body=await async_maybe_transform(body, queue_update_params.QueueUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -366,7 +390,7 @@ class AsyncQueues(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[WorkersQueueUpdated]], ResultWrapper[WorkersQueueUpdated]),
+            cast_to=cast(Type[Optional[QueueUpdateResponse]], ResultWrapper[QueueUpdateResponse]),
         )
 
     async def list(
@@ -397,7 +421,7 @@ class AsyncQueues(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/workers/queues",
+            f"/accounts/{account_id}/queues",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -410,7 +434,7 @@ class AsyncQueues(AsyncAPIResource):
 
     async def delete(
         self,
-        name: str,
+        queue_id: str,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -426,6 +450,8 @@ class AsyncQueues(AsyncAPIResource):
         Args:
           account_id: Identifier
 
+          queue_id: Identifier
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -436,12 +462,12 @@ class AsyncQueues(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        if not queue_id:
+            raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         return cast(
             Optional[QueueDeleteResponse],
             await self._delete(
-                f"/accounts/{account_id}/workers/queues/{name}",
+                f"/accounts/{account_id}/queues/{queue_id}",
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -457,7 +483,7 @@ class AsyncQueues(AsyncAPIResource):
 
     async def get(
         self,
-        name: str,
+        queue_id: str,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -466,12 +492,14 @@ class AsyncQueues(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[WorkersQueue]:
+    ) -> Optional[QueueGetResponse]:
         """
         Get information about a specific queue.
 
         Args:
           account_id: Identifier
+
+          queue_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -483,10 +511,10 @@ class AsyncQueues(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        if not queue_id:
+            raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/workers/queues/{name}",
+            f"/accounts/{account_id}/queues/{queue_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -494,7 +522,7 @@ class AsyncQueues(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[WorkersQueue]], ResultWrapper[WorkersQueue]),
+            cast_to=cast(Type[Optional[QueueGetResponse]], ResultWrapper[QueueGetResponse]),
         )
 
 
@@ -522,6 +550,10 @@ class QueuesWithRawResponse:
     def consumers(self) -> ConsumersWithRawResponse:
         return ConsumersWithRawResponse(self._queues.consumers)
 
+    @cached_property
+    def messages(self) -> MessagesWithRawResponse:
+        return MessagesWithRawResponse(self._queues.messages)
+
 
 class AsyncQueuesWithRawResponse:
     def __init__(self, queues: AsyncQueues) -> None:
@@ -546,6 +578,10 @@ class AsyncQueuesWithRawResponse:
     @cached_property
     def consumers(self) -> AsyncConsumersWithRawResponse:
         return AsyncConsumersWithRawResponse(self._queues.consumers)
+
+    @cached_property
+    def messages(self) -> AsyncMessagesWithRawResponse:
+        return AsyncMessagesWithRawResponse(self._queues.messages)
 
 
 class QueuesWithStreamingResponse:
@@ -572,6 +608,10 @@ class QueuesWithStreamingResponse:
     def consumers(self) -> ConsumersWithStreamingResponse:
         return ConsumersWithStreamingResponse(self._queues.consumers)
 
+    @cached_property
+    def messages(self) -> MessagesWithStreamingResponse:
+        return MessagesWithStreamingResponse(self._queues.messages)
+
 
 class AsyncQueuesWithStreamingResponse:
     def __init__(self, queues: AsyncQueues) -> None:
@@ -596,3 +636,7 @@ class AsyncQueuesWithStreamingResponse:
     @cached_property
     def consumers(self) -> AsyncConsumersWithStreamingResponse:
         return AsyncConsumersWithStreamingResponse(self._queues.consumers)
+
+    @cached_property
+    def messages(self) -> AsyncMessagesWithStreamingResponse:
+        return AsyncMessagesWithStreamingResponse(self._queues.messages)
