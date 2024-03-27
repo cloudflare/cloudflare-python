@@ -1,6 +1,6 @@
 [project]
 name = "cloudflare"
-version = "3.0.0-beta.5"
+version = "3.0.0-beta.6"
 description = "The official Python library for the cloudflare API"
 readme = "README.md"
 license = "Apache-2.0"
