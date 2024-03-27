@@ -436,7 +436,7 @@ class Rules(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RulesetsRulesetResponse:
         """
-        Updates an existing rule in an account ruleset.
+        Updates an existing rule in an account or zone ruleset.
 
         Args:
           ruleset_id: The unique ID of the ruleset.
@@ -497,7 +497,7 @@ class Rules(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RulesetsRulesetResponse:
         """
-        Updates an existing rule in an account ruleset.
+        Updates an existing rule in an account or zone ruleset.
 
         Args:
           ruleset_id: The unique ID of the ruleset.
@@ -558,7 +558,7 @@ class Rules(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RulesetsRulesetResponse:
         """
-        Updates an existing rule in an account ruleset.
+        Updates an existing rule in an account or zone ruleset.
 
         Args:
           ruleset_id: The unique ID of the ruleset.
@@ -619,7 +619,7 @@ class Rules(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RulesetsRulesetResponse:
         """
-        Updates an existing rule in an account ruleset.
+        Updates an existing rule in an account or zone ruleset.
 
         Args:
           ruleset_id: The unique ID of the ruleset.
@@ -1133,7 +1133,7 @@ class AsyncRules(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RulesetsRulesetResponse:
         """
-        Updates an existing rule in an account ruleset.
+        Updates an existing rule in an account or zone ruleset.
 
         Args:
           ruleset_id: The unique ID of the ruleset.
@@ -1194,7 +1194,7 @@ class AsyncRules(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RulesetsRulesetResponse:
         """
-        Updates an existing rule in an account ruleset.
+        Updates an existing rule in an account or zone ruleset.
 
         Args:
           ruleset_id: The unique ID of the ruleset.
@@ -1255,7 +1255,7 @@ class AsyncRules(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RulesetsRulesetResponse:
         """
-        Updates an existing rule in an account ruleset.
+        Updates an existing rule in an account or zone ruleset.
 
         Args:
           ruleset_id: The unique ID of the ruleset.
@@ -1316,7 +1316,7 @@ class AsyncRules(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RulesetsRulesetResponse:
         """
-        Updates an existing rule in an account ruleset.
+        Updates an existing rule in an account or zone ruleset.
 
         Args:
           ruleset_id: The unique ID of the ruleset.
