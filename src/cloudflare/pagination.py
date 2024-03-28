@@ -257,14 +257,14 @@ class AsyncCursorLimitPagination(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
 
 
 class SyncSinglePage(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
-    items: List[_T]
+    result: List[_T]
 
     @override
     def _get_page_items(self) -> List[_T]:
-        items = self.items
-        if not items:
+        result = self.result
+        if not result:
             return []
-        return items
+        return result
 
     @override
     def next_page_info(self) -> None:
@@ -279,20 +279,20 @@ class SyncSinglePage(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
         return cls.construct(
             None,
             **{
-                **(cast(Mapping[str, Any], data) if is_mapping(data) else {"items": data}),
+                **(cast(Mapping[str, Any], data) if is_mapping(data) else {"result": data}),
             },
         )
 
 
 class AsyncSinglePage(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
-    items: List[_T]
+    result: List[_T]
 
     @override
     def _get_page_items(self) -> List[_T]:
-        items = self.items
-        if not items:
+        result = self.result
+        if not result:
             return []
-        return items
+        return result
 
     @override
     def next_page_info(self) -> None:
@@ -307,6 +307,6 @@ class AsyncSinglePage(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
         return cls.construct(
             None,
             **{
-                **(cast(Mapping[str, Any], data) if is_mapping(data) else {"items": data}),
+                **(cast(Mapping[str, Any], data) if is_mapping(data) else {"result": data}),
             },
         )
