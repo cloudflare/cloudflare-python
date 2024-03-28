@@ -7,7 +7,7 @@ from pydantic import Field as FieldInfo
 
 from ...._models import BaseModel
 
-__all__ = ["ImageVariant", "Variant", "VariantOptions"]
+__all__ = ["V1ImageVariant", "Variant", "VariantOptions"]
 
 
 class VariantOptions(BaseModel):
@@ -40,5 +40,5 @@ class Variant(BaseModel):
     """
 
 
-class ImageVariant(BaseModel):
+class V1ImageVariant(BaseModel):
     variant: Optional[Variant] = None
