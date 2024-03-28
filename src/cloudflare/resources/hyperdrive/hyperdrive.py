@@ -13,39 +13,39 @@ from .configs import (
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 
-__all__ = ["Hyperdrive", "AsyncHyperdrive"]
+__all__ = ["HyperdriveResource", "AsyncHyperdriveResource"]
 
 
-class Hyperdrive(SyncAPIResource):
+class HyperdriveResource(SyncAPIResource):
     @cached_property
     def configs(self) -> Configs:
         return Configs(self._client)
 
     @cached_property
-    def with_raw_response(self) -> HyperdriveWithRawResponse:
-        return HyperdriveWithRawResponse(self)
+    def with_raw_response(self) -> HyperdriveResourceWithRawResponse:
+        return HyperdriveResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> HyperdriveWithStreamingResponse:
-        return HyperdriveWithStreamingResponse(self)
+    def with_streaming_response(self) -> HyperdriveResourceWithStreamingResponse:
+        return HyperdriveResourceWithStreamingResponse(self)
 
 
-class AsyncHyperdrive(AsyncAPIResource):
+class AsyncHyperdriveResource(AsyncAPIResource):
     @cached_property
     def configs(self) -> AsyncConfigs:
         return AsyncConfigs(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncHyperdriveWithRawResponse:
-        return AsyncHyperdriveWithRawResponse(self)
+    def with_raw_response(self) -> AsyncHyperdriveResourceWithRawResponse:
+        return AsyncHyperdriveResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncHyperdriveWithStreamingResponse:
-        return AsyncHyperdriveWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncHyperdriveResourceWithStreamingResponse:
+        return AsyncHyperdriveResourceWithStreamingResponse(self)
 
 
-class HyperdriveWithRawResponse:
-    def __init__(self, hyperdrive: Hyperdrive) -> None:
+class HyperdriveResourceWithRawResponse:
+    def __init__(self, hyperdrive: HyperdriveResource) -> None:
         self._hyperdrive = hyperdrive
 
     @cached_property
@@ -53,8 +53,8 @@ class HyperdriveWithRawResponse:
         return ConfigsWithRawResponse(self._hyperdrive.configs)
 
 
-class AsyncHyperdriveWithRawResponse:
-    def __init__(self, hyperdrive: AsyncHyperdrive) -> None:
+class AsyncHyperdriveResourceWithRawResponse:
+    def __init__(self, hyperdrive: AsyncHyperdriveResource) -> None:
         self._hyperdrive = hyperdrive
 
     @cached_property
@@ -62,8 +62,8 @@ class AsyncHyperdriveWithRawResponse:
         return AsyncConfigsWithRawResponse(self._hyperdrive.configs)
 
 
-class HyperdriveWithStreamingResponse:
-    def __init__(self, hyperdrive: Hyperdrive) -> None:
+class HyperdriveResourceWithStreamingResponse:
+    def __init__(self, hyperdrive: HyperdriveResource) -> None:
         self._hyperdrive = hyperdrive
 
     @cached_property
@@ -71,8 +71,8 @@ class HyperdriveWithStreamingResponse:
         return ConfigsWithStreamingResponse(self._hyperdrive.configs)
 
 
-class AsyncHyperdriveWithStreamingResponse:
-    def __init__(self, hyperdrive: AsyncHyperdrive) -> None:
+class AsyncHyperdriveResourceWithStreamingResponse:
+    def __init__(self, hyperdrive: AsyncHyperdriveResource) -> None:
         self._hyperdrive = hyperdrive
 
     @cached_property
