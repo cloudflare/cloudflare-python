@@ -48,3 +48,6 @@ class RouteTimeseriesParams(TypedDict, total=False):
 
     format: Literal["JSON", "CSV"]
     """Format results are returned in."""
+
+    location: str
+    """Location Alpha2 code."""

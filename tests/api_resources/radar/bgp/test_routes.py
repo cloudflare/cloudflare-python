@@ -155,6 +155,7 @@ class TestRoutes:
             date_range="7d",
             date_start=parse_datetime("2023-09-01T11:41:33.782Z"),
             format="JSON",
+            location="US",
         )
         assert_matches_type(RouteTimeseriesResponse, route, path=["response"])
 
@@ -316,6 +317,7 @@ class TestAsyncRoutes:
             date_range="7d",
             date_start=parse_datetime("2023-09-01T11:41:33.782Z"),
             format="JSON",
+            location="US",
         )
         assert_matches_type(RouteTimeseriesResponse, route, path=["response"])
 
