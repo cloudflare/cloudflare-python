@@ -1,8 +1,11 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Generic, TypeVar, Optional, cast
+from typing import Any, List, Type, Generic, Mapping, TypeVar, Optional, cast
 from typing_extensions import override
 
+from httpx import Response
+
+from ._utils import is_mapping
 from ._models import BaseModel, GenericModel
 from ._base_client import BasePage, PageInfo, BaseSyncPage, BaseAsyncPage
 
@@ -23,6 +26,8 @@ __all__ = [
     "SyncSinglePage",
     "AsyncSinglePage",
 ]
+
+_BaseModelT = TypeVar("_BaseModelT", bound=BaseModel)
 
 _T = TypeVar("_T")
 
@@ -269,6 +274,15 @@ class SyncSinglePage(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
         """
         return None
 
+    @classmethod
+    def build(cls: Type[_BaseModelT], *, response: Response, data: object) -> _BaseModelT:  # noqa: ARG003
+        return cls.construct(
+            None,
+            **{
+                **(cast(Mapping[str, Any], data) if is_mapping(data) else {"items": data}),
+            },
+        )
+
 
 class AsyncSinglePage(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
     items: List[_T]
@@ -287,3 +301,12 @@ class AsyncSinglePage(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
         so there will never be a next page.
         """
         return None
+
+    @classmethod
+    def build(cls: Type[_BaseModelT], *, response: Response, data: object) -> _BaseModelT:  # noqa: ARG003
+        return cls.construct(
+            None,
+            **{
+                **(cast(Mapping[str, Any], data) if is_mapping(data) else {"items": data}),
+            },
+        )

@@ -14,10 +14,10 @@ class TraceCreateResponse(BaseModel):
     status_code: Optional[int] = None
     """HTTP Status code of zone response"""
 
-    trace: Optional["RequestTracerTrace"] = None
+    trace: Optional["Trace"] = None
 
 
-from .request_tracer_trace import RequestTracerTrace
+from .trace import Trace
 
 if PYDANTIC_V2:
     TraceCreateResponse.model_rebuild()
