@@ -4,9 +4,9 @@ from typing import Optional
 
 from ..._models import BaseModel
 
-__all__ = ["TLSCertificatesAndHostnamesUUIDObject"]
+__all__ = ["DCVDelegationUUID"]
 
 
-class TLSCertificatesAndHostnamesUUIDObject(BaseModel):
+class DCVDelegationUUID(BaseModel):
     uuid: Optional[str] = None
     """The DCV Delegation unique identifier."""

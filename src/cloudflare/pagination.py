@@ -1,11 +1,8 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Any, List, Type, Generic, Mapping, TypeVar, Optional, cast
+from typing import List, Generic, TypeVar, Optional, cast
 from typing_extensions import override
 
-from httpx import Response
-
-from ._utils import is_mapping
 from ._models import BaseModel, GenericModel
 from ._base_client import BasePage, PageInfo, BaseSyncPage, BaseAsyncPage
 
@@ -26,8 +23,6 @@ __all__ = [
     "SyncSinglePage",
     "AsyncSinglePage",
 ]
-
-_BaseModelT = TypeVar("_BaseModelT", bound=BaseModel)
 
 _T = TypeVar("_T")
 
@@ -257,14 +252,14 @@ class AsyncCursorLimitPagination(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
 
 
 class SyncSinglePage(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
-    result: List[_T]
+    items: List[_T]
 
     @override
     def _get_page_items(self) -> List[_T]:
-        result = self.result
-        if not result:
+        items = self.items
+        if not items:
             return []
-        return result
+        return items
 
     @override
     def next_page_info(self) -> None:
@@ -273,26 +268,17 @@ class SyncSinglePage(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
         so there will never be a next page.
         """
         return None
-
-    @classmethod
-    def build(cls: Type[_BaseModelT], *, response: Response, data: object) -> _BaseModelT:  # noqa: ARG003
-        return cls.construct(
-            None,
-            **{
-                **(cast(Mapping[str, Any], data) if is_mapping(data) else {"result": data}),
-            },
-        )
 
 
 class AsyncSinglePage(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
-    result: List[_T]
+    items: List[_T]
 
     @override
     def _get_page_items(self) -> List[_T]:
-        result = self.result
-        if not result:
+        items = self.items
+        if not items:
             return []
-        return result
+        return items
 
     @override
     def next_page_info(self) -> None:
@@ -301,12 +287,3 @@ class AsyncSinglePage(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
         so there will never be a next page.
         """
         return None
-
-    @classmethod
-    def build(cls: Type[_BaseModelT], *, response: Response, data: object) -> _BaseModelT:  # noqa: ARG003
-        return cls.construct(
-            None,
-            **{
-                **(cast(Mapping[str, Any], data) if is_mapping(data) else {"result": data}),
-            },
-        )

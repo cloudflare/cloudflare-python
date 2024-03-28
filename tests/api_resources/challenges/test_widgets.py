@@ -11,8 +11,8 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from cloudflare.types.challenges import (
-    NcChallengesAdminWidgetList,
-    NcChallengesAdminWidgetDetail,
+    ChallengesWidget,
+    ChallengesWidgetList,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -30,7 +30,7 @@ class TestWidgets:
             mode="invisible",
             name="blog.cloudflare.com login form",
         )
-        assert_matches_type(Optional[NcChallengesAdminWidgetDetail], widget, path=["response"])
+        assert_matches_type(Optional[ChallengesWidget], widget, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -49,7 +49,7 @@ class TestWidgets:
             offlabel=False,
             region="world",
         )
-        assert_matches_type(Optional[NcChallengesAdminWidgetDetail], widget, path=["response"])
+        assert_matches_type(Optional[ChallengesWidget], widget, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -64,7 +64,7 @@ class TestWidgets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         widget = response.parse()
-        assert_matches_type(Optional[NcChallengesAdminWidgetDetail], widget, path=["response"])
+        assert_matches_type(Optional[ChallengesWidget], widget, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -79,7 +79,7 @@ class TestWidgets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             widget = response.parse()
-            assert_matches_type(Optional[NcChallengesAdminWidgetDetail], widget, path=["response"])
+            assert_matches_type(Optional[ChallengesWidget], widget, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -104,7 +104,7 @@ class TestWidgets:
             mode="invisible",
             name="blog.cloudflare.com login form",
         )
-        assert_matches_type(Optional[NcChallengesAdminWidgetDetail], widget, path=["response"])
+        assert_matches_type(Optional[ChallengesWidget], widget, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -119,7 +119,7 @@ class TestWidgets:
             clearance_level="interactive",
             offlabel=False,
         )
-        assert_matches_type(Optional[NcChallengesAdminWidgetDetail], widget, path=["response"])
+        assert_matches_type(Optional[ChallengesWidget], widget, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -135,7 +135,7 @@ class TestWidgets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         widget = response.parse()
-        assert_matches_type(Optional[NcChallengesAdminWidgetDetail], widget, path=["response"])
+        assert_matches_type(Optional[ChallengesWidget], widget, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -151,7 +151,7 @@ class TestWidgets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             widget = response.parse()
-            assert_matches_type(Optional[NcChallengesAdminWidgetDetail], widget, path=["response"])
+            assert_matches_type(Optional[ChallengesWidget], widget, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -182,7 +182,7 @@ class TestWidgets:
         widget = client.challenges.widgets.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncV4PagePaginationArray[NcChallengesAdminWidgetList], widget, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[ChallengesWidgetList], widget, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -194,7 +194,7 @@ class TestWidgets:
             page=1,
             per_page=5,
         )
-        assert_matches_type(SyncV4PagePaginationArray[NcChallengesAdminWidgetList], widget, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[ChallengesWidgetList], widget, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -206,7 +206,7 @@ class TestWidgets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         widget = response.parse()
-        assert_matches_type(SyncV4PagePaginationArray[NcChallengesAdminWidgetList], widget, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[ChallengesWidgetList], widget, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -218,7 +218,7 @@ class TestWidgets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             widget = response.parse()
-            assert_matches_type(SyncV4PagePaginationArray[NcChallengesAdminWidgetList], widget, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[ChallengesWidgetList], widget, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -237,7 +237,7 @@ class TestWidgets:
             "0x4AAF00AAAABn0R22HWm-YUc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[NcChallengesAdminWidgetDetail], widget, path=["response"])
+        assert_matches_type(Optional[ChallengesWidget], widget, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -250,7 +250,7 @@ class TestWidgets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         widget = response.parse()
-        assert_matches_type(Optional[NcChallengesAdminWidgetDetail], widget, path=["response"])
+        assert_matches_type(Optional[ChallengesWidget], widget, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -263,7 +263,7 @@ class TestWidgets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             widget = response.parse()
-            assert_matches_type(Optional[NcChallengesAdminWidgetDetail], widget, path=["response"])
+            assert_matches_type(Optional[ChallengesWidget], widget, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -289,7 +289,7 @@ class TestWidgets:
             "0x4AAF00AAAABn0R22HWm-YUc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[NcChallengesAdminWidgetDetail], widget, path=["response"])
+        assert_matches_type(Optional[ChallengesWidget], widget, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -302,7 +302,7 @@ class TestWidgets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         widget = response.parse()
-        assert_matches_type(Optional[NcChallengesAdminWidgetDetail], widget, path=["response"])
+        assert_matches_type(Optional[ChallengesWidget], widget, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -315,7 +315,7 @@ class TestWidgets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             widget = response.parse()
-            assert_matches_type(Optional[NcChallengesAdminWidgetDetail], widget, path=["response"])
+            assert_matches_type(Optional[ChallengesWidget], widget, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -341,7 +341,7 @@ class TestWidgets:
             "0x4AAF00AAAABn0R22HWm-YUc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[NcChallengesAdminWidgetDetail], widget, path=["response"])
+        assert_matches_type(Optional[ChallengesWidget], widget, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -351,7 +351,7 @@ class TestWidgets:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             invalidate_immediately=True,
         )
-        assert_matches_type(Optional[NcChallengesAdminWidgetDetail], widget, path=["response"])
+        assert_matches_type(Optional[ChallengesWidget], widget, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -364,7 +364,7 @@ class TestWidgets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         widget = response.parse()
-        assert_matches_type(Optional[NcChallengesAdminWidgetDetail], widget, path=["response"])
+        assert_matches_type(Optional[ChallengesWidget], widget, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -377,7 +377,7 @@ class TestWidgets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             widget = response.parse()
-            assert_matches_type(Optional[NcChallengesAdminWidgetDetail], widget, path=["response"])
+            assert_matches_type(Optional[ChallengesWidget], widget, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -409,7 +409,7 @@ class TestAsyncWidgets:
             mode="invisible",
             name="blog.cloudflare.com login form",
         )
-        assert_matches_type(Optional[NcChallengesAdminWidgetDetail], widget, path=["response"])
+        assert_matches_type(Optional[ChallengesWidget], widget, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -428,7 +428,7 @@ class TestAsyncWidgets:
             offlabel=False,
             region="world",
         )
-        assert_matches_type(Optional[NcChallengesAdminWidgetDetail], widget, path=["response"])
+        assert_matches_type(Optional[ChallengesWidget], widget, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -443,7 +443,7 @@ class TestAsyncWidgets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         widget = await response.parse()
-        assert_matches_type(Optional[NcChallengesAdminWidgetDetail], widget, path=["response"])
+        assert_matches_type(Optional[ChallengesWidget], widget, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -458,7 +458,7 @@ class TestAsyncWidgets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             widget = await response.parse()
-            assert_matches_type(Optional[NcChallengesAdminWidgetDetail], widget, path=["response"])
+            assert_matches_type(Optional[ChallengesWidget], widget, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -483,7 +483,7 @@ class TestAsyncWidgets:
             mode="invisible",
             name="blog.cloudflare.com login form",
         )
-        assert_matches_type(Optional[NcChallengesAdminWidgetDetail], widget, path=["response"])
+        assert_matches_type(Optional[ChallengesWidget], widget, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -498,7 +498,7 @@ class TestAsyncWidgets:
             clearance_level="interactive",
             offlabel=False,
         )
-        assert_matches_type(Optional[NcChallengesAdminWidgetDetail], widget, path=["response"])
+        assert_matches_type(Optional[ChallengesWidget], widget, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -514,7 +514,7 @@ class TestAsyncWidgets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         widget = await response.parse()
-        assert_matches_type(Optional[NcChallengesAdminWidgetDetail], widget, path=["response"])
+        assert_matches_type(Optional[ChallengesWidget], widget, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -530,7 +530,7 @@ class TestAsyncWidgets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             widget = await response.parse()
-            assert_matches_type(Optional[NcChallengesAdminWidgetDetail], widget, path=["response"])
+            assert_matches_type(Optional[ChallengesWidget], widget, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -561,7 +561,7 @@ class TestAsyncWidgets:
         widget = await async_client.challenges.widgets.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncV4PagePaginationArray[NcChallengesAdminWidgetList], widget, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[ChallengesWidgetList], widget, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -573,7 +573,7 @@ class TestAsyncWidgets:
             page=1,
             per_page=5,
         )
-        assert_matches_type(AsyncV4PagePaginationArray[NcChallengesAdminWidgetList], widget, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[ChallengesWidgetList], widget, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -585,7 +585,7 @@ class TestAsyncWidgets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         widget = await response.parse()
-        assert_matches_type(AsyncV4PagePaginationArray[NcChallengesAdminWidgetList], widget, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[ChallengesWidgetList], widget, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -597,7 +597,7 @@ class TestAsyncWidgets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             widget = await response.parse()
-            assert_matches_type(AsyncV4PagePaginationArray[NcChallengesAdminWidgetList], widget, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[ChallengesWidgetList], widget, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -616,7 +616,7 @@ class TestAsyncWidgets:
             "0x4AAF00AAAABn0R22HWm-YUc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[NcChallengesAdminWidgetDetail], widget, path=["response"])
+        assert_matches_type(Optional[ChallengesWidget], widget, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -629,7 +629,7 @@ class TestAsyncWidgets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         widget = await response.parse()
-        assert_matches_type(Optional[NcChallengesAdminWidgetDetail], widget, path=["response"])
+        assert_matches_type(Optional[ChallengesWidget], widget, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -642,7 +642,7 @@ class TestAsyncWidgets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             widget = await response.parse()
-            assert_matches_type(Optional[NcChallengesAdminWidgetDetail], widget, path=["response"])
+            assert_matches_type(Optional[ChallengesWidget], widget, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -668,7 +668,7 @@ class TestAsyncWidgets:
             "0x4AAF00AAAABn0R22HWm-YUc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[NcChallengesAdminWidgetDetail], widget, path=["response"])
+        assert_matches_type(Optional[ChallengesWidget], widget, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -681,7 +681,7 @@ class TestAsyncWidgets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         widget = await response.parse()
-        assert_matches_type(Optional[NcChallengesAdminWidgetDetail], widget, path=["response"])
+        assert_matches_type(Optional[ChallengesWidget], widget, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -694,7 +694,7 @@ class TestAsyncWidgets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             widget = await response.parse()
-            assert_matches_type(Optional[NcChallengesAdminWidgetDetail], widget, path=["response"])
+            assert_matches_type(Optional[ChallengesWidget], widget, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -720,7 +720,7 @@ class TestAsyncWidgets:
             "0x4AAF00AAAABn0R22HWm-YUc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[NcChallengesAdminWidgetDetail], widget, path=["response"])
+        assert_matches_type(Optional[ChallengesWidget], widget, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -730,7 +730,7 @@ class TestAsyncWidgets:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             invalidate_immediately=True,
         )
-        assert_matches_type(Optional[NcChallengesAdminWidgetDetail], widget, path=["response"])
+        assert_matches_type(Optional[ChallengesWidget], widget, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -743,7 +743,7 @@ class TestAsyncWidgets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         widget = await response.parse()
-        assert_matches_type(Optional[NcChallengesAdminWidgetDetail], widget, path=["response"])
+        assert_matches_type(Optional[ChallengesWidget], widget, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -756,7 +756,7 @@ class TestAsyncWidgets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             widget = await response.parse()
-            assert_matches_type(Optional[NcChallengesAdminWidgetDetail], widget, path=["response"])
+            assert_matches_type(Optional[ChallengesWidget], widget, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

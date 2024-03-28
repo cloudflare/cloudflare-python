@@ -5,10 +5,10 @@ from datetime import datetime
 
 from ...._models import BaseModel
 
-__all__ = ["TLSCertificatesAndHostnamesSettingObjectDelete"]
+__all__ = ["HostnameSettingDelete"]
 
 
-class TLSCertificatesAndHostnamesSettingObjectDelete(BaseModel):
+class HostnameSettingDelete(BaseModel):
     created_at: Optional[datetime] = None
     """This is the time the tls setting was originally created for this hostname."""
 
