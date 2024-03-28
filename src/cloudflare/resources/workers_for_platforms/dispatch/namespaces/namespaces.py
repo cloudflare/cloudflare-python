@@ -28,8 +28,10 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._wrappers import ResultWrapper
+from .....pagination import SyncSinglePage, AsyncSinglePage
 from .scripts.scripts import Scripts, AsyncScripts
 from ....._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
 from .....types.workers_for_platforms.dispatch import (
@@ -108,7 +110,7 @@ class Namespaces(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> NamespaceListResponse:
+    ) -> SyncSinglePage[NamespaceListResponse]:
         """
         Fetch a list of Workers for Platforms namespaces.
 
@@ -125,16 +127,13 @@ class Namespaces(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/workers/dispatch/namespaces",
+            page=SyncSinglePage[NamespaceListResponse],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[NamespaceListResponse], ResultWrapper[NamespaceListResponse]),
+            model=NamespaceListResponse,
         )
 
     def delete(
@@ -282,7 +281,7 @@ class AsyncNamespaces(AsyncAPIResource):
             cast_to=cast(Type[NamespaceCreateResponse], ResultWrapper[NamespaceCreateResponse]),
         )
 
-    async def list(
+    def list(
         self,
         *,
         account_id: str,
@@ -292,7 +291,7 @@ class AsyncNamespaces(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> NamespaceListResponse:
+    ) -> AsyncPaginator[NamespaceListResponse, AsyncSinglePage[NamespaceListResponse]]:
         """
         Fetch a list of Workers for Platforms namespaces.
 
@@ -309,16 +308,13 @@ class AsyncNamespaces(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/workers/dispatch/namespaces",
+            page=AsyncSinglePage[NamespaceListResponse],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[NamespaceListResponse], ResultWrapper[NamespaceListResponse]),
+            model=NamespaceListResponse,
         )
 
     async def delete(

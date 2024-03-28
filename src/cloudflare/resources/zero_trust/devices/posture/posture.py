@@ -29,12 +29,13 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._wrappers import ResultWrapper
+from .....pagination import SyncSinglePage, AsyncSinglePage
 from ....._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
 from .....types.zero_trust.devices import (
     DevicePostureRules,
-    PostureListResponse,
     PostureDeleteResponse,
     posture_create_params,
     posture_update_params,
@@ -255,7 +256,7 @@ class Posture(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PostureListResponse]:
+    ) -> SyncSinglePage[DevicePostureRules]:
         """
         Fetches device posture rules for a Zero Trust account.
 
@@ -270,16 +271,13 @@ class Posture(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/devices/posture",
+            page=SyncSinglePage[DevicePostureRules],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[PostureListResponse]], ResultWrapper[PostureListResponse]),
+            model=DevicePostureRules,
         )
 
     def delete(
@@ -569,7 +567,7 @@ class AsyncPosture(AsyncAPIResource):
             cast_to=cast(Type[Optional[DevicePostureRules]], ResultWrapper[DevicePostureRules]),
         )
 
-    async def list(
+    def list(
         self,
         *,
         account_id: str,
@@ -579,7 +577,7 @@ class AsyncPosture(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PostureListResponse]:
+    ) -> AsyncPaginator[DevicePostureRules, AsyncSinglePage[DevicePostureRules]]:
         """
         Fetches device posture rules for a Zero Trust account.
 
@@ -594,16 +592,13 @@ class AsyncPosture(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/devices/posture",
+            page=AsyncSinglePage[DevicePostureRules],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[PostureListResponse]], ResultWrapper[PostureListResponse]),
+            model=DevicePostureRules,
         )
 
     async def delete(

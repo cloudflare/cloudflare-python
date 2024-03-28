@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Optional, cast
+from typing import Any, Optional, cast
 
 import httpx
 
@@ -72,6 +72,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
+from ....pagination import SyncSinglePage, AsyncSinglePage
 from .override_codes import (
     OverrideCodes,
     AsyncOverrideCodes,
@@ -81,11 +82,12 @@ from .override_codes import (
     AsyncOverrideCodesWithStreamingResponse,
 )
 from ...._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
 from .posture.posture import Posture, AsyncPosture
 from .policies.policies import Policies, AsyncPolicies
-from ....types.zero_trust import DeviceGetResponse, DeviceListResponse
+from ....types.zero_trust import ZeroTrustDevices, DeviceGetResponse
 
 __all__ = ["Devices", "AsyncDevices"]
 
@@ -141,7 +143,7 @@ class Devices(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DeviceListResponse]:
+    ) -> SyncSinglePage[ZeroTrustDevices]:
         """
         Fetches a list of enrolled devices.
 
@@ -156,16 +158,13 @@ class Devices(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/devices",
+            page=SyncSinglePage[ZeroTrustDevices],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[DeviceListResponse]], ResultWrapper[DeviceListResponse]),
+            model=ZeroTrustDevices,
         )
 
     def get(
@@ -257,7 +256,7 @@ class AsyncDevices(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncDevicesWithStreamingResponse:
         return AsyncDevicesWithStreamingResponse(self)
 
-    async def list(
+    def list(
         self,
         *,
         account_id: str,
@@ -267,7 +266,7 @@ class AsyncDevices(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DeviceListResponse]:
+    ) -> AsyncPaginator[ZeroTrustDevices, AsyncSinglePage[ZeroTrustDevices]]:
         """
         Fetches a list of enrolled devices.
 
@@ -282,16 +281,13 @@ class AsyncDevices(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/devices",
+            page=AsyncSinglePage[ZeroTrustDevices],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[DeviceListResponse]], ResultWrapper[DeviceListResponse]),
+            model=ZeroTrustDevices,
         )
 
     async def get(

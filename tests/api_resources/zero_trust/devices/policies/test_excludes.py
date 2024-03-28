@@ -9,9 +9,10 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.zero_trust.devices.policies import (
+    DevicesSplitTunnel,
     ExcludeGetResponse,
-    ExcludeListResponse,
     ExcludeUpdateResponse,
 )
 
@@ -125,7 +126,7 @@ class TestExcludes:
         exclude = client.zero_trust.devices.policies.excludes.list(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[ExcludeListResponse], exclude, path=["response"])
+        assert_matches_type(SyncSinglePage[DevicesSplitTunnel], exclude, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -137,7 +138,7 @@ class TestExcludes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         exclude = response.parse()
-        assert_matches_type(Optional[ExcludeListResponse], exclude, path=["response"])
+        assert_matches_type(SyncSinglePage[DevicesSplitTunnel], exclude, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -149,7 +150,7 @@ class TestExcludes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             exclude = response.parse()
-            assert_matches_type(Optional[ExcludeListResponse], exclude, path=["response"])
+            assert_matches_type(SyncSinglePage[DevicesSplitTunnel], exclude, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -321,7 +322,7 @@ class TestAsyncExcludes:
         exclude = await async_client.zero_trust.devices.policies.excludes.list(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[ExcludeListResponse], exclude, path=["response"])
+        assert_matches_type(AsyncSinglePage[DevicesSplitTunnel], exclude, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -333,7 +334,7 @@ class TestAsyncExcludes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         exclude = await response.parse()
-        assert_matches_type(Optional[ExcludeListResponse], exclude, path=["response"])
+        assert_matches_type(AsyncSinglePage[DevicesSplitTunnel], exclude, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -345,7 +346,7 @@ class TestAsyncExcludes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             exclude = await response.parse()
-            assert_matches_type(Optional[ExcludeListResponse], exclude, path=["response"])
+            assert_matches_type(AsyncSinglePage[DevicesSplitTunnel], exclude, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -3,13 +3,13 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.user.tokens import PermissionGroupListResponse
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -21,7 +21,7 @@ class TestPermissionGroups:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         permission_group = client.user.tokens.permission_groups.list()
-        assert_matches_type(Optional[PermissionGroupListResponse], permission_group, path=["response"])
+        assert_matches_type(SyncSinglePage[object], permission_group, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -31,7 +31,7 @@ class TestPermissionGroups:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         permission_group = response.parse()
-        assert_matches_type(Optional[PermissionGroupListResponse], permission_group, path=["response"])
+        assert_matches_type(SyncSinglePage[object], permission_group, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -41,7 +41,7 @@ class TestPermissionGroups:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             permission_group = response.parse()
-            assert_matches_type(Optional[PermissionGroupListResponse], permission_group, path=["response"])
+            assert_matches_type(SyncSinglePage[object], permission_group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -53,7 +53,7 @@ class TestAsyncPermissionGroups:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         permission_group = await async_client.user.tokens.permission_groups.list()
-        assert_matches_type(Optional[PermissionGroupListResponse], permission_group, path=["response"])
+        assert_matches_type(AsyncSinglePage[object], permission_group, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -63,7 +63,7 @@ class TestAsyncPermissionGroups:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         permission_group = await response.parse()
-        assert_matches_type(Optional[PermissionGroupListResponse], permission_group, path=["response"])
+        assert_matches_type(AsyncSinglePage[object], permission_group, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -73,6 +73,6 @@ class TestAsyncPermissionGroups:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             permission_group = await response.parse()
-            assert_matches_type(Optional[PermissionGroupListResponse], permission_group, path=["response"])
+            assert_matches_type(AsyncSinglePage[object], permission_group, path=["response"])
 
         assert cast(Any, response.is_closed) is True

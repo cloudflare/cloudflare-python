@@ -9,9 +9,9 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.alerting.destinations import (
     AlertingWebhooks,
-    WebhookListResponse,
     WebhookCreateResponse,
     WebhookDeleteResponse,
     WebhookUpdateResponse,
@@ -164,7 +164,7 @@ class TestWebhooks:
         webhook = client.alerting.destinations.webhooks.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[WebhookListResponse], webhook, path=["response"])
+        assert_matches_type(SyncSinglePage[AlertingWebhooks], webhook, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -176,7 +176,7 @@ class TestWebhooks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         webhook = response.parse()
-        assert_matches_type(Optional[WebhookListResponse], webhook, path=["response"])
+        assert_matches_type(SyncSinglePage[AlertingWebhooks], webhook, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -188,7 +188,7 @@ class TestWebhooks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             webhook = response.parse()
-            assert_matches_type(Optional[WebhookListResponse], webhook, path=["response"])
+            assert_matches_type(SyncSinglePage[AlertingWebhooks], webhook, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -449,7 +449,7 @@ class TestAsyncWebhooks:
         webhook = await async_client.alerting.destinations.webhooks.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[WebhookListResponse], webhook, path=["response"])
+        assert_matches_type(AsyncSinglePage[AlertingWebhooks], webhook, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -461,7 +461,7 @@ class TestAsyncWebhooks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         webhook = await response.parse()
-        assert_matches_type(Optional[WebhookListResponse], webhook, path=["response"])
+        assert_matches_type(AsyncSinglePage[AlertingWebhooks], webhook, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -473,7 +473,7 @@ class TestAsyncWebhooks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             webhook = await response.parse()
-            assert_matches_type(Optional[WebhookListResponse], webhook, path=["response"])
+            assert_matches_type(AsyncSinglePage[AlertingWebhooks], webhook, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

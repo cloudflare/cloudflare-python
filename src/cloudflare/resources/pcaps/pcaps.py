@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Optional, cast, overload
+from typing import Any, cast, overload
 from typing_extensions import Literal
 
 import httpx
@@ -39,7 +39,9 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
+from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
 
@@ -228,7 +230,7 @@ class PCAPs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PCAPListResponse]:
+    ) -> SyncSinglePage[PCAPListResponse]:
         """
         Lists all packet capture requests for an account.
 
@@ -245,16 +247,13 @@ class PCAPs(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/pcaps",
+            page=SyncSinglePage[PCAPListResponse],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[PCAPListResponse]], ResultWrapper[PCAPListResponse]),
+            model=cast(Any, PCAPListResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
     def get(
@@ -479,7 +478,7 @@ class AsyncPCAPs(AsyncAPIResource):
             ),
         )
 
-    async def list(
+    def list(
         self,
         *,
         account_id: str,
@@ -489,7 +488,7 @@ class AsyncPCAPs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PCAPListResponse]:
+    ) -> AsyncPaginator[PCAPListResponse, AsyncSinglePage[PCAPListResponse]]:
         """
         Lists all packet capture requests for an account.
 
@@ -506,16 +505,13 @@ class AsyncPCAPs(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/pcaps",
+            page=AsyncSinglePage[PCAPListResponse],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[PCAPListResponse]], ResultWrapper[PCAPListResponse]),
+            model=cast(Any, PCAPListResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
     async def get(

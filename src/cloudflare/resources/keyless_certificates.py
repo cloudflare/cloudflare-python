@@ -2,14 +2,13 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, cast
 from typing_extensions import Literal
 
 import httpx
 
 from ..types import (
     KeylessCertificateHostname,
-    KeylessCertificateListResponse,
     KeylessCertificateDeleteResponse,
     keyless_certificate_edit_params,
     keyless_certificate_create_params,
@@ -28,7 +27,9 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._wrappers import ResultWrapper
+from ..pagination import SyncSinglePage, AsyncSinglePage
 from .._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
 
@@ -126,7 +127,7 @@ class KeylessCertificates(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[KeylessCertificateListResponse]:
+    ) -> SyncSinglePage[KeylessCertificateHostname]:
         """
         List all Keyless SSL configurations for a given zone.
 
@@ -143,16 +144,13 @@ class KeylessCertificates(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/zones/{zone_id}/keyless_certificates",
+            page=SyncSinglePage[KeylessCertificateHostname],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[KeylessCertificateListResponse]], ResultWrapper[KeylessCertificateListResponse]),
+            model=KeylessCertificateHostname,
         )
 
     def delete(
@@ -403,7 +401,7 @@ class AsyncKeylessCertificates(AsyncAPIResource):
             cast_to=cast(Type[KeylessCertificateHostname], ResultWrapper[KeylessCertificateHostname]),
         )
 
-    async def list(
+    def list(
         self,
         *,
         zone_id: str,
@@ -413,7 +411,7 @@ class AsyncKeylessCertificates(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[KeylessCertificateListResponse]:
+    ) -> AsyncPaginator[KeylessCertificateHostname, AsyncSinglePage[KeylessCertificateHostname]]:
         """
         List all Keyless SSL configurations for a given zone.
 
@@ -430,16 +428,13 @@ class AsyncKeylessCertificates(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/zones/{zone_id}/keyless_certificates",
+            page=AsyncSinglePage[KeylessCertificateHostname],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[KeylessCertificateListResponse]], ResultWrapper[KeylessCertificateListResponse]),
+            model=KeylessCertificateHostname,
         )
 
     async def delete(

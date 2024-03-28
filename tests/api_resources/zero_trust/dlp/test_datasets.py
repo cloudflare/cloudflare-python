@@ -9,11 +9,8 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.zero_trust.dlp import (
-    DLPDataset,
-    DLPDatasetArray,
-    DLPDatasetCreation,
-)
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
+from cloudflare.types.zero_trust.dlp import DLPDataset, DLPDatasetCreation
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -147,7 +144,7 @@ class TestDatasets:
         dataset = client.zero_trust.dlp.datasets.list(
             account_id="string",
         )
-        assert_matches_type(Optional[DLPDatasetArray], dataset, path=["response"])
+        assert_matches_type(SyncSinglePage[DLPDataset], dataset, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -159,7 +156,7 @@ class TestDatasets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dataset = response.parse()
-        assert_matches_type(Optional[DLPDatasetArray], dataset, path=["response"])
+        assert_matches_type(SyncSinglePage[DLPDataset], dataset, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -171,7 +168,7 @@ class TestDatasets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dataset = response.parse()
-            assert_matches_type(Optional[DLPDatasetArray], dataset, path=["response"])
+            assert_matches_type(SyncSinglePage[DLPDataset], dataset, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -417,7 +414,7 @@ class TestAsyncDatasets:
         dataset = await async_client.zero_trust.dlp.datasets.list(
             account_id="string",
         )
-        assert_matches_type(Optional[DLPDatasetArray], dataset, path=["response"])
+        assert_matches_type(AsyncSinglePage[DLPDataset], dataset, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -429,7 +426,7 @@ class TestAsyncDatasets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dataset = await response.parse()
-        assert_matches_type(Optional[DLPDatasetArray], dataset, path=["response"])
+        assert_matches_type(AsyncSinglePage[DLPDataset], dataset, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -441,7 +438,7 @@ class TestAsyncDatasets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dataset = await response.parse()
-            assert_matches_type(Optional[DLPDatasetArray], dataset, path=["response"])
+            assert_matches_type(AsyncSinglePage[DLPDataset], dataset, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

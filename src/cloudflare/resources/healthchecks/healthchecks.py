@@ -9,7 +9,6 @@ import httpx
 
 from ...types import (
     Healthcheck,
-    HealthcheckListResponse,
     HealthcheckDeleteResponse,
     healthcheck_edit_params,
     healthcheck_create_params,
@@ -37,7 +36,9 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
+from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
 
@@ -320,7 +321,7 @@ class Healthchecks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[HealthcheckListResponse]:
+    ) -> SyncSinglePage[Healthcheck]:
         """
         List configured health checks.
 
@@ -337,16 +338,13 @@ class Healthchecks(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/zones/{zone_id}/healthchecks",
+            page=SyncSinglePage[Healthcheck],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[HealthcheckListResponse]], ResultWrapper[HealthcheckListResponse]),
+            model=Healthcheck,
         )
 
     def delete(
@@ -833,7 +831,7 @@ class AsyncHealthchecks(AsyncAPIResource):
             cast_to=cast(Type[Healthcheck], ResultWrapper[Healthcheck]),
         )
 
-    async def list(
+    def list(
         self,
         *,
         zone_id: str,
@@ -843,7 +841,7 @@ class AsyncHealthchecks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[HealthcheckListResponse]:
+    ) -> AsyncPaginator[Healthcheck, AsyncSinglePage[Healthcheck]]:
         """
         List configured health checks.
 
@@ -860,16 +858,13 @@ class AsyncHealthchecks(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/zones/{zone_id}/healthchecks",
+            page=AsyncSinglePage[Healthcheck],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[HealthcheckListResponse]], ResultWrapper[HealthcheckListResponse]),
+            model=Healthcheck,
         )
 
     async def delete(

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Optional, cast
+from typing import Any, cast
 from typing_extensions import Literal
 
 import httpx
@@ -21,8 +21,10 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
+from ...pagination import SyncSinglePage, AsyncSinglePage
 from ...types.user import InviteGetResponse, InviteEditResponse, InviteListResponse, invite_edit_params
 from ..._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
 
@@ -47,18 +49,15 @@ class Invites(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[InviteListResponse]:
+    ) -> SyncSinglePage[InviteListResponse]:
         """Lists all invitations associated with my user."""
-        return self._get(
+        return self._get_api_list(
             "/user/invites",
+            page=SyncSinglePage[InviteListResponse],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[InviteListResponse]], ResultWrapper[InviteListResponse]),
+            model=InviteListResponse,
         )
 
     def edit(
@@ -163,7 +162,7 @@ class AsyncInvites(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncInvitesWithStreamingResponse:
         return AsyncInvitesWithStreamingResponse(self)
 
-    async def list(
+    def list(
         self,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -172,18 +171,15 @@ class AsyncInvites(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[InviteListResponse]:
+    ) -> AsyncPaginator[InviteListResponse, AsyncSinglePage[InviteListResponse]]:
         """Lists all invitations associated with my user."""
-        return await self._get(
+        return self._get_api_list(
             "/user/invites",
+            page=AsyncSinglePage[InviteListResponse],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[InviteListResponse]], ResultWrapper[InviteListResponse]),
+            model=InviteListResponse,
         )
 
     async def edit(

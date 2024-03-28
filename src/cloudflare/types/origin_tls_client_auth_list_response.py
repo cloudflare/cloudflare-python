@@ -1,13 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Optional
 
 from .._models import BaseModel
 
-__all__ = ["OriginTLSClientAuthListResponse", "OriginTLSClientAuthListResponseItem"]
+__all__ = ["OriginTLSClientAuthListResponse"]
 
 
-class OriginTLSClientAuthListResponseItem(BaseModel):
+class OriginTLSClientAuthListResponse(BaseModel):
     id: Optional[str] = None
     """Identifier"""
 
@@ -19,6 +19,3 @@ class OriginTLSClientAuthListResponseItem(BaseModel):
 
     private_key: Optional[str] = None
     """The zone's private key."""
-
-
-OriginTLSClientAuthListResponse = List[OriginTLSClientAuthListResponseItem]

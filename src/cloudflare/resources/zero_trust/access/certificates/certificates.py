@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Optional, cast
+from typing import List, Type, cast
 
 import httpx
 
@@ -28,12 +28,13 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._wrappers import ResultWrapper
+from .....pagination import SyncSinglePage, AsyncSinglePage
 from ....._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
 from .....types.zero_trust.access import (
     ZeroTrustCertificates,
-    CertificateListResponse,
     CertificateDeleteResponse,
     certificate_create_params,
     certificate_update_params,
@@ -211,7 +212,7 @@ class Certificates(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CertificateListResponse]:
+    ) -> SyncSinglePage[ZeroTrustCertificates]:
         """
         Lists all mTLS root certificates.
 
@@ -243,16 +244,13 @@ class Certificates(SyncAPIResource):
         else:
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return self._get(
+        return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/access/certificates",
+            page=SyncSinglePage[ZeroTrustCertificates],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[CertificateListResponse]], ResultWrapper[CertificateListResponse]),
+            model=ZeroTrustCertificates,
         )
 
     def delete(
@@ -534,7 +532,7 @@ class AsyncCertificates(AsyncAPIResource):
             cast_to=cast(Type[ZeroTrustCertificates], ResultWrapper[ZeroTrustCertificates]),
         )
 
-    async def list(
+    def list(
         self,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
@@ -545,7 +543,7 @@ class AsyncCertificates(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CertificateListResponse]:
+    ) -> AsyncPaginator[ZeroTrustCertificates, AsyncSinglePage[ZeroTrustCertificates]]:
         """
         Lists all mTLS root certificates.
 
@@ -577,16 +575,13 @@ class AsyncCertificates(AsyncAPIResource):
         else:
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return await self._get(
+        return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/access/certificates",
+            page=AsyncSinglePage[ZeroTrustCertificates],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[CertificateListResponse]], ResultWrapper[CertificateListResponse]),
+            model=ZeroTrustCertificates,
         )
 
     async def delete(

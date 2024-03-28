@@ -3,17 +3,14 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.secondary_dns import (
-    ACLListResponse,
-    SecondaryDNSACL,
-    ACLDeleteResponse,
-)
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
+from cloudflare.types.secondary_dns import SecondaryDNSACL, ACLDeleteResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -135,7 +132,7 @@ class TestACLs:
         acl = client.secondary_dns.acls.list(
             account_id="01a7362d577a6c3019a474fd6f485823",
         )
-        assert_matches_type(Optional[ACLListResponse], acl, path=["response"])
+        assert_matches_type(SyncSinglePage[SecondaryDNSACL], acl, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -147,7 +144,7 @@ class TestACLs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         acl = response.parse()
-        assert_matches_type(Optional[ACLListResponse], acl, path=["response"])
+        assert_matches_type(SyncSinglePage[SecondaryDNSACL], acl, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -159,7 +156,7 @@ class TestACLs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             acl = response.parse()
-            assert_matches_type(Optional[ACLListResponse], acl, path=["response"])
+            assert_matches_type(SyncSinglePage[SecondaryDNSACL], acl, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -393,7 +390,7 @@ class TestAsyncACLs:
         acl = await async_client.secondary_dns.acls.list(
             account_id="01a7362d577a6c3019a474fd6f485823",
         )
-        assert_matches_type(Optional[ACLListResponse], acl, path=["response"])
+        assert_matches_type(AsyncSinglePage[SecondaryDNSACL], acl, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -405,7 +402,7 @@ class TestAsyncACLs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         acl = await response.parse()
-        assert_matches_type(Optional[ACLListResponse], acl, path=["response"])
+        assert_matches_type(AsyncSinglePage[SecondaryDNSACL], acl, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -417,7 +414,7 @@ class TestAsyncACLs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             acl = await response.parse()
-            assert_matches_type(Optional[ACLListResponse], acl, path=["response"])
+            assert_matches_type(AsyncSinglePage[SecondaryDNSACL], acl, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

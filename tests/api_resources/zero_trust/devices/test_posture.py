@@ -9,9 +9,9 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.zero_trust.devices import (
     DevicePostureRules,
-    PostureListResponse,
     PostureDeleteResponse,
 )
 
@@ -182,7 +182,7 @@ class TestPosture:
         posture = client.zero_trust.devices.posture.list(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[PostureListResponse], posture, path=["response"])
+        assert_matches_type(SyncSinglePage[DevicePostureRules], posture, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -194,7 +194,7 @@ class TestPosture:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         posture = response.parse()
-        assert_matches_type(Optional[PostureListResponse], posture, path=["response"])
+        assert_matches_type(SyncSinglePage[DevicePostureRules], posture, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -206,7 +206,7 @@ class TestPosture:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             posture = response.parse()
-            assert_matches_type(Optional[PostureListResponse], posture, path=["response"])
+            assert_matches_type(SyncSinglePage[DevicePostureRules], posture, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -487,7 +487,7 @@ class TestAsyncPosture:
         posture = await async_client.zero_trust.devices.posture.list(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[PostureListResponse], posture, path=["response"])
+        assert_matches_type(AsyncSinglePage[DevicePostureRules], posture, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -499,7 +499,7 @@ class TestAsyncPosture:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         posture = await response.parse()
-        assert_matches_type(Optional[PostureListResponse], posture, path=["response"])
+        assert_matches_type(AsyncSinglePage[DevicePostureRules], posture, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -511,7 +511,7 @@ class TestAsyncPosture:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             posture = await response.parse()
-            assert_matches_type(Optional[PostureListResponse], posture, path=["response"])
+            assert_matches_type(AsyncSinglePage[DevicePostureRules], posture, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
