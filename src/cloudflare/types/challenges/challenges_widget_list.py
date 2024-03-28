@@ -6,10 +6,10 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["NcChallengesAdminWidgetDetail"]
+__all__ = ["ChallengesWidgetList"]
 
 
-class NcChallengesAdminWidgetDetail(BaseModel):
+class ChallengesWidgetList(BaseModel):
     bot_fight_mode: bool
     """
     If bot_fight_mode is set to `true`, Cloudflare issues computationally expensive
@@ -45,9 +45,6 @@ class NcChallengesAdminWidgetDetail(BaseModel):
 
     region: Literal["world"]
     """Region where this widget can be used."""
-
-    secret: str
-    """Secret key for this widget."""
 
     sitekey: str
     """Widget item identifier tag."""
