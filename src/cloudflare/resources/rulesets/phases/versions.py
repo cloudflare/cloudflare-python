@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ....types import RulesetsRulesetResponse
+from ....types import Ruleset
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -155,7 +155,7 @@ class Versions(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RulesetsRulesetResponse:
+    ) -> Ruleset:
         """
         Fetches a specific version of an account or zone entry point ruleset.
 
@@ -204,7 +204,7 @@ class Versions(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[RulesetsRulesetResponse], ResultWrapper[RulesetsRulesetResponse]),
+            cast_to=cast(Type[Ruleset], ResultWrapper[Ruleset]),
         )
 
 
@@ -335,7 +335,7 @@ class AsyncVersions(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RulesetsRulesetResponse:
+    ) -> Ruleset:
         """
         Fetches a specific version of an account or zone entry point ruleset.
 
@@ -384,7 +384,7 @@ class AsyncVersions(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[RulesetsRulesetResponse], ResultWrapper[RulesetsRulesetResponse]),
+            cast_to=cast(Type[Ruleset], ResultWrapper[Ruleset]),
         )
 
 

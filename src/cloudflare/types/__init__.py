@@ -7,6 +7,7 @@ from .zone import Zone as Zone
 from .dnssec import DNSSEC as DNSSEC
 from .shared import ErrorData as ErrorData
 from .account import Account as Account
+from .ruleset import Ruleset as Ruleset
 from .snippet import Snippet as Snippet
 from .calls_app import CallsApp as CallsApp
 from .membership import Membership as Membership
@@ -102,7 +103,6 @@ from .healthcheck_update_params import HealthcheckUpdateParams as HealthcheckUpd
 from .intel_phishing_url_submit import IntelPhishingURLSubmit as IntelPhishingURLSubmit
 from .load_balancer_edit_params import LoadBalancerEditParams as LoadBalancerEditParams
 from .page_shield_update_params import PageShieldUpdateParams as PageShieldUpdateParams
-from .rulesets_ruleset_response import RulesetsRulesetResponse as RulesetsRulesetResponse
 from .speed_schedule_get_params import SpeedScheduleGetParams as SpeedScheduleGetParams
 from .subscription_get_response import SubscriptionGetResponse as SubscriptionGetResponse
 from .url_scanner_scan_response import URLScannerScanResponse as URLScannerScanResponse
@@ -112,7 +112,6 @@ from .membership_delete_response import MembershipDeleteResponse as MembershipDe
 from .membership_update_response import MembershipUpdateResponse as MembershipUpdateResponse
 from .rate_limit_create_response import RateLimitCreateResponse as RateLimitCreateResponse
 from .rate_limit_delete_response import RateLimitDeleteResponse as RateLimitDeleteResponse
-from .rulesets_rulesets_response import RulesetsRulesetsResponse as RulesetsRulesetsResponse
 from .subscription_create_params import SubscriptionCreateParams as SubscriptionCreateParams
 from .subscription_list_response import SubscriptionListResponse as SubscriptionListResponse
 from .subscription_update_params import SubscriptionUpdateParams as SubscriptionUpdateParams
