@@ -3,15 +3,15 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.zero_trust.access import (
     ZeroTrustGroups,
-    GroupListResponse,
     GroupDeleteResponse,
 )
 
@@ -263,7 +263,7 @@ class TestGroups:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[GroupListResponse], group, path=["response"])
+        assert_matches_type(SyncSinglePage[ZeroTrustGroups], group, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -272,7 +272,7 @@ class TestGroups:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[GroupListResponse], group, path=["response"])
+        assert_matches_type(SyncSinglePage[ZeroTrustGroups], group, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -285,7 +285,7 @@ class TestGroups:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         group = response.parse()
-        assert_matches_type(Optional[GroupListResponse], group, path=["response"])
+        assert_matches_type(SyncSinglePage[ZeroTrustGroups], group, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -298,7 +298,7 @@ class TestGroups:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             group = response.parse()
-            assert_matches_type(Optional[GroupListResponse], group, path=["response"])
+            assert_matches_type(SyncSinglePage[ZeroTrustGroups], group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -711,7 +711,7 @@ class TestAsyncGroups:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[GroupListResponse], group, path=["response"])
+        assert_matches_type(AsyncSinglePage[ZeroTrustGroups], group, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -720,7 +720,7 @@ class TestAsyncGroups:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[GroupListResponse], group, path=["response"])
+        assert_matches_type(AsyncSinglePage[ZeroTrustGroups], group, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -733,7 +733,7 @@ class TestAsyncGroups:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         group = await response.parse()
-        assert_matches_type(Optional[GroupListResponse], group, path=["response"])
+        assert_matches_type(AsyncSinglePage[ZeroTrustGroups], group, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -746,7 +746,7 @@ class TestAsyncGroups:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             group = await response.parse()
-            assert_matches_type(Optional[GroupListResponse], group, path=["response"])
+            assert_matches_type(AsyncSinglePage[ZeroTrustGroups], group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

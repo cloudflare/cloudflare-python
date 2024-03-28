@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, cast
 
 import httpx
 
@@ -16,7 +16,9 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._wrappers import ResultWrapper
+from .....pagination import SyncSinglePage, AsyncSinglePage
 from ....._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
 from .....types.zero_trust.access.users import ActiveSessionGetResponse, ActiveSessionListResponse
@@ -44,7 +46,7 @@ class ActiveSessions(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ActiveSessionListResponse]:
+    ) -> SyncSinglePage[ActiveSessionListResponse]:
         """
         Get active sessions for a single user.
 
@@ -65,16 +67,13 @@ class ActiveSessions(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{identifier}/access/users/{id}/active_sessions",
+            page=SyncSinglePage[ActiveSessionListResponse],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[ActiveSessionListResponse]], ResultWrapper[ActiveSessionListResponse]),
+            model=ActiveSessionListResponse,
         )
 
     def get(
@@ -134,7 +133,7 @@ class AsyncActiveSessions(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncActiveSessionsWithStreamingResponse:
         return AsyncActiveSessionsWithStreamingResponse(self)
 
-    async def list(
+    def list(
         self,
         id: str,
         *,
@@ -145,7 +144,7 @@ class AsyncActiveSessions(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ActiveSessionListResponse]:
+    ) -> AsyncPaginator[ActiveSessionListResponse, AsyncSinglePage[ActiveSessionListResponse]]:
         """
         Get active sessions for a single user.
 
@@ -166,16 +165,13 @@ class AsyncActiveSessions(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{identifier}/access/users/{id}/active_sessions",
+            page=AsyncSinglePage[ActiveSessionListResponse],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[ActiveSessionListResponse]], ResultWrapper[ActiveSessionListResponse]),
+            model=ActiveSessionListResponse,
         )
 
     async def get(

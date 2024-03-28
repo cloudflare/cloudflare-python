@@ -9,8 +9,8 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.addressing import (
-    PrefixListResponse,
     PrefixDeleteResponse,
     AddressingIpamPrefixes,
 )
@@ -81,7 +81,7 @@ class TestPrefixes:
         prefix = client.addressing.prefixes.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[PrefixListResponse], prefix, path=["response"])
+        assert_matches_type(SyncSinglePage[AddressingIpamPrefixes], prefix, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -93,7 +93,7 @@ class TestPrefixes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         prefix = response.parse()
-        assert_matches_type(Optional[PrefixListResponse], prefix, path=["response"])
+        assert_matches_type(SyncSinglePage[AddressingIpamPrefixes], prefix, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -105,7 +105,7 @@ class TestPrefixes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             prefix = response.parse()
-            assert_matches_type(Optional[PrefixListResponse], prefix, path=["response"])
+            assert_matches_type(SyncSinglePage[AddressingIpamPrefixes], prefix, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -342,7 +342,7 @@ class TestAsyncPrefixes:
         prefix = await async_client.addressing.prefixes.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[PrefixListResponse], prefix, path=["response"])
+        assert_matches_type(AsyncSinglePage[AddressingIpamPrefixes], prefix, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -354,7 +354,7 @@ class TestAsyncPrefixes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         prefix = await response.parse()
-        assert_matches_type(Optional[PrefixListResponse], prefix, path=["response"])
+        assert_matches_type(AsyncSinglePage[AddressingIpamPrefixes], prefix, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -366,7 +366,7 @@ class TestAsyncPrefixes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             prefix = await response.parse()
-            assert_matches_type(Optional[PrefixListResponse], prefix, path=["response"])
+            assert_matches_type(AsyncSinglePage[AddressingIpamPrefixes], prefix, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

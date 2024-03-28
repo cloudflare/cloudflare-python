@@ -20,13 +20,15 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._wrappers import ResultWrapper
+from .....pagination import SyncSinglePage, AsyncSinglePage
 from ....._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
 from .....types.zero_trust.devices.policies import (
     IncludeGetResponse,
-    IncludeListResponse,
     IncludeUpdateResponse,
+    DevicesSplitTunnelInclude,
     DevicesSplitTunnelIncludeParam,
     include_update_params,
 )
@@ -92,7 +94,7 @@ class Includes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IncludeListResponse]:
+    ) -> SyncSinglePage[DevicesSplitTunnelInclude]:
         """
         Fetches the list of routes included in the WARP client's tunnel.
 
@@ -107,16 +109,13 @@ class Includes(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/devices/policy/include",
+            page=SyncSinglePage[DevicesSplitTunnelInclude],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[IncludeListResponse]], ResultWrapper[IncludeListResponse]),
+            model=DevicesSplitTunnelInclude,
         )
 
     def get(
@@ -211,7 +210,7 @@ class AsyncIncludes(AsyncAPIResource):
             cast_to=cast(Type[Optional[IncludeUpdateResponse]], ResultWrapper[IncludeUpdateResponse]),
         )
 
-    async def list(
+    def list(
         self,
         *,
         account_id: str,
@@ -221,7 +220,7 @@ class AsyncIncludes(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IncludeListResponse]:
+    ) -> AsyncPaginator[DevicesSplitTunnelInclude, AsyncSinglePage[DevicesSplitTunnelInclude]]:
         """
         Fetches the list of routes included in the WARP client's tunnel.
 
@@ -236,16 +235,13 @@ class AsyncIncludes(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/devices/policy/include",
+            page=AsyncSinglePage[DevicesSplitTunnelInclude],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[IncludeListResponse]], ResultWrapper[IncludeListResponse]),
+            model=DevicesSplitTunnelInclude,
         )
 
     async def get(

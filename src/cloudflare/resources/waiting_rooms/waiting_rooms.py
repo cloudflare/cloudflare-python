@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, Optional, cast
+from typing import Type, Iterable, cast
 from typing_extensions import Literal
 
 import httpx
@@ -33,7 +33,6 @@ from .events import (
 )
 from ...types import (
     WaitingRoom,
-    WaitingRoomListResponse,
     WaitingRoomDeleteResponse,
     waiting_room_edit_params,
     waiting_room_create_params,
@@ -69,8 +68,10 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
+from ...pagination import SyncSinglePage, AsyncSinglePage
 from .events.events import Events, AsyncEvents
 from ..._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
 
@@ -829,7 +830,7 @@ class WaitingRooms(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[WaitingRoomListResponse]:
+    ) -> SyncSinglePage[WaitingRoom]:
         """
         Lists waiting rooms.
 
@@ -846,16 +847,13 @@ class WaitingRooms(SyncAPIResource):
         """
         if not zone_identifier:
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        return self._get(
+        return self._get_api_list(
             f"/zones/{zone_identifier}/waiting_rooms",
+            page=SyncSinglePage[WaitingRoom],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[WaitingRoomListResponse]], ResultWrapper[WaitingRoomListResponse]),
+            model=WaitingRoom,
         )
 
     def delete(
@@ -2043,7 +2041,7 @@ class AsyncWaitingRooms(AsyncAPIResource):
             cast_to=cast(Type[WaitingRoom], ResultWrapper[WaitingRoom]),
         )
 
-    async def list(
+    def list(
         self,
         zone_identifier: str,
         *,
@@ -2053,7 +2051,7 @@ class AsyncWaitingRooms(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[WaitingRoomListResponse]:
+    ) -> AsyncPaginator[WaitingRoom, AsyncSinglePage[WaitingRoom]]:
         """
         Lists waiting rooms.
 
@@ -2070,16 +2068,13 @@ class AsyncWaitingRooms(AsyncAPIResource):
         """
         if not zone_identifier:
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/zones/{zone_identifier}/waiting_rooms",
+            page=AsyncSinglePage[WaitingRoom],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[WaitingRoomListResponse]], ResultWrapper[WaitingRoomListResponse]),
+            model=WaitingRoom,
         )
 
     async def delete(

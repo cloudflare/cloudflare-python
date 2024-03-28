@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Iterable, Optional, cast
+from typing import Any, Type, Iterable, cast
 from typing_extensions import Literal
 
 import httpx
@@ -30,7 +30,9 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._wrappers import ResultWrapper
+from ..pagination import SyncSinglePage, AsyncSinglePage
 from .._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
 
@@ -197,7 +199,7 @@ class Subscriptions(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SubscriptionListResponse]:
+    ) -> SyncSinglePage[SubscriptionListResponse]:
         """
         Lists all of an account's subscriptions.
 
@@ -214,16 +216,13 @@ class Subscriptions(SyncAPIResource):
         """
         if not account_identifier:
             raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_identifier}/subscriptions",
+            page=SyncSinglePage[SubscriptionListResponse],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[SubscriptionListResponse]], ResultWrapper[SubscriptionListResponse]),
+            model=SubscriptionListResponse,
         )
 
     def delete(
@@ -467,7 +466,7 @@ class AsyncSubscriptions(AsyncAPIResource):
             ),
         )
 
-    async def list(
+    def list(
         self,
         account_identifier: str,
         *,
@@ -477,7 +476,7 @@ class AsyncSubscriptions(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SubscriptionListResponse]:
+    ) -> AsyncPaginator[SubscriptionListResponse, AsyncSinglePage[SubscriptionListResponse]]:
         """
         Lists all of an account's subscriptions.
 
@@ -494,16 +493,13 @@ class AsyncSubscriptions(AsyncAPIResource):
         """
         if not account_identifier:
             raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_identifier}/subscriptions",
+            page=AsyncSinglePage[SubscriptionListResponse],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[SubscriptionListResponse]], ResultWrapper[SubscriptionListResponse]),
+            model=SubscriptionListResponse,
         )
 
     async def delete(

@@ -9,8 +9,8 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.web3 import (
-    HostnameListResponse,
     DistributedWebHostname,
     HostnameDeleteResponse,
 )
@@ -84,7 +84,7 @@ class TestHostnames:
         hostname = client.web3.hostnames.list(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[HostnameListResponse], hostname, path=["response"])
+        assert_matches_type(SyncSinglePage[DistributedWebHostname], hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -96,7 +96,7 @@ class TestHostnames:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hostname = response.parse()
-        assert_matches_type(Optional[HostnameListResponse], hostname, path=["response"])
+        assert_matches_type(SyncSinglePage[DistributedWebHostname], hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -108,7 +108,7 @@ class TestHostnames:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hostname = response.parse()
-            assert_matches_type(Optional[HostnameListResponse], hostname, path=["response"])
+            assert_matches_type(SyncSinglePage[DistributedWebHostname], hostname, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -354,7 +354,7 @@ class TestAsyncHostnames:
         hostname = await async_client.web3.hostnames.list(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[HostnameListResponse], hostname, path=["response"])
+        assert_matches_type(AsyncSinglePage[DistributedWebHostname], hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -366,7 +366,7 @@ class TestAsyncHostnames:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hostname = await response.parse()
-        assert_matches_type(Optional[HostnameListResponse], hostname, path=["response"])
+        assert_matches_type(AsyncSinglePage[DistributedWebHostname], hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -378,7 +378,7 @@ class TestAsyncHostnames:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hostname = await response.parse()
-            assert_matches_type(Optional[HostnameListResponse], hostname, path=["response"])
+            assert_matches_type(AsyncSinglePage[DistributedWebHostname], hostname, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

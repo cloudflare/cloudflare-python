@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Optional, cast
+from typing import Any, Type, cast
 from typing_extensions import Literal
 
 import httpx
@@ -24,10 +24,7 @@ from .quota import (
     AsyncQuotaWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -40,11 +37,12 @@ from ...._wrappers import ResultWrapper
 from ....types.ssl import (
     CertificatePackGetResponse,
     CertificatePackEditResponse,
-    CertificatePackListResponse,
     CertificatePackDeleteResponse,
     certificate_pack_list_params,
 )
+from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
 
@@ -79,7 +77,7 @@ class CertificatePacks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CertificatePackListResponse]:
+    ) -> SyncSinglePage[object]:
         """
         For a given zone, list all active certificate packs.
 
@@ -98,17 +96,17 @@ class CertificatePacks(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/zones/{zone_id}/ssl/certificate_packs",
+            page=SyncSinglePage[object],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform({"status": status}, certificate_pack_list_params.CertificatePackListParams),
-                post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[CertificatePackListResponse]], ResultWrapper[CertificatePackListResponse]),
+            model=object,
         )
 
     def delete(
@@ -275,7 +273,7 @@ class AsyncCertificatePacks(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncCertificatePacksWithStreamingResponse:
         return AsyncCertificatePacksWithStreamingResponse(self)
 
-    async def list(
+    def list(
         self,
         *,
         zone_id: str,
@@ -286,7 +284,7 @@ class AsyncCertificatePacks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CertificatePackListResponse]:
+    ) -> AsyncPaginator[object, AsyncSinglePage[object]]:
         """
         For a given zone, list all active certificate packs.
 
@@ -305,19 +303,17 @@ class AsyncCertificatePacks(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/zones/{zone_id}/ssl/certificate_packs",
+            page=AsyncSinglePage[object],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
-                    {"status": status}, certificate_pack_list_params.CertificatePackListParams
-                ),
-                post_parser=ResultWrapper._unwrapper,
+                query=maybe_transform({"status": status}, certificate_pack_list_params.CertificatePackListParams),
             ),
-            cast_to=cast(Type[Optional[CertificatePackListResponse]], ResultWrapper[CertificatePackListResponse]),
+            model=object,
         )
 
     async def delete(

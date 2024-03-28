@@ -1,19 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Optional
 from datetime import datetime
 
 from ..._models import BaseModel
 
-__all__ = [
-    "DomainListResponse",
-    "DomainListResponseItem",
-    "DomainListResponseItemRegistrantContact",
-    "DomainListResponseItemTransferIn",
-]
+__all__ = ["DomainListResponse", "RegistrantContact", "TransferIn"]
 
 
-class DomainListResponseItemRegistrantContact(BaseModel):
+class RegistrantContact(BaseModel):
     address: str
     """Address."""
 
@@ -54,7 +49,7 @@ class DomainListResponseItemRegistrantContact(BaseModel):
     """Contact fax number."""
 
 
-class DomainListResponseItemTransferIn(BaseModel):
+class TransferIn(BaseModel):
     accept_foa: Optional[str] = None
     """Form of authorization has been accepted by the registrant."""
 
@@ -74,7 +69,7 @@ class DomainListResponseItemTransferIn(BaseModel):
     """Domain is unlocked at the foreign registrar."""
 
 
-class DomainListResponseItem(BaseModel):
+class DomainListResponse(BaseModel):
     id: Optional[str] = None
     """Domain identifier."""
 
@@ -96,7 +91,7 @@ class DomainListResponseItem(BaseModel):
     locked: Optional[bool] = None
     """Shows whether a registrar lock is in place for a domain."""
 
-    registrant_contact: Optional[DomainListResponseItemRegistrantContact] = None
+    registrant_contact: Optional[RegistrantContact] = None
     """Shows contact information for domain registrant."""
 
     registry_statuses: Optional[str] = None
@@ -113,11 +108,8 @@ class DomainListResponseItem(BaseModel):
     supported TLDs.
     """
 
-    transfer_in: Optional[DomainListResponseItemTransferIn] = None
+    transfer_in: Optional[TransferIn] = None
     """Statuses for domain transfers into Cloudflare Registrar."""
 
     updated_at: Optional[datetime] = None
     """Last updated."""
-
-
-DomainListResponse = List[DomainListResponseItem]

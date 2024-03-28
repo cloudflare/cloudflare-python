@@ -29,8 +29,10 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ....types.rules import ListsList, ListListResponse, ListDeleteResponse, list_create_params, list_update_params
+from ....pagination import SyncSinglePage, AsyncSinglePage
+from ....types.rules import ListsList, ListDeleteResponse, list_create_params, list_update_params
 from ...._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
 from .bulk_operations import (
@@ -177,7 +179,7 @@ class Lists(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ListListResponse]:
+    ) -> SyncSinglePage[ListsList]:
         """
         Fetches all lists in the account.
 
@@ -194,16 +196,13 @@ class Lists(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/rules/lists",
+            page=SyncSinglePage[ListsList],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[ListListResponse]], ResultWrapper[ListListResponse]),
+            model=ListsList,
         )
 
     def delete(
@@ -417,7 +416,7 @@ class AsyncLists(AsyncAPIResource):
             cast_to=cast(Type[Optional[ListsList]], ResultWrapper[ListsList]),
         )
 
-    async def list(
+    def list(
         self,
         *,
         account_id: str,
@@ -427,7 +426,7 @@ class AsyncLists(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ListListResponse]:
+    ) -> AsyncPaginator[ListsList, AsyncSinglePage[ListsList]]:
         """
         Fetches all lists in the account.
 
@@ -444,16 +443,13 @@ class AsyncLists(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/rules/lists",
+            page=AsyncSinglePage[ListsList],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[ListListResponse]], ResultWrapper[ListListResponse]),
+            model=ListsList,
         )
 
     async def delete(

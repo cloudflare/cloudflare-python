@@ -9,8 +9,8 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.zero_trust.devices.posture import (
-    IntegrationListResponse,
     DevicePostureIntegrations,
     IntegrationDeleteResponse,
 )
@@ -122,7 +122,7 @@ class TestIntegrations:
         integration = client.zero_trust.devices.posture.integrations.list(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[IntegrationListResponse], integration, path=["response"])
+        assert_matches_type(SyncSinglePage[DevicePostureIntegrations], integration, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -134,7 +134,7 @@ class TestIntegrations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         integration = response.parse()
-        assert_matches_type(Optional[IntegrationListResponse], integration, path=["response"])
+        assert_matches_type(SyncSinglePage[DevicePostureIntegrations], integration, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -146,7 +146,7 @@ class TestIntegrations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             integration = response.parse()
-            assert_matches_type(Optional[IntegrationListResponse], integration, path=["response"])
+            assert_matches_type(SyncSinglePage[DevicePostureIntegrations], integration, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -437,7 +437,7 @@ class TestAsyncIntegrations:
         integration = await async_client.zero_trust.devices.posture.integrations.list(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[IntegrationListResponse], integration, path=["response"])
+        assert_matches_type(AsyncSinglePage[DevicePostureIntegrations], integration, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -449,7 +449,7 @@ class TestAsyncIntegrations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         integration = await response.parse()
-        assert_matches_type(Optional[IntegrationListResponse], integration, path=["response"])
+        assert_matches_type(AsyncSinglePage[DevicePostureIntegrations], integration, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -461,7 +461,7 @@ class TestAsyncIntegrations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             integration = await response.parse()
-            assert_matches_type(Optional[IntegrationListResponse], integration, path=["response"])
+            assert_matches_type(AsyncSinglePage[DevicePostureIntegrations], integration, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
