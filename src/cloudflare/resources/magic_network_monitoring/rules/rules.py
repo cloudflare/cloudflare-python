@@ -150,7 +150,7 @@ class Rules(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/mnm/rules",
-            page=SyncSinglePage[MagicNetworkMonitoringRule],
+            page=SyncSinglePage[Optional[MagicNetworkMonitoringRule]],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -394,7 +394,7 @@ class AsyncRules(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/mnm/rules",
-            page=AsyncSinglePage[MagicNetworkMonitoringRule],
+            page=AsyncSinglePage[Optional[MagicNetworkMonitoringRule]],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
