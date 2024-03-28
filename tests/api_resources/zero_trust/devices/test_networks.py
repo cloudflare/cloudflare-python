@@ -11,8 +11,8 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types.zero_trust.devices import (
     NetworkListResponse,
+    DeviceManagedNetworks,
     NetworkDeleteResponse,
-    TeamsDevicesDeviceManagedNetworks,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -30,7 +30,7 @@ class TestNetworks:
             name="managed-network-1",
             type="tls",
         )
-        assert_matches_type(Optional[TeamsDevicesDeviceManagedNetworks], network, path=["response"])
+        assert_matches_type(Optional[DeviceManagedNetworks], network, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -44,7 +44,7 @@ class TestNetworks:
             name="managed-network-1",
             type="tls",
         )
-        assert_matches_type(Optional[TeamsDevicesDeviceManagedNetworks], network, path=["response"])
+        assert_matches_type(Optional[DeviceManagedNetworks], network, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -59,7 +59,7 @@ class TestNetworks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         network = response.parse()
-        assert_matches_type(Optional[TeamsDevicesDeviceManagedNetworks], network, path=["response"])
+        assert_matches_type(Optional[DeviceManagedNetworks], network, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -74,7 +74,7 @@ class TestNetworks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             network = response.parse()
-            assert_matches_type(Optional[TeamsDevicesDeviceManagedNetworks], network, path=["response"])
+            assert_matches_type(Optional[DeviceManagedNetworks], network, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -96,7 +96,7 @@ class TestNetworks:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[TeamsDevicesDeviceManagedNetworks], network, path=["response"])
+        assert_matches_type(Optional[DeviceManagedNetworks], network, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -111,7 +111,7 @@ class TestNetworks:
             name="managed-network-1",
             type="tls",
         )
-        assert_matches_type(Optional[TeamsDevicesDeviceManagedNetworks], network, path=["response"])
+        assert_matches_type(Optional[DeviceManagedNetworks], network, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -124,7 +124,7 @@ class TestNetworks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         network = response.parse()
-        assert_matches_type(Optional[TeamsDevicesDeviceManagedNetworks], network, path=["response"])
+        assert_matches_type(Optional[DeviceManagedNetworks], network, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -137,7 +137,7 @@ class TestNetworks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             network = response.parse()
-            assert_matches_type(Optional[TeamsDevicesDeviceManagedNetworks], network, path=["response"])
+            assert_matches_type(Optional[DeviceManagedNetworks], network, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -257,7 +257,7 @@ class TestNetworks:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[TeamsDevicesDeviceManagedNetworks], network, path=["response"])
+        assert_matches_type(Optional[DeviceManagedNetworks], network, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -270,7 +270,7 @@ class TestNetworks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         network = response.parse()
-        assert_matches_type(Optional[TeamsDevicesDeviceManagedNetworks], network, path=["response"])
+        assert_matches_type(Optional[DeviceManagedNetworks], network, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -283,7 +283,7 @@ class TestNetworks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             network = response.parse()
-            assert_matches_type(Optional[TeamsDevicesDeviceManagedNetworks], network, path=["response"])
+            assert_matches_type(Optional[DeviceManagedNetworks], network, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -315,7 +315,7 @@ class TestAsyncNetworks:
             name="managed-network-1",
             type="tls",
         )
-        assert_matches_type(Optional[TeamsDevicesDeviceManagedNetworks], network, path=["response"])
+        assert_matches_type(Optional[DeviceManagedNetworks], network, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -329,7 +329,7 @@ class TestAsyncNetworks:
             name="managed-network-1",
             type="tls",
         )
-        assert_matches_type(Optional[TeamsDevicesDeviceManagedNetworks], network, path=["response"])
+        assert_matches_type(Optional[DeviceManagedNetworks], network, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -344,7 +344,7 @@ class TestAsyncNetworks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         network = await response.parse()
-        assert_matches_type(Optional[TeamsDevicesDeviceManagedNetworks], network, path=["response"])
+        assert_matches_type(Optional[DeviceManagedNetworks], network, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -359,7 +359,7 @@ class TestAsyncNetworks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             network = await response.parse()
-            assert_matches_type(Optional[TeamsDevicesDeviceManagedNetworks], network, path=["response"])
+            assert_matches_type(Optional[DeviceManagedNetworks], network, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -381,7 +381,7 @@ class TestAsyncNetworks:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[TeamsDevicesDeviceManagedNetworks], network, path=["response"])
+        assert_matches_type(Optional[DeviceManagedNetworks], network, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -396,7 +396,7 @@ class TestAsyncNetworks:
             name="managed-network-1",
             type="tls",
         )
-        assert_matches_type(Optional[TeamsDevicesDeviceManagedNetworks], network, path=["response"])
+        assert_matches_type(Optional[DeviceManagedNetworks], network, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -409,7 +409,7 @@ class TestAsyncNetworks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         network = await response.parse()
-        assert_matches_type(Optional[TeamsDevicesDeviceManagedNetworks], network, path=["response"])
+        assert_matches_type(Optional[DeviceManagedNetworks], network, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -422,7 +422,7 @@ class TestAsyncNetworks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             network = await response.parse()
-            assert_matches_type(Optional[TeamsDevicesDeviceManagedNetworks], network, path=["response"])
+            assert_matches_type(Optional[DeviceManagedNetworks], network, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -542,7 +542,7 @@ class TestAsyncNetworks:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[TeamsDevicesDeviceManagedNetworks], network, path=["response"])
+        assert_matches_type(Optional[DeviceManagedNetworks], network, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -555,7 +555,7 @@ class TestAsyncNetworks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         network = await response.parse()
-        assert_matches_type(Optional[TeamsDevicesDeviceManagedNetworks], network, path=["response"])
+        assert_matches_type(Optional[DeviceManagedNetworks], network, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -568,7 +568,7 @@ class TestAsyncNetworks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             network = await response.parse()
-            assert_matches_type(Optional[TeamsDevicesDeviceManagedNetworks], network, path=["response"])
+            assert_matches_type(Optional[DeviceManagedNetworks], network, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

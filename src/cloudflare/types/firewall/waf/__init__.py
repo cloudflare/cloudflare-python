@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from .legacy_jhs_override import LegacyJhsOverride as LegacyJhsOverride
+from .waf_override import WAFOverride as WAFOverride
 from .package_list_params import PackageListParams as PackageListParams
 from .override_list_params import OverrideListParams as OverrideListParams
 from .package_get_response import PackageGetResponse as PackageGetResponse

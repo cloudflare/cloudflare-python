@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .aaa_webhooks import AaaWebhooks
+from .alerting_webhooks import AlertingWebhooks
 
 __all__ = ["WebhookListResponse"]
 
-WebhookListResponse = List[AaaWebhooks]
+WebhookListResponse = List[AlertingWebhooks]

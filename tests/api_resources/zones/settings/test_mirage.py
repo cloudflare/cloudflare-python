@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.zones.settings import ZonesMirage
+from cloudflare.types.zones.settings import ZoneSettingMirage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -24,7 +24,7 @@ class TestMirage:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value="on",
         )
-        assert_matches_type(Optional[ZonesMirage], mirage, path=["response"])
+        assert_matches_type(Optional[ZoneSettingMirage], mirage, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -37,7 +37,7 @@ class TestMirage:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         mirage = response.parse()
-        assert_matches_type(Optional[ZonesMirage], mirage, path=["response"])
+        assert_matches_type(Optional[ZoneSettingMirage], mirage, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -50,7 +50,7 @@ class TestMirage:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             mirage = response.parse()
-            assert_matches_type(Optional[ZonesMirage], mirage, path=["response"])
+            assert_matches_type(Optional[ZoneSettingMirage], mirage, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -69,7 +69,7 @@ class TestMirage:
         mirage = client.zones.settings.mirage.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ZonesMirage], mirage, path=["response"])
+        assert_matches_type(Optional[ZoneSettingMirage], mirage, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -81,7 +81,7 @@ class TestMirage:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         mirage = response.parse()
-        assert_matches_type(Optional[ZonesMirage], mirage, path=["response"])
+        assert_matches_type(Optional[ZoneSettingMirage], mirage, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -93,7 +93,7 @@ class TestMirage:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             mirage = response.parse()
-            assert_matches_type(Optional[ZonesMirage], mirage, path=["response"])
+            assert_matches_type(Optional[ZoneSettingMirage], mirage, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -116,7 +116,7 @@ class TestAsyncMirage:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value="on",
         )
-        assert_matches_type(Optional[ZonesMirage], mirage, path=["response"])
+        assert_matches_type(Optional[ZoneSettingMirage], mirage, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -129,7 +129,7 @@ class TestAsyncMirage:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         mirage = await response.parse()
-        assert_matches_type(Optional[ZonesMirage], mirage, path=["response"])
+        assert_matches_type(Optional[ZoneSettingMirage], mirage, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -142,7 +142,7 @@ class TestAsyncMirage:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             mirage = await response.parse()
-            assert_matches_type(Optional[ZonesMirage], mirage, path=["response"])
+            assert_matches_type(Optional[ZoneSettingMirage], mirage, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -161,7 +161,7 @@ class TestAsyncMirage:
         mirage = await async_client.zones.settings.mirage.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ZonesMirage], mirage, path=["response"])
+        assert_matches_type(Optional[ZoneSettingMirage], mirage, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -173,7 +173,7 @@ class TestAsyncMirage:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         mirage = await response.parse()
-        assert_matches_type(Optional[ZonesMirage], mirage, path=["response"])
+        assert_matches_type(Optional[ZoneSettingMirage], mirage, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -185,7 +185,7 @@ class TestAsyncMirage:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             mirage = await response.parse()
-            assert_matches_type(Optional[ZonesMirage], mirage, path=["response"])
+            assert_matches_type(Optional[ZoneSettingMirage], mirage, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

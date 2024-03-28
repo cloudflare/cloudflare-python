@@ -32,7 +32,7 @@ from .events import (
     AsyncEventsWithStreamingResponse,
 )
 from ...types import (
-    WaitingroomWaitingroom,
+    WaitingRoom,
     WaitingRoomListResponse,
     WaitingRoomDeleteResponse,
     waiting_room_edit_params,
@@ -153,7 +153,7 @@ class WaitingRooms(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WaitingroomWaitingroom:
+    ) -> WaitingRoom:
         """
         Creates a new waiting room.
 
@@ -458,7 +458,7 @@ class WaitingRooms(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[WaitingroomWaitingroom], ResultWrapper[WaitingroomWaitingroom]),
+            cast_to=cast(Type[WaitingRoom], ResultWrapper[WaitingRoom]),
         )
 
     def update(
@@ -509,7 +509,7 @@ class WaitingRooms(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WaitingroomWaitingroom:
+    ) -> WaitingRoom:
         """
         Updates a configured waiting room.
 
@@ -816,7 +816,7 @@ class WaitingRooms(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[WaitingroomWaitingroom], ResultWrapper[WaitingroomWaitingroom]),
+            cast_to=cast(Type[WaitingRoom], ResultWrapper[WaitingRoom]),
         )
 
     def list(
@@ -948,7 +948,7 @@ class WaitingRooms(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WaitingroomWaitingroom:
+    ) -> WaitingRoom:
         """
         Patches a configured waiting room.
 
@@ -1255,7 +1255,7 @@ class WaitingRooms(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[WaitingroomWaitingroom], ResultWrapper[WaitingroomWaitingroom]),
+            cast_to=cast(Type[WaitingRoom], ResultWrapper[WaitingRoom]),
         )
 
     def get(
@@ -1269,7 +1269,7 @@ class WaitingRooms(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WaitingroomWaitingroom:
+    ) -> WaitingRoom:
         """
         Fetches a single configured waiting room.
 
@@ -1297,7 +1297,7 @@ class WaitingRooms(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[WaitingroomWaitingroom], ResultWrapper[WaitingroomWaitingroom]),
+            cast_to=cast(Type[WaitingRoom], ResultWrapper[WaitingRoom]),
         )
 
 
@@ -1377,7 +1377,7 @@ class AsyncWaitingRooms(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WaitingroomWaitingroom:
+    ) -> WaitingRoom:
         """
         Creates a new waiting room.
 
@@ -1682,7 +1682,7 @@ class AsyncWaitingRooms(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[WaitingroomWaitingroom], ResultWrapper[WaitingroomWaitingroom]),
+            cast_to=cast(Type[WaitingRoom], ResultWrapper[WaitingRoom]),
         )
 
     async def update(
@@ -1733,7 +1733,7 @@ class AsyncWaitingRooms(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WaitingroomWaitingroom:
+    ) -> WaitingRoom:
         """
         Updates a configured waiting room.
 
@@ -2040,7 +2040,7 @@ class AsyncWaitingRooms(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[WaitingroomWaitingroom], ResultWrapper[WaitingroomWaitingroom]),
+            cast_to=cast(Type[WaitingRoom], ResultWrapper[WaitingRoom]),
         )
 
     async def list(
@@ -2172,7 +2172,7 @@ class AsyncWaitingRooms(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WaitingroomWaitingroom:
+    ) -> WaitingRoom:
         """
         Patches a configured waiting room.
 
@@ -2479,7 +2479,7 @@ class AsyncWaitingRooms(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[WaitingroomWaitingroom], ResultWrapper[WaitingroomWaitingroom]),
+            cast_to=cast(Type[WaitingRoom], ResultWrapper[WaitingRoom]),
         )
 
     async def get(
@@ -2493,7 +2493,7 @@ class AsyncWaitingRooms(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WaitingroomWaitingroom:
+    ) -> WaitingRoom:
         """
         Fetches a single configured waiting room.
 
@@ -2521,7 +2521,7 @@ class AsyncWaitingRooms(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[WaitingroomWaitingroom], ResultWrapper[WaitingroomWaitingroom]),
+            cast_to=cast(Type[WaitingRoom], ResultWrapper[WaitingRoom]),
         )
 
 

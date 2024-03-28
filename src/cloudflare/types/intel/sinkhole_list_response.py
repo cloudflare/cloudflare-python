@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .intel_sinkholes_sinkhole_item import IntelSinkholesSinkholeItem
+from .intel_sinkhole_item import IntelSinkholeItem
 
 __all__ = ["SinkholeListResponse"]
 
-SinkholeListResponse = List[IntelSinkholesSinkholeItem]
+SinkholeListResponse = List[IntelSinkholeItem]

@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .access_tag import AccessTag
+from .zero_trust_tag import ZeroTrustTag
 
 __all__ = ["TagListResponse"]
 
-TagListResponse = List[AccessTag]
+TagListResponse = List[ZeroTrustTag]

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-from .zones_nel_param import ZonesNELParam
+from .zone_setting_nel_param import ZoneSettingNELParam
 
 __all__ = ["NELEditParams"]
 
@@ -13,5 +13,5 @@ class NELEditParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
-    value: Required[ZonesNELParam]
+    value: Required[ZoneSettingNELParam]
     """Enable Network Error Logging reporting on your zone. (Beta)"""

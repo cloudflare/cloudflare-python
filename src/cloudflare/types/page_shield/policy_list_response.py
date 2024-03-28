@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .page_shield_pageshield_policy import PageShieldPageshieldPolicy
+from .page_shield_policy import PageShieldPolicy
 
 __all__ = ["PolicyListResponse"]
 
-PolicyListResponse = List[PageShieldPageshieldPolicy]
+PolicyListResponse = List[PageShieldPolicy]

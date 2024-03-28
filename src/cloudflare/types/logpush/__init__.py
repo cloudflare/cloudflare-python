@@ -7,10 +7,10 @@ from .job_create_params import JobCreateParams as JobCreateParams
 from .job_list_response import JobListResponse as JobListResponse
 from .job_update_params import JobUpdateParams as JobUpdateParams
 from .edge_create_params import EdgeCreateParams as EdgeCreateParams
+from .instant_logpush_job import InstantLogpushJob as InstantLogpushJob
 from .job_delete_response import JobDeleteResponse as JobDeleteResponse
 from .validate_origin_params import ValidateOriginParams as ValidateOriginParams
 from .ownership_create_params import OwnershipCreateParams as OwnershipCreateParams
-from .logpush_instant_logs_job import LogpushInstantLogsJob as LogpushInstantLogsJob
 from .validate_origin_response import ValidateOriginResponse as ValidateOriginResponse
 from .ownership_create_response import OwnershipCreateResponse as OwnershipCreateResponse
 from .ownership_validate_params import OwnershipValidateParams as OwnershipValidateParams

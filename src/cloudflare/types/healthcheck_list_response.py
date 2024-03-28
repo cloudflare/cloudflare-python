@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .healthchecks_healthchecks import HealthchecksHealthchecks
+from .healthcheck import Healthcheck
 
 __all__ = ["HealthcheckListResponse"]
 
-HealthcheckListResponse = List[HealthchecksHealthchecks]
+HealthcheckListResponse = List[Healthcheck]

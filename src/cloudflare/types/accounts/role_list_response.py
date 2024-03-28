@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .iam_schemas_role import IamSchemasRole
+from .role import Role
 
 __all__ = ["RoleListResponse"]
 
-RoleListResponse = List[IamSchemasRole]
+RoleListResponse = List[Role]

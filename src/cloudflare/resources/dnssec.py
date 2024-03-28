@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..types import DNSSECDNSSEC, DNSSECDeleteResponse, dnssec_edit_params
+from ..types import DNSSEC, DNSSECDeleteResponse, dnssec_edit_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import (
     maybe_transform,
@@ -26,17 +26,17 @@ from .._base_client import (
     make_request_options,
 )
 
-__all__ = ["DNSSEC", "AsyncDNSSEC"]
+__all__ = ["DNSSECResource", "AsyncDNSSECResource"]
 
 
-class DNSSEC(SyncAPIResource):
+class DNSSECResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> DNSSECWithRawResponse:
-        return DNSSECWithRawResponse(self)
+    def with_raw_response(self) -> DNSSECResourceWithRawResponse:
+        return DNSSECResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> DNSSECWithStreamingResponse:
-        return DNSSECWithStreamingResponse(self)
+    def with_streaming_response(self) -> DNSSECResourceWithStreamingResponse:
+        return DNSSECResourceWithStreamingResponse(self)
 
     def delete(
         self,
@@ -95,7 +95,7 @@ class DNSSEC(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DNSSECDNSSEC:
+    ) -> DNSSEC:
         """
         Enable or disable DNSSEC.
 
@@ -148,7 +148,7 @@ class DNSSEC(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DNSSECDNSSEC], ResultWrapper[DNSSECDNSSEC]),
+            cast_to=cast(Type[DNSSEC], ResultWrapper[DNSSEC]),
         )
 
     def get(
@@ -161,7 +161,7 @@ class DNSSEC(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DNSSECDNSSEC:
+    ) -> DNSSEC:
         """
         Details about DNSSEC status and configuration.
 
@@ -187,18 +187,18 @@ class DNSSEC(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DNSSECDNSSEC], ResultWrapper[DNSSECDNSSEC]),
+            cast_to=cast(Type[DNSSEC], ResultWrapper[DNSSEC]),
         )
 
 
-class AsyncDNSSEC(AsyncAPIResource):
+class AsyncDNSSECResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncDNSSECWithRawResponse:
-        return AsyncDNSSECWithRawResponse(self)
+    def with_raw_response(self) -> AsyncDNSSECResourceWithRawResponse:
+        return AsyncDNSSECResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncDNSSECWithStreamingResponse:
-        return AsyncDNSSECWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncDNSSECResourceWithStreamingResponse:
+        return AsyncDNSSECResourceWithStreamingResponse(self)
 
     async def delete(
         self,
@@ -257,7 +257,7 @@ class AsyncDNSSEC(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DNSSECDNSSEC:
+    ) -> DNSSEC:
         """
         Enable or disable DNSSEC.
 
@@ -310,7 +310,7 @@ class AsyncDNSSEC(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DNSSECDNSSEC], ResultWrapper[DNSSECDNSSEC]),
+            cast_to=cast(Type[DNSSEC], ResultWrapper[DNSSEC]),
         )
 
     async def get(
@@ -323,7 +323,7 @@ class AsyncDNSSEC(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DNSSECDNSSEC:
+    ) -> DNSSEC:
         """
         Details about DNSSEC status and configuration.
 
@@ -349,12 +349,12 @@ class AsyncDNSSEC(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DNSSECDNSSEC], ResultWrapper[DNSSECDNSSEC]),
+            cast_to=cast(Type[DNSSEC], ResultWrapper[DNSSEC]),
         )
 
 
-class DNSSECWithRawResponse:
-    def __init__(self, dnssec: DNSSEC) -> None:
+class DNSSECResourceWithRawResponse:
+    def __init__(self, dnssec: DNSSECResource) -> None:
         self._dnssec = dnssec
 
         self.delete = to_raw_response_wrapper(
@@ -368,8 +368,8 @@ class DNSSECWithRawResponse:
         )
 
 
-class AsyncDNSSECWithRawResponse:
-    def __init__(self, dnssec: AsyncDNSSEC) -> None:
+class AsyncDNSSECResourceWithRawResponse:
+    def __init__(self, dnssec: AsyncDNSSECResource) -> None:
         self._dnssec = dnssec
 
         self.delete = async_to_raw_response_wrapper(
@@ -383,8 +383,8 @@ class AsyncDNSSECWithRawResponse:
         )
 
 
-class DNSSECWithStreamingResponse:
-    def __init__(self, dnssec: DNSSEC) -> None:
+class DNSSECResourceWithStreamingResponse:
+    def __init__(self, dnssec: DNSSECResource) -> None:
         self._dnssec = dnssec
 
         self.delete = to_streamed_response_wrapper(
@@ -398,8 +398,8 @@ class DNSSECWithStreamingResponse:
         )
 
 
-class AsyncDNSSECWithStreamingResponse:
-    def __init__(self, dnssec: AsyncDNSSEC) -> None:
+class AsyncDNSSECResourceWithStreamingResponse:
+    def __init__(self, dnssec: AsyncDNSSECResource) -> None:
         self._dnssec = dnssec
 
         self.delete = async_to_streamed_response_wrapper(

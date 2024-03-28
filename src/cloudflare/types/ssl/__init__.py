@@ -5,6 +5,7 @@ from __future__ import annotations
 from .analyze_create_params import AnalyzeCreateParams as AnalyzeCreateParams
 from .analyze_create_response import AnalyzeCreateResponse as AnalyzeCreateResponse
 from .verification_get_params import VerificationGetParams as VerificationGetParams
+from .tls_verification_setting import TLSVerificationSetting as TLSVerificationSetting
 from .verification_edit_params import VerificationEditParams as VerificationEditParams
 from .verification_get_response import VerificationGetResponse as VerificationGetResponse
 from .verification_edit_response import VerificationEditResponse as VerificationEditResponse
@@ -14,6 +15,3 @@ from .certificate_pack_get_response import CertificatePackGetResponse as Certifi
 from .certificate_pack_edit_response import CertificatePackEditResponse as CertificatePackEditResponse
 from .certificate_pack_list_response import CertificatePackListResponse as CertificatePackListResponse
 from .certificate_pack_delete_response import CertificatePackDeleteResponse as CertificatePackDeleteResponse
-from .tls_certificates_and_hostnames_verification import (
-    TLSCertificatesAndHostnamesVerification as TLSCertificatesAndHostnamesVerification,
-)

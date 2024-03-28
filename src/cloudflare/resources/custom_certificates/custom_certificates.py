@@ -8,11 +8,11 @@ from typing_extensions import Literal
 import httpx
 
 from ...types import (
+    CustomCertificate,
     CustomCertificateGetResponse,
     CustomCertificateEditResponse,
     CustomCertificateCreateResponse,
     CustomCertificateDeleteResponse,
-    TLSCertificatesAndHostnamesCustomCertificate,
     custom_certificate_edit_params,
     custom_certificate_list_params,
     custom_certificate_create_params,
@@ -165,7 +165,7 @@ class CustomCertificates(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[TLSCertificatesAndHostnamesCustomCertificate]:
+    ) -> SyncV4PagePaginationArray[CustomCertificate]:
         """List, search, and filter all of your custom SSL certificates.
 
         The higher
@@ -193,7 +193,7 @@ class CustomCertificates(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/custom_certificates",
-            page=SyncV4PagePaginationArray[TLSCertificatesAndHostnamesCustomCertificate],
+            page=SyncV4PagePaginationArray[CustomCertificate],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -208,7 +208,7 @@ class CustomCertificates(SyncAPIResource):
                     custom_certificate_list_params.CustomCertificateListParams,
                 ),
             ),
-            model=TLSCertificatesAndHostnamesCustomCertificate,
+            model=CustomCertificate,
         )
 
     def delete(
@@ -522,10 +522,7 @@ class AsyncCustomCertificates(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[
-        TLSCertificatesAndHostnamesCustomCertificate,
-        AsyncV4PagePaginationArray[TLSCertificatesAndHostnamesCustomCertificate],
-    ]:
+    ) -> AsyncPaginator[CustomCertificate, AsyncV4PagePaginationArray[CustomCertificate]]:
         """List, search, and filter all of your custom SSL certificates.
 
         The higher
@@ -553,7 +550,7 @@ class AsyncCustomCertificates(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/custom_certificates",
-            page=AsyncV4PagePaginationArray[TLSCertificatesAndHostnamesCustomCertificate],
+            page=AsyncV4PagePaginationArray[CustomCertificate],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -568,7 +565,7 @@ class AsyncCustomCertificates(AsyncAPIResource):
                     custom_certificate_list_params.CustomCertificateListParams,
                 ),
             ),
-            model=TLSCertificatesAndHostnamesCustomCertificate,
+            model=CustomCertificate,
         )
 
     async def delete(

@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .teams_devices_device_posture_integrations import TeamsDevicesDevicePostureIntegrations
+from .device_posture_integrations import DevicePostureIntegrations
 
 __all__ = ["IntegrationListResponse"]
 
-IntegrationListResponse = List[TeamsDevicesDevicePostureIntegrations]
+IntegrationListResponse = List[DevicePostureIntegrations]

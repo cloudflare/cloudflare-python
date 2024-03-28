@@ -25,10 +25,10 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.zero_trust.access import (
-    AccessCustomPage,
+    ZeroTrustCustomPage,
     CustomPageListResponse,
     CustomPageDeleteResponse,
-    AccessCustomPageWithoutHTML,
+    ZeroTrustCustomPageWithoutHTML,
     custom_page_create_params,
     custom_page_update_params,
 )
@@ -59,7 +59,7 @@ class CustomPages(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessCustomPageWithoutHTML:
+    ) -> ZeroTrustCustomPageWithoutHTML:
         """
         Create a custom page
 
@@ -102,7 +102,7 @@ class CustomPages(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessCustomPageWithoutHTML], ResultWrapper[AccessCustomPageWithoutHTML]),
+            cast_to=cast(Type[ZeroTrustCustomPageWithoutHTML], ResultWrapper[ZeroTrustCustomPageWithoutHTML]),
         )
 
     def update(
@@ -120,7 +120,7 @@ class CustomPages(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessCustomPageWithoutHTML:
+    ) -> ZeroTrustCustomPageWithoutHTML:
         """
         Update a custom page
 
@@ -167,7 +167,7 @@ class CustomPages(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessCustomPageWithoutHTML], ResultWrapper[AccessCustomPageWithoutHTML]),
+            cast_to=cast(Type[ZeroTrustCustomPageWithoutHTML], ResultWrapper[ZeroTrustCustomPageWithoutHTML]),
         )
 
     def list(
@@ -264,7 +264,7 @@ class CustomPages(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessCustomPage:
+    ) -> ZeroTrustCustomPage:
         """
         Fetches a custom page and also returns its HTML.
 
@@ -294,7 +294,7 @@ class CustomPages(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessCustomPage], ResultWrapper[AccessCustomPage]),
+            cast_to=cast(Type[ZeroTrustCustomPage], ResultWrapper[ZeroTrustCustomPage]),
         )
 
 
@@ -321,7 +321,7 @@ class AsyncCustomPages(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessCustomPageWithoutHTML:
+    ) -> ZeroTrustCustomPageWithoutHTML:
         """
         Create a custom page
 
@@ -364,7 +364,7 @@ class AsyncCustomPages(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessCustomPageWithoutHTML], ResultWrapper[AccessCustomPageWithoutHTML]),
+            cast_to=cast(Type[ZeroTrustCustomPageWithoutHTML], ResultWrapper[ZeroTrustCustomPageWithoutHTML]),
         )
 
     async def update(
@@ -382,7 +382,7 @@ class AsyncCustomPages(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessCustomPageWithoutHTML:
+    ) -> ZeroTrustCustomPageWithoutHTML:
         """
         Update a custom page
 
@@ -429,7 +429,7 @@ class AsyncCustomPages(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessCustomPageWithoutHTML], ResultWrapper[AccessCustomPageWithoutHTML]),
+            cast_to=cast(Type[ZeroTrustCustomPageWithoutHTML], ResultWrapper[ZeroTrustCustomPageWithoutHTML]),
         )
 
     async def list(
@@ -526,7 +526,7 @@ class AsyncCustomPages(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessCustomPage:
+    ) -> ZeroTrustCustomPage:
         """
         Fetches a custom page and also returns its HTML.
 
@@ -556,7 +556,7 @@ class AsyncCustomPages(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessCustomPage], ResultWrapper[AccessCustomPage]),
+            cast_to=cast(Type[ZeroTrustCustomPage], ResultWrapper[ZeroTrustCustomPage]),
         )
 
 

@@ -11,7 +11,7 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types.origin_tls_client_auth import (
     HostnameUpdateResponse,
-    TLSCertificatesAndHostnamesHostnameCertidObject,
+    OriginTLSClientCertificateID,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -73,7 +73,7 @@ class TestHostnames:
             "app.example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(TLSCertificatesAndHostnamesHostnameCertidObject, hostname, path=["response"])
+        assert_matches_type(OriginTLSClientCertificateID, hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -86,7 +86,7 @@ class TestHostnames:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hostname = response.parse()
-        assert_matches_type(TLSCertificatesAndHostnamesHostnameCertidObject, hostname, path=["response"])
+        assert_matches_type(OriginTLSClientCertificateID, hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -99,7 +99,7 @@ class TestHostnames:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hostname = response.parse()
-            assert_matches_type(TLSCertificatesAndHostnamesHostnameCertidObject, hostname, path=["response"])
+            assert_matches_type(OriginTLSClientCertificateID, hostname, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -175,7 +175,7 @@ class TestAsyncHostnames:
             "app.example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(TLSCertificatesAndHostnamesHostnameCertidObject, hostname, path=["response"])
+        assert_matches_type(OriginTLSClientCertificateID, hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -188,7 +188,7 @@ class TestAsyncHostnames:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hostname = await response.parse()
-        assert_matches_type(TLSCertificatesAndHostnamesHostnameCertidObject, hostname, path=["response"])
+        assert_matches_type(OriginTLSClientCertificateID, hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -201,7 +201,7 @@ class TestAsyncHostnames:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hostname = await response.parse()
-            assert_matches_type(TLSCertificatesAndHostnamesHostnameCertidObject, hostname, path=["response"])
+            assert_matches_type(OriginTLSClientCertificateID, hostname, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

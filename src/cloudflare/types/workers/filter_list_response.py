@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .workers_filters import WorkersFilters
+from .workers_filter import WorkersFilter
 
 __all__ = ["FilterListResponse"]
 
-FilterListResponse = List[WorkersFilters]
+FilterListResponse = List[WorkersFilter]

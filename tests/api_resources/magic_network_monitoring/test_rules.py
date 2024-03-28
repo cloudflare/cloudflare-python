@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.magic_network_monitoring import RuleListResponse, MagicVisibilityMNMRule
+from cloudflare.types.magic_network_monitoring import RuleListResponse, MagicNetworkMonitoringRule
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -23,7 +23,7 @@ class TestRules:
         rule = client.magic_network_monitoring.rules.create(
             account_id="6f91088a406011ed95aed352566e8d4c",
         )
-        assert_matches_type(Optional[MagicVisibilityMNMRule], rule, path=["response"])
+        assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -35,7 +35,7 @@ class TestRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = response.parse()
-        assert_matches_type(Optional[MagicVisibilityMNMRule], rule, path=["response"])
+        assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -47,7 +47,7 @@ class TestRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = response.parse()
-            assert_matches_type(Optional[MagicVisibilityMNMRule], rule, path=["response"])
+            assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -65,7 +65,7 @@ class TestRules:
         rule = client.magic_network_monitoring.rules.update(
             account_id="6f91088a406011ed95aed352566e8d4c",
         )
-        assert_matches_type(Optional[MagicVisibilityMNMRule], rule, path=["response"])
+        assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -77,7 +77,7 @@ class TestRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = response.parse()
-        assert_matches_type(Optional[MagicVisibilityMNMRule], rule, path=["response"])
+        assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -89,7 +89,7 @@ class TestRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = response.parse()
-            assert_matches_type(Optional[MagicVisibilityMNMRule], rule, path=["response"])
+            assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -150,7 +150,7 @@ class TestRules:
             "2890e6fa406311ed9b5a23f70f6fb8cf",
             account_id="6f91088a406011ed95aed352566e8d4c",
         )
-        assert_matches_type(Optional[MagicVisibilityMNMRule], rule, path=["response"])
+        assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -163,7 +163,7 @@ class TestRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = response.parse()
-        assert_matches_type(Optional[MagicVisibilityMNMRule], rule, path=["response"])
+        assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -176,7 +176,7 @@ class TestRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = response.parse()
-            assert_matches_type(Optional[MagicVisibilityMNMRule], rule, path=["response"])
+            assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -202,7 +202,7 @@ class TestRules:
             "2890e6fa406311ed9b5a23f70f6fb8cf",
             account_id="6f91088a406011ed95aed352566e8d4c",
         )
-        assert_matches_type(Optional[MagicVisibilityMNMRule], rule, path=["response"])
+        assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -215,7 +215,7 @@ class TestRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = response.parse()
-        assert_matches_type(Optional[MagicVisibilityMNMRule], rule, path=["response"])
+        assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -228,7 +228,7 @@ class TestRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = response.parse()
-            assert_matches_type(Optional[MagicVisibilityMNMRule], rule, path=["response"])
+            assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -254,7 +254,7 @@ class TestRules:
             "2890e6fa406311ed9b5a23f70f6fb8cf",
             account_id="6f91088a406011ed95aed352566e8d4c",
         )
-        assert_matches_type(Optional[MagicVisibilityMNMRule], rule, path=["response"])
+        assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -267,7 +267,7 @@ class TestRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = response.parse()
-        assert_matches_type(Optional[MagicVisibilityMNMRule], rule, path=["response"])
+        assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -280,7 +280,7 @@ class TestRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = response.parse()
-            assert_matches_type(Optional[MagicVisibilityMNMRule], rule, path=["response"])
+            assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -309,7 +309,7 @@ class TestAsyncRules:
         rule = await async_client.magic_network_monitoring.rules.create(
             account_id="6f91088a406011ed95aed352566e8d4c",
         )
-        assert_matches_type(Optional[MagicVisibilityMNMRule], rule, path=["response"])
+        assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -321,7 +321,7 @@ class TestAsyncRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = await response.parse()
-        assert_matches_type(Optional[MagicVisibilityMNMRule], rule, path=["response"])
+        assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -333,7 +333,7 @@ class TestAsyncRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = await response.parse()
-            assert_matches_type(Optional[MagicVisibilityMNMRule], rule, path=["response"])
+            assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -351,7 +351,7 @@ class TestAsyncRules:
         rule = await async_client.magic_network_monitoring.rules.update(
             account_id="6f91088a406011ed95aed352566e8d4c",
         )
-        assert_matches_type(Optional[MagicVisibilityMNMRule], rule, path=["response"])
+        assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -363,7 +363,7 @@ class TestAsyncRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = await response.parse()
-        assert_matches_type(Optional[MagicVisibilityMNMRule], rule, path=["response"])
+        assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -375,7 +375,7 @@ class TestAsyncRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = await response.parse()
-            assert_matches_type(Optional[MagicVisibilityMNMRule], rule, path=["response"])
+            assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -436,7 +436,7 @@ class TestAsyncRules:
             "2890e6fa406311ed9b5a23f70f6fb8cf",
             account_id="6f91088a406011ed95aed352566e8d4c",
         )
-        assert_matches_type(Optional[MagicVisibilityMNMRule], rule, path=["response"])
+        assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -449,7 +449,7 @@ class TestAsyncRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = await response.parse()
-        assert_matches_type(Optional[MagicVisibilityMNMRule], rule, path=["response"])
+        assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -462,7 +462,7 @@ class TestAsyncRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = await response.parse()
-            assert_matches_type(Optional[MagicVisibilityMNMRule], rule, path=["response"])
+            assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -488,7 +488,7 @@ class TestAsyncRules:
             "2890e6fa406311ed9b5a23f70f6fb8cf",
             account_id="6f91088a406011ed95aed352566e8d4c",
         )
-        assert_matches_type(Optional[MagicVisibilityMNMRule], rule, path=["response"])
+        assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -501,7 +501,7 @@ class TestAsyncRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = await response.parse()
-        assert_matches_type(Optional[MagicVisibilityMNMRule], rule, path=["response"])
+        assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -514,7 +514,7 @@ class TestAsyncRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = await response.parse()
-            assert_matches_type(Optional[MagicVisibilityMNMRule], rule, path=["response"])
+            assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -540,7 +540,7 @@ class TestAsyncRules:
             "2890e6fa406311ed9b5a23f70f6fb8cf",
             account_id="6f91088a406011ed95aed352566e8d4c",
         )
-        assert_matches_type(Optional[MagicVisibilityMNMRule], rule, path=["response"])
+        assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -553,7 +553,7 @@ class TestAsyncRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = await response.parse()
-        assert_matches_type(Optional[MagicVisibilityMNMRule], rule, path=["response"])
+        assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -566,7 +566,7 @@ class TestAsyncRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = await response.parse()
-            assert_matches_type(Optional[MagicVisibilityMNMRule], rule, path=["response"])
+            assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

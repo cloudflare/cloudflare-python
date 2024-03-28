@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .workers_routes import WorkersRoutes
+from .workers_route import WorkersRoute
 
 __all__ = ["RouteListResponse"]
 
-RouteListResponse = List[WorkersRoutes]
+RouteListResponse = List[WorkersRoute]
