@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["ZoneSettingAdvancedDDOSParam"]
+__all__ = ["ZoneSettingAdvancedDDoSParam"]
 
 
-class ZoneSettingAdvancedDDOSParam(TypedDict, total=False):
+class ZoneSettingAdvancedDDoSParam(TypedDict, total=False):
     id: Required[Literal["advanced_ddos"]]
     """ID of the zone setting."""
 

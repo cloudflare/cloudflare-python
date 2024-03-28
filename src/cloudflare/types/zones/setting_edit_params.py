@@ -25,7 +25,7 @@ from .settings import (
     ZoneSettingEarlyHintsParam,
     ZoneSettingPseudoIPV4Param,
     ZoneSettingWebsocketsParam,
-    ZoneSettingAdvancedDDOSParam,
+    ZoneSettingAdvancedDDoSParam,
     ZoneSettingAlwaysOnlineParam,
     ZoneSettingBrowserCheckParam,
     ZoneSettingChallengeTTLParam,
@@ -151,7 +151,7 @@ class ItemZonesTLS1_2Only(TypedDict, total=False):
 
 Item = Union[
     ZoneSetting0rttParam,
-    ZoneSettingAdvancedDDOSParam,
+    ZoneSettingAdvancedDDoSParam,
     ZoneSettingAlwaysOnlineParam,
     ZoneSettingAlwaysUseHTTPSParam,
     ZoneSettingAutomaticHTTPSRewritesParam,
