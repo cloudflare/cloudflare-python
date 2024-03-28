@@ -4167,7 +4167,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.request_tracers import RequestTracerTrace, TraceCreateResponse
+from cloudflare.types.request_tracers import Trace, TraceCreateResponse
 ```
 
 Methods:
