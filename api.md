@@ -422,12 +422,12 @@ Methods:
 - <code title="patch /zones/{zone_id}/settings/0rtt">client.zones.settings.zero_rtt.<a href="./src/cloudflare/resources/zones/settings/zero_rtt.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/zero_rtt_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/zone_setting_0rtt.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/settings/0rtt">client.zones.settings.zero_rtt.<a href="./src/cloudflare/resources/zones/settings/zero_rtt.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/zone_setting_0rtt.py">Optional</a></code>
 
-### AdvancedDDOS
+### AdvancedDDoS
 
 Types:
 
 ```python
-from cloudflare.types.zones.settings import ZoneSettingAdvancedDDOS
+from cloudflare.types.zones.settings import ZoneSettingAdvancedDDoS
 ```
 
 Methods:

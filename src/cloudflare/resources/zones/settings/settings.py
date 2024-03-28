@@ -165,12 +165,12 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from .advanced_ddos import (
-    AdvancedDDOS,
-    AsyncAdvancedDDOS,
-    AdvancedDDOSWithRawResponse,
-    AsyncAdvancedDDOSWithRawResponse,
-    AdvancedDDOSWithStreamingResponse,
-    AsyncAdvancedDDOSWithStreamingResponse,
+    AdvancedDDoS,
+    AsyncAdvancedDDoS,
+    AdvancedDDoSWithRawResponse,
+    AsyncAdvancedDDoSWithRawResponse,
+    AdvancedDDoSWithStreamingResponse,
+    AsyncAdvancedDDoSWithStreamingResponse,
 )
 from .always_online import (
     AlwaysOnline,
@@ -442,8 +442,8 @@ class Settings(SyncAPIResource):
         return ZeroRTT(self._client)
 
     @cached_property
-    def advanced_ddos(self) -> AdvancedDDOS:
-        return AdvancedDDOS(self._client)
+    def advanced_ddos(self) -> AdvancedDDoS:
+        return AdvancedDDoS(self._client)
 
     @cached_property
     def always_online(self) -> AlwaysOnline:
@@ -738,8 +738,8 @@ class AsyncSettings(AsyncAPIResource):
         return AsyncZeroRTT(self._client)
 
     @cached_property
-    def advanced_ddos(self) -> AsyncAdvancedDDOS:
-        return AsyncAdvancedDDOS(self._client)
+    def advanced_ddos(self) -> AsyncAdvancedDDoS:
+        return AsyncAdvancedDDoS(self._client)
 
     @cached_property
     def always_online(self) -> AsyncAlwaysOnline:
@@ -1044,8 +1044,8 @@ class SettingsWithRawResponse:
         return ZeroRTTWithRawResponse(self._settings.zero_rtt)
 
     @cached_property
-    def advanced_ddos(self) -> AdvancedDDOSWithRawResponse:
-        return AdvancedDDOSWithRawResponse(self._settings.advanced_ddos)
+    def advanced_ddos(self) -> AdvancedDDoSWithRawResponse:
+        return AdvancedDDoSWithRawResponse(self._settings.advanced_ddos)
 
     @cached_property
     def always_online(self) -> AlwaysOnlineWithRawResponse:
@@ -1260,8 +1260,8 @@ class AsyncSettingsWithRawResponse:
         return AsyncZeroRTTWithRawResponse(self._settings.zero_rtt)
 
     @cached_property
-    def advanced_ddos(self) -> AsyncAdvancedDDOSWithRawResponse:
-        return AsyncAdvancedDDOSWithRawResponse(self._settings.advanced_ddos)
+    def advanced_ddos(self) -> AsyncAdvancedDDoSWithRawResponse:
+        return AsyncAdvancedDDoSWithRawResponse(self._settings.advanced_ddos)
 
     @cached_property
     def always_online(self) -> AsyncAlwaysOnlineWithRawResponse:
@@ -1476,8 +1476,8 @@ class SettingsWithStreamingResponse:
         return ZeroRTTWithStreamingResponse(self._settings.zero_rtt)
 
     @cached_property
-    def advanced_ddos(self) -> AdvancedDDOSWithStreamingResponse:
-        return AdvancedDDOSWithStreamingResponse(self._settings.advanced_ddos)
+    def advanced_ddos(self) -> AdvancedDDoSWithStreamingResponse:
+        return AdvancedDDoSWithStreamingResponse(self._settings.advanced_ddos)
 
     @cached_property
     def always_online(self) -> AlwaysOnlineWithStreamingResponse:
@@ -1692,8 +1692,8 @@ class AsyncSettingsWithStreamingResponse:
         return AsyncZeroRTTWithStreamingResponse(self._settings.zero_rtt)
 
     @cached_property
-    def advanced_ddos(self) -> AsyncAdvancedDDOSWithStreamingResponse:
-        return AsyncAdvancedDDOSWithStreamingResponse(self._settings.advanced_ddos)
+    def advanced_ddos(self) -> AsyncAdvancedDDoSWithStreamingResponse:
+        return AsyncAdvancedDDoSWithStreamingResponse(self._settings.advanced_ddos)
 
     @cached_property
     def always_online(self) -> AsyncAlwaysOnlineWithStreamingResponse:

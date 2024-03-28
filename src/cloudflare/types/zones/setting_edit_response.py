@@ -24,7 +24,7 @@ from .settings import (
     ZoneSettingEarlyHints,
     ZoneSettingPseudoIPV4,
     ZoneSettingWebsockets,
-    ZoneSettingAdvancedDDOS,
+    ZoneSettingAdvancedDDoS,
     ZoneSettingAlwaysOnline,
     ZoneSettingBrowserCheck,
     ZoneSettingChallengeTTL,
@@ -195,7 +195,7 @@ class SettingEditResponseItemZonesTLS1_2Only(BaseModel):
 
 SettingEditResponseItem = Union[
     ZoneSetting0rtt,
-    ZoneSettingAdvancedDDOS,
+    ZoneSettingAdvancedDDoS,
     ZoneSettingAlwaysOnline,
     ZoneSettingAlwaysUseHTTPS,
     ZoneSettingAutomaticHTTPSRewrites,
