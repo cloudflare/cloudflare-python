@@ -15,7 +15,6 @@ from .domain_get_params import DomainGetParams as DomainGetParams
 from .intel_sinkhole_item import IntelSinkholeItem as IntelSinkholeItem
 from .intel_domain_history import IntelDomainHistory as IntelDomainHistory
 from .ip_list_get_response import IPListGetResponse as IPListGetResponse
-from .sinkhole_list_response import SinkholeListResponse as SinkholeListResponse
 from .intel_passive_dns_by_ip import IntelPassiveDNSByIP as IntelPassiveDNSByIP
 from .domain_history_get_params import DomainHistoryGetParams as DomainHistoryGetParams
 from .domain_history_get_response import DomainHistoryGetResponse as DomainHistoryGetResponse

@@ -9,8 +9,8 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.zero_trust.devices import (
-    PolicyListResponse,
     PolicyDeleteResponse,
     DevicesDeviceSettingsPolicy,
 )
@@ -109,7 +109,7 @@ class TestPolicies:
         policy = client.zero_trust.devices.policies.list(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[PolicyListResponse], policy, path=["response"])
+        assert_matches_type(SyncSinglePage[DevicesDeviceSettingsPolicy], policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -121,7 +121,7 @@ class TestPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = response.parse()
-        assert_matches_type(Optional[PolicyListResponse], policy, path=["response"])
+        assert_matches_type(SyncSinglePage[DevicesDeviceSettingsPolicy], policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -133,7 +133,7 @@ class TestPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = response.parse()
-            assert_matches_type(Optional[PolicyListResponse], policy, path=["response"])
+            assert_matches_type(SyncSinglePage[DevicesDeviceSettingsPolicy], policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -420,7 +420,7 @@ class TestAsyncPolicies:
         policy = await async_client.zero_trust.devices.policies.list(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[PolicyListResponse], policy, path=["response"])
+        assert_matches_type(AsyncSinglePage[DevicesDeviceSettingsPolicy], policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -432,7 +432,7 @@ class TestAsyncPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = await response.parse()
-        assert_matches_type(Optional[PolicyListResponse], policy, path=["response"])
+        assert_matches_type(AsyncSinglePage[DevicesDeviceSettingsPolicy], policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -444,7 +444,7 @@ class TestAsyncPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = await response.parse()
-            assert_matches_type(Optional[PolicyListResponse], policy, path=["response"])
+            assert_matches_type(AsyncSinglePage[DevicesDeviceSettingsPolicy], policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

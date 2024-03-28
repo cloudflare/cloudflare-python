@@ -3,17 +3,14 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.secondary_dns import (
-    SecondaryDNSTSIG,
-    TSIGListResponse,
-    TSIGDeleteResponse,
-)
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
+from cloudflare.types.secondary_dns import SecondaryDNSTSIG, TSIGDeleteResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -148,7 +145,7 @@ class TestTSIGs:
         tsig = client.secondary_dns.tsigs.list(
             account_id="01a7362d577a6c3019a474fd6f485823",
         )
-        assert_matches_type(Optional[TSIGListResponse], tsig, path=["response"])
+        assert_matches_type(SyncSinglePage[SecondaryDNSTSIG], tsig, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -160,7 +157,7 @@ class TestTSIGs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tsig = response.parse()
-        assert_matches_type(Optional[TSIGListResponse], tsig, path=["response"])
+        assert_matches_type(SyncSinglePage[SecondaryDNSTSIG], tsig, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -172,7 +169,7 @@ class TestTSIGs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tsig = response.parse()
-            assert_matches_type(Optional[TSIGListResponse], tsig, path=["response"])
+            assert_matches_type(SyncSinglePage[SecondaryDNSTSIG], tsig, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -419,7 +416,7 @@ class TestAsyncTSIGs:
         tsig = await async_client.secondary_dns.tsigs.list(
             account_id="01a7362d577a6c3019a474fd6f485823",
         )
-        assert_matches_type(Optional[TSIGListResponse], tsig, path=["response"])
+        assert_matches_type(AsyncSinglePage[SecondaryDNSTSIG], tsig, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -431,7 +428,7 @@ class TestAsyncTSIGs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tsig = await response.parse()
-        assert_matches_type(Optional[TSIGListResponse], tsig, path=["response"])
+        assert_matches_type(AsyncSinglePage[SecondaryDNSTSIG], tsig, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -443,7 +440,7 @@ class TestAsyncTSIGs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tsig = await response.parse()
-            assert_matches_type(Optional[TSIGListResponse], tsig, path=["response"])
+            assert_matches_type(AsyncSinglePage[SecondaryDNSTSIG], tsig, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, List, Type, Iterable, Optional, cast
+from typing import Any, List, Type, Iterable, cast
 from typing_extensions import Literal
 
 import httpx
@@ -29,11 +29,12 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._wrappers import ResultWrapper
+from .....pagination import SyncSinglePage, AsyncSinglePage
 from ....._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
 from .....types.zero_trust.gateway import (
-    ListListResponse,
     ListCreateResponse,
     ListDeleteResponse,
     ZeroTrustGatewayLists,
@@ -181,7 +182,7 @@ class Lists(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ListListResponse]:
+    ) -> SyncSinglePage[ZeroTrustGatewayLists]:
         """
         Fetches all Zero Trust lists for an account.
 
@@ -196,16 +197,13 @@ class Lists(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/gateway/lists",
+            page=SyncSinglePage[ZeroTrustGatewayLists],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[ListListResponse]], ResultWrapper[ListListResponse]),
+            model=ZeroTrustGatewayLists,
         )
 
     def delete(
@@ -479,7 +477,7 @@ class AsyncLists(AsyncAPIResource):
             cast_to=cast(Type[ZeroTrustGatewayLists], ResultWrapper[ZeroTrustGatewayLists]),
         )
 
-    async def list(
+    def list(
         self,
         *,
         account_id: str,
@@ -489,7 +487,7 @@ class AsyncLists(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ListListResponse]:
+    ) -> AsyncPaginator[ZeroTrustGatewayLists, AsyncSinglePage[ZeroTrustGatewayLists]]:
         """
         Fetches all Zero Trust lists for an account.
 
@@ -504,16 +502,13 @@ class AsyncLists(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/gateway/lists",
+            page=AsyncSinglePage[ZeroTrustGatewayLists],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[ListListResponse]], ResultWrapper[ListListResponse]),
+            model=ZeroTrustGatewayLists,
         )
 
     async def delete(

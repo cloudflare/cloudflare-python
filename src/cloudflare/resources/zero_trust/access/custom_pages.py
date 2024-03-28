@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, cast
 from typing_extensions import Literal
 
 import httpx
@@ -21,12 +21,13 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
+from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
 from ....types.zero_trust.access import (
     ZeroTrustCustomPage,
-    CustomPageListResponse,
     CustomPageDeleteResponse,
     ZeroTrustCustomPageWithoutHTML,
     custom_page_create_params,
@@ -180,7 +181,7 @@ class CustomPages(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CustomPageListResponse]:
+    ) -> SyncSinglePage[ZeroTrustCustomPageWithoutHTML]:
         """
         List custom pages
 
@@ -197,16 +198,13 @@ class CustomPages(SyncAPIResource):
         """
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{identifier}/access/custom_pages",
+            page=SyncSinglePage[ZeroTrustCustomPageWithoutHTML],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[CustomPageListResponse]], ResultWrapper[CustomPageListResponse]),
+            model=ZeroTrustCustomPageWithoutHTML,
         )
 
     def delete(
@@ -432,7 +430,7 @@ class AsyncCustomPages(AsyncAPIResource):
             cast_to=cast(Type[ZeroTrustCustomPageWithoutHTML], ResultWrapper[ZeroTrustCustomPageWithoutHTML]),
         )
 
-    async def list(
+    def list(
         self,
         identifier: str,
         *,
@@ -442,7 +440,7 @@ class AsyncCustomPages(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CustomPageListResponse]:
+    ) -> AsyncPaginator[ZeroTrustCustomPageWithoutHTML, AsyncSinglePage[ZeroTrustCustomPageWithoutHTML]]:
         """
         List custom pages
 
@@ -459,16 +457,13 @@ class AsyncCustomPages(AsyncAPIResource):
         """
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{identifier}/access/custom_pages",
+            page=AsyncSinglePage[ZeroTrustCustomPageWithoutHTML],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[CustomPageListResponse]], ResultWrapper[CustomPageListResponse]),
+            model=ZeroTrustCustomPageWithoutHTML,
         )
 
     async def delete(

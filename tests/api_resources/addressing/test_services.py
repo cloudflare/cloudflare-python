@@ -9,6 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.addressing import ServiceListResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -23,7 +24,7 @@ class TestServices:
         service = client.addressing.services.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ServiceListResponse, service, path=["response"])
+        assert_matches_type(SyncSinglePage[ServiceListResponse], service, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -35,7 +36,7 @@ class TestServices:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         service = response.parse()
-        assert_matches_type(ServiceListResponse, service, path=["response"])
+        assert_matches_type(SyncSinglePage[ServiceListResponse], service, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -47,7 +48,7 @@ class TestServices:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             service = response.parse()
-            assert_matches_type(ServiceListResponse, service, path=["response"])
+            assert_matches_type(SyncSinglePage[ServiceListResponse], service, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -69,7 +70,7 @@ class TestAsyncServices:
         service = await async_client.addressing.services.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ServiceListResponse, service, path=["response"])
+        assert_matches_type(AsyncSinglePage[ServiceListResponse], service, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -81,7 +82,7 @@ class TestAsyncServices:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         service = await response.parse()
-        assert_matches_type(ServiceListResponse, service, path=["response"])
+        assert_matches_type(AsyncSinglePage[ServiceListResponse], service, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -93,7 +94,7 @@ class TestAsyncServices:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             service = await response.parse()
-            assert_matches_type(ServiceListResponse, service, path=["response"])
+            assert_matches_type(AsyncSinglePage[ServiceListResponse], service, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Optional, cast
+from typing import Any, Optional, cast
 
 import httpx
 
@@ -20,7 +20,9 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
+from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
 from ...types.registrar import DomainGetResponse, DomainListResponse, DomainUpdateResponse, domain_update_params
@@ -114,7 +116,7 @@ class Domains(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DomainListResponse]:
+    ) -> SyncSinglePage[DomainListResponse]:
         """
         List domains handled by Registrar.
 
@@ -131,16 +133,13 @@ class Domains(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/registrar/domains",
+            page=SyncSinglePage[DomainListResponse],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[DomainListResponse]], ResultWrapper[DomainListResponse]),
+            model=DomainListResponse,
         )
 
     def get(
@@ -269,7 +268,7 @@ class AsyncDomains(AsyncAPIResource):
             ),
         )
 
-    async def list(
+    def list(
         self,
         *,
         account_id: str,
@@ -279,7 +278,7 @@ class AsyncDomains(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DomainListResponse]:
+    ) -> AsyncPaginator[DomainListResponse, AsyncSinglePage[DomainListResponse]]:
         """
         List domains handled by Registrar.
 
@@ -296,16 +295,13 @@ class AsyncDomains(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/registrar/domains",
+            page=AsyncSinglePage[DomainListResponse],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[DomainListResponse]], ResultWrapper[DomainListResponse]),
+            model=DomainListResponse,
         )
 
     async def get(

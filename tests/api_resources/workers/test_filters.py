@@ -9,9 +9,9 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.workers import (
     WorkersFilter,
-    FilterListResponse,
     FilterCreateResponse,
     FilterDeleteResponse,
 )
@@ -140,7 +140,7 @@ class TestFilters:
         filter = client.workers.filters.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(FilterListResponse, filter, path=["response"])
+        assert_matches_type(SyncSinglePage[WorkersFilter], filter, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -152,7 +152,7 @@ class TestFilters:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         filter = response.parse()
-        assert_matches_type(FilterListResponse, filter, path=["response"])
+        assert_matches_type(SyncSinglePage[WorkersFilter], filter, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -164,7 +164,7 @@ class TestFilters:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             filter = response.parse()
-            assert_matches_type(FilterListResponse, filter, path=["response"])
+            assert_matches_type(SyncSinglePage[WorkersFilter], filter, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -350,7 +350,7 @@ class TestAsyncFilters:
         filter = await async_client.workers.filters.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(FilterListResponse, filter, path=["response"])
+        assert_matches_type(AsyncSinglePage[WorkersFilter], filter, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -362,7 +362,7 @@ class TestAsyncFilters:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         filter = await response.parse()
-        assert_matches_type(FilterListResponse, filter, path=["response"])
+        assert_matches_type(AsyncSinglePage[WorkersFilter], filter, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -374,7 +374,7 @@ class TestAsyncFilters:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             filter = await response.parse()
-            assert_matches_type(FilterListResponse, filter, path=["response"])
+            assert_matches_type(AsyncSinglePage[WorkersFilter], filter, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

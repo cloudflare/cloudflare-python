@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, cast
 
 import httpx
 
@@ -20,10 +20,12 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._wrappers import ResultWrapper
+from .....pagination import SyncSinglePage, AsyncSinglePage
 from ....._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
-from .....types.addressing.prefixes.bgp import PrefixListResponse, AddressingIpamBGPPrefixes, prefix_edit_params
+from .....types.addressing.prefixes.bgp import AddressingIpamBGPPrefixes, prefix_edit_params
 
 __all__ = ["Prefixes", "AsyncPrefixes"]
 
@@ -48,7 +50,7 @@ class Prefixes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PrefixListResponse]:
+    ) -> SyncSinglePage[AddressingIpamBGPPrefixes]:
         """List all BGP Prefixes within the specified IP Prefix.
 
         BGP Prefixes are used to
@@ -73,16 +75,13 @@ class Prefixes(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not prefix_id:
             raise ValueError(f"Expected a non-empty value for `prefix_id` but received {prefix_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/addressing/prefixes/{prefix_id}/bgp/prefixes",
+            page=SyncSinglePage[AddressingIpamBGPPrefixes],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[PrefixListResponse]], ResultWrapper[PrefixListResponse]),
+            model=AddressingIpamBGPPrefixes,
         )
 
     def edit(
@@ -196,7 +195,7 @@ class AsyncPrefixes(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncPrefixesWithStreamingResponse:
         return AsyncPrefixesWithStreamingResponse(self)
 
-    async def list(
+    def list(
         self,
         prefix_id: str,
         *,
@@ -207,7 +206,7 @@ class AsyncPrefixes(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PrefixListResponse]:
+    ) -> AsyncPaginator[AddressingIpamBGPPrefixes, AsyncSinglePage[AddressingIpamBGPPrefixes]]:
         """List all BGP Prefixes within the specified IP Prefix.
 
         BGP Prefixes are used to
@@ -232,16 +231,13 @@ class AsyncPrefixes(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not prefix_id:
             raise ValueError(f"Expected a non-empty value for `prefix_id` but received {prefix_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/addressing/prefixes/{prefix_id}/bgp/prefixes",
+            page=AsyncSinglePage[AddressingIpamBGPPrefixes],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[PrefixListResponse]], ResultWrapper[PrefixListResponse]),
+            model=AddressingIpamBGPPrefixes,
         )
 
     async def edit(

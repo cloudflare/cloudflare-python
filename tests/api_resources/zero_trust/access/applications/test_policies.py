@@ -3,15 +3,15 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.zero_trust.access.applications import (
     ZeroTrustPolicies,
-    PolicyListResponse,
     PolicyDeleteResponse,
 )
 
@@ -353,7 +353,7 @@ class TestPolicies:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[PolicyListResponse], policy, path=["response"])
+        assert_matches_type(SyncSinglePage[ZeroTrustPolicies], policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -363,7 +363,7 @@ class TestPolicies:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[PolicyListResponse], policy, path=["response"])
+        assert_matches_type(SyncSinglePage[ZeroTrustPolicies], policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -377,7 +377,7 @@ class TestPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = response.parse()
-        assert_matches_type(Optional[PolicyListResponse], policy, path=["response"])
+        assert_matches_type(SyncSinglePage[ZeroTrustPolicies], policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -391,7 +391,7 @@ class TestPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = response.parse()
-            assert_matches_type(Optional[PolicyListResponse], policy, path=["response"])
+            assert_matches_type(SyncSinglePage[ZeroTrustPolicies], policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -933,7 +933,7 @@ class TestAsyncPolicies:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[PolicyListResponse], policy, path=["response"])
+        assert_matches_type(AsyncSinglePage[ZeroTrustPolicies], policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -943,7 +943,7 @@ class TestAsyncPolicies:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[PolicyListResponse], policy, path=["response"])
+        assert_matches_type(AsyncSinglePage[ZeroTrustPolicies], policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -957,7 +957,7 @@ class TestAsyncPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = await response.parse()
-        assert_matches_type(Optional[PolicyListResponse], policy, path=["response"])
+        assert_matches_type(AsyncSinglePage[ZeroTrustPolicies], policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -971,7 +971,7 @@ class TestAsyncPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = await response.parse()
-            assert_matches_type(Optional[PolicyListResponse], policy, path=["response"])
+            assert_matches_type(AsyncSinglePage[ZeroTrustPolicies], policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

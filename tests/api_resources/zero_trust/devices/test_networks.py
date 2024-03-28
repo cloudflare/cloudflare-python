@@ -9,8 +9,8 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.zero_trust.devices import (
-    NetworkListResponse,
     DeviceManagedNetworks,
     NetworkDeleteResponse,
 )
@@ -162,7 +162,7 @@ class TestNetworks:
         network = client.zero_trust.devices.networks.list(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[NetworkListResponse], network, path=["response"])
+        assert_matches_type(SyncSinglePage[DeviceManagedNetworks], network, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -174,7 +174,7 @@ class TestNetworks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         network = response.parse()
-        assert_matches_type(Optional[NetworkListResponse], network, path=["response"])
+        assert_matches_type(SyncSinglePage[DeviceManagedNetworks], network, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -186,7 +186,7 @@ class TestNetworks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             network = response.parse()
-            assert_matches_type(Optional[NetworkListResponse], network, path=["response"])
+            assert_matches_type(SyncSinglePage[DeviceManagedNetworks], network, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -447,7 +447,7 @@ class TestAsyncNetworks:
         network = await async_client.zero_trust.devices.networks.list(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[NetworkListResponse], network, path=["response"])
+        assert_matches_type(AsyncSinglePage[DeviceManagedNetworks], network, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -459,7 +459,7 @@ class TestAsyncNetworks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         network = await response.parse()
-        assert_matches_type(Optional[NetworkListResponse], network, path=["response"])
+        assert_matches_type(AsyncSinglePage[DeviceManagedNetworks], network, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -471,7 +471,7 @@ class TestAsyncNetworks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             network = await response.parse()
-            assert_matches_type(Optional[NetworkListResponse], network, path=["response"])
+            assert_matches_type(AsyncSinglePage[DeviceManagedNetworks], network, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -3,15 +3,15 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.zero_trust.access import (
     ZeroTrustCertificates,
-    CertificateListResponse,
     CertificateDeleteResponse,
 )
 
@@ -184,7 +184,7 @@ class TestCertificates:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[CertificateListResponse], certificate, path=["response"])
+        assert_matches_type(SyncSinglePage[ZeroTrustCertificates], certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -193,7 +193,7 @@ class TestCertificates:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[CertificateListResponse], certificate, path=["response"])
+        assert_matches_type(SyncSinglePage[ZeroTrustCertificates], certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -206,7 +206,7 @@ class TestCertificates:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         certificate = response.parse()
-        assert_matches_type(Optional[CertificateListResponse], certificate, path=["response"])
+        assert_matches_type(SyncSinglePage[ZeroTrustCertificates], certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -219,7 +219,7 @@ class TestCertificates:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             certificate = response.parse()
-            assert_matches_type(Optional[CertificateListResponse], certificate, path=["response"])
+            assert_matches_type(SyncSinglePage[ZeroTrustCertificates], certificate, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -553,7 +553,7 @@ class TestAsyncCertificates:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[CertificateListResponse], certificate, path=["response"])
+        assert_matches_type(AsyncSinglePage[ZeroTrustCertificates], certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -562,7 +562,7 @@ class TestAsyncCertificates:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[CertificateListResponse], certificate, path=["response"])
+        assert_matches_type(AsyncSinglePage[ZeroTrustCertificates], certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -575,7 +575,7 @@ class TestAsyncCertificates:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         certificate = await response.parse()
-        assert_matches_type(Optional[CertificateListResponse], certificate, path=["response"])
+        assert_matches_type(AsyncSinglePage[ZeroTrustCertificates], certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -588,7 +588,7 @@ class TestAsyncCertificates:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             certificate = await response.parse()
-            assert_matches_type(Optional[CertificateListResponse], certificate, path=["response"])
+            assert_matches_type(AsyncSinglePage[ZeroTrustCertificates], certificate, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

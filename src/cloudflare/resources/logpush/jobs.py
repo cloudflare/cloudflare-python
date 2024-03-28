@@ -21,10 +21,12 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
+from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
-from ...types.logpush import JobListResponse, JobDeleteResponse, job_create_params, job_update_params
+from ...types.logpush import JobDeleteResponse, job_create_params, job_update_params
 from ...types.logpush.datasets import LogpushJob
 
 __all__ = ["Jobs", "AsyncJobs"]
@@ -249,7 +251,7 @@ class Jobs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> JobListResponse:
+    ) -> SyncSinglePage[Optional[LogpushJob]]:
         """
         Lists Logpush jobs for an account or zone.
 
@@ -281,16 +283,13 @@ class Jobs(SyncAPIResource):
         else:
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return self._get(
+        return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/logpush/jobs",
+            page=SyncSinglePage[LogpushJob],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[JobListResponse], ResultWrapper[JobListResponse]),
+            model=LogpushJob,
         )
 
     def delete(
@@ -623,7 +622,7 @@ class AsyncJobs(AsyncAPIResource):
             cast_to=cast(Type[Optional[LogpushJob]], ResultWrapper[LogpushJob]),
         )
 
-    async def list(
+    def list(
         self,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
@@ -634,7 +633,7 @@ class AsyncJobs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> JobListResponse:
+    ) -> AsyncPaginator[Optional[LogpushJob], AsyncSinglePage[Optional[LogpushJob]]]:
         """
         Lists Logpush jobs for an account or zone.
 
@@ -666,16 +665,13 @@ class AsyncJobs(AsyncAPIResource):
         else:
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return await self._get(
+        return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/logpush/jobs",
+            page=AsyncSinglePage[LogpushJob],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[JobListResponse], ResultWrapper[JobListResponse]),
+            model=LogpushJob,
         )
 
     async def delete(

@@ -3,14 +3,14 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.load_balancers import (
-    PoolListResponse,
     PoolDeleteResponse,
 )
 from cloudflare.types.user.load_balancers import LoadBalancingPool
@@ -259,7 +259,7 @@ class TestPools:
         pool = client.load_balancers.pools.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[PoolListResponse], pool, path=["response"])
+        assert_matches_type(SyncSinglePage[LoadBalancingPool], pool, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -268,7 +268,7 @@ class TestPools:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             monitor={},
         )
-        assert_matches_type(Optional[PoolListResponse], pool, path=["response"])
+        assert_matches_type(SyncSinglePage[LoadBalancingPool], pool, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -280,7 +280,7 @@ class TestPools:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pool = response.parse()
-        assert_matches_type(Optional[PoolListResponse], pool, path=["response"])
+        assert_matches_type(SyncSinglePage[LoadBalancingPool], pool, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -292,7 +292,7 @@ class TestPools:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pool = response.parse()
-            assert_matches_type(Optional[PoolListResponse], pool, path=["response"])
+            assert_matches_type(SyncSinglePage[LoadBalancingPool], pool, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -763,7 +763,7 @@ class TestAsyncPools:
         pool = await async_client.load_balancers.pools.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[PoolListResponse], pool, path=["response"])
+        assert_matches_type(AsyncSinglePage[LoadBalancingPool], pool, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -772,7 +772,7 @@ class TestAsyncPools:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             monitor={},
         )
-        assert_matches_type(Optional[PoolListResponse], pool, path=["response"])
+        assert_matches_type(AsyncSinglePage[LoadBalancingPool], pool, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -784,7 +784,7 @@ class TestAsyncPools:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pool = await response.parse()
-        assert_matches_type(Optional[PoolListResponse], pool, path=["response"])
+        assert_matches_type(AsyncSinglePage[LoadBalancingPool], pool, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -796,7 +796,7 @@ class TestAsyncPools:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pool = await response.parse()
-            assert_matches_type(Optional[PoolListResponse], pool, path=["response"])
+            assert_matches_type(AsyncSinglePage[LoadBalancingPool], pool, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

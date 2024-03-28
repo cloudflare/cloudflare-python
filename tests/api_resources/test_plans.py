@@ -3,13 +3,14 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types import PlanListResponse, AvailableRatePlan
+from cloudflare.types import AvailableRatePlan
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -23,7 +24,7 @@ class TestPlans:
         plan = client.plans.list(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[PlanListResponse], plan, path=["response"])
+        assert_matches_type(SyncSinglePage[AvailableRatePlan], plan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -35,7 +36,7 @@ class TestPlans:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         plan = response.parse()
-        assert_matches_type(Optional[PlanListResponse], plan, path=["response"])
+        assert_matches_type(SyncSinglePage[AvailableRatePlan], plan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -47,7 +48,7 @@ class TestPlans:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             plan = response.parse()
-            assert_matches_type(Optional[PlanListResponse], plan, path=["response"])
+            assert_matches_type(SyncSinglePage[AvailableRatePlan], plan, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -121,7 +122,7 @@ class TestAsyncPlans:
         plan = await async_client.plans.list(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[PlanListResponse], plan, path=["response"])
+        assert_matches_type(AsyncSinglePage[AvailableRatePlan], plan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -133,7 +134,7 @@ class TestAsyncPlans:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         plan = await response.parse()
-        assert_matches_type(Optional[PlanListResponse], plan, path=["response"])
+        assert_matches_type(AsyncSinglePage[AvailableRatePlan], plan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -145,7 +146,7 @@ class TestAsyncPlans:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             plan = await response.parse()
-            assert_matches_type(Optional[PlanListResponse], plan, path=["response"])
+            assert_matches_type(AsyncSinglePage[AvailableRatePlan], plan, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

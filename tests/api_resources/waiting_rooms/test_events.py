@@ -3,15 +3,15 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.waiting_rooms import (
     WaitingroomEvent,
-    EventListResponse,
     EventDeleteResponse,
 )
 
@@ -222,7 +222,7 @@ class TestEvents:
             "699d98642c564d2e855e9661899b7252",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[EventListResponse], event, path=["response"])
+        assert_matches_type(SyncSinglePage[WaitingroomEvent], event, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -235,7 +235,7 @@ class TestEvents:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         event = response.parse()
-        assert_matches_type(Optional[EventListResponse], event, path=["response"])
+        assert_matches_type(SyncSinglePage[WaitingroomEvent], event, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -248,7 +248,7 @@ class TestEvents:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             event = response.parse()
-            assert_matches_type(Optional[EventListResponse], event, path=["response"])
+            assert_matches_type(SyncSinglePage[WaitingroomEvent], event, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -705,7 +705,7 @@ class TestAsyncEvents:
             "699d98642c564d2e855e9661899b7252",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[EventListResponse], event, path=["response"])
+        assert_matches_type(AsyncSinglePage[WaitingroomEvent], event, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -718,7 +718,7 @@ class TestAsyncEvents:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         event = await response.parse()
-        assert_matches_type(Optional[EventListResponse], event, path=["response"])
+        assert_matches_type(AsyncSinglePage[WaitingroomEvent], event, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -731,7 +731,7 @@ class TestAsyncEvents:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             event = await response.parse()
-            assert_matches_type(Optional[EventListResponse], event, path=["response"])
+            assert_matches_type(AsyncSinglePage[WaitingroomEvent], event, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

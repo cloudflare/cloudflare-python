@@ -9,6 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.workers_for_platforms.dispatch import (
     NamespaceGetResponse,
     NamespaceListResponse,
@@ -78,7 +79,7 @@ class TestNamespaces:
         namespace = client.workers_for_platforms.dispatch.namespaces.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(NamespaceListResponse, namespace, path=["response"])
+        assert_matches_type(SyncSinglePage[NamespaceListResponse], namespace, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -90,7 +91,7 @@ class TestNamespaces:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         namespace = response.parse()
-        assert_matches_type(NamespaceListResponse, namespace, path=["response"])
+        assert_matches_type(SyncSinglePage[NamespaceListResponse], namespace, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -102,7 +103,7 @@ class TestNamespaces:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             namespace = response.parse()
-            assert_matches_type(NamespaceListResponse, namespace, path=["response"])
+            assert_matches_type(SyncSinglePage[NamespaceListResponse], namespace, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -279,7 +280,7 @@ class TestAsyncNamespaces:
         namespace = await async_client.workers_for_platforms.dispatch.namespaces.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(NamespaceListResponse, namespace, path=["response"])
+        assert_matches_type(AsyncSinglePage[NamespaceListResponse], namespace, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -291,7 +292,7 @@ class TestAsyncNamespaces:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         namespace = await response.parse()
-        assert_matches_type(NamespaceListResponse, namespace, path=["response"])
+        assert_matches_type(AsyncSinglePage[NamespaceListResponse], namespace, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -303,7 +304,7 @@ class TestAsyncNamespaces:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             namespace = await response.parse()
-            assert_matches_type(NamespaceListResponse, namespace, path=["response"])
+            assert_matches_type(AsyncSinglePage[NamespaceListResponse], namespace, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -9,9 +9,10 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.waiting_rooms import (
+    WaitingroomRule,
     RuleEditResponse,
-    RuleListResponse,
     RuleCreateResponse,
     RuleDeleteResponse,
     RuleUpdateResponse,
@@ -227,7 +228,7 @@ class TestRules:
             "699d98642c564d2e855e9661899b7252",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RuleListResponse], rule, path=["response"])
+        assert_matches_type(SyncSinglePage[WaitingroomRule], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -240,7 +241,7 @@ class TestRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = response.parse()
-        assert_matches_type(Optional[RuleListResponse], rule, path=["response"])
+        assert_matches_type(SyncSinglePage[WaitingroomRule], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -253,7 +254,7 @@ class TestRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = response.parse()
-            assert_matches_type(Optional[RuleListResponse], rule, path=["response"])
+            assert_matches_type(SyncSinglePage[WaitingroomRule], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -635,7 +636,7 @@ class TestAsyncRules:
             "699d98642c564d2e855e9661899b7252",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RuleListResponse], rule, path=["response"])
+        assert_matches_type(AsyncSinglePage[WaitingroomRule], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -648,7 +649,7 @@ class TestAsyncRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = await response.parse()
-        assert_matches_type(Optional[RuleListResponse], rule, path=["response"])
+        assert_matches_type(AsyncSinglePage[WaitingroomRule], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -661,7 +662,7 @@ class TestAsyncRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = await response.parse()
-            assert_matches_type(Optional[RuleListResponse], rule, path=["response"])
+            assert_matches_type(AsyncSinglePage[WaitingroomRule], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

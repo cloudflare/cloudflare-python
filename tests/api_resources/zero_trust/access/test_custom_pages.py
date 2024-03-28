@@ -3,15 +3,15 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.zero_trust.access import (
     ZeroTrustCustomPage,
-    CustomPageListResponse,
     CustomPageDeleteResponse,
     ZeroTrustCustomPageWithoutHTML,
 )
@@ -174,7 +174,7 @@ class TestCustomPages:
         custom_page = client.zero_trust.access.custom_pages.list(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[CustomPageListResponse], custom_page, path=["response"])
+        assert_matches_type(SyncSinglePage[ZeroTrustCustomPageWithoutHTML], custom_page, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -186,7 +186,7 @@ class TestCustomPages:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_page = response.parse()
-        assert_matches_type(Optional[CustomPageListResponse], custom_page, path=["response"])
+        assert_matches_type(SyncSinglePage[ZeroTrustCustomPageWithoutHTML], custom_page, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -198,7 +198,7 @@ class TestCustomPages:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_page = response.parse()
-            assert_matches_type(Optional[CustomPageListResponse], custom_page, path=["response"])
+            assert_matches_type(SyncSinglePage[ZeroTrustCustomPageWithoutHTML], custom_page, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -470,7 +470,7 @@ class TestAsyncCustomPages:
         custom_page = await async_client.zero_trust.access.custom_pages.list(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[CustomPageListResponse], custom_page, path=["response"])
+        assert_matches_type(AsyncSinglePage[ZeroTrustCustomPageWithoutHTML], custom_page, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -482,7 +482,7 @@ class TestAsyncCustomPages:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_page = await response.parse()
-        assert_matches_type(Optional[CustomPageListResponse], custom_page, path=["response"])
+        assert_matches_type(AsyncSinglePage[ZeroTrustCustomPageWithoutHTML], custom_page, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -494,7 +494,7 @@ class TestAsyncCustomPages:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_page = await response.parse()
-            assert_matches_type(Optional[CustomPageListResponse], custom_page, path=["response"])
+            assert_matches_type(AsyncSinglePage[ZeroTrustCustomPageWithoutHTML], custom_page, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -56,12 +56,9 @@ from .videos import (
     VideosWithStreamingResponse,
     AsyncVideosWithStreamingResponse,
 )
-from ...types import StreamVideos, StreamListResponse, stream_list_params
+from ...types import StreamVideos, stream_list_params
 from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ..._utils import maybe_transform
 from .captions import (
     Captions,
     AsyncCaptions,
@@ -111,6 +108,7 @@ from .live_inputs import (
     LiveInputsWithStreamingResponse,
     AsyncLiveInputsWithStreamingResponse,
 )
+from ...pagination import SyncSinglePage, AsyncSinglePage
 from .audio_tracks import (
     AudioTracks,
     AsyncAudioTracks,
@@ -128,6 +126,7 @@ from .direct_upload import (
     AsyncDirectUploadWithStreamingResponse,
 )
 from ..._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
 from .live_inputs.live_inputs import LiveInputs, AsyncLiveInputs
@@ -255,7 +254,7 @@ class Stream(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> StreamListResponse:
+    ) -> SyncSinglePage[StreamVideos]:
         """Lists up to 1000 videos from a single request.
 
         For a specific range, refer to
@@ -292,8 +291,9 @@ class Stream(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/stream",
+            page=SyncSinglePage[StreamVideos],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -312,9 +312,8 @@ class Stream(SyncAPIResource):
                     },
                     stream_list_params.StreamListParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[StreamListResponse], ResultWrapper[StreamListResponse]),
+            model=StreamVideos,
         )
 
     def delete(
@@ -504,7 +503,7 @@ class AsyncStream(AsyncAPIResource):
             cast_to=NoneType,
         )
 
-    async def list(
+    def list(
         self,
         *,
         account_id: str,
@@ -523,7 +522,7 @@ class AsyncStream(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> StreamListResponse:
+    ) -> AsyncPaginator[StreamVideos, AsyncSinglePage[StreamVideos]]:
         """Lists up to 1000 videos from a single request.
 
         For a specific range, refer to
@@ -560,14 +559,15 @@ class AsyncStream(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/stream",
+            page=AsyncSinglePage[StreamVideos],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "asc": asc,
                         "creator": creator,
@@ -580,9 +580,8 @@ class AsyncStream(AsyncAPIResource):
                     },
                     stream_list_params.StreamListParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[StreamListResponse], ResultWrapper[StreamListResponse]),
+            model=StreamVideos,
         )
 
     async def delete(

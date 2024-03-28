@@ -1,14 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Optional
 from datetime import datetime
 
 from ...._models import BaseModel
 
-__all__ = ["NamespaceListResponse", "NamespaceListResponseItem"]
+__all__ = ["NamespaceListResponse"]
 
 
-class NamespaceListResponseItem(BaseModel):
+class NamespaceListResponse(BaseModel):
     created_by: Optional[str] = None
     """Identifier"""
 
@@ -29,6 +29,3 @@ class NamespaceListResponseItem(BaseModel):
 
     script_count: Optional[int] = None
     """The current number of scripts in this Dispatch Namespace"""
-
-
-NamespaceListResponse = List[NamespaceListResponseItem]

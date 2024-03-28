@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
-
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
@@ -15,9 +13,10 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._wrappers import ResultWrapper
-from ...types.intel import SinkholeListResponse
+from ...pagination import SyncSinglePage, AsyncSinglePage
+from ...types.intel import IntelSinkholeItem
 from ..._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
 
@@ -43,7 +42,7 @@ class Sinkholes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SinkholeListResponse:
+    ) -> SyncSinglePage[IntelSinkholeItem]:
         """
         List sinkholes owned by this account
 
@@ -60,16 +59,13 @@ class Sinkholes(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/intel/sinkholes",
+            page=SyncSinglePage[IntelSinkholeItem],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[SinkholeListResponse], ResultWrapper[SinkholeListResponse]),
+            model=IntelSinkholeItem,
         )
 
 
@@ -82,7 +78,7 @@ class AsyncSinkholes(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncSinkholesWithStreamingResponse:
         return AsyncSinkholesWithStreamingResponse(self)
 
-    async def list(
+    def list(
         self,
         *,
         account_id: str,
@@ -92,7 +88,7 @@ class AsyncSinkholes(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SinkholeListResponse:
+    ) -> AsyncPaginator[IntelSinkholeItem, AsyncSinglePage[IntelSinkholeItem]]:
         """
         List sinkholes owned by this account
 
@@ -109,16 +105,13 @@ class AsyncSinkholes(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/intel/sinkholes",
+            page=AsyncSinglePage[IntelSinkholeItem],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[SinkholeListResponse], ResultWrapper[SinkholeListResponse]),
+            model=IntelSinkholeItem,
         )
 
 
