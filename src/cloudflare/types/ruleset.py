@@ -7,7 +7,7 @@ from typing_extensions import Literal
 from .._models import BaseModel
 
 __all__ = [
-    "RulesetsRulesetResponse",
+    "Ruleset",
     "Rule",
     "RuleRulesetsBlockRule",
     "RuleRulesetsBlockRuleActionParameters",
@@ -343,7 +343,7 @@ class RuleRulesetsSkipRule(BaseModel):
 Rule = Union[RuleRulesetsBlockRule, RuleRulesetsExecuteRule, RuleRulesetsLogRule, RuleRulesetsSkipRule]
 
 
-class RulesetsRulesetResponse(BaseModel):
+class Ruleset(BaseModel):
     id: str
     """The unique ID of the ruleset."""
 

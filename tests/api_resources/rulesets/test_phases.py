@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types import RulesetsRulesetResponse
+from cloudflare.types import Ruleset
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -27,7 +27,7 @@ class TestPhases:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(RulesetsRulesetResponse, phase, path=["response"])
+        assert_matches_type(Ruleset, phase, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -92,7 +92,7 @@ class TestPhases:
             name="My ruleset",
             phase="http_request_firewall_custom",
         )
-        assert_matches_type(RulesetsRulesetResponse, phase, path=["response"])
+        assert_matches_type(Ruleset, phase, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -108,7 +108,7 @@ class TestPhases:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         phase = response.parse()
-        assert_matches_type(RulesetsRulesetResponse, phase, path=["response"])
+        assert_matches_type(Ruleset, phase, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -124,7 +124,7 @@ class TestPhases:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             phase = response.parse()
-            assert_matches_type(RulesetsRulesetResponse, phase, path=["response"])
+            assert_matches_type(Ruleset, phase, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -157,7 +157,7 @@ class TestPhases:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(RulesetsRulesetResponse, phase, path=["response"])
+        assert_matches_type(Ruleset, phase, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -167,7 +167,7 @@ class TestPhases:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(RulesetsRulesetResponse, phase, path=["response"])
+        assert_matches_type(Ruleset, phase, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -181,7 +181,7 @@ class TestPhases:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         phase = response.parse()
-        assert_matches_type(RulesetsRulesetResponse, phase, path=["response"])
+        assert_matches_type(Ruleset, phase, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -195,7 +195,7 @@ class TestPhases:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             phase = response.parse()
-            assert_matches_type(RulesetsRulesetResponse, phase, path=["response"])
+            assert_matches_type(Ruleset, phase, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -230,7 +230,7 @@ class TestAsyncPhases:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(RulesetsRulesetResponse, phase, path=["response"])
+        assert_matches_type(Ruleset, phase, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -295,7 +295,7 @@ class TestAsyncPhases:
             name="My ruleset",
             phase="http_request_firewall_custom",
         )
-        assert_matches_type(RulesetsRulesetResponse, phase, path=["response"])
+        assert_matches_type(Ruleset, phase, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -311,7 +311,7 @@ class TestAsyncPhases:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         phase = await response.parse()
-        assert_matches_type(RulesetsRulesetResponse, phase, path=["response"])
+        assert_matches_type(Ruleset, phase, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -327,7 +327,7 @@ class TestAsyncPhases:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             phase = await response.parse()
-            assert_matches_type(RulesetsRulesetResponse, phase, path=["response"])
+            assert_matches_type(Ruleset, phase, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -360,7 +360,7 @@ class TestAsyncPhases:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(RulesetsRulesetResponse, phase, path=["response"])
+        assert_matches_type(Ruleset, phase, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -370,7 +370,7 @@ class TestAsyncPhases:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(RulesetsRulesetResponse, phase, path=["response"])
+        assert_matches_type(Ruleset, phase, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -384,7 +384,7 @@ class TestAsyncPhases:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         phase = await response.parse()
-        assert_matches_type(RulesetsRulesetResponse, phase, path=["response"])
+        assert_matches_type(Ruleset, phase, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -398,7 +398,7 @@ class TestAsyncPhases:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             phase = await response.parse()
-            assert_matches_type(RulesetsRulesetResponse, phase, path=["response"])
+            assert_matches_type(Ruleset, phase, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

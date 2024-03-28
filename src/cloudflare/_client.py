@@ -114,7 +114,7 @@ class Cloudflare(SyncAPIClient):
     workers_for_platforms: resources.WorkersForPlatforms
     zero_trust: resources.ZeroTrust
     challenges: resources.Challenges
-    hyperdrive: resources.Hyperdrive
+    hyperdrive: resources.HyperdriveResource
     rum: resources.RUM
     vectorize: resources.Vectorize
     url_scanner: resources.URLScanner
@@ -267,7 +267,7 @@ class Cloudflare(SyncAPIClient):
         self.workers_for_platforms = resources.WorkersForPlatforms(self)
         self.zero_trust = resources.ZeroTrust(self)
         self.challenges = resources.Challenges(self)
-        self.hyperdrive = resources.Hyperdrive(self)
+        self.hyperdrive = resources.HyperdriveResource(self)
         self.rum = resources.RUM(self)
         self.vectorize = resources.Vectorize(self)
         self.url_scanner = resources.URLScanner(self)
@@ -525,7 +525,7 @@ class AsyncCloudflare(AsyncAPIClient):
     workers_for_platforms: resources.AsyncWorkersForPlatforms
     zero_trust: resources.AsyncZeroTrust
     challenges: resources.AsyncChallenges
-    hyperdrive: resources.AsyncHyperdrive
+    hyperdrive: resources.AsyncHyperdriveResource
     rum: resources.AsyncRUM
     vectorize: resources.AsyncVectorize
     url_scanner: resources.AsyncURLScanner
@@ -678,7 +678,7 @@ class AsyncCloudflare(AsyncAPIClient):
         self.workers_for_platforms = resources.AsyncWorkersForPlatforms(self)
         self.zero_trust = resources.AsyncZeroTrust(self)
         self.challenges = resources.AsyncChallenges(self)
-        self.hyperdrive = resources.AsyncHyperdrive(self)
+        self.hyperdrive = resources.AsyncHyperdriveResource(self)
         self.rum = resources.AsyncRUM(self)
         self.vectorize = resources.AsyncVectorize(self)
         self.url_scanner = resources.AsyncURLScanner(self)
@@ -937,7 +937,7 @@ class CloudflareWithRawResponse:
         self.workers_for_platforms = resources.WorkersForPlatformsWithRawResponse(client.workers_for_platforms)
         self.zero_trust = resources.ZeroTrustWithRawResponse(client.zero_trust)
         self.challenges = resources.ChallengesWithRawResponse(client.challenges)
-        self.hyperdrive = resources.HyperdriveWithRawResponse(client.hyperdrive)
+        self.hyperdrive = resources.HyperdriveResourceWithRawResponse(client.hyperdrive)
         self.rum = resources.RUMWithRawResponse(client.rum)
         self.vectorize = resources.VectorizeWithRawResponse(client.vectorize)
         self.url_scanner = resources.URLScannerWithRawResponse(client.url_scanner)
@@ -1027,7 +1027,7 @@ class AsyncCloudflareWithRawResponse:
         self.workers_for_platforms = resources.AsyncWorkersForPlatformsWithRawResponse(client.workers_for_platforms)
         self.zero_trust = resources.AsyncZeroTrustWithRawResponse(client.zero_trust)
         self.challenges = resources.AsyncChallengesWithRawResponse(client.challenges)
-        self.hyperdrive = resources.AsyncHyperdriveWithRawResponse(client.hyperdrive)
+        self.hyperdrive = resources.AsyncHyperdriveResourceWithRawResponse(client.hyperdrive)
         self.rum = resources.AsyncRUMWithRawResponse(client.rum)
         self.vectorize = resources.AsyncVectorizeWithRawResponse(client.vectorize)
         self.url_scanner = resources.AsyncURLScannerWithRawResponse(client.url_scanner)
@@ -1117,7 +1117,7 @@ class CloudflareWithStreamedResponse:
         self.workers_for_platforms = resources.WorkersForPlatformsWithStreamingResponse(client.workers_for_platforms)
         self.zero_trust = resources.ZeroTrustWithStreamingResponse(client.zero_trust)
         self.challenges = resources.ChallengesWithStreamingResponse(client.challenges)
-        self.hyperdrive = resources.HyperdriveWithStreamingResponse(client.hyperdrive)
+        self.hyperdrive = resources.HyperdriveResourceWithStreamingResponse(client.hyperdrive)
         self.rum = resources.RUMWithStreamingResponse(client.rum)
         self.vectorize = resources.VectorizeWithStreamingResponse(client.vectorize)
         self.url_scanner = resources.URLScannerWithStreamingResponse(client.url_scanner)
@@ -1213,7 +1213,7 @@ class AsyncCloudflareWithStreamedResponse:
         )
         self.zero_trust = resources.AsyncZeroTrustWithStreamingResponse(client.zero_trust)
         self.challenges = resources.AsyncChallengesWithStreamingResponse(client.challenges)
-        self.hyperdrive = resources.AsyncHyperdriveWithStreamingResponse(client.hyperdrive)
+        self.hyperdrive = resources.AsyncHyperdriveResourceWithStreamingResponse(client.hyperdrive)
         self.rum = resources.AsyncRUMWithStreamingResponse(client.rum)
         self.vectorize = resources.AsyncVectorizeWithStreamingResponse(client.vectorize)
         self.url_scanner = resources.AsyncURLScannerWithStreamingResponse(client.url_scanner)
