@@ -6,10 +6,10 @@ from typing_extensions import Literal
 
 from ...._models import BaseModel
 
-__all__ = ["ZoneSettingAdvancedDDOS"]
+__all__ = ["ZoneSettingAdvancedDDoS"]
 
 
-class ZoneSettingAdvancedDDOS(BaseModel):
+class ZoneSettingAdvancedDDoS(BaseModel):
     id: Literal["advanced_ddos"]
     """ID of the zone setting."""
 
