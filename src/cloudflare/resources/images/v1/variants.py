@@ -24,8 +24,8 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.images.v1 import (
-    ImageVariant,
-    ImageVariants,
+    V1ImageVariant,
+    V1ImageVariants,
     VariantDeleteResponse,
     variant_edit_params,
     variant_create_params,
@@ -56,7 +56,7 @@ class Variants(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ImageVariant:
+    ) -> V1ImageVariant:
         """
         Specify variants that allow you to resize images for different use cases.
 
@@ -95,7 +95,7 @@ class Variants(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ImageVariant], ResultWrapper[ImageVariant]),
+            cast_to=cast(Type[V1ImageVariant], ResultWrapper[V1ImageVariant]),
         )
 
     def list(
@@ -108,7 +108,7 @@ class Variants(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ImageVariants:
+    ) -> V1ImageVariants:
         """
         Lists existing variants.
 
@@ -134,7 +134,7 @@ class Variants(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ImageVariants], ResultWrapper[ImageVariants]),
+            cast_to=cast(Type[V1ImageVariants], ResultWrapper[V1ImageVariants]),
         )
 
     def delete(
@@ -197,7 +197,7 @@ class Variants(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ImageVariant:
+    ) -> V1ImageVariant:
         """
         Updating a variant purges the cache for all images associated with the variant.
 
@@ -237,7 +237,7 @@ class Variants(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ImageVariant], ResultWrapper[ImageVariant]),
+            cast_to=cast(Type[V1ImageVariant], ResultWrapper[V1ImageVariant]),
         )
 
     def get(
@@ -251,7 +251,7 @@ class Variants(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ImageVariant:
+    ) -> V1ImageVariant:
         """
         Fetch details for a single variant.
 
@@ -279,7 +279,7 @@ class Variants(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ImageVariant], ResultWrapper[ImageVariant]),
+            cast_to=cast(Type[V1ImageVariant], ResultWrapper[V1ImageVariant]),
         )
 
 
@@ -305,7 +305,7 @@ class AsyncVariants(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ImageVariant:
+    ) -> V1ImageVariant:
         """
         Specify variants that allow you to resize images for different use cases.
 
@@ -344,7 +344,7 @@ class AsyncVariants(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ImageVariant], ResultWrapper[ImageVariant]),
+            cast_to=cast(Type[V1ImageVariant], ResultWrapper[V1ImageVariant]),
         )
 
     async def list(
@@ -357,7 +357,7 @@ class AsyncVariants(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ImageVariants:
+    ) -> V1ImageVariants:
         """
         Lists existing variants.
 
@@ -383,7 +383,7 @@ class AsyncVariants(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ImageVariants], ResultWrapper[ImageVariants]),
+            cast_to=cast(Type[V1ImageVariants], ResultWrapper[V1ImageVariants]),
         )
 
     async def delete(
@@ -446,7 +446,7 @@ class AsyncVariants(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ImageVariant:
+    ) -> V1ImageVariant:
         """
         Updating a variant purges the cache for all images associated with the variant.
 
@@ -486,7 +486,7 @@ class AsyncVariants(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ImageVariant], ResultWrapper[ImageVariant]),
+            cast_to=cast(Type[V1ImageVariant], ResultWrapper[V1ImageVariant]),
         )
 
     async def get(
@@ -500,7 +500,7 @@ class AsyncVariants(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ImageVariant:
+    ) -> V1ImageVariant:
         """
         Fetch details for a single variant.
 
@@ -528,7 +528,7 @@ class AsyncVariants(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ImageVariant], ResultWrapper[ImageVariant]),
+            cast_to=cast(Type[V1ImageVariant], ResultWrapper[V1ImageVariant]),
         )
 
 
