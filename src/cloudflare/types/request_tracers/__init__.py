@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from .trace import Trace as Trace
+from .trace_item import TraceItem as TraceItem
 from .trace_create_params import TraceCreateParams as TraceCreateParams
-from .request_tracer_trace import RequestTracerTrace as RequestTracerTrace
 from .trace_create_response import TraceCreateResponse as TraceCreateResponse

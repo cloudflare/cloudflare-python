@@ -29,12 +29,14 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._wrappers import ResultWrapper
+from .....pagination import SyncSinglePage, AsyncSinglePage
 from .....types.pages import PagesDeployments
 from .history.history import History, AsyncHistory
 from ....._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
-from .....types.pages.projects import DeploymentListResponse, deployment_list_params, deployment_create_params
+from .....types.pages.projects import deployment_list_params, deployment_create_params
 
 __all__ = ["Deployments", "AsyncDeployments"]
 
@@ -115,7 +117,7 @@ class Deployments(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DeploymentListResponse:
+    ) -> SyncSinglePage[PagesDeployments]:
         """
         Fetch a list of project deployments.
 
@@ -138,17 +140,17 @@ class Deployments(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not project_name:
             raise ValueError(f"Expected a non-empty value for `project_name` but received {project_name!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/pages/projects/{project_name}/deployments",
+            page=SyncSinglePage[PagesDeployments],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform({"env": env}, deployment_list_params.DeploymentListParams),
-                post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DeploymentListResponse], ResultWrapper[DeploymentListResponse]),
+            model=PagesDeployments,
         )
 
     def delete(
@@ -410,7 +412,7 @@ class AsyncDeployments(AsyncAPIResource):
             cast_to=cast(Type[PagesDeployments], ResultWrapper[PagesDeployments]),
         )
 
-    async def list(
+    def list(
         self,
         project_name: str,
         *,
@@ -422,7 +424,7 @@ class AsyncDeployments(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DeploymentListResponse:
+    ) -> AsyncPaginator[PagesDeployments, AsyncSinglePage[PagesDeployments]]:
         """
         Fetch a list of project deployments.
 
@@ -445,17 +447,17 @@ class AsyncDeployments(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not project_name:
             raise ValueError(f"Expected a non-empty value for `project_name` but received {project_name!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/pages/projects/{project_name}/deployments",
+            page=AsyncSinglePage[PagesDeployments],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"env": env}, deployment_list_params.DeploymentListParams),
-                post_parser=ResultWrapper._unwrapper,
+                query=maybe_transform({"env": env}, deployment_list_params.DeploymentListParams),
             ),
-            cast_to=cast(Type[DeploymentListResponse], ResultWrapper[DeploymentListResponse]),
+            model=PagesDeployments,
         )
 
     async def delete(

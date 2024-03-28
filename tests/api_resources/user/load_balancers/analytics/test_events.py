@@ -3,14 +3,15 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare._utils import parse_datetime
-from cloudflare.types.user.load_balancers.analytics import EventListResponse
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
+from cloudflare.types.user.load_balancers.analytics import LoadBalancingAnalytics
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -22,7 +23,7 @@ class TestEvents:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         event = client.user.load_balancers.analytics.events.list()
-        assert_matches_type(Optional[EventListResponse], event, path=["response"])
+        assert_matches_type(SyncSinglePage[LoadBalancingAnalytics], event, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -36,7 +37,7 @@ class TestEvents:
             since=parse_datetime("2016-11-11T12:00:00Z"),
             until=parse_datetime("2016-11-11T13:00:00Z"),
         )
-        assert_matches_type(Optional[EventListResponse], event, path=["response"])
+        assert_matches_type(SyncSinglePage[LoadBalancingAnalytics], event, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -46,7 +47,7 @@ class TestEvents:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         event = response.parse()
-        assert_matches_type(Optional[EventListResponse], event, path=["response"])
+        assert_matches_type(SyncSinglePage[LoadBalancingAnalytics], event, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -56,7 +57,7 @@ class TestEvents:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             event = response.parse()
-            assert_matches_type(Optional[EventListResponse], event, path=["response"])
+            assert_matches_type(SyncSinglePage[LoadBalancingAnalytics], event, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -68,7 +69,7 @@ class TestAsyncEvents:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         event = await async_client.user.load_balancers.analytics.events.list()
-        assert_matches_type(Optional[EventListResponse], event, path=["response"])
+        assert_matches_type(AsyncSinglePage[LoadBalancingAnalytics], event, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -82,7 +83,7 @@ class TestAsyncEvents:
             since=parse_datetime("2016-11-11T12:00:00Z"),
             until=parse_datetime("2016-11-11T13:00:00Z"),
         )
-        assert_matches_type(Optional[EventListResponse], event, path=["response"])
+        assert_matches_type(AsyncSinglePage[LoadBalancingAnalytics], event, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -92,7 +93,7 @@ class TestAsyncEvents:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         event = await response.parse()
-        assert_matches_type(Optional[EventListResponse], event, path=["response"])
+        assert_matches_type(AsyncSinglePage[LoadBalancingAnalytics], event, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -102,6 +103,6 @@ class TestAsyncEvents:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             event = await response.parse()
-            assert_matches_type(Optional[EventListResponse], event, path=["response"])
+            assert_matches_type(AsyncSinglePage[LoadBalancingAnalytics], event, path=["response"])
 
         assert cast(Any, response.is_closed) is True

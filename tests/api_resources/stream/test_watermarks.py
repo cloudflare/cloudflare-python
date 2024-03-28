@@ -9,9 +9,10 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.stream import (
+    StreamWatermarks,
     WatermarkGetResponse,
-    WatermarkListResponse,
     WatermarkCreateResponse,
     WatermarkDeleteResponse,
 )
@@ -88,7 +89,7 @@ class TestWatermarks:
         watermark = client.stream.watermarks.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(WatermarkListResponse, watermark, path=["response"])
+        assert_matches_type(SyncSinglePage[StreamWatermarks], watermark, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -100,7 +101,7 @@ class TestWatermarks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         watermark = response.parse()
-        assert_matches_type(WatermarkListResponse, watermark, path=["response"])
+        assert_matches_type(SyncSinglePage[StreamWatermarks], watermark, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -112,7 +113,7 @@ class TestWatermarks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             watermark = response.parse()
-            assert_matches_type(WatermarkListResponse, watermark, path=["response"])
+            assert_matches_type(SyncSinglePage[StreamWatermarks], watermark, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -298,7 +299,7 @@ class TestAsyncWatermarks:
         watermark = await async_client.stream.watermarks.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(WatermarkListResponse, watermark, path=["response"])
+        assert_matches_type(AsyncSinglePage[StreamWatermarks], watermark, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -310,7 +311,7 @@ class TestAsyncWatermarks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         watermark = await response.parse()
-        assert_matches_type(WatermarkListResponse, watermark, path=["response"])
+        assert_matches_type(AsyncSinglePage[StreamWatermarks], watermark, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -322,7 +323,7 @@ class TestAsyncWatermarks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             watermark = await response.parse()
-            assert_matches_type(WatermarkListResponse, watermark, path=["response"])
+            assert_matches_type(AsyncSinglePage[StreamWatermarks], watermark, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

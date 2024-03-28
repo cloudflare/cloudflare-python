@@ -27,8 +27,8 @@ from ..._base_client import (
     make_request_options,
 )
 from ...types.challenges import (
-    NcChallengesAdminWidgetList,
-    NcChallengesAdminWidgetDetail,
+    ChallengesWidget,
+    ChallengesWidgetList,
     widget_list_params,
     widget_create_params,
     widget_update_params,
@@ -68,7 +68,7 @@ class Widgets(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[NcChallengesAdminWidgetDetail]:
+    ) -> Optional[ChallengesWidget]:
         """
         Lists challenge widgets.
 
@@ -139,7 +139,7 @@ class Widgets(SyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[NcChallengesAdminWidgetDetail]], ResultWrapper[NcChallengesAdminWidgetDetail]),
+            cast_to=cast(Type[Optional[ChallengesWidget]], ResultWrapper[ChallengesWidget]),
         )
 
     def update(
@@ -159,7 +159,7 @@ class Widgets(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[NcChallengesAdminWidgetDetail]:
+    ) -> Optional[ChallengesWidget]:
         """
         Update the configuration of a widget.
 
@@ -214,7 +214,7 @@ class Widgets(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[NcChallengesAdminWidgetDetail]], ResultWrapper[NcChallengesAdminWidgetDetail]),
+            cast_to=cast(Type[Optional[ChallengesWidget]], ResultWrapper[ChallengesWidget]),
         )
 
     def list(
@@ -231,7 +231,7 @@ class Widgets(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[NcChallengesAdminWidgetList]:
+    ) -> SyncV4PagePaginationArray[ChallengesWidgetList]:
         """
         Lists all turnstile widgets of an account.
 
@@ -258,7 +258,7 @@ class Widgets(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/challenges/widgets",
-            page=SyncV4PagePaginationArray[NcChallengesAdminWidgetList],
+            page=SyncV4PagePaginationArray[ChallengesWidgetList],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -274,7 +274,7 @@ class Widgets(SyncAPIResource):
                     widget_list_params.WidgetListParams,
                 ),
             ),
-            model=NcChallengesAdminWidgetList,
+            model=ChallengesWidgetList,
         )
 
     def delete(
@@ -288,7 +288,7 @@ class Widgets(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[NcChallengesAdminWidgetDetail]:
+    ) -> Optional[ChallengesWidget]:
         """
         Destroy a Turnstile Widget.
 
@@ -318,7 +318,7 @@ class Widgets(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[NcChallengesAdminWidgetDetail]], ResultWrapper[NcChallengesAdminWidgetDetail]),
+            cast_to=cast(Type[Optional[ChallengesWidget]], ResultWrapper[ChallengesWidget]),
         )
 
     def get(
@@ -332,7 +332,7 @@ class Widgets(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[NcChallengesAdminWidgetDetail]:
+    ) -> Optional[ChallengesWidget]:
         """
         Show a single challenge widget configuration.
 
@@ -362,7 +362,7 @@ class Widgets(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[NcChallengesAdminWidgetDetail]], ResultWrapper[NcChallengesAdminWidgetDetail]),
+            cast_to=cast(Type[Optional[ChallengesWidget]], ResultWrapper[ChallengesWidget]),
         )
 
     def rotate_secret(
@@ -377,7 +377,7 @@ class Widgets(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[NcChallengesAdminWidgetDetail]:
+    ) -> Optional[ChallengesWidget]:
         """Generate a new secret key for this widget.
 
         If `invalidate_immediately` is set to
@@ -418,7 +418,7 @@ class Widgets(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[NcChallengesAdminWidgetDetail]], ResultWrapper[NcChallengesAdminWidgetDetail]),
+            cast_to=cast(Type[Optional[ChallengesWidget]], ResultWrapper[ChallengesWidget]),
         )
 
 
@@ -452,7 +452,7 @@ class AsyncWidgets(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[NcChallengesAdminWidgetDetail]:
+    ) -> Optional[ChallengesWidget]:
         """
         Lists challenge widgets.
 
@@ -523,7 +523,7 @@ class AsyncWidgets(AsyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[NcChallengesAdminWidgetDetail]], ResultWrapper[NcChallengesAdminWidgetDetail]),
+            cast_to=cast(Type[Optional[ChallengesWidget]], ResultWrapper[ChallengesWidget]),
         )
 
     async def update(
@@ -543,7 +543,7 @@ class AsyncWidgets(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[NcChallengesAdminWidgetDetail]:
+    ) -> Optional[ChallengesWidget]:
         """
         Update the configuration of a widget.
 
@@ -598,7 +598,7 @@ class AsyncWidgets(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[NcChallengesAdminWidgetDetail]], ResultWrapper[NcChallengesAdminWidgetDetail]),
+            cast_to=cast(Type[Optional[ChallengesWidget]], ResultWrapper[ChallengesWidget]),
         )
 
     def list(
@@ -615,7 +615,7 @@ class AsyncWidgets(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[NcChallengesAdminWidgetList, AsyncV4PagePaginationArray[NcChallengesAdminWidgetList]]:
+    ) -> AsyncPaginator[ChallengesWidgetList, AsyncV4PagePaginationArray[ChallengesWidgetList]]:
         """
         Lists all turnstile widgets of an account.
 
@@ -642,7 +642,7 @@ class AsyncWidgets(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/challenges/widgets",
-            page=AsyncV4PagePaginationArray[NcChallengesAdminWidgetList],
+            page=AsyncV4PagePaginationArray[ChallengesWidgetList],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -658,7 +658,7 @@ class AsyncWidgets(AsyncAPIResource):
                     widget_list_params.WidgetListParams,
                 ),
             ),
-            model=NcChallengesAdminWidgetList,
+            model=ChallengesWidgetList,
         )
 
     async def delete(
@@ -672,7 +672,7 @@ class AsyncWidgets(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[NcChallengesAdminWidgetDetail]:
+    ) -> Optional[ChallengesWidget]:
         """
         Destroy a Turnstile Widget.
 
@@ -702,7 +702,7 @@ class AsyncWidgets(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[NcChallengesAdminWidgetDetail]], ResultWrapper[NcChallengesAdminWidgetDetail]),
+            cast_to=cast(Type[Optional[ChallengesWidget]], ResultWrapper[ChallengesWidget]),
         )
 
     async def get(
@@ -716,7 +716,7 @@ class AsyncWidgets(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[NcChallengesAdminWidgetDetail]:
+    ) -> Optional[ChallengesWidget]:
         """
         Show a single challenge widget configuration.
 
@@ -746,7 +746,7 @@ class AsyncWidgets(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[NcChallengesAdminWidgetDetail]], ResultWrapper[NcChallengesAdminWidgetDetail]),
+            cast_to=cast(Type[Optional[ChallengesWidget]], ResultWrapper[ChallengesWidget]),
         )
 
     async def rotate_secret(
@@ -761,7 +761,7 @@ class AsyncWidgets(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[NcChallengesAdminWidgetDetail]:
+    ) -> Optional[ChallengesWidget]:
         """Generate a new secret key for this widget.
 
         If `invalidate_immediately` is set to
@@ -802,7 +802,7 @@ class AsyncWidgets(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[NcChallengesAdminWidgetDetail]], ResultWrapper[NcChallengesAdminWidgetDetail]),
+            cast_to=cast(Type[Optional[ChallengesWidget]], ResultWrapper[ChallengesWidget]),
         )
 
 

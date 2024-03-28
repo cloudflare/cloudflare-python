@@ -21,14 +21,10 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ....types.web3 import (
-    HostnameListResponse,
-    DwebConfigWeb3Hostname,
-    HostnameDeleteResponse,
-    hostname_edit_params,
-    hostname_create_params,
-)
+from ....pagination import SyncSinglePage, AsyncSinglePage
+from ....types.web3 import DistributedWebHostname, HostnameDeleteResponse, hostname_edit_params, hostname_create_params
 from ...._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
 from .ipfs_universal_paths import (
@@ -70,7 +66,7 @@ class Hostnames(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DwebConfigWeb3Hostname:
+    ) -> DistributedWebHostname:
         """
         Create Web3 Hostname
 
@@ -110,7 +106,7 @@ class Hostnames(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DwebConfigWeb3Hostname], ResultWrapper[DwebConfigWeb3Hostname]),
+            cast_to=cast(Type[DistributedWebHostname], ResultWrapper[DistributedWebHostname]),
         )
 
     def list(
@@ -123,7 +119,7 @@ class Hostnames(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[HostnameListResponse]:
+    ) -> SyncSinglePage[DistributedWebHostname]:
         """
         List Web3 Hostnames
 
@@ -140,16 +136,13 @@ class Hostnames(SyncAPIResource):
         """
         if not zone_identifier:
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        return self._get(
+        return self._get_api_list(
             f"/zones/{zone_identifier}/web3/hostnames",
+            page=SyncSinglePage[DistributedWebHostname],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[HostnameListResponse]], ResultWrapper[HostnameListResponse]),
+            model=DistributedWebHostname,
         )
 
     def delete(
@@ -209,7 +202,7 @@ class Hostnames(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DwebConfigWeb3Hostname:
+    ) -> DistributedWebHostname:
         """
         Edit Web3 Hostname
 
@@ -250,7 +243,7 @@ class Hostnames(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DwebConfigWeb3Hostname], ResultWrapper[DwebConfigWeb3Hostname]),
+            cast_to=cast(Type[DistributedWebHostname], ResultWrapper[DistributedWebHostname]),
         )
 
     def get(
@@ -264,7 +257,7 @@ class Hostnames(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DwebConfigWeb3Hostname:
+    ) -> DistributedWebHostname:
         """
         Web3 Hostname Details
 
@@ -294,7 +287,7 @@ class Hostnames(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DwebConfigWeb3Hostname], ResultWrapper[DwebConfigWeb3Hostname]),
+            cast_to=cast(Type[DistributedWebHostname], ResultWrapper[DistributedWebHostname]),
         )
 
 
@@ -324,7 +317,7 @@ class AsyncHostnames(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DwebConfigWeb3Hostname:
+    ) -> DistributedWebHostname:
         """
         Create Web3 Hostname
 
@@ -364,10 +357,10 @@ class AsyncHostnames(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DwebConfigWeb3Hostname], ResultWrapper[DwebConfigWeb3Hostname]),
+            cast_to=cast(Type[DistributedWebHostname], ResultWrapper[DistributedWebHostname]),
         )
 
-    async def list(
+    def list(
         self,
         zone_identifier: str,
         *,
@@ -377,7 +370,7 @@ class AsyncHostnames(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[HostnameListResponse]:
+    ) -> AsyncPaginator[DistributedWebHostname, AsyncSinglePage[DistributedWebHostname]]:
         """
         List Web3 Hostnames
 
@@ -394,16 +387,13 @@ class AsyncHostnames(AsyncAPIResource):
         """
         if not zone_identifier:
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/zones/{zone_identifier}/web3/hostnames",
+            page=AsyncSinglePage[DistributedWebHostname],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[HostnameListResponse]], ResultWrapper[HostnameListResponse]),
+            model=DistributedWebHostname,
         )
 
     async def delete(
@@ -463,7 +453,7 @@ class AsyncHostnames(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DwebConfigWeb3Hostname:
+    ) -> DistributedWebHostname:
         """
         Edit Web3 Hostname
 
@@ -504,7 +494,7 @@ class AsyncHostnames(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DwebConfigWeb3Hostname], ResultWrapper[DwebConfigWeb3Hostname]),
+            cast_to=cast(Type[DistributedWebHostname], ResultWrapper[DistributedWebHostname]),
         )
 
     async def get(
@@ -518,7 +508,7 @@ class AsyncHostnames(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DwebConfigWeb3Hostname:
+    ) -> DistributedWebHostname:
         """
         Web3 Hostname Details
 
@@ -548,7 +538,7 @@ class AsyncHostnames(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DwebConfigWeb3Hostname], ResultWrapper[DwebConfigWeb3Hostname]),
+            cast_to=cast(Type[DistributedWebHostname], ResultWrapper[DistributedWebHostname]),
         )
 
 

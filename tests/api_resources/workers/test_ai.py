@@ -271,7 +271,16 @@ class TestAI:
         ai = client.workers.ai.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=b"raw file contents",
+        )
+        assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_run_with_all_params_overload_5(self, client: Cloudflare) -> None:
+        ai = client.workers.ai.run(
+            "string",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            audio=[0, 0, 0],
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
@@ -281,7 +290,6 @@ class TestAI:
         response = client.workers.ai.with_raw_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=b"raw file contents",
         )
 
         assert response.is_closed is True
@@ -295,7 +303,6 @@ class TestAI:
         with client.workers.ai.with_streaming_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=b"raw file contents",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -312,14 +319,12 @@ class TestAI:
             client.workers.ai.with_raw_response.run(
                 "string",
                 account_id="",
-                body=b"raw file contents",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `model_name` but received ''"):
             client.workers.ai.with_raw_response.run(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body=b"raw file contents",
             )
 
     @pytest.mark.skip()
@@ -337,7 +342,7 @@ class TestAI:
         ai = client.workers.ai.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            audio=[0, 0, 0],
+            image=[0, 0, 0],
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
@@ -390,7 +395,16 @@ class TestAI:
         ai = client.workers.ai.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=b"raw file contents",
+        )
+        assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_run_with_all_params_overload_7(self, client: Cloudflare) -> None:
+        ai = client.workers.ai.run(
+            "string",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            image=[0, 0, 0],
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
@@ -400,7 +414,6 @@ class TestAI:
         response = client.workers.ai.with_raw_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=b"raw file contents",
         )
 
         assert response.is_closed is True
@@ -414,7 +427,6 @@ class TestAI:
         with client.workers.ai.with_streaming_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=b"raw file contents",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -431,14 +443,12 @@ class TestAI:
             client.workers.ai.with_raw_response.run(
                 "string",
                 account_id="",
-                body=b"raw file contents",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `model_name` but received ''"):
             client.workers.ai.with_raw_response.run(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body=b"raw file contents",
             )
 
     @pytest.mark.skip()
@@ -456,7 +466,25 @@ class TestAI:
         ai = client.workers.ai.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            image=[0, 0, 0],
+            lora="string",
+            max_tokens=0,
+            messages=[
+                {
+                    "content": "string",
+                    "role": "string",
+                },
+                {
+                    "content": "string",
+                    "role": "string",
+                },
+                {
+                    "content": "string",
+                    "role": "string",
+                },
+            ],
+            prompt="x",
+            raw=True,
+            stream=True,
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
@@ -509,7 +537,20 @@ class TestAI:
         ai = client.workers.ai.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=b"raw file contents",
+            target_lang="string",
+            text="x",
+        )
+        assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_run_with_all_params_overload_9(self, client: Cloudflare) -> None:
+        ai = client.workers.ai.run(
+            "string",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            target_lang="string",
+            text="x",
+            source_lang="string",
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
@@ -519,7 +560,8 @@ class TestAI:
         response = client.workers.ai.with_raw_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=b"raw file contents",
+            target_lang="string",
+            text="x",
         )
 
         assert response.is_closed is True
@@ -533,7 +575,8 @@ class TestAI:
         with client.workers.ai.with_streaming_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=b"raw file contents",
+            target_lang="string",
+            text="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -550,14 +593,16 @@ class TestAI:
             client.workers.ai.with_raw_response.run(
                 "string",
                 account_id="",
-                body=b"raw file contents",
+                target_lang="string",
+                text="x",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `model_name` but received ''"):
             client.workers.ai.with_raw_response.run(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body=b"raw file contents",
+                target_lang="string",
+                text="x",
             )
 
     @pytest.mark.skip()
@@ -566,6 +611,7 @@ class TestAI:
         ai = client.workers.ai.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            input_text="x",
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
@@ -575,7 +621,8 @@ class TestAI:
         ai = client.workers.ai.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            image=[0, 0, 0],
+            input_text="x",
+            max_length=0,
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
@@ -585,6 +632,7 @@ class TestAI:
         response = client.workers.ai.with_raw_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            input_text="x",
         )
 
         assert response.is_closed is True
@@ -598,6 +646,7 @@ class TestAI:
         with client.workers.ai.with_streaming_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            input_text="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -614,12 +663,14 @@ class TestAI:
             client.workers.ai.with_raw_response.run(
                 "string",
                 account_id="",
+                input_text="x",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `model_name` but received ''"):
             client.workers.ai.with_raw_response.run(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                input_text="x",
             )
 
     @pytest.mark.skip()
@@ -628,7 +679,6 @@ class TestAI:
         ai = client.workers.ai.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            prompt="x",
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
@@ -638,11 +688,9 @@ class TestAI:
         ai = client.workers.ai.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            prompt="x",
-            lora="string",
+            image=[0, 0, 0],
             max_tokens=0,
-            raw=True,
-            stream=True,
+            prompt="string",
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
@@ -652,7 +700,6 @@ class TestAI:
         response = client.workers.ai.with_raw_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            prompt="x",
         )
 
         assert response.is_closed is True
@@ -666,7 +713,6 @@ class TestAI:
         with client.workers.ai.with_streaming_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            prompt="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -679,418 +725,6 @@ class TestAI:
     @pytest.mark.skip()
     @parametrize
     def test_path_params_run_overload_11(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.workers.ai.with_raw_response.run(
-                "string",
-                account_id="",
-                prompt="x",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `model_name` but received ''"):
-            client.workers.ai.with_raw_response.run(
-                "",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                prompt="x",
-            )
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_method_run_overload_12(self, client: Cloudflare) -> None:
-        ai = client.workers.ai.run(
-            "string",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            messages=[
-                {
-                    "content": "string",
-                    "role": "string",
-                },
-                {
-                    "content": "string",
-                    "role": "string",
-                },
-                {
-                    "content": "string",
-                    "role": "string",
-                },
-            ],
-        )
-        assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_method_run_with_all_params_overload_12(self, client: Cloudflare) -> None:
-        ai = client.workers.ai.run(
-            "string",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            messages=[
-                {
-                    "content": "string",
-                    "role": "string",
-                },
-                {
-                    "content": "string",
-                    "role": "string",
-                },
-                {
-                    "content": "string",
-                    "role": "string",
-                },
-            ],
-            max_tokens=0,
-            stream=True,
-        )
-        assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_raw_response_run_overload_12(self, client: Cloudflare) -> None:
-        response = client.workers.ai.with_raw_response.run(
-            "string",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            messages=[
-                {
-                    "content": "string",
-                    "role": "string",
-                },
-                {
-                    "content": "string",
-                    "role": "string",
-                },
-                {
-                    "content": "string",
-                    "role": "string",
-                },
-            ],
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        ai = response.parse()
-        assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_streaming_response_run_overload_12(self, client: Cloudflare) -> None:
-        with client.workers.ai.with_streaming_response.run(
-            "string",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            messages=[
-                {
-                    "content": "string",
-                    "role": "string",
-                },
-                {
-                    "content": "string",
-                    "role": "string",
-                },
-                {
-                    "content": "string",
-                    "role": "string",
-                },
-            ],
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            ai = response.parse()
-            assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_path_params_run_overload_12(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.workers.ai.with_raw_response.run(
-                "string",
-                account_id="",
-                messages=[
-                    {
-                        "content": "string",
-                        "role": "string",
-                    },
-                    {
-                        "content": "string",
-                        "role": "string",
-                    },
-                    {
-                        "content": "string",
-                        "role": "string",
-                    },
-                ],
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `model_name` but received ''"):
-            client.workers.ai.with_raw_response.run(
-                "",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                messages=[
-                    {
-                        "content": "string",
-                        "role": "string",
-                    },
-                    {
-                        "content": "string",
-                        "role": "string",
-                    },
-                    {
-                        "content": "string",
-                        "role": "string",
-                    },
-                ],
-            )
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_method_run_overload_13(self, client: Cloudflare) -> None:
-        ai = client.workers.ai.run(
-            "string",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            target_lang="string",
-            text="x",
-        )
-        assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_method_run_with_all_params_overload_13(self, client: Cloudflare) -> None:
-        ai = client.workers.ai.run(
-            "string",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            target_lang="string",
-            text="x",
-            source_lang="string",
-        )
-        assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_raw_response_run_overload_13(self, client: Cloudflare) -> None:
-        response = client.workers.ai.with_raw_response.run(
-            "string",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            target_lang="string",
-            text="x",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        ai = response.parse()
-        assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_streaming_response_run_overload_13(self, client: Cloudflare) -> None:
-        with client.workers.ai.with_streaming_response.run(
-            "string",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            target_lang="string",
-            text="x",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            ai = response.parse()
-            assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_path_params_run_overload_13(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.workers.ai.with_raw_response.run(
-                "string",
-                account_id="",
-                target_lang="string",
-                text="x",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `model_name` but received ''"):
-            client.workers.ai.with_raw_response.run(
-                "",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                target_lang="string",
-                text="x",
-            )
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_method_run_overload_14(self, client: Cloudflare) -> None:
-        ai = client.workers.ai.run(
-            "string",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            input_text="x",
-        )
-        assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_method_run_with_all_params_overload_14(self, client: Cloudflare) -> None:
-        ai = client.workers.ai.run(
-            "string",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            input_text="x",
-            max_length=0,
-        )
-        assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_raw_response_run_overload_14(self, client: Cloudflare) -> None:
-        response = client.workers.ai.with_raw_response.run(
-            "string",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            input_text="x",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        ai = response.parse()
-        assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_streaming_response_run_overload_14(self, client: Cloudflare) -> None:
-        with client.workers.ai.with_streaming_response.run(
-            "string",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            input_text="x",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            ai = response.parse()
-            assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_path_params_run_overload_14(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.workers.ai.with_raw_response.run(
-                "string",
-                account_id="",
-                input_text="x",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `model_name` but received ''"):
-            client.workers.ai.with_raw_response.run(
-                "",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                input_text="x",
-            )
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_method_run_overload_15(self, client: Cloudflare) -> None:
-        ai = client.workers.ai.run(
-            "string",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=b"raw file contents",
-        )
-        assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_raw_response_run_overload_15(self, client: Cloudflare) -> None:
-        response = client.workers.ai.with_raw_response.run(
-            "string",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=b"raw file contents",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        ai = response.parse()
-        assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_streaming_response_run_overload_15(self, client: Cloudflare) -> None:
-        with client.workers.ai.with_streaming_response.run(
-            "string",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=b"raw file contents",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            ai = response.parse()
-            assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_path_params_run_overload_15(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.workers.ai.with_raw_response.run(
-                "string",
-                account_id="",
-                body=b"raw file contents",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `model_name` but received ''"):
-            client.workers.ai.with_raw_response.run(
-                "",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body=b"raw file contents",
-            )
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_method_run_overload_16(self, client: Cloudflare) -> None:
-        ai = client.workers.ai.run(
-            "string",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_method_run_with_all_params_overload_16(self, client: Cloudflare) -> None:
-        ai = client.workers.ai.run(
-            "string",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            image=[0, 0, 0],
-            max_tokens=0,
-            prompt="string",
-        )
-        assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_raw_response_run_overload_16(self, client: Cloudflare) -> None:
-        response = client.workers.ai.with_raw_response.run(
-            "string",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        ai = response.parse()
-        assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_streaming_response_run_overload_16(self, client: Cloudflare) -> None:
-        with client.workers.ai.with_streaming_response.run(
-            "string",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            ai = response.parse()
-            assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_path_params_run_overload_16(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.workers.ai.with_raw_response.run(
                 "string",
@@ -1361,7 +995,16 @@ class TestAsyncAI:
         ai = await async_client.workers.ai.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=b"raw file contents",
+        )
+        assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_run_with_all_params_overload_5(self, async_client: AsyncCloudflare) -> None:
+        ai = await async_client.workers.ai.run(
+            "string",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            audio=[0, 0, 0],
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
@@ -1371,7 +1014,6 @@ class TestAsyncAI:
         response = await async_client.workers.ai.with_raw_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=b"raw file contents",
         )
 
         assert response.is_closed is True
@@ -1385,7 +1027,6 @@ class TestAsyncAI:
         async with async_client.workers.ai.with_streaming_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=b"raw file contents",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1402,14 +1043,12 @@ class TestAsyncAI:
             await async_client.workers.ai.with_raw_response.run(
                 "string",
                 account_id="",
-                body=b"raw file contents",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `model_name` but received ''"):
             await async_client.workers.ai.with_raw_response.run(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body=b"raw file contents",
             )
 
     @pytest.mark.skip()
@@ -1427,7 +1066,7 @@ class TestAsyncAI:
         ai = await async_client.workers.ai.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            audio=[0, 0, 0],
+            image=[0, 0, 0],
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
@@ -1480,7 +1119,16 @@ class TestAsyncAI:
         ai = await async_client.workers.ai.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=b"raw file contents",
+        )
+        assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_run_with_all_params_overload_7(self, async_client: AsyncCloudflare) -> None:
+        ai = await async_client.workers.ai.run(
+            "string",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            image=[0, 0, 0],
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
@@ -1490,7 +1138,6 @@ class TestAsyncAI:
         response = await async_client.workers.ai.with_raw_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=b"raw file contents",
         )
 
         assert response.is_closed is True
@@ -1504,7 +1151,6 @@ class TestAsyncAI:
         async with async_client.workers.ai.with_streaming_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=b"raw file contents",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1521,14 +1167,12 @@ class TestAsyncAI:
             await async_client.workers.ai.with_raw_response.run(
                 "string",
                 account_id="",
-                body=b"raw file contents",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `model_name` but received ''"):
             await async_client.workers.ai.with_raw_response.run(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body=b"raw file contents",
             )
 
     @pytest.mark.skip()
@@ -1546,7 +1190,25 @@ class TestAsyncAI:
         ai = await async_client.workers.ai.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            image=[0, 0, 0],
+            lora="string",
+            max_tokens=0,
+            messages=[
+                {
+                    "content": "string",
+                    "role": "string",
+                },
+                {
+                    "content": "string",
+                    "role": "string",
+                },
+                {
+                    "content": "string",
+                    "role": "string",
+                },
+            ],
+            prompt="x",
+            raw=True,
+            stream=True,
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
@@ -1599,7 +1261,20 @@ class TestAsyncAI:
         ai = await async_client.workers.ai.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=b"raw file contents",
+            target_lang="string",
+            text="x",
+        )
+        assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_run_with_all_params_overload_9(self, async_client: AsyncCloudflare) -> None:
+        ai = await async_client.workers.ai.run(
+            "string",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            target_lang="string",
+            text="x",
+            source_lang="string",
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
@@ -1609,7 +1284,8 @@ class TestAsyncAI:
         response = await async_client.workers.ai.with_raw_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=b"raw file contents",
+            target_lang="string",
+            text="x",
         )
 
         assert response.is_closed is True
@@ -1623,7 +1299,8 @@ class TestAsyncAI:
         async with async_client.workers.ai.with_streaming_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=b"raw file contents",
+            target_lang="string",
+            text="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1640,14 +1317,16 @@ class TestAsyncAI:
             await async_client.workers.ai.with_raw_response.run(
                 "string",
                 account_id="",
-                body=b"raw file contents",
+                target_lang="string",
+                text="x",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `model_name` but received ''"):
             await async_client.workers.ai.with_raw_response.run(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body=b"raw file contents",
+                target_lang="string",
+                text="x",
             )
 
     @pytest.mark.skip()
@@ -1656,6 +1335,7 @@ class TestAsyncAI:
         ai = await async_client.workers.ai.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            input_text="x",
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
@@ -1665,7 +1345,8 @@ class TestAsyncAI:
         ai = await async_client.workers.ai.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            image=[0, 0, 0],
+            input_text="x",
+            max_length=0,
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
@@ -1675,6 +1356,7 @@ class TestAsyncAI:
         response = await async_client.workers.ai.with_raw_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            input_text="x",
         )
 
         assert response.is_closed is True
@@ -1688,6 +1370,7 @@ class TestAsyncAI:
         async with async_client.workers.ai.with_streaming_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            input_text="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1704,12 +1387,14 @@ class TestAsyncAI:
             await async_client.workers.ai.with_raw_response.run(
                 "string",
                 account_id="",
+                input_text="x",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `model_name` but received ''"):
             await async_client.workers.ai.with_raw_response.run(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                input_text="x",
             )
 
     @pytest.mark.skip()
@@ -1718,7 +1403,6 @@ class TestAsyncAI:
         ai = await async_client.workers.ai.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            prompt="x",
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
@@ -1728,11 +1412,9 @@ class TestAsyncAI:
         ai = await async_client.workers.ai.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            prompt="x",
-            lora="string",
+            image=[0, 0, 0],
             max_tokens=0,
-            raw=True,
-            stream=True,
+            prompt="string",
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
@@ -1742,7 +1424,6 @@ class TestAsyncAI:
         response = await async_client.workers.ai.with_raw_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            prompt="x",
         )
 
         assert response.is_closed is True
@@ -1756,7 +1437,6 @@ class TestAsyncAI:
         async with async_client.workers.ai.with_streaming_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            prompt="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1769,418 +1449,6 @@ class TestAsyncAI:
     @pytest.mark.skip()
     @parametrize
     async def test_path_params_run_overload_11(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.workers.ai.with_raw_response.run(
-                "string",
-                account_id="",
-                prompt="x",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `model_name` but received ''"):
-            await async_client.workers.ai.with_raw_response.run(
-                "",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                prompt="x",
-            )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_run_overload_12(self, async_client: AsyncCloudflare) -> None:
-        ai = await async_client.workers.ai.run(
-            "string",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            messages=[
-                {
-                    "content": "string",
-                    "role": "string",
-                },
-                {
-                    "content": "string",
-                    "role": "string",
-                },
-                {
-                    "content": "string",
-                    "role": "string",
-                },
-            ],
-        )
-        assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_run_with_all_params_overload_12(self, async_client: AsyncCloudflare) -> None:
-        ai = await async_client.workers.ai.run(
-            "string",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            messages=[
-                {
-                    "content": "string",
-                    "role": "string",
-                },
-                {
-                    "content": "string",
-                    "role": "string",
-                },
-                {
-                    "content": "string",
-                    "role": "string",
-                },
-            ],
-            max_tokens=0,
-            stream=True,
-        )
-        assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_raw_response_run_overload_12(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.workers.ai.with_raw_response.run(
-            "string",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            messages=[
-                {
-                    "content": "string",
-                    "role": "string",
-                },
-                {
-                    "content": "string",
-                    "role": "string",
-                },
-                {
-                    "content": "string",
-                    "role": "string",
-                },
-            ],
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        ai = await response.parse()
-        assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_streaming_response_run_overload_12(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.workers.ai.with_streaming_response.run(
-            "string",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            messages=[
-                {
-                    "content": "string",
-                    "role": "string",
-                },
-                {
-                    "content": "string",
-                    "role": "string",
-                },
-                {
-                    "content": "string",
-                    "role": "string",
-                },
-            ],
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            ai = await response.parse()
-            assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_path_params_run_overload_12(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.workers.ai.with_raw_response.run(
-                "string",
-                account_id="",
-                messages=[
-                    {
-                        "content": "string",
-                        "role": "string",
-                    },
-                    {
-                        "content": "string",
-                        "role": "string",
-                    },
-                    {
-                        "content": "string",
-                        "role": "string",
-                    },
-                ],
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `model_name` but received ''"):
-            await async_client.workers.ai.with_raw_response.run(
-                "",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                messages=[
-                    {
-                        "content": "string",
-                        "role": "string",
-                    },
-                    {
-                        "content": "string",
-                        "role": "string",
-                    },
-                    {
-                        "content": "string",
-                        "role": "string",
-                    },
-                ],
-            )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_run_overload_13(self, async_client: AsyncCloudflare) -> None:
-        ai = await async_client.workers.ai.run(
-            "string",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            target_lang="string",
-            text="x",
-        )
-        assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_run_with_all_params_overload_13(self, async_client: AsyncCloudflare) -> None:
-        ai = await async_client.workers.ai.run(
-            "string",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            target_lang="string",
-            text="x",
-            source_lang="string",
-        )
-        assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_raw_response_run_overload_13(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.workers.ai.with_raw_response.run(
-            "string",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            target_lang="string",
-            text="x",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        ai = await response.parse()
-        assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_streaming_response_run_overload_13(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.workers.ai.with_streaming_response.run(
-            "string",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            target_lang="string",
-            text="x",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            ai = await response.parse()
-            assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_path_params_run_overload_13(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.workers.ai.with_raw_response.run(
-                "string",
-                account_id="",
-                target_lang="string",
-                text="x",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `model_name` but received ''"):
-            await async_client.workers.ai.with_raw_response.run(
-                "",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                target_lang="string",
-                text="x",
-            )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_run_overload_14(self, async_client: AsyncCloudflare) -> None:
-        ai = await async_client.workers.ai.run(
-            "string",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            input_text="x",
-        )
-        assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_run_with_all_params_overload_14(self, async_client: AsyncCloudflare) -> None:
-        ai = await async_client.workers.ai.run(
-            "string",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            input_text="x",
-            max_length=0,
-        )
-        assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_raw_response_run_overload_14(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.workers.ai.with_raw_response.run(
-            "string",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            input_text="x",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        ai = await response.parse()
-        assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_streaming_response_run_overload_14(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.workers.ai.with_streaming_response.run(
-            "string",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            input_text="x",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            ai = await response.parse()
-            assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_path_params_run_overload_14(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.workers.ai.with_raw_response.run(
-                "string",
-                account_id="",
-                input_text="x",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `model_name` but received ''"):
-            await async_client.workers.ai.with_raw_response.run(
-                "",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                input_text="x",
-            )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_run_overload_15(self, async_client: AsyncCloudflare) -> None:
-        ai = await async_client.workers.ai.run(
-            "string",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=b"raw file contents",
-        )
-        assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_raw_response_run_overload_15(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.workers.ai.with_raw_response.run(
-            "string",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=b"raw file contents",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        ai = await response.parse()
-        assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_streaming_response_run_overload_15(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.workers.ai.with_streaming_response.run(
-            "string",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=b"raw file contents",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            ai = await response.parse()
-            assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_path_params_run_overload_15(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.workers.ai.with_raw_response.run(
-                "string",
-                account_id="",
-                body=b"raw file contents",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `model_name` but received ''"):
-            await async_client.workers.ai.with_raw_response.run(
-                "",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body=b"raw file contents",
-            )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_run_overload_16(self, async_client: AsyncCloudflare) -> None:
-        ai = await async_client.workers.ai.run(
-            "string",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_run_with_all_params_overload_16(self, async_client: AsyncCloudflare) -> None:
-        ai = await async_client.workers.ai.run(
-            "string",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            image=[0, 0, 0],
-            max_tokens=0,
-            prompt="string",
-        )
-        assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_raw_response_run_overload_16(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.workers.ai.with_raw_response.run(
-            "string",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        ai = await response.parse()
-        assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_streaming_response_run_overload_16(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.workers.ai.with_streaming_response.run(
-            "string",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            ai = await response.parse()
-            assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_path_params_run_overload_16(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.workers.ai.with_raw_response.run(
                 "string",

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, Optional, cast
+from typing import Type, Iterable, cast
 from typing_extensions import Literal
 
 import httpx
@@ -21,12 +21,13 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._wrappers import ResultWrapper
+from .....pagination import SyncSinglePage, AsyncSinglePage
 from ....._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
 from .....types.zero_trust.access.applications import (
-    AccessPolicies,
-    PolicyListResponse,
+    ZeroTrustPolicies,
     PolicyDeleteResponse,
     policy_create_params,
     policy_update_params,
@@ -68,7 +69,7 @@ class Policies(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessPolicies:
+    ) -> ZeroTrustPolicies:
         """
         Create a new Access policy for an application.
 
@@ -162,7 +163,7 @@ class Policies(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessPolicies], ResultWrapper[AccessPolicies]),
+            cast_to=cast(Type[ZeroTrustPolicies], ResultWrapper[ZeroTrustPolicies]),
         )
 
     def update(
@@ -190,7 +191,7 @@ class Policies(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessPolicies:
+    ) -> ZeroTrustPolicies:
         """
         Update a configured Access policy.
 
@@ -288,7 +289,7 @@ class Policies(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessPolicies], ResultWrapper[AccessPolicies]),
+            cast_to=cast(Type[ZeroTrustPolicies], ResultWrapper[ZeroTrustPolicies]),
         )
 
     def list(
@@ -303,7 +304,7 @@ class Policies(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PolicyListResponse]:
+    ) -> SyncSinglePage[ZeroTrustPolicies]:
         """
         Lists Access policies configured for an application.
 
@@ -339,16 +340,13 @@ class Policies(SyncAPIResource):
         else:
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return self._get(
+        return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/access/apps/{uuid}/policies",
+            page=SyncSinglePage[ZeroTrustPolicies],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[PolicyListResponse]], ResultWrapper[PolicyListResponse]),
+            model=ZeroTrustPolicies,
         )
 
     def delete(
@@ -429,7 +427,7 @@ class Policies(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessPolicies:
+    ) -> ZeroTrustPolicies:
         """
         Fetches a single Access policy.
 
@@ -478,7 +476,7 @@ class Policies(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessPolicies], ResultWrapper[AccessPolicies]),
+            cast_to=cast(Type[ZeroTrustPolicies], ResultWrapper[ZeroTrustPolicies]),
         )
 
 
@@ -515,7 +513,7 @@ class AsyncPolicies(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessPolicies:
+    ) -> ZeroTrustPolicies:
         """
         Create a new Access policy for an application.
 
@@ -609,7 +607,7 @@ class AsyncPolicies(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessPolicies], ResultWrapper[AccessPolicies]),
+            cast_to=cast(Type[ZeroTrustPolicies], ResultWrapper[ZeroTrustPolicies]),
         )
 
     async def update(
@@ -637,7 +635,7 @@ class AsyncPolicies(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessPolicies:
+    ) -> ZeroTrustPolicies:
         """
         Update a configured Access policy.
 
@@ -735,10 +733,10 @@ class AsyncPolicies(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessPolicies], ResultWrapper[AccessPolicies]),
+            cast_to=cast(Type[ZeroTrustPolicies], ResultWrapper[ZeroTrustPolicies]),
         )
 
-    async def list(
+    def list(
         self,
         uuid: str,
         *,
@@ -750,7 +748,7 @@ class AsyncPolicies(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PolicyListResponse]:
+    ) -> AsyncPaginator[ZeroTrustPolicies, AsyncSinglePage[ZeroTrustPolicies]]:
         """
         Lists Access policies configured for an application.
 
@@ -786,16 +784,13 @@ class AsyncPolicies(AsyncAPIResource):
         else:
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return await self._get(
+        return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/access/apps/{uuid}/policies",
+            page=AsyncSinglePage[ZeroTrustPolicies],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[PolicyListResponse]], ResultWrapper[PolicyListResponse]),
+            model=ZeroTrustPolicies,
         )
 
     async def delete(
@@ -876,7 +871,7 @@ class AsyncPolicies(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessPolicies:
+    ) -> ZeroTrustPolicies:
         """
         Fetches a single Access policy.
 
@@ -925,7 +920,7 @@ class AsyncPolicies(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessPolicies], ResultWrapper[AccessPolicies]),
+            cast_to=cast(Type[ZeroTrustPolicies], ResultWrapper[ZeroTrustPolicies]),
         )
 
 

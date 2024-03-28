@@ -4,7 +4,6 @@ from __future__ import annotations
 
 from .index_query_params import IndexQueryParams as IndexQueryParams
 from .index_create_params import IndexCreateParams as IndexCreateParams
-from .index_list_response import IndexListResponse as IndexListResponse
 from .index_update_params import IndexUpdateParams as IndexUpdateParams
 from .index_delete_response import IndexDeleteResponse as IndexDeleteResponse
 from .vectorize_index_query import VectorizeIndexQuery as VectorizeIndexQuery

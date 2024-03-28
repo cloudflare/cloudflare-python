@@ -19,7 +19,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.user.load_balancers import LoadBalancingPreviewResult
+from ....types.user.load_balancers import LoadBalancingPreview
 
 __all__ = ["Preview", "AsyncPreview"]
 
@@ -43,7 +43,7 @@ class Preview(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LoadBalancingPreviewResult:
+    ) -> LoadBalancingPreview:
         """
         Get the result of a previous preview operation using the provided preview_id.
 
@@ -67,7 +67,7 @@ class Preview(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[LoadBalancingPreviewResult], ResultWrapper[LoadBalancingPreviewResult]),
+            cast_to=cast(Type[LoadBalancingPreview], ResultWrapper[LoadBalancingPreview]),
         )
 
 
@@ -90,7 +90,7 @@ class AsyncPreview(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LoadBalancingPreviewResult:
+    ) -> LoadBalancingPreview:
         """
         Get the result of a previous preview operation using the provided preview_id.
 
@@ -114,7 +114,7 @@ class AsyncPreview(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[LoadBalancingPreviewResult], ResultWrapper[LoadBalancingPreviewResult]),
+            cast_to=cast(Type[LoadBalancingPreview], ResultWrapper[LoadBalancingPreview]),
         )
 
 

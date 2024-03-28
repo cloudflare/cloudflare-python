@@ -24,8 +24,8 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.zones.settings import (
-    ZonesAutomaticPlatformOptimization,
-    ZonesAutomaticPlatformOptimizationParam,
+    ZoneSettingAutomaticPlatformOptimization,
+    ZoneSettingAutomaticPlatformOptimizationParam,
     automatic_platform_optimization_edit_params,
 )
 
@@ -45,14 +45,14 @@ class AutomaticPlatformOptimization(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        value: ZonesAutomaticPlatformOptimizationParam,
+        value: ZoneSettingAutomaticPlatformOptimizationParam,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesAutomaticPlatformOptimization]:
+    ) -> Optional[ZoneSettingAutomaticPlatformOptimization]:
         """
         [Automatic Platform Optimization for WordPress](https://developers.cloudflare.com/automatic-platform-optimization/)
         serves your WordPress site from Cloudflare's edge network and caches third-party
@@ -84,7 +84,8 @@ class AutomaticPlatformOptimization(SyncAPIResource):
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(
-                Type[Optional[ZonesAutomaticPlatformOptimization]], ResultWrapper[ZonesAutomaticPlatformOptimization]
+                Type[Optional[ZoneSettingAutomaticPlatformOptimization]],
+                ResultWrapper[ZoneSettingAutomaticPlatformOptimization],
             ),
         )
 
@@ -98,7 +99,7 @@ class AutomaticPlatformOptimization(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesAutomaticPlatformOptimization]:
+    ) -> Optional[ZoneSettingAutomaticPlatformOptimization]:
         """
         [Automatic Platform Optimization for WordPress](https://developers.cloudflare.com/automatic-platform-optimization/)
         serves your WordPress site from Cloudflare's edge network and caches third-party
@@ -127,7 +128,8 @@ class AutomaticPlatformOptimization(SyncAPIResource):
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(
-                Type[Optional[ZonesAutomaticPlatformOptimization]], ResultWrapper[ZonesAutomaticPlatformOptimization]
+                Type[Optional[ZoneSettingAutomaticPlatformOptimization]],
+                ResultWrapper[ZoneSettingAutomaticPlatformOptimization],
             ),
         )
 
@@ -145,14 +147,14 @@ class AsyncAutomaticPlatformOptimization(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        value: ZonesAutomaticPlatformOptimizationParam,
+        value: ZoneSettingAutomaticPlatformOptimizationParam,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesAutomaticPlatformOptimization]:
+    ) -> Optional[ZoneSettingAutomaticPlatformOptimization]:
         """
         [Automatic Platform Optimization for WordPress](https://developers.cloudflare.com/automatic-platform-optimization/)
         serves your WordPress site from Cloudflare's edge network and caches third-party
@@ -184,7 +186,8 @@ class AsyncAutomaticPlatformOptimization(AsyncAPIResource):
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(
-                Type[Optional[ZonesAutomaticPlatformOptimization]], ResultWrapper[ZonesAutomaticPlatformOptimization]
+                Type[Optional[ZoneSettingAutomaticPlatformOptimization]],
+                ResultWrapper[ZoneSettingAutomaticPlatformOptimization],
             ),
         )
 
@@ -198,7 +201,7 @@ class AsyncAutomaticPlatformOptimization(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesAutomaticPlatformOptimization]:
+    ) -> Optional[ZoneSettingAutomaticPlatformOptimization]:
         """
         [Automatic Platform Optimization for WordPress](https://developers.cloudflare.com/automatic-platform-optimization/)
         serves your WordPress site from Cloudflare's edge network and caches third-party
@@ -227,7 +230,8 @@ class AsyncAutomaticPlatformOptimization(AsyncAPIResource):
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(
-                Type[Optional[ZonesAutomaticPlatformOptimization]], ResultWrapper[ZonesAutomaticPlatformOptimization]
+                Type[Optional[ZoneSettingAutomaticPlatformOptimization]],
+                ResultWrapper[ZoneSettingAutomaticPlatformOptimization],
             ),
         )
 

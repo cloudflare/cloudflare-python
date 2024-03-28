@@ -10,11 +10,11 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types import (
+    CustomCertificate,
     CustomCertificateGetResponse,
     CustomCertificateEditResponse,
     CustomCertificateCreateResponse,
     CustomCertificateDeleteResponse,
-    TLSCertificatesAndHostnamesCustomCertificate,
 )
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 
@@ -94,11 +94,7 @@ class TestCustomCertificates:
         custom_certificate = client.custom_certificates.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(
-            SyncV4PagePaginationArray[TLSCertificatesAndHostnamesCustomCertificate],
-            custom_certificate,
-            path=["response"],
-        )
+        assert_matches_type(SyncV4PagePaginationArray[CustomCertificate], custom_certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -109,11 +105,7 @@ class TestCustomCertificates:
             page=1,
             per_page=5,
         )
-        assert_matches_type(
-            SyncV4PagePaginationArray[TLSCertificatesAndHostnamesCustomCertificate],
-            custom_certificate,
-            path=["response"],
-        )
+        assert_matches_type(SyncV4PagePaginationArray[CustomCertificate], custom_certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -125,11 +117,7 @@ class TestCustomCertificates:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_certificate = response.parse()
-        assert_matches_type(
-            SyncV4PagePaginationArray[TLSCertificatesAndHostnamesCustomCertificate],
-            custom_certificate,
-            path=["response"],
-        )
+        assert_matches_type(SyncV4PagePaginationArray[CustomCertificate], custom_certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -141,11 +129,7 @@ class TestCustomCertificates:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_certificate = response.parse()
-            assert_matches_type(
-                SyncV4PagePaginationArray[TLSCertificatesAndHostnamesCustomCertificate],
-                custom_certificate,
-                path=["response"],
-            )
+            assert_matches_type(SyncV4PagePaginationArray[CustomCertificate], custom_certificate, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -401,11 +385,7 @@ class TestAsyncCustomCertificates:
         custom_certificate = await async_client.custom_certificates.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(
-            AsyncV4PagePaginationArray[TLSCertificatesAndHostnamesCustomCertificate],
-            custom_certificate,
-            path=["response"],
-        )
+        assert_matches_type(AsyncV4PagePaginationArray[CustomCertificate], custom_certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -416,11 +396,7 @@ class TestAsyncCustomCertificates:
             page=1,
             per_page=5,
         )
-        assert_matches_type(
-            AsyncV4PagePaginationArray[TLSCertificatesAndHostnamesCustomCertificate],
-            custom_certificate,
-            path=["response"],
-        )
+        assert_matches_type(AsyncV4PagePaginationArray[CustomCertificate], custom_certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -432,11 +408,7 @@ class TestAsyncCustomCertificates:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_certificate = await response.parse()
-        assert_matches_type(
-            AsyncV4PagePaginationArray[TLSCertificatesAndHostnamesCustomCertificate],
-            custom_certificate,
-            path=["response"],
-        )
+        assert_matches_type(AsyncV4PagePaginationArray[CustomCertificate], custom_certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -448,11 +420,7 @@ class TestAsyncCustomCertificates:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_certificate = await response.parse()
-            assert_matches_type(
-                AsyncV4PagePaginationArray[TLSCertificatesAndHostnamesCustomCertificate],
-                custom_certificate,
-                path=["response"],
-            )
+            assert_matches_type(AsyncV4PagePaginationArray[CustomCertificate], custom_certificate, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -9,9 +9,9 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.workers import (
-    WorkersRoutes,
-    RouteListResponse,
+    WorkersRoute,
     RouteCreateResponse,
     RouteDeleteResponse,
 )
@@ -86,7 +86,7 @@ class TestRoutes:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             pattern="example.net/*",
         )
-        assert_matches_type(WorkersRoutes, route, path=["response"])
+        assert_matches_type(WorkersRoute, route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -97,7 +97,7 @@ class TestRoutes:
             pattern="example.net/*",
             script="this-is_my_script-01",
         )
-        assert_matches_type(WorkersRoutes, route, path=["response"])
+        assert_matches_type(WorkersRoute, route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -111,7 +111,7 @@ class TestRoutes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         route = response.parse()
-        assert_matches_type(WorkersRoutes, route, path=["response"])
+        assert_matches_type(WorkersRoute, route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -125,7 +125,7 @@ class TestRoutes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             route = response.parse()
-            assert_matches_type(WorkersRoutes, route, path=["response"])
+            assert_matches_type(WorkersRoute, route, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -152,7 +152,7 @@ class TestRoutes:
         route = client.workers.routes.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(RouteListResponse, route, path=["response"])
+        assert_matches_type(SyncSinglePage[WorkersRoute], route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -164,7 +164,7 @@ class TestRoutes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         route = response.parse()
-        assert_matches_type(RouteListResponse, route, path=["response"])
+        assert_matches_type(SyncSinglePage[WorkersRoute], route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -176,7 +176,7 @@ class TestRoutes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             route = response.parse()
-            assert_matches_type(RouteListResponse, route, path=["response"])
+            assert_matches_type(SyncSinglePage[WorkersRoute], route, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -247,7 +247,7 @@ class TestRoutes:
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(WorkersRoutes, route, path=["response"])
+        assert_matches_type(WorkersRoute, route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -260,7 +260,7 @@ class TestRoutes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         route = response.parse()
-        assert_matches_type(WorkersRoutes, route, path=["response"])
+        assert_matches_type(WorkersRoute, route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -273,7 +273,7 @@ class TestRoutes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             route = response.parse()
-            assert_matches_type(WorkersRoutes, route, path=["response"])
+            assert_matches_type(WorkersRoute, route, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -360,7 +360,7 @@ class TestAsyncRoutes:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             pattern="example.net/*",
         )
-        assert_matches_type(WorkersRoutes, route, path=["response"])
+        assert_matches_type(WorkersRoute, route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -371,7 +371,7 @@ class TestAsyncRoutes:
             pattern="example.net/*",
             script="this-is_my_script-01",
         )
-        assert_matches_type(WorkersRoutes, route, path=["response"])
+        assert_matches_type(WorkersRoute, route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -385,7 +385,7 @@ class TestAsyncRoutes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         route = await response.parse()
-        assert_matches_type(WorkersRoutes, route, path=["response"])
+        assert_matches_type(WorkersRoute, route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -399,7 +399,7 @@ class TestAsyncRoutes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             route = await response.parse()
-            assert_matches_type(WorkersRoutes, route, path=["response"])
+            assert_matches_type(WorkersRoute, route, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -426,7 +426,7 @@ class TestAsyncRoutes:
         route = await async_client.workers.routes.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(RouteListResponse, route, path=["response"])
+        assert_matches_type(AsyncSinglePage[WorkersRoute], route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -438,7 +438,7 @@ class TestAsyncRoutes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         route = await response.parse()
-        assert_matches_type(RouteListResponse, route, path=["response"])
+        assert_matches_type(AsyncSinglePage[WorkersRoute], route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -450,7 +450,7 @@ class TestAsyncRoutes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             route = await response.parse()
-            assert_matches_type(RouteListResponse, route, path=["response"])
+            assert_matches_type(AsyncSinglePage[WorkersRoute], route, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -521,7 +521,7 @@ class TestAsyncRoutes:
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(WorkersRoutes, route, path=["response"])
+        assert_matches_type(WorkersRoute, route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -534,7 +534,7 @@ class TestAsyncRoutes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         route = await response.parse()
-        assert_matches_type(WorkersRoutes, route, path=["response"])
+        assert_matches_type(WorkersRoute, route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -547,7 +547,7 @@ class TestAsyncRoutes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             route = await response.parse()
-            assert_matches_type(WorkersRoutes, route, path=["response"])
+            assert_matches_type(WorkersRoute, route, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

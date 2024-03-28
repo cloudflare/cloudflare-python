@@ -20,10 +20,12 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
+from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
-from ....types.stream.live_inputs import StreamOutput, OutputListResponse, output_create_params, output_update_params
+from ....types.stream.live_inputs import StreamOutput, output_create_params, output_update_params
 
 __all__ = ["Outputs", "AsyncOutputs"]
 
@@ -176,7 +178,7 @@ class Outputs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> OutputListResponse:
+    ) -> SyncSinglePage[StreamOutput]:
         """
         Retrieves all outputs associated with a specified live input.
 
@@ -199,16 +201,13 @@ class Outputs(SyncAPIResource):
             raise ValueError(
                 f"Expected a non-empty value for `live_input_identifier` but received {live_input_identifier!r}"
             )
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/stream/live_inputs/{live_input_identifier}/outputs",
+            page=SyncSinglePage[StreamOutput],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[OutputListResponse], ResultWrapper[OutputListResponse]),
+            model=StreamOutput,
         )
 
     def delete(
@@ -397,7 +396,7 @@ class AsyncOutputs(AsyncAPIResource):
             cast_to=cast(Type[StreamOutput], ResultWrapper[StreamOutput]),
         )
 
-    async def list(
+    def list(
         self,
         live_input_identifier: str,
         *,
@@ -408,7 +407,7 @@ class AsyncOutputs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> OutputListResponse:
+    ) -> AsyncPaginator[StreamOutput, AsyncSinglePage[StreamOutput]]:
         """
         Retrieves all outputs associated with a specified live input.
 
@@ -431,16 +430,13 @@ class AsyncOutputs(AsyncAPIResource):
             raise ValueError(
                 f"Expected a non-empty value for `live_input_identifier` but received {live_input_identifier!r}"
             )
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/stream/live_inputs/{live_input_identifier}/outputs",
+            page=AsyncSinglePage[StreamOutput],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[OutputListResponse], ResultWrapper[OutputListResponse]),
+            model=StreamOutput,
         )
 
     async def delete(

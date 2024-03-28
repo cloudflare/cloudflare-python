@@ -44,13 +44,14 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
+from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
 from ....types.addressing import (
     AddressingAddressMaps,
     AddressMapGetResponse,
-    AddressMapListResponse,
     AddressMapCreateResponse,
     AddressMapDeleteResponse,
     address_map_edit_params,
@@ -145,7 +146,7 @@ class AddressMaps(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AddressMapListResponse]:
+    ) -> SyncSinglePage[AddressingAddressMaps]:
         """
         List all address maps owned by the account.
 
@@ -162,16 +163,13 @@ class AddressMaps(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/addressing/address_maps",
+            page=SyncSinglePage[AddressingAddressMaps],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[AddressMapListResponse]], ResultWrapper[AddressMapListResponse]),
+            model=AddressingAddressMaps,
         )
 
     def delete(
@@ -412,7 +410,7 @@ class AsyncAddressMaps(AsyncAPIResource):
             cast_to=cast(Type[AddressMapCreateResponse], ResultWrapper[AddressMapCreateResponse]),
         )
 
-    async def list(
+    def list(
         self,
         *,
         account_id: str,
@@ -422,7 +420,7 @@ class AsyncAddressMaps(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AddressMapListResponse]:
+    ) -> AsyncPaginator[AddressingAddressMaps, AsyncSinglePage[AddressingAddressMaps]]:
         """
         List all address maps owned by the account.
 
@@ -439,16 +437,13 @@ class AsyncAddressMaps(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/addressing/address_maps",
+            page=AsyncSinglePage[AddressingAddressMaps],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[AddressMapListResponse]], ResultWrapper[AddressMapListResponse]),
+            model=AddressingAddressMaps,
         )
 
     async def delete(

@@ -24,7 +24,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZonesBrowserCacheTTL, browser_cache_ttl_edit_params
+from ....types.zones.settings import ZoneSettingBrowserCacheTTL, browser_cache_ttl_edit_params
 
 __all__ = ["BrowserCacheTTL", "AsyncBrowserCacheTTL"]
 
@@ -78,7 +78,7 @@ class BrowserCacheTTL(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesBrowserCacheTTL]:
+    ) -> Optional[ZoneSettingBrowserCacheTTL]:
         """
         Browser Cache TTL (in seconds) specifies how long Cloudflare-cached resources
         will remain on your visitors' computers. Cloudflare will honor any larger times
@@ -111,7 +111,7 @@ class BrowserCacheTTL(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesBrowserCacheTTL]], ResultWrapper[ZonesBrowserCacheTTL]),
+            cast_to=cast(Type[Optional[ZoneSettingBrowserCacheTTL]], ResultWrapper[ZoneSettingBrowserCacheTTL]),
         )
 
     def get(
@@ -124,7 +124,7 @@ class BrowserCacheTTL(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesBrowserCacheTTL]:
+    ) -> Optional[ZoneSettingBrowserCacheTTL]:
         """
         Browser Cache TTL (in seconds) specifies how long Cloudflare-cached resources
         will remain on your visitors' computers. Cloudflare will honor any larger times
@@ -153,7 +153,7 @@ class BrowserCacheTTL(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesBrowserCacheTTL]], ResultWrapper[ZonesBrowserCacheTTL]),
+            cast_to=cast(Type[Optional[ZoneSettingBrowserCacheTTL]], ResultWrapper[ZoneSettingBrowserCacheTTL]),
         )
 
 
@@ -206,7 +206,7 @@ class AsyncBrowserCacheTTL(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesBrowserCacheTTL]:
+    ) -> Optional[ZoneSettingBrowserCacheTTL]:
         """
         Browser Cache TTL (in seconds) specifies how long Cloudflare-cached resources
         will remain on your visitors' computers. Cloudflare will honor any larger times
@@ -239,7 +239,7 @@ class AsyncBrowserCacheTTL(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesBrowserCacheTTL]], ResultWrapper[ZonesBrowserCacheTTL]),
+            cast_to=cast(Type[Optional[ZoneSettingBrowserCacheTTL]], ResultWrapper[ZoneSettingBrowserCacheTTL]),
         )
 
     async def get(
@@ -252,7 +252,7 @@ class AsyncBrowserCacheTTL(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesBrowserCacheTTL]:
+    ) -> Optional[ZoneSettingBrowserCacheTTL]:
         """
         Browser Cache TTL (in seconds) specifies how long Cloudflare-cached resources
         will remain on your visitors' computers. Cloudflare will honor any larger times
@@ -281,7 +281,7 @@ class AsyncBrowserCacheTTL(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesBrowserCacheTTL]], ResultWrapper[ZonesBrowserCacheTTL]),
+            cast_to=cast(Type[Optional[ZoneSettingBrowserCacheTTL]], ResultWrapper[ZoneSettingBrowserCacheTTL]),
         )
 
 

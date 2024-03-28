@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from .dns_record import DNSRecord as DNSRecord
+from .dns_firewall import DNSFirewall as DNSFirewall
 from .record_edit_params import RecordEditParams as RecordEditParams
 from .record_list_params import RecordListParams as RecordListParams
 from .firewall_edit_params import FirewallEditParams as FirewallEditParams
@@ -16,4 +17,3 @@ from .record_delete_response import RecordDeleteResponse as RecordDeleteResponse
 from .record_export_response import RecordExportResponse as RecordExportResponse
 from .record_import_response import RecordImportResponse as RecordImportResponse
 from .firewall_delete_response import FirewallDeleteResponse as FirewallDeleteResponse
-from .dns_firewall_dns_firewall import DNSFirewallDNSFirewall as DNSFirewallDNSFirewall

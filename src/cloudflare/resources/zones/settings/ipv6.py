@@ -24,7 +24,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZonesIPV6, ipv6_edit_params
+from ....types.zones.settings import ZoneSettingIPV6, ipv6_edit_params
 
 __all__ = ["IPV6", "AsyncIPV6"]
 
@@ -49,7 +49,7 @@ class IPV6(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesIPV6]:
+    ) -> Optional[ZoneSettingIPV6]:
         """
         Enable IPv6 on all subdomains that are Cloudflare enabled.
         (https://support.cloudflare.com/hc/en-us/articles/200168586).
@@ -79,7 +79,7 @@ class IPV6(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesIPV6]], ResultWrapper[ZonesIPV6]),
+            cast_to=cast(Type[Optional[ZoneSettingIPV6]], ResultWrapper[ZoneSettingIPV6]),
         )
 
     def get(
@@ -92,7 +92,7 @@ class IPV6(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesIPV6]:
+    ) -> Optional[ZoneSettingIPV6]:
         """
         Enable IPv6 on all subdomains that are Cloudflare enabled.
         (https://support.cloudflare.com/hc/en-us/articles/200168586).
@@ -119,7 +119,7 @@ class IPV6(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesIPV6]], ResultWrapper[ZonesIPV6]),
+            cast_to=cast(Type[Optional[ZoneSettingIPV6]], ResultWrapper[ZoneSettingIPV6]),
         )
 
 
@@ -143,7 +143,7 @@ class AsyncIPV6(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesIPV6]:
+    ) -> Optional[ZoneSettingIPV6]:
         """
         Enable IPv6 on all subdomains that are Cloudflare enabled.
         (https://support.cloudflare.com/hc/en-us/articles/200168586).
@@ -173,7 +173,7 @@ class AsyncIPV6(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesIPV6]], ResultWrapper[ZonesIPV6]),
+            cast_to=cast(Type[Optional[ZoneSettingIPV6]], ResultWrapper[ZoneSettingIPV6]),
         )
 
     async def get(
@@ -186,7 +186,7 @@ class AsyncIPV6(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesIPV6]:
+    ) -> Optional[ZoneSettingIPV6]:
         """
         Enable IPv6 on all subdomains that are Cloudflare enabled.
         (https://support.cloudflare.com/hc/en-us/articles/200168586).
@@ -213,7 +213,7 @@ class AsyncIPV6(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesIPV6]], ResultWrapper[ZonesIPV6]),
+            cast_to=cast(Type[Optional[ZoneSettingIPV6]], ResultWrapper[ZoneSettingIPV6]),
         )
 
 

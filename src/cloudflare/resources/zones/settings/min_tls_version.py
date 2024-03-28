@@ -24,7 +24,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZonesMinTLSVersion, min_tls_version_edit_params
+from ....types.zones.settings import ZoneSettingMinTLSVersion, min_tls_version_edit_params
 
 __all__ = ["MinTLSVersion", "AsyncMinTLSVersion"]
 
@@ -49,7 +49,7 @@ class MinTLSVersion(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesMinTLSVersion]:
+    ) -> Optional[ZoneSettingMinTLSVersion]:
         """
         Changes Minimum TLS Version setting.
 
@@ -78,7 +78,7 @@ class MinTLSVersion(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesMinTLSVersion]], ResultWrapper[ZonesMinTLSVersion]),
+            cast_to=cast(Type[Optional[ZoneSettingMinTLSVersion]], ResultWrapper[ZoneSettingMinTLSVersion]),
         )
 
     def get(
@@ -91,7 +91,7 @@ class MinTLSVersion(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesMinTLSVersion]:
+    ) -> Optional[ZoneSettingMinTLSVersion]:
         """
         Gets Minimum TLS Version setting.
 
@@ -117,7 +117,7 @@ class MinTLSVersion(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesMinTLSVersion]], ResultWrapper[ZonesMinTLSVersion]),
+            cast_to=cast(Type[Optional[ZoneSettingMinTLSVersion]], ResultWrapper[ZoneSettingMinTLSVersion]),
         )
 
 
@@ -141,7 +141,7 @@ class AsyncMinTLSVersion(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesMinTLSVersion]:
+    ) -> Optional[ZoneSettingMinTLSVersion]:
         """
         Changes Minimum TLS Version setting.
 
@@ -170,7 +170,7 @@ class AsyncMinTLSVersion(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesMinTLSVersion]], ResultWrapper[ZonesMinTLSVersion]),
+            cast_to=cast(Type[Optional[ZoneSettingMinTLSVersion]], ResultWrapper[ZoneSettingMinTLSVersion]),
         )
 
     async def get(
@@ -183,7 +183,7 @@ class AsyncMinTLSVersion(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesMinTLSVersion]:
+    ) -> Optional[ZoneSettingMinTLSVersion]:
         """
         Gets Minimum TLS Version setting.
 
@@ -209,7 +209,7 @@ class AsyncMinTLSVersion(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesMinTLSVersion]], ResultWrapper[ZonesMinTLSVersion]),
+            cast_to=cast(Type[Optional[ZoneSettingMinTLSVersion]], ResultWrapper[ZoneSettingMinTLSVersion]),
         )
 
 

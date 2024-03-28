@@ -19,7 +19,7 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.durable_objects.namespaces import WorkersObject, object_list_params
+from ....types.durable_objects.namespaces import DurableObject, object_list_params
 
 __all__ = ["Objects", "AsyncObjects"]
 
@@ -46,7 +46,7 @@ class Objects(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncCursorLimitPagination[WorkersObject]:
+    ) -> SyncCursorLimitPagination[DurableObject]:
         """
         Returns the Durable Objects in a given namespace.
 
@@ -76,7 +76,7 @@ class Objects(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/workers/durable_objects/namespaces/{id}/objects",
-            page=SyncCursorLimitPagination[WorkersObject],
+            page=SyncCursorLimitPagination[DurableObject],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -90,7 +90,7 @@ class Objects(SyncAPIResource):
                     object_list_params.ObjectListParams,
                 ),
             ),
-            model=WorkersObject,
+            model=DurableObject,
         )
 
 
@@ -116,7 +116,7 @@ class AsyncObjects(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[WorkersObject, AsyncCursorLimitPagination[WorkersObject]]:
+    ) -> AsyncPaginator[DurableObject, AsyncCursorLimitPagination[DurableObject]]:
         """
         Returns the Durable Objects in a given namespace.
 
@@ -146,7 +146,7 @@ class AsyncObjects(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/workers/durable_objects/namespaces/{id}/objects",
-            page=AsyncCursorLimitPagination[WorkersObject],
+            page=AsyncCursorLimitPagination[DurableObject],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -160,7 +160,7 @@ class AsyncObjects(AsyncAPIResource):
                     object_list_params.ObjectListParams,
                 ),
             ),
-            model=WorkersObject,
+            model=DurableObject,
         )
 
 

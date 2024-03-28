@@ -5,13 +5,13 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Required, TypedDict
 
-from .access_settings_param import AccessSettingsParam
+from .zero_trust_settings_param import ZeroTrustSettingsParam
 
 __all__ = ["SettingUpdateParams"]
 
 
 class SettingUpdateParams(TypedDict, total=False):
-    settings: Required[Iterable[AccessSettingsParam]]
+    settings: Required[Iterable[ZeroTrustSettingsParam]]
 
     account_id: str
     """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""

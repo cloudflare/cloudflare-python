@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ....types import RulesetsRulesetResponse
+from ....types import Ruleset
 from .versions import (
     Versions,
     AsyncVersions,
@@ -118,7 +118,7 @@ class Phases(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RulesetsRulesetResponse:
+    ) -> Ruleset:
         """
         Updates an account or zone entry point ruleset, creating a new version.
 
@@ -186,7 +186,7 @@ class Phases(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[RulesetsRulesetResponse], ResultWrapper[RulesetsRulesetResponse]),
+            cast_to=cast(Type[Ruleset], ResultWrapper[Ruleset]),
         )
 
     def get(
@@ -225,7 +225,7 @@ class Phases(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RulesetsRulesetResponse:
+    ) -> Ruleset:
         """
         Fetches the latest version of the account or zone entry point ruleset for a
         given phase.
@@ -271,7 +271,7 @@ class Phases(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[RulesetsRulesetResponse], ResultWrapper[RulesetsRulesetResponse]),
+            cast_to=cast(Type[Ruleset], ResultWrapper[Ruleset]),
         )
 
 
@@ -355,7 +355,7 @@ class AsyncPhases(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RulesetsRulesetResponse:
+    ) -> Ruleset:
         """
         Updates an account or zone entry point ruleset, creating a new version.
 
@@ -423,7 +423,7 @@ class AsyncPhases(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[RulesetsRulesetResponse], ResultWrapper[RulesetsRulesetResponse]),
+            cast_to=cast(Type[Ruleset], ResultWrapper[Ruleset]),
         )
 
     async def get(
@@ -462,7 +462,7 @@ class AsyncPhases(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RulesetsRulesetResponse:
+    ) -> Ruleset:
         """
         Fetches the latest version of the account or zone entry point ruleset for a
         given phase.
@@ -508,7 +508,7 @@ class AsyncPhases(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[RulesetsRulesetResponse], ResultWrapper[RulesetsRulesetResponse]),
+            cast_to=cast(Type[Ruleset], ResultWrapper[Ruleset]),
         )
 
 

@@ -24,7 +24,7 @@ from ..._base_client import (
     make_request_options,
 )
 from ...types.certificate_authorities import (
-    TLSCertificatesAndHostnamesHostnameAssociation,
+    TLSHostnameAssociation,
     hostname_association_get_params,
     hostname_association_update_params,
 )
@@ -53,7 +53,7 @@ class HostnameAssociations(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TLSCertificatesAndHostnamesHostnameAssociation:
+    ) -> TLSHostnameAssociation:
         """
         Replace Hostname Associations
 
@@ -90,10 +90,7 @@ class HostnameAssociations(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[TLSCertificatesAndHostnamesHostnameAssociation],
-                ResultWrapper[TLSCertificatesAndHostnamesHostnameAssociation],
-            ),
+            cast_to=cast(Type[TLSHostnameAssociation], ResultWrapper[TLSHostnameAssociation]),
         )
 
     def get(
@@ -107,7 +104,7 @@ class HostnameAssociations(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TLSCertificatesAndHostnamesHostnameAssociation:
+    ) -> TLSHostnameAssociation:
         """
         List Hostname Associations
 
@@ -141,10 +138,7 @@ class HostnameAssociations(SyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[TLSCertificatesAndHostnamesHostnameAssociation],
-                ResultWrapper[TLSCertificatesAndHostnamesHostnameAssociation],
-            ),
+            cast_to=cast(Type[TLSHostnameAssociation], ResultWrapper[TLSHostnameAssociation]),
         )
 
 
@@ -169,7 +163,7 @@ class AsyncHostnameAssociations(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TLSCertificatesAndHostnamesHostnameAssociation:
+    ) -> TLSHostnameAssociation:
         """
         Replace Hostname Associations
 
@@ -206,10 +200,7 @@ class AsyncHostnameAssociations(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[TLSCertificatesAndHostnamesHostnameAssociation],
-                ResultWrapper[TLSCertificatesAndHostnamesHostnameAssociation],
-            ),
+            cast_to=cast(Type[TLSHostnameAssociation], ResultWrapper[TLSHostnameAssociation]),
         )
 
     async def get(
@@ -223,7 +214,7 @@ class AsyncHostnameAssociations(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TLSCertificatesAndHostnamesHostnameAssociation:
+    ) -> TLSHostnameAssociation:
         """
         List Hostname Associations
 
@@ -257,10 +248,7 @@ class AsyncHostnameAssociations(AsyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[TLSCertificatesAndHostnamesHostnameAssociation],
-                ResultWrapper[TLSCertificatesAndHostnamesHostnameAssociation],
-            ),
+            cast_to=cast(Type[TLSHostnameAssociation], ResultWrapper[TLSHostnameAssociation]),
         )
 
 

@@ -24,7 +24,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZonesSSL, ssl_edit_params
+from ....types.zones.settings import ZoneSettingSSL, ssl_edit_params
 
 __all__ = ["SSL", "AsyncSSL"]
 
@@ -49,7 +49,7 @@ class SSL(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesSSL]:
+    ) -> Optional[ZoneSettingSSL]:
         """
         SSL encrypts your visitor's connection and safeguards credit card numbers and
         other personal data to and from your website. SSL can take up to 5 minutes to
@@ -93,7 +93,7 @@ class SSL(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesSSL]], ResultWrapper[ZonesSSL]),
+            cast_to=cast(Type[Optional[ZoneSettingSSL]], ResultWrapper[ZoneSettingSSL]),
         )
 
     def get(
@@ -106,7 +106,7 @@ class SSL(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesSSL]:
+    ) -> Optional[ZoneSettingSSL]:
         """
         SSL encrypts your visitor's connection and safeguards credit card numbers and
         other personal data to and from your website. SSL can take up to 5 minutes to
@@ -147,7 +147,7 @@ class SSL(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesSSL]], ResultWrapper[ZonesSSL]),
+            cast_to=cast(Type[Optional[ZoneSettingSSL]], ResultWrapper[ZoneSettingSSL]),
         )
 
 
@@ -171,7 +171,7 @@ class AsyncSSL(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesSSL]:
+    ) -> Optional[ZoneSettingSSL]:
         """
         SSL encrypts your visitor's connection and safeguards credit card numbers and
         other personal data to and from your website. SSL can take up to 5 minutes to
@@ -215,7 +215,7 @@ class AsyncSSL(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesSSL]], ResultWrapper[ZonesSSL]),
+            cast_to=cast(Type[Optional[ZoneSettingSSL]], ResultWrapper[ZoneSettingSSL]),
         )
 
     async def get(
@@ -228,7 +228,7 @@ class AsyncSSL(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesSSL]:
+    ) -> Optional[ZoneSettingSSL]:
         """
         SSL encrypts your visitor's connection and safeguards credit card numbers and
         other personal data to and from your website. SSL can take up to 5 minutes to
@@ -269,7 +269,7 @@ class AsyncSSL(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesSSL]], ResultWrapper[ZonesSSL]),
+            cast_to=cast(Type[Optional[ZoneSettingSSL]], ResultWrapper[ZoneSettingSSL]),
         )
 
 

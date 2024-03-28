@@ -4,4 +4,6 @@ from __future__ import annotations
 
 from .script_delete_params import ScriptDeleteParams as ScriptDeleteParams
 from .script_update_params import ScriptUpdateParams as ScriptUpdateParams
-from .workers_namespace_script import WorkersNamespaceScript as WorkersNamespaceScript
+from .workers_for_platforms_namespace_script import (
+    WorkersForPlatformsNamespaceScript as WorkersForPlatformsNamespaceScript,
+)

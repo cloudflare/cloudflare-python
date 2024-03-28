@@ -23,7 +23,11 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZonesOrangeToOrange, ZonesOrangeToOrangeParam, orange_to_orange_edit_params
+from ....types.zones.settings import (
+    ZoneSettingOrangeToOrange,
+    ZoneSettingOrangeToOrangeParam,
+    orange_to_orange_edit_params,
+)
 
 __all__ = ["OrangeToOrange", "AsyncOrangeToOrange"]
 
@@ -41,14 +45,14 @@ class OrangeToOrange(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        value: ZonesOrangeToOrangeParam,
+        value: ZoneSettingOrangeToOrangeParam,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesOrangeToOrange]:
+    ) -> Optional[ZoneSettingOrangeToOrange]:
         """
         Orange to Orange (O2O) allows zones on Cloudflare to CNAME to other zones also
         on Cloudflare.
@@ -79,7 +83,7 @@ class OrangeToOrange(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesOrangeToOrange]], ResultWrapper[ZonesOrangeToOrange]),
+            cast_to=cast(Type[Optional[ZoneSettingOrangeToOrange]], ResultWrapper[ZoneSettingOrangeToOrange]),
         )
 
     def get(
@@ -92,7 +96,7 @@ class OrangeToOrange(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesOrangeToOrange]:
+    ) -> Optional[ZoneSettingOrangeToOrange]:
         """
         Orange to Orange (O2O) allows zones on Cloudflare to CNAME to other zones also
         on Cloudflare.
@@ -119,7 +123,7 @@ class OrangeToOrange(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesOrangeToOrange]], ResultWrapper[ZonesOrangeToOrange]),
+            cast_to=cast(Type[Optional[ZoneSettingOrangeToOrange]], ResultWrapper[ZoneSettingOrangeToOrange]),
         )
 
 
@@ -136,14 +140,14 @@ class AsyncOrangeToOrange(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        value: ZonesOrangeToOrangeParam,
+        value: ZoneSettingOrangeToOrangeParam,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesOrangeToOrange]:
+    ) -> Optional[ZoneSettingOrangeToOrange]:
         """
         Orange to Orange (O2O) allows zones on Cloudflare to CNAME to other zones also
         on Cloudflare.
@@ -174,7 +178,7 @@ class AsyncOrangeToOrange(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesOrangeToOrange]], ResultWrapper[ZonesOrangeToOrange]),
+            cast_to=cast(Type[Optional[ZoneSettingOrangeToOrange]], ResultWrapper[ZoneSettingOrangeToOrange]),
         )
 
     async def get(
@@ -187,7 +191,7 @@ class AsyncOrangeToOrange(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesOrangeToOrange]:
+    ) -> Optional[ZoneSettingOrangeToOrange]:
         """
         Orange to Orange (O2O) allows zones on Cloudflare to CNAME to other zones also
         on Cloudflare.
@@ -214,7 +218,7 @@ class AsyncOrangeToOrange(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesOrangeToOrange]], ResultWrapper[ZonesOrangeToOrange]),
+            cast_to=cast(Type[Optional[ZoneSettingOrangeToOrange]], ResultWrapper[ZoneSettingOrangeToOrange]),
         )
 
 

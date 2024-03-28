@@ -24,7 +24,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZonesPseudoIPV4, pseudo_ipv4_edit_params
+from ....types.zones.settings import ZoneSettingPseudoIPV4, pseudo_ipv4_edit_params
 
 __all__ = ["PseudoIPV4", "AsyncPseudoIPV4"]
 
@@ -49,7 +49,7 @@ class PseudoIPV4(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesPseudoIPV4]:
+    ) -> Optional[ZoneSettingPseudoIPV4]:
         """
         Value of the Pseudo IPv4 setting.
 
@@ -78,7 +78,7 @@ class PseudoIPV4(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesPseudoIPV4]], ResultWrapper[ZonesPseudoIPV4]),
+            cast_to=cast(Type[Optional[ZoneSettingPseudoIPV4]], ResultWrapper[ZoneSettingPseudoIPV4]),
         )
 
     def get(
@@ -91,7 +91,7 @@ class PseudoIPV4(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesPseudoIPV4]:
+    ) -> Optional[ZoneSettingPseudoIPV4]:
         """
         Value of the Pseudo IPv4 setting.
 
@@ -117,7 +117,7 @@ class PseudoIPV4(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesPseudoIPV4]], ResultWrapper[ZonesPseudoIPV4]),
+            cast_to=cast(Type[Optional[ZoneSettingPseudoIPV4]], ResultWrapper[ZoneSettingPseudoIPV4]),
         )
 
 
@@ -141,7 +141,7 @@ class AsyncPseudoIPV4(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesPseudoIPV4]:
+    ) -> Optional[ZoneSettingPseudoIPV4]:
         """
         Value of the Pseudo IPv4 setting.
 
@@ -170,7 +170,7 @@ class AsyncPseudoIPV4(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesPseudoIPV4]], ResultWrapper[ZonesPseudoIPV4]),
+            cast_to=cast(Type[Optional[ZoneSettingPseudoIPV4]], ResultWrapper[ZoneSettingPseudoIPV4]),
         )
 
     async def get(
@@ -183,7 +183,7 @@ class AsyncPseudoIPV4(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesPseudoIPV4]:
+    ) -> Optional[ZoneSettingPseudoIPV4]:
         """
         Value of the Pseudo IPv4 setting.
 
@@ -209,7 +209,7 @@ class AsyncPseudoIPV4(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesPseudoIPV4]], ResultWrapper[ZonesPseudoIPV4]),
+            cast_to=cast(Type[Optional[ZoneSettingPseudoIPV4]], ResultWrapper[ZoneSettingPseudoIPV4]),
         )
 
 

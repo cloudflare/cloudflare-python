@@ -2,14 +2,14 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Iterable, Optional, cast
+from typing import Any, Type, Iterable, cast
 from typing_extensions import Literal
 
 import httpx
 
 from ..types import (
+    OriginCACertificate,
     OriginCACertificateGetResponse,
-    OriginCACertificateListResponse,
     OriginCACertificateCreateResponse,
     OriginCACertificateDeleteResponse,
     origin_ca_certificate_create_params,
@@ -28,7 +28,9 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._wrappers import ResultWrapper
+from ..pagination import SyncSinglePage, AsyncSinglePage
 from .._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
 
@@ -117,25 +119,20 @@ class OriginCACertificates(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[OriginCACertificateListResponse]:
+    ) -> SyncSinglePage[OriginCACertificate]:
         """List all existing Origin CA certificates for a given zone.
 
         Use your Origin CA
         Key as your User Service Key when calling this endpoint
         ([see above](#requests)).
         """
-        return self._get(
+        return self._get_api_list(
             "/certificates",
+            page=SyncSinglePage[OriginCACertificate],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(
-                Type[Optional[OriginCACertificateListResponse]], ResultWrapper[OriginCACertificateListResponse]
-            ),
+            model=OriginCACertificate,
         )
 
     def delete(
@@ -301,7 +298,7 @@ class AsyncOriginCACertificates(AsyncAPIResource):
             ),
         )
 
-    async def list(
+    def list(
         self,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -310,25 +307,20 @@ class AsyncOriginCACertificates(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[OriginCACertificateListResponse]:
+    ) -> AsyncPaginator[OriginCACertificate, AsyncSinglePage[OriginCACertificate]]:
         """List all existing Origin CA certificates for a given zone.
 
         Use your Origin CA
         Key as your User Service Key when calling this endpoint
         ([see above](#requests)).
         """
-        return await self._get(
+        return self._get_api_list(
             "/certificates",
+            page=AsyncSinglePage[OriginCACertificate],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(
-                Type[Optional[OriginCACertificateListResponse]], ResultWrapper[OriginCACertificateListResponse]
-            ),
+            model=OriginCACertificate,
         )
 
     async def delete(

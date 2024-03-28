@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
-
 import httpx
 
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
@@ -15,7 +13,6 @@ from ....._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....._wrappers import ResultWrapper
 from .failed_logins import (
     FailedLogins,
     AsyncFailedLogins,
@@ -24,6 +21,7 @@ from .failed_logins import (
     FailedLoginsWithStreamingResponse,
     AsyncFailedLoginsWithStreamingResponse,
 )
+from .....pagination import SyncSinglePage, AsyncSinglePage
 from .active_sessions import (
     ActiveSessions,
     AsyncActiveSessions,
@@ -33,6 +31,7 @@ from .active_sessions import (
     AsyncActiveSessionsWithStreamingResponse,
 )
 from ....._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
 from .last_seen_identity import (
@@ -43,7 +42,7 @@ from .last_seen_identity import (
     LastSeenIdentityWithStreamingResponse,
     AsyncLastSeenIdentityWithStreamingResponse,
 )
-from .....types.zero_trust.access import UserListResponse
+from .....types.zero_trust.access import ZeroTrustUsers
 
 __all__ = ["Users", "AsyncUsers"]
 
@@ -79,7 +78,7 @@ class Users(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[UserListResponse]:
+    ) -> SyncSinglePage[ZeroTrustUsers]:
         """
         Gets a list of users for an account.
 
@@ -96,16 +95,13 @@ class Users(SyncAPIResource):
         """
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{identifier}/access/users",
+            page=SyncSinglePage[ZeroTrustUsers],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[UserListResponse]], ResultWrapper[UserListResponse]),
+            model=ZeroTrustUsers,
         )
 
 
@@ -130,7 +126,7 @@ class AsyncUsers(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncUsersWithStreamingResponse:
         return AsyncUsersWithStreamingResponse(self)
 
-    async def list(
+    def list(
         self,
         identifier: str,
         *,
@@ -140,7 +136,7 @@ class AsyncUsers(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[UserListResponse]:
+    ) -> AsyncPaginator[ZeroTrustUsers, AsyncSinglePage[ZeroTrustUsers]]:
         """
         Gets a list of users for an account.
 
@@ -157,16 +153,13 @@ class AsyncUsers(AsyncAPIResource):
         """
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{identifier}/access/users",
+            page=AsyncSinglePage[ZeroTrustUsers],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[UserListResponse]], ResultWrapper[UserListResponse]),
+            model=ZeroTrustUsers,
         )
 
 

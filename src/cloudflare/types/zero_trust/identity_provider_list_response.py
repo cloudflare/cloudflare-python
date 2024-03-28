@@ -7,51 +7,50 @@ from ..._models import BaseModel
 
 __all__ = [
     "IdentityProviderListResponse",
-    "IdentityProviderListResponseItem",
-    "IdentityProviderListResponseItemAccessAzureAd",
-    "IdentityProviderListResponseItemAccessAzureAdConfig",
-    "IdentityProviderListResponseItemAccessAzureAdScimConfig",
-    "IdentityProviderListResponseItemAccessCentrify",
-    "IdentityProviderListResponseItemAccessCentrifyConfig",
-    "IdentityProviderListResponseItemAccessCentrifyScimConfig",
-    "IdentityProviderListResponseItemAccessFacebook",
-    "IdentityProviderListResponseItemAccessFacebookConfig",
-    "IdentityProviderListResponseItemAccessFacebookScimConfig",
-    "IdentityProviderListResponseItemAccessGitHub",
-    "IdentityProviderListResponseItemAccessGitHubConfig",
-    "IdentityProviderListResponseItemAccessGitHubScimConfig",
-    "IdentityProviderListResponseItemAccessGoogle",
-    "IdentityProviderListResponseItemAccessGoogleConfig",
-    "IdentityProviderListResponseItemAccessGoogleScimConfig",
-    "IdentityProviderListResponseItemAccessGoogleApps",
-    "IdentityProviderListResponseItemAccessGoogleAppsConfig",
-    "IdentityProviderListResponseItemAccessGoogleAppsScimConfig",
-    "IdentityProviderListResponseItemAccessLinkedin",
-    "IdentityProviderListResponseItemAccessLinkedinConfig",
-    "IdentityProviderListResponseItemAccessLinkedinScimConfig",
-    "IdentityProviderListResponseItemAccessOidc",
-    "IdentityProviderListResponseItemAccessOidcConfig",
-    "IdentityProviderListResponseItemAccessOidcScimConfig",
-    "IdentityProviderListResponseItemAccessOkta",
-    "IdentityProviderListResponseItemAccessOktaConfig",
-    "IdentityProviderListResponseItemAccessOktaScimConfig",
-    "IdentityProviderListResponseItemAccessOnelogin",
-    "IdentityProviderListResponseItemAccessOneloginConfig",
-    "IdentityProviderListResponseItemAccessOneloginScimConfig",
-    "IdentityProviderListResponseItemAccessPingone",
-    "IdentityProviderListResponseItemAccessPingoneConfig",
-    "IdentityProviderListResponseItemAccessPingoneScimConfig",
-    "IdentityProviderListResponseItemAccessSaml",
-    "IdentityProviderListResponseItemAccessSamlConfig",
-    "IdentityProviderListResponseItemAccessSamlConfigHeaderAttribute",
-    "IdentityProviderListResponseItemAccessSamlScimConfig",
-    "IdentityProviderListResponseItemAccessYandex",
-    "IdentityProviderListResponseItemAccessYandexConfig",
-    "IdentityProviderListResponseItemAccessYandexScimConfig",
+    "AccessAzureAd",
+    "AccessAzureAdConfig",
+    "AccessAzureAdScimConfig",
+    "AccessCentrify",
+    "AccessCentrifyConfig",
+    "AccessCentrifyScimConfig",
+    "AccessFacebook",
+    "AccessFacebookConfig",
+    "AccessFacebookScimConfig",
+    "AccessGitHub",
+    "AccessGitHubConfig",
+    "AccessGitHubScimConfig",
+    "AccessGoogle",
+    "AccessGoogleConfig",
+    "AccessGoogleScimConfig",
+    "AccessGoogleApps",
+    "AccessGoogleAppsConfig",
+    "AccessGoogleAppsScimConfig",
+    "AccessLinkedin",
+    "AccessLinkedinConfig",
+    "AccessLinkedinScimConfig",
+    "AccessOidc",
+    "AccessOidcConfig",
+    "AccessOidcScimConfig",
+    "AccessOkta",
+    "AccessOktaConfig",
+    "AccessOktaScimConfig",
+    "AccessOnelogin",
+    "AccessOneloginConfig",
+    "AccessOneloginScimConfig",
+    "AccessPingone",
+    "AccessPingoneConfig",
+    "AccessPingoneScimConfig",
+    "AccessSaml",
+    "AccessSamlConfig",
+    "AccessSamlConfigHeaderAttribute",
+    "AccessSamlScimConfig",
+    "AccessYandex",
+    "AccessYandexConfig",
+    "AccessYandexScimConfig",
 ]
 
 
-class IdentityProviderListResponseItemAccessAzureAdConfig(BaseModel):
+class AccessAzureAdConfig(BaseModel):
     claims: Optional[List[str]] = None
     """Custom claims"""
 
@@ -87,7 +86,7 @@ class IdentityProviderListResponseItemAccessAzureAdConfig(BaseModel):
     """Should Cloudflare try to load groups from your account"""
 
 
-class IdentityProviderListResponseItemAccessAzureAdScimConfig(BaseModel):
+class AccessAzureAdScimConfig(BaseModel):
     enabled: Optional[bool] = None
     """A flag to enable or disable SCIM for the identity provider."""
 
@@ -119,8 +118,8 @@ class IdentityProviderListResponseItemAccessAzureAdScimConfig(BaseModel):
     """
 
 
-class IdentityProviderListResponseItemAccessAzureAd(BaseModel):
-    config: IdentityProviderListResponseItemAccessAzureAdConfig
+class AccessAzureAd(BaseModel):
+    config: AccessAzureAdConfig
     """The configuration parameters for the identity provider.
 
     To view the required parameters for a specific provider, refer to our
@@ -155,14 +154,14 @@ class IdentityProviderListResponseItemAccessAzureAd(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[IdentityProviderListResponseItemAccessAzureAdScimConfig] = None
+    scim_config: Optional[AccessAzureAdScimConfig] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
     """
 
 
-class IdentityProviderListResponseItemAccessCentrifyConfig(BaseModel):
+class AccessCentrifyConfig(BaseModel):
     centrify_account: Optional[str] = None
     """Your centrify account url"""
 
@@ -182,7 +181,7 @@ class IdentityProviderListResponseItemAccessCentrifyConfig(BaseModel):
     """The claim name for email in the id_token response."""
 
 
-class IdentityProviderListResponseItemAccessCentrifyScimConfig(BaseModel):
+class AccessCentrifyScimConfig(BaseModel):
     enabled: Optional[bool] = None
     """A flag to enable or disable SCIM for the identity provider."""
 
@@ -214,8 +213,8 @@ class IdentityProviderListResponseItemAccessCentrifyScimConfig(BaseModel):
     """
 
 
-class IdentityProviderListResponseItemAccessCentrify(BaseModel):
-    config: IdentityProviderListResponseItemAccessCentrifyConfig
+class AccessCentrify(BaseModel):
+    config: AccessCentrifyConfig
     """The configuration parameters for the identity provider.
 
     To view the required parameters for a specific provider, refer to our
@@ -250,14 +249,14 @@ class IdentityProviderListResponseItemAccessCentrify(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[IdentityProviderListResponseItemAccessCentrifyScimConfig] = None
+    scim_config: Optional[AccessCentrifyScimConfig] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
     """
 
 
-class IdentityProviderListResponseItemAccessFacebookConfig(BaseModel):
+class AccessFacebookConfig(BaseModel):
     client_id: Optional[str] = None
     """Your OAuth Client ID"""
 
@@ -265,7 +264,7 @@ class IdentityProviderListResponseItemAccessFacebookConfig(BaseModel):
     """Your OAuth Client Secret"""
 
 
-class IdentityProviderListResponseItemAccessFacebookScimConfig(BaseModel):
+class AccessFacebookScimConfig(BaseModel):
     enabled: Optional[bool] = None
     """A flag to enable or disable SCIM for the identity provider."""
 
@@ -297,8 +296,8 @@ class IdentityProviderListResponseItemAccessFacebookScimConfig(BaseModel):
     """
 
 
-class IdentityProviderListResponseItemAccessFacebook(BaseModel):
-    config: IdentityProviderListResponseItemAccessFacebookConfig
+class AccessFacebook(BaseModel):
+    config: AccessFacebookConfig
     """The configuration parameters for the identity provider.
 
     To view the required parameters for a specific provider, refer to our
@@ -333,14 +332,14 @@ class IdentityProviderListResponseItemAccessFacebook(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[IdentityProviderListResponseItemAccessFacebookScimConfig] = None
+    scim_config: Optional[AccessFacebookScimConfig] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
     """
 
 
-class IdentityProviderListResponseItemAccessGitHubConfig(BaseModel):
+class AccessGitHubConfig(BaseModel):
     client_id: Optional[str] = None
     """Your OAuth Client ID"""
 
@@ -348,7 +347,7 @@ class IdentityProviderListResponseItemAccessGitHubConfig(BaseModel):
     """Your OAuth Client Secret"""
 
 
-class IdentityProviderListResponseItemAccessGitHubScimConfig(BaseModel):
+class AccessGitHubScimConfig(BaseModel):
     enabled: Optional[bool] = None
     """A flag to enable or disable SCIM for the identity provider."""
 
@@ -380,8 +379,8 @@ class IdentityProviderListResponseItemAccessGitHubScimConfig(BaseModel):
     """
 
 
-class IdentityProviderListResponseItemAccessGitHub(BaseModel):
-    config: IdentityProviderListResponseItemAccessGitHubConfig
+class AccessGitHub(BaseModel):
+    config: AccessGitHubConfig
     """The configuration parameters for the identity provider.
 
     To view the required parameters for a specific provider, refer to our
@@ -416,14 +415,14 @@ class IdentityProviderListResponseItemAccessGitHub(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[IdentityProviderListResponseItemAccessGitHubScimConfig] = None
+    scim_config: Optional[AccessGitHubScimConfig] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
     """
 
 
-class IdentityProviderListResponseItemAccessGoogleConfig(BaseModel):
+class AccessGoogleConfig(BaseModel):
     claims: Optional[List[str]] = None
     """Custom claims"""
 
@@ -437,7 +436,7 @@ class IdentityProviderListResponseItemAccessGoogleConfig(BaseModel):
     """The claim name for email in the id_token response."""
 
 
-class IdentityProviderListResponseItemAccessGoogleScimConfig(BaseModel):
+class AccessGoogleScimConfig(BaseModel):
     enabled: Optional[bool] = None
     """A flag to enable or disable SCIM for the identity provider."""
 
@@ -469,8 +468,8 @@ class IdentityProviderListResponseItemAccessGoogleScimConfig(BaseModel):
     """
 
 
-class IdentityProviderListResponseItemAccessGoogle(BaseModel):
-    config: IdentityProviderListResponseItemAccessGoogleConfig
+class AccessGoogle(BaseModel):
+    config: AccessGoogleConfig
     """The configuration parameters for the identity provider.
 
     To view the required parameters for a specific provider, refer to our
@@ -505,14 +504,14 @@ class IdentityProviderListResponseItemAccessGoogle(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[IdentityProviderListResponseItemAccessGoogleScimConfig] = None
+    scim_config: Optional[AccessGoogleScimConfig] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
     """
 
 
-class IdentityProviderListResponseItemAccessGoogleAppsConfig(BaseModel):
+class AccessGoogleAppsConfig(BaseModel):
     apps_domain: Optional[str] = None
     """Your companies TLD"""
 
@@ -529,7 +528,7 @@ class IdentityProviderListResponseItemAccessGoogleAppsConfig(BaseModel):
     """The claim name for email in the id_token response."""
 
 
-class IdentityProviderListResponseItemAccessGoogleAppsScimConfig(BaseModel):
+class AccessGoogleAppsScimConfig(BaseModel):
     enabled: Optional[bool] = None
     """A flag to enable or disable SCIM for the identity provider."""
 
@@ -561,8 +560,8 @@ class IdentityProviderListResponseItemAccessGoogleAppsScimConfig(BaseModel):
     """
 
 
-class IdentityProviderListResponseItemAccessGoogleApps(BaseModel):
-    config: IdentityProviderListResponseItemAccessGoogleAppsConfig
+class AccessGoogleApps(BaseModel):
+    config: AccessGoogleAppsConfig
     """The configuration parameters for the identity provider.
 
     To view the required parameters for a specific provider, refer to our
@@ -597,14 +596,14 @@ class IdentityProviderListResponseItemAccessGoogleApps(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[IdentityProviderListResponseItemAccessGoogleAppsScimConfig] = None
+    scim_config: Optional[AccessGoogleAppsScimConfig] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
     """
 
 
-class IdentityProviderListResponseItemAccessLinkedinConfig(BaseModel):
+class AccessLinkedinConfig(BaseModel):
     client_id: Optional[str] = None
     """Your OAuth Client ID"""
 
@@ -612,7 +611,7 @@ class IdentityProviderListResponseItemAccessLinkedinConfig(BaseModel):
     """Your OAuth Client Secret"""
 
 
-class IdentityProviderListResponseItemAccessLinkedinScimConfig(BaseModel):
+class AccessLinkedinScimConfig(BaseModel):
     enabled: Optional[bool] = None
     """A flag to enable or disable SCIM for the identity provider."""
 
@@ -644,8 +643,8 @@ class IdentityProviderListResponseItemAccessLinkedinScimConfig(BaseModel):
     """
 
 
-class IdentityProviderListResponseItemAccessLinkedin(BaseModel):
-    config: IdentityProviderListResponseItemAccessLinkedinConfig
+class AccessLinkedin(BaseModel):
+    config: AccessLinkedinConfig
     """The configuration parameters for the identity provider.
 
     To view the required parameters for a specific provider, refer to our
@@ -680,14 +679,14 @@ class IdentityProviderListResponseItemAccessLinkedin(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[IdentityProviderListResponseItemAccessLinkedinScimConfig] = None
+    scim_config: Optional[AccessLinkedinScimConfig] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
     """
 
 
-class IdentityProviderListResponseItemAccessOidcConfig(BaseModel):
+class AccessOidcConfig(BaseModel):
     auth_url: Optional[str] = None
     """The authorization_endpoint URL of your IdP"""
 
@@ -713,7 +712,7 @@ class IdentityProviderListResponseItemAccessOidcConfig(BaseModel):
     """The token_endpoint URL of your IdP"""
 
 
-class IdentityProviderListResponseItemAccessOidcScimConfig(BaseModel):
+class AccessOidcScimConfig(BaseModel):
     enabled: Optional[bool] = None
     """A flag to enable or disable SCIM for the identity provider."""
 
@@ -745,8 +744,8 @@ class IdentityProviderListResponseItemAccessOidcScimConfig(BaseModel):
     """
 
 
-class IdentityProviderListResponseItemAccessOidc(BaseModel):
-    config: IdentityProviderListResponseItemAccessOidcConfig
+class AccessOidc(BaseModel):
+    config: AccessOidcConfig
     """The configuration parameters for the identity provider.
 
     To view the required parameters for a specific provider, refer to our
@@ -781,14 +780,14 @@ class IdentityProviderListResponseItemAccessOidc(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[IdentityProviderListResponseItemAccessOidcScimConfig] = None
+    scim_config: Optional[AccessOidcScimConfig] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
     """
 
 
-class IdentityProviderListResponseItemAccessOktaConfig(BaseModel):
+class AccessOktaConfig(BaseModel):
     authorization_server_id: Optional[str] = None
     """Your okta authorization server id"""
 
@@ -808,7 +807,7 @@ class IdentityProviderListResponseItemAccessOktaConfig(BaseModel):
     """Your okta account url"""
 
 
-class IdentityProviderListResponseItemAccessOktaScimConfig(BaseModel):
+class AccessOktaScimConfig(BaseModel):
     enabled: Optional[bool] = None
     """A flag to enable or disable SCIM for the identity provider."""
 
@@ -840,8 +839,8 @@ class IdentityProviderListResponseItemAccessOktaScimConfig(BaseModel):
     """
 
 
-class IdentityProviderListResponseItemAccessOkta(BaseModel):
-    config: IdentityProviderListResponseItemAccessOktaConfig
+class AccessOkta(BaseModel):
+    config: AccessOktaConfig
     """The configuration parameters for the identity provider.
 
     To view the required parameters for a specific provider, refer to our
@@ -876,14 +875,14 @@ class IdentityProviderListResponseItemAccessOkta(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[IdentityProviderListResponseItemAccessOktaScimConfig] = None
+    scim_config: Optional[AccessOktaScimConfig] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
     """
 
 
-class IdentityProviderListResponseItemAccessOneloginConfig(BaseModel):
+class AccessOneloginConfig(BaseModel):
     claims: Optional[List[str]] = None
     """Custom claims"""
 
@@ -900,7 +899,7 @@ class IdentityProviderListResponseItemAccessOneloginConfig(BaseModel):
     """Your OneLogin account url"""
 
 
-class IdentityProviderListResponseItemAccessOneloginScimConfig(BaseModel):
+class AccessOneloginScimConfig(BaseModel):
     enabled: Optional[bool] = None
     """A flag to enable or disable SCIM for the identity provider."""
 
@@ -932,8 +931,8 @@ class IdentityProviderListResponseItemAccessOneloginScimConfig(BaseModel):
     """
 
 
-class IdentityProviderListResponseItemAccessOnelogin(BaseModel):
-    config: IdentityProviderListResponseItemAccessOneloginConfig
+class AccessOnelogin(BaseModel):
+    config: AccessOneloginConfig
     """The configuration parameters for the identity provider.
 
     To view the required parameters for a specific provider, refer to our
@@ -968,14 +967,14 @@ class IdentityProviderListResponseItemAccessOnelogin(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[IdentityProviderListResponseItemAccessOneloginScimConfig] = None
+    scim_config: Optional[AccessOneloginScimConfig] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
     """
 
 
-class IdentityProviderListResponseItemAccessPingoneConfig(BaseModel):
+class AccessPingoneConfig(BaseModel):
     claims: Optional[List[str]] = None
     """Custom claims"""
 
@@ -992,7 +991,7 @@ class IdentityProviderListResponseItemAccessPingoneConfig(BaseModel):
     """Your PingOne environment identifier"""
 
 
-class IdentityProviderListResponseItemAccessPingoneScimConfig(BaseModel):
+class AccessPingoneScimConfig(BaseModel):
     enabled: Optional[bool] = None
     """A flag to enable or disable SCIM for the identity provider."""
 
@@ -1024,8 +1023,8 @@ class IdentityProviderListResponseItemAccessPingoneScimConfig(BaseModel):
     """
 
 
-class IdentityProviderListResponseItemAccessPingone(BaseModel):
-    config: IdentityProviderListResponseItemAccessPingoneConfig
+class AccessPingone(BaseModel):
+    config: AccessPingoneConfig
     """The configuration parameters for the identity provider.
 
     To view the required parameters for a specific provider, refer to our
@@ -1060,14 +1059,14 @@ class IdentityProviderListResponseItemAccessPingone(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[IdentityProviderListResponseItemAccessPingoneScimConfig] = None
+    scim_config: Optional[AccessPingoneScimConfig] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
     """
 
 
-class IdentityProviderListResponseItemAccessSamlConfigHeaderAttribute(BaseModel):
+class AccessSamlConfigHeaderAttribute(BaseModel):
     attribute_name: Optional[str] = None
     """attribute name from the IDP"""
 
@@ -1075,7 +1074,7 @@ class IdentityProviderListResponseItemAccessSamlConfigHeaderAttribute(BaseModel)
     """header that will be added on the request to the origin"""
 
 
-class IdentityProviderListResponseItemAccessSamlConfig(BaseModel):
+class AccessSamlConfig(BaseModel):
     attributes: Optional[List[str]] = None
     """
     A list of SAML attribute names that will be added to your signed JWT token and
@@ -1085,7 +1084,7 @@ class IdentityProviderListResponseItemAccessSamlConfig(BaseModel):
     email_attribute_name: Optional[str] = None
     """The attribute name for email in the SAML response."""
 
-    header_attributes: Optional[List[IdentityProviderListResponseItemAccessSamlConfigHeaderAttribute]] = None
+    header_attributes: Optional[List[AccessSamlConfigHeaderAttribute]] = None
     """
     Add a list of attribute names that will be returned in the response header from
     the Access callback.
@@ -1107,7 +1106,7 @@ class IdentityProviderListResponseItemAccessSamlConfig(BaseModel):
     """URL to send the SAML authentication requests to"""
 
 
-class IdentityProviderListResponseItemAccessSamlScimConfig(BaseModel):
+class AccessSamlScimConfig(BaseModel):
     enabled: Optional[bool] = None
     """A flag to enable or disable SCIM for the identity provider."""
 
@@ -1139,8 +1138,8 @@ class IdentityProviderListResponseItemAccessSamlScimConfig(BaseModel):
     """
 
 
-class IdentityProviderListResponseItemAccessSaml(BaseModel):
-    config: IdentityProviderListResponseItemAccessSamlConfig
+class AccessSaml(BaseModel):
+    config: AccessSamlConfig
     """The configuration parameters for the identity provider.
 
     To view the required parameters for a specific provider, refer to our
@@ -1175,14 +1174,14 @@ class IdentityProviderListResponseItemAccessSaml(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[IdentityProviderListResponseItemAccessSamlScimConfig] = None
+    scim_config: Optional[AccessSamlScimConfig] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
     """
 
 
-class IdentityProviderListResponseItemAccessYandexConfig(BaseModel):
+class AccessYandexConfig(BaseModel):
     client_id: Optional[str] = None
     """Your OAuth Client ID"""
 
@@ -1190,7 +1189,7 @@ class IdentityProviderListResponseItemAccessYandexConfig(BaseModel):
     """Your OAuth Client Secret"""
 
 
-class IdentityProviderListResponseItemAccessYandexScimConfig(BaseModel):
+class AccessYandexScimConfig(BaseModel):
     enabled: Optional[bool] = None
     """A flag to enable or disable SCIM for the identity provider."""
 
@@ -1222,8 +1221,8 @@ class IdentityProviderListResponseItemAccessYandexScimConfig(BaseModel):
     """
 
 
-class IdentityProviderListResponseItemAccessYandex(BaseModel):
-    config: IdentityProviderListResponseItemAccessYandexConfig
+class AccessYandex(BaseModel):
+    config: AccessYandexConfig
     """The configuration parameters for the identity provider.
 
     To view the required parameters for a specific provider, refer to our
@@ -1258,27 +1257,25 @@ class IdentityProviderListResponseItemAccessYandex(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[IdentityProviderListResponseItemAccessYandexScimConfig] = None
+    scim_config: Optional[AccessYandexScimConfig] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
     """
 
 
-IdentityProviderListResponseItem = Union[
-    IdentityProviderListResponseItemAccessAzureAd,
-    IdentityProviderListResponseItemAccessCentrify,
-    IdentityProviderListResponseItemAccessFacebook,
-    IdentityProviderListResponseItemAccessGitHub,
-    IdentityProviderListResponseItemAccessGoogle,
-    IdentityProviderListResponseItemAccessGoogleApps,
-    IdentityProviderListResponseItemAccessLinkedin,
-    IdentityProviderListResponseItemAccessOidc,
-    IdentityProviderListResponseItemAccessOkta,
-    IdentityProviderListResponseItemAccessOnelogin,
-    IdentityProviderListResponseItemAccessPingone,
-    IdentityProviderListResponseItemAccessSaml,
-    IdentityProviderListResponseItemAccessYandex,
+IdentityProviderListResponse = Union[
+    AccessAzureAd,
+    AccessCentrify,
+    AccessFacebook,
+    AccessGitHub,
+    AccessGoogle,
+    AccessGoogleApps,
+    AccessLinkedin,
+    AccessOidc,
+    AccessOkta,
+    AccessOnelogin,
+    AccessPingone,
+    AccessSaml,
+    AccessYandex,
 ]
-
-IdentityProviderListResponse = List[IdentityProviderListResponseItem]

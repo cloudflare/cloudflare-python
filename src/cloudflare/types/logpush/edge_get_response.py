@@ -2,8 +2,8 @@
 
 from typing import List, Optional
 
-from .logpush_instant_logs_job import LogpushInstantLogsJob
+from .instant_logpush_job import InstantLogpushJob
 
 __all__ = ["EdgeGetResponse"]
 
-EdgeGetResponse = List[Optional[LogpushInstantLogsJob]]
+EdgeGetResponse = List[Optional[InstantLogpushJob]]

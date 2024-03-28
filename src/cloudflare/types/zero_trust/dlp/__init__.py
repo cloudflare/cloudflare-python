@@ -9,7 +9,6 @@ from .dlp_dataset_creation import DLPDatasetCreation as DLPDatasetCreation
 from .profile_get_response import ProfileGetResponse as ProfileGetResponse
 from .dataset_create_params import DatasetCreateParams as DatasetCreateParams
 from .dataset_update_params import DatasetUpdateParams as DatasetUpdateParams
-from .profile_list_response import ProfileListResponse as ProfileListResponse
 from .pattern_validate_params import PatternValidateParams as PatternValidateParams
 from .payload_log_get_response import PayloadLogGetResponse as PayloadLogGetResponse
 from .pattern_validate_response import PatternValidateResponse as PatternValidateResponse

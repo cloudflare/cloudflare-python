@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from .hyperdrive import Hyperdrive as Hyperdrive
 from .config_edit_params import ConfigEditParams as ConfigEditParams
 from .config_get_response import ConfigGetResponse as ConfigGetResponse
 from .config_create_params import ConfigCreateParams as ConfigCreateParams

@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
-
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
@@ -15,11 +13,11 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._wrappers import ResultWrapper
+from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
-from ....types.user.tokens import PermissionGroupListResponse
 
 __all__ = ["PermissionGroups", "AsyncPermissionGroups"]
 
@@ -42,18 +40,15 @@ class PermissionGroups(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PermissionGroupListResponse]:
+    ) -> SyncSinglePage[object]:
         """Find all available permission groups."""
-        return self._get(
+        return self._get_api_list(
             "/user/tokens/permission_groups",
+            page=SyncSinglePage[object],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[PermissionGroupListResponse]], ResultWrapper[PermissionGroupListResponse]),
+            model=object,
         )
 
 
@@ -66,7 +61,7 @@ class AsyncPermissionGroups(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncPermissionGroupsWithStreamingResponse:
         return AsyncPermissionGroupsWithStreamingResponse(self)
 
-    async def list(
+    def list(
         self,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -75,18 +70,15 @@ class AsyncPermissionGroups(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PermissionGroupListResponse]:
+    ) -> AsyncPaginator[object, AsyncSinglePage[object]]:
         """Find all available permission groups."""
-        return await self._get(
+        return self._get_api_list(
             "/user/tokens/permission_groups",
+            page=AsyncSinglePage[object],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[PermissionGroupListResponse]], ResultWrapper[PermissionGroupListResponse]),
+            model=object,
         )
 
 

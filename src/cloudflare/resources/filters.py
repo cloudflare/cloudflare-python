@@ -7,7 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ..types import (
-    LegacyJhsFilter,
+    FirewallFilter,
     FilterCreateResponse,
     filter_list_params,
     filter_create_params,
@@ -98,7 +98,7 @@ class Filters(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[LegacyJhsFilter]:
+    ) -> Optional[FirewallFilter]:
         """
         Updates an existing filter.
 
@@ -129,7 +129,7 @@ class Filters(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[LegacyJhsFilter]], ResultWrapper[LegacyJhsFilter]),
+            cast_to=cast(Type[Optional[FirewallFilter]], ResultWrapper[FirewallFilter]),
         )
 
     def list(
@@ -148,7 +148,7 @@ class Filters(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[LegacyJhsFilter]:
+    ) -> SyncV4PagePaginationArray[FirewallFilter]:
         """Fetches filters in a zone.
 
         You can filter the results using several optional
@@ -181,7 +181,7 @@ class Filters(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return self._get_api_list(
             f"/zones/{zone_identifier}/filters",
-            page=SyncV4PagePaginationArray[LegacyJhsFilter],
+            page=SyncV4PagePaginationArray[FirewallFilter],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -199,7 +199,7 @@ class Filters(SyncAPIResource):
                     filter_list_params.FilterListParams,
                 ),
             ),
-            model=LegacyJhsFilter,
+            model=FirewallFilter,
         )
 
     def delete(
@@ -213,7 +213,7 @@ class Filters(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[LegacyJhsFilter]:
+    ) -> Optional[FirewallFilter]:
         """
         Deletes an existing filter.
 
@@ -243,7 +243,7 @@ class Filters(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[LegacyJhsFilter]], ResultWrapper[LegacyJhsFilter]),
+            cast_to=cast(Type[Optional[FirewallFilter]], ResultWrapper[FirewallFilter]),
         )
 
     def get(
@@ -257,7 +257,7 @@ class Filters(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[LegacyJhsFilter]:
+    ) -> Optional[FirewallFilter]:
         """
         Fetches the details of a filter.
 
@@ -287,7 +287,7 @@ class Filters(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[LegacyJhsFilter]], ResultWrapper[LegacyJhsFilter]),
+            cast_to=cast(Type[Optional[FirewallFilter]], ResultWrapper[FirewallFilter]),
         )
 
 
@@ -353,7 +353,7 @@ class AsyncFilters(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[LegacyJhsFilter]:
+    ) -> Optional[FirewallFilter]:
         """
         Updates an existing filter.
 
@@ -384,7 +384,7 @@ class AsyncFilters(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[LegacyJhsFilter]], ResultWrapper[LegacyJhsFilter]),
+            cast_to=cast(Type[Optional[FirewallFilter]], ResultWrapper[FirewallFilter]),
         )
 
     def list(
@@ -403,7 +403,7 @@ class AsyncFilters(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[LegacyJhsFilter, AsyncV4PagePaginationArray[LegacyJhsFilter]]:
+    ) -> AsyncPaginator[FirewallFilter, AsyncV4PagePaginationArray[FirewallFilter]]:
         """Fetches filters in a zone.
 
         You can filter the results using several optional
@@ -436,7 +436,7 @@ class AsyncFilters(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return self._get_api_list(
             f"/zones/{zone_identifier}/filters",
-            page=AsyncV4PagePaginationArray[LegacyJhsFilter],
+            page=AsyncV4PagePaginationArray[FirewallFilter],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -454,7 +454,7 @@ class AsyncFilters(AsyncAPIResource):
                     filter_list_params.FilterListParams,
                 ),
             ),
-            model=LegacyJhsFilter,
+            model=FirewallFilter,
         )
 
     async def delete(
@@ -468,7 +468,7 @@ class AsyncFilters(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[LegacyJhsFilter]:
+    ) -> Optional[FirewallFilter]:
         """
         Deletes an existing filter.
 
@@ -498,7 +498,7 @@ class AsyncFilters(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[LegacyJhsFilter]], ResultWrapper[LegacyJhsFilter]),
+            cast_to=cast(Type[Optional[FirewallFilter]], ResultWrapper[FirewallFilter]),
         )
 
     async def get(
@@ -512,7 +512,7 @@ class AsyncFilters(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[LegacyJhsFilter]:
+    ) -> Optional[FirewallFilter]:
         """
         Fetches the details of a filter.
 
@@ -542,7 +542,7 @@ class AsyncFilters(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[LegacyJhsFilter]], ResultWrapper[LegacyJhsFilter]),
+            cast_to=cast(Type[Optional[FirewallFilter]], ResultWrapper[FirewallFilter]),
         )
 
 

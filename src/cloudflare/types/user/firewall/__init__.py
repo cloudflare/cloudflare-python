@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from .legacy_jhs_rule import LegacyJhsRule as LegacyJhsRule
+from .firewall_rule import FirewallRule as FirewallRule
 from .access_rule_edit_params import AccessRuleEditParams as AccessRuleEditParams
 from .access_rule_list_params import AccessRuleListParams as AccessRuleListParams
 from .access_rule_create_params import AccessRuleCreateParams as AccessRuleCreateParams

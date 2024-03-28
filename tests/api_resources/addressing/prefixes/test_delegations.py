@@ -3,14 +3,14 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.addressing.prefixes import (
-    DelegationListResponse,
     DelegationDeleteResponse,
     AddressingIpamDelegations,
 )
@@ -90,7 +90,7 @@ class TestDelegations:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[DelegationListResponse], delegation, path=["response"])
+        assert_matches_type(SyncSinglePage[AddressingIpamDelegations], delegation, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -103,7 +103,7 @@ class TestDelegations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         delegation = response.parse()
-        assert_matches_type(Optional[DelegationListResponse], delegation, path=["response"])
+        assert_matches_type(SyncSinglePage[AddressingIpamDelegations], delegation, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -116,7 +116,7 @@ class TestDelegations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             delegation = response.parse()
-            assert_matches_type(Optional[DelegationListResponse], delegation, path=["response"])
+            assert_matches_type(SyncSinglePage[AddressingIpamDelegations], delegation, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -272,7 +272,7 @@ class TestAsyncDelegations:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[DelegationListResponse], delegation, path=["response"])
+        assert_matches_type(AsyncSinglePage[AddressingIpamDelegations], delegation, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -285,7 +285,7 @@ class TestAsyncDelegations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         delegation = await response.parse()
-        assert_matches_type(Optional[DelegationListResponse], delegation, path=["response"])
+        assert_matches_type(AsyncSinglePage[AddressingIpamDelegations], delegation, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -298,7 +298,7 @@ class TestAsyncDelegations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             delegation = await response.parse()
-            assert_matches_type(Optional[DelegationListResponse], delegation, path=["response"])
+            assert_matches_type(AsyncSinglePage[AddressingIpamDelegations], delegation, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

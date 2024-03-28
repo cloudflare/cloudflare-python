@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.zones.settings import ZonesCiphers
+from cloudflare.types.zones.settings import ZoneSettingCiphers
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -24,7 +24,7 @@ class TestCiphers:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value=["ECDHE-RSA-AES128-GCM-SHA256", "AES128-SHA"],
         )
-        assert_matches_type(Optional[ZonesCiphers], cipher, path=["response"])
+        assert_matches_type(Optional[ZoneSettingCiphers], cipher, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -37,7 +37,7 @@ class TestCiphers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         cipher = response.parse()
-        assert_matches_type(Optional[ZonesCiphers], cipher, path=["response"])
+        assert_matches_type(Optional[ZoneSettingCiphers], cipher, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -50,7 +50,7 @@ class TestCiphers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             cipher = response.parse()
-            assert_matches_type(Optional[ZonesCiphers], cipher, path=["response"])
+            assert_matches_type(Optional[ZoneSettingCiphers], cipher, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -69,7 +69,7 @@ class TestCiphers:
         cipher = client.zones.settings.ciphers.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ZonesCiphers], cipher, path=["response"])
+        assert_matches_type(Optional[ZoneSettingCiphers], cipher, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -81,7 +81,7 @@ class TestCiphers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         cipher = response.parse()
-        assert_matches_type(Optional[ZonesCiphers], cipher, path=["response"])
+        assert_matches_type(Optional[ZoneSettingCiphers], cipher, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -93,7 +93,7 @@ class TestCiphers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             cipher = response.parse()
-            assert_matches_type(Optional[ZonesCiphers], cipher, path=["response"])
+            assert_matches_type(Optional[ZoneSettingCiphers], cipher, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -116,7 +116,7 @@ class TestAsyncCiphers:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value=["ECDHE-RSA-AES128-GCM-SHA256", "AES128-SHA"],
         )
-        assert_matches_type(Optional[ZonesCiphers], cipher, path=["response"])
+        assert_matches_type(Optional[ZoneSettingCiphers], cipher, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -129,7 +129,7 @@ class TestAsyncCiphers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         cipher = await response.parse()
-        assert_matches_type(Optional[ZonesCiphers], cipher, path=["response"])
+        assert_matches_type(Optional[ZoneSettingCiphers], cipher, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -142,7 +142,7 @@ class TestAsyncCiphers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             cipher = await response.parse()
-            assert_matches_type(Optional[ZonesCiphers], cipher, path=["response"])
+            assert_matches_type(Optional[ZoneSettingCiphers], cipher, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -161,7 +161,7 @@ class TestAsyncCiphers:
         cipher = await async_client.zones.settings.ciphers.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ZonesCiphers], cipher, path=["response"])
+        assert_matches_type(Optional[ZoneSettingCiphers], cipher, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -173,7 +173,7 @@ class TestAsyncCiphers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         cipher = await response.parse()
-        assert_matches_type(Optional[ZonesCiphers], cipher, path=["response"])
+        assert_matches_type(Optional[ZoneSettingCiphers], cipher, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -185,7 +185,7 @@ class TestAsyncCiphers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             cipher = await response.parse()
-            assert_matches_type(Optional[ZonesCiphers], cipher, path=["response"])
+            assert_matches_type(Optional[ZoneSettingCiphers], cipher, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

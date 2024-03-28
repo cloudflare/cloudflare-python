@@ -24,7 +24,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZonesTLS1_3, tls_1_3_edit_params
+from ....types.zones.settings import ZoneSettingTLS1_3, tls_1_3_edit_params
 
 __all__ = ["TLS1_3", "AsyncTLS1_3"]
 
@@ -49,7 +49,7 @@ class TLS1_3(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesTLS1_3]:
+    ) -> Optional[ZoneSettingTLS1_3]:
         """
         Changes TLS 1.3 setting.
 
@@ -79,7 +79,7 @@ class TLS1_3(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesTLS1_3]], ResultWrapper[ZonesTLS1_3]),
+            cast_to=cast(Type[Optional[ZoneSettingTLS1_3]], ResultWrapper[ZoneSettingTLS1_3]),
         )
 
     def get(
@@ -92,7 +92,7 @@ class TLS1_3(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesTLS1_3]:
+    ) -> Optional[ZoneSettingTLS1_3]:
         """
         Gets TLS 1.3 setting enabled for a zone.
 
@@ -118,7 +118,7 @@ class TLS1_3(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesTLS1_3]], ResultWrapper[ZonesTLS1_3]),
+            cast_to=cast(Type[Optional[ZoneSettingTLS1_3]], ResultWrapper[ZoneSettingTLS1_3]),
         )
 
 
@@ -142,7 +142,7 @@ class AsyncTLS1_3(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesTLS1_3]:
+    ) -> Optional[ZoneSettingTLS1_3]:
         """
         Changes TLS 1.3 setting.
 
@@ -172,7 +172,7 @@ class AsyncTLS1_3(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesTLS1_3]], ResultWrapper[ZonesTLS1_3]),
+            cast_to=cast(Type[Optional[ZoneSettingTLS1_3]], ResultWrapper[ZoneSettingTLS1_3]),
         )
 
     async def get(
@@ -185,7 +185,7 @@ class AsyncTLS1_3(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesTLS1_3]:
+    ) -> Optional[ZoneSettingTLS1_3]:
         """
         Gets TLS 1.3 setting enabled for a zone.
 
@@ -211,7 +211,7 @@ class AsyncTLS1_3(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesTLS1_3]], ResultWrapper[ZonesTLS1_3]),
+            cast_to=cast(Type[Optional[ZoneSettingTLS1_3]], ResultWrapper[ZoneSettingTLS1_3]),
         )
 
 

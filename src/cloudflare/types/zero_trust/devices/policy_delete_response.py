@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .teams_devices_device_settings_policy import TeamsDevicesDeviceSettingsPolicy
+from .devices_device_settings_policy import DevicesDeviceSettingsPolicy
 
 __all__ = ["PolicyDeleteResponse"]
 
-PolicyDeleteResponse = List[TeamsDevicesDeviceSettingsPolicy]
+PolicyDeleteResponse = List[DevicesDeviceSettingsPolicy]

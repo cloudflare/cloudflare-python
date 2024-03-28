@@ -50,7 +50,7 @@ from ......_base_client import (
 )
 from ......types.workers import WorkersScript
 from ......types.workers_for_platforms.dispatch.namespaces import (
-    WorkersNamespaceScript,
+    WorkersForPlatformsNamespaceScript,
     script_delete_params,
     script_update_params,
 )
@@ -271,7 +271,7 @@ class Scripts(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WorkersNamespaceScript:
+    ) -> WorkersForPlatformsNamespaceScript:
         """
         Fetch information about a script uploaded to a Workers for Platforms namespace.
 
@@ -305,7 +305,7 @@ class Scripts(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[WorkersNamespaceScript], ResultWrapper[WorkersNamespaceScript]),
+            cast_to=cast(Type[WorkersForPlatformsNamespaceScript], ResultWrapper[WorkersForPlatformsNamespaceScript]),
         )
 
 
@@ -522,7 +522,7 @@ class AsyncScripts(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WorkersNamespaceScript:
+    ) -> WorkersForPlatformsNamespaceScript:
         """
         Fetch information about a script uploaded to a Workers for Platforms namespace.
 
@@ -556,7 +556,7 @@ class AsyncScripts(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[WorkersNamespaceScript], ResultWrapper[WorkersNamespaceScript]),
+            cast_to=cast(Type[WorkersForPlatformsNamespaceScript], ResultWrapper[WorkersForPlatformsNamespaceScript]),
         )
 
 

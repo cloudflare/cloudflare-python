@@ -11,4 +11,4 @@ from .group_get_response import GroupGetResponse as GroupGetResponse
 from .rule_edit_response import RuleEditResponse as RuleEditResponse
 from .group_edit_response import GroupEditResponse as GroupEditResponse
 from .waf_managed_rules_rule import WAFManagedRulesRule as WAFManagedRulesRule
-from .waf_managed_rules_schemas_group import WAFManagedRulesSchemasGroup as WAFManagedRulesSchemasGroup
+from .waf_managed_rules_group import WAFManagedRulesGroup as WAFManagedRulesGroup

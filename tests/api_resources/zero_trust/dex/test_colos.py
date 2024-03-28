@@ -3,13 +3,13 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.zero_trust.dex import ColoListResponse
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -25,7 +25,7 @@ class TestColos:
             time_end="2023-08-24T20:45:00Z",
             time_start="2023-08-20T20:45:00Z",
         )
-        assert_matches_type(Optional[ColoListResponse], colo, path=["response"])
+        assert_matches_type(SyncSinglePage[object], colo, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -36,7 +36,7 @@ class TestColos:
             time_start="2023-08-20T20:45:00Z",
             sort_by="fleet-status-usage",
         )
-        assert_matches_type(Optional[ColoListResponse], colo, path=["response"])
+        assert_matches_type(SyncSinglePage[object], colo, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -50,7 +50,7 @@ class TestColos:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         colo = response.parse()
-        assert_matches_type(Optional[ColoListResponse], colo, path=["response"])
+        assert_matches_type(SyncSinglePage[object], colo, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -64,7 +64,7 @@ class TestColos:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             colo = response.parse()
-            assert_matches_type(Optional[ColoListResponse], colo, path=["response"])
+            assert_matches_type(SyncSinglePage[object], colo, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -90,7 +90,7 @@ class TestAsyncColos:
             time_end="2023-08-24T20:45:00Z",
             time_start="2023-08-20T20:45:00Z",
         )
-        assert_matches_type(Optional[ColoListResponse], colo, path=["response"])
+        assert_matches_type(AsyncSinglePage[object], colo, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -101,7 +101,7 @@ class TestAsyncColos:
             time_start="2023-08-20T20:45:00Z",
             sort_by="fleet-status-usage",
         )
-        assert_matches_type(Optional[ColoListResponse], colo, path=["response"])
+        assert_matches_type(AsyncSinglePage[object], colo, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -115,7 +115,7 @@ class TestAsyncColos:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         colo = await response.parse()
-        assert_matches_type(Optional[ColoListResponse], colo, path=["response"])
+        assert_matches_type(AsyncSinglePage[object], colo, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -129,7 +129,7 @@ class TestAsyncColos:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             colo = await response.parse()
-            assert_matches_type(Optional[ColoListResponse], colo, path=["response"])
+            assert_matches_type(AsyncSinglePage[object], colo, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

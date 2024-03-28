@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
+from .challenges_widget import ChallengesWidget as ChallengesWidget
 from .widget_list_params import WidgetListParams as WidgetListParams
 from .widget_create_params import WidgetCreateParams as WidgetCreateParams
 from .widget_update_params import WidgetUpdateParams as WidgetUpdateParams
+from .challenges_widget_list import ChallengesWidgetList as ChallengesWidgetList
 from .widget_rotate_secret_params import WidgetRotateSecretParams as WidgetRotateSecretParams
-from .nc_challenges_admin_widget_list import NcChallengesAdminWidgetList as NcChallengesAdminWidgetList
-from .nc_challenges_admin_widget_detail import NcChallengesAdminWidgetDetail as NcChallengesAdminWidgetDetail

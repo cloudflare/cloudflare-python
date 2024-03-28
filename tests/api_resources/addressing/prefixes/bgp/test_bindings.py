@@ -9,8 +9,8 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.addressing.prefixes.bgp import (
-    BindingListResponse,
     BindingDeleteResponse,
     AddressingServiceBinding,
 )
@@ -91,7 +91,7 @@ class TestBindings:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(BindingListResponse, binding, path=["response"])
+        assert_matches_type(SyncSinglePage[AddressingServiceBinding], binding, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -104,7 +104,7 @@ class TestBindings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         binding = response.parse()
-        assert_matches_type(BindingListResponse, binding, path=["response"])
+        assert_matches_type(SyncSinglePage[AddressingServiceBinding], binding, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -117,7 +117,7 @@ class TestBindings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             binding = response.parse()
-            assert_matches_type(BindingListResponse, binding, path=["response"])
+            assert_matches_type(SyncSinglePage[AddressingServiceBinding], binding, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -338,7 +338,7 @@ class TestAsyncBindings:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(BindingListResponse, binding, path=["response"])
+        assert_matches_type(AsyncSinglePage[AddressingServiceBinding], binding, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -351,7 +351,7 @@ class TestAsyncBindings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         binding = await response.parse()
-        assert_matches_type(BindingListResponse, binding, path=["response"])
+        assert_matches_type(AsyncSinglePage[AddressingServiceBinding], binding, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -364,7 +364,7 @@ class TestAsyncBindings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             binding = await response.parse()
-            assert_matches_type(BindingListResponse, binding, path=["response"])
+            assert_matches_type(AsyncSinglePage[AddressingServiceBinding], binding, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

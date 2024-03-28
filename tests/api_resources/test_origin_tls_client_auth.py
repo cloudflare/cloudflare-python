@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
@@ -15,6 +15,7 @@ from cloudflare.types import (
     OriginTLSClientAuthCreateResponse,
     OriginTLSClientAuthDeleteResponse,
 )
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -78,7 +79,7 @@ class TestOriginTLSClientAuth:
         origin_tls_client_auth = client.origin_tls_client_auth.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[OriginTLSClientAuthListResponse], origin_tls_client_auth, path=["response"])
+        assert_matches_type(SyncSinglePage[OriginTLSClientAuthListResponse], origin_tls_client_auth, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -90,7 +91,7 @@ class TestOriginTLSClientAuth:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         origin_tls_client_auth = response.parse()
-        assert_matches_type(Optional[OriginTLSClientAuthListResponse], origin_tls_client_auth, path=["response"])
+        assert_matches_type(SyncSinglePage[OriginTLSClientAuthListResponse], origin_tls_client_auth, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -102,7 +103,9 @@ class TestOriginTLSClientAuth:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             origin_tls_client_auth = response.parse()
-            assert_matches_type(Optional[OriginTLSClientAuthListResponse], origin_tls_client_auth, path=["response"])
+            assert_matches_type(
+                SyncSinglePage[OriginTLSClientAuthListResponse], origin_tls_client_auth, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 
@@ -278,7 +281,7 @@ class TestAsyncOriginTLSClientAuth:
         origin_tls_client_auth = await async_client.origin_tls_client_auth.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[OriginTLSClientAuthListResponse], origin_tls_client_auth, path=["response"])
+        assert_matches_type(AsyncSinglePage[OriginTLSClientAuthListResponse], origin_tls_client_auth, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -290,7 +293,7 @@ class TestAsyncOriginTLSClientAuth:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         origin_tls_client_auth = await response.parse()
-        assert_matches_type(Optional[OriginTLSClientAuthListResponse], origin_tls_client_auth, path=["response"])
+        assert_matches_type(AsyncSinglePage[OriginTLSClientAuthListResponse], origin_tls_client_auth, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -302,7 +305,9 @@ class TestAsyncOriginTLSClientAuth:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             origin_tls_client_auth = await response.parse()
-            assert_matches_type(Optional[OriginTLSClientAuthListResponse], origin_tls_client_auth, path=["response"])
+            assert_matches_type(
+                AsyncSinglePage[OriginTLSClientAuthListResponse], origin_tls_client_auth, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 

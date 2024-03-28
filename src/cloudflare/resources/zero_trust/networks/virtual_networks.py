@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Optional, cast
+from typing import Any, cast
 
 import httpx
 
@@ -20,12 +20,14 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
+from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
 from ....types.zero_trust.networks import (
+    TunnelVirtualNetwork,
     VirtualNetworkEditResponse,
-    VirtualNetworkListResponse,
     VirtualNetworkCreateResponse,
     VirtualNetworkDeleteResponse,
     virtual_network_edit_params,
@@ -120,7 +122,7 @@ class VirtualNetworks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[VirtualNetworkListResponse]:
+    ) -> SyncSinglePage[TunnelVirtualNetwork]:
         """
         Lists and filters virtual networks in an account.
 
@@ -147,8 +149,9 @@ class VirtualNetworks(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/teamnet/virtual_networks",
+            page=SyncSinglePage[TunnelVirtualNetwork],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -163,9 +166,8 @@ class VirtualNetworks(SyncAPIResource):
                     },
                     virtual_network_list_params.VirtualNetworkListParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[VirtualNetworkListResponse]], ResultWrapper[VirtualNetworkListResponse]),
+            model=TunnelVirtualNetwork,
         )
 
     def delete(
@@ -354,7 +356,7 @@ class AsyncVirtualNetworks(AsyncAPIResource):
             ),
         )
 
-    async def list(
+    def list(
         self,
         *,
         account_id: str,
@@ -368,7 +370,7 @@ class AsyncVirtualNetworks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[VirtualNetworkListResponse]:
+    ) -> AsyncPaginator[TunnelVirtualNetwork, AsyncSinglePage[TunnelVirtualNetwork]]:
         """
         Lists and filters virtual networks in an account.
 
@@ -395,14 +397,15 @@ class AsyncVirtualNetworks(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/teamnet/virtual_networks",
+            page=AsyncSinglePage[TunnelVirtualNetwork],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "is_default": is_default,
                         "is_deleted": is_deleted,
@@ -411,9 +414,8 @@ class AsyncVirtualNetworks(AsyncAPIResource):
                     },
                     virtual_network_list_params.VirtualNetworkListParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[VirtualNetworkListResponse]], ResultWrapper[VirtualNetworkListResponse]),
+            model=TunnelVirtualNetwork,
         )
 
     async def delete(

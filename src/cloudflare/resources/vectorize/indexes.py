@@ -20,11 +20,12 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
+from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
 from ...types.vectorize import (
-    IndexListResponse,
     IndexDeleteResponse,
     VectorizeIndexQuery,
     VectorizeCreateIndex,
@@ -160,7 +161,7 @@ class Indexes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IndexListResponse:
+    ) -> SyncSinglePage[VectorizeCreateIndex]:
         """
         Returns a list of Vectorize Indexes
 
@@ -177,16 +178,13 @@ class Indexes(SyncAPIResource):
         """
         if not account_identifier:
             raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_identifier}/vectorize/indexes",
+            page=SyncSinglePage[VectorizeCreateIndex],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[IndexListResponse], ResultWrapper[IndexListResponse]),
+            model=VectorizeCreateIndex,
         )
 
     def delete(
@@ -631,7 +629,7 @@ class AsyncIndexes(AsyncAPIResource):
             cast_to=cast(Type[Optional[VectorizeCreateIndex]], ResultWrapper[VectorizeCreateIndex]),
         )
 
-    async def list(
+    def list(
         self,
         account_identifier: str,
         *,
@@ -641,7 +639,7 @@ class AsyncIndexes(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IndexListResponse:
+    ) -> AsyncPaginator[VectorizeCreateIndex, AsyncSinglePage[VectorizeCreateIndex]]:
         """
         Returns a list of Vectorize Indexes
 
@@ -658,16 +656,13 @@ class AsyncIndexes(AsyncAPIResource):
         """
         if not account_identifier:
             raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_identifier}/vectorize/indexes",
+            page=AsyncSinglePage[VectorizeCreateIndex],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[IndexListResponse], ResultWrapper[IndexListResponse]),
+            model=VectorizeCreateIndex,
         )
 
     async def delete(

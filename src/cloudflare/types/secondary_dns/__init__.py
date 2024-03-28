@@ -3,18 +3,16 @@
 from __future__ import annotations
 
 from .acl_create_params import ACLCreateParams as ACLCreateParams
-from .acl_list_response import ACLListResponse as ACLListResponse
 from .acl_update_params import ACLUpdateParams as ACLUpdateParams
 from .secondary_dns_acl import SecondaryDNSACL as SecondaryDNSACL
 from .peer_create_params import PeerCreateParams as PeerCreateParams
-from .peer_list_response import PeerListResponse as PeerListResponse
 from .peer_update_params import PeerUpdateParams as PeerUpdateParams
 from .secondary_dns_peer import SecondaryDNSPeer as SecondaryDNSPeer
 from .secondary_dns_tsig import SecondaryDNSTSIG as SecondaryDNSTSIG
 from .tsig_create_params import TSIGCreateParams as TSIGCreateParams
-from .tsig_list_response import TSIGListResponse as TSIGListResponse
 from .tsig_update_params import TSIGUpdateParams as TSIGUpdateParams
 from .acl_delete_response import ACLDeleteResponse as ACLDeleteResponse
+from .secondary_dns_force import SecondaryDNSForce as SecondaryDNSForce
 from .peer_delete_response import PeerDeleteResponse as PeerDeleteResponse
 from .tsig_delete_response import TSIGDeleteResponse as TSIGDeleteResponse
 from .incoming_get_response import IncomingGetResponse as IncomingGetResponse
@@ -29,9 +27,6 @@ from .incoming_update_response import IncomingUpdateResponse as IncomingUpdateRe
 from .outgoing_create_response import OutgoingCreateResponse as OutgoingCreateResponse
 from .outgoing_delete_response import OutgoingDeleteResponse as OutgoingDeleteResponse
 from .outgoing_update_response import OutgoingUpdateResponse as OutgoingUpdateResponse
-from .secondary_dns_force_result import SecondaryDNSForceResult as SecondaryDNSForceResult
-from .secondary_dns_schemas_force_result import SecondaryDNSSchemasForceResult as SecondaryDNSSchemasForceResult
-from .secondary_dns_enable_transfer_result import SecondaryDNSEnableTransferResult as SecondaryDNSEnableTransferResult
-from .secondary_dns_disable_transfer_result import (
-    SecondaryDNSDisableTransferResult as SecondaryDNSDisableTransferResult,
-)
+from .secondary_dns_enable_transfer import SecondaryDNSEnableTransfer as SecondaryDNSEnableTransfer
+from .outgoing_force_notify_response import OutgoingForceNotifyResponse as OutgoingForceNotifyResponse
+from .secondary_dns_disable_transfer import SecondaryDNSDisableTransfer as SecondaryDNSDisableTransfer

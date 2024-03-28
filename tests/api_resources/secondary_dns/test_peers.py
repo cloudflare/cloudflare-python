@@ -3,17 +3,14 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.secondary_dns import (
-    PeerListResponse,
-    SecondaryDNSPeer,
-    PeerDeleteResponse,
-)
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
+from cloudflare.types.secondary_dns import SecondaryDNSPeer, PeerDeleteResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -144,7 +141,7 @@ class TestPeers:
         peer = client.secondary_dns.peers.list(
             account_id="01a7362d577a6c3019a474fd6f485823",
         )
-        assert_matches_type(Optional[PeerListResponse], peer, path=["response"])
+        assert_matches_type(SyncSinglePage[SecondaryDNSPeer], peer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -156,7 +153,7 @@ class TestPeers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         peer = response.parse()
-        assert_matches_type(Optional[PeerListResponse], peer, path=["response"])
+        assert_matches_type(SyncSinglePage[SecondaryDNSPeer], peer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -168,7 +165,7 @@ class TestPeers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             peer = response.parse()
-            assert_matches_type(Optional[PeerListResponse], peer, path=["response"])
+            assert_matches_type(SyncSinglePage[SecondaryDNSPeer], peer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -411,7 +408,7 @@ class TestAsyncPeers:
         peer = await async_client.secondary_dns.peers.list(
             account_id="01a7362d577a6c3019a474fd6f485823",
         )
-        assert_matches_type(Optional[PeerListResponse], peer, path=["response"])
+        assert_matches_type(AsyncSinglePage[SecondaryDNSPeer], peer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -423,7 +420,7 @@ class TestAsyncPeers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         peer = await response.parse()
-        assert_matches_type(Optional[PeerListResponse], peer, path=["response"])
+        assert_matches_type(AsyncSinglePage[SecondaryDNSPeer], peer, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -435,7 +432,7 @@ class TestAsyncPeers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             peer = await response.parse()
-            assert_matches_type(Optional[PeerListResponse], peer, path=["response"])
+            assert_matches_type(AsyncSinglePage[SecondaryDNSPeer], peer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

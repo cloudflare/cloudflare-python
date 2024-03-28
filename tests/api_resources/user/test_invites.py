@@ -3,12 +3,13 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.user import InviteGetResponse, InviteEditResponse, InviteListResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -21,7 +22,7 @@ class TestInvites:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         invite = client.user.invites.list()
-        assert_matches_type(Optional[InviteListResponse], invite, path=["response"])
+        assert_matches_type(SyncSinglePage[InviteListResponse], invite, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -31,7 +32,7 @@ class TestInvites:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         invite = response.parse()
-        assert_matches_type(Optional[InviteListResponse], invite, path=["response"])
+        assert_matches_type(SyncSinglePage[InviteListResponse], invite, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -41,7 +42,7 @@ class TestInvites:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             invite = response.parse()
-            assert_matches_type(Optional[InviteListResponse], invite, path=["response"])
+            assert_matches_type(SyncSinglePage[InviteListResponse], invite, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -141,7 +142,7 @@ class TestAsyncInvites:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         invite = await async_client.user.invites.list()
-        assert_matches_type(Optional[InviteListResponse], invite, path=["response"])
+        assert_matches_type(AsyncSinglePage[InviteListResponse], invite, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -151,7 +152,7 @@ class TestAsyncInvites:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         invite = await response.parse()
-        assert_matches_type(Optional[InviteListResponse], invite, path=["response"])
+        assert_matches_type(AsyncSinglePage[InviteListResponse], invite, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -161,7 +162,7 @@ class TestAsyncInvites:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             invite = await response.parse()
-            assert_matches_type(Optional[InviteListResponse], invite, path=["response"])
+            assert_matches_type(AsyncSinglePage[InviteListResponse], invite, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

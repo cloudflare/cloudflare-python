@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
-
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
@@ -15,11 +13,12 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._wrappers import ResultWrapper
+from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
-from ....types.zero_trust.gateway import CategoryListResponse
+from ....types.zero_trust.gateway import ZeroTrustGatewayCategories
 
 __all__ = ["Categories", "AsyncCategories"]
 
@@ -43,7 +42,7 @@ class Categories(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CategoryListResponse]:
+    ) -> SyncSinglePage[ZeroTrustGatewayCategories]:
         """
         Fetches a list of all categories.
 
@@ -60,16 +59,13 @@ class Categories(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/gateway/categories",
+            page=SyncSinglePage[ZeroTrustGatewayCategories],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[CategoryListResponse]], ResultWrapper[CategoryListResponse]),
+            model=ZeroTrustGatewayCategories,
         )
 
 
@@ -82,7 +78,7 @@ class AsyncCategories(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncCategoriesWithStreamingResponse:
         return AsyncCategoriesWithStreamingResponse(self)
 
-    async def list(
+    def list(
         self,
         *,
         account_id: str,
@@ -92,7 +88,7 @@ class AsyncCategories(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CategoryListResponse]:
+    ) -> AsyncPaginator[ZeroTrustGatewayCategories, AsyncSinglePage[ZeroTrustGatewayCategories]]:
         """
         Fetches a list of all categories.
 
@@ -109,16 +105,13 @@ class AsyncCategories(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/gateway/categories",
+            page=AsyncSinglePage[ZeroTrustGatewayCategories],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[CategoryListResponse]], ResultWrapper[CategoryListResponse]),
+            model=ZeroTrustGatewayCategories,
         )
 
 

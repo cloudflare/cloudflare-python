@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .aaa_pagerduty import AaaPagerduty
+from .alerting_pagerduty import AlertingPagerduty
 
 __all__ = ["PagerdutyGetResponse"]
 
-PagerdutyGetResponse = List[AaaPagerduty]
+PagerdutyGetResponse = List[AlertingPagerduty]

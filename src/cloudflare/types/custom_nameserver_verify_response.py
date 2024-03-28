@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .dns_custom_nameservers_custom_ns import DNSCustomNameserversCustomNS
+from .custom_nameserver import CustomNameserver
 
 __all__ = ["CustomNameserverVerifyResponse"]
 
-CustomNameserverVerifyResponse = List[DNSCustomNameserversCustomNS]
+CustomNameserverVerifyResponse = List[CustomNameserver]

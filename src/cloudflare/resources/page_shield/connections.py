@@ -2,16 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ..._utils import maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -20,11 +16,12 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._wrappers import ResultWrapper
+from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
-from ...types.page_shield import PageShieldConnection, ConnectionListResponse, connection_list_params
+from ...types.page_shield import PageShieldConnection, connection_list_params
 
 __all__ = ["Connections", "AsyncConnections"]
 
@@ -60,7 +57,7 @@ class Connections(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ConnectionListResponse]:
+    ) -> SyncSinglePage[PageShieldConnection]:
         """
         Lists all connections detected by Page Shield.
 
@@ -123,8 +120,9 @@ class Connections(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/zones/{zone_id}/page_shield/connections",
+            page=SyncSinglePage[PageShieldConnection],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -147,9 +145,8 @@ class Connections(SyncAPIResource):
                     },
                     connection_list_params.ConnectionListParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ConnectionListResponse]], ResultWrapper[ConnectionListResponse]),
+            model=PageShieldConnection,
         )
 
     def get(
@@ -202,7 +199,7 @@ class AsyncConnections(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncConnectionsWithStreamingResponse:
         return AsyncConnectionsWithStreamingResponse(self)
 
-    async def list(
+    def list(
         self,
         *,
         zone_id: str,
@@ -224,7 +221,7 @@ class AsyncConnections(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ConnectionListResponse]:
+    ) -> AsyncPaginator[PageShieldConnection, AsyncSinglePage[PageShieldConnection]]:
         """
         Lists all connections detected by Page Shield.
 
@@ -287,14 +284,15 @@ class AsyncConnections(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/zones/{zone_id}/page_shield/connections",
+            page=AsyncSinglePage[PageShieldConnection],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "direction": direction,
                         "exclude_cdn_cgi": exclude_cdn_cgi,
@@ -311,9 +309,8 @@ class AsyncConnections(AsyncAPIResource):
                     },
                     connection_list_params.ConnectionListParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ConnectionListResponse]], ResultWrapper[ConnectionListResponse]),
+            model=PageShieldConnection,
         )
 
     async def get(

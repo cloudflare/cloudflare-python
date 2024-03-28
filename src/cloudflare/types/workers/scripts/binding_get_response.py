@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .workers_schemas_binding import WorkersSchemasBinding
+from .workers_binding import WorkersBinding
 
 __all__ = ["BindingGetResponse"]
 
-BindingGetResponse = List[WorkersSchemasBinding]
+BindingGetResponse = List[WorkersBinding]

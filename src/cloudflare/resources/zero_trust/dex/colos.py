@@ -2,16 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -20,11 +16,12 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._wrappers import ResultWrapper
+from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
-from ....types.zero_trust.dex import ColoListResponse, colo_list_params
+from ....types.zero_trust.dex import colo_list_params
 
 __all__ = ["Colos", "AsyncColos"]
 
@@ -51,7 +48,7 @@ class Colos(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ColoListResponse]:
+    ) -> SyncSinglePage[object]:
         """
         List Cloudflare colos that account's devices were connected to during a time
         period, sorted by usage starting from the most used colo. Colos without traffic
@@ -75,8 +72,9 @@ class Colos(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/dex/colos",
+            page=SyncSinglePage[object],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -90,9 +88,8 @@ class Colos(SyncAPIResource):
                     },
                     colo_list_params.ColoListParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ColoListResponse]], ResultWrapper[ColoListResponse]),
+            model=object,
         )
 
 
@@ -105,7 +102,7 @@ class AsyncColos(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncColosWithStreamingResponse:
         return AsyncColosWithStreamingResponse(self)
 
-    async def list(
+    def list(
         self,
         *,
         account_id: str,
@@ -118,7 +115,7 @@ class AsyncColos(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ColoListResponse]:
+    ) -> AsyncPaginator[object, AsyncSinglePage[object]]:
         """
         List Cloudflare colos that account's devices were connected to during a time
         period, sorted by usage starting from the most used colo. Colos without traffic
@@ -142,14 +139,15 @@ class AsyncColos(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/dex/colos",
+            page=AsyncSinglePage[object],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "time_end": time_end,
                         "time_start": time_start,
@@ -157,9 +155,8 @@ class AsyncColos(AsyncAPIResource):
                     },
                     colo_list_params.ColoListParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ColoListResponse]], ResultWrapper[ColoListResponse]),
+            model=object,
         )
 
 

@@ -20,10 +20,12 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
+from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
-from ...types.workers import WorkersDomain, DomainListResponse, domain_list_params, domain_update_params
+from ...types.workers import WorkersDomain, domain_list_params, domain_update_params
 
 __all__ = ["Domains", "AsyncDomains"]
 
@@ -110,7 +112,7 @@ class Domains(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DomainListResponse:
+    ) -> SyncSinglePage[WorkersDomain]:
         """
         Lists all Worker Domains for an account.
 
@@ -135,8 +137,9 @@ class Domains(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/workers/domains",
+            page=SyncSinglePage[WorkersDomain],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -152,9 +155,8 @@ class Domains(SyncAPIResource):
                     },
                     domain_list_params.DomainListParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DomainListResponse], ResultWrapper[DomainListResponse]),
+            model=WorkersDomain,
         )
 
     def delete(
@@ -306,7 +308,7 @@ class AsyncDomains(AsyncAPIResource):
             cast_to=cast(Type[WorkersDomain], ResultWrapper[WorkersDomain]),
         )
 
-    async def list(
+    def list(
         self,
         *,
         account_id: str,
@@ -321,7 +323,7 @@ class AsyncDomains(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DomainListResponse:
+    ) -> AsyncPaginator[WorkersDomain, AsyncSinglePage[WorkersDomain]]:
         """
         Lists all Worker Domains for an account.
 
@@ -346,14 +348,15 @@ class AsyncDomains(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/workers/domains",
+            page=AsyncSinglePage[WorkersDomain],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "environment": environment,
                         "hostname": hostname,
@@ -363,9 +366,8 @@ class AsyncDomains(AsyncAPIResource):
                     },
                     domain_list_params.DomainListParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DomainListResponse], ResultWrapper[DomainListResponse]),
+            model=WorkersDomain,
         )
 
     async def delete(

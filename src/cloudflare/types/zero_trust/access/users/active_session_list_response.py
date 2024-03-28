@@ -1,18 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
+from typing import Dict, Optional
 
 from ....._models import BaseModel
 
-__all__ = [
-    "ActiveSessionListResponse",
-    "ActiveSessionListResponseItem",
-    "ActiveSessionListResponseItemMetadata",
-    "ActiveSessionListResponseItemMetadataApps",
-]
+__all__ = ["ActiveSessionListResponse", "Metadata", "MetadataApps"]
 
 
-class ActiveSessionListResponseItemMetadataApps(BaseModel):
+class MetadataApps(BaseModel):
     hostname: Optional[str] = None
 
     name: Optional[str] = None
@@ -22,8 +17,8 @@ class ActiveSessionListResponseItemMetadataApps(BaseModel):
     uid: Optional[str] = None
 
 
-class ActiveSessionListResponseItemMetadata(BaseModel):
-    apps: Optional[Dict[str, ActiveSessionListResponseItemMetadataApps]] = None
+class Metadata(BaseModel):
+    apps: Optional[Dict[str, MetadataApps]] = None
 
     expires: Optional[int] = None
 
@@ -34,12 +29,9 @@ class ActiveSessionListResponseItemMetadata(BaseModel):
     ttl: Optional[int] = None
 
 
-class ActiveSessionListResponseItem(BaseModel):
+class ActiveSessionListResponse(BaseModel):
     expiration: Optional[int] = None
 
-    metadata: Optional[ActiveSessionListResponseItemMetadata] = None
+    metadata: Optional[Metadata] = None
 
     name: Optional[str] = None
-
-
-ActiveSessionListResponse = List[ActiveSessionListResponseItem]

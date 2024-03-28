@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, Optional, cast
+from typing import Type, Iterable, cast
 
 import httpx
 
@@ -20,16 +20,12 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
+from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
-from ....types.zero_trust.access import (
-    AccessGroups,
-    GroupListResponse,
-    GroupDeleteResponse,
-    group_create_params,
-    group_update_params,
-)
+from ....types.zero_trust.access import ZeroTrustGroups, GroupDeleteResponse, group_create_params, group_update_params
 
 __all__ = ["Groups", "AsyncGroups"]
 
@@ -59,7 +55,7 @@ class Groups(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessGroups:
+    ) -> ZeroTrustGroups:
         """
         Creates a new Access group.
 
@@ -123,7 +119,7 @@ class Groups(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessGroups], ResultWrapper[AccessGroups]),
+            cast_to=cast(Type[ZeroTrustGroups], ResultWrapper[ZeroTrustGroups]),
         )
 
     def update(
@@ -143,7 +139,7 @@ class Groups(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessGroups:
+    ) -> ZeroTrustGroups:
         """
         Updates a configured Access group.
 
@@ -211,7 +207,7 @@ class Groups(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessGroups], ResultWrapper[AccessGroups]),
+            cast_to=cast(Type[ZeroTrustGroups], ResultWrapper[ZeroTrustGroups]),
         )
 
     def list(
@@ -225,7 +221,7 @@ class Groups(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[GroupListResponse]:
+    ) -> SyncSinglePage[ZeroTrustGroups]:
         """
         Lists all Access groups.
 
@@ -257,16 +253,13 @@ class Groups(SyncAPIResource):
         else:
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return self._get(
+        return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/access/groups",
+            page=SyncSinglePage[ZeroTrustGroups],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[GroupListResponse]], ResultWrapper[GroupListResponse]),
+            model=ZeroTrustGroups,
         )
 
     def delete(
@@ -341,7 +334,7 @@ class Groups(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessGroups:
+    ) -> ZeroTrustGroups:
         """
         Fetches a single Access group.
 
@@ -386,7 +379,7 @@ class Groups(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessGroups], ResultWrapper[AccessGroups]),
+            cast_to=cast(Type[ZeroTrustGroups], ResultWrapper[ZeroTrustGroups]),
         )
 
 
@@ -415,7 +408,7 @@ class AsyncGroups(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessGroups:
+    ) -> ZeroTrustGroups:
         """
         Creates a new Access group.
 
@@ -479,7 +472,7 @@ class AsyncGroups(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessGroups], ResultWrapper[AccessGroups]),
+            cast_to=cast(Type[ZeroTrustGroups], ResultWrapper[ZeroTrustGroups]),
         )
 
     async def update(
@@ -499,7 +492,7 @@ class AsyncGroups(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessGroups:
+    ) -> ZeroTrustGroups:
         """
         Updates a configured Access group.
 
@@ -567,10 +560,10 @@ class AsyncGroups(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessGroups], ResultWrapper[AccessGroups]),
+            cast_to=cast(Type[ZeroTrustGroups], ResultWrapper[ZeroTrustGroups]),
         )
 
-    async def list(
+    def list(
         self,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
@@ -581,7 +574,7 @@ class AsyncGroups(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[GroupListResponse]:
+    ) -> AsyncPaginator[ZeroTrustGroups, AsyncSinglePage[ZeroTrustGroups]]:
         """
         Lists all Access groups.
 
@@ -613,16 +606,13 @@ class AsyncGroups(AsyncAPIResource):
         else:
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return await self._get(
+        return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/access/groups",
+            page=AsyncSinglePage[ZeroTrustGroups],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[GroupListResponse]], ResultWrapper[GroupListResponse]),
+            model=ZeroTrustGroups,
         )
 
     async def delete(
@@ -697,7 +687,7 @@ class AsyncGroups(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessGroups:
+    ) -> ZeroTrustGroups:
         """
         Fetches a single Access group.
 
@@ -742,7 +732,7 @@ class AsyncGroups(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessGroups], ResultWrapper[AccessGroups]),
+            cast_to=cast(Type[ZeroTrustGroups], ResultWrapper[ZeroTrustGroups]),
         )
 
 

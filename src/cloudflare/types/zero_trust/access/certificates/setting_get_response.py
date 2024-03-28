@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .access_settings import AccessSettings
+from .zero_trust_settings import ZeroTrustSettings
 
 __all__ = ["SettingGetResponse"]
 
-SettingGetResponse = List[AccessSettings]
+SettingGetResponse = List[ZeroTrustSettings]

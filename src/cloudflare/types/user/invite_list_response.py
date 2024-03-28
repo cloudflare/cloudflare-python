@@ -5,12 +5,12 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from ..._models import BaseModel
-from ..accounts import IamSchemasRole
+from ..accounts import Role
 
-__all__ = ["InviteListResponse", "InviteListResponseItem"]
+__all__ = ["InviteListResponse"]
 
 
-class InviteListResponseItem(BaseModel):
+class InviteListResponse(BaseModel):
     invited_member_id: Optional[str] = None
     """ID of the user to add to the organization."""
 
@@ -35,11 +35,8 @@ class InviteListResponseItem(BaseModel):
     organization_name: Optional[str] = None
     """Organization name."""
 
-    roles: Optional[List[IamSchemasRole]] = None
+    roles: Optional[List[Role]] = None
     """Roles to be assigned to this user."""
 
     status: Optional[Literal["pending", "accepted", "rejected", "expired"]] = None
     """Current status of the invitation."""
-
-
-InviteListResponse = List[InviteListResponseItem]

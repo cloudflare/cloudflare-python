@@ -27,8 +27,8 @@ from ..._base_client import (
 )
 from ...types.firewall import (
     RuleEditResponse,
+    FirewallFilterRule,
     RuleCreateResponse,
-    LegacyJhsFilterRule,
     rule_edit_params,
     rule_list_params,
     rule_create_params,
@@ -101,7 +101,7 @@ class Rules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[LegacyJhsFilterRule]:
+    ) -> Optional[FirewallFilterRule]:
         """
         Updates an existing firewall rule.
 
@@ -132,7 +132,7 @@ class Rules(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[LegacyJhsFilterRule]], ResultWrapper[LegacyJhsFilterRule]),
+            cast_to=cast(Type[Optional[FirewallFilterRule]], ResultWrapper[FirewallFilterRule]),
         )
 
     def list(
@@ -150,7 +150,7 @@ class Rules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[LegacyJhsFilterRule]:
+    ) -> SyncV4PagePaginationArray[FirewallFilterRule]:
         """Fetches firewall rules in a zone.
 
         You can filter the results using several
@@ -181,7 +181,7 @@ class Rules(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return self._get_api_list(
             f"/zones/{zone_identifier}/firewall/rules",
-            page=SyncV4PagePaginationArray[LegacyJhsFilterRule],
+            page=SyncV4PagePaginationArray[FirewallFilterRule],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -198,7 +198,7 @@ class Rules(SyncAPIResource):
                     rule_list_params.RuleListParams,
                 ),
             ),
-            model=LegacyJhsFilterRule,
+            model=FirewallFilterRule,
         )
 
     def delete(
@@ -213,7 +213,7 @@ class Rules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[LegacyJhsFilterRule]:
+    ) -> Optional[FirewallFilterRule]:
         """
         Deletes an existing firewall rule.
 
@@ -249,7 +249,7 @@ class Rules(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[LegacyJhsFilterRule]], ResultWrapper[LegacyJhsFilterRule]),
+            cast_to=cast(Type[Optional[FirewallFilterRule]], ResultWrapper[FirewallFilterRule]),
         )
 
     def edit(
@@ -309,7 +309,7 @@ class Rules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[LegacyJhsFilterRule]:
+    ) -> Optional[FirewallFilterRule]:
         """
         Fetches the details of a firewall rule.
 
@@ -339,7 +339,7 @@ class Rules(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[LegacyJhsFilterRule]], ResultWrapper[LegacyJhsFilterRule]),
+            cast_to=cast(Type[Optional[FirewallFilterRule]], ResultWrapper[FirewallFilterRule]),
         )
 
 
@@ -405,7 +405,7 @@ class AsyncRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[LegacyJhsFilterRule]:
+    ) -> Optional[FirewallFilterRule]:
         """
         Updates an existing firewall rule.
 
@@ -436,7 +436,7 @@ class AsyncRules(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[LegacyJhsFilterRule]], ResultWrapper[LegacyJhsFilterRule]),
+            cast_to=cast(Type[Optional[FirewallFilterRule]], ResultWrapper[FirewallFilterRule]),
         )
 
     def list(
@@ -454,7 +454,7 @@ class AsyncRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[LegacyJhsFilterRule, AsyncV4PagePaginationArray[LegacyJhsFilterRule]]:
+    ) -> AsyncPaginator[FirewallFilterRule, AsyncV4PagePaginationArray[FirewallFilterRule]]:
         """Fetches firewall rules in a zone.
 
         You can filter the results using several
@@ -485,7 +485,7 @@ class AsyncRules(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return self._get_api_list(
             f"/zones/{zone_identifier}/firewall/rules",
-            page=AsyncV4PagePaginationArray[LegacyJhsFilterRule],
+            page=AsyncV4PagePaginationArray[FirewallFilterRule],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -502,7 +502,7 @@ class AsyncRules(AsyncAPIResource):
                     rule_list_params.RuleListParams,
                 ),
             ),
-            model=LegacyJhsFilterRule,
+            model=FirewallFilterRule,
         )
 
     async def delete(
@@ -517,7 +517,7 @@ class AsyncRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[LegacyJhsFilterRule]:
+    ) -> Optional[FirewallFilterRule]:
         """
         Deletes an existing firewall rule.
 
@@ -553,7 +553,7 @@ class AsyncRules(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[LegacyJhsFilterRule]], ResultWrapper[LegacyJhsFilterRule]),
+            cast_to=cast(Type[Optional[FirewallFilterRule]], ResultWrapper[FirewallFilterRule]),
         )
 
     async def edit(
@@ -613,7 +613,7 @@ class AsyncRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[LegacyJhsFilterRule]:
+    ) -> Optional[FirewallFilterRule]:
         """
         Fetches the details of a firewall rule.
 
@@ -643,7 +643,7 @@ class AsyncRules(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[LegacyJhsFilterRule]], ResultWrapper[LegacyJhsFilterRule]),
+            cast_to=cast(Type[Optional[FirewallFilterRule]], ResultWrapper[FirewallFilterRule]),
         )
 
 

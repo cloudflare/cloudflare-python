@@ -3,4 +3,4 @@
 from __future__ import annotations
 
 from .bytime_get_params import BytimeGetParams as BytimeGetParams
-from .dns_dns_analytics_api_report_bytime import DNSDNSAnalyticsAPIReportBytime as DNSDNSAnalyticsAPIReportBytime
+from .dns_analytics_report_by_time import DNSAnalyticsReportByTime as DNSAnalyticsReportByTime

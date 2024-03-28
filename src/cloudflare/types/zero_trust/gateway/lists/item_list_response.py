@@ -15,4 +15,4 @@ class ItemListResponseItem(BaseModel):
     """The value of the item in a list."""
 
 
-ItemListResponse = List[List[ItemListResponseItem]]
+ItemListResponse = List[ItemListResponseItem]

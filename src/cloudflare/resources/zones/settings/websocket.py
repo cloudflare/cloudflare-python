@@ -24,7 +24,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZonesWebsockets, websocket_edit_params
+from ....types.zones.settings import ZoneSettingWebsockets, websocket_edit_params
 
 __all__ = ["Websocket", "AsyncWebsocket"]
 
@@ -49,7 +49,7 @@ class Websocket(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesWebsockets]:
+    ) -> Optional[ZoneSettingWebsockets]:
         """Changes Websockets setting.
 
         For more information about Websockets, please refer
@@ -81,7 +81,7 @@ class Websocket(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesWebsockets]], ResultWrapper[ZonesWebsockets]),
+            cast_to=cast(Type[Optional[ZoneSettingWebsockets]], ResultWrapper[ZoneSettingWebsockets]),
         )
 
     def get(
@@ -94,7 +94,7 @@ class Websocket(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesWebsockets]:
+    ) -> Optional[ZoneSettingWebsockets]:
         """Gets Websockets setting.
 
         For more information about Websockets, please refer to
@@ -122,7 +122,7 @@ class Websocket(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesWebsockets]], ResultWrapper[ZonesWebsockets]),
+            cast_to=cast(Type[Optional[ZoneSettingWebsockets]], ResultWrapper[ZoneSettingWebsockets]),
         )
 
 
@@ -146,7 +146,7 @@ class AsyncWebsocket(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesWebsockets]:
+    ) -> Optional[ZoneSettingWebsockets]:
         """Changes Websockets setting.
 
         For more information about Websockets, please refer
@@ -178,7 +178,7 @@ class AsyncWebsocket(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesWebsockets]], ResultWrapper[ZonesWebsockets]),
+            cast_to=cast(Type[Optional[ZoneSettingWebsockets]], ResultWrapper[ZoneSettingWebsockets]),
         )
 
     async def get(
@@ -191,7 +191,7 @@ class AsyncWebsocket(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesWebsockets]:
+    ) -> Optional[ZoneSettingWebsockets]:
         """Gets Websockets setting.
 
         For more information about Websockets, please refer to
@@ -219,7 +219,7 @@ class AsyncWebsocket(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesWebsockets]], ResultWrapper[ZonesWebsockets]),
+            cast_to=cast(Type[Optional[ZoneSettingWebsockets]], ResultWrapper[ZoneSettingWebsockets]),
         )
 
 

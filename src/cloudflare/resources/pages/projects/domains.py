@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Optional, cast
+from typing import Any, Optional, cast
 
 import httpx
 
@@ -20,16 +20,12 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
+from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
-from ....types.pages.projects import (
-    DomainGetResponse,
-    DomainEditResponse,
-    DomainListResponse,
-    DomainCreateResponse,
-    domain_create_params,
-)
+from ....types.pages.projects import DomainGetResponse, DomainEditResponse, DomainCreateResponse, domain_create_params
 
 __all__ = ["Domains", "AsyncDomains"]
 
@@ -105,7 +101,7 @@ class Domains(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DomainListResponse:
+    ) -> SyncSinglePage[object]:
         """
         Fetch a list of all domains associated with a Pages project.
 
@@ -126,16 +122,13 @@ class Domains(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not project_name:
             raise ValueError(f"Expected a non-empty value for `project_name` but received {project_name!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/pages/projects/{project_name}/domains",
+            page=SyncSinglePage[object],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[DomainListResponse], ResultWrapper[DomainListResponse]),
+            model=object,
         )
 
     def delete(
@@ -352,7 +345,7 @@ class AsyncDomains(AsyncAPIResource):
             ),
         )
 
-    async def list(
+    def list(
         self,
         project_name: str,
         *,
@@ -363,7 +356,7 @@ class AsyncDomains(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DomainListResponse:
+    ) -> AsyncPaginator[object, AsyncSinglePage[object]]:
         """
         Fetch a list of all domains associated with a Pages project.
 
@@ -384,16 +377,13 @@ class AsyncDomains(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not project_name:
             raise ValueError(f"Expected a non-empty value for `project_name` but received {project_name!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/pages/projects/{project_name}/domains",
+            page=AsyncSinglePage[object],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[DomainListResponse], ResultWrapper[DomainListResponse]),
+            model=object,
         )
 
     async def delete(

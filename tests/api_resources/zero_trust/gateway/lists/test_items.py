@@ -3,12 +3,13 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.zero_trust.gateway.lists import ItemListResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -24,7 +25,7 @@ class TestItems:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[ItemListResponse], item, path=["response"])
+        assert_matches_type(SyncSinglePage[ItemListResponse], item, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -37,7 +38,7 @@ class TestItems:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         item = response.parse()
-        assert_matches_type(Optional[ItemListResponse], item, path=["response"])
+        assert_matches_type(SyncSinglePage[ItemListResponse], item, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -50,7 +51,7 @@ class TestItems:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             item = response.parse()
-            assert_matches_type(Optional[ItemListResponse], item, path=["response"])
+            assert_matches_type(SyncSinglePage[ItemListResponse], item, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -80,7 +81,7 @@ class TestAsyncItems:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[ItemListResponse], item, path=["response"])
+        assert_matches_type(AsyncSinglePage[ItemListResponse], item, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -93,7 +94,7 @@ class TestAsyncItems:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         item = await response.parse()
-        assert_matches_type(Optional[ItemListResponse], item, path=["response"])
+        assert_matches_type(AsyncSinglePage[ItemListResponse], item, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -106,7 +107,7 @@ class TestAsyncItems:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             item = await response.parse()
-            assert_matches_type(Optional[ItemListResponse], item, path=["response"])
+            assert_matches_type(AsyncSinglePage[ItemListResponse], item, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
-
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
@@ -15,8 +13,9 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._wrappers import ResultWrapper
+from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
 from ...types.addressing import ServiceListResponse
@@ -43,7 +42,7 @@ class Services(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ServiceListResponse:
+    ) -> SyncSinglePage[ServiceListResponse]:
         """
         Bring-Your-Own IP (BYOIP) prefixes onboarded to Cloudflare must be bound to a
         service running on the Cloudflare network to enable a Cloudflare product on the
@@ -63,16 +62,13 @@ class Services(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/addressing/services",
+            page=SyncSinglePage[ServiceListResponse],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[ServiceListResponse], ResultWrapper[ServiceListResponse]),
+            model=ServiceListResponse,
         )
 
 
@@ -85,7 +81,7 @@ class AsyncServices(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncServicesWithStreamingResponse:
         return AsyncServicesWithStreamingResponse(self)
 
-    async def list(
+    def list(
         self,
         *,
         account_id: str,
@@ -95,7 +91,7 @@ class AsyncServices(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ServiceListResponse:
+    ) -> AsyncPaginator[ServiceListResponse, AsyncSinglePage[ServiceListResponse]]:
         """
         Bring-Your-Own IP (BYOIP) prefixes onboarded to Cloudflare must be bound to a
         service running on the Cloudflare network to enable a Cloudflare product on the
@@ -115,16 +111,13 @@ class AsyncServices(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/addressing/services",
+            page=AsyncSinglePage[ServiceListResponse],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[ServiceListResponse], ResultWrapper[ServiceListResponse]),
+            model=ServiceListResponse,
         )
 
 

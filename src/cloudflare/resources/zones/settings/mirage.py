@@ -24,7 +24,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZonesMirage, mirage_edit_params
+from ....types.zones.settings import ZoneSettingMirage, mirage_edit_params
 
 __all__ = ["Mirage", "AsyncMirage"]
 
@@ -49,7 +49,7 @@ class Mirage(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesMirage]:
+    ) -> Optional[ZoneSettingMirage]:
         """
         Automatically optimize image loading for website visitors on mobile devices.
         Refer to our
@@ -81,7 +81,7 @@ class Mirage(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesMirage]], ResultWrapper[ZonesMirage]),
+            cast_to=cast(Type[Optional[ZoneSettingMirage]], ResultWrapper[ZoneSettingMirage]),
         )
 
     def get(
@@ -94,7 +94,7 @@ class Mirage(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesMirage]:
+    ) -> Optional[ZoneSettingMirage]:
         """
         Automatically optimize image loading for website visitors on mobile devices.
         Refer to our
@@ -123,7 +123,7 @@ class Mirage(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesMirage]], ResultWrapper[ZonesMirage]),
+            cast_to=cast(Type[Optional[ZoneSettingMirage]], ResultWrapper[ZoneSettingMirage]),
         )
 
 
@@ -147,7 +147,7 @@ class AsyncMirage(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesMirage]:
+    ) -> Optional[ZoneSettingMirage]:
         """
         Automatically optimize image loading for website visitors on mobile devices.
         Refer to our
@@ -179,7 +179,7 @@ class AsyncMirage(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesMirage]], ResultWrapper[ZonesMirage]),
+            cast_to=cast(Type[Optional[ZoneSettingMirage]], ResultWrapper[ZoneSettingMirage]),
         )
 
     async def get(
@@ -192,7 +192,7 @@ class AsyncMirage(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesMirage]:
+    ) -> Optional[ZoneSettingMirage]:
         """
         Automatically optimize image loading for website visitors on mobile devices.
         Refer to our
@@ -221,7 +221,7 @@ class AsyncMirage(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesMirage]], ResultWrapper[ZonesMirage]),
+            cast_to=cast(Type[Optional[ZoneSettingMirage]], ResultWrapper[ZoneSettingMirage]),
         )
 
 

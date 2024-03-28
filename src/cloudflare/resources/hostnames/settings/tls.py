@@ -24,12 +24,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.hostnames.settings import (
-    TLSGetResponse,
-    TLSCertificatesAndHostnamesSettingObject,
-    TLSCertificatesAndHostnamesSettingObjectDelete,
-    tls_update_params,
-)
+from ....types.hostnames.settings import HostnameStting, TLSGetResponse, HostnameSettingDelete, tls_update_params
 
 __all__ = ["TLS", "AsyncTLS"]
 
@@ -56,7 +51,7 @@ class TLS(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TLSCertificatesAndHostnamesSettingObject:
+    ) -> HostnameStting:
         """
         Update the tls setting value for the hostname.
 
@@ -93,9 +88,7 @@ class TLS(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[TLSCertificatesAndHostnamesSettingObject], ResultWrapper[TLSCertificatesAndHostnamesSettingObject]
-            ),
+            cast_to=cast(Type[HostnameStting], ResultWrapper[HostnameStting]),
         )
 
     def delete(
@@ -110,7 +103,7 @@ class TLS(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TLSCertificatesAndHostnamesSettingObjectDelete:
+    ) -> HostnameSettingDelete:
         """
         Delete the tls setting value for the hostname.
 
@@ -144,10 +137,7 @@ class TLS(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[TLSCertificatesAndHostnamesSettingObjectDelete],
-                ResultWrapper[TLSCertificatesAndHostnamesSettingObjectDelete],
-            ),
+            cast_to=cast(Type[HostnameSettingDelete], ResultWrapper[HostnameSettingDelete]),
         )
 
     def get(
@@ -217,7 +207,7 @@ class AsyncTLS(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TLSCertificatesAndHostnamesSettingObject:
+    ) -> HostnameStting:
         """
         Update the tls setting value for the hostname.
 
@@ -254,9 +244,7 @@ class AsyncTLS(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[TLSCertificatesAndHostnamesSettingObject], ResultWrapper[TLSCertificatesAndHostnamesSettingObject]
-            ),
+            cast_to=cast(Type[HostnameStting], ResultWrapper[HostnameStting]),
         )
 
     async def delete(
@@ -271,7 +259,7 @@ class AsyncTLS(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TLSCertificatesAndHostnamesSettingObjectDelete:
+    ) -> HostnameSettingDelete:
         """
         Delete the tls setting value for the hostname.
 
@@ -305,10 +293,7 @@ class AsyncTLS(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[TLSCertificatesAndHostnamesSettingObjectDelete],
-                ResultWrapper[TLSCertificatesAndHostnamesSettingObjectDelete],
-            ),
+            cast_to=cast(Type[HostnameSettingDelete], ResultWrapper[HostnameSettingDelete]),
         )
 
     async def get(

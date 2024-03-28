@@ -6,22 +6,15 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = [
-    "SubscriptionListResponse",
-    "SubscriptionListResponseItem",
-    "SubscriptionListResponseItemApp",
-    "SubscriptionListResponseItemComponentValue",
-    "SubscriptionListResponseItemRatePlan",
-    "SubscriptionListResponseItemZone",
-]
+__all__ = ["SubscriptionListResponse", "App", "ComponentValue", "RatePlan", "Zone"]
 
 
-class SubscriptionListResponseItemApp(BaseModel):
+class App(BaseModel):
     install_id: Optional[str] = None
     """app install id."""
 
 
-class SubscriptionListResponseItemComponentValue(BaseModel):
+class ComponentValue(BaseModel):
     default: Optional[float] = None
     """The default amount assigned."""
 
@@ -35,7 +28,7 @@ class SubscriptionListResponseItemComponentValue(BaseModel):
     """The amount of the component value assigned."""
 
 
-class SubscriptionListResponseItemRatePlan(BaseModel):
+class RatePlan(BaseModel):
     id: Optional[str] = None
     """The ID of the rate plan."""
 
@@ -58,7 +51,7 @@ class SubscriptionListResponseItemRatePlan(BaseModel):
     """The list of sets this rate plan applies to."""
 
 
-class SubscriptionListResponseItemZone(BaseModel):
+class Zone(BaseModel):
     id: Optional[str] = None
     """Identifier"""
 
@@ -66,13 +59,13 @@ class SubscriptionListResponseItemZone(BaseModel):
     """The domain name"""
 
 
-class SubscriptionListResponseItem(BaseModel):
+class SubscriptionListResponse(BaseModel):
     id: Optional[str] = None
     """Subscription identifier tag."""
 
-    app: Optional[SubscriptionListResponseItemApp] = None
+    app: Optional[App] = None
 
-    component_values: Optional[List[SubscriptionListResponseItemComponentValue]] = None
+    component_values: Optional[List[ComponentValue]] = None
     """The list of add-ons subscribed to."""
 
     currency: Optional[str] = None
@@ -93,14 +86,11 @@ class SubscriptionListResponseItem(BaseModel):
     price: Optional[float] = None
     """The price of the subscription that will be billed, in US dollars."""
 
-    rate_plan: Optional[SubscriptionListResponseItemRatePlan] = None
+    rate_plan: Optional[RatePlan] = None
     """The rate plan applied to the subscription."""
 
     state: Optional[Literal["Trial", "Provisioned", "Paid", "AwaitingPayment", "Cancelled", "Failed", "Expired"]] = None
     """The state that the subscription is in."""
 
-    zone: Optional[SubscriptionListResponseItemZone] = None
+    zone: Optional[Zone] = None
     """A simple zone object. May have null properties if not a zone subscription."""
-
-
-SubscriptionListResponse = List[SubscriptionListResponseItem]

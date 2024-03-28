@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
-
 import httpx
 
 from .objects import (
@@ -23,11 +21,12 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._wrappers import ResultWrapper
+from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
-from ....types.durable_objects import NamespaceListResponse
+from ....types.durable_objects import DurableObjectNamespace
 
 __all__ = ["Namespaces", "AsyncNamespaces"]
 
@@ -55,7 +54,7 @@ class Namespaces(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[NamespaceListResponse]:
+    ) -> SyncSinglePage[DurableObjectNamespace]:
         """
         Returns the Durable Object namespaces owned by an account.
 
@@ -72,16 +71,13 @@ class Namespaces(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/workers/durable_objects/namespaces",
+            page=SyncSinglePage[DurableObjectNamespace],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[NamespaceListResponse]], ResultWrapper[NamespaceListResponse]),
+            model=DurableObjectNamespace,
         )
 
 
@@ -98,7 +94,7 @@ class AsyncNamespaces(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncNamespacesWithStreamingResponse:
         return AsyncNamespacesWithStreamingResponse(self)
 
-    async def list(
+    def list(
         self,
         *,
         account_id: str,
@@ -108,7 +104,7 @@ class AsyncNamespaces(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[NamespaceListResponse]:
+    ) -> AsyncPaginator[DurableObjectNamespace, AsyncSinglePage[DurableObjectNamespace]]:
         """
         Returns the Durable Object namespaces owned by an account.
 
@@ -125,16 +121,13 @@ class AsyncNamespaces(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/workers/durable_objects/namespaces",
+            page=AsyncSinglePage[DurableObjectNamespace],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[NamespaceListResponse]], ResultWrapper[NamespaceListResponse]),
+            model=DurableObjectNamespace,
         )
 
 

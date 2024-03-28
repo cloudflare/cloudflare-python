@@ -21,11 +21,12 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
+from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
 from ....types.user.load_balancers import (
-    PoolListResponse,
     LoadBalancingPool,
     PoolDeleteResponse,
     PoolHealthResponse,
@@ -319,7 +320,7 @@ class Pools(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PoolListResponse]:
+    ) -> SyncSinglePage[LoadBalancingPool]:
         """
         List configured pools.
 
@@ -335,17 +336,17 @@ class Pools(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/user/load_balancers/pools",
+            page=SyncSinglePage[LoadBalancingPool],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform({"monitor": monitor}, pool_list_params.PoolListParams),
-                post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[PoolListResponse]], ResultWrapper[PoolListResponse]),
+            model=LoadBalancingPool,
         )
 
     def delete(
@@ -1025,7 +1026,7 @@ class AsyncPools(AsyncAPIResource):
             cast_to=cast(Type[LoadBalancingPool], ResultWrapper[LoadBalancingPool]),
         )
 
-    async def list(
+    def list(
         self,
         *,
         monitor: object | NotGiven = NOT_GIVEN,
@@ -1035,7 +1036,7 @@ class AsyncPools(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PoolListResponse]:
+    ) -> AsyncPaginator[LoadBalancingPool, AsyncSinglePage[LoadBalancingPool]]:
         """
         List configured pools.
 
@@ -1051,17 +1052,17 @@ class AsyncPools(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/user/load_balancers/pools",
+            page=AsyncSinglePage[LoadBalancingPool],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"monitor": monitor}, pool_list_params.PoolListParams),
-                post_parser=ResultWrapper._unwrapper,
+                query=maybe_transform({"monitor": monitor}, pool_list_params.PoolListParams),
             ),
-            cast_to=cast(Type[Optional[PoolListResponse]], ResultWrapper[PoolListResponse]),
+            model=LoadBalancingPool,
         )
 
     async def delete(

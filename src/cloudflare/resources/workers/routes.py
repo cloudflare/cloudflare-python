@@ -20,12 +20,13 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
+from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
 from ...types.workers import (
-    WorkersRoutes,
-    RouteListResponse,
+    WorkersRoute,
     RouteCreateResponse,
     RouteDeleteResponse,
     route_create_params,
@@ -112,7 +113,7 @@ class Routes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WorkersRoutes:
+    ) -> WorkersRoute:
         """
         Updates the URL pattern or Worker associated with a route.
 
@@ -151,7 +152,7 @@ class Routes(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[WorkersRoutes], ResultWrapper[WorkersRoutes]),
+            cast_to=cast(Type[WorkersRoute], ResultWrapper[WorkersRoute]),
         )
 
     def list(
@@ -164,7 +165,7 @@ class Routes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RouteListResponse:
+    ) -> SyncSinglePage[WorkersRoute]:
         """
         Returns routes for a zone.
 
@@ -181,16 +182,13 @@ class Routes(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/zones/{zone_id}/workers/routes",
+            page=SyncSinglePage[WorkersRoute],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[RouteListResponse], ResultWrapper[RouteListResponse]),
+            model=WorkersRoute,
         )
 
     def delete(
@@ -253,7 +251,7 @@ class Routes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WorkersRoutes:
+    ) -> WorkersRoute:
         """
         Returns information about a route, including URL pattern and Worker.
 
@@ -283,7 +281,7 @@ class Routes(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[WorkersRoutes], ResultWrapper[WorkersRoutes]),
+            cast_to=cast(Type[WorkersRoute], ResultWrapper[WorkersRoute]),
         )
 
 
@@ -364,7 +362,7 @@ class AsyncRoutes(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WorkersRoutes:
+    ) -> WorkersRoute:
         """
         Updates the URL pattern or Worker associated with a route.
 
@@ -403,10 +401,10 @@ class AsyncRoutes(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[WorkersRoutes], ResultWrapper[WorkersRoutes]),
+            cast_to=cast(Type[WorkersRoute], ResultWrapper[WorkersRoute]),
         )
 
-    async def list(
+    def list(
         self,
         *,
         zone_id: str,
@@ -416,7 +414,7 @@ class AsyncRoutes(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RouteListResponse:
+    ) -> AsyncPaginator[WorkersRoute, AsyncSinglePage[WorkersRoute]]:
         """
         Returns routes for a zone.
 
@@ -433,16 +431,13 @@ class AsyncRoutes(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/zones/{zone_id}/workers/routes",
+            page=AsyncSinglePage[WorkersRoute],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[RouteListResponse], ResultWrapper[RouteListResponse]),
+            model=WorkersRoute,
         )
 
     async def delete(
@@ -505,7 +500,7 @@ class AsyncRoutes(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WorkersRoutes:
+    ) -> WorkersRoute:
         """
         Returns information about a route, including URL pattern and Worker.
 
@@ -535,7 +530,7 @@ class AsyncRoutes(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[WorkersRoutes], ResultWrapper[WorkersRoutes]),
+            cast_to=cast(Type[WorkersRoute], ResultWrapper[WorkersRoute]),
         )
 
 

@@ -9,12 +9,12 @@ from .configs import (
     AsyncConfigsWithStreamingResponse,
 )
 from .hyperdrive import (
-    Hyperdrive,
-    AsyncHyperdrive,
-    HyperdriveWithRawResponse,
-    AsyncHyperdriveWithRawResponse,
-    HyperdriveWithStreamingResponse,
-    AsyncHyperdriveWithStreamingResponse,
+    HyperdriveResource,
+    AsyncHyperdriveResource,
+    HyperdriveResourceWithRawResponse,
+    AsyncHyperdriveResourceWithRawResponse,
+    HyperdriveResourceWithStreamingResponse,
+    AsyncHyperdriveResourceWithStreamingResponse,
 )
 
 __all__ = [
@@ -24,10 +24,10 @@ __all__ = [
     "AsyncConfigsWithRawResponse",
     "ConfigsWithStreamingResponse",
     "AsyncConfigsWithStreamingResponse",
-    "Hyperdrive",
-    "AsyncHyperdrive",
-    "HyperdriveWithRawResponse",
-    "AsyncHyperdriveWithRawResponse",
-    "HyperdriveWithStreamingResponse",
-    "AsyncHyperdriveWithStreamingResponse",
+    "HyperdriveResource",
+    "AsyncHyperdriveResource",
+    "HyperdriveResourceWithRawResponse",
+    "AsyncHyperdriveResourceWithRawResponse",
+    "HyperdriveResourceWithStreamingResponse",
+    "AsyncHyperdriveResourceWithStreamingResponse",
 ]

@@ -2,16 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, cast
 
 import httpx
 
-from ...types import (
-    MTLSCertificateListResponse,
-    TLSCertificatesAndHostnamesCertificateObjectPost,
-    TLSCertificatesAndHostnamesComponentsSchemasCertificateObject,
-    mtls_certificate_create_params,
-)
+from ...types import MTLSCertificate, MTLSCertificateUpdate, mtls_certificate_create_params
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -26,6 +21,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
+from ...pagination import SyncSinglePage, AsyncSinglePage
 from .associations import (
     Associations,
     AsyncAssociations,
@@ -35,6 +31,7 @@ from .associations import (
     AsyncAssociationsWithStreamingResponse,
 )
 from ..._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
 
@@ -68,7 +65,7 @@ class MTLSCertificates(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TLSCertificatesAndHostnamesCertificateObjectPost:
+    ) -> MTLSCertificateUpdate:
         """
         Upload a certificate that you want to use with mTLS-enabled Cloudflare services.
 
@@ -111,10 +108,7 @@ class MTLSCertificates(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[TLSCertificatesAndHostnamesCertificateObjectPost],
-                ResultWrapper[TLSCertificatesAndHostnamesCertificateObjectPost],
-            ),
+            cast_to=cast(Type[MTLSCertificateUpdate], ResultWrapper[MTLSCertificateUpdate]),
         )
 
     def list(
@@ -127,7 +121,7 @@ class MTLSCertificates(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MTLSCertificateListResponse]:
+    ) -> SyncSinglePage[MTLSCertificate]:
         """
         Lists all mTLS certificates.
 
@@ -144,16 +138,13 @@ class MTLSCertificates(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/mtls_certificates",
+            page=SyncSinglePage[MTLSCertificate],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[MTLSCertificateListResponse]], ResultWrapper[MTLSCertificateListResponse]),
+            model=MTLSCertificate,
         )
 
     def delete(
@@ -167,7 +158,7 @@ class MTLSCertificates(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TLSCertificatesAndHostnamesComponentsSchemasCertificateObject:
+    ) -> MTLSCertificate:
         """
         Deletes the mTLS certificate unless the certificate is in use by one or more
         Cloudflare services.
@@ -200,10 +191,7 @@ class MTLSCertificates(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[TLSCertificatesAndHostnamesComponentsSchemasCertificateObject],
-                ResultWrapper[TLSCertificatesAndHostnamesComponentsSchemasCertificateObject],
-            ),
+            cast_to=cast(Type[MTLSCertificate], ResultWrapper[MTLSCertificate]),
         )
 
     def get(
@@ -217,7 +205,7 @@ class MTLSCertificates(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TLSCertificatesAndHostnamesComponentsSchemasCertificateObject:
+    ) -> MTLSCertificate:
         """
         Fetches a single mTLS certificate.
 
@@ -249,10 +237,7 @@ class MTLSCertificates(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[TLSCertificatesAndHostnamesComponentsSchemasCertificateObject],
-                ResultWrapper[TLSCertificatesAndHostnamesComponentsSchemasCertificateObject],
-            ),
+            cast_to=cast(Type[MTLSCertificate], ResultWrapper[MTLSCertificate]),
         )
 
 
@@ -283,7 +268,7 @@ class AsyncMTLSCertificates(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TLSCertificatesAndHostnamesCertificateObjectPost:
+    ) -> MTLSCertificateUpdate:
         """
         Upload a certificate that you want to use with mTLS-enabled Cloudflare services.
 
@@ -326,13 +311,10 @@ class AsyncMTLSCertificates(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[TLSCertificatesAndHostnamesCertificateObjectPost],
-                ResultWrapper[TLSCertificatesAndHostnamesCertificateObjectPost],
-            ),
+            cast_to=cast(Type[MTLSCertificateUpdate], ResultWrapper[MTLSCertificateUpdate]),
         )
 
-    async def list(
+    def list(
         self,
         *,
         account_id: str,
@@ -342,7 +324,7 @@ class AsyncMTLSCertificates(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MTLSCertificateListResponse]:
+    ) -> AsyncPaginator[MTLSCertificate, AsyncSinglePage[MTLSCertificate]]:
         """
         Lists all mTLS certificates.
 
@@ -359,16 +341,13 @@ class AsyncMTLSCertificates(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/mtls_certificates",
+            page=AsyncSinglePage[MTLSCertificate],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[MTLSCertificateListResponse]], ResultWrapper[MTLSCertificateListResponse]),
+            model=MTLSCertificate,
         )
 
     async def delete(
@@ -382,7 +361,7 @@ class AsyncMTLSCertificates(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TLSCertificatesAndHostnamesComponentsSchemasCertificateObject:
+    ) -> MTLSCertificate:
         """
         Deletes the mTLS certificate unless the certificate is in use by one or more
         Cloudflare services.
@@ -415,10 +394,7 @@ class AsyncMTLSCertificates(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[TLSCertificatesAndHostnamesComponentsSchemasCertificateObject],
-                ResultWrapper[TLSCertificatesAndHostnamesComponentsSchemasCertificateObject],
-            ),
+            cast_to=cast(Type[MTLSCertificate], ResultWrapper[MTLSCertificate]),
         )
 
     async def get(
@@ -432,7 +408,7 @@ class AsyncMTLSCertificates(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TLSCertificatesAndHostnamesComponentsSchemasCertificateObject:
+    ) -> MTLSCertificate:
         """
         Fetches a single mTLS certificate.
 
@@ -464,10 +440,7 @@ class AsyncMTLSCertificates(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[TLSCertificatesAndHostnamesComponentsSchemasCertificateObject],
-                ResultWrapper[TLSCertificatesAndHostnamesComponentsSchemasCertificateObject],
-            ),
+            cast_to=cast(Type[MTLSCertificate], ResultWrapper[MTLSCertificate]),
         )
 
 

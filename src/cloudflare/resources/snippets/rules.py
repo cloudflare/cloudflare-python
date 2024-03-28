@@ -20,7 +20,9 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
+from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
 from ...types.snippets import RuleListResponse, RuleUpdateResponse, rule_update_params
@@ -90,7 +92,7 @@ class Rules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RuleListResponse:
+    ) -> SyncSinglePage[RuleListResponse]:
         """
         Rules
 
@@ -107,16 +109,13 @@ class Rules(SyncAPIResource):
         """
         if not zone_identifier:
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        return self._get(
+        return self._get_api_list(
             f"/zones/{zone_identifier}/snippets/snippet_rules",
+            page=SyncSinglePage[RuleListResponse],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[RuleListResponse], ResultWrapper[RuleListResponse]),
+            model=RuleListResponse,
         )
 
 
@@ -172,7 +171,7 @@ class AsyncRules(AsyncAPIResource):
             cast_to=cast(Type[RuleUpdateResponse], ResultWrapper[RuleUpdateResponse]),
         )
 
-    async def list(
+    def list(
         self,
         zone_identifier: str,
         *,
@@ -182,7 +181,7 @@ class AsyncRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RuleListResponse:
+    ) -> AsyncPaginator[RuleListResponse, AsyncSinglePage[RuleListResponse]]:
         """
         Rules
 
@@ -199,16 +198,13 @@ class AsyncRules(AsyncAPIResource):
         """
         if not zone_identifier:
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/zones/{zone_identifier}/snippets/snippet_rules",
+            page=AsyncSinglePage[RuleListResponse],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[RuleListResponse], ResultWrapper[RuleListResponse]),
+            model=RuleListResponse,
         )
 
 

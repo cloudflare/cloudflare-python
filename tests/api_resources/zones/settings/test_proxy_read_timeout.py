@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.zones.settings import ZonesProxyReadTimeout
+from cloudflare.types.zones.settings import ZoneSettingProxyReadTimeout
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -27,7 +27,7 @@ class TestProxyReadTimeout:
                 "value": 0,
             },
         )
-        assert_matches_type(Optional[ZonesProxyReadTimeout], proxy_read_timeout, path=["response"])
+        assert_matches_type(Optional[ZoneSettingProxyReadTimeout], proxy_read_timeout, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -39,7 +39,7 @@ class TestProxyReadTimeout:
                 "value": 0,
             },
         )
-        assert_matches_type(Optional[ZonesProxyReadTimeout], proxy_read_timeout, path=["response"])
+        assert_matches_type(Optional[ZoneSettingProxyReadTimeout], proxy_read_timeout, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -55,7 +55,7 @@ class TestProxyReadTimeout:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         proxy_read_timeout = response.parse()
-        assert_matches_type(Optional[ZonesProxyReadTimeout], proxy_read_timeout, path=["response"])
+        assert_matches_type(Optional[ZoneSettingProxyReadTimeout], proxy_read_timeout, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -71,7 +71,7 @@ class TestProxyReadTimeout:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             proxy_read_timeout = response.parse()
-            assert_matches_type(Optional[ZonesProxyReadTimeout], proxy_read_timeout, path=["response"])
+            assert_matches_type(Optional[ZoneSettingProxyReadTimeout], proxy_read_timeout, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -93,7 +93,7 @@ class TestProxyReadTimeout:
         proxy_read_timeout = client.zones.settings.proxy_read_timeout.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ZonesProxyReadTimeout], proxy_read_timeout, path=["response"])
+        assert_matches_type(Optional[ZoneSettingProxyReadTimeout], proxy_read_timeout, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -105,7 +105,7 @@ class TestProxyReadTimeout:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         proxy_read_timeout = response.parse()
-        assert_matches_type(Optional[ZonesProxyReadTimeout], proxy_read_timeout, path=["response"])
+        assert_matches_type(Optional[ZoneSettingProxyReadTimeout], proxy_read_timeout, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -117,7 +117,7 @@ class TestProxyReadTimeout:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             proxy_read_timeout = response.parse()
-            assert_matches_type(Optional[ZonesProxyReadTimeout], proxy_read_timeout, path=["response"])
+            assert_matches_type(Optional[ZoneSettingProxyReadTimeout], proxy_read_timeout, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -143,7 +143,7 @@ class TestAsyncProxyReadTimeout:
                 "value": 0,
             },
         )
-        assert_matches_type(Optional[ZonesProxyReadTimeout], proxy_read_timeout, path=["response"])
+        assert_matches_type(Optional[ZoneSettingProxyReadTimeout], proxy_read_timeout, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -155,7 +155,7 @@ class TestAsyncProxyReadTimeout:
                 "value": 0,
             },
         )
-        assert_matches_type(Optional[ZonesProxyReadTimeout], proxy_read_timeout, path=["response"])
+        assert_matches_type(Optional[ZoneSettingProxyReadTimeout], proxy_read_timeout, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -171,7 +171,7 @@ class TestAsyncProxyReadTimeout:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         proxy_read_timeout = await response.parse()
-        assert_matches_type(Optional[ZonesProxyReadTimeout], proxy_read_timeout, path=["response"])
+        assert_matches_type(Optional[ZoneSettingProxyReadTimeout], proxy_read_timeout, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -187,7 +187,7 @@ class TestAsyncProxyReadTimeout:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             proxy_read_timeout = await response.parse()
-            assert_matches_type(Optional[ZonesProxyReadTimeout], proxy_read_timeout, path=["response"])
+            assert_matches_type(Optional[ZoneSettingProxyReadTimeout], proxy_read_timeout, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -209,7 +209,7 @@ class TestAsyncProxyReadTimeout:
         proxy_read_timeout = await async_client.zones.settings.proxy_read_timeout.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ZonesProxyReadTimeout], proxy_read_timeout, path=["response"])
+        assert_matches_type(Optional[ZoneSettingProxyReadTimeout], proxy_read_timeout, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -221,7 +221,7 @@ class TestAsyncProxyReadTimeout:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         proxy_read_timeout = await response.parse()
-        assert_matches_type(Optional[ZonesProxyReadTimeout], proxy_read_timeout, path=["response"])
+        assert_matches_type(Optional[ZoneSettingProxyReadTimeout], proxy_read_timeout, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -233,7 +233,7 @@ class TestAsyncProxyReadTimeout:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             proxy_read_timeout = await response.parse()
-            assert_matches_type(Optional[ZonesProxyReadTimeout], proxy_read_timeout, path=["response"])
+            assert_matches_type(Optional[ZoneSettingProxyReadTimeout], proxy_read_timeout, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -24,7 +24,7 @@ from ..._base_client import (
     make_request_options,
 )
 from ...types.zero_trust import (
-    AccessOrganizations,
+    ZeroTrustOrganizations,
     OrganizationRevokeUsersResponse,
     organization_create_params,
     organization_update_params,
@@ -64,7 +64,7 @@ class Organizations(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessOrganizations:
+    ) -> ZeroTrustOrganizations:
         """
         Sets up a Zero Trust organization for your account or zone.
 
@@ -147,7 +147,7 @@ class Organizations(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessOrganizations], ResultWrapper[AccessOrganizations]),
+            cast_to=cast(Type[ZeroTrustOrganizations], ResultWrapper[ZeroTrustOrganizations]),
         )
 
     def update(
@@ -172,7 +172,7 @@ class Organizations(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessOrganizations:
+    ) -> ZeroTrustOrganizations:
         """
         Updates the configuration for your Zero Trust organization.
 
@@ -256,7 +256,7 @@ class Organizations(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessOrganizations], ResultWrapper[AccessOrganizations]),
+            cast_to=cast(Type[ZeroTrustOrganizations], ResultWrapper[ZeroTrustOrganizations]),
         )
 
     def list(
@@ -270,7 +270,7 @@ class Organizations(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessOrganizations:
+    ) -> ZeroTrustOrganizations:
         """
         Returns the configuration for your Zero Trust organization.
 
@@ -311,7 +311,7 @@ class Organizations(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessOrganizations], ResultWrapper[AccessOrganizations]),
+            cast_to=cast(Type[ZeroTrustOrganizations], ResultWrapper[ZeroTrustOrganizations]),
         )
 
     def revoke_users(
@@ -406,7 +406,7 @@ class AsyncOrganizations(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessOrganizations:
+    ) -> ZeroTrustOrganizations:
         """
         Sets up a Zero Trust organization for your account or zone.
 
@@ -489,7 +489,7 @@ class AsyncOrganizations(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessOrganizations], ResultWrapper[AccessOrganizations]),
+            cast_to=cast(Type[ZeroTrustOrganizations], ResultWrapper[ZeroTrustOrganizations]),
         )
 
     async def update(
@@ -514,7 +514,7 @@ class AsyncOrganizations(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessOrganizations:
+    ) -> ZeroTrustOrganizations:
         """
         Updates the configuration for your Zero Trust organization.
 
@@ -598,7 +598,7 @@ class AsyncOrganizations(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessOrganizations], ResultWrapper[AccessOrganizations]),
+            cast_to=cast(Type[ZeroTrustOrganizations], ResultWrapper[ZeroTrustOrganizations]),
         )
 
     async def list(
@@ -612,7 +612,7 @@ class AsyncOrganizations(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessOrganizations:
+    ) -> ZeroTrustOrganizations:
         """
         Returns the configuration for your Zero Trust organization.
 
@@ -653,7 +653,7 @@ class AsyncOrganizations(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessOrganizations], ResultWrapper[AccessOrganizations]),
+            cast_to=cast(Type[ZeroTrustOrganizations], ResultWrapper[ZeroTrustOrganizations]),
         )
 
     async def revoke_users(
