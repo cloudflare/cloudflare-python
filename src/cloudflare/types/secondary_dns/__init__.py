@@ -31,4 +31,5 @@ from .outgoing_create_response import OutgoingCreateResponse as OutgoingCreateRe
 from .outgoing_delete_response import OutgoingDeleteResponse as OutgoingDeleteResponse
 from .outgoing_update_response import OutgoingUpdateResponse as OutgoingUpdateResponse
 from .secondary_dns_enable_transfer import SecondaryDNSEnableTransfer as SecondaryDNSEnableTransfer
+from .outgoing_force_notify_response import OutgoingForceNotifyResponse as OutgoingForceNotifyResponse
 from .secondary_dns_disable_transfer import SecondaryDNSDisableTransfer as SecondaryDNSDisableTransfer
