@@ -25,7 +25,7 @@ from ....._base_client import (
     make_request_options,
 )
 from .....types.zero_trust.access.applications import (
-    AccessPolicies,
+    ZeroTrustPolicies,
     PolicyListResponse,
     PolicyDeleteResponse,
     policy_create_params,
@@ -68,7 +68,7 @@ class Policies(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessPolicies:
+    ) -> ZeroTrustPolicies:
         """
         Create a new Access policy for an application.
 
@@ -162,7 +162,7 @@ class Policies(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessPolicies], ResultWrapper[AccessPolicies]),
+            cast_to=cast(Type[ZeroTrustPolicies], ResultWrapper[ZeroTrustPolicies]),
         )
 
     def update(
@@ -190,7 +190,7 @@ class Policies(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessPolicies:
+    ) -> ZeroTrustPolicies:
         """
         Update a configured Access policy.
 
@@ -288,7 +288,7 @@ class Policies(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessPolicies], ResultWrapper[AccessPolicies]),
+            cast_to=cast(Type[ZeroTrustPolicies], ResultWrapper[ZeroTrustPolicies]),
         )
 
     def list(
@@ -429,7 +429,7 @@ class Policies(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessPolicies:
+    ) -> ZeroTrustPolicies:
         """
         Fetches a single Access policy.
 
@@ -478,7 +478,7 @@ class Policies(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessPolicies], ResultWrapper[AccessPolicies]),
+            cast_to=cast(Type[ZeroTrustPolicies], ResultWrapper[ZeroTrustPolicies]),
         )
 
 
@@ -515,7 +515,7 @@ class AsyncPolicies(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessPolicies:
+    ) -> ZeroTrustPolicies:
         """
         Create a new Access policy for an application.
 
@@ -609,7 +609,7 @@ class AsyncPolicies(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessPolicies], ResultWrapper[AccessPolicies]),
+            cast_to=cast(Type[ZeroTrustPolicies], ResultWrapper[ZeroTrustPolicies]),
         )
 
     async def update(
@@ -637,7 +637,7 @@ class AsyncPolicies(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessPolicies:
+    ) -> ZeroTrustPolicies:
         """
         Update a configured Access policy.
 
@@ -735,7 +735,7 @@ class AsyncPolicies(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessPolicies], ResultWrapper[AccessPolicies]),
+            cast_to=cast(Type[ZeroTrustPolicies], ResultWrapper[ZeroTrustPolicies]),
         )
 
     async def list(
@@ -876,7 +876,7 @@ class AsyncPolicies(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessPolicies:
+    ) -> ZeroTrustPolicies:
         """
         Fetches a single Access policy.
 
@@ -925,7 +925,7 @@ class AsyncPolicies(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessPolicies], ResultWrapper[AccessPolicies]),
+            cast_to=cast(Type[ZeroTrustPolicies], ResultWrapper[ZeroTrustPolicies]),
         )
 
 

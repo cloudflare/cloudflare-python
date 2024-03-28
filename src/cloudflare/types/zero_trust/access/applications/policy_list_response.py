@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .access_policies import AccessPolicies
+from .zero_trust_policies import ZeroTrustPolicies
 
 __all__ = ["PolicyListResponse"]
 
-PolicyListResponse = List[AccessPolicies]
+PolicyListResponse = List[ZeroTrustPolicies]

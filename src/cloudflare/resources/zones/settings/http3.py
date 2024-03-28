@@ -24,7 +24,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZonesHTTP3, http3_edit_params
+from ....types.zones.settings import ZoneSettingHTTP3, http3_edit_params
 
 __all__ = ["HTTP3", "AsyncHTTP3"]
 
@@ -49,7 +49,7 @@ class HTTP3(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesHTTP3]:
+    ) -> Optional[ZoneSettingHTTP3]:
         """
         Value of the HTTP3 setting.
 
@@ -78,7 +78,7 @@ class HTTP3(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesHTTP3]], ResultWrapper[ZonesHTTP3]),
+            cast_to=cast(Type[Optional[ZoneSettingHTTP3]], ResultWrapper[ZoneSettingHTTP3]),
         )
 
     def get(
@@ -91,7 +91,7 @@ class HTTP3(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesHTTP3]:
+    ) -> Optional[ZoneSettingHTTP3]:
         """
         Value of the HTTP3 setting.
 
@@ -117,7 +117,7 @@ class HTTP3(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesHTTP3]], ResultWrapper[ZonesHTTP3]),
+            cast_to=cast(Type[Optional[ZoneSettingHTTP3]], ResultWrapper[ZoneSettingHTTP3]),
         )
 
 
@@ -141,7 +141,7 @@ class AsyncHTTP3(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesHTTP3]:
+    ) -> Optional[ZoneSettingHTTP3]:
         """
         Value of the HTTP3 setting.
 
@@ -170,7 +170,7 @@ class AsyncHTTP3(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesHTTP3]], ResultWrapper[ZonesHTTP3]),
+            cast_to=cast(Type[Optional[ZoneSettingHTTP3]], ResultWrapper[ZoneSettingHTTP3]),
         )
 
     async def get(
@@ -183,7 +183,7 @@ class AsyncHTTP3(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesHTTP3]:
+    ) -> Optional[ZoneSettingHTTP3]:
         """
         Value of the HTTP3 setting.
 
@@ -209,7 +209,7 @@ class AsyncHTTP3(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesHTTP3]], ResultWrapper[ZonesHTTP3]),
+            cast_to=cast(Type[Optional[ZoneSettingHTTP3]], ResultWrapper[ZoneSettingHTTP3]),
         )
 
 

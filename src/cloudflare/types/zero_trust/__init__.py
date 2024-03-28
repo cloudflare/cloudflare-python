@@ -2,25 +2,25 @@
 
 from __future__ import annotations
 
-from .access_seats import AccessSeats as AccessSeats
 from .seat_edit_params import SeatEditParams as SeatEditParams
+from .zero_trust_seats import ZeroTrustSeats as ZeroTrustSeats
 from .seat_edit_response import SeatEditResponse as SeatEditResponse
 from .tunnel_argo_tunnel import TunnelArgoTunnel as TunnelArgoTunnel
 from .tunnel_edit_params import TunnelEditParams as TunnelEditParams
 from .tunnel_list_params import TunnelListParams as TunnelListParams
+from .zero_trust_devices import ZeroTrustDevices as ZeroTrustDevices
 from .device_get_response import DeviceGetResponse as DeviceGetResponse
-from .access_organizations import AccessOrganizations as AccessOrganizations
 from .device_list_response import DeviceListResponse as DeviceListResponse
 from .tunnel_create_params import TunnelCreateParams as TunnelCreateParams
 from .tunnel_delete_params import TunnelDeleteParams as TunnelDeleteParams
 from .tunnel_edit_response import TunnelEditResponse as TunnelEditResponse
 from .tunnel_list_response import TunnelListResponse as TunnelListResponse
 from .gateway_list_response import GatewayListResponse as GatewayListResponse
-from .teams_devices_devices import TeamsDevicesDevices as TeamsDevicesDevices
 from .gateway_create_response import GatewayCreateResponse as GatewayCreateResponse
-from .access_identity_providers import AccessIdentityProviders as AccessIdentityProviders
+from .zero_trust_organizations import ZeroTrustOrganizations as ZeroTrustOrganizations
 from .organization_create_params import OrganizationCreateParams as OrganizationCreateParams
 from .organization_update_params import OrganizationUpdateParams as OrganizationUpdateParams
+from .zero_trust_identity_providers import ZeroTrustIdentityProviders as ZeroTrustIdentityProviders
 from .identity_provider_create_params import IdentityProviderCreateParams as IdentityProviderCreateParams
 from .identity_provider_list_response import IdentityProviderListResponse as IdentityProviderListResponse
 from .identity_provider_update_params import IdentityProviderUpdateParams as IdentityProviderUpdateParams

@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .access_certificates import AccessCertificates
+from .zero_trust_certificates import ZeroTrustCertificates
 
 __all__ = ["CertificateListResponse"]
 
-CertificateListResponse = List[AccessCertificates]
+CertificateListResponse = List[ZeroTrustCertificates]

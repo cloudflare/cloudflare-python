@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .teams_devices_device_managed_networks import TeamsDevicesDeviceManagedNetworks
+from .device_managed_networks import DeviceManagedNetworks
 
 __all__ = ["NetworkDeleteResponse"]
 
-NetworkDeleteResponse = List[TeamsDevicesDeviceManagedNetworks]
+NetworkDeleteResponse = List[DeviceManagedNetworks]

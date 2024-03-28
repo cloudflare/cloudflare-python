@@ -24,7 +24,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZonesEarlyHints, early_hint_edit_params
+from ....types.zones.settings import ZoneSettingEarlyHints, early_hint_edit_params
 
 __all__ = ["EarlyHints", "AsyncEarlyHints"]
 
@@ -49,7 +49,7 @@ class EarlyHints(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesEarlyHints]:
+    ) -> Optional[ZoneSettingEarlyHints]:
         """
         When enabled, Cloudflare will attempt to speed up overall page loads by serving
         `103` responses with `Link` headers from the final response. Refer to
@@ -81,7 +81,7 @@ class EarlyHints(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesEarlyHints]], ResultWrapper[ZonesEarlyHints]),
+            cast_to=cast(Type[Optional[ZoneSettingEarlyHints]], ResultWrapper[ZoneSettingEarlyHints]),
         )
 
     def get(
@@ -94,7 +94,7 @@ class EarlyHints(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesEarlyHints]:
+    ) -> Optional[ZoneSettingEarlyHints]:
         """
         When enabled, Cloudflare will attempt to speed up overall page loads by serving
         `103` responses with `Link` headers from the final response. Refer to
@@ -123,7 +123,7 @@ class EarlyHints(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesEarlyHints]], ResultWrapper[ZonesEarlyHints]),
+            cast_to=cast(Type[Optional[ZoneSettingEarlyHints]], ResultWrapper[ZoneSettingEarlyHints]),
         )
 
 
@@ -147,7 +147,7 @@ class AsyncEarlyHints(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesEarlyHints]:
+    ) -> Optional[ZoneSettingEarlyHints]:
         """
         When enabled, Cloudflare will attempt to speed up overall page loads by serving
         `103` responses with `Link` headers from the final response. Refer to
@@ -179,7 +179,7 @@ class AsyncEarlyHints(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesEarlyHints]], ResultWrapper[ZonesEarlyHints]),
+            cast_to=cast(Type[Optional[ZoneSettingEarlyHints]], ResultWrapper[ZoneSettingEarlyHints]),
         )
 
     async def get(
@@ -192,7 +192,7 @@ class AsyncEarlyHints(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesEarlyHints]:
+    ) -> Optional[ZoneSettingEarlyHints]:
         """
         When enabled, Cloudflare will attempt to speed up overall page loads by serving
         `103` responses with `Link` headers from the final response. Refer to
@@ -221,7 +221,7 @@ class AsyncEarlyHints(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesEarlyHints]], ResultWrapper[ZonesEarlyHints]),
+            cast_to=cast(Type[Optional[ZoneSettingEarlyHints]], ResultWrapper[ZoneSettingEarlyHints]),
         )
 
 

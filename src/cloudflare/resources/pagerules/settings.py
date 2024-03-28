@@ -19,7 +19,7 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.pagerules import ZonesSettings
+from ...types.pagerules import ZonePageruleSettings
 
 __all__ = ["Settings", "AsyncSettings"]
 
@@ -43,7 +43,7 @@ class Settings(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZonesSettings:
+    ) -> ZonePageruleSettings:
         """
         Returns a list of settings (and their details) that Page Rules can apply to
         matching requests.
@@ -70,7 +70,7 @@ class Settings(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZonesSettings], ResultWrapper[ZonesSettings]),
+            cast_to=cast(Type[ZonePageruleSettings], ResultWrapper[ZonePageruleSettings]),
         )
 
 
@@ -93,7 +93,7 @@ class AsyncSettings(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZonesSettings:
+    ) -> ZonePageruleSettings:
         """
         Returns a list of settings (and their details) that Page Rules can apply to
         matching requests.
@@ -120,7 +120,7 @@ class AsyncSettings(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZonesSettings], ResultWrapper[ZonesSettings]),
+            cast_to=cast(Type[ZonePageruleSettings], ResultWrapper[ZonePageruleSettings]),
         )
 
 

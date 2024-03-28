@@ -24,7 +24,7 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.zero_trust.access import (
-    AccessGroups,
+    ZeroTrustGroups,
     GroupListResponse,
     GroupDeleteResponse,
     group_create_params,
@@ -59,7 +59,7 @@ class Groups(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessGroups:
+    ) -> ZeroTrustGroups:
         """
         Creates a new Access group.
 
@@ -123,7 +123,7 @@ class Groups(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessGroups], ResultWrapper[AccessGroups]),
+            cast_to=cast(Type[ZeroTrustGroups], ResultWrapper[ZeroTrustGroups]),
         )
 
     def update(
@@ -143,7 +143,7 @@ class Groups(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessGroups:
+    ) -> ZeroTrustGroups:
         """
         Updates a configured Access group.
 
@@ -211,7 +211,7 @@ class Groups(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessGroups], ResultWrapper[AccessGroups]),
+            cast_to=cast(Type[ZeroTrustGroups], ResultWrapper[ZeroTrustGroups]),
         )
 
     def list(
@@ -341,7 +341,7 @@ class Groups(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessGroups:
+    ) -> ZeroTrustGroups:
         """
         Fetches a single Access group.
 
@@ -386,7 +386,7 @@ class Groups(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessGroups], ResultWrapper[AccessGroups]),
+            cast_to=cast(Type[ZeroTrustGroups], ResultWrapper[ZeroTrustGroups]),
         )
 
 
@@ -415,7 +415,7 @@ class AsyncGroups(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessGroups:
+    ) -> ZeroTrustGroups:
         """
         Creates a new Access group.
 
@@ -479,7 +479,7 @@ class AsyncGroups(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessGroups], ResultWrapper[AccessGroups]),
+            cast_to=cast(Type[ZeroTrustGroups], ResultWrapper[ZeroTrustGroups]),
         )
 
     async def update(
@@ -499,7 +499,7 @@ class AsyncGroups(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessGroups:
+    ) -> ZeroTrustGroups:
         """
         Updates a configured Access group.
 
@@ -567,7 +567,7 @@ class AsyncGroups(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessGroups], ResultWrapper[AccessGroups]),
+            cast_to=cast(Type[ZeroTrustGroups], ResultWrapper[ZeroTrustGroups]),
         )
 
     async def list(
@@ -697,7 +697,7 @@ class AsyncGroups(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessGroups:
+    ) -> ZeroTrustGroups:
         """
         Fetches a single Access group.
 
@@ -742,7 +742,7 @@ class AsyncGroups(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessGroups], ResultWrapper[AccessGroups]),
+            cast_to=cast(Type[ZeroTrustGroups], ResultWrapper[ZeroTrustGroups]),
         )
 
 

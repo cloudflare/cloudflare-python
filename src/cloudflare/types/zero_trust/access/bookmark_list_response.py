@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .access_bookmarks import AccessBookmarks
+from .zero_trust_bookmarks import ZeroTrustBookmarks
 
 __all__ = ["BookmarkListResponse"]
 
-BookmarkListResponse = List[AccessBookmarks]
+BookmarkListResponse = List[ZeroTrustBookmarks]

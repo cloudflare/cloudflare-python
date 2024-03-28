@@ -32,9 +32,9 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.waiting_rooms import (
+    WaitingroomEvent,
     EventListResponse,
     EventDeleteResponse,
-    WaitingroomEventResult,
     event_edit_params,
     event_create_params,
     event_update_params,
@@ -80,7 +80,7 @@ class Events(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WaitingroomEventResult:
+    ) -> WaitingroomEvent:
         """Only available for the Waiting Room Advanced subscription.
 
         Creates an event for
@@ -177,7 +177,7 @@ class Events(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[WaitingroomEventResult], ResultWrapper[WaitingroomEventResult]),
+            cast_to=cast(Type[WaitingroomEvent], ResultWrapper[WaitingroomEvent]),
         )
 
     def update(
@@ -205,7 +205,7 @@ class Events(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WaitingroomEventResult:
+    ) -> WaitingroomEvent:
         """
         Updates a configured event for a waiting room.
 
@@ -298,7 +298,7 @@ class Events(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[WaitingroomEventResult], ResultWrapper[WaitingroomEventResult]),
+            cast_to=cast(Type[WaitingroomEvent], ResultWrapper[WaitingroomEvent]),
         )
 
     def list(
@@ -413,7 +413,7 @@ class Events(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WaitingroomEventResult:
+    ) -> WaitingroomEvent:
         """
         Patches a configured event for a waiting room.
 
@@ -506,7 +506,7 @@ class Events(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[WaitingroomEventResult], ResultWrapper[WaitingroomEventResult]),
+            cast_to=cast(Type[WaitingroomEvent], ResultWrapper[WaitingroomEvent]),
         )
 
     def get(
@@ -521,7 +521,7 @@ class Events(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WaitingroomEventResult:
+    ) -> WaitingroomEvent:
         """
         Fetches a single configured event for a waiting room.
 
@@ -551,7 +551,7 @@ class Events(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[WaitingroomEventResult], ResultWrapper[WaitingroomEventResult]),
+            cast_to=cast(Type[WaitingroomEvent], ResultWrapper[WaitingroomEvent]),
         )
 
 
@@ -592,7 +592,7 @@ class AsyncEvents(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WaitingroomEventResult:
+    ) -> WaitingroomEvent:
         """Only available for the Waiting Room Advanced subscription.
 
         Creates an event for
@@ -689,7 +689,7 @@ class AsyncEvents(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[WaitingroomEventResult], ResultWrapper[WaitingroomEventResult]),
+            cast_to=cast(Type[WaitingroomEvent], ResultWrapper[WaitingroomEvent]),
         )
 
     async def update(
@@ -717,7 +717,7 @@ class AsyncEvents(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WaitingroomEventResult:
+    ) -> WaitingroomEvent:
         """
         Updates a configured event for a waiting room.
 
@@ -810,7 +810,7 @@ class AsyncEvents(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[WaitingroomEventResult], ResultWrapper[WaitingroomEventResult]),
+            cast_to=cast(Type[WaitingroomEvent], ResultWrapper[WaitingroomEvent]),
         )
 
     async def list(
@@ -925,7 +925,7 @@ class AsyncEvents(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WaitingroomEventResult:
+    ) -> WaitingroomEvent:
         """
         Patches a configured event for a waiting room.
 
@@ -1018,7 +1018,7 @@ class AsyncEvents(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[WaitingroomEventResult], ResultWrapper[WaitingroomEventResult]),
+            cast_to=cast(Type[WaitingroomEvent], ResultWrapper[WaitingroomEvent]),
         )
 
     async def get(
@@ -1033,7 +1033,7 @@ class AsyncEvents(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WaitingroomEventResult:
+    ) -> WaitingroomEvent:
         """
         Fetches a single configured event for a waiting room.
 
@@ -1063,7 +1063,7 @@ class AsyncEvents(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[WaitingroomEventResult], ResultWrapper[WaitingroomEventResult]),
+            cast_to=cast(Type[WaitingroomEvent], ResultWrapper[WaitingroomEvent]),
         )
 
 

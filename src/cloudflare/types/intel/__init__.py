@@ -12,6 +12,7 @@ from .ip_get_response import IPGetResponse as IPGetResponse
 from .intel_schemas_ip import IntelSchemasIP as IntelSchemasIP
 from .whois_get_params import WhoisGetParams as WhoisGetParams
 from .domain_get_params import DomainGetParams as DomainGetParams
+from .intel_sinkhole_item import IntelSinkholeItem as IntelSinkholeItem
 from .intel_domain_history import IntelDomainHistory as IntelDomainHistory
 from .ip_list_get_response import IPListGetResponse as IPListGetResponse
 from .sinkhole_list_response import SinkholeListResponse as SinkholeListResponse
@@ -23,7 +24,6 @@ from .indicator_feed_create_params import IndicatorFeedCreateParams as Indicator
 from .indicator_feed_data_response import IndicatorFeedDataResponse as IndicatorFeedDataResponse
 from .indicator_feed_list_response import IndicatorFeedListResponse as IndicatorFeedListResponse
 from .indicator_feed_update_params import IndicatorFeedUpdateParams as IndicatorFeedUpdateParams
-from .intel_sinkholes_sinkhole_item import IntelSinkholesSinkholeItem as IntelSinkholesSinkholeItem
 from .indicator_feed_create_response import IndicatorFeedCreateResponse as IndicatorFeedCreateResponse
 from .indicator_feed_update_response import IndicatorFeedUpdateResponse as IndicatorFeedUpdateResponse
 from .miscategorization_create_params import MiscategorizationCreateParams as MiscategorizationCreateParams

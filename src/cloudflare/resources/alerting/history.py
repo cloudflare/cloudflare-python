@@ -22,7 +22,7 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.alerting import AaaHistory, history_list_params
+from ...types.alerting import AlertingHistory, history_list_params
 
 __all__ = ["History", "AsyncHistory"]
 
@@ -50,7 +50,7 @@ class History(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[AaaHistory]:
+    ) -> SyncV4PagePaginationArray[AlertingHistory]:
         """Gets a list of history records for notifications sent to an account.
 
         The records
@@ -82,7 +82,7 @@ class History(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/alerting/v3/history",
-            page=SyncV4PagePaginationArray[AaaHistory],
+            page=SyncV4PagePaginationArray[AlertingHistory],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -98,7 +98,7 @@ class History(SyncAPIResource):
                     history_list_params.HistoryListParams,
                 ),
             ),
-            model=AaaHistory,
+            model=AlertingHistory,
         )
 
 
@@ -125,7 +125,7 @@ class AsyncHistory(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[AaaHistory, AsyncV4PagePaginationArray[AaaHistory]]:
+    ) -> AsyncPaginator[AlertingHistory, AsyncV4PagePaginationArray[AlertingHistory]]:
         """Gets a list of history records for notifications sent to an account.
 
         The records
@@ -157,7 +157,7 @@ class AsyncHistory(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/alerting/v3/history",
-            page=AsyncV4PagePaginationArray[AaaHistory],
+            page=AsyncV4PagePaginationArray[AlertingHistory],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -173,7 +173,7 @@ class AsyncHistory(AsyncAPIResource):
                     history_list_params.HistoryListParams,
                 ),
             ),
-            model=AaaHistory,
+            model=AlertingHistory,
         )
 
 

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from .images_image import ImagesImage as ImagesImage
+from .image import Image as Image
 from .v1_edit_params import V1EditParams as V1EditParams
 from .v1_list_params import V1ListParams as V1ListParams
 from .v2_list_params import V2ListParams as V2ListParams

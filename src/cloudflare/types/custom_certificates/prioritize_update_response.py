@@ -2,8 +2,8 @@
 
 from typing import List
 
-from ..tls_certificates_and_hostnames_custom_certificate import TLSCertificatesAndHostnamesCustomCertificate
+from ..custom_certificate import CustomCertificate
 
 __all__ = ["PrioritizeUpdateResponse"]
 
-PrioritizeUpdateResponse = List[TLSCertificatesAndHostnamesCustomCertificate]
+PrioritizeUpdateResponse = List[CustomCertificate]

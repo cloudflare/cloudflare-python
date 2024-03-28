@@ -6,7 +6,7 @@ from typing import Type, Optional, cast
 
 import httpx
 
-from ..types import PlanListResponse, BillSubsAPIAvailableRatePlan
+from ..types import PlanListResponse, AvailableRatePlan
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -83,7 +83,7 @@ class Plans(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BillSubsAPIAvailableRatePlan:
+    ) -> AvailableRatePlan:
         """
         Details of the available plan that the zone can subscribe to.
 
@@ -113,7 +113,7 @@ class Plans(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[BillSubsAPIAvailableRatePlan], ResultWrapper[BillSubsAPIAvailableRatePlan]),
+            cast_to=cast(Type[AvailableRatePlan], ResultWrapper[AvailableRatePlan]),
         )
 
 
@@ -176,7 +176,7 @@ class AsyncPlans(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BillSubsAPIAvailableRatePlan:
+    ) -> AvailableRatePlan:
         """
         Details of the available plan that the zone can subscribe to.
 
@@ -206,7 +206,7 @@ class AsyncPlans(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[BillSubsAPIAvailableRatePlan], ResultWrapper[BillSubsAPIAvailableRatePlan]),
+            cast_to=cast(Type[AvailableRatePlan], ResultWrapper[AvailableRatePlan]),
         )
 
 

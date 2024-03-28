@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .tls_certificates_and_hostnames_hostname_certid_object import TLSCertificatesAndHostnamesHostnameCertidObject
+from .origin_tls_client_certificate_id import OriginTLSClientCertificateID
 
 __all__ = ["HostnameUpdateResponse"]
 
-HostnameUpdateResponse = List[TLSCertificatesAndHostnamesHostnameCertidObject]
+HostnameUpdateResponse = List[OriginTLSClientCertificateID]

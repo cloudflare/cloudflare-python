@@ -58,7 +58,7 @@ from .fallback_domains import (
 from .....types.zero_trust.devices import (
     PolicyListResponse,
     PolicyDeleteResponse,
-    TeamsDevicesDeviceSettingsPolicy,
+    DevicesDeviceSettingsPolicy,
     policy_edit_params,
     policy_create_params,
 )
@@ -118,7 +118,7 @@ class Policies(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[TeamsDevicesDeviceSettingsPolicy]:
+    ) -> Optional[DevicesDeviceSettingsPolicy]:
         """
         Creates a device settings profile to be applied to certain devices matching the
         criteria.
@@ -205,9 +205,7 @@ class Policies(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[TeamsDevicesDeviceSettingsPolicy]], ResultWrapper[TeamsDevicesDeviceSettingsPolicy]
-            ),
+            cast_to=cast(Type[Optional[DevicesDeviceSettingsPolicy]], ResultWrapper[DevicesDeviceSettingsPolicy]),
         )
 
     def list(
@@ -316,7 +314,7 @@ class Policies(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[TeamsDevicesDeviceSettingsPolicy]:
+    ) -> Optional[DevicesDeviceSettingsPolicy]:
         """
         Updates a configured device settings profile.
 
@@ -396,9 +394,7 @@ class Policies(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[TeamsDevicesDeviceSettingsPolicy]], ResultWrapper[TeamsDevicesDeviceSettingsPolicy]
-            ),
+            cast_to=cast(Type[Optional[DevicesDeviceSettingsPolicy]], ResultWrapper[DevicesDeviceSettingsPolicy]),
         )
 
     def get(
@@ -412,7 +408,7 @@ class Policies(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[TeamsDevicesDeviceSettingsPolicy]:
+    ) -> Optional[DevicesDeviceSettingsPolicy]:
         """
         Fetches a device settings profile by ID.
 
@@ -440,9 +436,7 @@ class Policies(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[TeamsDevicesDeviceSettingsPolicy]], ResultWrapper[TeamsDevicesDeviceSettingsPolicy]
-            ),
+            cast_to=cast(Type[Optional[DevicesDeviceSettingsPolicy]], ResultWrapper[DevicesDeviceSettingsPolicy]),
         )
 
 
@@ -498,7 +492,7 @@ class AsyncPolicies(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[TeamsDevicesDeviceSettingsPolicy]:
+    ) -> Optional[DevicesDeviceSettingsPolicy]:
         """
         Creates a device settings profile to be applied to certain devices matching the
         criteria.
@@ -585,9 +579,7 @@ class AsyncPolicies(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[TeamsDevicesDeviceSettingsPolicy]], ResultWrapper[TeamsDevicesDeviceSettingsPolicy]
-            ),
+            cast_to=cast(Type[Optional[DevicesDeviceSettingsPolicy]], ResultWrapper[DevicesDeviceSettingsPolicy]),
         )
 
     async def list(
@@ -696,7 +688,7 @@ class AsyncPolicies(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[TeamsDevicesDeviceSettingsPolicy]:
+    ) -> Optional[DevicesDeviceSettingsPolicy]:
         """
         Updates a configured device settings profile.
 
@@ -776,9 +768,7 @@ class AsyncPolicies(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[TeamsDevicesDeviceSettingsPolicy]], ResultWrapper[TeamsDevicesDeviceSettingsPolicy]
-            ),
+            cast_to=cast(Type[Optional[DevicesDeviceSettingsPolicy]], ResultWrapper[DevicesDeviceSettingsPolicy]),
         )
 
     async def get(
@@ -792,7 +782,7 @@ class AsyncPolicies(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[TeamsDevicesDeviceSettingsPolicy]:
+    ) -> Optional[DevicesDeviceSettingsPolicy]:
         """
         Fetches a device settings profile by ID.
 
@@ -820,9 +810,7 @@ class AsyncPolicies(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[TeamsDevicesDeviceSettingsPolicy]], ResultWrapper[TeamsDevicesDeviceSettingsPolicy]
-            ),
+            cast_to=cast(Type[Optional[DevicesDeviceSettingsPolicy]], ResultWrapper[DevicesDeviceSettingsPolicy]),
         )
 
 

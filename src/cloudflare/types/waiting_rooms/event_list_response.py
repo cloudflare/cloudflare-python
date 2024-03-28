@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .waitingroom_event_result import WaitingroomEventResult
+from .waitingroom_event import WaitingroomEvent
 
 __all__ = ["EventListResponse"]
 
-EventListResponse = List[WaitingroomEventResult]
+EventListResponse = List[WaitingroomEvent]

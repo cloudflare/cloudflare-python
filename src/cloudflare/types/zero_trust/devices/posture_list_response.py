@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .teams_devices_device_posture_rules import TeamsDevicesDevicePostureRules
+from .device_posture_rules import DevicePostureRules
 
 __all__ = ["PostureListResponse"]
 
-PostureListResponse = List[TeamsDevicesDevicePostureRules]
+PostureListResponse = List[DevicePostureRules]

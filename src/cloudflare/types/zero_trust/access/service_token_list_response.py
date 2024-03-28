@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .access_service_tokens import AccessServiceTokens
+from .zero_trust_service_tokens import ZeroTrustServiceTokens
 
 __all__ = ["ServiceTokenListResponse"]
 
-ServiceTokenListResponse = List[AccessServiceTokens]
+ServiceTokenListResponse = List[ZeroTrustServiceTokens]
