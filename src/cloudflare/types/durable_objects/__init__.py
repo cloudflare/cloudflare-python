@@ -2,5 +2,4 @@
 
 from __future__ import annotations
 
-from .namespace_list_response import NamespaceListResponse as NamespaceListResponse
 from .durable_object_namespace import DurableObjectNamespace as DurableObjectNamespace

@@ -6,7 +6,6 @@ from .alerting_webhooks import AlertingWebhooks as AlertingWebhooks
 from .alerting_pagerduty import AlertingPagerduty as AlertingPagerduty
 from .eligible_get_response import EligibleGetResponse as EligibleGetResponse
 from .webhook_create_params import WebhookCreateParams as WebhookCreateParams
-from .webhook_list_response import WebhookListResponse as WebhookListResponse
 from .webhook_update_params import WebhookUpdateParams as WebhookUpdateParams
 from .pagerduty_get_response import PagerdutyGetResponse as PagerdutyGetResponse
 from .pagerduty_link_response import PagerdutyLinkResponse as PagerdutyLinkResponse

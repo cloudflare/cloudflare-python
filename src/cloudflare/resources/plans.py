@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, cast
 
 import httpx
 
-from ..types import PlanListResponse, AvailableRatePlan
+from ..types import AvailableRatePlan
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -17,7 +17,9 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._wrappers import ResultWrapper
+from ..pagination import SyncSinglePage, AsyncSinglePage
 from .._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
 
@@ -43,7 +45,7 @@ class Plans(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PlanListResponse]:
+    ) -> SyncSinglePage[AvailableRatePlan]:
         """
         Lists available plans the zone can subscribe to.
 
@@ -60,16 +62,13 @@ class Plans(SyncAPIResource):
         """
         if not zone_identifier:
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        return self._get(
+        return self._get_api_list(
             f"/zones/{zone_identifier}/available_plans",
+            page=SyncSinglePage[AvailableRatePlan],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[PlanListResponse]], ResultWrapper[PlanListResponse]),
+            model=AvailableRatePlan,
         )
 
     def get(
@@ -126,7 +125,7 @@ class AsyncPlans(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncPlansWithStreamingResponse:
         return AsyncPlansWithStreamingResponse(self)
 
-    async def list(
+    def list(
         self,
         zone_identifier: str,
         *,
@@ -136,7 +135,7 @@ class AsyncPlans(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PlanListResponse]:
+    ) -> AsyncPaginator[AvailableRatePlan, AsyncSinglePage[AvailableRatePlan]]:
         """
         Lists available plans the zone can subscribe to.
 
@@ -153,16 +152,13 @@ class AsyncPlans(AsyncAPIResource):
         """
         if not zone_identifier:
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/zones/{zone_identifier}/available_plans",
+            page=AsyncSinglePage[AvailableRatePlan],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[PlanListResponse]], ResultWrapper[PlanListResponse]),
+            model=AvailableRatePlan,
         )
 
     async def get(

@@ -4,7 +4,6 @@ from __future__ import annotations
 
 from .colo_list_params import ColoListParams as ColoListParams
 from .test_list_params import TestListParams as TestListParams
-from .colo_list_response import ColoListResponse as ColoListResponse
 from .test_list_response import TestListResponse as TestListResponse
 from .http_test_get_params import HTTPTestGetParams as HTTPTestGetParams
 from .fleet_status_live_params import FleetStatusLiveParams as FleetStatusLiveParams

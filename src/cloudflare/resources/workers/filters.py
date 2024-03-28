@@ -20,12 +20,13 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
+from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
 from ...types.workers import (
     WorkersFilter,
-    FilterListResponse,
     FilterCreateResponse,
     FilterDeleteResponse,
     filter_create_params,
@@ -155,7 +156,7 @@ class Filters(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> FilterListResponse:
+    ) -> SyncSinglePage[WorkersFilter]:
         """
         List Filters
 
@@ -172,16 +173,13 @@ class Filters(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/zones/{zone_id}/workers/filters",
+            page=SyncSinglePage[WorkersFilter],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[FilterListResponse], ResultWrapper[FilterListResponse]),
+            model=WorkersFilter,
         )
 
     def delete(
@@ -339,7 +337,7 @@ class AsyncFilters(AsyncAPIResource):
             cast_to=cast(Type[WorkersFilter], ResultWrapper[WorkersFilter]),
         )
 
-    async def list(
+    def list(
         self,
         *,
         zone_id: str,
@@ -349,7 +347,7 @@ class AsyncFilters(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> FilterListResponse:
+    ) -> AsyncPaginator[WorkersFilter, AsyncSinglePage[WorkersFilter]]:
         """
         List Filters
 
@@ -366,16 +364,13 @@ class AsyncFilters(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/zones/{zone_id}/workers/filters",
+            page=AsyncSinglePage[WorkersFilter],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[FilterListResponse], ResultWrapper[FilterListResponse]),
+            model=WorkersFilter,
         )
 
     async def delete(

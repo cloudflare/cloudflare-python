@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, cast
 from typing_extensions import Literal
 
 import httpx
@@ -37,11 +37,12 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
+from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
 from ....types.load_balancers import (
-    MonitorListResponse,
     MonitorDeleteResponse,
     monitor_edit_params,
     monitor_create_params,
@@ -332,7 +333,7 @@ class Monitors(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MonitorListResponse]:
+    ) -> SyncSinglePage[LoadBalancingMonitor]:
         """
         List configured monitors for an account.
 
@@ -349,16 +350,13 @@ class Monitors(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/load_balancers/monitors",
+            page=SyncSinglePage[LoadBalancingMonitor],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[MonitorListResponse]], ResultWrapper[MonitorListResponse]),
+            model=LoadBalancingMonitor,
         )
 
     def delete(
@@ -844,7 +842,7 @@ class AsyncMonitors(AsyncAPIResource):
             cast_to=cast(Type[LoadBalancingMonitor], ResultWrapper[LoadBalancingMonitor]),
         )
 
-    async def list(
+    def list(
         self,
         *,
         account_id: str,
@@ -854,7 +852,7 @@ class AsyncMonitors(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MonitorListResponse]:
+    ) -> AsyncPaginator[LoadBalancingMonitor, AsyncSinglePage[LoadBalancingMonitor]]:
         """
         List configured monitors for an account.
 
@@ -871,16 +869,13 @@ class AsyncMonitors(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/load_balancers/monitors",
+            page=AsyncSinglePage[LoadBalancingMonitor],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[MonitorListResponse]], ResultWrapper[MonitorListResponse]),
+            model=LoadBalancingMonitor,
         )
 
     async def delete(

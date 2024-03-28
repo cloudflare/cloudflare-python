@@ -3,17 +3,14 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.zero_trust.access import (
-    ZeroTrustTag,
-    TagListResponse,
-    TagDeleteResponse,
-)
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
+from cloudflare.types.zero_trust.access import ZeroTrustTag, TagDeleteResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -130,7 +127,7 @@ class TestTags:
         tag = client.zero_trust.access.tags.list(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[TagListResponse], tag, path=["response"])
+        assert_matches_type(SyncSinglePage[ZeroTrustTag], tag, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -142,7 +139,7 @@ class TestTags:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tag = response.parse()
-        assert_matches_type(Optional[TagListResponse], tag, path=["response"])
+        assert_matches_type(SyncSinglePage[ZeroTrustTag], tag, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -154,7 +151,7 @@ class TestTags:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tag = response.parse()
-            assert_matches_type(Optional[TagListResponse], tag, path=["response"])
+            assert_matches_type(SyncSinglePage[ZeroTrustTag], tag, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -383,7 +380,7 @@ class TestAsyncTags:
         tag = await async_client.zero_trust.access.tags.list(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[TagListResponse], tag, path=["response"])
+        assert_matches_type(AsyncSinglePage[ZeroTrustTag], tag, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -395,7 +392,7 @@ class TestAsyncTags:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tag = await response.parse()
-        assert_matches_type(Optional[TagListResponse], tag, path=["response"])
+        assert_matches_type(AsyncSinglePage[ZeroTrustTag], tag, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -407,7 +404,7 @@ class TestAsyncTags:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tag = await response.parse()
-            assert_matches_type(Optional[TagListResponse], tag, path=["response"])
+            assert_matches_type(AsyncSinglePage[ZeroTrustTag], tag, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -10,7 +10,6 @@ from .tunnel_edit_params import TunnelEditParams as TunnelEditParams
 from .tunnel_list_params import TunnelListParams as TunnelListParams
 from .zero_trust_devices import ZeroTrustDevices as ZeroTrustDevices
 from .device_get_response import DeviceGetResponse as DeviceGetResponse
-from .device_list_response import DeviceListResponse as DeviceListResponse
 from .tunnel_create_params import TunnelCreateParams as TunnelCreateParams
 from .tunnel_delete_params import TunnelDeleteParams as TunnelDeleteParams
 from .tunnel_edit_response import TunnelEditResponse as TunnelEditResponse

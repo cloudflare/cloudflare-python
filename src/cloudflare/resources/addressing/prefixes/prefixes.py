@@ -37,16 +37,12 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
+from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
-from ....types.addressing import (
-    PrefixListResponse,
-    PrefixDeleteResponse,
-    AddressingIpamPrefixes,
-    prefix_edit_params,
-    prefix_create_params,
-)
+from ....types.addressing import PrefixDeleteResponse, AddressingIpamPrefixes, prefix_edit_params, prefix_create_params
 
 __all__ = ["Prefixes", "AsyncPrefixes"]
 
@@ -134,7 +130,7 @@ class Prefixes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PrefixListResponse]:
+    ) -> SyncSinglePage[AddressingIpamPrefixes]:
         """
         List all prefixes owned by the account.
 
@@ -151,16 +147,13 @@ class Prefixes(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/addressing/prefixes",
+            page=SyncSinglePage[AddressingIpamPrefixes],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[PrefixListResponse]], ResultWrapper[PrefixListResponse]),
+            model=AddressingIpamPrefixes,
         )
 
     def delete(
@@ -378,7 +371,7 @@ class AsyncPrefixes(AsyncAPIResource):
             cast_to=cast(Type[AddressingIpamPrefixes], ResultWrapper[AddressingIpamPrefixes]),
         )
 
-    async def list(
+    def list(
         self,
         *,
         account_id: str,
@@ -388,7 +381,7 @@ class AsyncPrefixes(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PrefixListResponse]:
+    ) -> AsyncPaginator[AddressingIpamPrefixes, AsyncSinglePage[AddressingIpamPrefixes]]:
         """
         List all prefixes owned by the account.
 
@@ -405,16 +398,13 @@ class AsyncPrefixes(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/addressing/prefixes",
+            page=AsyncSinglePage[AddressingIpamPrefixes],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[PrefixListResponse]], ResultWrapper[PrefixListResponse]),
+            model=AddressingIpamPrefixes,
         )
 
     async def delete(

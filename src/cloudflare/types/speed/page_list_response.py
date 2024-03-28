@@ -8,10 +8,10 @@ from pydantic import Field as FieldInfo
 from ..._models import BaseModel
 from .observatory_page_test import ObservatoryPageTest
 
-__all__ = ["PageListResponse", "PageListResponseItem", "PageListResponseItemRegion"]
+__all__ = ["PageListResponse", "Region"]
 
 
-class PageListResponseItemRegion(BaseModel):
+class Region(BaseModel):
     label: Optional[str] = None
 
     value: Optional[
@@ -42,8 +42,8 @@ class PageListResponseItemRegion(BaseModel):
     """A test region."""
 
 
-class PageListResponseItem(BaseModel):
-    region: Optional[PageListResponseItemRegion] = None
+class PageListResponse(BaseModel):
+    region: Optional[Region] = None
     """A test region with a label."""
 
     schedule_frequency: Optional[Literal["DAILY", "WEEKLY"]] = FieldInfo(alias="scheduleFrequency", default=None)
@@ -53,6 +53,3 @@ class PageListResponseItem(BaseModel):
 
     url: Optional[str] = None
     """A URL."""
-
-
-PageListResponse = List[PageListResponseItem]

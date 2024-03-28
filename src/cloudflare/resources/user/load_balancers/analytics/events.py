@@ -2,16 +2,13 @@
 
 from __future__ import annotations
 
-from typing import Type, Union, Optional, cast
+from typing import Union
 from datetime import datetime
 
 import httpx
 
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ....._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ....._utils import maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -20,11 +17,12 @@ from ....._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....._wrappers import ResultWrapper
+from .....pagination import SyncSinglePage, AsyncSinglePage
 from ....._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
-from .....types.user.load_balancers.analytics import EventListResponse, event_list_params
+from .....types.user.load_balancers.analytics import LoadBalancingAnalytics, event_list_params
 
 __all__ = ["Events", "AsyncEvents"]
 
@@ -54,7 +52,7 @@ class Events(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[EventListResponse]:
+    ) -> SyncSinglePage[LoadBalancingAnalytics]:
         """
         List origin health changes.
 
@@ -81,8 +79,9 @@ class Events(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/user/load_balancing_analytics/events",
+            page=SyncSinglePage[LoadBalancingAnalytics],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -100,9 +99,8 @@ class Events(SyncAPIResource):
                     },
                     event_list_params.EventListParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[EventListResponse]], ResultWrapper[EventListResponse]),
+            model=LoadBalancingAnalytics,
         )
 
 
@@ -115,7 +113,7 @@ class AsyncEvents(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncEventsWithStreamingResponse:
         return AsyncEventsWithStreamingResponse(self)
 
-    async def list(
+    def list(
         self,
         *,
         origin_healthy: bool | NotGiven = NOT_GIVEN,
@@ -131,7 +129,7 @@ class AsyncEvents(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[EventListResponse]:
+    ) -> AsyncPaginator[LoadBalancingAnalytics, AsyncSinglePage[LoadBalancingAnalytics]]:
         """
         List origin health changes.
 
@@ -158,14 +156,15 @@ class AsyncEvents(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/user/load_balancing_analytics/events",
+            page=AsyncSinglePage[LoadBalancingAnalytics],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "origin_healthy": origin_healthy,
                         "origin_name": origin_name,
@@ -177,9 +176,8 @@ class AsyncEvents(AsyncAPIResource):
                     },
                     event_list_params.EventListParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[EventListResponse]], ResultWrapper[EventListResponse]),
+            model=LoadBalancingAnalytics,
         )
 
 

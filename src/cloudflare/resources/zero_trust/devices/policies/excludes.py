@@ -20,12 +20,14 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._wrappers import ResultWrapper
+from .....pagination import SyncSinglePage, AsyncSinglePage
 from ....._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
 from .....types.zero_trust.devices.policies import (
+    DevicesSplitTunnel,
     ExcludeGetResponse,
-    ExcludeListResponse,
     ExcludeUpdateResponse,
     DevicesSplitTunnelParam,
     exclude_update_params,
@@ -92,7 +94,7 @@ class Excludes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ExcludeListResponse]:
+    ) -> SyncSinglePage[DevicesSplitTunnel]:
         """
         Fetches the list of routes excluded from the WARP client's tunnel.
 
@@ -107,16 +109,13 @@ class Excludes(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/devices/policy/exclude",
+            page=SyncSinglePage[DevicesSplitTunnel],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[ExcludeListResponse]], ResultWrapper[ExcludeListResponse]),
+            model=DevicesSplitTunnel,
         )
 
     def get(
@@ -211,7 +210,7 @@ class AsyncExcludes(AsyncAPIResource):
             cast_to=cast(Type[Optional[ExcludeUpdateResponse]], ResultWrapper[ExcludeUpdateResponse]),
         )
 
-    async def list(
+    def list(
         self,
         *,
         account_id: str,
@@ -221,7 +220,7 @@ class AsyncExcludes(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ExcludeListResponse]:
+    ) -> AsyncPaginator[DevicesSplitTunnel, AsyncSinglePage[DevicesSplitTunnel]]:
         """
         Fetches the list of routes excluded from the WARP client's tunnel.
 
@@ -236,16 +235,13 @@ class AsyncExcludes(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/devices/policy/exclude",
+            page=AsyncSinglePage[DevicesSplitTunnel],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[ExcludeListResponse]], ResultWrapper[ExcludeListResponse]),
+            model=DevicesSplitTunnel,
         )
 
     async def get(

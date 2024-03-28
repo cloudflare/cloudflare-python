@@ -3,13 +3,14 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.page_shield import PageShieldConnection, ConnectionListResponse
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
+from cloudflare.types.page_shield import PageShieldConnection
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -23,7 +24,7 @@ class TestConnections:
         connection = client.page_shield.connections.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ConnectionListResponse], connection, path=["response"])
+        assert_matches_type(SyncSinglePage[PageShieldConnection], connection, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -43,7 +44,7 @@ class TestConnections:
             status="active,inactive",
             urls="blog.cloudflare.com,www.example",
         )
-        assert_matches_type(Optional[ConnectionListResponse], connection, path=["response"])
+        assert_matches_type(SyncSinglePage[PageShieldConnection], connection, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -55,7 +56,7 @@ class TestConnections:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         connection = response.parse()
-        assert_matches_type(Optional[ConnectionListResponse], connection, path=["response"])
+        assert_matches_type(SyncSinglePage[PageShieldConnection], connection, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -67,7 +68,7 @@ class TestConnections:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             connection = response.parse()
-            assert_matches_type(Optional[ConnectionListResponse], connection, path=["response"])
+            assert_matches_type(SyncSinglePage[PageShieldConnection], connection, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -141,7 +142,7 @@ class TestAsyncConnections:
         connection = await async_client.page_shield.connections.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ConnectionListResponse], connection, path=["response"])
+        assert_matches_type(AsyncSinglePage[PageShieldConnection], connection, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -161,7 +162,7 @@ class TestAsyncConnections:
             status="active,inactive",
             urls="blog.cloudflare.com,www.example",
         )
-        assert_matches_type(Optional[ConnectionListResponse], connection, path=["response"])
+        assert_matches_type(AsyncSinglePage[PageShieldConnection], connection, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -173,7 +174,7 @@ class TestAsyncConnections:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         connection = await response.parse()
-        assert_matches_type(Optional[ConnectionListResponse], connection, path=["response"])
+        assert_matches_type(AsyncSinglePage[PageShieldConnection], connection, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -185,7 +186,7 @@ class TestAsyncConnections:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             connection = await response.parse()
-            assert_matches_type(Optional[ConnectionListResponse], connection, path=["response"])
+            assert_matches_type(AsyncSinglePage[PageShieldConnection], connection, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

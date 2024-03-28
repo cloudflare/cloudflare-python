@@ -14,7 +14,7 @@ from .by_tag import (
     ByTagWithStreamingResponse,
     AsyncByTagWithStreamingResponse,
 )
-from ....types import RulesetsRulesetResponse, RulesetsRulesetsResponse
+from ....types import RulesetsRulesetResponse
 from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -25,9 +25,12 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
+from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
+from ....types.rulesets import VersionListResponse
 
 __all__ = ["Versions", "AsyncVersions"]
 
@@ -57,7 +60,7 @@ class Versions(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RulesetsRulesetsResponse:
+    ) -> SyncSinglePage[VersionListResponse]:
         """
         Fetches the versions of an account or zone ruleset.
 
@@ -93,16 +96,13 @@ class Versions(SyncAPIResource):
         else:
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return self._get(
+        return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/rulesets/{ruleset_id}/versions",
+            page=SyncSinglePage[VersionListResponse],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[RulesetsRulesetsResponse], ResultWrapper[RulesetsRulesetsResponse]),
+            model=VersionListResponse,
         )
 
     def delete(
@@ -246,7 +246,7 @@ class AsyncVersions(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncVersionsWithStreamingResponse:
         return AsyncVersionsWithStreamingResponse(self)
 
-    async def list(
+    def list(
         self,
         ruleset_id: str,
         *,
@@ -258,7 +258,7 @@ class AsyncVersions(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RulesetsRulesetsResponse:
+    ) -> AsyncPaginator[VersionListResponse, AsyncSinglePage[VersionListResponse]]:
         """
         Fetches the versions of an account or zone ruleset.
 
@@ -294,16 +294,13 @@ class AsyncVersions(AsyncAPIResource):
         else:
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return await self._get(
+        return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/rulesets/{ruleset_id}/versions",
+            page=AsyncSinglePage[VersionListResponse],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[RulesetsRulesetsResponse], ResultWrapper[RulesetsRulesetsResponse]),
+            model=VersionListResponse,
         )
 
     async def delete(

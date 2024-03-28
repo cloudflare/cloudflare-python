@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, cast
+from typing import Any, cast
 
 import httpx
 
@@ -20,12 +20,14 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
+from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
 from ...types.stream import (
+    StreamWatermarks,
     WatermarkGetResponse,
-    WatermarkListResponse,
     WatermarkCreateResponse,
     WatermarkDeleteResponse,
     watermark_create_params,
@@ -136,7 +138,7 @@ class Watermarks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WatermarkListResponse:
+    ) -> SyncSinglePage[StreamWatermarks]:
         """
         Lists all watermark profiles for an account.
 
@@ -153,16 +155,13 @@ class Watermarks(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/stream/watermarks",
+            page=SyncSinglePage[StreamWatermarks],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[WatermarkListResponse], ResultWrapper[WatermarkListResponse]),
+            model=StreamWatermarks,
         )
 
     def delete(
@@ -356,7 +355,7 @@ class AsyncWatermarks(AsyncAPIResource):
             ),
         )
 
-    async def list(
+    def list(
         self,
         *,
         account_id: str,
@@ -366,7 +365,7 @@ class AsyncWatermarks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WatermarkListResponse:
+    ) -> AsyncPaginator[StreamWatermarks, AsyncSinglePage[StreamWatermarks]]:
         """
         Lists all watermark profiles for an account.
 
@@ -383,16 +382,13 @@ class AsyncWatermarks(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/stream/watermarks",
+            page=AsyncSinglePage[StreamWatermarks],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[WatermarkListResponse], ResultWrapper[WatermarkListResponse]),
+            model=StreamWatermarks,
         )
 
     async def delete(

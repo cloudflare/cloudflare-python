@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Iterable, Optional, cast
+from typing import List, Type, Iterable, cast
 from typing_extensions import Literal
 
 import httpx
@@ -17,7 +17,6 @@ from .pools import (
 )
 from ...types import (
     LoadBalancer,
-    LoadBalancerListResponse,
     LoadBalancerDeleteResponse,
     load_balancer_edit_params,
     load_balancer_create_params,
@@ -70,7 +69,9 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from .pools.pools import Pools, AsyncPools
+from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
 from .monitors.monitors import Monitors, AsyncMonitors
@@ -520,7 +521,7 @@ class LoadBalancers(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[LoadBalancerListResponse]:
+    ) -> SyncSinglePage[LoadBalancer]:
         """
         List configured load balancers.
 
@@ -535,16 +536,13 @@ class LoadBalancers(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/zones/{zone_id}/load_balancers",
+            page=SyncSinglePage[LoadBalancer],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[LoadBalancerListResponse]], ResultWrapper[LoadBalancerListResponse]),
+            model=LoadBalancer,
         )
 
     def delete(
@@ -1265,7 +1263,7 @@ class AsyncLoadBalancers(AsyncAPIResource):
             cast_to=cast(Type[LoadBalancer], ResultWrapper[LoadBalancer]),
         )
 
-    async def list(
+    def list(
         self,
         *,
         zone_id: str,
@@ -1275,7 +1273,7 @@ class AsyncLoadBalancers(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[LoadBalancerListResponse]:
+    ) -> AsyncPaginator[LoadBalancer, AsyncSinglePage[LoadBalancer]]:
         """
         List configured load balancers.
 
@@ -1290,16 +1288,13 @@ class AsyncLoadBalancers(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/zones/{zone_id}/load_balancers",
+            page=AsyncSinglePage[LoadBalancer],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[LoadBalancerListResponse]], ResultWrapper[LoadBalancerListResponse]),
+            model=LoadBalancer,
         )
 
     async def delete(

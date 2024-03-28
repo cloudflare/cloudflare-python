@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, List, Type, Union, Optional, cast, overload
+from typing import Any, List, Type, Union, cast, overload
 from typing_extensions import Literal
 
 import httpx
@@ -37,7 +37,9 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._wrappers import ResultWrapper
+from .....pagination import SyncSinglePage, AsyncSinglePage
 from ....._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
 from .user_policy_checks import (
@@ -50,7 +52,6 @@ from .user_policy_checks import (
 )
 from .....types.zero_trust.access import (
     ZeroTrustApps,
-    ApplicationListResponse,
     ApplicationDeleteResponse,
     application_create_params,
     application_update_params,
@@ -1472,7 +1473,7 @@ class Applications(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ApplicationListResponse]:
+    ) -> SyncSinglePage[ZeroTrustApps]:
         """
         Lists all Access applications in an account or zone.
 
@@ -1504,16 +1505,13 @@ class Applications(SyncAPIResource):
         else:
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return self._get(
+        return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/access/apps",
+            page=SyncSinglePage[ZeroTrustApps],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[ApplicationListResponse]], ResultWrapper[ApplicationListResponse]),
+            model=cast(Any, ZeroTrustApps),  # Union types cannot be passed in as arguments in the type system
         )
 
     def delete(
@@ -3098,7 +3096,7 @@ class AsyncApplications(AsyncAPIResource):
             ),
         )
 
-    async def list(
+    def list(
         self,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
@@ -3109,7 +3107,7 @@ class AsyncApplications(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ApplicationListResponse]:
+    ) -> AsyncPaginator[ZeroTrustApps, AsyncSinglePage[ZeroTrustApps]]:
         """
         Lists all Access applications in an account or zone.
 
@@ -3141,16 +3139,13 @@ class AsyncApplications(AsyncAPIResource):
         else:
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return await self._get(
+        return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/access/apps",
+            page=AsyncSinglePage[ZeroTrustApps],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[ApplicationListResponse]], ResultWrapper[ApplicationListResponse]),
+            model=cast(Any, ZeroTrustApps),  # Union types cannot be passed in as arguments in the type system
         )
 
     async def delete(

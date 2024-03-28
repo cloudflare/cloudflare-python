@@ -1,13 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Optional
 
 from .._models import BaseModel
 
-__all__ = ["QueueListResponse", "QueueListResponseItem"]
+__all__ = ["QueueListResponse"]
 
 
-class QueueListResponseItem(BaseModel):
+class QueueListResponse(BaseModel):
     consumers: Optional[object] = None
 
     consumers_total_count: Optional[object] = None
@@ -23,6 +23,3 @@ class QueueListResponseItem(BaseModel):
     queue_id: Optional[str] = None
 
     queue_name: Optional[str] = None
-
-
-QueueListResponse = List[QueueListResponseItem]

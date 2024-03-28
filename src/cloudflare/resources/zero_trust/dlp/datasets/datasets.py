@@ -28,16 +28,12 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._wrappers import ResultWrapper
+from .....pagination import SyncSinglePage, AsyncSinglePage
 from ....._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
-from .....types.zero_trust.dlp import (
-    DLPDataset,
-    DLPDatasetArray,
-    DLPDatasetCreation,
-    dataset_create_params,
-    dataset_update_params,
-)
+from .....types.zero_trust.dlp import DLPDataset, DLPDatasetCreation, dataset_create_params, dataset_update_params
 
 __all__ = ["Datasets", "AsyncDatasets"]
 
@@ -167,7 +163,7 @@ class Datasets(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DLPDatasetArray]:
+    ) -> SyncSinglePage[DLPDataset]:
         """
         Fetch all datasets with information about available versions.
 
@@ -182,16 +178,13 @@ class Datasets(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/dlp/datasets",
+            page=SyncSinglePage[DLPDataset],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[DLPDatasetArray]], ResultWrapper[DLPDatasetArray]),
+            model=DLPDataset,
         )
 
     def delete(
@@ -389,7 +382,7 @@ class AsyncDatasets(AsyncAPIResource):
             cast_to=cast(Type[Optional[DLPDataset]], ResultWrapper[DLPDataset]),
         )
 
-    async def list(
+    def list(
         self,
         *,
         account_id: str,
@@ -399,7 +392,7 @@ class AsyncDatasets(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DLPDatasetArray]:
+    ) -> AsyncPaginator[DLPDataset, AsyncSinglePage[DLPDataset]]:
         """
         Fetch all datasets with information about available versions.
 
@@ -414,16 +407,13 @@ class AsyncDatasets(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/dlp/datasets",
+            page=AsyncSinglePage[DLPDataset],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[DLPDatasetArray]], ResultWrapper[DLPDatasetArray]),
+            model=DLPDataset,
         )
 
     async def delete(

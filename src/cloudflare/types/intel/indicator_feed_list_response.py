@@ -1,14 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Optional
 from datetime import datetime
 
 from ..._models import BaseModel
 
-__all__ = ["IndicatorFeedListResponse", "IndicatorFeedListResponseItem"]
+__all__ = ["IndicatorFeedListResponse"]
 
 
-class IndicatorFeedListResponseItem(BaseModel):
+class IndicatorFeedListResponse(BaseModel):
     id: Optional[int] = None
     """The unique identifier for the indicator feed"""
 
@@ -23,6 +23,3 @@ class IndicatorFeedListResponseItem(BaseModel):
 
     name: Optional[str] = None
     """The name of the indicator feed"""
-
-
-IndicatorFeedListResponse = List[IndicatorFeedListResponseItem]
