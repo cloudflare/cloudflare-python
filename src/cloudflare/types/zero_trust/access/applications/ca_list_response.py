@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .access_ca import AccessCA
+from .zero_trust_ca import ZeroTrustCA
 
 __all__ = ["CAListResponse"]
 
-CAListResponse = List[AccessCA]
+CAListResponse = List[ZeroTrustCA]

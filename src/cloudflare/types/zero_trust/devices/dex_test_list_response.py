@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .teams_devices_device_dex_test_schemas_http import TeamsDevicesDeviceDEXTestSchemasHTTP
+from .dex_test_schemas_http import DEXTestSchemasHTTP
 
 __all__ = ["DEXTestListResponse"]
 
-DEXTestListResponse = List[TeamsDevicesDeviceDEXTestSchemasHTTP]
+DEXTestListResponse = List[DEXTestSchemasHTTP]

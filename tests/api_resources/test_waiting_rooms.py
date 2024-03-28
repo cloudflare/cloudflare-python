@@ -10,7 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types import (
-    WaitingroomWaitingroom,
+    WaitingRoom,
     WaitingRoomListResponse,
     WaitingRoomDeleteResponse,
 )
@@ -31,7 +31,7 @@ class TestWaitingRooms:
             new_users_per_minute=200,
             total_active_users=200,
         )
-        assert_matches_type(WaitingroomWaitingroom, waiting_room, path=["response"])
+        assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -73,7 +73,7 @@ class TestWaitingRooms:
             session_duration=1,
             suspended=True,
         )
-        assert_matches_type(WaitingroomWaitingroom, waiting_room, path=["response"])
+        assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -89,7 +89,7 @@ class TestWaitingRooms:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         waiting_room = response.parse()
-        assert_matches_type(WaitingroomWaitingroom, waiting_room, path=["response"])
+        assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -105,7 +105,7 @@ class TestWaitingRooms:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             waiting_room = response.parse()
-            assert_matches_type(WaitingroomWaitingroom, waiting_room, path=["response"])
+            assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -132,7 +132,7 @@ class TestWaitingRooms:
             new_users_per_minute=200,
             total_active_users=200,
         )
-        assert_matches_type(WaitingroomWaitingroom, waiting_room, path=["response"])
+        assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -175,7 +175,7 @@ class TestWaitingRooms:
             session_duration=1,
             suspended=True,
         )
-        assert_matches_type(WaitingroomWaitingroom, waiting_room, path=["response"])
+        assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -192,7 +192,7 @@ class TestWaitingRooms:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         waiting_room = response.parse()
-        assert_matches_type(WaitingroomWaitingroom, waiting_room, path=["response"])
+        assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -209,7 +209,7 @@ class TestWaitingRooms:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             waiting_room = response.parse()
-            assert_matches_type(WaitingroomWaitingroom, waiting_room, path=["response"])
+            assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -341,7 +341,7 @@ class TestWaitingRooms:
             new_users_per_minute=200,
             total_active_users=200,
         )
-        assert_matches_type(WaitingroomWaitingroom, waiting_room, path=["response"])
+        assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -384,7 +384,7 @@ class TestWaitingRooms:
             session_duration=1,
             suspended=True,
         )
-        assert_matches_type(WaitingroomWaitingroom, waiting_room, path=["response"])
+        assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -401,7 +401,7 @@ class TestWaitingRooms:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         waiting_room = response.parse()
-        assert_matches_type(WaitingroomWaitingroom, waiting_room, path=["response"])
+        assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -418,7 +418,7 @@ class TestWaitingRooms:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             waiting_room = response.parse()
-            assert_matches_type(WaitingroomWaitingroom, waiting_room, path=["response"])
+            assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -452,7 +452,7 @@ class TestWaitingRooms:
             "699d98642c564d2e855e9661899b7252",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(WaitingroomWaitingroom, waiting_room, path=["response"])
+        assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -465,7 +465,7 @@ class TestWaitingRooms:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         waiting_room = response.parse()
-        assert_matches_type(WaitingroomWaitingroom, waiting_room, path=["response"])
+        assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -478,7 +478,7 @@ class TestWaitingRooms:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             waiting_room = response.parse()
-            assert_matches_type(WaitingroomWaitingroom, waiting_room, path=["response"])
+            assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -511,7 +511,7 @@ class TestAsyncWaitingRooms:
             new_users_per_minute=200,
             total_active_users=200,
         )
-        assert_matches_type(WaitingroomWaitingroom, waiting_room, path=["response"])
+        assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -553,7 +553,7 @@ class TestAsyncWaitingRooms:
             session_duration=1,
             suspended=True,
         )
-        assert_matches_type(WaitingroomWaitingroom, waiting_room, path=["response"])
+        assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -569,7 +569,7 @@ class TestAsyncWaitingRooms:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         waiting_room = await response.parse()
-        assert_matches_type(WaitingroomWaitingroom, waiting_room, path=["response"])
+        assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -585,7 +585,7 @@ class TestAsyncWaitingRooms:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             waiting_room = await response.parse()
-            assert_matches_type(WaitingroomWaitingroom, waiting_room, path=["response"])
+            assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -612,7 +612,7 @@ class TestAsyncWaitingRooms:
             new_users_per_minute=200,
             total_active_users=200,
         )
-        assert_matches_type(WaitingroomWaitingroom, waiting_room, path=["response"])
+        assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -655,7 +655,7 @@ class TestAsyncWaitingRooms:
             session_duration=1,
             suspended=True,
         )
-        assert_matches_type(WaitingroomWaitingroom, waiting_room, path=["response"])
+        assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -672,7 +672,7 @@ class TestAsyncWaitingRooms:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         waiting_room = await response.parse()
-        assert_matches_type(WaitingroomWaitingroom, waiting_room, path=["response"])
+        assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -689,7 +689,7 @@ class TestAsyncWaitingRooms:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             waiting_room = await response.parse()
-            assert_matches_type(WaitingroomWaitingroom, waiting_room, path=["response"])
+            assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -821,7 +821,7 @@ class TestAsyncWaitingRooms:
             new_users_per_minute=200,
             total_active_users=200,
         )
-        assert_matches_type(WaitingroomWaitingroom, waiting_room, path=["response"])
+        assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -864,7 +864,7 @@ class TestAsyncWaitingRooms:
             session_duration=1,
             suspended=True,
         )
-        assert_matches_type(WaitingroomWaitingroom, waiting_room, path=["response"])
+        assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -881,7 +881,7 @@ class TestAsyncWaitingRooms:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         waiting_room = await response.parse()
-        assert_matches_type(WaitingroomWaitingroom, waiting_room, path=["response"])
+        assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -898,7 +898,7 @@ class TestAsyncWaitingRooms:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             waiting_room = await response.parse()
-            assert_matches_type(WaitingroomWaitingroom, waiting_room, path=["response"])
+            assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -932,7 +932,7 @@ class TestAsyncWaitingRooms:
             "699d98642c564d2e855e9661899b7252",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(WaitingroomWaitingroom, waiting_room, path=["response"])
+        assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -945,7 +945,7 @@ class TestAsyncWaitingRooms:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         waiting_room = await response.parse()
-        assert_matches_type(WaitingroomWaitingroom, waiting_room, path=["response"])
+        assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -958,7 +958,7 @@ class TestAsyncWaitingRooms:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             waiting_room = await response.parse()
-            assert_matches_type(WaitingroomWaitingroom, waiting_room, path=["response"])
+            assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

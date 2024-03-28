@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-from .zones_automatic_platform_optimization_param import ZonesAutomaticPlatformOptimizationParam
+from .zone_setting_automatic_platform_optimization_param import ZoneSettingAutomaticPlatformOptimizationParam
 
 __all__ = ["AutomaticPlatformOptimizationEditParams"]
 
@@ -13,4 +13,4 @@ class AutomaticPlatformOptimizationEditParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
-    value: Required[ZonesAutomaticPlatformOptimizationParam]
+    value: Required[ZoneSettingAutomaticPlatformOptimizationParam]

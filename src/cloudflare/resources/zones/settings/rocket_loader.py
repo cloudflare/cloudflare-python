@@ -23,7 +23,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZonesRocketLoader, ZonesRocketLoaderParam, rocket_loader_edit_params
+from ....types.zones.settings import ZoneSettingRocketLoader, ZoneSettingRocketLoaderParam, rocket_loader_edit_params
 
 __all__ = ["RocketLoader", "AsyncRocketLoader"]
 
@@ -41,14 +41,14 @@ class RocketLoader(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        value: ZonesRocketLoaderParam,
+        value: ZoneSettingRocketLoaderParam,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesRocketLoader]:
+    ) -> Optional[ZoneSettingRocketLoader]:
         """
         Rocket Loader is a general-purpose asynchronous JavaScript optimisation that
         prioritises rendering your content while loading your site's Javascript
@@ -95,7 +95,7 @@ class RocketLoader(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesRocketLoader]], ResultWrapper[ZonesRocketLoader]),
+            cast_to=cast(Type[Optional[ZoneSettingRocketLoader]], ResultWrapper[ZoneSettingRocketLoader]),
         )
 
     def get(
@@ -108,7 +108,7 @@ class RocketLoader(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesRocketLoader]:
+    ) -> Optional[ZoneSettingRocketLoader]:
         """
         Rocket Loader is a general-purpose asynchronous JavaScript optimisation that
         prioritises rendering your content while loading your site's Javascript
@@ -143,7 +143,7 @@ class RocketLoader(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesRocketLoader]], ResultWrapper[ZonesRocketLoader]),
+            cast_to=cast(Type[Optional[ZoneSettingRocketLoader]], ResultWrapper[ZoneSettingRocketLoader]),
         )
 
 
@@ -160,14 +160,14 @@ class AsyncRocketLoader(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        value: ZonesRocketLoaderParam,
+        value: ZoneSettingRocketLoaderParam,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesRocketLoader]:
+    ) -> Optional[ZoneSettingRocketLoader]:
         """
         Rocket Loader is a general-purpose asynchronous JavaScript optimisation that
         prioritises rendering your content while loading your site's Javascript
@@ -214,7 +214,7 @@ class AsyncRocketLoader(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesRocketLoader]], ResultWrapper[ZonesRocketLoader]),
+            cast_to=cast(Type[Optional[ZoneSettingRocketLoader]], ResultWrapper[ZoneSettingRocketLoader]),
         )
 
     async def get(
@@ -227,7 +227,7 @@ class AsyncRocketLoader(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesRocketLoader]:
+    ) -> Optional[ZoneSettingRocketLoader]:
         """
         Rocket Loader is a general-purpose asynchronous JavaScript optimisation that
         prioritises rendering your content while loading your site's Javascript
@@ -262,7 +262,7 @@ class AsyncRocketLoader(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesRocketLoader]], ResultWrapper[ZonesRocketLoader]),
+            cast_to=cast(Type[Optional[ZoneSettingRocketLoader]], ResultWrapper[ZoneSettingRocketLoader]),
         )
 
 

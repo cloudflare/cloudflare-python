@@ -27,7 +27,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.magic_network_monitoring import MagicVisibilityMNMConfig
+from ....types.magic_network_monitoring import MagicNetworkMonitoringConfig
 
 __all__ = ["Configs", "AsyncConfigs"]
 
@@ -55,7 +55,7 @@ class Configs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MagicVisibilityMNMConfig:
+    ) -> MagicNetworkMonitoringConfig:
         """
         Create a new network monitoring configuration.
 
@@ -79,7 +79,7 @@ class Configs(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[MagicVisibilityMNMConfig], ResultWrapper[MagicVisibilityMNMConfig]),
+            cast_to=cast(Type[MagicNetworkMonitoringConfig], ResultWrapper[MagicNetworkMonitoringConfig]),
         )
 
     def update(
@@ -92,7 +92,7 @@ class Configs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MagicVisibilityMNMConfig:
+    ) -> MagicNetworkMonitoringConfig:
         """
         Update an existing network monitoring configuration, requires the entire
         configuration to be updated at once.
@@ -117,7 +117,7 @@ class Configs(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[MagicVisibilityMNMConfig], ResultWrapper[MagicVisibilityMNMConfig]),
+            cast_to=cast(Type[MagicNetworkMonitoringConfig], ResultWrapper[MagicNetworkMonitoringConfig]),
         )
 
     def delete(
@@ -130,7 +130,7 @@ class Configs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MagicVisibilityMNMConfig:
+    ) -> MagicNetworkMonitoringConfig:
         """
         Delete an existing network monitoring configuration.
 
@@ -154,7 +154,7 @@ class Configs(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[MagicVisibilityMNMConfig], ResultWrapper[MagicVisibilityMNMConfig]),
+            cast_to=cast(Type[MagicNetworkMonitoringConfig], ResultWrapper[MagicNetworkMonitoringConfig]),
         )
 
     def edit(
@@ -167,7 +167,7 @@ class Configs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MagicVisibilityMNMConfig:
+    ) -> MagicNetworkMonitoringConfig:
         """
         Update fields in an existing network monitoring configuration.
 
@@ -191,7 +191,7 @@ class Configs(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[MagicVisibilityMNMConfig], ResultWrapper[MagicVisibilityMNMConfig]),
+            cast_to=cast(Type[MagicNetworkMonitoringConfig], ResultWrapper[MagicNetworkMonitoringConfig]),
         )
 
     def get(
@@ -204,7 +204,7 @@ class Configs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MagicVisibilityMNMConfig:
+    ) -> MagicNetworkMonitoringConfig:
         """
         Lists default sampling and router IPs for account.
 
@@ -228,7 +228,7 @@ class Configs(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[MagicVisibilityMNMConfig], ResultWrapper[MagicVisibilityMNMConfig]),
+            cast_to=cast(Type[MagicNetworkMonitoringConfig], ResultWrapper[MagicNetworkMonitoringConfig]),
         )
 
 
@@ -255,7 +255,7 @@ class AsyncConfigs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MagicVisibilityMNMConfig:
+    ) -> MagicNetworkMonitoringConfig:
         """
         Create a new network monitoring configuration.
 
@@ -279,7 +279,7 @@ class AsyncConfigs(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[MagicVisibilityMNMConfig], ResultWrapper[MagicVisibilityMNMConfig]),
+            cast_to=cast(Type[MagicNetworkMonitoringConfig], ResultWrapper[MagicNetworkMonitoringConfig]),
         )
 
     async def update(
@@ -292,7 +292,7 @@ class AsyncConfigs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MagicVisibilityMNMConfig:
+    ) -> MagicNetworkMonitoringConfig:
         """
         Update an existing network monitoring configuration, requires the entire
         configuration to be updated at once.
@@ -317,7 +317,7 @@ class AsyncConfigs(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[MagicVisibilityMNMConfig], ResultWrapper[MagicVisibilityMNMConfig]),
+            cast_to=cast(Type[MagicNetworkMonitoringConfig], ResultWrapper[MagicNetworkMonitoringConfig]),
         )
 
     async def delete(
@@ -330,7 +330,7 @@ class AsyncConfigs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MagicVisibilityMNMConfig:
+    ) -> MagicNetworkMonitoringConfig:
         """
         Delete an existing network monitoring configuration.
 
@@ -354,7 +354,7 @@ class AsyncConfigs(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[MagicVisibilityMNMConfig], ResultWrapper[MagicVisibilityMNMConfig]),
+            cast_to=cast(Type[MagicNetworkMonitoringConfig], ResultWrapper[MagicNetworkMonitoringConfig]),
         )
 
     async def edit(
@@ -367,7 +367,7 @@ class AsyncConfigs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MagicVisibilityMNMConfig:
+    ) -> MagicNetworkMonitoringConfig:
         """
         Update fields in an existing network monitoring configuration.
 
@@ -391,7 +391,7 @@ class AsyncConfigs(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[MagicVisibilityMNMConfig], ResultWrapper[MagicVisibilityMNMConfig]),
+            cast_to=cast(Type[MagicNetworkMonitoringConfig], ResultWrapper[MagicNetworkMonitoringConfig]),
         )
 
     async def get(
@@ -404,7 +404,7 @@ class AsyncConfigs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MagicVisibilityMNMConfig:
+    ) -> MagicNetworkMonitoringConfig:
         """
         Lists default sampling and router IPs for account.
 
@@ -428,7 +428,7 @@ class AsyncConfigs(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[MagicVisibilityMNMConfig], ResultWrapper[MagicVisibilityMNMConfig]),
+            cast_to=cast(Type[MagicNetworkMonitoringConfig], ResultWrapper[MagicNetworkMonitoringConfig]),
         )
 
 

@@ -3,9 +3,11 @@
 from __future__ import annotations
 
 from .policy_edit_params import PolicyEditParams as PolicyEditParams
+from .device_posture_rules import DevicePostureRules as DevicePostureRules
 from .policy_create_params import PolicyCreateParams as PolicyCreateParams
 from .policy_list_response import PolicyListResponse as PolicyListResponse
 from .revoke_create_params import RevokeCreateParams as RevokeCreateParams
+from .dex_test_schemas_http import DEXTestSchemasHTTP as DEXTestSchemasHTTP
 from .network_create_params import NetworkCreateParams as NetworkCreateParams
 from .network_list_response import NetworkListResponse as NetworkListResponse
 from .network_update_params import NetworkUpdateParams as NetworkUpdateParams
@@ -19,19 +21,11 @@ from .dex_test_update_params import DEXTestUpdateParams as DEXTestUpdateParams
 from .policy_delete_response import PolicyDeleteResponse as PolicyDeleteResponse
 from .revoke_create_response import RevokeCreateResponse as RevokeCreateResponse
 from .unrevoke_create_params import UnrevokeCreateParams as UnrevokeCreateParams
+from .device_managed_networks import DeviceManagedNetworks as DeviceManagedNetworks
 from .network_delete_response import NetworkDeleteResponse as NetworkDeleteResponse
 from .posture_delete_response import PostureDeleteResponse as PostureDeleteResponse
 from .dex_test_delete_response import DEXTestDeleteResponse as DEXTestDeleteResponse
 from .unrevoke_create_response import UnrevokeCreateResponse as UnrevokeCreateResponse
 from .override_code_list_response import OverrideCodeListResponse as OverrideCodeListResponse
-from .teams_devices_device_posture_rules import TeamsDevicesDevicePostureRules as TeamsDevicesDevicePostureRules
-from .teams_devices_device_settings_policy import TeamsDevicesDeviceSettingsPolicy as TeamsDevicesDeviceSettingsPolicy
-from .teams_devices_device_managed_networks import (
-    TeamsDevicesDeviceManagedNetworks as TeamsDevicesDeviceManagedNetworks,
-)
-from .teams_devices_device_dex_test_schemas_http import (
-    TeamsDevicesDeviceDEXTestSchemasHTTP as TeamsDevicesDeviceDEXTestSchemasHTTP,
-)
-from .teams_devices_zero_trust_account_device_settings import (
-    TeamsDevicesZeroTrustAccountDeviceSettings as TeamsDevicesZeroTrustAccountDeviceSettings,
-)
+from .devices_device_settings_policy import DevicesDeviceSettingsPolicy as DevicesDeviceSettingsPolicy
+from .zero_trust_account_device_settings import ZeroTrustAccountDeviceSettings as ZeroTrustAccountDeviceSettings

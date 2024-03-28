@@ -10,7 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types.dns import (
-    DNSFirewallDNSFirewall,
+    DNSFirewall,
     FirewallDeleteResponse,
 )
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
@@ -29,7 +29,7 @@ class TestFirewall:
             name="My Awesome DNS Firewall cluster",
             upstream_ips=["192.0.2.1", "198.51.100.1", "2001:DB8:100::CF"],
         )
-        assert_matches_type(DNSFirewallDNSFirewall, firewall, path=["response"])
+        assert_matches_type(DNSFirewall, firewall, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -52,7 +52,7 @@ class TestFirewall:
             ratelimit=600,
             retries=2,
         )
-        assert_matches_type(DNSFirewallDNSFirewall, firewall, path=["response"])
+        assert_matches_type(DNSFirewall, firewall, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -66,7 +66,7 @@ class TestFirewall:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         firewall = response.parse()
-        assert_matches_type(DNSFirewallDNSFirewall, firewall, path=["response"])
+        assert_matches_type(DNSFirewall, firewall, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -80,7 +80,7 @@ class TestFirewall:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             firewall = response.parse()
-            assert_matches_type(DNSFirewallDNSFirewall, firewall, path=["response"])
+            assert_matches_type(DNSFirewall, firewall, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -100,7 +100,7 @@ class TestFirewall:
         firewall = client.dns.firewall.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncV4PagePaginationArray[DNSFirewallDNSFirewall], firewall, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[DNSFirewall], firewall, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -110,7 +110,7 @@ class TestFirewall:
             page=1,
             per_page=1,
         )
-        assert_matches_type(SyncV4PagePaginationArray[DNSFirewallDNSFirewall], firewall, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[DNSFirewall], firewall, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -122,7 +122,7 @@ class TestFirewall:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         firewall = response.parse()
-        assert_matches_type(SyncV4PagePaginationArray[DNSFirewallDNSFirewall], firewall, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[DNSFirewall], firewall, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -134,7 +134,7 @@ class TestFirewall:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             firewall = response.parse()
-            assert_matches_type(SyncV4PagePaginationArray[DNSFirewallDNSFirewall], firewall, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[DNSFirewall], firewall, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -212,7 +212,7 @@ class TestFirewall:
             name="My Awesome DNS Firewall cluster",
             upstream_ips=["192.0.2.1", "198.51.100.1", "2001:DB8:100::CF"],
         )
-        assert_matches_type(DNSFirewallDNSFirewall, firewall, path=["response"])
+        assert_matches_type(DNSFirewall, firewall, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -237,7 +237,7 @@ class TestFirewall:
             ratelimit=600,
             retries=2,
         )
-        assert_matches_type(DNSFirewallDNSFirewall, firewall, path=["response"])
+        assert_matches_type(DNSFirewall, firewall, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -257,7 +257,7 @@ class TestFirewall:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         firewall = response.parse()
-        assert_matches_type(DNSFirewallDNSFirewall, firewall, path=["response"])
+        assert_matches_type(DNSFirewall, firewall, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -277,7 +277,7 @@ class TestFirewall:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             firewall = response.parse()
-            assert_matches_type(DNSFirewallDNSFirewall, firewall, path=["response"])
+            assert_matches_type(DNSFirewall, firewall, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -317,7 +317,7 @@ class TestFirewall:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(DNSFirewallDNSFirewall, firewall, path=["response"])
+        assert_matches_type(DNSFirewall, firewall, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -330,7 +330,7 @@ class TestFirewall:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         firewall = response.parse()
-        assert_matches_type(DNSFirewallDNSFirewall, firewall, path=["response"])
+        assert_matches_type(DNSFirewall, firewall, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -343,7 +343,7 @@ class TestFirewall:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             firewall = response.parse()
-            assert_matches_type(DNSFirewallDNSFirewall, firewall, path=["response"])
+            assert_matches_type(DNSFirewall, firewall, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -374,7 +374,7 @@ class TestAsyncFirewall:
             name="My Awesome DNS Firewall cluster",
             upstream_ips=["192.0.2.1", "198.51.100.1", "2001:DB8:100::CF"],
         )
-        assert_matches_type(DNSFirewallDNSFirewall, firewall, path=["response"])
+        assert_matches_type(DNSFirewall, firewall, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -397,7 +397,7 @@ class TestAsyncFirewall:
             ratelimit=600,
             retries=2,
         )
-        assert_matches_type(DNSFirewallDNSFirewall, firewall, path=["response"])
+        assert_matches_type(DNSFirewall, firewall, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -411,7 +411,7 @@ class TestAsyncFirewall:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         firewall = await response.parse()
-        assert_matches_type(DNSFirewallDNSFirewall, firewall, path=["response"])
+        assert_matches_type(DNSFirewall, firewall, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -425,7 +425,7 @@ class TestAsyncFirewall:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             firewall = await response.parse()
-            assert_matches_type(DNSFirewallDNSFirewall, firewall, path=["response"])
+            assert_matches_type(DNSFirewall, firewall, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -445,7 +445,7 @@ class TestAsyncFirewall:
         firewall = await async_client.dns.firewall.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncV4PagePaginationArray[DNSFirewallDNSFirewall], firewall, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[DNSFirewall], firewall, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -455,7 +455,7 @@ class TestAsyncFirewall:
             page=1,
             per_page=1,
         )
-        assert_matches_type(AsyncV4PagePaginationArray[DNSFirewallDNSFirewall], firewall, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[DNSFirewall], firewall, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -467,7 +467,7 @@ class TestAsyncFirewall:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         firewall = await response.parse()
-        assert_matches_type(AsyncV4PagePaginationArray[DNSFirewallDNSFirewall], firewall, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[DNSFirewall], firewall, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -479,7 +479,7 @@ class TestAsyncFirewall:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             firewall = await response.parse()
-            assert_matches_type(AsyncV4PagePaginationArray[DNSFirewallDNSFirewall], firewall, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[DNSFirewall], firewall, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -557,7 +557,7 @@ class TestAsyncFirewall:
             name="My Awesome DNS Firewall cluster",
             upstream_ips=["192.0.2.1", "198.51.100.1", "2001:DB8:100::CF"],
         )
-        assert_matches_type(DNSFirewallDNSFirewall, firewall, path=["response"])
+        assert_matches_type(DNSFirewall, firewall, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -582,7 +582,7 @@ class TestAsyncFirewall:
             ratelimit=600,
             retries=2,
         )
-        assert_matches_type(DNSFirewallDNSFirewall, firewall, path=["response"])
+        assert_matches_type(DNSFirewall, firewall, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -602,7 +602,7 @@ class TestAsyncFirewall:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         firewall = await response.parse()
-        assert_matches_type(DNSFirewallDNSFirewall, firewall, path=["response"])
+        assert_matches_type(DNSFirewall, firewall, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -622,7 +622,7 @@ class TestAsyncFirewall:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             firewall = await response.parse()
-            assert_matches_type(DNSFirewallDNSFirewall, firewall, path=["response"])
+            assert_matches_type(DNSFirewall, firewall, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -662,7 +662,7 @@ class TestAsyncFirewall:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(DNSFirewallDNSFirewall, firewall, path=["response"])
+        assert_matches_type(DNSFirewall, firewall, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -675,7 +675,7 @@ class TestAsyncFirewall:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         firewall = await response.parse()
-        assert_matches_type(DNSFirewallDNSFirewall, firewall, path=["response"])
+        assert_matches_type(DNSFirewall, firewall, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -688,7 +688,7 @@ class TestAsyncFirewall:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             firewall = await response.parse()
-            assert_matches_type(DNSFirewallDNSFirewall, firewall, path=["response"])
+            assert_matches_type(DNSFirewall, firewall, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

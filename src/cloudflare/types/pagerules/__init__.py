@@ -2,4 +2,4 @@
 
 from __future__ import annotations
 
-from .zones_settings import ZonesSettings as ZonesSettings
+from .zone_pagerule_settings import ZonePageruleSettings as ZonePageruleSettings

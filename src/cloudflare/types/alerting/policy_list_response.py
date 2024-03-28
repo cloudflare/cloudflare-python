@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .aaa_policies import AaaPolicies
+from .alerting_policies import AlertingPolicies
 
 __all__ = ["PolicyListResponse"]
 
-PolicyListResponse = List[AaaPolicies]
+PolicyListResponse = List[AlertingPolicies]

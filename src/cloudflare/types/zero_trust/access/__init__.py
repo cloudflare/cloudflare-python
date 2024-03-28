@@ -2,28 +2,27 @@
 
 from __future__ import annotations
 
-from .access_tag import AccessTag as AccessTag
-from .access_apps import AccessApps as AccessApps
-from .access_users import AccessUsers as AccessUsers
-from .access_groups import AccessGroups as AccessGroups
-from .access_bookmarks import AccessBookmarks as AccessBookmarks
+from .zero_trust_tag import ZeroTrustTag as ZeroTrustTag
+from .zero_trust_apps import ZeroTrustApps as ZeroTrustApps
 from .key_get_response import KeyGetResponse as KeyGetResponse
+from .zero_trust_users import ZeroTrustUsers as ZeroTrustUsers
 from .key_update_params import KeyUpdateParams as KeyUpdateParams
 from .tag_create_params import TagCreateParams as TagCreateParams
 from .tag_list_response import TagListResponse as TagListResponse
 from .tag_update_params import TagUpdateParams as TagUpdateParams
-from .access_custom_page import AccessCustomPage as AccessCustomPage
+from .zero_trust_groups import ZeroTrustGroups as ZeroTrustGroups
 from .user_list_response import UserListResponse as UserListResponse
-from .access_certificates import AccessCertificates as AccessCertificates
 from .group_create_params import GroupCreateParams as GroupCreateParams
 from .group_list_response import GroupListResponse as GroupListResponse
 from .group_update_params import GroupUpdateParams as GroupUpdateParams
 from .key_rotate_response import KeyRotateResponse as KeyRotateResponse
 from .key_update_response import KeyUpdateResponse as KeyUpdateResponse
 from .tag_delete_response import TagDeleteResponse as TagDeleteResponse
-from .access_service_tokens import AccessServiceTokens as AccessServiceTokens
+from .zero_trust_bookmarks import ZeroTrustBookmarks as ZeroTrustBookmarks
 from .group_delete_response import GroupDeleteResponse as GroupDeleteResponse
 from .bookmark_list_response import BookmarkListResponse as BookmarkListResponse
+from .zero_trust_custom_page import ZeroTrustCustomPage as ZeroTrustCustomPage
+from .zero_trust_certificates import ZeroTrustCertificates as ZeroTrustCertificates
 from .bookmark_delete_response import BookmarkDeleteResponse as BookmarkDeleteResponse
 from .application_create_params import ApplicationCreateParams as ApplicationCreateParams
 from .application_list_response import ApplicationListResponse as ApplicationListResponse
@@ -34,6 +33,7 @@ from .certificate_update_params import CertificateUpdateParams as CertificateUpd
 from .custom_page_create_params import CustomPageCreateParams as CustomPageCreateParams
 from .custom_page_list_response import CustomPageListResponse as CustomPageListResponse
 from .custom_page_update_params import CustomPageUpdateParams as CustomPageUpdateParams
+from .zero_trust_service_tokens import ZeroTrustServiceTokens as ZeroTrustServiceTokens
 from .application_delete_response import ApplicationDeleteResponse as ApplicationDeleteResponse
 from .certificate_delete_response import CertificateDeleteResponse as CertificateDeleteResponse
 from .custom_page_delete_response import CustomPageDeleteResponse as CustomPageDeleteResponse
@@ -42,4 +42,4 @@ from .service_token_list_response import ServiceTokenListResponse as ServiceToke
 from .service_token_update_params import ServiceTokenUpdateParams as ServiceTokenUpdateParams
 from .service_token_create_response import ServiceTokenCreateResponse as ServiceTokenCreateResponse
 from .service_token_rotate_response import ServiceTokenRotateResponse as ServiceTokenRotateResponse
-from .access_custom_page_without_html import AccessCustomPageWithoutHTML as AccessCustomPageWithoutHTML
+from .zero_trust_custom_page_without_html import ZeroTrustCustomPageWithoutHTML as ZeroTrustCustomPageWithoutHTML

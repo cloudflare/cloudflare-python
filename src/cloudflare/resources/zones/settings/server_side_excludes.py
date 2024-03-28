@@ -24,7 +24,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZonesServerSideExclude, server_side_exclude_edit_params
+from ....types.zones.settings import ZoneSettingServerSideExclude, server_side_exclude_edit_params
 
 __all__ = ["ServerSideExcludes", "AsyncServerSideExcludes"]
 
@@ -49,7 +49,7 @@ class ServerSideExcludes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesServerSideExclude]:
+    ) -> Optional[ZoneSettingServerSideExclude]:
         """
         If there is sensitive content on your website that you want visible to real
         visitors, but that you want to hide from suspicious visitors, all you have to do
@@ -88,7 +88,7 @@ class ServerSideExcludes(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesServerSideExclude]], ResultWrapper[ZonesServerSideExclude]),
+            cast_to=cast(Type[Optional[ZoneSettingServerSideExclude]], ResultWrapper[ZoneSettingServerSideExclude]),
         )
 
     def get(
@@ -101,7 +101,7 @@ class ServerSideExcludes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesServerSideExclude]:
+    ) -> Optional[ZoneSettingServerSideExclude]:
         """
         If there is sensitive content on your website that you want visible to real
         visitors, but that you want to hide from suspicious visitors, all you have to do
@@ -137,7 +137,7 @@ class ServerSideExcludes(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesServerSideExclude]], ResultWrapper[ZonesServerSideExclude]),
+            cast_to=cast(Type[Optional[ZoneSettingServerSideExclude]], ResultWrapper[ZoneSettingServerSideExclude]),
         )
 
 
@@ -161,7 +161,7 @@ class AsyncServerSideExcludes(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesServerSideExclude]:
+    ) -> Optional[ZoneSettingServerSideExclude]:
         """
         If there is sensitive content on your website that you want visible to real
         visitors, but that you want to hide from suspicious visitors, all you have to do
@@ -202,7 +202,7 @@ class AsyncServerSideExcludes(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesServerSideExclude]], ResultWrapper[ZonesServerSideExclude]),
+            cast_to=cast(Type[Optional[ZoneSettingServerSideExclude]], ResultWrapper[ZoneSettingServerSideExclude]),
         )
 
     async def get(
@@ -215,7 +215,7 @@ class AsyncServerSideExcludes(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesServerSideExclude]:
+    ) -> Optional[ZoneSettingServerSideExclude]:
         """
         If there is sensitive content on your website that you want visible to real
         visitors, but that you want to hide from suspicious visitors, all you have to do
@@ -251,7 +251,7 @@ class AsyncServerSideExcludes(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesServerSideExclude]], ResultWrapper[ZonesServerSideExclude]),
+            cast_to=cast(Type[Optional[ZoneSettingServerSideExclude]], ResultWrapper[ZoneSettingServerSideExclude]),
         )
 
 

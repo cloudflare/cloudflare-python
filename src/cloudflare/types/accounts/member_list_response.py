@@ -3,8 +3,8 @@
 from typing import List, Optional
 from typing_extensions import Literal
 
+from .role import Role
 from ..._models import BaseModel
-from .iam_schemas_role import IamSchemasRole
 
 __all__ = ["MemberListResponse"]
 
@@ -19,7 +19,7 @@ class MemberListResponse(BaseModel):
     name: Optional[str] = None
     """Member Name."""
 
-    roles: List[IamSchemasRole]
+    roles: List[Role]
     """Roles assigned to this Member."""
 
     status: Literal["accepted", "invited"]

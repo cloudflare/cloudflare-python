@@ -58,14 +58,7 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.images import (
-    ImagesImage,
-    V1ListResponse,
-    V1DeleteResponse,
-    v1_edit_params,
-    v1_list_params,
-    v1_create_params,
-)
+from ....types.images import Image, V1ListResponse, V1DeleteResponse, v1_edit_params, v1_list_params, v1_create_params
 
 __all__ = ["V1", "AsyncV1"]
 
@@ -107,7 +100,7 @@ class V1(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ImagesImage:
+    ) -> Image:
         """
         Upload an image with up to 10 Megabytes using a single HTTP POST
         (multipart/form-data) request. An image can be uploaded by sending an image file
@@ -140,7 +133,7 @@ class V1(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ImagesImage:
+    ) -> Image:
         """
         Upload an image with up to 10 Megabytes using a single HTTP POST
         (multipart/form-data) request. An image can be uploaded by sending an image file
@@ -174,7 +167,7 @@ class V1(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ImagesImage:
+    ) -> Image:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
@@ -193,7 +186,7 @@ class V1(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ImagesImage], ResultWrapper[ImagesImage]),
+            cast_to=cast(Type[Image], ResultWrapper[Image]),
         )
 
     def list(
@@ -314,7 +307,7 @@ class V1(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ImagesImage:
+    ) -> Image:
         """Update image access control.
 
         On access control change, all copies of the image
@@ -360,7 +353,7 @@ class V1(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ImagesImage], ResultWrapper[ImagesImage]),
+            cast_to=cast(Type[Image], ResultWrapper[Image]),
         )
 
     def get(
@@ -374,7 +367,7 @@ class V1(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ImagesImage:
+    ) -> Image:
         """
         Fetch details for a single image.
 
@@ -404,7 +397,7 @@ class V1(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ImagesImage], ResultWrapper[ImagesImage]),
+            cast_to=cast(Type[Image], ResultWrapper[Image]),
         )
 
 
@@ -445,7 +438,7 @@ class AsyncV1(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ImagesImage:
+    ) -> Image:
         """
         Upload an image with up to 10 Megabytes using a single HTTP POST
         (multipart/form-data) request. An image can be uploaded by sending an image file
@@ -478,7 +471,7 @@ class AsyncV1(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ImagesImage:
+    ) -> Image:
         """
         Upload an image with up to 10 Megabytes using a single HTTP POST
         (multipart/form-data) request. An image can be uploaded by sending an image file
@@ -512,7 +505,7 @@ class AsyncV1(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ImagesImage:
+    ) -> Image:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
@@ -531,7 +524,7 @@ class AsyncV1(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ImagesImage], ResultWrapper[ImagesImage]),
+            cast_to=cast(Type[Image], ResultWrapper[Image]),
         )
 
     def list(
@@ -652,7 +645,7 @@ class AsyncV1(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ImagesImage:
+    ) -> Image:
         """Update image access control.
 
         On access control change, all copies of the image
@@ -698,7 +691,7 @@ class AsyncV1(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ImagesImage], ResultWrapper[ImagesImage]),
+            cast_to=cast(Type[Image], ResultWrapper[Image]),
         )
 
     async def get(
@@ -712,7 +705,7 @@ class AsyncV1(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ImagesImage:
+    ) -> Image:
         """
         Fetch details for a single image.
 
@@ -742,7 +735,7 @@ class AsyncV1(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ImagesImage], ResultWrapper[ImagesImage]),
+            cast_to=cast(Type[Image], ResultWrapper[Image]),
         )
 
 

@@ -19,7 +19,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.magic_network_monitoring.rules import MagicVisibilityMNMRuleAdvertisable
+from ....types.magic_network_monitoring.rules import MagicNetworkMonitoringRuleAdvertisable
 
 __all__ = ["Advertisements", "AsyncAdvertisements"]
 
@@ -44,7 +44,7 @@ class Advertisements(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MagicVisibilityMNMRuleAdvertisable]:
+    ) -> Optional[MagicNetworkMonitoringRuleAdvertisable]:
         """
         Update advertisement for rule.
 
@@ -71,7 +71,8 @@ class Advertisements(SyncAPIResource):
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(
-                Type[Optional[MagicVisibilityMNMRuleAdvertisable]], ResultWrapper[MagicVisibilityMNMRuleAdvertisable]
+                Type[Optional[MagicNetworkMonitoringRuleAdvertisable]],
+                ResultWrapper[MagicNetworkMonitoringRuleAdvertisable],
             ),
         )
 
@@ -96,7 +97,7 @@ class AsyncAdvertisements(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MagicVisibilityMNMRuleAdvertisable]:
+    ) -> Optional[MagicNetworkMonitoringRuleAdvertisable]:
         """
         Update advertisement for rule.
 
@@ -123,7 +124,8 @@ class AsyncAdvertisements(AsyncAPIResource):
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(
-                Type[Optional[MagicVisibilityMNMRuleAdvertisable]], ResultWrapper[MagicVisibilityMNMRuleAdvertisable]
+                Type[Optional[MagicNetworkMonitoringRuleAdvertisable]],
+                ResultWrapper[MagicNetworkMonitoringRuleAdvertisable],
             ),
         )
 

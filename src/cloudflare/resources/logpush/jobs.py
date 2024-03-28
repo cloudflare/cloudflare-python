@@ -25,7 +25,7 @@ from ..._base_client import (
     make_request_options,
 )
 from ...types.logpush import JobListResponse, JobDeleteResponse, job_create_params, job_update_params
-from ...types.logpush.datasets import LogpushLogpushJob
+from ...types.logpush.datasets import LogpushJob
 
 __all__ = ["Jobs", "AsyncJobs"]
 
@@ -58,7 +58,7 @@ class Jobs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[LogpushLogpushJob]:
+    ) -> Optional[LogpushJob]:
         """
         Creates a new Logpush job for an account or zone.
 
@@ -139,7 +139,7 @@ class Jobs(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[LogpushLogpushJob]], ResultWrapper[LogpushLogpushJob]),
+            cast_to=cast(Type[Optional[LogpushJob]], ResultWrapper[LogpushJob]),
         )
 
     def update(
@@ -160,7 +160,7 @@ class Jobs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[LogpushLogpushJob]:
+    ) -> Optional[LogpushJob]:
         """
         Updates a Logpush job.
 
@@ -235,7 +235,7 @@ class Jobs(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[LogpushLogpushJob]], ResultWrapper[LogpushLogpushJob]),
+            cast_to=cast(Type[Optional[LogpushJob]], ResultWrapper[LogpushJob]),
         )
 
     def list(
@@ -368,7 +368,7 @@ class Jobs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[LogpushLogpushJob]:
+    ) -> Optional[LogpushJob]:
         """
         Gets the details of a Logpush job.
 
@@ -411,7 +411,7 @@ class Jobs(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[LogpushLogpushJob]], ResultWrapper[LogpushLogpushJob]),
+            cast_to=cast(Type[Optional[LogpushJob]], ResultWrapper[LogpushJob]),
         )
 
 
@@ -443,7 +443,7 @@ class AsyncJobs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[LogpushLogpushJob]:
+    ) -> Optional[LogpushJob]:
         """
         Creates a new Logpush job for an account or zone.
 
@@ -524,7 +524,7 @@ class AsyncJobs(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[LogpushLogpushJob]], ResultWrapper[LogpushLogpushJob]),
+            cast_to=cast(Type[Optional[LogpushJob]], ResultWrapper[LogpushJob]),
         )
 
     async def update(
@@ -545,7 +545,7 @@ class AsyncJobs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[LogpushLogpushJob]:
+    ) -> Optional[LogpushJob]:
         """
         Updates a Logpush job.
 
@@ -620,7 +620,7 @@ class AsyncJobs(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[LogpushLogpushJob]], ResultWrapper[LogpushLogpushJob]),
+            cast_to=cast(Type[Optional[LogpushJob]], ResultWrapper[LogpushJob]),
         )
 
     async def list(
@@ -753,7 +753,7 @@ class AsyncJobs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[LogpushLogpushJob]:
+    ) -> Optional[LogpushJob]:
         """
         Gets the details of a Logpush job.
 
@@ -796,7 +796,7 @@ class AsyncJobs(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[LogpushLogpushJob]], ResultWrapper[LogpushLogpushJob]),
+            cast_to=cast(Type[Optional[LogpushJob]], ResultWrapper[LogpushJob]),
         )
 
 

@@ -67,7 +67,7 @@ class Cloudflare(SyncAPIClient):
     custom_hostnames: resources.CustomHostnames
     custom_nameservers: resources.CustomNameservers
     dns: resources.DNS
-    dnssec: resources.DNSSEC
+    dnssec: resources.DNSSECResource
     email_routing: resources.EmailRouting
     filters: resources.Filters
     firewall: resources.Firewall
@@ -220,7 +220,7 @@ class Cloudflare(SyncAPIClient):
         self.custom_hostnames = resources.CustomHostnames(self)
         self.custom_nameservers = resources.CustomNameservers(self)
         self.dns = resources.DNS(self)
-        self.dnssec = resources.DNSSEC(self)
+        self.dnssec = resources.DNSSECResource(self)
         self.email_routing = resources.EmailRouting(self)
         self.filters = resources.Filters(self)
         self.firewall = resources.Firewall(self)
@@ -478,7 +478,7 @@ class AsyncCloudflare(AsyncAPIClient):
     custom_hostnames: resources.AsyncCustomHostnames
     custom_nameservers: resources.AsyncCustomNameservers
     dns: resources.AsyncDNS
-    dnssec: resources.AsyncDNSSEC
+    dnssec: resources.AsyncDNSSECResource
     email_routing: resources.AsyncEmailRouting
     filters: resources.AsyncFilters
     firewall: resources.AsyncFirewall
@@ -631,7 +631,7 @@ class AsyncCloudflare(AsyncAPIClient):
         self.custom_hostnames = resources.AsyncCustomHostnames(self)
         self.custom_nameservers = resources.AsyncCustomNameservers(self)
         self.dns = resources.AsyncDNS(self)
-        self.dnssec = resources.AsyncDNSSEC(self)
+        self.dnssec = resources.AsyncDNSSECResource(self)
         self.email_routing = resources.AsyncEmailRouting(self)
         self.filters = resources.AsyncFilters(self)
         self.firewall = resources.AsyncFirewall(self)
@@ -890,7 +890,7 @@ class CloudflareWithRawResponse:
         self.custom_hostnames = resources.CustomHostnamesWithRawResponse(client.custom_hostnames)
         self.custom_nameservers = resources.CustomNameserversWithRawResponse(client.custom_nameservers)
         self.dns = resources.DNSWithRawResponse(client.dns)
-        self.dnssec = resources.DNSSECWithRawResponse(client.dnssec)
+        self.dnssec = resources.DNSSECResourceWithRawResponse(client.dnssec)
         self.email_routing = resources.EmailRoutingWithRawResponse(client.email_routing)
         self.filters = resources.FiltersWithRawResponse(client.filters)
         self.firewall = resources.FirewallWithRawResponse(client.firewall)
@@ -978,7 +978,7 @@ class AsyncCloudflareWithRawResponse:
         self.custom_hostnames = resources.AsyncCustomHostnamesWithRawResponse(client.custom_hostnames)
         self.custom_nameservers = resources.AsyncCustomNameserversWithRawResponse(client.custom_nameservers)
         self.dns = resources.AsyncDNSWithRawResponse(client.dns)
-        self.dnssec = resources.AsyncDNSSECWithRawResponse(client.dnssec)
+        self.dnssec = resources.AsyncDNSSECResourceWithRawResponse(client.dnssec)
         self.email_routing = resources.AsyncEmailRoutingWithRawResponse(client.email_routing)
         self.filters = resources.AsyncFiltersWithRawResponse(client.filters)
         self.firewall = resources.AsyncFirewallWithRawResponse(client.firewall)
@@ -1068,7 +1068,7 @@ class CloudflareWithStreamedResponse:
         self.custom_hostnames = resources.CustomHostnamesWithStreamingResponse(client.custom_hostnames)
         self.custom_nameservers = resources.CustomNameserversWithStreamingResponse(client.custom_nameservers)
         self.dns = resources.DNSWithStreamingResponse(client.dns)
-        self.dnssec = resources.DNSSECWithStreamingResponse(client.dnssec)
+        self.dnssec = resources.DNSSECResourceWithStreamingResponse(client.dnssec)
         self.email_routing = resources.EmailRoutingWithStreamingResponse(client.email_routing)
         self.filters = resources.FiltersWithStreamingResponse(client.filters)
         self.firewall = resources.FirewallWithStreamingResponse(client.firewall)
@@ -1160,7 +1160,7 @@ class AsyncCloudflareWithStreamedResponse:
         self.custom_hostnames = resources.AsyncCustomHostnamesWithStreamingResponse(client.custom_hostnames)
         self.custom_nameservers = resources.AsyncCustomNameserversWithStreamingResponse(client.custom_nameservers)
         self.dns = resources.AsyncDNSWithStreamingResponse(client.dns)
-        self.dnssec = resources.AsyncDNSSECWithStreamingResponse(client.dnssec)
+        self.dnssec = resources.AsyncDNSSECResourceWithStreamingResponse(client.dnssec)
         self.email_routing = resources.AsyncEmailRoutingWithStreamingResponse(client.email_routing)
         self.filters = resources.AsyncFiltersWithStreamingResponse(client.filters)
         self.firewall = resources.AsyncFirewallWithStreamingResponse(client.firewall)

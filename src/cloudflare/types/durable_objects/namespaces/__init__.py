@@ -2,5 +2,5 @@
 
 from __future__ import annotations
 
-from .workers_object import WorkersObject as WorkersObject
+from .durable_object import DurableObject as DurableObject
 from .object_list_params import ObjectListParams as ObjectListParams

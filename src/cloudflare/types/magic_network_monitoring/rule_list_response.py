@@ -2,8 +2,8 @@
 
 from typing import List, Optional
 
-from .magic_visibility_mnm_rule import MagicVisibilityMNMRule
+from .magic_network_monitoring_rule import MagicNetworkMonitoringRule
 
 __all__ = ["RuleListResponse"]
 
-RuleListResponse = List[Optional[MagicVisibilityMNMRule]]
+RuleListResponse = List[Optional[MagicNetworkMonitoringRule]]

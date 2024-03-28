@@ -24,7 +24,7 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.zero_trust.access import (
-    AccessServiceTokens,
+    ZeroTrustServiceTokens,
     ServiceTokenListResponse,
     ServiceTokenCreateResponse,
     ServiceTokenRotateResponse,
@@ -131,7 +131,7 @@ class ServiceTokens(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessServiceTokens:
+    ) -> ZeroTrustServiceTokens:
         """
         Updates a configured service token.
 
@@ -189,7 +189,7 @@ class ServiceTokens(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessServiceTokens], ResultWrapper[AccessServiceTokens]),
+            cast_to=cast(Type[ZeroTrustServiceTokens], ResultWrapper[ZeroTrustServiceTokens]),
         )
 
     def list(
@@ -259,7 +259,7 @@ class ServiceTokens(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessServiceTokens:
+    ) -> ZeroTrustServiceTokens:
         """
         Deletes a service token.
 
@@ -304,7 +304,7 @@ class ServiceTokens(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessServiceTokens], ResultWrapper[AccessServiceTokens]),
+            cast_to=cast(Type[ZeroTrustServiceTokens], ResultWrapper[ZeroTrustServiceTokens]),
         )
 
     def refresh(
@@ -318,7 +318,7 @@ class ServiceTokens(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessServiceTokens:
+    ) -> ZeroTrustServiceTokens:
         """
         Refreshes the expiration of a service token.
 
@@ -348,7 +348,7 @@ class ServiceTokens(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessServiceTokens], ResultWrapper[AccessServiceTokens]),
+            cast_to=cast(Type[ZeroTrustServiceTokens], ResultWrapper[ZeroTrustServiceTokens]),
         )
 
     def rotate(
@@ -492,7 +492,7 @@ class AsyncServiceTokens(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessServiceTokens:
+    ) -> ZeroTrustServiceTokens:
         """
         Updates a configured service token.
 
@@ -550,7 +550,7 @@ class AsyncServiceTokens(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessServiceTokens], ResultWrapper[AccessServiceTokens]),
+            cast_to=cast(Type[ZeroTrustServiceTokens], ResultWrapper[ZeroTrustServiceTokens]),
         )
 
     async def list(
@@ -620,7 +620,7 @@ class AsyncServiceTokens(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessServiceTokens:
+    ) -> ZeroTrustServiceTokens:
         """
         Deletes a service token.
 
@@ -665,7 +665,7 @@ class AsyncServiceTokens(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessServiceTokens], ResultWrapper[AccessServiceTokens]),
+            cast_to=cast(Type[ZeroTrustServiceTokens], ResultWrapper[ZeroTrustServiceTokens]),
         )
 
     async def refresh(
@@ -679,7 +679,7 @@ class AsyncServiceTokens(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessServiceTokens:
+    ) -> ZeroTrustServiceTokens:
         """
         Refreshes the expiration of a service token.
 
@@ -709,7 +709,7 @@ class AsyncServiceTokens(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessServiceTokens], ResultWrapper[AccessServiceTokens]),
+            cast_to=cast(Type[ZeroTrustServiceTokens], ResultWrapper[ZeroTrustServiceTokens]),
         )
 
     async def rotate(

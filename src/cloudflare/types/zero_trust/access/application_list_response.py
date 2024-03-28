@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .access_apps import AccessApps
+from .zero_trust_apps import ZeroTrustApps
 
 __all__ = ["ApplicationListResponse"]
 
-ApplicationListResponse = List[AccessApps]
+ApplicationListResponse = List[ZeroTrustApps]

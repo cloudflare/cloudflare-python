@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .access_users import AccessUsers
+from .zero_trust_users import ZeroTrustUsers
 
 __all__ = ["UserListResponse"]
 
-UserListResponse = List[AccessUsers]
+UserListResponse = List[ZeroTrustUsers]

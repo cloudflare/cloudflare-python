@@ -24,7 +24,7 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.zero_trust.access import (
-    AccessTag,
+    ZeroTrustTag,
     TagListResponse,
     TagDeleteResponse,
     tag_create_params,
@@ -54,7 +54,7 @@ class Tags(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessTag:
+    ) -> ZeroTrustTag:
         """
         Create a tag
 
@@ -83,7 +83,7 @@ class Tags(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessTag], ResultWrapper[AccessTag]),
+            cast_to=cast(Type[ZeroTrustTag], ResultWrapper[ZeroTrustTag]),
         )
 
     def update(
@@ -98,7 +98,7 @@ class Tags(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessTag:
+    ) -> ZeroTrustTag:
         """
         Update a tag
 
@@ -131,7 +131,7 @@ class Tags(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessTag], ResultWrapper[AccessTag]),
+            cast_to=cast(Type[ZeroTrustTag], ResultWrapper[ZeroTrustTag]),
         )
 
     def list(
@@ -228,7 +228,7 @@ class Tags(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessTag:
+    ) -> ZeroTrustTag:
         """
         Get a tag
 
@@ -258,7 +258,7 @@ class Tags(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessTag], ResultWrapper[AccessTag]),
+            cast_to=cast(Type[ZeroTrustTag], ResultWrapper[ZeroTrustTag]),
         )
 
 
@@ -282,7 +282,7 @@ class AsyncTags(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessTag:
+    ) -> ZeroTrustTag:
         """
         Create a tag
 
@@ -311,7 +311,7 @@ class AsyncTags(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessTag], ResultWrapper[AccessTag]),
+            cast_to=cast(Type[ZeroTrustTag], ResultWrapper[ZeroTrustTag]),
         )
 
     async def update(
@@ -326,7 +326,7 @@ class AsyncTags(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessTag:
+    ) -> ZeroTrustTag:
         """
         Update a tag
 
@@ -359,7 +359,7 @@ class AsyncTags(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessTag], ResultWrapper[AccessTag]),
+            cast_to=cast(Type[ZeroTrustTag], ResultWrapper[ZeroTrustTag]),
         )
 
     async def list(
@@ -456,7 +456,7 @@ class AsyncTags(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessTag:
+    ) -> ZeroTrustTag:
         """
         Get a tag
 
@@ -486,7 +486,7 @@ class AsyncTags(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccessTag], ResultWrapper[AccessTag]),
+            cast_to=cast(Type[ZeroTrustTag], ResultWrapper[ZeroTrustTag]),
         )
 
 

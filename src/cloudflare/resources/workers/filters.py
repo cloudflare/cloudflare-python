@@ -24,7 +24,7 @@ from ..._base_client import (
     make_request_options,
 )
 from ...types.workers import (
-    WorkersFilters,
+    WorkersFilter,
     FilterListResponse,
     FilterCreateResponse,
     FilterDeleteResponse,
@@ -105,7 +105,7 @@ class Filters(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WorkersFilters:
+    ) -> WorkersFilter:
         """
         Update Filter
 
@@ -142,7 +142,7 @@ class Filters(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[WorkersFilters], ResultWrapper[WorkersFilters]),
+            cast_to=cast(Type[WorkersFilter], ResultWrapper[WorkersFilter]),
         )
 
     def list(
@@ -299,7 +299,7 @@ class AsyncFilters(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WorkersFilters:
+    ) -> WorkersFilter:
         """
         Update Filter
 
@@ -336,7 +336,7 @@ class AsyncFilters(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[WorkersFilters], ResultWrapper[WorkersFilters]),
+            cast_to=cast(Type[WorkersFilter], ResultWrapper[WorkersFilter]),
         )
 
     async def list(
