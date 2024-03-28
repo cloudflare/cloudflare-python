@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
+from .role import Role as Role
 from .account_member import AccountMember as AccountMember
-from .iam_schemas_role import IamSchemasRole as IamSchemasRole
 from .role_get_response import RoleGetResponse as RoleGetResponse
 from .member_list_params import MemberListParams as MemberListParams
 from .role_list_response import RoleListResponse as RoleListResponse

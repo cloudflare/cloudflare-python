@@ -23,7 +23,7 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import (
     make_request_options,
 )
-from .....types.logs.control.cmb import LogcontrolCmbConfig, ConfigDeleteResponse, config_create_params
+from .....types.logs.control.cmb import CmbConfig, ConfigDeleteResponse, config_create_params
 
 __all__ = ["Config", "AsyncConfig"]
 
@@ -48,7 +48,7 @@ class Config(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[LogcontrolCmbConfig]:
+    ) -> Optional[CmbConfig]:
         """
         Updates CMB config.
 
@@ -77,7 +77,7 @@ class Config(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[LogcontrolCmbConfig]], ResultWrapper[LogcontrolCmbConfig]),
+            cast_to=cast(Type[Optional[CmbConfig]], ResultWrapper[CmbConfig]),
         )
 
     def delete(
@@ -134,7 +134,7 @@ class Config(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[LogcontrolCmbConfig]:
+    ) -> Optional[CmbConfig]:
         """
         Gets CMB config.
 
@@ -160,7 +160,7 @@ class Config(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[LogcontrolCmbConfig]], ResultWrapper[LogcontrolCmbConfig]),
+            cast_to=cast(Type[Optional[CmbConfig]], ResultWrapper[CmbConfig]),
         )
 
 
@@ -184,7 +184,7 @@ class AsyncConfig(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[LogcontrolCmbConfig]:
+    ) -> Optional[CmbConfig]:
         """
         Updates CMB config.
 
@@ -213,7 +213,7 @@ class AsyncConfig(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[LogcontrolCmbConfig]], ResultWrapper[LogcontrolCmbConfig]),
+            cast_to=cast(Type[Optional[CmbConfig]], ResultWrapper[CmbConfig]),
         )
 
     async def delete(
@@ -270,7 +270,7 @@ class AsyncConfig(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[LogcontrolCmbConfig]:
+    ) -> Optional[CmbConfig]:
         """
         Gets CMB config.
 
@@ -296,7 +296,7 @@ class AsyncConfig(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[LogcontrolCmbConfig]], ResultWrapper[LogcontrolCmbConfig]),
+            cast_to=cast(Type[Optional[CmbConfig]], ResultWrapper[CmbConfig]),
         )
 
 

@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .access_groups import AccessGroups
+from .zero_trust_groups import ZeroTrustGroups
 
 __all__ = ["GroupListResponse"]
 
-GroupListResponse = List[AccessGroups]
+GroupListResponse = List[ZeroTrustGroups]

@@ -3,11 +3,11 @@
 from __future__ import annotations
 
 from .ai_run_params import AIRunParams as AIRunParams
+from .workers_route import WorkersRoute as WorkersRoute
 from .workers_domain import WorkersDomain as WorkersDomain
-from .workers_routes import WorkersRoutes as WorkersRoutes
+from .workers_filter import WorkersFilter as WorkersFilter
 from .workers_script import WorkersScript as WorkersScript
 from .ai_run_response import AIRunResponse as AIRunResponse
-from .workers_filters import WorkersFilters as WorkersFilters
 from .domain_list_params import DomainListParams as DomainListParams
 from .route_create_params import RouteCreateParams as RouteCreateParams
 from .route_list_response import RouteListResponse as RouteListResponse

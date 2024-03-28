@@ -23,7 +23,11 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZonesSSLRecommender, ZonesSSLRecommenderParam, ssl_recommender_edit_params
+from ....types.zones.settings import (
+    ZoneSettingSSLRecommender,
+    ZoneSettingSSLRecommenderParam,
+    ssl_recommender_edit_params,
+)
 
 __all__ = ["SSLRecommender", "AsyncSSLRecommender"]
 
@@ -41,14 +45,14 @@ class SSLRecommender(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        value: ZonesSSLRecommenderParam,
+        value: ZoneSettingSSLRecommenderParam,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesSSLRecommender]:
+    ) -> Optional[ZoneSettingSSLRecommender]:
         """
         Enrollment in the SSL/TLS Recommender service which tries to detect and
         recommend (by sending periodic emails) the most secure SSL/TLS setting your
@@ -81,7 +85,7 @@ class SSLRecommender(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesSSLRecommender]], ResultWrapper[ZonesSSLRecommender]),
+            cast_to=cast(Type[Optional[ZoneSettingSSLRecommender]], ResultWrapper[ZoneSettingSSLRecommender]),
         )
 
     def get(
@@ -94,7 +98,7 @@ class SSLRecommender(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesSSLRecommender]:
+    ) -> Optional[ZoneSettingSSLRecommender]:
         """
         Enrollment in the SSL/TLS Recommender service which tries to detect and
         recommend (by sending periodic emails) the most secure SSL/TLS setting your
@@ -122,7 +126,7 @@ class SSLRecommender(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesSSLRecommender]], ResultWrapper[ZonesSSLRecommender]),
+            cast_to=cast(Type[Optional[ZoneSettingSSLRecommender]], ResultWrapper[ZoneSettingSSLRecommender]),
         )
 
 
@@ -139,14 +143,14 @@ class AsyncSSLRecommender(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        value: ZonesSSLRecommenderParam,
+        value: ZoneSettingSSLRecommenderParam,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesSSLRecommender]:
+    ) -> Optional[ZoneSettingSSLRecommender]:
         """
         Enrollment in the SSL/TLS Recommender service which tries to detect and
         recommend (by sending periodic emails) the most secure SSL/TLS setting your
@@ -179,7 +183,7 @@ class AsyncSSLRecommender(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesSSLRecommender]], ResultWrapper[ZonesSSLRecommender]),
+            cast_to=cast(Type[Optional[ZoneSettingSSLRecommender]], ResultWrapper[ZoneSettingSSLRecommender]),
         )
 
     async def get(
@@ -192,7 +196,7 @@ class AsyncSSLRecommender(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZonesSSLRecommender]:
+    ) -> Optional[ZoneSettingSSLRecommender]:
         """
         Enrollment in the SSL/TLS Recommender service which tries to detect and
         recommend (by sending periodic emails) the most secure SSL/TLS setting your
@@ -220,7 +224,7 @@ class AsyncSSLRecommender(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZonesSSLRecommender]], ResultWrapper[ZonesSSLRecommender]),
+            cast_to=cast(Type[Optional[ZoneSettingSSLRecommender]], ResultWrapper[ZoneSettingSSLRecommender]),
         )
 
 

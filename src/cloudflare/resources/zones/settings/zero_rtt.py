@@ -24,7 +24,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import Zones0rtt, zero_rtt_edit_params
+from ....types.zones.settings import ZoneSetting0rtt, zero_rtt_edit_params
 
 __all__ = ["ZeroRTT", "AsyncZeroRTT"]
 
@@ -49,7 +49,7 @@ class ZeroRTT(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Zones0rtt]:
+    ) -> Optional[ZoneSetting0rtt]:
         """
         Changes the 0-RTT session resumption setting.
 
@@ -78,7 +78,7 @@ class ZeroRTT(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Zones0rtt]], ResultWrapper[Zones0rtt]),
+            cast_to=cast(Type[Optional[ZoneSetting0rtt]], ResultWrapper[ZoneSetting0rtt]),
         )
 
     def get(
@@ -91,7 +91,7 @@ class ZeroRTT(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Zones0rtt]:
+    ) -> Optional[ZoneSetting0rtt]:
         """
         Gets 0-RTT session resumption setting.
 
@@ -117,7 +117,7 @@ class ZeroRTT(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Zones0rtt]], ResultWrapper[Zones0rtt]),
+            cast_to=cast(Type[Optional[ZoneSetting0rtt]], ResultWrapper[ZoneSetting0rtt]),
         )
 
 
@@ -141,7 +141,7 @@ class AsyncZeroRTT(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Zones0rtt]:
+    ) -> Optional[ZoneSetting0rtt]:
         """
         Changes the 0-RTT session resumption setting.
 
@@ -170,7 +170,7 @@ class AsyncZeroRTT(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Zones0rtt]], ResultWrapper[Zones0rtt]),
+            cast_to=cast(Type[Optional[ZoneSetting0rtt]], ResultWrapper[ZoneSetting0rtt]),
         )
 
     async def get(
@@ -183,7 +183,7 @@ class AsyncZeroRTT(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Zones0rtt]:
+    ) -> Optional[ZoneSetting0rtt]:
         """
         Gets 0-RTT session resumption setting.
 
@@ -209,7 +209,7 @@ class AsyncZeroRTT(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Zones0rtt]], ResultWrapper[Zones0rtt]),
+            cast_to=cast(Type[Optional[ZoneSetting0rtt]], ResultWrapper[ZoneSetting0rtt]),
         )
 
 

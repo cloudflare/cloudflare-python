@@ -27,7 +27,7 @@ from .....types.zero_trust.devices.policies import (
     ExcludeGetResponse,
     ExcludeListResponse,
     ExcludeUpdateResponse,
-    TeamsDevicesSplitTunnelParam,
+    DevicesSplitTunnelParam,
     exclude_update_params,
 )
 
@@ -47,7 +47,7 @@ class Excludes(SyncAPIResource):
         self,
         *,
         account_id: str,
-        body: Iterable[TeamsDevicesSplitTunnelParam],
+        body: Iterable[DevicesSplitTunnelParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -176,7 +176,7 @@ class AsyncExcludes(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        body: Iterable[TeamsDevicesSplitTunnelParam],
+        body: Iterable[DevicesSplitTunnelParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

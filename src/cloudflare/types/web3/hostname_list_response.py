@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .dweb_config_web3_hostname import DwebConfigWeb3Hostname
+from .distributed_web_hostname import DistributedWebHostname
 
 __all__ = ["HostnameListResponse"]
 
-HostnameListResponse = List[DwebConfigWeb3Hostname]
+HostnameListResponse = List[DistributedWebHostname]

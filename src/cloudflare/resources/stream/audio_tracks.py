@@ -24,8 +24,8 @@ from ..._base_client import (
     make_request_options,
 )
 from ...types.stream import (
+    StreamAudio,
     AudioTrackGetResponse,
-    StreamAdditionalAudio,
     AudioTrackDeleteResponse,
     audio_track_copy_params,
     audio_track_edit_params,
@@ -112,7 +112,7 @@ class AudioTracks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> StreamAdditionalAudio:
+    ) -> StreamAudio:
         """
         Adds an additional audio track to a video using the provided audio track URL.
 
@@ -156,7 +156,7 @@ class AudioTracks(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[StreamAdditionalAudio], ResultWrapper[StreamAdditionalAudio]),
+            cast_to=cast(Type[StreamAudio], ResultWrapper[StreamAudio]),
         )
 
     def edit(
@@ -173,7 +173,7 @@ class AudioTracks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> StreamAdditionalAudio:
+    ) -> StreamAudio:
         """Edits additional audio tracks on a video.
 
         Editing the default status of an audio
@@ -222,7 +222,7 @@ class AudioTracks(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[StreamAdditionalAudio], ResultWrapper[StreamAdditionalAudio]),
+            cast_to=cast(Type[StreamAudio], ResultWrapper[StreamAudio]),
         )
 
     def get(
@@ -350,7 +350,7 @@ class AsyncAudioTracks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> StreamAdditionalAudio:
+    ) -> StreamAudio:
         """
         Adds an additional audio track to a video using the provided audio track URL.
 
@@ -394,7 +394,7 @@ class AsyncAudioTracks(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[StreamAdditionalAudio], ResultWrapper[StreamAdditionalAudio]),
+            cast_to=cast(Type[StreamAudio], ResultWrapper[StreamAudio]),
         )
 
     async def edit(
@@ -411,7 +411,7 @@ class AsyncAudioTracks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> StreamAdditionalAudio:
+    ) -> StreamAudio:
         """Edits additional audio tracks on a video.
 
         Editing the default status of an audio
@@ -460,7 +460,7 @@ class AsyncAudioTracks(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[StreamAdditionalAudio], ResultWrapper[StreamAdditionalAudio]),
+            cast_to=cast(Type[StreamAudio], ResultWrapper[StreamAudio]),
         )
 
     async def get(

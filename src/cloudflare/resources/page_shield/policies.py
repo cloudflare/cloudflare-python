@@ -24,12 +24,7 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.page_shield import (
-    PolicyListResponse,
-    PageShieldPageshieldPolicy,
-    policy_create_params,
-    policy_update_params,
-)
+from ...types.page_shield import PageShieldPolicy, PolicyListResponse, policy_create_params, policy_update_params
 
 __all__ = ["Policies", "AsyncPolicies"]
 
@@ -58,7 +53,7 @@ class Policies(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PageShieldPageshieldPolicy:
+    ) -> PageShieldPolicy:
         """
         Create a Page Shield policy.
 
@@ -101,7 +96,7 @@ class Policies(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PageShieldPageshieldPolicy,
+            cast_to=PageShieldPolicy,
         )
 
     def update(
@@ -120,7 +115,7 @@ class Policies(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PageShieldPageshieldPolicy:
+    ) -> PageShieldPolicy:
         """
         Update a Page Shield policy by ID.
 
@@ -167,7 +162,7 @@ class Policies(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PageShieldPageshieldPolicy,
+            cast_to=PageShieldPolicy,
         )
 
     def list(
@@ -261,7 +256,7 @@ class Policies(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PageShieldPageshieldPolicy:
+    ) -> PageShieldPolicy:
         """
         Fetches a Page Shield policy by ID.
 
@@ -287,7 +282,7 @@ class Policies(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PageShieldPageshieldPolicy,
+            cast_to=PageShieldPolicy,
         )
 
 
@@ -315,7 +310,7 @@ class AsyncPolicies(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PageShieldPageshieldPolicy:
+    ) -> PageShieldPolicy:
         """
         Create a Page Shield policy.
 
@@ -358,7 +353,7 @@ class AsyncPolicies(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PageShieldPageshieldPolicy,
+            cast_to=PageShieldPolicy,
         )
 
     async def update(
@@ -377,7 +372,7 @@ class AsyncPolicies(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PageShieldPageshieldPolicy:
+    ) -> PageShieldPolicy:
         """
         Update a Page Shield policy by ID.
 
@@ -424,7 +419,7 @@ class AsyncPolicies(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PageShieldPageshieldPolicy,
+            cast_to=PageShieldPolicy,
         )
 
     async def list(
@@ -518,7 +513,7 @@ class AsyncPolicies(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PageShieldPageshieldPolicy:
+    ) -> PageShieldPolicy:
         """
         Fetches a Page Shield policy by ID.
 
@@ -544,7 +539,7 @@ class AsyncPolicies(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PageShieldPageshieldPolicy,
+            cast_to=PageShieldPolicy,
         )
 
 

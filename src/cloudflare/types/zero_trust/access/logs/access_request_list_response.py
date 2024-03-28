@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .access_access_requests import AccessAccessRequests
+from .zero_trust_access_requests import ZeroTrustAccessRequests
 
 __all__ = ["AccessRequestListResponse"]
 
-AccessRequestListResponse = List[AccessAccessRequests]
+AccessRequestListResponse = List[ZeroTrustAccessRequests]

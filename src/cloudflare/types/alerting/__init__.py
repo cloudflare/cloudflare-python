@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from .aaa_history import AaaHistory as AaaHistory
-from .aaa_policies import AaaPolicies as AaaPolicies
+from .alerting_history import AlertingHistory as AlertingHistory
+from .alerting_policies import AlertingPolicies as AlertingPolicies
 from .history_list_params import HistoryListParams as HistoryListParams
 from .policy_create_params import PolicyCreateParams as PolicyCreateParams
 from .policy_list_response import PolicyListResponse as PolicyListResponse

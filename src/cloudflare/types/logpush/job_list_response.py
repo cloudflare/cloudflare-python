@@ -2,8 +2,8 @@
 
 from typing import List, Optional
 
-from .datasets import LogpushLogpushJob
+from .datasets import LogpushJob
 
 __all__ = ["JobListResponse"]
 
-JobListResponse = List[Optional[LogpushLogpushJob]]
+JobListResponse = List[Optional[LogpushJob]]

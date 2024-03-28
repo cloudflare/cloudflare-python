@@ -25,7 +25,7 @@ from ..._base_client import (
     make_request_options,
 )
 from ...types.alerting import (
-    AaaPolicies,
+    AlertingPolicies,
     PolicyListResponse,
     PolicyCreateResponse,
     PolicyDeleteResponse,
@@ -409,7 +409,7 @@ class Policies(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AaaPolicies:
+    ) -> AlertingPolicies:
         """
         Get details for a single policy.
 
@@ -439,7 +439,7 @@ class Policies(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AaaPolicies], ResultWrapper[AaaPolicies]),
+            cast_to=cast(Type[AlertingPolicies], ResultWrapper[AlertingPolicies]),
         )
 
 
@@ -815,7 +815,7 @@ class AsyncPolicies(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AaaPolicies:
+    ) -> AlertingPolicies:
         """
         Get details for a single policy.
 
@@ -845,7 +845,7 @@ class AsyncPolicies(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AaaPolicies], ResultWrapper[AaaPolicies]),
+            cast_to=cast(Type[AlertingPolicies], ResultWrapper[AlertingPolicies]),
         )
 
 

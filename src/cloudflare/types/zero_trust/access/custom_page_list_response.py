@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .access_custom_page_without_html import AccessCustomPageWithoutHTML
+from .zero_trust_custom_page_without_html import ZeroTrustCustomPageWithoutHTML
 
 __all__ = ["CustomPageListResponse"]
 
-CustomPageListResponse = List[AccessCustomPageWithoutHTML]
+CustomPageListResponse = List[ZeroTrustCustomPageWithoutHTML]

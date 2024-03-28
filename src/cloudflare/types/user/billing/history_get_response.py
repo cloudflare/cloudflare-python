@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .bill_subs_api_billing_history import BillSubsAPIBillingHistory
+from .billing_history import BillingHistory
 
 __all__ = ["HistoryGetResponse"]
 
-HistoryGetResponse = List[BillSubsAPIBillingHistory]
+HistoryGetResponse = List[BillingHistory]

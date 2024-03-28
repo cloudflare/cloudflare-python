@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .bill_subs_api_available_rate_plan import BillSubsAPIAvailableRatePlan
+from .available_rate_plan import AvailableRatePlan
 
 __all__ = ["PlanListResponse"]
 
-PlanListResponse = List[BillSubsAPIAvailableRatePlan]
+PlanListResponse = List[AvailableRatePlan]

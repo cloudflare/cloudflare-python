@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .teams_devices_devices import TeamsDevicesDevices
+from .zero_trust_devices import ZeroTrustDevices
 
 __all__ = ["DeviceListResponse"]
 
-DeviceListResponse = List[TeamsDevicesDevices]
+DeviceListResponse = List[ZeroTrustDevices]

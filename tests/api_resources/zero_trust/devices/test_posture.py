@@ -10,9 +10,9 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types.zero_trust.devices import (
+    DevicePostureRules,
     PostureListResponse,
     PostureDeleteResponse,
-    TeamsDevicesDevicePostureRules,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -29,7 +29,7 @@ class TestPosture:
             name="Admin Serial Numbers",
             type="file",
         )
-        assert_matches_type(Optional[TeamsDevicesDevicePostureRules], posture, path=["response"])
+        assert_matches_type(Optional[DevicePostureRules], posture, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -50,7 +50,7 @@ class TestPosture:
             match=[{"platform": "windows"}, {"platform": "windows"}, {"platform": "windows"}],
             schedule="1h",
         )
-        assert_matches_type(Optional[TeamsDevicesDevicePostureRules], posture, path=["response"])
+        assert_matches_type(Optional[DevicePostureRules], posture, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -64,7 +64,7 @@ class TestPosture:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         posture = response.parse()
-        assert_matches_type(Optional[TeamsDevicesDevicePostureRules], posture, path=["response"])
+        assert_matches_type(Optional[DevicePostureRules], posture, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -78,7 +78,7 @@ class TestPosture:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             posture = response.parse()
-            assert_matches_type(Optional[TeamsDevicesDevicePostureRules], posture, path=["response"])
+            assert_matches_type(Optional[DevicePostureRules], posture, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -101,7 +101,7 @@ class TestPosture:
             name="Admin Serial Numbers",
             type="file",
         )
-        assert_matches_type(Optional[TeamsDevicesDevicePostureRules], posture, path=["response"])
+        assert_matches_type(Optional[DevicePostureRules], posture, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -123,7 +123,7 @@ class TestPosture:
             match=[{"platform": "windows"}, {"platform": "windows"}, {"platform": "windows"}],
             schedule="1h",
         )
-        assert_matches_type(Optional[TeamsDevicesDevicePostureRules], posture, path=["response"])
+        assert_matches_type(Optional[DevicePostureRules], posture, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -138,7 +138,7 @@ class TestPosture:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         posture = response.parse()
-        assert_matches_type(Optional[TeamsDevicesDevicePostureRules], posture, path=["response"])
+        assert_matches_type(Optional[DevicePostureRules], posture, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -153,7 +153,7 @@ class TestPosture:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             posture = response.parse()
-            assert_matches_type(Optional[TeamsDevicesDevicePostureRules], posture, path=["response"])
+            assert_matches_type(Optional[DevicePostureRules], posture, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -277,7 +277,7 @@ class TestPosture:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[TeamsDevicesDevicePostureRules], posture, path=["response"])
+        assert_matches_type(Optional[DevicePostureRules], posture, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -290,7 +290,7 @@ class TestPosture:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         posture = response.parse()
-        assert_matches_type(Optional[TeamsDevicesDevicePostureRules], posture, path=["response"])
+        assert_matches_type(Optional[DevicePostureRules], posture, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -303,7 +303,7 @@ class TestPosture:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             posture = response.parse()
-            assert_matches_type(Optional[TeamsDevicesDevicePostureRules], posture, path=["response"])
+            assert_matches_type(Optional[DevicePostureRules], posture, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -334,7 +334,7 @@ class TestAsyncPosture:
             name="Admin Serial Numbers",
             type="file",
         )
-        assert_matches_type(Optional[TeamsDevicesDevicePostureRules], posture, path=["response"])
+        assert_matches_type(Optional[DevicePostureRules], posture, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -355,7 +355,7 @@ class TestAsyncPosture:
             match=[{"platform": "windows"}, {"platform": "windows"}, {"platform": "windows"}],
             schedule="1h",
         )
-        assert_matches_type(Optional[TeamsDevicesDevicePostureRules], posture, path=["response"])
+        assert_matches_type(Optional[DevicePostureRules], posture, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -369,7 +369,7 @@ class TestAsyncPosture:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         posture = await response.parse()
-        assert_matches_type(Optional[TeamsDevicesDevicePostureRules], posture, path=["response"])
+        assert_matches_type(Optional[DevicePostureRules], posture, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -383,7 +383,7 @@ class TestAsyncPosture:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             posture = await response.parse()
-            assert_matches_type(Optional[TeamsDevicesDevicePostureRules], posture, path=["response"])
+            assert_matches_type(Optional[DevicePostureRules], posture, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -406,7 +406,7 @@ class TestAsyncPosture:
             name="Admin Serial Numbers",
             type="file",
         )
-        assert_matches_type(Optional[TeamsDevicesDevicePostureRules], posture, path=["response"])
+        assert_matches_type(Optional[DevicePostureRules], posture, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -428,7 +428,7 @@ class TestAsyncPosture:
             match=[{"platform": "windows"}, {"platform": "windows"}, {"platform": "windows"}],
             schedule="1h",
         )
-        assert_matches_type(Optional[TeamsDevicesDevicePostureRules], posture, path=["response"])
+        assert_matches_type(Optional[DevicePostureRules], posture, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -443,7 +443,7 @@ class TestAsyncPosture:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         posture = await response.parse()
-        assert_matches_type(Optional[TeamsDevicesDevicePostureRules], posture, path=["response"])
+        assert_matches_type(Optional[DevicePostureRules], posture, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -458,7 +458,7 @@ class TestAsyncPosture:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             posture = await response.parse()
-            assert_matches_type(Optional[TeamsDevicesDevicePostureRules], posture, path=["response"])
+            assert_matches_type(Optional[DevicePostureRules], posture, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -582,7 +582,7 @@ class TestAsyncPosture:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[TeamsDevicesDevicePostureRules], posture, path=["response"])
+        assert_matches_type(Optional[DevicePostureRules], posture, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -595,7 +595,7 @@ class TestAsyncPosture:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         posture = await response.parse()
-        assert_matches_type(Optional[TeamsDevicesDevicePostureRules], posture, path=["response"])
+        assert_matches_type(Optional[DevicePostureRules], posture, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -608,7 +608,7 @@ class TestAsyncPosture:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             posture = await response.parse()
-            assert_matches_type(Optional[TeamsDevicesDevicePostureRules], posture, path=["response"])
+            assert_matches_type(Optional[DevicePostureRules], posture, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

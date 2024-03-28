@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from .stream_keys import StreamKeys as StreamKeys
+from .stream_audio import StreamAudio as StreamAudio
 from .stream_captions import StreamCaptions as StreamCaptions
 from .stream_clipping import StreamClipping as StreamClipping
 from .key_get_response import KeyGetResponse as KeyGetResponse
@@ -25,7 +26,6 @@ from .audio_track_copy_params import AudioTrackCopyParams as AudioTrackCopyParam
 from .audio_track_edit_params import AudioTrackEditParams as AudioTrackEditParams
 from .caption_delete_response import CaptionDeleteResponse as CaptionDeleteResponse
 from .caption_update_response import CaptionUpdateResponse as CaptionUpdateResponse
-from .stream_additional_audio import StreamAdditionalAudio as StreamAdditionalAudio
 from .watermark_create_params import WatermarkCreateParams as WatermarkCreateParams
 from .watermark_list_response import WatermarkListResponse as WatermarkListResponse
 from .webhook_delete_response import WebhookDeleteResponse as WebhookDeleteResponse

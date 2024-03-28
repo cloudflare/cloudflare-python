@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .workers_namespace import WorkersNamespace
+from .durable_object_namespace import DurableObjectNamespace
 
 __all__ = ["NamespaceListResponse"]
 
-NamespaceListResponse = List[WorkersNamespace]
+NamespaceListResponse = List[DurableObjectNamespace]

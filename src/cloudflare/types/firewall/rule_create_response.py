@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .legacy_jhs_filter_rule import LegacyJhsFilterRule
+from .firewall_filter_rule import FirewallFilterRule
 
 __all__ = ["RuleCreateResponse"]
 
-RuleCreateResponse = List[LegacyJhsFilterRule]
+RuleCreateResponse = List[FirewallFilterRule]

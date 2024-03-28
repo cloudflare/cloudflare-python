@@ -10,7 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types.logpush import JobListResponse, JobDeleteResponse
-from cloudflare.types.logpush.datasets import LogpushLogpushJob
+from cloudflare.types.logpush.datasets import LogpushJob
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -26,7 +26,7 @@ class TestJobs:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[LogpushLogpushJob], job, path=["response"])
+        assert_matches_type(Optional[LogpushJob], job, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -56,7 +56,7 @@ class TestJobs:
             },
             ownership_challenge="00000000000000000000",
         )
-        assert_matches_type(Optional[LogpushLogpushJob], job, path=["response"])
+        assert_matches_type(Optional[LogpushJob], job, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -70,7 +70,7 @@ class TestJobs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         job = response.parse()
-        assert_matches_type(Optional[LogpushLogpushJob], job, path=["response"])
+        assert_matches_type(Optional[LogpushJob], job, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -84,7 +84,7 @@ class TestJobs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             job = response.parse()
-            assert_matches_type(Optional[LogpushLogpushJob], job, path=["response"])
+            assert_matches_type(Optional[LogpushJob], job, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -113,7 +113,7 @@ class TestJobs:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[LogpushLogpushJob], job, path=["response"])
+        assert_matches_type(Optional[LogpushJob], job, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -142,7 +142,7 @@ class TestJobs:
             },
             ownership_challenge="00000000000000000000",
         )
-        assert_matches_type(Optional[LogpushLogpushJob], job, path=["response"])
+        assert_matches_type(Optional[LogpushJob], job, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -156,7 +156,7 @@ class TestJobs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         job = response.parse()
-        assert_matches_type(Optional[LogpushLogpushJob], job, path=["response"])
+        assert_matches_type(Optional[LogpushJob], job, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -170,7 +170,7 @@ class TestJobs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             job = response.parse()
-            assert_matches_type(Optional[LogpushLogpushJob], job, path=["response"])
+            assert_matches_type(Optional[LogpushJob], job, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -327,7 +327,7 @@ class TestJobs:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[LogpushLogpushJob], job, path=["response"])
+        assert_matches_type(Optional[LogpushJob], job, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -337,7 +337,7 @@ class TestJobs:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[LogpushLogpushJob], job, path=["response"])
+        assert_matches_type(Optional[LogpushJob], job, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -351,7 +351,7 @@ class TestJobs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         job = response.parse()
-        assert_matches_type(Optional[LogpushLogpushJob], job, path=["response"])
+        assert_matches_type(Optional[LogpushJob], job, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -365,7 +365,7 @@ class TestJobs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             job = response.parse()
-            assert_matches_type(Optional[LogpushLogpushJob], job, path=["response"])
+            assert_matches_type(Optional[LogpushJob], job, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -398,7 +398,7 @@ class TestAsyncJobs:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[LogpushLogpushJob], job, path=["response"])
+        assert_matches_type(Optional[LogpushJob], job, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -428,7 +428,7 @@ class TestAsyncJobs:
             },
             ownership_challenge="00000000000000000000",
         )
-        assert_matches_type(Optional[LogpushLogpushJob], job, path=["response"])
+        assert_matches_type(Optional[LogpushJob], job, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -442,7 +442,7 @@ class TestAsyncJobs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         job = await response.parse()
-        assert_matches_type(Optional[LogpushLogpushJob], job, path=["response"])
+        assert_matches_type(Optional[LogpushJob], job, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -456,7 +456,7 @@ class TestAsyncJobs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             job = await response.parse()
-            assert_matches_type(Optional[LogpushLogpushJob], job, path=["response"])
+            assert_matches_type(Optional[LogpushJob], job, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -485,7 +485,7 @@ class TestAsyncJobs:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[LogpushLogpushJob], job, path=["response"])
+        assert_matches_type(Optional[LogpushJob], job, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -514,7 +514,7 @@ class TestAsyncJobs:
             },
             ownership_challenge="00000000000000000000",
         )
-        assert_matches_type(Optional[LogpushLogpushJob], job, path=["response"])
+        assert_matches_type(Optional[LogpushJob], job, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -528,7 +528,7 @@ class TestAsyncJobs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         job = await response.parse()
-        assert_matches_type(Optional[LogpushLogpushJob], job, path=["response"])
+        assert_matches_type(Optional[LogpushJob], job, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -542,7 +542,7 @@ class TestAsyncJobs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             job = await response.parse()
-            assert_matches_type(Optional[LogpushLogpushJob], job, path=["response"])
+            assert_matches_type(Optional[LogpushJob], job, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -699,7 +699,7 @@ class TestAsyncJobs:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[LogpushLogpushJob], job, path=["response"])
+        assert_matches_type(Optional[LogpushJob], job, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -709,7 +709,7 @@ class TestAsyncJobs:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[LogpushLogpushJob], job, path=["response"])
+        assert_matches_type(Optional[LogpushJob], job, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -723,7 +723,7 @@ class TestAsyncJobs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         job = await response.parse()
-        assert_matches_type(Optional[LogpushLogpushJob], job, path=["response"])
+        assert_matches_type(Optional[LogpushJob], job, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -737,7 +737,7 @@ class TestAsyncJobs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             job = await response.parse()
-            assert_matches_type(Optional[LogpushLogpushJob], job, path=["response"])
+            assert_matches_type(Optional[LogpushJob], job, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
