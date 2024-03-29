@@ -2,7 +2,7 @@
 name = "cloudflare"
 version = "0.0.1"
 description = "The official Python library for the cloudflare API"
-readme = "README.md"
+dynamic = ["readme"]
 license = "Apache-2.0"
 authors = [
 { name = "Cloudflare", email = "api@cloudflare.com" },
@@ -88,7 +88,7 @@ typecheck = { chain = [
 "typecheck:mypy" = "mypy ."
 
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling", "hatch-fancy-pypi-readme"]
 build-backend = "hatchling.build"
 
 [tool.hatch.build]
@@ -98,6 +98,17 @@ include = [
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/cloudflare"]
+
+[tool.hatch.metadata.hooks.fancy-pypi-readme]
+content-type = "text/markdown"
+
+[[tool.hatch.metadata.hooks.fancy-pypi-readme.fragments]]
+path = "README.md"
+
+[[tool.hatch.metadata.hooks.fancy-pypi-readme.substitutions]]
+# replace relative links with absolute links
+pattern = '\[(.+?)\]\(((?!https?://)\S+?)\)'
+replacement = '[\1](https://github.com/cloudflare/cloudflare-python/tree/main/\g<2>)'
 
 [tool.black]
 line-length = 120
