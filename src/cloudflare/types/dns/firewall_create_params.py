@@ -35,9 +35,6 @@ class FirewallCreateParams(TypedDict, total=False):
     negative_cache_ttl: Optional[float]
     """Negative DNS Cache TTL."""
 
-    origin_ips: object
-    """Deprecated alias for "upstream_ips"."""
-
     ratelimit: Optional[float]
     """
     Ratelimit in queries per second per datacenter (applies to DNS queries sent to
@@ -57,9 +54,6 @@ class AttackMitigation(TypedDict, total=False):
     When enabled, random-prefix attacks are automatically mitigated and the upstream
     DNS servers protected.
     """
-
-    only_when_origin_unhealthy: object
-    """Deprecated alias for "only_when_upstream_unhealthy"."""
 
     only_when_upstream_unhealthy: bool
     """Only mitigate attacks when upstream servers seem unhealthy."""

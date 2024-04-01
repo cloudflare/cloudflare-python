@@ -70,7 +70,6 @@ class Firewall(SyncAPIResource):
         maximum_cache_ttl: float | NotGiven = NOT_GIVEN,
         minimum_cache_ttl: float | NotGiven = NOT_GIVEN,
         negative_cache_ttl: Optional[float] | NotGiven = NOT_GIVEN,
-        origin_ips: object | NotGiven = NOT_GIVEN,
         ratelimit: Optional[float] | NotGiven = NOT_GIVEN,
         retries: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -100,8 +99,6 @@ class Firewall(SyncAPIResource):
 
           negative_cache_ttl: Negative DNS Cache TTL.
 
-          origin_ips: Deprecated alias for "upstream_ips".
-
           ratelimit: Ratelimit in queries per second per datacenter (applies to DNS queries sent to
               the upstream nameservers configured on the cluster).
 
@@ -130,7 +127,6 @@ class Firewall(SyncAPIResource):
                     "maximum_cache_ttl": maximum_cache_ttl,
                     "minimum_cache_ttl": minimum_cache_ttl,
                     "negative_cache_ttl": negative_cache_ttl,
-                    "origin_ips": origin_ips,
                     "ratelimit": ratelimit,
                     "retries": retries,
                 },
@@ -256,7 +252,6 @@ class Firewall(SyncAPIResource):
         upstream_ips: List[Union[str, str]],
         attack_mitigation: Optional[firewall_edit_params.AttackMitigation] | NotGiven = NOT_GIVEN,
         negative_cache_ttl: Optional[float] | NotGiven = NOT_GIVEN,
-        origin_ips: object | NotGiven = NOT_GIVEN,
         ratelimit: Optional[float] | NotGiven = NOT_GIVEN,
         retries: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -287,8 +282,6 @@ class Firewall(SyncAPIResource):
           attack_mitigation: Attack mitigation settings.
 
           negative_cache_ttl: Negative DNS Cache TTL.
-
-          origin_ips: Deprecated alias for "upstream_ips".
 
           ratelimit: Ratelimit in queries per second per datacenter (applies to DNS queries sent to
               the upstream nameservers configured on the cluster).
@@ -321,7 +314,6 @@ class Firewall(SyncAPIResource):
                     "upstream_ips": upstream_ips,
                     "attack_mitigation": attack_mitigation,
                     "negative_cache_ttl": negative_cache_ttl,
-                    "origin_ips": origin_ips,
                     "ratelimit": ratelimit,
                     "retries": retries,
                 },
@@ -407,7 +399,6 @@ class AsyncFirewall(AsyncAPIResource):
         maximum_cache_ttl: float | NotGiven = NOT_GIVEN,
         minimum_cache_ttl: float | NotGiven = NOT_GIVEN,
         negative_cache_ttl: Optional[float] | NotGiven = NOT_GIVEN,
-        origin_ips: object | NotGiven = NOT_GIVEN,
         ratelimit: Optional[float] | NotGiven = NOT_GIVEN,
         retries: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -437,8 +428,6 @@ class AsyncFirewall(AsyncAPIResource):
 
           negative_cache_ttl: Negative DNS Cache TTL.
 
-          origin_ips: Deprecated alias for "upstream_ips".
-
           ratelimit: Ratelimit in queries per second per datacenter (applies to DNS queries sent to
               the upstream nameservers configured on the cluster).
 
@@ -467,7 +456,6 @@ class AsyncFirewall(AsyncAPIResource):
                     "maximum_cache_ttl": maximum_cache_ttl,
                     "minimum_cache_ttl": minimum_cache_ttl,
                     "negative_cache_ttl": negative_cache_ttl,
-                    "origin_ips": origin_ips,
                     "ratelimit": ratelimit,
                     "retries": retries,
                 },
@@ -593,7 +581,6 @@ class AsyncFirewall(AsyncAPIResource):
         upstream_ips: List[Union[str, str]],
         attack_mitigation: Optional[firewall_edit_params.AttackMitigation] | NotGiven = NOT_GIVEN,
         negative_cache_ttl: Optional[float] | NotGiven = NOT_GIVEN,
-        origin_ips: object | NotGiven = NOT_GIVEN,
         ratelimit: Optional[float] | NotGiven = NOT_GIVEN,
         retries: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -624,8 +611,6 @@ class AsyncFirewall(AsyncAPIResource):
           attack_mitigation: Attack mitigation settings.
 
           negative_cache_ttl: Negative DNS Cache TTL.
-
-          origin_ips: Deprecated alias for "upstream_ips".
 
           ratelimit: Ratelimit in queries per second per datacenter (applies to DNS queries sent to
               the upstream nameservers configured on the cluster).
@@ -658,7 +643,6 @@ class AsyncFirewall(AsyncAPIResource):
                     "upstream_ips": upstream_ips,
                     "attack_mitigation": attack_mitigation,
                     "negative_cache_ttl": negative_cache_ttl,
-                    "origin_ips": origin_ips,
                     "ratelimit": ratelimit,
                     "retries": retries,
                 },

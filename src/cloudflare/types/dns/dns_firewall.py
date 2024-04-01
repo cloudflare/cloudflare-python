@@ -15,9 +15,6 @@ class AttackMitigation(BaseModel):
     DNS servers protected.
     """
 
-    only_when_origin_unhealthy: Optional[object] = None
-    """Deprecated alias for "only_when_upstream_unhealthy"."""
-
     only_when_upstream_unhealthy: Optional[bool] = None
     """Only mitigate attacks when upstream servers seem unhealthy."""
 
@@ -53,9 +50,6 @@ class DNSFirewall(BaseModel):
 
     negative_cache_ttl: Optional[float] = None
     """Negative DNS Cache TTL."""
-
-    origin_ips: Optional[object] = None
-    """Deprecated alias for "upstream_ips"."""
 
     ratelimit: Optional[float] = None
     """
