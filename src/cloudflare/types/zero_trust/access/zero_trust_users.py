@@ -32,10 +32,10 @@ class ZeroTrustUsers(BaseModel):
     name: Optional[str] = None
     """The name of the user."""
 
-    seat_uid: Optional[object] = None
+    seat_uid: Optional[str] = None
     """The unique API identifier for the Zero Trust seat."""
 
-    uid: Optional[object] = None
+    uid: Optional[str] = None
     """The unique API identifier for the user."""
 
     updated_at: Optional[datetime] = None

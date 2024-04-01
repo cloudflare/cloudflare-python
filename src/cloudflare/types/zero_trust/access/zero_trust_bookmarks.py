@@ -9,7 +9,7 @@ __all__ = ["ZeroTrustBookmarks"]
 
 
 class ZeroTrustBookmarks(BaseModel):
-    id: Optional[object] = None
+    id: Optional[str] = None
     """The unique identifier for the Bookmark application."""
 
     app_launcher_visible: Optional[bool] = None

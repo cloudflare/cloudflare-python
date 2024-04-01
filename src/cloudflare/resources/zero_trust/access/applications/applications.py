@@ -620,7 +620,7 @@ class Applications(SyncAPIResource):
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        app_launcher_visible: object | NotGiven = NOT_GIVEN,
+        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         domain: str | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
@@ -640,6 +640,8 @@ class Applications(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          app_launcher_visible: Displays the application in the App Launcher.
 
           domain: The URL or domain of the bookmark.
 
@@ -673,7 +675,7 @@ class Applications(SyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
         allowed_idps: List[str] | NotGiven = NOT_GIVEN,
-        app_launcher_visible: bool | object | NotGiven = NOT_GIVEN,
+        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
         cors_headers: application_create_params.SelfHostedApplicationCorsHeaders | NotGiven = NOT_GIVEN,
         custom_deny_message: str | NotGiven = NOT_GIVEN,
@@ -1320,7 +1322,7 @@ class Applications(SyncAPIResource):
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        app_launcher_visible: object | NotGiven = NOT_GIVEN,
+        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         domain: str | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
@@ -1342,6 +1344,8 @@ class Applications(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          app_launcher_visible: Displays the application in the App Launcher.
 
           domain: The URL or domain of the bookmark.
 
@@ -1376,7 +1380,7 @@ class Applications(SyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
         allowed_idps: List[str] | NotGiven = NOT_GIVEN,
-        app_launcher_visible: bool | object | NotGiven = NOT_GIVEN,
+        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
         cors_headers: application_update_params.SelfHostedApplicationCorsHeaders | NotGiven = NOT_GIVEN,
         custom_deny_message: str | NotGiven = NOT_GIVEN,
@@ -2254,7 +2258,7 @@ class AsyncApplications(AsyncAPIResource):
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        app_launcher_visible: object | NotGiven = NOT_GIVEN,
+        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         domain: str | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
@@ -2274,6 +2278,8 @@ class AsyncApplications(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          app_launcher_visible: Displays the application in the App Launcher.
 
           domain: The URL or domain of the bookmark.
 
@@ -2307,7 +2313,7 @@ class AsyncApplications(AsyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
         allowed_idps: List[str] | NotGiven = NOT_GIVEN,
-        app_launcher_visible: bool | object | NotGiven = NOT_GIVEN,
+        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
         cors_headers: application_create_params.SelfHostedApplicationCorsHeaders | NotGiven = NOT_GIVEN,
         custom_deny_message: str | NotGiven = NOT_GIVEN,
@@ -2954,7 +2960,7 @@ class AsyncApplications(AsyncAPIResource):
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        app_launcher_visible: object | NotGiven = NOT_GIVEN,
+        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         domain: str | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
@@ -2976,6 +2982,8 @@ class AsyncApplications(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          app_launcher_visible: Displays the application in the App Launcher.
 
           domain: The URL or domain of the bookmark.
 
@@ -3010,7 +3018,7 @@ class AsyncApplications(AsyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
         allowed_idps: List[str] | NotGiven = NOT_GIVEN,
-        app_launcher_visible: bool | object | NotGiven = NOT_GIVEN,
+        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
         cors_headers: application_update_params.SelfHostedApplicationCorsHeaders | NotGiven = NOT_GIVEN,
         custom_deny_message: str | NotGiven = NOT_GIVEN,

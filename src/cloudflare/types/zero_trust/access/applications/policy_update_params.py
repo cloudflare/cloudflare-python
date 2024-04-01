@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union, Iterable
+from typing import List, Union, Iterable
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ....._utils import PropertyInfo
@@ -398,7 +398,7 @@ class ApprovalGroup(TypedDict, total=False):
     approvals_needed: Required[float]
     """The number of approvals needed to obtain access."""
 
-    email_addresses: Iterable[object]
+    email_addresses: List[str]
     """A list of emails that can approve the access request."""
 
     email_list_uuid: str
