@@ -1,5 +1,27 @@
 # Changelog
 
+## 3.0.0-beta.7 (2024-04-01)
+
+Full Changelog: [v3.0.0-beta.6...v3.0.0-beta.7](https://github.com/cloudflare/cloudflare-python/compare/v3.0.0-beta.6...v3.0.0-beta.7)
+
+### Features
+
+* **api:** OpenAPI spec update via Stainless API ([#189](https://github.com/cloudflare/cloudflare-python/issues/189)) ([4058dbb](https://github.com/cloudflare/cloudflare-python/commit/4058dbb8f270873b49bb12bd5c56186c9a74b380))
+* **api:** OpenAPI spec update via Stainless API ([#191](https://github.com/cloudflare/cloudflare-python/issues/191)) ([b705bb6](https://github.com/cloudflare/cloudflare-python/commit/b705bb679ef127492d0eac9abc54669c4c4263b0))
+* **api:** OpenAPI spec update via Stainless API ([#193](https://github.com/cloudflare/cloudflare-python/issues/193)) ([d19970f](https://github.com/cloudflare/cloudflare-python/commit/d19970f8a9bc6ae9bbd30b59b8406007a79a3401))
+* **api:** OpenAPI spec update via Stainless API ([#194](https://github.com/cloudflare/cloudflare-python/issues/194)) ([d2bad01](https://github.com/cloudflare/cloudflare-python/commit/d2bad015a9a95405d4f770bdd579a2de821e835f))
+* **api:** OpenAPI spec update via Stainless API ([#195](https://github.com/cloudflare/cloudflare-python/issues/195)) ([7b2beb3](https://github.com/cloudflare/cloudflare-python/commit/7b2beb3e0cf0bf5415b3cf434ab36cf54546c864))
+* **api:** update via SDK Studio ([#180](https://github.com/cloudflare/cloudflare-python/issues/180)) ([0ad46e1](https://github.com/cloudflare/cloudflare-python/commit/0ad46e17772a799cd8a3be894f5a81da0d055ad0))
+* **api:** update via SDK Studio ([#182](https://github.com/cloudflare/cloudflare-python/issues/182)) ([5fd3378](https://github.com/cloudflare/cloudflare-python/commit/5fd33784fbb92a0ac2b98f6835287cc6397cb955))
+* **api:** update via SDK Studio ([#183](https://github.com/cloudflare/cloudflare-python/issues/183)) ([1fecb6d](https://github.com/cloudflare/cloudflare-python/commit/1fecb6d96a53f2139d152e0374b08c2eb068592b))
+* **api:** update via SDK Studio ([#184](https://github.com/cloudflare/cloudflare-python/issues/184)) ([f0b4983](https://github.com/cloudflare/cloudflare-python/commit/f0b49831d42186dc6b187b274e23f2f03907070f))
+* **api:** update via SDK Studio ([#185](https://github.com/cloudflare/cloudflare-python/issues/185)) ([2df49c1](https://github.com/cloudflare/cloudflare-python/commit/2df49c12d18c610d41497c56013f4e4eb9e0124b))
+* **api:** update via SDK Studio ([#186](https://github.com/cloudflare/cloudflare-python/issues/186)) ([c2435a8](https://github.com/cloudflare/cloudflare-python/commit/c2435a8988667dbfb08810f26507cd2f21a7faf2))
+* **api:** update via SDK Studio ([#187](https://github.com/cloudflare/cloudflare-python/issues/187)) ([16b6e68](https://github.com/cloudflare/cloudflare-python/commit/16b6e68d27670f443c9cd01c65a6006e839db8a9))
+* **api:** update via SDK Studio ([#188](https://github.com/cloudflare/cloudflare-python/issues/188)) ([71da3ed](https://github.com/cloudflare/cloudflare-python/commit/71da3ed76c65bcb5e14bb964c98327f797ad1c1c))
+* **api:** update via SDK Studio ([#190](https://github.com/cloudflare/cloudflare-python/issues/190)) ([54b6344](https://github.com/cloudflare/cloudflare-python/commit/54b63444f5d4492dbb12c4736936f82e66ef07c2))
+* **api:** update via SDK Studio ([#192](https://github.com/cloudflare/cloudflare-python/issues/192)) ([5d528fc](https://github.com/cloudflare/cloudflare-python/commit/5d528fcf8a7f45e7b5394bed02997a0c91b2d55d))
+
 ## 3.0.0-beta.6 (2024-03-27)
 
 Full Changelog: [v3.0.0-beta.5...v3.0.0-beta.6](https://github.com/cloudflare/cloudflare-python/compare/v3.0.0-beta.5...v3.0.0-beta.6)
