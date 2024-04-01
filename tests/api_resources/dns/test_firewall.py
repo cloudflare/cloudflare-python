@@ -40,7 +40,6 @@ class TestFirewall:
             upstream_ips=["192.0.2.1", "198.51.100.1", "2001:DB8:100::CF"],
             attack_mitigation={
                 "enabled": True,
-                "only_when_origin_unhealthy": {},
                 "only_when_upstream_unhealthy": False,
             },
             deprecate_any_requests=True,
@@ -48,7 +47,6 @@ class TestFirewall:
             maximum_cache_ttl=900,
             minimum_cache_ttl=60,
             negative_cache_ttl=900,
-            origin_ips={},
             ratelimit=600,
             retries=2,
         )
@@ -229,11 +227,9 @@ class TestFirewall:
             upstream_ips=["192.0.2.1", "198.51.100.1", "2001:DB8:100::CF"],
             attack_mitigation={
                 "enabled": True,
-                "only_when_origin_unhealthy": {},
                 "only_when_upstream_unhealthy": False,
             },
             negative_cache_ttl=900,
-            origin_ips={},
             ratelimit=600,
             retries=2,
         )
@@ -385,7 +381,6 @@ class TestAsyncFirewall:
             upstream_ips=["192.0.2.1", "198.51.100.1", "2001:DB8:100::CF"],
             attack_mitigation={
                 "enabled": True,
-                "only_when_origin_unhealthy": {},
                 "only_when_upstream_unhealthy": False,
             },
             deprecate_any_requests=True,
@@ -393,7 +388,6 @@ class TestAsyncFirewall:
             maximum_cache_ttl=900,
             minimum_cache_ttl=60,
             negative_cache_ttl=900,
-            origin_ips={},
             ratelimit=600,
             retries=2,
         )
@@ -574,11 +568,9 @@ class TestAsyncFirewall:
             upstream_ips=["192.0.2.1", "198.51.100.1", "2001:DB8:100::CF"],
             attack_mitigation={
                 "enabled": True,
-                "only_when_origin_unhealthy": {},
                 "only_when_upstream_unhealthy": False,
             },
             negative_cache_ttl=900,
-            origin_ips={},
             ratelimit=600,
             retries=2,
         )
