@@ -9,7 +9,7 @@ __all__ = ["ZeroTrustCertificates"]
 
 
 class ZeroTrustCertificates(BaseModel):
-    id: Optional[object] = None
+    id: Optional[str] = None
     """The ID of the application that will use this certificate."""
 
     associated_hostnames: Optional[List[str]] = None

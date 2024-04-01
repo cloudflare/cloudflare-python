@@ -43,7 +43,7 @@ class SelfHostedApplicationCorsHeaders(BaseModel):
     client certificates) with requests.
     """
 
-    allowed_headers: Optional[List[object]] = None
+    allowed_headers: Optional[List[str]] = None
     """Allowed HTTP request headers."""
 
     allowed_methods: Optional[
@@ -51,7 +51,7 @@ class SelfHostedApplicationCorsHeaders(BaseModel):
     ] = None
     """Allowed HTTP request methods."""
 
-    allowed_origins: Optional[List[object]] = None
+    allowed_origins: Optional[List[str]] = None
     """Allowed origins."""
 
     max_age: Optional[float] = None
@@ -367,7 +367,7 @@ class BrowserSSHApplicationCorsHeaders(BaseModel):
     client certificates) with requests.
     """
 
-    allowed_headers: Optional[List[object]] = None
+    allowed_headers: Optional[List[str]] = None
     """Allowed HTTP request headers."""
 
     allowed_methods: Optional[
@@ -375,7 +375,7 @@ class BrowserSSHApplicationCorsHeaders(BaseModel):
     ] = None
     """Allowed HTTP request methods."""
 
-    allowed_origins: Optional[List[object]] = None
+    allowed_origins: Optional[List[str]] = None
     """Allowed origins."""
 
     max_age: Optional[float] = None
@@ -520,7 +520,7 @@ class BrowserVncApplicationCorsHeaders(BaseModel):
     client certificates) with requests.
     """
 
-    allowed_headers: Optional[List[object]] = None
+    allowed_headers: Optional[List[str]] = None
     """Allowed HTTP request headers."""
 
     allowed_methods: Optional[
@@ -528,7 +528,7 @@ class BrowserVncApplicationCorsHeaders(BaseModel):
     ] = None
     """Allowed HTTP request methods."""
 
-    allowed_origins: Optional[List[object]] = None
+    allowed_origins: Optional[List[str]] = None
     """Allowed origins."""
 
     max_age: Optional[float] = None
@@ -799,7 +799,8 @@ class BookmarkApplication(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    app_launcher_visible: Optional[object] = None
+    app_launcher_visible: Optional[bool] = None
+    """Displays the application in the App Launcher."""
 
     aud: Optional[str] = None
     """Audience tag."""

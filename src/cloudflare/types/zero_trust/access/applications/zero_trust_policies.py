@@ -126,7 +126,7 @@ class ApprovalGroup(BaseModel):
     approvals_needed: float
     """The number of approvals needed to obtain access."""
 
-    email_addresses: Optional[List[object]] = None
+    email_addresses: Optional[List[str]] = None
     """A list of emails that can approve the access request."""
 
     email_list_uuid: Optional[str] = None
