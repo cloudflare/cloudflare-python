@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable
+from typing import List, Union
 from typing_extensions import Literal, Required, TypedDict
 
 __all__ = [
@@ -160,13 +160,13 @@ class SelfHostedApplicationCorsHeaders(TypedDict, total=False):
     client certificates) with requests.
     """
 
-    allowed_headers: Iterable[object]
+    allowed_headers: List[str]
     """Allowed HTTP request headers."""
 
     allowed_methods: List[Literal["GET", "POST", "HEAD", "PUT", "DELETE", "CONNECT", "OPTIONS", "TRACE", "PATCH"]]
     """Allowed HTTP request methods."""
 
-    allowed_origins: Iterable[object]
+    allowed_origins: List[str]
     """Allowed origins."""
 
     max_age: float
@@ -464,13 +464,13 @@ class BrowserSSHApplicationCorsHeaders(TypedDict, total=False):
     client certificates) with requests.
     """
 
-    allowed_headers: Iterable[object]
+    allowed_headers: List[str]
     """Allowed HTTP request headers."""
 
     allowed_methods: List[Literal["GET", "POST", "HEAD", "PUT", "DELETE", "CONNECT", "OPTIONS", "TRACE", "PATCH"]]
     """Allowed HTTP request methods."""
 
-    allowed_origins: Iterable[object]
+    allowed_origins: List[str]
     """Allowed origins."""
 
     max_age: float
@@ -611,13 +611,13 @@ class BrowserVncApplicationCorsHeaders(TypedDict, total=False):
     client certificates) with requests.
     """
 
-    allowed_headers: Iterable[object]
+    allowed_headers: List[str]
     """Allowed HTTP request headers."""
 
     allowed_methods: List[Literal["GET", "POST", "HEAD", "PUT", "DELETE", "CONNECT", "OPTIONS", "TRACE", "PATCH"]]
     """Allowed HTTP request methods."""
 
-    allowed_origins: Iterable[object]
+    allowed_origins: List[str]
     """Allowed origins."""
 
     max_age: float
@@ -727,7 +727,8 @@ class BookmarkApplication(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    app_launcher_visible: object
+    app_launcher_visible: bool
+    """Displays the application in the App Launcher."""
 
     domain: str
     """The URL or domain of the bookmark."""
