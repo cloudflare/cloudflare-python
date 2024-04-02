@@ -11,3 +11,5 @@ from .member_list_response import MemberListResponse as MemberListResponse
 from .member_update_params import MemberUpdateParams as MemberUpdateParams
 from .account_member_with_id import AccountMemberWithID as AccountMemberWithID
 from .member_delete_response import MemberDeleteResponse as MemberDeleteResponse
+from .role_permission_grants import RolePermissionGrants as RolePermissionGrants
+from .role_permission_grants_param import RolePermissionGrantsParam as RolePermissionGrantsParam
