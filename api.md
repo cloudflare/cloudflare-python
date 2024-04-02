@@ -26,6 +26,7 @@ Types:
 from cloudflare.types.accounts import (
     AccountMember,
     AccountMemberWithID,
+    RolePermissionGrants,
     MemberListResponse,
     MemberDeleteResponse,
 )

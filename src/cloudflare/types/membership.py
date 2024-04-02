@@ -5,121 +5,35 @@ from typing_extensions import Literal
 
 from .account import Account
 from .._models import BaseModel
+from .accounts import RolePermissionGrants
 
-__all__ = [
-    "Membership",
-    "Permissions",
-    "PermissionsAnalytics",
-    "PermissionsBilling",
-    "PermissionsCachePurge",
-    "PermissionsDNS",
-    "PermissionsDNSRecords",
-    "PermissionsLb",
-    "PermissionsLogs",
-    "PermissionsOrganization",
-    "PermissionsSSL",
-    "PermissionsWAF",
-    "PermissionsZoneSettings",
-    "PermissionsZones",
-]
-
-
-class PermissionsAnalytics(BaseModel):
-    read: Optional[bool] = None
-
-    write: Optional[bool] = None
-
-
-class PermissionsBilling(BaseModel):
-    read: Optional[bool] = None
-
-    write: Optional[bool] = None
-
-
-class PermissionsCachePurge(BaseModel):
-    read: Optional[bool] = None
-
-    write: Optional[bool] = None
-
-
-class PermissionsDNS(BaseModel):
-    read: Optional[bool] = None
-
-    write: Optional[bool] = None
-
-
-class PermissionsDNSRecords(BaseModel):
-    read: Optional[bool] = None
-
-    write: Optional[bool] = None
-
-
-class PermissionsLb(BaseModel):
-    read: Optional[bool] = None
-
-    write: Optional[bool] = None
-
-
-class PermissionsLogs(BaseModel):
-    read: Optional[bool] = None
-
-    write: Optional[bool] = None
-
-
-class PermissionsOrganization(BaseModel):
-    read: Optional[bool] = None
-
-    write: Optional[bool] = None
-
-
-class PermissionsSSL(BaseModel):
-    read: Optional[bool] = None
-
-    write: Optional[bool] = None
-
-
-class PermissionsWAF(BaseModel):
-    read: Optional[bool] = None
-
-    write: Optional[bool] = None
-
-
-class PermissionsZoneSettings(BaseModel):
-    read: Optional[bool] = None
-
-    write: Optional[bool] = None
-
-
-class PermissionsZones(BaseModel):
-    read: Optional[bool] = None
-
-    write: Optional[bool] = None
+__all__ = ["Membership", "Permissions"]
 
 
 class Permissions(BaseModel):
-    analytics: Optional[PermissionsAnalytics] = None
+    analytics: Optional[RolePermissionGrants] = None
 
-    billing: Optional[PermissionsBilling] = None
+    billing: Optional[RolePermissionGrants] = None
 
-    cache_purge: Optional[PermissionsCachePurge] = None
+    cache_purge: Optional[RolePermissionGrants] = None
 
-    dns: Optional[PermissionsDNS] = None
+    dns: Optional[RolePermissionGrants] = None
 
-    dns_records: Optional[PermissionsDNSRecords] = None
+    dns_records: Optional[RolePermissionGrants] = None
 
-    lb: Optional[PermissionsLb] = None
+    lb: Optional[RolePermissionGrants] = None
 
-    logs: Optional[PermissionsLogs] = None
+    logs: Optional[RolePermissionGrants] = None
 
-    organization: Optional[PermissionsOrganization] = None
+    organization: Optional[RolePermissionGrants] = None
 
-    ssl: Optional[PermissionsSSL] = None
+    ssl: Optional[RolePermissionGrants] = None
 
-    waf: Optional[PermissionsWAF] = None
+    waf: Optional[RolePermissionGrants] = None
 
-    zone_settings: Optional[PermissionsZoneSettings] = None
+    zone_settings: Optional[RolePermissionGrants] = None
 
-    zones: Optional[PermissionsZones] = None
+    zones: Optional[RolePermissionGrants] = None
 
 
 class Membership(BaseModel):
