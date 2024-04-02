@@ -9,6 +9,7 @@ from ...._models import BaseModel
 
 __all__ = [
     "DigitalExperienceMonitoringTracerouteDetails",
+    "TargetPolicy",
     "TracerouteStats",
     "TracerouteStatsAvailabilityPct",
     "TracerouteStatsAvailabilityPctSlot",
@@ -28,6 +29,15 @@ __all__ = [
     "TracerouteStatsByColoRoundTripTimeMs",
     "TracerouteStatsByColoRoundTripTimeMsSlot",
 ]
+
+
+class TargetPolicy(BaseModel):
+    id: str
+
+    default: bool
+    """Whether the policy is the default for the account"""
+
+    name: str
 
 
 class TracerouteStatsAvailabilityPctSlot(BaseModel):
@@ -221,6 +231,10 @@ class DigitalExperienceMonitoringTracerouteDetails(BaseModel):
 
     name: str
     """The name of the Traceroute synthetic application test"""
+
+    target_policies: Optional[List[TargetPolicy]] = None
+
+    targeted: Optional[bool] = None
 
     traceroute_stats: Optional[TracerouteStats] = FieldInfo(alias="tracerouteStats", default=None)
 
