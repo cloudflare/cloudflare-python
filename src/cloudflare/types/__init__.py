@@ -13,7 +13,6 @@ from .calls_app import CallsApp as CallsApp
 from .membership import Membership as Membership
 from .healthcheck import Healthcheck as Healthcheck
 from .jdcloud_ips import JDCloudIPs as JDCloudIPs
-from .waiting_room import WaitingRoom as WaitingRoom
 from .load_balancer import LoadBalancer as LoadBalancer
 from .stream_videos import StreamVideos as StreamVideos
 from .ip_list_params import IPListParams as IPListParams
@@ -97,7 +96,6 @@ from .rate_limit_create_params import RateLimitCreateParams as RateLimitCreatePa
 from .rate_limit_edit_response import RateLimitEditResponse as RateLimitEditResponse
 from .rate_limit_list_response import RateLimitListResponse as RateLimitListResponse
 from .speed_trends_list_params import SpeedTrendsListParams as SpeedTrendsListParams
-from .waiting_room_edit_params import WaitingRoomEditParams as WaitingRoomEditParams
 from .healthcheck_create_params import HealthcheckCreateParams as HealthcheckCreateParams
 from .healthcheck_update_params import HealthcheckUpdateParams as HealthcheckUpdateParams
 from .intel_phishing_url_submit import IntelPhishingURLSubmit as IntelPhishingURLSubmit
@@ -115,8 +113,6 @@ from .rate_limit_delete_response import RateLimitDeleteResponse as RateLimitDele
 from .subscription_create_params import SubscriptionCreateParams as SubscriptionCreateParams
 from .subscription_list_response import SubscriptionListResponse as SubscriptionListResponse
 from .subscription_update_params import SubscriptionUpdateParams as SubscriptionUpdateParams
-from .waiting_room_create_params import WaitingRoomCreateParams as WaitingRoomCreateParams
-from .waiting_room_update_params import WaitingRoomUpdateParams as WaitingRoomUpdateParams
 from .warp_connector_edit_params import WARPConnectorEditParams as WARPConnectorEditParams
 from .warp_connector_list_params import WARPConnectorListParams as WARPConnectorListParams
 from .bot_management_get_response import BotManagementGetResponse as BotManagementGetResponse
@@ -135,7 +131,6 @@ from .managed_header_list_response import ManagedHeaderListResponse as ManagedHe
 from .subscription_create_response import SubscriptionCreateResponse as SubscriptionCreateResponse
 from .subscription_delete_response import SubscriptionDeleteResponse as SubscriptionDeleteResponse
 from .subscription_update_response import SubscriptionUpdateResponse as SubscriptionUpdateResponse
-from .waiting_room_delete_response import WaitingRoomDeleteResponse as WaitingRoomDeleteResponse
 from .warp_connector_create_params import WARPConnectorCreateParams as WARPConnectorCreateParams
 from .warp_connector_delete_params import WARPConnectorDeleteParams as WARPConnectorDeleteParams
 from .warp_connector_edit_response import WARPConnectorEditResponse as WARPConnectorEditResponse
