@@ -10,8 +10,6 @@ from ...._models import BaseModel
 __all__ = [
     "DigitalExperienceMonitoringHTTPDetails",
     "HTTPStats",
-    "HTTPStatsAvailabilityPct",
-    "HTTPStatsAvailabilityPctSlot",
     "HTTPStatsDNSResponseTimeMs",
     "HTTPStatsDNSResponseTimeMsSlot",
     "HTTPStatsHTTPStatusCode",
@@ -20,8 +18,6 @@ __all__ = [
     "HTTPStatsServerResponseTimeMs",
     "HTTPStatsServerResponseTimeMsSlot",
     "HTTPStatsByColo",
-    "HTTPStatsByColoAvailabilityPct",
-    "HTTPStatsByColoAvailabilityPctSlot",
     "HTTPStatsByColoDNSResponseTimeMs",
     "HTTPStatsByColoDNSResponseTimeMsSlot",
     "HTTPStatsByColoHTTPStatusCode",
@@ -29,27 +25,7 @@ __all__ = [
     "HTTPStatsByColoResourceFetchTimeMsSlot",
     "HTTPStatsByColoServerResponseTimeMs",
     "HTTPStatsByColoServerResponseTimeMsSlot",
-    "TargetPolicy",
 ]
-
-
-class HTTPStatsAvailabilityPctSlot(BaseModel):
-    timestamp: str
-
-    value: float
-
-
-class HTTPStatsAvailabilityPct(BaseModel):
-    slots: List[HTTPStatsAvailabilityPctSlot]
-
-    avg: Optional[float] = None
-    """average observed in the time period"""
-
-    max: Optional[float] = None
-    """highest observed in the time period"""
-
-    min: Optional[float] = None
-    """lowest observed in the time period"""
 
 
 class HTTPStatsDNSResponseTimeMsSlot(BaseModel):
@@ -122,8 +98,6 @@ class HTTPStatsServerResponseTimeMs(BaseModel):
 
 
 class HTTPStats(BaseModel):
-    availability_pct: HTTPStatsAvailabilityPct = FieldInfo(alias="availabilityPct")
-
     dns_response_time_ms: HTTPStatsDNSResponseTimeMs = FieldInfo(alias="dnsResponseTimeMs")
 
     http_status_code: List[HTTPStatsHTTPStatusCode] = FieldInfo(alias="httpStatusCode")
@@ -134,25 +108,6 @@ class HTTPStats(BaseModel):
 
     unique_devices_total: int = FieldInfo(alias="uniqueDevicesTotal")
     """Count of unique devices that have run this test in the given time period"""
-
-
-class HTTPStatsByColoAvailabilityPctSlot(BaseModel):
-    timestamp: str
-
-    value: float
-
-
-class HTTPStatsByColoAvailabilityPct(BaseModel):
-    slots: List[HTTPStatsByColoAvailabilityPctSlot]
-
-    avg: Optional[float] = None
-    """average observed in the time period"""
-
-    max: Optional[float] = None
-    """highest observed in the time period"""
-
-    min: Optional[float] = None
-    """lowest observed in the time period"""
 
 
 class HTTPStatsByColoDNSResponseTimeMsSlot(BaseModel):
@@ -225,8 +180,6 @@ class HTTPStatsByColoServerResponseTimeMs(BaseModel):
 
 
 class HTTPStatsByColo(BaseModel):
-    availability_pct: HTTPStatsByColoAvailabilityPct = FieldInfo(alias="availabilityPct")
-
     colo: str
 
     dns_response_time_ms: HTTPStatsByColoDNSResponseTimeMs = FieldInfo(alias="dnsResponseTimeMs")
@@ -239,15 +192,6 @@ class HTTPStatsByColo(BaseModel):
 
     unique_devices_total: int = FieldInfo(alias="uniqueDevicesTotal")
     """Count of unique devices that have run this test in the given time period"""
-
-
-class TargetPolicy(BaseModel):
-    id: str
-
-    default: bool
-    """Whether the policy is the default for the account"""
-
-    name: str
 
 
 class DigitalExperienceMonitoringHTTPDetails(BaseModel):
@@ -268,7 +212,3 @@ class DigitalExperienceMonitoringHTTPDetails(BaseModel):
 
     name: Optional[str] = None
     """The name of the HTTP synthetic application test"""
-
-    target_policies: Optional[List[TargetPolicy]] = None
-
-    targeted: Optional[bool] = None
