@@ -25,6 +25,7 @@ __all__ = [
     "TestHTTPResultsByColoResourceFetchTimeOverTime",
     "TestHTTPResultsByColoResourceFetchTimeOverTimeTimePeriod",
     "TestHTTPResultsByColoResourceFetchTimeOverTimeValue",
+    "TestTargetPolicy",
     "TestTracerouteResults",
     "TestTracerouteResultsRoundTripTime",
     "TestTracerouteResultsRoundTripTimeHistory",
@@ -45,6 +46,9 @@ __all__ = [
 class OverviewMetrics(BaseModel):
     tests_total: int = FieldInfo(alias="testsTotal")
     """number of tests."""
+
+    avg_http_availability_pct: Optional[float] = FieldInfo(alias="avgHttpAvailabilityPct", default=None)
+    """percentage availability for all HTTP test results in response"""
 
     avg_traceroute_availability_pct: Optional[float] = FieldInfo(alias="avgTracerouteAvailabilityPct", default=None)
     """percentage availability for all traceroutes results in response"""
@@ -153,6 +157,16 @@ class TestHTTPResultsByColo(BaseModel):
     """Cloudflare colo"""
 
     resource_fetch_time: TestHTTPResultsByColoResourceFetchTime = FieldInfo(alias="resourceFetchTime")
+
+
+class TestTargetPolicy(BaseModel):
+    __test__ = False
+    id: str
+
+    default: bool
+    """Whether the policy is the default for the account"""
+
+    name: str
 
 
 class TestTracerouteResultsRoundTripTimeHistoryTimePeriod(BaseModel):
@@ -296,6 +310,10 @@ class Test(BaseModel):
 
     method: Optional[str] = None
     """for HTTP, the method to use when running the test"""
+
+    target_policies: Optional[List[TestTargetPolicy]] = None
+
+    targeted: Optional[bool] = None
 
     traceroute_results: Optional[TestTracerouteResults] = FieldInfo(alias="tracerouteResults", default=None)
 
