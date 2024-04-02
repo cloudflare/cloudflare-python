@@ -284,9 +284,9 @@ zone = response.parse()  # get the object that `zones.create()` would have retur
 print(zone.id)
 ```
 
-These methods return an [`APIResponse`](https://github.com/cloudflare/cloudflare-python/tree/main/src/cloudflare/_response.py) object.
+These methods return an [`APIResponse`](https://github.com/cloudflare/cloudflare-python/tree/stainless/src/cloudflare/_response.py) object.
 
-The async client returns an [`AsyncAPIResponse`](https://github.com/cloudflare/cloudflare-python/tree/main/src/cloudflare/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
+The async client returns an [`AsyncAPIResponse`](https://github.com/cloudflare/cloudflare-python/tree/stainless/src/cloudflare/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
 
 #### `.with_streaming_response`
 

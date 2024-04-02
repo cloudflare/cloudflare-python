@@ -5,35 +5,35 @@ from typing_extensions import Literal
 
 from .account import Account
 from .._models import BaseModel
-from .accounts import RolePermissionGrants
+from .accounts import RolePermissionGrant
 
 __all__ = ["Membership", "Permissions"]
 
 
 class Permissions(BaseModel):
-    analytics: Optional[RolePermissionGrants] = None
+    analytics: Optional[RolePermissionGrant] = None
 
-    billing: Optional[RolePermissionGrants] = None
+    billing: Optional[RolePermissionGrant] = None
 
-    cache_purge: Optional[RolePermissionGrants] = None
+    cache_purge: Optional[RolePermissionGrant] = None
 
-    dns: Optional[RolePermissionGrants] = None
+    dns: Optional[RolePermissionGrant] = None
 
-    dns_records: Optional[RolePermissionGrants] = None
+    dns_records: Optional[RolePermissionGrant] = None
 
-    lb: Optional[RolePermissionGrants] = None
+    lb: Optional[RolePermissionGrant] = None
 
-    logs: Optional[RolePermissionGrants] = None
+    logs: Optional[RolePermissionGrant] = None
 
-    organization: Optional[RolePermissionGrants] = None
+    organization: Optional[RolePermissionGrant] = None
 
-    ssl: Optional[RolePermissionGrants] = None
+    ssl: Optional[RolePermissionGrant] = None
 
-    waf: Optional[RolePermissionGrants] = None
+    waf: Optional[RolePermissionGrant] = None
 
-    zone_settings: Optional[RolePermissionGrants] = None
+    zone_settings: Optional[RolePermissionGrant] = None
 
-    zones: Optional[RolePermissionGrants] = None
+    zones: Optional[RolePermissionGrant] = None
 
 
 class Membership(BaseModel):

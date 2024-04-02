@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import TypedDict
 
-__all__ = ["RolePermissionGrantsParam"]
+__all__ = ["RolePermissionGrantParam"]
 
 
-class RolePermissionGrantsParam(TypedDict, total=False):
+class RolePermissionGrantParam(TypedDict, total=False):
     read: bool
 
     write: bool
