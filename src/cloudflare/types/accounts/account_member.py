@@ -3,123 +3,35 @@
 from typing import List, Optional
 
 from ..._models import BaseModel
+from .role_permission_grants import RolePermissionGrants
 
-__all__ = [
-    "AccountMember",
-    "Role",
-    "RolePermissions",
-    "RolePermissionsAnalytics",
-    "RolePermissionsBilling",
-    "RolePermissionsCachePurge",
-    "RolePermissionsDNS",
-    "RolePermissionsDNSRecords",
-    "RolePermissionsLb",
-    "RolePermissionsLogs",
-    "RolePermissionsOrganization",
-    "RolePermissionsSSL",
-    "RolePermissionsWAF",
-    "RolePermissionsZoneSettings",
-    "RolePermissionsZones",
-    "User",
-]
-
-
-class RolePermissionsAnalytics(BaseModel):
-    read: Optional[bool] = None
-
-    write: Optional[bool] = None
-
-
-class RolePermissionsBilling(BaseModel):
-    read: Optional[bool] = None
-
-    write: Optional[bool] = None
-
-
-class RolePermissionsCachePurge(BaseModel):
-    read: Optional[bool] = None
-
-    write: Optional[bool] = None
-
-
-class RolePermissionsDNS(BaseModel):
-    read: Optional[bool] = None
-
-    write: Optional[bool] = None
-
-
-class RolePermissionsDNSRecords(BaseModel):
-    read: Optional[bool] = None
-
-    write: Optional[bool] = None
-
-
-class RolePermissionsLb(BaseModel):
-    read: Optional[bool] = None
-
-    write: Optional[bool] = None
-
-
-class RolePermissionsLogs(BaseModel):
-    read: Optional[bool] = None
-
-    write: Optional[bool] = None
-
-
-class RolePermissionsOrganization(BaseModel):
-    read: Optional[bool] = None
-
-    write: Optional[bool] = None
-
-
-class RolePermissionsSSL(BaseModel):
-    read: Optional[bool] = None
-
-    write: Optional[bool] = None
-
-
-class RolePermissionsWAF(BaseModel):
-    read: Optional[bool] = None
-
-    write: Optional[bool] = None
-
-
-class RolePermissionsZoneSettings(BaseModel):
-    read: Optional[bool] = None
-
-    write: Optional[bool] = None
-
-
-class RolePermissionsZones(BaseModel):
-    read: Optional[bool] = None
-
-    write: Optional[bool] = None
+__all__ = ["AccountMember", "Role", "RolePermissions", "User"]
 
 
 class RolePermissions(BaseModel):
-    analytics: Optional[RolePermissionsAnalytics] = None
+    analytics: Optional[RolePermissionGrants] = None
 
-    billing: Optional[RolePermissionsBilling] = None
+    billing: Optional[RolePermissionGrants] = None
 
-    cache_purge: Optional[RolePermissionsCachePurge] = None
+    cache_purge: Optional[RolePermissionGrants] = None
 
-    dns: Optional[RolePermissionsDNS] = None
+    dns: Optional[RolePermissionGrants] = None
 
-    dns_records: Optional[RolePermissionsDNSRecords] = None
+    dns_records: Optional[RolePermissionGrants] = None
 
-    lb: Optional[RolePermissionsLb] = None
+    lb: Optional[RolePermissionGrants] = None
 
-    logs: Optional[RolePermissionsLogs] = None
+    logs: Optional[RolePermissionGrants] = None
 
-    organization: Optional[RolePermissionsOrganization] = None
+    organization: Optional[RolePermissionGrants] = None
 
-    ssl: Optional[RolePermissionsSSL] = None
+    ssl: Optional[RolePermissionGrants] = None
 
-    waf: Optional[RolePermissionsWAF] = None
+    waf: Optional[RolePermissionGrants] = None
 
-    zone_settings: Optional[RolePermissionsZoneSettings] = None
+    zone_settings: Optional[RolePermissionGrants] = None
 
-    zones: Optional[RolePermissionsZones] = None
+    zones: Optional[RolePermissionGrants] = None
 
 
 class Role(BaseModel):
