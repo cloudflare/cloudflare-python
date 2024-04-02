@@ -64,6 +64,14 @@ class ACL(TypedDict, total=False):
     description: str
     """Description for the ACL."""
 
+    forward_locally: bool
+    """The desired forwarding action for this ACL policy.
+
+    If set to "false", the policy will forward traffic to Cloudflare. If set to
+    "true", the policy will forward traffic locally on the Magic WAN Connector. If
+    not included in request, will default to false.
+    """
+
     lan_1: ACLLAN1
 
     lan_2: ACLLAN2

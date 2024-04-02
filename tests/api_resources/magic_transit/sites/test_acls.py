@@ -40,6 +40,7 @@ class TestACLs:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             acl={
                 "description": "Allows local traffic between PIN pads and cash register.",
+                "forward_locally": True,
                 "lan_1": {
                     "lan_id": "string",
                     "lan_name": "string",
@@ -120,6 +121,7 @@ class TestACLs:
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
             acl={
                 "description": "Allows local traffic between PIN pads and cash register.",
+                "forward_locally": True,
                 "lan_1": {
                     "lan_id": "string",
                     "lan_name": "string",
@@ -393,6 +395,7 @@ class TestAsyncACLs:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             acl={
                 "description": "Allows local traffic between PIN pads and cash register.",
+                "forward_locally": True,
                 "lan_1": {
                     "lan_id": "string",
                     "lan_name": "string",
@@ -473,6 +476,7 @@ class TestAsyncACLs:
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
             acl={
                 "description": "Allows local traffic between PIN pads and cash register.",
+                "forward_locally": True,
                 "lan_1": {
                     "lan_id": "string",
                     "lan_name": "string",
