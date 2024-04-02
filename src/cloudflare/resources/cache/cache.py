@@ -117,7 +117,9 @@ class Cache(SyncAPIResource):
 
         **NB:** When including the Origin header, be sure to include the **scheme** and
         **hostname**. The port number can be omitted if it is the default port (80 for
-        http, 443 for https), but must be included otherwise.
+        http, 443 for https), but must be included otherwise. **NB:** For Zones on
+        Free/Pro/Business plan, you may purge up to 30 URLs in one API call. For Zones
+        on Enterprise plan, you may purge up to 500 URLs in one API call.
 
         ### Purge Cached Content by Tag, Host or Prefix
 
@@ -172,7 +174,9 @@ class Cache(SyncAPIResource):
 
         **NB:** When including the Origin header, be sure to include the **scheme** and
         **hostname**. The port number can be omitted if it is the default port (80 for
-        http, 443 for https), but must be included otherwise.
+        http, 443 for https), but must be included otherwise. **NB:** For Zones on
+        Free/Pro/Business plan, you may purge up to 30 URLs in one API call. For Zones
+        on Enterprise plan, you may purge up to 500 URLs in one API call.
 
         ### Purge Cached Content by Tag, Host or Prefix
 
@@ -227,7 +231,9 @@ class Cache(SyncAPIResource):
 
         **NB:** When including the Origin header, be sure to include the **scheme** and
         **hostname**. The port number can be omitted if it is the default port (80 for
-        http, 443 for https), but must be included otherwise.
+        http, 443 for https), but must be included otherwise. **NB:** For Zones on
+        Free/Pro/Business plan, you may purge up to 30 URLs in one API call. For Zones
+        on Enterprise plan, you may purge up to 500 URLs in one API call.
 
         ### Purge Cached Content by Tag, Host or Prefix
 
@@ -282,7 +288,9 @@ class Cache(SyncAPIResource):
 
         **NB:** When including the Origin header, be sure to include the **scheme** and
         **hostname**. The port number can be omitted if it is the default port (80 for
-        http, 443 for https), but must be included otherwise.
+        http, 443 for https), but must be included otherwise. **NB:** For Zones on
+        Free/Pro/Business plan, you may purge up to 30 URLs in one API call. For Zones
+        on Enterprise plan, you may purge up to 500 URLs in one API call.
 
         ### Purge Cached Content by Tag, Host or Prefix
 
@@ -337,7 +345,9 @@ class Cache(SyncAPIResource):
 
         **NB:** When including the Origin header, be sure to include the **scheme** and
         **hostname**. The port number can be omitted if it is the default port (80 for
-        http, 443 for https), but must be included otherwise.
+        http, 443 for https), but must be included otherwise. **NB:** For Zones on
+        Free/Pro/Business plan, you may purge up to 30 URLs in one API call. For Zones
+        on Enterprise plan, you may purge up to 500 URLs in one API call.
 
         ### Purge Cached Content by Tag, Host or Prefix
 
@@ -459,7 +469,9 @@ class AsyncCache(AsyncAPIResource):
 
         **NB:** When including the Origin header, be sure to include the **scheme** and
         **hostname**. The port number can be omitted if it is the default port (80 for
-        http, 443 for https), but must be included otherwise.
+        http, 443 for https), but must be included otherwise. **NB:** For Zones on
+        Free/Pro/Business plan, you may purge up to 30 URLs in one API call. For Zones
+        on Enterprise plan, you may purge up to 500 URLs in one API call.
 
         ### Purge Cached Content by Tag, Host or Prefix
 
@@ -514,7 +526,9 @@ class AsyncCache(AsyncAPIResource):
 
         **NB:** When including the Origin header, be sure to include the **scheme** and
         **hostname**. The port number can be omitted if it is the default port (80 for
-        http, 443 for https), but must be included otherwise.
+        http, 443 for https), but must be included otherwise. **NB:** For Zones on
+        Free/Pro/Business plan, you may purge up to 30 URLs in one API call. For Zones
+        on Enterprise plan, you may purge up to 500 URLs in one API call.
 
         ### Purge Cached Content by Tag, Host or Prefix
 
@@ -569,7 +583,9 @@ class AsyncCache(AsyncAPIResource):
 
         **NB:** When including the Origin header, be sure to include the **scheme** and
         **hostname**. The port number can be omitted if it is the default port (80 for
-        http, 443 for https), but must be included otherwise.
+        http, 443 for https), but must be included otherwise. **NB:** For Zones on
+        Free/Pro/Business plan, you may purge up to 30 URLs in one API call. For Zones
+        on Enterprise plan, you may purge up to 500 URLs in one API call.
 
         ### Purge Cached Content by Tag, Host or Prefix
 
@@ -624,7 +640,9 @@ class AsyncCache(AsyncAPIResource):
 
         **NB:** When including the Origin header, be sure to include the **scheme** and
         **hostname**. The port number can be omitted if it is the default port (80 for
-        http, 443 for https), but must be included otherwise.
+        http, 443 for https), but must be included otherwise. **NB:** For Zones on
+        Free/Pro/Business plan, you may purge up to 30 URLs in one API call. For Zones
+        on Enterprise plan, you may purge up to 500 URLs in one API call.
 
         ### Purge Cached Content by Tag, Host or Prefix
 
@@ -679,7 +697,9 @@ class AsyncCache(AsyncAPIResource):
 
         **NB:** When including the Origin header, be sure to include the **scheme** and
         **hostname**. The port number can be omitted if it is the default port (80 for
-        http, 443 for https), but must be included otherwise.
+        http, 443 for https), but must be included otherwise. **NB:** For Zones on
+        Free/Pro/Business plan, you may purge up to 30 URLs in one API call. For Zones
+        on Enterprise plan, you may purge up to 500 URLs in one API call.
 
         ### Purge Cached Content by Tag, Host or Prefix
 
