@@ -33,102 +33,71 @@ class TestSettings:
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             settings={
-                "errors": [
-                    {
-                        "code": 1000,
-                        "message": "string",
-                    },
-                    {
-                        "code": 1000,
-                        "message": "string",
-                    },
-                    {
-                        "code": 1000,
-                        "message": "string",
-                    },
+                "bindings": [{"type": "kv_namespace"}, {"type": "kv_namespace"}, {"type": "kv_namespace"}],
+                "compatibility_date": "2022-04-05",
+                "compatibility_flags": [
+                    "formdata_parser_supports_files",
+                    "formdata_parser_supports_files",
+                    "formdata_parser_supports_files",
                 ],
-                "messages": [
-                    {
-                        "code": 1000,
-                        "message": "string",
-                    },
-                    {
-                        "code": 1000,
-                        "message": "string",
-                    },
-                    {
-                        "code": 1000,
-                        "message": "string",
-                    },
-                ],
-                "result": {
-                    "bindings": [{"type": "kv_namespace"}, {"type": "kv_namespace"}, {"type": "kv_namespace"}],
-                    "compatibility_date": "2022-04-05",
-                    "compatibility_flags": [
-                        "formdata_parser_supports_files",
-                        "formdata_parser_supports_files",
-                        "formdata_parser_supports_files",
-                    ],
-                    "logpush": False,
-                    "migrations": {
-                        "new_tag": "v2",
-                        "old_tag": "v1",
-                        "deleted_classes": ["string", "string", "string"],
-                        "new_classes": ["string", "string", "string"],
-                        "renamed_classes": [
-                            {
-                                "from": "string",
-                                "to": "string",
-                            },
-                            {
-                                "from": "string",
-                                "to": "string",
-                            },
-                            {
-                                "from": "string",
-                                "to": "string",
-                            },
-                        ],
-                        "transferred_classes": [
-                            {
-                                "from": "string",
-                                "from_script": "string",
-                                "to": "string",
-                            },
-                            {
-                                "from": "string",
-                                "from_script": "string",
-                                "to": "string",
-                            },
-                            {
-                                "from": "string",
-                                "from_script": "string",
-                                "to": "string",
-                            },
-                        ],
-                    },
-                    "placement": {"mode": "smart"},
-                    "tags": ["my-tag", "my-tag", "my-tag"],
-                    "tail_consumers": [
+                "logpush": False,
+                "migrations": {
+                    "new_tag": "v2",
+                    "old_tag": "v1",
+                    "deleted_classes": ["string", "string", "string"],
+                    "new_classes": ["string", "string", "string"],
+                    "renamed_classes": [
                         {
-                            "environment": "production",
-                            "namespace": "my-namespace",
-                            "service": "my-log-consumer",
+                            "from": "string",
+                            "to": "string",
                         },
                         {
-                            "environment": "production",
-                            "namespace": "my-namespace",
-                            "service": "my-log-consumer",
+                            "from": "string",
+                            "to": "string",
                         },
                         {
-                            "environment": "production",
-                            "namespace": "my-namespace",
-                            "service": "my-log-consumer",
+                            "from": "string",
+                            "to": "string",
                         },
                     ],
-                    "usage_model": "unbound",
+                    "transferred_classes": [
+                        {
+                            "from": "string",
+                            "from_script": "string",
+                            "to": "string",
+                        },
+                        {
+                            "from": "string",
+                            "from_script": "string",
+                            "to": "string",
+                        },
+                        {
+                            "from": "string",
+                            "from_script": "string",
+                            "to": "string",
+                        },
+                    ],
                 },
-                "success": True,
+                "placement": {"mode": "smart"},
+                "tags": ["my-tag", "my-tag", "my-tag"],
+                "tail_consumers": [
+                    {
+                        "environment": "production",
+                        "namespace": "my-namespace",
+                        "service": "my-log-consumer",
+                    },
+                    {
+                        "environment": "production",
+                        "namespace": "my-namespace",
+                        "service": "my-log-consumer",
+                    },
+                    {
+                        "environment": "production",
+                        "namespace": "my-namespace",
+                        "service": "my-log-consumer",
+                    },
+                ],
+                "usage_model": "unbound",
             },
         )
         assert_matches_type(SettingEditResponse, setting, path=["response"])
@@ -248,102 +217,71 @@ class TestAsyncSettings:
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             settings={
-                "errors": [
-                    {
-                        "code": 1000,
-                        "message": "string",
-                    },
-                    {
-                        "code": 1000,
-                        "message": "string",
-                    },
-                    {
-                        "code": 1000,
-                        "message": "string",
-                    },
+                "bindings": [{"type": "kv_namespace"}, {"type": "kv_namespace"}, {"type": "kv_namespace"}],
+                "compatibility_date": "2022-04-05",
+                "compatibility_flags": [
+                    "formdata_parser_supports_files",
+                    "formdata_parser_supports_files",
+                    "formdata_parser_supports_files",
                 ],
-                "messages": [
-                    {
-                        "code": 1000,
-                        "message": "string",
-                    },
-                    {
-                        "code": 1000,
-                        "message": "string",
-                    },
-                    {
-                        "code": 1000,
-                        "message": "string",
-                    },
-                ],
-                "result": {
-                    "bindings": [{"type": "kv_namespace"}, {"type": "kv_namespace"}, {"type": "kv_namespace"}],
-                    "compatibility_date": "2022-04-05",
-                    "compatibility_flags": [
-                        "formdata_parser_supports_files",
-                        "formdata_parser_supports_files",
-                        "formdata_parser_supports_files",
-                    ],
-                    "logpush": False,
-                    "migrations": {
-                        "new_tag": "v2",
-                        "old_tag": "v1",
-                        "deleted_classes": ["string", "string", "string"],
-                        "new_classes": ["string", "string", "string"],
-                        "renamed_classes": [
-                            {
-                                "from": "string",
-                                "to": "string",
-                            },
-                            {
-                                "from": "string",
-                                "to": "string",
-                            },
-                            {
-                                "from": "string",
-                                "to": "string",
-                            },
-                        ],
-                        "transferred_classes": [
-                            {
-                                "from": "string",
-                                "from_script": "string",
-                                "to": "string",
-                            },
-                            {
-                                "from": "string",
-                                "from_script": "string",
-                                "to": "string",
-                            },
-                            {
-                                "from": "string",
-                                "from_script": "string",
-                                "to": "string",
-                            },
-                        ],
-                    },
-                    "placement": {"mode": "smart"},
-                    "tags": ["my-tag", "my-tag", "my-tag"],
-                    "tail_consumers": [
+                "logpush": False,
+                "migrations": {
+                    "new_tag": "v2",
+                    "old_tag": "v1",
+                    "deleted_classes": ["string", "string", "string"],
+                    "new_classes": ["string", "string", "string"],
+                    "renamed_classes": [
                         {
-                            "environment": "production",
-                            "namespace": "my-namespace",
-                            "service": "my-log-consumer",
+                            "from": "string",
+                            "to": "string",
                         },
                         {
-                            "environment": "production",
-                            "namespace": "my-namespace",
-                            "service": "my-log-consumer",
+                            "from": "string",
+                            "to": "string",
                         },
                         {
-                            "environment": "production",
-                            "namespace": "my-namespace",
-                            "service": "my-log-consumer",
+                            "from": "string",
+                            "to": "string",
                         },
                     ],
-                    "usage_model": "unbound",
+                    "transferred_classes": [
+                        {
+                            "from": "string",
+                            "from_script": "string",
+                            "to": "string",
+                        },
+                        {
+                            "from": "string",
+                            "from_script": "string",
+                            "to": "string",
+                        },
+                        {
+                            "from": "string",
+                            "from_script": "string",
+                            "to": "string",
+                        },
+                    ],
                 },
-                "success": True,
+                "placement": {"mode": "smart"},
+                "tags": ["my-tag", "my-tag", "my-tag"],
+                "tail_consumers": [
+                    {
+                        "environment": "production",
+                        "namespace": "my-namespace",
+                        "service": "my-log-consumer",
+                    },
+                    {
+                        "environment": "production",
+                        "namespace": "my-namespace",
+                        "service": "my-log-consumer",
+                    },
+                    {
+                        "environment": "production",
+                        "namespace": "my-namespace",
+                        "service": "my-log-consumer",
+                    },
+                ],
+                "usage_model": "unbound",
             },
         )
         assert_matches_type(SettingEditResponse, setting, path=["response"])

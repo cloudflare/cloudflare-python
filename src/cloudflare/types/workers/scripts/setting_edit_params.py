@@ -8,30 +8,27 @@ from typing_extensions import Literal, Required, TypedDict
 __all__ = [
     "SettingEditParams",
     "Settings",
-    "SettingsError",
-    "SettingsMessage",
-    "SettingsResult",
-    "SettingsResultBinding",
-    "SettingsResultBindingWorkersKVNamespaceBinding",
-    "SettingsResultBindingWorkersServiceBinding",
-    "SettingsResultBindingWorkersDoBinding",
-    "SettingsResultBindingWorkersR2Binding",
-    "SettingsResultBindingWorkersQueueBinding",
-    "SettingsResultBindingWorkersD1Binding",
-    "SettingsResultBindingWorkersDispatchNamespaceBinding",
-    "SettingsResultBindingWorkersDispatchNamespaceBindingOutbound",
-    "SettingsResultBindingWorkersDispatchNamespaceBindingOutboundWorker",
-    "SettingsResultBindingWorkersMTLSCERTBinding",
-    "SettingsResultMigrations",
-    "SettingsResultMigrationsWorkersSingleStepMigrations",
-    "SettingsResultMigrationsWorkersSingleStepMigrationsRenamedClass",
-    "SettingsResultMigrationsWorkersSingleStepMigrationsTransferredClass",
-    "SettingsResultMigrationsWorkersSteppedMigrations",
-    "SettingsResultMigrationsWorkersSteppedMigrationsStep",
-    "SettingsResultMigrationsWorkersSteppedMigrationsStepRenamedClass",
-    "SettingsResultMigrationsWorkersSteppedMigrationsStepTransferredClass",
-    "SettingsResultPlacement",
-    "SettingsResultTailConsumer",
+    "SettingsBinding",
+    "SettingsBindingWorkersKVNamespaceBinding",
+    "SettingsBindingWorkersServiceBinding",
+    "SettingsBindingWorkersDoBinding",
+    "SettingsBindingWorkersR2Binding",
+    "SettingsBindingWorkersQueueBinding",
+    "SettingsBindingWorkersD1Binding",
+    "SettingsBindingWorkersDispatchNamespaceBinding",
+    "SettingsBindingWorkersDispatchNamespaceBindingOutbound",
+    "SettingsBindingWorkersDispatchNamespaceBindingOutboundWorker",
+    "SettingsBindingWorkersMTLSCERTBinding",
+    "SettingsMigrations",
+    "SettingsMigrationsWorkersSingleStepMigrations",
+    "SettingsMigrationsWorkersSingleStepMigrationsRenamedClass",
+    "SettingsMigrationsWorkersSingleStepMigrationsTransferredClass",
+    "SettingsMigrationsWorkersSteppedMigrations",
+    "SettingsMigrationsWorkersSteppedMigrationsStep",
+    "SettingsMigrationsWorkersSteppedMigrationsStepRenamedClass",
+    "SettingsMigrationsWorkersSteppedMigrationsStepTransferredClass",
+    "SettingsPlacement",
+    "SettingsTailConsumer",
 ]
 
 
@@ -42,24 +39,12 @@ class SettingEditParams(TypedDict, total=False):
     settings: Settings
 
 
-class SettingsError(TypedDict, total=False):
-    code: Required[int]
-
-    message: Required[str]
-
-
-class SettingsMessage(TypedDict, total=False):
-    code: Required[int]
-
-    message: Required[str]
-
-
-class SettingsResultBindingWorkersKVNamespaceBinding(TypedDict, total=False):
+class SettingsBindingWorkersKVNamespaceBinding(TypedDict, total=False):
     type: Required[Literal["kv_namespace"]]
     """The class of resource that the binding provides."""
 
 
-class SettingsResultBindingWorkersServiceBinding(TypedDict, total=False):
+class SettingsBindingWorkersServiceBinding(TypedDict, total=False):
     environment: Required[str]
     """Optional environment if the Worker utilizes one."""
 
@@ -70,7 +55,7 @@ class SettingsResultBindingWorkersServiceBinding(TypedDict, total=False):
     """The class of resource that the binding provides."""
 
 
-class SettingsResultBindingWorkersDoBinding(TypedDict, total=False):
+class SettingsBindingWorkersDoBinding(TypedDict, total=False):
     class_name: Required[str]
     """The exported class name of the Durable Object"""
 
@@ -86,7 +71,7 @@ class SettingsResultBindingWorkersDoBinding(TypedDict, total=False):
     """
 
 
-class SettingsResultBindingWorkersR2Binding(TypedDict, total=False):
+class SettingsBindingWorkersR2Binding(TypedDict, total=False):
     bucket_name: Required[str]
     """R2 bucket to bind to"""
 
@@ -94,7 +79,7 @@ class SettingsResultBindingWorkersR2Binding(TypedDict, total=False):
     """The class of resource that the binding provides."""
 
 
-class SettingsResultBindingWorkersQueueBinding(TypedDict, total=False):
+class SettingsBindingWorkersQueueBinding(TypedDict, total=False):
     queue_name: Required[str]
     """Name of the Queue to bind to"""
 
@@ -102,7 +87,7 @@ class SettingsResultBindingWorkersQueueBinding(TypedDict, total=False):
     """The class of resource that the binding provides."""
 
 
-class SettingsResultBindingWorkersD1Binding(TypedDict, total=False):
+class SettingsBindingWorkersD1Binding(TypedDict, total=False):
     id: Required[str]
     """ID of the D1 database to bind to"""
 
@@ -113,7 +98,7 @@ class SettingsResultBindingWorkersD1Binding(TypedDict, total=False):
     """The class of resource that the binding provides."""
 
 
-class SettingsResultBindingWorkersDispatchNamespaceBindingOutboundWorker(TypedDict, total=False):
+class SettingsBindingWorkersDispatchNamespaceBindingOutboundWorker(TypedDict, total=False):
     environment: str
     """Environment of the outbound worker"""
 
@@ -121,29 +106,29 @@ class SettingsResultBindingWorkersDispatchNamespaceBindingOutboundWorker(TypedDi
     """Name of the outbound worker"""
 
 
-class SettingsResultBindingWorkersDispatchNamespaceBindingOutbound(TypedDict, total=False):
+class SettingsBindingWorkersDispatchNamespaceBindingOutbound(TypedDict, total=False):
     params: List[str]
     """
     Pass information from the Dispatch Worker to the Outbound Worker through the
     parameters
     """
 
-    worker: SettingsResultBindingWorkersDispatchNamespaceBindingOutboundWorker
+    worker: SettingsBindingWorkersDispatchNamespaceBindingOutboundWorker
     """Outbound worker"""
 
 
-class SettingsResultBindingWorkersDispatchNamespaceBinding(TypedDict, total=False):
+class SettingsBindingWorkersDispatchNamespaceBinding(TypedDict, total=False):
     namespace: Required[str]
     """Namespace to bind to"""
 
     type: Required[Literal["dispatch_namespace"]]
     """The class of resource that the binding provides."""
 
-    outbound: SettingsResultBindingWorkersDispatchNamespaceBindingOutbound
+    outbound: SettingsBindingWorkersDispatchNamespaceBindingOutbound
     """Outbound worker"""
 
 
-class SettingsResultBindingWorkersMTLSCERTBinding(TypedDict, total=False):
+class SettingsBindingWorkersMTLSCERTBinding(TypedDict, total=False):
     certificate: Required[object]
 
     type: Required[Literal["mtls_certificate"]]
@@ -153,19 +138,19 @@ class SettingsResultBindingWorkersMTLSCERTBinding(TypedDict, total=False):
     """ID of the certificate to bind to"""
 
 
-SettingsResultBinding = Union[
-    SettingsResultBindingWorkersKVNamespaceBinding,
-    SettingsResultBindingWorkersServiceBinding,
-    SettingsResultBindingWorkersDoBinding,
-    SettingsResultBindingWorkersR2Binding,
-    SettingsResultBindingWorkersQueueBinding,
-    SettingsResultBindingWorkersD1Binding,
-    SettingsResultBindingWorkersDispatchNamespaceBinding,
-    SettingsResultBindingWorkersMTLSCERTBinding,
+SettingsBinding = Union[
+    SettingsBindingWorkersKVNamespaceBinding,
+    SettingsBindingWorkersServiceBinding,
+    SettingsBindingWorkersDoBinding,
+    SettingsBindingWorkersR2Binding,
+    SettingsBindingWorkersQueueBinding,
+    SettingsBindingWorkersD1Binding,
+    SettingsBindingWorkersDispatchNamespaceBinding,
+    SettingsBindingWorkersMTLSCERTBinding,
 ]
 
-_SettingsResultMigrationsWorkersSingleStepMigrationsRenamedClassReservedKeywords = TypedDict(
-    "_SettingsResultMigrationsWorkersSingleStepMigrationsRenamedClassReservedKeywords",
+_SettingsMigrationsWorkersSingleStepMigrationsRenamedClassReservedKeywords = TypedDict(
+    "_SettingsMigrationsWorkersSingleStepMigrationsRenamedClassReservedKeywords",
     {
         "from": str,
     },
@@ -173,14 +158,14 @@ _SettingsResultMigrationsWorkersSingleStepMigrationsRenamedClassReservedKeywords
 )
 
 
-class SettingsResultMigrationsWorkersSingleStepMigrationsRenamedClass(
-    _SettingsResultMigrationsWorkersSingleStepMigrationsRenamedClassReservedKeywords, total=False
+class SettingsMigrationsWorkersSingleStepMigrationsRenamedClass(
+    _SettingsMigrationsWorkersSingleStepMigrationsRenamedClassReservedKeywords, total=False
 ):
     to: str
 
 
-_SettingsResultMigrationsWorkersSingleStepMigrationsTransferredClassReservedKeywords = TypedDict(
-    "_SettingsResultMigrationsWorkersSingleStepMigrationsTransferredClassReservedKeywords",
+_SettingsMigrationsWorkersSingleStepMigrationsTransferredClassReservedKeywords = TypedDict(
+    "_SettingsMigrationsWorkersSingleStepMigrationsTransferredClassReservedKeywords",
     {
         "from": str,
     },
@@ -188,15 +173,15 @@ _SettingsResultMigrationsWorkersSingleStepMigrationsTransferredClassReservedKeyw
 )
 
 
-class SettingsResultMigrationsWorkersSingleStepMigrationsTransferredClass(
-    _SettingsResultMigrationsWorkersSingleStepMigrationsTransferredClassReservedKeywords, total=False
+class SettingsMigrationsWorkersSingleStepMigrationsTransferredClass(
+    _SettingsMigrationsWorkersSingleStepMigrationsTransferredClassReservedKeywords, total=False
 ):
     from_script: str
 
     to: str
 
 
-class SettingsResultMigrationsWorkersSingleStepMigrations(TypedDict, total=False):
+class SettingsMigrationsWorkersSingleStepMigrations(TypedDict, total=False):
     deleted_classes: List[str]
     """A list of classes to delete Durable Object namespaces from."""
 
@@ -212,18 +197,18 @@ class SettingsResultMigrationsWorkersSingleStepMigrations(TypedDict, total=False
     If they don't match, the upload is rejected.
     """
 
-    renamed_classes: Iterable[SettingsResultMigrationsWorkersSingleStepMigrationsRenamedClass]
+    renamed_classes: Iterable[SettingsMigrationsWorkersSingleStepMigrationsRenamedClass]
     """A list of classes with Durable Object namespaces that were renamed."""
 
-    transferred_classes: Iterable[SettingsResultMigrationsWorkersSingleStepMigrationsTransferredClass]
+    transferred_classes: Iterable[SettingsMigrationsWorkersSingleStepMigrationsTransferredClass]
     """
     A list of transfers for Durable Object namespaces from a different Worker and
     class to a class defined in this Worker.
     """
 
 
-_SettingsResultMigrationsWorkersSteppedMigrationsStepRenamedClassReservedKeywords = TypedDict(
-    "_SettingsResultMigrationsWorkersSteppedMigrationsStepRenamedClassReservedKeywords",
+_SettingsMigrationsWorkersSteppedMigrationsStepRenamedClassReservedKeywords = TypedDict(
+    "_SettingsMigrationsWorkersSteppedMigrationsStepRenamedClassReservedKeywords",
     {
         "from": str,
     },
@@ -231,14 +216,14 @@ _SettingsResultMigrationsWorkersSteppedMigrationsStepRenamedClassReservedKeyword
 )
 
 
-class SettingsResultMigrationsWorkersSteppedMigrationsStepRenamedClass(
-    _SettingsResultMigrationsWorkersSteppedMigrationsStepRenamedClassReservedKeywords, total=False
+class SettingsMigrationsWorkersSteppedMigrationsStepRenamedClass(
+    _SettingsMigrationsWorkersSteppedMigrationsStepRenamedClassReservedKeywords, total=False
 ):
     to: str
 
 
-_SettingsResultMigrationsWorkersSteppedMigrationsStepTransferredClassReservedKeywords = TypedDict(
-    "_SettingsResultMigrationsWorkersSteppedMigrationsStepTransferredClassReservedKeywords",
+_SettingsMigrationsWorkersSteppedMigrationsStepTransferredClassReservedKeywords = TypedDict(
+    "_SettingsMigrationsWorkersSteppedMigrationsStepTransferredClassReservedKeywords",
     {
         "from": str,
     },
@@ -246,32 +231,32 @@ _SettingsResultMigrationsWorkersSteppedMigrationsStepTransferredClassReservedKey
 )
 
 
-class SettingsResultMigrationsWorkersSteppedMigrationsStepTransferredClass(
-    _SettingsResultMigrationsWorkersSteppedMigrationsStepTransferredClassReservedKeywords, total=False
+class SettingsMigrationsWorkersSteppedMigrationsStepTransferredClass(
+    _SettingsMigrationsWorkersSteppedMigrationsStepTransferredClassReservedKeywords, total=False
 ):
     from_script: str
 
     to: str
 
 
-class SettingsResultMigrationsWorkersSteppedMigrationsStep(TypedDict, total=False):
+class SettingsMigrationsWorkersSteppedMigrationsStep(TypedDict, total=False):
     deleted_classes: List[str]
     """A list of classes to delete Durable Object namespaces from."""
 
     new_classes: List[str]
     """A list of classes to create Durable Object namespaces from."""
 
-    renamed_classes: Iterable[SettingsResultMigrationsWorkersSteppedMigrationsStepRenamedClass]
+    renamed_classes: Iterable[SettingsMigrationsWorkersSteppedMigrationsStepRenamedClass]
     """A list of classes with Durable Object namespaces that were renamed."""
 
-    transferred_classes: Iterable[SettingsResultMigrationsWorkersSteppedMigrationsStepTransferredClass]
+    transferred_classes: Iterable[SettingsMigrationsWorkersSteppedMigrationsStepTransferredClass]
     """
     A list of transfers for Durable Object namespaces from a different Worker and
     class to a class defined in this Worker.
     """
 
 
-class SettingsResultMigrationsWorkersSteppedMigrations(TypedDict, total=False):
+class SettingsMigrationsWorkersSteppedMigrations(TypedDict, total=False):
     new_tag: str
     """Tag to set as the latest migration tag."""
 
@@ -281,16 +266,14 @@ class SettingsResultMigrationsWorkersSteppedMigrations(TypedDict, total=False):
     If they don't match, the upload is rejected.
     """
 
-    steps: Iterable[SettingsResultMigrationsWorkersSteppedMigrationsStep]
+    steps: Iterable[SettingsMigrationsWorkersSteppedMigrationsStep]
     """Migrations to apply in order."""
 
 
-SettingsResultMigrations = Union[
-    SettingsResultMigrationsWorkersSingleStepMigrations, SettingsResultMigrationsWorkersSteppedMigrations
-]
+SettingsMigrations = Union[SettingsMigrationsWorkersSingleStepMigrations, SettingsMigrationsWorkersSteppedMigrations]
 
 
-class SettingsResultPlacement(TypedDict, total=False):
+class SettingsPlacement(TypedDict, total=False):
     mode: Literal["smart"]
     """
     Enables
@@ -299,7 +282,7 @@ class SettingsResultPlacement(TypedDict, total=False):
     """
 
 
-class SettingsResultTailConsumer(TypedDict, total=False):
+class SettingsTailConsumer(TypedDict, total=False):
     service: Required[str]
     """Name of Worker that is to be the consumer."""
 
@@ -310,8 +293,8 @@ class SettingsResultTailConsumer(TypedDict, total=False):
     """Optional dispatch namespace the script belongs to."""
 
 
-class SettingsResult(TypedDict, total=False):
-    bindings: Iterable[SettingsResultBinding]
+class Settings(TypedDict, total=False):
+    bindings: Iterable[SettingsBinding]
     """List of bindings attached to this Worker"""
 
     compatibility_date: str
@@ -323,27 +306,16 @@ class SettingsResult(TypedDict, total=False):
     logpush: bool
     """Whether Logpush is turned on for the Worker."""
 
-    migrations: SettingsResultMigrations
+    migrations: SettingsMigrations
     """Migrations to apply for Durable Objects associated with this Worker."""
 
-    placement: SettingsResultPlacement
+    placement: SettingsPlacement
 
     tags: List[str]
     """Tags to help you manage your Workers"""
 
-    tail_consumers: Iterable[SettingsResultTailConsumer]
+    tail_consumers: Iterable[SettingsTailConsumer]
     """List of Workers that will consume logs from the attached Worker."""
 
     usage_model: str
     """Specifies the usage model for the Worker (e.g. 'bundled' or 'unbound')."""
-
-
-class Settings(TypedDict, total=False):
-    errors: Required[Iterable[SettingsError]]
-
-    messages: Required[Iterable[SettingsMessage]]
-
-    result: Required[SettingsResult]
-
-    success: Required[Literal[True]]
-    """Whether the API call was successful"""
