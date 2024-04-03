@@ -4,10 +4,10 @@ from typing import Optional
 
 from ..._models import BaseModel
 
-__all__ = ["RolePermissionGrants"]
+__all__ = ["RolePermissionGrant"]
 
 
-class RolePermissionGrants(BaseModel):
+class RolePermissionGrant(BaseModel):
     read: Optional[bool] = None
 
     write: Optional[bool] = None
