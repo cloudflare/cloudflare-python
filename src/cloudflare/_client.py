@@ -286,7 +286,7 @@ class Cloudflare(SyncAPIClient):
     @property
     @override
     def qs(self) -> Querystring:
-        return Querystring(array_format="comma")
+        return Querystring(array_format="repeat")
 
     @property
     @override
@@ -697,7 +697,7 @@ class AsyncCloudflare(AsyncAPIClient):
     @property
     @override
     def qs(self) -> Querystring:
-        return Querystring(array_format="comma")
+        return Querystring(array_format="repeat")
 
     @property
     @override

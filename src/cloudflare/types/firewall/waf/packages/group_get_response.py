@@ -1,7 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union
+from typing import Union, Optional
 
 __all__ = ["GroupGetResponse"]
 
-GroupGetResponse = Union[List[object], str, object]
+GroupGetResponse = Union[Optional[str], Optional[object]]
