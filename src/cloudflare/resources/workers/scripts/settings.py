@@ -51,7 +51,7 @@ class Settings(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SettingEditResponse:
         """
-        Patch script metadata or config, such as bindings or usage model
+        Patch metadata or config, such as bindings or usage model
 
         Args:
           account_id: Identifier
@@ -96,7 +96,7 @@ class Settings(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SettingGetResponse:
         """
-        Get script metadata and config, such as bindings or usage model
+        Get metadata and config, such as bindings or usage model
 
         Args:
           account_id: Identifier
@@ -151,7 +151,7 @@ class AsyncSettings(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SettingEditResponse:
         """
-        Patch script metadata or config, such as bindings or usage model
+        Patch metadata or config, such as bindings or usage model
 
         Args:
           account_id: Identifier
@@ -196,7 +196,7 @@ class AsyncSettings(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SettingGetResponse:
         """
-        Get script metadata and config, such as bindings or usage model
+        Get metadata and config, such as bindings or usage model
 
         Args:
           account_id: Identifier
