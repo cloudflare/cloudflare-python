@@ -9,7 +9,12 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types import Ruleset, RulesetListResponse
+from cloudflare.types import (
+    RulesetGetResponse,
+    RulesetListResponse,
+    RulesetCreateResponse,
+    RulesetUpdateResponse,
+)
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -29,7 +34,7 @@ class TestRulesets:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Ruleset, ruleset, path=["response"])
+        assert_matches_type(RulesetCreateResponse, ruleset, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -92,7 +97,7 @@ class TestRulesets:
             zone_id="string",
             description="My ruleset to execute managed rulesets",
         )
-        assert_matches_type(Ruleset, ruleset, path=["response"])
+        assert_matches_type(RulesetCreateResponse, ruleset, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -109,7 +114,7 @@ class TestRulesets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ruleset = response.parse()
-        assert_matches_type(Ruleset, ruleset, path=["response"])
+        assert_matches_type(RulesetCreateResponse, ruleset, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -126,7 +131,7 @@ class TestRulesets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ruleset = response.parse()
-            assert_matches_type(Ruleset, ruleset, path=["response"])
+            assert_matches_type(RulesetCreateResponse, ruleset, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -158,19 +163,17 @@ class TestRulesets:
     def test_method_update(self, client: Cloudflare) -> None:
         ruleset = client.rulesets.update(
             "2f2feab2026849078ba485f918791bdc",
-            id="2f2feab2026849078ba485f918791bdc",
             rules=[{}, {}, {}],
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Ruleset, ruleset, path=["response"])
+        assert_matches_type(RulesetUpdateResponse, ruleset, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         ruleset = client.rulesets.update(
             "2f2feab2026849078ba485f918791bdc",
-            id="2f2feab2026849078ba485f918791bdc",
             rules=[
                 {
                     "action": "block",
@@ -228,14 +231,13 @@ class TestRulesets:
             name="My ruleset",
             phase="http_request_firewall_custom",
         )
-        assert_matches_type(Ruleset, ruleset, path=["response"])
+        assert_matches_type(RulesetUpdateResponse, ruleset, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.rulesets.with_raw_response.update(
             "2f2feab2026849078ba485f918791bdc",
-            id="2f2feab2026849078ba485f918791bdc",
             rules=[{}, {}, {}],
             account_id="string",
             zone_id="string",
@@ -244,14 +246,13 @@ class TestRulesets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ruleset = response.parse()
-        assert_matches_type(Ruleset, ruleset, path=["response"])
+        assert_matches_type(RulesetUpdateResponse, ruleset, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.rulesets.with_streaming_response.update(
             "2f2feab2026849078ba485f918791bdc",
-            id="2f2feab2026849078ba485f918791bdc",
             rules=[{}, {}, {}],
             account_id="string",
             zone_id="string",
@@ -260,7 +261,7 @@ class TestRulesets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ruleset = response.parse()
-            assert_matches_type(Ruleset, ruleset, path=["response"])
+            assert_matches_type(RulesetUpdateResponse, ruleset, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -270,7 +271,6 @@ class TestRulesets:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
             client.rulesets.with_raw_response.update(
                 "",
-                id="2f2feab2026849078ba485f918791bdc",
                 rules=[{}, {}, {}],
                 account_id="string",
                 zone_id="string",
@@ -279,7 +279,6 @@ class TestRulesets:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.rulesets.with_raw_response.update(
                 "2f2feab2026849078ba485f918791bdc",
-                id="2f2feab2026849078ba485f918791bdc",
                 rules=[{}, {}, {}],
                 account_id="",
                 zone_id="string",
@@ -288,7 +287,6 @@ class TestRulesets:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.rulesets.with_raw_response.update(
                 "2f2feab2026849078ba485f918791bdc",
-                id="2f2feab2026849078ba485f918791bdc",
                 rules=[{}, {}, {}],
                 account_id="string",
                 zone_id="",
@@ -437,7 +435,7 @@ class TestRulesets:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Ruleset, ruleset, path=["response"])
+        assert_matches_type(RulesetGetResponse, ruleset, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -447,7 +445,7 @@ class TestRulesets:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Ruleset, ruleset, path=["response"])
+        assert_matches_type(RulesetGetResponse, ruleset, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -461,7 +459,7 @@ class TestRulesets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ruleset = response.parse()
-        assert_matches_type(Ruleset, ruleset, path=["response"])
+        assert_matches_type(RulesetGetResponse, ruleset, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -475,7 +473,7 @@ class TestRulesets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ruleset = response.parse()
-            assert_matches_type(Ruleset, ruleset, path=["response"])
+            assert_matches_type(RulesetGetResponse, ruleset, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -518,7 +516,7 @@ class TestAsyncRulesets:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Ruleset, ruleset, path=["response"])
+        assert_matches_type(RulesetCreateResponse, ruleset, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -581,7 +579,7 @@ class TestAsyncRulesets:
             zone_id="string",
             description="My ruleset to execute managed rulesets",
         )
-        assert_matches_type(Ruleset, ruleset, path=["response"])
+        assert_matches_type(RulesetCreateResponse, ruleset, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -598,7 +596,7 @@ class TestAsyncRulesets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ruleset = await response.parse()
-        assert_matches_type(Ruleset, ruleset, path=["response"])
+        assert_matches_type(RulesetCreateResponse, ruleset, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -615,7 +613,7 @@ class TestAsyncRulesets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ruleset = await response.parse()
-            assert_matches_type(Ruleset, ruleset, path=["response"])
+            assert_matches_type(RulesetCreateResponse, ruleset, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -647,19 +645,17 @@ class TestAsyncRulesets:
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         ruleset = await async_client.rulesets.update(
             "2f2feab2026849078ba485f918791bdc",
-            id="2f2feab2026849078ba485f918791bdc",
             rules=[{}, {}, {}],
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Ruleset, ruleset, path=["response"])
+        assert_matches_type(RulesetUpdateResponse, ruleset, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         ruleset = await async_client.rulesets.update(
             "2f2feab2026849078ba485f918791bdc",
-            id="2f2feab2026849078ba485f918791bdc",
             rules=[
                 {
                     "action": "block",
@@ -717,14 +713,13 @@ class TestAsyncRulesets:
             name="My ruleset",
             phase="http_request_firewall_custom",
         )
-        assert_matches_type(Ruleset, ruleset, path=["response"])
+        assert_matches_type(RulesetUpdateResponse, ruleset, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.rulesets.with_raw_response.update(
             "2f2feab2026849078ba485f918791bdc",
-            id="2f2feab2026849078ba485f918791bdc",
             rules=[{}, {}, {}],
             account_id="string",
             zone_id="string",
@@ -733,14 +728,13 @@ class TestAsyncRulesets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ruleset = await response.parse()
-        assert_matches_type(Ruleset, ruleset, path=["response"])
+        assert_matches_type(RulesetUpdateResponse, ruleset, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.rulesets.with_streaming_response.update(
             "2f2feab2026849078ba485f918791bdc",
-            id="2f2feab2026849078ba485f918791bdc",
             rules=[{}, {}, {}],
             account_id="string",
             zone_id="string",
@@ -749,7 +743,7 @@ class TestAsyncRulesets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ruleset = await response.parse()
-            assert_matches_type(Ruleset, ruleset, path=["response"])
+            assert_matches_type(RulesetUpdateResponse, ruleset, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -759,7 +753,6 @@ class TestAsyncRulesets:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
             await async_client.rulesets.with_raw_response.update(
                 "",
-                id="2f2feab2026849078ba485f918791bdc",
                 rules=[{}, {}, {}],
                 account_id="string",
                 zone_id="string",
@@ -768,7 +761,6 @@ class TestAsyncRulesets:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.rulesets.with_raw_response.update(
                 "2f2feab2026849078ba485f918791bdc",
-                id="2f2feab2026849078ba485f918791bdc",
                 rules=[{}, {}, {}],
                 account_id="",
                 zone_id="string",
@@ -777,7 +769,6 @@ class TestAsyncRulesets:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.rulesets.with_raw_response.update(
                 "2f2feab2026849078ba485f918791bdc",
-                id="2f2feab2026849078ba485f918791bdc",
                 rules=[{}, {}, {}],
                 account_id="string",
                 zone_id="",
@@ -926,7 +917,7 @@ class TestAsyncRulesets:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Ruleset, ruleset, path=["response"])
+        assert_matches_type(RulesetGetResponse, ruleset, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -936,7 +927,7 @@ class TestAsyncRulesets:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Ruleset, ruleset, path=["response"])
+        assert_matches_type(RulesetGetResponse, ruleset, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -950,7 +941,7 @@ class TestAsyncRulesets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ruleset = await response.parse()
-        assert_matches_type(Ruleset, ruleset, path=["response"])
+        assert_matches_type(RulesetGetResponse, ruleset, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -964,7 +955,7 @@ class TestAsyncRulesets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ruleset = await response.parse()
-            assert_matches_type(Ruleset, ruleset, path=["response"])
+            assert_matches_type(RulesetGetResponse, ruleset, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

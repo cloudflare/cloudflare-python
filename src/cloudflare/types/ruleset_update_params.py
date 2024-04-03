@@ -28,9 +28,6 @@ __all__ = [
 
 
 class RulesetUpdateParams(TypedDict, total=False):
-    id: Required[str]
-    """The unique ID of the ruleset."""
-
     rules: Required[Iterable[Rule]]
     """The list of rules in the ruleset."""
 

@@ -7,7 +7,6 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...types import Ruleset
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     required_args,
@@ -26,7 +25,13 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.rulesets import rule_edit_params, rule_create_params
+from ...types.rulesets import (
+    RuleEditResponse,
+    RuleCreateResponse,
+    RuleDeleteResponse,
+    rule_edit_params,
+    rule_create_params,
+)
 
 __all__ = ["Rules", "AsyncRules"]
 
@@ -61,7 +66,7 @@ class Rules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Ruleset:
+    ) -> RuleCreateResponse:
         """Adds a new rule to an account or zone ruleset.
 
         The rule will be added to the end
@@ -121,7 +126,7 @@ class Rules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Ruleset:
+    ) -> RuleCreateResponse:
         """Adds a new rule to an account or zone ruleset.
 
         The rule will be added to the end
@@ -181,7 +186,7 @@ class Rules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Ruleset:
+    ) -> RuleCreateResponse:
         """Adds a new rule to an account or zone ruleset.
 
         The rule will be added to the end
@@ -241,7 +246,7 @@ class Rules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Ruleset:
+    ) -> RuleCreateResponse:
         """Adds a new rule to an account or zone ruleset.
 
         The rule will be added to the end
@@ -304,7 +309,7 @@ class Rules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Ruleset:
+    ) -> RuleCreateResponse:
         if not ruleset_id:
             raise ValueError(f"Expected a non-empty value for `ruleset_id` but received {ruleset_id!r}")
         if not account_id:
@@ -344,7 +349,7 @@ class Rules(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Ruleset], ResultWrapper[Ruleset]),
+            cast_to=cast(Type[RuleCreateResponse], ResultWrapper[RuleCreateResponse]),
         )
 
     def delete(
@@ -360,7 +365,7 @@ class Rules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Ruleset:
+    ) -> RuleDeleteResponse:
         """
         Deletes an existing rule from an account or zone ruleset.
 
@@ -409,7 +414,7 @@ class Rules(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Ruleset], ResultWrapper[Ruleset]),
+            cast_to=cast(Type[RuleDeleteResponse], ResultWrapper[RuleDeleteResponse]),
         )
 
     @overload
@@ -434,7 +439,7 @@ class Rules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Ruleset:
+    ) -> RuleEditResponse:
         """
         Updates an existing rule in an account or zone ruleset.
 
@@ -495,7 +500,7 @@ class Rules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Ruleset:
+    ) -> RuleEditResponse:
         """
         Updates an existing rule in an account or zone ruleset.
 
@@ -556,7 +561,7 @@ class Rules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Ruleset:
+    ) -> RuleEditResponse:
         """
         Updates an existing rule in an account or zone ruleset.
 
@@ -617,7 +622,7 @@ class Rules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Ruleset:
+    ) -> RuleEditResponse:
         """
         Updates an existing rule in an account or zone ruleset.
 
@@ -682,7 +687,7 @@ class Rules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Ruleset:
+    ) -> RuleEditResponse:
         if not ruleset_id:
             raise ValueError(f"Expected a non-empty value for `ruleset_id` but received {ruleset_id!r}")
         if not rule_id:
@@ -724,7 +729,7 @@ class Rules(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Ruleset], ResultWrapper[Ruleset]),
+            cast_to=cast(Type[RuleEditResponse], ResultWrapper[RuleEditResponse]),
         )
 
 
@@ -758,7 +763,7 @@ class AsyncRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Ruleset:
+    ) -> RuleCreateResponse:
         """Adds a new rule to an account or zone ruleset.
 
         The rule will be added to the end
@@ -818,7 +823,7 @@ class AsyncRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Ruleset:
+    ) -> RuleCreateResponse:
         """Adds a new rule to an account or zone ruleset.
 
         The rule will be added to the end
@@ -878,7 +883,7 @@ class AsyncRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Ruleset:
+    ) -> RuleCreateResponse:
         """Adds a new rule to an account or zone ruleset.
 
         The rule will be added to the end
@@ -938,7 +943,7 @@ class AsyncRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Ruleset:
+    ) -> RuleCreateResponse:
         """Adds a new rule to an account or zone ruleset.
 
         The rule will be added to the end
@@ -1001,7 +1006,7 @@ class AsyncRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Ruleset:
+    ) -> RuleCreateResponse:
         if not ruleset_id:
             raise ValueError(f"Expected a non-empty value for `ruleset_id` but received {ruleset_id!r}")
         if not account_id:
@@ -1041,7 +1046,7 @@ class AsyncRules(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Ruleset], ResultWrapper[Ruleset]),
+            cast_to=cast(Type[RuleCreateResponse], ResultWrapper[RuleCreateResponse]),
         )
 
     async def delete(
@@ -1057,7 +1062,7 @@ class AsyncRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Ruleset:
+    ) -> RuleDeleteResponse:
         """
         Deletes an existing rule from an account or zone ruleset.
 
@@ -1106,7 +1111,7 @@ class AsyncRules(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Ruleset], ResultWrapper[Ruleset]),
+            cast_to=cast(Type[RuleDeleteResponse], ResultWrapper[RuleDeleteResponse]),
         )
 
     @overload
@@ -1131,7 +1136,7 @@ class AsyncRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Ruleset:
+    ) -> RuleEditResponse:
         """
         Updates an existing rule in an account or zone ruleset.
 
@@ -1192,7 +1197,7 @@ class AsyncRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Ruleset:
+    ) -> RuleEditResponse:
         """
         Updates an existing rule in an account or zone ruleset.
 
@@ -1253,7 +1258,7 @@ class AsyncRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Ruleset:
+    ) -> RuleEditResponse:
         """
         Updates an existing rule in an account or zone ruleset.
 
@@ -1314,7 +1319,7 @@ class AsyncRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Ruleset:
+    ) -> RuleEditResponse:
         """
         Updates an existing rule in an account or zone ruleset.
 
@@ -1379,7 +1384,7 @@ class AsyncRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Ruleset:
+    ) -> RuleEditResponse:
         if not ruleset_id:
             raise ValueError(f"Expected a non-empty value for `ruleset_id` but received {ruleset_id!r}")
         if not rule_id:
@@ -1421,7 +1426,7 @@ class AsyncRules(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Ruleset], ResultWrapper[Ruleset]),
+            cast_to=cast(Type[RuleEditResponse], ResultWrapper[RuleEditResponse]),
         )
 
 
