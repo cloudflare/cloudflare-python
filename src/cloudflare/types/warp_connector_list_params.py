@@ -40,6 +40,9 @@ class WARPConnectorListParams(TypedDict, total=False):
     per_page: float
     """Number of results to display."""
 
+    uuid: str
+    """UUID of the tunnel."""
+
     was_active_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
 
     was_inactive_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]

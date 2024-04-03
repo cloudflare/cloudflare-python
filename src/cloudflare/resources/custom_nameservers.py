@@ -13,6 +13,8 @@ from ..types import (
     CustomNameserverVerifyResponse,
     CustomNameserverAvailabiltyResponse,
     custom_nameserver_create_params,
+    custom_nameserver_delete_params,
+    custom_nameserver_verify_params,
 )
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import (
@@ -101,6 +103,7 @@ class CustomNameservers(SyncAPIResource):
         custom_ns_id: str,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -132,6 +135,7 @@ class CustomNameservers(SyncAPIResource):
             Optional[CustomNameserverDeleteResponse],
             self._delete(
                 f"/accounts/{account_id}/custom_ns/{custom_ns_id}",
+                body=maybe_transform(body, custom_nameserver_delete_params.CustomNameserverDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -229,6 +233,7 @@ class CustomNameservers(SyncAPIResource):
         self,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -254,6 +259,7 @@ class CustomNameservers(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
             f"/accounts/{account_id}/custom_ns/verify",
+            body=maybe_transform(body, custom_nameserver_verify_params.CustomNameserverVerifyParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -331,6 +337,7 @@ class AsyncCustomNameservers(AsyncAPIResource):
         custom_ns_id: str,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -362,6 +369,7 @@ class AsyncCustomNameservers(AsyncAPIResource):
             Optional[CustomNameserverDeleteResponse],
             await self._delete(
                 f"/accounts/{account_id}/custom_ns/{custom_ns_id}",
+                body=await async_maybe_transform(body, custom_nameserver_delete_params.CustomNameserverDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -459,6 +467,7 @@ class AsyncCustomNameservers(AsyncAPIResource):
         self,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -484,6 +493,7 @@ class AsyncCustomNameservers(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/custom_ns/verify",
+            body=await async_maybe_transform(body, custom_nameserver_verify_params.CustomNameserverVerifyParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

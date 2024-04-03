@@ -11,8 +11,14 @@ class RuleListParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
+    description: str
+    """The public description of the WAF rule."""
+
     direction: Literal["asc", "desc"]
     """The direction used to sort returned rules."""
+
+    group_id: str
+    """The unique identifier of the rule group."""
 
     match: Literal["any", "all"]
     """When set to `all`, all the search requirements must match.
@@ -31,3 +37,6 @@ class RuleListParams(TypedDict, total=False):
 
     per_page: float
     """The number of rules per page."""
+
+    priority: str
+    """The order in which the individual WAF rule is executed within its rule group."""

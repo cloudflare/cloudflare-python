@@ -22,8 +22,18 @@ from .rules import (
     RulesWithStreamingResponse,
     AsyncRulesWithStreamingResponse,
 )
-from ...types import EmailRoutingGetResponse, EmailRoutingEnableResponse, EmailRoutingDisableResponse
+from ...types import (
+    EmailRoutingGetResponse,
+    EmailRoutingEnableResponse,
+    EmailRoutingDisableResponse,
+    email_routing_enable_params,
+    email_routing_disable_params,
+)
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
 from .addresses import (
     Addresses,
@@ -74,6 +84,7 @@ class EmailRouting(SyncAPIResource):
         self,
         zone_identifier: str,
         *,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -101,6 +112,7 @@ class EmailRouting(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return self._post(
             f"/zones/{zone_identifier}/email/routing/disable",
+            body=maybe_transform(body, email_routing_disable_params.EmailRoutingDisableParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -115,6 +127,7 @@ class EmailRouting(SyncAPIResource):
         self,
         zone_identifier: str,
         *,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -141,6 +154,7 @@ class EmailRouting(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return self._post(
             f"/zones/{zone_identifier}/email/routing/enable",
+            body=maybe_transform(body, email_routing_enable_params.EmailRoutingEnableParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -216,6 +230,7 @@ class AsyncEmailRouting(AsyncAPIResource):
         self,
         zone_identifier: str,
         *,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -243,6 +258,7 @@ class AsyncEmailRouting(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return await self._post(
             f"/zones/{zone_identifier}/email/routing/disable",
+            body=await async_maybe_transform(body, email_routing_disable_params.EmailRoutingDisableParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -257,6 +273,7 @@ class AsyncEmailRouting(AsyncAPIResource):
         self,
         zone_identifier: str,
         *,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -283,6 +300,7 @@ class AsyncEmailRouting(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return await self._post(
             f"/zones/{zone_identifier}/email/routing/enable",
+            body=await async_maybe_transform(body, email_routing_enable_params.EmailRoutingEnableParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

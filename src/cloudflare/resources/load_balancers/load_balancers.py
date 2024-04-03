@@ -20,6 +20,7 @@ from ...types import (
     LoadBalancerDeleteResponse,
     load_balancer_edit_params,
     load_balancer_create_params,
+    load_balancer_delete_params,
     load_balancer_update_params,
 )
 from .regions import (
@@ -550,6 +551,7 @@ class LoadBalancers(SyncAPIResource):
         load_balancer_id: str,
         *,
         zone_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -575,6 +577,7 @@ class LoadBalancers(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}")
         return self._delete(
             f"/zones/{zone_id}/load_balancers/{load_balancer_id}",
+            body=maybe_transform(body, load_balancer_delete_params.LoadBalancerDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1302,6 +1305,7 @@ class AsyncLoadBalancers(AsyncAPIResource):
         load_balancer_id: str,
         *,
         zone_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1327,6 +1331,7 @@ class AsyncLoadBalancers(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}")
         return await self._delete(
             f"/zones/{zone_id}/load_balancers/{load_balancer_id}",
+            body=await async_maybe_transform(body, load_balancer_delete_params.LoadBalancerDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

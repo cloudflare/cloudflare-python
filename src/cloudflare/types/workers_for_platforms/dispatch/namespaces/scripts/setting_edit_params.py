@@ -153,6 +153,8 @@ class ResultBindingWorkersDispatchNamespaceBinding(TypedDict, total=False):
 
 
 class ResultBindingWorkersMTLSCERTBinding(TypedDict, total=False):
+    certificate: Required[object]
+
     type: Required[Literal["mtls_certificate"]]
     """The class of resource that the binding provides."""
 

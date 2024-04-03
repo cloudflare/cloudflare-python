@@ -68,19 +68,19 @@ class TestRules:
                 "dns_resolvers": {
                     "ipv4": [
                         {
-                            "ip": "2001:DB8::/64",
+                            "ip": "2.2.2.2",
                             "port": 5053,
                             "route_through_private_network": True,
                             "vnet_id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                         },
                         {
-                            "ip": "2001:DB8::/64",
+                            "ip": "2.2.2.2",
                             "port": 5053,
                             "route_through_private_network": True,
                             "vnet_id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                         },
                         {
-                            "ip": "2001:DB8::/64",
+                            "ip": "2.2.2.2",
                             "port": 5053,
                             "route_through_private_network": True,
                             "vnet_id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -88,19 +88,19 @@ class TestRules:
                     ],
                     "ipv6": [
                         {
-                            "ip": "2001:DB8::/64",
+                            "ip": "2001:DB8::",
                             "port": 5053,
                             "route_through_private_network": True,
                             "vnet_id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                         },
                         {
-                            "ip": "2001:DB8::/64",
+                            "ip": "2001:DB8::",
                             "port": 5053,
                             "route_through_private_network": True,
                             "vnet_id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                         },
                         {
-                            "ip": "2001:DB8::/64",
+                            "ip": "2001:DB8::",
                             "port": 5053,
                             "route_through_private_network": True,
                             "vnet_id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -233,19 +233,19 @@ class TestRules:
                 "dns_resolvers": {
                     "ipv4": [
                         {
-                            "ip": "2001:DB8::/64",
+                            "ip": "2.2.2.2",
                             "port": 5053,
                             "route_through_private_network": True,
                             "vnet_id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                         },
                         {
-                            "ip": "2001:DB8::/64",
+                            "ip": "2.2.2.2",
                             "port": 5053,
                             "route_through_private_network": True,
                             "vnet_id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                         },
                         {
-                            "ip": "2001:DB8::/64",
+                            "ip": "2.2.2.2",
                             "port": 5053,
                             "route_through_private_network": True,
                             "vnet_id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -253,19 +253,19 @@ class TestRules:
                     ],
                     "ipv6": [
                         {
-                            "ip": "2001:DB8::/64",
+                            "ip": "2001:DB8::",
                             "port": 5053,
                             "route_through_private_network": True,
                             "vnet_id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                         },
                         {
-                            "ip": "2001:DB8::/64",
+                            "ip": "2001:DB8::",
                             "port": 5053,
                             "route_through_private_network": True,
                             "vnet_id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                         },
                         {
-                            "ip": "2001:DB8::/64",
+                            "ip": "2001:DB8::",
                             "port": 5053,
                             "route_through_private_network": True,
                             "vnet_id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -408,6 +408,7 @@ class TestRules:
         rule = client.zero_trust.gateway.rules.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
+            body={},
         )
         assert_matches_type(RuleDeleteResponse, rule, path=["response"])
 
@@ -417,6 +418,7 @@ class TestRules:
         response = client.zero_trust.gateway.rules.with_raw_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
+            body={},
         )
 
         assert response.is_closed is True
@@ -430,6 +432,7 @@ class TestRules:
         with client.zero_trust.gateway.rules.with_streaming_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -446,12 +449,14 @@ class TestRules:
             client.zero_trust.gateway.rules.with_raw_response.delete(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
             client.zero_trust.gateway.rules.with_raw_response.delete(
                 "",
                 account_id="699d98642c564d2e855e9661899b7252",
+                body={},
             )
 
     @pytest.mark.skip()
@@ -557,19 +562,19 @@ class TestAsyncRules:
                 "dns_resolvers": {
                     "ipv4": [
                         {
-                            "ip": "2001:DB8::/64",
+                            "ip": "2.2.2.2",
                             "port": 5053,
                             "route_through_private_network": True,
                             "vnet_id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                         },
                         {
-                            "ip": "2001:DB8::/64",
+                            "ip": "2.2.2.2",
                             "port": 5053,
                             "route_through_private_network": True,
                             "vnet_id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                         },
                         {
-                            "ip": "2001:DB8::/64",
+                            "ip": "2.2.2.2",
                             "port": 5053,
                             "route_through_private_network": True,
                             "vnet_id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -577,19 +582,19 @@ class TestAsyncRules:
                     ],
                     "ipv6": [
                         {
-                            "ip": "2001:DB8::/64",
+                            "ip": "2001:DB8::",
                             "port": 5053,
                             "route_through_private_network": True,
                             "vnet_id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                         },
                         {
-                            "ip": "2001:DB8::/64",
+                            "ip": "2001:DB8::",
                             "port": 5053,
                             "route_through_private_network": True,
                             "vnet_id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                         },
                         {
-                            "ip": "2001:DB8::/64",
+                            "ip": "2001:DB8::",
                             "port": 5053,
                             "route_through_private_network": True,
                             "vnet_id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -722,19 +727,19 @@ class TestAsyncRules:
                 "dns_resolvers": {
                     "ipv4": [
                         {
-                            "ip": "2001:DB8::/64",
+                            "ip": "2.2.2.2",
                             "port": 5053,
                             "route_through_private_network": True,
                             "vnet_id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                         },
                         {
-                            "ip": "2001:DB8::/64",
+                            "ip": "2.2.2.2",
                             "port": 5053,
                             "route_through_private_network": True,
                             "vnet_id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                         },
                         {
-                            "ip": "2001:DB8::/64",
+                            "ip": "2.2.2.2",
                             "port": 5053,
                             "route_through_private_network": True,
                             "vnet_id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -742,19 +747,19 @@ class TestAsyncRules:
                     ],
                     "ipv6": [
                         {
-                            "ip": "2001:DB8::/64",
+                            "ip": "2001:DB8::",
                             "port": 5053,
                             "route_through_private_network": True,
                             "vnet_id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                         },
                         {
-                            "ip": "2001:DB8::/64",
+                            "ip": "2001:DB8::",
                             "port": 5053,
                             "route_through_private_network": True,
                             "vnet_id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                         },
                         {
-                            "ip": "2001:DB8::/64",
+                            "ip": "2001:DB8::",
                             "port": 5053,
                             "route_through_private_network": True,
                             "vnet_id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -897,6 +902,7 @@ class TestAsyncRules:
         rule = await async_client.zero_trust.gateway.rules.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
+            body={},
         )
         assert_matches_type(RuleDeleteResponse, rule, path=["response"])
 
@@ -906,6 +912,7 @@ class TestAsyncRules:
         response = await async_client.zero_trust.gateway.rules.with_raw_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
+            body={},
         )
 
         assert response.is_closed is True
@@ -919,6 +926,7 @@ class TestAsyncRules:
         async with async_client.zero_trust.gateway.rules.with_streaming_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -935,12 +943,14 @@ class TestAsyncRules:
             await async_client.zero_trust.gateway.rules.with_raw_response.delete(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
             await async_client.zero_trust.gateway.rules.with_raw_response.delete(
                 "",
                 account_id="699d98642c564d2e855e9661899b7252",
+                body={},
             )
 
     @pytest.mark.skip()

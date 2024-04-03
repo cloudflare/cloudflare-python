@@ -30,6 +30,7 @@ from ....types.zero_trust.gateway import (
     ZeroTrustGatewayProxyEndpoints,
     proxy_endpoint_edit_params,
     proxy_endpoint_create_params,
+    proxy_endpoint_delete_params,
 )
 
 __all__ = ["ProxyEndpoints", "AsyncProxyEndpoints"]
@@ -50,7 +51,6 @@ class ProxyEndpoints(SyncAPIResource):
         account_id: str,
         ips: List[str],
         name: str,
-        subdomain: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -65,8 +65,6 @@ class ProxyEndpoints(SyncAPIResource):
           ips: A list of CIDRs to restrict ingress connections.
 
           name: The name of the proxy endpoint.
-
-          subdomain: The subdomain to be used as the destination in the proxy client.
 
           extra_headers: Send extra headers
 
@@ -84,7 +82,6 @@ class ProxyEndpoints(SyncAPIResource):
                 {
                     "ips": ips,
                     "name": name,
-                    "subdomain": subdomain,
                 },
                 proxy_endpoint_create_params.ProxyEndpointCreateParams,
             ),
@@ -137,6 +134,7 @@ class ProxyEndpoints(SyncAPIResource):
         proxy_endpoint_id: str,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -164,6 +162,7 @@ class ProxyEndpoints(SyncAPIResource):
             ProxyEndpointDeleteResponse,
             self._delete(
                 f"/accounts/{account_id}/gateway/proxy_endpoints/{proxy_endpoint_id}",
+                body=maybe_transform(body, proxy_endpoint_delete_params.ProxyEndpointDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -184,7 +183,6 @@ class ProxyEndpoints(SyncAPIResource):
         account_id: str,
         ips: List[str] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        subdomain: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -199,8 +197,6 @@ class ProxyEndpoints(SyncAPIResource):
           ips: A list of CIDRs to restrict ingress connections.
 
           name: The name of the proxy endpoint.
-
-          subdomain: The subdomain to be used as the destination in the proxy client.
 
           extra_headers: Send extra headers
 
@@ -220,7 +216,6 @@ class ProxyEndpoints(SyncAPIResource):
                 {
                     "ips": ips,
                     "name": name,
-                    "subdomain": subdomain,
                 },
                 proxy_endpoint_edit_params.ProxyEndpointEditParams,
             ),
@@ -290,7 +285,6 @@ class AsyncProxyEndpoints(AsyncAPIResource):
         account_id: str,
         ips: List[str],
         name: str,
-        subdomain: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -305,8 +299,6 @@ class AsyncProxyEndpoints(AsyncAPIResource):
           ips: A list of CIDRs to restrict ingress connections.
 
           name: The name of the proxy endpoint.
-
-          subdomain: The subdomain to be used as the destination in the proxy client.
 
           extra_headers: Send extra headers
 
@@ -324,7 +316,6 @@ class AsyncProxyEndpoints(AsyncAPIResource):
                 {
                     "ips": ips,
                     "name": name,
-                    "subdomain": subdomain,
                 },
                 proxy_endpoint_create_params.ProxyEndpointCreateParams,
             ),
@@ -377,6 +368,7 @@ class AsyncProxyEndpoints(AsyncAPIResource):
         proxy_endpoint_id: str,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -404,6 +396,7 @@ class AsyncProxyEndpoints(AsyncAPIResource):
             ProxyEndpointDeleteResponse,
             await self._delete(
                 f"/accounts/{account_id}/gateway/proxy_endpoints/{proxy_endpoint_id}",
+                body=await async_maybe_transform(body, proxy_endpoint_delete_params.ProxyEndpointDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -424,7 +417,6 @@ class AsyncProxyEndpoints(AsyncAPIResource):
         account_id: str,
         ips: List[str] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        subdomain: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -439,8 +431,6 @@ class AsyncProxyEndpoints(AsyncAPIResource):
           ips: A list of CIDRs to restrict ingress connections.
 
           name: The name of the proxy endpoint.
-
-          subdomain: The subdomain to be used as the destination in the proxy client.
 
           extra_headers: Send extra headers
 
@@ -460,7 +450,6 @@ class AsyncProxyEndpoints(AsyncAPIResource):
                 {
                     "ips": ips,
                     "name": name,
-                    "subdomain": subdomain,
                 },
                 proxy_endpoint_edit_params.ProxyEndpointEditParams,
             ),

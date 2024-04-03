@@ -29,6 +29,7 @@ from ....types.zero_trust.gateway import (
     LocationDeleteResponse,
     ZeroTrustGatewayLocations,
     location_create_params,
+    location_delete_params,
     location_update_params,
 )
 
@@ -202,6 +203,7 @@ class Locations(SyncAPIResource):
         location_id: str,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -229,6 +231,7 @@ class Locations(SyncAPIResource):
             LocationDeleteResponse,
             self._delete(
                 f"/accounts/{account_id}/gateway/locations/{location_id}",
+                body=maybe_transform(body, location_delete_params.LocationDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -450,6 +453,7 @@ class AsyncLocations(AsyncAPIResource):
         location_id: str,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -477,6 +481,7 @@ class AsyncLocations(AsyncAPIResource):
             LocationDeleteResponse,
             await self._delete(
                 f"/accounts/{account_id}/gateway/locations/{location_id}",
+                body=await async_maybe_transform(body, location_delete_params.LocationDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

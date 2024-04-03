@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, Union, Optional, cast
+from datetime import datetime
 from typing_extensions import Literal
 
 import httpx
@@ -41,9 +42,13 @@ class History(SyncAPIResource):
     def get(
         self,
         *,
+        action: str | NotGiven = NOT_GIVEN,
+        occured_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        occurred_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         order: Literal["type", "occured_at", "action"] | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
+        type: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -55,11 +60,19 @@ class History(SyncAPIResource):
         Accesses your billing history object.
 
         Args:
+          action: The billing item action.
+
+          occured_at: When the billing item was created.
+
+          occurred_at: When the billing item was created.
+
           order: Field to order billing history by.
 
           page: Page number of paginated results.
 
           per_page: Number of items per page.
+
+          type: The billing item type.
 
           extra_headers: Send extra headers
 
@@ -78,9 +91,13 @@ class History(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "action": action,
+                        "occured_at": occured_at,
+                        "occurred_at": occurred_at,
                         "order": order,
                         "page": page,
                         "per_page": per_page,
+                        "type": type,
                     },
                     history_get_params.HistoryGetParams,
                 ),
@@ -102,9 +119,13 @@ class AsyncHistory(AsyncAPIResource):
     async def get(
         self,
         *,
+        action: str | NotGiven = NOT_GIVEN,
+        occured_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        occurred_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         order: Literal["type", "occured_at", "action"] | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
+        type: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -116,11 +137,19 @@ class AsyncHistory(AsyncAPIResource):
         Accesses your billing history object.
 
         Args:
+          action: The billing item action.
+
+          occured_at: When the billing item was created.
+
+          occurred_at: When the billing item was created.
+
           order: Field to order billing history by.
 
           page: Page number of paginated results.
 
           per_page: Number of items per page.
+
+          type: The billing item type.
 
           extra_headers: Send extra headers
 
@@ -139,9 +168,13 @@ class AsyncHistory(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
+                        "action": action,
+                        "occured_at": occured_at,
+                        "occurred_at": occurred_at,
                         "order": order,
                         "page": page,
                         "per_page": per_page,
+                        "type": type,
                     },
                     history_get_params.HistoryGetParams,
                 ),

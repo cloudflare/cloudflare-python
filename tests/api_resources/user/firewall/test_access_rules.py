@@ -128,6 +128,7 @@ class TestAccessRules:
     def test_method_delete(self, client: Cloudflare) -> None:
         access_rule = client.user.firewall.access_rules.delete(
             "92f17202ed8bd63d69a66b86a49a8f6b",
+            body={},
         )
         assert_matches_type(Optional[AccessRuleDeleteResponse], access_rule, path=["response"])
 
@@ -136,6 +137,7 @@ class TestAccessRules:
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.user.firewall.access_rules.with_raw_response.delete(
             "92f17202ed8bd63d69a66b86a49a8f6b",
+            body={},
         )
 
         assert response.is_closed is True
@@ -148,6 +150,7 @@ class TestAccessRules:
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.user.firewall.access_rules.with_streaming_response.delete(
             "92f17202ed8bd63d69a66b86a49a8f6b",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -163,6 +166,7 @@ class TestAccessRules:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
             client.user.firewall.access_rules.with_raw_response.delete(
                 "",
+                body={},
             )
 
     @pytest.mark.skip()
@@ -328,6 +332,7 @@ class TestAsyncAccessRules:
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         access_rule = await async_client.user.firewall.access_rules.delete(
             "92f17202ed8bd63d69a66b86a49a8f6b",
+            body={},
         )
         assert_matches_type(Optional[AccessRuleDeleteResponse], access_rule, path=["response"])
 
@@ -336,6 +341,7 @@ class TestAsyncAccessRules:
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.user.firewall.access_rules.with_raw_response.delete(
             "92f17202ed8bd63d69a66b86a49a8f6b",
+            body={},
         )
 
         assert response.is_closed is True
@@ -348,6 +354,7 @@ class TestAsyncAccessRules:
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.user.firewall.access_rules.with_streaming_response.delete(
             "92f17202ed8bd63d69a66b86a49a8f6b",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -363,6 +370,7 @@ class TestAsyncAccessRules:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
             await async_client.user.firewall.access_rules.with_raw_response.delete(
                 "",
+                body={},
             )
 
     @pytest.mark.skip()

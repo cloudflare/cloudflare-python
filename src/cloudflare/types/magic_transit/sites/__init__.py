@@ -6,12 +6,15 @@ from .acl_get_response import ACLGetResponse as ACLGetResponse
 from .lan_get_response import LANGetResponse as LANGetResponse
 from .wan_get_response import WANGetResponse as WANGetResponse
 from .acl_create_params import ACLCreateParams as ACLCreateParams
+from .acl_delete_params import ACLDeleteParams as ACLDeleteParams
 from .acl_list_response import ACLListResponse as ACLListResponse
 from .acl_update_params import ACLUpdateParams as ACLUpdateParams
 from .lan_create_params import LANCreateParams as LANCreateParams
+from .lan_delete_params import LANDeleteParams as LANDeleteParams
 from .lan_list_response import LANListResponse as LANListResponse
 from .lan_update_params import LANUpdateParams as LANUpdateParams
 from .wan_create_params import WANCreateParams as WANCreateParams
+from .wan_delete_params import WANDeleteParams as WANDeleteParams
 from .wan_list_response import WANListResponse as WANListResponse
 from .wan_update_params import WANUpdateParams as WANUpdateParams
 from .acl_create_response import ACLCreateResponse as ACLCreateResponse

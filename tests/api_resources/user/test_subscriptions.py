@@ -109,6 +109,7 @@ class TestSubscriptions:
     def test_method_delete(self, client: Cloudflare) -> None:
         subscription = client.user.subscriptions.delete(
             "506e3185e9c882d175a2d0cb0093d9f2",
+            body={},
         )
         assert_matches_type(SubscriptionDeleteResponse, subscription, path=["response"])
 
@@ -117,6 +118,7 @@ class TestSubscriptions:
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.user.subscriptions.with_raw_response.delete(
             "506e3185e9c882d175a2d0cb0093d9f2",
+            body={},
         )
 
         assert response.is_closed is True
@@ -129,6 +131,7 @@ class TestSubscriptions:
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.user.subscriptions.with_streaming_response.delete(
             "506e3185e9c882d175a2d0cb0093d9f2",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -144,6 +147,7 @@ class TestSubscriptions:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
             client.user.subscriptions.with_raw_response.delete(
                 "",
+                body={},
             )
 
     @pytest.mark.skip()
@@ -347,6 +351,7 @@ class TestAsyncSubscriptions:
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         subscription = await async_client.user.subscriptions.delete(
             "506e3185e9c882d175a2d0cb0093d9f2",
+            body={},
         )
         assert_matches_type(SubscriptionDeleteResponse, subscription, path=["response"])
 
@@ -355,6 +360,7 @@ class TestAsyncSubscriptions:
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.user.subscriptions.with_raw_response.delete(
             "506e3185e9c882d175a2d0cb0093d9f2",
+            body={},
         )
 
         assert response.is_closed is True
@@ -367,6 +373,7 @@ class TestAsyncSubscriptions:
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.user.subscriptions.with_streaming_response.delete(
             "506e3185e9c882d175a2d0cb0093d9f2",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -382,6 +389,7 @@ class TestAsyncSubscriptions:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
             await async_client.user.subscriptions.with_raw_response.delete(
                 "",
+                body={},
             )
 
     @pytest.mark.skip()

@@ -249,6 +249,7 @@ class TestSubscriptions:
         subscription = client.subscriptions.delete(
             "506e3185e9c882d175a2d0cb0093d9f2",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
         assert_matches_type(SubscriptionDeleteResponse, subscription, path=["response"])
 
@@ -258,6 +259,7 @@ class TestSubscriptions:
         response = client.subscriptions.with_raw_response.delete(
             "506e3185e9c882d175a2d0cb0093d9f2",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
 
         assert response.is_closed is True
@@ -271,6 +273,7 @@ class TestSubscriptions:
         with client.subscriptions.with_streaming_response.delete(
             "506e3185e9c882d175a2d0cb0093d9f2",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -287,6 +290,7 @@ class TestSubscriptions:
             client.subscriptions.with_raw_response.delete(
                 "506e3185e9c882d175a2d0cb0093d9f2",
                 account_identifier="",
+                body={},
             )
 
         with pytest.raises(
@@ -295,6 +299,7 @@ class TestSubscriptions:
             client.subscriptions.with_raw_response.delete(
                 "",
                 account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
             )
 
     @pytest.mark.skip()
@@ -568,6 +573,7 @@ class TestAsyncSubscriptions:
         subscription = await async_client.subscriptions.delete(
             "506e3185e9c882d175a2d0cb0093d9f2",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
         assert_matches_type(SubscriptionDeleteResponse, subscription, path=["response"])
 
@@ -577,6 +583,7 @@ class TestAsyncSubscriptions:
         response = await async_client.subscriptions.with_raw_response.delete(
             "506e3185e9c882d175a2d0cb0093d9f2",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
 
         assert response.is_closed is True
@@ -590,6 +597,7 @@ class TestAsyncSubscriptions:
         async with async_client.subscriptions.with_streaming_response.delete(
             "506e3185e9c882d175a2d0cb0093d9f2",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -606,6 +614,7 @@ class TestAsyncSubscriptions:
             await async_client.subscriptions.with_raw_response.delete(
                 "506e3185e9c882d175a2d0cb0093d9f2",
                 account_identifier="",
+                body={},
             )
 
         with pytest.raises(
@@ -614,6 +623,7 @@ class TestAsyncSubscriptions:
             await async_client.subscriptions.with_raw_response.delete(
                 "",
                 account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
             )
 
     @pytest.mark.skip()

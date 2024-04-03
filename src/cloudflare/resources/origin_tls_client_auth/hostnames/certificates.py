@@ -26,7 +26,11 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.origin_tls_client_auth import OriginTLSClientCertificateID
-from ....types.origin_tls_client_auth.hostnames import OriginTLSClientCertificate, certificate_create_params
+from ....types.origin_tls_client_auth.hostnames import (
+    OriginTLSClientCertificate,
+    certificate_create_params,
+    certificate_delete_params,
+)
 
 __all__ = ["Certificates", "AsyncCertificates"]
 
@@ -135,6 +139,7 @@ class Certificates(SyncAPIResource):
         certificate_id: str,
         *,
         zone_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -164,6 +169,7 @@ class Certificates(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
         return self._delete(
             f"/zones/{zone_id}/origin_tls_client_auth/hostnames/certificates/{certificate_id}",
+            body=maybe_transform(body, certificate_delete_params.CertificateDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -323,6 +329,7 @@ class AsyncCertificates(AsyncAPIResource):
         certificate_id: str,
         *,
         zone_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -352,6 +359,7 @@ class AsyncCertificates(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
         return await self._delete(
             f"/zones/{zone_id}/origin_tls_client_auth/hostnames/certificates/{certificate_id}",
+            body=await async_maybe_transform(body, certificate_delete_params.CertificateDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

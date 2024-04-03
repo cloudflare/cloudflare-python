@@ -53,7 +53,9 @@ from ....types.magic_transit import (
     SiteCreateResponse,
     SiteDeleteResponse,
     SiteUpdateResponse,
+    site_list_params,
     site_create_params,
+    site_delete_params,
     site_update_params,
 )
 
@@ -172,6 +174,7 @@ class Sites(SyncAPIResource):
         self,
         *,
         account_id: str,
+        connector_identifier: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -187,6 +190,8 @@ class Sites(SyncAPIResource):
 
         Args:
           account_id: Identifier
+
+          connector_identifier: Identifier
 
           extra_headers: Send extra headers
 
@@ -205,6 +210,7 @@ class Sites(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=maybe_transform({"connector_identifier": connector_identifier}, site_list_params.SiteListParams),
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(Type[SiteListResponse], ResultWrapper[SiteListResponse]),
@@ -215,6 +221,7 @@ class Sites(SyncAPIResource):
         site_id: str,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -244,6 +251,7 @@ class Sites(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
         return self._delete(
             f"/accounts/{account_id}/magic/sites/{site_id}",
+            body=maybe_transform(body, site_delete_params.SiteDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -411,6 +419,7 @@ class AsyncSites(AsyncAPIResource):
         self,
         *,
         account_id: str,
+        connector_identifier: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -426,6 +435,8 @@ class AsyncSites(AsyncAPIResource):
 
         Args:
           account_id: Identifier
+
+          connector_identifier: Identifier
 
           extra_headers: Send extra headers
 
@@ -444,6 +455,9 @@ class AsyncSites(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=await async_maybe_transform(
+                    {"connector_identifier": connector_identifier}, site_list_params.SiteListParams
+                ),
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(Type[SiteListResponse], ResultWrapper[SiteListResponse]),
@@ -454,6 +468,7 @@ class AsyncSites(AsyncAPIResource):
         site_id: str,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -483,6 +498,7 @@ class AsyncSites(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
         return await self._delete(
             f"/accounts/{account_id}/magic/sites/{site_id}",
+            body=await async_maybe_transform(body, site_delete_params.SiteDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

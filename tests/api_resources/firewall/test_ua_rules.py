@@ -188,6 +188,7 @@ class TestUARules:
         ua_rule = client.firewall.ua_rules.delete(
             "372e67954025e0ba6aaa6d586b9e0b59",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
         assert_matches_type(Optional[UARuleDeleteResponse], ua_rule, path=["response"])
 
@@ -197,6 +198,7 @@ class TestUARules:
         response = client.firewall.ua_rules.with_raw_response.delete(
             "372e67954025e0ba6aaa6d586b9e0b59",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
 
         assert response.is_closed is True
@@ -210,6 +212,7 @@ class TestUARules:
         with client.firewall.ua_rules.with_streaming_response.delete(
             "372e67954025e0ba6aaa6d586b9e0b59",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -226,12 +229,14 @@ class TestUARules:
             client.firewall.ua_rules.with_raw_response.delete(
                 "372e67954025e0ba6aaa6d586b9e0b59",
                 zone_identifier="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.firewall.ua_rules.with_raw_response.delete(
                 "",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
             )
 
     @pytest.mark.skip()
@@ -454,6 +459,7 @@ class TestAsyncUARules:
         ua_rule = await async_client.firewall.ua_rules.delete(
             "372e67954025e0ba6aaa6d586b9e0b59",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
         assert_matches_type(Optional[UARuleDeleteResponse], ua_rule, path=["response"])
 
@@ -463,6 +469,7 @@ class TestAsyncUARules:
         response = await async_client.firewall.ua_rules.with_raw_response.delete(
             "372e67954025e0ba6aaa6d586b9e0b59",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
 
         assert response.is_closed is True
@@ -476,6 +483,7 @@ class TestAsyncUARules:
         async with async_client.firewall.ua_rules.with_streaming_response.delete(
             "372e67954025e0ba6aaa6d586b9e0b59",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -492,12 +500,14 @@ class TestAsyncUARules:
             await async_client.firewall.ua_rules.with_raw_response.delete(
                 "372e67954025e0ba6aaa6d586b9e0b59",
                 zone_identifier="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.firewall.ua_rules.with_raw_response.delete(
                 "",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
             )
 
     @pytest.mark.skip()

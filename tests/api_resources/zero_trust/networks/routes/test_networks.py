@@ -96,6 +96,8 @@ class TestNetworks:
             "172.16.0.0%2F16",
             account_id="699d98642c564d2e855e9661899b7252",
             tun_type="cfd_tunnel",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            virtual_network_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
         )
         assert_matches_type(TunnelRoute, network, path=["response"])
 
@@ -277,6 +279,8 @@ class TestAsyncNetworks:
             "172.16.0.0%2F16",
             account_id="699d98642c564d2e855e9661899b7252",
             tun_type="cfd_tunnel",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            virtual_network_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
         )
         assert_matches_type(TunnelRoute, network, path=["response"])
 

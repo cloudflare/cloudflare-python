@@ -9,7 +9,11 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.workers.scripts import TailGetResponse, TailCreateResponse, TailDeleteResponse
+from cloudflare.types.workers.scripts import (
+    TailGetResponse,
+    TailCreateResponse,
+    TailDeleteResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -23,6 +27,7 @@ class TestTail:
         tail = client.workers.scripts.tail.create(
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
         assert_matches_type(TailCreateResponse, tail, path=["response"])
 
@@ -32,6 +37,7 @@ class TestTail:
         response = client.workers.scripts.tail.with_raw_response.create(
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
 
         assert response.is_closed is True
@@ -45,6 +51,7 @@ class TestTail:
         with client.workers.scripts.tail.with_streaming_response.create(
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -61,12 +68,14 @@ class TestTail:
             client.workers.scripts.tail.with_raw_response.create(
                 "this-is_my_script-01",
                 account_id="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             client.workers.scripts.tail.with_raw_response.create(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
             )
 
     @pytest.mark.skip()
@@ -76,6 +85,7 @@ class TestTail:
             "03dc9f77817b488fb26c5861ec18f791",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             script_name="this-is_my_script-01",
+            body={},
         )
         assert_matches_type(TailDeleteResponse, tail, path=["response"])
 
@@ -86,6 +96,7 @@ class TestTail:
             "03dc9f77817b488fb26c5861ec18f791",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             script_name="this-is_my_script-01",
+            body={},
         )
 
         assert response.is_closed is True
@@ -100,6 +111,7 @@ class TestTail:
             "03dc9f77817b488fb26c5861ec18f791",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             script_name="this-is_my_script-01",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -117,6 +129,7 @@ class TestTail:
                 "03dc9f77817b488fb26c5861ec18f791",
                 account_id="",
                 script_name="this-is_my_script-01",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
@@ -124,6 +137,7 @@ class TestTail:
                 "03dc9f77817b488fb26c5861ec18f791",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 script_name="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -131,6 +145,7 @@ class TestTail:
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 script_name="this-is_my_script-01",
+                body={},
             )
 
     @pytest.mark.skip()
@@ -195,6 +210,7 @@ class TestAsyncTail:
         tail = await async_client.workers.scripts.tail.create(
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
         assert_matches_type(TailCreateResponse, tail, path=["response"])
 
@@ -204,6 +220,7 @@ class TestAsyncTail:
         response = await async_client.workers.scripts.tail.with_raw_response.create(
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
 
         assert response.is_closed is True
@@ -217,6 +234,7 @@ class TestAsyncTail:
         async with async_client.workers.scripts.tail.with_streaming_response.create(
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -233,12 +251,14 @@ class TestAsyncTail:
             await async_client.workers.scripts.tail.with_raw_response.create(
                 "this-is_my_script-01",
                 account_id="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             await async_client.workers.scripts.tail.with_raw_response.create(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
             )
 
     @pytest.mark.skip()
@@ -248,6 +268,7 @@ class TestAsyncTail:
             "03dc9f77817b488fb26c5861ec18f791",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             script_name="this-is_my_script-01",
+            body={},
         )
         assert_matches_type(TailDeleteResponse, tail, path=["response"])
 
@@ -258,6 +279,7 @@ class TestAsyncTail:
             "03dc9f77817b488fb26c5861ec18f791",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             script_name="this-is_my_script-01",
+            body={},
         )
 
         assert response.is_closed is True
@@ -272,6 +294,7 @@ class TestAsyncTail:
             "03dc9f77817b488fb26c5861ec18f791",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             script_name="this-is_my_script-01",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -289,6 +312,7 @@ class TestAsyncTail:
                 "03dc9f77817b488fb26c5861ec18f791",
                 account_id="",
                 script_name="this-is_my_script-01",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
@@ -296,6 +320,7 @@ class TestAsyncTail:
                 "03dc9f77817b488fb26c5861ec18f791",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 script_name="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -303,6 +328,7 @@ class TestAsyncTail:
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 script_name="this-is_my_script-01",
+                body={},
             )
 
     @pytest.mark.skip()

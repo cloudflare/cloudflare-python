@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..types import DNSSEC, DNSSECDeleteResponse, dnssec_edit_params
+from ..types import DNSSEC, DNSSECDeleteResponse, dnssec_edit_params, dnssec_delete_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import (
     maybe_transform,
@@ -42,6 +42,7 @@ class DNSSECResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -69,6 +70,7 @@ class DNSSECResource(SyncAPIResource):
             DNSSECDeleteResponse,
             self._delete(
                 f"/zones/{zone_id}/dnssec",
+                body=maybe_transform(body, dnssec_delete_params.DNSSECDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -204,6 +206,7 @@ class AsyncDNSSECResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -231,6 +234,7 @@ class AsyncDNSSECResource(AsyncAPIResource):
             DNSSECDeleteResponse,
             await self._delete(
                 f"/zones/{zone_id}/dnssec",
+                body=await async_maybe_transform(body, dnssec_delete_params.DNSSECDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

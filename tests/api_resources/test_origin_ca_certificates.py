@@ -70,6 +70,14 @@ class TestOriginCACertificates:
 
     @pytest.mark.skip()
     @parametrize
+    def test_method_list_with_all_params(self, client: Cloudflare) -> None:
+        origin_ca_certificate = client.origin_ca_certificates.list(
+            identifier="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(SyncSinglePage[OriginCACertificate], origin_ca_certificate, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.origin_ca_certificates.with_raw_response.list()
 
@@ -95,6 +103,7 @@ class TestOriginCACertificates:
     def test_method_delete(self, client: Cloudflare) -> None:
         origin_ca_certificate = client.origin_ca_certificates.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
         assert_matches_type(OriginCACertificateDeleteResponse, origin_ca_certificate, path=["response"])
 
@@ -103,6 +112,7 @@ class TestOriginCACertificates:
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.origin_ca_certificates.with_raw_response.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
 
         assert response.is_closed is True
@@ -115,6 +125,7 @@ class TestOriginCACertificates:
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.origin_ca_certificates.with_streaming_response.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -130,6 +141,7 @@ class TestOriginCACertificates:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `certificate_id` but received ''"):
             client.origin_ca_certificates.with_raw_response.delete(
                 "",
+                body={},
             )
 
     @pytest.mark.skip()
@@ -225,6 +237,14 @@ class TestAsyncOriginCACertificates:
 
     @pytest.mark.skip()
     @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        origin_ca_certificate = await async_client.origin_ca_certificates.list(
+            identifier="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(AsyncSinglePage[OriginCACertificate], origin_ca_certificate, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.origin_ca_certificates.with_raw_response.list()
 
@@ -250,6 +270,7 @@ class TestAsyncOriginCACertificates:
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         origin_ca_certificate = await async_client.origin_ca_certificates.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
         assert_matches_type(OriginCACertificateDeleteResponse, origin_ca_certificate, path=["response"])
 
@@ -258,6 +279,7 @@ class TestAsyncOriginCACertificates:
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.origin_ca_certificates.with_raw_response.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
 
         assert response.is_closed is True
@@ -270,6 +292,7 @@ class TestAsyncOriginCACertificates:
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.origin_ca_certificates.with_streaming_response.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -285,6 +308,7 @@ class TestAsyncOriginCACertificates:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `certificate_id` but received ''"):
             await async_client.origin_ca_certificates.with_raw_response.delete(
                 "",
+                body={},
             )
 
     @pytest.mark.skip()

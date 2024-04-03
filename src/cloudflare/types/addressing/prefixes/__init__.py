@@ -3,5 +3,6 @@
 from __future__ import annotations
 
 from .delegation_create_params import DelegationCreateParams as DelegationCreateParams
+from .delegation_delete_params import DelegationDeleteParams as DelegationDeleteParams
 from .delegation_delete_response import DelegationDeleteResponse as DelegationDeleteResponse
 from .addressing_ipam_delegations import AddressingIpamDelegations as AddressingIpamDelegations

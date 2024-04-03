@@ -688,6 +688,7 @@ class TestLoadBalancers:
         load_balancer = client.load_balancers.delete(
             "699d98642c564d2e855e9661899b7252",
             zone_id="699d98642c564d2e855e9661899b7252",
+            body={},
         )
         assert_matches_type(LoadBalancerDeleteResponse, load_balancer, path=["response"])
 
@@ -697,6 +698,7 @@ class TestLoadBalancers:
         response = client.load_balancers.with_raw_response.delete(
             "699d98642c564d2e855e9661899b7252",
             zone_id="699d98642c564d2e855e9661899b7252",
+            body={},
         )
 
         assert response.is_closed is True
@@ -710,6 +712,7 @@ class TestLoadBalancers:
         with client.load_balancers.with_streaming_response.delete(
             "699d98642c564d2e855e9661899b7252",
             zone_id="699d98642c564d2e855e9661899b7252",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -726,12 +729,14 @@ class TestLoadBalancers:
             client.load_balancers.with_raw_response.delete(
                 "699d98642c564d2e855e9661899b7252",
                 zone_id="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `load_balancer_id` but received ''"):
             client.load_balancers.with_raw_response.delete(
                 "",
                 zone_id="699d98642c564d2e855e9661899b7252",
+                body={},
             )
 
     @pytest.mark.skip()
@@ -1741,6 +1746,7 @@ class TestAsyncLoadBalancers:
         load_balancer = await async_client.load_balancers.delete(
             "699d98642c564d2e855e9661899b7252",
             zone_id="699d98642c564d2e855e9661899b7252",
+            body={},
         )
         assert_matches_type(LoadBalancerDeleteResponse, load_balancer, path=["response"])
 
@@ -1750,6 +1756,7 @@ class TestAsyncLoadBalancers:
         response = await async_client.load_balancers.with_raw_response.delete(
             "699d98642c564d2e855e9661899b7252",
             zone_id="699d98642c564d2e855e9661899b7252",
+            body={},
         )
 
         assert response.is_closed is True
@@ -1763,6 +1770,7 @@ class TestAsyncLoadBalancers:
         async with async_client.load_balancers.with_streaming_response.delete(
             "699d98642c564d2e855e9661899b7252",
             zone_id="699d98642c564d2e855e9661899b7252",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1779,12 +1787,14 @@ class TestAsyncLoadBalancers:
             await async_client.load_balancers.with_raw_response.delete(
                 "699d98642c564d2e855e9661899b7252",
                 zone_id="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `load_balancer_id` but received ''"):
             await async_client.load_balancers.with_raw_response.delete(
                 "",
                 zone_id="699d98642c564d2e855e9661899b7252",
+                body={},
             )
 
     @pytest.mark.skip()

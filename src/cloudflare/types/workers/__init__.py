@@ -10,9 +10,12 @@ from .workers_script import WorkersScript as WorkersScript
 from .ai_run_response import AIRunResponse as AIRunResponse
 from .domain_list_params import DomainListParams as DomainListParams
 from .route_create_params import RouteCreateParams as RouteCreateParams
+from .route_delete_params import RouteDeleteParams as RouteDeleteParams
 from .route_update_params import RouteUpdateParams as RouteUpdateParams
+from .domain_delete_params import DomainDeleteParams as DomainDeleteParams
 from .domain_update_params import DomainUpdateParams as DomainUpdateParams
 from .filter_create_params import FilterCreateParams as FilterCreateParams
+from .filter_delete_params import FilterDeleteParams as FilterDeleteParams
 from .filter_update_params import FilterUpdateParams as FilterUpdateParams
 from .script_delete_params import ScriptDeleteParams as ScriptDeleteParams
 from .script_update_params import ScriptUpdateParams as ScriptUpdateParams

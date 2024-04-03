@@ -3278,6 +3278,7 @@ class TestRecords:
         record = client.dns.records.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
         assert_matches_type(Optional[RecordDeleteResponse], record, path=["response"])
 
@@ -3287,6 +3288,7 @@ class TestRecords:
         response = client.dns.records.with_raw_response.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
 
         assert response.is_closed is True
@@ -3300,6 +3302,7 @@ class TestRecords:
         with client.dns.records.with_streaming_response.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3316,12 +3319,14 @@ class TestRecords:
             client.dns.records.with_raw_response.delete(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.delete(
                 "",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
             )
 
     @pytest.mark.skip()
@@ -5206,6 +5211,7 @@ class TestRecords:
     def test_method_scan(self, client: Cloudflare) -> None:
         record = client.dns.records.scan(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
         assert_matches_type(RecordScanResponse, record, path=["response"])
 
@@ -5214,6 +5220,7 @@ class TestRecords:
     def test_raw_response_scan(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.scan(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
 
         assert response.is_closed is True
@@ -5226,6 +5233,7 @@ class TestRecords:
     def test_streaming_response_scan(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.scan(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -5241,6 +5249,7 @@ class TestRecords:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.scan(
                 zone_id="",
+                body={},
             )
 
 
@@ -8502,6 +8511,7 @@ class TestAsyncRecords:
         record = await async_client.dns.records.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
         assert_matches_type(Optional[RecordDeleteResponse], record, path=["response"])
 
@@ -8511,6 +8521,7 @@ class TestAsyncRecords:
         response = await async_client.dns.records.with_raw_response.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
 
         assert response.is_closed is True
@@ -8524,6 +8535,7 @@ class TestAsyncRecords:
         async with async_client.dns.records.with_streaming_response.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -8540,12 +8552,14 @@ class TestAsyncRecords:
             await async_client.dns.records.with_raw_response.delete(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.delete(
                 "",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
             )
 
     @pytest.mark.skip()
@@ -10430,6 +10444,7 @@ class TestAsyncRecords:
     async def test_method_scan(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.scan(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
         assert_matches_type(RecordScanResponse, record, path=["response"])
 
@@ -10438,6 +10453,7 @@ class TestAsyncRecords:
     async def test_raw_response_scan(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.scan(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
 
         assert response.is_closed is True
@@ -10450,6 +10466,7 @@ class TestAsyncRecords:
     async def test_streaming_response_scan(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.scan(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -10465,4 +10482,5 @@ class TestAsyncRecords:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.scan(
                 zone_id="",
+                body={},
             )

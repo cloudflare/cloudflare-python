@@ -7,6 +7,10 @@ from typing import Type, cast
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -21,7 +25,13 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.zero_trust.access import ZeroTrustBookmarks, BookmarkDeleteResponse
+from ....types.zero_trust.access import (
+    ZeroTrustBookmarks,
+    BookmarkDeleteResponse,
+    bookmark_create_params,
+    bookmark_delete_params,
+    bookmark_update_params,
+)
 
 __all__ = ["Bookmarks", "AsyncBookmarks"]
 
@@ -40,6 +50,7 @@ class Bookmarks(SyncAPIResource):
         uuid: str,
         *,
         identifier: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -67,6 +78,7 @@ class Bookmarks(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         return self._post(
             f"/accounts/{identifier}/access/bookmarks/{uuid}",
+            body=maybe_transform(body, bookmark_create_params.BookmarkCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -82,6 +94,7 @@ class Bookmarks(SyncAPIResource):
         uuid: str,
         *,
         identifier: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -109,6 +122,7 @@ class Bookmarks(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         return self._put(
             f"/accounts/{identifier}/access/bookmarks/{uuid}",
+            body=maybe_transform(body, bookmark_update_params.BookmarkUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -158,6 +172,7 @@ class Bookmarks(SyncAPIResource):
         uuid: str,
         *,
         identifier: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -185,6 +200,7 @@ class Bookmarks(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         return self._delete(
             f"/accounts/{identifier}/access/bookmarks/{uuid}",
+            body=maybe_transform(body, bookmark_delete_params.BookmarkDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -252,6 +268,7 @@ class AsyncBookmarks(AsyncAPIResource):
         uuid: str,
         *,
         identifier: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -279,6 +296,7 @@ class AsyncBookmarks(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         return await self._post(
             f"/accounts/{identifier}/access/bookmarks/{uuid}",
+            body=await async_maybe_transform(body, bookmark_create_params.BookmarkCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -294,6 +312,7 @@ class AsyncBookmarks(AsyncAPIResource):
         uuid: str,
         *,
         identifier: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -321,6 +340,7 @@ class AsyncBookmarks(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         return await self._put(
             f"/accounts/{identifier}/access/bookmarks/{uuid}",
+            body=await async_maybe_transform(body, bookmark_update_params.BookmarkUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -370,6 +390,7 @@ class AsyncBookmarks(AsyncAPIResource):
         uuid: str,
         *,
         identifier: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -397,6 +418,7 @@ class AsyncBookmarks(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         return await self._delete(
             f"/accounts/{identifier}/access/bookmarks/{uuid}",
+            body=await async_maybe_transform(body, bookmark_delete_params.BookmarkDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

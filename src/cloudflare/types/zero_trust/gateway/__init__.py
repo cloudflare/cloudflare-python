@@ -4,14 +4,17 @@ from __future__ import annotations
 
 from .list_edit_params import ListEditParams as ListEditParams
 from .list_create_params import ListCreateParams as ListCreateParams
+from .list_delete_params import ListDeleteParams as ListDeleteParams
 from .list_update_params import ListUpdateParams as ListUpdateParams
 from .rule_create_params import RuleCreateParams as RuleCreateParams
+from .rule_delete_params import RuleDeleteParams as RuleDeleteParams
 from .rule_update_params import RuleUpdateParams as RuleUpdateParams
 from .list_create_response import ListCreateResponse as ListCreateResponse
 from .list_delete_response import ListDeleteResponse as ListDeleteResponse
 from .rule_delete_response import RuleDeleteResponse as RuleDeleteResponse
 from .logging_update_params import LoggingUpdateParams as LoggingUpdateParams
 from .location_create_params import LocationCreateParams as LocationCreateParams
+from .location_delete_params import LocationDeleteParams as LocationDeleteParams
 from .location_update_params import LocationUpdateParams as LocationUpdateParams
 from .location_delete_response import LocationDeleteResponse as LocationDeleteResponse
 from .zero_trust_gateway_lists import ZeroTrustGatewayLists as ZeroTrustGatewayLists
@@ -23,6 +26,7 @@ from .configuration_edit_response import ConfigurationEditResponse as Configurat
 from .configuration_update_params import ConfigurationUpdateParams as ConfigurationUpdateParams
 from .zero_trust_gateway_settings import ZeroTrustGatewaySettings as ZeroTrustGatewaySettings
 from .proxy_endpoint_create_params import ProxyEndpointCreateParams as ProxyEndpointCreateParams
+from .proxy_endpoint_delete_params import ProxyEndpointDeleteParams as ProxyEndpointDeleteParams
 from .zero_trust_gateway_app_types import ZeroTrustGatewayAppTypes as ZeroTrustGatewayAppTypes
 from .zero_trust_gateway_locations import ZeroTrustGatewayLocations as ZeroTrustGatewayLocations
 from .configuration_update_response import ConfigurationUpdateResponse as ConfigurationUpdateResponse

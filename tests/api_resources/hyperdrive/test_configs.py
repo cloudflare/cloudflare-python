@@ -30,6 +30,7 @@ class TestConfigs:
     def test_method_create(self, client: Cloudflare) -> None:
         config = client.hyperdrive.configs.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name={},
             origin={"password": "password1234!"},
         )
         assert_matches_type(Optional[ConfigCreateResponse], config, path=["response"])
@@ -39,6 +40,7 @@ class TestConfigs:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.hyperdrive.configs.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name={},
             origin={"password": "password1234!"},
         )
 
@@ -52,6 +54,7 @@ class TestConfigs:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.hyperdrive.configs.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name={},
             origin={"password": "password1234!"},
         ) as response:
             assert not response.is_closed
@@ -68,6 +71,7 @@ class TestConfigs:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.hyperdrive.configs.with_raw_response.create(
                 account_id="",
+                name={},
                 origin={"password": "password1234!"},
             )
 
@@ -77,6 +81,7 @@ class TestConfigs:
         config = client.hyperdrive.configs.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name={},
             origin={"password": "password1234!"},
         )
         assert_matches_type(Optional[ConfigUpdateResponse], config, path=["response"])
@@ -87,6 +92,7 @@ class TestConfigs:
         response = client.hyperdrive.configs.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name={},
             origin={"password": "password1234!"},
         )
 
@@ -101,6 +107,7 @@ class TestConfigs:
         with client.hyperdrive.configs.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name={},
             origin={"password": "password1234!"},
         ) as response:
             assert not response.is_closed
@@ -118,6 +125,7 @@ class TestConfigs:
             client.hyperdrive.configs.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
+                name={},
                 origin={"password": "password1234!"},
             )
 
@@ -125,6 +133,7 @@ class TestConfigs:
             client.hyperdrive.configs.with_raw_response.update(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name={},
                 origin={"password": "password1234!"},
             )
 
@@ -345,6 +354,7 @@ class TestAsyncConfigs:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         config = await async_client.hyperdrive.configs.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name={},
             origin={"password": "password1234!"},
         )
         assert_matches_type(Optional[ConfigCreateResponse], config, path=["response"])
@@ -354,6 +364,7 @@ class TestAsyncConfigs:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.hyperdrive.configs.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name={},
             origin={"password": "password1234!"},
         )
 
@@ -367,6 +378,7 @@ class TestAsyncConfigs:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.hyperdrive.configs.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name={},
             origin={"password": "password1234!"},
         ) as response:
             assert not response.is_closed
@@ -383,6 +395,7 @@ class TestAsyncConfigs:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.hyperdrive.configs.with_raw_response.create(
                 account_id="",
+                name={},
                 origin={"password": "password1234!"},
             )
 
@@ -392,6 +405,7 @@ class TestAsyncConfigs:
         config = await async_client.hyperdrive.configs.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name={},
             origin={"password": "password1234!"},
         )
         assert_matches_type(Optional[ConfigUpdateResponse], config, path=["response"])
@@ -402,6 +416,7 @@ class TestAsyncConfigs:
         response = await async_client.hyperdrive.configs.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name={},
             origin={"password": "password1234!"},
         )
 
@@ -416,6 +431,7 @@ class TestAsyncConfigs:
         async with async_client.hyperdrive.configs.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name={},
             origin={"password": "password1234!"},
         ) as response:
             assert not response.is_closed
@@ -433,6 +449,7 @@ class TestAsyncConfigs:
             await async_client.hyperdrive.configs.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
+                name={},
                 origin={"password": "password1234!"},
             )
 
@@ -440,6 +457,7 @@ class TestAsyncConfigs:
             await async_client.hyperdrive.configs.with_raw_response.update(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name={},
                 origin={"password": "password1234!"},
             )
 

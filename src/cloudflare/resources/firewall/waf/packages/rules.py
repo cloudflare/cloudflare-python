@@ -51,12 +51,15 @@ class Rules(SyncAPIResource):
         package_id: str,
         *,
         zone_id: str,
+        description: str | NotGiven = NOT_GIVEN,
         direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        group_id: str | NotGiven = NOT_GIVEN,
         match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
         mode: Literal["DIS", "CHL", "BLK", "SIM"] | NotGiven = NOT_GIVEN,
         order: Literal["priority", "group_id", "description"] | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
+        priority: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -75,7 +78,11 @@ class Rules(SyncAPIResource):
 
           package_id: The unique identifier of a WAF package.
 
+          description: The public description of the WAF rule.
+
           direction: The direction used to sort returned rules.
+
+          group_id: The unique identifier of the rule group.
 
           match: When set to `all`, all the search requirements must match. When set to `any`,
               only one of the search requirements has to match.
@@ -87,6 +94,8 @@ class Rules(SyncAPIResource):
           page: The page number of paginated results.
 
           per_page: The number of rules per page.
+
+          priority: The order in which the individual WAF rule is executed within its rule group.
 
           extra_headers: Send extra headers
 
@@ -110,12 +119,15 @@ class Rules(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "description": description,
                         "direction": direction,
+                        "group_id": group_id,
                         "match": match,
                         "mode": mode,
                         "order": order,
                         "page": page,
                         "per_page": per_page,
+                        "priority": priority,
                     },
                     rule_list_params.RuleListParams,
                 ),
@@ -258,12 +270,15 @@ class AsyncRules(AsyncAPIResource):
         package_id: str,
         *,
         zone_id: str,
+        description: str | NotGiven = NOT_GIVEN,
         direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        group_id: str | NotGiven = NOT_GIVEN,
         match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
         mode: Literal["DIS", "CHL", "BLK", "SIM"] | NotGiven = NOT_GIVEN,
         order: Literal["priority", "group_id", "description"] | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
+        priority: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -282,7 +297,11 @@ class AsyncRules(AsyncAPIResource):
 
           package_id: The unique identifier of a WAF package.
 
+          description: The public description of the WAF rule.
+
           direction: The direction used to sort returned rules.
+
+          group_id: The unique identifier of the rule group.
 
           match: When set to `all`, all the search requirements must match. When set to `any`,
               only one of the search requirements has to match.
@@ -294,6 +313,8 @@ class AsyncRules(AsyncAPIResource):
           page: The page number of paginated results.
 
           per_page: The number of rules per page.
+
+          priority: The order in which the individual WAF rule is executed within its rule group.
 
           extra_headers: Send extra headers
 
@@ -317,12 +338,15 @@ class AsyncRules(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "description": description,
                         "direction": direction,
+                        "group_id": group_id,
                         "match": match,
                         "mode": mode,
                         "order": order,
                         "page": page,
                         "per_page": per_page,
+                        "priority": priority,
                     },
                     rule_list_params.RuleListParams,
                 ),

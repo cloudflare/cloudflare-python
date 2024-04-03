@@ -34,7 +34,9 @@ from ...types.vectorize import (
     VectorizeIndexDeleteVectorsByID,
     index_query_params,
     index_create_params,
+    index_insert_params,
     index_update_params,
+    index_upsert_params,
     index_get_by_ids_params,
     index_delete_by_ids_params,
 )
@@ -375,6 +377,7 @@ class Indexes(SyncAPIResource):
         index_name: str,
         *,
         account_identifier: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -403,6 +406,7 @@ class Indexes(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
         return self._post(
             f"/accounts/{account_identifier}/vectorize/indexes/{index_name}/insert",
+            body=maybe_transform(body, index_insert_params.IndexInsertParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -481,6 +485,7 @@ class Indexes(SyncAPIResource):
         index_name: str,
         *,
         account_identifier: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -509,6 +514,7 @@ class Indexes(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
         return self._post(
             f"/accounts/{account_identifier}/vectorize/indexes/{index_name}/upsert",
+            body=maybe_transform(body, index_upsert_params.IndexUpsertParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -853,6 +859,7 @@ class AsyncIndexes(AsyncAPIResource):
         index_name: str,
         *,
         account_identifier: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -881,6 +888,7 @@ class AsyncIndexes(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
         return await self._post(
             f"/accounts/{account_identifier}/vectorize/indexes/{index_name}/insert",
+            body=await async_maybe_transform(body, index_insert_params.IndexInsertParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -959,6 +967,7 @@ class AsyncIndexes(AsyncAPIResource):
         index_name: str,
         *,
         account_identifier: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -987,6 +996,7 @@ class AsyncIndexes(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
         return await self._post(
             f"/accounts/{account_identifier}/vectorize/indexes/{index_name}/upsert",
+            body=await async_maybe_transform(body, index_upsert_params.IndexUpsertParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

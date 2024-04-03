@@ -139,6 +139,7 @@ class Routes(SyncAPIResource):
         network_superset: object | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
+        route_id: str | NotGiven = NOT_GIVEN,
         tun_types: str | NotGiven = NOT_GIVEN,
         tunnel_id: object | NotGiven = NOT_GIVEN,
         virtual_network_id: object | NotGiven = NOT_GIVEN,
@@ -170,6 +171,8 @@ class Routes(SyncAPIResource):
           page: Page number of paginated results.
 
           per_page: Number of results to display.
+
+          route_id: UUID of the route.
 
           tun_types: The types of tunnels to filter separated by a comma.
 
@@ -206,6 +209,7 @@ class Routes(SyncAPIResource):
                         "network_superset": network_superset,
                         "page": page,
                         "per_page": per_page,
+                        "route_id": route_id,
                         "tun_types": tun_types,
                         "tunnel_id": tunnel_id,
                         "virtual_network_id": virtual_network_id,
@@ -420,6 +424,7 @@ class AsyncRoutes(AsyncAPIResource):
         network_superset: object | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
+        route_id: str | NotGiven = NOT_GIVEN,
         tun_types: str | NotGiven = NOT_GIVEN,
         tunnel_id: object | NotGiven = NOT_GIVEN,
         virtual_network_id: object | NotGiven = NOT_GIVEN,
@@ -451,6 +456,8 @@ class AsyncRoutes(AsyncAPIResource):
           page: Page number of paginated results.
 
           per_page: Number of results to display.
+
+          route_id: UUID of the route.
 
           tun_types: The types of tunnels to filter separated by a comma.
 
@@ -487,6 +494,7 @@ class AsyncRoutes(AsyncAPIResource):
                         "network_superset": network_superset,
                         "page": page,
                         "per_page": per_page,
+                        "route_id": route_id,
                         "tun_types": tun_types,
                         "tunnel_id": tunnel_id,
                         "virtual_network_id": virtual_network_id,

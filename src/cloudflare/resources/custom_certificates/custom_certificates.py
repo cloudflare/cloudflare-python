@@ -16,6 +16,7 @@ from ...types import (
     custom_certificate_edit_params,
     custom_certificate_list_params,
     custom_certificate_create_params,
+    custom_certificate_delete_params,
 )
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
@@ -159,6 +160,7 @@ class CustomCertificates(SyncAPIResource):
         match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
+        status: Literal["active", "expired", "deleted", "pending", "initializing"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -180,6 +182,8 @@ class CustomCertificates(SyncAPIResource):
           page: Page number of paginated results.
 
           per_page: Number of zones per page.
+
+          status: Status of the zone's custom SSL.
 
           extra_headers: Send extra headers
 
@@ -204,6 +208,7 @@ class CustomCertificates(SyncAPIResource):
                         "match": match,
                         "page": page,
                         "per_page": per_page,
+                        "status": status,
                     },
                     custom_certificate_list_params.CustomCertificateListParams,
                 ),
@@ -216,6 +221,7 @@ class CustomCertificates(SyncAPIResource):
         custom_certificate_id: str,
         *,
         zone_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -247,6 +253,7 @@ class CustomCertificates(SyncAPIResource):
             )
         return self._delete(
             f"/zones/{zone_id}/custom_certificates/{custom_certificate_id}",
+            body=maybe_transform(body, custom_certificate_delete_params.CustomCertificateDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -516,6 +523,7 @@ class AsyncCustomCertificates(AsyncAPIResource):
         match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
+        status: Literal["active", "expired", "deleted", "pending", "initializing"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -537,6 +545,8 @@ class AsyncCustomCertificates(AsyncAPIResource):
           page: Page number of paginated results.
 
           per_page: Number of zones per page.
+
+          status: Status of the zone's custom SSL.
 
           extra_headers: Send extra headers
 
@@ -561,6 +571,7 @@ class AsyncCustomCertificates(AsyncAPIResource):
                         "match": match,
                         "page": page,
                         "per_page": per_page,
+                        "status": status,
                     },
                     custom_certificate_list_params.CustomCertificateListParams,
                 ),
@@ -573,6 +584,7 @@ class AsyncCustomCertificates(AsyncAPIResource):
         custom_certificate_id: str,
         *,
         zone_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -604,6 +616,7 @@ class AsyncCustomCertificates(AsyncAPIResource):
             )
         return await self._delete(
             f"/zones/{zone_id}/custom_certificates/{custom_certificate_id}",
+            body=await async_maybe_transform(body, custom_certificate_delete_params.CustomCertificateDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

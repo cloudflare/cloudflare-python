@@ -106,6 +106,8 @@ class Networks(SyncAPIResource):
         *,
         account_id: str,
         tun_type: Literal["cfd_tunnel", "warp_connector", "ip_sec", "gre", "cni"] | NotGiven = NOT_GIVEN,
+        tunnel_id: str | NotGiven = NOT_GIVEN,
+        virtual_network_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -130,6 +132,10 @@ class Networks(SyncAPIResource):
 
           tun_type: The type of tunnel.
 
+          tunnel_id: UUID of the tunnel.
+
+          virtual_network_id: UUID of the virtual network.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -149,7 +155,14 @@ class Networks(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"tun_type": tun_type}, network_delete_params.NetworkDeleteParams),
+                query=maybe_transform(
+                    {
+                        "tun_type": tun_type,
+                        "tunnel_id": tunnel_id,
+                        "virtual_network_id": virtual_network_id,
+                    },
+                    network_delete_params.NetworkDeleteParams,
+                ),
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(Type[TunnelRoute], ResultWrapper[TunnelRoute]),
@@ -278,6 +291,8 @@ class AsyncNetworks(AsyncAPIResource):
         *,
         account_id: str,
         tun_type: Literal["cfd_tunnel", "warp_connector", "ip_sec", "gre", "cni"] | NotGiven = NOT_GIVEN,
+        tunnel_id: str | NotGiven = NOT_GIVEN,
+        virtual_network_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -302,6 +317,10 @@ class AsyncNetworks(AsyncAPIResource):
 
           tun_type: The type of tunnel.
 
+          tunnel_id: UUID of the tunnel.
+
+          virtual_network_id: UUID of the virtual network.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -321,7 +340,14 @@ class AsyncNetworks(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"tun_type": tun_type}, network_delete_params.NetworkDeleteParams),
+                query=await async_maybe_transform(
+                    {
+                        "tun_type": tun_type,
+                        "tunnel_id": tunnel_id,
+                        "virtual_network_id": virtual_network_id,
+                    },
+                    network_delete_params.NetworkDeleteParams,
+                ),
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(Type[TunnelRoute], ResultWrapper[TunnelRoute]),

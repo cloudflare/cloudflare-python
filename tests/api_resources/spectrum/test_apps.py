@@ -270,6 +270,7 @@ class TestApps:
         app = client.spectrum.apps.delete(
             "ea95132c15732412d22c1476fa83f27a",
             zone="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
         assert_matches_type(Optional[AppDeleteResponse], app, path=["response"])
 
@@ -279,6 +280,7 @@ class TestApps:
         response = client.spectrum.apps.with_raw_response.delete(
             "ea95132c15732412d22c1476fa83f27a",
             zone="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
 
         assert response.is_closed is True
@@ -292,6 +294,7 @@ class TestApps:
         with client.spectrum.apps.with_streaming_response.delete(
             "ea95132c15732412d22c1476fa83f27a",
             zone="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -308,12 +311,14 @@ class TestApps:
             client.spectrum.apps.with_raw_response.delete(
                 "ea95132c15732412d22c1476fa83f27a",
                 zone="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             client.spectrum.apps.with_raw_response.delete(
                 "",
                 zone="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
             )
 
     @pytest.mark.skip()
@@ -619,6 +624,7 @@ class TestAsyncApps:
         app = await async_client.spectrum.apps.delete(
             "ea95132c15732412d22c1476fa83f27a",
             zone="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
         assert_matches_type(Optional[AppDeleteResponse], app, path=["response"])
 
@@ -628,6 +634,7 @@ class TestAsyncApps:
         response = await async_client.spectrum.apps.with_raw_response.delete(
             "ea95132c15732412d22c1476fa83f27a",
             zone="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
 
         assert response.is_closed is True
@@ -641,6 +648,7 @@ class TestAsyncApps:
         async with async_client.spectrum.apps.with_streaming_response.delete(
             "ea95132c15732412d22c1476fa83f27a",
             zone="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -657,12 +665,14 @@ class TestAsyncApps:
             await async_client.spectrum.apps.with_raw_response.delete(
                 "ea95132c15732412d22c1476fa83f27a",
                 zone="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             await async_client.spectrum.apps.with_raw_response.delete(
                 "",
                 zone="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
             )
 
     @pytest.mark.skip()

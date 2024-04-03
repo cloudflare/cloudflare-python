@@ -3,4 +3,5 @@
 from __future__ import annotations
 
 from .preview_create_params import PreviewCreateParams as PreviewCreateParams
+from .preview_delete_params import PreviewDeleteParams as PreviewDeleteParams
 from .preview_delete_response import PreviewDeleteResponse as PreviewDeleteResponse

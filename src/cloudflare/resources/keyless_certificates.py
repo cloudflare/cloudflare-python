@@ -12,6 +12,7 @@ from ..types import (
     KeylessCertificateDeleteResponse,
     keyless_certificate_edit_params,
     keyless_certificate_create_params,
+    keyless_certificate_delete_params,
 )
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import (
@@ -158,6 +159,7 @@ class KeylessCertificates(SyncAPIResource):
         keyless_certificate_id: str,
         *,
         zone_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -189,6 +191,7 @@ class KeylessCertificates(SyncAPIResource):
             )
         return self._delete(
             f"/zones/{zone_id}/keyless_certificates/{keyless_certificate_id}",
+            body=maybe_transform(body, keyless_certificate_delete_params.KeylessCertificateDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -442,6 +445,7 @@ class AsyncKeylessCertificates(AsyncAPIResource):
         keyless_certificate_id: str,
         *,
         zone_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -473,6 +477,7 @@ class AsyncKeylessCertificates(AsyncAPIResource):
             )
         return await self._delete(
             f"/zones/{zone_id}/keyless_certificates/{keyless_certificate_id}",
+            body=await async_maybe_transform(body, keyless_certificate_delete_params.KeylessCertificateDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

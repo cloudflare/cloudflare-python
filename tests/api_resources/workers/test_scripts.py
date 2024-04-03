@@ -273,6 +273,7 @@ class TestScripts:
         script = client.workers.scripts.delete(
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
         assert script is None
 
@@ -282,6 +283,7 @@ class TestScripts:
         script = client.workers.scripts.delete(
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
             force=True,
         )
         assert script is None
@@ -292,6 +294,7 @@ class TestScripts:
         response = client.workers.scripts.with_raw_response.delete(
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
 
         assert response.is_closed is True
@@ -305,6 +308,7 @@ class TestScripts:
         with client.workers.scripts.with_streaming_response.delete(
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -321,12 +325,14 @@ class TestScripts:
             client.workers.scripts.with_raw_response.delete(
                 "this-is_my_script-01",
                 account_id="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             client.workers.scripts.with_raw_response.delete(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
             )
 
     @pytest.mark.skip()
@@ -650,6 +656,7 @@ class TestAsyncScripts:
         script = await async_client.workers.scripts.delete(
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
         assert script is None
 
@@ -659,6 +666,7 @@ class TestAsyncScripts:
         script = await async_client.workers.scripts.delete(
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
             force=True,
         )
         assert script is None
@@ -669,6 +677,7 @@ class TestAsyncScripts:
         response = await async_client.workers.scripts.with_raw_response.delete(
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
 
         assert response.is_closed is True
@@ -682,6 +691,7 @@ class TestAsyncScripts:
         async with async_client.workers.scripts.with_streaming_response.delete(
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -698,12 +708,14 @@ class TestAsyncScripts:
             await async_client.workers.scripts.with_raw_response.delete(
                 "this-is_my_script-01",
                 account_id="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             await async_client.workers.scripts.with_raw_response.delete(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
             )
 
     @pytest.mark.skip()

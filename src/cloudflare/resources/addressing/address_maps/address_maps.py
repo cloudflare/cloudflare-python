@@ -56,6 +56,7 @@ from ....types.addressing import (
     AddressMapDeleteResponse,
     address_map_edit_params,
     address_map_create_params,
+    address_map_delete_params,
 )
 
 __all__ = ["AddressMaps", "AsyncAddressMaps"]
@@ -177,6 +178,7 @@ class AddressMaps(SyncAPIResource):
         address_map_id: str,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -210,6 +212,7 @@ class AddressMaps(SyncAPIResource):
             Optional[AddressMapDeleteResponse],
             self._delete(
                 f"/accounts/{account_id}/addressing/address_maps/{address_map_id}",
+                body=maybe_transform(body, address_map_delete_params.AddressMapDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -451,6 +454,7 @@ class AsyncAddressMaps(AsyncAPIResource):
         address_map_id: str,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -484,6 +488,7 @@ class AsyncAddressMaps(AsyncAPIResource):
             Optional[AddressMapDeleteResponse],
             await self._delete(
                 f"/accounts/{account_id}/addressing/address_maps/{address_map_id}",
+                body=await async_maybe_transform(body, address_map_delete_params.AddressMapDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

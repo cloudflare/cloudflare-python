@@ -8,6 +8,9 @@ __all__ = ["FilterListParams"]
 
 
 class FilterListParams(TypedDict, total=False):
+    id: str
+    """The unique identifier of the filter."""
+
     description: str
     """A case-insensitive string to find in the description."""
 

@@ -173,6 +173,7 @@ class Tunnels(SyncAPIResource):
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
         tun_types: str | NotGiven = NOT_GIVEN,
+        uuid: str | NotGiven = NOT_GIVEN,
         was_active_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         was_inactive_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -202,6 +203,8 @@ class Tunnels(SyncAPIResource):
 
           tun_types: The types of tunnels to filter separated by a comma.
 
+          uuid: UUID of the tunnel.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -230,6 +233,7 @@ class Tunnels(SyncAPIResource):
                         "page": page,
                         "per_page": per_page,
                         "tun_types": tun_types,
+                        "uuid": uuid,
                         "was_active_at": was_active_at,
                         "was_inactive_at": was_inactive_at,
                     },
@@ -487,6 +491,7 @@ class AsyncTunnels(AsyncAPIResource):
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
         tun_types: str | NotGiven = NOT_GIVEN,
+        uuid: str | NotGiven = NOT_GIVEN,
         was_active_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         was_inactive_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -516,6 +521,8 @@ class AsyncTunnels(AsyncAPIResource):
 
           tun_types: The types of tunnels to filter separated by a comma.
 
+          uuid: UUID of the tunnel.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -544,6 +551,7 @@ class AsyncTunnels(AsyncAPIResource):
                         "page": page,
                         "per_page": per_page,
                         "tun_types": tun_types,
+                        "uuid": uuid,
                         "was_active_at": was_active_at,
                         "was_inactive_at": was_inactive_at,
                     },

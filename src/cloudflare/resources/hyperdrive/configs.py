@@ -53,6 +53,7 @@ class Configs(SyncAPIResource):
         self,
         *,
         account_id: str,
+        name: object,
         origin: config_create_params.Origin,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -79,7 +80,13 @@ class Configs(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
             f"/accounts/{account_id}/hyperdrive/configs",
-            body=maybe_transform({"origin": origin}, config_create_params.ConfigCreateParams),
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "origin": origin,
+                },
+                config_create_params.ConfigCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -95,6 +102,7 @@ class Configs(SyncAPIResource):
         hyperdrive_id: str,
         *,
         account_id: str,
+        name: object,
         origin: config_update_params.Origin,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -125,7 +133,13 @@ class Configs(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `hyperdrive_id` but received {hyperdrive_id!r}")
         return self._put(
             f"/accounts/{account_id}/hyperdrive/configs/{hyperdrive_id}",
-            body=maybe_transform({"origin": origin}, config_update_params.ConfigUpdateParams),
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "origin": origin,
+                },
+                config_update_params.ConfigUpdateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -327,6 +341,7 @@ class AsyncConfigs(AsyncAPIResource):
         self,
         *,
         account_id: str,
+        name: object,
         origin: config_create_params.Origin,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -353,7 +368,13 @@ class AsyncConfigs(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/hyperdrive/configs",
-            body=await async_maybe_transform({"origin": origin}, config_create_params.ConfigCreateParams),
+            body=await async_maybe_transform(
+                {
+                    "name": name,
+                    "origin": origin,
+                },
+                config_create_params.ConfigCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -369,6 +390,7 @@ class AsyncConfigs(AsyncAPIResource):
         hyperdrive_id: str,
         *,
         account_id: str,
+        name: object,
         origin: config_update_params.Origin,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -399,7 +421,13 @@ class AsyncConfigs(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `hyperdrive_id` but received {hyperdrive_id!r}")
         return await self._put(
             f"/accounts/{account_id}/hyperdrive/configs/{hyperdrive_id}",
-            body=await async_maybe_transform({"origin": origin}, config_update_params.ConfigUpdateParams),
+            body=await async_maybe_transform(
+                {
+                    "name": name,
+                    "origin": origin,
+                },
+                config_update_params.ConfigUpdateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
