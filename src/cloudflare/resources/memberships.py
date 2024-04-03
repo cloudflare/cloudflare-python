@@ -8,6 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..types import (
+    Membership,
     MembershipGetResponse,
     MembershipDeleteResponse,
     MembershipUpdateResponse,
@@ -33,7 +34,6 @@ from .._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ..types.accounts import MemberRole
 
 __all__ = ["Memberships", "AsyncMemberships"]
 
@@ -111,7 +111,7 @@ class Memberships(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[MemberRole]:
+    ) -> SyncV4PagePaginationArray[Membership]:
         """
         List memberships of accounts the user can access.
 
@@ -138,7 +138,7 @@ class Memberships(SyncAPIResource):
         """
         return self._get_api_list(
             "/memberships",
-            page=SyncV4PagePaginationArray[MemberRole],
+            page=SyncV4PagePaginationArray[Membership],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -157,7 +157,7 @@ class Memberships(SyncAPIResource):
                     membership_list_params.MembershipListParams,
                 ),
             ),
-            model=MemberRole,
+            model=Membership,
         )
 
     def delete(
@@ -317,7 +317,7 @@ class AsyncMemberships(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[MemberRole, AsyncV4PagePaginationArray[MemberRole]]:
+    ) -> AsyncPaginator[Membership, AsyncV4PagePaginationArray[Membership]]:
         """
         List memberships of accounts the user can access.
 
@@ -344,7 +344,7 @@ class AsyncMemberships(AsyncAPIResource):
         """
         return self._get_api_list(
             "/memberships",
-            page=AsyncV4PagePaginationArray[MemberRole],
+            page=AsyncV4PagePaginationArray[Membership],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -363,7 +363,7 @@ class AsyncMemberships(AsyncAPIResource):
                     membership_list_params.MembershipListParams,
                 ),
             ),
-            model=MemberRole,
+            model=Membership,
         )
 
     async def delete(
