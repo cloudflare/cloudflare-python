@@ -93,53 +93,7 @@ class TestSettings:
                 },
             ],
             result={
-                "bindings": [{"type": "kv_namespace"}, {"type": "kv_namespace"}, {"type": "kv_namespace"}],
-                "compatibility_date": "2022-04-05",
-                "compatibility_flags": [
-                    "formdata_parser_supports_files",
-                    "formdata_parser_supports_files",
-                    "formdata_parser_supports_files",
-                ],
                 "logpush": False,
-                "migrations": {
-                    "new_tag": "v2",
-                    "old_tag": "v1",
-                    "deleted_classes": ["string", "string", "string"],
-                    "new_classes": ["string", "string", "string"],
-                    "renamed_classes": [
-                        {
-                            "from": "string",
-                            "to": "string",
-                        },
-                        {
-                            "from": "string",
-                            "to": "string",
-                        },
-                        {
-                            "from": "string",
-                            "to": "string",
-                        },
-                    ],
-                    "transferred_classes": [
-                        {
-                            "from": "string",
-                            "from_script": "string",
-                            "to": "string",
-                        },
-                        {
-                            "from": "string",
-                            "from_script": "string",
-                            "to": "string",
-                        },
-                        {
-                            "from": "string",
-                            "from_script": "string",
-                            "to": "string",
-                        },
-                    ],
-                },
-                "placement": {"mode": "smart"},
-                "tags": ["my-tag", "my-tag", "my-tag"],
                 "tail_consumers": [
                     {
                         "environment": "production",
@@ -157,7 +111,6 @@ class TestSettings:
                         "service": "my-log-consumer",
                     },
                 ],
-                "usage_model": "unbound",
             },
             success=True,
         )
@@ -511,53 +464,7 @@ class TestAsyncSettings:
                 },
             ],
             result={
-                "bindings": [{"type": "kv_namespace"}, {"type": "kv_namespace"}, {"type": "kv_namespace"}],
-                "compatibility_date": "2022-04-05",
-                "compatibility_flags": [
-                    "formdata_parser_supports_files",
-                    "formdata_parser_supports_files",
-                    "formdata_parser_supports_files",
-                ],
                 "logpush": False,
-                "migrations": {
-                    "new_tag": "v2",
-                    "old_tag": "v1",
-                    "deleted_classes": ["string", "string", "string"],
-                    "new_classes": ["string", "string", "string"],
-                    "renamed_classes": [
-                        {
-                            "from": "string",
-                            "to": "string",
-                        },
-                        {
-                            "from": "string",
-                            "to": "string",
-                        },
-                        {
-                            "from": "string",
-                            "to": "string",
-                        },
-                    ],
-                    "transferred_classes": [
-                        {
-                            "from": "string",
-                            "from_script": "string",
-                            "to": "string",
-                        },
-                        {
-                            "from": "string",
-                            "from_script": "string",
-                            "to": "string",
-                        },
-                        {
-                            "from": "string",
-                            "from_script": "string",
-                            "to": "string",
-                        },
-                    ],
-                },
-                "placement": {"mode": "smart"},
-                "tags": ["my-tag", "my-tag", "my-tag"],
                 "tail_consumers": [
                     {
                         "environment": "production",
@@ -575,7 +482,6 @@ class TestAsyncSettings:
                         "service": "my-log-consumer",
                     },
                 ],
-                "usage_model": "unbound",
             },
             success=True,
         )
