@@ -5,7 +5,7 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["DNSSettingGetResponse", "Nameservers"]
+__all__ = ["DNSSetting", "Nameservers"]
 
 
 class Nameservers(BaseModel):
@@ -13,7 +13,7 @@ class Nameservers(BaseModel):
     """Nameserver type"""
 
 
-class DNSSettingGetResponse(BaseModel):
+class DNSSetting(BaseModel):
     nameservers: Optional[Nameservers] = None
     """
     Settings determining the nameservers through which the zone should be available.
