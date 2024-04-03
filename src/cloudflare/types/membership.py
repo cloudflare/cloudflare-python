@@ -3,14 +3,14 @@
 from typing import List, Optional
 from typing_extensions import Literal
 
-from ..account import Account
-from ..._models import BaseModel
-from .member_permission import MemberPermission
+from .account import Account
+from .._models import BaseModel
+from .accounts import MemberPermission
 
-__all__ = ["MemberRole"]
+__all__ = ["Membership"]
 
 
-class MemberRole(BaseModel):
+class Membership(BaseModel):
     id: Optional[str] = None
     """Membership identifier tag."""
 

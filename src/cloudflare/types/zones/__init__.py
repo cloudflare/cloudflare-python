@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from .dns_setting import DNSSetting as DNSSetting
 from .hold_get_response import HoldGetResponse as HoldGetResponse
 from .hold_create_params import HoldCreateParams as HoldCreateParams
 from .hold_delete_params import HoldDeleteParams as HoldDeleteParams
@@ -11,8 +12,6 @@ from .hold_delete_response import HoldDeleteResponse as HoldDeleteResponse
 from .setting_get_response import SettingGetResponse as SettingGetResponse
 from .setting_edit_response import SettingEditResponse as SettingEditResponse
 from .dns_setting_edit_params import DNSSettingEditParams as DNSSettingEditParams
-from .dns_setting_get_response import DNSSettingGetResponse as DNSSettingGetResponse
-from .dns_setting_edit_response import DNSSettingEditResponse as DNSSettingEditResponse
 from .subscription_get_response import SubscriptionGetResponse as SubscriptionGetResponse
 from .subscription_create_params import SubscriptionCreateParams as SubscriptionCreateParams
 from .subscription_list_response import SubscriptionListResponse as SubscriptionListResponse

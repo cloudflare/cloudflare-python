@@ -26,7 +26,6 @@ Types:
 from cloudflare.types.accounts import (
     Member,
     MemberPermission,
-    MemberRole,
     MemberWithCode,
     MemberListResponse,
     MemberDeleteResponse,
@@ -46,12 +45,12 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.accounts import PermissionGrant, Role, RoleGetResponse
+from cloudflare.types.accounts import PermissionGrant, Role, RoleListResponse, RoleGetResponse
 ```
 
 Methods:
 
-- <code title="get /accounts/{account_id}/roles">client.accounts.roles.<a href="./src/cloudflare/resources/accounts/roles.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/accounts/role.py">SyncSinglePage[Role]</a></code>
+- <code title="get /accounts/{account_id}/roles">client.accounts.roles.<a href="./src/cloudflare/resources/accounts/roles.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/accounts/role_list_response.py">SyncSinglePage[RoleListResponse]</a></code>
 - <code title="get /accounts/{account_id}/roles/{role_id}">client.accounts.roles.<a href="./src/cloudflare/resources/accounts/roles.py">get</a>(role_id, \*, account_id) -> <a href="./src/cloudflare/types/accounts/role_get_response.py">RoleGetResponse</a></code>
 
 # OriginCACertificates
@@ -102,7 +101,7 @@ from cloudflare.types import (
 Methods:
 
 - <code title="put /memberships/{membership_id}">client.memberships.<a href="./src/cloudflare/resources/memberships.py">update</a>(membership_id, \*\*<a href="src/cloudflare/types/membership_update_params.py">params</a>) -> <a href="./src/cloudflare/types/membership_update_response.py">MembershipUpdateResponse</a></code>
-- <code title="get /memberships">client.memberships.<a href="./src/cloudflare/resources/memberships.py">list</a>(\*\*<a href="src/cloudflare/types/membership_list_params.py">params</a>) -> <a href="./src/cloudflare/types/accounts/member_role.py">SyncV4PagePaginationArray[MemberRole]</a></code>
+- <code title="get /memberships">client.memberships.<a href="./src/cloudflare/resources/memberships.py">list</a>(\*\*<a href="src/cloudflare/types/membership_list_params.py">params</a>) -> <a href="./src/cloudflare/types/membership.py">SyncV4PagePaginationArray[Membership]</a></code>
 - <code title="delete /memberships/{membership_id}">client.memberships.<a href="./src/cloudflare/resources/memberships.py">delete</a>(membership_id) -> <a href="./src/cloudflare/types/membership_delete_response.py">MembershipDeleteResponse</a></code>
 - <code title="get /memberships/{membership_id}">client.memberships.<a href="./src/cloudflare/resources/memberships.py">get</a>(membership_id) -> <a href="./src/cloudflare/types/membership_get_response.py">MembershipGetResponse</a></code>
 
@@ -179,12 +178,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.user import (
-    UserInvite,
-    InviteListResponse,
-    InviteEditResponse,
-    InviteGetResponse,
-)
+from cloudflare.types.user import Invite, InviteListResponse, InviteEditResponse, InviteGetResponse
 ```
 
 Methods:
@@ -387,13 +381,13 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zones import DNSSettingEditResponse, DNSSettingGetResponse
+from cloudflare.types.zones import DNSSetting
 ```
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/dns_settings">client.zones.dns_settings.<a href="./src/cloudflare/resources/zones/dns_settings.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/dns_setting_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/dns_setting_edit_response.py">DNSSettingEditResponse</a></code>
-- <code title="get /zones/{zone_id}/dns_settings">client.zones.dns_settings.<a href="./src/cloudflare/resources/zones/dns_settings.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/dns_setting_get_response.py">DNSSettingGetResponse</a></code>
+- <code title="patch /zones/{zone_id}/dns_settings">client.zones.dns_settings.<a href="./src/cloudflare/resources/zones/dns_settings.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/dns_setting_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/dns_setting.py">DNSSetting</a></code>
+- <code title="get /zones/{zone_id}/dns_settings">client.zones.dns_settings.<a href="./src/cloudflare/resources/zones/dns_settings.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/dns_setting.py">DNSSetting</a></code>
 
 ## Settings
 
@@ -2966,7 +2960,7 @@ Methods:
 
 - <code title="post /accounts/{account_id}/queues">client.queues.<a href="./src/cloudflare/resources/queues/queues.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/queue_create_params.py">params</a>) -> <a href="./src/cloudflare/types/queue_create_response.py">Optional</a></code>
 - <code title="put /accounts/{account_id}/queues/{queue_id}">client.queues.<a href="./src/cloudflare/resources/queues/queues.py">update</a>(queue_id, \*, account_id, \*\*<a href="src/cloudflare/types/queue_update_params.py">params</a>) -> <a href="./src/cloudflare/types/queue_update_response.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/queues">client.queues.<a href="./src/cloudflare/resources/queues/queues.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/queue_list_response.py">SyncSinglePage[QueueListResponse]</a></code>
+- <code title="get /accounts/{account_id}/queues">client.queues.<a href="./src/cloudflare/resources/queues/queues.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/queue_list_response.py">Optional</a></code>
 - <code title="delete /accounts/{account_id}/queues/{queue_id}">client.queues.<a href="./src/cloudflare/resources/queues/queues.py">delete</a>(queue_id, \*, account_id) -> <a href="./src/cloudflare/types/queue_delete_response.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/queues/{queue_id}">client.queues.<a href="./src/cloudflare/resources/queues/queues.py">get</a>(queue_id, \*, account_id) -> <a href="./src/cloudflare/types/queue_get_response.py">Optional</a></code>
 
@@ -2995,13 +2989,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.queues import (
-    QueueConsumer,
-    QueueConsumerCreated,
-    QueueConsumerUpdated,
-    MessageAckResponse,
-    MessagePullResponse,
-)
+from cloudflare.types.queues import QueueConsumer, MessageAckResponse, MessagePullResponse
 ```
 
 Methods:

@@ -10,12 +10,12 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types import (
+    Membership,
     MembershipGetResponse,
     MembershipDeleteResponse,
     MembershipUpdateResponse,
 )
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from cloudflare.types.accounts import MemberRole
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -73,7 +73,7 @@ class TestMemberships:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         membership = client.memberships.list()
-        assert_matches_type(SyncV4PagePaginationArray[MemberRole], membership, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[Membership], membership, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -87,7 +87,7 @@ class TestMemberships:
             per_page=5,
             status="accepted",
         )
-        assert_matches_type(SyncV4PagePaginationArray[MemberRole], membership, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[Membership], membership, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -97,7 +97,7 @@ class TestMemberships:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         membership = response.parse()
-        assert_matches_type(SyncV4PagePaginationArray[MemberRole], membership, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[Membership], membership, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -107,7 +107,7 @@ class TestMemberships:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             membership = response.parse()
-            assert_matches_type(SyncV4PagePaginationArray[MemberRole], membership, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[Membership], membership, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -249,7 +249,7 @@ class TestAsyncMemberships:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         membership = await async_client.memberships.list()
-        assert_matches_type(AsyncV4PagePaginationArray[MemberRole], membership, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[Membership], membership, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -263,7 +263,7 @@ class TestAsyncMemberships:
             per_page=5,
             status="accepted",
         )
-        assert_matches_type(AsyncV4PagePaginationArray[MemberRole], membership, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[Membership], membership, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -273,7 +273,7 @@ class TestAsyncMemberships:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         membership = await response.parse()
-        assert_matches_type(AsyncV4PagePaginationArray[MemberRole], membership, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[Membership], membership, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -283,7 +283,7 @@ class TestAsyncMemberships:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             membership = await response.parse()
-            assert_matches_type(AsyncV4PagePaginationArray[MemberRole], membership, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[Membership], membership, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
