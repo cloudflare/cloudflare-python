@@ -5,16 +5,13 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Required, TypedDict
 
-__all__ = ["MemberUpdateParams", "Role"]
+from .role_param import RoleParam
+
+__all__ = ["MemberUpdateParams"]
 
 
 class MemberUpdateParams(TypedDict, total=False):
     account_id: Required[object]
 
-    roles: Required[Iterable[Role]]
+    roles: Required[Iterable[RoleParam]]
     """Roles assigned to this member."""
-
-
-class Role(TypedDict, total=False):
-    id: Required[str]
-    """Role identifier tag."""

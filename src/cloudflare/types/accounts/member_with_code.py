@@ -2,23 +2,10 @@
 
 from typing import List, Optional
 
+from .role import Role
 from ..._models import BaseModel
-from .member_permission import MemberPermission
 
-__all__ = ["MemberWithCode", "Role", "User"]
-
-
-class Role(BaseModel):
-    id: str
-    """Role identifier tag."""
-
-    description: str
-    """Description of role's permissions."""
-
-    name: str
-    """Role name."""
-
-    permissions: MemberPermission
+__all__ = ["MemberWithCode", "User"]
 
 
 class User(BaseModel):
