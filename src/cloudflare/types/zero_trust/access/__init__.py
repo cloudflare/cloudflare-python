@@ -17,6 +17,9 @@ from .key_update_response import KeyUpdateResponse as KeyUpdateResponse
 from .tag_delete_response import TagDeleteResponse as TagDeleteResponse
 from .zero_trust_bookmarks import ZeroTrustBookmarks as ZeroTrustBookmarks
 from .group_delete_response import GroupDeleteResponse as GroupDeleteResponse
+from .bookmark_create_params import BookmarkCreateParams as BookmarkCreateParams
+from .bookmark_delete_params import BookmarkDeleteParams as BookmarkDeleteParams
+from .bookmark_update_params import BookmarkUpdateParams as BookmarkUpdateParams
 from .zero_trust_custom_page import ZeroTrustCustomPage as ZeroTrustCustomPage
 from .zero_trust_certificates import ZeroTrustCertificates as ZeroTrustCertificates
 from .bookmark_delete_response import BookmarkDeleteResponse as BookmarkDeleteResponse

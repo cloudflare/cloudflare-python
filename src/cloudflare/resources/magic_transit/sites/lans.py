@@ -30,6 +30,7 @@ from ....types.magic_transit.sites import (
     LANDeleteResponse,
     LANUpdateResponse,
     lan_create_params,
+    lan_delete_params,
     lan_update_params,
 )
 
@@ -194,6 +195,7 @@ class LANs(SyncAPIResource):
         *,
         account_id: str,
         site_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -227,6 +229,7 @@ class LANs(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `lan_id` but received {lan_id!r}")
         return self._delete(
             f"/accounts/{account_id}/magic/sites/{site_id}/lans/{lan_id}",
+            body=maybe_transform(body, lan_delete_params.LANDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -445,6 +448,7 @@ class AsyncLANs(AsyncAPIResource):
         *,
         account_id: str,
         site_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -478,6 +482,7 @@ class AsyncLANs(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `lan_id` but received {lan_id!r}")
         return await self._delete(
             f"/accounts/{account_id}/magic/sites/{site_id}/lans/{lan_id}",
+            body=await async_maybe_transform(body, lan_delete_params.LANDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

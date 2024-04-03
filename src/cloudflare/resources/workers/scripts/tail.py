@@ -7,6 +7,10 @@ from typing import Any, Type, cast
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -19,7 +23,13 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.workers.scripts import TailGetResponse, TailCreateResponse, TailDeleteResponse
+from ....types.workers.scripts import (
+    TailGetResponse,
+    TailCreateResponse,
+    TailDeleteResponse,
+    tail_create_params,
+    tail_delete_params,
+)
 
 __all__ = ["Tail", "AsyncTail"]
 
@@ -38,6 +48,7 @@ class Tail(SyncAPIResource):
         script_name: str,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -67,6 +78,7 @@ class Tail(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         return self._post(
             f"/accounts/{account_id}/workers/scripts/{script_name}/tails",
+            body=maybe_transform(body, tail_create_params.TailCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -83,6 +95,7 @@ class Tail(SyncAPIResource):
         *,
         account_id: str,
         script_name: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -118,6 +131,7 @@ class Tail(SyncAPIResource):
             TailDeleteResponse,
             self._delete(
                 f"/accounts/{account_id}/workers/scripts/{script_name}/tails/{id}",
+                body=maybe_transform(body, tail_delete_params.TailDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -190,6 +204,7 @@ class AsyncTail(AsyncAPIResource):
         script_name: str,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -219,6 +234,7 @@ class AsyncTail(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         return await self._post(
             f"/accounts/{account_id}/workers/scripts/{script_name}/tails",
+            body=await async_maybe_transform(body, tail_create_params.TailCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -235,6 +251,7 @@ class AsyncTail(AsyncAPIResource):
         *,
         account_id: str,
         script_name: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -270,6 +287,7 @@ class AsyncTail(AsyncAPIResource):
             TailDeleteResponse,
             await self._delete(
                 f"/accounts/{account_id}/workers/scripts/{script_name}/tails/{id}",
+                body=await async_maybe_transform(body, tail_delete_params.TailDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

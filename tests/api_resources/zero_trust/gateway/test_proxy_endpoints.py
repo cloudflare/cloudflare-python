@@ -33,17 +33,6 @@ class TestProxyEndpoints:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
-        proxy_endpoint = client.zero_trust.gateway.proxy_endpoints.create(
-            account_id="699d98642c564d2e855e9661899b7252",
-            ips=["192.0.2.1/32", "192.0.2.1/32", "192.0.2.1/32"],
-            name="Devops team",
-            subdomain="oli3n9zkz5.proxy.cloudflare-gateway.com",
-        )
-        assert_matches_type(ZeroTrustGatewayProxyEndpoints, proxy_endpoint, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.zero_trust.gateway.proxy_endpoints.with_raw_response.create(
             account_id="699d98642c564d2e855e9661899b7252",
@@ -130,6 +119,7 @@ class TestProxyEndpoints:
         proxy_endpoint = client.zero_trust.gateway.proxy_endpoints.delete(
             "ed35569b41ce4d1facfe683550f54086",
             account_id="699d98642c564d2e855e9661899b7252",
+            body={},
         )
         assert_matches_type(ProxyEndpointDeleteResponse, proxy_endpoint, path=["response"])
 
@@ -139,6 +129,7 @@ class TestProxyEndpoints:
         response = client.zero_trust.gateway.proxy_endpoints.with_raw_response.delete(
             "ed35569b41ce4d1facfe683550f54086",
             account_id="699d98642c564d2e855e9661899b7252",
+            body={},
         )
 
         assert response.is_closed is True
@@ -152,6 +143,7 @@ class TestProxyEndpoints:
         with client.zero_trust.gateway.proxy_endpoints.with_streaming_response.delete(
             "ed35569b41ce4d1facfe683550f54086",
             account_id="699d98642c564d2e855e9661899b7252",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -168,12 +160,14 @@ class TestProxyEndpoints:
             client.zero_trust.gateway.proxy_endpoints.with_raw_response.delete(
                 "ed35569b41ce4d1facfe683550f54086",
                 account_id="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `proxy_endpoint_id` but received ''"):
             client.zero_trust.gateway.proxy_endpoints.with_raw_response.delete(
                 "",
                 account_id="699d98642c564d2e855e9661899b7252",
+                body={},
             )
 
     @pytest.mark.skip()
@@ -193,7 +187,6 @@ class TestProxyEndpoints:
             account_id="699d98642c564d2e855e9661899b7252",
             ips=["192.0.2.1/32", "192.0.2.1/32", "192.0.2.1/32"],
             name="Devops team",
-            subdomain="oli3n9zkz5.proxy.cloudflare-gateway.com",
         )
         assert_matches_type(ZeroTrustGatewayProxyEndpoints, proxy_endpoint, path=["response"])
 
@@ -308,17 +301,6 @@ class TestAsyncProxyEndpoints:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        proxy_endpoint = await async_client.zero_trust.gateway.proxy_endpoints.create(
-            account_id="699d98642c564d2e855e9661899b7252",
-            ips=["192.0.2.1/32", "192.0.2.1/32", "192.0.2.1/32"],
-            name="Devops team",
-            subdomain="oli3n9zkz5.proxy.cloudflare-gateway.com",
-        )
-        assert_matches_type(ZeroTrustGatewayProxyEndpoints, proxy_endpoint, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.gateway.proxy_endpoints.with_raw_response.create(
             account_id="699d98642c564d2e855e9661899b7252",
@@ -405,6 +387,7 @@ class TestAsyncProxyEndpoints:
         proxy_endpoint = await async_client.zero_trust.gateway.proxy_endpoints.delete(
             "ed35569b41ce4d1facfe683550f54086",
             account_id="699d98642c564d2e855e9661899b7252",
+            body={},
         )
         assert_matches_type(ProxyEndpointDeleteResponse, proxy_endpoint, path=["response"])
 
@@ -414,6 +397,7 @@ class TestAsyncProxyEndpoints:
         response = await async_client.zero_trust.gateway.proxy_endpoints.with_raw_response.delete(
             "ed35569b41ce4d1facfe683550f54086",
             account_id="699d98642c564d2e855e9661899b7252",
+            body={},
         )
 
         assert response.is_closed is True
@@ -427,6 +411,7 @@ class TestAsyncProxyEndpoints:
         async with async_client.zero_trust.gateway.proxy_endpoints.with_streaming_response.delete(
             "ed35569b41ce4d1facfe683550f54086",
             account_id="699d98642c564d2e855e9661899b7252",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -443,12 +428,14 @@ class TestAsyncProxyEndpoints:
             await async_client.zero_trust.gateway.proxy_endpoints.with_raw_response.delete(
                 "ed35569b41ce4d1facfe683550f54086",
                 account_id="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `proxy_endpoint_id` but received ''"):
             await async_client.zero_trust.gateway.proxy_endpoints.with_raw_response.delete(
                 "",
                 account_id="699d98642c564d2e855e9661899b7252",
+                body={},
             )
 
     @pytest.mark.skip()
@@ -468,7 +455,6 @@ class TestAsyncProxyEndpoints:
             account_id="699d98642c564d2e855e9661899b7252",
             ips=["192.0.2.1/32", "192.0.2.1/32", "192.0.2.1/32"],
             name="Devops team",
-            subdomain="oli3n9zkz5.proxy.cloudflare-gateway.com",
         )
         assert_matches_type(ZeroTrustGatewayProxyEndpoints, proxy_endpoint, path=["response"])
 

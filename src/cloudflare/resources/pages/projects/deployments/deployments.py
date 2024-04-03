@@ -36,7 +36,13 @@ from ....._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from .....types.pages.projects import deployment_list_params, deployment_create_params
+from .....types.pages.projects import (
+    deployment_list_params,
+    deployment_retry_params,
+    deployment_create_params,
+    deployment_delete_params,
+    deployment_rollback_params,
+)
 
 __all__ = ["Deployments", "AsyncDeployments"]
 
@@ -159,6 +165,7 @@ class Deployments(SyncAPIResource):
         *,
         account_id: str,
         project_name: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -192,6 +199,7 @@ class Deployments(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `deployment_id` but received {deployment_id!r}")
         return self._delete(
             f"/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}",
+            body=maybe_transform(body, deployment_delete_params.DeploymentDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -253,6 +261,7 @@ class Deployments(SyncAPIResource):
         *,
         account_id: str,
         project_name: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -286,6 +295,7 @@ class Deployments(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `deployment_id` but received {deployment_id!r}")
         return self._post(
             f"/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/retry",
+            body=maybe_transform(body, deployment_retry_params.DeploymentRetryParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -302,6 +312,7 @@ class Deployments(SyncAPIResource):
         *,
         account_id: str,
         project_name: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -337,6 +348,7 @@ class Deployments(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `deployment_id` but received {deployment_id!r}")
         return self._post(
             f"/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/rollback",
+            body=maybe_transform(body, deployment_rollback_params.DeploymentRollbackParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -466,6 +478,7 @@ class AsyncDeployments(AsyncAPIResource):
         *,
         account_id: str,
         project_name: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -499,6 +512,7 @@ class AsyncDeployments(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `deployment_id` but received {deployment_id!r}")
         return await self._delete(
             f"/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}",
+            body=await async_maybe_transform(body, deployment_delete_params.DeploymentDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -560,6 +574,7 @@ class AsyncDeployments(AsyncAPIResource):
         *,
         account_id: str,
         project_name: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -593,6 +608,7 @@ class AsyncDeployments(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `deployment_id` but received {deployment_id!r}")
         return await self._post(
             f"/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/retry",
+            body=await async_maybe_transform(body, deployment_retry_params.DeploymentRetryParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -609,6 +625,7 @@ class AsyncDeployments(AsyncAPIResource):
         *,
         account_id: str,
         project_name: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -644,6 +661,7 @@ class AsyncDeployments(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `deployment_id` but received {deployment_id!r}")
         return await self._post(
             f"/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/rollback",
+            body=await async_maybe_transform(body, deployment_rollback_params.DeploymentRollbackParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

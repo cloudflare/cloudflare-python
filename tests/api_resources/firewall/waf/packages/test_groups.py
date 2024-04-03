@@ -40,9 +40,11 @@ class TestGroups:
             direction="desc",
             match="any",
             mode="on",
+            name="Project Honey Pot",
             order="mode",
             page=1,
             per_page=5,
+            rules_count=10,
         )
         assert_matches_type(SyncV4PagePaginationArray[WAFManagedRulesGroup], group, path=["response"])
 
@@ -250,9 +252,11 @@ class TestAsyncGroups:
             direction="desc",
             match="any",
             mode="on",
+            name="Project Honey Pot",
             order="mode",
             page=1,
             per_page=5,
+            rules_count=10,
         )
         assert_matches_type(AsyncV4PagePaginationArray[WAFManagedRulesGroup], group, path=["response"])
 

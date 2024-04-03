@@ -36,6 +36,7 @@ from ....types.stream import (
     LiveInputListResponse,
     live_input_list_params,
     live_input_create_params,
+    live_input_delete_params,
     live_input_update_params,
 )
 
@@ -248,6 +249,7 @@ class LiveInputs(SyncAPIResource):
         live_input_identifier: str,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -281,6 +283,7 @@ class LiveInputs(SyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             f"/accounts/{account_id}/stream/live_inputs/{live_input_identifier}",
+            body=maybe_transform(body, live_input_delete_params.LiveInputDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -542,6 +545,7 @@ class AsyncLiveInputs(AsyncAPIResource):
         live_input_identifier: str,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -575,6 +579,7 @@ class AsyncLiveInputs(AsyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             f"/accounts/{account_id}/stream/live_inputs/{live_input_identifier}",
+            body=await async_maybe_transform(body, live_input_delete_params.LiveInputDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

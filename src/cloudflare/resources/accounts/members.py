@@ -34,6 +34,7 @@ from ...types.accounts import (
     MemberDeleteResponse,
     member_list_params,
     member_create_params,
+    member_delete_params,
     member_update_params,
 )
 
@@ -208,6 +209,7 @@ class Members(SyncAPIResource):
         member_id: str,
         *,
         account_id: object,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -233,6 +235,7 @@ class Members(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `member_id` but received {member_id!r}")
         return self._delete(
             f"/accounts/{account_id}/members/{member_id}",
+            body=maybe_transform(body, member_delete_params.MemberDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -452,6 +455,7 @@ class AsyncMembers(AsyncAPIResource):
         member_id: str,
         *,
         account_id: object,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -477,6 +481,7 @@ class AsyncMembers(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `member_id` but received {member_id!r}")
         return await self._delete(
             f"/accounts/{account_id}/members/{member_id}",
+            body=await async_maybe_transform(body, member_delete_params.MemberDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

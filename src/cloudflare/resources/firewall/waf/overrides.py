@@ -30,6 +30,7 @@ from ....types.firewall.waf import (
     OverrideDeleteResponse,
     override_list_params,
     override_create_params,
+    override_delete_params,
     override_update_params,
 )
 
@@ -198,6 +199,7 @@ class Overrides(SyncAPIResource):
         id: str,
         *,
         zone_identifier: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -230,6 +232,7 @@ class Overrides(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._delete(
             f"/zones/{zone_identifier}/firewall/waf/overrides/{id}",
+            body=maybe_transform(body, override_delete_params.OverrideDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -450,6 +453,7 @@ class AsyncOverrides(AsyncAPIResource):
         id: str,
         *,
         zone_identifier: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -482,6 +486,7 @@ class AsyncOverrides(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._delete(
             f"/zones/{zone_identifier}/firewall/waf/overrides/{id}",
+            body=await async_maybe_transform(body, override_delete_params.OverrideDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

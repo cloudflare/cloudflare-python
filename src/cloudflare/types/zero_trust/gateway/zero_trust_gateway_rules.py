@@ -56,10 +56,10 @@ class RuleSettingsCheckSession(BaseModel):
 
 class RuleSettingsDNSResolversIPV4(BaseModel):
     ip: str
-    """IP address of upstream resolver."""
+    """IPv4 address of upstream resolver."""
 
     port: Optional[int] = None
-    """A port number to use for upstream resolver."""
+    """A port number to use for upstream resolver. Defaults to 53 if unspecified."""
 
     route_through_private_network: Optional[bool] = None
     """Whether to connect to this resolver over a private network.
@@ -76,10 +76,10 @@ class RuleSettingsDNSResolversIPV4(BaseModel):
 
 class RuleSettingsDNSResolversIPV6(BaseModel):
     ip: str
-    """IP address of upstream resolver."""
+    """IPv6 address of upstream resolver."""
 
     port: Optional[int] = None
-    """A port number to use for upstream resolver."""
+    """A port number to use for upstream resolver. Defaults to 53 if unspecified."""
 
     route_through_private_network: Optional[bool] = None
     """Whether to connect to this resolver over a private network.
@@ -185,7 +185,8 @@ class RuleSettings(BaseModel):
     """Add your own custom resolvers to route queries that match the resolver policy.
 
     Cannot be used when resolve_dns_through_cloudflare is set. DNS queries will
-    route to the address closest to their origin.
+    route to the address closest to their origin. Only valid when a rule's action is
+    set to 'resolve'.
     """
 
     egress: Optional[RuleSettingsEgress] = None
@@ -231,7 +232,8 @@ class RuleSettings(BaseModel):
     resolve_dns_through_cloudflare: Optional[bool] = None
     """
     Enable to send queries that match the policy to Cloudflare's default 1.1.1.1 DNS
-    resolver. Cannot be set when dns_resolvers are specified.
+    resolver. Cannot be set when dns_resolvers are specified. Only valid when a
+    rule's action is set to 'resolve'.
     """
 
     untrusted_cert: Optional[RuleSettingsUntrustedCERT] = None
@@ -321,6 +323,7 @@ class ZeroTrustGatewayRules(BaseModel):
             "l4_override",
             "egress",
             "audit_ssh",
+            "resolve",
         ]
     ] = None
     """

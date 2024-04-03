@@ -14,6 +14,7 @@ from ..types import (
     SubscriptionDeleteResponse,
     SubscriptionUpdateResponse,
     subscription_create_params,
+    subscription_delete_params,
     subscription_update_params,
 )
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
@@ -230,6 +231,7 @@ class Subscriptions(SyncAPIResource):
         subscription_identifier: str,
         *,
         account_identifier: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -261,6 +263,7 @@ class Subscriptions(SyncAPIResource):
             )
         return self._delete(
             f"/accounts/{account_identifier}/subscriptions/{subscription_identifier}",
+            body=maybe_transform(body, subscription_delete_params.SubscriptionDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -507,6 +510,7 @@ class AsyncSubscriptions(AsyncAPIResource):
         subscription_identifier: str,
         *,
         account_identifier: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -538,6 +542,7 @@ class AsyncSubscriptions(AsyncAPIResource):
             )
         return await self._delete(
             f"/accounts/{account_identifier}/subscriptions/{subscription_identifier}",
+            body=await async_maybe_transform(body, subscription_delete_params.SubscriptionDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

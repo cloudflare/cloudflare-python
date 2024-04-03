@@ -138,6 +138,7 @@ class TestDomains:
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
+            body={},
         )
         assert_matches_type(object, domain, path=["response"])
 
@@ -148,6 +149,7 @@ class TestDomains:
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
+            body={},
         )
 
         assert response.is_closed is True
@@ -162,6 +164,7 @@ class TestDomains:
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -179,6 +182,7 @@ class TestDomains:
                 "string",
                 account_id="",
                 project_name="this-is-my-project-01",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
@@ -186,6 +190,7 @@ class TestDomains:
                 "string",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `domain_name` but received ''"):
@@ -193,6 +198,7 @@ class TestDomains:
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="this-is-my-project-01",
+                body={},
             )
 
     @pytest.mark.skip()
@@ -202,6 +208,7 @@ class TestDomains:
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
+            body={},
         )
         assert_matches_type(Optional[DomainEditResponse], domain, path=["response"])
 
@@ -212,6 +219,7 @@ class TestDomains:
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
+            body={},
         )
 
         assert response.is_closed is True
@@ -226,6 +234,7 @@ class TestDomains:
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -243,6 +252,7 @@ class TestDomains:
                 "string",
                 account_id="",
                 project_name="this-is-my-project-01",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
@@ -250,6 +260,7 @@ class TestDomains:
                 "string",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `domain_name` but received ''"):
@@ -257,6 +268,7 @@ class TestDomains:
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="this-is-my-project-01",
+                body={},
             )
 
     @pytest.mark.skip()
@@ -443,6 +455,7 @@ class TestAsyncDomains:
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
+            body={},
         )
         assert_matches_type(object, domain, path=["response"])
 
@@ -453,6 +466,7 @@ class TestAsyncDomains:
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
+            body={},
         )
 
         assert response.is_closed is True
@@ -467,6 +481,7 @@ class TestAsyncDomains:
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -484,6 +499,7 @@ class TestAsyncDomains:
                 "string",
                 account_id="",
                 project_name="this-is-my-project-01",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
@@ -491,6 +507,7 @@ class TestAsyncDomains:
                 "string",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `domain_name` but received ''"):
@@ -498,6 +515,7 @@ class TestAsyncDomains:
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="this-is-my-project-01",
+                body={},
             )
 
     @pytest.mark.skip()
@@ -507,6 +525,7 @@ class TestAsyncDomains:
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
+            body={},
         )
         assert_matches_type(Optional[DomainEditResponse], domain, path=["response"])
 
@@ -517,6 +536,7 @@ class TestAsyncDomains:
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
+            body={},
         )
 
         assert response.is_closed is True
@@ -531,6 +551,7 @@ class TestAsyncDomains:
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -548,6 +569,7 @@ class TestAsyncDomains:
                 "string",
                 account_id="",
                 project_name="this-is-my-project-01",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
@@ -555,6 +577,7 @@ class TestAsyncDomains:
                 "string",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `domain_name` but received ''"):
@@ -562,6 +585,7 @@ class TestAsyncDomains:
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="this-is-my-project-01",
+                body={},
             )
 
     @pytest.mark.skip()

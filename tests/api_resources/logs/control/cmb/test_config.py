@@ -9,7 +9,10 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.logs.control.cmb import CmbConfig, ConfigDeleteResponse
+from cloudflare.types.logs.control.cmb import (
+    CmbConfig,
+    ConfigDeleteResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -73,6 +76,7 @@ class TestConfig:
     def test_method_delete(self, client: Cloudflare) -> None:
         config = client.logs.control.cmb.config.delete(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
         assert_matches_type(Optional[ConfigDeleteResponse], config, path=["response"])
 
@@ -81,6 +85,7 @@ class TestConfig:
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.logs.control.cmb.config.with_raw_response.delete(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
 
         assert response.is_closed is True
@@ -93,6 +98,7 @@ class TestConfig:
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.logs.control.cmb.config.with_streaming_response.delete(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -108,6 +114,7 @@ class TestConfig:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.logs.control.cmb.config.with_raw_response.delete(
                 account_id="",
+                body={},
             )
 
     @pytest.mark.skip()
@@ -212,6 +219,7 @@ class TestAsyncConfig:
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         config = await async_client.logs.control.cmb.config.delete(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
         assert_matches_type(Optional[ConfigDeleteResponse], config, path=["response"])
 
@@ -220,6 +228,7 @@ class TestAsyncConfig:
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.logs.control.cmb.config.with_raw_response.delete(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
 
         assert response.is_closed is True
@@ -232,6 +241,7 @@ class TestAsyncConfig:
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.logs.control.cmb.config.with_streaming_response.delete(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -247,6 +257,7 @@ class TestAsyncConfig:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.logs.control.cmb.config.with_raw_response.delete(
                 account_id="",
+                body={},
             )
 
     @pytest.mark.skip()

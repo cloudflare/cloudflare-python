@@ -15,6 +15,7 @@ from ..types import (
     rate_limit_edit_params,
     rate_limit_list_params,
     rate_limit_create_params,
+    rate_limit_delete_params,
 )
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import (
@@ -154,6 +155,7 @@ class RateLimits(SyncAPIResource):
         id: str,
         *,
         zone_identifier: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -183,6 +185,7 @@ class RateLimits(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._delete(
             f"/zones/{zone_identifier}/rate_limits/{id}",
+            body=maybe_transform(body, rate_limit_delete_params.RateLimitDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -409,6 +412,7 @@ class AsyncRateLimits(AsyncAPIResource):
         id: str,
         *,
         zone_identifier: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -438,6 +442,7 @@ class AsyncRateLimits(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._delete(
             f"/zones/{zone_identifier}/rate_limits/{id}",
+            body=await async_maybe_transform(body, rate_limit_delete_params.RateLimitDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

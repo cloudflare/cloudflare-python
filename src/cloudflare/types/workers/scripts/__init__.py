@@ -4,6 +4,8 @@ from __future__ import annotations
 
 from .workers_binding import WorkersBinding as WorkersBinding
 from .tail_get_response import TailGetResponse as TailGetResponse
+from .tail_create_params import TailCreateParams as TailCreateParams
+from .tail_delete_params import TailDeleteParams as TailDeleteParams
 from .setting_edit_params import SettingEditParams as SettingEditParams
 from .binding_get_response import BindingGetResponse as BindingGetResponse
 from .setting_get_response import SettingGetResponse as SettingGetResponse

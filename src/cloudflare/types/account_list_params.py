@@ -11,6 +11,9 @@ class AccountListParams(TypedDict, total=False):
     direction: Literal["asc", "desc"]
     """Direction to order results."""
 
+    name: str
+    """Name of the account."""
+
     page: float
     """Page number of paginated results."""
 

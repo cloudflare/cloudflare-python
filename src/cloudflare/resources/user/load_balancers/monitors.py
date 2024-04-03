@@ -33,6 +33,7 @@ from ....types.user.load_balancers import (
     MonitorReferencesResponse,
     monitor_edit_params,
     monitor_create_params,
+    monitor_delete_params,
     monitor_update_params,
     monitor_preview_params,
 )
@@ -316,6 +317,7 @@ class Monitors(SyncAPIResource):
         self,
         monitor_id: str,
         *,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -339,6 +341,7 @@ class Monitors(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `monitor_id` but received {monitor_id!r}")
         return self._delete(
             f"/user/load_balancers/monitors/{monitor_id}",
+            body=maybe_transform(body, monitor_delete_params.MonitorDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -948,6 +951,7 @@ class AsyncMonitors(AsyncAPIResource):
         self,
         monitor_id: str,
         *,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -971,6 +975,7 @@ class AsyncMonitors(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `monitor_id` but received {monitor_id!r}")
         return await self._delete(
             f"/user/load_balancers/monitors/{monitor_id}",
+            body=await async_maybe_transform(body, monitor_delete_params.MonitorDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

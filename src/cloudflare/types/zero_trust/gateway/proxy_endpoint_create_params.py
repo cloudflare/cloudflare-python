@@ -16,6 +16,3 @@ class ProxyEndpointCreateParams(TypedDict, total=False):
 
     name: Required[str]
     """The name of the proxy endpoint."""
-
-    subdomain: str
-    """The subdomain to be used as the destination in the proxy client."""

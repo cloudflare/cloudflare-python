@@ -54,9 +54,11 @@ class Groups(SyncAPIResource):
         direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
         mode: Literal["on", "off"] | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
         order: Literal["mode", "rules_count"] | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
+        rules_count: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -83,11 +85,15 @@ class Groups(SyncAPIResource):
           mode: The state of the rules contained in the rule group. When `on`, the rules in the
               group are configurable/usable.
 
+          name: The name of the rule group.
+
           order: The field used to sort returned rule groups.
 
           page: The page number of paginated results.
 
           per_page: The number of rule groups per page.
+
+          rules_count: The number of rules in the current rule group.
 
           extra_headers: Send extra headers
 
@@ -114,9 +120,11 @@ class Groups(SyncAPIResource):
                         "direction": direction,
                         "match": match,
                         "mode": mode,
+                        "name": name,
                         "order": order,
                         "page": page,
                         "per_page": per_page,
+                        "rules_count": rules_count,
                     },
                     group_list_params.GroupListParams,
                 ),
@@ -263,9 +271,11 @@ class AsyncGroups(AsyncAPIResource):
         direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
         mode: Literal["on", "off"] | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
         order: Literal["mode", "rules_count"] | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
+        rules_count: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -292,11 +302,15 @@ class AsyncGroups(AsyncAPIResource):
           mode: The state of the rules contained in the rule group. When `on`, the rules in the
               group are configurable/usable.
 
+          name: The name of the rule group.
+
           order: The field used to sort returned rule groups.
 
           page: The page number of paginated results.
 
           per_page: The number of rule groups per page.
+
+          rules_count: The number of rules in the current rule group.
 
           extra_headers: Send extra headers
 
@@ -323,9 +337,11 @@ class AsyncGroups(AsyncAPIResource):
                         "direction": direction,
                         "match": match,
                         "mode": mode,
+                        "name": name,
                         "order": order,
                         "page": page,
                         "per_page": per_page,
+                        "rules_count": rules_count,
                     },
                     group_list_params.GroupListParams,
                 ),

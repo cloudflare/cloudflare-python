@@ -7,6 +7,10 @@ from typing import Any, Optional, cast
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -19,7 +23,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.addressing.address_maps import IPDeleteResponse, IPUpdateResponse
+from ....types.addressing.address_maps import IPDeleteResponse, IPUpdateResponse, ip_delete_params, ip_update_params
 
 __all__ = ["IPs", "AsyncIPs"]
 
@@ -39,6 +43,7 @@ class IPs(SyncAPIResource):
         *,
         account_id: str,
         address_map_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -74,6 +79,7 @@ class IPs(SyncAPIResource):
             Optional[IPUpdateResponse],
             self._put(
                 f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/ips/{ip_address}",
+                body=maybe_transform(body, ip_update_params.IPUpdateParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -93,6 +99,7 @@ class IPs(SyncAPIResource):
         *,
         account_id: str,
         address_map_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -128,6 +135,7 @@ class IPs(SyncAPIResource):
             Optional[IPDeleteResponse],
             self._delete(
                 f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/ips/{ip_address}",
+                body=maybe_transform(body, ip_delete_params.IPDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -157,6 +165,7 @@ class AsyncIPs(AsyncAPIResource):
         *,
         account_id: str,
         address_map_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -192,6 +201,7 @@ class AsyncIPs(AsyncAPIResource):
             Optional[IPUpdateResponse],
             await self._put(
                 f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/ips/{ip_address}",
+                body=await async_maybe_transform(body, ip_update_params.IPUpdateParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -211,6 +221,7 @@ class AsyncIPs(AsyncAPIResource):
         *,
         account_id: str,
         address_map_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -246,6 +257,7 @@ class AsyncIPs(AsyncAPIResource):
             Optional[IPDeleteResponse],
             await self._delete(
                 f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/ips/{ip_address}",
+                body=await async_maybe_transform(body, ip_delete_params.IPDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

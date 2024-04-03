@@ -5,11 +5,14 @@ from __future__ import annotations
 from .policy_edit_params import PolicyEditParams as PolicyEditParams
 from .device_posture_rules import DevicePostureRules as DevicePostureRules
 from .policy_create_params import PolicyCreateParams as PolicyCreateParams
+from .policy_delete_params import PolicyDeleteParams as PolicyDeleteParams
 from .revoke_create_params import RevokeCreateParams as RevokeCreateParams
 from .dex_test_schemas_http import DEXTestSchemasHTTP as DEXTestSchemasHTTP
 from .network_create_params import NetworkCreateParams as NetworkCreateParams
+from .network_delete_params import NetworkDeleteParams as NetworkDeleteParams
 from .network_update_params import NetworkUpdateParams as NetworkUpdateParams
 from .posture_create_params import PostureCreateParams as PostureCreateParams
+from .posture_delete_params import PostureDeleteParams as PostureDeleteParams
 from .posture_update_params import PostureUpdateParams as PostureUpdateParams
 from .setting_update_params import SettingUpdateParams as SettingUpdateParams
 from .dex_test_create_params import DEXTestCreateParams as DEXTestCreateParams

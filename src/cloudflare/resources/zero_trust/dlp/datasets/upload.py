@@ -7,6 +7,10 @@ from typing import Type, Optional, cast
 import httpx
 
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -20,7 +24,7 @@ from ....._base_client import (
     make_request_options,
 )
 from .....types.zero_trust.dlp import DLPDataset
-from .....types.zero_trust.dlp.datasets import DLPDatasetNewVersion
+from .....types.zero_trust.dlp.datasets import DLPDatasetNewVersion, upload_edit_params
 
 __all__ = ["Upload", "AsyncUpload"]
 
@@ -80,6 +84,7 @@ class Upload(SyncAPIResource):
         *,
         account_id: str,
         dataset_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -105,6 +110,7 @@ class Upload(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `dataset_id` but received {dataset_id!r}")
         return self._post(
             f"/accounts/{account_id}/dlp/datasets/{dataset_id}/upload/{version}",
+            body=maybe_transform(body, upload_edit_params.UploadEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -171,6 +177,7 @@ class AsyncUpload(AsyncAPIResource):
         *,
         account_id: str,
         dataset_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -196,6 +203,7 @@ class AsyncUpload(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `dataset_id` but received {dataset_id!r}")
         return await self._post(
             f"/accounts/{account_id}/dlp/datasets/{dataset_id}/upload/{version}",
+            body=await async_maybe_transform(body, upload_edit_params.UploadEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -30,6 +30,7 @@ from ....types.magic_transit.sites import (
     WANDeleteResponse,
     WANUpdateResponse,
     wan_create_params,
+    wan_delete_params,
     wan_update_params,
 )
 
@@ -192,6 +193,7 @@ class WANs(SyncAPIResource):
         *,
         account_id: str,
         site_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -225,6 +227,7 @@ class WANs(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `wan_id` but received {wan_id!r}")
         return self._delete(
             f"/accounts/{account_id}/magic/sites/{site_id}/wans/{wan_id}",
+            body=maybe_transform(body, wan_delete_params.WANDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -441,6 +444,7 @@ class AsyncWANs(AsyncAPIResource):
         *,
         account_id: str,
         site_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -474,6 +478,7 @@ class AsyncWANs(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `wan_id` but received {wan_id!r}")
         return await self._delete(
             f"/accounts/{account_id}/magic/sites/{site_id}/wans/{wan_id}",
+            body=await async_maybe_transform(body, wan_delete_params.WANDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

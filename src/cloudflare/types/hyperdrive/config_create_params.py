@@ -11,6 +11,8 @@ class ConfigCreateParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier"""
 
+    name: Required[object]
+
     origin: Required[Origin]
 
 

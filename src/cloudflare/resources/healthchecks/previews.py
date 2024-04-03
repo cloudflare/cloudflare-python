@@ -25,7 +25,7 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.healthchecks import PreviewDeleteResponse, preview_create_params
+from ...types.healthchecks import PreviewDeleteResponse, preview_create_params, preview_delete_params
 
 __all__ = ["Previews", "AsyncPreviews"]
 
@@ -168,6 +168,7 @@ class Previews(SyncAPIResource):
         healthcheck_id: str,
         *,
         zone_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -197,6 +198,7 @@ class Previews(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `healthcheck_id` but received {healthcheck_id!r}")
         return self._delete(
             f"/zones/{zone_id}/healthchecks/preview/{healthcheck_id}",
+            body=maybe_transform(body, preview_delete_params.PreviewDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -390,6 +392,7 @@ class AsyncPreviews(AsyncAPIResource):
         healthcheck_id: str,
         *,
         zone_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -419,6 +422,7 @@ class AsyncPreviews(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `healthcheck_id` but received {healthcheck_id!r}")
         return await self._delete(
             f"/zones/{zone_id}/healthchecks/preview/{healthcheck_id}",
+            body=await async_maybe_transform(body, preview_delete_params.PreviewDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

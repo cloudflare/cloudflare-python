@@ -7,6 +7,10 @@ from typing import Type, Optional, cast
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -19,7 +23,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.magic_network_monitoring.rules import MagicNetworkMonitoringRuleAdvertisable
+from ....types.magic_network_monitoring.rules import MagicNetworkMonitoringRuleAdvertisable, advertisement_edit_params
 
 __all__ = ["Advertisements", "AsyncAdvertisements"]
 
@@ -38,6 +42,7 @@ class Advertisements(SyncAPIResource):
         rule_id: str,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -63,6 +68,7 @@ class Advertisements(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return self._patch(
             f"/accounts/{account_id}/mnm/rules/{rule_id}/advertisement",
+            body=maybe_transform(body, advertisement_edit_params.AdvertisementEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -91,6 +97,7 @@ class AsyncAdvertisements(AsyncAPIResource):
         rule_id: str,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -116,6 +123,7 @@ class AsyncAdvertisements(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return await self._patch(
             f"/accounts/{account_id}/mnm/rules/{rule_id}/advertisement",
+            body=await async_maybe_transform(body, advertisement_edit_params.AdvertisementEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

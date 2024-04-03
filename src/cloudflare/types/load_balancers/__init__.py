@@ -6,6 +6,7 @@ from .pool_edit_params import PoolEditParams as PoolEditParams
 from .pool_list_params import PoolListParams as PoolListParams
 from .search_get_params import SearchGetParams as SearchGetParams
 from .pool_create_params import PoolCreateParams as PoolCreateParams
+from .pool_delete_params import PoolDeleteParams as PoolDeleteParams
 from .pool_update_params import PoolUpdateParams as PoolUpdateParams
 from .region_list_params import RegionListParams as RegionListParams
 from .monitor_edit_params import MonitorEditParams as MonitorEditParams
@@ -14,5 +15,6 @@ from .search_get_response import SearchGetResponse as SearchGetResponse
 from .pool_delete_response import PoolDeleteResponse as PoolDeleteResponse
 from .region_list_response import RegionListResponse as RegionListResponse
 from .monitor_create_params import MonitorCreateParams as MonitorCreateParams
+from .monitor_delete_params import MonitorDeleteParams as MonitorDeleteParams
 from .monitor_update_params import MonitorUpdateParams as MonitorUpdateParams
 from .monitor_delete_response import MonitorDeleteResponse as MonitorDeleteResponse

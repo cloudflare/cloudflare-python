@@ -38,6 +38,9 @@ class RouteListParams(TypedDict, total=False):
     per_page: float
     """Number of results to display."""
 
+    route_id: str
+    """UUID of the route."""
+
     tun_types: str
     """The types of tunnels to filter separated by a comma."""
 
