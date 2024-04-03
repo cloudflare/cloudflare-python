@@ -3,35 +3,35 @@
 from typing import List, Optional
 
 from ..._models import BaseModel
-from .role_permission_grants import RolePermissionGrants
+from .role_permission_grant import RolePermissionGrant
 
 __all__ = ["AccountMember", "Role", "RolePermissions", "User"]
 
 
 class RolePermissions(BaseModel):
-    analytics: Optional[RolePermissionGrants] = None
+    analytics: Optional[RolePermissionGrant] = None
 
-    billing: Optional[RolePermissionGrants] = None
+    billing: Optional[RolePermissionGrant] = None
 
-    cache_purge: Optional[RolePermissionGrants] = None
+    cache_purge: Optional[RolePermissionGrant] = None
 
-    dns: Optional[RolePermissionGrants] = None
+    dns: Optional[RolePermissionGrant] = None
 
-    dns_records: Optional[RolePermissionGrants] = None
+    dns_records: Optional[RolePermissionGrant] = None
 
-    lb: Optional[RolePermissionGrants] = None
+    lb: Optional[RolePermissionGrant] = None
 
-    logs: Optional[RolePermissionGrants] = None
+    logs: Optional[RolePermissionGrant] = None
 
-    organization: Optional[RolePermissionGrants] = None
+    organization: Optional[RolePermissionGrant] = None
 
-    ssl: Optional[RolePermissionGrants] = None
+    ssl: Optional[RolePermissionGrant] = None
 
-    waf: Optional[RolePermissionGrants] = None
+    waf: Optional[RolePermissionGrant] = None
 
-    zone_settings: Optional[RolePermissionGrants] = None
+    zone_settings: Optional[RolePermissionGrant] = None
 
-    zones: Optional[RolePermissionGrants] = None
+    zones: Optional[RolePermissionGrant] = None
 
 
 class Role(BaseModel):

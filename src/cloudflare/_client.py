@@ -79,6 +79,7 @@ class Cloudflare(SyncAPIClient):
     pagerules: resources.Pagerules
     rate_limits: resources.RateLimits
     secondary_dns: resources.SecondaryDNS
+    waiting_rooms: resources.WaitingRooms
     web3: resources.Web3
     workers: resources.Workers
     kv: resources.KV
@@ -231,6 +232,7 @@ class Cloudflare(SyncAPIClient):
         self.pagerules = resources.Pagerules(self)
         self.rate_limits = resources.RateLimits(self)
         self.secondary_dns = resources.SecondaryDNS(self)
+        self.waiting_rooms = resources.WaitingRooms(self)
         self.web3 = resources.Web3(self)
         self.workers = resources.Workers(self)
         self.kv = resources.KV(self)
@@ -488,6 +490,7 @@ class AsyncCloudflare(AsyncAPIClient):
     pagerules: resources.AsyncPagerules
     rate_limits: resources.AsyncRateLimits
     secondary_dns: resources.AsyncSecondaryDNS
+    waiting_rooms: resources.AsyncWaitingRooms
     web3: resources.AsyncWeb3
     workers: resources.AsyncWorkers
     kv: resources.AsyncKV
@@ -640,6 +643,7 @@ class AsyncCloudflare(AsyncAPIClient):
         self.pagerules = resources.AsyncPagerules(self)
         self.rate_limits = resources.AsyncRateLimits(self)
         self.secondary_dns = resources.AsyncSecondaryDNS(self)
+        self.waiting_rooms = resources.AsyncWaitingRooms(self)
         self.web3 = resources.AsyncWeb3(self)
         self.workers = resources.AsyncWorkers(self)
         self.kv = resources.AsyncKV(self)
@@ -898,6 +902,7 @@ class CloudflareWithRawResponse:
         self.pagerules = resources.PagerulesWithRawResponse(client.pagerules)
         self.rate_limits = resources.RateLimitsWithRawResponse(client.rate_limits)
         self.secondary_dns = resources.SecondaryDNSWithRawResponse(client.secondary_dns)
+        self.waiting_rooms = resources.WaitingRoomsWithRawResponse(client.waiting_rooms)
         self.web3 = resources.Web3WithRawResponse(client.web3)
         self.workers = resources.WorkersWithRawResponse(client.workers)
         self.kv = resources.KVWithRawResponse(client.kv)
@@ -985,6 +990,7 @@ class AsyncCloudflareWithRawResponse:
         self.pagerules = resources.AsyncPagerulesWithRawResponse(client.pagerules)
         self.rate_limits = resources.AsyncRateLimitsWithRawResponse(client.rate_limits)
         self.secondary_dns = resources.AsyncSecondaryDNSWithRawResponse(client.secondary_dns)
+        self.waiting_rooms = resources.AsyncWaitingRoomsWithRawResponse(client.waiting_rooms)
         self.web3 = resources.AsyncWeb3WithRawResponse(client.web3)
         self.workers = resources.AsyncWorkersWithRawResponse(client.workers)
         self.kv = resources.AsyncKVWithRawResponse(client.kv)
@@ -1074,6 +1080,7 @@ class CloudflareWithStreamedResponse:
         self.pagerules = resources.PagerulesWithStreamingResponse(client.pagerules)
         self.rate_limits = resources.RateLimitsWithStreamingResponse(client.rate_limits)
         self.secondary_dns = resources.SecondaryDNSWithStreamingResponse(client.secondary_dns)
+        self.waiting_rooms = resources.WaitingRoomsWithStreamingResponse(client.waiting_rooms)
         self.web3 = resources.Web3WithStreamingResponse(client.web3)
         self.workers = resources.WorkersWithStreamingResponse(client.workers)
         self.kv = resources.KVWithStreamingResponse(client.kv)
@@ -1167,6 +1174,7 @@ class AsyncCloudflareWithStreamedResponse:
         self.pagerules = resources.AsyncPagerulesWithStreamingResponse(client.pagerules)
         self.rate_limits = resources.AsyncRateLimitsWithStreamingResponse(client.rate_limits)
         self.secondary_dns = resources.AsyncSecondaryDNSWithStreamingResponse(client.secondary_dns)
+        self.waiting_rooms = resources.AsyncWaitingRoomsWithStreamingResponse(client.waiting_rooms)
         self.web3 = resources.AsyncWeb3WithStreamingResponse(client.web3)
         self.workers = resources.AsyncWorkersWithStreamingResponse(client.workers)
         self.kv = resources.AsyncKVWithStreamingResponse(client.kv)

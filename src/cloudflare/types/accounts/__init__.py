@@ -9,7 +9,7 @@ from .member_list_params import MemberListParams as MemberListParams
 from .member_create_params import MemberCreateParams as MemberCreateParams
 from .member_list_response import MemberListResponse as MemberListResponse
 from .member_update_params import MemberUpdateParams as MemberUpdateParams
+from .role_permission_grant import RolePermissionGrant as RolePermissionGrant
 from .account_member_with_id import AccountMemberWithID as AccountMemberWithID
 from .member_delete_response import MemberDeleteResponse as MemberDeleteResponse
-from .role_permission_grants import RolePermissionGrants as RolePermissionGrants
-from .role_permission_grants_param import RolePermissionGrantsParam as RolePermissionGrantsParam
+from .role_permission_grant_param import RolePermissionGrantParam as RolePermissionGrantParam
