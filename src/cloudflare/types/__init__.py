@@ -10,7 +10,6 @@ from .account import Account as Account
 from .ruleset import Ruleset as Ruleset
 from .snippet import Snippet as Snippet
 from .calls_app import CallsApp as CallsApp
-from .membership import Membership as Membership
 from .healthcheck import Healthcheck as Healthcheck
 from .jdcloud_ips import JDCloudIPs as JDCloudIPs
 from .waiting_room import WaitingRoom as WaitingRoom

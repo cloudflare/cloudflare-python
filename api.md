@@ -24,9 +24,10 @@ Types:
 
 ```python
 from cloudflare.types.accounts import (
-    AccountMember,
-    AccountMemberWithID,
-    RolePermissionGrant,
+    Member,
+    MemberPermission,
+    MemberRole,
+    MemberWithCode,
     MemberListResponse,
     MemberDeleteResponse,
 )
@@ -34,18 +35,18 @@ from cloudflare.types.accounts import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/members">client.accounts.members.<a href="./src/cloudflare/resources/accounts/members.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/accounts/member_create_params.py">params</a>) -> <a href="./src/cloudflare/types/accounts/account_member_with_id.py">AccountMemberWithID</a></code>
-- <code title="put /accounts/{account_id}/members/{member_id}">client.accounts.members.<a href="./src/cloudflare/resources/accounts/members.py">update</a>(member_id, \*, account_id, \*\*<a href="src/cloudflare/types/accounts/member_update_params.py">params</a>) -> <a href="./src/cloudflare/types/accounts/account_member.py">AccountMember</a></code>
+- <code title="post /accounts/{account_id}/members">client.accounts.members.<a href="./src/cloudflare/resources/accounts/members.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/accounts/member_create_params.py">params</a>) -> <a href="./src/cloudflare/types/accounts/member_with_code.py">MemberWithCode</a></code>
+- <code title="put /accounts/{account_id}/members/{member_id}">client.accounts.members.<a href="./src/cloudflare/resources/accounts/members.py">update</a>(member_id, \*, account_id, \*\*<a href="src/cloudflare/types/accounts/member_update_params.py">params</a>) -> <a href="./src/cloudflare/types/accounts/member.py">Member</a></code>
 - <code title="get /accounts/{account_id}/members">client.accounts.members.<a href="./src/cloudflare/resources/accounts/members.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/accounts/member_list_params.py">params</a>) -> <a href="./src/cloudflare/types/accounts/member_list_response.py">SyncV4PagePaginationArray[MemberListResponse]</a></code>
 - <code title="delete /accounts/{account_id}/members/{member_id}">client.accounts.members.<a href="./src/cloudflare/resources/accounts/members.py">delete</a>(member_id, \*, account_id) -> <a href="./src/cloudflare/types/accounts/member_delete_response.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/members/{member_id}">client.accounts.members.<a href="./src/cloudflare/resources/accounts/members.py">get</a>(member_id, \*, account_id) -> <a href="./src/cloudflare/types/accounts/account_member.py">AccountMember</a></code>
+- <code title="get /accounts/{account_id}/members/{member_id}">client.accounts.members.<a href="./src/cloudflare/resources/accounts/members.py">get</a>(member_id, \*, account_id) -> <a href="./src/cloudflare/types/accounts/member.py">Member</a></code>
 
 ## Roles
 
 Types:
 
 ```python
-from cloudflare.types.accounts import Role, RoleGetResponse
+from cloudflare.types.accounts import PermissionGrant, Role, RoleGetResponse
 ```
 
 Methods:
@@ -101,7 +102,7 @@ from cloudflare.types import (
 Methods:
 
 - <code title="put /memberships/{membership_id}">client.memberships.<a href="./src/cloudflare/resources/memberships.py">update</a>(membership_id, \*\*<a href="src/cloudflare/types/membership_update_params.py">params</a>) -> <a href="./src/cloudflare/types/membership_update_response.py">MembershipUpdateResponse</a></code>
-- <code title="get /memberships">client.memberships.<a href="./src/cloudflare/resources/memberships.py">list</a>(\*\*<a href="src/cloudflare/types/membership_list_params.py">params</a>) -> <a href="./src/cloudflare/types/membership.py">SyncV4PagePaginationArray[Membership]</a></code>
+- <code title="get /memberships">client.memberships.<a href="./src/cloudflare/resources/memberships.py">list</a>(\*\*<a href="src/cloudflare/types/membership_list_params.py">params</a>) -> <a href="./src/cloudflare/types/accounts/member_role.py">SyncV4PagePaginationArray[MemberRole]</a></code>
 - <code title="delete /memberships/{membership_id}">client.memberships.<a href="./src/cloudflare/resources/memberships.py">delete</a>(membership_id) -> <a href="./src/cloudflare/types/membership_delete_response.py">MembershipDeleteResponse</a></code>
 - <code title="get /memberships/{membership_id}">client.memberships.<a href="./src/cloudflare/resources/memberships.py">get</a>(membership_id) -> <a href="./src/cloudflare/types/membership_get_response.py">MembershipGetResponse</a></code>
 

@@ -27,9 +27,9 @@ from ..._base_client import (
     make_request_options,
 )
 from ...types.accounts import (
-    AccountMember,
+    Member,
+    MemberWithCode,
     MemberListResponse,
-    AccountMemberWithID,
     MemberDeleteResponse,
     member_list_params,
     member_create_params,
@@ -61,7 +61,7 @@ class Members(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccountMemberWithID:
+    ) -> MemberWithCode:
         """
         Add a user to the list of members for this account.
 
@@ -95,7 +95,7 @@ class Members(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccountMemberWithID], ResultWrapper[AccountMemberWithID]),
+            cast_to=cast(Type[MemberWithCode], ResultWrapper[MemberWithCode]),
         )
 
     def update(
@@ -110,7 +110,7 @@ class Members(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccountMember:
+    ) -> Member:
         """
         Modify an account member.
 
@@ -139,7 +139,7 @@ class Members(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccountMember], ResultWrapper[AccountMember]),
+            cast_to=cast(Type[Member], ResultWrapper[Member]),
         )
 
     def list(
@@ -253,7 +253,7 @@ class Members(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccountMember:
+    ) -> Member:
         """
         Get information about a specific member of an account.
 
@@ -279,7 +279,7 @@ class Members(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccountMember], ResultWrapper[AccountMember]),
+            cast_to=cast(Type[Member], ResultWrapper[Member]),
         )
 
 
@@ -305,7 +305,7 @@ class AsyncMembers(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccountMemberWithID:
+    ) -> MemberWithCode:
         """
         Add a user to the list of members for this account.
 
@@ -339,7 +339,7 @@ class AsyncMembers(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccountMemberWithID], ResultWrapper[AccountMemberWithID]),
+            cast_to=cast(Type[MemberWithCode], ResultWrapper[MemberWithCode]),
         )
 
     async def update(
@@ -354,7 +354,7 @@ class AsyncMembers(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccountMember:
+    ) -> Member:
         """
         Modify an account member.
 
@@ -383,7 +383,7 @@ class AsyncMembers(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccountMember], ResultWrapper[AccountMember]),
+            cast_to=cast(Type[Member], ResultWrapper[Member]),
         )
 
     def list(
@@ -497,7 +497,7 @@ class AsyncMembers(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccountMember:
+    ) -> Member:
         """
         Get information about a specific member of an account.
 
@@ -523,7 +523,7 @@ class AsyncMembers(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccountMember], ResultWrapper[AccountMember]),
+            cast_to=cast(Type[Member], ResultWrapper[Member]),
         )
 
 
