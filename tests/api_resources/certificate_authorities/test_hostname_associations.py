@@ -10,7 +10,8 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types.certificate_authorities import (
-    TLSHostnameAssociation,
+    HostnameAssociationGetResponse,
+    HostnameAssociationUpdateResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -25,7 +26,7 @@ class TestHostnameAssociations:
         hostname_association = client.certificate_authorities.hostname_associations.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(TLSHostnameAssociation, hostname_association, path=["response"])
+        assert_matches_type(HostnameAssociationUpdateResponse, hostname_association, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -35,7 +36,7 @@ class TestHostnameAssociations:
             hostnames=["api.example.com", "api.example.com", "api.example.com"],
             mtls_certificate_id="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
         )
-        assert_matches_type(TLSHostnameAssociation, hostname_association, path=["response"])
+        assert_matches_type(HostnameAssociationUpdateResponse, hostname_association, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -47,7 +48,7 @@ class TestHostnameAssociations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hostname_association = response.parse()
-        assert_matches_type(TLSHostnameAssociation, hostname_association, path=["response"])
+        assert_matches_type(HostnameAssociationUpdateResponse, hostname_association, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -59,7 +60,7 @@ class TestHostnameAssociations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hostname_association = response.parse()
-            assert_matches_type(TLSHostnameAssociation, hostname_association, path=["response"])
+            assert_matches_type(HostnameAssociationUpdateResponse, hostname_association, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -77,7 +78,7 @@ class TestHostnameAssociations:
         hostname_association = client.certificate_authorities.hostname_associations.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(TLSHostnameAssociation, hostname_association, path=["response"])
+        assert_matches_type(HostnameAssociationGetResponse, hostname_association, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -86,7 +87,7 @@ class TestHostnameAssociations:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             mtls_certificate_id="b2134436-2555-4acf-be5b-26c48136575e",
         )
-        assert_matches_type(TLSHostnameAssociation, hostname_association, path=["response"])
+        assert_matches_type(HostnameAssociationGetResponse, hostname_association, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -98,7 +99,7 @@ class TestHostnameAssociations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hostname_association = response.parse()
-        assert_matches_type(TLSHostnameAssociation, hostname_association, path=["response"])
+        assert_matches_type(HostnameAssociationGetResponse, hostname_association, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -110,7 +111,7 @@ class TestHostnameAssociations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hostname_association = response.parse()
-            assert_matches_type(TLSHostnameAssociation, hostname_association, path=["response"])
+            assert_matches_type(HostnameAssociationGetResponse, hostname_association, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -132,7 +133,7 @@ class TestAsyncHostnameAssociations:
         hostname_association = await async_client.certificate_authorities.hostname_associations.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(TLSHostnameAssociation, hostname_association, path=["response"])
+        assert_matches_type(HostnameAssociationUpdateResponse, hostname_association, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -142,7 +143,7 @@ class TestAsyncHostnameAssociations:
             hostnames=["api.example.com", "api.example.com", "api.example.com"],
             mtls_certificate_id="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
         )
-        assert_matches_type(TLSHostnameAssociation, hostname_association, path=["response"])
+        assert_matches_type(HostnameAssociationUpdateResponse, hostname_association, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -154,7 +155,7 @@ class TestAsyncHostnameAssociations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hostname_association = await response.parse()
-        assert_matches_type(TLSHostnameAssociation, hostname_association, path=["response"])
+        assert_matches_type(HostnameAssociationUpdateResponse, hostname_association, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -166,7 +167,7 @@ class TestAsyncHostnameAssociations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hostname_association = await response.parse()
-            assert_matches_type(TLSHostnameAssociation, hostname_association, path=["response"])
+            assert_matches_type(HostnameAssociationUpdateResponse, hostname_association, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -184,7 +185,7 @@ class TestAsyncHostnameAssociations:
         hostname_association = await async_client.certificate_authorities.hostname_associations.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(TLSHostnameAssociation, hostname_association, path=["response"])
+        assert_matches_type(HostnameAssociationGetResponse, hostname_association, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -193,7 +194,7 @@ class TestAsyncHostnameAssociations:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             mtls_certificate_id="b2134436-2555-4acf-be5b-26c48136575e",
         )
-        assert_matches_type(TLSHostnameAssociation, hostname_association, path=["response"])
+        assert_matches_type(HostnameAssociationGetResponse, hostname_association, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -205,7 +206,7 @@ class TestAsyncHostnameAssociations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hostname_association = await response.parse()
-        assert_matches_type(TLSHostnameAssociation, hostname_association, path=["response"])
+        assert_matches_type(HostnameAssociationGetResponse, hostname_association, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -217,7 +218,7 @@ class TestAsyncHostnameAssociations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hostname_association = await response.parse()
-            assert_matches_type(TLSHostnameAssociation, hostname_association, path=["response"])
+            assert_matches_type(HostnameAssociationGetResponse, hostname_association, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
