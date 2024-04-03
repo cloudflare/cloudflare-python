@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Union
+from datetime import datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
@@ -46,5 +48,9 @@ class SpeedTrendsListParams(TypedDict, total=False):
     ]
     """A test region."""
 
+    start: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
+
     tz: Required[str]
     """The timezone of the start and end timestamps."""
+
+    end: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]

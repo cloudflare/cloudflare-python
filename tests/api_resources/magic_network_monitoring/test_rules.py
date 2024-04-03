@@ -10,7 +10,9 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.magic_network_monitoring import MagicNetworkMonitoringRule
+from cloudflare.types.magic_network_monitoring import (
+    MagicNetworkMonitoringRule,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -23,6 +25,7 @@ class TestRules:
     def test_method_create(self, client: Cloudflare) -> None:
         rule = client.magic_network_monitoring.rules.create(
             account_id="6f91088a406011ed95aed352566e8d4c",
+            body={},
         )
         assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
 
@@ -31,6 +34,7 @@ class TestRules:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.magic_network_monitoring.rules.with_raw_response.create(
             account_id="6f91088a406011ed95aed352566e8d4c",
+            body={},
         )
 
         assert response.is_closed is True
@@ -43,6 +47,7 @@ class TestRules:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.magic_network_monitoring.rules.with_streaming_response.create(
             account_id="6f91088a406011ed95aed352566e8d4c",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -58,6 +63,7 @@ class TestRules:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.magic_network_monitoring.rules.with_raw_response.create(
                 account_id="",
+                body={},
             )
 
     @pytest.mark.skip()
@@ -65,6 +71,7 @@ class TestRules:
     def test_method_update(self, client: Cloudflare) -> None:
         rule = client.magic_network_monitoring.rules.update(
             account_id="6f91088a406011ed95aed352566e8d4c",
+            body={},
         )
         assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
 
@@ -73,6 +80,7 @@ class TestRules:
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.magic_network_monitoring.rules.with_raw_response.update(
             account_id="6f91088a406011ed95aed352566e8d4c",
+            body={},
         )
 
         assert response.is_closed is True
@@ -85,6 +93,7 @@ class TestRules:
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.magic_network_monitoring.rules.with_streaming_response.update(
             account_id="6f91088a406011ed95aed352566e8d4c",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -100,6 +109,7 @@ class TestRules:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.magic_network_monitoring.rules.with_raw_response.update(
                 account_id="",
+                body={},
             )
 
     @pytest.mark.skip()
@@ -150,6 +160,7 @@ class TestRules:
         rule = client.magic_network_monitoring.rules.delete(
             "2890e6fa406311ed9b5a23f70f6fb8cf",
             account_id="6f91088a406011ed95aed352566e8d4c",
+            body={},
         )
         assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
 
@@ -159,6 +170,7 @@ class TestRules:
         response = client.magic_network_monitoring.rules.with_raw_response.delete(
             "2890e6fa406311ed9b5a23f70f6fb8cf",
             account_id="6f91088a406011ed95aed352566e8d4c",
+            body={},
         )
 
         assert response.is_closed is True
@@ -172,6 +184,7 @@ class TestRules:
         with client.magic_network_monitoring.rules.with_streaming_response.delete(
             "2890e6fa406311ed9b5a23f70f6fb8cf",
             account_id="6f91088a406011ed95aed352566e8d4c",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -188,12 +201,14 @@ class TestRules:
             client.magic_network_monitoring.rules.with_raw_response.delete(
                 "2890e6fa406311ed9b5a23f70f6fb8cf",
                 account_id="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
             client.magic_network_monitoring.rules.with_raw_response.delete(
                 "",
                 account_id="6f91088a406011ed95aed352566e8d4c",
+                body={},
             )
 
     @pytest.mark.skip()
@@ -202,6 +217,7 @@ class TestRules:
         rule = client.magic_network_monitoring.rules.edit(
             "2890e6fa406311ed9b5a23f70f6fb8cf",
             account_id="6f91088a406011ed95aed352566e8d4c",
+            body={},
         )
         assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
 
@@ -211,6 +227,7 @@ class TestRules:
         response = client.magic_network_monitoring.rules.with_raw_response.edit(
             "2890e6fa406311ed9b5a23f70f6fb8cf",
             account_id="6f91088a406011ed95aed352566e8d4c",
+            body={},
         )
 
         assert response.is_closed is True
@@ -224,6 +241,7 @@ class TestRules:
         with client.magic_network_monitoring.rules.with_streaming_response.edit(
             "2890e6fa406311ed9b5a23f70f6fb8cf",
             account_id="6f91088a406011ed95aed352566e8d4c",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -240,12 +258,14 @@ class TestRules:
             client.magic_network_monitoring.rules.with_raw_response.edit(
                 "2890e6fa406311ed9b5a23f70f6fb8cf",
                 account_id="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
             client.magic_network_monitoring.rules.with_raw_response.edit(
                 "",
                 account_id="6f91088a406011ed95aed352566e8d4c",
+                body={},
             )
 
     @pytest.mark.skip()
@@ -309,6 +329,7 @@ class TestAsyncRules:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         rule = await async_client.magic_network_monitoring.rules.create(
             account_id="6f91088a406011ed95aed352566e8d4c",
+            body={},
         )
         assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
 
@@ -317,6 +338,7 @@ class TestAsyncRules:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_network_monitoring.rules.with_raw_response.create(
             account_id="6f91088a406011ed95aed352566e8d4c",
+            body={},
         )
 
         assert response.is_closed is True
@@ -329,6 +351,7 @@ class TestAsyncRules:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_network_monitoring.rules.with_streaming_response.create(
             account_id="6f91088a406011ed95aed352566e8d4c",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -344,6 +367,7 @@ class TestAsyncRules:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.magic_network_monitoring.rules.with_raw_response.create(
                 account_id="",
+                body={},
             )
 
     @pytest.mark.skip()
@@ -351,6 +375,7 @@ class TestAsyncRules:
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         rule = await async_client.magic_network_monitoring.rules.update(
             account_id="6f91088a406011ed95aed352566e8d4c",
+            body={},
         )
         assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
 
@@ -359,6 +384,7 @@ class TestAsyncRules:
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_network_monitoring.rules.with_raw_response.update(
             account_id="6f91088a406011ed95aed352566e8d4c",
+            body={},
         )
 
         assert response.is_closed is True
@@ -371,6 +397,7 @@ class TestAsyncRules:
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_network_monitoring.rules.with_streaming_response.update(
             account_id="6f91088a406011ed95aed352566e8d4c",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -386,6 +413,7 @@ class TestAsyncRules:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.magic_network_monitoring.rules.with_raw_response.update(
                 account_id="",
+                body={},
             )
 
     @pytest.mark.skip()
@@ -436,6 +464,7 @@ class TestAsyncRules:
         rule = await async_client.magic_network_monitoring.rules.delete(
             "2890e6fa406311ed9b5a23f70f6fb8cf",
             account_id="6f91088a406011ed95aed352566e8d4c",
+            body={},
         )
         assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
 
@@ -445,6 +474,7 @@ class TestAsyncRules:
         response = await async_client.magic_network_monitoring.rules.with_raw_response.delete(
             "2890e6fa406311ed9b5a23f70f6fb8cf",
             account_id="6f91088a406011ed95aed352566e8d4c",
+            body={},
         )
 
         assert response.is_closed is True
@@ -458,6 +488,7 @@ class TestAsyncRules:
         async with async_client.magic_network_monitoring.rules.with_streaming_response.delete(
             "2890e6fa406311ed9b5a23f70f6fb8cf",
             account_id="6f91088a406011ed95aed352566e8d4c",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -474,12 +505,14 @@ class TestAsyncRules:
             await async_client.magic_network_monitoring.rules.with_raw_response.delete(
                 "2890e6fa406311ed9b5a23f70f6fb8cf",
                 account_id="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
             await async_client.magic_network_monitoring.rules.with_raw_response.delete(
                 "",
                 account_id="6f91088a406011ed95aed352566e8d4c",
+                body={},
             )
 
     @pytest.mark.skip()
@@ -488,6 +521,7 @@ class TestAsyncRules:
         rule = await async_client.magic_network_monitoring.rules.edit(
             "2890e6fa406311ed9b5a23f70f6fb8cf",
             account_id="6f91088a406011ed95aed352566e8d4c",
+            body={},
         )
         assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
 
@@ -497,6 +531,7 @@ class TestAsyncRules:
         response = await async_client.magic_network_monitoring.rules.with_raw_response.edit(
             "2890e6fa406311ed9b5a23f70f6fb8cf",
             account_id="6f91088a406011ed95aed352566e8d4c",
+            body={},
         )
 
         assert response.is_closed is True
@@ -510,6 +545,7 @@ class TestAsyncRules:
         async with async_client.magic_network_monitoring.rules.with_streaming_response.edit(
             "2890e6fa406311ed9b5a23f70f6fb8cf",
             account_id="6f91088a406011ed95aed352566e8d4c",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -526,12 +562,14 @@ class TestAsyncRules:
             await async_client.magic_network_monitoring.rules.with_raw_response.edit(
                 "2890e6fa406311ed9b5a23f70f6fb8cf",
                 account_id="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
             await async_client.magic_network_monitoring.rules.with_raw_response.edit(
                 "",
                 account_id="6f91088a406011ed95aed352566e8d4c",
+                body={},
             )
 
     @pytest.mark.skip()

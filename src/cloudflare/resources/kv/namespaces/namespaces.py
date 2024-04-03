@@ -51,6 +51,7 @@ from ....types.kv import (
     NamespaceUpdateResponse,
     namespace_list_params,
     namespace_create_params,
+    namespace_delete_params,
     namespace_update_params,
 )
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -259,6 +260,7 @@ class Namespaces(SyncAPIResource):
         namespace_id: str,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -290,6 +292,7 @@ class Namespaces(SyncAPIResource):
             NamespaceDeleteResponse,
             self._delete(
                 f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}",
+                body=maybe_transform(body, namespace_delete_params.NamespaceDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -493,6 +496,7 @@ class AsyncNamespaces(AsyncAPIResource):
         namespace_id: str,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -524,6 +528,7 @@ class AsyncNamespaces(AsyncAPIResource):
             NamespaceDeleteResponse,
             await self._delete(
                 f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}",
+                body=await async_maybe_transform(body, namespace_delete_params.NamespaceDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

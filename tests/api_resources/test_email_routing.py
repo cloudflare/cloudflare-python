@@ -9,7 +9,11 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types import EmailRoutingGetResponse, EmailRoutingEnableResponse, EmailRoutingDisableResponse
+from cloudflare.types import (
+    EmailRoutingGetResponse,
+    EmailRoutingEnableResponse,
+    EmailRoutingDisableResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -22,6 +26,7 @@ class TestEmailRouting:
     def test_method_disable(self, client: Cloudflare) -> None:
         email_routing = client.email_routing.disable(
             "023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
         assert_matches_type(EmailRoutingDisableResponse, email_routing, path=["response"])
 
@@ -30,6 +35,7 @@ class TestEmailRouting:
     def test_raw_response_disable(self, client: Cloudflare) -> None:
         response = client.email_routing.with_raw_response.disable(
             "023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
 
         assert response.is_closed is True
@@ -42,6 +48,7 @@ class TestEmailRouting:
     def test_streaming_response_disable(self, client: Cloudflare) -> None:
         with client.email_routing.with_streaming_response.disable(
             "023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -57,6 +64,7 @@ class TestEmailRouting:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
             client.email_routing.with_raw_response.disable(
                 "",
+                body={},
             )
 
     @pytest.mark.skip()
@@ -64,6 +72,7 @@ class TestEmailRouting:
     def test_method_enable(self, client: Cloudflare) -> None:
         email_routing = client.email_routing.enable(
             "023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
         assert_matches_type(EmailRoutingEnableResponse, email_routing, path=["response"])
 
@@ -72,6 +81,7 @@ class TestEmailRouting:
     def test_raw_response_enable(self, client: Cloudflare) -> None:
         response = client.email_routing.with_raw_response.enable(
             "023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
 
         assert response.is_closed is True
@@ -84,6 +94,7 @@ class TestEmailRouting:
     def test_streaming_response_enable(self, client: Cloudflare) -> None:
         with client.email_routing.with_streaming_response.enable(
             "023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -99,6 +110,7 @@ class TestEmailRouting:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
             client.email_routing.with_raw_response.enable(
                 "",
+                body={},
             )
 
     @pytest.mark.skip()
@@ -152,6 +164,7 @@ class TestAsyncEmailRouting:
     async def test_method_disable(self, async_client: AsyncCloudflare) -> None:
         email_routing = await async_client.email_routing.disable(
             "023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
         assert_matches_type(EmailRoutingDisableResponse, email_routing, path=["response"])
 
@@ -160,6 +173,7 @@ class TestAsyncEmailRouting:
     async def test_raw_response_disable(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.email_routing.with_raw_response.disable(
             "023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
 
         assert response.is_closed is True
@@ -172,6 +186,7 @@ class TestAsyncEmailRouting:
     async def test_streaming_response_disable(self, async_client: AsyncCloudflare) -> None:
         async with async_client.email_routing.with_streaming_response.disable(
             "023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -187,6 +202,7 @@ class TestAsyncEmailRouting:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
             await async_client.email_routing.with_raw_response.disable(
                 "",
+                body={},
             )
 
     @pytest.mark.skip()
@@ -194,6 +210,7 @@ class TestAsyncEmailRouting:
     async def test_method_enable(self, async_client: AsyncCloudflare) -> None:
         email_routing = await async_client.email_routing.enable(
             "023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
         assert_matches_type(EmailRoutingEnableResponse, email_routing, path=["response"])
 
@@ -202,6 +219,7 @@ class TestAsyncEmailRouting:
     async def test_raw_response_enable(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.email_routing.with_raw_response.enable(
             "023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
 
         assert response.is_closed is True
@@ -214,6 +232,7 @@ class TestAsyncEmailRouting:
     async def test_streaming_response_enable(self, async_client: AsyncCloudflare) -> None:
         async with async_client.email_routing.with_streaming_response.enable(
             "023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -229,6 +248,7 @@ class TestAsyncEmailRouting:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
             await async_client.email_routing.with_raw_response.enable(
                 "",
+                body={},
             )
 
     @pytest.mark.skip()

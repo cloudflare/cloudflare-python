@@ -7,6 +7,10 @@ from typing import Type, Optional, cast
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -29,7 +33,13 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.magic_network_monitoring import MagicNetworkMonitoringRule
+from ....types.magic_network_monitoring import (
+    MagicNetworkMonitoringRule,
+    rule_edit_params,
+    rule_create_params,
+    rule_delete_params,
+    rule_update_params,
+)
 
 __all__ = ["Rules", "AsyncRules"]
 
@@ -51,6 +61,7 @@ class Rules(SyncAPIResource):
         self,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -76,6 +87,7 @@ class Rules(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
             f"/accounts/{account_id}/mnm/rules",
+            body=maybe_transform(body, rule_create_params.RuleCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -90,6 +102,7 @@ class Rules(SyncAPIResource):
         self,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -113,6 +126,7 @@ class Rules(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._put(
             f"/accounts/{account_id}/mnm/rules",
+            body=maybe_transform(body, rule_update_params.RuleUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -162,6 +176,7 @@ class Rules(SyncAPIResource):
         rule_id: str,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -187,6 +202,7 @@ class Rules(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return self._delete(
             f"/accounts/{account_id}/mnm/rules/{rule_id}",
+            body=maybe_transform(body, rule_delete_params.RuleDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -202,6 +218,7 @@ class Rules(SyncAPIResource):
         rule_id: str,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -227,6 +244,7 @@ class Rules(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return self._patch(
             f"/accounts/{account_id}/mnm/rules/{rule_id}",
+            body=maybe_transform(body, rule_edit_params.RuleEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -295,6 +313,7 @@ class AsyncRules(AsyncAPIResource):
         self,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -320,6 +339,7 @@ class AsyncRules(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/mnm/rules",
+            body=await async_maybe_transform(body, rule_create_params.RuleCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -334,6 +354,7 @@ class AsyncRules(AsyncAPIResource):
         self,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -357,6 +378,7 @@ class AsyncRules(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._put(
             f"/accounts/{account_id}/mnm/rules",
+            body=await async_maybe_transform(body, rule_update_params.RuleUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -406,6 +428,7 @@ class AsyncRules(AsyncAPIResource):
         rule_id: str,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -431,6 +454,7 @@ class AsyncRules(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return await self._delete(
             f"/accounts/{account_id}/mnm/rules/{rule_id}",
+            body=await async_maybe_transform(body, rule_delete_params.RuleDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -446,6 +470,7 @@ class AsyncRules(AsyncAPIResource):
         rule_id: str,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -471,6 +496,7 @@ class AsyncRules(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return await self._patch(
             f"/accounts/{account_id}/mnm/rules/{rule_id}",
+            body=await async_maybe_transform(body, rule_edit_params.RuleEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -30,6 +30,7 @@ from ...types.magic_transit import (
     GRETunnelDeleteResponse,
     GRETunnelUpdateResponse,
     gre_tunnel_create_params,
+    gre_tunnel_delete_params,
     gre_tunnel_update_params,
 )
 
@@ -217,6 +218,7 @@ class GRETunnels(SyncAPIResource):
         tunnel_identifier: str,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -248,6 +250,7 @@ class GRETunnels(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `tunnel_identifier` but received {tunnel_identifier!r}")
         return self._delete(
             f"/accounts/{account_id}/magic/gre_tunnels/{tunnel_identifier}",
+            body=maybe_transform(body, gre_tunnel_delete_params.GRETunnelDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -484,6 +487,7 @@ class AsyncGRETunnels(AsyncAPIResource):
         tunnel_identifier: str,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -515,6 +519,7 @@ class AsyncGRETunnels(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `tunnel_identifier` but received {tunnel_identifier!r}")
         return await self._delete(
             f"/accounts/{account_id}/magic/gre_tunnels/{tunnel_identifier}",
+            body=await async_maybe_transform(body, gre_tunnel_delete_params.GRETunnelDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

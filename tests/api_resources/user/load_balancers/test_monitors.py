@@ -189,6 +189,7 @@ class TestMonitors:
     def test_method_delete(self, client: Cloudflare) -> None:
         monitor = client.user.load_balancers.monitors.delete(
             "f1aba936b94213e5b8dca0c0dbf1f9cc",
+            body={},
         )
         assert_matches_type(MonitorDeleteResponse, monitor, path=["response"])
 
@@ -197,6 +198,7 @@ class TestMonitors:
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.user.load_balancers.monitors.with_raw_response.delete(
             "f1aba936b94213e5b8dca0c0dbf1f9cc",
+            body={},
         )
 
         assert response.is_closed is True
@@ -209,6 +211,7 @@ class TestMonitors:
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.user.load_balancers.monitors.with_streaming_response.delete(
             "f1aba936b94213e5b8dca0c0dbf1f9cc",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -224,6 +227,7 @@ class TestMonitors:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `monitor_id` but received ''"):
             client.user.load_balancers.monitors.with_raw_response.delete(
                 "",
+                body={},
             )
 
     @pytest.mark.skip()
@@ -626,6 +630,7 @@ class TestAsyncMonitors:
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         monitor = await async_client.user.load_balancers.monitors.delete(
             "f1aba936b94213e5b8dca0c0dbf1f9cc",
+            body={},
         )
         assert_matches_type(MonitorDeleteResponse, monitor, path=["response"])
 
@@ -634,6 +639,7 @@ class TestAsyncMonitors:
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.user.load_balancers.monitors.with_raw_response.delete(
             "f1aba936b94213e5b8dca0c0dbf1f9cc",
+            body={},
         )
 
         assert response.is_closed is True
@@ -646,6 +652,7 @@ class TestAsyncMonitors:
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.user.load_balancers.monitors.with_streaming_response.delete(
             "f1aba936b94213e5b8dca0c0dbf1f9cc",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -661,6 +668,7 @@ class TestAsyncMonitors:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `monitor_id` but received ''"):
             await async_client.user.load_balancers.monitors.with_raw_response.delete(
                 "",
+                body={},
             )
 
     @pytest.mark.skip()

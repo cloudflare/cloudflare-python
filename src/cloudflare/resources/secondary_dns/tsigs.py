@@ -25,7 +25,13 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.secondary_dns import SecondaryDNSTSIG, TSIGDeleteResponse, tsig_create_params, tsig_update_params
+from ...types.secondary_dns import (
+    SecondaryDNSTSIG,
+    TSIGDeleteResponse,
+    tsig_create_params,
+    tsig_delete_params,
+    tsig_update_params,
+)
 
 __all__ = ["TSIGs", "AsyncTSIGs"]
 
@@ -189,6 +195,7 @@ class TSIGs(SyncAPIResource):
         tsig_id: str,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -214,6 +221,7 @@ class TSIGs(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `tsig_id` but received {tsig_id!r}")
         return self._delete(
             f"/accounts/{account_id}/secondary_dns/tsigs/{tsig_id}",
+            body=maybe_transform(body, tsig_delete_params.TSIGDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -424,6 +432,7 @@ class AsyncTSIGs(AsyncAPIResource):
         tsig_id: str,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -449,6 +458,7 @@ class AsyncTSIGs(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `tsig_id` but received {tsig_id!r}")
         return await self._delete(
             f"/accounts/{account_id}/secondary_dns/tsigs/{tsig_id}",
+            body=await async_maybe_transform(body, tsig_delete_params.TSIGDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

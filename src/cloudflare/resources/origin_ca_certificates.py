@@ -12,7 +12,9 @@ from ..types import (
     OriginCACertificateGetResponse,
     OriginCACertificateCreateResponse,
     OriginCACertificateDeleteResponse,
+    origin_ca_certificate_list_params,
     origin_ca_certificate_create_params,
+    origin_ca_certificate_delete_params,
 )
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import (
@@ -113,6 +115,7 @@ class OriginCACertificates(SyncAPIResource):
     def list(
         self,
         *,
+        identifier: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -125,12 +128,29 @@ class OriginCACertificates(SyncAPIResource):
         Use your Origin CA
         Key as your User Service Key when calling this endpoint
         ([see above](#requests)).
+
+        Args:
+          identifier: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
             "/certificates",
             page=SyncSinglePage[OriginCACertificate],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {"identifier": identifier}, origin_ca_certificate_list_params.OriginCACertificateListParams
+                ),
             ),
             model=OriginCACertificate,
         )
@@ -139,6 +159,7 @@ class OriginCACertificates(SyncAPIResource):
         self,
         certificate_id: str,
         *,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -167,6 +188,7 @@ class OriginCACertificates(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
         return self._delete(
             f"/certificates/{certificate_id}",
+            body=maybe_transform(body, origin_ca_certificate_delete_params.OriginCACertificateDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -301,6 +323,7 @@ class AsyncOriginCACertificates(AsyncAPIResource):
     def list(
         self,
         *,
+        identifier: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -313,12 +336,29 @@ class AsyncOriginCACertificates(AsyncAPIResource):
         Use your Origin CA
         Key as your User Service Key when calling this endpoint
         ([see above](#requests)).
+
+        Args:
+          identifier: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
             "/certificates",
             page=AsyncSinglePage[OriginCACertificate],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {"identifier": identifier}, origin_ca_certificate_list_params.OriginCACertificateListParams
+                ),
             ),
             model=OriginCACertificate,
         )
@@ -327,6 +367,7 @@ class AsyncOriginCACertificates(AsyncAPIResource):
         self,
         certificate_id: str,
         *,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -355,6 +396,7 @@ class AsyncOriginCACertificates(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
         return await self._delete(
             f"/certificates/{certificate_id}",
+            body=await async_maybe_transform(body, origin_ca_certificate_delete_params.OriginCACertificateDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

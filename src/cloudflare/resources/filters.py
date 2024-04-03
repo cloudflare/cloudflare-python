@@ -11,6 +11,7 @@ from ..types import (
     FilterCreateResponse,
     filter_list_params,
     filter_create_params,
+    filter_delete_params,
     filter_update_params,
 )
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
@@ -136,6 +137,7 @@ class Filters(SyncAPIResource):
         self,
         zone_identifier: str,
         *,
+        id: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
@@ -156,6 +158,8 @@ class Filters(SyncAPIResource):
 
         Args:
           zone_identifier: Identifier
+
+          id: The unique identifier of the filter.
 
           description: A case-insensitive string to find in the description.
 
@@ -189,6 +193,7 @@ class Filters(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "id": id,
                         "description": description,
                         "expression": expression,
                         "page": page,
@@ -207,6 +212,7 @@ class Filters(SyncAPIResource):
         id: str,
         *,
         zone_identifier: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -236,6 +242,7 @@ class Filters(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._delete(
             f"/zones/{zone_identifier}/filters/{id}",
+            body=maybe_transform(body, filter_delete_params.FilterDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -391,6 +398,7 @@ class AsyncFilters(AsyncAPIResource):
         self,
         zone_identifier: str,
         *,
+        id: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
@@ -411,6 +419,8 @@ class AsyncFilters(AsyncAPIResource):
 
         Args:
           zone_identifier: Identifier
+
+          id: The unique identifier of the filter.
 
           description: A case-insensitive string to find in the description.
 
@@ -444,6 +454,7 @@ class AsyncFilters(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "id": id,
                         "description": description,
                         "expression": expression,
                         "page": page,
@@ -462,6 +473,7 @@ class AsyncFilters(AsyncAPIResource):
         id: str,
         *,
         zone_identifier: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -491,6 +503,7 @@ class AsyncFilters(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._delete(
             f"/zones/{zone_identifier}/filters/{id}",
+            body=await async_maybe_transform(body, filter_delete_params.FilterDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

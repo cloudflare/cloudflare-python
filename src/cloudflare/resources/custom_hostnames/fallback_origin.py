@@ -27,6 +27,7 @@ from ...types.custom_hostnames import (
     FallbackOriginGetResponse,
     FallbackOriginDeleteResponse,
     FallbackOriginUpdateResponse,
+    fallback_origin_delete_params,
     fallback_origin_update_params,
 )
 
@@ -94,6 +95,7 @@ class FallbackOrigin(SyncAPIResource):
         self,
         *,
         zone_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -121,6 +123,7 @@ class FallbackOrigin(SyncAPIResource):
             FallbackOriginDeleteResponse,
             self._delete(
                 f"/zones/{zone_id}/custom_hostnames/fallback_origin",
+                body=maybe_transform(body, fallback_origin_delete_params.FallbackOriginDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -242,6 +245,7 @@ class AsyncFallbackOrigin(AsyncAPIResource):
         self,
         *,
         zone_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -269,6 +273,7 @@ class AsyncFallbackOrigin(AsyncAPIResource):
             FallbackOriginDeleteResponse,
             await self._delete(
                 f"/zones/{zone_id}/custom_hostnames/fallback_origin",
+                body=await async_maybe_transform(body, fallback_origin_delete_params.FallbackOriginDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

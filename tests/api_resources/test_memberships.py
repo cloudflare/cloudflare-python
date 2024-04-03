@@ -116,6 +116,7 @@ class TestMemberships:
     def test_method_delete(self, client: Cloudflare) -> None:
         membership = client.memberships.delete(
             "4536bcfad5faccb111b47003c79917fa",
+            body={},
         )
         assert_matches_type(MembershipDeleteResponse, membership, path=["response"])
 
@@ -124,6 +125,7 @@ class TestMemberships:
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.memberships.with_raw_response.delete(
             "4536bcfad5faccb111b47003c79917fa",
+            body={},
         )
 
         assert response.is_closed is True
@@ -136,6 +138,7 @@ class TestMemberships:
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.memberships.with_streaming_response.delete(
             "4536bcfad5faccb111b47003c79917fa",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -151,6 +154,7 @@ class TestMemberships:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `membership_id` but received ''"):
             client.memberships.with_raw_response.delete(
                 "",
+                body={},
             )
 
     @pytest.mark.skip()
@@ -292,6 +296,7 @@ class TestAsyncMemberships:
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         membership = await async_client.memberships.delete(
             "4536bcfad5faccb111b47003c79917fa",
+            body={},
         )
         assert_matches_type(MembershipDeleteResponse, membership, path=["response"])
 
@@ -300,6 +305,7 @@ class TestAsyncMemberships:
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.memberships.with_raw_response.delete(
             "4536bcfad5faccb111b47003c79917fa",
+            body={},
         )
 
         assert response.is_closed is True
@@ -312,6 +318,7 @@ class TestAsyncMemberships:
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.memberships.with_streaming_response.delete(
             "4536bcfad5faccb111b47003c79917fa",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -327,6 +334,7 @@ class TestAsyncMemberships:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `membership_id` but received ''"):
             await async_client.memberships.with_raw_response.delete(
                 "",
+                body={},
             )
 
     @pytest.mark.skip()

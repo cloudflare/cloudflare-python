@@ -39,6 +39,7 @@ from ....types.user import (
     TokenVerifyResponse,
     token_list_params,
     token_create_params,
+    token_delete_params,
     token_update_params,
 )
 from ...._base_client import (
@@ -255,6 +256,7 @@ class Tokens(SyncAPIResource):
         self,
         token_id: object,
         *,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -276,6 +278,7 @@ class Tokens(SyncAPIResource):
         """
         return self._delete(
             f"/user/tokens/{token_id}",
+            body=maybe_transform(body, token_delete_params.TokenDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -548,6 +551,7 @@ class AsyncTokens(AsyncAPIResource):
         self,
         token_id: object,
         *,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -569,6 +573,7 @@ class AsyncTokens(AsyncAPIResource):
         """
         return await self._delete(
             f"/user/tokens/{token_id}",
+            body=await async_maybe_transform(body, token_delete_params.TokenDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -28,5 +28,8 @@ class VirtualNetworkListParams(TypedDict, total=False):
     name: str
     """A user-friendly name for the virtual network."""
 
+    vnet_id: str
+    """UUID of the virtual network."""
+
     vnet_name: str
     """A user-friendly name for the virtual network."""

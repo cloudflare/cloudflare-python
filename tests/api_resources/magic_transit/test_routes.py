@@ -203,6 +203,7 @@ class TestRoutes:
         route = client.magic_transit.routes.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
         assert_matches_type(RouteDeleteResponse, route, path=["response"])
 
@@ -212,6 +213,7 @@ class TestRoutes:
         response = client.magic_transit.routes.with_raw_response.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
 
         assert response.is_closed is True
@@ -225,6 +227,7 @@ class TestRoutes:
         with client.magic_transit.routes.with_streaming_response.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -241,12 +244,14 @@ class TestRoutes:
             client.magic_transit.routes.with_raw_response.delete(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `route_identifier` but received ''"):
             client.magic_transit.routes.with_raw_response.delete(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
             )
 
     @pytest.mark.skip()
@@ -530,6 +535,7 @@ class TestAsyncRoutes:
         route = await async_client.magic_transit.routes.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
         assert_matches_type(RouteDeleteResponse, route, path=["response"])
 
@@ -539,6 +545,7 @@ class TestAsyncRoutes:
         response = await async_client.magic_transit.routes.with_raw_response.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
 
         assert response.is_closed is True
@@ -552,6 +559,7 @@ class TestAsyncRoutes:
         async with async_client.magic_transit.routes.with_streaming_response.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -568,12 +576,14 @@ class TestAsyncRoutes:
             await async_client.magic_transit.routes.with_raw_response.delete(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `route_identifier` but received ''"):
             await async_client.magic_transit.routes.with_raw_response.delete(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
             )
 
     @pytest.mark.skip()

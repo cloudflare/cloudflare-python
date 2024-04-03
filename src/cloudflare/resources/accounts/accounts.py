@@ -126,6 +126,7 @@ class Accounts(SyncAPIResource):
         self,
         *,
         direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -140,6 +141,8 @@ class Accounts(SyncAPIResource):
 
         Args:
           direction: Direction to order results.
+
+          name: Name of the account.
 
           page: Page number of paginated results.
 
@@ -164,6 +167,7 @@ class Accounts(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "direction": direction,
+                        "name": name,
                         "page": page,
                         "per_page": per_page,
                     },
@@ -288,6 +292,7 @@ class AsyncAccounts(AsyncAPIResource):
         self,
         *,
         direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -302,6 +307,8 @@ class AsyncAccounts(AsyncAPIResource):
 
         Args:
           direction: Direction to order results.
+
+          name: Name of the account.
 
           page: Page number of paginated results.
 
@@ -326,6 +333,7 @@ class AsyncAccounts(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "direction": direction,
+                        "name": name,
                         "page": page,
                         "per_page": per_page,
                     },

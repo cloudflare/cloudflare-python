@@ -35,6 +35,7 @@ from ....types.user.load_balancers import (
     pool_edit_params,
     pool_list_params,
     pool_create_params,
+    pool_delete_params,
     pool_update_params,
     pool_preview_params,
 )
@@ -353,6 +354,7 @@ class Pools(SyncAPIResource):
         self,
         pool_id: str,
         *,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -376,6 +378,7 @@ class Pools(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
         return self._delete(
             f"/user/load_balancers/pools/{pool_id}",
+            body=maybe_transform(body, pool_delete_params.PoolDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1069,6 +1072,7 @@ class AsyncPools(AsyncAPIResource):
         self,
         pool_id: str,
         *,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1092,6 +1096,7 @@ class AsyncPools(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
         return await self._delete(
             f"/user/load_balancers/pools/{pool_id}",
+            body=await async_maybe_transform(body, pool_delete_params.PoolDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

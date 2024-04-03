@@ -30,6 +30,7 @@ from ...types.workers import (
     RouteCreateResponse,
     RouteDeleteResponse,
     route_create_params,
+    route_delete_params,
     route_update_params,
 )
 
@@ -196,6 +197,7 @@ class Routes(SyncAPIResource):
         route_id: str,
         *,
         zone_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -227,6 +229,7 @@ class Routes(SyncAPIResource):
             RouteDeleteResponse,
             self._delete(
                 f"/zones/{zone_id}/workers/routes/{route_id}",
+                body=maybe_transform(body, route_delete_params.RouteDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -445,6 +448,7 @@ class AsyncRoutes(AsyncAPIResource):
         route_id: str,
         *,
         zone_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -476,6 +480,7 @@ class AsyncRoutes(AsyncAPIResource):
             RouteDeleteResponse,
             await self._delete(
                 f"/zones/{zone_id}/workers/routes/{route_id}",
+                body=await async_maybe_transform(body, route_delete_params.RouteDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

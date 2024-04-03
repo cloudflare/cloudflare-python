@@ -85,6 +85,7 @@ class TestCustomNameservers:
         custom_nameserver = client.custom_nameservers.delete(
             "ns1.example.com",
             account_id="372e67954025e0ba6aaa6d586b9e0b59",
+            body={},
         )
         assert_matches_type(Optional[CustomNameserverDeleteResponse], custom_nameserver, path=["response"])
 
@@ -94,6 +95,7 @@ class TestCustomNameservers:
         response = client.custom_nameservers.with_raw_response.delete(
             "ns1.example.com",
             account_id="372e67954025e0ba6aaa6d586b9e0b59",
+            body={},
         )
 
         assert response.is_closed is True
@@ -107,6 +109,7 @@ class TestCustomNameservers:
         with client.custom_nameservers.with_streaming_response.delete(
             "ns1.example.com",
             account_id="372e67954025e0ba6aaa6d586b9e0b59",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -123,12 +126,14 @@ class TestCustomNameservers:
             client.custom_nameservers.with_raw_response.delete(
                 "ns1.example.com",
                 account_id="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `custom_ns_id` but received ''"):
             client.custom_nameservers.with_raw_response.delete(
                 "",
                 account_id="372e67954025e0ba6aaa6d586b9e0b59",
+                body={},
             )
 
     @pytest.mark.skip()
@@ -220,6 +225,7 @@ class TestCustomNameservers:
     def test_method_verify(self, client: Cloudflare) -> None:
         custom_nameserver = client.custom_nameservers.verify(
             account_id="372e67954025e0ba6aaa6d586b9e0b59",
+            body={},
         )
         assert_matches_type(Optional[CustomNameserverVerifyResponse], custom_nameserver, path=["response"])
 
@@ -228,6 +234,7 @@ class TestCustomNameservers:
     def test_raw_response_verify(self, client: Cloudflare) -> None:
         response = client.custom_nameservers.with_raw_response.verify(
             account_id="372e67954025e0ba6aaa6d586b9e0b59",
+            body={},
         )
 
         assert response.is_closed is True
@@ -240,6 +247,7 @@ class TestCustomNameservers:
     def test_streaming_response_verify(self, client: Cloudflare) -> None:
         with client.custom_nameservers.with_streaming_response.verify(
             account_id="372e67954025e0ba6aaa6d586b9e0b59",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -255,6 +263,7 @@ class TestCustomNameservers:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.custom_nameservers.with_raw_response.verify(
                 account_id="",
+                body={},
             )
 
 
@@ -323,6 +332,7 @@ class TestAsyncCustomNameservers:
         custom_nameserver = await async_client.custom_nameservers.delete(
             "ns1.example.com",
             account_id="372e67954025e0ba6aaa6d586b9e0b59",
+            body={},
         )
         assert_matches_type(Optional[CustomNameserverDeleteResponse], custom_nameserver, path=["response"])
 
@@ -332,6 +342,7 @@ class TestAsyncCustomNameservers:
         response = await async_client.custom_nameservers.with_raw_response.delete(
             "ns1.example.com",
             account_id="372e67954025e0ba6aaa6d586b9e0b59",
+            body={},
         )
 
         assert response.is_closed is True
@@ -345,6 +356,7 @@ class TestAsyncCustomNameservers:
         async with async_client.custom_nameservers.with_streaming_response.delete(
             "ns1.example.com",
             account_id="372e67954025e0ba6aaa6d586b9e0b59",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -361,12 +373,14 @@ class TestAsyncCustomNameservers:
             await async_client.custom_nameservers.with_raw_response.delete(
                 "ns1.example.com",
                 account_id="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `custom_ns_id` but received ''"):
             await async_client.custom_nameservers.with_raw_response.delete(
                 "",
                 account_id="372e67954025e0ba6aaa6d586b9e0b59",
+                body={},
             )
 
     @pytest.mark.skip()
@@ -458,6 +472,7 @@ class TestAsyncCustomNameservers:
     async def test_method_verify(self, async_client: AsyncCloudflare) -> None:
         custom_nameserver = await async_client.custom_nameservers.verify(
             account_id="372e67954025e0ba6aaa6d586b9e0b59",
+            body={},
         )
         assert_matches_type(Optional[CustomNameserverVerifyResponse], custom_nameserver, path=["response"])
 
@@ -466,6 +481,7 @@ class TestAsyncCustomNameservers:
     async def test_raw_response_verify(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.custom_nameservers.with_raw_response.verify(
             account_id="372e67954025e0ba6aaa6d586b9e0b59",
+            body={},
         )
 
         assert response.is_closed is True
@@ -478,6 +494,7 @@ class TestAsyncCustomNameservers:
     async def test_streaming_response_verify(self, async_client: AsyncCloudflare) -> None:
         async with async_client.custom_nameservers.with_streaming_response.verify(
             account_id="372e67954025e0ba6aaa6d586b9e0b59",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -493,4 +510,5 @@ class TestAsyncCustomNameservers:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.custom_nameservers.with_raw_response.verify(
                 account_id="",
+                body={},
             )

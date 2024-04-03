@@ -9,7 +9,10 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.addressing.address_maps import ZoneDeleteResponse, ZoneUpdateResponse
+from cloudflare.types.addressing.address_maps import (
+    ZoneDeleteResponse,
+    ZoneUpdateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -24,6 +27,7 @@ class TestZones:
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
         assert_matches_type(Optional[ZoneUpdateResponse], zone, path=["response"])
 
@@ -34,6 +38,7 @@ class TestZones:
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
 
         assert response.is_closed is True
@@ -48,6 +53,7 @@ class TestZones:
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -65,6 +71,7 @@ class TestZones:
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -72,6 +79,7 @@ class TestZones:
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `address_map_id` but received ''"):
@@ -79,6 +87,7 @@ class TestZones:
                 "",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
             )
 
     @pytest.mark.skip()
@@ -88,6 +97,7 @@ class TestZones:
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
         assert_matches_type(Optional[ZoneDeleteResponse], zone, path=["response"])
 
@@ -98,6 +108,7 @@ class TestZones:
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
 
         assert response.is_closed is True
@@ -112,6 +123,7 @@ class TestZones:
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -129,6 +141,7 @@ class TestZones:
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -136,6 +149,7 @@ class TestZones:
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `address_map_id` but received ''"):
@@ -143,6 +157,7 @@ class TestZones:
                 "",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
             )
 
 
@@ -156,6 +171,7 @@ class TestAsyncZones:
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
         assert_matches_type(Optional[ZoneUpdateResponse], zone, path=["response"])
 
@@ -166,6 +182,7 @@ class TestAsyncZones:
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
 
         assert response.is_closed is True
@@ -180,6 +197,7 @@ class TestAsyncZones:
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -197,6 +215,7 @@ class TestAsyncZones:
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -204,6 +223,7 @@ class TestAsyncZones:
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `address_map_id` but received ''"):
@@ -211,6 +231,7 @@ class TestAsyncZones:
                 "",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
             )
 
     @pytest.mark.skip()
@@ -220,6 +241,7 @@ class TestAsyncZones:
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
         assert_matches_type(Optional[ZoneDeleteResponse], zone, path=["response"])
 
@@ -230,6 +252,7 @@ class TestAsyncZones:
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
 
         assert response.is_closed is True
@@ -244,6 +267,7 @@ class TestAsyncZones:
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -261,6 +285,7 @@ class TestAsyncZones:
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -268,6 +293,7 @@ class TestAsyncZones:
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `address_map_id` but received ''"):
@@ -275,4 +301,5 @@ class TestAsyncZones:
                 "",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
             )

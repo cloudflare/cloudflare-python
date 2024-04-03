@@ -137,6 +137,7 @@ class TestDomains:
         domain = client.workers.domains.delete(
             "dbe10b4bc17c295377eabd600e1787fd",
             account_id="9a7806061c88ada191ed06f989cc3dac",
+            body={},
         )
         assert domain is None
 
@@ -146,6 +147,7 @@ class TestDomains:
         response = client.workers.domains.with_raw_response.delete(
             "dbe10b4bc17c295377eabd600e1787fd",
             account_id="9a7806061c88ada191ed06f989cc3dac",
+            body={},
         )
 
         assert response.is_closed is True
@@ -159,6 +161,7 @@ class TestDomains:
         with client.workers.domains.with_streaming_response.delete(
             "dbe10b4bc17c295377eabd600e1787fd",
             account_id="9a7806061c88ada191ed06f989cc3dac",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -175,12 +178,14 @@ class TestDomains:
             client.workers.domains.with_raw_response.delete(
                 "dbe10b4bc17c295377eabd600e1787fd",
                 account_id="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `domain_id` but received ''"):
             client.workers.domains.with_raw_response.delete(
                 "",
                 account_id="9a7806061c88ada191ed06f989cc3dac",
+                body={},
             )
 
     @pytest.mark.skip()
@@ -358,6 +363,7 @@ class TestAsyncDomains:
         domain = await async_client.workers.domains.delete(
             "dbe10b4bc17c295377eabd600e1787fd",
             account_id="9a7806061c88ada191ed06f989cc3dac",
+            body={},
         )
         assert domain is None
 
@@ -367,6 +373,7 @@ class TestAsyncDomains:
         response = await async_client.workers.domains.with_raw_response.delete(
             "dbe10b4bc17c295377eabd600e1787fd",
             account_id="9a7806061c88ada191ed06f989cc3dac",
+            body={},
         )
 
         assert response.is_closed is True
@@ -380,6 +387,7 @@ class TestAsyncDomains:
         async with async_client.workers.domains.with_streaming_response.delete(
             "dbe10b4bc17c295377eabd600e1787fd",
             account_id="9a7806061c88ada191ed06f989cc3dac",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -396,12 +404,14 @@ class TestAsyncDomains:
             await async_client.workers.domains.with_raw_response.delete(
                 "dbe10b4bc17c295377eabd600e1787fd",
                 account_id="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `domain_id` but received ''"):
             await async_client.workers.domains.with_raw_response.delete(
                 "",
                 account_id="9a7806061c88ada191ed06f989cc3dac",
+                body={},
             )
 
     @pytest.mark.skip()

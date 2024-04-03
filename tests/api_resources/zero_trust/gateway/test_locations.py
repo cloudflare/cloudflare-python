@@ -197,6 +197,7 @@ class TestLocations:
         location = client.zero_trust.gateway.locations.delete(
             "ed35569b41ce4d1facfe683550f54086",
             account_id="699d98642c564d2e855e9661899b7252",
+            body={},
         )
         assert_matches_type(LocationDeleteResponse, location, path=["response"])
 
@@ -206,6 +207,7 @@ class TestLocations:
         response = client.zero_trust.gateway.locations.with_raw_response.delete(
             "ed35569b41ce4d1facfe683550f54086",
             account_id="699d98642c564d2e855e9661899b7252",
+            body={},
         )
 
         assert response.is_closed is True
@@ -219,6 +221,7 @@ class TestLocations:
         with client.zero_trust.gateway.locations.with_streaming_response.delete(
             "ed35569b41ce4d1facfe683550f54086",
             account_id="699d98642c564d2e855e9661899b7252",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -235,12 +238,14 @@ class TestLocations:
             client.zero_trust.gateway.locations.with_raw_response.delete(
                 "ed35569b41ce4d1facfe683550f54086",
                 account_id="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `location_id` but received ''"):
             client.zero_trust.gateway.locations.with_raw_response.delete(
                 "",
                 account_id="699d98642c564d2e855e9661899b7252",
+                body={},
             )
 
     @pytest.mark.skip()
@@ -475,6 +480,7 @@ class TestAsyncLocations:
         location = await async_client.zero_trust.gateway.locations.delete(
             "ed35569b41ce4d1facfe683550f54086",
             account_id="699d98642c564d2e855e9661899b7252",
+            body={},
         )
         assert_matches_type(LocationDeleteResponse, location, path=["response"])
 
@@ -484,6 +490,7 @@ class TestAsyncLocations:
         response = await async_client.zero_trust.gateway.locations.with_raw_response.delete(
             "ed35569b41ce4d1facfe683550f54086",
             account_id="699d98642c564d2e855e9661899b7252",
+            body={},
         )
 
         assert response.is_closed is True
@@ -497,6 +504,7 @@ class TestAsyncLocations:
         async with async_client.zero_trust.gateway.locations.with_streaming_response.delete(
             "ed35569b41ce4d1facfe683550f54086",
             account_id="699d98642c564d2e855e9661899b7252",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -513,12 +521,14 @@ class TestAsyncLocations:
             await async_client.zero_trust.gateway.locations.with_raw_response.delete(
                 "ed35569b41ce4d1facfe683550f54086",
                 account_id="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `location_id` but received ''"):
             await async_client.zero_trust.gateway.locations.with_raw_response.delete(
                 "",
                 account_id="699d98642c564d2e855e9661899b7252",
+                body={},
             )
 
     @pytest.mark.skip()

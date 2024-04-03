@@ -7,6 +7,10 @@ from typing import Any, Optional, cast
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -19,7 +23,12 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.addressing.address_maps import ZoneDeleteResponse, ZoneUpdateResponse
+from ....types.addressing.address_maps import (
+    ZoneDeleteResponse,
+    ZoneUpdateResponse,
+    zone_delete_params,
+    zone_update_params,
+)
 
 __all__ = ["Zones", "AsyncZones"]
 
@@ -39,6 +48,7 @@ class Zones(SyncAPIResource):
         *,
         zone_id: str,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -70,21 +80,11 @@ class Zones(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not address_map_id:
             raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
-        if not account_id and not zone_id:
-            raise ValueError("You must provide either account_id or zone_id")
-        if account_id and zone_id:
-            raise ValueError("You cannot provide both account_id and zone_id")
-
-        if account_id:
-            account_or_zone = "accounts"
-            account_or_zone_id = account_id
-        else:
-            account_or_zone = "zones"
-            account_or_zone_id = zone_id
         return cast(
             Optional[ZoneUpdateResponse],
             self._put(
-                f"/accounts/{account_or_zone}/addressing/address_maps/{address_map_id}/zones/{account_or_zone_id}",
+                f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/zones/{zone_id}",
+                body=maybe_transform(body, zone_update_params.ZoneUpdateParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -104,6 +104,7 @@ class Zones(SyncAPIResource):
         *,
         zone_id: str,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -135,21 +136,11 @@ class Zones(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not address_map_id:
             raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
-        if not account_id and not zone_id:
-            raise ValueError("You must provide either account_id or zone_id")
-        if account_id and zone_id:
-            raise ValueError("You cannot provide both account_id and zone_id")
-
-        if account_id:
-            account_or_zone = "accounts"
-            account_or_zone_id = account_id
-        else:
-            account_or_zone = "zones"
-            account_or_zone_id = zone_id
         return cast(
             Optional[ZoneDeleteResponse],
             self._delete(
-                f"/accounts/{account_or_zone}/addressing/address_maps/{address_map_id}/zones/{account_or_zone_id}",
+                f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/zones/{zone_id}",
+                body=maybe_transform(body, zone_delete_params.ZoneDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -179,6 +170,7 @@ class AsyncZones(AsyncAPIResource):
         *,
         zone_id: str,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -210,21 +202,11 @@ class AsyncZones(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not address_map_id:
             raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
-        if not account_id and not zone_id:
-            raise ValueError("You must provide either account_id or zone_id")
-        if account_id and zone_id:
-            raise ValueError("You cannot provide both account_id and zone_id")
-
-        if account_id:
-            account_or_zone = "accounts"
-            account_or_zone_id = account_id
-        else:
-            account_or_zone = "zones"
-            account_or_zone_id = zone_id
         return cast(
             Optional[ZoneUpdateResponse],
             await self._put(
-                f"/accounts/{account_or_zone}/addressing/address_maps/{address_map_id}/zones/{account_or_zone_id}",
+                f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/zones/{zone_id}",
+                body=await async_maybe_transform(body, zone_update_params.ZoneUpdateParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -244,6 +226,7 @@ class AsyncZones(AsyncAPIResource):
         *,
         zone_id: str,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -275,21 +258,11 @@ class AsyncZones(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not address_map_id:
             raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
-        if not account_id and not zone_id:
-            raise ValueError("You must provide either account_id or zone_id")
-        if account_id and zone_id:
-            raise ValueError("You cannot provide both account_id and zone_id")
-
-        if account_id:
-            account_or_zone = "accounts"
-            account_or_zone_id = account_id
-        else:
-            account_or_zone = "zones"
-            account_or_zone_id = zone_id
         return cast(
             Optional[ZoneDeleteResponse],
             await self._delete(
-                f"/accounts/{account_or_zone}/addressing/address_maps/{address_map_id}/zones/{account_or_zone_id}",
+                f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/zones/{zone_id}",
+                body=await async_maybe_transform(body, zone_delete_params.ZoneDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

@@ -56,9 +56,12 @@ from .videos import (
     VideosWithStreamingResponse,
     AsyncVideosWithStreamingResponse,
 )
-from ...types import StreamVideos, stream_list_params
+from ...types import StreamVideos, stream_list_params, stream_create_params, stream_delete_params
 from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
-from ..._utils import maybe_transform
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from .captions import (
     Captions,
     AsyncCaptions,
@@ -199,6 +202,7 @@ class Stream(SyncAPIResource):
         self,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -229,6 +233,7 @@ class Stream(SyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
             f"/accounts/{account_id}/stream",
+            body=maybe_transform(body, stream_create_params.StreamCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -321,6 +326,7 @@ class Stream(SyncAPIResource):
         identifier: str,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -351,6 +357,7 @@ class Stream(SyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             f"/accounts/{account_id}/stream/{identifier}",
+            body=maybe_transform(body, stream_delete_params.StreamDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -467,6 +474,7 @@ class AsyncStream(AsyncAPIResource):
         self,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -497,6 +505,7 @@ class AsyncStream(AsyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
             f"/accounts/{account_id}/stream",
+            body=await async_maybe_transform(body, stream_create_params.StreamCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -589,6 +598,7 @@ class AsyncStream(AsyncAPIResource):
         identifier: str,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -619,6 +629,7 @@ class AsyncStream(AsyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             f"/accounts/{account_id}/stream/{identifier}",
+            body=await async_maybe_transform(body, stream_delete_params.StreamDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

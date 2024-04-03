@@ -23,7 +23,13 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.stream import WebhookGetResponse, WebhookDeleteResponse, WebhookUpdateResponse, webhook_update_params
+from ...types.stream import (
+    WebhookGetResponse,
+    WebhookDeleteResponse,
+    WebhookUpdateResponse,
+    webhook_delete_params,
+    webhook_update_params,
+)
 
 __all__ = ["Webhooks", "AsyncWebhooks"]
 
@@ -89,6 +95,7 @@ class Webhooks(SyncAPIResource):
         self,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -116,6 +123,7 @@ class Webhooks(SyncAPIResource):
             WebhookDeleteResponse,
             self._delete(
                 f"/accounts/{account_id}/stream/webhook",
+                body=maybe_transform(body, webhook_delete_params.WebhookDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -237,6 +245,7 @@ class AsyncWebhooks(AsyncAPIResource):
         self,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -264,6 +273,7 @@ class AsyncWebhooks(AsyncAPIResource):
             WebhookDeleteResponse,
             await self._delete(
                 f"/accounts/{account_id}/stream/webhook",
+                body=await async_maybe_transform(body, webhook_delete_params.WebhookDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

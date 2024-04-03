@@ -33,6 +33,7 @@ from ....types.zero_trust.networks import (
     virtual_network_edit_params,
     virtual_network_list_params,
     virtual_network_create_params,
+    virtual_network_delete_params,
 )
 
 __all__ = ["VirtualNetworks", "AsyncVirtualNetworks"]
@@ -115,6 +116,7 @@ class VirtualNetworks(SyncAPIResource):
         is_default: object | NotGiven = NOT_GIVEN,
         is_deleted: object | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
+        vnet_id: str | NotGiven = NOT_GIVEN,
         vnet_name: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -136,6 +138,8 @@ class VirtualNetworks(SyncAPIResource):
               virtual networks. If empty, all virtual networks will be included.
 
           name: A user-friendly name for the virtual network.
+
+          vnet_id: UUID of the virtual network.
 
           vnet_name: A user-friendly name for the virtual network.
 
@@ -162,6 +166,7 @@ class VirtualNetworks(SyncAPIResource):
                         "is_default": is_default,
                         "is_deleted": is_deleted,
                         "name": name,
+                        "vnet_id": vnet_id,
                         "vnet_name": vnet_name,
                     },
                     virtual_network_list_params.VirtualNetworkListParams,
@@ -175,6 +180,7 @@ class VirtualNetworks(SyncAPIResource):
         virtual_network_id: str,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -206,6 +212,7 @@ class VirtualNetworks(SyncAPIResource):
             VirtualNetworkDeleteResponse,
             self._delete(
                 f"/accounts/{account_id}/teamnet/virtual_networks/{virtual_network_id}",
+                body=maybe_transform(body, virtual_network_delete_params.VirtualNetworkDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -363,6 +370,7 @@ class AsyncVirtualNetworks(AsyncAPIResource):
         is_default: object | NotGiven = NOT_GIVEN,
         is_deleted: object | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
+        vnet_id: str | NotGiven = NOT_GIVEN,
         vnet_name: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -384,6 +392,8 @@ class AsyncVirtualNetworks(AsyncAPIResource):
               virtual networks. If empty, all virtual networks will be included.
 
           name: A user-friendly name for the virtual network.
+
+          vnet_id: UUID of the virtual network.
 
           vnet_name: A user-friendly name for the virtual network.
 
@@ -410,6 +420,7 @@ class AsyncVirtualNetworks(AsyncAPIResource):
                         "is_default": is_default,
                         "is_deleted": is_deleted,
                         "name": name,
+                        "vnet_id": vnet_id,
                         "vnet_name": vnet_name,
                     },
                     virtual_network_list_params.VirtualNetworkListParams,
@@ -423,6 +434,7 @@ class AsyncVirtualNetworks(AsyncAPIResource):
         virtual_network_id: str,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -454,6 +466,7 @@ class AsyncVirtualNetworks(AsyncAPIResource):
             VirtualNetworkDeleteResponse,
             await self._delete(
                 f"/accounts/{account_id}/teamnet/virtual_networks/{virtual_network_id}",
+                body=await async_maybe_transform(body, virtual_network_delete_params.VirtualNetworkDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

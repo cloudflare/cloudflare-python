@@ -25,7 +25,14 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.pages.projects import DomainGetResponse, DomainEditResponse, DomainCreateResponse, domain_create_params
+from ....types.pages.projects import (
+    DomainGetResponse,
+    DomainEditResponse,
+    DomainCreateResponse,
+    domain_edit_params,
+    domain_create_params,
+    domain_delete_params,
+)
 
 __all__ = ["Domains", "AsyncDomains"]
 
@@ -137,6 +144,7 @@ class Domains(SyncAPIResource):
         *,
         account_id: str,
         project_name: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -170,6 +178,7 @@ class Domains(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `domain_name` but received {domain_name!r}")
         return self._delete(
             f"/accounts/{account_id}/pages/projects/{project_name}/domains/{domain_name}",
+            body=maybe_transform(body, domain_delete_params.DomainDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -182,6 +191,7 @@ class Domains(SyncAPIResource):
         *,
         account_id: str,
         project_name: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -217,6 +227,7 @@ class Domains(SyncAPIResource):
             Optional[DomainEditResponse],
             self._patch(
                 f"/accounts/{account_id}/pages/projects/{project_name}/domains/{domain_name}",
+                body=maybe_transform(body, domain_edit_params.DomainEditParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -392,6 +403,7 @@ class AsyncDomains(AsyncAPIResource):
         *,
         account_id: str,
         project_name: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -425,6 +437,7 @@ class AsyncDomains(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `domain_name` but received {domain_name!r}")
         return await self._delete(
             f"/accounts/{account_id}/pages/projects/{project_name}/domains/{domain_name}",
+            body=await async_maybe_transform(body, domain_delete_params.DomainDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -437,6 +450,7 @@ class AsyncDomains(AsyncAPIResource):
         *,
         account_id: str,
         project_name: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -472,6 +486,7 @@ class AsyncDomains(AsyncAPIResource):
             Optional[DomainEditResponse],
             await self._patch(
                 f"/accounts/{account_id}/pages/projects/{project_name}/domains/{domain_name}",
+                body=await async_maybe_transform(body, domain_edit_params.DomainEditParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

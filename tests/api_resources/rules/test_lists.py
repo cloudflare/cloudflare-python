@@ -10,7 +10,10 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.rules import ListsList, ListDeleteResponse
+from cloudflare.types.rules import (
+    ListsList,
+    ListDeleteResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -189,6 +192,7 @@ class TestLists:
         list = client.rules.lists.delete(
             "2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
         assert_matches_type(Optional[ListDeleteResponse], list, path=["response"])
 
@@ -198,6 +202,7 @@ class TestLists:
         response = client.rules.lists.with_raw_response.delete(
             "2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
 
         assert response.is_closed is True
@@ -211,6 +216,7 @@ class TestLists:
         with client.rules.lists.with_streaming_response.delete(
             "2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -227,12 +233,14 @@ class TestLists:
             client.rules.lists.with_raw_response.delete(
                 "2c0fc9fa937b11eaa1b71c4d701ab86e",
                 account_id="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `list_id` but received ''"):
             client.rules.lists.with_raw_response.delete(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
             )
 
     @pytest.mark.skip()
@@ -462,6 +470,7 @@ class TestAsyncLists:
         list = await async_client.rules.lists.delete(
             "2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
         assert_matches_type(Optional[ListDeleteResponse], list, path=["response"])
 
@@ -471,6 +480,7 @@ class TestAsyncLists:
         response = await async_client.rules.lists.with_raw_response.delete(
             "2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
 
         assert response.is_closed is True
@@ -484,6 +494,7 @@ class TestAsyncLists:
         async with async_client.rules.lists.with_streaming_response.delete(
             "2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -500,12 +511,14 @@ class TestAsyncLists:
             await async_client.rules.lists.with_raw_response.delete(
                 "2c0fc9fa937b11eaa1b71c4d701ab86e",
                 account_id="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `list_id` but received ''"):
             await async_client.rules.lists.with_raw_response.delete(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
             )
 
     @pytest.mark.skip()

@@ -26,7 +26,7 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.logpush import JobDeleteResponse, job_create_params, job_update_params
+from ...types.logpush import JobDeleteResponse, job_create_params, job_delete_params, job_update_params
 from ...types.logpush.datasets import LogpushJob
 
 __all__ = ["Jobs", "AsyncJobs"]
@@ -296,6 +296,7 @@ class Jobs(SyncAPIResource):
         self,
         job_id: int,
         *,
+        body: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -342,6 +343,7 @@ class Jobs(SyncAPIResource):
             Optional[JobDeleteResponse],
             self._delete(
                 f"/{account_or_zone}/{account_or_zone_id}/logpush/jobs/{job_id}",
+                body=maybe_transform(body, job_delete_params.JobDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -678,6 +680,7 @@ class AsyncJobs(AsyncAPIResource):
         self,
         job_id: int,
         *,
+        body: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -724,6 +727,7 @@ class AsyncJobs(AsyncAPIResource):
             Optional[JobDeleteResponse],
             await self._delete(
                 f"/{account_or_zone}/{account_or_zone_id}/logpush/jobs/{job_id}",
+                body=await async_maybe_transform(body, job_delete_params.JobDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

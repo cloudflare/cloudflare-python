@@ -58,7 +58,15 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.images import Image, V1ListResponse, V1DeleteResponse, v1_edit_params, v1_list_params, v1_create_params
+from ....types.images import (
+    Image,
+    V1ListResponse,
+    V1DeleteResponse,
+    v1_edit_params,
+    v1_list_params,
+    v1_create_params,
+    v1_delete_params,
+)
 
 __all__ = ["V1", "AsyncV1"]
 
@@ -248,6 +256,7 @@ class V1(SyncAPIResource):
         image_id: str,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -281,6 +290,7 @@ class V1(SyncAPIResource):
             V1DeleteResponse,
             self._delete(
                 f"/accounts/{account_id}/images/v1/{image_id}",
+                body=maybe_transform(body, v1_delete_params.V1DeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -586,6 +596,7 @@ class AsyncV1(AsyncAPIResource):
         image_id: str,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -619,6 +630,7 @@ class AsyncV1(AsyncAPIResource):
             V1DeleteResponse,
             await self._delete(
                 f"/accounts/{account_id}/images/v1/{image_id}",
+                body=await async_maybe_transform(body, v1_delete_params.V1DeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

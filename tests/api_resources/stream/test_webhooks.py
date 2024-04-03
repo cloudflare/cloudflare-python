@@ -72,6 +72,7 @@ class TestWebhooks:
     def test_method_delete(self, client: Cloudflare) -> None:
         webhook = client.stream.webhooks.delete(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
         assert_matches_type(WebhookDeleteResponse, webhook, path=["response"])
 
@@ -80,6 +81,7 @@ class TestWebhooks:
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.stream.webhooks.with_raw_response.delete(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
 
         assert response.is_closed is True
@@ -92,6 +94,7 @@ class TestWebhooks:
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.stream.webhooks.with_streaming_response.delete(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -107,6 +110,7 @@ class TestWebhooks:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.stream.webhooks.with_raw_response.delete(
                 account_id="",
+                body={},
             )
 
     @pytest.mark.skip()
@@ -206,6 +210,7 @@ class TestAsyncWebhooks:
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         webhook = await async_client.stream.webhooks.delete(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
         assert_matches_type(WebhookDeleteResponse, webhook, path=["response"])
 
@@ -214,6 +219,7 @@ class TestAsyncWebhooks:
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.stream.webhooks.with_raw_response.delete(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
 
         assert response.is_closed is True
@@ -226,6 +232,7 @@ class TestAsyncWebhooks:
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.stream.webhooks.with_streaming_response.delete(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -241,6 +248,7 @@ class TestAsyncWebhooks:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.stream.webhooks.with_raw_response.delete(
                 account_id="",
+                body={},
             )
 
     @pytest.mark.skip()

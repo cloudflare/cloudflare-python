@@ -31,6 +31,7 @@ from .....types.zero_trust.devices.posture import (
     IntegrationDeleteResponse,
     integration_edit_params,
     integration_create_params,
+    integration_delete_params,
 )
 
 __all__ = ["Integrations", "AsyncIntegrations"]
@@ -143,6 +144,7 @@ class Integrations(SyncAPIResource):
         integration_id: str,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -172,6 +174,7 @@ class Integrations(SyncAPIResource):
             Optional[IntegrationDeleteResponse],
             self._delete(
                 f"/accounts/{account_id}/devices/posture/integration/{integration_id}",
+                body=maybe_transform(body, integration_delete_params.IntegrationDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -400,6 +403,7 @@ class AsyncIntegrations(AsyncAPIResource):
         integration_id: str,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -429,6 +433,7 @@ class AsyncIntegrations(AsyncAPIResource):
             Optional[IntegrationDeleteResponse],
             await self._delete(
                 f"/accounts/{account_id}/devices/posture/integration/{integration_id}",
+                body=await async_maybe_transform(body, integration_delete_params.IntegrationDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

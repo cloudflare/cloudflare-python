@@ -182,6 +182,7 @@ class TestOverrides:
         override = client.firewall.waf.overrides.delete(
             "de677e5818985db1285d0e80225f06e5",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
         assert_matches_type(Optional[OverrideDeleteResponse], override, path=["response"])
 
@@ -191,6 +192,7 @@ class TestOverrides:
         response = client.firewall.waf.overrides.with_raw_response.delete(
             "de677e5818985db1285d0e80225f06e5",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
 
         assert response.is_closed is True
@@ -204,6 +206,7 @@ class TestOverrides:
         with client.firewall.waf.overrides.with_streaming_response.delete(
             "de677e5818985db1285d0e80225f06e5",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -220,12 +223,14 @@ class TestOverrides:
             client.firewall.waf.overrides.with_raw_response.delete(
                 "de677e5818985db1285d0e80225f06e5",
                 zone_identifier="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.firewall.waf.overrides.with_raw_response.delete(
                 "",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
             )
 
     @pytest.mark.skip()
@@ -445,6 +450,7 @@ class TestAsyncOverrides:
         override = await async_client.firewall.waf.overrides.delete(
             "de677e5818985db1285d0e80225f06e5",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
         assert_matches_type(Optional[OverrideDeleteResponse], override, path=["response"])
 
@@ -454,6 +460,7 @@ class TestAsyncOverrides:
         response = await async_client.firewall.waf.overrides.with_raw_response.delete(
             "de677e5818985db1285d0e80225f06e5",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
 
         assert response.is_closed is True
@@ -467,6 +474,7 @@ class TestAsyncOverrides:
         async with async_client.firewall.waf.overrides.with_streaming_response.delete(
             "de677e5818985db1285d0e80225f06e5",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -483,12 +491,14 @@ class TestAsyncOverrides:
             await async_client.firewall.waf.overrides.with_raw_response.delete(
                 "de677e5818985db1285d0e80225f06e5",
                 zone_identifier="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.firewall.waf.overrides.with_raw_response.delete(
                 "",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
             )
 
     @pytest.mark.skip()

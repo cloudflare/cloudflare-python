@@ -8,6 +8,9 @@ __all__ = ["RuleListParams"]
 
 
 class RuleListParams(TypedDict, total=False):
+    id: str
+    """The unique identifier of the firewall rule."""
+
     action: str
     """The action to search for. Must be an exact match."""
 

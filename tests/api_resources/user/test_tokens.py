@@ -384,6 +384,7 @@ class TestTokens:
     def test_method_delete(self, client: Cloudflare) -> None:
         token = client.user.tokens.delete(
             {},
+            body={},
         )
         assert_matches_type(Optional[TokenDeleteResponse], token, path=["response"])
 
@@ -392,6 +393,7 @@ class TestTokens:
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.user.tokens.with_raw_response.delete(
             {},
+            body={},
         )
 
         assert response.is_closed is True
@@ -404,6 +406,7 @@ class TestTokens:
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.user.tokens.with_streaming_response.delete(
             {},
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -838,6 +841,7 @@ class TestAsyncTokens:
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         token = await async_client.user.tokens.delete(
             {},
+            body={},
         )
         assert_matches_type(Optional[TokenDeleteResponse], token, path=["response"])
 
@@ -846,6 +850,7 @@ class TestAsyncTokens:
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.user.tokens.with_raw_response.delete(
             {},
+            body={},
         )
 
         assert response.is_closed is True
@@ -858,6 +863,7 @@ class TestAsyncTokens:
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.user.tokens.with_streaming_response.delete(
             {},
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

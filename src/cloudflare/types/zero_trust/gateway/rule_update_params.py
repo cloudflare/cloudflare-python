@@ -42,6 +42,7 @@ class RuleUpdateParams(TypedDict, total=False):
             "l4_override",
             "egress",
             "audit_ssh",
+            "resolve",
         ]
     ]
     """
@@ -122,10 +123,10 @@ class RuleSettingsCheckSession(TypedDict, total=False):
 
 class RuleSettingsDNSResolversIPV4(TypedDict, total=False):
     ip: Required[str]
-    """IP address of upstream resolver."""
+    """IPv4 address of upstream resolver."""
 
     port: int
-    """A port number to use for upstream resolver."""
+    """A port number to use for upstream resolver. Defaults to 53 if unspecified."""
 
     route_through_private_network: bool
     """Whether to connect to this resolver over a private network.
@@ -142,10 +143,10 @@ class RuleSettingsDNSResolversIPV4(TypedDict, total=False):
 
 class RuleSettingsDNSResolversIPV6(TypedDict, total=False):
     ip: Required[str]
-    """IP address of upstream resolver."""
+    """IPv6 address of upstream resolver."""
 
     port: int
-    """A port number to use for upstream resolver."""
+    """A port number to use for upstream resolver. Defaults to 53 if unspecified."""
 
     route_through_private_network: bool
     """Whether to connect to this resolver over a private network.
@@ -251,7 +252,8 @@ class RuleSettings(TypedDict, total=False):
     """Add your own custom resolvers to route queries that match the resolver policy.
 
     Cannot be used when resolve_dns_through_cloudflare is set. DNS queries will
-    route to the address closest to their origin.
+    route to the address closest to their origin. Only valid when a rule's action is
+    set to 'resolve'.
     """
 
     egress: RuleSettingsEgress
@@ -297,7 +299,8 @@ class RuleSettings(TypedDict, total=False):
     resolve_dns_through_cloudflare: bool
     """
     Enable to send queries that match the policy to Cloudflare's default 1.1.1.1 DNS
-    resolver. Cannot be set when dns_resolvers are specified.
+    resolver. Cannot be set when dns_resolvers are specified. Only valid when a
+    rule's action is set to 'resolve'.
     """
 
     untrusted_cert: RuleSettingsUntrustedCERT

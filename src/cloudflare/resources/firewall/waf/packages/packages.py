@@ -66,6 +66,7 @@ class Packages(SyncAPIResource):
         *,
         direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
         order: Literal["name"] | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
@@ -89,6 +90,8 @@ class Packages(SyncAPIResource):
 
           match: When set to `all`, all the search requirements must match. When set to `any`,
               only one of the search requirements has to match.
+
+          name: The name of the WAF package.
 
           order: The field used to sort returned packages.
 
@@ -118,6 +121,7 @@ class Packages(SyncAPIResource):
                     {
                         "direction": direction,
                         "match": match,
+                        "name": name,
                         "order": order,
                         "page": page,
                         "per_page": per_page,
@@ -200,6 +204,7 @@ class AsyncPackages(AsyncAPIResource):
         *,
         direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
         order: Literal["name"] | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
@@ -223,6 +228,8 @@ class AsyncPackages(AsyncAPIResource):
 
           match: When set to `all`, all the search requirements must match. When set to `any`,
               only one of the search requirements has to match.
+
+          name: The name of the WAF package.
 
           order: The field used to sort returned packages.
 
@@ -252,6 +259,7 @@ class AsyncPackages(AsyncAPIResource):
                     {
                         "direction": direction,
                         "match": match,
+                        "name": name,
                         "order": order,
                         "page": page,
                         "per_page": per_page,
