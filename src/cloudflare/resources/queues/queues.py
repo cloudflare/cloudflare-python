@@ -45,9 +45,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import (
-    AsyncPaginator,
     make_request_options,
 )
 
@@ -168,7 +166,7 @@ class Queues(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[QueueListResponse]:
+    ) -> Optional[QueueListResponse]:
         """
         Returns the queues owned by an account.
 
@@ -185,13 +183,16 @@ class Queues(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get_api_list(
+        return self._get(
             f"/accounts/{account_id}/queues",
-            page=SyncSinglePage[QueueListResponse],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
             ),
-            model=QueueListResponse,
+            cast_to=cast(Type[Optional[QueueListResponse]], ResultWrapper[QueueListResponse]),
         )
 
     def delete(
@@ -392,7 +393,7 @@ class AsyncQueues(AsyncAPIResource):
             cast_to=cast(Type[Optional[QueueUpdateResponse]], ResultWrapper[QueueUpdateResponse]),
         )
 
-    def list(
+    async def list(
         self,
         *,
         account_id: str,
@@ -402,7 +403,7 @@ class AsyncQueues(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[QueueListResponse, AsyncSinglePage[QueueListResponse]]:
+    ) -> Optional[QueueListResponse]:
         """
         Returns the queues owned by an account.
 
@@ -419,13 +420,16 @@ class AsyncQueues(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get_api_list(
+        return await self._get(
             f"/accounts/{account_id}/queues",
-            page=AsyncSinglePage[QueueListResponse],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
             ),
-            model=QueueListResponse,
+            cast_to=cast(Type[Optional[QueueListResponse]], ResultWrapper[QueueListResponse]),
         )
 
     async def delete(
