@@ -7,7 +7,6 @@ from .zone import Zone as Zone
 from .dnssec import DNSSEC as DNSSEC
 from .shared import ErrorData as ErrorData
 from .account import Account as Account
-from .ruleset import Ruleset as Ruleset
 from .snippet import Snippet as Snippet
 from .calls_app import CallsApp as CallsApp
 from .membership import Membership as Membership
@@ -56,6 +55,7 @@ from .observatory_schedule import ObservatorySchedule as ObservatorySchedule
 from .pagerule_edit_params import PageruleEditParams as PageruleEditParams
 from .pagerule_list_params import PageruleListParams as PageruleListParams
 from .pcap_create_response import PCAPCreateResponse as PCAPCreateResponse
+from .ruleset_get_response import RulesetGetResponse as RulesetGetResponse
 from .zone_delete_response import ZoneDeleteResponse as ZoneDeleteResponse
 from .account_update_params import AccountUpdateParams as AccountUpdateParams
 from .audit_log_list_params import AuditLogListParams as AuditLogListParams
@@ -87,6 +87,8 @@ from .intel_phishing_url_info import IntelPhishingURLInfo as IntelPhishingURLInf
 from .membership_get_response import MembershipGetResponse as MembershipGetResponse
 from .mtls_certificate_update import MTLSCertificateUpdate as MTLSCertificateUpdate
 from .rate_limit_get_response import RateLimitGetResponse as RateLimitGetResponse
+from .ruleset_create_response import RulesetCreateResponse as RulesetCreateResponse
+from .ruleset_update_response import RulesetUpdateResponse as RulesetUpdateResponse
 from .snippet_delete_response import SnippetDeleteResponse as SnippetDeleteResponse
 from .url_scanner_scan_params import URLScannerScanParams as URLScannerScanParams
 from .membership_update_params import MembershipUpdateParams as MembershipUpdateParams
