@@ -271,6 +271,7 @@ class TestPools:
     def test_method_delete(self, client: Cloudflare) -> None:
         pool = client.user.load_balancers.pools.delete(
             "17b5962d775c646f3f9725cbc7a53df4",
+            body={},
         )
         assert_matches_type(PoolDeleteResponse, pool, path=["response"])
 
@@ -279,6 +280,7 @@ class TestPools:
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.user.load_balancers.pools.with_raw_response.delete(
             "17b5962d775c646f3f9725cbc7a53df4",
+            body={},
         )
 
         assert response.is_closed is True
@@ -291,6 +293,7 @@ class TestPools:
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.user.load_balancers.pools.with_streaming_response.delete(
             "17b5962d775c646f3f9725cbc7a53df4",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -306,6 +309,7 @@ class TestPools:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pool_id` but received ''"):
             client.user.load_balancers.pools.with_raw_response.delete(
                 "",
+                body={},
             )
 
     @pytest.mark.skip()
@@ -860,6 +864,7 @@ class TestAsyncPools:
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         pool = await async_client.user.load_balancers.pools.delete(
             "17b5962d775c646f3f9725cbc7a53df4",
+            body={},
         )
         assert_matches_type(PoolDeleteResponse, pool, path=["response"])
 
@@ -868,6 +873,7 @@ class TestAsyncPools:
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.user.load_balancers.pools.with_raw_response.delete(
             "17b5962d775c646f3f9725cbc7a53df4",
+            body={},
         )
 
         assert response.is_closed is True
@@ -880,6 +886,7 @@ class TestAsyncPools:
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.user.load_balancers.pools.with_streaming_response.delete(
             "17b5962d775c646f3f9725cbc7a53df4",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -895,6 +902,7 @@ class TestAsyncPools:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pool_id` but received ''"):
             await async_client.user.load_balancers.pools.with_raw_response.delete(
                 "",
+                body={},
             )
 
     @pytest.mark.skip()

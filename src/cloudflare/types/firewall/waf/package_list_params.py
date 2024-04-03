@@ -17,6 +17,9 @@ class PackageListParams(TypedDict, total=False):
     When set to `any`, only one of the search requirements has to match.
     """
 
+    name: str
+    """The name of the WAF package."""
+
     order: Literal["name"]
     """The field used to sort returned packages."""
 

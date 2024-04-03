@@ -7,6 +7,8 @@ from .stream_audio import StreamAudio as StreamAudio
 from .stream_captions import StreamCaptions as StreamCaptions
 from .stream_clipping import StreamClipping as StreamClipping
 from .key_get_response import KeyGetResponse as KeyGetResponse
+from .key_create_params import KeyCreateParams as KeyCreateParams
+from .key_delete_params import KeyDeleteParams as KeyDeleteParams
 from .stream_live_input import StreamLiveInput as StreamLiveInput
 from .stream_watermarks import StreamWatermarks as StreamWatermarks
 from .clip_create_params import ClipCreateParams as ClipCreateParams
@@ -16,10 +18,13 @@ from .key_delete_response import KeyDeleteResponse as KeyDeleteResponse
 from .token_create_params import TokenCreateParams as TokenCreateParams
 from .caption_get_response import CaptionGetResponse as CaptionGetResponse
 from .webhook_get_response import WebhookGetResponse as WebhookGetResponse
+from .caption_delete_params import CaptionDeleteParams as CaptionDeleteParams
 from .caption_update_params import CaptionUpdateParams as CaptionUpdateParams
 from .download_get_response import DownloadGetResponse as DownloadGetResponse
 from .token_create_response import TokenCreateResponse as TokenCreateResponse
+from .webhook_delete_params import WebhookDeleteParams as WebhookDeleteParams
 from .webhook_update_params import WebhookUpdateParams as WebhookUpdateParams
+from .download_create_params import DownloadCreateParams as DownloadCreateParams
 from .live_input_list_params import LiveInputListParams as LiveInputListParams
 from .watermark_get_response import WatermarkGetResponse as WatermarkGetResponse
 from .audio_track_copy_params import AudioTrackCopyParams as AudioTrackCopyParams
@@ -27,12 +32,14 @@ from .audio_track_edit_params import AudioTrackEditParams as AudioTrackEditParam
 from .caption_delete_response import CaptionDeleteResponse as CaptionDeleteResponse
 from .caption_update_response import CaptionUpdateResponse as CaptionUpdateResponse
 from .watermark_create_params import WatermarkCreateParams as WatermarkCreateParams
+from .watermark_delete_params import WatermarkDeleteParams as WatermarkDeleteParams
 from .webhook_delete_response import WebhookDeleteResponse as WebhookDeleteResponse
 from .webhook_update_response import WebhookUpdateResponse as WebhookUpdateResponse
 from .audio_track_get_response import AudioTrackGetResponse as AudioTrackGetResponse
 from .download_create_response import DownloadCreateResponse as DownloadCreateResponse
 from .download_delete_response import DownloadDeleteResponse as DownloadDeleteResponse
 from .live_input_create_params import LiveInputCreateParams as LiveInputCreateParams
+from .live_input_delete_params import LiveInputDeleteParams as LiveInputDeleteParams
 from .live_input_list_response import LiveInputListResponse as LiveInputListResponse
 from .live_input_update_params import LiveInputUpdateParams as LiveInputUpdateParams
 from .watermark_create_response import WatermarkCreateResponse as WatermarkCreateResponse

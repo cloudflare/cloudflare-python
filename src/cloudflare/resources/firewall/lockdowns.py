@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, Union, Optional, cast
+from datetime import datetime
 
 import httpx
 
@@ -30,6 +31,7 @@ from ...types.firewall import (
     LockdownDeleteResponse,
     lockdown_list_params,
     lockdown_create_params,
+    lockdown_delete_params,
     lockdown_update_params,
 )
 
@@ -136,11 +138,13 @@ class Lockdowns(SyncAPIResource):
         self,
         zone_identifier: str,
         *,
+        created_on: Union[str, datetime] | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         description_search: str | NotGiven = NOT_GIVEN,
         ip: str | NotGiven = NOT_GIVEN,
         ip_range_search: str | NotGiven = NOT_GIVEN,
         ip_search: str | NotGiven = NOT_GIVEN,
+        modified_on: Union[str, datetime] | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
@@ -160,6 +164,8 @@ class Lockdowns(SyncAPIResource):
         Args:
           zone_identifier: Identifier
 
+          created_on: The timestamp of when the rule was created.
+
           description: A string to search for in the description of existing rules.
 
           description_search: A string to search for in the description of existing rules.
@@ -169,6 +175,8 @@ class Lockdowns(SyncAPIResource):
           ip_range_search: A single IP address range to search for in existing rules.
 
           ip_search: A single IP address to search for in existing rules.
+
+          modified_on: The timestamp of when the rule was last modified.
 
           page: Page number of paginated results.
 
@@ -201,11 +209,13 @@ class Lockdowns(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "created_on": created_on,
                         "description": description,
                         "description_search": description_search,
                         "ip": ip,
                         "ip_range_search": ip_range_search,
                         "ip_search": ip_search,
+                        "modified_on": modified_on,
                         "page": page,
                         "per_page": per_page,
                         "priority": priority,
@@ -222,6 +232,7 @@ class Lockdowns(SyncAPIResource):
         id: str,
         *,
         zone_identifier: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -251,6 +262,7 @@ class Lockdowns(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._delete(
             f"/zones/{zone_identifier}/firewall/lockdowns/{id}",
+            body=maybe_transform(body, lockdown_delete_params.LockdownDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -406,11 +418,13 @@ class AsyncLockdowns(AsyncAPIResource):
         self,
         zone_identifier: str,
         *,
+        created_on: Union[str, datetime] | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         description_search: str | NotGiven = NOT_GIVEN,
         ip: str | NotGiven = NOT_GIVEN,
         ip_range_search: str | NotGiven = NOT_GIVEN,
         ip_search: str | NotGiven = NOT_GIVEN,
+        modified_on: Union[str, datetime] | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
@@ -430,6 +444,8 @@ class AsyncLockdowns(AsyncAPIResource):
         Args:
           zone_identifier: Identifier
 
+          created_on: The timestamp of when the rule was created.
+
           description: A string to search for in the description of existing rules.
 
           description_search: A string to search for in the description of existing rules.
@@ -439,6 +455,8 @@ class AsyncLockdowns(AsyncAPIResource):
           ip_range_search: A single IP address range to search for in existing rules.
 
           ip_search: A single IP address to search for in existing rules.
+
+          modified_on: The timestamp of when the rule was last modified.
 
           page: Page number of paginated results.
 
@@ -471,11 +489,13 @@ class AsyncLockdowns(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "created_on": created_on,
                         "description": description,
                         "description_search": description_search,
                         "ip": ip,
                         "ip_range_search": ip_range_search,
                         "ip_search": ip_search,
+                        "modified_on": modified_on,
                         "page": page,
                         "per_page": per_page,
                         "priority": priority,
@@ -492,6 +512,7 @@ class AsyncLockdowns(AsyncAPIResource):
         id: str,
         *,
         zone_identifier: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -521,6 +542,7 @@ class AsyncLockdowns(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._delete(
             f"/zones/{zone_identifier}/firewall/lockdowns/{id}",
+            body=await async_maybe_transform(body, lockdown_delete_params.LockdownDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

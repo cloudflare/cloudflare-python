@@ -16,6 +16,3 @@ class ProxyEndpointEditParams(TypedDict, total=False):
 
     name: str
     """The name of the proxy endpoint."""
-
-    subdomain: str
-    """The subdomain to be used as the destination in the proxy client."""

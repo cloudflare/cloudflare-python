@@ -10,7 +10,10 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.secondary_dns import SecondaryDNSPeer, PeerDeleteResponse
+from cloudflare.types.secondary_dns import (
+    SecondaryDNSPeer,
+    PeerDeleteResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -183,6 +186,7 @@ class TestPeers:
         peer = client.secondary_dns.peers.delete(
             "23ff594956f20c2a721606e94745a8aa",
             account_id="01a7362d577a6c3019a474fd6f485823",
+            body={},
         )
         assert_matches_type(PeerDeleteResponse, peer, path=["response"])
 
@@ -192,6 +196,7 @@ class TestPeers:
         response = client.secondary_dns.peers.with_raw_response.delete(
             "23ff594956f20c2a721606e94745a8aa",
             account_id="01a7362d577a6c3019a474fd6f485823",
+            body={},
         )
 
         assert response.is_closed is True
@@ -205,6 +210,7 @@ class TestPeers:
         with client.secondary_dns.peers.with_streaming_response.delete(
             "23ff594956f20c2a721606e94745a8aa",
             account_id="01a7362d577a6c3019a474fd6f485823",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -221,12 +227,14 @@ class TestPeers:
             client.secondary_dns.peers.with_raw_response.delete(
                 "23ff594956f20c2a721606e94745a8aa",
                 account_id="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `peer_id` but received ''"):
             client.secondary_dns.peers.with_raw_response.delete(
                 "",
                 account_id="01a7362d577a6c3019a474fd6f485823",
+                body={},
             )
 
     @pytest.mark.skip()
@@ -450,6 +458,7 @@ class TestAsyncPeers:
         peer = await async_client.secondary_dns.peers.delete(
             "23ff594956f20c2a721606e94745a8aa",
             account_id="01a7362d577a6c3019a474fd6f485823",
+            body={},
         )
         assert_matches_type(PeerDeleteResponse, peer, path=["response"])
 
@@ -459,6 +468,7 @@ class TestAsyncPeers:
         response = await async_client.secondary_dns.peers.with_raw_response.delete(
             "23ff594956f20c2a721606e94745a8aa",
             account_id="01a7362d577a6c3019a474fd6f485823",
+            body={},
         )
 
         assert response.is_closed is True
@@ -472,6 +482,7 @@ class TestAsyncPeers:
         async with async_client.secondary_dns.peers.with_streaming_response.delete(
             "23ff594956f20c2a721606e94745a8aa",
             account_id="01a7362d577a6c3019a474fd6f485823",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -488,12 +499,14 @@ class TestAsyncPeers:
             await async_client.secondary_dns.peers.with_raw_response.delete(
                 "23ff594956f20c2a721606e94745a8aa",
                 account_id="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `peer_id` but received ''"):
             await async_client.secondary_dns.peers.with_raw_response.delete(
                 "",
                 account_id="01a7362d577a6c3019a474fd6f485823",
+                body={},
             )
 
     @pytest.mark.skip()

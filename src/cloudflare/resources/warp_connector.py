@@ -110,6 +110,7 @@ class WARPConnector(SyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
+        uuid: str | NotGiven = NOT_GIVEN,
         was_active_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         was_inactive_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -136,6 +137,8 @@ class WARPConnector(SyncAPIResource):
           page: Page number of paginated results.
 
           per_page: Number of results to display.
+
+          uuid: UUID of the tunnel.
 
           extra_headers: Send extra headers
 
@@ -164,6 +167,7 @@ class WARPConnector(SyncAPIResource):
                         "name": name,
                         "page": page,
                         "per_page": per_page,
+                        "uuid": uuid,
                         "was_active_at": was_active_at,
                         "was_inactive_at": was_inactive_at,
                     },
@@ -459,6 +463,7 @@ class AsyncWARPConnector(AsyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
+        uuid: str | NotGiven = NOT_GIVEN,
         was_active_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         was_inactive_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -485,6 +490,8 @@ class AsyncWARPConnector(AsyncAPIResource):
           page: Page number of paginated results.
 
           per_page: Number of results to display.
+
+          uuid: UUID of the tunnel.
 
           extra_headers: Send extra headers
 
@@ -513,6 +520,7 @@ class AsyncWARPConnector(AsyncAPIResource):
                         "name": name,
                         "page": page,
                         "per_page": per_page,
+                        "uuid": uuid,
                         "was_active_at": was_active_at,
                         "was_inactive_at": was_inactive_at,
                     },

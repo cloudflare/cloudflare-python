@@ -7,6 +7,10 @@ from typing import Any, Type, cast
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -19,7 +23,7 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.stream import StreamKeys, KeyGetResponse, KeyDeleteResponse
+from ...types.stream import StreamKeys, KeyGetResponse, KeyDeleteResponse, key_create_params, key_delete_params
 
 __all__ = ["Keys", "AsyncKeys"]
 
@@ -37,6 +41,7 @@ class Keys(SyncAPIResource):
         self,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -65,6 +70,7 @@ class Keys(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
             f"/accounts/{account_id}/stream/keys",
+            body=maybe_transform(body, key_create_params.KeyCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -80,6 +86,7 @@ class Keys(SyncAPIResource):
         identifier: str,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -111,6 +118,7 @@ class Keys(SyncAPIResource):
             KeyDeleteResponse,
             self._delete(
                 f"/accounts/{account_id}/stream/keys/{identifier}",
+                body=maybe_transform(body, key_delete_params.KeyDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -177,6 +185,7 @@ class AsyncKeys(AsyncAPIResource):
         self,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -205,6 +214,7 @@ class AsyncKeys(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/stream/keys",
+            body=await async_maybe_transform(body, key_create_params.KeyCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -220,6 +230,7 @@ class AsyncKeys(AsyncAPIResource):
         identifier: str,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -251,6 +262,7 @@ class AsyncKeys(AsyncAPIResource):
             KeyDeleteResponse,
             await self._delete(
                 f"/accounts/{account_id}/stream/keys/{identifier}",
+                body=await async_maybe_transform(body, key_delete_params.KeyDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

@@ -24,7 +24,10 @@ from .quota import (
     AsyncQuotaWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import maybe_transform
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -38,7 +41,9 @@ from ....types.ssl import (
     CertificatePackGetResponse,
     CertificatePackEditResponse,
     CertificatePackDeleteResponse,
+    certificate_pack_edit_params,
     certificate_pack_list_params,
+    certificate_pack_delete_params,
 )
 from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import (
@@ -114,6 +119,7 @@ class CertificatePacks(SyncAPIResource):
         certificate_pack_id: str,
         *,
         zone_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -145,6 +151,7 @@ class CertificatePacks(SyncAPIResource):
             )
         return self._delete(
             f"/zones/{zone_id}/ssl/certificate_packs/{certificate_pack_id}",
+            body=maybe_transform(body, certificate_pack_delete_params.CertificatePackDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -160,6 +167,7 @@ class CertificatePacks(SyncAPIResource):
         certificate_pack_id: str,
         *,
         zone_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -194,6 +202,7 @@ class CertificatePacks(SyncAPIResource):
             )
         return self._patch(
             f"/zones/{zone_id}/ssl/certificate_packs/{certificate_pack_id}",
+            body=maybe_transform(body, certificate_pack_edit_params.CertificatePackEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -321,6 +330,7 @@ class AsyncCertificatePacks(AsyncAPIResource):
         certificate_pack_id: str,
         *,
         zone_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -352,6 +362,7 @@ class AsyncCertificatePacks(AsyncAPIResource):
             )
         return await self._delete(
             f"/zones/{zone_id}/ssl/certificate_packs/{certificate_pack_id}",
+            body=await async_maybe_transform(body, certificate_pack_delete_params.CertificatePackDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -367,6 +378,7 @@ class AsyncCertificatePacks(AsyncAPIResource):
         certificate_pack_id: str,
         *,
         zone_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -401,6 +413,7 @@ class AsyncCertificatePacks(AsyncAPIResource):
             )
         return await self._patch(
             f"/zones/{zone_id}/ssl/certificate_packs/{certificate_pack_id}",
+            body=await async_maybe_transform(body, certificate_pack_edit_params.CertificatePackEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

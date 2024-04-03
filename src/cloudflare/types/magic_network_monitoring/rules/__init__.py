@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from .advertisement_edit_params import AdvertisementEditParams as AdvertisementEditParams
 from .magic_network_monitoring_rule_advertisable import (
     MagicNetworkMonitoringRuleAdvertisable as MagicNetworkMonitoringRuleAdvertisable,
 )

@@ -14,6 +14,7 @@ from cloudflare.types import (
     ObservatorySchedule,
     SpeedDeleteResponse,
 )
+from cloudflare._utils import parse_datetime
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -154,7 +155,23 @@ class TestSpeed:
             device_type="DESKTOP",
             metrics="performanceScore,ttfb,fcp,si,lcp,tti,tbt,cls",
             region="us-central1",
+            start=parse_datetime("2014-01-01T05:20:00.12345Z"),
             tz="string",
+        )
+        assert_matches_type(Optional[ObservatoryTrend], speed, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_trends_list_with_all_params(self, client: Cloudflare) -> None:
+        speed = client.speed.trends_list(
+            "example.com",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            device_type="DESKTOP",
+            metrics="performanceScore,ttfb,fcp,si,lcp,tti,tbt,cls",
+            region="us-central1",
+            start=parse_datetime("2014-01-01T05:20:00.12345Z"),
+            tz="string",
+            end=parse_datetime("2014-01-01T05:20:00.12345Z"),
         )
         assert_matches_type(Optional[ObservatoryTrend], speed, path=["response"])
 
@@ -167,6 +184,7 @@ class TestSpeed:
             device_type="DESKTOP",
             metrics="performanceScore,ttfb,fcp,si,lcp,tti,tbt,cls",
             region="us-central1",
+            start=parse_datetime("2014-01-01T05:20:00.12345Z"),
             tz="string",
         )
 
@@ -184,6 +202,7 @@ class TestSpeed:
             device_type="DESKTOP",
             metrics="performanceScore,ttfb,fcp,si,lcp,tti,tbt,cls",
             region="us-central1",
+            start=parse_datetime("2014-01-01T05:20:00.12345Z"),
             tz="string",
         ) as response:
             assert not response.is_closed
@@ -204,6 +223,7 @@ class TestSpeed:
                 device_type="DESKTOP",
                 metrics="performanceScore,ttfb,fcp,si,lcp,tti,tbt,cls",
                 region="us-central1",
+                start=parse_datetime("2014-01-01T05:20:00.12345Z"),
                 tz="string",
             )
 
@@ -214,6 +234,7 @@ class TestSpeed:
                 device_type="DESKTOP",
                 metrics="performanceScore,ttfb,fcp,si,lcp,tti,tbt,cls",
                 region="us-central1",
+                start=parse_datetime("2014-01-01T05:20:00.12345Z"),
                 tz="string",
             )
 
@@ -354,7 +375,23 @@ class TestAsyncSpeed:
             device_type="DESKTOP",
             metrics="performanceScore,ttfb,fcp,si,lcp,tti,tbt,cls",
             region="us-central1",
+            start=parse_datetime("2014-01-01T05:20:00.12345Z"),
             tz="string",
+        )
+        assert_matches_type(Optional[ObservatoryTrend], speed, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_trends_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        speed = await async_client.speed.trends_list(
+            "example.com",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            device_type="DESKTOP",
+            metrics="performanceScore,ttfb,fcp,si,lcp,tti,tbt,cls",
+            region="us-central1",
+            start=parse_datetime("2014-01-01T05:20:00.12345Z"),
+            tz="string",
+            end=parse_datetime("2014-01-01T05:20:00.12345Z"),
         )
         assert_matches_type(Optional[ObservatoryTrend], speed, path=["response"])
 
@@ -367,6 +404,7 @@ class TestAsyncSpeed:
             device_type="DESKTOP",
             metrics="performanceScore,ttfb,fcp,si,lcp,tti,tbt,cls",
             region="us-central1",
+            start=parse_datetime("2014-01-01T05:20:00.12345Z"),
             tz="string",
         )
 
@@ -384,6 +422,7 @@ class TestAsyncSpeed:
             device_type="DESKTOP",
             metrics="performanceScore,ttfb,fcp,si,lcp,tti,tbt,cls",
             region="us-central1",
+            start=parse_datetime("2014-01-01T05:20:00.12345Z"),
             tz="string",
         ) as response:
             assert not response.is_closed
@@ -404,6 +443,7 @@ class TestAsyncSpeed:
                 device_type="DESKTOP",
                 metrics="performanceScore,ttfb,fcp,si,lcp,tti,tbt,cls",
                 region="us-central1",
+                start=parse_datetime("2014-01-01T05:20:00.12345Z"),
                 tz="string",
             )
 
@@ -414,5 +454,6 @@ class TestAsyncSpeed:
                 device_type="DESKTOP",
                 metrics="performanceScore,ttfb,fcp,si,lcp,tti,tbt,cls",
                 region="us-central1",
+                start=parse_datetime("2014-01-01T05:20:00.12345Z"),
                 tz="string",
             )

@@ -7,6 +7,10 @@ from typing import Any, cast
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -27,7 +31,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.workers import ScriptUpdateResponse
+from ....types.zones.workers import ScriptUpdateResponse, script_delete_params, script_update_params
 
 __all__ = ["Script", "AsyncScript"]
 
@@ -45,6 +49,7 @@ class Script(SyncAPIResource):
         self,
         *,
         zone_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -72,6 +77,7 @@ class Script(SyncAPIResource):
             ScriptUpdateResponse,
             self._put(
                 f"/zones/{zone_id}/workers/script",
+                body=maybe_transform(body, script_update_params.ScriptUpdateParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -89,6 +95,7 @@ class Script(SyncAPIResource):
         self,
         *,
         zone_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -116,6 +123,7 @@ class Script(SyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             f"/zones/{zone_id}/workers/script",
+            body=maybe_transform(body, script_delete_params.ScriptDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -174,6 +182,7 @@ class AsyncScript(AsyncAPIResource):
         self,
         *,
         zone_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -201,6 +210,7 @@ class AsyncScript(AsyncAPIResource):
             ScriptUpdateResponse,
             await self._put(
                 f"/zones/{zone_id}/workers/script",
+                body=await async_maybe_transform(body, script_update_params.ScriptUpdateParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -218,6 +228,7 @@ class AsyncScript(AsyncAPIResource):
         self,
         *,
         zone_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -245,6 +256,7 @@ class AsyncScript(AsyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             f"/zones/{zone_id}/workers/script",
+            body=await async_maybe_transform(body, script_delete_params.ScriptDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

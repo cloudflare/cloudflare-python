@@ -43,6 +43,9 @@ class TunnelListParams(TypedDict, total=False):
     tun_types: str
     """The types of tunnels to filter separated by a comma."""
 
+    uuid: str
+    """UUID of the tunnel."""
+
     was_active_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
 
     was_inactive_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]

@@ -2,12 +2,19 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing import Union
+from datetime import datetime
+from typing_extensions import Annotated, TypedDict
+
+from ..._utils import PropertyInfo
 
 __all__ = ["LockdownListParams"]
 
 
 class LockdownListParams(TypedDict, total=False):
+    created_on: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    """The timestamp of when the rule was created."""
+
     description: str
     """A string to search for in the description of existing rules."""
 
@@ -22,6 +29,9 @@ class LockdownListParams(TypedDict, total=False):
 
     ip_search: str
     """A single IP address to search for in existing rules."""
+
+    modified_on: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    """The timestamp of when the rule was last modified."""
 
     page: float
     """Page number of paginated results."""

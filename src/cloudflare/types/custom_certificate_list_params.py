@@ -19,3 +19,6 @@ class CustomCertificateListParams(TypedDict, total=False):
 
     per_page: float
     """Number of zones per page."""
+
+    status: Literal["active", "expired", "deleted", "pending", "initializing"]
+    """Status of the zone's custom SSL."""

@@ -9,6 +9,7 @@ from .invite_edit_params import InviteEditParams as InviteEditParams
 from .token_get_response import TokenGetResponse as TokenGetResponse
 from .invite_get_response import InviteGetResponse as InviteGetResponse
 from .token_create_params import TokenCreateParams as TokenCreateParams
+from .token_delete_params import TokenDeleteParams as TokenDeleteParams
 from .token_update_params import TokenUpdateParams as TokenUpdateParams
 from .invite_edit_response import InviteEditResponse as InviteEditResponse
 from .invite_list_response import InviteListResponse as InviteListResponse
@@ -22,6 +23,8 @@ from .organization_list_params import OrganizationListParams as OrganizationList
 from .subscription_edit_params import SubscriptionEditParams as SubscriptionEditParams
 from .organization_get_response import OrganizationGetResponse as OrganizationGetResponse
 from .subscription_get_response import SubscriptionGetResponse as SubscriptionGetResponse
+from .organization_delete_params import OrganizationDeleteParams as OrganizationDeleteParams
+from .subscription_delete_params import SubscriptionDeleteParams as SubscriptionDeleteParams
 from .subscription_edit_response import SubscriptionEditResponse as SubscriptionEditResponse
 from .subscription_update_params import SubscriptionUpdateParams as SubscriptionUpdateParams
 from .organization_delete_response import OrganizationDeleteResponse as OrganizationDeleteResponse

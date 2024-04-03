@@ -32,6 +32,7 @@ from ....types.user.firewall import (
     access_rule_edit_params,
     access_rule_list_params,
     access_rule_create_params,
+    access_rule_delete_params,
 )
 
 __all__ = ["AccessRules", "AsyncAccessRules"]
@@ -165,6 +166,7 @@ class AccessRules(SyncAPIResource):
         self,
         identifier: str,
         *,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -192,6 +194,7 @@ class AccessRules(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return self._delete(
             f"/user/firewall/access_rules/rules/{identifier}",
+            body=maybe_transform(body, access_rule_delete_params.AccessRuleDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -385,6 +388,7 @@ class AsyncAccessRules(AsyncAPIResource):
         self,
         identifier: str,
         *,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -412,6 +416,7 @@ class AsyncAccessRules(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return await self._delete(
             f"/user/firewall/access_rules/rules/{identifier}",
+            body=await async_maybe_transform(body, access_rule_delete_params.AccessRuleDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

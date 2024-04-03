@@ -29,6 +29,7 @@ from ...types.firewall import (
     RuleEditResponse,
     FirewallFilterRule,
     RuleCreateResponse,
+    rule_get_params,
     rule_edit_params,
     rule_list_params,
     rule_create_params,
@@ -139,6 +140,7 @@ class Rules(SyncAPIResource):
         self,
         zone_identifier: str,
         *,
+        id: str | NotGiven = NOT_GIVEN,
         action: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
@@ -158,6 +160,8 @@ class Rules(SyncAPIResource):
 
         Args:
           zone_identifier: Identifier
+
+          id: The unique identifier of the firewall rule.
 
           action: The action to search for. Must be an exact match.
 
@@ -189,6 +193,7 @@ class Rules(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "id": id,
                         "action": action,
                         "description": description,
                         "page": page,
@@ -300,9 +305,10 @@ class Rules(SyncAPIResource):
 
     def get(
         self,
-        id: str,
-        *,
         zone_identifier: str,
+        *,
+        path_id: str,
+        query_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -314,9 +320,11 @@ class Rules(SyncAPIResource):
         Fetches the details of a firewall rule.
 
         Args:
+          path_id: The unique identifier of the firewall rule.
+
           zone_identifier: Identifier
 
-          id: The unique identifier of the firewall rule.
+          query_id: The unique identifier of the firewall rule.
 
           extra_headers: Send extra headers
 
@@ -326,17 +334,18 @@ class Rules(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not path_id:
+            raise ValueError(f"Expected a non-empty value for `path_id` but received {path_id!r}")
         if not zone_identifier:
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/zones/{zone_identifier}/firewall/rules/{id}",
+            f"/zones/{zone_identifier}/firewall/rules/{path_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=maybe_transform({"id": query_id}, rule_get_params.RuleGetParams),
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(Type[Optional[FirewallFilterRule]], ResultWrapper[FirewallFilterRule]),
@@ -443,6 +452,7 @@ class AsyncRules(AsyncAPIResource):
         self,
         zone_identifier: str,
         *,
+        id: str | NotGiven = NOT_GIVEN,
         action: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
@@ -462,6 +472,8 @@ class AsyncRules(AsyncAPIResource):
 
         Args:
           zone_identifier: Identifier
+
+          id: The unique identifier of the firewall rule.
 
           action: The action to search for. Must be an exact match.
 
@@ -493,6 +505,7 @@ class AsyncRules(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "id": id,
                         "action": action,
                         "description": description,
                         "page": page,
@@ -604,9 +617,10 @@ class AsyncRules(AsyncAPIResource):
 
     async def get(
         self,
-        id: str,
-        *,
         zone_identifier: str,
+        *,
+        path_id: str,
+        query_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -618,9 +632,11 @@ class AsyncRules(AsyncAPIResource):
         Fetches the details of a firewall rule.
 
         Args:
+          path_id: The unique identifier of the firewall rule.
+
           zone_identifier: Identifier
 
-          id: The unique identifier of the firewall rule.
+          query_id: The unique identifier of the firewall rule.
 
           extra_headers: Send extra headers
 
@@ -630,17 +646,18 @@ class AsyncRules(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not path_id:
+            raise ValueError(f"Expected a non-empty value for `path_id` but received {path_id!r}")
         if not zone_identifier:
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/zones/{zone_identifier}/firewall/rules/{id}",
+            f"/zones/{zone_identifier}/firewall/rules/{path_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=await async_maybe_transform({"id": query_id}, rule_get_params.RuleGetParams),
                 post_parser=ResultWrapper._unwrapper,
             ),
             cast_to=cast(Type[Optional[FirewallFilterRule]], ResultWrapper[FirewallFilterRule]),

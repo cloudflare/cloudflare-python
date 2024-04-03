@@ -33,6 +33,7 @@ from ...types.spectrum import (
     AppUpdateResponse,
     app_list_params,
     app_create_params,
+    app_delete_params,
     app_update_params,
 )
 
@@ -318,6 +319,7 @@ class Apps(SyncAPIResource):
         app_id: str,
         *,
         zone: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -347,6 +349,7 @@ class Apps(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         return self._delete(
             f"/zones/{zone}/spectrum/apps/{app_id}",
+            body=maybe_transform(body, app_delete_params.AppDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -686,6 +689,7 @@ class AsyncApps(AsyncAPIResource):
         app_id: str,
         *,
         zone: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -715,6 +719,7 @@ class AsyncApps(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         return await self._delete(
             f"/zones/{zone}/spectrum/apps/{app_id}",
+            body=await async_maybe_transform(body, app_delete_params.AppDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

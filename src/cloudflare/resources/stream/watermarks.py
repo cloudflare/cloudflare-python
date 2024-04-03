@@ -31,6 +31,7 @@ from ...types.stream import (
     WatermarkCreateResponse,
     WatermarkDeleteResponse,
     watermark_create_params,
+    watermark_delete_params,
 )
 
 __all__ = ["Watermarks", "AsyncWatermarks"]
@@ -169,6 +170,7 @@ class Watermarks(SyncAPIResource):
         identifier: str,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -200,6 +202,7 @@ class Watermarks(SyncAPIResource):
             WatermarkDeleteResponse,
             self._delete(
                 f"/accounts/{account_id}/stream/watermarks/{identifier}",
+                body=maybe_transform(body, watermark_delete_params.WatermarkDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -396,6 +399,7 @@ class AsyncWatermarks(AsyncAPIResource):
         identifier: str,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -427,6 +431,7 @@ class AsyncWatermarks(AsyncAPIResource):
             WatermarkDeleteResponse,
             await self._delete(
                 f"/accounts/{account_id}/stream/watermarks/{identifier}",
+                body=await async_maybe_transform(body, watermark_delete_params.WatermarkDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

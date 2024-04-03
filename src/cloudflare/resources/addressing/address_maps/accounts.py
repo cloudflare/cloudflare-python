@@ -7,6 +7,10 @@ from typing import Any, Optional, cast
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -19,7 +23,12 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.addressing.address_maps import AccountDeleteResponse, AccountUpdateResponse
+from ....types.addressing.address_maps import (
+    AccountDeleteResponse,
+    AccountUpdateResponse,
+    account_delete_params,
+    account_update_params,
+)
 
 __all__ = ["Accounts", "AsyncAccounts"]
 
@@ -38,6 +47,7 @@ class Accounts(SyncAPIResource):
         address_map_id: str,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -69,6 +79,7 @@ class Accounts(SyncAPIResource):
             Optional[AccountUpdateResponse],
             self._put(
                 f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/accounts/{account_id}",
+                body=maybe_transform(body, account_update_params.AccountUpdateParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -87,6 +98,7 @@ class Accounts(SyncAPIResource):
         address_map_id: str,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -118,6 +130,7 @@ class Accounts(SyncAPIResource):
             Optional[AccountDeleteResponse],
             self._delete(
                 f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/accounts/{account_id}",
+                body=maybe_transform(body, account_delete_params.AccountDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -146,6 +159,7 @@ class AsyncAccounts(AsyncAPIResource):
         address_map_id: str,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -177,6 +191,7 @@ class AsyncAccounts(AsyncAPIResource):
             Optional[AccountUpdateResponse],
             await self._put(
                 f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/accounts/{account_id}",
+                body=await async_maybe_transform(body, account_update_params.AccountUpdateParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -195,6 +210,7 @@ class AsyncAccounts(AsyncAPIResource):
         address_map_id: str,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -226,6 +242,7 @@ class AsyncAccounts(AsyncAPIResource):
             Optional[AccountDeleteResponse],
             await self._delete(
                 f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/accounts/{account_id}",
+                body=await async_maybe_transform(body, account_delete_params.AccountDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

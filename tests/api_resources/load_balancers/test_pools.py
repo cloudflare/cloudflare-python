@@ -310,6 +310,7 @@ class TestPools:
         pool = client.load_balancers.pools.delete(
             "17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
         assert_matches_type(PoolDeleteResponse, pool, path=["response"])
 
@@ -319,6 +320,7 @@ class TestPools:
         response = client.load_balancers.pools.with_raw_response.delete(
             "17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
 
         assert response.is_closed is True
@@ -332,6 +334,7 @@ class TestPools:
         with client.load_balancers.pools.with_streaming_response.delete(
             "17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -348,12 +351,14 @@ class TestPools:
             client.load_balancers.pools.with_raw_response.delete(
                 "17b5962d775c646f3f9725cbc7a53df4",
                 account_id="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pool_id` but received ''"):
             client.load_balancers.pools.with_raw_response.delete(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
             )
 
     @pytest.mark.skip()
@@ -814,6 +819,7 @@ class TestAsyncPools:
         pool = await async_client.load_balancers.pools.delete(
             "17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
         assert_matches_type(PoolDeleteResponse, pool, path=["response"])
 
@@ -823,6 +829,7 @@ class TestAsyncPools:
         response = await async_client.load_balancers.pools.with_raw_response.delete(
             "17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
 
         assert response.is_closed is True
@@ -836,6 +843,7 @@ class TestAsyncPools:
         async with async_client.load_balancers.pools.with_streaming_response.delete(
             "17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -852,12 +860,14 @@ class TestAsyncPools:
             await async_client.load_balancers.pools.with_raw_response.delete(
                 "17b5962d775c646f3f9725cbc7a53df4",
                 account_id="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pool_id` but received ''"):
             await async_client.load_balancers.pools.with_raw_response.delete(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
             )
 
     @pytest.mark.skip()

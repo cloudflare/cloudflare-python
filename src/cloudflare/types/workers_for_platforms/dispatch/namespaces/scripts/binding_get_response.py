@@ -137,6 +137,8 @@ class WorkersDispatchNamespaceBinding(BaseModel):
 
 
 class WorkersMTLSCERTBinding(BaseModel):
+    certificate: object
+
     name: str
     """A JavaScript variable name for the binding."""
 

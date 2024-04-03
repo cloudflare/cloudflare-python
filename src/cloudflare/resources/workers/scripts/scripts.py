@@ -299,6 +299,7 @@ class Scripts(SyncAPIResource):
         script_name: str,
         *,
         account_id: str,
+        body: object,
         force: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -335,6 +336,7 @@ class Scripts(SyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             f"/accounts/{account_id}/workers/scripts/{script_name}",
+            body=maybe_transform(body, script_delete_params.ScriptDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -595,6 +597,7 @@ class AsyncScripts(AsyncAPIResource):
         script_name: str,
         *,
         account_id: str,
+        body: object,
         force: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -631,6 +634,7 @@ class AsyncScripts(AsyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             f"/accounts/{account_id}/workers/scripts/{script_name}",
+            body=await async_maybe_transform(body, script_delete_params.ScriptDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

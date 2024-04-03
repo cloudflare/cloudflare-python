@@ -7,6 +7,10 @@ from typing import Any, cast
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -19,7 +23,7 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.stream import DownloadGetResponse, DownloadCreateResponse, DownloadDeleteResponse
+from ...types.stream import DownloadGetResponse, DownloadCreateResponse, DownloadDeleteResponse, download_create_params
 
 __all__ = ["Downloads", "AsyncDownloads"]
 
@@ -38,6 +42,7 @@ class Downloads(SyncAPIResource):
         identifier: str,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -69,6 +74,7 @@ class Downloads(SyncAPIResource):
             DownloadCreateResponse,
             self._post(
                 f"/accounts/{account_id}/stream/{identifier}/downloads",
+                body=maybe_transform(body, download_create_params.DownloadCreateParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -195,6 +201,7 @@ class AsyncDownloads(AsyncAPIResource):
         identifier: str,
         *,
         account_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -226,6 +233,7 @@ class AsyncDownloads(AsyncAPIResource):
             DownloadCreateResponse,
             await self._post(
                 f"/accounts/{account_id}/stream/{identifier}/downloads",
+                body=await async_maybe_transform(body, download_create_params.DownloadCreateParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

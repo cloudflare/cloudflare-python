@@ -8,7 +8,10 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -19,7 +22,13 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from ...types.user import Organization, OrganizationGetResponse, OrganizationDeleteResponse, organization_list_params
+from ...types.user import (
+    Organization,
+    OrganizationGetResponse,
+    OrganizationDeleteResponse,
+    organization_list_params,
+    organization_delete_params,
+)
 from ..._base_client import (
     AsyncPaginator,
     make_request_options,
@@ -108,6 +117,7 @@ class Organizations(SyncAPIResource):
         self,
         organization_id: str,
         *,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -133,6 +143,7 @@ class Organizations(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `organization_id` but received {organization_id!r}")
         return self._delete(
             f"/user/organizations/{organization_id}",
+            body=maybe_transform(body, organization_delete_params.OrganizationDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -264,6 +275,7 @@ class AsyncOrganizations(AsyncAPIResource):
         self,
         organization_id: str,
         *,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -289,6 +301,7 @@ class AsyncOrganizations(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `organization_id` but received {organization_id!r}")
         return await self._delete(
             f"/user/organizations/{organization_id}",
+            body=await async_maybe_transform(body, organization_delete_params.OrganizationDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

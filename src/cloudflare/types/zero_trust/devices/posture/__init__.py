@@ -4,5 +4,6 @@ from __future__ import annotations
 
 from .integration_edit_params import IntegrationEditParams as IntegrationEditParams
 from .integration_create_params import IntegrationCreateParams as IntegrationCreateParams
+from .integration_delete_params import IntegrationDeleteParams as IntegrationDeleteParams
 from .device_posture_integrations import DevicePostureIntegrations as DevicePostureIntegrations
 from .integration_delete_response import IntegrationDeleteResponse as IntegrationDeleteResponse

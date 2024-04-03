@@ -26,6 +26,9 @@ class GroupListParams(TypedDict, total=False):
     When `on`, the rules in the group are configurable/usable.
     """
 
+    name: str
+    """The name of the rule group."""
+
     order: Literal["mode", "rules_count"]
     """The field used to sort returned rule groups."""
 
@@ -34,3 +37,6 @@ class GroupListParams(TypedDict, total=False):
 
     per_page: float
     """The number of rule groups per page."""
+
+    rules_count: float
+    """The number of rules in the current rule group."""

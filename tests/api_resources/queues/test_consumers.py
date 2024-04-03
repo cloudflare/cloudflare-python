@@ -231,6 +231,7 @@ class TestConsumers:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
         assert_matches_type(Optional[ConsumerDeleteResponse], consumer, path=["response"])
 
@@ -241,6 +242,7 @@ class TestConsumers:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
 
         assert response.is_closed is True
@@ -255,6 +257,7 @@ class TestConsumers:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -272,6 +275,7 @@ class TestConsumers:
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 queue_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `queue_id` but received ''"):
@@ -279,6 +283,7 @@ class TestConsumers:
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 queue_id="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `consumer_id` but received ''"):
@@ -286,6 +291,7 @@ class TestConsumers:
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 queue_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
             )
 
     @pytest.mark.skip()
@@ -553,6 +559,7 @@ class TestAsyncConsumers:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
         assert_matches_type(Optional[ConsumerDeleteResponse], consumer, path=["response"])
 
@@ -563,6 +570,7 @@ class TestAsyncConsumers:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
 
         assert response.is_closed is True
@@ -577,6 +585,7 @@ class TestAsyncConsumers:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -594,6 +603,7 @@ class TestAsyncConsumers:
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 queue_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `queue_id` but received ''"):
@@ -601,6 +611,7 @@ class TestAsyncConsumers:
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 queue_id="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `consumer_id` but received ''"):
@@ -608,6 +619,7 @@ class TestAsyncConsumers:
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 queue_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
             )
 
     @pytest.mark.skip()

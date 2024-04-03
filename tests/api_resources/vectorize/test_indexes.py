@@ -419,6 +419,7 @@ class TestIndexes:
         index = client.vectorize.indexes.insert(
             "example-index",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
         assert_matches_type(Optional[VectorizeIndexInsert], index, path=["response"])
 
@@ -428,6 +429,7 @@ class TestIndexes:
         response = client.vectorize.indexes.with_raw_response.insert(
             "example-index",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
 
         assert response.is_closed is True
@@ -441,6 +443,7 @@ class TestIndexes:
         with client.vectorize.indexes.with_streaming_response.insert(
             "example-index",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -457,12 +460,14 @@ class TestIndexes:
             client.vectorize.indexes.with_raw_response.insert(
                 "example-index",
                 account_identifier="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `index_name` but received ''"):
             client.vectorize.indexes.with_raw_response.insert(
                 "",
                 account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
             )
 
     @pytest.mark.skip()
@@ -536,6 +541,7 @@ class TestIndexes:
         index = client.vectorize.indexes.upsert(
             "example-index",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
         assert_matches_type(Optional[VectorizeIndexUpsert], index, path=["response"])
 
@@ -545,6 +551,7 @@ class TestIndexes:
         response = client.vectorize.indexes.with_raw_response.upsert(
             "example-index",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
 
         assert response.is_closed is True
@@ -558,6 +565,7 @@ class TestIndexes:
         with client.vectorize.indexes.with_streaming_response.upsert(
             "example-index",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -574,12 +582,14 @@ class TestIndexes:
             client.vectorize.indexes.with_raw_response.upsert(
                 "example-index",
                 account_identifier="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `index_name` but received ''"):
             client.vectorize.indexes.with_raw_response.upsert(
                 "",
                 account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
             )
 
 
@@ -980,6 +990,7 @@ class TestAsyncIndexes:
         index = await async_client.vectorize.indexes.insert(
             "example-index",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
         assert_matches_type(Optional[VectorizeIndexInsert], index, path=["response"])
 
@@ -989,6 +1000,7 @@ class TestAsyncIndexes:
         response = await async_client.vectorize.indexes.with_raw_response.insert(
             "example-index",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
 
         assert response.is_closed is True
@@ -1002,6 +1014,7 @@ class TestAsyncIndexes:
         async with async_client.vectorize.indexes.with_streaming_response.insert(
             "example-index",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1018,12 +1031,14 @@ class TestAsyncIndexes:
             await async_client.vectorize.indexes.with_raw_response.insert(
                 "example-index",
                 account_identifier="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `index_name` but received ''"):
             await async_client.vectorize.indexes.with_raw_response.insert(
                 "",
                 account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
             )
 
     @pytest.mark.skip()
@@ -1097,6 +1112,7 @@ class TestAsyncIndexes:
         index = await async_client.vectorize.indexes.upsert(
             "example-index",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
         assert_matches_type(Optional[VectorizeIndexUpsert], index, path=["response"])
 
@@ -1106,6 +1122,7 @@ class TestAsyncIndexes:
         response = await async_client.vectorize.indexes.with_raw_response.upsert(
             "example-index",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
 
         assert response.is_closed is True
@@ -1119,6 +1136,7 @@ class TestAsyncIndexes:
         async with async_client.vectorize.indexes.with_streaming_response.upsert(
             "example-index",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1135,10 +1153,12 @@ class TestAsyncIndexes:
             await async_client.vectorize.indexes.with_raw_response.upsert(
                 "example-index",
                 account_identifier="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `index_name` but received ''"):
             await async_client.vectorize.indexes.with_raw_response.upsert(
                 "",
                 account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
             )

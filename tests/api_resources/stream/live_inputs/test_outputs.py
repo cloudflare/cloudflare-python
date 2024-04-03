@@ -10,7 +10,9 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.stream.live_inputs import StreamOutput
+from cloudflare.types.stream.live_inputs import (
+    StreamOutput,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -221,6 +223,7 @@ class TestOutputs:
             "baea4d9c515887b80289d5c33cf01145",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             live_input_identifier="66be4bf738797e01e1fca35a7bdecdcd",
+            body={},
         )
         assert output is None
 
@@ -231,6 +234,7 @@ class TestOutputs:
             "baea4d9c515887b80289d5c33cf01145",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             live_input_identifier="66be4bf738797e01e1fca35a7bdecdcd",
+            body={},
         )
 
         assert response.is_closed is True
@@ -245,6 +249,7 @@ class TestOutputs:
             "baea4d9c515887b80289d5c33cf01145",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             live_input_identifier="66be4bf738797e01e1fca35a7bdecdcd",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -262,6 +267,7 @@ class TestOutputs:
                 "baea4d9c515887b80289d5c33cf01145",
                 account_id="",
                 live_input_identifier="66be4bf738797e01e1fca35a7bdecdcd",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `live_input_identifier` but received ''"):
@@ -269,6 +275,7 @@ class TestOutputs:
                 "baea4d9c515887b80289d5c33cf01145",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 live_input_identifier="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `output_identifier` but received ''"):
@@ -276,6 +283,7 @@ class TestOutputs:
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 live_input_identifier="66be4bf738797e01e1fca35a7bdecdcd",
+                body={},
             )
 
 
@@ -485,6 +493,7 @@ class TestAsyncOutputs:
             "baea4d9c515887b80289d5c33cf01145",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             live_input_identifier="66be4bf738797e01e1fca35a7bdecdcd",
+            body={},
         )
         assert output is None
 
@@ -495,6 +504,7 @@ class TestAsyncOutputs:
             "baea4d9c515887b80289d5c33cf01145",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             live_input_identifier="66be4bf738797e01e1fca35a7bdecdcd",
+            body={},
         )
 
         assert response.is_closed is True
@@ -509,6 +519,7 @@ class TestAsyncOutputs:
             "baea4d9c515887b80289d5c33cf01145",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             live_input_identifier="66be4bf738797e01e1fca35a7bdecdcd",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -526,6 +537,7 @@ class TestAsyncOutputs:
                 "baea4d9c515887b80289d5c33cf01145",
                 account_id="",
                 live_input_identifier="66be4bf738797e01e1fca35a7bdecdcd",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `live_input_identifier` but received ''"):
@@ -533,6 +545,7 @@ class TestAsyncOutputs:
                 "baea4d9c515887b80289d5c33cf01145",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 live_input_identifier="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `output_identifier` but received ''"):
@@ -540,4 +553,5 @@ class TestAsyncOutputs:
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 live_input_identifier="66be4bf738797e01e1fca35a7bdecdcd",
+                body={},
             )

@@ -274,6 +274,7 @@ class TestEvents:
             "25756b2dfe6e378a06b033b670413757",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             waiting_room_id="699d98642c564d2e855e9661899b7252",
+            body={},
         )
         assert_matches_type(EventDeleteResponse, event, path=["response"])
 
@@ -284,6 +285,7 @@ class TestEvents:
             "25756b2dfe6e378a06b033b670413757",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             waiting_room_id="699d98642c564d2e855e9661899b7252",
+            body={},
         )
 
         assert response.is_closed is True
@@ -298,6 +300,7 @@ class TestEvents:
             "25756b2dfe6e378a06b033b670413757",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             waiting_room_id="699d98642c564d2e855e9661899b7252",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -315,6 +318,7 @@ class TestEvents:
                 "25756b2dfe6e378a06b033b670413757",
                 zone_id="",
                 waiting_room_id="699d98642c564d2e855e9661899b7252",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `waiting_room_id` but received ''"):
@@ -322,6 +326,7 @@ class TestEvents:
                 "25756b2dfe6e378a06b033b670413757",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 waiting_room_id="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `event_id` but received ''"):
@@ -329,6 +334,7 @@ class TestEvents:
                 "",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 waiting_room_id="699d98642c564d2e855e9661899b7252",
+                body={},
             )
 
     @pytest.mark.skip()
@@ -757,6 +763,7 @@ class TestAsyncEvents:
             "25756b2dfe6e378a06b033b670413757",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             waiting_room_id="699d98642c564d2e855e9661899b7252",
+            body={},
         )
         assert_matches_type(EventDeleteResponse, event, path=["response"])
 
@@ -767,6 +774,7 @@ class TestAsyncEvents:
             "25756b2dfe6e378a06b033b670413757",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             waiting_room_id="699d98642c564d2e855e9661899b7252",
+            body={},
         )
 
         assert response.is_closed is True
@@ -781,6 +789,7 @@ class TestAsyncEvents:
             "25756b2dfe6e378a06b033b670413757",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             waiting_room_id="699d98642c564d2e855e9661899b7252",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -798,6 +807,7 @@ class TestAsyncEvents:
                 "25756b2dfe6e378a06b033b670413757",
                 zone_id="",
                 waiting_room_id="699d98642c564d2e855e9661899b7252",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `waiting_room_id` but received ''"):
@@ -805,6 +815,7 @@ class TestAsyncEvents:
                 "25756b2dfe6e378a06b033b670413757",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 waiting_room_id="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `event_id` but received ''"):
@@ -812,6 +823,7 @@ class TestAsyncEvents:
                 "",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 waiting_room_id="699d98642c564d2e855e9661899b7252",
+                body={},
             )
 
     @pytest.mark.skip()

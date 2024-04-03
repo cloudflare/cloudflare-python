@@ -7,6 +7,7 @@ from .key_list_params import KeyListParams as KeyListParams
 from .bulk_delete_params import BulkDeleteParams as BulkDeleteParams
 from .bulk_update_params import BulkUpdateParams as BulkUpdateParams
 from .value_get_response import ValueGetResponse as ValueGetResponse
+from .value_delete_params import ValueDeleteParams as ValueDeleteParams
 from .value_update_params import ValueUpdateParams as ValueUpdateParams
 from .bulk_delete_response import BulkDeleteResponse as BulkDeleteResponse
 from .bulk_update_response import BulkUpdateResponse as BulkUpdateResponse

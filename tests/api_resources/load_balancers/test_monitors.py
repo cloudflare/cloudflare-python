@@ -227,6 +227,7 @@ class TestMonitors:
         monitor = client.load_balancers.monitors.delete(
             "f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
         assert_matches_type(MonitorDeleteResponse, monitor, path=["response"])
 
@@ -236,6 +237,7 @@ class TestMonitors:
         response = client.load_balancers.monitors.with_raw_response.delete(
             "f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
 
         assert response.is_closed is True
@@ -249,6 +251,7 @@ class TestMonitors:
         with client.load_balancers.monitors.with_streaming_response.delete(
             "f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -265,12 +268,14 @@ class TestMonitors:
             client.load_balancers.monitors.with_raw_response.delete(
                 "f1aba936b94213e5b8dca0c0dbf1f9cc",
                 account_id="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `monitor_id` but received ''"):
             client.load_balancers.monitors.with_raw_response.delete(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
             )
 
     @pytest.mark.skip()
@@ -620,6 +625,7 @@ class TestAsyncMonitors:
         monitor = await async_client.load_balancers.monitors.delete(
             "f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
         assert_matches_type(MonitorDeleteResponse, monitor, path=["response"])
 
@@ -629,6 +635,7 @@ class TestAsyncMonitors:
         response = await async_client.load_balancers.monitors.with_raw_response.delete(
             "f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
 
         assert response.is_closed is True
@@ -642,6 +649,7 @@ class TestAsyncMonitors:
         async with async_client.load_balancers.monitors.with_streaming_response.delete(
             "f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -658,12 +666,14 @@ class TestAsyncMonitors:
             await async_client.load_balancers.monitors.with_raw_response.delete(
                 "f1aba936b94213e5b8dca0c0dbf1f9cc",
                 account_id="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `monitor_id` but received ''"):
             await async_client.load_balancers.monitors.with_raw_response.delete(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
             )
 
     @pytest.mark.skip()

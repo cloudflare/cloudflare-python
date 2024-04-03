@@ -38,6 +38,7 @@ from ....types.waiting_rooms import (
     EventDeleteResponse,
     event_edit_params,
     event_create_params,
+    event_delete_params,
     event_update_params,
 )
 
@@ -347,6 +348,7 @@ class Events(SyncAPIResource):
         *,
         zone_id: str,
         waiting_room_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -376,6 +378,7 @@ class Events(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
         return self._delete(
             f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/events/{event_id}",
+            body=maybe_transform(body, event_delete_params.EventDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -856,6 +859,7 @@ class AsyncEvents(AsyncAPIResource):
         *,
         zone_id: str,
         waiting_room_id: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -885,6 +889,7 @@ class AsyncEvents(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
         return await self._delete(
             f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/events/{event_id}",
+            body=await async_maybe_transform(body, event_delete_params.EventDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -172,6 +172,7 @@ class TestV1:
         v1 = client.images.v1.delete(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
         assert_matches_type(V1DeleteResponse, v1, path=["response"])
 
@@ -181,6 +182,7 @@ class TestV1:
         response = client.images.v1.with_raw_response.delete(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
 
         assert response.is_closed is True
@@ -194,6 +196,7 @@ class TestV1:
         with client.images.v1.with_streaming_response.delete(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -210,12 +213,14 @@ class TestV1:
             client.images.v1.with_raw_response.delete(
                 "string",
                 account_id="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `image_id` but received ''"):
             client.images.v1.with_raw_response.delete(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
             )
 
     @pytest.mark.skip()
@@ -487,6 +492,7 @@ class TestAsyncV1:
         v1 = await async_client.images.v1.delete(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
         assert_matches_type(V1DeleteResponse, v1, path=["response"])
 
@@ -496,6 +502,7 @@ class TestAsyncV1:
         response = await async_client.images.v1.with_raw_response.delete(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         )
 
         assert response.is_closed is True
@@ -509,6 +516,7 @@ class TestAsyncV1:
         async with async_client.images.v1.with_streaming_response.delete(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -525,12 +533,14 @@ class TestAsyncV1:
             await async_client.images.v1.with_raw_response.delete(
                 "string",
                 account_id="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `image_id` but received ''"):
             await async_client.images.v1.with_raw_response.delete(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
             )
 
     @pytest.mark.skip()

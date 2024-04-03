@@ -33,6 +33,7 @@ from ...types.firewall import (
     UARuleUpdateResponse,
     ua_rule_list_params,
     ua_rule_create_params,
+    ua_rule_delete_params,
     ua_rule_update_params,
 )
 
@@ -217,6 +218,7 @@ class UARules(SyncAPIResource):
         id: str,
         *,
         zone_identifier: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -246,6 +248,7 @@ class UARules(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._delete(
             f"/zones/{zone_identifier}/firewall/ua_rules/{id}",
+            body=maybe_transform(body, ua_rule_delete_params.UARuleDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -484,6 +487,7 @@ class AsyncUARules(AsyncAPIResource):
         id: str,
         *,
         zone_identifier: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -513,6 +517,7 @@ class AsyncUARules(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._delete(
             f"/zones/{zone_identifier}/firewall/ua_rules/{id}",
+            body=await async_maybe_transform(body, ua_rule_delete_params.UARuleDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -13,3 +13,9 @@ class NetworkDeleteParams(TypedDict, total=False):
 
     tun_type: Literal["cfd_tunnel", "warp_connector", "ip_sec", "gre", "cni"]
     """The type of tunnel."""
+
+    tunnel_id: str
+    """UUID of the tunnel."""
+
+    virtual_network_id: str
+    """UUID of the virtual network."""

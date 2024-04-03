@@ -135,6 +135,7 @@ class TestIncoming:
     def test_method_delete(self, client: Cloudflare) -> None:
         incoming = client.secondary_dns.incoming.delete(
             zone_id="269d8f4853475ca241c4e730be286b20",
+            body={},
         )
         assert_matches_type(IncomingDeleteResponse, incoming, path=["response"])
 
@@ -143,6 +144,7 @@ class TestIncoming:
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.secondary_dns.incoming.with_raw_response.delete(
             zone_id="269d8f4853475ca241c4e730be286b20",
+            body={},
         )
 
         assert response.is_closed is True
@@ -155,6 +157,7 @@ class TestIncoming:
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.secondary_dns.incoming.with_streaming_response.delete(
             zone_id="269d8f4853475ca241c4e730be286b20",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -170,6 +173,7 @@ class TestIncoming:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.secondary_dns.incoming.with_raw_response.delete(
                 zone_id="",
+                body={},
             )
 
     @pytest.mark.skip()
@@ -331,6 +335,7 @@ class TestAsyncIncoming:
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         incoming = await async_client.secondary_dns.incoming.delete(
             zone_id="269d8f4853475ca241c4e730be286b20",
+            body={},
         )
         assert_matches_type(IncomingDeleteResponse, incoming, path=["response"])
 
@@ -339,6 +344,7 @@ class TestAsyncIncoming:
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.secondary_dns.incoming.with_raw_response.delete(
             zone_id="269d8f4853475ca241c4e730be286b20",
+            body={},
         )
 
         assert response.is_closed is True
@@ -351,6 +357,7 @@ class TestAsyncIncoming:
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.secondary_dns.incoming.with_streaming_response.delete(
             zone_id="269d8f4853475ca241c4e730be286b20",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -366,6 +373,7 @@ class TestAsyncIncoming:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.secondary_dns.incoming.with_raw_response.delete(
                 zone_id="",
+                body={},
             )
 
     @pytest.mark.skip()
