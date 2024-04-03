@@ -456,6 +456,14 @@ from .subscriptions import (
     SubscriptionsWithStreamingResponse,
     AsyncSubscriptionsWithStreamingResponse,
 )
+from .waiting_rooms import (
+    WaitingRooms,
+    AsyncWaitingRooms,
+    WaitingRoomsWithRawResponse,
+    AsyncWaitingRoomsWithRawResponse,
+    WaitingRoomsWithStreamingResponse,
+    AsyncWaitingRoomsWithStreamingResponse,
+)
 from .bot_management import (
     BotManagement,
     AsyncBotManagement,
@@ -826,6 +834,12 @@ __all__ = [
     "AsyncSecondaryDNSWithRawResponse",
     "SecondaryDNSWithStreamingResponse",
     "AsyncSecondaryDNSWithStreamingResponse",
+    "WaitingRooms",
+    "AsyncWaitingRooms",
+    "WaitingRoomsWithRawResponse",
+    "AsyncWaitingRoomsWithRawResponse",
+    "WaitingRoomsWithStreamingResponse",
+    "AsyncWaitingRoomsWithStreamingResponse",
     "Web3",
     "AsyncWeb3",
     "Web3WithRawResponse",
