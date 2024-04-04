@@ -10,8 +10,8 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types import (
+    Ruleset,
     RulesetGetResponse,
-    RulesetListResponse,
     RulesetCreateResponse,
     RulesetUpdateResponse,
 )
@@ -299,7 +299,7 @@ class TestRulesets:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(SyncSinglePage[RulesetListResponse], ruleset, path=["response"])
+        assert_matches_type(SyncSinglePage[Ruleset], ruleset, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -308,7 +308,7 @@ class TestRulesets:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(SyncSinglePage[RulesetListResponse], ruleset, path=["response"])
+        assert_matches_type(SyncSinglePage[Ruleset], ruleset, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -321,7 +321,7 @@ class TestRulesets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ruleset = response.parse()
-        assert_matches_type(SyncSinglePage[RulesetListResponse], ruleset, path=["response"])
+        assert_matches_type(SyncSinglePage[Ruleset], ruleset, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -334,7 +334,7 @@ class TestRulesets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ruleset = response.parse()
-            assert_matches_type(SyncSinglePage[RulesetListResponse], ruleset, path=["response"])
+            assert_matches_type(SyncSinglePage[Ruleset], ruleset, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -781,7 +781,7 @@ class TestAsyncRulesets:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(AsyncSinglePage[RulesetListResponse], ruleset, path=["response"])
+        assert_matches_type(AsyncSinglePage[Ruleset], ruleset, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -790,7 +790,7 @@ class TestAsyncRulesets:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(AsyncSinglePage[RulesetListResponse], ruleset, path=["response"])
+        assert_matches_type(AsyncSinglePage[Ruleset], ruleset, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -803,7 +803,7 @@ class TestAsyncRulesets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ruleset = await response.parse()
-        assert_matches_type(AsyncSinglePage[RulesetListResponse], ruleset, path=["response"])
+        assert_matches_type(AsyncSinglePage[Ruleset], ruleset, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -816,7 +816,7 @@ class TestAsyncRulesets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ruleset = await response.parse()
-            assert_matches_type(AsyncSinglePage[RulesetListResponse], ruleset, path=["response"])
+            assert_matches_type(AsyncSinglePage[Ruleset], ruleset, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

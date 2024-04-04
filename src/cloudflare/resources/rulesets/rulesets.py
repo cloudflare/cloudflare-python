@@ -24,8 +24,9 @@ from .phases import (
     AsyncPhasesWithStreamingResponse,
 )
 from ...types import (
+    Ruleset,
+    RequestRuleParam,
     RulesetGetResponse,
-    RulesetListResponse,
     RulesetCreateResponse,
     RulesetUpdateResponse,
     ruleset_create_params,
@@ -115,7 +116,7 @@ class Rulesets(SyncAPIResource):
             "magic_transit_ids_managed",
             "magic_transit_managed",
         ],
-        rules: Iterable[ruleset_create_params.Rule],
+        rules: Iterable[RequestRuleParam],
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
@@ -193,7 +194,7 @@ class Rulesets(SyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        rules: Iterable[ruleset_update_params.Rule],
+        rules: Iterable[RequestRuleParam],
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
@@ -310,7 +311,7 @@ class Rulesets(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[RulesetListResponse]:
+    ) -> SyncSinglePage[Ruleset]:
         """
         Fetches all rulesets.
 
@@ -344,11 +345,11 @@ class Rulesets(SyncAPIResource):
             account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/rulesets",
-            page=SyncSinglePage[RulesetListResponse],
+            page=SyncSinglePage[Ruleset],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=RulesetListResponse,
+            model=Ruleset,
         )
 
     def delete(
@@ -520,7 +521,7 @@ class AsyncRulesets(AsyncAPIResource):
             "magic_transit_ids_managed",
             "magic_transit_managed",
         ],
-        rules: Iterable[ruleset_create_params.Rule],
+        rules: Iterable[RequestRuleParam],
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
@@ -598,7 +599,7 @@ class AsyncRulesets(AsyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        rules: Iterable[ruleset_update_params.Rule],
+        rules: Iterable[RequestRuleParam],
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
@@ -715,7 +716,7 @@ class AsyncRulesets(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[RulesetListResponse, AsyncSinglePage[RulesetListResponse]]:
+    ) -> AsyncPaginator[Ruleset, AsyncSinglePage[Ruleset]]:
         """
         Fetches all rulesets.
 
@@ -749,11 +750,11 @@ class AsyncRulesets(AsyncAPIResource):
             account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/rulesets",
-            page=AsyncSinglePage[RulesetListResponse],
+            page=AsyncSinglePage[Ruleset],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=RulesetListResponse,
+            model=Ruleset,
         )
 
     async def delete(
