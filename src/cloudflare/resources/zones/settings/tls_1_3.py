@@ -24,19 +24,19 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZoneSettingTLS1_3, tls_1_3_edit_params
+from ....types.zones.settings import TLS1_3, tls_1_3_edit_params
 
-__all__ = ["TLS1_3", "AsyncTLS1_3"]
+__all__ = ["TLS1_3Resource", "AsyncTLS1_3Resource"]
 
 
-class TLS1_3(SyncAPIResource):
+class TLS1_3Resource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> TLS1_3WithRawResponse:
-        return TLS1_3WithRawResponse(self)
+    def with_raw_response(self) -> TLS1_3ResourceWithRawResponse:
+        return TLS1_3ResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> TLS1_3WithStreamingResponse:
-        return TLS1_3WithStreamingResponse(self)
+    def with_streaming_response(self) -> TLS1_3ResourceWithStreamingResponse:
+        return TLS1_3ResourceWithStreamingResponse(self)
 
     def edit(
         self,
@@ -49,7 +49,7 @@ class TLS1_3(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingTLS1_3]:
+    ) -> Optional[TLS1_3]:
         """
         Changes TLS 1.3 setting.
 
@@ -79,7 +79,7 @@ class TLS1_3(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingTLS1_3]], ResultWrapper[ZoneSettingTLS1_3]),
+            cast_to=cast(Type[Optional[TLS1_3]], ResultWrapper[TLS1_3]),
         )
 
     def get(
@@ -92,7 +92,7 @@ class TLS1_3(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingTLS1_3]:
+    ) -> Optional[TLS1_3]:
         """
         Gets TLS 1.3 setting enabled for a zone.
 
@@ -118,18 +118,18 @@ class TLS1_3(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingTLS1_3]], ResultWrapper[ZoneSettingTLS1_3]),
+            cast_to=cast(Type[Optional[TLS1_3]], ResultWrapper[TLS1_3]),
         )
 
 
-class AsyncTLS1_3(AsyncAPIResource):
+class AsyncTLS1_3Resource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncTLS1_3WithRawResponse:
-        return AsyncTLS1_3WithRawResponse(self)
+    def with_raw_response(self) -> AsyncTLS1_3ResourceWithRawResponse:
+        return AsyncTLS1_3ResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncTLS1_3WithStreamingResponse:
-        return AsyncTLS1_3WithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncTLS1_3ResourceWithStreamingResponse:
+        return AsyncTLS1_3ResourceWithStreamingResponse(self)
 
     async def edit(
         self,
@@ -142,7 +142,7 @@ class AsyncTLS1_3(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingTLS1_3]:
+    ) -> Optional[TLS1_3]:
         """
         Changes TLS 1.3 setting.
 
@@ -172,7 +172,7 @@ class AsyncTLS1_3(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingTLS1_3]], ResultWrapper[ZoneSettingTLS1_3]),
+            cast_to=cast(Type[Optional[TLS1_3]], ResultWrapper[TLS1_3]),
         )
 
     async def get(
@@ -185,7 +185,7 @@ class AsyncTLS1_3(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingTLS1_3]:
+    ) -> Optional[TLS1_3]:
         """
         Gets TLS 1.3 setting enabled for a zone.
 
@@ -211,12 +211,12 @@ class AsyncTLS1_3(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingTLS1_3]], ResultWrapper[ZoneSettingTLS1_3]),
+            cast_to=cast(Type[Optional[TLS1_3]], ResultWrapper[TLS1_3]),
         )
 
 
-class TLS1_3WithRawResponse:
-    def __init__(self, tls_1_3: TLS1_3) -> None:
+class TLS1_3ResourceWithRawResponse:
+    def __init__(self, tls_1_3: TLS1_3Resource) -> None:
         self._tls_1_3 = tls_1_3
 
         self.edit = to_raw_response_wrapper(
@@ -227,8 +227,8 @@ class TLS1_3WithRawResponse:
         )
 
 
-class AsyncTLS1_3WithRawResponse:
-    def __init__(self, tls_1_3: AsyncTLS1_3) -> None:
+class AsyncTLS1_3ResourceWithRawResponse:
+    def __init__(self, tls_1_3: AsyncTLS1_3Resource) -> None:
         self._tls_1_3 = tls_1_3
 
         self.edit = async_to_raw_response_wrapper(
@@ -239,8 +239,8 @@ class AsyncTLS1_3WithRawResponse:
         )
 
 
-class TLS1_3WithStreamingResponse:
-    def __init__(self, tls_1_3: TLS1_3) -> None:
+class TLS1_3ResourceWithStreamingResponse:
+    def __init__(self, tls_1_3: TLS1_3Resource) -> None:
         self._tls_1_3 = tls_1_3
 
         self.edit = to_streamed_response_wrapper(
@@ -251,8 +251,8 @@ class TLS1_3WithStreamingResponse:
         )
 
 
-class AsyncTLS1_3WithStreamingResponse:
-    def __init__(self, tls_1_3: AsyncTLS1_3) -> None:
+class AsyncTLS1_3ResourceWithStreamingResponse:
+    def __init__(self, tls_1_3: AsyncTLS1_3Resource) -> None:
         self._tls_1_3 = tls_1_3
 
         self.edit = async_to_streamed_response_wrapper(

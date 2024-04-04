@@ -24,19 +24,19 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZoneSettingHotlinkProtection, hotlink_protection_edit_params
+from ....types.zones.settings import HotlinkProtection, hotlink_protection_edit_params
 
-__all__ = ["HotlinkProtection", "AsyncHotlinkProtection"]
+__all__ = ["HotlinkProtectionResource", "AsyncHotlinkProtectionResource"]
 
 
-class HotlinkProtection(SyncAPIResource):
+class HotlinkProtectionResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> HotlinkProtectionWithRawResponse:
-        return HotlinkProtectionWithRawResponse(self)
+    def with_raw_response(self) -> HotlinkProtectionResourceWithRawResponse:
+        return HotlinkProtectionResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> HotlinkProtectionWithStreamingResponse:
-        return HotlinkProtectionWithStreamingResponse(self)
+    def with_streaming_response(self) -> HotlinkProtectionResourceWithStreamingResponse:
+        return HotlinkProtectionResourceWithStreamingResponse(self)
 
     def edit(
         self,
@@ -49,7 +49,7 @@ class HotlinkProtection(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingHotlinkProtection]:
+    ) -> Optional[HotlinkProtection]:
         """
         When enabled, the Hotlink Protection option ensures that other sites cannot suck
         up your bandwidth by building pages that use images hosted on your site. Anytime
@@ -84,7 +84,7 @@ class HotlinkProtection(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingHotlinkProtection]], ResultWrapper[ZoneSettingHotlinkProtection]),
+            cast_to=cast(Type[Optional[HotlinkProtection]], ResultWrapper[HotlinkProtection]),
         )
 
     def get(
@@ -97,7 +97,7 @@ class HotlinkProtection(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingHotlinkProtection]:
+    ) -> Optional[HotlinkProtection]:
         """
         When enabled, the Hotlink Protection option ensures that other sites cannot suck
         up your bandwidth by building pages that use images hosted on your site. Anytime
@@ -129,18 +129,18 @@ class HotlinkProtection(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingHotlinkProtection]], ResultWrapper[ZoneSettingHotlinkProtection]),
+            cast_to=cast(Type[Optional[HotlinkProtection]], ResultWrapper[HotlinkProtection]),
         )
 
 
-class AsyncHotlinkProtection(AsyncAPIResource):
+class AsyncHotlinkProtectionResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncHotlinkProtectionWithRawResponse:
-        return AsyncHotlinkProtectionWithRawResponse(self)
+    def with_raw_response(self) -> AsyncHotlinkProtectionResourceWithRawResponse:
+        return AsyncHotlinkProtectionResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncHotlinkProtectionWithStreamingResponse:
-        return AsyncHotlinkProtectionWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncHotlinkProtectionResourceWithStreamingResponse:
+        return AsyncHotlinkProtectionResourceWithStreamingResponse(self)
 
     async def edit(
         self,
@@ -153,7 +153,7 @@ class AsyncHotlinkProtection(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingHotlinkProtection]:
+    ) -> Optional[HotlinkProtection]:
         """
         When enabled, the Hotlink Protection option ensures that other sites cannot suck
         up your bandwidth by building pages that use images hosted on your site. Anytime
@@ -190,7 +190,7 @@ class AsyncHotlinkProtection(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingHotlinkProtection]], ResultWrapper[ZoneSettingHotlinkProtection]),
+            cast_to=cast(Type[Optional[HotlinkProtection]], ResultWrapper[HotlinkProtection]),
         )
 
     async def get(
@@ -203,7 +203,7 @@ class AsyncHotlinkProtection(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingHotlinkProtection]:
+    ) -> Optional[HotlinkProtection]:
         """
         When enabled, the Hotlink Protection option ensures that other sites cannot suck
         up your bandwidth by building pages that use images hosted on your site. Anytime
@@ -235,12 +235,12 @@ class AsyncHotlinkProtection(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingHotlinkProtection]], ResultWrapper[ZoneSettingHotlinkProtection]),
+            cast_to=cast(Type[Optional[HotlinkProtection]], ResultWrapper[HotlinkProtection]),
         )
 
 
-class HotlinkProtectionWithRawResponse:
-    def __init__(self, hotlink_protection: HotlinkProtection) -> None:
+class HotlinkProtectionResourceWithRawResponse:
+    def __init__(self, hotlink_protection: HotlinkProtectionResource) -> None:
         self._hotlink_protection = hotlink_protection
 
         self.edit = to_raw_response_wrapper(
@@ -251,8 +251,8 @@ class HotlinkProtectionWithRawResponse:
         )
 
 
-class AsyncHotlinkProtectionWithRawResponse:
-    def __init__(self, hotlink_protection: AsyncHotlinkProtection) -> None:
+class AsyncHotlinkProtectionResourceWithRawResponse:
+    def __init__(self, hotlink_protection: AsyncHotlinkProtectionResource) -> None:
         self._hotlink_protection = hotlink_protection
 
         self.edit = async_to_raw_response_wrapper(
@@ -263,8 +263,8 @@ class AsyncHotlinkProtectionWithRawResponse:
         )
 
 
-class HotlinkProtectionWithStreamingResponse:
-    def __init__(self, hotlink_protection: HotlinkProtection) -> None:
+class HotlinkProtectionResourceWithStreamingResponse:
+    def __init__(self, hotlink_protection: HotlinkProtectionResource) -> None:
         self._hotlink_protection = hotlink_protection
 
         self.edit = to_streamed_response_wrapper(
@@ -275,8 +275,8 @@ class HotlinkProtectionWithStreamingResponse:
         )
 
 
-class AsyncHotlinkProtectionWithStreamingResponse:
-    def __init__(self, hotlink_protection: AsyncHotlinkProtection) -> None:
+class AsyncHotlinkProtectionResourceWithStreamingResponse:
+    def __init__(self, hotlink_protection: AsyncHotlinkProtectionResource) -> None:
         self._hotlink_protection = hotlink_protection
 
         self.edit = async_to_streamed_response_wrapper(

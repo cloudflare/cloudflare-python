@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.zones.settings import ZoneSettingMinify
+from cloudflare.types.zones.settings import Minify
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -24,7 +24,7 @@ class TestMinify:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value={},
         )
-        assert_matches_type(Optional[ZoneSettingMinify], minify, path=["response"])
+        assert_matches_type(Optional[Minify], minify, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -37,7 +37,7 @@ class TestMinify:
                 "js": "on",
             },
         )
-        assert_matches_type(Optional[ZoneSettingMinify], minify, path=["response"])
+        assert_matches_type(Optional[Minify], minify, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -50,7 +50,7 @@ class TestMinify:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         minify = response.parse()
-        assert_matches_type(Optional[ZoneSettingMinify], minify, path=["response"])
+        assert_matches_type(Optional[Minify], minify, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -63,7 +63,7 @@ class TestMinify:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             minify = response.parse()
-            assert_matches_type(Optional[ZoneSettingMinify], minify, path=["response"])
+            assert_matches_type(Optional[Minify], minify, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -82,7 +82,7 @@ class TestMinify:
         minify = client.zones.settings.minify.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ZoneSettingMinify], minify, path=["response"])
+        assert_matches_type(Optional[Minify], minify, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -94,7 +94,7 @@ class TestMinify:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         minify = response.parse()
-        assert_matches_type(Optional[ZoneSettingMinify], minify, path=["response"])
+        assert_matches_type(Optional[Minify], minify, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -106,7 +106,7 @@ class TestMinify:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             minify = response.parse()
-            assert_matches_type(Optional[ZoneSettingMinify], minify, path=["response"])
+            assert_matches_type(Optional[Minify], minify, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -129,7 +129,7 @@ class TestAsyncMinify:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value={},
         )
-        assert_matches_type(Optional[ZoneSettingMinify], minify, path=["response"])
+        assert_matches_type(Optional[Minify], minify, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -142,7 +142,7 @@ class TestAsyncMinify:
                 "js": "on",
             },
         )
-        assert_matches_type(Optional[ZoneSettingMinify], minify, path=["response"])
+        assert_matches_type(Optional[Minify], minify, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -155,7 +155,7 @@ class TestAsyncMinify:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         minify = await response.parse()
-        assert_matches_type(Optional[ZoneSettingMinify], minify, path=["response"])
+        assert_matches_type(Optional[Minify], minify, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -168,7 +168,7 @@ class TestAsyncMinify:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             minify = await response.parse()
-            assert_matches_type(Optional[ZoneSettingMinify], minify, path=["response"])
+            assert_matches_type(Optional[Minify], minify, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -187,7 +187,7 @@ class TestAsyncMinify:
         minify = await async_client.zones.settings.minify.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ZoneSettingMinify], minify, path=["response"])
+        assert_matches_type(Optional[Minify], minify, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -199,7 +199,7 @@ class TestAsyncMinify:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         minify = await response.parse()
-        assert_matches_type(Optional[ZoneSettingMinify], minify, path=["response"])
+        assert_matches_type(Optional[Minify], minify, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -211,7 +211,7 @@ class TestAsyncMinify:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             minify = await response.parse()
-            assert_matches_type(Optional[ZoneSettingMinify], minify, path=["response"])
+            assert_matches_type(Optional[Minify], minify, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

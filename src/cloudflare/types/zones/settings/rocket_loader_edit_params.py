@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-from .zone_setting_rocket_loader_param import ZoneSettingRocketLoaderParam
+from .rocket_loader_param import RocketLoaderParam
 
 __all__ = ["RocketLoaderEditParams"]
 
@@ -13,7 +13,7 @@ class RocketLoaderEditParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
-    value: Required[ZoneSettingRocketLoaderParam]
+    value: Required[RocketLoaderParam]
     """
     Rocket Loader is a general-purpose asynchronous JavaScript optimisation that
     prioritises rendering your content while loading your site's Javascript

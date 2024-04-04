@@ -24,19 +24,19 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZoneSettingCacheLevel, cache_level_edit_params
+from ....types.zones.settings import CacheLevel, cache_level_edit_params
 
-__all__ = ["CacheLevel", "AsyncCacheLevel"]
+__all__ = ["CacheLevelResource", "AsyncCacheLevelResource"]
 
 
-class CacheLevel(SyncAPIResource):
+class CacheLevelResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> CacheLevelWithRawResponse:
-        return CacheLevelWithRawResponse(self)
+    def with_raw_response(self) -> CacheLevelResourceWithRawResponse:
+        return CacheLevelResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> CacheLevelWithStreamingResponse:
-        return CacheLevelWithStreamingResponse(self)
+    def with_streaming_response(self) -> CacheLevelResourceWithStreamingResponse:
+        return CacheLevelResourceWithStreamingResponse(self)
 
     def edit(
         self,
@@ -49,7 +49,7 @@ class CacheLevel(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingCacheLevel]:
+    ) -> Optional[CacheLevel]:
         """Cache Level functions based off the setting level.
 
         The basic setting will cache
@@ -83,7 +83,7 @@ class CacheLevel(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingCacheLevel]], ResultWrapper[ZoneSettingCacheLevel]),
+            cast_to=cast(Type[Optional[CacheLevel]], ResultWrapper[CacheLevel]),
         )
 
     def get(
@@ -96,7 +96,7 @@ class CacheLevel(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingCacheLevel]:
+    ) -> Optional[CacheLevel]:
         """Cache Level functions based off the setting level.
 
         The basic setting will cache
@@ -127,18 +127,18 @@ class CacheLevel(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingCacheLevel]], ResultWrapper[ZoneSettingCacheLevel]),
+            cast_to=cast(Type[Optional[CacheLevel]], ResultWrapper[CacheLevel]),
         )
 
 
-class AsyncCacheLevel(AsyncAPIResource):
+class AsyncCacheLevelResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncCacheLevelWithRawResponse:
-        return AsyncCacheLevelWithRawResponse(self)
+    def with_raw_response(self) -> AsyncCacheLevelResourceWithRawResponse:
+        return AsyncCacheLevelResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncCacheLevelWithStreamingResponse:
-        return AsyncCacheLevelWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncCacheLevelResourceWithStreamingResponse:
+        return AsyncCacheLevelResourceWithStreamingResponse(self)
 
     async def edit(
         self,
@@ -151,7 +151,7 @@ class AsyncCacheLevel(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingCacheLevel]:
+    ) -> Optional[CacheLevel]:
         """Cache Level functions based off the setting level.
 
         The basic setting will cache
@@ -185,7 +185,7 @@ class AsyncCacheLevel(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingCacheLevel]], ResultWrapper[ZoneSettingCacheLevel]),
+            cast_to=cast(Type[Optional[CacheLevel]], ResultWrapper[CacheLevel]),
         )
 
     async def get(
@@ -198,7 +198,7 @@ class AsyncCacheLevel(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingCacheLevel]:
+    ) -> Optional[CacheLevel]:
         """Cache Level functions based off the setting level.
 
         The basic setting will cache
@@ -229,12 +229,12 @@ class AsyncCacheLevel(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingCacheLevel]], ResultWrapper[ZoneSettingCacheLevel]),
+            cast_to=cast(Type[Optional[CacheLevel]], ResultWrapper[CacheLevel]),
         )
 
 
-class CacheLevelWithRawResponse:
-    def __init__(self, cache_level: CacheLevel) -> None:
+class CacheLevelResourceWithRawResponse:
+    def __init__(self, cache_level: CacheLevelResource) -> None:
         self._cache_level = cache_level
 
         self.edit = to_raw_response_wrapper(
@@ -245,8 +245,8 @@ class CacheLevelWithRawResponse:
         )
 
 
-class AsyncCacheLevelWithRawResponse:
-    def __init__(self, cache_level: AsyncCacheLevel) -> None:
+class AsyncCacheLevelResourceWithRawResponse:
+    def __init__(self, cache_level: AsyncCacheLevelResource) -> None:
         self._cache_level = cache_level
 
         self.edit = async_to_raw_response_wrapper(
@@ -257,8 +257,8 @@ class AsyncCacheLevelWithRawResponse:
         )
 
 
-class CacheLevelWithStreamingResponse:
-    def __init__(self, cache_level: CacheLevel) -> None:
+class CacheLevelResourceWithStreamingResponse:
+    def __init__(self, cache_level: CacheLevelResource) -> None:
         self._cache_level = cache_level
 
         self.edit = to_streamed_response_wrapper(
@@ -269,8 +269,8 @@ class CacheLevelWithStreamingResponse:
         )
 
 
-class AsyncCacheLevelWithStreamingResponse:
-    def __init__(self, cache_level: AsyncCacheLevel) -> None:
+class AsyncCacheLevelResourceWithStreamingResponse:
+    def __init__(self, cache_level: AsyncCacheLevelResource) -> None:
         self._cache_level = cache_level
 
         self.edit = async_to_streamed_response_wrapper(

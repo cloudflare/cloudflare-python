@@ -19,7 +19,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZoneSettingAdvancedDDoS
+from ....types.zones.settings import advanced_ddos
 
 __all__ = ["AdvancedDDoS", "AsyncAdvancedDDoS"]
 
@@ -43,7 +43,7 @@ class AdvancedDDoS(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingAdvancedDDoS]:
+    ) -> Optional[advanced_ddos.AdvancedDDoS]:
         """
         Advanced protection from Distributed Denial of Service (DDoS) attacks on your
         website. This is an uneditable value that is 'on' in the case of Business and
@@ -71,7 +71,7 @@ class AdvancedDDoS(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingAdvancedDDoS]], ResultWrapper[ZoneSettingAdvancedDDoS]),
+            cast_to=cast(Type[Optional[advanced_ddos.AdvancedDDoS]], ResultWrapper[advanced_ddos.AdvancedDDoS]),
         )
 
 
@@ -94,7 +94,7 @@ class AsyncAdvancedDDoS(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingAdvancedDDoS]:
+    ) -> Optional[advanced_ddos.AdvancedDDoS]:
         """
         Advanced protection from Distributed Denial of Service (DDoS) attacks on your
         website. This is an uneditable value that is 'on' in the case of Business and
@@ -122,7 +122,7 @@ class AsyncAdvancedDDoS(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingAdvancedDDoS]], ResultWrapper[ZoneSettingAdvancedDDoS]),
+            cast_to=cast(Type[Optional[advanced_ddos.AdvancedDDoS]], ResultWrapper[advanced_ddos.AdvancedDDoS]),
         )
 
 

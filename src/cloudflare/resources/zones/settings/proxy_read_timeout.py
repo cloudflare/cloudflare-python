@@ -23,36 +23,32 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import (
-    ZoneSettingProxyReadTimeout,
-    ZoneSettingProxyReadTimeoutParam,
-    proxy_read_timeout_edit_params,
-)
+from ....types.zones.settings import ProxyReadTimeout, ProxyReadTimeoutParam, proxy_read_timeout_edit_params
 
-__all__ = ["ProxyReadTimeout", "AsyncProxyReadTimeout"]
+__all__ = ["ProxyReadTimeoutResource", "AsyncProxyReadTimeoutResource"]
 
 
-class ProxyReadTimeout(SyncAPIResource):
+class ProxyReadTimeoutResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> ProxyReadTimeoutWithRawResponse:
-        return ProxyReadTimeoutWithRawResponse(self)
+    def with_raw_response(self) -> ProxyReadTimeoutResourceWithRawResponse:
+        return ProxyReadTimeoutResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ProxyReadTimeoutWithStreamingResponse:
-        return ProxyReadTimeoutWithStreamingResponse(self)
+    def with_streaming_response(self) -> ProxyReadTimeoutResourceWithStreamingResponse:
+        return ProxyReadTimeoutResourceWithStreamingResponse(self)
 
     def edit(
         self,
         *,
         zone_id: str,
-        value: ZoneSettingProxyReadTimeoutParam,
+        value: ProxyReadTimeoutParam,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingProxyReadTimeout]:
+    ) -> Optional[ProxyReadTimeout]:
         """
         Maximum time between two read operations from origin.
 
@@ -81,7 +77,7 @@ class ProxyReadTimeout(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingProxyReadTimeout]], ResultWrapper[ZoneSettingProxyReadTimeout]),
+            cast_to=cast(Type[Optional[ProxyReadTimeout]], ResultWrapper[ProxyReadTimeout]),
         )
 
     def get(
@@ -94,7 +90,7 @@ class ProxyReadTimeout(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingProxyReadTimeout]:
+    ) -> Optional[ProxyReadTimeout]:
         """
         Maximum time between two read operations from origin.
 
@@ -120,31 +116,31 @@ class ProxyReadTimeout(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingProxyReadTimeout]], ResultWrapper[ZoneSettingProxyReadTimeout]),
+            cast_to=cast(Type[Optional[ProxyReadTimeout]], ResultWrapper[ProxyReadTimeout]),
         )
 
 
-class AsyncProxyReadTimeout(AsyncAPIResource):
+class AsyncProxyReadTimeoutResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncProxyReadTimeoutWithRawResponse:
-        return AsyncProxyReadTimeoutWithRawResponse(self)
+    def with_raw_response(self) -> AsyncProxyReadTimeoutResourceWithRawResponse:
+        return AsyncProxyReadTimeoutResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncProxyReadTimeoutWithStreamingResponse:
-        return AsyncProxyReadTimeoutWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncProxyReadTimeoutResourceWithStreamingResponse:
+        return AsyncProxyReadTimeoutResourceWithStreamingResponse(self)
 
     async def edit(
         self,
         *,
         zone_id: str,
-        value: ZoneSettingProxyReadTimeoutParam,
+        value: ProxyReadTimeoutParam,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingProxyReadTimeout]:
+    ) -> Optional[ProxyReadTimeout]:
         """
         Maximum time between two read operations from origin.
 
@@ -175,7 +171,7 @@ class AsyncProxyReadTimeout(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingProxyReadTimeout]], ResultWrapper[ZoneSettingProxyReadTimeout]),
+            cast_to=cast(Type[Optional[ProxyReadTimeout]], ResultWrapper[ProxyReadTimeout]),
         )
 
     async def get(
@@ -188,7 +184,7 @@ class AsyncProxyReadTimeout(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingProxyReadTimeout]:
+    ) -> Optional[ProxyReadTimeout]:
         """
         Maximum time between two read operations from origin.
 
@@ -214,12 +210,12 @@ class AsyncProxyReadTimeout(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingProxyReadTimeout]], ResultWrapper[ZoneSettingProxyReadTimeout]),
+            cast_to=cast(Type[Optional[ProxyReadTimeout]], ResultWrapper[ProxyReadTimeout]),
         )
 
 
-class ProxyReadTimeoutWithRawResponse:
-    def __init__(self, proxy_read_timeout: ProxyReadTimeout) -> None:
+class ProxyReadTimeoutResourceWithRawResponse:
+    def __init__(self, proxy_read_timeout: ProxyReadTimeoutResource) -> None:
         self._proxy_read_timeout = proxy_read_timeout
 
         self.edit = to_raw_response_wrapper(
@@ -230,8 +226,8 @@ class ProxyReadTimeoutWithRawResponse:
         )
 
 
-class AsyncProxyReadTimeoutWithRawResponse:
-    def __init__(self, proxy_read_timeout: AsyncProxyReadTimeout) -> None:
+class AsyncProxyReadTimeoutResourceWithRawResponse:
+    def __init__(self, proxy_read_timeout: AsyncProxyReadTimeoutResource) -> None:
         self._proxy_read_timeout = proxy_read_timeout
 
         self.edit = async_to_raw_response_wrapper(
@@ -242,8 +238,8 @@ class AsyncProxyReadTimeoutWithRawResponse:
         )
 
 
-class ProxyReadTimeoutWithStreamingResponse:
-    def __init__(self, proxy_read_timeout: ProxyReadTimeout) -> None:
+class ProxyReadTimeoutResourceWithStreamingResponse:
+    def __init__(self, proxy_read_timeout: ProxyReadTimeoutResource) -> None:
         self._proxy_read_timeout = proxy_read_timeout
 
         self.edit = to_streamed_response_wrapper(
@@ -254,8 +250,8 @@ class ProxyReadTimeoutWithStreamingResponse:
         )
 
 
-class AsyncProxyReadTimeoutWithStreamingResponse:
-    def __init__(self, proxy_read_timeout: AsyncProxyReadTimeout) -> None:
+class AsyncProxyReadTimeoutResourceWithStreamingResponse:
+    def __init__(self, proxy_read_timeout: AsyncProxyReadTimeoutResource) -> None:
         self._proxy_read_timeout = proxy_read_timeout
 
         self.edit = async_to_streamed_response_wrapper(

@@ -24,19 +24,19 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZoneSettingPrefetchPreload, prefetch_preload_edit_params
+from ....types.zones.settings import PrefetchPreload, prefetch_preload_edit_params
 
-__all__ = ["PrefetchPreload", "AsyncPrefetchPreload"]
+__all__ = ["PrefetchPreloadResource", "AsyncPrefetchPreloadResource"]
 
 
-class PrefetchPreload(SyncAPIResource):
+class PrefetchPreloadResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> PrefetchPreloadWithRawResponse:
-        return PrefetchPreloadWithRawResponse(self)
+    def with_raw_response(self) -> PrefetchPreloadResourceWithRawResponse:
+        return PrefetchPreloadResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> PrefetchPreloadWithStreamingResponse:
-        return PrefetchPreloadWithStreamingResponse(self)
+    def with_streaming_response(self) -> PrefetchPreloadResourceWithStreamingResponse:
+        return PrefetchPreloadResourceWithStreamingResponse(self)
 
     def edit(
         self,
@@ -49,7 +49,7 @@ class PrefetchPreload(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingPrefetchPreload]:
+    ) -> Optional[PrefetchPreload]:
         """
         Cloudflare will prefetch any URLs that are included in the response headers.
         This is limited to Enterprise Zones.
@@ -79,7 +79,7 @@ class PrefetchPreload(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingPrefetchPreload]], ResultWrapper[ZoneSettingPrefetchPreload]),
+            cast_to=cast(Type[Optional[PrefetchPreload]], ResultWrapper[PrefetchPreload]),
         )
 
     def get(
@@ -92,7 +92,7 @@ class PrefetchPreload(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingPrefetchPreload]:
+    ) -> Optional[PrefetchPreload]:
         """
         Cloudflare will prefetch any URLs that are included in the response headers.
         This is limited to Enterprise Zones.
@@ -119,18 +119,18 @@ class PrefetchPreload(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingPrefetchPreload]], ResultWrapper[ZoneSettingPrefetchPreload]),
+            cast_to=cast(Type[Optional[PrefetchPreload]], ResultWrapper[PrefetchPreload]),
         )
 
 
-class AsyncPrefetchPreload(AsyncAPIResource):
+class AsyncPrefetchPreloadResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncPrefetchPreloadWithRawResponse:
-        return AsyncPrefetchPreloadWithRawResponse(self)
+    def with_raw_response(self) -> AsyncPrefetchPreloadResourceWithRawResponse:
+        return AsyncPrefetchPreloadResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncPrefetchPreloadWithStreamingResponse:
-        return AsyncPrefetchPreloadWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncPrefetchPreloadResourceWithStreamingResponse:
+        return AsyncPrefetchPreloadResourceWithStreamingResponse(self)
 
     async def edit(
         self,
@@ -143,7 +143,7 @@ class AsyncPrefetchPreload(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingPrefetchPreload]:
+    ) -> Optional[PrefetchPreload]:
         """
         Cloudflare will prefetch any URLs that are included in the response headers.
         This is limited to Enterprise Zones.
@@ -173,7 +173,7 @@ class AsyncPrefetchPreload(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingPrefetchPreload]], ResultWrapper[ZoneSettingPrefetchPreload]),
+            cast_to=cast(Type[Optional[PrefetchPreload]], ResultWrapper[PrefetchPreload]),
         )
 
     async def get(
@@ -186,7 +186,7 @@ class AsyncPrefetchPreload(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingPrefetchPreload]:
+    ) -> Optional[PrefetchPreload]:
         """
         Cloudflare will prefetch any URLs that are included in the response headers.
         This is limited to Enterprise Zones.
@@ -213,12 +213,12 @@ class AsyncPrefetchPreload(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingPrefetchPreload]], ResultWrapper[ZoneSettingPrefetchPreload]),
+            cast_to=cast(Type[Optional[PrefetchPreload]], ResultWrapper[PrefetchPreload]),
         )
 
 
-class PrefetchPreloadWithRawResponse:
-    def __init__(self, prefetch_preload: PrefetchPreload) -> None:
+class PrefetchPreloadResourceWithRawResponse:
+    def __init__(self, prefetch_preload: PrefetchPreloadResource) -> None:
         self._prefetch_preload = prefetch_preload
 
         self.edit = to_raw_response_wrapper(
@@ -229,8 +229,8 @@ class PrefetchPreloadWithRawResponse:
         )
 
 
-class AsyncPrefetchPreloadWithRawResponse:
-    def __init__(self, prefetch_preload: AsyncPrefetchPreload) -> None:
+class AsyncPrefetchPreloadResourceWithRawResponse:
+    def __init__(self, prefetch_preload: AsyncPrefetchPreloadResource) -> None:
         self._prefetch_preload = prefetch_preload
 
         self.edit = async_to_raw_response_wrapper(
@@ -241,8 +241,8 @@ class AsyncPrefetchPreloadWithRawResponse:
         )
 
 
-class PrefetchPreloadWithStreamingResponse:
-    def __init__(self, prefetch_preload: PrefetchPreload) -> None:
+class PrefetchPreloadResourceWithStreamingResponse:
+    def __init__(self, prefetch_preload: PrefetchPreloadResource) -> None:
         self._prefetch_preload = prefetch_preload
 
         self.edit = to_streamed_response_wrapper(
@@ -253,8 +253,8 @@ class PrefetchPreloadWithStreamingResponse:
         )
 
 
-class AsyncPrefetchPreloadWithStreamingResponse:
-    def __init__(self, prefetch_preload: AsyncPrefetchPreload) -> None:
+class AsyncPrefetchPreloadResourceWithStreamingResponse:
+    def __init__(self, prefetch_preload: AsyncPrefetchPreloadResource) -> None:
         self._prefetch_preload = prefetch_preload
 
         self.edit = async_to_streamed_response_wrapper(

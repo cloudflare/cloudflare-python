@@ -24,19 +24,19 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZoneSettingMirage, mirage_edit_params
+from ....types.zones.settings import Mirage, mirage_edit_params
 
-__all__ = ["Mirage", "AsyncMirage"]
+__all__ = ["MirageResource", "AsyncMirageResource"]
 
 
-class Mirage(SyncAPIResource):
+class MirageResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> MirageWithRawResponse:
-        return MirageWithRawResponse(self)
+    def with_raw_response(self) -> MirageResourceWithRawResponse:
+        return MirageResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> MirageWithStreamingResponse:
-        return MirageWithStreamingResponse(self)
+    def with_streaming_response(self) -> MirageResourceWithStreamingResponse:
+        return MirageResourceWithStreamingResponse(self)
 
     def edit(
         self,
@@ -49,7 +49,7 @@ class Mirage(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingMirage]:
+    ) -> Optional[Mirage]:
         """
         Automatically optimize image loading for website visitors on mobile devices.
         Refer to our
@@ -81,7 +81,7 @@ class Mirage(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingMirage]], ResultWrapper[ZoneSettingMirage]),
+            cast_to=cast(Type[Optional[Mirage]], ResultWrapper[Mirage]),
         )
 
     def get(
@@ -94,7 +94,7 @@ class Mirage(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingMirage]:
+    ) -> Optional[Mirage]:
         """
         Automatically optimize image loading for website visitors on mobile devices.
         Refer to our
@@ -123,18 +123,18 @@ class Mirage(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingMirage]], ResultWrapper[ZoneSettingMirage]),
+            cast_to=cast(Type[Optional[Mirage]], ResultWrapper[Mirage]),
         )
 
 
-class AsyncMirage(AsyncAPIResource):
+class AsyncMirageResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncMirageWithRawResponse:
-        return AsyncMirageWithRawResponse(self)
+    def with_raw_response(self) -> AsyncMirageResourceWithRawResponse:
+        return AsyncMirageResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncMirageWithStreamingResponse:
-        return AsyncMirageWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncMirageResourceWithStreamingResponse:
+        return AsyncMirageResourceWithStreamingResponse(self)
 
     async def edit(
         self,
@@ -147,7 +147,7 @@ class AsyncMirage(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingMirage]:
+    ) -> Optional[Mirage]:
         """
         Automatically optimize image loading for website visitors on mobile devices.
         Refer to our
@@ -179,7 +179,7 @@ class AsyncMirage(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingMirage]], ResultWrapper[ZoneSettingMirage]),
+            cast_to=cast(Type[Optional[Mirage]], ResultWrapper[Mirage]),
         )
 
     async def get(
@@ -192,7 +192,7 @@ class AsyncMirage(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingMirage]:
+    ) -> Optional[Mirage]:
         """
         Automatically optimize image loading for website visitors on mobile devices.
         Refer to our
@@ -221,12 +221,12 @@ class AsyncMirage(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingMirage]], ResultWrapper[ZoneSettingMirage]),
+            cast_to=cast(Type[Optional[Mirage]], ResultWrapper[Mirage]),
         )
 
 
-class MirageWithRawResponse:
-    def __init__(self, mirage: Mirage) -> None:
+class MirageResourceWithRawResponse:
+    def __init__(self, mirage: MirageResource) -> None:
         self._mirage = mirage
 
         self.edit = to_raw_response_wrapper(
@@ -237,8 +237,8 @@ class MirageWithRawResponse:
         )
 
 
-class AsyncMirageWithRawResponse:
-    def __init__(self, mirage: AsyncMirage) -> None:
+class AsyncMirageResourceWithRawResponse:
+    def __init__(self, mirage: AsyncMirageResource) -> None:
         self._mirage = mirage
 
         self.edit = async_to_raw_response_wrapper(
@@ -249,8 +249,8 @@ class AsyncMirageWithRawResponse:
         )
 
 
-class MirageWithStreamingResponse:
-    def __init__(self, mirage: Mirage) -> None:
+class MirageResourceWithStreamingResponse:
+    def __init__(self, mirage: MirageResource) -> None:
         self._mirage = mirage
 
         self.edit = to_streamed_response_wrapper(
@@ -261,8 +261,8 @@ class MirageWithStreamingResponse:
         )
 
 
-class AsyncMirageWithStreamingResponse:
-    def __init__(self, mirage: AsyncMirage) -> None:
+class AsyncMirageResourceWithStreamingResponse:
+    def __init__(self, mirage: AsyncMirageResource) -> None:
         self._mirage = mirage
 
         self.edit = async_to_streamed_response_wrapper(

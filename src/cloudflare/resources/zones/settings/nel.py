@@ -23,32 +23,32 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZoneSettingNEL, ZoneSettingNELParam, nel_edit_params
+from ....types.zones.settings import NEL, NELParam, nel_edit_params
 
-__all__ = ["NEL", "AsyncNEL"]
+__all__ = ["NELResource", "AsyncNELResource"]
 
 
-class NEL(SyncAPIResource):
+class NELResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> NELWithRawResponse:
-        return NELWithRawResponse(self)
+    def with_raw_response(self) -> NELResourceWithRawResponse:
+        return NELResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> NELWithStreamingResponse:
-        return NELWithStreamingResponse(self)
+    def with_streaming_response(self) -> NELResourceWithStreamingResponse:
+        return NELResourceWithStreamingResponse(self)
 
     def edit(
         self,
         *,
         zone_id: str,
-        value: ZoneSettingNELParam,
+        value: NELParam,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingNEL]:
+    ) -> Optional[NEL]:
         """
         Automatically optimize image loading for website visitors on mobile devices.
         Refer to our [blog post](http://blog.cloudflare.com/nel-solving-mobile-speed)
@@ -79,7 +79,7 @@ class NEL(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingNEL]], ResultWrapper[ZoneSettingNEL]),
+            cast_to=cast(Type[Optional[NEL]], ResultWrapper[NEL]),
         )
 
     def get(
@@ -92,7 +92,7 @@ class NEL(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingNEL]:
+    ) -> Optional[NEL]:
         """Enable Network Error Logging reporting on your zone.
 
         (Beta)
@@ -119,31 +119,31 @@ class NEL(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingNEL]], ResultWrapper[ZoneSettingNEL]),
+            cast_to=cast(Type[Optional[NEL]], ResultWrapper[NEL]),
         )
 
 
-class AsyncNEL(AsyncAPIResource):
+class AsyncNELResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncNELWithRawResponse:
-        return AsyncNELWithRawResponse(self)
+    def with_raw_response(self) -> AsyncNELResourceWithRawResponse:
+        return AsyncNELResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncNELWithStreamingResponse:
-        return AsyncNELWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncNELResourceWithStreamingResponse:
+        return AsyncNELResourceWithStreamingResponse(self)
 
     async def edit(
         self,
         *,
         zone_id: str,
-        value: ZoneSettingNELParam,
+        value: NELParam,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingNEL]:
+    ) -> Optional[NEL]:
         """
         Automatically optimize image loading for website visitors on mobile devices.
         Refer to our [blog post](http://blog.cloudflare.com/nel-solving-mobile-speed)
@@ -174,7 +174,7 @@ class AsyncNEL(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingNEL]], ResultWrapper[ZoneSettingNEL]),
+            cast_to=cast(Type[Optional[NEL]], ResultWrapper[NEL]),
         )
 
     async def get(
@@ -187,7 +187,7 @@ class AsyncNEL(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingNEL]:
+    ) -> Optional[NEL]:
         """Enable Network Error Logging reporting on your zone.
 
         (Beta)
@@ -214,12 +214,12 @@ class AsyncNEL(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingNEL]], ResultWrapper[ZoneSettingNEL]),
+            cast_to=cast(Type[Optional[NEL]], ResultWrapper[NEL]),
         )
 
 
-class NELWithRawResponse:
-    def __init__(self, nel: NEL) -> None:
+class NELResourceWithRawResponse:
+    def __init__(self, nel: NELResource) -> None:
         self._nel = nel
 
         self.edit = to_raw_response_wrapper(
@@ -230,8 +230,8 @@ class NELWithRawResponse:
         )
 
 
-class AsyncNELWithRawResponse:
-    def __init__(self, nel: AsyncNEL) -> None:
+class AsyncNELResourceWithRawResponse:
+    def __init__(self, nel: AsyncNELResource) -> None:
         self._nel = nel
 
         self.edit = async_to_raw_response_wrapper(
@@ -242,8 +242,8 @@ class AsyncNELWithRawResponse:
         )
 
 
-class NELWithStreamingResponse:
-    def __init__(self, nel: NEL) -> None:
+class NELResourceWithStreamingResponse:
+    def __init__(self, nel: NELResource) -> None:
         self._nel = nel
 
         self.edit = to_streamed_response_wrapper(
@@ -254,8 +254,8 @@ class NELWithStreamingResponse:
         )
 
 
-class AsyncNELWithStreamingResponse:
-    def __init__(self, nel: AsyncNEL) -> None:
+class AsyncNELResourceWithStreamingResponse:
+    def __init__(self, nel: AsyncNELResource) -> None:
         self._nel = nel
 
         self.edit = async_to_streamed_response_wrapper(

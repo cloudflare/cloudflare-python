@@ -24,19 +24,19 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZoneSettingBrotli, brotli_edit_params
+from ....types.zones.settings import Brotli, brotli_edit_params
 
-__all__ = ["Brotli", "AsyncBrotli"]
+__all__ = ["BrotliResource", "AsyncBrotliResource"]
 
 
-class Brotli(SyncAPIResource):
+class BrotliResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> BrotliWithRawResponse:
-        return BrotliWithRawResponse(self)
+    def with_raw_response(self) -> BrotliResourceWithRawResponse:
+        return BrotliResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> BrotliWithStreamingResponse:
-        return BrotliWithStreamingResponse(self)
+    def with_streaming_response(self) -> BrotliResourceWithStreamingResponse:
+        return BrotliResourceWithStreamingResponse(self)
 
     def edit(
         self,
@@ -49,7 +49,7 @@ class Brotli(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingBrotli]:
+    ) -> Optional[Brotli]:
         """
         When the client requesting an asset supports the Brotli compression algorithm,
         Cloudflare will serve a Brotli compressed version of the asset.
@@ -79,7 +79,7 @@ class Brotli(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingBrotli]], ResultWrapper[ZoneSettingBrotli]),
+            cast_to=cast(Type[Optional[Brotli]], ResultWrapper[Brotli]),
         )
 
     def get(
@@ -92,7 +92,7 @@ class Brotli(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingBrotli]:
+    ) -> Optional[Brotli]:
         """
         When the client requesting an asset supports the Brotli compression algorithm,
         Cloudflare will serve a Brotli compressed version of the asset.
@@ -119,18 +119,18 @@ class Brotli(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingBrotli]], ResultWrapper[ZoneSettingBrotli]),
+            cast_to=cast(Type[Optional[Brotli]], ResultWrapper[Brotli]),
         )
 
 
-class AsyncBrotli(AsyncAPIResource):
+class AsyncBrotliResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncBrotliWithRawResponse:
-        return AsyncBrotliWithRawResponse(self)
+    def with_raw_response(self) -> AsyncBrotliResourceWithRawResponse:
+        return AsyncBrotliResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncBrotliWithStreamingResponse:
-        return AsyncBrotliWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncBrotliResourceWithStreamingResponse:
+        return AsyncBrotliResourceWithStreamingResponse(self)
 
     async def edit(
         self,
@@ -143,7 +143,7 @@ class AsyncBrotli(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingBrotli]:
+    ) -> Optional[Brotli]:
         """
         When the client requesting an asset supports the Brotli compression algorithm,
         Cloudflare will serve a Brotli compressed version of the asset.
@@ -173,7 +173,7 @@ class AsyncBrotli(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingBrotli]], ResultWrapper[ZoneSettingBrotli]),
+            cast_to=cast(Type[Optional[Brotli]], ResultWrapper[Brotli]),
         )
 
     async def get(
@@ -186,7 +186,7 @@ class AsyncBrotli(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingBrotli]:
+    ) -> Optional[Brotli]:
         """
         When the client requesting an asset supports the Brotli compression algorithm,
         Cloudflare will serve a Brotli compressed version of the asset.
@@ -213,12 +213,12 @@ class AsyncBrotli(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingBrotli]], ResultWrapper[ZoneSettingBrotli]),
+            cast_to=cast(Type[Optional[Brotli]], ResultWrapper[Brotli]),
         )
 
 
-class BrotliWithRawResponse:
-    def __init__(self, brotli: Brotli) -> None:
+class BrotliResourceWithRawResponse:
+    def __init__(self, brotli: BrotliResource) -> None:
         self._brotli = brotli
 
         self.edit = to_raw_response_wrapper(
@@ -229,8 +229,8 @@ class BrotliWithRawResponse:
         )
 
 
-class AsyncBrotliWithRawResponse:
-    def __init__(self, brotli: AsyncBrotli) -> None:
+class AsyncBrotliResourceWithRawResponse:
+    def __init__(self, brotli: AsyncBrotliResource) -> None:
         self._brotli = brotli
 
         self.edit = async_to_raw_response_wrapper(
@@ -241,8 +241,8 @@ class AsyncBrotliWithRawResponse:
         )
 
 
-class BrotliWithStreamingResponse:
-    def __init__(self, brotli: Brotli) -> None:
+class BrotliResourceWithStreamingResponse:
+    def __init__(self, brotli: BrotliResource) -> None:
         self._brotli = brotli
 
         self.edit = to_streamed_response_wrapper(
@@ -253,8 +253,8 @@ class BrotliWithStreamingResponse:
         )
 
 
-class AsyncBrotliWithStreamingResponse:
-    def __init__(self, brotli: AsyncBrotli) -> None:
+class AsyncBrotliResourceWithStreamingResponse:
+    def __init__(self, brotli: AsyncBrotliResource) -> None:
         self._brotli = brotli
 
         self.edit = async_to_streamed_response_wrapper(
