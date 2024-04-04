@@ -6,6 +6,7 @@ from typing import Type, cast
 
 import httpx
 
+from ....types import shared_params
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._utils import (
     maybe_transform,
@@ -42,7 +43,7 @@ class Logging(SyncAPIResource):
         *,
         account_id: str,
         redact_pii: bool | NotGiven = NOT_GIVEN,
-        settings_by_rule_type: logging_update_params.SettingsByRuleType | NotGiven = NOT_GIVEN,
+        settings_by_rule_type: shared_params.UnnamedSchemaRef28 | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -146,7 +147,7 @@ class AsyncLogging(AsyncAPIResource):
         *,
         account_id: str,
         redact_pii: bool | NotGiven = NOT_GIVEN,
-        settings_by_rule_type: logging_update_params.SettingsByRuleType | NotGiven = NOT_GIVEN,
+        settings_by_rule_type: shared_params.UnnamedSchemaRef28 | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

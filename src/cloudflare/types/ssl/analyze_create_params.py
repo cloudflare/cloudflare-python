@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Required, TypedDict
+
+from ..shared import UnnamedSchemaRef78
 
 __all__ = ["AnalyzeCreateParams"]
 
@@ -11,7 +13,7 @@ class AnalyzeCreateParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
-    bundle_method: Literal["ubiquitous", "optimal", "force"]
+    bundle_method: UnnamedSchemaRef78
     """
     A ubiquitous bundle has the highest probability of being verified everywhere,
     even by clients using outdated or unusual trust stores. An optimal bundle uses

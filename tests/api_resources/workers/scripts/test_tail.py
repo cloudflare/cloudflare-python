@@ -9,11 +9,8 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.workers.scripts import (
-    TailGetResponse,
-    TailCreateResponse,
-    TailDeleteResponse,
-)
+from cloudflare.types.shared import UnnamedSchemaRef171
+from cloudflare.types.workers.scripts import TailGetResponse, TailCreateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -87,7 +84,7 @@ class TestTail:
             script_name="this-is_my_script-01",
             body={},
         )
-        assert_matches_type(TailDeleteResponse, tail, path=["response"])
+        assert_matches_type(UnnamedSchemaRef171, tail, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -102,7 +99,7 @@ class TestTail:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tail = response.parse()
-        assert_matches_type(TailDeleteResponse, tail, path=["response"])
+        assert_matches_type(UnnamedSchemaRef171, tail, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -117,7 +114,7 @@ class TestTail:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tail = response.parse()
-            assert_matches_type(TailDeleteResponse, tail, path=["response"])
+            assert_matches_type(UnnamedSchemaRef171, tail, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -270,7 +267,7 @@ class TestAsyncTail:
             script_name="this-is_my_script-01",
             body={},
         )
-        assert_matches_type(TailDeleteResponse, tail, path=["response"])
+        assert_matches_type(UnnamedSchemaRef171, tail, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -285,7 +282,7 @@ class TestAsyncTail:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tail = await response.parse()
-        assert_matches_type(TailDeleteResponse, tail, path=["response"])
+        assert_matches_type(UnnamedSchemaRef171, tail, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -300,7 +297,7 @@ class TestAsyncTail:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tail = await response.parse()
-            assert_matches_type(TailDeleteResponse, tail, path=["response"])
+            assert_matches_type(UnnamedSchemaRef171, tail, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

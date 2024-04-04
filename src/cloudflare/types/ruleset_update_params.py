@@ -5,25 +5,23 @@ from __future__ import annotations
 from typing import Dict, List, Union, Iterable
 from typing_extensions import Literal, Required, TypedDict
 
+from ..types import shared_params
+
 __all__ = [
     "RulesetUpdateParams",
     "Rule",
     "RuleRulesetsBlockRule",
     "RuleRulesetsBlockRuleActionParameters",
     "RuleRulesetsBlockRuleActionParametersResponse",
-    "RuleRulesetsBlockRuleLogging",
     "RuleRulesetsExecuteRule",
     "RuleRulesetsExecuteRuleActionParameters",
     "RuleRulesetsExecuteRuleActionParametersMatchedData",
     "RuleRulesetsExecuteRuleActionParametersOverrides",
     "RuleRulesetsExecuteRuleActionParametersOverridesCategory",
     "RuleRulesetsExecuteRuleActionParametersOverridesRule",
-    "RuleRulesetsExecuteRuleLogging",
     "RuleRulesetsLogRule",
-    "RuleRulesetsLogRuleLogging",
     "RuleRulesetsSkipRule",
     "RuleRulesetsSkipRuleActionParameters",
-    "RuleRulesetsSkipRuleLogging",
 ]
 
 
@@ -90,11 +88,6 @@ class RuleRulesetsBlockRuleActionParameters(TypedDict, total=False):
     """The response to show when the block is applied."""
 
 
-class RuleRulesetsBlockRuleLogging(TypedDict, total=False):
-    enabled: Required[bool]
-    """Whether to generate a log when the rule matches."""
-
-
 class RuleRulesetsBlockRule(TypedDict, total=False):
     id: str
     """The unique ID of the rule."""
@@ -114,7 +107,7 @@ class RuleRulesetsBlockRule(TypedDict, total=False):
     expression: str
     """The expression defining which traffic will match the rule."""
 
-    logging: RuleRulesetsBlockRuleLogging
+    logging: shared_params.Logging
     """An object configuring the rule's logging behavior."""
 
     ref: str
@@ -198,11 +191,6 @@ class RuleRulesetsExecuteRuleActionParameters(TypedDict, total=False):
     """A set of overrides to apply to the target ruleset."""
 
 
-class RuleRulesetsExecuteRuleLogging(TypedDict, total=False):
-    enabled: Required[bool]
-    """Whether to generate a log when the rule matches."""
-
-
 class RuleRulesetsExecuteRule(TypedDict, total=False):
     id: str
     """The unique ID of the rule."""
@@ -222,16 +210,11 @@ class RuleRulesetsExecuteRule(TypedDict, total=False):
     expression: str
     """The expression defining which traffic will match the rule."""
 
-    logging: RuleRulesetsExecuteRuleLogging
+    logging: shared_params.Logging
     """An object configuring the rule's logging behavior."""
 
     ref: str
     """The reference of the rule (the rule ID by default)."""
-
-
-class RuleRulesetsLogRuleLogging(TypedDict, total=False):
-    enabled: Required[bool]
-    """Whether to generate a log when the rule matches."""
 
 
 class RuleRulesetsLogRule(TypedDict, total=False):
@@ -253,7 +236,7 @@ class RuleRulesetsLogRule(TypedDict, total=False):
     expression: str
     """The expression defining which traffic will match the rule."""
 
-    logging: RuleRulesetsLogRuleLogging
+    logging: shared_params.Logging
     """An object configuring the rule's logging behavior."""
 
     ref: str
@@ -315,11 +298,6 @@ class RuleRulesetsSkipRuleActionParameters(TypedDict, total=False):
     """
 
 
-class RuleRulesetsSkipRuleLogging(TypedDict, total=False):
-    enabled: Required[bool]
-    """Whether to generate a log when the rule matches."""
-
-
 class RuleRulesetsSkipRule(TypedDict, total=False):
     id: str
     """The unique ID of the rule."""
@@ -339,7 +317,7 @@ class RuleRulesetsSkipRule(TypedDict, total=False):
     expression: str
     """The expression defining which traffic will match the rule."""
 
-    logging: RuleRulesetsSkipRuleLogging
+    logging: shared_params.Logging
     """An object configuring the rule's logging behavior."""
 
     ref: str

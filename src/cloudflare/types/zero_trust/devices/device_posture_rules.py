@@ -5,6 +5,7 @@ from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
 
+from ...shared import UnnamedSchemaRef87, UnnamedSchemaRef88, UnnamedSchemaRef119
 from ...._models import BaseModel
 
 __all__ = [
@@ -31,7 +32,7 @@ __all__ = [
 
 
 class InputTeamsDevicesFileInputRequest(BaseModel):
-    operating_system: Literal["windows", "linux", "mac"]
+    operating_system: UnnamedSchemaRef119
     """Operating system"""
 
     path: str
@@ -96,7 +97,7 @@ class InputTeamsDevicesFirewallInputRequest(BaseModel):
 
 
 class InputTeamsDevicesSentineloneInputRequest(BaseModel):
-    operating_system: Literal["windows", "linux", "mac"]
+    operating_system: UnnamedSchemaRef119
     """Operating system"""
 
     path: str
@@ -110,7 +111,7 @@ class InputTeamsDevicesSentineloneInputRequest(BaseModel):
 
 
 class InputTeamsDevicesCarbonblackInputRequest(BaseModel):
-    operating_system: Literal["windows", "linux", "mac"]
+    operating_system: UnnamedSchemaRef119
     """Operating system"""
 
     path: str
@@ -132,7 +133,7 @@ class InputTeamsDevicesDiskEncryptionInputRequest(BaseModel):
 
 
 class InputTeamsDevicesApplicationInputRequest(BaseModel):
-    operating_system: Literal["windows", "linux", "mac"]
+    operating_system: UnnamedSchemaRef119
     """Operating system"""
 
     path: str
@@ -168,7 +169,7 @@ class InputTeamsDevicesCrowdstrikeInputRequest(BaseModel):
     last_seen: Optional[str] = None
     """For more details on last seen, please refer to the Crowdstrike documentation."""
 
-    operator: Optional[Literal["<", "<=", ">", ">=", "=="]] = None
+    operator: Optional[UnnamedSchemaRef87] = None
     """Operator"""
 
     os: Optional[str] = None
@@ -186,7 +187,7 @@ class InputTeamsDevicesCrowdstrikeInputRequest(BaseModel):
     version: Optional[str] = None
     """Version"""
 
-    version_operator: Optional[Literal["<", "<=", ">", ">=", "=="]] = FieldInfo(alias="versionOperator", default=None)
+    version_operator: Optional[UnnamedSchemaRef88] = FieldInfo(alias="versionOperator", default=None)
     """Version Operator"""
 
 

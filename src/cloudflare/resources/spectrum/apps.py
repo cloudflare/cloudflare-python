@@ -26,8 +26,8 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from ...types.shared import UnnamedSchemaRef173
 from ...types.spectrum import (
-    AppGetResponse,
     AppCreateResponse,
     AppDeleteResponse,
     AppUpdateResponse,
@@ -371,7 +371,7 @@ class Apps(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AppGetResponse]:
+    ) -> Optional[UnnamedSchemaRef173]:
         """
         Gets the application configuration of a specific application inside a zone.
 
@@ -393,7 +393,7 @@ class Apps(SyncAPIResource):
         if not app_id:
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         return cast(
-            Optional[AppGetResponse],
+            Optional[UnnamedSchemaRef173],
             self._get(
                 f"/zones/{zone}/spectrum/apps/{app_id}",
                 options=make_request_options(
@@ -404,7 +404,7 @@ class Apps(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[AppGetResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef173]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -741,7 +741,7 @@ class AsyncApps(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AppGetResponse]:
+    ) -> Optional[UnnamedSchemaRef173]:
         """
         Gets the application configuration of a specific application inside a zone.
 
@@ -763,7 +763,7 @@ class AsyncApps(AsyncAPIResource):
         if not app_id:
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         return cast(
-            Optional[AppGetResponse],
+            Optional[UnnamedSchemaRef173],
             await self._get(
                 f"/zones/{zone}/spectrum/apps/{app_id}",
                 options=make_request_options(
@@ -774,7 +774,7 @@ class AsyncApps(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[AppGetResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef173]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

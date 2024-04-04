@@ -2,8 +2,8 @@
 
 from typing import List, Optional
 from datetime import datetime
-from typing_extensions import Literal
 
+from ..shared import UnnamedSchemaRef83, UnnamedSchemaRef84
 from ..._models import BaseModel
 
 __all__ = ["IPSECTunnelCreateResponse", "IPSECTunnel", "IPSECTunnelPSKMetadata", "IPSECTunnelTunnelHealthCheck"]
@@ -18,7 +18,7 @@ class IPSECTunnelTunnelHealthCheck(BaseModel):
     enabled: Optional[bool] = None
     """Determines whether to run healthchecks for a tunnel."""
 
-    rate: Optional[Literal["low", "mid", "high"]] = None
+    rate: Optional[UnnamedSchemaRef83] = None
     """How frequent the health check is run. The default value is `mid`."""
 
     target: Optional[str] = None
@@ -29,7 +29,7 @@ class IPSECTunnelTunnelHealthCheck(BaseModel):
     `customer_gre_endpoint address`.
     """
 
-    type: Optional[Literal["reply", "request"]] = None
+    type: Optional[UnnamedSchemaRef84] = None
     """The type of healthcheck to run, reply or request. The default value is `reply`."""
 
 

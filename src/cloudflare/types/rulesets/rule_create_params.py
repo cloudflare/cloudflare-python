@@ -5,24 +5,22 @@ from __future__ import annotations
 from typing import Dict, List, Union, Iterable
 from typing_extensions import Literal, Required, TypedDict
 
+from ...types import shared_params
+
 __all__ = [
     "RuleCreateParams",
     "RulesetsBlockRule",
     "RulesetsBlockRuleActionParameters",
     "RulesetsBlockRuleActionParametersResponse",
-    "RulesetsBlockRuleLogging",
     "RulesetsExecuteRule",
     "RulesetsExecuteRuleActionParameters",
     "RulesetsExecuteRuleActionParametersMatchedData",
     "RulesetsExecuteRuleActionParametersOverrides",
     "RulesetsExecuteRuleActionParametersOverridesCategory",
     "RulesetsExecuteRuleActionParametersOverridesRule",
-    "RulesetsExecuteRuleLogging",
     "RulesetsLogRule",
-    "RulesetsLogRuleLogging",
     "RulesetsSkipRule",
     "RulesetsSkipRuleActionParameters",
-    "RulesetsSkipRuleLogging",
 ]
 
 
@@ -51,7 +49,7 @@ class RulesetsBlockRule(TypedDict, total=False):
     expression: str
     """The expression defining which traffic will match the rule."""
 
-    logging: RulesetsBlockRuleLogging
+    logging: shared_params.Logging
     """An object configuring the rule's logging behavior."""
 
     ref: str
@@ -72,11 +70,6 @@ class RulesetsBlockRuleActionParametersResponse(TypedDict, total=False):
 class RulesetsBlockRuleActionParameters(TypedDict, total=False):
     response: RulesetsBlockRuleActionParametersResponse
     """The response to show when the block is applied."""
-
-
-class RulesetsBlockRuleLogging(TypedDict, total=False):
-    enabled: Required[bool]
-    """Whether to generate a log when the rule matches."""
 
 
 class RulesetsExecuteRule(TypedDict, total=False):
@@ -104,7 +97,7 @@ class RulesetsExecuteRule(TypedDict, total=False):
     expression: str
     """The expression defining which traffic will match the rule."""
 
-    logging: RulesetsExecuteRuleLogging
+    logging: shared_params.Logging
     """An object configuring the rule's logging behavior."""
 
     ref: str
@@ -188,11 +181,6 @@ class RulesetsExecuteRuleActionParameters(TypedDict, total=False):
     """A set of overrides to apply to the target ruleset."""
 
 
-class RulesetsExecuteRuleLogging(TypedDict, total=False):
-    enabled: Required[bool]
-    """Whether to generate a log when the rule matches."""
-
-
 class RulesetsLogRule(TypedDict, total=False):
     account_id: str
     """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
@@ -218,16 +206,11 @@ class RulesetsLogRule(TypedDict, total=False):
     expression: str
     """The expression defining which traffic will match the rule."""
 
-    logging: RulesetsLogRuleLogging
+    logging: shared_params.Logging
     """An object configuring the rule's logging behavior."""
 
     ref: str
     """The reference of the rule (the rule ID by default)."""
-
-
-class RulesetsLogRuleLogging(TypedDict, total=False):
-    enabled: Required[bool]
-    """Whether to generate a log when the rule matches."""
 
 
 class RulesetsSkipRule(TypedDict, total=False):
@@ -255,7 +238,7 @@ class RulesetsSkipRule(TypedDict, total=False):
     expression: str
     """The expression defining which traffic will match the rule."""
 
-    logging: RulesetsSkipRuleLogging
+    logging: shared_params.Logging
     """An object configuring the rule's logging behavior."""
 
     ref: str
@@ -315,11 +298,6 @@ class RulesetsSkipRuleActionParameters(TypedDict, total=False):
 
     This option is incompatible with the ruleset and phases options.
     """
-
-
-class RulesetsSkipRuleLogging(TypedDict, total=False):
-    enabled: Required[bool]
-    """Whether to generate a log when the rule matches."""
 
 
 RuleCreateParams = Union[RulesetsBlockRule, RulesetsExecuteRule, RulesetsLogRule, RulesetsSkipRule]

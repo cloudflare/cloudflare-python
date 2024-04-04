@@ -23,7 +23,7 @@ from ..._wrappers import ResultWrapper
 from ...types.zones import (
     HoldGetResponse,
     HoldCreateResponse,
-    HoldDeleteResponse,
+    UnnamedSchemaRef64,
     hold_create_params,
     hold_delete_params,
 )
@@ -101,7 +101,7 @@ class Holds(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[HoldDeleteResponse]:
+    ) -> Optional[UnnamedSchemaRef64]:
         """
         Stop enforcement of a zone hold on the zone, permanently or temporarily,
         allowing the creation and activation of zones with this zone's hostname.
@@ -133,7 +133,7 @@ class Holds(SyncAPIResource):
                 query=maybe_transform({"hold_after": hold_after}, hold_delete_params.HoldDeleteParams),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[HoldDeleteResponse]], ResultWrapper[HoldDeleteResponse]),
+            cast_to=cast(Type[Optional[UnnamedSchemaRef64]], ResultWrapper[UnnamedSchemaRef64]),
         )
 
     def get(
@@ -246,7 +246,7 @@ class AsyncHolds(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[HoldDeleteResponse]:
+    ) -> Optional[UnnamedSchemaRef64]:
         """
         Stop enforcement of a zone hold on the zone, permanently or temporarily,
         allowing the creation and activation of zones with this zone's hostname.
@@ -278,7 +278,7 @@ class AsyncHolds(AsyncAPIResource):
                 query=await async_maybe_transform({"hold_after": hold_after}, hold_delete_params.HoldDeleteParams),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[HoldDeleteResponse]], ResultWrapper[HoldDeleteResponse]),
+            cast_to=cast(Type[Optional[UnnamedSchemaRef64]], ResultWrapper[UnnamedSchemaRef64]),
         )
 
     async def get(

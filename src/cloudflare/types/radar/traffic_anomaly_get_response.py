@@ -5,20 +5,9 @@ from typing import List, Optional
 from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
+from ..unnamed_schema_ref_106 import UnnamedSchemaRef106
 
-__all__ = [
-    "TrafficAnomalyGetResponse",
-    "TrafficAnomaly",
-    "TrafficAnomalyASNDetails",
-    "TrafficAnomalyASNDetailsLocations",
-    "TrafficAnomalyLocationDetails",
-]
-
-
-class TrafficAnomalyASNDetailsLocations(BaseModel):
-    code: str
-
-    name: str
+__all__ = ["TrafficAnomalyGetResponse", "TrafficAnomaly", "TrafficAnomalyASNDetails"]
 
 
 class TrafficAnomalyASNDetails(BaseModel):
@@ -26,13 +15,7 @@ class TrafficAnomalyASNDetails(BaseModel):
 
     name: str
 
-    locations: Optional[TrafficAnomalyASNDetailsLocations] = None
-
-
-class TrafficAnomalyLocationDetails(BaseModel):
-    code: str
-
-    name: str
+    locations: Optional[UnnamedSchemaRef106] = None
 
 
 class TrafficAnomaly(BaseModel):
@@ -48,7 +31,7 @@ class TrafficAnomaly(BaseModel):
 
     end_date: Optional[str] = FieldInfo(alias="endDate", default=None)
 
-    location_details: Optional[TrafficAnomalyLocationDetails] = FieldInfo(alias="locationDetails", default=None)
+    location_details: Optional[UnnamedSchemaRef106] = FieldInfo(alias="locationDetails", default=None)
 
     visible_in_data_sources: Optional[List[str]] = FieldInfo(alias="visibleInDataSources", default=None)
 

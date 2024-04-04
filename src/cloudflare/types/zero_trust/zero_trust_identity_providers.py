@@ -3,52 +3,39 @@
 from typing import List, Union, Optional
 from typing_extensions import Literal
 
+from ..shared import UnnamedSchemaRef158, UnnamedSchemaRef163
 from ..._models import BaseModel
 
 __all__ = [
     "ZeroTrustIdentityProviders",
     "AccessAzureAd",
     "AccessAzureAdConfig",
-    "AccessAzureAdScimConfig",
     "AccessCentrify",
     "AccessCentrifyConfig",
-    "AccessCentrifyScimConfig",
     "AccessFacebook",
     "AccessFacebookConfig",
-    "AccessFacebookScimConfig",
     "AccessGitHub",
     "AccessGitHubConfig",
-    "AccessGitHubScimConfig",
     "AccessGoogle",
     "AccessGoogleConfig",
-    "AccessGoogleScimConfig",
     "AccessGoogleApps",
     "AccessGoogleAppsConfig",
-    "AccessGoogleAppsScimConfig",
     "AccessLinkedin",
     "AccessLinkedinConfig",
-    "AccessLinkedinScimConfig",
     "AccessOidc",
     "AccessOidcConfig",
-    "AccessOidcScimConfig",
     "AccessOkta",
     "AccessOktaConfig",
-    "AccessOktaScimConfig",
     "AccessOnelogin",
     "AccessOneloginConfig",
-    "AccessOneloginScimConfig",
     "AccessPingone",
     "AccessPingoneConfig",
-    "AccessPingoneScimConfig",
     "AccessSaml",
     "AccessSamlConfig",
     "AccessSamlConfigHeaderAttribute",
-    "AccessSamlScimConfig",
     "AccessYandex",
     "AccessYandexConfig",
-    "AccessYandexScimConfig",
     "AccessOnetimepin",
-    "AccessOnetimepinScimConfig",
 ]
 
 
@@ -88,38 +75,6 @@ class AccessAzureAdConfig(BaseModel):
     """Should Cloudflare try to load groups from your account"""
 
 
-class AccessAzureAdScimConfig(BaseModel):
-    enabled: Optional[bool] = None
-    """A flag to enable or disable SCIM for the identity provider."""
-
-    group_member_deprovision: Optional[bool] = None
-    """
-    A flag to revoke a user's session in Access and force a reauthentication on the
-    user's Gateway session when they have been added or removed from a group in the
-    Identity Provider.
-    """
-
-    seat_deprovision: Optional[bool] = None
-    """
-    A flag to remove a user's seat in Zero Trust when they have been deprovisioned
-    in the Identity Provider. This cannot be enabled unless user_deprovision is also
-    enabled.
-    """
-
-    secret: Optional[str] = None
-    """
-    A read-only token generated when the SCIM integration is enabled for the first
-    time. It is redacted on subsequent requests. If you lose this you will need to
-    refresh it token at /access/identity_providers/:idpID/refresh_scim_secret.
-    """
-
-    user_deprovision: Optional[bool] = None
-    """
-    A flag to enable revoking a user's session in Access and Gateway when they have
-    been deprovisioned in the Identity Provider.
-    """
-
-
 class AccessAzureAd(BaseModel):
     config: AccessAzureAdConfig
     """The configuration parameters for the identity provider.
@@ -131,22 +86,7 @@ class AccessAzureAd(BaseModel):
     name: str
     """The name of the identity provider, shown to users on the login page."""
 
-    type: Literal[
-        "onetimepin",
-        "azureAD",
-        "saml",
-        "centrify",
-        "facebook",
-        "github",
-        "google-apps",
-        "google",
-        "linkedin",
-        "oidc",
-        "okta",
-        "onelogin",
-        "pingone",
-        "yandex",
-    ]
+    type: UnnamedSchemaRef163
     """The type of identity provider.
 
     To determine the value for a specific provider, refer to our
@@ -156,7 +96,7 @@ class AccessAzureAd(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[AccessAzureAdScimConfig] = None
+    scim_config: Optional[UnnamedSchemaRef158] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -183,38 +123,6 @@ class AccessCentrifyConfig(BaseModel):
     """The claim name for email in the id_token response."""
 
 
-class AccessCentrifyScimConfig(BaseModel):
-    enabled: Optional[bool] = None
-    """A flag to enable or disable SCIM for the identity provider."""
-
-    group_member_deprovision: Optional[bool] = None
-    """
-    A flag to revoke a user's session in Access and force a reauthentication on the
-    user's Gateway session when they have been added or removed from a group in the
-    Identity Provider.
-    """
-
-    seat_deprovision: Optional[bool] = None
-    """
-    A flag to remove a user's seat in Zero Trust when they have been deprovisioned
-    in the Identity Provider. This cannot be enabled unless user_deprovision is also
-    enabled.
-    """
-
-    secret: Optional[str] = None
-    """
-    A read-only token generated when the SCIM integration is enabled for the first
-    time. It is redacted on subsequent requests. If you lose this you will need to
-    refresh it token at /access/identity_providers/:idpID/refresh_scim_secret.
-    """
-
-    user_deprovision: Optional[bool] = None
-    """
-    A flag to enable revoking a user's session in Access and Gateway when they have
-    been deprovisioned in the Identity Provider.
-    """
-
-
 class AccessCentrify(BaseModel):
     config: AccessCentrifyConfig
     """The configuration parameters for the identity provider.
@@ -226,22 +134,7 @@ class AccessCentrify(BaseModel):
     name: str
     """The name of the identity provider, shown to users on the login page."""
 
-    type: Literal[
-        "onetimepin",
-        "azureAD",
-        "saml",
-        "centrify",
-        "facebook",
-        "github",
-        "google-apps",
-        "google",
-        "linkedin",
-        "oidc",
-        "okta",
-        "onelogin",
-        "pingone",
-        "yandex",
-    ]
+    type: UnnamedSchemaRef163
     """The type of identity provider.
 
     To determine the value for a specific provider, refer to our
@@ -251,7 +144,7 @@ class AccessCentrify(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[AccessCentrifyScimConfig] = None
+    scim_config: Optional[UnnamedSchemaRef158] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -266,38 +159,6 @@ class AccessFacebookConfig(BaseModel):
     """Your OAuth Client Secret"""
 
 
-class AccessFacebookScimConfig(BaseModel):
-    enabled: Optional[bool] = None
-    """A flag to enable or disable SCIM for the identity provider."""
-
-    group_member_deprovision: Optional[bool] = None
-    """
-    A flag to revoke a user's session in Access and force a reauthentication on the
-    user's Gateway session when they have been added or removed from a group in the
-    Identity Provider.
-    """
-
-    seat_deprovision: Optional[bool] = None
-    """
-    A flag to remove a user's seat in Zero Trust when they have been deprovisioned
-    in the Identity Provider. This cannot be enabled unless user_deprovision is also
-    enabled.
-    """
-
-    secret: Optional[str] = None
-    """
-    A read-only token generated when the SCIM integration is enabled for the first
-    time. It is redacted on subsequent requests. If you lose this you will need to
-    refresh it token at /access/identity_providers/:idpID/refresh_scim_secret.
-    """
-
-    user_deprovision: Optional[bool] = None
-    """
-    A flag to enable revoking a user's session in Access and Gateway when they have
-    been deprovisioned in the Identity Provider.
-    """
-
-
 class AccessFacebook(BaseModel):
     config: AccessFacebookConfig
     """The configuration parameters for the identity provider.
@@ -309,22 +170,7 @@ class AccessFacebook(BaseModel):
     name: str
     """The name of the identity provider, shown to users on the login page."""
 
-    type: Literal[
-        "onetimepin",
-        "azureAD",
-        "saml",
-        "centrify",
-        "facebook",
-        "github",
-        "google-apps",
-        "google",
-        "linkedin",
-        "oidc",
-        "okta",
-        "onelogin",
-        "pingone",
-        "yandex",
-    ]
+    type: UnnamedSchemaRef163
     """The type of identity provider.
 
     To determine the value for a specific provider, refer to our
@@ -334,7 +180,7 @@ class AccessFacebook(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[AccessFacebookScimConfig] = None
+    scim_config: Optional[UnnamedSchemaRef158] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -349,38 +195,6 @@ class AccessGitHubConfig(BaseModel):
     """Your OAuth Client Secret"""
 
 
-class AccessGitHubScimConfig(BaseModel):
-    enabled: Optional[bool] = None
-    """A flag to enable or disable SCIM for the identity provider."""
-
-    group_member_deprovision: Optional[bool] = None
-    """
-    A flag to revoke a user's session in Access and force a reauthentication on the
-    user's Gateway session when they have been added or removed from a group in the
-    Identity Provider.
-    """
-
-    seat_deprovision: Optional[bool] = None
-    """
-    A flag to remove a user's seat in Zero Trust when they have been deprovisioned
-    in the Identity Provider. This cannot be enabled unless user_deprovision is also
-    enabled.
-    """
-
-    secret: Optional[str] = None
-    """
-    A read-only token generated when the SCIM integration is enabled for the first
-    time. It is redacted on subsequent requests. If you lose this you will need to
-    refresh it token at /access/identity_providers/:idpID/refresh_scim_secret.
-    """
-
-    user_deprovision: Optional[bool] = None
-    """
-    A flag to enable revoking a user's session in Access and Gateway when they have
-    been deprovisioned in the Identity Provider.
-    """
-
-
 class AccessGitHub(BaseModel):
     config: AccessGitHubConfig
     """The configuration parameters for the identity provider.
@@ -392,22 +206,7 @@ class AccessGitHub(BaseModel):
     name: str
     """The name of the identity provider, shown to users on the login page."""
 
-    type: Literal[
-        "onetimepin",
-        "azureAD",
-        "saml",
-        "centrify",
-        "facebook",
-        "github",
-        "google-apps",
-        "google",
-        "linkedin",
-        "oidc",
-        "okta",
-        "onelogin",
-        "pingone",
-        "yandex",
-    ]
+    type: UnnamedSchemaRef163
     """The type of identity provider.
 
     To determine the value for a specific provider, refer to our
@@ -417,7 +216,7 @@ class AccessGitHub(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[AccessGitHubScimConfig] = None
+    scim_config: Optional[UnnamedSchemaRef158] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -438,38 +237,6 @@ class AccessGoogleConfig(BaseModel):
     """The claim name for email in the id_token response."""
 
 
-class AccessGoogleScimConfig(BaseModel):
-    enabled: Optional[bool] = None
-    """A flag to enable or disable SCIM for the identity provider."""
-
-    group_member_deprovision: Optional[bool] = None
-    """
-    A flag to revoke a user's session in Access and force a reauthentication on the
-    user's Gateway session when they have been added or removed from a group in the
-    Identity Provider.
-    """
-
-    seat_deprovision: Optional[bool] = None
-    """
-    A flag to remove a user's seat in Zero Trust when they have been deprovisioned
-    in the Identity Provider. This cannot be enabled unless user_deprovision is also
-    enabled.
-    """
-
-    secret: Optional[str] = None
-    """
-    A read-only token generated when the SCIM integration is enabled for the first
-    time. It is redacted on subsequent requests. If you lose this you will need to
-    refresh it token at /access/identity_providers/:idpID/refresh_scim_secret.
-    """
-
-    user_deprovision: Optional[bool] = None
-    """
-    A flag to enable revoking a user's session in Access and Gateway when they have
-    been deprovisioned in the Identity Provider.
-    """
-
-
 class AccessGoogle(BaseModel):
     config: AccessGoogleConfig
     """The configuration parameters for the identity provider.
@@ -481,22 +248,7 @@ class AccessGoogle(BaseModel):
     name: str
     """The name of the identity provider, shown to users on the login page."""
 
-    type: Literal[
-        "onetimepin",
-        "azureAD",
-        "saml",
-        "centrify",
-        "facebook",
-        "github",
-        "google-apps",
-        "google",
-        "linkedin",
-        "oidc",
-        "okta",
-        "onelogin",
-        "pingone",
-        "yandex",
-    ]
+    type: UnnamedSchemaRef163
     """The type of identity provider.
 
     To determine the value for a specific provider, refer to our
@@ -506,7 +258,7 @@ class AccessGoogle(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[AccessGoogleScimConfig] = None
+    scim_config: Optional[UnnamedSchemaRef158] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -530,38 +282,6 @@ class AccessGoogleAppsConfig(BaseModel):
     """The claim name for email in the id_token response."""
 
 
-class AccessGoogleAppsScimConfig(BaseModel):
-    enabled: Optional[bool] = None
-    """A flag to enable or disable SCIM for the identity provider."""
-
-    group_member_deprovision: Optional[bool] = None
-    """
-    A flag to revoke a user's session in Access and force a reauthentication on the
-    user's Gateway session when they have been added or removed from a group in the
-    Identity Provider.
-    """
-
-    seat_deprovision: Optional[bool] = None
-    """
-    A flag to remove a user's seat in Zero Trust when they have been deprovisioned
-    in the Identity Provider. This cannot be enabled unless user_deprovision is also
-    enabled.
-    """
-
-    secret: Optional[str] = None
-    """
-    A read-only token generated when the SCIM integration is enabled for the first
-    time. It is redacted on subsequent requests. If you lose this you will need to
-    refresh it token at /access/identity_providers/:idpID/refresh_scim_secret.
-    """
-
-    user_deprovision: Optional[bool] = None
-    """
-    A flag to enable revoking a user's session in Access and Gateway when they have
-    been deprovisioned in the Identity Provider.
-    """
-
-
 class AccessGoogleApps(BaseModel):
     config: AccessGoogleAppsConfig
     """The configuration parameters for the identity provider.
@@ -573,22 +293,7 @@ class AccessGoogleApps(BaseModel):
     name: str
     """The name of the identity provider, shown to users on the login page."""
 
-    type: Literal[
-        "onetimepin",
-        "azureAD",
-        "saml",
-        "centrify",
-        "facebook",
-        "github",
-        "google-apps",
-        "google",
-        "linkedin",
-        "oidc",
-        "okta",
-        "onelogin",
-        "pingone",
-        "yandex",
-    ]
+    type: UnnamedSchemaRef163
     """The type of identity provider.
 
     To determine the value for a specific provider, refer to our
@@ -598,7 +303,7 @@ class AccessGoogleApps(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[AccessGoogleAppsScimConfig] = None
+    scim_config: Optional[UnnamedSchemaRef158] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -613,38 +318,6 @@ class AccessLinkedinConfig(BaseModel):
     """Your OAuth Client Secret"""
 
 
-class AccessLinkedinScimConfig(BaseModel):
-    enabled: Optional[bool] = None
-    """A flag to enable or disable SCIM for the identity provider."""
-
-    group_member_deprovision: Optional[bool] = None
-    """
-    A flag to revoke a user's session in Access and force a reauthentication on the
-    user's Gateway session when they have been added or removed from a group in the
-    Identity Provider.
-    """
-
-    seat_deprovision: Optional[bool] = None
-    """
-    A flag to remove a user's seat in Zero Trust when they have been deprovisioned
-    in the Identity Provider. This cannot be enabled unless user_deprovision is also
-    enabled.
-    """
-
-    secret: Optional[str] = None
-    """
-    A read-only token generated when the SCIM integration is enabled for the first
-    time. It is redacted on subsequent requests. If you lose this you will need to
-    refresh it token at /access/identity_providers/:idpID/refresh_scim_secret.
-    """
-
-    user_deprovision: Optional[bool] = None
-    """
-    A flag to enable revoking a user's session in Access and Gateway when they have
-    been deprovisioned in the Identity Provider.
-    """
-
-
 class AccessLinkedin(BaseModel):
     config: AccessLinkedinConfig
     """The configuration parameters for the identity provider.
@@ -656,22 +329,7 @@ class AccessLinkedin(BaseModel):
     name: str
     """The name of the identity provider, shown to users on the login page."""
 
-    type: Literal[
-        "onetimepin",
-        "azureAD",
-        "saml",
-        "centrify",
-        "facebook",
-        "github",
-        "google-apps",
-        "google",
-        "linkedin",
-        "oidc",
-        "okta",
-        "onelogin",
-        "pingone",
-        "yandex",
-    ]
+    type: UnnamedSchemaRef163
     """The type of identity provider.
 
     To determine the value for a specific provider, refer to our
@@ -681,7 +339,7 @@ class AccessLinkedin(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[AccessLinkedinScimConfig] = None
+    scim_config: Optional[UnnamedSchemaRef158] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -714,38 +372,6 @@ class AccessOidcConfig(BaseModel):
     """The token_endpoint URL of your IdP"""
 
 
-class AccessOidcScimConfig(BaseModel):
-    enabled: Optional[bool] = None
-    """A flag to enable or disable SCIM for the identity provider."""
-
-    group_member_deprovision: Optional[bool] = None
-    """
-    A flag to revoke a user's session in Access and force a reauthentication on the
-    user's Gateway session when they have been added or removed from a group in the
-    Identity Provider.
-    """
-
-    seat_deprovision: Optional[bool] = None
-    """
-    A flag to remove a user's seat in Zero Trust when they have been deprovisioned
-    in the Identity Provider. This cannot be enabled unless user_deprovision is also
-    enabled.
-    """
-
-    secret: Optional[str] = None
-    """
-    A read-only token generated when the SCIM integration is enabled for the first
-    time. It is redacted on subsequent requests. If you lose this you will need to
-    refresh it token at /access/identity_providers/:idpID/refresh_scim_secret.
-    """
-
-    user_deprovision: Optional[bool] = None
-    """
-    A flag to enable revoking a user's session in Access and Gateway when they have
-    been deprovisioned in the Identity Provider.
-    """
-
-
 class AccessOidc(BaseModel):
     config: AccessOidcConfig
     """The configuration parameters for the identity provider.
@@ -757,22 +383,7 @@ class AccessOidc(BaseModel):
     name: str
     """The name of the identity provider, shown to users on the login page."""
 
-    type: Literal[
-        "onetimepin",
-        "azureAD",
-        "saml",
-        "centrify",
-        "facebook",
-        "github",
-        "google-apps",
-        "google",
-        "linkedin",
-        "oidc",
-        "okta",
-        "onelogin",
-        "pingone",
-        "yandex",
-    ]
+    type: UnnamedSchemaRef163
     """The type of identity provider.
 
     To determine the value for a specific provider, refer to our
@@ -782,7 +393,7 @@ class AccessOidc(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[AccessOidcScimConfig] = None
+    scim_config: Optional[UnnamedSchemaRef158] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -809,38 +420,6 @@ class AccessOktaConfig(BaseModel):
     """Your okta account url"""
 
 
-class AccessOktaScimConfig(BaseModel):
-    enabled: Optional[bool] = None
-    """A flag to enable or disable SCIM for the identity provider."""
-
-    group_member_deprovision: Optional[bool] = None
-    """
-    A flag to revoke a user's session in Access and force a reauthentication on the
-    user's Gateway session when they have been added or removed from a group in the
-    Identity Provider.
-    """
-
-    seat_deprovision: Optional[bool] = None
-    """
-    A flag to remove a user's seat in Zero Trust when they have been deprovisioned
-    in the Identity Provider. This cannot be enabled unless user_deprovision is also
-    enabled.
-    """
-
-    secret: Optional[str] = None
-    """
-    A read-only token generated when the SCIM integration is enabled for the first
-    time. It is redacted on subsequent requests. If you lose this you will need to
-    refresh it token at /access/identity_providers/:idpID/refresh_scim_secret.
-    """
-
-    user_deprovision: Optional[bool] = None
-    """
-    A flag to enable revoking a user's session in Access and Gateway when they have
-    been deprovisioned in the Identity Provider.
-    """
-
-
 class AccessOkta(BaseModel):
     config: AccessOktaConfig
     """The configuration parameters for the identity provider.
@@ -852,22 +431,7 @@ class AccessOkta(BaseModel):
     name: str
     """The name of the identity provider, shown to users on the login page."""
 
-    type: Literal[
-        "onetimepin",
-        "azureAD",
-        "saml",
-        "centrify",
-        "facebook",
-        "github",
-        "google-apps",
-        "google",
-        "linkedin",
-        "oidc",
-        "okta",
-        "onelogin",
-        "pingone",
-        "yandex",
-    ]
+    type: UnnamedSchemaRef163
     """The type of identity provider.
 
     To determine the value for a specific provider, refer to our
@@ -877,7 +441,7 @@ class AccessOkta(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[AccessOktaScimConfig] = None
+    scim_config: Optional[UnnamedSchemaRef158] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -901,38 +465,6 @@ class AccessOneloginConfig(BaseModel):
     """Your OneLogin account url"""
 
 
-class AccessOneloginScimConfig(BaseModel):
-    enabled: Optional[bool] = None
-    """A flag to enable or disable SCIM for the identity provider."""
-
-    group_member_deprovision: Optional[bool] = None
-    """
-    A flag to revoke a user's session in Access and force a reauthentication on the
-    user's Gateway session when they have been added or removed from a group in the
-    Identity Provider.
-    """
-
-    seat_deprovision: Optional[bool] = None
-    """
-    A flag to remove a user's seat in Zero Trust when they have been deprovisioned
-    in the Identity Provider. This cannot be enabled unless user_deprovision is also
-    enabled.
-    """
-
-    secret: Optional[str] = None
-    """
-    A read-only token generated when the SCIM integration is enabled for the first
-    time. It is redacted on subsequent requests. If you lose this you will need to
-    refresh it token at /access/identity_providers/:idpID/refresh_scim_secret.
-    """
-
-    user_deprovision: Optional[bool] = None
-    """
-    A flag to enable revoking a user's session in Access and Gateway when they have
-    been deprovisioned in the Identity Provider.
-    """
-
-
 class AccessOnelogin(BaseModel):
     config: AccessOneloginConfig
     """The configuration parameters for the identity provider.
@@ -944,22 +476,7 @@ class AccessOnelogin(BaseModel):
     name: str
     """The name of the identity provider, shown to users on the login page."""
 
-    type: Literal[
-        "onetimepin",
-        "azureAD",
-        "saml",
-        "centrify",
-        "facebook",
-        "github",
-        "google-apps",
-        "google",
-        "linkedin",
-        "oidc",
-        "okta",
-        "onelogin",
-        "pingone",
-        "yandex",
-    ]
+    type: UnnamedSchemaRef163
     """The type of identity provider.
 
     To determine the value for a specific provider, refer to our
@@ -969,7 +486,7 @@ class AccessOnelogin(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[AccessOneloginScimConfig] = None
+    scim_config: Optional[UnnamedSchemaRef158] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -993,38 +510,6 @@ class AccessPingoneConfig(BaseModel):
     """Your PingOne environment identifier"""
 
 
-class AccessPingoneScimConfig(BaseModel):
-    enabled: Optional[bool] = None
-    """A flag to enable or disable SCIM for the identity provider."""
-
-    group_member_deprovision: Optional[bool] = None
-    """
-    A flag to revoke a user's session in Access and force a reauthentication on the
-    user's Gateway session when they have been added or removed from a group in the
-    Identity Provider.
-    """
-
-    seat_deprovision: Optional[bool] = None
-    """
-    A flag to remove a user's seat in Zero Trust when they have been deprovisioned
-    in the Identity Provider. This cannot be enabled unless user_deprovision is also
-    enabled.
-    """
-
-    secret: Optional[str] = None
-    """
-    A read-only token generated when the SCIM integration is enabled for the first
-    time. It is redacted on subsequent requests. If you lose this you will need to
-    refresh it token at /access/identity_providers/:idpID/refresh_scim_secret.
-    """
-
-    user_deprovision: Optional[bool] = None
-    """
-    A flag to enable revoking a user's session in Access and Gateway when they have
-    been deprovisioned in the Identity Provider.
-    """
-
-
 class AccessPingone(BaseModel):
     config: AccessPingoneConfig
     """The configuration parameters for the identity provider.
@@ -1036,22 +521,7 @@ class AccessPingone(BaseModel):
     name: str
     """The name of the identity provider, shown to users on the login page."""
 
-    type: Literal[
-        "onetimepin",
-        "azureAD",
-        "saml",
-        "centrify",
-        "facebook",
-        "github",
-        "google-apps",
-        "google",
-        "linkedin",
-        "oidc",
-        "okta",
-        "onelogin",
-        "pingone",
-        "yandex",
-    ]
+    type: UnnamedSchemaRef163
     """The type of identity provider.
 
     To determine the value for a specific provider, refer to our
@@ -1061,7 +531,7 @@ class AccessPingone(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[AccessPingoneScimConfig] = None
+    scim_config: Optional[UnnamedSchemaRef158] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -1108,38 +578,6 @@ class AccessSamlConfig(BaseModel):
     """URL to send the SAML authentication requests to"""
 
 
-class AccessSamlScimConfig(BaseModel):
-    enabled: Optional[bool] = None
-    """A flag to enable or disable SCIM for the identity provider."""
-
-    group_member_deprovision: Optional[bool] = None
-    """
-    A flag to revoke a user's session in Access and force a reauthentication on the
-    user's Gateway session when they have been added or removed from a group in the
-    Identity Provider.
-    """
-
-    seat_deprovision: Optional[bool] = None
-    """
-    A flag to remove a user's seat in Zero Trust when they have been deprovisioned
-    in the Identity Provider. This cannot be enabled unless user_deprovision is also
-    enabled.
-    """
-
-    secret: Optional[str] = None
-    """
-    A read-only token generated when the SCIM integration is enabled for the first
-    time. It is redacted on subsequent requests. If you lose this you will need to
-    refresh it token at /access/identity_providers/:idpID/refresh_scim_secret.
-    """
-
-    user_deprovision: Optional[bool] = None
-    """
-    A flag to enable revoking a user's session in Access and Gateway when they have
-    been deprovisioned in the Identity Provider.
-    """
-
-
 class AccessSaml(BaseModel):
     config: AccessSamlConfig
     """The configuration parameters for the identity provider.
@@ -1151,22 +589,7 @@ class AccessSaml(BaseModel):
     name: str
     """The name of the identity provider, shown to users on the login page."""
 
-    type: Literal[
-        "onetimepin",
-        "azureAD",
-        "saml",
-        "centrify",
-        "facebook",
-        "github",
-        "google-apps",
-        "google",
-        "linkedin",
-        "oidc",
-        "okta",
-        "onelogin",
-        "pingone",
-        "yandex",
-    ]
+    type: UnnamedSchemaRef163
     """The type of identity provider.
 
     To determine the value for a specific provider, refer to our
@@ -1176,7 +599,7 @@ class AccessSaml(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[AccessSamlScimConfig] = None
+    scim_config: Optional[UnnamedSchemaRef158] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -1191,38 +614,6 @@ class AccessYandexConfig(BaseModel):
     """Your OAuth Client Secret"""
 
 
-class AccessYandexScimConfig(BaseModel):
-    enabled: Optional[bool] = None
-    """A flag to enable or disable SCIM for the identity provider."""
-
-    group_member_deprovision: Optional[bool] = None
-    """
-    A flag to revoke a user's session in Access and force a reauthentication on the
-    user's Gateway session when they have been added or removed from a group in the
-    Identity Provider.
-    """
-
-    seat_deprovision: Optional[bool] = None
-    """
-    A flag to remove a user's seat in Zero Trust when they have been deprovisioned
-    in the Identity Provider. This cannot be enabled unless user_deprovision is also
-    enabled.
-    """
-
-    secret: Optional[str] = None
-    """
-    A read-only token generated when the SCIM integration is enabled for the first
-    time. It is redacted on subsequent requests. If you lose this you will need to
-    refresh it token at /access/identity_providers/:idpID/refresh_scim_secret.
-    """
-
-    user_deprovision: Optional[bool] = None
-    """
-    A flag to enable revoking a user's session in Access and Gateway when they have
-    been deprovisioned in the Identity Provider.
-    """
-
-
 class AccessYandex(BaseModel):
     config: AccessYandexConfig
     """The configuration parameters for the identity provider.
@@ -1234,22 +625,7 @@ class AccessYandex(BaseModel):
     name: str
     """The name of the identity provider, shown to users on the login page."""
 
-    type: Literal[
-        "onetimepin",
-        "azureAD",
-        "saml",
-        "centrify",
-        "facebook",
-        "github",
-        "google-apps",
-        "google",
-        "linkedin",
-        "oidc",
-        "okta",
-        "onelogin",
-        "pingone",
-        "yandex",
-    ]
+    type: UnnamedSchemaRef163
     """The type of identity provider.
 
     To determine the value for a specific provider, refer to our
@@ -1259,42 +635,10 @@ class AccessYandex(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[AccessYandexScimConfig] = None
+    scim_config: Optional[UnnamedSchemaRef158] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
-    """
-
-
-class AccessOnetimepinScimConfig(BaseModel):
-    enabled: Optional[bool] = None
-    """A flag to enable or disable SCIM for the identity provider."""
-
-    group_member_deprovision: Optional[bool] = None
-    """
-    A flag to revoke a user's session in Access and force a reauthentication on the
-    user's Gateway session when they have been added or removed from a group in the
-    Identity Provider.
-    """
-
-    seat_deprovision: Optional[bool] = None
-    """
-    A flag to remove a user's seat in Zero Trust when they have been deprovisioned
-    in the Identity Provider. This cannot be enabled unless user_deprovision is also
-    enabled.
-    """
-
-    secret: Optional[str] = None
-    """
-    A read-only token generated when the SCIM integration is enabled for the first
-    time. It is redacted on subsequent requests. If you lose this you will need to
-    refresh it token at /access/identity_providers/:idpID/refresh_scim_secret.
-    """
-
-    user_deprovision: Optional[bool] = None
-    """
-    A flag to enable revoking a user's session in Access and Gateway when they have
-    been deprovisioned in the Identity Provider.
     """
 
 
@@ -1309,22 +653,7 @@ class AccessOnetimepin(BaseModel):
     name: str
     """The name of the identity provider, shown to users on the login page."""
 
-    type: Literal[
-        "onetimepin",
-        "azureAD",
-        "saml",
-        "centrify",
-        "facebook",
-        "github",
-        "google-apps",
-        "google",
-        "linkedin",
-        "oidc",
-        "okta",
-        "onelogin",
-        "pingone",
-        "yandex",
-    ]
+    type: UnnamedSchemaRef163
     """The type of identity provider.
 
     To determine the value for a specific provider, refer to our
@@ -1334,7 +663,7 @@ class AccessOnetimepin(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[AccessOnetimepinScimConfig] = None
+    scim_config: Optional[UnnamedSchemaRef158] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.

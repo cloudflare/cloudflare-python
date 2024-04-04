@@ -1,22 +1,11 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Optional
-from datetime import date
 
+from ..shared import UnnamedSchemaRef35
 from ..._models import BaseModel
 
-__all__ = ["IntelPassiveDNSByIP", "ReverseRecord"]
-
-
-class ReverseRecord(BaseModel):
-    first_seen: Optional[date] = None
-    """First seen date of the DNS record during the time period."""
-
-    hostname: Optional[object] = None
-    """Hostname that the IP was observed resolving to."""
-
-    last_seen: Optional[date] = None
-    """Last seen date of the DNS record during the time period."""
+__all__ = ["IntelPassiveDNSByIP"]
 
 
 class IntelPassiveDNSByIP(BaseModel):
@@ -29,5 +18,5 @@ class IntelPassiveDNSByIP(BaseModel):
     per_page: Optional[float] = None
     """Number of results per page of results."""
 
-    reverse_records: Optional[List[ReverseRecord]] = None
+    reverse_records: Optional[List[UnnamedSchemaRef35]] = None
     """Reverse DNS look-ups observed during the time period."""

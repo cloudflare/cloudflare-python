@@ -10,8 +10,8 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from cloudflare.types.shared import UnnamedSchemaRef173
 from cloudflare.types.spectrum import (
-    AppGetResponse,
     AppCreateResponse,
     AppDeleteResponse,
     AppUpdateResponse,
@@ -328,7 +328,7 @@ class TestApps:
             "ea95132c15732412d22c1476fa83f27a",
             zone="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[AppGetResponse], app, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef173], app, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -341,7 +341,7 @@ class TestApps:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         app = response.parse()
-        assert_matches_type(Optional[AppGetResponse], app, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef173], app, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -354,7 +354,7 @@ class TestApps:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             app = response.parse()
-            assert_matches_type(Optional[AppGetResponse], app, path=["response"])
+            assert_matches_type(Optional[UnnamedSchemaRef173], app, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -682,7 +682,7 @@ class TestAsyncApps:
             "ea95132c15732412d22c1476fa83f27a",
             zone="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[AppGetResponse], app, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef173], app, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -695,7 +695,7 @@ class TestAsyncApps:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         app = await response.parse()
-        assert_matches_type(Optional[AppGetResponse], app, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef173], app, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -708,7 +708,7 @@ class TestAsyncApps:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             app = await response.parse()
-            assert_matches_type(Optional[AppGetResponse], app, path=["response"])
+            assert_matches_type(Optional[UnnamedSchemaRef173], app, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

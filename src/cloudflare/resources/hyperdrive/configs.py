@@ -25,12 +25,12 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from ...types.shared import UnnamedSchemaRef173
 from ...types.hyperdrive import (
     ConfigGetResponse,
     ConfigEditResponse,
     ConfigListResponse,
     ConfigCreateResponse,
-    ConfigDeleteResponse,
     ConfigUpdateResponse,
     config_edit_params,
     config_create_params,
@@ -197,7 +197,7 @@ class Configs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ConfigDeleteResponse]:
+    ) -> Optional[UnnamedSchemaRef173]:
         """
         Deletes the specified Hyperdrive.
 
@@ -219,7 +219,7 @@ class Configs(SyncAPIResource):
         if not hyperdrive_id:
             raise ValueError(f"Expected a non-empty value for `hyperdrive_id` but received {hyperdrive_id!r}")
         return cast(
-            Optional[ConfigDeleteResponse],
+            Optional[UnnamedSchemaRef173],
             self._delete(
                 f"/accounts/{account_id}/hyperdrive/configs/{hyperdrive_id}",
                 options=make_request_options(
@@ -230,7 +230,7 @@ class Configs(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[ConfigDeleteResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef173]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -485,7 +485,7 @@ class AsyncConfigs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ConfigDeleteResponse]:
+    ) -> Optional[UnnamedSchemaRef173]:
         """
         Deletes the specified Hyperdrive.
 
@@ -507,7 +507,7 @@ class AsyncConfigs(AsyncAPIResource):
         if not hyperdrive_id:
             raise ValueError(f"Expected a non-empty value for `hyperdrive_id` but received {hyperdrive_id!r}")
         return cast(
-            Optional[ConfigDeleteResponse],
+            Optional[UnnamedSchemaRef173],
             await self._delete(
                 f"/accounts/{account_id}/hyperdrive/configs/{hyperdrive_id}",
                 options=make_request_options(
@@ -518,7 +518,7 @@ class AsyncConfigs(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[ConfigDeleteResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef173]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

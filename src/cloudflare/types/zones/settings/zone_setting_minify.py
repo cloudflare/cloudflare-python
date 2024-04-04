@@ -4,13 +4,14 @@ from typing import Optional
 from datetime import datetime
 from typing_extensions import Literal
 
+from ...shared import UnnamedSchemaRef92
 from ...._models import BaseModel
 
 __all__ = ["ZoneSettingMinify", "Value"]
 
 
 class Value(BaseModel):
-    css: Optional[Literal["on", "off"]] = None
+    css: Optional[UnnamedSchemaRef92] = None
     """Automatically minify all CSS files for your website."""
 
     html: Optional[Literal["on", "off"]] = None

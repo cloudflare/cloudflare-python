@@ -25,7 +25,8 @@ from ....._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from .....types.addressing.prefixes.bgp import BindingDeleteResponse, AddressingServiceBinding, binding_create_params
+from .....types.shared import UnnamedSchemaRef171
+from .....types.addressing.prefixes.bgp import AddressingServiceBinding, binding_create_params
 
 __all__ = ["Bindings", "AsyncBindings"]
 
@@ -158,7 +159,7 @@ class Bindings(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BindingDeleteResponse:
+    ) -> UnnamedSchemaRef171:
         """
         Delete a Service Binding
 
@@ -184,7 +185,7 @@ class Bindings(SyncAPIResource):
         if not binding_id:
             raise ValueError(f"Expected a non-empty value for `binding_id` but received {binding_id!r}")
         return cast(
-            BindingDeleteResponse,
+            UnnamedSchemaRef171,
             self._delete(
                 f"/accounts/{account_id}/addressing/prefixes/{prefix_id}/bindings/{binding_id}",
                 options=make_request_options(
@@ -195,7 +196,7 @@ class Bindings(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[BindingDeleteResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef171]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -378,7 +379,7 @@ class AsyncBindings(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BindingDeleteResponse:
+    ) -> UnnamedSchemaRef171:
         """
         Delete a Service Binding
 
@@ -404,7 +405,7 @@ class AsyncBindings(AsyncAPIResource):
         if not binding_id:
             raise ValueError(f"Expected a non-empty value for `binding_id` but received {binding_id!r}")
         return cast(
-            BindingDeleteResponse,
+            UnnamedSchemaRef171,
             await self._delete(
                 f"/accounts/{account_id}/addressing/prefixes/{prefix_id}/bindings/{binding_id}",
                 options=make_request_options(
@@ -415,7 +416,7 @@ class AsyncBindings(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[BindingDeleteResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef171]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

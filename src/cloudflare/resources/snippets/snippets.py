@@ -14,7 +14,7 @@ from .rules import (
     RulesWithStreamingResponse,
     AsyncRulesWithStreamingResponse,
 )
-from ...types import Snippet, SnippetDeleteResponse, snippet_update_params
+from ...types import Snippet, snippet_update_params
 from .content import (
     Content,
     AsyncContent,
@@ -42,6 +42,7 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from ...types.shared import UnnamedSchemaRef171
 
 __all__ = ["Snippets", "AsyncSnippets"]
 
@@ -165,7 +166,7 @@ class Snippets(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SnippetDeleteResponse:
+    ) -> UnnamedSchemaRef171:
         """
         Delete Snippet
 
@@ -187,7 +188,7 @@ class Snippets(SyncAPIResource):
         if not snippet_name:
             raise ValueError(f"Expected a non-empty value for `snippet_name` but received {snippet_name!r}")
         return cast(
-            SnippetDeleteResponse,
+            UnnamedSchemaRef171,
             self._delete(
                 f"/zones/{zone_identifier}/snippets/{snippet_name}",
                 options=make_request_options(
@@ -198,7 +199,7 @@ class Snippets(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[SnippetDeleteResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef171]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -367,7 +368,7 @@ class AsyncSnippets(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SnippetDeleteResponse:
+    ) -> UnnamedSchemaRef171:
         """
         Delete Snippet
 
@@ -389,7 +390,7 @@ class AsyncSnippets(AsyncAPIResource):
         if not snippet_name:
             raise ValueError(f"Expected a non-empty value for `snippet_name` but received {snippet_name!r}")
         return cast(
-            SnippetDeleteResponse,
+            UnnamedSchemaRef171,
             await self._delete(
                 f"/zones/{zone_identifier}/snippets/{snippet_name}",
                 options=make_request_options(
@@ -400,7 +401,7 @@ class AsyncSnippets(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[SnippetDeleteResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef171]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
