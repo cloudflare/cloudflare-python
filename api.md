@@ -3,7 +3,6 @@
 ```python
 from cloudflare.types import (
     ErrorData,
-    Logging,
     ResponseInfo,
     UnnamedSchemaRef10,
     UnnamedSchemaRef100,
@@ -59,7 +58,6 @@ from cloudflare.types import (
     UnnamedSchemaRef161,
     UnnamedSchemaRef162,
     UnnamedSchemaRef163,
-    UnnamedSchemaRef167,
     UnnamedSchemaRef169,
     UnnamedSchemaRef170,
     UnnamedSchemaRef171,
@@ -285,15 +283,15 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.user.firewall import FirewallRule, AccessRuleDeleteResponse
+from cloudflare.types.user.firewall import AccessRule, AccessRuleDeleteResponse
 ```
 
 Methods:
 
-- <code title="post /user/firewall/access_rules/rules">client.user.firewall.access_rules.<a href="./src/cloudflare/resources/user/firewall/access_rules.py">create</a>(\*\*<a href="src/cloudflare/types/user/firewall/access_rule_create_params.py">params</a>) -> <a href="./src/cloudflare/types/user/firewall/firewall_rule.py">Optional</a></code>
-- <code title="get /user/firewall/access_rules/rules">client.user.firewall.access_rules.<a href="./src/cloudflare/resources/user/firewall/access_rules.py">list</a>(\*\*<a href="src/cloudflare/types/user/firewall/access_rule_list_params.py">params</a>) -> <a href="./src/cloudflare/types/user/firewall/firewall_rule.py">SyncV4PagePaginationArray[FirewallRule]</a></code>
+- <code title="post /user/firewall/access_rules/rules">client.user.firewall.access_rules.<a href="./src/cloudflare/resources/user/firewall/access_rules.py">create</a>(\*\*<a href="src/cloudflare/types/user/firewall/access_rule_create_params.py">params</a>) -> <a href="./src/cloudflare/types/user/firewall/access_rule.py">Optional</a></code>
+- <code title="get /user/firewall/access_rules/rules">client.user.firewall.access_rules.<a href="./src/cloudflare/resources/user/firewall/access_rules.py">list</a>(\*\*<a href="src/cloudflare/types/user/firewall/access_rule_list_params.py">params</a>) -> <a href="./src/cloudflare/types/user/firewall/access_rule.py">SyncV4PagePaginationArray[AccessRule]</a></code>
 - <code title="delete /user/firewall/access_rules/rules/{identifier}">client.user.firewall.access_rules.<a href="./src/cloudflare/resources/user/firewall/access_rules.py">delete</a>(identifier, \*\*<a href="src/cloudflare/types/user/firewall/access_rule_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/user/firewall/access_rule_delete_response.py">Optional</a></code>
-- <code title="patch /user/firewall/access_rules/rules/{identifier}">client.user.firewall.access_rules.<a href="./src/cloudflare/resources/user/firewall/access_rules.py">edit</a>(identifier, \*\*<a href="src/cloudflare/types/user/firewall/access_rule_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/user/firewall/firewall_rule.py">Optional</a></code>
+- <code title="patch /user/firewall/access_rules/rules/{identifier}">client.user.firewall.access_rules.<a href="./src/cloudflare/resources/user/firewall/access_rules.py">edit</a>(identifier, \*\*<a href="src/cloudflare/types/user/firewall/access_rule_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/user/firewall/access_rule.py">Optional</a></code>
 
 ## Invites
 
@@ -317,7 +315,7 @@ Types:
 
 ```python
 from cloudflare.types.user.load_balancers import (
-    LoadBalancingMonitor,
+    Monitor,
     MonitorDeleteResponse,
     MonitorPreviewResponse,
     MonitorReferencesResponse,
@@ -326,12 +324,12 @@ from cloudflare.types.user.load_balancers import (
 
 Methods:
 
-- <code title="post /user/load_balancers/monitors">client.user.load_balancers.monitors.<a href="./src/cloudflare/resources/user/load_balancers/monitors.py">create</a>(\*\*<a href="src/cloudflare/types/user/load_balancers/monitor_create_params.py">params</a>) -> <a href="./src/cloudflare/types/user/load_balancers/load_balancing_monitor.py">LoadBalancingMonitor</a></code>
-- <code title="put /user/load_balancers/monitors/{monitor_id}">client.user.load_balancers.monitors.<a href="./src/cloudflare/resources/user/load_balancers/monitors.py">update</a>(monitor_id, \*\*<a href="src/cloudflare/types/user/load_balancers/monitor_update_params.py">params</a>) -> <a href="./src/cloudflare/types/user/load_balancers/load_balancing_monitor.py">LoadBalancingMonitor</a></code>
-- <code title="get /user/load_balancers/monitors">client.user.load_balancers.monitors.<a href="./src/cloudflare/resources/user/load_balancers/monitors.py">list</a>() -> <a href="./src/cloudflare/types/user/load_balancers/load_balancing_monitor.py">SyncSinglePage[LoadBalancingMonitor]</a></code>
+- <code title="post /user/load_balancers/monitors">client.user.load_balancers.monitors.<a href="./src/cloudflare/resources/user/load_balancers/monitors.py">create</a>(\*\*<a href="src/cloudflare/types/user/load_balancers/monitor_create_params.py">params</a>) -> <a href="./src/cloudflare/types/user/load_balancers/monitor.py">Monitor</a></code>
+- <code title="put /user/load_balancers/monitors/{monitor_id}">client.user.load_balancers.monitors.<a href="./src/cloudflare/resources/user/load_balancers/monitors.py">update</a>(monitor_id, \*\*<a href="src/cloudflare/types/user/load_balancers/monitor_update_params.py">params</a>) -> <a href="./src/cloudflare/types/user/load_balancers/monitor.py">Monitor</a></code>
+- <code title="get /user/load_balancers/monitors">client.user.load_balancers.monitors.<a href="./src/cloudflare/resources/user/load_balancers/monitors.py">list</a>() -> <a href="./src/cloudflare/types/user/load_balancers/monitor.py">SyncSinglePage[Monitor]</a></code>
 - <code title="delete /user/load_balancers/monitors/{monitor_id}">client.user.load_balancers.monitors.<a href="./src/cloudflare/resources/user/load_balancers/monitors.py">delete</a>(monitor_id, \*\*<a href="src/cloudflare/types/user/load_balancers/monitor_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/user/load_balancers/monitor_delete_response.py">MonitorDeleteResponse</a></code>
-- <code title="patch /user/load_balancers/monitors/{monitor_id}">client.user.load_balancers.monitors.<a href="./src/cloudflare/resources/user/load_balancers/monitors.py">edit</a>(monitor_id, \*\*<a href="src/cloudflare/types/user/load_balancers/monitor_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/user/load_balancers/load_balancing_monitor.py">LoadBalancingMonitor</a></code>
-- <code title="get /user/load_balancers/monitors/{monitor_id}">client.user.load_balancers.monitors.<a href="./src/cloudflare/resources/user/load_balancers/monitors.py">get</a>(monitor_id) -> <a href="./src/cloudflare/types/user/load_balancers/load_balancing_monitor.py">LoadBalancingMonitor</a></code>
+- <code title="patch /user/load_balancers/monitors/{monitor_id}">client.user.load_balancers.monitors.<a href="./src/cloudflare/resources/user/load_balancers/monitors.py">edit</a>(monitor_id, \*\*<a href="src/cloudflare/types/user/load_balancers/monitor_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/user/load_balancers/monitor.py">Monitor</a></code>
+- <code title="get /user/load_balancers/monitors/{monitor_id}">client.user.load_balancers.monitors.<a href="./src/cloudflare/resources/user/load_balancers/monitors.py">get</a>(monitor_id) -> <a href="./src/cloudflare/types/user/load_balancers/monitor.py">Monitor</a></code>
 - <code title="post /user/load_balancers/monitors/{monitor_id}/preview">client.user.load_balancers.monitors.<a href="./src/cloudflare/resources/user/load_balancers/monitors.py">preview</a>(monitor_id, \*\*<a href="src/cloudflare/types/user/load_balancers/monitor_preview_params.py">params</a>) -> <a href="./src/cloudflare/types/user/load_balancers/monitor_preview_response.py">MonitorPreviewResponse</a></code>
 - <code title="get /user/load_balancers/monitors/{monitor_id}/references">client.user.load_balancers.monitors.<a href="./src/cloudflare/resources/user/load_balancers/monitors.py">references</a>(monitor_id) -> <a href="./src/cloudflare/types/user/load_balancers/monitor_references_response.py">Optional</a></code>
 
@@ -341,7 +339,7 @@ Types:
 
 ```python
 from cloudflare.types.user.load_balancers import (
-    LoadBalancingPool,
+    Pool,
     PoolDeleteResponse,
     PoolHealthResponse,
     PoolPreviewResponse,
@@ -351,12 +349,12 @@ from cloudflare.types.user.load_balancers import (
 
 Methods:
 
-- <code title="post /user/load_balancers/pools">client.user.load_balancers.pools.<a href="./src/cloudflare/resources/user/load_balancers/pools.py">create</a>(\*\*<a href="src/cloudflare/types/user/load_balancers/pool_create_params.py">params</a>) -> <a href="./src/cloudflare/types/user/load_balancers/load_balancing_pool.py">LoadBalancingPool</a></code>
-- <code title="put /user/load_balancers/pools/{pool_id}">client.user.load_balancers.pools.<a href="./src/cloudflare/resources/user/load_balancers/pools.py">update</a>(pool_id, \*\*<a href="src/cloudflare/types/user/load_balancers/pool_update_params.py">params</a>) -> <a href="./src/cloudflare/types/user/load_balancers/load_balancing_pool.py">LoadBalancingPool</a></code>
-- <code title="get /user/load_balancers/pools">client.user.load_balancers.pools.<a href="./src/cloudflare/resources/user/load_balancers/pools.py">list</a>(\*\*<a href="src/cloudflare/types/user/load_balancers/pool_list_params.py">params</a>) -> <a href="./src/cloudflare/types/user/load_balancers/load_balancing_pool.py">SyncSinglePage[LoadBalancingPool]</a></code>
+- <code title="post /user/load_balancers/pools">client.user.load_balancers.pools.<a href="./src/cloudflare/resources/user/load_balancers/pools.py">create</a>(\*\*<a href="src/cloudflare/types/user/load_balancers/pool_create_params.py">params</a>) -> <a href="./src/cloudflare/types/user/load_balancers/pool.py">Pool</a></code>
+- <code title="put /user/load_balancers/pools/{pool_id}">client.user.load_balancers.pools.<a href="./src/cloudflare/resources/user/load_balancers/pools.py">update</a>(pool_id, \*\*<a href="src/cloudflare/types/user/load_balancers/pool_update_params.py">params</a>) -> <a href="./src/cloudflare/types/user/load_balancers/pool.py">Pool</a></code>
+- <code title="get /user/load_balancers/pools">client.user.load_balancers.pools.<a href="./src/cloudflare/resources/user/load_balancers/pools.py">list</a>(\*\*<a href="src/cloudflare/types/user/load_balancers/pool_list_params.py">params</a>) -> <a href="./src/cloudflare/types/user/load_balancers/pool.py">SyncSinglePage[Pool]</a></code>
 - <code title="delete /user/load_balancers/pools/{pool_id}">client.user.load_balancers.pools.<a href="./src/cloudflare/resources/user/load_balancers/pools.py">delete</a>(pool_id, \*\*<a href="src/cloudflare/types/user/load_balancers/pool_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/user/load_balancers/pool_delete_response.py">PoolDeleteResponse</a></code>
-- <code title="patch /user/load_balancers/pools/{pool_id}">client.user.load_balancers.pools.<a href="./src/cloudflare/resources/user/load_balancers/pools.py">edit</a>(pool_id, \*\*<a href="src/cloudflare/types/user/load_balancers/pool_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/user/load_balancers/load_balancing_pool.py">LoadBalancingPool</a></code>
-- <code title="get /user/load_balancers/pools/{pool_id}">client.user.load_balancers.pools.<a href="./src/cloudflare/resources/user/load_balancers/pools.py">get</a>(pool_id) -> <a href="./src/cloudflare/types/user/load_balancers/load_balancing_pool.py">LoadBalancingPool</a></code>
+- <code title="patch /user/load_balancers/pools/{pool_id}">client.user.load_balancers.pools.<a href="./src/cloudflare/resources/user/load_balancers/pools.py">edit</a>(pool_id, \*\*<a href="src/cloudflare/types/user/load_balancers/pool_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/user/load_balancers/pool.py">Pool</a></code>
+- <code title="get /user/load_balancers/pools/{pool_id}">client.user.load_balancers.pools.<a href="./src/cloudflare/resources/user/load_balancers/pools.py">get</a>(pool_id) -> <a href="./src/cloudflare/types/user/load_balancers/pool.py">Pool</a></code>
 - <code title="get /user/load_balancers/pools/{pool_id}/health">client.user.load_balancers.pools.<a href="./src/cloudflare/resources/user/load_balancers/pools.py">health</a>(pool_id) -> <a href="./src/cloudflare/types/user/load_balancers/pool_health_response.py">PoolHealthResponse</a></code>
 - <code title="post /user/load_balancers/pools/{pool_id}/preview">client.user.load_balancers.pools.<a href="./src/cloudflare/resources/user/load_balancers/pools.py">preview</a>(pool_id, \*\*<a href="src/cloudflare/types/user/load_balancers/pool_preview_params.py">params</a>) -> <a href="./src/cloudflare/types/user/load_balancers/pool_preview_response.py">PoolPreviewResponse</a></code>
 - <code title="get /user/load_balancers/pools/{pool_id}/references">client.user.load_balancers.pools.<a href="./src/cloudflare/resources/user/load_balancers/pools.py">references</a>(pool_id) -> <a href="./src/cloudflare/types/user/load_balancers/pool_references_response.py">Optional</a></code>
@@ -1193,13 +1191,13 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zones import CustomNameserverUpdateResponse
+from cloudflare.types.zones import CustomNameserverUpdateResponse, CustomNameserverGetResponse
 ```
 
 Methods:
 
 - <code title="put /zones/{zone_id}/custom_ns">client.zones.custom_nameservers.<a href="./src/cloudflare/resources/zones/custom_nameservers.py">update</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/custom_nameserver_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/custom_nameserver_update_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/custom_ns">client.zones.custom_nameservers.<a href="./src/cloudflare/resources/zones/custom_nameservers.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/shared/unnamed_schema_ref_167.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/custom_ns">client.zones.custom_nameservers.<a href="./src/cloudflare/resources/zones/custom_nameservers.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/custom_nameserver_get_response.py">Optional</a></code>
 
 ## Holds
 
@@ -1276,12 +1274,12 @@ from cloudflare.types.load_balancers import MonitorDeleteResponse
 
 Methods:
 
-- <code title="post /accounts/{account_id}/load_balancers/monitors">client.load_balancers.monitors.<a href="./src/cloudflare/resources/load_balancers/monitors/monitors.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/load_balancers/monitor_create_params.py">params</a>) -> <a href="./src/cloudflare/types/user/load_balancers/load_balancing_monitor.py">LoadBalancingMonitor</a></code>
-- <code title="put /accounts/{account_id}/load_balancers/monitors/{monitor_id}">client.load_balancers.monitors.<a href="./src/cloudflare/resources/load_balancers/monitors/monitors.py">update</a>(monitor_id, \*, account_id, \*\*<a href="src/cloudflare/types/load_balancers/monitor_update_params.py">params</a>) -> <a href="./src/cloudflare/types/user/load_balancers/load_balancing_monitor.py">LoadBalancingMonitor</a></code>
-- <code title="get /accounts/{account_id}/load_balancers/monitors">client.load_balancers.monitors.<a href="./src/cloudflare/resources/load_balancers/monitors/monitors.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/user/load_balancers/load_balancing_monitor.py">SyncSinglePage[LoadBalancingMonitor]</a></code>
+- <code title="post /accounts/{account_id}/load_balancers/monitors">client.load_balancers.monitors.<a href="./src/cloudflare/resources/load_balancers/monitors/monitors.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/load_balancers/monitor_create_params.py">params</a>) -> <a href="./src/cloudflare/types/user/load_balancers/monitor.py">Monitor</a></code>
+- <code title="put /accounts/{account_id}/load_balancers/monitors/{monitor_id}">client.load_balancers.monitors.<a href="./src/cloudflare/resources/load_balancers/monitors/monitors.py">update</a>(monitor_id, \*, account_id, \*\*<a href="src/cloudflare/types/load_balancers/monitor_update_params.py">params</a>) -> <a href="./src/cloudflare/types/user/load_balancers/monitor.py">Monitor</a></code>
+- <code title="get /accounts/{account_id}/load_balancers/monitors">client.load_balancers.monitors.<a href="./src/cloudflare/resources/load_balancers/monitors/monitors.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/user/load_balancers/monitor.py">SyncSinglePage[Monitor]</a></code>
 - <code title="delete /accounts/{account_id}/load_balancers/monitors/{monitor_id}">client.load_balancers.monitors.<a href="./src/cloudflare/resources/load_balancers/monitors/monitors.py">delete</a>(monitor_id, \*, account_id, \*\*<a href="src/cloudflare/types/load_balancers/monitor_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/load_balancers/monitor_delete_response.py">MonitorDeleteResponse</a></code>
-- <code title="patch /accounts/{account_id}/load_balancers/monitors/{monitor_id}">client.load_balancers.monitors.<a href="./src/cloudflare/resources/load_balancers/monitors/monitors.py">edit</a>(monitor_id, \*, account_id, \*\*<a href="src/cloudflare/types/load_balancers/monitor_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/user/load_balancers/load_balancing_monitor.py">LoadBalancingMonitor</a></code>
-- <code title="get /accounts/{account_id}/load_balancers/monitors/{monitor_id}">client.load_balancers.monitors.<a href="./src/cloudflare/resources/load_balancers/monitors/monitors.py">get</a>(monitor_id, \*, account_id) -> <a href="./src/cloudflare/types/user/load_balancers/load_balancing_monitor.py">LoadBalancingMonitor</a></code>
+- <code title="patch /accounts/{account_id}/load_balancers/monitors/{monitor_id}">client.load_balancers.monitors.<a href="./src/cloudflare/resources/load_balancers/monitors/monitors.py">edit</a>(monitor_id, \*, account_id, \*\*<a href="src/cloudflare/types/load_balancers/monitor_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/user/load_balancers/monitor.py">Monitor</a></code>
+- <code title="get /accounts/{account_id}/load_balancers/monitors/{monitor_id}">client.load_balancers.monitors.<a href="./src/cloudflare/resources/load_balancers/monitors/monitors.py">get</a>(monitor_id, \*, account_id) -> <a href="./src/cloudflare/types/user/load_balancers/monitor.py">Monitor</a></code>
 
 ### Previews
 
@@ -1317,12 +1315,12 @@ from cloudflare.types.load_balancers import PoolDeleteResponse
 
 Methods:
 
-- <code title="post /accounts/{account_id}/load_balancers/pools">client.load_balancers.pools.<a href="./src/cloudflare/resources/load_balancers/pools/pools.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/load_balancers/pool_create_params.py">params</a>) -> <a href="./src/cloudflare/types/user/load_balancers/load_balancing_pool.py">LoadBalancingPool</a></code>
-- <code title="put /accounts/{account_id}/load_balancers/pools/{pool_id}">client.load_balancers.pools.<a href="./src/cloudflare/resources/load_balancers/pools/pools.py">update</a>(pool_id, \*, account_id, \*\*<a href="src/cloudflare/types/load_balancers/pool_update_params.py">params</a>) -> <a href="./src/cloudflare/types/user/load_balancers/load_balancing_pool.py">LoadBalancingPool</a></code>
-- <code title="get /accounts/{account_id}/load_balancers/pools">client.load_balancers.pools.<a href="./src/cloudflare/resources/load_balancers/pools/pools.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/load_balancers/pool_list_params.py">params</a>) -> <a href="./src/cloudflare/types/user/load_balancers/load_balancing_pool.py">SyncSinglePage[LoadBalancingPool]</a></code>
+- <code title="post /accounts/{account_id}/load_balancers/pools">client.load_balancers.pools.<a href="./src/cloudflare/resources/load_balancers/pools/pools.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/load_balancers/pool_create_params.py">params</a>) -> <a href="./src/cloudflare/types/user/load_balancers/pool.py">Pool</a></code>
+- <code title="put /accounts/{account_id}/load_balancers/pools/{pool_id}">client.load_balancers.pools.<a href="./src/cloudflare/resources/load_balancers/pools/pools.py">update</a>(pool_id, \*, account_id, \*\*<a href="src/cloudflare/types/load_balancers/pool_update_params.py">params</a>) -> <a href="./src/cloudflare/types/user/load_balancers/pool.py">Pool</a></code>
+- <code title="get /accounts/{account_id}/load_balancers/pools">client.load_balancers.pools.<a href="./src/cloudflare/resources/load_balancers/pools/pools.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/load_balancers/pool_list_params.py">params</a>) -> <a href="./src/cloudflare/types/user/load_balancers/pool.py">SyncSinglePage[Pool]</a></code>
 - <code title="delete /accounts/{account_id}/load_balancers/pools/{pool_id}">client.load_balancers.pools.<a href="./src/cloudflare/resources/load_balancers/pools/pools.py">delete</a>(pool_id, \*, account_id, \*\*<a href="src/cloudflare/types/load_balancers/pool_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/load_balancers/pool_delete_response.py">PoolDeleteResponse</a></code>
-- <code title="patch /accounts/{account_id}/load_balancers/pools/{pool_id}">client.load_balancers.pools.<a href="./src/cloudflare/resources/load_balancers/pools/pools.py">edit</a>(pool_id, \*, account_id, \*\*<a href="src/cloudflare/types/load_balancers/pool_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/user/load_balancers/load_balancing_pool.py">LoadBalancingPool</a></code>
-- <code title="get /accounts/{account_id}/load_balancers/pools/{pool_id}">client.load_balancers.pools.<a href="./src/cloudflare/resources/load_balancers/pools/pools.py">get</a>(pool_id, \*, account_id) -> <a href="./src/cloudflare/types/user/load_balancers/load_balancing_pool.py">LoadBalancingPool</a></code>
+- <code title="patch /accounts/{account_id}/load_balancers/pools/{pool_id}">client.load_balancers.pools.<a href="./src/cloudflare/resources/load_balancers/pools/pools.py">edit</a>(pool_id, \*, account_id, \*\*<a href="src/cloudflare/types/load_balancers/pool_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/user/load_balancers/pool.py">Pool</a></code>
+- <code title="get /accounts/{account_id}/load_balancers/pools/{pool_id}">client.load_balancers.pools.<a href="./src/cloudflare/resources/load_balancers/pools/pools.py">get</a>(pool_id, \*, account_id) -> <a href="./src/cloudflare/types/user/load_balancers/pool.py">Pool</a></code>
 
 ### Health
 
@@ -3115,6 +3113,7 @@ from cloudflare.types import (
     QueueCreateResponse,
     QueueUpdateResponse,
     QueueListResponse,
+    QueueDeleteResponse,
     QueueGetResponse,
 )
 ```
@@ -3124,7 +3123,7 @@ Methods:
 - <code title="post /accounts/{account_id}/queues">client.queues.<a href="./src/cloudflare/resources/queues/queues.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/queue_create_params.py">params</a>) -> <a href="./src/cloudflare/types/queue_create_response.py">Optional</a></code>
 - <code title="put /accounts/{account_id}/queues/{queue_id}">client.queues.<a href="./src/cloudflare/resources/queues/queues.py">update</a>(queue_id, \*, account_id, \*\*<a href="src/cloudflare/types/queue_update_params.py">params</a>) -> <a href="./src/cloudflare/types/queue_update_response.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/queues">client.queues.<a href="./src/cloudflare/resources/queues/queues.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/queue_list_response.py">Optional</a></code>
-- <code title="delete /accounts/{account_id}/queues/{queue_id}">client.queues.<a href="./src/cloudflare/resources/queues/queues.py">delete</a>(queue_id, \*, account_id, \*\*<a href="src/cloudflare/types/queue_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/shared/unnamed_schema_ref_167.py">Optional</a></code>
+- <code title="delete /accounts/{account_id}/queues/{queue_id}">client.queues.<a href="./src/cloudflare/resources/queues/queues.py">delete</a>(queue_id, \*, account_id, \*\*<a href="src/cloudflare/types/queue_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/queue_delete_response.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/queues/{queue_id}">client.queues.<a href="./src/cloudflare/resources/queues/queues.py">get</a>(queue_id, \*, account_id) -> <a href="./src/cloudflare/types/queue_get_response.py">Optional</a></code>
 
 ## Consumers
@@ -3133,8 +3132,10 @@ Types:
 
 ```python
 from cloudflare.types.queues import (
+    Consumer,
     ConsumerCreateResponse,
     ConsumerUpdateResponse,
+    ConsumerDeleteResponse,
     ConsumerGetResponse,
 )
 ```
@@ -3143,7 +3144,7 @@ Methods:
 
 - <code title="post /accounts/{account_id}/queues/{queue_id}/consumers">client.queues.consumers.<a href="./src/cloudflare/resources/queues/consumers.py">create</a>(queue_id, \*, account_id, \*\*<a href="src/cloudflare/types/queues/consumer_create_params.py">params</a>) -> <a href="./src/cloudflare/types/queues/consumer_create_response.py">Optional</a></code>
 - <code title="put /accounts/{account_id}/queues/{queue_id}/consumers/{consumer_id}">client.queues.consumers.<a href="./src/cloudflare/resources/queues/consumers.py">update</a>(consumer_id, \*, account_id, queue_id, \*\*<a href="src/cloudflare/types/queues/consumer_update_params.py">params</a>) -> <a href="./src/cloudflare/types/queues/consumer_update_response.py">Optional</a></code>
-- <code title="delete /accounts/{account_id}/queues/{queue_id}/consumers/{consumer_id}">client.queues.consumers.<a href="./src/cloudflare/resources/queues/consumers.py">delete</a>(consumer_id, \*, account_id, queue_id, \*\*<a href="src/cloudflare/types/queues/consumer_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/shared/unnamed_schema_ref_167.py">Optional</a></code>
+- <code title="delete /accounts/{account_id}/queues/{queue_id}/consumers/{consumer_id}">client.queues.consumers.<a href="./src/cloudflare/resources/queues/consumers.py">delete</a>(consumer_id, \*, account_id, queue_id, \*\*<a href="src/cloudflare/types/queues/consumer_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/queues/consumer_delete_response.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/queues/{queue_id}/consumers">client.queues.consumers.<a href="./src/cloudflare/resources/queues/consumers.py">get</a>(queue_id, \*, account_id) -> <a href="./src/cloudflare/types/queues/consumer_get_response.py">Optional</a></code>
 
 ## Messages
@@ -3151,7 +3152,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.queues import QueueConsumer, MessageAckResponse, MessagePullResponse
+from cloudflare.types.queues import MessageAckResponse, MessagePullResponse
 ```
 
 Methods:
@@ -3233,6 +3234,7 @@ Types:
 
 ```python
 from cloudflare.types import (
+    Logging,
     RulesetCreateResponse,
     RulesetUpdateResponse,
     RulesetListResponse,
@@ -3414,6 +3416,7 @@ Types:
 from cloudflare.types.addressing import (
     AddressingAddressMaps,
     AddressMapCreateResponse,
+    AddressMapDeleteResponse,
     AddressMapGetResponse,
 )
 ```
@@ -3422,30 +3425,48 @@ Methods:
 
 - <code title="post /accounts/{account_id}/addressing/address_maps">client.addressing.address_maps.<a href="./src/cloudflare/resources/addressing/address_maps/address_maps.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/addressing/address_map_create_params.py">params</a>) -> <a href="./src/cloudflare/types/addressing/address_map_create_response.py">AddressMapCreateResponse</a></code>
 - <code title="get /accounts/{account_id}/addressing/address_maps">client.addressing.address_maps.<a href="./src/cloudflare/resources/addressing/address_maps/address_maps.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/addressing/addressing_address_maps.py">SyncSinglePage[AddressingAddressMaps]</a></code>
-- <code title="delete /accounts/{account_id}/addressing/address_maps/{address_map_id}">client.addressing.address_maps.<a href="./src/cloudflare/resources/addressing/address_maps/address_maps.py">delete</a>(address_map_id, \*, account_id, \*\*<a href="src/cloudflare/types/addressing/address_map_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/shared/unnamed_schema_ref_167.py">Optional</a></code>
+- <code title="delete /accounts/{account_id}/addressing/address_maps/{address_map_id}">client.addressing.address_maps.<a href="./src/cloudflare/resources/addressing/address_maps/address_maps.py">delete</a>(address_map_id, \*, account_id, \*\*<a href="src/cloudflare/types/addressing/address_map_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/addressing/address_map_delete_response.py">Optional</a></code>
 - <code title="patch /accounts/{account_id}/addressing/address_maps/{address_map_id}">client.addressing.address_maps.<a href="./src/cloudflare/resources/addressing/address_maps/address_maps.py">edit</a>(address_map_id, \*, account_id, \*\*<a href="src/cloudflare/types/addressing/address_map_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/addressing/addressing_address_maps.py">AddressingAddressMaps</a></code>
 - <code title="get /accounts/{account_id}/addressing/address_maps/{address_map_id}">client.addressing.address_maps.<a href="./src/cloudflare/resources/addressing/address_maps/address_maps.py">get</a>(address_map_id, \*, account_id) -> <a href="./src/cloudflare/types/addressing/address_map_get_response.py">AddressMapGetResponse</a></code>
 
 ### Accounts
 
+Types:
+
+```python
+from cloudflare.types.addressing.address_maps import AccountUpdateResponse, AccountDeleteResponse
+```
+
 Methods:
 
-- <code title="put /accounts/{account_id}/addressing/address_maps/{address_map_id}/accounts/{account_id}">client.addressing.address_maps.accounts.<a href="./src/cloudflare/resources/addressing/address_maps/accounts.py">update</a>(address_map_id, \*, account_id, \*\*<a href="src/cloudflare/types/addressing/address_maps/account_update_params.py">params</a>) -> <a href="./src/cloudflare/types/shared/unnamed_schema_ref_167.py">Optional</a></code>
-- <code title="delete /accounts/{account_id}/addressing/address_maps/{address_map_id}/accounts/{account_id}">client.addressing.address_maps.accounts.<a href="./src/cloudflare/resources/addressing/address_maps/accounts.py">delete</a>(address_map_id, \*, account_id, \*\*<a href="src/cloudflare/types/addressing/address_maps/account_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/shared/unnamed_schema_ref_167.py">Optional</a></code>
+- <code title="put /accounts/{account_id}/addressing/address_maps/{address_map_id}/accounts/{account_id}">client.addressing.address_maps.accounts.<a href="./src/cloudflare/resources/addressing/address_maps/accounts.py">update</a>(address_map_id, \*, account_id, \*\*<a href="src/cloudflare/types/addressing/address_maps/account_update_params.py">params</a>) -> <a href="./src/cloudflare/types/addressing/address_maps/account_update_response.py">Optional</a></code>
+- <code title="delete /accounts/{account_id}/addressing/address_maps/{address_map_id}/accounts/{account_id}">client.addressing.address_maps.accounts.<a href="./src/cloudflare/resources/addressing/address_maps/accounts.py">delete</a>(address_map_id, \*, account_id, \*\*<a href="src/cloudflare/types/addressing/address_maps/account_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/addressing/address_maps/account_delete_response.py">Optional</a></code>
 
 ### IPs
 
+Types:
+
+```python
+from cloudflare.types.addressing.address_maps import IPUpdateResponse, IPDeleteResponse
+```
+
 Methods:
 
-- <code title="put /accounts/{account_id}/addressing/address_maps/{address_map_id}/ips/{ip_address}">client.addressing.address_maps.ips.<a href="./src/cloudflare/resources/addressing/address_maps/ips.py">update</a>(ip_address, \*, account_id, address_map_id, \*\*<a href="src/cloudflare/types/addressing/address_maps/ip_update_params.py">params</a>) -> <a href="./src/cloudflare/types/shared/unnamed_schema_ref_167.py">Optional</a></code>
-- <code title="delete /accounts/{account_id}/addressing/address_maps/{address_map_id}/ips/{ip_address}">client.addressing.address_maps.ips.<a href="./src/cloudflare/resources/addressing/address_maps/ips.py">delete</a>(ip_address, \*, account_id, address_map_id, \*\*<a href="src/cloudflare/types/addressing/address_maps/ip_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/shared/unnamed_schema_ref_167.py">Optional</a></code>
+- <code title="put /accounts/{account_id}/addressing/address_maps/{address_map_id}/ips/{ip_address}">client.addressing.address_maps.ips.<a href="./src/cloudflare/resources/addressing/address_maps/ips.py">update</a>(ip_address, \*, account_id, address_map_id, \*\*<a href="src/cloudflare/types/addressing/address_maps/ip_update_params.py">params</a>) -> <a href="./src/cloudflare/types/addressing/address_maps/ip_update_response.py">Optional</a></code>
+- <code title="delete /accounts/{account_id}/addressing/address_maps/{address_map_id}/ips/{ip_address}">client.addressing.address_maps.ips.<a href="./src/cloudflare/resources/addressing/address_maps/ips.py">delete</a>(ip_address, \*, account_id, address_map_id, \*\*<a href="src/cloudflare/types/addressing/address_maps/ip_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/addressing/address_maps/ip_delete_response.py">Optional</a></code>
 
 ### Zones
 
+Types:
+
+```python
+from cloudflare.types.addressing.address_maps import ZoneUpdateResponse, ZoneDeleteResponse
+```
+
 Methods:
 
-- <code title="put /accounts/{account_id}/addressing/address_maps/{address_map_id}/zones/{zone_id}">client.addressing.address_maps.zones.<a href="./src/cloudflare/resources/addressing/address_maps/zones.py">update</a>(address_map_id, \*, zone_id, account_id, \*\*<a href="src/cloudflare/types/addressing/address_maps/zone_update_params.py">params</a>) -> <a href="./src/cloudflare/types/shared/unnamed_schema_ref_167.py">Optional</a></code>
-- <code title="delete /accounts/{account_id}/addressing/address_maps/{address_map_id}/zones/{zone_id}">client.addressing.address_maps.zones.<a href="./src/cloudflare/resources/addressing/address_maps/zones.py">delete</a>(address_map_id, \*, zone_id, account_id, \*\*<a href="src/cloudflare/types/addressing/address_maps/zone_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/shared/unnamed_schema_ref_167.py">Optional</a></code>
+- <code title="put /accounts/{account_id}/addressing/address_maps/{address_map_id}/zones/{zone_id}">client.addressing.address_maps.zones.<a href="./src/cloudflare/resources/addressing/address_maps/zones.py">update</a>(address_map_id, \*, zone_id, account_id, \*\*<a href="src/cloudflare/types/addressing/address_maps/zone_update_params.py">params</a>) -> <a href="./src/cloudflare/types/addressing/address_maps/zone_update_response.py">Optional</a></code>
+- <code title="delete /accounts/{account_id}/addressing/address_maps/{address_map_id}/zones/{zone_id}">client.addressing.address_maps.zones.<a href="./src/cloudflare/resources/addressing/address_maps/zones.py">delete</a>(address_map_id, \*, zone_id, account_id, \*\*<a href="src/cloudflare/types/addressing/address_maps/zone_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/addressing/address_maps/zone_delete_response.py">Optional</a></code>
 
 ## LOADocuments
 
@@ -3476,14 +3497,18 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.addressing import AddressingIpamPrefixes, UnnamedSchemaRef6
+from cloudflare.types.addressing import (
+    AddressingIpamPrefixes,
+    UnnamedSchemaRef6,
+    PrefixDeleteResponse,
+)
 ```
 
 Methods:
 
 - <code title="post /accounts/{account_id}/addressing/prefixes">client.addressing.prefixes.<a href="./src/cloudflare/resources/addressing/prefixes/prefixes.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/addressing/prefix_create_params.py">params</a>) -> <a href="./src/cloudflare/types/addressing/addressing_ipam_prefixes.py">AddressingIpamPrefixes</a></code>
 - <code title="get /accounts/{account_id}/addressing/prefixes">client.addressing.prefixes.<a href="./src/cloudflare/resources/addressing/prefixes/prefixes.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/addressing/addressing_ipam_prefixes.py">SyncSinglePage[AddressingIpamPrefixes]</a></code>
-- <code title="delete /accounts/{account_id}/addressing/prefixes/{prefix_id}">client.addressing.prefixes.<a href="./src/cloudflare/resources/addressing/prefixes/prefixes.py">delete</a>(prefix_id, \*, account_id, \*\*<a href="src/cloudflare/types/addressing/prefix_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/shared/unnamed_schema_ref_167.py">Optional</a></code>
+- <code title="delete /accounts/{account_id}/addressing/prefixes/{prefix_id}">client.addressing.prefixes.<a href="./src/cloudflare/resources/addressing/prefixes/prefixes.py">delete</a>(prefix_id, \*, account_id, \*\*<a href="src/cloudflare/types/addressing/prefix_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/addressing/prefix_delete_response.py">Optional</a></code>
 - <code title="patch /accounts/{account_id}/addressing/prefixes/{prefix_id}">client.addressing.prefixes.<a href="./src/cloudflare/resources/addressing/prefixes/prefixes.py">edit</a>(prefix_id, \*, account_id, \*\*<a href="src/cloudflare/types/addressing/prefix_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/addressing/addressing_ipam_prefixes.py">AddressingIpamPrefixes</a></code>
 - <code title="get /accounts/{account_id}/addressing/prefixes/{prefix_id}">client.addressing.prefixes.<a href="./src/cloudflare/resources/addressing/prefixes/prefixes.py">get</a>(prefix_id, \*, account_id) -> <a href="./src/cloudflare/types/addressing/addressing_ipam_prefixes.py">AddressingIpamPrefixes</a></code>
 
@@ -4620,6 +4645,7 @@ Types:
 from cloudflare.types.alerting.destinations import (
     AlertingPagerduty,
     PagerdutyCreateResponse,
+    PagerdutyDeleteResponse,
     PagerdutyGetResponse,
     PagerdutyLinkResponse,
 )
@@ -4628,7 +4654,7 @@ from cloudflare.types.alerting.destinations import (
 Methods:
 
 - <code title="post /accounts/{account_id}/alerting/v3/destinations/pagerduty/connect">client.alerting.destinations.pagerduty.<a href="./src/cloudflare/resources/alerting/destinations/pagerduty.py">create</a>(\*, account_id) -> <a href="./src/cloudflare/types/alerting/destinations/pagerduty_create_response.py">PagerdutyCreateResponse</a></code>
-- <code title="delete /accounts/{account_id}/alerting/v3/destinations/pagerduty">client.alerting.destinations.pagerduty.<a href="./src/cloudflare/resources/alerting/destinations/pagerduty.py">delete</a>(\*, account_id) -> <a href="./src/cloudflare/types/shared/unnamed_schema_ref_167.py">Optional</a></code>
+- <code title="delete /accounts/{account_id}/alerting/v3/destinations/pagerduty">client.alerting.destinations.pagerduty.<a href="./src/cloudflare/resources/alerting/destinations/pagerduty.py">delete</a>(\*, account_id) -> <a href="./src/cloudflare/types/alerting/destinations/pagerduty_delete_response.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/alerting/v3/destinations/pagerduty">client.alerting.destinations.pagerduty.<a href="./src/cloudflare/resources/alerting/destinations/pagerduty.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/alerting/destinations/pagerduty_get_response.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/alerting/v3/destinations/pagerduty/connect/{token_id}">client.alerting.destinations.pagerduty.<a href="./src/cloudflare/resources/alerting/destinations/pagerduty.py">link</a>(token_id, \*, account_id) -> <a href="./src/cloudflare/types/alerting/destinations/pagerduty_link_response.py">PagerdutyLinkResponse</a></code>
 
@@ -4641,6 +4667,7 @@ from cloudflare.types.alerting.destinations import (
     AlertingWebhooks,
     WebhookCreateResponse,
     WebhookUpdateResponse,
+    WebhookDeleteResponse,
 )
 ```
 
@@ -4649,7 +4676,7 @@ Methods:
 - <code title="post /accounts/{account_id}/alerting/v3/destinations/webhooks">client.alerting.destinations.webhooks.<a href="./src/cloudflare/resources/alerting/destinations/webhooks.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/alerting/destinations/webhook_create_params.py">params</a>) -> <a href="./src/cloudflare/types/alerting/destinations/webhook_create_response.py">WebhookCreateResponse</a></code>
 - <code title="put /accounts/{account_id}/alerting/v3/destinations/webhooks/{webhook_id}">client.alerting.destinations.webhooks.<a href="./src/cloudflare/resources/alerting/destinations/webhooks.py">update</a>(webhook_id, \*, account_id, \*\*<a href="src/cloudflare/types/alerting/destinations/webhook_update_params.py">params</a>) -> <a href="./src/cloudflare/types/alerting/destinations/webhook_update_response.py">WebhookUpdateResponse</a></code>
 - <code title="get /accounts/{account_id}/alerting/v3/destinations/webhooks">client.alerting.destinations.webhooks.<a href="./src/cloudflare/resources/alerting/destinations/webhooks.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/alerting/destinations/alerting_webhooks.py">SyncSinglePage[AlertingWebhooks]</a></code>
-- <code title="delete /accounts/{account_id}/alerting/v3/destinations/webhooks/{webhook_id}">client.alerting.destinations.webhooks.<a href="./src/cloudflare/resources/alerting/destinations/webhooks.py">delete</a>(webhook_id, \*, account_id) -> <a href="./src/cloudflare/types/shared/unnamed_schema_ref_167.py">Optional</a></code>
+- <code title="delete /accounts/{account_id}/alerting/v3/destinations/webhooks/{webhook_id}">client.alerting.destinations.webhooks.<a href="./src/cloudflare/resources/alerting/destinations/webhooks.py">delete</a>(webhook_id, \*, account_id) -> <a href="./src/cloudflare/types/alerting/destinations/webhook_delete_response.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/alerting/v3/destinations/webhooks/{webhook_id}">client.alerting.destinations.webhooks.<a href="./src/cloudflare/resources/alerting/destinations/webhooks.py">get</a>(webhook_id, \*, account_id) -> <a href="./src/cloudflare/types/alerting/destinations/alerting_webhooks.py">AlertingWebhooks</a></code>
 
 ## History
@@ -4669,7 +4696,12 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.alerting import AlertingPolicies, PolicyCreateResponse, PolicyUpdateResponse
+from cloudflare.types.alerting import (
+    AlertingPolicies,
+    PolicyCreateResponse,
+    PolicyUpdateResponse,
+    PolicyDeleteResponse,
+)
 ```
 
 Methods:
@@ -4677,7 +4709,7 @@ Methods:
 - <code title="post /accounts/{account_id}/alerting/v3/policies">client.alerting.policies.<a href="./src/cloudflare/resources/alerting/policies.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/alerting/policy_create_params.py">params</a>) -> <a href="./src/cloudflare/types/alerting/policy_create_response.py">PolicyCreateResponse</a></code>
 - <code title="put /accounts/{account_id}/alerting/v3/policies/{policy_id}">client.alerting.policies.<a href="./src/cloudflare/resources/alerting/policies.py">update</a>(policy_id, \*, account_id, \*\*<a href="src/cloudflare/types/alerting/policy_update_params.py">params</a>) -> <a href="./src/cloudflare/types/alerting/policy_update_response.py">PolicyUpdateResponse</a></code>
 - <code title="get /accounts/{account_id}/alerting/v3/policies">client.alerting.policies.<a href="./src/cloudflare/resources/alerting/policies.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/alerting/alerting_policies.py">SyncSinglePage[AlertingPolicies]</a></code>
-- <code title="delete /accounts/{account_id}/alerting/v3/policies/{policy_id}">client.alerting.policies.<a href="./src/cloudflare/resources/alerting/policies.py">delete</a>(policy_id, \*, account_id) -> <a href="./src/cloudflare/types/shared/unnamed_schema_ref_167.py">Optional</a></code>
+- <code title="delete /accounts/{account_id}/alerting/v3/policies/{policy_id}">client.alerting.policies.<a href="./src/cloudflare/resources/alerting/policies.py">delete</a>(policy_id, \*, account_id) -> <a href="./src/cloudflare/types/alerting/policy_delete_response.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/alerting/v3/policies/{policy_id}">client.alerting.policies.<a href="./src/cloudflare/resources/alerting/policies.py">get</a>(policy_id, \*, account_id) -> <a href="./src/cloudflare/types/alerting/alerting_policies.py">AlertingPolicies</a></code>
 
 # D1

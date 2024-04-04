@@ -23,8 +23,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.shared import UnnamedSchemaRef167
-from ....types.addressing.address_maps import ip_delete_params, ip_update_params
+from ....types.addressing.address_maps import IPDeleteResponse, IPUpdateResponse, ip_delete_params, ip_update_params
 
 __all__ = ["IPs", "AsyncIPs"]
 
@@ -51,7 +50,7 @@ class IPs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[UnnamedSchemaRef167]:
+    ) -> Optional[IPUpdateResponse]:
         """
         Add an IP from a prefix owned by the account to a particular address map.
 
@@ -77,7 +76,7 @@ class IPs(SyncAPIResource):
         if not ip_address:
             raise ValueError(f"Expected a non-empty value for `ip_address` but received {ip_address!r}")
         return cast(
-            Optional[UnnamedSchemaRef167],
+            Optional[IPUpdateResponse],
             self._put(
                 f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/ips/{ip_address}",
                 body=maybe_transform(body, ip_update_params.IPUpdateParams),
@@ -89,7 +88,7 @@ class IPs(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef167]
+                    Any, ResultWrapper[IPUpdateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -107,7 +106,7 @@ class IPs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[UnnamedSchemaRef167]:
+    ) -> Optional[IPDeleteResponse]:
         """
         Remove an IP from a particular address map.
 
@@ -133,7 +132,7 @@ class IPs(SyncAPIResource):
         if not ip_address:
             raise ValueError(f"Expected a non-empty value for `ip_address` but received {ip_address!r}")
         return cast(
-            Optional[UnnamedSchemaRef167],
+            Optional[IPDeleteResponse],
             self._delete(
                 f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/ips/{ip_address}",
                 body=maybe_transform(body, ip_delete_params.IPDeleteParams),
@@ -145,7 +144,7 @@ class IPs(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef167]
+                    Any, ResultWrapper[IPDeleteResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -173,7 +172,7 @@ class AsyncIPs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[UnnamedSchemaRef167]:
+    ) -> Optional[IPUpdateResponse]:
         """
         Add an IP from a prefix owned by the account to a particular address map.
 
@@ -199,7 +198,7 @@ class AsyncIPs(AsyncAPIResource):
         if not ip_address:
             raise ValueError(f"Expected a non-empty value for `ip_address` but received {ip_address!r}")
         return cast(
-            Optional[UnnamedSchemaRef167],
+            Optional[IPUpdateResponse],
             await self._put(
                 f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/ips/{ip_address}",
                 body=await async_maybe_transform(body, ip_update_params.IPUpdateParams),
@@ -211,7 +210,7 @@ class AsyncIPs(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef167]
+                    Any, ResultWrapper[IPUpdateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -229,7 +228,7 @@ class AsyncIPs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[UnnamedSchemaRef167]:
+    ) -> Optional[IPDeleteResponse]:
         """
         Remove an IP from a particular address map.
 
@@ -255,7 +254,7 @@ class AsyncIPs(AsyncAPIResource):
         if not ip_address:
             raise ValueError(f"Expected a non-empty value for `ip_address` but received {ip_address!r}")
         return cast(
-            Optional[UnnamedSchemaRef167],
+            Optional[IPDeleteResponse],
             await self._delete(
                 f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/ips/{ip_address}",
                 body=await async_maybe_transform(body, ip_delete_params.IPDeleteParams),
@@ -267,7 +266,7 @@ class AsyncIPs(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef167]
+                    Any, ResultWrapper[IPDeleteResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

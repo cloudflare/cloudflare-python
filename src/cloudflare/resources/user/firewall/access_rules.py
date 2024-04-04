@@ -27,7 +27,7 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.user.firewall import (
-    FirewallRule,
+    AccessRule,
     AccessRuleDeleteResponse,
     access_rule_edit_params,
     access_rule_list_params,
@@ -59,7 +59,7 @@ class AccessRules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[FirewallRule]:
+    ) -> Optional[AccessRule]:
         """
         Creates a new IP Access rule for all zones owned by the current user.
 
@@ -98,7 +98,7 @@ class AccessRules(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[FirewallRule]], ResultWrapper[FirewallRule]),
+            cast_to=cast(Type[Optional[AccessRule]], ResultWrapper[AccessRule]),
         )
 
     def list(
@@ -116,7 +116,7 @@ class AccessRules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[FirewallRule]:
+    ) -> SyncV4PagePaginationArray[AccessRule]:
         """Fetches IP Access rules of the user.
 
         You can filter the results using several
@@ -141,7 +141,7 @@ class AccessRules(SyncAPIResource):
         """
         return self._get_api_list(
             "/user/firewall/access_rules/rules",
-            page=SyncV4PagePaginationArray[FirewallRule],
+            page=SyncV4PagePaginationArray[AccessRule],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -159,7 +159,7 @@ class AccessRules(SyncAPIResource):
                     access_rule_list_params.AccessRuleListParams,
                 ),
             ),
-            model=FirewallRule,
+            model=AccessRule,
         )
 
     def delete(
@@ -217,7 +217,7 @@ class AccessRules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[FirewallRule]:
+    ) -> Optional[AccessRule]:
         """Updates an IP Access rule defined at the user level.
 
         You can only update the
@@ -256,7 +256,7 @@ class AccessRules(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[FirewallRule]], ResultWrapper[FirewallRule]),
+            cast_to=cast(Type[Optional[AccessRule]], ResultWrapper[AccessRule]),
         )
 
 
@@ -281,7 +281,7 @@ class AsyncAccessRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[FirewallRule]:
+    ) -> Optional[AccessRule]:
         """
         Creates a new IP Access rule for all zones owned by the current user.
 
@@ -320,7 +320,7 @@ class AsyncAccessRules(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[FirewallRule]], ResultWrapper[FirewallRule]),
+            cast_to=cast(Type[Optional[AccessRule]], ResultWrapper[AccessRule]),
         )
 
     def list(
@@ -338,7 +338,7 @@ class AsyncAccessRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[FirewallRule, AsyncV4PagePaginationArray[FirewallRule]]:
+    ) -> AsyncPaginator[AccessRule, AsyncV4PagePaginationArray[AccessRule]]:
         """Fetches IP Access rules of the user.
 
         You can filter the results using several
@@ -363,7 +363,7 @@ class AsyncAccessRules(AsyncAPIResource):
         """
         return self._get_api_list(
             "/user/firewall/access_rules/rules",
-            page=AsyncV4PagePaginationArray[FirewallRule],
+            page=AsyncV4PagePaginationArray[AccessRule],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -381,7 +381,7 @@ class AsyncAccessRules(AsyncAPIResource):
                     access_rule_list_params.AccessRuleListParams,
                 ),
             ),
-            model=FirewallRule,
+            model=AccessRule,
         )
 
     async def delete(
@@ -439,7 +439,7 @@ class AsyncAccessRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[FirewallRule]:
+    ) -> Optional[AccessRule]:
         """Updates an IP Access rule defined at the user level.
 
         You can only update the
@@ -478,7 +478,7 @@ class AsyncAccessRules(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[FirewallRule]], ResultWrapper[FirewallRule]),
+            cast_to=cast(Type[Optional[AccessRule]], ResultWrapper[AccessRule]),
         )
 
 

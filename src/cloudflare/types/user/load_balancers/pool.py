@@ -9,7 +9,7 @@ from pydantic import Field as FieldInfo
 from ...._models import BaseModel
 
 __all__ = [
-    "LoadBalancingPool",
+    "Pool",
     "LoadShedding",
     "NotificationFilter",
     "NotificationFilterOrigin",
@@ -160,7 +160,7 @@ class Origin(BaseModel):
     """
 
 
-class LoadBalancingPool(BaseModel):
+class Pool(BaseModel):
     id: Optional[str] = None
 
     check_regions: Optional[

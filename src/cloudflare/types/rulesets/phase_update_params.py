@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Dict, List, Union, Iterable
 from typing_extensions import Literal, Required, TypedDict
 
-from ...types import shared_params
+from ..logging_param import LoggingParam
 
 __all__ = [
     "PhaseUpdateParams",
@@ -107,7 +107,7 @@ class RuleRulesetsBlockRule(TypedDict, total=False):
     expression: str
     """The expression defining which traffic will match the rule."""
 
-    logging: shared_params.Logging
+    logging: LoggingParam
     """An object configuring the rule's logging behavior."""
 
     ref: str
@@ -210,7 +210,7 @@ class RuleRulesetsExecuteRule(TypedDict, total=False):
     expression: str
     """The expression defining which traffic will match the rule."""
 
-    logging: shared_params.Logging
+    logging: LoggingParam
     """An object configuring the rule's logging behavior."""
 
     ref: str
@@ -236,7 +236,7 @@ class RuleRulesetsLogRule(TypedDict, total=False):
     expression: str
     """The expression defining which traffic will match the rule."""
 
-    logging: shared_params.Logging
+    logging: LoggingParam
     """An object configuring the rule's logging behavior."""
 
     ref: str
@@ -317,7 +317,7 @@ class RuleRulesetsSkipRule(TypedDict, total=False):
     expression: str
     """The expression defining which traffic will match the rule."""
 
-    logging: shared_params.Logging
+    logging: LoggingParam
     """An object configuring the rule's logging behavior."""
 
     ref: str
