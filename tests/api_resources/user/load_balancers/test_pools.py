@@ -11,7 +11,7 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.user.load_balancers import (
-    LoadBalancingPool,
+    Pool,
     PoolDeleteResponse,
     PoolHealthResponse,
     PoolPreviewResponse,
@@ -31,7 +31,7 @@ class TestPools:
             name="primary-dc-1",
             origins=[{}, {}, {}],
         )
-        assert_matches_type(LoadBalancingPool, pool, path=["response"])
+        assert_matches_type(Pool, pool, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -90,7 +90,7 @@ class TestPools:
             },
             origin_steering={"policy": "random"},
         )
-        assert_matches_type(LoadBalancingPool, pool, path=["response"])
+        assert_matches_type(Pool, pool, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -103,7 +103,7 @@ class TestPools:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pool = response.parse()
-        assert_matches_type(LoadBalancingPool, pool, path=["response"])
+        assert_matches_type(Pool, pool, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -116,7 +116,7 @@ class TestPools:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pool = response.parse()
-            assert_matches_type(LoadBalancingPool, pool, path=["response"])
+            assert_matches_type(Pool, pool, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -128,7 +128,7 @@ class TestPools:
             name="primary-dc-1",
             origins=[{}, {}, {}],
         )
-        assert_matches_type(LoadBalancingPool, pool, path=["response"])
+        assert_matches_type(Pool, pool, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -188,7 +188,7 @@ class TestPools:
             },
             origin_steering={"policy": "random"},
         )
-        assert_matches_type(LoadBalancingPool, pool, path=["response"])
+        assert_matches_type(Pool, pool, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -202,7 +202,7 @@ class TestPools:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pool = response.parse()
-        assert_matches_type(LoadBalancingPool, pool, path=["response"])
+        assert_matches_type(Pool, pool, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -216,7 +216,7 @@ class TestPools:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pool = response.parse()
-            assert_matches_type(LoadBalancingPool, pool, path=["response"])
+            assert_matches_type(Pool, pool, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -234,7 +234,7 @@ class TestPools:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         pool = client.user.load_balancers.pools.list()
-        assert_matches_type(SyncSinglePage[LoadBalancingPool], pool, path=["response"])
+        assert_matches_type(SyncSinglePage[Pool], pool, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -242,7 +242,7 @@ class TestPools:
         pool = client.user.load_balancers.pools.list(
             monitor={},
         )
-        assert_matches_type(SyncSinglePage[LoadBalancingPool], pool, path=["response"])
+        assert_matches_type(SyncSinglePage[Pool], pool, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -252,7 +252,7 @@ class TestPools:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pool = response.parse()
-        assert_matches_type(SyncSinglePage[LoadBalancingPool], pool, path=["response"])
+        assert_matches_type(SyncSinglePage[Pool], pool, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -262,7 +262,7 @@ class TestPools:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pool = response.parse()
-            assert_matches_type(SyncSinglePage[LoadBalancingPool], pool, path=["response"])
+            assert_matches_type(SyncSinglePage[Pool], pool, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -318,7 +318,7 @@ class TestPools:
         pool = client.user.load_balancers.pools.edit(
             "17b5962d775c646f3f9725cbc7a53df4",
         )
-        assert_matches_type(LoadBalancingPool, pool, path=["response"])
+        assert_matches_type(Pool, pool, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -378,7 +378,7 @@ class TestPools:
                 },
             ],
         )
-        assert_matches_type(LoadBalancingPool, pool, path=["response"])
+        assert_matches_type(Pool, pool, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -390,7 +390,7 @@ class TestPools:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pool = response.parse()
-        assert_matches_type(LoadBalancingPool, pool, path=["response"])
+        assert_matches_type(Pool, pool, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -402,7 +402,7 @@ class TestPools:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pool = response.parse()
-            assert_matches_type(LoadBalancingPool, pool, path=["response"])
+            assert_matches_type(Pool, pool, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -420,7 +420,7 @@ class TestPools:
         pool = client.user.load_balancers.pools.get(
             "17b5962d775c646f3f9725cbc7a53df4",
         )
-        assert_matches_type(LoadBalancingPool, pool, path=["response"])
+        assert_matches_type(Pool, pool, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -432,7 +432,7 @@ class TestPools:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pool = response.parse()
-        assert_matches_type(LoadBalancingPool, pool, path=["response"])
+        assert_matches_type(Pool, pool, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -444,7 +444,7 @@ class TestPools:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pool = response.parse()
-            assert_matches_type(LoadBalancingPool, pool, path=["response"])
+            assert_matches_type(Pool, pool, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -624,7 +624,7 @@ class TestAsyncPools:
             name="primary-dc-1",
             origins=[{}, {}, {}],
         )
-        assert_matches_type(LoadBalancingPool, pool, path=["response"])
+        assert_matches_type(Pool, pool, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -683,7 +683,7 @@ class TestAsyncPools:
             },
             origin_steering={"policy": "random"},
         )
-        assert_matches_type(LoadBalancingPool, pool, path=["response"])
+        assert_matches_type(Pool, pool, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -696,7 +696,7 @@ class TestAsyncPools:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pool = await response.parse()
-        assert_matches_type(LoadBalancingPool, pool, path=["response"])
+        assert_matches_type(Pool, pool, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -709,7 +709,7 @@ class TestAsyncPools:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pool = await response.parse()
-            assert_matches_type(LoadBalancingPool, pool, path=["response"])
+            assert_matches_type(Pool, pool, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -721,7 +721,7 @@ class TestAsyncPools:
             name="primary-dc-1",
             origins=[{}, {}, {}],
         )
-        assert_matches_type(LoadBalancingPool, pool, path=["response"])
+        assert_matches_type(Pool, pool, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -781,7 +781,7 @@ class TestAsyncPools:
             },
             origin_steering={"policy": "random"},
         )
-        assert_matches_type(LoadBalancingPool, pool, path=["response"])
+        assert_matches_type(Pool, pool, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -795,7 +795,7 @@ class TestAsyncPools:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pool = await response.parse()
-        assert_matches_type(LoadBalancingPool, pool, path=["response"])
+        assert_matches_type(Pool, pool, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -809,7 +809,7 @@ class TestAsyncPools:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pool = await response.parse()
-            assert_matches_type(LoadBalancingPool, pool, path=["response"])
+            assert_matches_type(Pool, pool, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -827,7 +827,7 @@ class TestAsyncPools:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         pool = await async_client.user.load_balancers.pools.list()
-        assert_matches_type(AsyncSinglePage[LoadBalancingPool], pool, path=["response"])
+        assert_matches_type(AsyncSinglePage[Pool], pool, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -835,7 +835,7 @@ class TestAsyncPools:
         pool = await async_client.user.load_balancers.pools.list(
             monitor={},
         )
-        assert_matches_type(AsyncSinglePage[LoadBalancingPool], pool, path=["response"])
+        assert_matches_type(AsyncSinglePage[Pool], pool, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -845,7 +845,7 @@ class TestAsyncPools:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pool = await response.parse()
-        assert_matches_type(AsyncSinglePage[LoadBalancingPool], pool, path=["response"])
+        assert_matches_type(AsyncSinglePage[Pool], pool, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -855,7 +855,7 @@ class TestAsyncPools:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pool = await response.parse()
-            assert_matches_type(AsyncSinglePage[LoadBalancingPool], pool, path=["response"])
+            assert_matches_type(AsyncSinglePage[Pool], pool, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -911,7 +911,7 @@ class TestAsyncPools:
         pool = await async_client.user.load_balancers.pools.edit(
             "17b5962d775c646f3f9725cbc7a53df4",
         )
-        assert_matches_type(LoadBalancingPool, pool, path=["response"])
+        assert_matches_type(Pool, pool, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -971,7 +971,7 @@ class TestAsyncPools:
                 },
             ],
         )
-        assert_matches_type(LoadBalancingPool, pool, path=["response"])
+        assert_matches_type(Pool, pool, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -983,7 +983,7 @@ class TestAsyncPools:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pool = await response.parse()
-        assert_matches_type(LoadBalancingPool, pool, path=["response"])
+        assert_matches_type(Pool, pool, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -995,7 +995,7 @@ class TestAsyncPools:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pool = await response.parse()
-            assert_matches_type(LoadBalancingPool, pool, path=["response"])
+            assert_matches_type(Pool, pool, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1013,7 +1013,7 @@ class TestAsyncPools:
         pool = await async_client.user.load_balancers.pools.get(
             "17b5962d775c646f3f9725cbc7a53df4",
         )
-        assert_matches_type(LoadBalancingPool, pool, path=["response"])
+        assert_matches_type(Pool, pool, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1025,7 +1025,7 @@ class TestAsyncPools:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pool = await response.parse()
-        assert_matches_type(LoadBalancingPool, pool, path=["response"])
+        assert_matches_type(Pool, pool, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1037,7 +1037,7 @@ class TestAsyncPools:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pool = await response.parse()
-            assert_matches_type(LoadBalancingPool, pool, path=["response"])
+            assert_matches_type(Pool, pool, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

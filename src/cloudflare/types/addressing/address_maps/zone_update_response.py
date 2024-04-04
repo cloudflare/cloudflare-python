@@ -2,6 +2,6 @@
 
 from typing import List, Union
 
-__all__ = ["UnnamedSchemaRef167"]
+__all__ = ["ZoneUpdateResponse"]
 
-UnnamedSchemaRef167 = Union[List[object], str, object, None]
+ZoneUpdateResponse = Union[List[object], str, object, None]

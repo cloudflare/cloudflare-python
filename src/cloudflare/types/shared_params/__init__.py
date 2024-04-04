@@ -1,6 +1,5 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .logging import Logging as Logging
 from .response_info import ResponseInfo as ResponseInfo
 from .unnamed_schema_ref_28 import UnnamedSchemaRef28 as UnnamedSchemaRef28
 from .unnamed_schema_ref_51 import UnnamedSchemaRef51 as UnnamedSchemaRef51
