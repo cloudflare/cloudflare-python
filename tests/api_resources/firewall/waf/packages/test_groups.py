@@ -10,11 +10,8 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from cloudflare.types.firewall.waf.packages import (
-    GroupGetResponse,
-    GroupEditResponse,
-    WAFManagedRulesGroup,
-)
+from cloudflare.types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
+from cloudflare.types.firewall.waf.packages import WAFManagedRulesGroup
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -99,7 +96,7 @@ class TestGroups:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             package_id="a25a9a7e9c00afc1fb2e0245519d725b",
         )
-        assert_matches_type(GroupEditResponse, group, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, group, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -110,7 +107,7 @@ class TestGroups:
             package_id="a25a9a7e9c00afc1fb2e0245519d725b",
             mode="on",
         )
-        assert_matches_type(GroupEditResponse, group, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, group, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -124,7 +121,7 @@ class TestGroups:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         group = response.parse()
-        assert_matches_type(GroupEditResponse, group, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, group, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -138,7 +135,7 @@ class TestGroups:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             group = response.parse()
-            assert_matches_type(GroupEditResponse, group, path=["response"])
+            assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -174,7 +171,7 @@ class TestGroups:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             package_id="a25a9a7e9c00afc1fb2e0245519d725b",
         )
-        assert_matches_type(GroupGetResponse, group, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, group, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -188,7 +185,7 @@ class TestGroups:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         group = response.parse()
-        assert_matches_type(GroupGetResponse, group, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, group, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -202,7 +199,7 @@ class TestGroups:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             group = response.parse()
-            assert_matches_type(GroupGetResponse, group, path=["response"])
+            assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -311,7 +308,7 @@ class TestAsyncGroups:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             package_id="a25a9a7e9c00afc1fb2e0245519d725b",
         )
-        assert_matches_type(GroupEditResponse, group, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, group, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -322,7 +319,7 @@ class TestAsyncGroups:
             package_id="a25a9a7e9c00afc1fb2e0245519d725b",
             mode="on",
         )
-        assert_matches_type(GroupEditResponse, group, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, group, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -336,7 +333,7 @@ class TestAsyncGroups:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         group = await response.parse()
-        assert_matches_type(GroupEditResponse, group, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, group, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -350,7 +347,7 @@ class TestAsyncGroups:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             group = await response.parse()
-            assert_matches_type(GroupEditResponse, group, path=["response"])
+            assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -386,7 +383,7 @@ class TestAsyncGroups:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             package_id="a25a9a7e9c00afc1fb2e0245519d725b",
         )
-        assert_matches_type(GroupGetResponse, group, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, group, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -400,7 +397,7 @@ class TestAsyncGroups:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         group = await response.parse()
-        assert_matches_type(GroupGetResponse, group, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, group, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -414,7 +411,7 @@ class TestAsyncGroups:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             group = await response.parse()
-            assert_matches_type(GroupGetResponse, group, path=["response"])
+            assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

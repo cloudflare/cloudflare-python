@@ -12,7 +12,6 @@ from ...types import (
     CustomHostnameEditResponse,
     CustomHostnameListResponse,
     CustomHostnameCreateResponse,
-    CustomHostnameDeleteResponse,
     custom_hostname_edit_params,
     custom_hostname_list_params,
     custom_hostname_create_params,
@@ -37,6 +36,7 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from ...types.shared import UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837
 from .fallback_origin import (
     FallbackOrigin,
     AsyncFallbackOrigin,
@@ -211,7 +211,7 @@ class CustomHostnames(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomHostnameDeleteResponse:
+    ) -> UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837:
         """
         Delete Custom Hostname (and any issued SSL certificates)
 
@@ -238,7 +238,7 @@ class CustomHostnames(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CustomHostnameDeleteResponse,
+            cast_to=UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837,
         )
 
     def edit(
@@ -522,7 +522,7 @@ class AsyncCustomHostnames(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomHostnameDeleteResponse:
+    ) -> UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837:
         """
         Delete Custom Hostname (and any issued SSL certificates)
 
@@ -549,7 +549,7 @@ class AsyncCustomHostnames(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CustomHostnameDeleteResponse,
+            cast_to=UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837,
         )
 
     async def edit(

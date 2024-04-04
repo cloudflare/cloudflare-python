@@ -2,8 +2,8 @@
 
 from typing import List, Union, Optional
 
-from ...shared import UnnamedSchemaRef82
 from ...._models import BaseModel
+from .unnamed_schema_ref_87fa9e5fe9f6b8d607be1df57340d916 import UnnamedSchemaRef87fa9e5fe9f6b8d607be1df57340d916
 
 __all__ = ["ACLDeleteResponse", "DeletedACL", "DeletedACLLAN1", "DeletedACLLAN2"]
 
@@ -72,7 +72,7 @@ class DeletedACL(BaseModel):
     name: Optional[str] = None
     """The name of the ACL."""
 
-    protocols: Optional[List[UnnamedSchemaRef82]] = None
+    protocols: Optional[List[UnnamedSchemaRef87fa9e5fe9f6b8d607be1df57340d916]] = None
 
 
 class ACLDeleteResponse(BaseModel):

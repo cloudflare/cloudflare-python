@@ -3,16 +3,13 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.zero_trust.tunnels import (
-    ConfigurationGetResponse,
-    ConfigurationUpdateResponse,
-)
+from cloudflare.types.shared import UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -27,7 +24,9 @@ class TestConfigurations:
             "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ConfigurationUpdateResponse, configuration, path=["response"])
+        assert_matches_type(
+            Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], configuration, path=["response"]
+        )
 
     @pytest.mark.skip()
     @parametrize
@@ -136,7 +135,9 @@ class TestConfigurations:
                 "warp_routing": {"enabled": True},
             },
         )
-        assert_matches_type(ConfigurationUpdateResponse, configuration, path=["response"])
+        assert_matches_type(
+            Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], configuration, path=["response"]
+        )
 
     @pytest.mark.skip()
     @parametrize
@@ -149,7 +150,9 @@ class TestConfigurations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         configuration = response.parse()
-        assert_matches_type(ConfigurationUpdateResponse, configuration, path=["response"])
+        assert_matches_type(
+            Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], configuration, path=["response"]
+        )
 
     @pytest.mark.skip()
     @parametrize
@@ -162,7 +165,9 @@ class TestConfigurations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             configuration = response.parse()
-            assert_matches_type(ConfigurationUpdateResponse, configuration, path=["response"])
+            assert_matches_type(
+                Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], configuration, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 
@@ -188,7 +193,9 @@ class TestConfigurations:
             "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ConfigurationGetResponse, configuration, path=["response"])
+        assert_matches_type(
+            Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], configuration, path=["response"]
+        )
 
     @pytest.mark.skip()
     @parametrize
@@ -201,7 +208,9 @@ class TestConfigurations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         configuration = response.parse()
-        assert_matches_type(ConfigurationGetResponse, configuration, path=["response"])
+        assert_matches_type(
+            Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], configuration, path=["response"]
+        )
 
     @pytest.mark.skip()
     @parametrize
@@ -214,7 +223,9 @@ class TestConfigurations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             configuration = response.parse()
-            assert_matches_type(ConfigurationGetResponse, configuration, path=["response"])
+            assert_matches_type(
+                Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], configuration, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 
@@ -244,7 +255,9 @@ class TestAsyncConfigurations:
             "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ConfigurationUpdateResponse, configuration, path=["response"])
+        assert_matches_type(
+            Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], configuration, path=["response"]
+        )
 
     @pytest.mark.skip()
     @parametrize
@@ -353,7 +366,9 @@ class TestAsyncConfigurations:
                 "warp_routing": {"enabled": True},
             },
         )
-        assert_matches_type(ConfigurationUpdateResponse, configuration, path=["response"])
+        assert_matches_type(
+            Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], configuration, path=["response"]
+        )
 
     @pytest.mark.skip()
     @parametrize
@@ -366,7 +381,9 @@ class TestAsyncConfigurations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         configuration = await response.parse()
-        assert_matches_type(ConfigurationUpdateResponse, configuration, path=["response"])
+        assert_matches_type(
+            Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], configuration, path=["response"]
+        )
 
     @pytest.mark.skip()
     @parametrize
@@ -379,7 +396,9 @@ class TestAsyncConfigurations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             configuration = await response.parse()
-            assert_matches_type(ConfigurationUpdateResponse, configuration, path=["response"])
+            assert_matches_type(
+                Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], configuration, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 
@@ -405,7 +424,9 @@ class TestAsyncConfigurations:
             "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ConfigurationGetResponse, configuration, path=["response"])
+        assert_matches_type(
+            Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], configuration, path=["response"]
+        )
 
     @pytest.mark.skip()
     @parametrize
@@ -418,7 +439,9 @@ class TestAsyncConfigurations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         configuration = await response.parse()
-        assert_matches_type(ConfigurationGetResponse, configuration, path=["response"])
+        assert_matches_type(
+            Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], configuration, path=["response"]
+        )
 
     @pytest.mark.skip()
     @parametrize
@@ -431,7 +454,9 @@ class TestAsyncConfigurations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             configuration = await response.parse()
-            assert_matches_type(ConfigurationGetResponse, configuration, path=["response"])
+            assert_matches_type(
+                Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], configuration, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 

@@ -4,9 +4,9 @@ from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from .shared import UnnamedSchemaRef78
 from .._models import BaseModel
 from .keyless_certificate_hostname import KeylessCertificateHostname
+from .unnamed_schema_ref_16aca57bde2963201c7e6e895436c1c1 import UnnamedSchemaRef16aca57bde2963201c7e6e895436c1c1
 
 __all__ = ["CustomCertificate", "GeoRestrictions"]
 
@@ -19,7 +19,7 @@ class CustomCertificate(BaseModel):
     id: str
     """Identifier"""
 
-    bundle_method: UnnamedSchemaRef78
+    bundle_method: UnnamedSchemaRef16aca57bde2963201c7e6e895436c1c1
     """
     A ubiquitous bundle has the highest probability of being verified everywhere,
     even by clients using outdated or unusual trust stores. An optimal bundle uses

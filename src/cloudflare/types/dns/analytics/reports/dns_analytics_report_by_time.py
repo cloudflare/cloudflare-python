@@ -3,8 +3,9 @@
 from typing import List
 from datetime import datetime
 
-from ....shared import UnnamedSchemaRef23, UnnamedSchemaRef24
 from ....._models import BaseModel
+from ....unnamed_schema_ref_65be9614de145bf4a58d0fddf46df7ca import UnnamedSchemaRef65be9614de145bf4a58d0fddf46df7ca
+from ....unnamed_schema_ref_85b45d163202bbab7456da6b346d9fe2 import UnnamedSchemaRef85b45d163202bbab7456da6b346d9fe2
 
 __all__ = ["DNSAnalyticsReportByTime", "Data"]
 
@@ -16,7 +17,7 @@ class Data(BaseModel):
     corresponding to this row.
     """
 
-    metrics: List[UnnamedSchemaRef23]
+    metrics: List[UnnamedSchemaRef65be9614de145bf4a58d0fddf46df7ca]
     """Array with one item per requested metric.
 
     Each item is an array of values, broken down by time interval.
@@ -45,7 +46,7 @@ class DNSAnalyticsReportByTime(BaseModel):
     Currently always an empty object.
     """
 
-    query: UnnamedSchemaRef24
+    query: UnnamedSchemaRef85b45d163202bbab7456da6b346d9fe2
 
     rows: float
     """Total number of rows in the result."""

@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Dict, List, Union, Iterable
 from typing_extensions import Literal, Required, TypedDict
 
-from ..logging_param import LoggingParam
+from ...types import shared_params
 
 __all__ = [
     "RuleCreateParams",
@@ -49,7 +49,7 @@ class RulesetsBlockRule(TypedDict, total=False):
     expression: str
     """The expression defining which traffic will match the rule."""
 
-    logging: LoggingParam
+    logging: shared_params.UnnamedSchemaRef70f2c6ccd8a405358ac7ef8fc3d6751c
     """An object configuring the rule's logging behavior."""
 
     ref: str
@@ -97,7 +97,7 @@ class RulesetsExecuteRule(TypedDict, total=False):
     expression: str
     """The expression defining which traffic will match the rule."""
 
-    logging: LoggingParam
+    logging: shared_params.UnnamedSchemaRef70f2c6ccd8a405358ac7ef8fc3d6751c
     """An object configuring the rule's logging behavior."""
 
     ref: str
@@ -206,7 +206,7 @@ class RulesetsLogRule(TypedDict, total=False):
     expression: str
     """The expression defining which traffic will match the rule."""
 
-    logging: LoggingParam
+    logging: shared_params.UnnamedSchemaRef70f2c6ccd8a405358ac7ef8fc3d6751c
     """An object configuring the rule's logging behavior."""
 
     ref: str
@@ -238,7 +238,7 @@ class RulesetsSkipRule(TypedDict, total=False):
     expression: str
     """The expression defining which traffic will match the rule."""
 
-    logging: LoggingParam
+    logging: shared_params.UnnamedSchemaRef70f2c6ccd8a405358ac7ef8fc3d6751c
     """An object configuring the rule's logging behavior."""
 
     ref: str

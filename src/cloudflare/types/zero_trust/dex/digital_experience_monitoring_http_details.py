@@ -6,6 +6,7 @@ from typing_extensions import Literal
 from pydantic import Field as FieldInfo
 
 from ...._models import BaseModel
+from ..unnamed_schema_ref_bf9e2abcf1b78a6cab8e6e29e2228a11 import UnnamedSchemaRefBf9e2abcf1b78a6cab8e6e29e2228a11
 
 __all__ = [
     "DigitalExperienceMonitoringHTTPDetails",
@@ -29,7 +30,6 @@ __all__ = [
     "HTTPStatsByColoResourceFetchTimeMsSlot",
     "HTTPStatsByColoServerResponseTimeMs",
     "HTTPStatsByColoServerResponseTimeMsSlot",
-    "TargetPolicy",
 ]
 
 
@@ -241,15 +241,6 @@ class HTTPStatsByColo(BaseModel):
     """Count of unique devices that have run this test in the given time period"""
 
 
-class TargetPolicy(BaseModel):
-    id: str
-
-    default: bool
-    """Whether the policy is the default for the account"""
-
-    name: str
-
-
 class DigitalExperienceMonitoringHTTPDetails(BaseModel):
     host: Optional[str] = None
     """The url of the HTTP synthetic application test"""
@@ -269,6 +260,6 @@ class DigitalExperienceMonitoringHTTPDetails(BaseModel):
     name: Optional[str] = None
     """The name of the HTTP synthetic application test"""
 
-    target_policies: Optional[List[TargetPolicy]] = None
+    target_policies: Optional[List[UnnamedSchemaRefBf9e2abcf1b78a6cab8e6e29e2228a11]] = None
 
     targeted: Optional[bool] = None

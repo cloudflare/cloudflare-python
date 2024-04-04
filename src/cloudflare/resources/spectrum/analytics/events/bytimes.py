@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, List, Union, Iterable, Optional, cast
+from typing import Any, List, Union, Iterable, cast
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -25,7 +25,8 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import (
     make_request_options,
 )
-from .....types.spectrum.analytics.events import BytimeGetResponse, bytime_get_params
+from .....types.shared import UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f
+from .....types.spectrum.analytics.events import bytime_get_params
 
 __all__ = ["Bytimes", "AsyncBytimes"]
 
@@ -62,7 +63,7 @@ class Bytimes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[BytimeGetResponse]:
+    ) -> UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f:
         """
         Retrieves a list of aggregate metrics grouped by time interval.
 
@@ -130,7 +131,7 @@ class Bytimes(SyncAPIResource):
         if not zone:
             raise ValueError(f"Expected a non-empty value for `zone` but received {zone!r}")
         return cast(
-            Optional[BytimeGetResponse],
+            UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f,
             self._get(
                 f"/zones/{zone}/spectrum/analytics/events/bytime",
                 options=make_request_options(
@@ -153,7 +154,7 @@ class Bytimes(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[BytimeGetResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -191,7 +192,7 @@ class AsyncBytimes(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[BytimeGetResponse]:
+    ) -> UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f:
         """
         Retrieves a list of aggregate metrics grouped by time interval.
 
@@ -259,7 +260,7 @@ class AsyncBytimes(AsyncAPIResource):
         if not zone:
             raise ValueError(f"Expected a non-empty value for `zone` but received {zone!r}")
         return cast(
-            Optional[BytimeGetResponse],
+            UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f,
             await self._get(
                 f"/zones/{zone}/spectrum/analytics/events/bytime",
                 options=make_request_options(
@@ -282,7 +283,7 @@ class AsyncBytimes(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[BytimeGetResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

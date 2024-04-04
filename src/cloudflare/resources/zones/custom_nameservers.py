@@ -20,10 +20,11 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...types.zones import CustomNameserverGetResponse, CustomNameserverUpdateResponse, custom_nameserver_update_params
+from ...types.zones import custom_nameserver_update_params
 from ..._base_client import (
     make_request_options,
 )
+from ...types.shared import UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151
 
 __all__ = ["CustomNameservers", "AsyncCustomNameservers"]
 
@@ -49,7 +50,7 @@ class CustomNameservers(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CustomNameserverUpdateResponse]:
+    ) -> Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151]:
         """
         Set metadata for account-level custom nameservers on a zone.
 
@@ -75,7 +76,7 @@ class CustomNameservers(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            Optional[CustomNameserverUpdateResponse],
+            Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151],
             self._put(
                 f"/zones/{zone_id}/custom_ns",
                 body=maybe_transform(
@@ -93,7 +94,7 @@ class CustomNameservers(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[CustomNameserverUpdateResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -108,7 +109,7 @@ class CustomNameservers(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CustomNameserverGetResponse]:
+    ) -> Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151]:
         """
         Get metadata for account-level custom nameservers on a zone.
 
@@ -126,7 +127,7 @@ class CustomNameservers(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            Optional[CustomNameserverGetResponse],
+            Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151],
             self._get(
                 f"/zones/{zone_id}/custom_ns",
                 options=make_request_options(
@@ -137,7 +138,7 @@ class CustomNameservers(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[CustomNameserverGetResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -164,7 +165,7 @@ class AsyncCustomNameservers(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CustomNameserverUpdateResponse]:
+    ) -> Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151]:
         """
         Set metadata for account-level custom nameservers on a zone.
 
@@ -190,7 +191,7 @@ class AsyncCustomNameservers(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            Optional[CustomNameserverUpdateResponse],
+            Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151],
             await self._put(
                 f"/zones/{zone_id}/custom_ns",
                 body=await async_maybe_transform(
@@ -208,7 +209,7 @@ class AsyncCustomNameservers(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[CustomNameserverUpdateResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -223,7 +224,7 @@ class AsyncCustomNameservers(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CustomNameserverGetResponse]:
+    ) -> Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151]:
         """
         Get metadata for account-level custom nameservers on a zone.
 
@@ -241,7 +242,7 @@ class AsyncCustomNameservers(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            Optional[CustomNameserverGetResponse],
+            Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151],
             await self._get(
                 f"/zones/{zone_id}/custom_ns",
                 options=make_request_options(
@@ -252,7 +253,7 @@ class AsyncCustomNameservers(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[CustomNameserverGetResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

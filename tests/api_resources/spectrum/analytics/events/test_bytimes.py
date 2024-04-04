@@ -3,14 +3,14 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare._utils import parse_datetime
-from cloudflare.types.spectrum.analytics.events import BytimeGetResponse
+from cloudflare.types.shared import UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -24,7 +24,7 @@ class TestBytimes:
         bytime = client.spectrum.analytics.events.bytimes.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[BytimeGetResponse], bytime, path=["response"])
+        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, bytime, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -39,7 +39,7 @@ class TestBytimes:
             time_delta="minute",
             until=parse_datetime("2014-01-02T03:20:00Z"),
         )
-        assert_matches_type(Optional[BytimeGetResponse], bytime, path=["response"])
+        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, bytime, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -51,7 +51,7 @@ class TestBytimes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         bytime = response.parse()
-        assert_matches_type(Optional[BytimeGetResponse], bytime, path=["response"])
+        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, bytime, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -63,7 +63,7 @@ class TestBytimes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             bytime = response.parse()
-            assert_matches_type(Optional[BytimeGetResponse], bytime, path=["response"])
+            assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, bytime, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -85,7 +85,7 @@ class TestAsyncBytimes:
         bytime = await async_client.spectrum.analytics.events.bytimes.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[BytimeGetResponse], bytime, path=["response"])
+        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, bytime, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -100,7 +100,7 @@ class TestAsyncBytimes:
             time_delta="minute",
             until=parse_datetime("2014-01-02T03:20:00Z"),
         )
-        assert_matches_type(Optional[BytimeGetResponse], bytime, path=["response"])
+        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, bytime, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -112,7 +112,7 @@ class TestAsyncBytimes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         bytime = await response.parse()
-        assert_matches_type(Optional[BytimeGetResponse], bytime, path=["response"])
+        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, bytime, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -124,7 +124,7 @@ class TestAsyncBytimes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             bytime = await response.parse()
-            assert_matches_type(Optional[BytimeGetResponse], bytime, path=["response"])
+            assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, bytime, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

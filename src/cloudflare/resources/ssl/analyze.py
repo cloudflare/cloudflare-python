@@ -6,6 +6,7 @@ from typing import Any, cast
 
 import httpx
 
+from ...types import UnnamedSchemaRef16aca57bde2963201c7e6e895436c1c1
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -20,11 +21,11 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...types.ssl import AnalyzeCreateResponse, analyze_create_params
+from ...types.ssl import analyze_create_params
 from ..._base_client import (
     make_request_options,
 )
-from ...types.shared import UnnamedSchemaRef78
+from ...types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 
 __all__ = ["Analyze", "AsyncAnalyze"]
 
@@ -42,7 +43,7 @@ class Analyze(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        bundle_method: UnnamedSchemaRef78 | NotGiven = NOT_GIVEN,
+        bundle_method: UnnamedSchemaRef16aca57bde2963201c7e6e895436c1c1 | NotGiven = NOT_GIVEN,
         certificate: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -50,7 +51,7 @@ class Analyze(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AnalyzeCreateResponse:
+    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
         """
         Returns the set of hostnames, the signature algorithm, and the expiration date
         of the certificate.
@@ -76,7 +77,7 @@ class Analyze(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            AnalyzeCreateResponse,
+            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
             self._post(
                 f"/zones/{zone_id}/ssl/analyze",
                 body=maybe_transform(
@@ -94,7 +95,7 @@ class Analyze(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[AnalyzeCreateResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -113,7 +114,7 @@ class AsyncAnalyze(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        bundle_method: UnnamedSchemaRef78 | NotGiven = NOT_GIVEN,
+        bundle_method: UnnamedSchemaRef16aca57bde2963201c7e6e895436c1c1 | NotGiven = NOT_GIVEN,
         certificate: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -121,7 +122,7 @@ class AsyncAnalyze(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AnalyzeCreateResponse:
+    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
         """
         Returns the set of hostnames, the signature algorithm, and the expiration date
         of the certificate.
@@ -147,7 +148,7 @@ class AsyncAnalyze(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            AnalyzeCreateResponse,
+            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
             await self._post(
                 f"/zones/{zone_id}/ssl/analyze",
                 body=await async_maybe_transform(
@@ -165,7 +166,7 @@ class AsyncAnalyze(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[AnalyzeCreateResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

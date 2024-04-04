@@ -26,12 +26,12 @@ from ..._base_client import (
 from ...types.queues import (
     ConsumerGetResponse,
     ConsumerCreateResponse,
-    ConsumerDeleteResponse,
     ConsumerUpdateResponse,
     consumer_create_params,
     consumer_delete_params,
     consumer_update_params,
 )
+from ...types.shared import UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151
 
 __all__ = ["Consumers", "AsyncConsumers"]
 
@@ -155,7 +155,7 @@ class Consumers(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ConsumerDeleteResponse]:
+    ) -> Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151]:
         """
         Deletes the consumer for a queue.
 
@@ -181,7 +181,7 @@ class Consumers(SyncAPIResource):
         if not consumer_id:
             raise ValueError(f"Expected a non-empty value for `consumer_id` but received {consumer_id!r}")
         return cast(
-            Optional[ConsumerDeleteResponse],
+            Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151],
             self._delete(
                 f"/accounts/{account_id}/queues/{queue_id}/consumers/{consumer_id}",
                 body=maybe_transform(body, consumer_delete_params.ConsumerDeleteParams),
@@ -193,7 +193,7 @@ class Consumers(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[ConsumerDeleteResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -362,7 +362,7 @@ class AsyncConsumers(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ConsumerDeleteResponse]:
+    ) -> Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151]:
         """
         Deletes the consumer for a queue.
 
@@ -388,7 +388,7 @@ class AsyncConsumers(AsyncAPIResource):
         if not consumer_id:
             raise ValueError(f"Expected a non-empty value for `consumer_id` but received {consumer_id!r}")
         return cast(
-            Optional[ConsumerDeleteResponse],
+            Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151],
             await self._delete(
                 f"/accounts/{account_id}/queues/{queue_id}/consumers/{consumer_id}",
                 body=await async_maybe_transform(body, consumer_delete_params.ConsumerDeleteParams),
@@ -400,7 +400,7 @@ class AsyncConsumers(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[ConsumerDeleteResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

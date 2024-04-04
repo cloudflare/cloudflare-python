@@ -3,8 +3,8 @@
 from typing import List, Optional
 from datetime import datetime
 
-from ..shared import UnnamedSchemaRef148
 from ..._models import BaseModel
+from .unnamed_schema_ref_608bee5065f7314d6fa572b89a1910f7 import UnnamedSchemaRef608bee5065f7314d6fa572b89a1910f7
 
 __all__ = ["WorkersKVComponentsSchemasResult", "Query"]
 
@@ -53,7 +53,7 @@ class Query(BaseModel):
 
 
 class WorkersKVComponentsSchemasResult(BaseModel):
-    data: Optional[List[UnnamedSchemaRef148]] = None
+    data: Optional[List[UnnamedSchemaRef608bee5065f7314d6fa572b89a1910f7]] = None
 
     data_lag: float
     """Number of seconds between current time and last processed event, i.e.

@@ -11,9 +11,9 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types import (
     KeylessCertificateHostname,
-    KeylessCertificateDeleteResponse,
 )
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
+from cloudflare.types.shared import UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -142,7 +142,7 @@ class TestKeylessCertificates:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(KeylessCertificateDeleteResponse, keyless_certificate, path=["response"])
+        assert_matches_type(UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837, keyless_certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -156,7 +156,7 @@ class TestKeylessCertificates:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         keyless_certificate = response.parse()
-        assert_matches_type(KeylessCertificateDeleteResponse, keyless_certificate, path=["response"])
+        assert_matches_type(UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837, keyless_certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -170,7 +170,9 @@ class TestKeylessCertificates:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             keyless_certificate = response.parse()
-            assert_matches_type(KeylessCertificateDeleteResponse, keyless_certificate, path=["response"])
+            assert_matches_type(
+                UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837, keyless_certificate, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 
@@ -443,7 +445,7 @@ class TestAsyncKeylessCertificates:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(KeylessCertificateDeleteResponse, keyless_certificate, path=["response"])
+        assert_matches_type(UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837, keyless_certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -457,7 +459,7 @@ class TestAsyncKeylessCertificates:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         keyless_certificate = await response.parse()
-        assert_matches_type(KeylessCertificateDeleteResponse, keyless_certificate, path=["response"])
+        assert_matches_type(UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837, keyless_certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -471,7 +473,9 @@ class TestAsyncKeylessCertificates:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             keyless_certificate = await response.parse()
-            assert_matches_type(KeylessCertificateDeleteResponse, keyless_certificate, path=["response"])
+            assert_matches_type(
+                UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837, keyless_certificate, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 

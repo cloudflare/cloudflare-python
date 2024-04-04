@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -13,9 +13,8 @@ from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.pages import (
     PagesProjects,
     PagesDeployments,
-    ProjectEditResponse,
-    ProjectCreateResponse,
 )
+from cloudflare.types.shared import UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -29,7 +28,7 @@ class TestProjects:
         project = client.pages.projects.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ProjectCreateResponse, project, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], project, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -109,7 +108,7 @@ class TestProjects:
             name="NextJS Blog",
             production_branch="main",
         )
-        assert_matches_type(ProjectCreateResponse, project, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], project, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -121,7 +120,7 @@ class TestProjects:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         project = response.parse()
-        assert_matches_type(ProjectCreateResponse, project, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], project, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -133,7 +132,7 @@ class TestProjects:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             project = response.parse()
-            assert_matches_type(ProjectCreateResponse, project, path=["response"])
+            assert_matches_type(Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], project, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -267,7 +266,7 @@ class TestProjects:
                 }
             },
         )
-        assert_matches_type(ProjectEditResponse, project, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], project, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -296,7 +295,7 @@ class TestProjects:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         project = response.parse()
-        assert_matches_type(ProjectEditResponse, project, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], project, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -325,7 +324,7 @@ class TestProjects:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             project = response.parse()
-            assert_matches_type(ProjectEditResponse, project, path=["response"])
+            assert_matches_type(Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], project, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -490,7 +489,7 @@ class TestAsyncProjects:
         project = await async_client.pages.projects.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ProjectCreateResponse, project, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], project, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -570,7 +569,7 @@ class TestAsyncProjects:
             name="NextJS Blog",
             production_branch="main",
         )
-        assert_matches_type(ProjectCreateResponse, project, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], project, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -582,7 +581,7 @@ class TestAsyncProjects:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         project = await response.parse()
-        assert_matches_type(ProjectCreateResponse, project, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], project, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -594,7 +593,7 @@ class TestAsyncProjects:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             project = await response.parse()
-            assert_matches_type(ProjectCreateResponse, project, path=["response"])
+            assert_matches_type(Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], project, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -728,7 +727,7 @@ class TestAsyncProjects:
                 }
             },
         )
-        assert_matches_type(ProjectEditResponse, project, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], project, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -757,7 +756,7 @@ class TestAsyncProjects:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         project = await response.parse()
-        assert_matches_type(ProjectEditResponse, project, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], project, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -786,7 +785,7 @@ class TestAsyncProjects:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             project = await response.parse()
-            assert_matches_type(ProjectEditResponse, project, path=["response"])
+            assert_matches_type(Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], project, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

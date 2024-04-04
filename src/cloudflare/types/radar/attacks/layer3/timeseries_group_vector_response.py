@@ -1,24 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import TYPE_CHECKING, List
+
 
 from ....._models import BaseModel
+from ....unnamed_schema_ref_7826220e105d84352ba1108d9ed88e55 import UnnamedSchemaRef7826220e105d84352ba1108d9ed88e55
 
-__all__ = ["TimeseriesGroupVectorResponse", "Serie0"]
-
-
-class Serie0(BaseModel):
-    timestamps: List[str]
-
-    if TYPE_CHECKING:
-        # Stub to indicate that arbitrary properties are accepted.
-        # To access properties that are not valid identifiers you can use `getattr`, e.g.
-        # `getattr(obj, '$type')`
-        def __getattr__(self, attr: str) -> List[str]:
-            ...
+__all__ = ["TimeseriesGroupVectorResponse"]
 
 
 class TimeseriesGroupVectorResponse(BaseModel):
     meta: object
 
-    serie_0: Serie0
+    serie_0: UnnamedSchemaRef7826220e105d84352ba1108d9ed88e55

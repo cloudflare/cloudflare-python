@@ -25,14 +25,8 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.pages.projects import (
-    DomainGetResponse,
-    DomainEditResponse,
-    DomainCreateResponse,
-    domain_edit_params,
-    domain_create_params,
-    domain_delete_params,
-)
+from ....types.shared import UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1
+from ....types.pages.projects import domain_edit_params, domain_create_params, domain_delete_params
 
 __all__ = ["Domains", "AsyncDomains"]
 
@@ -58,7 +52,7 @@ class Domains(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DomainCreateResponse]:
+    ) -> Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]:
         """
         Add a new domain for the Pages project.
 
@@ -80,7 +74,7 @@ class Domains(SyncAPIResource):
         if not project_name:
             raise ValueError(f"Expected a non-empty value for `project_name` but received {project_name!r}")
         return cast(
-            Optional[DomainCreateResponse],
+            Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1],
             self._post(
                 f"/accounts/{account_id}/pages/projects/{project_name}/domains",
                 body=maybe_transform(body, domain_create_params.DomainCreateParams),
@@ -92,7 +86,7 @@ class Domains(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[DomainCreateResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -198,7 +192,7 @@ class Domains(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DomainEditResponse]:
+    ) -> Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]:
         """
         Retry the validation status of a single domain.
 
@@ -224,7 +218,7 @@ class Domains(SyncAPIResource):
         if not domain_name:
             raise ValueError(f"Expected a non-empty value for `domain_name` but received {domain_name!r}")
         return cast(
-            Optional[DomainEditResponse],
+            Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1],
             self._patch(
                 f"/accounts/{account_id}/pages/projects/{project_name}/domains/{domain_name}",
                 body=maybe_transform(body, domain_edit_params.DomainEditParams),
@@ -236,7 +230,7 @@ class Domains(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[DomainEditResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -253,7 +247,7 @@ class Domains(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DomainGetResponse]:
+    ) -> Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]:
         """
         Fetch a single domain.
 
@@ -279,7 +273,7 @@ class Domains(SyncAPIResource):
         if not domain_name:
             raise ValueError(f"Expected a non-empty value for `domain_name` but received {domain_name!r}")
         return cast(
-            Optional[DomainGetResponse],
+            Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1],
             self._get(
                 f"/accounts/{account_id}/pages/projects/{project_name}/domains/{domain_name}",
                 options=make_request_options(
@@ -290,7 +284,7 @@ class Domains(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[DomainGetResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -317,7 +311,7 @@ class AsyncDomains(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DomainCreateResponse]:
+    ) -> Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]:
         """
         Add a new domain for the Pages project.
 
@@ -339,7 +333,7 @@ class AsyncDomains(AsyncAPIResource):
         if not project_name:
             raise ValueError(f"Expected a non-empty value for `project_name` but received {project_name!r}")
         return cast(
-            Optional[DomainCreateResponse],
+            Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1],
             await self._post(
                 f"/accounts/{account_id}/pages/projects/{project_name}/domains",
                 body=await async_maybe_transform(body, domain_create_params.DomainCreateParams),
@@ -351,7 +345,7 @@ class AsyncDomains(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[DomainCreateResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -457,7 +451,7 @@ class AsyncDomains(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DomainEditResponse]:
+    ) -> Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]:
         """
         Retry the validation status of a single domain.
 
@@ -483,7 +477,7 @@ class AsyncDomains(AsyncAPIResource):
         if not domain_name:
             raise ValueError(f"Expected a non-empty value for `domain_name` but received {domain_name!r}")
         return cast(
-            Optional[DomainEditResponse],
+            Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1],
             await self._patch(
                 f"/accounts/{account_id}/pages/projects/{project_name}/domains/{domain_name}",
                 body=await async_maybe_transform(body, domain_edit_params.DomainEditParams),
@@ -495,7 +489,7 @@ class AsyncDomains(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[DomainEditResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -512,7 +506,7 @@ class AsyncDomains(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DomainGetResponse]:
+    ) -> Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]:
         """
         Fetch a single domain.
 
@@ -538,7 +532,7 @@ class AsyncDomains(AsyncAPIResource):
         if not domain_name:
             raise ValueError(f"Expected a non-empty value for `domain_name` but received {domain_name!r}")
         return cast(
-            Optional[DomainGetResponse],
+            Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1],
             await self._get(
                 f"/accounts/{account_id}/pages/projects/{project_name}/domains/{domain_name}",
                 options=make_request_options(
@@ -549,7 +543,7 @@ class AsyncDomains(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[DomainGetResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

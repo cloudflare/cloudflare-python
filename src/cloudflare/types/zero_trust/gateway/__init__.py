@@ -10,13 +10,10 @@ from .rule_create_params import RuleCreateParams as RuleCreateParams
 from .rule_delete_params import RuleDeleteParams as RuleDeleteParams
 from .rule_update_params import RuleUpdateParams as RuleUpdateParams
 from .list_create_response import ListCreateResponse as ListCreateResponse
-from .list_delete_response import ListDeleteResponse as ListDeleteResponse
-from .rule_delete_response import RuleDeleteResponse as RuleDeleteResponse
 from .logging_update_params import LoggingUpdateParams as LoggingUpdateParams
 from .location_create_params import LocationCreateParams as LocationCreateParams
 from .location_delete_params import LocationDeleteParams as LocationDeleteParams
 from .location_update_params import LocationUpdateParams as LocationUpdateParams
-from .location_delete_response import LocationDeleteResponse as LocationDeleteResponse
 from .zero_trust_gateway_lists import ZeroTrustGatewayLists as ZeroTrustGatewayLists
 from .zero_trust_gateway_rules import ZeroTrustGatewayRules as ZeroTrustGatewayRules
 from .configuration_edit_params import ConfigurationEditParams as ConfigurationEditParams
@@ -31,9 +28,20 @@ from .zero_trust_gateway_app_types import ZeroTrustGatewayAppTypes as ZeroTrustG
 from .zero_trust_gateway_locations import ZeroTrustGatewayLocations as ZeroTrustGatewayLocations
 from .configuration_update_response import ConfigurationUpdateResponse as ConfigurationUpdateResponse
 from .zero_trust_gateway_categories import ZeroTrustGatewayCategories as ZeroTrustGatewayCategories
-from .proxy_endpoint_delete_response import ProxyEndpointDeleteResponse as ProxyEndpointDeleteResponse
 from .audit_ssh_setting_update_params import AuditSSHSettingUpdateParams as AuditSSHSettingUpdateParams
 from .zero_trust_gateway_proxy_endpoints import ZeroTrustGatewayProxyEndpoints as ZeroTrustGatewayProxyEndpoints
+from .unnamed_schema_ref_055aaf3918bf29f81c09d394a864182e import (
+    UnnamedSchemaRef055aaf3918bf29f81c09d394a864182e as UnnamedSchemaRef055aaf3918bf29f81c09d394a864182e,
+)
+from .unnamed_schema_ref_e86eeb84b7e922c35cfb0031a6309f7b import (
+    UnnamedSchemaRefE86eeb84b7e922c35cfb0031a6309f7b as UnnamedSchemaRefE86eeb84b7e922c35cfb0031a6309f7b,
+)
 from .zero_trust_gateway_gateway_account_logging_settings import (
     ZeroTrustGatewayGatewayAccountLoggingSettings as ZeroTrustGatewayGatewayAccountLoggingSettings,
+)
+from .unnamed_schema_ref_055aaf3918bf29f81c09d394a864182e_param import (
+    UnnamedSchemaRef055aaf3918bf29f81c09d394a864182eParam as UnnamedSchemaRef055aaf3918bf29f81c09d394a864182eParam,
+)
+from .unnamed_schema_ref_e86eeb84b7e922c35cfb0031a6309f7b_param import (
+    UnnamedSchemaRefE86eeb84b7e922c35cfb0031a6309f7bParam as UnnamedSchemaRefE86eeb84b7e922c35cfb0031a6309f7bParam,
 )

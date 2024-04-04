@@ -5,7 +5,6 @@ from __future__ import annotations
 from typing import List, Union, Iterable
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
-from .....types import shared_params
 from ....._utils import PropertyInfo
 
 __all__ = [
@@ -24,6 +23,7 @@ __all__ = [
     "IncludeAccessIPListRuleIPList",
     "IncludeAccessCertificateRule",
     "IncludeAccessAccessGroupRule",
+    "IncludeAccessAccessGroupRuleGroup",
     "IncludeAccessAzureGroupRule",
     "IncludeAccessAzureGroupRuleAzureAd",
     "IncludeAccessGitHubOrganizationRule",
@@ -60,6 +60,7 @@ __all__ = [
     "ExcludeAccessIPListRuleIPList",
     "ExcludeAccessCertificateRule",
     "ExcludeAccessAccessGroupRule",
+    "ExcludeAccessAccessGroupRuleGroup",
     "ExcludeAccessAzureGroupRule",
     "ExcludeAccessAzureGroupRuleAzureAd",
     "ExcludeAccessGitHubOrganizationRule",
@@ -95,6 +96,7 @@ __all__ = [
     "RequireAccessIPListRuleIPList",
     "RequireAccessCertificateRule",
     "RequireAccessAccessGroupRule",
+    "RequireAccessAccessGroupRuleGroup",
     "RequireAccessAzureGroupRule",
     "RequireAccessAzureGroupRuleAzureAd",
     "RequireAccessGitHubOrganizationRule",
@@ -240,8 +242,13 @@ class IncludeAccessCertificateRule(TypedDict, total=False):
     certificate: Required[object]
 
 
+class IncludeAccessAccessGroupRuleGroup(TypedDict, total=False):
+    id: Required[str]
+    """The ID of a previously created Access group."""
+
+
 class IncludeAccessAccessGroupRule(TypedDict, total=False):
-    group: Required[shared_params.UnnamedSchemaRef131]
+    group: Required[IncludeAccessAccessGroupRuleGroup]
 
 
 class IncludeAccessAzureGroupRuleAzureAd(TypedDict, total=False):
@@ -452,8 +459,13 @@ class ExcludeAccessCertificateRule(TypedDict, total=False):
     certificate: Required[object]
 
 
+class ExcludeAccessAccessGroupRuleGroup(TypedDict, total=False):
+    id: Required[str]
+    """The ID of a previously created Access group."""
+
+
 class ExcludeAccessAccessGroupRule(TypedDict, total=False):
-    group: Required[shared_params.UnnamedSchemaRef131]
+    group: Required[ExcludeAccessAccessGroupRuleGroup]
 
 
 class ExcludeAccessAzureGroupRuleAzureAd(TypedDict, total=False):
@@ -653,8 +665,13 @@ class RequireAccessCertificateRule(TypedDict, total=False):
     certificate: Required[object]
 
 
+class RequireAccessAccessGroupRuleGroup(TypedDict, total=False):
+    id: Required[str]
+    """The ID of a previously created Access group."""
+
+
 class RequireAccessAccessGroupRule(TypedDict, total=False):
-    group: Required[shared_params.UnnamedSchemaRef131]
+    group: Required[RequireAccessAccessGroupRuleGroup]
 
 
 class RequireAccessAzureGroupRuleAzureAd(TypedDict, total=False):

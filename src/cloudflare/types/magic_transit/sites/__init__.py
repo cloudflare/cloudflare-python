@@ -26,3 +26,6 @@ from .lan_update_response import LANUpdateResponse as LANUpdateResponse
 from .wan_create_response import WANCreateResponse as WANCreateResponse
 from .wan_delete_response import WANDeleteResponse as WANDeleteResponse
 from .wan_update_response import WANUpdateResponse as WANUpdateResponse
+from .unnamed_schema_ref_87fa9e5fe9f6b8d607be1df57340d916 import (
+    UnnamedSchemaRef87fa9e5fe9f6b8d607be1df57340d916 as UnnamedSchemaRef87fa9e5fe9f6b8d607be1df57340d916,
+)

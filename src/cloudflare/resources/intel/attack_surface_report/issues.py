@@ -26,11 +26,11 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from ....types.shared import UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f
 from ....types.intel.attack_surface_report import (
     IssueListResponse,
     IssueTypeResponse,
     IssueClassResponse,
-    IssueDismissResponse,
     IssueSeverityResponse,
     issue_list_params,
     issue_type_params,
@@ -239,7 +239,7 @@ class Issues(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IssueDismissResponse:
+    ) -> UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f:
         """
         Archive Security Center Insight
 
@@ -259,7 +259,7 @@ class Issues(SyncAPIResource):
         if not issue_id:
             raise ValueError(f"Expected a non-empty value for `issue_id` but received {issue_id!r}")
         return cast(
-            IssueDismissResponse,
+            UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f,
             self._put(
                 f"/accounts/{account_id}/intel/attack-surface-report/{issue_id}/dismiss",
                 body=maybe_transform({"dismiss": dismiss}, issue_dismiss_params.IssueDismissParams),
@@ -271,7 +271,7 @@ class Issues(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[IssueDismissResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -642,7 +642,7 @@ class AsyncIssues(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IssueDismissResponse:
+    ) -> UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f:
         """
         Archive Security Center Insight
 
@@ -662,7 +662,7 @@ class AsyncIssues(AsyncAPIResource):
         if not issue_id:
             raise ValueError(f"Expected a non-empty value for `issue_id` but received {issue_id!r}")
         return cast(
-            IssueDismissResponse,
+            UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f,
             await self._put(
                 f"/accounts/{account_id}/intel/attack-surface-report/{issue_id}/dismiss",
                 body=await async_maybe_transform({"dismiss": dismiss}, issue_dismiss_params.IssueDismissParams),
@@ -674,7 +674,7 @@ class AsyncIssues(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[IssueDismissResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

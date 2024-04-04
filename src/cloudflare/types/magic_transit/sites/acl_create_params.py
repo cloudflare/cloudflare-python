@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import List, Union, Iterable
 from typing_extensions import Required, TypedDict
 
-from ...shared import UnnamedSchemaRef82
+from .unnamed_schema_ref_87fa9e5fe9f6b8d607be1df57340d916 import UnnamedSchemaRef87fa9e5fe9f6b8d607be1df57340d916
 
 __all__ = ["ACLCreateParams", "ACL", "ACLLAN1", "ACLLAN2"]
 
@@ -78,4 +78,4 @@ class ACL(TypedDict, total=False):
     not included in request, will default to false.
     """
 
-    protocols: List[UnnamedSchemaRef82]
+    protocols: List[UnnamedSchemaRef87fa9e5fe9f6b8d607be1df57340d916]

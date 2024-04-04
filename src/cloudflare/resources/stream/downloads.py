@@ -23,7 +23,11 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.stream import DownloadGetResponse, DownloadCreateResponse, DownloadDeleteResponse, download_create_params
+from ...types.shared import (
+    UnnamedSchemaRef602dd5f63eab958d53da61434dec08f0,
+    UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+)
+from ...types.stream import download_create_params
 
 __all__ = ["Downloads", "AsyncDownloads"]
 
@@ -49,7 +53,7 @@ class Downloads(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DownloadCreateResponse:
+    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
         """
         Creates a download for a video when a video is ready to view.
 
@@ -71,7 +75,7 @@ class Downloads(SyncAPIResource):
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return cast(
-            DownloadCreateResponse,
+            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
             self._post(
                 f"/accounts/{account_id}/stream/{identifier}/downloads",
                 body=maybe_transform(body, download_create_params.DownloadCreateParams),
@@ -83,7 +87,7 @@ class Downloads(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[DownloadCreateResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -99,7 +103,7 @@ class Downloads(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DownloadDeleteResponse:
+    ) -> UnnamedSchemaRef602dd5f63eab958d53da61434dec08f0:
         """
         Delete the downloads for a video.
 
@@ -121,7 +125,7 @@ class Downloads(SyncAPIResource):
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return cast(
-            DownloadDeleteResponse,
+            UnnamedSchemaRef602dd5f63eab958d53da61434dec08f0,
             self._delete(
                 f"/accounts/{account_id}/stream/{identifier}/downloads",
                 options=make_request_options(
@@ -132,7 +136,7 @@ class Downloads(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[DownloadDeleteResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef602dd5f63eab958d53da61434dec08f0]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -148,7 +152,7 @@ class Downloads(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DownloadGetResponse:
+    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
         """
         Lists the downloads created for a video.
 
@@ -170,7 +174,7 @@ class Downloads(SyncAPIResource):
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return cast(
-            DownloadGetResponse,
+            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
             self._get(
                 f"/accounts/{account_id}/stream/{identifier}/downloads",
                 options=make_request_options(
@@ -181,7 +185,7 @@ class Downloads(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[DownloadGetResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -208,7 +212,7 @@ class AsyncDownloads(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DownloadCreateResponse:
+    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
         """
         Creates a download for a video when a video is ready to view.
 
@@ -230,7 +234,7 @@ class AsyncDownloads(AsyncAPIResource):
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return cast(
-            DownloadCreateResponse,
+            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
             await self._post(
                 f"/accounts/{account_id}/stream/{identifier}/downloads",
                 body=await async_maybe_transform(body, download_create_params.DownloadCreateParams),
@@ -242,7 +246,7 @@ class AsyncDownloads(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[DownloadCreateResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -258,7 +262,7 @@ class AsyncDownloads(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DownloadDeleteResponse:
+    ) -> UnnamedSchemaRef602dd5f63eab958d53da61434dec08f0:
         """
         Delete the downloads for a video.
 
@@ -280,7 +284,7 @@ class AsyncDownloads(AsyncAPIResource):
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return cast(
-            DownloadDeleteResponse,
+            UnnamedSchemaRef602dd5f63eab958d53da61434dec08f0,
             await self._delete(
                 f"/accounts/{account_id}/stream/{identifier}/downloads",
                 options=make_request_options(
@@ -291,7 +295,7 @@ class AsyncDownloads(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[DownloadDeleteResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef602dd5f63eab958d53da61434dec08f0]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -307,7 +311,7 @@ class AsyncDownloads(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DownloadGetResponse:
+    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
         """
         Lists the downloads created for a video.
 
@@ -329,7 +333,7 @@ class AsyncDownloads(AsyncAPIResource):
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return cast(
-            DownloadGetResponse,
+            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
             await self._get(
                 f"/accounts/{account_id}/stream/{identifier}/downloads",
                 options=make_request_options(
@@ -340,7 +344,7 @@ class AsyncDownloads(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[DownloadGetResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

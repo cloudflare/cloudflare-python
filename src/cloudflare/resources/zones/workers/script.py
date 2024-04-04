@@ -31,7 +31,8 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.workers import ScriptUpdateResponse, script_delete_params, script_update_params
+from ....types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
+from ....types.zones.workers import script_delete_params, script_update_params
 
 __all__ = ["Script", "AsyncScript"]
 
@@ -56,7 +57,7 @@ class Script(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ScriptUpdateResponse:
+    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
         """
         Upload a worker, or a new version of a worker.
 
@@ -74,7 +75,7 @@ class Script(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            ScriptUpdateResponse,
+            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
             self._put(
                 f"/zones/{zone_id}/workers/script",
                 body=maybe_transform(body, script_update_params.ScriptUpdateParams),
@@ -86,7 +87,7 @@ class Script(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[ScriptUpdateResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -189,7 +190,7 @@ class AsyncScript(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ScriptUpdateResponse:
+    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
         """
         Upload a worker, or a new version of a worker.
 
@@ -207,7 +208,7 @@ class AsyncScript(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            ScriptUpdateResponse,
+            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
             await self._put(
                 f"/zones/{zone_id}/workers/script",
                 body=await async_maybe_transform(body, script_update_params.ScriptUpdateParams),
@@ -219,7 +220,7 @@ class AsyncScript(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[ScriptUpdateResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

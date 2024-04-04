@@ -4,7 +4,7 @@ from typing import Dict, List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from ...logging import Logging
+from ...shared import UnnamedSchemaRef70f2c6ccd8a405358ac7ef8fc3d6751c
 from ...._models import BaseModel
 
 __all__ = [
@@ -69,7 +69,7 @@ class RuleRulesetsBlockRule(BaseModel):
     expression: Optional[str] = None
     """The expression defining which traffic will match the rule."""
 
-    logging: Optional[Logging] = None
+    logging: Optional[UnnamedSchemaRef70f2c6ccd8a405358ac7ef8fc3d6751c] = None
     """An object configuring the rule's logging behavior."""
 
     ref: Optional[str] = None
@@ -181,7 +181,7 @@ class RuleRulesetsExecuteRule(BaseModel):
     expression: Optional[str] = None
     """The expression defining which traffic will match the rule."""
 
-    logging: Optional[Logging] = None
+    logging: Optional[UnnamedSchemaRef70f2c6ccd8a405358ac7ef8fc3d6751c] = None
     """An object configuring the rule's logging behavior."""
 
     ref: Optional[str] = None
@@ -216,7 +216,7 @@ class RuleRulesetsLogRule(BaseModel):
     expression: Optional[str] = None
     """The expression defining which traffic will match the rule."""
 
-    logging: Optional[Logging] = None
+    logging: Optional[UnnamedSchemaRef70f2c6ccd8a405358ac7ef8fc3d6751c] = None
     """An object configuring the rule's logging behavior."""
 
     ref: Optional[str] = None
@@ -310,7 +310,7 @@ class RuleRulesetsSkipRule(BaseModel):
     expression: Optional[str] = None
     """The expression defining which traffic will match the rule."""
 
-    logging: Optional[Logging] = None
+    logging: Optional[UnnamedSchemaRef70f2c6ccd8a405358ac7ef8fc3d6751c] = None
     """An object configuring the rule's logging behavior."""
 
     ref: Optional[str] = None

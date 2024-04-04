@@ -23,7 +23,8 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.kv.namespaces import BulkDeleteResponse, BulkUpdateResponse, bulk_delete_params, bulk_update_params
+from ....types.shared import UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f
+from ....types.kv.namespaces import bulk_delete_params, bulk_update_params
 
 __all__ = ["Bulk", "AsyncBulk"]
 
@@ -49,7 +50,7 @@ class Bulk(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BulkUpdateResponse:
+    ) -> UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f:
         """Write multiple keys and values at once.
 
         Body should be an array of up to 10,000
@@ -77,7 +78,7 @@ class Bulk(SyncAPIResource):
         if not namespace_id:
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         return cast(
-            BulkUpdateResponse,
+            UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f,
             self._put(
                 f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk",
                 body=maybe_transform(body, bulk_update_params.BulkUpdateParams),
@@ -89,7 +90,7 @@ class Bulk(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[BulkUpdateResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -106,7 +107,7 @@ class Bulk(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BulkDeleteResponse:
+    ) -> UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f:
         """Remove multiple KV pairs from the namespace.
 
         Body should be an array of up to
@@ -130,7 +131,7 @@ class Bulk(SyncAPIResource):
         if not namespace_id:
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         return cast(
-            BulkDeleteResponse,
+            UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f,
             self._delete(
                 f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk",
                 body=maybe_transform(body, bulk_delete_params.BulkDeleteParams),
@@ -142,7 +143,7 @@ class Bulk(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[BulkDeleteResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -169,7 +170,7 @@ class AsyncBulk(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BulkUpdateResponse:
+    ) -> UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f:
         """Write multiple keys and values at once.
 
         Body should be an array of up to 10,000
@@ -197,7 +198,7 @@ class AsyncBulk(AsyncAPIResource):
         if not namespace_id:
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         return cast(
-            BulkUpdateResponse,
+            UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f,
             await self._put(
                 f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk",
                 body=await async_maybe_transform(body, bulk_update_params.BulkUpdateParams),
@@ -209,7 +210,7 @@ class AsyncBulk(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[BulkUpdateResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -226,7 +227,7 @@ class AsyncBulk(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BulkDeleteResponse:
+    ) -> UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f:
         """Remove multiple KV pairs from the namespace.
 
         Body should be an array of up to
@@ -250,7 +251,7 @@ class AsyncBulk(AsyncAPIResource):
         if not namespace_id:
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         return cast(
-            BulkDeleteResponse,
+            UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f,
             await self._delete(
                 f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk",
                 body=await async_maybe_transform(body, bulk_delete_params.BulkDeleteParams),
@@ -262,7 +263,7 @@ class AsyncBulk(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[BulkDeleteResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

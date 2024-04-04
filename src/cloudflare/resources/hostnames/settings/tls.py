@@ -24,8 +24,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.shared import UnnamedSchemaRef65
-from ....types.hostnames.settings import TLSGetResponse, HostnameSettingDelete, tls_update_params
+from ....types.hostnames.settings import HostnameStting, TLSGetResponse, HostnameSettingDelete, tls_update_params
 
 __all__ = ["TLS", "AsyncTLS"]
 
@@ -52,7 +51,7 @@ class TLS(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef65:
+    ) -> HostnameStting:
         """
         Update the tls setting value for the hostname.
 
@@ -89,7 +88,7 @@ class TLS(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[UnnamedSchemaRef65], ResultWrapper[UnnamedSchemaRef65]),
+            cast_to=cast(Type[HostnameStting], ResultWrapper[HostnameStting]),
         )
 
     def delete(
@@ -208,7 +207,7 @@ class AsyncTLS(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef65:
+    ) -> HostnameStting:
         """
         Update the tls setting value for the hostname.
 
@@ -245,7 +244,7 @@ class AsyncTLS(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[UnnamedSchemaRef65], ResultWrapper[UnnamedSchemaRef65]),
+            cast_to=cast(Type[HostnameStting], ResultWrapper[HostnameStting]),
         )
 
     async def delete(

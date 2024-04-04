@@ -5,7 +5,9 @@ from __future__ import annotations
 from typing import List
 from typing_extensions import Literal, Required, TypedDict
 
-from .shared import UnnamedSchemaRef78, UnnamedSchemaRef81
+from .unnamed_schema_ref_9a9935a9a770967bb604ae41a81e42e1 import UnnamedSchemaRef9a9935a9a770967bb604ae41a81e42e1
+from .unnamed_schema_ref_16aca57bde2963201c7e6e895436c1c1 import UnnamedSchemaRef16aca57bde2963201c7e6e895436c1c1
+from .unnamed_schema_ref_78adb375f06c6d462dd92b99e2ecf510 import UnnamedSchemaRef78adb375f06c6d462dd92b99e2ecf510
 
 __all__ = ["CustomHostnameCreateParams", "SSL", "SSLSettings", "CustomMetadata"]
 
@@ -31,7 +33,7 @@ class SSLSettings(TypedDict, total=False):
     These ciphers must be in the BoringSSL format.
     """
 
-    early_hints: UnnamedSchemaRef81
+    early_hints: Literal["on", "off"]
     """Whether or not Early Hints is enabled."""
 
     http2: Literal["on", "off"]
@@ -45,7 +47,7 @@ class SSLSettings(TypedDict, total=False):
 
 
 class SSL(TypedDict, total=False):
-    bundle_method: UnnamedSchemaRef78
+    bundle_method: UnnamedSchemaRef16aca57bde2963201c7e6e895436c1c1
     """
     A ubiquitous bundle has the highest probability of being verified everywhere,
     even by clients using outdated or unusual trust stores. An optimal bundle uses
@@ -62,13 +64,13 @@ class SSL(TypedDict, total=False):
     custom_key: str
     """The key for a custom uploaded certificate."""
 
-    method: Literal["http", "txt", "email"]
+    method: UnnamedSchemaRef78adb375f06c6d462dd92b99e2ecf510
     """Domain control validation (DCV) method used for this hostname."""
 
     settings: SSLSettings
     """SSL specific settings."""
 
-    type: Literal["dv"]
+    type: UnnamedSchemaRef9a9935a9a770967bb604ae41a81e42e1
     """Level of validation to be used for this hostname.
 
     Domain validation (dv) must be used.

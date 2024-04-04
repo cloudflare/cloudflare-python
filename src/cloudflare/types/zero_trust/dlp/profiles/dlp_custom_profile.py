@@ -4,8 +4,8 @@ from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from ....shared import UnnamedSchemaRef96
 from ....._models import BaseModel
+from ..unnamed_schema_ref_c105db122868c71badeac3b4822ad6b1 import UnnamedSchemaRefC105db122868c71badeac3b4822ad6b1
 
 __all__ = ["DLPCustomProfile", "ContextAwareness", "ContextAwarenessSkip", "Entry", "EntryPattern"]
 
@@ -86,7 +86,7 @@ class DLPCustomProfile(BaseModel):
     ocr_enabled: Optional[bool] = None
     """If true, scan images via OCR to determine if any text present matches filters."""
 
-    type: Optional[UnnamedSchemaRef96] = None
+    type: Optional[UnnamedSchemaRefC105db122868c71badeac3b4822ad6b1] = None
     """The type of the profile."""
 
     updated_at: Optional[datetime] = None

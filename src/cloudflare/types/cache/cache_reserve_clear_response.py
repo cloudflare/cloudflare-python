@@ -4,14 +4,14 @@ from typing import Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from ..shared import UnnamedSchemaRef139
 from ..._models import BaseModel
+from .unnamed_schema_ref_2b5e755404a4bfd7892291ce97c4968d import UnnamedSchemaRef2b5e755404a4bfd7892291ce97c4968d
 
 __all__ = ["CacheReserveClearResponse"]
 
 
 class CacheReserveClearResponse(BaseModel):
-    id: UnnamedSchemaRef139
+    id: UnnamedSchemaRef2b5e755404a4bfd7892291ce97c4968d
     """ID of the zone setting."""
 
     modified_on: Optional[datetime] = None

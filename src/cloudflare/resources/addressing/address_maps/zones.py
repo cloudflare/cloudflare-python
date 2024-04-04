@@ -23,12 +23,8 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.addressing.address_maps import (
-    ZoneDeleteResponse,
-    ZoneUpdateResponse,
-    zone_delete_params,
-    zone_update_params,
-)
+from ....types.shared import UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151
+from ....types.addressing.address_maps import zone_delete_params, zone_update_params
 
 __all__ = ["Zones", "AsyncZones"]
 
@@ -55,7 +51,7 @@ class Zones(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneUpdateResponse]:
+    ) -> Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151]:
         """
         Add a zone as a member of a particular address map.
 
@@ -81,7 +77,7 @@ class Zones(SyncAPIResource):
         if not address_map_id:
             raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
         return cast(
-            Optional[ZoneUpdateResponse],
+            Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151],
             self._put(
                 f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/zones/{zone_id}",
                 body=maybe_transform(body, zone_update_params.ZoneUpdateParams),
@@ -93,7 +89,7 @@ class Zones(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[ZoneUpdateResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -111,7 +107,7 @@ class Zones(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneDeleteResponse]:
+    ) -> Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151]:
         """
         Remove a zone as a member of a particular address map.
 
@@ -137,7 +133,7 @@ class Zones(SyncAPIResource):
         if not address_map_id:
             raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
         return cast(
-            Optional[ZoneDeleteResponse],
+            Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151],
             self._delete(
                 f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/zones/{zone_id}",
                 body=maybe_transform(body, zone_delete_params.ZoneDeleteParams),
@@ -149,7 +145,7 @@ class Zones(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[ZoneDeleteResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -177,7 +173,7 @@ class AsyncZones(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneUpdateResponse]:
+    ) -> Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151]:
         """
         Add a zone as a member of a particular address map.
 
@@ -203,7 +199,7 @@ class AsyncZones(AsyncAPIResource):
         if not address_map_id:
             raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
         return cast(
-            Optional[ZoneUpdateResponse],
+            Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151],
             await self._put(
                 f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/zones/{zone_id}",
                 body=await async_maybe_transform(body, zone_update_params.ZoneUpdateParams),
@@ -215,7 +211,7 @@ class AsyncZones(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[ZoneUpdateResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -233,7 +229,7 @@ class AsyncZones(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneDeleteResponse]:
+    ) -> Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151]:
         """
         Remove a zone as a member of a particular address map.
 
@@ -259,7 +255,7 @@ class AsyncZones(AsyncAPIResource):
         if not address_map_id:
             raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
         return cast(
-            Optional[ZoneDeleteResponse],
+            Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151],
             await self._delete(
                 f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/zones/{zone_id}",
                 body=await async_maybe_transform(body, zone_delete_params.ZoneDeleteParams),
@@ -271,7 +267,7 @@ class AsyncZones(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[ZoneDeleteResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
