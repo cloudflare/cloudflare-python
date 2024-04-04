@@ -4,9 +4,9 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["Logging"]
+__all__ = ["LoggingParam"]
 
 
-class Logging(TypedDict, total=False):
+class LoggingParam(TypedDict, total=False):
     enabled: Required[bool]
     """Whether to generate a log when the rule matches."""

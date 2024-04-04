@@ -7,7 +7,7 @@ from typing_extensions import Literal
 from ...._models import BaseModel
 
 __all__ = [
-    "FirewallRule",
+    "AccessRule",
     "Configuration",
     "ConfigurationLegacyJhsIPConfiguration",
     "ConfigurationLegacyJhsIPV6Configuration",
@@ -94,7 +94,7 @@ Configuration = Union[
 ]
 
 
-class FirewallRule(BaseModel):
+class AccessRule(BaseModel):
     id: str
     """The unique identifier of the IP Access rule."""
 
