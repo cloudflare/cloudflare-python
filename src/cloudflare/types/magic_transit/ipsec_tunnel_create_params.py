@@ -28,7 +28,10 @@ class IPSECTunnelCreateParams(TypedDict, total=False):
     """The name of the IPsec tunnel. The name cannot share a name with other tunnels."""
 
     customer_endpoint: str
-    """The IP address assigned to the customer side of the IPsec tunnel."""
+    """The IP address assigned to the customer side of the IPsec tunnel.
+
+    Not required, but must be set for proactive traceroutes to work.
+    """
 
     description: str
     """An optional description forthe IPsec tunnel."""
