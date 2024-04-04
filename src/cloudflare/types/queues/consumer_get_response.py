@@ -2,18 +2,10 @@
 
 from typing import List, Optional
 
+from ..shared import UnnamedSchemaRef41
 from ..._models import BaseModel
 
-__all__ = ["ConsumerGetResponse", "ConsumerGetResponseItem", "ConsumerGetResponseItemSettings"]
-
-
-class ConsumerGetResponseItemSettings(BaseModel):
-    batch_size: Optional[float] = None
-    """The maximum number of messages to include in a batch"""
-
-    max_retries: Optional[float] = None
-
-    max_wait_time_ms: Optional[float] = None
+__all__ = ["ConsumerGetResponse", "ConsumerGetResponseItem"]
 
 
 class ConsumerGetResponseItem(BaseModel):
@@ -25,7 +17,7 @@ class ConsumerGetResponseItem(BaseModel):
 
     service: Optional[object] = None
 
-    settings: Optional[ConsumerGetResponseItemSettings] = None
+    settings: Optional[UnnamedSchemaRef41] = None
 
 
 ConsumerGetResponse = List[ConsumerGetResponseItem]

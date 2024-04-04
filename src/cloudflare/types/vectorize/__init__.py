@@ -7,7 +7,6 @@ from .index_create_params import IndexCreateParams as IndexCreateParams
 from .index_insert_params import IndexInsertParams as IndexInsertParams
 from .index_update_params import IndexUpdateParams as IndexUpdateParams
 from .index_upsert_params import IndexUpsertParams as IndexUpsertParams
-from .index_delete_response import IndexDeleteResponse as IndexDeleteResponse
 from .vectorize_index_query import VectorizeIndexQuery as VectorizeIndexQuery
 from .vectorize_create_index import VectorizeCreateIndex as VectorizeCreateIndex
 from .vectorize_index_insert import VectorizeIndexInsert as VectorizeIndexInsert

@@ -23,12 +23,8 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.addressing.address_maps import (
-    AccountDeleteResponse,
-    AccountUpdateResponse,
-    account_delete_params,
-    account_update_params,
-)
+from ....types.shared import UnnamedSchemaRef167
+from ....types.addressing.address_maps import account_delete_params, account_update_params
 
 __all__ = ["Accounts", "AsyncAccounts"]
 
@@ -54,7 +50,7 @@ class Accounts(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AccountUpdateResponse]:
+    ) -> Optional[UnnamedSchemaRef167]:
         """
         Add an account as a member of a particular address map.
 
@@ -76,7 +72,7 @@ class Accounts(SyncAPIResource):
         if not address_map_id:
             raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
         return cast(
-            Optional[AccountUpdateResponse],
+            Optional[UnnamedSchemaRef167],
             self._put(
                 f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/accounts/{account_id}",
                 body=maybe_transform(body, account_update_params.AccountUpdateParams),
@@ -88,7 +84,7 @@ class Accounts(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[AccountUpdateResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef167]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -105,7 +101,7 @@ class Accounts(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AccountDeleteResponse]:
+    ) -> Optional[UnnamedSchemaRef167]:
         """
         Remove an account as a member of a particular address map.
 
@@ -127,7 +123,7 @@ class Accounts(SyncAPIResource):
         if not address_map_id:
             raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
         return cast(
-            Optional[AccountDeleteResponse],
+            Optional[UnnamedSchemaRef167],
             self._delete(
                 f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/accounts/{account_id}",
                 body=maybe_transform(body, account_delete_params.AccountDeleteParams),
@@ -139,7 +135,7 @@ class Accounts(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[AccountDeleteResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef167]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -166,7 +162,7 @@ class AsyncAccounts(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AccountUpdateResponse]:
+    ) -> Optional[UnnamedSchemaRef167]:
         """
         Add an account as a member of a particular address map.
 
@@ -188,7 +184,7 @@ class AsyncAccounts(AsyncAPIResource):
         if not address_map_id:
             raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
         return cast(
-            Optional[AccountUpdateResponse],
+            Optional[UnnamedSchemaRef167],
             await self._put(
                 f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/accounts/{account_id}",
                 body=await async_maybe_transform(body, account_update_params.AccountUpdateParams),
@@ -200,7 +196,7 @@ class AsyncAccounts(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[AccountUpdateResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef167]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -217,7 +213,7 @@ class AsyncAccounts(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AccountDeleteResponse]:
+    ) -> Optional[UnnamedSchemaRef167]:
         """
         Remove an account as a member of a particular address map.
 
@@ -239,7 +235,7 @@ class AsyncAccounts(AsyncAPIResource):
         if not address_map_id:
             raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
         return cast(
-            Optional[AccountDeleteResponse],
+            Optional[UnnamedSchemaRef167],
             await self._delete(
                 f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/accounts/{account_id}",
                 body=await async_maybe_transform(body, account_delete_params.AccountDeleteParams),
@@ -251,7 +247,7 @@ class AsyncAccounts(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[AccountDeleteResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef167]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

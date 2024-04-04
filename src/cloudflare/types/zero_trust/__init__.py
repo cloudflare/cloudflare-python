@@ -9,11 +9,8 @@ from .tunnel_argo_tunnel import TunnelArgoTunnel as TunnelArgoTunnel
 from .tunnel_edit_params import TunnelEditParams as TunnelEditParams
 from .tunnel_list_params import TunnelListParams as TunnelListParams
 from .zero_trust_devices import ZeroTrustDevices as ZeroTrustDevices
-from .device_get_response import DeviceGetResponse as DeviceGetResponse
 from .tunnel_create_params import TunnelCreateParams as TunnelCreateParams
 from .tunnel_delete_params import TunnelDeleteParams as TunnelDeleteParams
-from .tunnel_edit_response import TunnelEditResponse as TunnelEditResponse
-from .tunnel_list_response import TunnelListResponse as TunnelListResponse
 from .gateway_list_response import GatewayListResponse as GatewayListResponse
 from .gateway_create_response import GatewayCreateResponse as GatewayCreateResponse
 from .zero_trust_organizations import ZeroTrustOrganizations as ZeroTrustOrganizations

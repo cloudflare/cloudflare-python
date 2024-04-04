@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import List, Union, Iterable
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
+from ...shared import UnnamedSchemaRef87, UnnamedSchemaRef88, UnnamedSchemaRef119
 from ...._utils import PropertyInfo
 
 __all__ = [
@@ -85,7 +86,7 @@ class PostureUpdateParams(TypedDict, total=False):
 
 
 class InputTeamsDevicesFileInputRequest(TypedDict, total=False):
-    operating_system: Required[Literal["windows", "linux", "mac"]]
+    operating_system: Required[UnnamedSchemaRef119]
     """Operating system"""
 
     path: Required[str]
@@ -150,7 +151,7 @@ class InputTeamsDevicesFirewallInputRequest(TypedDict, total=False):
 
 
 class InputTeamsDevicesSentineloneInputRequest(TypedDict, total=False):
-    operating_system: Required[Literal["windows", "linux", "mac"]]
+    operating_system: Required[UnnamedSchemaRef119]
     """Operating system"""
 
     path: Required[str]
@@ -164,7 +165,7 @@ class InputTeamsDevicesSentineloneInputRequest(TypedDict, total=False):
 
 
 class InputTeamsDevicesCarbonblackInputRequest(TypedDict, total=False):
-    operating_system: Required[Literal["windows", "linux", "mac"]]
+    operating_system: Required[UnnamedSchemaRef119]
     """Operating system"""
 
     path: Required[str]
@@ -186,7 +187,7 @@ class InputTeamsDevicesDiskEncryptionInputRequest(TypedDict, total=False):
 
 
 class InputTeamsDevicesApplicationInputRequest(TypedDict, total=False):
-    operating_system: Required[Literal["windows", "linux", "mac"]]
+    operating_system: Required[UnnamedSchemaRef119]
     """Operating system"""
 
     path: Required[str]
@@ -222,7 +223,7 @@ class InputTeamsDevicesCrowdstrikeInputRequest(TypedDict, total=False):
     last_seen: str
     """For more details on last seen, please refer to the Crowdstrike documentation."""
 
-    operator: Literal["<", "<=", ">", ">=", "=="]
+    operator: UnnamedSchemaRef87
     """Operator"""
 
     os: str
@@ -240,7 +241,7 @@ class InputTeamsDevicesCrowdstrikeInputRequest(TypedDict, total=False):
     version: str
     """Version"""
 
-    version_operator: Annotated[Literal["<", "<=", ">", ">=", "=="], PropertyInfo(alias="versionOperator")]
+    version_operator: Annotated[UnnamedSchemaRef88, PropertyInfo(alias="versionOperator")]
     """Version Operator"""
 
 

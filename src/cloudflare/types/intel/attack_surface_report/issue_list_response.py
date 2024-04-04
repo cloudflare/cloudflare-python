@@ -4,21 +4,10 @@ from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
+from ...shared import UnnamedSchemaRef172
 from ...._models import BaseModel
 
-__all__ = ["IssueListResponse", "Error", "Message", "Result", "ResultIssue"]
-
-
-class Error(BaseModel):
-    code: int
-
-    message: str
-
-
-class Message(BaseModel):
-    code: int
-
-    message: str
+__all__ = ["IssueListResponse", "Result", "ResultIssue"]
 
 
 class ResultIssue(BaseModel):
@@ -67,9 +56,9 @@ class Result(BaseModel):
 
 
 class IssueListResponse(BaseModel):
-    errors: List[Error]
+    errors: List[UnnamedSchemaRef172]
 
-    messages: List[Message]
+    messages: List[UnnamedSchemaRef172]
 
     result: Result
 

@@ -4,6 +4,7 @@ from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
+from ..shared import UnnamedSchemaRef83, UnnamedSchemaRef84
 from ..._models import BaseModel
 
 __all__ = ["GRETunnelCreateResponse", "GRETunnel", "GRETunnelHealthCheck"]
@@ -23,7 +24,7 @@ class GRETunnelHealthCheck(BaseModel):
     enabled: Optional[bool] = None
     """Determines whether to run healthchecks for a tunnel."""
 
-    rate: Optional[Literal["low", "mid", "high"]] = None
+    rate: Optional[UnnamedSchemaRef83] = None
     """How frequent the health check is run. The default value is `mid`."""
 
     target: Optional[str] = None
@@ -36,7 +37,7 @@ class GRETunnelHealthCheck(BaseModel):
     the tunnel) is used as the target.
     """
 
-    type: Optional[Literal["reply", "request"]] = None
+    type: Optional[UnnamedSchemaRef84] = None
     """The type of healthcheck to run, reply or request. The default value is `reply`."""
 
 

@@ -10,12 +10,10 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from cloudflare.types.shared import UnnamedSchemaRef173
 from cloudflare.types.firewall import (
-    UARuleGetResponse,
     UARuleListResponse,
-    UARuleCreateResponse,
     UARuleDeleteResponse,
-    UARuleUpdateResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -31,7 +29,7 @@ class TestUARules:
             "023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(Optional[UARuleCreateResponse], ua_rule, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef173], ua_rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -44,7 +42,7 @@ class TestUARules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ua_rule = response.parse()
-        assert_matches_type(Optional[UARuleCreateResponse], ua_rule, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef173], ua_rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -57,7 +55,7 @@ class TestUARules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ua_rule = response.parse()
-            assert_matches_type(Optional[UARuleCreateResponse], ua_rule, path=["response"])
+            assert_matches_type(Optional[UnnamedSchemaRef173], ua_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -78,7 +76,7 @@ class TestUARules:
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(Optional[UARuleUpdateResponse], ua_rule, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef173], ua_rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -92,7 +90,7 @@ class TestUARules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ua_rule = response.parse()
-        assert_matches_type(Optional[UARuleUpdateResponse], ua_rule, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef173], ua_rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -106,7 +104,7 @@ class TestUARules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ua_rule = response.parse()
-            assert_matches_type(Optional[UARuleUpdateResponse], ua_rule, path=["response"])
+            assert_matches_type(Optional[UnnamedSchemaRef173], ua_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -246,7 +244,7 @@ class TestUARules:
             "372e67954025e0ba6aaa6d586b9e0b59",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[UARuleGetResponse], ua_rule, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef173], ua_rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -259,7 +257,7 @@ class TestUARules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ua_rule = response.parse()
-        assert_matches_type(Optional[UARuleGetResponse], ua_rule, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef173], ua_rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -272,7 +270,7 @@ class TestUARules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ua_rule = response.parse()
-            assert_matches_type(Optional[UARuleGetResponse], ua_rule, path=["response"])
+            assert_matches_type(Optional[UnnamedSchemaRef173], ua_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -302,7 +300,7 @@ class TestAsyncUARules:
             "023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(Optional[UARuleCreateResponse], ua_rule, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef173], ua_rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -315,7 +313,7 @@ class TestAsyncUARules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ua_rule = await response.parse()
-        assert_matches_type(Optional[UARuleCreateResponse], ua_rule, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef173], ua_rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -328,7 +326,7 @@ class TestAsyncUARules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ua_rule = await response.parse()
-            assert_matches_type(Optional[UARuleCreateResponse], ua_rule, path=["response"])
+            assert_matches_type(Optional[UnnamedSchemaRef173], ua_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -349,7 +347,7 @@ class TestAsyncUARules:
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(Optional[UARuleUpdateResponse], ua_rule, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef173], ua_rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -363,7 +361,7 @@ class TestAsyncUARules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ua_rule = await response.parse()
-        assert_matches_type(Optional[UARuleUpdateResponse], ua_rule, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef173], ua_rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -377,7 +375,7 @@ class TestAsyncUARules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ua_rule = await response.parse()
-            assert_matches_type(Optional[UARuleUpdateResponse], ua_rule, path=["response"])
+            assert_matches_type(Optional[UnnamedSchemaRef173], ua_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -517,7 +515,7 @@ class TestAsyncUARules:
             "372e67954025e0ba6aaa6d586b9e0b59",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[UARuleGetResponse], ua_rule, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef173], ua_rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -530,7 +528,7 @@ class TestAsyncUARules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ua_rule = await response.parse()
-        assert_matches_type(Optional[UARuleGetResponse], ua_rule, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef173], ua_rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -543,7 +541,7 @@ class TestAsyncUARules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ua_rule = await response.parse()
-            assert_matches_type(Optional[UARuleGetResponse], ua_rule, path=["response"])
+            assert_matches_type(Optional[UnnamedSchemaRef173], ua_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

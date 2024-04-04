@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from typing import Any, cast
-from typing_extensions import Literal
 
 import httpx
 
@@ -25,6 +24,7 @@ from ...types.ssl import AnalyzeCreateResponse, analyze_create_params
 from ..._base_client import (
     make_request_options,
 )
+from ...types.shared import UnnamedSchemaRef78
 
 __all__ = ["Analyze", "AsyncAnalyze"]
 
@@ -42,7 +42,7 @@ class Analyze(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        bundle_method: Literal["ubiquitous", "optimal", "force"] | NotGiven = NOT_GIVEN,
+        bundle_method: UnnamedSchemaRef78 | NotGiven = NOT_GIVEN,
         certificate: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -113,7 +113,7 @@ class AsyncAnalyze(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        bundle_method: Literal["ubiquitous", "optimal", "force"] | NotGiven = NOT_GIVEN,
+        bundle_method: UnnamedSchemaRef78 | NotGiven = NOT_GIVEN,
         certificate: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

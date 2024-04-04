@@ -5,6 +5,9 @@ from __future__ import annotations
 from typing import List, Union
 from typing_extensions import Literal, Required, TypedDict
 
+from ....types import shared_params
+from ...shared import UnnamedSchemaRef75, UnnamedSchemaRef77
+
 __all__ = [
     "ApplicationCreateParams",
     "SelfHostedApplication",
@@ -13,7 +16,6 @@ __all__ = [
     "SaaSApplicationSaasApp",
     "SaaSApplicationSaasAppAccessSamlSaasApp",
     "SaaSApplicationSaasAppAccessSamlSaasAppCustomAttributes",
-    "SaaSApplicationSaasAppAccessSamlSaasAppCustomAttributesSource",
     "SaaSApplicationSaasAppAccessOidcSaasApp",
     "BrowserSSHApplication",
     "BrowserSSHApplicationCorsHeaders",
@@ -218,23 +220,14 @@ class SaaSApplication(TypedDict, total=False):
     """The application type."""
 
 
-class SaaSApplicationSaasAppAccessSamlSaasAppCustomAttributesSource(TypedDict, total=False):
-    name: str
-    """The name of the IdP attribute."""
-
-
 class SaaSApplicationSaasAppAccessSamlSaasAppCustomAttributes(TypedDict, total=False):
     name: str
     """The name of the attribute."""
 
-    name_format: Literal[
-        "urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified",
-        "urn:oasis:names:tc:SAML:2.0:attrname-format:basic",
-        "urn:oasis:names:tc:SAML:2.0:attrname-format:uri",
-    ]
+    name_format: UnnamedSchemaRef75
     """A globally unique name for an identity or service provider."""
 
-    source: SaaSApplicationSaasAppAccessSamlSaasAppCustomAttributesSource
+    source: shared_params.UnnamedSchemaRef76
 
 
 class SaaSApplicationSaasAppAccessSamlSaasApp(TypedDict, total=False):
@@ -262,7 +255,7 @@ class SaaSApplicationSaasAppAccessSamlSaasApp(TypedDict, total=False):
     idp_entity_id: str
     """The unique identifier for your SaaS application."""
 
-    name_id_format: Literal["id", "email"]
+    name_id_format: UnnamedSchemaRef77
     """The format of the name identifier sent to the SaaS application."""
 
     name_id_transform_jsonata: str

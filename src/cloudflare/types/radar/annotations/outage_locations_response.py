@@ -2,20 +2,11 @@
 
 from typing import List
 
-from pydantic import Field as FieldInfo
-
 from ...._models import BaseModel
+from ...unnamed_schema_ref_160 import UnnamedSchemaRef160
 
-__all__ = ["OutageLocationsResponse", "Annotation"]
-
-
-class Annotation(BaseModel):
-    client_country_alpha2: str = FieldInfo(alias="clientCountryAlpha2")
-
-    client_country_name: str = FieldInfo(alias="clientCountryName")
-
-    value: str
+__all__ = ["OutageLocationsResponse"]
 
 
 class OutageLocationsResponse(BaseModel):
-    annotations: List[Annotation]
+    annotations: List[UnnamedSchemaRef160]

@@ -4,6 +4,7 @@ from typing import Dict, List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
+from ...shared import Logging
 from ...._models import BaseModel
 
 __all__ = [
@@ -12,19 +13,15 @@ __all__ = [
     "RuleRulesetsBlockRule",
     "RuleRulesetsBlockRuleActionParameters",
     "RuleRulesetsBlockRuleActionParametersResponse",
-    "RuleRulesetsBlockRuleLogging",
     "RuleRulesetsExecuteRule",
     "RuleRulesetsExecuteRuleActionParameters",
     "RuleRulesetsExecuteRuleActionParametersMatchedData",
     "RuleRulesetsExecuteRuleActionParametersOverrides",
     "RuleRulesetsExecuteRuleActionParametersOverridesCategory",
     "RuleRulesetsExecuteRuleActionParametersOverridesRule",
-    "RuleRulesetsExecuteRuleLogging",
     "RuleRulesetsLogRule",
-    "RuleRulesetsLogRuleLogging",
     "RuleRulesetsSkipRule",
     "RuleRulesetsSkipRuleActionParameters",
-    "RuleRulesetsSkipRuleLogging",
 ]
 
 
@@ -42,11 +39,6 @@ class RuleRulesetsBlockRuleActionParametersResponse(BaseModel):
 class RuleRulesetsBlockRuleActionParameters(BaseModel):
     response: Optional[RuleRulesetsBlockRuleActionParametersResponse] = None
     """The response to show when the block is applied."""
-
-
-class RuleRulesetsBlockRuleLogging(BaseModel):
-    enabled: bool
-    """Whether to generate a log when the rule matches."""
 
 
 class RuleRulesetsBlockRule(BaseModel):
@@ -77,7 +69,7 @@ class RuleRulesetsBlockRule(BaseModel):
     expression: Optional[str] = None
     """The expression defining which traffic will match the rule."""
 
-    logging: Optional[RuleRulesetsBlockRuleLogging] = None
+    logging: Optional[Logging] = None
     """An object configuring the rule's logging behavior."""
 
     ref: Optional[str] = None
@@ -161,11 +153,6 @@ class RuleRulesetsExecuteRuleActionParameters(BaseModel):
     """A set of overrides to apply to the target ruleset."""
 
 
-class RuleRulesetsExecuteRuleLogging(BaseModel):
-    enabled: bool
-    """Whether to generate a log when the rule matches."""
-
-
 class RuleRulesetsExecuteRule(BaseModel):
     last_updated: datetime
     """The timestamp of when the rule was last modified."""
@@ -194,16 +181,11 @@ class RuleRulesetsExecuteRule(BaseModel):
     expression: Optional[str] = None
     """The expression defining which traffic will match the rule."""
 
-    logging: Optional[RuleRulesetsExecuteRuleLogging] = None
+    logging: Optional[Logging] = None
     """An object configuring the rule's logging behavior."""
 
     ref: Optional[str] = None
     """The reference of the rule (the rule ID by default)."""
-
-
-class RuleRulesetsLogRuleLogging(BaseModel):
-    enabled: bool
-    """Whether to generate a log when the rule matches."""
 
 
 class RuleRulesetsLogRule(BaseModel):
@@ -234,7 +216,7 @@ class RuleRulesetsLogRule(BaseModel):
     expression: Optional[str] = None
     """The expression defining which traffic will match the rule."""
 
-    logging: Optional[RuleRulesetsLogRuleLogging] = None
+    logging: Optional[Logging] = None
     """An object configuring the rule's logging behavior."""
 
     ref: Optional[str] = None
@@ -300,11 +282,6 @@ class RuleRulesetsSkipRuleActionParameters(BaseModel):
     """
 
 
-class RuleRulesetsSkipRuleLogging(BaseModel):
-    enabled: bool
-    """Whether to generate a log when the rule matches."""
-
-
 class RuleRulesetsSkipRule(BaseModel):
     last_updated: datetime
     """The timestamp of when the rule was last modified."""
@@ -333,7 +310,7 @@ class RuleRulesetsSkipRule(BaseModel):
     expression: Optional[str] = None
     """The expression defining which traffic will match the rule."""
 
-    logging: Optional[RuleRulesetsSkipRuleLogging] = None
+    logging: Optional[Logging] = None
     """An object configuring the rule's logging behavior."""
 
     ref: Optional[str] = None

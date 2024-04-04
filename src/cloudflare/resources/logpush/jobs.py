@@ -26,7 +26,8 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.logpush import JobDeleteResponse, job_create_params, job_delete_params, job_update_params
+from ...types.shared import UnnamedSchemaRef161
+from ...types.logpush import job_create_params, job_delete_params, job_update_params
 from ...types.logpush.datasets import LogpushJob
 
 __all__ = ["Jobs", "AsyncJobs"]
@@ -305,7 +306,7 @@ class Jobs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[JobDeleteResponse]:
+    ) -> Optional[UnnamedSchemaRef161]:
         """
         Deletes a Logpush job.
 
@@ -340,7 +341,7 @@ class Jobs(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
-            Optional[JobDeleteResponse],
+            Optional[UnnamedSchemaRef161],
             self._delete(
                 f"/{account_or_zone}/{account_or_zone_id}/logpush/jobs/{job_id}",
                 body=maybe_transform(body, job_delete_params.JobDeleteParams),
@@ -352,7 +353,7 @@ class Jobs(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[JobDeleteResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef161]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -689,7 +690,7 @@ class AsyncJobs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[JobDeleteResponse]:
+    ) -> Optional[UnnamedSchemaRef161]:
         """
         Deletes a Logpush job.
 
@@ -724,7 +725,7 @@ class AsyncJobs(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
-            Optional[JobDeleteResponse],
+            Optional[UnnamedSchemaRef161],
             await self._delete(
                 f"/{account_or_zone}/{account_or_zone_id}/logpush/jobs/{job_id}",
                 body=await async_maybe_transform(body, job_delete_params.JobDeleteParams),
@@ -736,7 +737,7 @@ class AsyncJobs(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[JobDeleteResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef161]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

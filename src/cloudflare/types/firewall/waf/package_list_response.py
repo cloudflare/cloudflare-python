@@ -3,31 +3,18 @@
 from typing import List, Union, Optional
 from typing_extensions import Literal
 
+from ...shared import UnnamedSchemaRef167, UnnamedSchemaRef172
 from ...._models import BaseModel
 
 __all__ = [
     "PackageListResponse",
     "LegacyJhsAPIResponseCollection",
-    "LegacyJhsAPIResponseCollectionError",
-    "LegacyJhsAPIResponseCollectionMessage",
     "LegacyJhsAPIResponseCollectionResultInfo",
     "Result",
     "ResultResult",
     "ResultResultLegacyJhsPackageDefinition",
     "ResultResultLegacyJhsAnomalyPackage",
 ]
-
-
-class LegacyJhsAPIResponseCollectionError(BaseModel):
-    code: int
-
-    message: str
-
-
-class LegacyJhsAPIResponseCollectionMessage(BaseModel):
-    code: int
-
-    message: str
 
 
 class LegacyJhsAPIResponseCollectionResultInfo(BaseModel):
@@ -45,11 +32,11 @@ class LegacyJhsAPIResponseCollectionResultInfo(BaseModel):
 
 
 class LegacyJhsAPIResponseCollection(BaseModel):
-    errors: List[LegacyJhsAPIResponseCollectionError]
+    errors: List[UnnamedSchemaRef172]
 
-    messages: List[LegacyJhsAPIResponseCollectionMessage]
+    messages: List[UnnamedSchemaRef172]
 
-    result: Union[List[object], str, object, None] = None
+    result: Optional[UnnamedSchemaRef167] = None
 
     success: Literal[True]
     """Whether the API call was successful"""

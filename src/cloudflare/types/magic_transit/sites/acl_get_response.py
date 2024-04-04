@@ -1,8 +1,8 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Union, Optional
-from typing_extensions import Literal
 
+from ...shared import UnnamedSchemaRef82
 from ...._models import BaseModel
 
 __all__ = ["ACLGetResponse", "ACL", "ACLLAN1", "ACLLAN2"]
@@ -72,7 +72,7 @@ class ACL(BaseModel):
     name: Optional[str] = None
     """The name of the ACL."""
 
-    protocols: Optional[List[Literal["tcp", "udp", "icmp"]]] = None
+    protocols: Optional[List[UnnamedSchemaRef82]] = None
 
 
 class ACLGetResponse(BaseModel):

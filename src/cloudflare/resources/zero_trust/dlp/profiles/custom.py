@@ -23,10 +23,10 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import (
     make_request_options,
 )
+from .....types.shared import UnnamedSchemaRef169
 from .....types.zero_trust.dlp.profiles import (
     DLPCustomProfile,
     CustomCreateResponse,
-    CustomDeleteResponse,
     custom_create_params,
     custom_delete_params,
     custom_update_params,
@@ -174,7 +174,7 @@ class Custom(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomDeleteResponse:
+    ) -> UnnamedSchemaRef169:
         """
         Deletes a DLP custom profile.
 
@@ -196,7 +196,7 @@ class Custom(SyncAPIResource):
         if not profile_id:
             raise ValueError(f"Expected a non-empty value for `profile_id` but received {profile_id!r}")
         return cast(
-            CustomDeleteResponse,
+            UnnamedSchemaRef169,
             self._delete(
                 f"/accounts/{account_id}/dlp/profiles/custom/{profile_id}",
                 body=maybe_transform(body, custom_delete_params.CustomDeleteParams),
@@ -208,7 +208,7 @@ class Custom(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[CustomDeleteResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef169]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -397,7 +397,7 @@ class AsyncCustom(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomDeleteResponse:
+    ) -> UnnamedSchemaRef169:
         """
         Deletes a DLP custom profile.
 
@@ -419,7 +419,7 @@ class AsyncCustom(AsyncAPIResource):
         if not profile_id:
             raise ValueError(f"Expected a non-empty value for `profile_id` but received {profile_id!r}")
         return cast(
-            CustomDeleteResponse,
+            UnnamedSchemaRef169,
             await self._delete(
                 f"/accounts/{account_id}/dlp/profiles/custom/{profile_id}",
                 body=await async_maybe_transform(body, custom_delete_params.CustomDeleteParams),
@@ -431,7 +431,7 @@ class AsyncCustom(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[CustomDeleteResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef169]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

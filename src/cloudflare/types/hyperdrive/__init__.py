@@ -10,5 +10,4 @@ from .config_edit_response import ConfigEditResponse as ConfigEditResponse
 from .config_list_response import ConfigListResponse as ConfigListResponse
 from .config_update_params import ConfigUpdateParams as ConfigUpdateParams
 from .config_create_response import ConfigCreateResponse as ConfigCreateResponse
-from .config_delete_response import ConfigDeleteResponse as ConfigDeleteResponse
 from .config_update_response import ConfigUpdateResponse as ConfigUpdateResponse

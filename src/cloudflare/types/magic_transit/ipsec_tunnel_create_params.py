@@ -4,6 +4,8 @@ from __future__ import annotations
 
 from typing_extensions import Literal, Required, TypedDict
 
+from ..shared import UnnamedSchemaRef83, UnnamedSchemaRef84
+
 __all__ = ["IPSECTunnelCreateParams", "HealthCheck"]
 
 
@@ -56,7 +58,7 @@ class HealthCheck(TypedDict, total=False):
     enabled: bool
     """Determines whether to run healthchecks for a tunnel."""
 
-    rate: Literal["low", "mid", "high"]
+    rate: UnnamedSchemaRef83
     """How frequent the health check is run. The default value is `mid`."""
 
     target: str
@@ -69,5 +71,5 @@ class HealthCheck(TypedDict, total=False):
     the tunnel) is used as the target.
     """
 
-    type: Literal["reply", "request"]
+    type: UnnamedSchemaRef84
     """The type of healthcheck to run, reply or request. The default value is `reply`."""

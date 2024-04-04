@@ -7,6 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
+from ......types import shared_params
 from ......_types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ......_utils import (
     maybe_transform,
@@ -48,8 +49,8 @@ class Settings(SyncAPIResource):
         *,
         account_id: str,
         dispatch_namespace: str,
-        errors: Iterable[setting_edit_params.Error],
-        messages: Iterable[setting_edit_params.Message],
+        errors: Iterable[shared_params.UnnamedSchemaRef172],
+        messages: Iterable[shared_params.UnnamedSchemaRef172],
         result: setting_edit_params.Result,
         success: Literal[True],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -171,8 +172,8 @@ class AsyncSettings(AsyncAPIResource):
         *,
         account_id: str,
         dispatch_namespace: str,
-        errors: Iterable[setting_edit_params.Error],
-        messages: Iterable[setting_edit_params.Message],
+        errors: Iterable[shared_params.UnnamedSchemaRef172],
+        messages: Iterable[shared_params.UnnamedSchemaRef172],
         result: setting_edit_params.Result,
         success: Literal[True],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

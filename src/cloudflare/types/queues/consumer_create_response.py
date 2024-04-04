@@ -2,18 +2,10 @@
 
 from typing import Optional
 
+from ..shared import UnnamedSchemaRef41
 from ..._models import BaseModel
 
-__all__ = ["ConsumerCreateResponse", "Settings"]
-
-
-class Settings(BaseModel):
-    batch_size: Optional[float] = None
-    """The maximum number of messages to include in a batch"""
-
-    max_retries: Optional[float] = None
-
-    max_wait_time_ms: Optional[float] = None
+__all__ = ["ConsumerCreateResponse"]
 
 
 class ConsumerCreateResponse(BaseModel):
@@ -27,4 +19,4 @@ class ConsumerCreateResponse(BaseModel):
 
     script_name: Optional[object] = None
 
-    settings: Optional[Settings] = None
+    settings: Optional[UnnamedSchemaRef41] = None

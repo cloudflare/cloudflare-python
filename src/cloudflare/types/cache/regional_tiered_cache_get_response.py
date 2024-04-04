@@ -2,15 +2,15 @@
 
 from typing import Optional
 from datetime import datetime
-from typing_extensions import Literal
 
+from ..shared import UnnamedSchemaRef140
 from ..._models import BaseModel
 
 __all__ = ["RegionalTieredCacheGetResponse", "Value"]
 
 
 class Value(BaseModel):
-    id: Literal["tc_regional"]
+    id: UnnamedSchemaRef140
     """ID of the zone setting."""
 
     modified_on: Optional[datetime] = None
@@ -18,7 +18,7 @@ class Value(BaseModel):
 
 
 class RegionalTieredCacheGetResponse(BaseModel):
-    id: Literal["tc_regional"]
+    id: UnnamedSchemaRef140
     """ID of the zone setting."""
 
     modified_on: Optional[datetime] = None

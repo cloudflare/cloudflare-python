@@ -4,11 +4,13 @@ from __future__ import annotations
 
 from typing_extensions import Literal, Required, TypedDict
 
+from ...shared import UnnamedSchemaRef92
+
 __all__ = ["ZoneSettingMinifyParam", "Value"]
 
 
 class Value(TypedDict, total=False):
-    css: Literal["on", "off"]
+    css: UnnamedSchemaRef92
     """Automatically minify all CSS files for your website."""
 
     html: Literal["on", "off"]

@@ -10,7 +10,6 @@ from .setting_edit_params import SettingEditParams as SettingEditParams
 from .binding_get_response import BindingGetResponse as BindingGetResponse
 from .setting_get_response import SettingGetResponse as SettingGetResponse
 from .tail_create_response import TailCreateResponse as TailCreateResponse
-from .tail_delete_response import TailDeleteResponse as TailDeleteResponse
 from .content_update_params import ContentUpdateParams as ContentUpdateParams
 from .schedule_get_response import ScheduleGetResponse as ScheduleGetResponse
 from .setting_edit_response import SettingEditResponse as SettingEditResponse

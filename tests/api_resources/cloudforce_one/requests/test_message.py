@@ -10,9 +10,9 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare._utils import parse_datetime
+from cloudflare.types.shared import UnnamedSchemaRef171
 from cloudflare.types.cloudforce_one.requests import (
     MessageGetResponse,
-    MessageDeleteResponse,
     CloudforceOneRequestMessageItem,
 )
 
@@ -164,7 +164,7 @@ class TestMessage:
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             request_identifier="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
         )
-        assert_matches_type(MessageDeleteResponse, message, path=["response"])
+        assert_matches_type(UnnamedSchemaRef171, message, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -178,7 +178,7 @@ class TestMessage:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         message = response.parse()
-        assert_matches_type(MessageDeleteResponse, message, path=["response"])
+        assert_matches_type(UnnamedSchemaRef171, message, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -192,7 +192,7 @@ class TestMessage:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             message = response.parse()
-            assert_matches_type(MessageDeleteResponse, message, path=["response"])
+            assert_matches_type(UnnamedSchemaRef171, message, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -436,7 +436,7 @@ class TestAsyncMessage:
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             request_identifier="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
         )
-        assert_matches_type(MessageDeleteResponse, message, path=["response"])
+        assert_matches_type(UnnamedSchemaRef171, message, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -450,7 +450,7 @@ class TestAsyncMessage:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         message = await response.parse()
-        assert_matches_type(MessageDeleteResponse, message, path=["response"])
+        assert_matches_type(UnnamedSchemaRef171, message, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -464,7 +464,7 @@ class TestAsyncMessage:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             message = await response.parse()
-            assert_matches_type(MessageDeleteResponse, message, path=["response"])
+            assert_matches_type(UnnamedSchemaRef171, message, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
