@@ -9,8 +9,9 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.types import Ruleset
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.rulesets.phases import VersionGetResponse, VersionListResponse
+from cloudflare.types.rulesets.phases import VersionGetResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -26,7 +27,7 @@ class TestVersions:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(SyncSinglePage[VersionListResponse], version, path=["response"])
+        assert_matches_type(SyncSinglePage[Ruleset], version, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -36,7 +37,7 @@ class TestVersions:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(SyncSinglePage[VersionListResponse], version, path=["response"])
+        assert_matches_type(SyncSinglePage[Ruleset], version, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -50,7 +51,7 @@ class TestVersions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         version = response.parse()
-        assert_matches_type(SyncSinglePage[VersionListResponse], version, path=["response"])
+        assert_matches_type(SyncSinglePage[Ruleset], version, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -64,7 +65,7 @@ class TestVersions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             version = response.parse()
-            assert_matches_type(SyncSinglePage[VersionListResponse], version, path=["response"])
+            assert_matches_type(SyncSinglePage[Ruleset], version, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -178,7 +179,7 @@ class TestAsyncVersions:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(AsyncSinglePage[VersionListResponse], version, path=["response"])
+        assert_matches_type(AsyncSinglePage[Ruleset], version, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -188,7 +189,7 @@ class TestAsyncVersions:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(AsyncSinglePage[VersionListResponse], version, path=["response"])
+        assert_matches_type(AsyncSinglePage[Ruleset], version, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -202,7 +203,7 @@ class TestAsyncVersions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         version = await response.parse()
-        assert_matches_type(AsyncSinglePage[VersionListResponse], version, path=["response"])
+        assert_matches_type(AsyncSinglePage[Ruleset], version, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -216,7 +217,7 @@ class TestAsyncVersions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             version = await response.parse()
-            assert_matches_type(AsyncSinglePage[VersionListResponse], version, path=["response"])
+            assert_matches_type(AsyncSinglePage[Ruleset], version, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

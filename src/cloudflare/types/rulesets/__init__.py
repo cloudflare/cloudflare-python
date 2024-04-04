@@ -11,4 +11,3 @@ from .rule_create_response import RuleCreateResponse as RuleCreateResponse
 from .rule_delete_response import RuleDeleteResponse as RuleDeleteResponse
 from .version_get_response import VersionGetResponse as VersionGetResponse
 from .phase_update_response import PhaseUpdateResponse as PhaseUpdateResponse
-from .version_list_response import VersionListResponse as VersionListResponse

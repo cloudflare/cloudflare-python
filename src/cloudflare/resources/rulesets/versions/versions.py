@@ -14,6 +14,7 @@ from .by_tag import (
     ByTagWithStreamingResponse,
     AsyncByTagWithStreamingResponse,
 )
+from ....types import Ruleset
 from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -29,7 +30,7 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.rulesets import VersionGetResponse, VersionListResponse
+from ....types.rulesets import VersionGetResponse
 
 __all__ = ["Versions", "AsyncVersions"]
 
@@ -59,7 +60,7 @@ class Versions(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[VersionListResponse]:
+    ) -> SyncSinglePage[Ruleset]:
         """
         Fetches the versions of an account or zone ruleset.
 
@@ -97,11 +98,11 @@ class Versions(SyncAPIResource):
             account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/rulesets/{ruleset_id}/versions",
-            page=SyncSinglePage[VersionListResponse],
+            page=SyncSinglePage[Ruleset],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=VersionListResponse,
+            model=Ruleset,
         )
 
     def delete(
@@ -257,7 +258,7 @@ class AsyncVersions(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[VersionListResponse, AsyncSinglePage[VersionListResponse]]:
+    ) -> AsyncPaginator[Ruleset, AsyncSinglePage[Ruleset]]:
         """
         Fetches the versions of an account or zone ruleset.
 
@@ -295,11 +296,11 @@ class AsyncVersions(AsyncAPIResource):
             account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/rulesets/{ruleset_id}/versions",
-            page=AsyncSinglePage[VersionListResponse],
+            page=AsyncSinglePage[Ruleset],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=VersionListResponse,
+            model=Ruleset,
         )
 
     async def delete(
