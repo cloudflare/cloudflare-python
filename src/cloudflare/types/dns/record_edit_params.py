@@ -5,45 +5,48 @@ from __future__ import annotations
 from typing import List, Union
 from typing_extensions import Literal, Required, TypedDict
 
+from .ttl_param import TTLParam
+from .record_tags_item import RecordTagsItem
+
 __all__ = [
     "RecordEditParams",
-    "DNSRecordsARecord",
-    "DNSRecordsAAAARecord",
-    "DNSRecordsCAARecord",
-    "DNSRecordsCAARecordData",
-    "DNSRecordsCERTRecord",
-    "DNSRecordsCERTRecordData",
-    "DNSRecordsCNAMERecord",
-    "DNSRecordsDNSKEYRecord",
-    "DNSRecordsDNSKEYRecordData",
-    "DNSRecordsDSRecord",
-    "DNSRecordsDSRecordData",
-    "DNSRecordsHTTPSRecord",
-    "DNSRecordsHTTPSRecordData",
-    "DNSRecordsLOCRecord",
-    "DNSRecordsLOCRecordData",
-    "DNSRecordsMXRecord",
-    "DNSRecordsNAPTRRecord",
-    "DNSRecordsNAPTRRecordData",
-    "DNSRecordsNSRecord",
-    "DNSRecordsPTRRecord",
-    "DNSRecordsSMIMEARecord",
-    "DNSRecordsSMIMEARecordData",
-    "DNSRecordsSRVRecord",
-    "DNSRecordsSRVRecordData",
-    "DNSRecordsSSHFPRecord",
-    "DNSRecordsSSHFPRecordData",
-    "DNSRecordsSVCBRecord",
-    "DNSRecordsSVCBRecordData",
-    "DNSRecordsTLSARecord",
-    "DNSRecordsTLSARecordData",
-    "DNSRecordsTXTRecord",
-    "DNSRecordsURIRecord",
-    "DNSRecordsURIRecordData",
+    "ARecord",
+    "AAAARecord",
+    "CAARecord",
+    "CAARecordData",
+    "CERTRecord",
+    "CERTRecordData",
+    "CNAMERecord",
+    "DNSKEYRecord",
+    "DNSKEYRecordData",
+    "DSRecord",
+    "DSRecordData",
+    "HTTPSRecord",
+    "HTTPSRecordData",
+    "LOCRecord",
+    "LOCRecordData",
+    "MXRecord",
+    "NAPTRRecord",
+    "NAPTRRecordData",
+    "NSRecord",
+    "PTRRecord",
+    "SMIMEARecord",
+    "SMIMEARecordData",
+    "SRVRecord",
+    "SRVRecordData",
+    "SSHFPRecord",
+    "SSHFPRecordData",
+    "SVCBRecord",
+    "SVCBRecordData",
+    "TLSARecord",
+    "TLSARecordData",
+    "TXTRecord",
+    "URIRecord",
+    "URIRecordData",
 ]
 
 
-class DNSRecordsARecord(TypedDict, total=False):
+class ARecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -68,10 +71,10 @@ class DNSRecordsARecord(TypedDict, total=False):
     Cloudflare.
     """
 
-    tags: List[str]
+    tags: List[RecordTagsItem]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
-    ttl: Union[float, Literal[1]]
+    ttl: TTLParam
     """Time To Live (TTL) of the DNS record in seconds.
 
     Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
@@ -79,7 +82,7 @@ class DNSRecordsARecord(TypedDict, total=False):
     """
 
 
-class DNSRecordsAAAARecord(TypedDict, total=False):
+class AAAARecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -104,10 +107,10 @@ class DNSRecordsAAAARecord(TypedDict, total=False):
     Cloudflare.
     """
 
-    tags: List[str]
+    tags: List[RecordTagsItem]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
-    ttl: Union[float, Literal[1]]
+    ttl: TTLParam
     """Time To Live (TTL) of the DNS record in seconds.
 
     Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
@@ -115,11 +118,11 @@ class DNSRecordsAAAARecord(TypedDict, total=False):
     """
 
 
-class DNSRecordsCAARecord(TypedDict, total=False):
+class CAARecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
-    data: Required[DNSRecordsCAARecordData]
+    data: Required[CAARecordData]
     """Components of a CAA record."""
 
     name: Required[str]
@@ -134,10 +137,10 @@ class DNSRecordsCAARecord(TypedDict, total=False):
     This field has no effect on DNS responses.
     """
 
-    tags: List[str]
+    tags: List[RecordTagsItem]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
-    ttl: Union[float, Literal[1]]
+    ttl: TTLParam
     """Time To Live (TTL) of the DNS record in seconds.
 
     Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
@@ -145,7 +148,7 @@ class DNSRecordsCAARecord(TypedDict, total=False):
     """
 
 
-class DNSRecordsCAARecordData(TypedDict, total=False):
+class CAARecordData(TypedDict, total=False):
     flags: float
     """Flags for the CAA record."""
 
@@ -156,11 +159,11 @@ class DNSRecordsCAARecordData(TypedDict, total=False):
     """Value of the record. This field's semantics depend on the chosen tag."""
 
 
-class DNSRecordsCERTRecord(TypedDict, total=False):
+class CERTRecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
-    data: Required[DNSRecordsCERTRecordData]
+    data: Required[CERTRecordData]
     """Components of a CERT record."""
 
     name: Required[str]
@@ -175,10 +178,10 @@ class DNSRecordsCERTRecord(TypedDict, total=False):
     This field has no effect on DNS responses.
     """
 
-    tags: List[str]
+    tags: List[RecordTagsItem]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
-    ttl: Union[float, Literal[1]]
+    ttl: TTLParam
     """Time To Live (TTL) of the DNS record in seconds.
 
     Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
@@ -186,7 +189,7 @@ class DNSRecordsCERTRecord(TypedDict, total=False):
     """
 
 
-class DNSRecordsCERTRecordData(TypedDict, total=False):
+class CERTRecordData(TypedDict, total=False):
     algorithm: float
     """Algorithm."""
 
@@ -200,7 +203,7 @@ class DNSRecordsCERTRecordData(TypedDict, total=False):
     """Type."""
 
 
-class DNSRecordsCNAMERecord(TypedDict, total=False):
+class CNAMERecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -225,10 +228,10 @@ class DNSRecordsCNAMERecord(TypedDict, total=False):
     Cloudflare.
     """
 
-    tags: List[str]
+    tags: List[RecordTagsItem]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
-    ttl: Union[float, Literal[1]]
+    ttl: TTLParam
     """Time To Live (TTL) of the DNS record in seconds.
 
     Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
@@ -236,11 +239,11 @@ class DNSRecordsCNAMERecord(TypedDict, total=False):
     """
 
 
-class DNSRecordsDNSKEYRecord(TypedDict, total=False):
+class DNSKEYRecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
-    data: Required[DNSRecordsDNSKEYRecordData]
+    data: Required[DNSKEYRecordData]
     """Components of a DNSKEY record."""
 
     name: Required[str]
@@ -255,10 +258,10 @@ class DNSRecordsDNSKEYRecord(TypedDict, total=False):
     This field has no effect on DNS responses.
     """
 
-    tags: List[str]
+    tags: List[RecordTagsItem]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
-    ttl: Union[float, Literal[1]]
+    ttl: TTLParam
     """Time To Live (TTL) of the DNS record in seconds.
 
     Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
@@ -266,7 +269,7 @@ class DNSRecordsDNSKEYRecord(TypedDict, total=False):
     """
 
 
-class DNSRecordsDNSKEYRecordData(TypedDict, total=False):
+class DNSKEYRecordData(TypedDict, total=False):
     algorithm: float
     """Algorithm."""
 
@@ -280,11 +283,11 @@ class DNSRecordsDNSKEYRecordData(TypedDict, total=False):
     """Public Key."""
 
 
-class DNSRecordsDSRecord(TypedDict, total=False):
+class DSRecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
-    data: Required[DNSRecordsDSRecordData]
+    data: Required[DSRecordData]
     """Components of a DS record."""
 
     name: Required[str]
@@ -299,10 +302,10 @@ class DNSRecordsDSRecord(TypedDict, total=False):
     This field has no effect on DNS responses.
     """
 
-    tags: List[str]
+    tags: List[RecordTagsItem]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
-    ttl: Union[float, Literal[1]]
+    ttl: TTLParam
     """Time To Live (TTL) of the DNS record in seconds.
 
     Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
@@ -310,7 +313,7 @@ class DNSRecordsDSRecord(TypedDict, total=False):
     """
 
 
-class DNSRecordsDSRecordData(TypedDict, total=False):
+class DSRecordData(TypedDict, total=False):
     algorithm: float
     """Algorithm."""
 
@@ -324,11 +327,11 @@ class DNSRecordsDSRecordData(TypedDict, total=False):
     """Key Tag."""
 
 
-class DNSRecordsHTTPSRecord(TypedDict, total=False):
+class HTTPSRecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
-    data: Required[DNSRecordsHTTPSRecordData]
+    data: Required[HTTPSRecordData]
     """Components of a HTTPS record."""
 
     name: Required[str]
@@ -343,10 +346,10 @@ class DNSRecordsHTTPSRecord(TypedDict, total=False):
     This field has no effect on DNS responses.
     """
 
-    tags: List[str]
+    tags: List[RecordTagsItem]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
-    ttl: Union[float, Literal[1]]
+    ttl: TTLParam
     """Time To Live (TTL) of the DNS record in seconds.
 
     Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
@@ -354,7 +357,7 @@ class DNSRecordsHTTPSRecord(TypedDict, total=False):
     """
 
 
-class DNSRecordsHTTPSRecordData(TypedDict, total=False):
+class HTTPSRecordData(TypedDict, total=False):
     priority: float
     """priority."""
 
@@ -365,11 +368,11 @@ class DNSRecordsHTTPSRecordData(TypedDict, total=False):
     """value."""
 
 
-class DNSRecordsLOCRecord(TypedDict, total=False):
+class LOCRecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
-    data: Required[DNSRecordsLOCRecordData]
+    data: Required[LOCRecordData]
     """Components of a LOC record."""
 
     name: Required[str]
@@ -384,10 +387,10 @@ class DNSRecordsLOCRecord(TypedDict, total=False):
     This field has no effect on DNS responses.
     """
 
-    tags: List[str]
+    tags: List[RecordTagsItem]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
-    ttl: Union[float, Literal[1]]
+    ttl: TTLParam
     """Time To Live (TTL) of the DNS record in seconds.
 
     Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
@@ -395,7 +398,7 @@ class DNSRecordsLOCRecord(TypedDict, total=False):
     """
 
 
-class DNSRecordsLOCRecordData(TypedDict, total=False):
+class LOCRecordData(TypedDict, total=False):
     altitude: float
     """Altitude of location in meters."""
 
@@ -433,7 +436,7 @@ class DNSRecordsLOCRecordData(TypedDict, total=False):
     """Size of location in meters."""
 
 
-class DNSRecordsMXRecord(TypedDict, total=False):
+class MXRecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -458,10 +461,10 @@ class DNSRecordsMXRecord(TypedDict, total=False):
     This field has no effect on DNS responses.
     """
 
-    tags: List[str]
+    tags: List[RecordTagsItem]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
-    ttl: Union[float, Literal[1]]
+    ttl: TTLParam
     """Time To Live (TTL) of the DNS record in seconds.
 
     Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
@@ -469,11 +472,11 @@ class DNSRecordsMXRecord(TypedDict, total=False):
     """
 
 
-class DNSRecordsNAPTRRecord(TypedDict, total=False):
+class NAPTRRecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
-    data: Required[DNSRecordsNAPTRRecordData]
+    data: Required[NAPTRRecordData]
     """Components of a NAPTR record."""
 
     name: Required[str]
@@ -488,10 +491,10 @@ class DNSRecordsNAPTRRecord(TypedDict, total=False):
     This field has no effect on DNS responses.
     """
 
-    tags: List[str]
+    tags: List[RecordTagsItem]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
-    ttl: Union[float, Literal[1]]
+    ttl: TTLParam
     """Time To Live (TTL) of the DNS record in seconds.
 
     Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
@@ -499,7 +502,7 @@ class DNSRecordsNAPTRRecord(TypedDict, total=False):
     """
 
 
-class DNSRecordsNAPTRRecordData(TypedDict, total=False):
+class NAPTRRecordData(TypedDict, total=False):
     flags: str
     """Flags."""
 
@@ -519,7 +522,7 @@ class DNSRecordsNAPTRRecordData(TypedDict, total=False):
     """Service."""
 
 
-class DNSRecordsNSRecord(TypedDict, total=False):
+class NSRecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -538,10 +541,10 @@ class DNSRecordsNSRecord(TypedDict, total=False):
     This field has no effect on DNS responses.
     """
 
-    tags: List[str]
+    tags: List[RecordTagsItem]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
-    ttl: Union[float, Literal[1]]
+    ttl: TTLParam
     """Time To Live (TTL) of the DNS record in seconds.
 
     Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
@@ -549,7 +552,7 @@ class DNSRecordsNSRecord(TypedDict, total=False):
     """
 
 
-class DNSRecordsPTRRecord(TypedDict, total=False):
+class PTRRecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -568,10 +571,10 @@ class DNSRecordsPTRRecord(TypedDict, total=False):
     This field has no effect on DNS responses.
     """
 
-    tags: List[str]
+    tags: List[RecordTagsItem]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
-    ttl: Union[float, Literal[1]]
+    ttl: TTLParam
     """Time To Live (TTL) of the DNS record in seconds.
 
     Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
@@ -579,11 +582,11 @@ class DNSRecordsPTRRecord(TypedDict, total=False):
     """
 
 
-class DNSRecordsSMIMEARecord(TypedDict, total=False):
+class SMIMEARecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
-    data: Required[DNSRecordsSMIMEARecordData]
+    data: Required[SMIMEARecordData]
     """Components of a SMIMEA record."""
 
     name: Required[str]
@@ -598,10 +601,10 @@ class DNSRecordsSMIMEARecord(TypedDict, total=False):
     This field has no effect on DNS responses.
     """
 
-    tags: List[str]
+    tags: List[RecordTagsItem]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
-    ttl: Union[float, Literal[1]]
+    ttl: TTLParam
     """Time To Live (TTL) of the DNS record in seconds.
 
     Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
@@ -609,7 +612,7 @@ class DNSRecordsSMIMEARecord(TypedDict, total=False):
     """
 
 
-class DNSRecordsSMIMEARecordData(TypedDict, total=False):
+class SMIMEARecordData(TypedDict, total=False):
     certificate: str
     """Certificate."""
 
@@ -623,11 +626,11 @@ class DNSRecordsSMIMEARecordData(TypedDict, total=False):
     """Usage."""
 
 
-class DNSRecordsSRVRecord(TypedDict, total=False):
+class SRVRecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
-    data: Required[DNSRecordsSRVRecordData]
+    data: Required[SRVRecordData]
     """Components of a SRV record."""
 
     name: Required[str]
@@ -646,10 +649,10 @@ class DNSRecordsSRVRecord(TypedDict, total=False):
     This field has no effect on DNS responses.
     """
 
-    tags: List[str]
+    tags: List[RecordTagsItem]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
-    ttl: Union[float, Literal[1]]
+    ttl: TTLParam
     """Time To Live (TTL) of the DNS record in seconds.
 
     Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
@@ -657,7 +660,7 @@ class DNSRecordsSRVRecord(TypedDict, total=False):
     """
 
 
-class DNSRecordsSRVRecordData(TypedDict, total=False):
+class SRVRecordData(TypedDict, total=False):
     name: str
     """A valid hostname.
 
@@ -696,11 +699,11 @@ class DNSRecordsSRVRecordData(TypedDict, total=False):
     """The record weight."""
 
 
-class DNSRecordsSSHFPRecord(TypedDict, total=False):
+class SSHFPRecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
-    data: Required[DNSRecordsSSHFPRecordData]
+    data: Required[SSHFPRecordData]
     """Components of a SSHFP record."""
 
     name: Required[str]
@@ -715,10 +718,10 @@ class DNSRecordsSSHFPRecord(TypedDict, total=False):
     This field has no effect on DNS responses.
     """
 
-    tags: List[str]
+    tags: List[RecordTagsItem]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
-    ttl: Union[float, Literal[1]]
+    ttl: TTLParam
     """Time To Live (TTL) of the DNS record in seconds.
 
     Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
@@ -726,7 +729,7 @@ class DNSRecordsSSHFPRecord(TypedDict, total=False):
     """
 
 
-class DNSRecordsSSHFPRecordData(TypedDict, total=False):
+class SSHFPRecordData(TypedDict, total=False):
     algorithm: float
     """algorithm."""
 
@@ -737,11 +740,11 @@ class DNSRecordsSSHFPRecordData(TypedDict, total=False):
     """type."""
 
 
-class DNSRecordsSVCBRecord(TypedDict, total=False):
+class SVCBRecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
-    data: Required[DNSRecordsSVCBRecordData]
+    data: Required[SVCBRecordData]
     """Components of a SVCB record."""
 
     name: Required[str]
@@ -756,10 +759,10 @@ class DNSRecordsSVCBRecord(TypedDict, total=False):
     This field has no effect on DNS responses.
     """
 
-    tags: List[str]
+    tags: List[RecordTagsItem]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
-    ttl: Union[float, Literal[1]]
+    ttl: TTLParam
     """Time To Live (TTL) of the DNS record in seconds.
 
     Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
@@ -767,7 +770,7 @@ class DNSRecordsSVCBRecord(TypedDict, total=False):
     """
 
 
-class DNSRecordsSVCBRecordData(TypedDict, total=False):
+class SVCBRecordData(TypedDict, total=False):
     priority: float
     """priority."""
 
@@ -778,11 +781,11 @@ class DNSRecordsSVCBRecordData(TypedDict, total=False):
     """value."""
 
 
-class DNSRecordsTLSARecord(TypedDict, total=False):
+class TLSARecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
-    data: Required[DNSRecordsTLSARecordData]
+    data: Required[TLSARecordData]
     """Components of a TLSA record."""
 
     name: Required[str]
@@ -797,10 +800,10 @@ class DNSRecordsTLSARecord(TypedDict, total=False):
     This field has no effect on DNS responses.
     """
 
-    tags: List[str]
+    tags: List[RecordTagsItem]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
-    ttl: Union[float, Literal[1]]
+    ttl: TTLParam
     """Time To Live (TTL) of the DNS record in seconds.
 
     Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
@@ -808,7 +811,7 @@ class DNSRecordsTLSARecord(TypedDict, total=False):
     """
 
 
-class DNSRecordsTLSARecordData(TypedDict, total=False):
+class TLSARecordData(TypedDict, total=False):
     certificate: str
     """certificate."""
 
@@ -822,7 +825,7 @@ class DNSRecordsTLSARecordData(TypedDict, total=False):
     """Usage."""
 
 
-class DNSRecordsTXTRecord(TypedDict, total=False):
+class TXTRecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -841,10 +844,10 @@ class DNSRecordsTXTRecord(TypedDict, total=False):
     This field has no effect on DNS responses.
     """
 
-    tags: List[str]
+    tags: List[RecordTagsItem]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
-    ttl: Union[float, Literal[1]]
+    ttl: TTLParam
     """Time To Live (TTL) of the DNS record in seconds.
 
     Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
@@ -852,11 +855,11 @@ class DNSRecordsTXTRecord(TypedDict, total=False):
     """
 
 
-class DNSRecordsURIRecord(TypedDict, total=False):
+class URIRecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
-    data: Required[DNSRecordsURIRecordData]
+    data: Required[URIRecordData]
     """Components of a URI record."""
 
     name: Required[str]
@@ -877,10 +880,10 @@ class DNSRecordsURIRecord(TypedDict, total=False):
     This field has no effect on DNS responses.
     """
 
-    tags: List[str]
+    tags: List[RecordTagsItem]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
-    ttl: Union[float, Literal[1]]
+    ttl: TTLParam
     """Time To Live (TTL) of the DNS record in seconds.
 
     Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
@@ -888,7 +891,7 @@ class DNSRecordsURIRecord(TypedDict, total=False):
     """
 
 
-class DNSRecordsURIRecordData(TypedDict, total=False):
+class URIRecordData(TypedDict, total=False):
     content: str
     """The record content."""
 
@@ -897,24 +900,24 @@ class DNSRecordsURIRecordData(TypedDict, total=False):
 
 
 RecordEditParams = Union[
-    DNSRecordsARecord,
-    DNSRecordsAAAARecord,
-    DNSRecordsCAARecord,
-    DNSRecordsCERTRecord,
-    DNSRecordsCNAMERecord,
-    DNSRecordsDNSKEYRecord,
-    DNSRecordsDSRecord,
-    DNSRecordsHTTPSRecord,
-    DNSRecordsLOCRecord,
-    DNSRecordsMXRecord,
-    DNSRecordsNAPTRRecord,
-    DNSRecordsNSRecord,
-    DNSRecordsPTRRecord,
-    DNSRecordsSMIMEARecord,
-    DNSRecordsSRVRecord,
-    DNSRecordsSSHFPRecord,
-    DNSRecordsSVCBRecord,
-    DNSRecordsTLSARecord,
-    DNSRecordsTXTRecord,
-    DNSRecordsURIRecord,
+    ARecord,
+    AAAARecord,
+    CAARecord,
+    CERTRecord,
+    CNAMERecord,
+    DNSKEYRecord,
+    DSRecord,
+    HTTPSRecord,
+    LOCRecord,
+    MXRecord,
+    NAPTRRecord,
+    NSRecord,
+    PTRRecord,
+    SMIMEARecord,
+    SRVRecord,
+    SSHFPRecord,
+    SVCBRecord,
+    TLSARecord,
+    TXTRecord,
+    URIRecord,
 ]
